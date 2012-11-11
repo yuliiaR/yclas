@@ -1,0 +1,14 @@
+/* TEAM */                   
+Your title: Chema Garrido.                       
+Site: http://open-classifieds.com/.                         
+Twitter: openclassifieds.                  
+Location: Barcelona, Spain.
+						
+/* THANKS */						
+Name: Kohana Framework.
+                        
+/* SITE */                
+Last update: 2012/01/28.                         
+Standards: HTML5, CSS3.
+Components: Modernizr, jQuery.
+Software: PHP, MySQL, Ubuntu, Eclipse.
