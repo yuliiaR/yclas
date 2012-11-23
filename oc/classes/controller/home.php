@@ -4,17 +4,15 @@ class Controller_Home extends Controller {
 
 	public function action_index()
 	{
-	    
+
 	    //template header
 	    $this->template->title            = 'welcome';
 	    $this->template->meta_keywords    = 'keywords';
 	    $this->template->meta_description = 'desc';
-	
 	    
 	    //$this->template->header='';
 
-	    //setting main view/template and render page
-
+	    //setting main view/template and render pages
 	   
         //$posts = ORM::factory('post');
         $posts = new Model_Post();
@@ -22,7 +20,6 @@ class Controller_Home extends Controller {
                 ->cached(5)
                 ->limit(10);
         $res = print_r($posts->find(),1);
-        
         
         $this->template->bind('content', $content);
         

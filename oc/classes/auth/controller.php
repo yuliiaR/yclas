@@ -97,9 +97,9 @@ class Auth_Controller extends Controller
 				$this->template->footer           = View::factory('admin/footer');
 				$this->template->styles           = array();
 				$this->template->scripts          = array();
-				View::$styles	        		  = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css' => 'screen');
+				View::$styles	        		  = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css' => 'screen');
 				View::$scripts['header']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js',	
-									'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js'
+									'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js'
 									);
 			}
 		}
