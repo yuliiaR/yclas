@@ -83,7 +83,7 @@ $modules = array(
         	   'orm'          => MODPATH.'orm',        // Object Relationship Mapping
 			   'pagination'   => MODPATH.'pagination',   // ORM Pagination
 			   'breadcrumbs'  => MODPATH.'breadcrumbs',   // breadcrumb view
-			   //'plugin'       => MODPATH.'plugin',     // hooks used for the plugin system, not enabled sinde there's no plugins yet, but everything ready @todo
+			   'plugin'       => MODPATH.'plugin',     // hooks used for the plugin system
 			   'formmanager'  => MODPATH.'formmanager',        // forms to objects ORM
 );
 
