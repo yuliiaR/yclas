@@ -1,14 +1,21 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * description...
+ * User model
  *
  * @author		Chema <chema@garridodiaz.com>
  * @package		OC
- * @copyright	(c) 2009-2011 Open Classifieds Team
+ * @copyright	(c) 2009-2012 Open Classifieds Team
  * @license		GPL v3
  * *
  */
 class Model_User extends ORM {
+
+    /**
+     * Status constants
+     */
+    const STATUS_INACTIVE       = 0;    // Inactive
+    const STATUS_ACTIVE         = 1;   // Active (normal status) (displayed in SERP and can post/login)
+    const STATUS_SPAM           = 5;   // tagged as spam
 
     /**
      * Table name to use
@@ -27,14 +34,25 @@ class Model_User extends ORM {
     protected $_primary_key = 'id_user';
 
     protected $_has_many = array(
-        'post' => array('through' => 'id_user'),
+        'posts' => array(
+            'model'       => 'post',
+            'foreign_key' => 'id_post',
+        ),
     );
 
     /**
-     * Role constants
+     * @var  array  ORM Dependency/hirerachy
      */
-    const ROLE_USER= 1; // normal User
-    const ROLE_ADMIN = 10; // Admin User
+    protected $_belongs_to = array(
+        'role' => array(
+                'model'       => 'role',
+                'foreign_key' => 'id_role',
+            ),
+        'location' => array(
+                'model'       => 'location',
+                'foreign_key' => 'id_location',
+            ),
+    );
     
     
     /**
@@ -50,7 +68,7 @@ class Model_User extends ORM {
 				        'email'	        => array(array('not_empty'), array('max_length', array(':value', 145)), ),
 				        'password'	    => array(array('not_empty'), array('max_length', array(':value', 64)), ),
 				        'status'	    => array(array('numeric')),
-				        'role'	        => array(array('numeric')),
+				        'id_role'	    => array(array('numeric')),
 				        'id_location'   => array(),
 				        'created'	    => array(),
 				        'last_modified' => array(),
@@ -79,7 +97,7 @@ class Model_User extends ORM {
 				        'email'	    	=> 'Email',
 				        'password'		=> 'Password',
 				        'status'		=> 'Status',
-				        'role'			=> 'Role',
+				        'id_role'		=> 'Role',
 				        'id_location'	=> 'Location',
 				        'created'	    => 'Created',
 				        'last_modified'	=> 'Last modified',
@@ -184,4 +202,125 @@ class Model_User extends ORM {
 	    
 	}
 	
+
+    /**
+    * Check the actual controller and action request and validates if the user has access to it
+    * @todo    code something that you can show to your mom.
+    * @param   string  $action
+    * @return  boolean
+    */
+    public function has_access($controller, $action='index', $directory='')
+    {
+        $this->get_access_controllers();
+        $this->get_access_actions();
+
+        /* //if we want to control the directory also...not yet.
+        if(strlen($directory))
+        {
+            $controller = $directory.'/'.$controller;
+        }
+        */
+
+        //die(print_r($this->role->access->find_all()->as_array()));
+
+        $granted = $this->get_access_actions();
+
+        if((in_array('*.*', $granted)) OR (in_array($controller.'.*', $granted)) 
+        	OR (in_array($controller.'.'.$action, $granted)))
+        {
+            //die('1');
+            return TRUE;
+        }
+        else
+        {
+            //die(print_r($this->granted));
+            //die($controller.'.'.$action);
+            //die('2');
+            return FALSE;
+        }
+
+    }
+
+    /**
+     *
+     * returns an array with all the actions that the backuser can do
+     */
+    private function get_access_actions()
+    {
+        $granted = Session::instance()->get('granted_actions');
+        if( ! isset($granted))
+        {
+            $access = $this->role->access->find_all()->as_array();
+            $granted = array();
+
+
+            foreach($access as $k=>$v)
+            {
+                $granted[] = $v->access;
+            }
+
+            //@todo auto controller added
+            
+            /*
+            foreach ($this->get_access_controllers() as $k=>$v)
+            {
+                $granted[] = $v.'.grid';
+                $granted[] = $v.'.grid_js';
+                $granted[] = $v.'.grid_data';
+            }*/
+
+            //$granted[] = 'auth.*';
+            $granted[] = 'home.*';
+
+            Session::instance()->set('granted_actions', $granted);
+        }
+
+        return $granted;
+    }
+
+    /**
+     *
+     * returns an array with the controllers within the user has any right
+     */
+    private function get_access_controllers()
+    {
+        $granted = Session::instance()->get('granted_controllers');
+        if( ! isset($granted))
+        {
+            $access = $this->role->access->find_all()->as_array();
+            $granted = array();
+
+
+            foreach($access as $k=>$v)
+            {
+                $granted[] = strstr($v->access, '.', TRUE);
+            }
+
+            Session::instance()->set('granted_controllers', $granted);
+        }
+        return $granted;
+    }
+
+    /**
+     * Rudimentary access control list
+     * @todo    code something that you can show to your mom.
+     * @param   string  $action
+     * @return  boolean
+     */
+    public function has_access_to_any($list)
+    {
+        $granted = $this->get_access_controllers();
+        $controllers = explode(',',$list);
+        $out = array_intersect($granted, $controllers);
+        if(( ! empty($out) ) OR (in_array('*', $granted)))
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+
 } // END Model_User

@@ -1,14 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?if (Auth::instance()->logged_in()):?>
 <a class="btn btn-success"
-	href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'index'))?>">
+	href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
 	<i class="icon-user icon-white"></i> <?=Auth::instance()->get_user()->email?>
 </a>
 <a class="btn dropdown-toggle btn-success" data-toggle="dropdown"
 	href="#"> <span class="caret"></span>
 </a>
 <ul class="dropdown-menu">
-	<?if (Auth::instance()->get_user()->role == Model_User::ROLE_ADMIN):?>
+	<?if (Auth::instance()->get_user()->id_role == 10): //@todo ad acccess control?>
 	<li><a	href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>"><i
 			class="icon-cog"></i> <?=__('Admin')?></a></li>
 	<?endif;?>

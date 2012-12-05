@@ -24,12 +24,13 @@ Route::set('post_new', URL::title(__('publish new')).'.html')
 //-------END reserved pages
 
 /**
- * SERP / listing
+ * user admin/panel route
  */
-Route::set('listing', '<category>(/<location>)')
+Route::set('oc-panel', 'oc-panel/(<controller>(/<action>(/<id>)))')
 ->defaults(array(
-		'controller' => 'post',    
-		'action'     => 'listing',
+		'directory'  => 'panel',
+		'controller' => 'home',
+		'action'     => 'index',
 ));
 
 
@@ -51,20 +52,22 @@ Route::set('post', '<seotitle>.html')
 		'action'     => 'view',
 ));
 
+
 /**
- * user admin/panel route
+ * SERP / listing
  */
-Route::set('oc-panel', 'oc-panel/(<controller>(/<action>(/<id>)))')
+Route::set('listing', '<category>(/<location>)')
 ->defaults(array(
-		'directory'  => 'panel',
-		'controller' => 'home',
-		'action'     => 'index',
+		'controller' => 'post',    
+		'action'     => 'listing',
 ));
+
+
 
 /**
  * Error router
  */
-Route::set('error', 'error/<action>/<origuri>/<message>',
+Route::set('error', 'oc-error/<action>/<origuri>/<message>',
 array('action' => '[0-9]++',
                     	  'origuri' => '.+', 
                     	  'message' => '.+'))

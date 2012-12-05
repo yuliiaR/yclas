@@ -17,10 +17,12 @@ class Controller_Panel_Auth extends Controller {
 	    //posting data so try to login
 	    elseif ($this->request->post() AND CSRF::valid('login'))
 	    {	        
-            Auth::instance()->login($this->request->post('email'), $this->request->post('password'),(bool) $this->request->post('remember'));
+            Auth::instance()->login($this->request->post('email'), 
+            						$this->request->post('password'),
+            						(bool) $this->request->post('remember'));
             
             //redirect index
-            if (Auth::instance()->logged_in(Model_User::ROLE_USER))
+            if (Auth::instance()->logged_in())
             {
             	//is an admin so redirect to the admin home
             	Auth::instance()->login_redirect();
@@ -156,8 +158,8 @@ class Controller_Panel_Auth extends Controller {
 						//create user
 						$user->email 	= $email;
 						$user->name		= $this->request->post('name');
-						$user->status	= 1;
-						$user->role		= 1;
+						$user->status	= Model_User::STATUS_ACTIVE;
+						$user->role		= 1;//normal user
 						$user->password = $this->request->post('password1');
 						
 						try

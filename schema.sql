@@ -1,10 +1,26 @@
+CREATE TABLE `oc_roles` (
+  `id_role` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `description` varchar(245) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_role`),
+  UNIQUE KEY `oc_roles_UK_name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `oc_access` (
+  `id_access` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_role` int(10) unsigned NOT NULL,
+  `access` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_access`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE  `oc_users` (
   `id_user` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(145) DEFAULT NULL,
   `email` varchar(145) NOT NULL,
   `password` varchar(64) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
-  `role` int(1) NOT NULL DEFAULT '1',
+  `id_role` int(10) unsigned DEFAULT '1',
   `id_location` int(10) unsigned DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_modified` datetime DEFAULT NULL,
@@ -78,7 +94,7 @@ CREATE TABLE  `oc_posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
-CREATE TABLE IF NOT EXISTS `oc_visits` (
+CREATE TABLE `oc_visits` (
   `id_visit` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_post` int(10) unsigned DEFAULT NULL,
   `id_user` int(10) unsigned DEFAULT NULL,
@@ -89,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `oc_visits` (
   KEY `visits_IK_id_post` (`id_post`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `oc_config` ( 
+CREATE TABLE `oc_config` ( 
   `group_name` VARCHAR(128)  NOT NULL, 
   `config_key` VARCHAR(128)  NOT NULL, 
   `config_value` TEXT, 
@@ -97,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `oc_config` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
 
 
-CREATE TABLE IF NOT EXISTS `oc_pages` (
+CREATE TABLE `oc_pages` (
   `id_page` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_page_parent` int(10) unsigned NOT NULL DEFAULT '0',
   `order` int(2) unsigned NOT NULL DEFAULT '0',
@@ -118,8 +134,17 @@ INSERT INTO `oc_config` (`group_name`, `config_key`, `config_value`) VALUES
 ('i18n', 'locale', 'en_US'),
 ('cookie', 'salt', '13413mdksdf-948jd');
 
+
+--roles
+INSERT INTO `oc_roles` (`id_role`, `name`, `description`, `date_created`) 
+VALUES ('1', 'user', 'Normal user', CURRENT_TIMESTAMP), 
+('10', 'Administrator', 'Access to everything', CURRENT_TIMESTAMP);
+
+INSERT INTO `oc_access` (`id_access`, `id_role`, `access`) 
+VALUES ('1', '10', '*'), ('2', '1', 'profile.*');
+
 --admin user
-INSERT INTO `oc_users` (`name`, `email`, `password`, `status`, `role`)
+INSERT INTO `oc_users` (`name`, `email`, `password`, `status`, `id_role`)
 VALUES ('chema', 'neo22s@gmail.com', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', '1', '10');
 
 --root category

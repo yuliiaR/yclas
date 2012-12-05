@@ -5,18 +5,13 @@
  * @package    OC
  * @category   Controller
  * @author     Chema <chema@garridodiaz.com>
- * @copyright  (c) 2009-2011 Open Classifieds Team
+ * @copyright  (c) 2009-2012 Open Classifieds Team
  * @license    GPL v3
  * @see https://github.com/colinbm/kohana-formmanager
  */
 
 class Auth_Crud extends Auth_Controller
 {
-	/**
-	 * role to access this controller by default 10 = admin, checked at construct
-	 */
-	public $role = Model_User::ROLE_ADMIN;
-
 
 	/**
 	 * @var $_index_fields ORM fields shown in index

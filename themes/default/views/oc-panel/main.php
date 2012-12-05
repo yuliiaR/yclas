@@ -41,7 +41,7 @@
     <div class="container">
 	    <div class="row">
 	    
-		<?=View::factory('oc-panel/sidebar')?>
+		<?=View::factory('oc-panel/sidebar',array('user'=>$user))?>
 			<div class="span9">
 				<?=Breadcrumbs::render('oc-panel/breadcrumbs')?>      
 				<?=Alert::show()?>

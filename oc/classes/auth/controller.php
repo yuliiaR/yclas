@@ -12,11 +12,7 @@
 
 class Auth_Controller extends Controller
 {
-	/**
-	 * role to access this controller by default 1 = user
-	 */
-	public $role =  Model_User::ROLE_USER;
-	 
+
 	/**
 	 *
 	 * Contruct that checks you are loged in before nothing else happens!
@@ -38,8 +34,10 @@ class Auth_Controller extends Controller
 			Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Panel'))->set_url($url_bread));
 				
 			//check if user is login
-			if (!Auth::instance()->logged_in($this->role))
+			if (!Auth::instance()->logged_in( $request->controller(), $request->action(), $request->directory()))
 			{
+				Alert::set(Alert::ERROR, __('You do not have permissions to access '.$request->controller().' '.$request->action()));
+				//d('You do not have permissions to access '.$request->controller().' '.$request->action()); 
 				$url = Route::get('oc-panel')->uri(array(
 													 'controller' => 'auth', 
 													 'action'     => 'login'));
@@ -76,6 +74,7 @@ class Auth_Controller extends Controller
 			$this->template->footer           = View::factory('oc-panel/footer');
 			$this->template->styles           = array();
 			$this->template->scripts          = array();
+			$this->template->user 			  = Auth::instance()->get_user();
 			View::$styles	        		  = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css' => 'screen');
 			View::$scripts['header']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js',	
 								'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js'

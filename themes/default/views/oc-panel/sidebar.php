@@ -2,27 +2,37 @@
 <div class="span3">
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
-			<li class="nav-header"><?=__('Administration')?></li>
-			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'post'))?>">
-				<?=__('Ads')?>
+
+<?
+function sidebar_link($name,$controller,$action='index',$route='oc-panel')
+{	
+	if (Auth::instance()->get_user()->has_access($controller))
+ 	{
+ 	?>
+		<li <?=(Request::current()->controller()==$controller)?'class="active"':''?>>
+			<a
+			href="<?=Route::url($route,array('controller'=>$controller,'action'=>$action))?>">
+			<?=__($name)?>
 			</a>
-			</li>
-			<li class="active"><a
-				href="<?=Route::url('oc-panel',array('controller'=>'category'))?>">
-				<?=__('Categories')?>
-			</a>
-			</li>
-			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'location'))?>">
-				<?=__('Locations')?>
-			</a>
-			</li>
-			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'account'))?>">
-				<?=__('Accounts')?>
-			</a>
-			</li>
+		</li>
+	<?
+	}
+}
+?>
+			<?if ($user->has_access_to_any('post,category')):?>
+
+				<li class="nav-header"><?=__('Administration')?></li>
+
+				<?php sidebar_link('Ads','post')?>
+				<?php sidebar_link('Categories','category')?>
+				<?php sidebar_link('Locations','location')?>
+				<?php sidebar_link('Users','user')?>
+				<?php sidebar_link('User Roles','role')?>
+				<?php sidebar_link('Roles access','access')?>
+			<? endif ?>
+
+		
+			
 			<li><a
 				href="<?=Route::url('oc-panel',array('controller'=>'page'))?>">
 				<?=__('Pages')?>

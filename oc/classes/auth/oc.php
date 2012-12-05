@@ -5,7 +5,7 @@
  * @package    OC
  * @category   Auth
  * @author     Chema <chema@garridodiaz.com>
- * @copyright  (c) 2009-2011 Open Classifieds Team
+ * @copyright  (c) 2009-2012 Open Classifieds Team
  * @license    GPL v3
  */
 
@@ -52,24 +52,22 @@ class Auth_OC extends Kohana_Auth {
 	/**
 	 * Checks if a session is active.
 	 *
-	 * @param   integer    $role , by default for normal user.
 	 * @return  boolean
 	 */
-	public function logged_in($role = Model_User::ROLE_USER)
+	public function logged_in($controller='home', $action = NULL, $directory = NULL)
 	{
+
 		// Get the user from the session
 		$user = $this->get_user();
 
 		if ( ! $user)
-		return FALSE;
+			return FALSE;
 
-		//we need a user loaded and the role must be valid
-		if ($user instanceof Model_User AND $user->loaded() AND is_numeric($role) )
+
+		if ($user instanceof Model_User AND $user->loaded() AND 
+			$user->has_access($controller, $action, $directory) )
 		{
-			 
-			//only true if role is equal or higher to required
-			return ($user->role >= $role)? TRUE:FALSE;
-
+			return TRUE;
 		}
 
 		return FALSE;
@@ -89,9 +87,10 @@ class Auth_OC extends Kohana_Auth {
 		// Load the user
 		$user = new Model_User;
 		$user->where('email', '=', $email)
-		->where('status','=',1)
+		->where('status','=',Model_User::STATUS_ACTIVE)
 		->limit(1)
 		->find();
+		//echo $user->password;		d($this->hash($password));
 		// If the passwords match, perform a login
 		if ($user->password === $this->hash($password))
 		{
@@ -124,20 +123,21 @@ class Auth_OC extends Kohana_Auth {
 	{
 		//in case token is not provided check the cookie, perfect for the QL
 		if ($token === NULL )
-		$token = Cookie::get('authautologin');
+			$token = Cookie::get('authautologin');
 
 		if ($token!==NULL)
 		{
 			// Load the user from the token
 			$user = new Model_User;
 			$user ->where('token', '=', $token)
-			->where('status','=',1)
+			->where('status','=',Model_User::STATUS_ACTIVE)
 			->where('token_expires','>',DB::expr('NOW()'))
 			->limit(1)
 			->find();
 
 			if ($user->loaded())
 			{
+				//only allowed autologin form exactly same browser!
 				if ($user->user_agent === sha1(Request::$user_agent))
 				{
 					// Complete the login with the found data, and new token
@@ -324,12 +324,8 @@ class Auth_OC extends Kohana_Auth {
 	 */
 	public function login_redirect()
 	{
-		if (Auth::instance()->get_user()->role ==  Model_User::ROLE_ADMIN)
-		{
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'home','action'=>'index')));
-		}
-		 
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'index')));
+
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'home','action'=>'index')));
 	}
 
 
