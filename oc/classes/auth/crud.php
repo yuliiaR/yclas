@@ -31,7 +31,7 @@ class Auth_Crud extends Auth_Controller
 	/**
 	 * @var $_route_name Route to be used for actions (default: user, check /oc/config/routes.php)
 	 */
-	protected $_route_name = 'user';
+	protected $_route_name = 'oc-panel';
 
 	/**
 	 *
@@ -63,9 +63,7 @@ class Auth_Crud extends Auth_Controller
 														'action'      => 'index'));
 			$this->request->redirect($url);
 		}
-		
-		
-		
+				
 		//url used in the breadcrumb
 		$url_bread = Route::url('oc-panel',array('controller'  => $this->request->controller()));
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__($this->_orm_model)))->set_url($url_bread));
@@ -84,7 +82,7 @@ class Auth_Crud extends Auth_Controller
 	public function action_index($view = NULL)
 	{
 		$this->template->title = __($this->_orm_model);
-		$this->template->scripts['footer'][] = 'js/pages/admin/crud/index.js';
+		$this->template->scripts['footer'][] = 'js/oc-panel/crud/index.js';
 		
 		$elements = ORM::Factory($this->_orm_model);//->find_all();
 
@@ -93,7 +91,6 @@ class Auth_Crud extends Auth_Controller
 					'total_items' 	 => $elements->count_all(),
 		//'items_per_page' => 10// @todo from config?,
 		))->route_params(array(
-					'directory'  => $this->request->directory(),
 					'controller' => $this->request->controller(),
 					'action' 	 => $this->request->action(),
 		));
@@ -107,7 +104,7 @@ class Auth_Crud extends Auth_Controller
 		$pagination = $pagination->render();
 
 		if ($view === NULL)
-			$view = 'admin/crud/index';
+			$view = 'oc-panel/crud/index';
 		
 		$this->render($view, array('elements' => $elements,'pagination'=>$pagination));
 	}
@@ -131,8 +128,6 @@ class Auth_Crud extends Auth_Controller
 			throw new HTTP_Exception_500($e->getMessage());
 		}
 
-		//$this->request->redirect(Route::get($this->_route_name)->uri(array('directory'=> Request::current()->directory(),'controller'=> Request::current()->controller())));
-
 	}
 
 	/**
@@ -150,7 +145,7 @@ class Auth_Crud extends Auth_Controller
 			{
 				$form->save_object();
 				Alert::set(Alert::SUCCESS, __('Success, item created'));
-				$this->request->redirect(Route::get($this->_route_name)->uri(array('directory'=> Request::current()->directory(),'controller'=> Request::current()->controller())));
+				$this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
 			}
 			else 
 			{
@@ -158,7 +153,7 @@ class Auth_Crud extends Auth_Controller
 			}
 		}
 	
-		return $this->render('admin/crud/create', array('form' => $form));
+		return $this->render('oc-panel/crud/create', array('form' => $form));
 	}
 	
 	
@@ -177,7 +172,7 @@ class Auth_Crud extends Auth_Controller
 			{
 				$form->save_object();
 				Alert::set(Alert::SUCCESS, __('Success, item updated'));
-				$this->request->redirect(Route::get($this->_route_name)->uri(array('directory'=> Request::current()->directory(),'controller'=> Request::current()->controller())));
+				$this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
 			}
 			else
 			{
@@ -185,7 +180,7 @@ class Auth_Crud extends Auth_Controller
 			}
 		}
 	
-		return $this->render('admin/crud/update', array('form' => $form));
+		return $this->render('oc-panel/crud/update', array('form' => $form));
 	}
 
 	/**
