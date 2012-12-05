@@ -58,7 +58,7 @@ class Auth_Crud extends Auth_Controller
 		//we check if that action can be done, if not redirected to the index
 		if (!$this->allowed_crud_action())
 		{
-			$url = Route::get('user')->uri(array('directory'  => $this->request->directory(),
+			$url = Route::get('oc-panel')->uri(array(
 														'controller'  => $this->request->controller(), 
 														'action'      => 'index'));
 			$this->request->redirect($url);
@@ -67,8 +67,7 @@ class Auth_Crud extends Auth_Controller
 		
 		
 		//url used in the breadcrumb
-		$url_bread = Route::url('user',array('directory'  => $this->request->directory(),
-											'controller'  => $this->request->controller()));
+		$url_bread = Route::url('oc-panel',array('controller'  => $this->request->controller()));
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__($this->_orm_model)))->set_url($url_bread));
 		//action
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__($this->request->action()))));

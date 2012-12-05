@@ -52,13 +52,13 @@ Route::set('post', '<seotitle>.html')
 ));
 
 /**
- * user and admin route, we use this instead of the default route
+ * user admin/panel route
  */
-Route::set('user', 'oc-<directory>/<controller>/<action>(/<id>)',array('directory' => '(admin|user)'))
+Route::set('oc-panel', 'oc-panel/(<controller>(/<action>(/<id>)))')
 ->defaults(array(
-		'directory'  => 'user',
-        'controller' => 'profile',
-        'action'     => 'index',
+		'directory'  => 'panel',
+		'controller' => 'home',
+		'action'     => 'index',
 ));
 
 /**

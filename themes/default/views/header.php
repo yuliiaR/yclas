@@ -56,7 +56,7 @@
             </div>
             
             <div class="modal-body">
-				<?=View::factory('pages/user/auth/login-form')?>
+				<?=View::factory('pages/auth/login-form')?>
     		</div>
     </div>
     
@@ -67,7 +67,7 @@
             </div>
             
             <div class="modal-body">
-				<?=View::factory('pages/user/auth/forgot-form')?>
+				<?=View::factory('pages/auth/forgot-form')?>
     		</div>
     </div>
     
@@ -78,7 +78,7 @@
             </div>
             
             <div class="modal-body">
-				<?=View::factory('pages/user/auth/register-form')?>
+				<?=View::factory('pages/auth/register-form')?>
     		</div>
     </div>
 <?endif?>

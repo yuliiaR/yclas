@@ -326,10 +326,10 @@ class Auth_OC extends Kohana_Auth {
 	{
 		if (Auth::instance()->get_user()->role ==  Model_User::ROLE_ADMIN)
 		{
-			Request::current()->redirect(Route::url('user',array('directory'=>'admin','controller'=>'home','action'=>'index')));
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'home','action'=>'index')));
 		}
 		 
-		Request::current()->redirect(Route::url('user',array('controller'=>'profile','action'=>'index')));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'index')));
 	}
 
 
