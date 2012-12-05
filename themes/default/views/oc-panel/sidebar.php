@@ -3,22 +3,6 @@
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
 
-<?
-function sidebar_link($name,$controller,$action='index',$route='oc-panel')
-{	
-	if (Auth::instance()->get_user()->has_access($controller))
- 	{
- 	?>
-		<li <?=(Request::current()->controller()==$controller)?'class="active"':''?>>
-			<a
-			href="<?=Route::url($route,array('controller'=>$controller,'action'=>$action))?>">
-			<?=__($name)?>
-			</a>
-		</li>
-	<?
-	}
-}
-?>
 			<?if ($user->has_access_to_any('post,category')):?>
 
 				<li class="nav-header"><?=__('Administration')?></li>

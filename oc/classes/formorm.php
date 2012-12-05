@@ -32,7 +32,7 @@ class FormOrm extends FormManager {
 
 	/**
 	 * 
-	 * sets the protectes exclude fields
+	 * sets the protected excluded fields
 	 * @param array $fields
 	 */
 	public function set_sexclude_fields($fields = NULL)

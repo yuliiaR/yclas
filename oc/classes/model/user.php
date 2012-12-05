@@ -36,7 +36,7 @@ class Model_User extends ORM {
     protected $_has_many = array(
         'posts' => array(
             'model'       => 'post',
-            'foreign_key' => 'id_post',
+            'foreign_key' => 'id_user',
         ),
     );
 
@@ -44,10 +44,10 @@ class Model_User extends ORM {
      * @var  array  ORM Dependency/hirerachy
      */
     protected $_belongs_to = array(
-        'role' => array(
+    /*    'role' => array(
                 'model'       => 'role',
                 'foreign_key' => 'id_role',
-            ),
+            ),*/
         'location' => array(
                 'model'       => 'location',
                 'foreign_key' => 'id_location',
@@ -88,7 +88,7 @@ class Model_User extends ORM {
      * Label definitions for validation
      *
      * @return array
-     */
+     *//*
     public function labels()
     {
     	return array(
@@ -103,7 +103,7 @@ class Model_User extends ORM {
 				        'last_modified'	=> 'Last modified',
 				        'last_login'	=> 'Last login',
 				    );
-    }
+    }*/
 
     /**
      * Filters to run when data is set in this model. The password filter

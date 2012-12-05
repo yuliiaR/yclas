@@ -20,3 +20,31 @@ Alert::$tpl 	= 	'<div class="alert alert-%s">
 					<a class="close" data-dismiss="alert" href="#">×</a>
 					<h4 class="alert-heading">%s</h4>%s
 					</div>';
+
+
+/**
+ * Theme Funtions
+ * 
+ */
+
+/**
+ * generates a link used in the admin sidebar
+ * @param  string $name       translated name in the A
+ * @param  string $controller
+ * @param  string $action     
+ * @param  string $route      
+ */
+function sidebar_link($name,$controller,$action='index',$route='oc-panel')
+{	
+	if (Auth::instance()->get_user()->has_access($controller))
+ 	{
+ 	?>
+		<li <?=(Request::current()->controller()==$controller)?'class="active"':''?>>
+			<a
+			href="<?=Route::url($route,array('controller'=>$controller,'action'=>$action))?>">
+			<?=__($name)?>
+			</a>
+		</li>
+	<?
+	}
+}
