@@ -44,10 +44,10 @@ class Model_User extends ORM {
      * @var  array  ORM Dependency/hirerachy
      */
     protected $_belongs_to = array(
-    /*    'role' => array(
+        'role' => array(
                 'model'       => 'role',
                 'foreign_key' => 'id_role',
-            ),*/
+            ),
         'location' => array(
                 'model'       => 'location',
                 'foreign_key' => 'id_location',

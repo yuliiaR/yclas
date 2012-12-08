@@ -23,11 +23,12 @@ Alert::$tpl 	= 	'<div class="alert alert-%s">
 
 
 /**
- * Theme Funtions
+ * Theme Functions
  * 
  */
 
 /**
+ * @todo this belongs to the admin, so needs to be loaded no matter, the theme. not a good place here...
  * generates a link used in the admin sidebar
  * @param  string $name       translated name in the A
  * @param  string $controller
@@ -40,9 +41,9 @@ function sidebar_link($name,$controller,$action='index',$route='oc-panel')
  	{
  	?>
 		<li <?=(Request::current()->controller()==$controller)?'class="active"':''?>>
-			<a
-			href="<?=Route::url($route,array('controller'=>$controller,'action'=>$action))?>">
-			<?=__($name)?>
+			<a href="<?=Route::url($route,array('controller'=>$controller,
+												'action'=>$action))?>">
+				<?=__($name)?>
 			</a>
 		</li>
 	<?
