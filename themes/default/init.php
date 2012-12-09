@@ -43,7 +43,7 @@ function sidebar_link($name,$controller,$action='index',$route='oc-panel')
 		<li <?=(Request::current()->controller()==$controller)?'class="active"':''?>>
 			<a href="<?=Route::url($route,array('controller'=>$controller,
 												'action'=>$action))?>">
-				<?=__($name)?>
+				<?=$name?>
 			</a>
 		</li>
 	<?

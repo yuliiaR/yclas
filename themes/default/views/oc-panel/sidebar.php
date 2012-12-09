@@ -7,12 +7,12 @@
 
 				<li class="nav-header"><?=__('Administration')?></li>
 
-				<?php sidebar_link('Ads','post')?>
-				<?php sidebar_link('Categories','category')?>
-				<?php sidebar_link('Locations','location')?>
-				<?php sidebar_link('Users','user')?>
-				<?php sidebar_link('User Roles','role')?>
-				<?php sidebar_link('Roles access','access')?>
+				<?php sidebar_link(__('Ads'),'post')?>
+				<?php sidebar_link(__('Categories'),'category')?>
+				<?php sidebar_link(__('Locations'),'location')?>
+				<?php sidebar_link(__('Users'),'user')?>
+				<?php sidebar_link(__('User Roles'),'role')?>
+				<?php sidebar_link(__('Roles access'),'access')?>
 			<? endif ?>
 
 		
