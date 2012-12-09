@@ -40,7 +40,8 @@ function sidebar_link($name,$controller,$action='index',$route='oc-panel')
 	if (Auth::instance()->get_user()->has_access($controller))
  	{
  	?>
-		<li <?=(Request::current()->controller()==$controller)?'class="active"':''?>>
+		<li <?=(Request::current()->controller()==$controller 
+				&& Request::current()->action()==$action)?'class="active"':''?> >
 			<a href="<?=Route::url($route,array('controller'=>$controller,
 												'action'=>$action))?>">
 				<?=$name?>
