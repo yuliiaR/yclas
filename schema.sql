@@ -17,6 +17,7 @@ CREATE TABLE `oc_access` (
 CREATE TABLE  `oc_users` (
   `id_user` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(145) DEFAULT NULL,
+  `seoname` varchar(145) DEFAULT NULL,
   `email` varchar(145) NOT NULL,
   `password` varchar(64) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
@@ -33,7 +34,8 @@ CREATE TABLE  `oc_users` (
   `token_expires` datetime DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `users_UK_email` (`email`),
-  UNIQUE KEY `users_UK_token` (`token`)
+  UNIQUE KEY `users_UK_token` (`token`),
+  UNIQUE KEY `users_UK_seoname` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -141,7 +143,7 @@ VALUES ('1', 'user', 'Normal user', CURRENT_TIMESTAMP),
 ('10', 'Administrator', 'Access to everything', CURRENT_TIMESTAMP);
 
 INSERT INTO `oc_access` (`id_access`, `id_role`, `access`) 
-VALUES ('1', '10', '*'), ('2', '1', 'profile.*');
+VALUES ('1', '10', '*.*'), ('2', '1', 'profile.*');
 
 --admin user
 INSERT INTO `oc_users` (`name`, `email`, `password`, `status`, `id_role`)

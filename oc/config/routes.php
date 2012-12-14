@@ -14,11 +14,12 @@
 
 /**
  * Item / post new
+ * URL::title(__('publish new'))
  */
-Route::set('post_new', URL::title(__('publish new')).'.html')
+Route::set('post_new', URL::title(__('publish new')).'html')
 ->defaults(array(
 		'controller' => 'post',    
-		'action'     => 'new',
+		'action'     => 'listing',
 ));
 
 //-------END reserved pages
@@ -30,6 +31,16 @@ Route::set('oc-panel', 'oc-panel/(<controller>(/<action>(/<id>)))')
 ->defaults(array(
 		'directory'  => 'panel',
 		'controller' => 'home',
+		'action'     => 'index',
+));
+
+/*
+	user profile route 
+ */
+ 
+Route::set('profile', 'user/<seoname>')
+->defaults(array(
+		'controller' => 'user',
 		'action'     => 'index',
 ));
 
@@ -46,19 +57,20 @@ Route::set('page','p/<seotitle>.html')
 /**
  * Item / post view public
  */
-Route::set('post', '<seotitle>.html')
+Route::set('post', 'post(/<seotitle>.html)')
 ->defaults(array(
+		'directory'  => 'panel',
 		'controller' => 'post',    
 		'action'     => 'view',
 ));
 
 
 /**
- * SERP / listing
+ * SERP / listing (all posts || posts sorted by category / listing)
  */
-Route::set('listing', '<category>(/<location>)')
+Route::set('listing', 'listing(/<category>)(/<location>)')
 ->defaults(array(
-		'controller' => 'post',    
+		'controller' => 'posts',    
 		'action'     => 'listing',
 ));
 

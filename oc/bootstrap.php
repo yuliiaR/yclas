@@ -81,15 +81,18 @@ $modules = array(
         	   'database'     => MODPATH.'database',   // Database access
         	   'image'        => MODPATH.'image',      // Image manipulation
         	   'orm'          => MODPATH.'orm',        // Object Relationship Mapping
-			   'pagination'   => MODPATH.'pagination',   // ORM Pagination
-			   'breadcrumbs'  => MODPATH.'breadcrumbs',   // breadcrumb view
+			   'pagination'   => MODPATH.'pagination', // ORM Pagination
+			   'breadcrumbs'  => MODPATH.'breadcrumbs',// breadcrumb view
 			   'plugin'       => MODPATH.'plugin',     // hooks used for the plugin system
-			   'formmanager'  => MODPATH.'formmanager',        // forms to objects ORM
+			   'formmanager'  => MODPATH.'formmanager',// forms to objects ORM
+               
 );
 
 //modules for development environment, not included in distributed KO with OC
+
 if (Kohana::$environment == Kohana::DEVELOPMENT)
 {
+    $modules['profilertoolbar'] = MODPATH.'profilertoolbar'; // delete files before production!
     //$modules['unittest'] =  MODPATH.'unittest';   // Unit testing
     //$modules['codebench'] = MODPATH.'codebench'; // Benchmarking tool
     //$modules['userguide'] = MODPATH.'userguide';  // User guide and API documentation

@@ -36,7 +36,7 @@
   </head>
 
   <body>
-  
+  	
 	<?=$header?>
     <div class="container">
 	    <div class="row">
@@ -57,7 +57,7 @@
 		<?=HTML::script('http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js')?>
 		<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
 	<![endif]-->
-
+	 <?php if (Kohana::$environment === Kohana::DEVELOPMENT) ProfilerToolbar::render(true); ?>
   </body>
 </html>
-<?=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
+

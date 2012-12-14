@@ -120,6 +120,16 @@ class Model_User extends ORM {
         );
     }
 
+    /**
+     * Insert a new object to the database
+     * @param  Validation $validation Validation object
+     * @return ORM
+     */
+    // public function create(Validation $validation = NULL)
+    // {
+
+    //    // $self::create($validation);
+    // }
     
 	/**
 	 * complete the login for a user

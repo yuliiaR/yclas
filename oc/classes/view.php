@@ -88,7 +88,6 @@ class View extends Kohana_View{
     }
     
     
-    
     /**
      * Initialization of the theme that we want to see.
      *
