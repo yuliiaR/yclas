@@ -6,7 +6,7 @@ return array
         'connection' => array(
             'hostname'   => 'localhost',
             'username'   => 'root',
-            'password'   => '',
+            'password'   => '123',
             'persistent' => FALSE,
             'database'   => 'reoc',
             ),
