@@ -61,6 +61,7 @@ class Controller_Post extends Controller {
 		{
 			$category = new Model_Category();
 			$category->where('seoname', '=', $slug_cat)->limit(1)->find();
+			$showall_categories_seoname = $category->where('seoname', '=', $slug_cat)->limit(10)->find_all();
 			
 			//filter category
 			if ($category->loaded())

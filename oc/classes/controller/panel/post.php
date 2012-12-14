@@ -8,7 +8,7 @@ class Controller_Post extends ORM {
 	 * Display single post
 	 * @throws HTTP_Exception_404
 	 */
-	public function action_view()
+	public function action_index()
 	{
 		$seotitle = $this->request->param('seotitle',NULL);
 		

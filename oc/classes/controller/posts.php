@@ -25,16 +25,7 @@ class Controller_Posts extends Controller {
 
 		
 
-		//retrieve location
-		// if ( $slug_loc !==NULL )
-		// {
-		// 	$location = new Model_Location();
-		// 	$location->where('post.seoname', '=', $slug_loc)->limit(1)->find();
-
-		// //filter location
-		// if ($location->loaded())
-		// 	$posts->where('id_location','=',$location->id_location);
-		// }
+		
 		
 		// END RETRIEVE CATEGORY >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		
@@ -64,16 +55,28 @@ class Controller_Posts extends Controller {
 			$category = new Model_Category();
 			$category->where('seoname', '=', $slug_cat)->limit(1)->find();
 			$filter = $posts->where('post.id_category','=',$category->id_category);
-			$res_count = $filter->count_all();	
+			$res_count_categories = $filter->count_all();	
 		}
 		else
 		{
 			//count posts
-			$res_count = $posts->count_all(); //returns number of posts
+			$res_count_categories = $posts->count_all(); //returns number of posts
 		
 		}
-			
-			
+		//retrieve location
+		 if ( $slug_loc !==NULL )
+		 {
+		 	$location = new Model_Location();
+		 	$location->where('seoname', '=', $slug_loc)->limit(1)->find();
+		//filter location
+		 	$filter = $posts->where('post.id_location','=',$location->id_location);
+		 	$res_count_locations = $filter->count_all();
+		 }
+		 else
+		 {
+		 	$res_count_locations = $posts->count_all();
+		 }
+		$res_count = max(array($res_count_locations, $res_count_categories));
 		/*
 			PAGINATION 
 		 */
@@ -100,7 +103,16 @@ class Controller_Posts extends Controller {
 				
 				
 				//filter category
-				if ($category->loaded())
+				if ($category->loaded() && $slug_loc !== NULL)
+				{
+					$posts = $posts->where('post.id_category','=',$category->id_category)
+									->and_where('post.id_location','=', $location->id_location)
+									->order_by('created','desc')
+                                	->limit($pagination->items_per_page)
+                                	->offset($pagination->offset)
+                                	->find_all();
+				}
+				else if($category->loaded())
 				{
 					$posts = $posts->where('post.id_category','=',$category->id_category)
 									->order_by('created','desc')

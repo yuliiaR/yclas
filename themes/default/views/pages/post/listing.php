@@ -43,10 +43,10 @@
 
 
 	    <?endforeach?>
-	    
+	    <?=$pagination?>
 	  <?else:?>
 	    	<h2><?=__('No items found')?></h2>
 	  <?endif?>
-	  <?=$pagination?>
+	  
 	</div><!--/span--> 
 </div><!--/row-->
