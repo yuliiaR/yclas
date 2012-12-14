@@ -618,6 +618,7 @@ class Kohana_ORM extends Model implements serializable {
 		}
 		else
 		{
+			d($column);
 			throw new Kohana_Exception('The :property property does not exist in the :class class',
 				array(':property' => $column, ':class' => get_class($this)));
 		}

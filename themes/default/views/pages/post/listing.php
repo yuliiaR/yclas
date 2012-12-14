@@ -6,7 +6,7 @@
 	<div class="span10">
 	 
 	 <ul class="breadcrumb">
-        	<li><a href="<?php ?>">Home</a> <span class="divider">&raquo;</span></li>
+        	<li><a href="#">Home</a> <span class="divider">&raquo;</span></li>
         	<li><a href="#">category</a> <span class="divider">&raquo;</span></li>
         	<li><a href="#">location</a> <span class="divider">&raquo;</span></li>
         	<li class="active">page 1</li>

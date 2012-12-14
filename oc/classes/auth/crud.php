@@ -130,10 +130,11 @@ class Auth_Crud extends Auth_Controller
 	 */
 	public function action_create()
 	{
+
 		$this->template->title = __('New').' '.__($this->_orm_model);
-			
+		
 		$form = new FormOrm($this->_orm_model);
-	
+			
 		if ($this->request->post())
 		{
 			if ( $success = $form->submit() )

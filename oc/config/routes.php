@@ -18,8 +18,8 @@
  */
 Route::set('post_new', URL::title(__('publish new')).'html')
 ->defaults(array(
-		'controller' => 'post',    
-		'action'     => 'listing',
+		'controller' => 'posts',    
+		'action'     => 'newpost',
 ));
 
 //-------END reserved pages
@@ -59,7 +59,7 @@ Route::set('page','p/<seotitle>.html')
  */
 Route::set('post', 'post(/<seotitle>.html)')
 ->defaults(array(
-		'directory'  => 'panel',
+		//'directory'  => 'panel',
 		'controller' => 'post',    
 		'action'     => 'view',
 ));
@@ -70,7 +70,7 @@ Route::set('post', 'post(/<seotitle>.html)')
  */
 Route::set('listing', 'listing(/<category>)(/<location>)')
 ->defaults(array(
-		'controller' => 'posts',    
+		'controller' => 'post',    
 		'action'     => 'listing',
 ));
 

@@ -2,8 +2,7 @@
 <div class="row-fluid">
 	<?=View::factory('sidebar')?>
 	<div class="span10">
-	<h1><?=__('Ads listing')?></h1>
-	<?php //var_dump($post)?>	    
+	<h1><?= $post->seotitle." ";?><?=__('Ad Page');?></h1>	    
 	    <div>
 	    	<h3><?= $post->seotitle?></h3>
 	    	<p><strong>Price : </strong> <?= $post->price?></p>

@@ -22,7 +22,7 @@ class Model_Post extends ORM {
      * Column to use as primary key
      *
      * @access	protected
-     * @var		string	$_primary_key default [id]
+     * @var		string	$_primary_key default [id_post]
      */
     protected $_primary_key = 'id_post';
 
@@ -71,24 +71,33 @@ class Model_Post extends ORM {
     public function labels()
     {
     	return array(
-			        'id_post'		=> 'Id post',
-			        'id_user'		=> 'Id user',
-			        'id_category'	=> 'Id category',
-			        'id_location'	=> 'Id location',
-			        'type'			=> 'Type',
-			        'title'			=> 'Title',
-			        'seotitle'		=> 'SEO title',
-			        'description'	=> 'Description',
-			        'adress'		=> 'Adress',
-			        'price'			=> 'Price',
-			        'phone'			=> 'Phone',
-			        'ip_address'	=> 'Ip address',
-			        'created'		=> 'Created',
-			        'published'		=> 'Published',
-			        'status'		=> 'Status',
-			        'has_images'	=> 'Has images',
+			        'id_post'		=> __('Id post'),
+			        'id_user'		=> __('Id user'),
+			        'id_category'	=> __('Id category'),
+			        'id_location'	=> __('Id location'),
+			        'type'			=> __('Type'),
+			        'title'			=> __('Title'),
+			        'seotitle'		=> __('SEO title'),
+			        'description'	=> __('Description'),
+			        'adress'		=> __('Adress'),
+			        'price'			=> __('Price'),
+			        'phone'			=> __('Phone'),
+			        'ip_address'	=> __('Ip address'),
+			        'created'		=> __('Created'),
+			        'published'		=> __('Published'),
+			        'status'		=> __('Status'),
+			        'has_images'	=> __('Has images'),
 			    );
     }
-   
+
+    /**
+     * 
+     * formmanager definitions
+     * 
+     */
+    public function form_setup($form)
+    {
+        $form->set_sexclude_fields(array('id_post', 'created', 'seoname'));//, 'seoname'
+    }
 
 } // END Model_Post
