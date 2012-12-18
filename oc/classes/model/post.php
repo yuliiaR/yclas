@@ -89,7 +89,7 @@ class Model_Post extends ORM {
 			        'has_images'	=> __('Has images'),
 			    );
     }
-
+    
     /**
      * 
      * formmanager definitions

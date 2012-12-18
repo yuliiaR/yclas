@@ -68,7 +68,7 @@ Route::set('post', 'post(/<seotitle>.html)')
 /**
  * SERP / listing (all posts || posts sorted by category / listing)
  */
-Route::set('listing', 'listing(/<category>)(/<location>)')
+Route::set('listing', '(<category>)(/<location>)')
 ->defaults(array(
 		'controller' => 'post',    
 		'action'     => 'listing',

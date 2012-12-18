@@ -47,6 +47,7 @@
   
 	<?=$header?>
     <div class="container-fluid">
+    <?=Alert::show()?>
 		<?=$content?>
 	    <?=$footer?>
     </div><!--/.fluid-container-->

@@ -40,10 +40,21 @@
 
 	    	<?php //}?>
 	    </article>
-
+	    <?=Alert::show()?>
 
 	    <?endforeach?>
+
+	    <?foreach($sidebarCat as $cat):?>
+	    	<p>Category: <?= $cat->seoname?>, id_category: <?= $cat->id_category?></p>
+	    <?endforeach?>
+
+	    <?foreach($sidebarLoc as $loc):?>
+	    	<p>Location: <?= $loc->seoname?>, id location: <?= $loc->id_location?></p>
+	    <?endforeach?>
+	    
 	    <?=$pagination?>
+
+	    
 	  <?else:?>
 	    	<h2><?=__('No items found')?></h2>
 	  <?endif?>

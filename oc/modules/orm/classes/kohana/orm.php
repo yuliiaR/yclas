@@ -618,7 +618,8 @@ class Kohana_ORM extends Model implements serializable {
 		}
 		else
 		{
-			d($column);
+			echo $column;
+			echo get_class($this);
 			throw new Kohana_Exception('The :property property does not exist in the :class class',
 				array(':property' => $column, ':class' => get_class($this)));
 		}
@@ -1195,7 +1196,7 @@ class Kohana_ORM extends Model implements serializable {
 		// Determine if any external validation failed
 		$extra_errors = ($extra_validation AND ! $extra_validation->check());
 
-		// Always build a new validation object
+		// Always build a new valid_parentation object
 		$this->_validation();
 
 		$array = $this->_validation;

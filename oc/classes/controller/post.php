@@ -89,16 +89,19 @@ class Controller_Post extends Controller {
 		$slug_loc = $this->request->param('location',NULL);
 		$page = $this->request->query('p',NULL);
 		$this->template->bind('content', $content);
+
 		//if everything null redirect to home??@todo
+		
+		// tmp code for printing all posts
+		$cat = new Model_Category();
+		$loc = new Model_Location();
+		$sidebarCat = $cat->find_all(); // get all to print at sidebar view
+		$sidebarLoc = $loc->find_all(); // get all to print at sidebar view
 
 		//getting published posts
 		$posts = new Model_Post();
 
-		$posts /*->join('categories')
-				->on('categories.id_category','=','post.id_category')
-				->join('locations')
-				->on('locations.id_location','=','post.id_location')*/
-				->where('post.status', '=', Model_Post::STATUS_PUBLISHED);
+		$posts->where('post.status', '=', Model_Post::STATUS_PUBLISHED);
 		
 		/*
 		//SEO and filters
@@ -122,35 +125,56 @@ class Controller_Post extends Controller {
 		}*/
 
     	//retreive category
-		if ( $slug_cat !==NULL )
+		if ( $slug_cat !==NULL)
 		{
 			$category = new Model_Category();
-			$category->where('seoname', '=', $slug_cat)->limit(1)->find();
-			
-			//filter category, and count
-			$filter = $posts->where('post.id_category','=',$category->id_category);
-			$res_count_categories = $filter->count_all();	
+			$_cat = $category->where('seoname', '=', $slug_cat)->limit(1)->find();
+
+			if (!$category->loaded()){
+				$slug_cat = NULL;		
+			}
 		}
-		else $res_count_categories = 0; //set counter to 0
-		
 		//retrieve location
 		if ( $slug_loc !==NULL )
 		{
 			$location = new Model_Location();
-		 	$location->where('seoname', '=', $slug_loc)->limit(1)->find();
-			
-			//filter location, and count
-		 	$filter = $posts->where('post.id_location','=',$location->id_location);
-		 	$res_count_locations = $filter->count_all();
+			$_loc = $location->where('seoname', '=', $slug_loc)->limit(1)->find();
+		 	
+		 	if (!$location->loaded()){
+		 		$slug_loc = NULL;
+		 	}
 		}
-		else $res_count_locations = 0; //set counter to 0
-		 
-		//if no filter, get all
-		if (($res_count_locations + $res_count_categories) == 0)
-		 	$res_count = $posts->count_all();	
-		else 
-		 	$res_count = max(array($res_count_locations, $res_count_categories));
+		
+		$_search_post = ORM::factory('post');
+		
+		// get number of posts filtered, if no filtering, get all
+		if($slug_cat && $slug_loc !== NULL){ //both parameters are valid, or combination of them is doesnt exist
+			$_search_post->where('post.id_category', '=', $category->id_category)
+                        		->and_where('post.id_location', '=', $location->id_location);
 			
+			if($_search_post->loaded()){
+				$res_count = 0;
+			}else{
+            	$res_count = $_search_post->count_all();
+            	echo $res_count;	
+			} 
+		}
+		else if ($slug_cat !== NULL) // category provided
+		{
+			$_search_post->where('post.id_category', '=', $category->id_category);
+			$res_count = $_search_post->count_all();	
+		}
+		else if($slug_cat == NULL && $slug_loc !== NULL) // category is missing
+		{
+			$_search_post->where('post.id_location', '=', $location->id_location);
+			$res_count = $_search_post->count_all();
+
+			Alert::set(Alert::ERROR, __('Category does\'t exists'));
+		}
+		else
+		{
+			$res_count = $posts->count_all();
+		}
 		
 		/*
 			PAGINATION 
@@ -165,20 +189,16 @@ class Controller_Post extends Controller {
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
+                    'category'			=> $slug_cat,
+                    'location'			=> $slug_loc,
     	    ));
 
 	        $pagination->title($this->template->title);
 	     
 	    // END PAGINATION
 	        
-			//retrieve category >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-			
-			if ( $slug_cat !==NULL )
-			{
-				
-				
 				//filter category
-				if ($category->loaded() && $slug_loc !== NULL)
+				if ($slug_loc && $slug_cat !== NULL)
 				{
 					$posts = $posts->where('post.id_category','=',$category->id_category)
 									->and_where('post.id_location','=', $location->id_location)
@@ -187,25 +207,35 @@ class Controller_Post extends Controller {
                                 	->offset($pagination->offset)
                                 	->find_all();
 				}
-				else if($category->loaded())
+				else if($slug_cat !== NULL)
 				{
 					$posts = $posts->where('post.id_category','=',$category->id_category)
 									->order_by('created','desc')
                                 	->limit($pagination->items_per_page)
                                 	->offset($pagination->offset)
                                 	->find_all();
+				}	
+				else if($slug_cat == NULL && $slug_loc !== NULL)
+				{
+					$posts = $posts->where('post.id_location','=',$location->id_location)
+									->order_by('created','desc')
+                    	            ->limit($pagination->items_per_page)
+                    	            ->offset($pagination->offset)
+                    	            ->find_all();
 				}
-			
-			}
-			else
-			{
-				$posts = $posts->order_by('created','desc')
-                                ->limit($pagination->items_per_page)
-                                ->offset($pagination->offset)
-                                ->find_all();
-			}
+				else 
+				{
+					$posts = $posts->order_by('created','desc')
+                    	            ->limit($pagination->items_per_page)
+                    	            ->offset($pagination->offset)
+                    	            ->find_all();
+				}
 
       
+		}else{
+
+			//trow 404 Exception
+			throw new HTTP_Exception_404();
 		}
 
 		/*
@@ -214,7 +244,10 @@ class Controller_Post extends Controller {
 
 	    	$this->template->content = View::factory('pages/post/listing',array('posts'			=> $posts,
 																				'pagination' 	=> $pagination,
-																				));		
+																				'sidebarCat'	=> $sidebarCat,
+																				'sidebarLoc'	=> $sidebarLoc,
+																				));
+				
 	}
 	
 	

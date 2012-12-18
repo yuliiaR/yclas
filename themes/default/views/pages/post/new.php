@@ -17,11 +17,9 @@
 					<label class="control-label" for="category"><?=__('Category')?></label>
 					<div class="controls">
 						<select id="category">
-							<option>something</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
+							<?foreach ($_cat as $cat):?>
+								<option><? echo $cat->seoname;?></option>
+							<?endforeach?>
 						</select>
 					</div>
 				</div>
@@ -29,11 +27,9 @@
 					<label class="control-label" for="location"><?=__('Location')?></label>
 					<div class="controls">
 						<select id="location">
-							<option>something</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
+							<?foreach ($_loc as $loc):?>
+								<option><? echo $loc->seoname;?></option>
+							<?endforeach?>
 						</select>
 					</div>
 				</div>
