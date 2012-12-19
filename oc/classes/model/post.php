@@ -97,7 +97,11 @@ class Model_Post extends ORM {
      */
     public function form_setup($form)
     {
-        $form->set_sexclude_fields(array('id_post', 'created', 'seoname'));//, 'seoname'
+       var_dump($form);
+        $insert = DB::insert('oc_posts', array('title', 'description'))
+                            ->values(array($form['title'], $form['description']))
+                            ->execute();
+                            return $insert;
     }
 
 } // END Model_Post

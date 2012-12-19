@@ -5,75 +5,76 @@
 		<div class="page-header">
 			<h1><?=__('Publish new advertisement')?></h1>
 		</div>
-		<form class="form-horizontal" method="post" action="">
+		<?= FORM::open('new', array('class'=>'form-horizontal'))?>
 			<fieldset>
 				<div class="control-group">
-					<label class="control-label" for="title"><?=__('Title')?></label>
+					<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
 					<div class="controls">
-						<input type="text" class="input-xlarge" id="title" placeholder="<?=__('Title')?>">
+						<?= FORM::input('title', 'bla', array('placeholder' => __('Title'), 'class' => 'input-xlarge', 'id' => 'title'))?>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="category"><?=__('Category')?></label>
+					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category'))?>
 					<div class="controls">
-						<select id="category">
-							<?foreach ($_cat as $cat):?>
-								<option><? echo $cat->seoname;?></option>
-							<?endforeach?>
-						</select>
+						<?$_val_category = array();?>
+						<?foreach ($_cat as $cat):?>
+							<?php $_val_category[] = $cat->seoname; ?>
+						<?endforeach?>
+					<?= FORM::select('category', $_val_category, $_val_category[1], array('id'=>'category') );?>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="location"><?=__('Location')?></label>
+					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
 					<div class="controls">
-						<select id="location">
-							<?foreach ($_loc as $loc):?>
-								<option><? echo $loc->seoname;?></option>
-							<?endforeach?>
-						</select>
+						<?$_val_location = array();?>
+						<?foreach ($_loc as $loc):?>
+							<?php $_val_location[] = $loc->seoname; ?>
+						<?endforeach?>
+					<?= FORM::select('location', $_val_location, $_val_location[1], array('id'=>'location') );?>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="description"><?=__('Description')?></label>
+					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>
 					<div class="controls">
-						<textarea class="input-xxlarge" name="description" id="description" rows="15"><?=Request::$current->post('description')?></textarea>
+						<?= FORM::textarea('description', 'bla', array('class'=>'input-xxlarge', 'name'=>'description', 'id'=>'description', 'rows'=>15))?>
+						<?=Request::$current->post('description')?>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="fileInput1"><?=__('Images')?></label>
+					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'))?>
 					<div class="controls">
-						<input class="input-file" id="fileInput1" type="file">
+						<?= FORM::file('image1', array('class'=>'input-file', 'id'=>'fileInput1'))?>
 					</div>
 					<div class="controls">
-						<input class="input-file" id="fileInput2" type="file">
+						<?= FORM::file('image2', array('class'=>'input-file', 'id'=>'fileInput2'))?>
 					</div>
 				</div>
 				<?if (!Auth::instance()->get_user()):?>
 				<div class="control-group">
-					<label class="control-label" for="name"><?=__('Name')?></label>
+					<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
 					<div class="controls">
-						<input type="text" class="input-xlarge" id="name" placeholder="<?=__('Name')?>">
+						<?= FORM::input('name', $user->name, array('class'=>'input-xlarge', 'id'=>'name', 'placeholder'=>__('Name')))?>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="email"><?=__('Email')?></label>
+					<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
 					<div class="controls">
-						<input type="text" class="input-xlarge" id="email" placeholder="<?=__('Email')?>">
+						<?= FORM::input('email', $user->email, array('class'=>'input-xlarge', 'id'=>'email', 'placeholder'=>__('Email')))?>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="phone"><?=__('Phone')?></label>
+					<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
 					<div class="controls">
-						<input type="text" class="input-xlarge" id="phone" placeholder="<?=__('Phone')?>">
+						<?= FORM::input('phone', 'bla', array('class'=>'input-xlarge', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
 					</div>
 				</div>
 				<?endif?>
 				<div class="form-actions">
-					<button type="submit" class="btn-large btn-primary"><?=__('Publish now')?></button>
+					<?= FORM::button('name', 'Publish now', array('type'=>'submit', 'class'=>'btn-large btn-primary'))?>
 					<p class="help-block">Dynamic text, for free or pay XX€..</p>
 				</div>
 			</fieldset>
-		</form>
+		<?= FORM::close()?>
 
 	</div>
 	<!--/span-->

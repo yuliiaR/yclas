@@ -16,47 +16,33 @@
 		
 		$category = new Model_Category();
 		$location = new Model_Location();
+		$user = new Model_User();
+
+		
 
 		$_cat = $category->find_all();
 		$_loc = $location->find_all();
 
-		$filename = NULL;
+		$this->template->content = View::factory('pages/post/new', array('_cat'		 	=> $_cat,
+																		 '_loc' 		=> $_loc,
+																		 'user' 		=> $user,
+																		 
+																		));
 		//post submited
-		if ($this->request->post())
-		{
-			//form values
-			$form = array(	'title' => '',				
-							'description'	=> '',
-							);
-			
-			$errors = $form;
+		//if ($this->request->post())
+		//{
+		$title = $this->request->post('title');
+		$description = $this->request->post('description');
 
-			//check to see if the form was submittet
-			if (isset($_POST['submit'])){
-				//form validation
-				$post = new Validation($_POST);
+		$_new_post = new Model_Post();
+		$_new_post->title = $title;
+		$_new_post->description = $description;
+		$_new_post->id_user = 2;
+		$_new_post->id_category = 2;
+		$_new_post->id_location = 1;
 
-
-	            $post->pre_filter('trim');
-	             
-	            //Add rules for contact_name 
-	            $post->add_rules('title', 'required', 'standard_text', 'length[2,20]');
-	             
-	            // //Add rules for contact_email 
-	            // $post->add_rules('contact_email', 'required', 'email', 'email_domain');
-	             
-	            //Add rules for description 
-	            $post->add_rules('description', 'required', 'standard_text');
-
-	            //If there were no errors...
-            	if($post->validate())
-            	{
-            		//Load the config file with our email address defaults 
-                	$email_config = Kohana::config_load('email');
-
-                	$to = $email_config['default_email'];
-            	}
-			}  
+		
+				$user->save();
 			
 			//recaptcha validation, if recaptcha active
 			
@@ -68,11 +54,13 @@
 			
 			//save images, shrink and move to folder /upload/2012/11/25/pics/
 			
-		}
+		//}
 		
 		$this->template->bind('content', $content);
-		$this->template->content = View::factory('pages/post/new', array('_cat' => $_cat,
-																		 '_loc' => $_loc
+		$this->template->content = View::factory('pages/post/new', array('_cat'		 	=> $_cat,
+																		 '_loc' 		=> $_loc,
+																		 'user' 		=> $user,
+																		 
 																		));
 
 		$this->template->content->text = Text::bb2html($this->request->post('description'),TRUE);	

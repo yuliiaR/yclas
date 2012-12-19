@@ -54,7 +54,7 @@ class Controller_Post extends Controller {
 		//$this->template->scripts['footer'][]= 'js/autogrow-textarea.js';
 		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
 		$this->template->scripts['footer'][]= 'js/pages/new.js';
-		
+
 		
 		//post submited
 		if ($this->request->post())
