@@ -27,7 +27,8 @@
 																		 '_loc' 	=> $_loc,));
 		
 		// post attributes
-		$usr = Auth::instance()->get_user()->id_user; // returns and error if user not loged in !!! check that 
+		$_auth			= 	Auth::instance();
+		$usr 			= 	$_auth->get_user()->id_user; // returns and error if user not loged in !!! check that 
 		$title 			= 	$this->request->post('title');
 		$seotitle 		= 	$this->request->post('title'); // need to do some validation and checking with seotitle !!!
 		$cat 			= 	$this->request->post('category');
@@ -36,17 +37,20 @@
 		$price 			= 	$this->request->post('price');
 		$address 		= 	$this->request->post('address');
 		$phone 			= 	$this->request->post('phone');
+		$name			=	$this->request->post('name');
+		$email			=	$this->request->post('email');
+
 
 		////////////////
 		// do user check 
 		// TO DO ...
 		/////////////// 
 		
-		$bla = ORM::factory('post');
-		$bla->where('title', '=', $title)->find();
+		$_new_post = ORM::factory('post');
+		$_new_post->where('title', '=', $title)->find();
 		
 		// check existance of post element
-		if ($bla->loaded()){
+		if ($_new_post->loaded()){
 			echo "ERROR";
 		}
 		else if($this->request->post()) //post submition  
@@ -54,20 +58,20 @@
 		
 		
 		//insert data
-		$bla->title 		= $title;
-		$bla->id_location 	= $loc;
-		$bla->id_category 	= $cat;
-		$bla->id_user 		= $usr;
-		$bla->description 	= $description;
-		$bla->type 			= '0';
-		$bla->seotitle 		= $title.' '.$bla->count_all();	
-		$bla->status 		= '1';// check this, maybe it needs to dynamic
-		$bla->price 		= $price; // this field is missing in html !!!
-		$bla->adress 		= $address;
-		$bla->phone			= $phone; 
 		
-		var_dump($bla->count_all());
-			if (!Auth::instance()->logged_in()) // this part is for users that are not logged 
+		$_new_post->title 			= $title;
+		$_new_post->id_location 	= $loc;
+		$_new_post->id_category 	= $cat;
+		$_new_post->id_user 		= $usr;
+		$_new_post->description 	= $description;
+		$_new_post->type 			= '0';
+		$_new_post->seotitle 		= $title.' '.$_new_post->count_all();	
+		$_new_post->status 			= '1';// check this, maybe it needs to dynamic
+		$_new_post->price 			= $price; // this field is missing in html !!!
+		$_new_post->adress 			= $address;
+		$_new_post->phone			= $phone; 
+		
+			if (!$_auth->logged_in()) // this part is for users that are not logged 
 			{
 				// $name = $this->request->post('name');
 				// $email = $this->request->post('email');
@@ -75,9 +79,9 @@
 				
 				// if (Auth::instance()->get_user()->name == $name && Auth::instance()->get_user()->email == $email)
 				// {
-				// 	$bla->name = Auth::instance()->get_user()->name;
-				// 	$bla->email = Auth::instance()->get_user()->email;
-				// 	$bla->phone = $phone; // this is called if user is loged in, but there is no "phone" columne in user table !!!
+				// 	$_new_post->name = Auth::instance()->get_user()->name;
+				// 	$_new_post->email = Auth::instance()->get_user()->email;
+				// 	$_new_post->phone = $phone; // this is called if user is loged in, but there is no "phone" columne in user table !!!
 				// }
 				// else
 				// {
@@ -102,11 +106,30 @@
 
 		                echo $error_message;
 		        }
-		        //$this->template->content->uploaded_file = $filename;
-		        //$this->template->content->error_message = $error_message;
+
+		       
 		try
 			{
-				$bla->save();
+				$_new_post->save();
+
+				//message format
+		        $message = "User: ".$_auth->get_user()->name." created post".PHP_EOL ;
+		        $message.= "With title : ".$title.PHP_EOL;
+		        $message.= "On date".date('d/m/Y').PHP_EOL;
+		        $subject = "User ".$_auth->get_user()->name." created new post";
+				
+				if(!$_auth->logged_in()){
+					$name 	= $this->request->post('name');
+					$email 	= $this->request->post('email');
+					email::send("root@slobodantumanitas-System", $email, "New post by user: ".$name, $message, NULL);
+				}
+				else
+				{
+					$email = $_auth->get_user()->email;
+					email::send("root@slobodantumanitas-System", $email, $subject, $message, NULL);
+				}
+				
+		        
 			}
 			catch (ORM_Validation_Exception $e)
 			{

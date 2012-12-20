@@ -79,7 +79,7 @@
 				<div class="control-group">
 					<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
 					<div class="controls">
-						<?= FORM::input('email', Request::current()->post('email'), array('class'=>'input-xlarge', 'id'=>'email', 'placeholder'=>__('Email')))?>
+						<?= FORM::input('email', '', array('class'=>'input-xlarge', 'id'=>'email', 'placeholder'=>__('Email')))?>
 					</div>
 				</div>
 				<?endif?>
