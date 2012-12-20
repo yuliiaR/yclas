@@ -28,17 +28,15 @@
 		
 		// post attributes
 		$_auth			= 	Auth::instance();
-		$usr 			= 	$_auth->get_user()->id_user; // returns and error if user not loged in !!! check that 
+		$usr 			= 	$_auth->get_user()->id_user; 		// returns and error if user not loged in !!! check that 
 		$title 			= 	$this->request->post('title');
-		$seotitle 		= 	$this->request->post('title'); // need to do some validation and checking with seotitle !!!
+		$seotitle 		= 	$this->request->post('title'); 		// need to do some validation and checking with seotitle !!!
 		$cat 			= 	$this->request->post('category');
 		$loc 			= 	$this->request->post('location');
 		$description 	= 	$this->request->post('description');
 		$price 			= 	$this->request->post('price');
 		$address 		= 	$this->request->post('address');
 		$phone 			= 	$this->request->post('phone');
-		$name			=	$this->request->post('name');
-		$email			=	$this->request->post('email');
 
 
 		////////////////
@@ -65,71 +63,38 @@
 		$_new_post->id_user 		= $usr;
 		$_new_post->description 	= $description;
 		$_new_post->type 			= '0';
-		$_new_post->seotitle 		= $title.' '.$_new_post->count_all();	
-		$_new_post->status 			= '1';// check this, maybe it needs to dynamic
-		$_new_post->price 			= $price; // this field is missing in html !!!
+		$_new_post->seotitle 		= $title.' '.$_new_post->count_all();	// bad solution, find better !!! 
+		$_new_post->status 			= '1';									// need to be 0, in production 
+		$_new_post->price 			= $price; 								
 		$_new_post->adress 			= $address;
 		$_new_post->phone			= $phone; 
 		
-			if (!$_auth->logged_in()) // this part is for users that are not logged 
+			if (!$_auth->logged_in()) // this part is for users that are not logged, not finished !!!
 			{
-				// $name = $this->request->post('name');
-				// $email = $this->request->post('email');
-				// $phone = $this->request->post('phone');
-				
-				// if (Auth::instance()->get_user()->name == $name && Auth::instance()->get_user()->email == $email)
-				// {
-				// 	$_new_post->name = Auth::instance()->get_user()->name;
-				// 	$_new_post->email = Auth::instance()->get_user()->email;
-				// 	$_new_post->phone = $phone; // this is called if user is loged in, but there is no "phone" columne in user table !!!
-				// }
-				// else
-				// {
-				// 	echo "User name ".$name." or email ".$email." is not valid";
-				// 	echo "Database cannot find a mach ";
-				// }
-
-				
+				 $name = $this->request->post('name');
+				 $email = $this->request->post('email');	
 			}	
-				// // image upload
-				$error_message = NULL;
-        		$filename = NULL;
-        		
-        		if (isset($_FILES['image1']))
-            	{
-                	$filename = $this->_save_image($_FILES['image1']);
-            	}
-            	if ( ! $filename)
-		        {
-		            $error_message = 'There was a problem while uploading the image.
-		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
-
-		                echo $error_message;
-		        }
+			
+			// image upload
+			$error_message = NULL;
+    		$filename = NULL;
+    		
+    		if (isset($_FILES['image1']))
+        	{
+        		//$foldername = $title.date(y/m/d/h/m/s); // make unique folder name $seotitle + timestamp
+            	$filename = $this->_save_image($_FILES['image1']);
+        	}
+        	if ( ! $filename)
+	        {
+	            $error_message = 'There was a problem while uploading the image.
+	                Make sure it is uploaded and must be JPG/PNG/GIF file.';
+	        }
 
 		       
 		try
 			{
 				$_new_post->save();
-
-				//message format
-		        $message = "User: ".$_auth->get_user()->name." created post".PHP_EOL ;
-		        $message.= "With title : ".$title.PHP_EOL;
-		        $message.= "On date".date('d/m/Y').PHP_EOL;
-		        $subject = "User ".$_auth->get_user()->name." created new post";
-				
-				if(!$_auth->logged_in()){
-					$name 	= $this->request->post('name');
-					$email 	= $this->request->post('email');
-					email::send("root@slobodantumanitas-System", $email, "New post by user: ".$name, $message, NULL);
-				}
-				else
-				{
-					$email = $_auth->get_user()->email;
-					email::send("root@slobodantumanitas-System", $email, $subject, $message, NULL);
-				}
-				
-		        
+				//$this->_send_mail($title, $name, $email, $_auth); // check if this works !!!    
 			}
 			catch (ORM_Validation_Exception $e)
 			{
@@ -170,8 +135,8 @@
             return FALSE;
  		}
 
- 		$directory = DOCROOT.'upload/';
-
+ 		$directory = DOCROOT.$this->_image_path();
+ 		d($directory);
  		if ($file = Upload::save($image, NULL, $directory))
         {
             $filename = strtolower(Text::random('alnum', 20)).'.jpg';
@@ -188,5 +153,44 @@
  
         return FALSE;
     }
+   
+    public function _image_path()
+    {
+    	$date = date('y/m/d');
+
+		$parse_data = explode("/", $date); 			// make array with date values
+		
+		$path = "upload/"; // root upload folder
+
+		for ($i=0; $i < count($parse_data); $i++) { 
+			$path .= $parse_data[$i].'/'; 			// append, to create path 
+			
+			if(!is_dir($path)){ 					// check if path exists 
+				mkdir($path, 0755, TRUE);
+			}
+
+		}
+		return $path;
+    }
+
+    private function _send_mail($title, $name, $email, $_auth){
+
+    	//message format
+        $message = "User: ".$_auth->get_user()->name." created post".PHP_EOL ;
+        $message.= "With title : ".$title.PHP_EOL;
+        $message.= "On date".date('d/m/Y').PHP_EOL;
+        $subject = "User ".$_auth->get_user()->name." created new post";
+		
+		if(!$_auth->logged_in()){
+			
+			email::send("root@slobodantumanitas-System", $email, "New post by user: ".$name, $message, NULL);
+		}
+		else
+		{
+			$email = $_auth->get_user()->email;
+			email::send("root@slobodantumanitas-System", $email, $subject, $message, NULL);
+		}
+    }
+
  	
  } // End Post controller

@@ -1,11 +1,26 @@
 <?php
-echo "hola";
-$date = date('d/m/y');
-print_r(explode("/", $date));
-$parse_date = explode("/", $date);
-$path = "upload/".$parse_date[2]."/".$parse_date[1]."/".$parse_date[0];
-echo $path;
+// // /echo "hola";
+// $data = date('y/m/d');
 
-if(is_dir($path)){echo "exists";}else{mkdir($path, 0755, TRUE);echo "bla";}
+// $parse_data = explode("/", $data);
+// //$path = "upload/".$parse_data[2]."/".$parse_data[1]."/".$parse_data[0];
+
+// $path = "upload/";
+// // /echo count($parse_data);
+// for ($i=0; $i < count($parse_data); $i++) { 
+// 	$path .= $parse_data[$i].'/'; 
+// 	if(!is_dir($path)){
+// 		echo $i." loop".PHP_EOL;
+// 		echo "not exists".PHP_EOL;
+// 		mkdir($path, 0755, TRUE);
+// 	}else{
+// 		echo $i." loop".PHP_EOL;
+// 		echo " exists".PHP_EOL;
+// 	}
+// }
+// echo PHP_EOL.$path;
+//if(is_dir($path)){echo "exists";}else{mkdir($path, 0755, TRUE);echo "bla";}
+
+echo date('Y-m-d-h-i-s'); 
 
 ?>
