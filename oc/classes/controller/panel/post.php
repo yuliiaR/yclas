@@ -56,14 +56,15 @@
 		
 		
 		//insert data
-		
+		$seotitle = $title.$_new_post->count_all(); // bad solution, find better !!! 
+
 		$_new_post->title 			= $title;
 		$_new_post->id_location 	= $loc;
 		$_new_post->id_category 	= $cat;
 		$_new_post->id_user 		= $usr;
 		$_new_post->description 	= $description;
 		$_new_post->type 			= '0';
-		$_new_post->seotitle 		= $title.' '.$_new_post->count_all();	// bad solution, find better !!! 
+		$_new_post->seotitle 		= $seotitle;	 
 		$_new_post->status 			= '1';									// need to be 0, in production 
 		$_new_post->price 			= $price; 								
 		$_new_post->adress 			= $address;
@@ -71,8 +72,22 @@
 		
 			if (!$_auth->logged_in()) // this part is for users that are not logged, not finished !!!
 			{
-				 $name = $this->request->post('name');
-				 $email = $this->request->post('email');	
+				/////////////////////////////////////////////////////
+				// check flow . If it goes to moderation or payment
+				// TO DO ..
+				/////////////////////////////////////////////////////
+				
+				///////////////////////////
+				// creat user if !exists
+				// TO DO..
+				///////////////////////////
+				
+
+				$name = $this->request->post('name');
+				$email = $this->request->post('email');	
+			}else{
+				$name = $_auth->get_user()->name;
+				$email = $_auth->get_user()->email;
 			}	
 			
 			// image upload
@@ -82,19 +97,33 @@
     		if (isset($_FILES['image1']))
         	{
         		//$foldername = $title.date(y/m/d/h/m/s); // make unique folder name $seotitle + timestamp
-            	$filename = $this->_save_image($_FILES['image1']);
+            	$filename = $this->_save_image($_FILES['image1'], $seotitle);
+
         	}
         	if ( ! $filename)
 	        {
 	            $error_message = 'There was a problem while uploading the image.
 	                Make sure it is uploaded and must be JPG/PNG/GIF file.';
+
+	                echo $error_message;
 	        }
 
-		       
+		   /////////////
+		   // ADD capcha
+		   // TO DO..
+		   // //////////
+		   
 		try
 			{
 				$_new_post->save();
-				//$this->_send_mail($title, $name, $email, $_auth); // check if this works !!!    
+				
+				$this->_send_mail($title, $name, $email, $_auth); // send mail to user
+				email::send("root@slobodantumanitas-System", 
+							"root@slobodantumanitas-System", 
+							$name, 
+							$name." has created new post with title: ".$title, 
+							NULL); // send to administrator , check other solution !!!    
+				  
 			}
 			catch (ORM_Validation_Exception $e)
 			{
@@ -106,16 +135,21 @@
 				throw new HTTP_Exception_500($e->getMessage());
 			}
 
+			///////////////////////////
+			// do error hendling 
+			// and presentation of them
+			// TO DO...
+			///////////////////////////
+			
+			////////////////////////////////////
+			// create HISTORY.xml file
+			// for keeping track of changes made
+			// TO DO...
+			// ///////////////////////////////// 
 			
 			//recaptcha validation, if recaptcha active
 			
-			//check account exists
-				//if exists send email to activate post
-				//if not exists create account and send email to confirm
 				
-			//save post data
-			
-			//save images, shrink and move to folder /upload/2012/11/25/pics/
 			
 		}
 		
@@ -125,8 +159,15 @@
 		$this->template->content->text = Text::bb2html($this->request->post('description'),TRUE);	
  	}
 
- 	public function _save_image($image)
+ 	public function _save_image($image, $seotitle)
  	{
+ 		////////////////////////////////////
+ 		// find solutin for dynamic resizing 
+ 		// dependant on template 
+ 		// SAVE ONE ORIGINAL AND ONE CUSTOM
+ 		// TO DO...
+ 		// ///////////////////////////////// 
+
  		if (
             ! Upload::valid($image) OR
             ! Upload::not_empty($image) OR
@@ -134,9 +175,10 @@
         {
             return FALSE;
  		}
+ 		$path = $this->_image_path($seotitle);
+ 		
+ 		$directory = DOCROOT.$path;
 
- 		$directory = DOCROOT.$this->_image_path();
- 		d($directory);
  		if ($file = Upload::save($image, NULL, $directory))
         {
             $filename = strtolower(Text::random('alnum', 20)).'.jpg';
@@ -154,8 +196,14 @@
         return FALSE;
     }
    
-    public function _image_path()
+    public function _image_path($seotitle)
     {
+
+    	///////////////////////////////////
+    	// make path creation from DB oject
+    	// TO DO ...
+    	// ////////////////////////////////
+    	 
     	$date = date('y/m/d');
 
 		$parse_data = explode("/", $date); 			// make array with date values
@@ -164,17 +212,16 @@
 
 		for ($i=0; $i < count($parse_data); $i++) { 
 			$path .= $parse_data[$i].'/'; 			// append, to create path 
-			
-			if(!is_dir($path)){ 					// check if path exists 
+		}
+		if(!is_dir($path .= $seotitle.'/')){ 					// check if path exists 
 				mkdir($path, 0755, TRUE);
 			}
-
-		}
+			echo $path;
 		return $path;
     }
 
-    private function _send_mail($title, $name, $email, $_auth){
-
+    public function _send_mail($title, $name, $email, $_auth){
+    	echo 'blaasdsad';
     	//message format
         $message = "User: ".$_auth->get_user()->name." created post".PHP_EOL ;
         $message.= "With title : ".$title.PHP_EOL;
