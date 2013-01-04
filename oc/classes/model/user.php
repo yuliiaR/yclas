@@ -34,8 +34,8 @@ class Model_User extends ORM {
     protected $_primary_key = 'id_user';
 
     protected $_has_many = array(
-        'posts' => array(
-            'model'       => 'post',
+        'ads' => array(
+            'model'       => 'ad',
             'foreign_key' => 'id_user',
         ),
     );

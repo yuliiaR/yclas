@@ -38,7 +38,7 @@ class Controller_Example extends Controller {
 	    
 	    
 	    //$posts = ORM::factory('post');
-	    $posts = new Model_Post();
+	    $posts = new Model_Ad();
 	    $posts  ->where('status', '=', 1)
 	    ->cached(5)
 	    ->limit(10);

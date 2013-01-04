@@ -2,12 +2,12 @@
 <div class="row-fluid">
 	<?=View::factory('sidebar')?>
 	<div class="span10">
-	<h1><?= $post->seotitle." ";?><?=__('Ad Page');?></h1>	    
+	<h1><?= $ad->seotitle." ";?><?=__('Ad Page');?></h1>	    
 	    <div>
-	    	<h3><?= $post->seotitle?></h3>
-	    	<p><strong>Price : </strong> <?= $post->price?></p>
-		    <p><strong>description : </strong><?= $post->description?></p>	
-		    <p><strong>published: </strong> <?= $post->published?></p>	    
+	    	<h3><?= $ad->seotitle?></h3>
+	    	<p><strong>Price : </strong> <?= $ad->price?></p>
+		    <p><strong>description : </strong><?= $ad->description?></p>	
+		    <p><strong>published: </strong> <?= $ad->published?></p>	    
 	    </div>
 	    
 	</div><!--/span--> 

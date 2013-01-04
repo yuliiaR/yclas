@@ -14,16 +14,16 @@ class Controller_Home extends Controller {
 
 	    //setting main view/template and render pages
 	   
-        //$posts = ORM::factory('post');
-        $posts = new Model_Post();
-        $posts  ->where('status', '=', 1)
+        //$ads = ORM::factory('ad');
+        $ads = new Model_Ad();
+        $ads  ->where('status', '=', 1)
                 ->cached(5)
                 ->limit(10);
-        $res = print_r($posts->find(),1);
+        $res = print_r($ads->find(),1);
         
         $this->template->bind('content', $content);
         
-        $this->template->content = View::factory('pages/home',array('posts'=>$res));
+        $this->template->content = View::factory('pages/home',array('ads'=>$res));
 		
 	}
 

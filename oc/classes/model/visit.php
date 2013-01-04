@@ -35,7 +35,7 @@ class Model_Visit extends ORM {
     {
     	return array(
 			        'id_visit'	=> array(array('numeric')),
-			        'id_post'	=> array(array('numeric')),
+			        'id_ad'	=> array(array('numeric')),
 			        'id_user'	=> array(array('numeric')),
 			    );
     }
@@ -49,7 +49,7 @@ class Model_Visit extends ORM {
     {
     	return array(
 			        'id_visit'		=> 'Id visit',
-			        'id_post'		=> 'Id post',
+			        'id_ad'		=> 'Id ad',
 			        'id_user'		=> 'Id user',
 			        'created'		=> 'Created',
 			        'ip_address'	=> 'Ip address',

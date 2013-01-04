@@ -5,5 +5,8 @@ $(function(){
 		"bulletlist,orderedlist|link,unlink,youtube|source",
 		resizeEnabled: "true"
 	});
+	$(function () { 
+
+		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	//$('textarea[name=description]').autogrow();
 });

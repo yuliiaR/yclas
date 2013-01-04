@@ -8,7 +8,7 @@ From Wikipedia:
 
 Creating a simple model:
 
-	class Model_Post extends Model
+	class Model_Ad extends Model
 	{
 		public function do_stuff()
 		{
@@ -18,7 +18,7 @@ Creating a simple model:
 
 If you want database access, have your model extend the Model_Database class:
 
-	class Model_Post extends Model_Database
+	class Model_Ad extends Model_Database
 	{
 		public function do_stuff()
 		{

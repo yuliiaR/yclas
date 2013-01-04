@@ -7,33 +7,33 @@
 	 
 	 <ul class="breadcrumb">
         	<li><a href="#">Home</a> <span class="divider">&raquo;</span></li>
-        	<li><a href="#">category</a> <span class="divider">&raquo;</span></li>
-        	<li><a href="#">location</a> <span class="divider">&raquo;</span></li>
+        	<li><a href="#">Category</a> <span class="divider">&raquo;</span></li>
+        	<li><a href="#">Location</a> <span class="divider">&raquo;</span></li>
         	<li class="active">page 1</li>
 	 </ul>
-	  <?if(count($posts)):?>
-	    <?foreach($posts as $post ):?>
+	  <?if(count($ads)):?>
+	    <?foreach($ads as $ad ):?>
 	    <article class="list well clearfix">
 	    	<h2>
-	    	<a title="<?php echo $post->seotitle;?>" href="#"><?php echo $post->seotitle; ?></a></h2>
+	    	<a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('post', array('controller'=>'post','action'=>'view','seotitle'=>$ad->seotitle))?>"> <?php echo $ad->seotitle; ?></a></h2>
 		     	
 	    	</h2>
 	    	
 	    	<ul>
-	    		<?php if ($post->published!=0){?>
-		   			<li><b><?php _e('Publish Date');?>:</b> <?php echo $post->published;?></li>
+	    		<?php if ($ad->published!=0){?>
+		   			<li><b><?php _e('Publish Date');?>:</b> <?php echo $ad->published;?></li>
 		   		<?php }?>
-		    	<?php if ($post->price!=0){?>
-		    		<li class="price"><?php _e('Price');?>: <b><?php echo $post->price;?>&euro;</b></li>
+		    	<?php if ($ad->price!=0){?>
+		    		<li class="price"><?php _e('Price');?>: <b><?php echo $ad->price;?>&euro;</b></li>
 		    	<?php }?>  
 		    </ul>
-		    <p><?php echo $post->description;?></p>
+		    <p><?php echo $ad->description;?></p>
 		    
-		    <a title="<?php echo $post->seotitle;?>" href="#"><i class="icon-share"></i><?php _e('Read more')?></a>
+		    <a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('post', array('controller'=>'post','action'=>'view','seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?php _e('Read more')?></a>
 	    	
 	    	<?php //if(isset($_SESSION['admin'])){?>
 	    		<br />
-			<a href=""><?php _e("Edit");?></a> |
+			<a href="<?=Route::url('post', array('controller'=>'post','action'=>'edit','seotitle'=>$ad->seotitle))?>"><?php _e("Edit");?></a> |
 			<a onClick="" href=""><?php _e("Deactivate");?></a> |
 			<a onClick="" href=""><?php _e("Spam");?></a> |
 			<a onClick="" href=""><?php _e("Delete");?></a>

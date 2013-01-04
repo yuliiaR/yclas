@@ -174,7 +174,7 @@ class Controller_Panel_Auth extends Controller {
 						{
 							throw new HTTP_Exception_500($e->getMessage());
 						}
-						
+						echo "bla";
 						
 						//login the user
 						Auth::instance()->login($this->request->post('email'), $this->request->post('password1'));

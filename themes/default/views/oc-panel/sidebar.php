@@ -7,7 +7,7 @@
 
 				<li class="nav-header"><?=__('Administration')?></li>
 
-				<?php sidebar_link(__('Ads'),'post')?>
+				<?php sidebar_link(__('Ads'),'ads')?>
 				<?php sidebar_link(__('Categories'),'category')?>
 				<?php sidebar_link(__('Locations'),'location')?>
 				<?php sidebar_link(__('Users'),'user')?>

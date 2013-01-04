@@ -4,7 +4,7 @@
 	<div class="span10">
 	  <div class="hero-unit">
 	    <h1>Hello, world!</h1>
-	    <p>something here!<?//=$posts?></p>
+	    <p>something here!<?//=$ads?></p>
 	  </div>
 	  
 	  <ul class="thumbnails">

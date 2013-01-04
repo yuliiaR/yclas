@@ -31,7 +31,7 @@
       .sidebar-nav {
         padding: 9px 0;
       }
-    </style>	
+    </style>
 
   </head>
 

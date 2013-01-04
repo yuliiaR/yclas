@@ -32,8 +32,8 @@ class Model_Category extends ORM {
 	 * @var  array  ORM Dependency/hirerachy
 	 */
 	protected $_has_many = array(
-		'posts' => array(
-			'model'       => 'Post',
+		'ads' => array(
+			'model'       => 'Ad',
 			'foreign_key' => 'id_category',
 		),
 	);
@@ -82,12 +82,12 @@ class Model_Category extends ORM {
 	public function form_setup($form)
 	{
 		$form->set_sexclude_fields(array('id_category', 'created'));//, 'seoname'
-		//$form->fields['description']['display_as'] = 'textarea';
-		//$form->add_field('password_confirm', array('display_as' => 'password'), 'after', 'password');
-		//$form->fields['password']['display_as'] = 'password';
-		//$form->rule('password_confirm', 'matches', array(':validation', 'password', ':field'));
-		//$form->set_value('password', '');
-		//$form->set_value('password_confirm', '');
+		// $form->fields['description']['display_as'] = 'textarea';
+		// $form->add_field('password_confirm', array('display_as' => 'password'), 'after', 'password');
+		// $form->fields['password']['display_as'] = 'password';
+		// $form->rule('password_confirm', 'matches', array(':validation', 'password', ':field'));
+		// $form->set_value('password', '');
+		// $form->set_value('password_confirm', '');
 	}
 
 

@@ -1,4 +1,7 @@
 <?php
+/**
+ *  THIS IS TEST .php
+ */
 // // /echo "hola";
 // $data = date('y/m/d');
 
@@ -21,6 +24,6 @@
 // echo PHP_EOL.$path;
 //if(is_dir($path)){echo "exists";}else{mkdir($path, 0755, TRUE);echo "bla";}
 
-echo date('Y-m-d-h-i-s'); 
-
+$bla = $_SESSION['admin'];
+var_dump($bla);
 ?>

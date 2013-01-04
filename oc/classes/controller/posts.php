@@ -15,13 +15,13 @@ class Controller_Posts extends Controller {
 		//if everything null redirect to home??@todo
 
 		//getting published posts
-		$posts = new Model_Post();
+		$ads = new Model_Ad();
 
-		$posts /*->join('categories')
-				->on('categories.id_category','=','post.id_category')
+		$ads /*->join('categories')
+				->on('categories.id_category','=','ad.id_category')
 				->join('locations')
-				->on('locations.id_location','=','post.id_location')*/
-				->where('post.status', '=', Model_Post::STATUS_PUBLISHED);
+				->on('locations.id_location','=','ad.id_location')*/
+				->where('ad.status', '=', Model_Ad::STATUS_PUBLISHED);
 		
 		/*
 		//SEO and filters
@@ -51,7 +51,7 @@ class Controller_Posts extends Controller {
 			$category->where('seoname', '=', $slug_cat)->limit(1)->find();
 			
 			//filter category
-			$filter = $posts->where('post.id_category','=',$category->id_category);
+			$filter = $ads->where('ad.id_category','=',$category->id_category);
 			$res_count_categories = $filter->count_all();	
 		}
 		else $res_count_categories = 0;
@@ -63,14 +63,14 @@ class Controller_Posts extends Controller {
 		 	$location->where('seoname', '=', $slug_loc)->limit(1)->find();
 			
 			//filter location
-		 	$filter = $posts->where('post.id_location','=',$location->id_location);
+		 	$filter = $ads->where('ad.id_location','=',$location->id_location);
 		 	$res_count_locations = $filter->count_all();
 		}
 		else $res_count_locations = 0;
 		 
 		 
 		if (($res_count_locations + $res_count_categories) == 0)
-		 	$res_count = $posts->count_all();	
+		 	$res_count = $ads->count_all();	
 		else 
 		 	$res_count = max(array($res_count_locations, $res_count_categories));
 			
@@ -103,8 +103,8 @@ class Controller_Posts extends Controller {
 				//filter category
 				if ($category->loaded() && $slug_loc !== NULL)
 				{
-					$posts = $posts->where('post.id_category','=',$category->id_category)
-									->and_where('post.id_location','=', $location->id_location)
+					$ads = $ads->where('ad.id_category','=',$category->id_category)
+									->and_where('ad.id_location','=', $location->id_location)
 									->order_by('created','desc')
                                 	->limit($pagination->items_per_page)
                                 	->offset($pagination->offset)
@@ -112,7 +112,7 @@ class Controller_Posts extends Controller {
 				}
 				else if($category->loaded())
 				{
-					$posts = $posts->where('post.id_category','=',$category->id_category)
+					$ads = $ads->where('ad.id_category','=',$category->id_category)
 									->order_by('created','desc')
                                 	->limit($pagination->items_per_page)
                                 	->offset($pagination->offset)
@@ -122,7 +122,7 @@ class Controller_Posts extends Controller {
 			}
 			else
 			{
-				$posts = $posts->order_by('created','desc')
+				$ads = $ads->order_by('created','desc')
                                 ->limit($pagination->items_per_page)
                                 ->offset($pagination->offset)
                                 ->find_all();
@@ -135,7 +135,7 @@ class Controller_Posts extends Controller {
 			END PAGINATION 
 		*/
 
-	    	$this->template->content = View::factory('pages/post/listing',array('posts'			=> $posts,
+	    	$this->template->content = View::factory('pages/post/listing',array('ads'			=> $ads,
 																				'pagination' 	=> $pagination,
 																				));		
 	}

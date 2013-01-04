@@ -16,10 +16,11 @@
  * Item / post new
  * URL::title(__('publish new'))
  */
-Route::set('post_new', URL::title(__('publish new')).'html')
+Route::set('post_new', URL::title(__('publish new')).'.html')
 ->defaults(array(
-		'controller' => 'posts',    
-		'action'     => 'newpost',
+		'directory'	 => 'panel',	
+		'controller' => 'post',    
+		'action'     => 'index',
 ));
 
 //-------END reserved pages

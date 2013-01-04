@@ -68,8 +68,8 @@ CREATE TABLE  `oc_locations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE  `oc_posts` (
-  `id_post` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE  `oc_ads` (
+  `id_ad` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(10) unsigned NOT NULL,
   `id_category` int(10) unsigned NOT NULL DEFAULT '0',
   `id_location` int(10) unsigned NOT NULL DEFAULT '0',
@@ -85,26 +85,26 @@ CREATE TABLE  `oc_posts` (
   `published` DATETIME  NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `has_images` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_post`) USING BTREE,
-  KEY `posts_IK_id_user` (`id_user`),
-  KEY `posts_IK_id_category` (`id_category`),
-  KEY `posts_IK_title` (`title`),
-  UNIQUE KEY `posts_UK_seotitle` (`seotitle`),
-  KEY `posts_IK_status` (`status`),
-  CONSTRAINT `posts_FK_id_user_AT_users` FOREIGN KEY (`id_user`) REFERENCES `oc_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `posts_FK_id_category_AT_categories` FOREIGN KEY (`id_category`) REFERENCES `oc_categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`id_ad`) USING BTREE,
+  KEY `ads_IK_id_user` (`id_user`),
+  KEY `ads_IK_id_category` (`id_category`),
+  KEY `ads_IK_title` (`title`),
+  UNIQUE KEY `ads_UK_seotitle` (`seotitle`),
+  KEY `ads_IK_status` (`status`),
+  CONSTRAINT `ads_FK_id_user_AT_users` FOREIGN KEY (`id_user`) REFERENCES `oc_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ads_FK_id_category_AT_categories` FOREIGN KEY (`id_category`) REFERENCES `oc_categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE `oc_visits` (
   `id_visit` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_post` int(10) unsigned DEFAULT NULL,
+  `id_ad` int(10) unsigned DEFAULT NULL,
   `id_user` int(10) unsigned DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ip_address` float DEFAULT NULL,
   PRIMARY KEY (`id_visit`),
   KEY `visits_IK_id_user` (`id_user`),
-  KEY `visits_IK_id_post` (`id_post`)
+  KEY `visits_IK_id_ad` (`id_ad`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `oc_config` ( 
