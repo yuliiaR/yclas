@@ -30,7 +30,7 @@
 		        </ul>
 		        
 		        <form class="navbar-search pull-left" action="@todo">
-		            <input type="text" name="q" class="search-query span2" placeholder="<?=__('Search')?>">
+		            <input type="text" name="search" class="search-query span2" placeholder="<?=__('Search')?>">
 		        </form>
 		        
 				<div class="btn-group pull-right">

@@ -18,9 +18,9 @@
  */
 Route::set('post_new', URL::title(__('publish new')).'.html')
 ->defaults(array(
-		'directory'	 => 'panel',	
-		'controller' => 'post',    
-		'action'     => 'index',
+		//'directory'	 => 'panel',	
+		'controller' => 'ad',    
+		'action'     => 'new',
 ));
 
 //-------END reserved pages
@@ -56,22 +56,22 @@ Route::set('page','p/<seotitle>.html')
 ));
 
 /**
- * Item / post view public
+ * Item / ad view (public)
  */
-Route::set('post', 'post(/<seotitle>.html)')
+Route::set('ad', 'ad(/<seotitle>.html)')
 ->defaults(array(
 		//'directory'  => 'panel',
-		'controller' => 'post',    
+		'controller' => 'ad',    
 		'action'     => 'view',
 ));
 
 
 /**
- * SERP / listing (all posts || posts sorted by category / listing)
+ * SERP / listing (all ads || posts sorted by category / listing)
  */
 Route::set('listing', '(<category>)(/<location>)')
 ->defaults(array(
-		'controller' => 'post',    
+		'controller' => 'ad',    
 		'action'     => 'listing',
 ));
 

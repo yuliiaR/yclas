@@ -5,8 +5,10 @@ $(function(){
 		"bulletlist,orderedlist|link,unlink,youtube|source",
 		resizeEnabled: "true"
 	});
-	$(function () { 
+$(function () { 
 
-		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+	$("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+ 
+	$('.btn').tooltip(); 
 	//$('textarea[name=description]').autogrow();
 });

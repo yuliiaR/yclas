@@ -96,12 +96,24 @@ class Model_Ad extends ORM {
      * 
      */
     public function form_setup($form)
-    {
-       var_dump($form);
-        $insert = DB::insert('oc_ads', array('title', 'description'))
+    {var_dump($form['title']);
+        $insert = DB::insert('ads', array('title', 'description'))
                             ->values(array($form['title'], $form['description']))
                             ->execute();
                             return $insert;
+    }
+    /**
+     *
+     *  Count hits
+     * 
+     */
+    public function count_ad_hit($id_ad, $id_user){
+        
+        //inser new table, as a hit
+        $new_hit = DB::insert('visits', array('id_ad', 'id_user'))
+                                ->values(array($id_ad, $id_user))
+                                ->execute();
+
     }
 
 } // END Model_ad
