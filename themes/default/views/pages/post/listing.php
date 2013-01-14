@@ -11,11 +11,11 @@
         	<li><a href="#">Location</a> <span class="divider">&raquo;</span></li>
         	<li class="active">page 1</li>
 	 </ul>
-	  <?if(count($ads)):?>
+	  <?echo 'pages/ post / lisiting'; if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
 	    <article class="list well clearfix">
 	    	<h2>
-	    	<a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('post', array('controller'=>'post','action'=>'view','seotitle'=>$ad->seotitle))?>"> <?php echo $ad->seotitle; ?></a></h2>
+	    	<a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"> <?php echo $ad->seotitle; ?></a></h2>
 		     	
 	    	</h2>
 	    	
@@ -29,11 +29,11 @@
 		    </ul>
 		    <p><?php echo $ad->description;?></p>
 		    
-		    <a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('post', array('controller'=>'post','action'=>'view','seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?php _e('Read more')?></a>
+		    <a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?php _e('Read more')?></a>
 	    	
 	    	<?php //if(isset($_SESSION['admin'])){?>
 	    		<br />
-			<a href="<?=Route::url('post', array('controller'=>'post','action'=>'edit','seotitle'=>$ad->seotitle))?>"><?php _e("Edit");?></a> |
+			<a href="<?=Route::url('ad', array('controller'=>'ad','action'=>'edit','seotitle'=>$ad->seotitle))?>"><?php _e("Edit");?></a> |
 			<a onClick="" href=""><?php _e("Deactivate");?></a> |
 			<a onClick="" href=""><?php _e("Spam");?></a> |
 			<a onClick="" href=""><?php _e("Delete");?></a>
@@ -57,7 +57,8 @@
 	    
 	  <?else:?>
 	    	<h2><?=__('No items found')?></h2>
-	  <?endif?>
+	  <?endif?>-->
 	  
+	  <?php ?>
 	</div><!--/span--> 
 </div><!--/row-->

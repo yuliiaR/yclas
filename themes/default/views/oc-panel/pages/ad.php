@@ -17,24 +17,24 @@
 			
 	</tr>
 	
-	<?php $i = 0; foreach($res['ads'] as $p):?>
+	<?php $i = 0; foreach($ads as $p):?>
 		
 	<tbody>
 		<tr>
 			<td><a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'view','id'=>$p->id_ad))?>"><? echo $p->title; ?></a></td>
 			
-			<?foreach($res['sidebarCat'] as $cat):?>
+			<?foreach($sidebarCat as $cat):?>
 				<? if ($cat->id_category == $p->id_category): ?>
 					<td><? echo $cat->name?></td>
 				<?endif?>
 	    	<?endforeach?>
 			
-			<?foreach($res['sidebarLoc'] as $loc):?>
+			<?foreach($sidebarLoc as $loc):?>
 				<? if ($loc->id_location == $p->id_location): ?>
 					<td><? echo $loc->name?></td>
 				<?endif?>
 	    	<?endforeach?>
-			<td><? echo $hits[$i++];?></td>
+			<td><? //echo $hits[$i++];?></td>
 	    	<td><? echo substr($p->created, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary" 
@@ -65,4 +65,4 @@
 	<?endforeach?>
 	</tbody>
 </table>
-	 <?=$res['pagination']?>
+	 <?=$pagination?>

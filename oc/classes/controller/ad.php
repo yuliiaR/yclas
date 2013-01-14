@@ -122,9 +122,11 @@ class Controller_Ad extends Controller {
 	 * Serp of ads
 	 */
 	public function action_listing()
-	{
-	    $this->template->content = View::factory('pages/post/listing',$this->action_list_logic()); 		
-	}
+	{ $previous_name = session_name("WebsiteID");
+		$this->template->bind('content', $content);
+	    $this->template->content = View::factory('pages/post/listing',$this->action_list_logic());
+	   echo $previous_name;
+ 	}
 
 	public function action_list_logic()
 	{
@@ -141,12 +143,13 @@ class Controller_Ad extends Controller {
 		$loc = new Model_Location();
 		$sidebarCat = $cat->find_all(); // get all to print at sidebar view
 		$sidebarLoc = $loc->find_all(); // get all to print at sidebar view
-
+		// print_r($sidebarLoc) ;
 		//getting published ads
 		$ads = new Model_Ad();
 
 		$ads->where('ad.status', '=', Model_Ad::STATUS_PUBLISHED);
-		
+		$ads->find_all();
+	
 		/*
 		//SEO and filters
 		if ($category->loaded() && $location->loaded())
@@ -200,7 +203,7 @@ class Controller_Ad extends Controller {
 				$res_count = 0;
 			}else{
             	$res_count = $_search_ad->count_all();
-            	echo $res_count;	
+            	echo 'res_count'.$res_count.' :';	
 			} 
 		}
 		else if ($slug_cat !== NULL) // category provided
@@ -281,6 +284,12 @@ class Controller_Ad extends Controller {
 		return array('ads'=>$ads,'pagination'=>$pagination,'sidebarCat'=>$sidebarCat,'sidebarLoc'=>$sidebarLoc);
 	}
 	
+
+	/**
+	 * 
+	 * NEW ADVERTIZMENT 
+	 * 
+	 */
 	public function action_new()
 	{
 		//template header

@@ -24,6 +24,6 @@
 // echo PHP_EOL.$path;
 //if(is_dir($path)){echo "exists";}else{mkdir($path, 0755, TRUE);echo "bla";}
 
-$bla = $_SESSION['admin'];
+$bla = session_name() ;
 var_dump($bla);
 ?>
