@@ -6,7 +6,7 @@
 		<div class="page-header">
 			<h1><?=__('Publish new advertisement')?></h1>
 		</div>
-		<?= FORM::open(Route::url('oc-panel',array('directory'=>'panel','controller'=>'post','action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('ad',array('controller'=>'ad','action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">
 					<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
@@ -84,7 +84,7 @@
 				</div>
 				<?endif?>
 				<div class="form-actions">
-					<?= FORM::button('submit', 'Publish now', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('oc-panel',array('directory'=>'panel','controller'=>'post','action'=>'index'))))?>
+					<?= FORM::button('submit', 'Publish now', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('ad',array('controller'=>'new','action'=>'index'))))?>
 					<p class="help-block">Dynamic text, for free or pay XX€..</p>
 				</div>
 			</fieldset>

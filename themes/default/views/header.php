@@ -29,7 +29,7 @@
 		            <li><a href="/">Cat 5</a></li>
 		        </ul>
 		        
-		        <form class="navbar-search pull-left" action="@todo">
+		        <form class="navbar-search pull-left" method="GET" action="">
 		            <input type="text" name="search" class="search-query span2" placeholder="<?=__('Search')?>">
 		        </form>
 		        

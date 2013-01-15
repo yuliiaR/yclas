@@ -20,25 +20,37 @@ class Controller_Panel_Ad extends Auth_Controller {
 		//find all tables 
         $hits = new Model_Visit();
         $hits->find_all();
+		$cat = new Model_Category();
+		$_list_cat= $cat->find_all(); // get all to print at sidebar view
+		$loc = new Model_Location();
+		$_list_loc= $loc->find_all(); // get all to print at sidebar view
+		
+		
+		
+        
 
 		$c = new Controller_Ad($this->request,$this->response);// object of listing
         
-        //$arr_ads = $c->action_list_logic()['ads']; 
+        $arr_ads = $c->action_list_logic(); 
        	
-       	//$arr_hits = array(); // array of hit integers 
-        
-        //fill array with hit integers 
-        // foreach ($arr_ads as $key_ads) {
-        // 	// match hits with ad
-        // 	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
-        // 	$count = $hits->count_all(); // count individual hits 
-        // 	$arr = $c->action_list_logic();
+       	$arr_hits = array(); // array of hit integers 
+       	
+        // fill array with hit integers 
+        foreach ($arr_ads['ads'] as $key_ads) {
+        	
+        	// match hits with ad
+        	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
+        	$count = $hits->count_all(); // count individual hits 
+        	$arr = $c->action_list_logic();
 
-        // 	array_push($arr_hits, $count);
-        // 	array_push($arr, $count);
-        // }
-        $bla = $c->action_list_logic(); 
-	    $this->template->content = View::factory('oc-panel/pages/ad', $bla); // create view, and insert list with data 		
+        	array_push($arr_hits, $count);
+        	array_push($arr, $count);
+        }
+        $res = $c->action_list_logic(); 
+	    $this->template->content = View::factory('oc-panel/pages/ad',array('res'		=>$res, 
+	    																	'hits'		=>$arr_hits, 
+	    																	'category'	=>$_list_cat,
+	    																	'location'	=>$_list_loc)); // create view, and insert list with data 		
 	}
 
 	

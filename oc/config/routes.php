@@ -19,8 +19,8 @@
 Route::set('post_new', URL::title(__('publish new')).'.html')
 ->defaults(array(
 		//'directory'	 => 'panel',	
-		'controller' => 'ad',    
-		'action'     => 'new',
+		'controller' => 'new',    
+		'action'     => 'index',
 ));
 
 //-------END reserved pages
@@ -55,6 +55,16 @@ Route::set('page','p/<seotitle>.html')
 		'action'     => 'view',
 ));
 
+
+/**
+ * Seach results  
+ */
+Route::set('search','<search>')
+->defaults(array(
+		'controller' => 'ad',    
+		'action'     => 'search',
+));
+
 /**
  * Item / ad view (public)
  */
@@ -72,7 +82,7 @@ Route::set('ad', 'ad(/<seotitle>.html)')
 Route::set('listing', '(<category>)(/<location>)')
 ->defaults(array(
 		'controller' => 'ad',    
-		'action'     => 'listing',
+		'action'     => 'index',
 ));
 
 

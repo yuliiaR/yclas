@@ -17,24 +17,25 @@
 			
 	</tr>
 	
-	<?php $i = 0; foreach($ads as $p):?>
+	<?php $i = 0; foreach($res['ads'] as $p):?>
 		
 	<tbody>
 		<tr>
-			<td><a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'view','id'=>$p->id_ad))?>"><? echo $p->title; ?></a></td>
-			
-			<?foreach($sidebarCat as $cat):?>
+			<td><a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'view','id'=>$p->id_ad))?>"><? echo $p->title; ?></a>
+			</td>
+
+			<? foreach($category as $cat):?>
 				<? if ($cat->id_category == $p->id_category): ?>
-					<td><? echo $cat->name?></td>
+					<td><?php echo $cat->name ?>
 				<?endif?>
 	    	<?endforeach?>
 			
-			<?foreach($sidebarLoc as $loc):?>
+			<?php foreach($location as $loc):?>
 				<? if ($loc->id_location == $p->id_location): ?>
-					<td><? echo $loc->name?></td>
+					<td><?php echo $loc->name?></td>
 				<?endif?>
 	    	<?endforeach?>
-			<td><? //echo $hits[$i++];?></td>
+			<td><? echo $hits[$i++];?></td>
 	    	<td><? echo substr($p->created, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary" 
@@ -65,4 +66,4 @@
 	<?endforeach?>
 	</tbody>
 </table>
-	 <?=$pagination?>
+	 <?=$res['pagination']?>
