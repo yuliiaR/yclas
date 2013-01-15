@@ -156,8 +156,7 @@
 	    		
 	    		if (isset($_FILES['image1']))
 	        	{
-	        		//$foldername = $title.date(y/m/d/h/m/s); // make unique folder name $seotitle + timestamp
-	            	$filename = $this->_save_image($_FILES['image1'], $seotitle);
+	            	$filename = $this->_save_image($_FILES['image1'], $_FILES['image2'], $seotitle);
 	        	}
 	        	if ( !$filename)
 		        {
@@ -217,7 +216,7 @@
 		$this->template->content->text = Text::bb2html($this->request->post('description'),TRUE);	
  	}
 
- 	public function _save_image($image, $seotitle)
+ 	public function _save_image($image, $image1, $seotitle)
  	{
  		////////////////////////////////////
  		// find solutin for dynamic resizing 
@@ -225,10 +224,10 @@
  		// SAVE ONE ORIGINAL AND ONE CUSTOM
  		// TO DO...
  		// ///////////////////////////////// 
- 		if (
-            ! Upload::valid($image) OR
-            ! Upload::not_empty($image) OR
-            ! Upload::type($image, array('jpg', 'jpeg', 'png', 'gif')))
+ 		if ( 
+            ! Upload::valid($image, $image1) OR
+            ! Upload::not_empty($image, $image1) OR
+            ! Upload::type($image, $image1, array('jpg', 'jpeg', 'png', 'gif')))
         {
             return FALSE;
  		}
@@ -242,7 +241,7 @@
  			$filename2 = "123.jpg";
             Image::factory($file)
                 ->resize(200, 200, Image::AUTO)
-                ->save($directory.$filename2);
+                ->save($directory.$filename);
  			
             Image::factory($file)
                 ->resize(50, 50, Image::AUTO)
@@ -251,7 +250,7 @@
             // Delete the temporary file
             unlink($file);
  
-            return $image_size;
+            return $filename;
         }
  
         return FALSE;

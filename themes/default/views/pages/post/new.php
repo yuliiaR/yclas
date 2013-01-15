@@ -6,7 +6,7 @@
 		<div class="page-header">
 			<h1><?=__('Publish new advertisement')?></h1>
 		</div>
-		<?= FORM::open(Route::url('ad',array('controller'=>'ad','action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">
 					<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
@@ -44,11 +44,11 @@
 				<div class="control-group">
 					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'))?>
 					<div class="controls">
-						<?// FORM::file('image1', array('class'=>'input-file', 'id'=>'fileInput1'))?>
 						<input class="input-file" type="file" name="image1" id="fileImput1" />
 					</div>
-					<div class="controls">
-						<?= FORM::file('image2', array('class'=>'input-file', 'id'=>'fileInput2'))?>
+					<?= FORM::label('images2', __('Images'), array('class'=>'control-label', 'for'=>'images2'))?>
+					<div class="controls">	
+						<input class="input-file" type="file" name="image2" id="fileImput2" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -84,7 +84,7 @@
 				</div>
 				<?endif?>
 				<div class="form-actions">
-					<?= FORM::button('submit', 'Publish now', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('ad',array('controller'=>'new','action'=>'index'))))?>
+					<?= FORM::button('submit', 'Publish now', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 					<p class="help-block">Dynamic text, for free or pay XX€..</p>
 				</div>
 			</fieldset>
