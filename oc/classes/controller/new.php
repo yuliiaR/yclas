@@ -6,7 +6,7 @@
 	{
 		/**
 	 * 
-	 * NEW ADVERTIZMENT 
+	 * NEW ADVERTISEMENT 
 	 * 
 	 */
 	public function action_index()
@@ -33,23 +33,45 @@
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/post/new', array('_cat'		=> $_cat,
 																		 '_loc' 	=> $_loc,));
-		// post attributes
-		$_auth			= 	Auth::instance(); 
-		$title 			= 	$this->request->post('title');
-		$seotitle 		= 	$this->request->post('title'); 		// need to do some validation and checking with seotitle !!!
-		$cat 			= 	$this->request->post('category');
-		$loc 			= 	$this->request->post('location');
-		$description 	= 	$this->request->post('description');
-		$price 			= 	$this->request->post('price');
-		$address 		= 	$this->request->post('address');
-		$phone 			= 	$this->request->post('phone');
+
+		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
+						'title' 		=> $title 		= 	$this->request->post('title'),
+						'seotitle' 		=> $seotitle 	= 	$this->request->post('title'),
+						'cat'			=> $cat 		= 	$this->request->post('category'),
+						'loc'			=> $loc 		= 	$this->request->post('location'),
+						'description'	=> $description = 	$this->request->post('description'),
+						'price'			=> $price 		= 	$this->request->post('price'),
+						'address'		=> $address 	= 	$this->request->post('address'),
+						'phone'			=> $phone 		= 	$this->request->post('phone'),
+						'user'			=> $user = new Model_User()
+						); 
+		
+		$config = new Model_Config();
+		$config->where('group_name','=', 'general')->limit(1)->find(); // get value from config (moderation on/off)
+		
+		if ($config->config_value == 0){
+			$status = Model_Ad::STATUS_PUBLISHED;
+			$this->_save_new_ad($data, $status);
+
+		}
+		else if($config->config_value == 1)
+		{
+			$status = Model_Ad::STATUS_NOPUBLISHED;
+			$this->_save_new_ad($data, $status);
+		}
+		else if($config->config_value == 2)
+		{
+			
+			$this->template->content = View::factory('pages/post/paypal');
+		}
 
 
-		////////////////
-		// do user check 
-		// TO DO ...
-		/////////////// 
-		if (!$_auth->logged_in()) // this part is for users that are not logged, not finished !!!
+			
+ 	}
+
+ 	public function _save_new_ad($data, $status)
+ 	{
+ 		if (!$data['_auth']->logged_in()) // this part is for users that are not logged, not finished !!!
 			{
 				/////////////////////////////////////////////////////
 				// check flow . If it goes to moderation or payment
@@ -72,7 +94,7 @@
 					// from db
 					// TO DO ...
 					// ////////////////
-					$user = $user->where('email', '=', $email)
+					$user = $data['user']->where('email', '=', $email)
 							->limit(1)
 							->find();
 
@@ -91,7 +113,7 @@
 						try
 						{
 							$user->save();
-							
+							echo "new user";
 							// email::send("root@slobodantumanitas-System", 
 							// 			"root@slobodantumanitas-System", 
 							// 			"new_user",
@@ -108,7 +130,7 @@
 						}
 					}
 
-						$usr = $user->id_user; 
+						$usr = $data['user']->id_user; 
 					
 				}
 					
@@ -117,13 +139,13 @@
 			}
 			else
 			{
-				$usr 		= $_auth->get_user()->id_user; 		// returns and error if user not loged in !!! check that
-				$name 		= $_auth->get_user()->name;
-				$email 		= $_auth->get_user()->email;
+				$usr 		= $data['_auth']->get_user()->id_user; 		// returns and error if user not loged in !!! check that
+				$name 		= $data['_auth']->get_user()->name;
+				$email 		= $data['_auth']->get_user()->email;
 			}	
 		
 		$_new_ad = ORM::factory('ad');
-		$_new_ad->where('title', '=', $title)->find();
+		$_new_ad->where('title', '=', $data['title'])->find();
 		
 		// check existance of ad element
 		if ($_new_ad->loaded()){
@@ -132,23 +154,23 @@
 		else if($this->request->post()) //post submition  
 		{
 		
-			if(Valid::not_empty($title) AND Valid::not_empty($description))
+			if(Valid::not_empty($data['title']) AND Valid::not_empty($data['description']))
 			{		
 				
 				//insert data
-				$seotitle = $title.$_new_ad->count_all(); // bad solution, find better !!! 
+				$data['seotitle'] = $data['title'].$_new_ad->count_all(); // bad solution, find better !!! 
 
-				$_new_ad->title 		= $title;
-				$_new_ad->id_location 	= $loc;
-				$_new_ad->id_category 	= $cat;
+				$_new_ad->title 		= $data['title'];
+				$_new_ad->id_location 	= $data['loc'];
+				$_new_ad->id_category 	= $data['cat'];
 				$_new_ad->id_user 		= $usr;
-				$_new_ad->description 	= $description;
-				$_new_ad->type 			= '0';
-				$_new_ad->seotitle 		= $seotitle;	 
-				$_new_ad->status 		= '1';									// need to be 0, in production 
-				$_new_ad->price 		= $price; 								
-				$_new_ad->adress 		= $address;
-				$_new_ad->phone			= $phone; 
+				$_new_ad->description 	= $data['description'];
+				$_new_ad->type 	 		= '0';
+				$_new_ad->seotitle 		= $data['seotitle'];	 
+				$_new_ad->status 		= $status;									// need to be 0, in production 
+				$_new_ad->price 		= $data['price']; 								
+				$_new_ad->adress 		= $data['address'];
+				$_new_ad->phone			= $data['phone']; 
 
 				// image upload
 				$error_message = NULL;
@@ -156,7 +178,7 @@
 	    		
 	    		if (isset($_FILES['image1']))
 	        	{
-	            	$filename = $this->_save_image($_FILES['image1'], $_FILES['image2'], $seotitle);
+	            	$filename = $this->_save_image($_FILES['image1'], $_FILES['image2'], $data['seotitle']);
 	        	}
 	        	if ( !$filename)
 		        {
@@ -179,7 +201,7 @@
 					email::send("root@slobodantumanitas-System", 
 								"root@slobodantumanitas-System", 
 								$name, 
-								$name." has created new post with title: ".$title, 
+								$name." has created new post with title: ".$data['title'], 
 								NULL); // send to administrator , check other solution !!!   
 					
 					//$this->request->redirect(Route::url('default')); 
@@ -213,7 +235,7 @@
 			//recaptcha validation, if recaptcha active
 		}
 		
-		$this->template->content->text = Text::bb2html($this->request->post('description'),TRUE);	
+		$this->template->content->text = Text::bb2html($this->request->post('description'),TRUE);
  	}
 
  	public function _save_image($image, $image1, $seotitle)

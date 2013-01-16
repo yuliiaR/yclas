@@ -4,13 +4,13 @@ class Controller_Panel_Ad extends Auth_Controller {
 
    	/**
    	 * 
-   	 * List all Advertizment
+   	 * List all Advertisements
    	 */
 	public function action_index()
 	{
 		//template header
-		$this->template->title           	= __('Advertizments');
-		$this->template->meta_description	= __('Advertizments');
+		$this->template->title           	= __('Advertisements');
+		$this->template->meta_description	= __('Advertisements');
 				
 		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
 		//$this->template->scripts['footer'][]= 'js/autogrow-textarea.js';
@@ -25,9 +25,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$loc = new Model_Location();
 		$_list_loc= $loc->find_all(); // get all to print at sidebar view
 		
-		
-		
-        
 
 		$c = new Controller_Ad($this->request,$this->response);// object of listing
         
@@ -46,18 +43,26 @@ class Controller_Panel_Ad extends Auth_Controller {
         	array_push($arr_hits, $count);
         	array_push($arr, $count);
         }
-        $res = $c->action_list_logic(); 
-	    $this->template->content = View::factory('oc-panel/pages/ad',array('res'		=>$res, 
+        $mod = FALSE;
+        if($this->request->param('id') == 'moderation')
+        {
+        	$mod = TRUE; 
+        }
+
+
+        
+	    $this->template->content = View::factory('oc-panel/pages/ad',array('res'		=>$arr_ads, 
 	    																	'hits'		=>$arr_hits, 
 	    																	'category'	=>$_list_cat,
-	    																	'location'	=>$_list_loc)); // create view, and insert list with data 		
+	    																	'location'	=>$_list_loc,
+	    																	'mod'		=>$mod)); // create view, and insert list with data 		
 	}
 
 	
 
 	/**
 	 * @TODO : add more dynamic, to enable admin to make changes 
-	 * One advertizemt : single VIEW
+	 * One advertisement : single VIEW
 	 */
 	public function action_view()
 	{
@@ -77,7 +82,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	/**
 	 *
-	 * Delete advertizment: Delete
+	 * Delete advertisement: Delete
 	 */
 	public function action_delete()
 	{
@@ -99,7 +104,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	/**
 	 * 
-	 * Edit advertizment: Update
+	 * Edit advertisement: Update
 	 */
 	public function action_update()
 	{
@@ -118,7 +123,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 	}
 	/**
 	 * 
-	 * Mark adverizment as spam : STATUS = 30
+	 * Mark advertisement as spam : STATUS = 30
 	 */
 	public function action_spam()
 	{
@@ -133,7 +138,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				try
 				{
 					$spam_ad->save();
-					Alert::set(Alert::SUCCESS, __('Success, advertizment is marked as spam'));
+					Alert::set(Alert::SUCCESS, __('Success, advertisemet is marked as spam'));
 					Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 
 				}
@@ -144,7 +149,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 			else
 			{				
-				Alert::set(Alert::ALERT, __('Warning, advertizment is already marked as spam'));
+				Alert::set(Alert::ALERT, __('Warning, advertisemet is already marked as spam'));
 				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 			} 
 		}
@@ -157,7 +162,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	/**
 	 * 
-	 * Mark adverizment as deactiavted : STATUS = 50
+	 * Mark advertisement as deactiavted : STATUS = 50
 	 */
 	public function action_deactivate()
 	{
@@ -172,7 +177,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				try
 				{
 					$deact_ad->save();
-					Alert::set(Alert::SUCCESS, __('Success, advertizment is deactivated'));
+					Alert::set(Alert::SUCCESS, __('Success, advertisemet is deactivated'));
 					Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 
 				}
@@ -183,7 +188,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 			else
 			{				
-				Alert::set(Alert::ALERT, __("Warning, advertizment is already marked as 'deactivated'"));
+				Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'deactivated'"));
 				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 			} 
 		}
@@ -193,5 +198,28 @@ class Controller_Panel_Ad extends Auth_Controller {
 			throw new HTTP_Exception_404();
 		}
 	}
+
+	/**
+	 * Action MODERATION
+	 * 
+	 */
+	
+	public function action_moderate()
+	{
+		//template header
+		$this->template->title           	= __('Moderation');
+		$this->template->meta_description	= __('Moderation');
+				
+		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
+		//$this->template->scripts['footer'][]= 'js/autogrow-textarea.js';
+		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
+		$this->template->scripts['footer'][]= 'js/pages/new.js';
+
+		$c = new Controller_Ad($this->request,$this->response);// object of listing
+        
+        $arr_ads = $c->action_list_logic(); 
+
+        $this->template->content = View::factory('oc-panel/pages/moderate',array('res'=>$arr_ads));
+	} 
 
 }

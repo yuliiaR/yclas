@@ -2,7 +2,6 @@
 $d = dir('/upload/13/01/15/ca16');
 
 $entry = $d->read('1');
-echo "123";
 $image = $entry;
 echo $image;
 // public function action_list_logic()

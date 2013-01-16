@@ -1,13 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?=Alert::show()?>
-<h1><?=__('Advertisements')?></h1>
-<a class="btn btn-primary" href="<?=Route::url('post_new')?>" rel"tooltip" title="<?=__('New Advertisement')?>">
-	<i class="icon-pencil icon-white"></i><?=__(' New')?>
-</a>
-<a class="btn btn-info" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index', 'id'=>'moderation'))?>" rel"tooltip" title="<?=__('New Advertisement')?>">
-	<i class="icon-eye-open icon-white"></i><?=__(' Moderation')?>
-</a>
 
 <table class="table table-bordered">
 	<tr>
@@ -15,17 +8,13 @@
 		<th><?=__('Category')?></th>
 		<th><?=__('Location')?></th>
 		<th><?=__('Hits')?></th>
-		<th><?=__('Status')?></th>
 		<th><?=__('Date')?></th>
 		<th></th>
 			
 	</tr>
-	<? if ($mod != FALSE): ?>
-					
-	<?endif?>
-	<? $i = 0; foreach($res['ads'] as $p){?>
 	
-	<?php ?>
+	<?php $i = 0; foreach($res['ads'] as $p):?>
+		
 	<tbody>
 		<tr>
 			<td><a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'view','id'=>$p->id_ad))?>"><? echo $p->title; ?></a>
@@ -43,7 +32,6 @@
 				<?endif?>
 	    	<?endforeach?>
 			<td><? echo $hits[$i++];?></td>
-			<td><? echo $p->status?></td>
 	    	<td><? echo substr($p->created, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary" 
