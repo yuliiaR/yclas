@@ -43,10 +43,12 @@ class Controller_Panel_Ad extends Auth_Controller {
         	array_push($arr_hits, $count);
         	array_push($arr, $count);
         }
+        
         $mod = FALSE;
+       
         if($this->request->param('id') == 'moderation')
         {
-        	$mod = TRUE; 
+        	$arr_ads = $arr_ads['ads']->where('status','=','0')->find_all(); 
         }
 
 
@@ -57,8 +59,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 	    																	'location'	=>$_list_loc,
 	    																	'mod'		=>$mod)); // create view, and insert list with data 		
 	}
-
-	
 
 	/**
 	 * @TODO : add more dynamic, to enable admin to make changes 
@@ -102,25 +102,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 		}
 	}
 
-	/**
-	 * 
-	 * Edit advertisement: Update
-	 */
-	public function action_update()
-	{
-		$ad = ORM::factory('ad', $this->request->param('id'));
-
-		if ($ad->loaded())
-		{
-			$this->template->content = View::factory('oc-panel/pages/edit');
-		}
-		else
-		{
-			//throw 404
-			throw new HTTP_Exception_404();
-		}
-
-	}
 	/**
 	 * 
 	 * Mark advertisement as spam : STATUS = 30

@@ -13,8 +13,7 @@
 			
 	</tr>
 	
-	<?php $i = 0; foreach($res['ads'] as $p):?>
-		
+	<? $i = 0; foreach($res['ads'] as $p):?>	
 	<tbody>
 		<tr>
 			<td><a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'view','id'=>$p->id_ad))?>"><? echo $p->title; ?></a>

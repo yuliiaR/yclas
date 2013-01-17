@@ -20,10 +20,10 @@
 		<th></th>
 			
 	</tr>
-	<? if ($mod != FALSE): ?>
+
 					
-	<?endif?>
-	<? $i = 0; foreach($res['ads'] as $p){?>
+
+	<? $i = 0; foreach($res['ads'] as $p):?>
 	
 	<?php ?>
 	<tbody>
@@ -43,11 +43,19 @@
 				<?endif?>
 	    	<?endforeach?>
 			<td><? echo $hits[$i++];?></td>
-			<td><? echo $p->status?></td>
+			<? if($p->status == 0):?>
+			<td><? echo __('Notpublished')?></td>
+			<? elseif($p->status = 1):?>
+			<td><? echo __('Published')?></td>
+			<? elseif($p->status = 30):?>
+			<td><? echo __('Spam')?></td>
+	    	<? elseif($p->status = 50):?>
+			<td><? echo __('Unavailable')?></td>
+			<?endif?>
 	    	<td><? echo substr($p->created, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'update','id'=>$p->id_ad))?>" 
+					href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','id'=>$p->id_ad))?>" 
 					rel"tooltip" title="<?=__('Update')?>">
 					<i class="icon-edit icon-white"></i>
 				</a>

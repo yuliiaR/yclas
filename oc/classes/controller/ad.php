@@ -46,36 +46,71 @@ class Controller_Ad extends Controller {
 		}
 	}
 	
-	public function action_edit()
+	/**
+	 * 
+	 * Edit advertisement: Update
+	 */
+	public function action_update()
 	{
-		$seotitle = $this->request->param('seotitle',NULL);
+		$form = ORM::factory('ad', $this->request->param('id'));
 		
-		if ($seotitle!==NULL)
+		if(Auth::instance()->get_user()->loaded() == $form->id_user 
+			|| Auth::instance()->get_user()->id_role == 10)
 		{
-			$ad = new Model_Ad();
-			$ad->where('seotitle','=', $seotitle)
-				 ->limit(1)->find();
 			
-			if ($ad->loaded())
-			{
+		}
+		if ($this->request->post())
+		{
+			
+			$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
+							'title' 		=> $title 		= 	$this->request->post('title'),
+							'seotitle' 		=> $seotitle 	= 	$this->request->post('title'),
+							'cat'			=> $cat 		= 	$this->request->post('category'),
+							'loc'			=> $loc 		= 	$this->request->post('location'),
+							'description'	=> $description = 	$this->request->post('description'),
+							'price'			=> $price 		= 	$this->request->post('price'),
+							'address'		=> $address 	= 	$this->request->post('address'),
+							'phone'			=> $phone 		= 	$this->request->post('phone'),
+							'user'			=> $user = new Model_User()
+							); 
 
-				$this->template->bind('content', $content);
-				$this->template->content = View::factory('pages/post/single',array('ad'=>$ad));
-			}
-			//not found in DB
-			else
-			{
-				//throw 404
-				throw new HTTP_Exception_404();
-			}
+			//insert data
+			$data['seotitle'] = $data['title'].$form->count_all(); // bad solution, find better !!! 
+
+			$form->title 			= $data['title'];
+			// $form->id_location 		= $data['loc'];
+			// $form->id_category 		= $data['cat'];
+			// $form->id_user 			= $usr;
+			// $form->description 		= $data['description'];
+			// $form->type 	 		= '0';
+			// $form->seotitle 		= $data['seotitle'];	 
+			// $form->status 			= $status;									// need to be 0, in production 
+			// $form->price 			= $data['price']; 								
+			// $form->adress 			= $data['address'];
+			// $form->phone			= $data['phone']; 
+		try {
+
+			$form->save();
+			Alert::set(Alert::SUCCESS, __('Success, item updated'));
+
+			$this->request->redirect(Route::url('default',array('controller'=>'home','action'=>'index')));
+		} catch (Exception $e) {
 			
 		}
-		else//this will never happen
-		{
-			//throw 404
-			throw new HTTP_Exception_404();
+			
 		}
-		
+
+		$this->template->content = View::factory('pages/post/edit', array('ad'=>$form));
+		// if ($form->loaded())
+		// {
+		// 	$this->template->content = View::factory('oc-panel/pages/edit', array('ad'=>$form));
+		// }
+		// else
+		// {
+		// 	//throw 404
+		// 	throw new HTTP_Exception_404();
+		// }
+
 	}
 	
 	
@@ -91,11 +126,11 @@ class Controller_Ad extends Controller {
 	public function action_list_logic()
 	{
 		$ads = new Model_Ad();
-
 		$ads->where('ad.status', '=', Model_Ad::STATUS_PUBLISHED);
 		$ads->find_all();
-		$_search_ad = ORM::factory('ad');
+
 		$res_count = $ads->count_all();
+		
 		if ($res_count > 0)
 		{
 
@@ -118,7 +153,16 @@ class Controller_Ad extends Controller {
 			//trow 404 Exception
 			throw new HTTP_Exception_404();
 		}
-		return array('ads'=>$ads,'pagination'=>$pagination);
+
+		if(Auth::instance()->get_user() == NULL)
+		{
+			$user = NULL;
+		}
+		else
+		{
+			$user = Auth::instance()->get_user();
+		}
+		return array('ads'=>$ads,'pagination'=>$pagination, 'user'=>$user);
 	}
 	
 

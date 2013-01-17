@@ -35,6 +35,15 @@ Route::set('oc-panel', 'oc-panel/(<controller>(/<action>(/<id>)))')
 		'action'     => 'index',
 ));
 
+/**
+ * user/admin edit ad route
+ */
+Route::set('update', 'update/(<controller>(/<action>(/<id>)))')
+->defaults(array(
+		'controller' => 'home',
+		'action'     => 'index',
+));
+
 /*
 	user profile route 
  */

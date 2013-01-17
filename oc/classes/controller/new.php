@@ -133,9 +133,6 @@
 						$usr = $data['user']->id_user; 
 					
 				}
-					
-				
-
 			}
 			else
 			{
