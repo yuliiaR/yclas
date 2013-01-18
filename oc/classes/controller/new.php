@@ -29,10 +29,11 @@
 		//find all, for populating form select fields 
 		$_cat = $category->find_all();
 		$_loc = $location->find_all();
-
+		
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/post/new', array('_cat'		=> $_cat,
-																		 '_loc' 	=> $_loc,));
+																		 '_loc' 	=> $_loc,
+																		 ));
 
 		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
 						'title' 		=> $title 		= 	$this->request->post('title'),

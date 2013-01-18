@@ -15,23 +15,23 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<?= FORM::label('categoty', __('Category'), array('class'=>'control-label', 'for'=>'category'))?>
+					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category'))?>
 					<div class="controls">
-						<?$_val_category = array('');?>
+						<?$_val_category = array('0'=>null);?>
 						<?foreach ($_cat as $cat):?>
 							<?php $_val_category[] = $cat->seoname; ?>
 						<?endforeach?>
-					<?= FORM::select('category', $_val_category, $_val_category[1], array('id'=>'category','class'=>'input-xlarge', 'required') );?>
+					<?= FORM::select('category', $_val_category, 0, array('id'=>'category','class'=>'input-xlarge', 'required') );?>
 					</div>
 				</div>
 				<div class="control-group">
 					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
 					<div class="controls">
-						<?$_val_location = array('');?>
+						<?$_val_location = array('0'=>NULL);?>
 						<?foreach ($_loc as $loc):?>
 							<?php $_val_location[] = $loc->seoname; ?>
 						<?endforeach?>
-					<?= FORM::select('location', $_val_location, $_val_location[0], array('id'=>'location', 'class'=>'input-xlarge',) );?>
+					<?= FORM::select('location', $_val_location, 0, array('id'=>'location', 'class'=>'input-xlarge', 'required') );?>
 					</div>
 				</div>
 				<div class="control-group">

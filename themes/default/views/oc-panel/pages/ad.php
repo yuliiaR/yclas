@@ -17,7 +17,7 @@
 		<th><?=__('Hits')?></th>
 		<th><?=__('Status')?></th>
 		<th><?=__('Date')?></th>
-		<th></th>
+		<th><?=__('Options')?></th>
 			
 	</tr>
 
@@ -43,15 +43,17 @@
 				<?endif?>
 	    	<?endforeach?>
 			<td><? echo $hits[$i++];?></td>
+			
 			<? if($p->status == 0):?>
-			<td><? echo __('Notpublished')?></td>
+				<td><? echo __('Notpublished')?></td>
 			<? elseif($p->status = 1):?>
-			<td><? echo __('Published')?></td>
+				<td><? echo __('Published')?></td>
 			<? elseif($p->status = 30):?>
-			<td><? echo __('Spam')?></td>
+				<td><? echo __('Spam')?></td>
 	    	<? elseif($p->status = 50):?>
-			<td><? echo __('Unavailable')?></td>
+				<td><? echo __('Unavailable')?></td>
 			<?endif?>
+	    	
 	    	<td><? echo substr($p->created, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary" 

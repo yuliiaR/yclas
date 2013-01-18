@@ -14,23 +14,24 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<?= FORM::label('categoty', __('Category'), array('class'=>'control-label', 'for'=>'category'))?>
+					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category'))?>
 					<div class="controls">
-						<?//$_val_category = array('');?>
-						<?//foreach ($_cat as $cat):?>
-							<?//php $_val_category[] = $cat->seoname; ?>
-						<?//endforeach?>
-					<?//= FORM::select('category', $_val_category, $_val_category[1], array('id'=>'category','class'=>'input-xlarge', 'required') );?>
+					<?$_val_category = array();?>	
+					<?php foreach($category as $cat): ?>
+						<? $id = $cat->id_category; ?>
+							<? $_val_category[$cat->id_category] = $cat->seoname; ?>
+						<?endforeach?>
+					<?= FORM::select('category', $_val_category, $ad->id_category, array('id'=>'category','class'=>'input-xlarge', 'required'));?>
 					</div>
 				</div>
 				<div class="control-group">
 					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
 					<div class="controls">
-						<?$_val_location = array('');?>
-						<?//foreach ($_loc as $loc):?>
-							<?//php $_val_location[] = $loc->seoname; ?>
-						<?//endforeach?>
-					<?= FORM::select('location', $_val_location, $_val_location[0], array('id'=>'location', 'class'=>'input-xlarge',) );?>
+						<?$_val_location = array();?>
+						<?php foreach ($location as $loc):?>
+							<? $_val_location[$loc->id_location] = $loc->seoname; ?>
+						<?endforeach?>
+					<?= FORM::select('location', $_val_location, $ad->id_location, array('id'=>'location', 'class'=>'input-xlarge', 'required'));?>
 					</div>
 				</div>
 				<div class="control-group">
@@ -39,6 +40,13 @@
 						<?= FORM::textarea('description', $ad->description, array('class'=>'input-xxlarge', 'name'=>'description', 'id'=>'description', 'rows'=>15, 'required'))?>
 						
 					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<?php foreach ($path as $path):?>
+							<img src=<?echo $path?> class="img-polaroid">
+						<?endforeach?>
+					</div>	
 				</div>
 				<div class="control-group">
 					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'))?>
@@ -59,7 +67,7 @@
 				<div class="control-group">
 					<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
 					<div class="controls">
-						<?= FORM::input('address', $ad->phone, array('class'=>'input-xlarge', 'id'=>'address', 'placeholder'=>__('Address')))?>
+						<?= FORM::input('address', $ad->adress, array('class'=>'input-xlarge', 'id'=>'address', 'placeholder'=>__('Address')))?>
 					</div>
 				</div>
 				<div class="control-group">
