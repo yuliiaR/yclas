@@ -42,7 +42,7 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'))?>
+					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images1'))?>
 					<div class="controls">
 						<input class="input-file" type="file" name="image1" id="fileImput1" />
 					</div>

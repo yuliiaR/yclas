@@ -74,27 +74,12 @@
  	{
  		if (!$data['_auth']->logged_in()) // this part is for users that are not logged, not finished !!!
 			{
-				/////////////////////////////////////////////////////
-				// check flow . If it goes to moderation or payment
-				// TO DO ..
-				/////////////////////////////////////////////////////
 				
-				///////////////////////////
-				// creat user if !exists
-				// TO DO..
-				///////////////////////////
-				
-
 				$name 		= $this->request->post('name');
 				$email		= $this->request->post('email');
 				
 				if (Valid::email($email,TRUE))
 				{
-					////////////////////
-					// make pass check
-					// from db
-					// TO DO ...
-					// ////////////////
 					$user = $data['user']->where('email', '=', $email)
 							->limit(1)
 							->find();
@@ -147,7 +132,7 @@
 		
 		// check existance of ad element
 		if ($_new_ad->loaded()){
-			Alert::set(Alert::ERROR, __('This ad already exist'));
+			Alert::set(Alert::ERROR, __('This advertisement already exist'));
 		}
 		else if($this->request->post()) //post submition  
 		{
@@ -156,7 +141,7 @@
 			{		
 				
 				//insert data
-				$data['seotitle'] = $data['title'].$_new_ad->count_all(); // bad solution, find better !!! 
+				$data['seotitle'] = $data['title'].$data['cat']; // bad solution, find better ASK CHEMA!!! 
 
 				$_new_ad->title 		= $data['title'];
 				$_new_ad->id_location 	= $data['loc'];
@@ -170,27 +155,30 @@
 				$_new_ad->adress 		= $data['address'];
 				$_new_ad->phone			= $data['phone']; 
 
-				// image upload
-				$error_message = NULL;
-	    		$filename = NULL;
-	    		
-	    		if (isset($_FILES['image1']))
-	        	{
-	            	$filename = $this->_save_image($_FILES['image1'], $_FILES['image2'], $data['seotitle']);
-	        	}
-	        	if ( !$filename)
-		        {
-		            $error_message = 'There was a problem while uploading the image.
-		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
-
-		                echo $error_message;
-		        }
+				
 
 			   /////////////
 			   // ADD capcha
 			   // TO DO..
 			   // //////////
 			   
+			    // image upload
+				$error_message = NULL;
+	    		$filename = NULL;
+	    		
+	    		if (isset($_FILES['image1']) || isset($_FILES['image2']))
+	        	{
+	        		$img_files = array($_FILES['image1'], $_FILES['image2']);
+	            	$filename = $this->_save_image($img_files, $data['seotitle']);
+	            	echo $filename;
+	        	}
+	        	if ( $filename !== TRUE)
+		        {
+		            $error_message = 'There was a problem while uploading the image.
+		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
+
+		                echo $error_message;
+		        }
 			try
 				{
 					$_new_ad->save();
@@ -203,9 +191,6 @@
 								NULL); // send to administrator , check other solution !!!   
 					
 					//$this->request->redirect(Route::url('default')); 
-					
-					
-
 					  
 				}
 				catch (ORM_Validation_Exception $e)
@@ -236,7 +221,7 @@
 		$this->template->content->text = Text::bb2html($this->request->post('description'),TRUE);
  	}
 
- 	public function _save_image($image, $image1, $seotitle)
+ 	public function _save_image($image, $seotitle)
  	{
  		////////////////////////////////////
  		// find solutin for dynamic resizing 
@@ -244,46 +229,55 @@
  		// SAVE ONE ORIGINAL AND ONE CUSTOM
  		// TO DO...
  		// ///////////////////////////////// 
- 		if ( 
-            ! Upload::valid($image, $image1) OR
-            ! Upload::not_empty($image, $image1) OR
-            ! Upload::type($image, $image1, array('jpg', 'jpeg', 'png', 'gif')))
-        {
-            return FALSE;
- 		}
- 		$path = $this->_image_path($seotitle);
  		
- 		$directory = DOCROOT.$path;
-
- 		if ($file = Upload::save($image, NULL, $directory))
-        {
-            $filename = strtolower(Text::random('alnum', 20)).'.jpg';
- 			$filename2 = "123.jpg";
-            Image::factory($file)
-                ->resize(200, 200, Image::AUTO)
-                ->save($directory.$filename);
+ 		foreach ($image as $image) 
+ 		{
  			
-            Image::factory($file)
-                ->resize(50, 50, Image::AUTO)
-                ->save($directory.$filename2);
-            
-            // Delete the temporary file
-            unlink($file);
+ 			if ( 
+            ! Upload::valid($image) OR
+            ! Upload::not_empty($image) OR
+            ! Upload::type($image, array('jpg', 'jpeg', 'png', 'gif')))
+        	{
+            	$image = NULL;
+ 			}
+ 			
+ 			if ($image != NULL)
+ 			{
+				$path = $this->_image_path($seotitle);
+		 		$directory = DOCROOT.$path;
+
+		 		if ($file = Upload::save($image, NULL, $directory))
+		        {
+		        	$name = strtolower(Text::random('alnum',20));
+		            $filename_big = $name.'_200x200.jpg';
+		 			$filename_small = $name.'_50x50.jpg';
+		            Image::factory($file)
+		                ->resize(200, 200, Image::AUTO)
+		                ->save($directory.$filename_big);
+		 			
+		            Image::factory($file)
+		                ->resize(50, 50, Image::AUTO)
+		                ->save($directory.$filename_small);
+		            
+		            // Delete the temporary file
+		            unlink($file);
+		        }
+		        else
+		        { 
+		        	return FALSE;
+		        }
+ 			}
+	 		
+ 		}
+
+ 		return TRUE;
  
-            return $filename;
-        }
- 
-        return FALSE;
+        
     }
    
     public function _image_path($seotitle)
     {
-
-    	///////////////////////////////////
-    	// make path creation from DB oject
-    	// TO DO ...
-    	// ////////////////////////////////
-    	 
+    	
     	$date = date('y/m/d');
 
 		$parse_data = explode("/", $date); 			// make array with date values

@@ -122,7 +122,7 @@ class Controller_Ad extends Controller {
 		// $loc = $location->where('id_location','=',$form->id_location)->limit(1)->find();
 		$loc = $loc->find_all();
 
-		$path = $this->_image_path($form->created);
+		$path = $this->_image_path($form);
 		
 		$this->template->content = View::factory('pages/post/edit', array('ad'		=>$form, 
 																		'location'	=>$loc, 
@@ -147,7 +147,7 @@ class Controller_Ad extends Controller {
 								); 
 
 				//insert data
-				$data['seotitle'] = $data['title'].$form->count_all(); // bad solution, find better !!! 
+				$data['seotitle'] = $data['title'].$data['cat']; // bad solution, find better ASK CHEMA!!! 
 
 				$form->title 			= $data['title'];
 				$form->id_location 		= $data['loc'];
@@ -158,14 +158,44 @@ class Controller_Ad extends Controller {
 				$form->price 			= $data['price']; 								
 				$form->adress 			= $data['address'];
 				$form->phone			= $data['phone']; 
-			try {
-				$form->save();
-				Alert::set(Alert::SUCCESS, __('Success, item updated'));
+				
+				$obj_img = new Controller_New($this->request,$this->response);
 
-				$this->request->redirect(Route::url('default',array('controller'=>'home','action'=>'index')));
-			} catch (Exception $e) {
-				echo $e;
-			}
+				// image upload
+				$error_message = NULL;
+	    		$filename = NULL;
+	    		
+	    		if (isset($_FILES['image1']) || isset($_FILES['image2']))
+	        	{ 
+	        		$img_files = array($_FILES['image1'], $_FILES['image2']);
+	            	
+	            	$filename = $obj_img->_save_image($img_files, $data['seotitle']);
+	        	}
+	        	if ( $filename !== TRUE)
+		        {
+		            $error_message = 'There was a problem while uploading the image.
+		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
+
+		                echo $error_message;
+		        }
+
+				try 
+				{
+					
+					$form->save();
+					Alert::set(Alert::SUCCESS, __('Success, item updated'));
+					$this->request->redirect(Route::url('default',array('controller'=>'home','action'=>'index')));
+				
+				}
+				catch (ORM_Validation_Exception $e)
+				{
+					Form::errors($content->errors);
+				}
+				catch (Exception $e)
+				{
+					throw new HTTP_Exception_500($e->getMessage());
+
+				}
 				
 			}
 			
@@ -186,9 +216,41 @@ class Controller_Ad extends Controller {
 
 	public function _image_path($data)
 	{
-		//echo $data.PHP_EOL;
-		echo $my_date = date('y/m/d', strtotime($data));
-		return $path = array("/upload/13/01/18/IMAGE12/123.jpg","/upload/13/01/18/IMAGE12/321.jpg");
+		
+		$obj_date = date_parse($data->created); // convert date to array 
+		
+			$year = substr($obj_date['year'], -2); // take last 2 integers 
+		
+		// check for length, because original path is with 2 integers 
+		if(strlen($obj_date['month']) != 2)
+			$month = '0'.$obj_date['month'];
+		else
+			$month = $obj_date['month'];
+		
+		if(strlen($obj_date['day']) != 2)
+			$day = '0'.$obj_date['day'];
+		else
+			$day = $obj_date['day'];
+
+		$directory = 'upload/'.$year.'/'.$month.'/'.$day.'/'.$data->seotitle.'/';
+		
+		$path = array();
+
+		if(is_dir($directory))
+		{	
+			$filename = array_diff(scandir($directory, 1), array('..','.')); //return all file names , and store in array 
+			// print_r($filename);
+			foreach ($filename as $filename) {
+				array_push($path, $directory.$filename);		
+				// echo $directory.$filename;
+			}
+		}
+		else
+		{ 	
+			return FALSE ;
+		}
+
+		return $path;
 	}
 	
 }// End ad controller

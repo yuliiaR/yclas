@@ -43,19 +43,21 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
+						<?php if($path):?>
 						<?php foreach ($path as $path):?>
-							<img src=<?echo $path?> class="img-polaroid">
+							<img src="/<?echo $path?>" class="img-polaroid">
 						<?endforeach?>
+						<?endif?>
 					</div>	
 				</div>
 				<div class="control-group">
-					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'))?>
+					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images1'))?>
 					<div class="controls">
-						<?// FORM::file('image1', array('class'=>'input-file', 'id'=>'fileInput1'))?>
 						<input class="input-file" type="file" name="image1" id="fileImput1" />
 					</div>
-					<div class="controls">
-						<?= FORM::file('image2', array('class'=>'input-file', 'id'=>'fileInput2'))?>
+					<?= FORM::label('images2', __('Images'), array('class'=>'control-label', 'for'=>'images2'))?>
+					<div class="controls">	
+						<input class="input-file" type="file" name="image2" id="fileImput2" />
 					</div>
 				</div>
 				<div class="control-group">
