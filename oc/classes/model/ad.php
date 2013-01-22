@@ -93,10 +93,11 @@ class Model_Ad extends ORM {
     /**
      * 
      * formmanager definitions
-     * 
+     * @param $form
+     * @return $insert
      */
     public function form_setup($form)
-    {var_dump($form['title']);
+    {
         $insert = DB::insert('ads', array('title', 'description'))
                             ->values(array($form['title'], $form['description']))
                             ->execute();
@@ -107,7 +108,8 @@ class Model_Ad extends ORM {
     /**
      * generate seo title. return the title formatted for the URL
      *
-     * @param string title  
+     * @param string title
+     * @return $seotitle (unique string)  
      */
     
     public function gen_seo_title($title)
@@ -144,8 +146,9 @@ class Model_Ad extends ORM {
 
     /**
      *
-     *  Count hits
-     * 
+     *  Create single table for each advertisement hit
+     *  
+     *  @param $id_ad (model_ad), $id_user(model_user) 
      */
     public function count_ad_hit($id_ad, $id_user){
         

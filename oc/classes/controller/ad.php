@@ -2,13 +2,15 @@
 
 class Controller_Ad extends Controller {
 	
-		/**
+	/**
 	 * Serp of ads
 	 */
 	public function action_index()
 	{ 
 		$this->template->bind('content', $content);
-	    $this->template->content = View::factory('pages/post/listing',$this->action_list_logic());
+		$data = $this->action_list_logic();
+		
+	    $this->template->content = View::factory('pages/post/listing',$data);
  	}
 
 	public function action_list_logic()
@@ -50,7 +52,39 @@ class Controller_Ad extends Controller {
 		{
 			$user = Auth::instance()->get_user();
 		}
-		return array('ads'=>$ads,'pagination'=>$pagination, 'user'=>$user);
+
+		
+		///////////////////
+		// BAD SOLUTION
+		//
+		// DO BETER!!!!!!!!		
+		//////////////////
+
+
+		// return image path 
+		$img_path = array();
+		
+		foreach ($ads as $a) {
+			echo $a->has_images."<br/>";
+			if ($a->has_images == 1)
+			{
+				echo $a->seotitle."<br/>";
+				if(is_array($path = $this->_image_path($a)))
+				{
+					$path = $this->_image_path($a);
+					array_push($img_path, $path);
+				}else
+				{
+					$path = NULL;
+					array_push($img_path, "bla");	
+				} 
+				
+				
+			}
+		}
+		
+		print_r($img_path);
+		return array('ads'=>$ads,'pagination'=>$pagination, 'user'=>$user, 'img_path' => $img_path);
 	}
 	
 
@@ -152,8 +186,10 @@ class Controller_Ad extends Controller {
 								'loc'			=> $loc 		= 	$this->request->post('location'),
 								'description'	=> $description = 	$this->request->post('description'),
 								'price'			=> $price 		= 	$this->request->post('price'),
+								'status'		=> $status		= 	$this->request->post('status'),
 								'address'		=> $address 	= 	$this->request->post('address'),
 								'phone'			=> $phone 		= 	$this->request->post('phone'),
+								'has_images'	=> 0,
 								'user'			=> $user = new Model_User()
 								); 
 
@@ -168,7 +204,7 @@ class Controller_Ad extends Controller {
 				$form->id_location 		= $data['loc'];
 				$form->id_category 		= $data['cat'];
 				$form->description 		= $data['description'];
-				// $form->status 			= $status;									// need to be 0, in production 
+				$form->status 			= $data['status'];									// need to be 0, in production 
 				$form->price 			= $data['price']; 								
 				$form->adress 			= $data['address'];
 				$form->phone			= $data['phone']; 
@@ -191,7 +227,7 @@ class Controller_Ad extends Controller {
 		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
 
 		                echo $error_message;
-		        }
+		        } else $form->has_images = 1;
 
 				try 
 				{
@@ -230,7 +266,7 @@ class Controller_Ad extends Controller {
 
 	public function _image_path($data)
 	{
-		
+		//print_r($data->created);
 		$obj_date = date_parse($data->created); // convert date to array 
 		
 			$year = substr($obj_date['year'], -2); // take last 2 integers 
@@ -247,16 +283,14 @@ class Controller_Ad extends Controller {
 			$day = $obj_date['day'];
 
 		$directory = 'upload/'.$year.'/'.$month.'/'.$day.'/'.$data->seotitle.'/';
-		
 		$path = array();
 
 		if(is_dir($directory))
 		{	
 			$filename = array_diff(scandir($directory, 1), array('..','.')); //return all file names , and store in array 
-			// print_r($filename);
+
 			foreach ($filename as $filename) {
 				array_push($path, $directory.$filename);		
-				// echo $directory.$filename;
 			}
 		}
 		else
@@ -265,6 +299,13 @@ class Controller_Ad extends Controller {
 		}
 
 		return $path;
+	}
+
+	public function action_image_delete()
+	{
+		// $this->auto_render = FALSE;
+		// $this->template = View::factory('js');
+		// echo $this->request->param('imgpath');
 	}
 	
 }// End ad controller

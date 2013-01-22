@@ -38,15 +38,23 @@
 					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>
 					<div class="controls">
 						<?= FORM::textarea('description', $ad->description, array('class'=>'input-xxlarge', 'name'=>'description', 'id'=>'description', 'rows'=>15, 'required'))?>
-						
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
 						<?php if($path):?>
-						<?php foreach ($path as $path):?>
-							<img src="/<?echo $path?>" class="img-polaroid">
-						<?endforeach?>
+						<ul class="thumbnails">
+							<?php foreach ($path as $path):?>
+							<li>
+								<a href="#" class="thumbnail">
+									<img src="/<?echo $path?>" class="img-rounded" alt="">
+								</a>
+								<a class="btn btn-danger" href="<?=Route::url('update', array('controller'=>'ad', 'action'=>'delete', 'title'=>$ad->title,'id'=>$ad->id_ad, 'imgpath'=>'#' ))?>" rel"tooltip" title="<?=__('Delete image')?>">
+									<?=__('Delete')?>
+								</a>	
+							</li>
+							<?endforeach?>
+						</ul>
 						<?endif?>
 					</div>	
 				</div>
@@ -76,6 +84,15 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<?= FORM::input('price', $ad->price, array('placeholder' => __('Price'), 'class' => 'input-xlarge', 'id' => 'price', 'type'=>'number'))?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label('status', __('Status'), array('class'=>'control-label', 'for'=>'status'))?>
+					<div class="controls">
+						<?if(Auth::instance()->get_user()->role = 10):?>
+						<?php $status = array('0'=>__('notpublished'), '1'=>__('published'),'30'=>__('spam'),'50'=>__('unavailible'));?>
+						<?= FORM::select('status', $status, $ad->status, array('id'=>'status','class'=>'input-xlarge'));?>
+						<?endif?>
 					</div>
 				</div>
 				<div class="form-actions">

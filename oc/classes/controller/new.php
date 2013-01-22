@@ -172,7 +172,6 @@
 	        	{
 	        		$img_files = array($_FILES['image1'], $_FILES['image2']);
 	            	$filename = $this->_save_image($img_files, $seotitle);
-	            	echo $filename;
 	        	}
 	        	if ( $filename !== TRUE)
 		        {
@@ -180,7 +179,7 @@
 		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
 
 		                echo $error_message;
-		        }
+		        }else $_new_ad->has_images = 1;
 			try
 				{
 					$_new_ad->save();
@@ -252,14 +251,13 @@
 		        {
 		        	$name = strtolower(Text::random('alnum',20));
 		            $filename_big = $name.'_200x200.jpg';
-		 			$filename_small = $name.'_50x50.jpg';
+		 			$filename_original = $name.'_original.jpg';
 		            Image::factory($file)
 		                ->resize(200, 200, Image::AUTO)
 		                ->save($directory.$filename_big);
 		 			
 		            Image::factory($file)
-		                ->resize(50, 50, Image::AUTO)
-		                ->save($directory.$filename_small);
+		                ->save($directory.$filename_original);
 		            
 		            // Delete the temporary file
 		            unlink($file);

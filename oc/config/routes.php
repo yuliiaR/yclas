@@ -38,7 +38,7 @@ Route::set('oc-panel', 'oc-panel/(<controller>(/<action>(/<id>)))')
 /**
  * user/admin edit ad route
  */
-Route::set('update', 'edit(/<title>(/<id>).html)')
+Route::set('update', 'edit(/<title>(/<id>(/<imgpath>)).html)')
 ->defaults(array(
 		'controller' => 'ad',
 		'action'     => 'update',

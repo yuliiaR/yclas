@@ -11,13 +11,15 @@
         	<li><a href="#">Location</a> <span class="divider">&raquo;</span></li>
         	<li class="active">page 1</li>
 	 </ul>
-	  <? if(count($ads)):?>
+	  <? $i = 0; if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
 	    <article class="list well clearfix">
 	    	<h2>
-	    	<a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"> <?php echo $ad->seotitle; ?></a>
+	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"> <?php echo $ad->seotitle; ?></a>
 	    	</h2>
-	    	
+	    	<?if($img_path != NULL):?>
+	    		 <img src="/<?echo $img_path[$i][1];?>" class="img-polaroid"><?$i++;?>
+	    	<?endif?>
 	    	<ul>
 	    		<?php if ($ad->published!=0){?>
 		   			<li><b><?php _e('Publish Date');?>:</b> <?php echo $ad->published;?></li>
@@ -29,15 +31,17 @@
 		    <p><?php echo $ad->description;?></p>
 		    
 		    <a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?php _e('Read more')?></a>
-	    	
-	    	<?php //if(isset($_SESSION['admin'])){?>
-	    	<?//$user_check = Auth::instance()->get_user()->id_user; echo $ad->id_user?>
-	    	<?if ($user !== NULL && $user->id_role == 10 || $user !== NULL && $user->id_user == $ad->id_user ):?>
+	    
+	    	<?if ($user !== NULL && $user->id_role == 10):?>
 	    		<br />
 			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','title'=>$ad->title,'id'=>$ad->id_ad))?>"><?php _e("Edit");?></a> |
-			<a onClick="" href=""><?php _e("Deactivate");?></a> |
-			<a onClick="" href=""><?php _e("Spam");?></a> |
-			<a onClick="" href=""><?php _e("Delete");?></a>
+			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>"><?php _e("Deactivate");?></a> |
+			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>"><?php _e("Spam");?></a> |
+			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>"><?php _e("Delete");?></a>
+
+			<?elseif($user !== NULL && $user->id_user == $ad->id_user):?>
+				<br/>
+			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','title'=>$ad->title,'id'=>$ad->id_ad))?>"><?php _e("Edit");?></a> 
 			<?endif?>
 	    </article>
 	    <?=Alert::show()?>
