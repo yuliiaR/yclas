@@ -10,4 +10,4 @@ class Controller_Captcha extends Kohana_Controller {
 		$captcha = new captcha();
 		die($captcha->image($token));
 	}
-}//enc od controller captcha
+}

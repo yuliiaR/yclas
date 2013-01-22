@@ -4,7 +4,40 @@ class Controller_Contact extends Controller {
 
 	public function action_index()
 	{
-			$this->template->content = View::factory('pages/contact');
+		//template header
+		$this->template->title           	= __('Contact Us');
+		$this->template->meta_description	= __('Contact Us');
+				
+		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
+		//$this->template->scripts['footer'][]= 'js/autogrow-textarea.js';
+		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
+		$this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
+		$this->template->scripts['footer'][]= 'js/pages/new.js';
+
+		$is_user = Auth::instance();
+		
+		if($is_user->logged_in())
+		{
+			$user = new Model_User();
+			$user = $user->where('id_user', '=', Auth::instance()->get_user()->id_user)
+						 ->limit(1)
+						 ->find();
+
+			$name 	= $user->name;
+			$email 	= $user->email;
+			
+		}
+		else 
+		{
+			$name = NULL;
+			$email = NULL;
+		}
+		$this->template->content = View::factory('pages/contact', array('name'=>$name, 'email'=>$email));
+
+		if($this->request->post()) //message submition  
+		{
+			if(captcha::check('contact')){ echo "123";} session_name("WebsiteID");
+		}
 	}
 
 }
