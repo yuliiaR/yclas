@@ -20,16 +20,16 @@ class Controller_Panel_Ad extends Auth_Controller {
 		//find all tables 
         $hits = new Model_Visit();
         $hits->find_all();
+
 		$cat = new Model_Category();
 		$_list_cat= $cat->find_all(); // get all to print at sidebar view
+		
 		$loc = new Model_Location();
 		$_list_loc= $loc->find_all(); // get all to print at sidebar view
-		
 
 		$c = new Controller_Ad($this->request,$this->response);// object of listing
         
         $arr_ads = $c->action_list_logic(); 
-       	
        	$arr_hits = array(); // array of hit integers 
        	
         // fill array with hit integers 
@@ -38,26 +38,15 @@ class Controller_Panel_Ad extends Auth_Controller {
         	// match hits with ad
         	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
         	$count = $hits->count_all(); // count individual hits 
-        	$arr = $c->action_list_logic();
 
         	array_push($arr_hits, $count);
-        	array_push($arr, $count);
         }
         
-        $mod = FALSE;
-       
-        if($this->request->param('id') == 'moderation')
-        {
-        	$arr_ads = $arr_ads['ads']->where('status','=','0')->find_all(); 
-        }
-
-
         
 	    $this->template->content = View::factory('oc-panel/pages/ad',array('res'		=>$arr_ads, 
 	    																	'hits'		=>$arr_hits, 
 	    																	'category'	=>$_list_cat,
-	    																	'location'	=>$_list_loc,
-	    																	'mod'		=>$mod)); // create view, and insert list with data 		
+	    																	'location'	=>$_list_loc)); // create view, and insert list with data 		
 	}
 
 	/**
@@ -194,13 +183,54 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
 		//$this->template->scripts['footer'][]= 'js/autogrow-textarea.js';
 		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
-		$this->template->scripts['footer'][]= 'js/pages/new.js';
+		$this->template->scripts['footer'][]= 'js/pages/new.js'; 
 
+
+		//find all tables 
+		
 		$c = new Controller_Ad($this->request,$this->response);// object of listing
+		
+        $hits = new Model_Visit();
+        $hits->find_all();
+
+		$cat = new Model_Category();
+		$_list_cat= $cat->find_all(); // get all to print at sidebar view
+		
+		$loc = new Model_Location();
+		$_list_loc= $loc->find_all(); // get all to print at sidebar view
+
+		
         
         $arr_ads = $c->action_list_logic(); 
+       	$arr_hits = array(); // array of hit integers 
+       	
+        // fill array with hit integers 
+        foreach ($arr_ads['ads'] as $key_ads) {
+        	
+        	// match hits with ad
+        	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
+        	$count = $hits->count_all(); // count individual hits 
 
-        $this->template->content = View::factory('oc-panel/pages/moderate',array('res'=>$arr_ads));
+        	array_push($arr_hits, $count);
+        }
+
+
+		// $query = DB::select('*')->from('ads')
+		// 						  ->join('categories')
+		// 						  ->on('ads.id_category', '=', 'categories.id_category')
+		// 						  ->where('ads.status', '=', '30');
+
+		// $
+		// $res = $query->execute();
+		// foreach ($res as $key) {
+		// 	print_r($key['id_location']);
+		// }
+		
+
+	// 	$this->template->content = View::factory('oc-panel/pages/ad',array('res'		=>$arr_ads, 
+	//     																	'hits'		=>$arr_hits, 
+	//     																	'category'	=>$_list_cat,
+	//     																	'location'	=>$_list_loc)); // create view, and insert list with data
 	} 
 
 }

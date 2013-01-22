@@ -190,7 +190,7 @@ class Kohana_Database_MySQL extends Database {
 				// This benchmark is worthless
 				Profiler::delete($benchmark);
 			}
-			
+			d(mysql_error($this->_connection));
 			throw new Database_Exception(':error [ :query ]',
 				array(':error' => mysql_error($this->_connection), ':query' => $sql),
 				mysql_errno($this->_connection));

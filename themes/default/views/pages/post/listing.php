@@ -34,7 +34,7 @@
 	    	<?//$user_check = Auth::instance()->get_user()->id_user; echo $ad->id_user?>
 	    	<?if ($user !== NULL && $user->id_role == 10 || $user !== NULL && $user->id_user == $ad->id_user ):?>
 	    		<br />
-			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))?>"><?php _e("Edit");?></a> |
+			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','title'=>$ad->title,'id'=>$ad->id_ad))?>"><?php _e("Edit");?></a> |
 			<a onClick="" href=""><?php _e("Deactivate");?></a> |
 			<a onClick="" href=""><?php _e("Spam");?></a> |
 			<a onClick="" href=""><?php _e("Delete");?></a>

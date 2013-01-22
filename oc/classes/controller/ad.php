@@ -114,6 +114,17 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_update()
 	{
+
+		//template header
+		$this->template->title           	= __('Edit advertisement');
+		$this->template->meta_description	= __('Edit advertisement');
+				
+		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
+		//$this->template->scripts['footer'][]= 'js/autogrow-textarea.js';
+		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
+		$this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
+		$this->template->scripts['footer'][]= 'js/pages/new.js';
+
 		$form = ORM::factory('ad', $this->request->param('id'));
 		$cat = new Model_Category();
 		$cat = $cat->find_all();
@@ -147,13 +158,16 @@ class Controller_Ad extends Controller {
 								); 
 
 				//insert data
-				$data['seotitle'] = $data['title'].$data['cat']; // bad solution, find better ASK CHEMA!!! 
-
+				if ($this->request->post('title') != $data['title'])
+				{
+					$seotitle = $form->gen_seo_title($data['title']);
+					$form->seotitle = $seotitle;	
+				}
+				 
 				$form->title 			= $data['title'];
 				$form->id_location 		= $data['loc'];
 				$form->id_category 		= $data['cat'];
 				$form->description 		= $data['description'];
-				$form->seotitle 		= $data['seotitle'];	 
 				// $form->status 			= $status;									// need to be 0, in production 
 				$form->price 			= $data['price']; 								
 				$form->adress 			= $data['address'];

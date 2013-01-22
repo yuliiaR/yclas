@@ -37,7 +37,6 @@
 
 		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
 						'title' 		=> $title 		= 	$this->request->post('title'),
-						'seotitle' 		=> $seotitle 	= 	$this->request->post('title'),
 						'cat'			=> $cat 		= 	$this->request->post('category'),
 						'loc'			=> $loc 		= 	$this->request->post('location'),
 						'description'	=> $description = 	$this->request->post('description'),
@@ -128,28 +127,31 @@
 			}	
 		
 		$_new_ad = ORM::factory('ad');
-		$_new_ad->where('title', '=', $data['title'])->find();
+		// $_new_ad->where('seotitle', '=', $data['seotitle'])->find();
 		
-		// check existance of ad element
-		if ($_new_ad->loaded()){
-			Alert::set(Alert::ERROR, __('This advertisement already exist'));
-		}
-		else if($this->request->post()) //post submition  
+		// // check existance of ad element
+		// if ($_new_ad->loaded()){
+		// 	Alert::set(Alert::ERROR, __('This advertisement already exist'));
+		// }
+		// else 
+		if($this->request->post()) //post submition  
 		{
 		
 			if(Valid::not_empty($data['title']) AND Valid::not_empty($data['description']))
 			{		
 				
 				//insert data
-				$data['seotitle'] = $data['title'].$data['cat']; // bad solution, find better ASK CHEMA!!! 
+				// $data['seotitle'] = $data['title'].$data['cat']; // bad solution, find better ASK CHEMA!!! 
 
+				$seotitle = $_new_ad->gen_seo_title($data['title']); 
+				
 				$_new_ad->title 		= $data['title'];
 				$_new_ad->id_location 	= $data['loc'];
 				$_new_ad->id_category 	= $data['cat'];
 				$_new_ad->id_user 		= $usr;
 				$_new_ad->description 	= $data['description'];
 				$_new_ad->type 	 		= '0';
-				$_new_ad->seotitle 		= $data['seotitle'];	 
+				$_new_ad->seotitle 		= $seotitle;	 
 				$_new_ad->status 		= $status;									// need to be 0, in production 
 				$_new_ad->price 		= $data['price']; 								
 				$_new_ad->adress 		= $data['address'];
@@ -169,7 +171,7 @@
 	    		if (isset($_FILES['image1']) || isset($_FILES['image2']))
 	        	{
 	        		$img_files = array($_FILES['image1'], $_FILES['image2']);
-	            	$filename = $this->_save_image($img_files, $data['seotitle']);
+	            	$filename = $this->_save_image($img_files, $seotitle);
 	            	echo $filename;
 	        	}
 	        	if ( $filename !== TRUE)

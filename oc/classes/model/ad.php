@@ -102,6 +102,46 @@ class Model_Ad extends ORM {
                             ->execute();
                             return $insert;
     }
+
+
+    /**
+     * generate seo title. return the title formatted for the URL
+     *
+     * @param string title  
+     */
+    
+    public function gen_seo_title($title)
+    {
+
+        $ad = new self;
+
+        $seotitle = $title;
+
+        //find a ad same seotitle
+        $a = $ad->where('seotitle', '=', $seotitle)->and_where('id_ad', '!=', $this->id_ad)->limit(1)->find();
+        
+        if($a->loaded())
+        {
+            $cont = 1;
+            $loop = TRUE;
+            do {
+                $attempt = $title.'-'.$cont;
+                $ad = new self;
+                unset($a);
+                $a = $ad->where('seotitle', '=', $attempt)->limit(1)->find();
+
+                if(!$a->loaded())
+                {
+                    $loop = FALSE;
+                    $seotitle = $attempt;
+                }
+                else $cont++;
+            } while ( $loop );
+        }
+
+        return $seotitle;
+    }
+
     /**
      *
      *  Count hits
