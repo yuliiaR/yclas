@@ -17,10 +17,10 @@
 						</tr>
 						<tbody>
 							<tr>
-								<td><p><?=Auth::instance()->get_user()->id_user;?></p></td>
-								<td><p><?=Auth::instance()->get_user()->name;?></p></td>
+								<td><p><?= $ad->id_user?></p></td>
+								<td><p><??></p></td>
 								<td>	
-									<a src="#" alt=""><?=Auth::instance()->get_user()->email;?></a>
+									<a src="#" alt=""><??></a>
 								</td>
 							</tr>
 						</tbody>

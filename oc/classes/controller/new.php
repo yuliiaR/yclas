@@ -139,9 +139,9 @@
 		
 		$_new_ad = ORM::factory('ad');
 		
-		if($this->request->post()) //post submition  
+		if($this->request->post() && captcha::check('contact')) //post submition  
 		{
-		
+			
 			if(Valid::not_empty($data['title']) AND Valid::not_empty($data['description']))
 			{		
 				

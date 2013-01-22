@@ -122,7 +122,7 @@ class Controller_Ad extends Controller {
 			
 			if ($ad->loaded())
 			{
-				if(!Auth::instance()->get_user()->role == 10)
+				if(!Auth::instance()->logged_in() || Auth::instance()->get_user()->id_role != 10)
 				{
 					$do_hit = $ad->count_ad_hit($ad->id_ad, $ad->id_user); // hits counter
 				}
@@ -131,6 +131,29 @@ class Controller_Ad extends Controller {
 		        $hits->find_all();
 		        $hits->where('id_ad','=', $ad->id_ad)->and_where('id_user', '=', $ad->id_user); 
 
+
+		        if($this->request->post()) //message submition  
+				{
+					if(captcha::check('contact'))
+					{ 
+						Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
+						
+						$owner = ORM::factory('user', $ad->id_user);
+						
+						
+						$message = array('name'			=>$this->request->post('name'),
+										 'email_from,'	=>$this->request->post('email'),
+										 'subject'		=>$this->request->post('subject'),
+										 'message'		=>$this->request->post('message'),
+										 'email_to'		=>$owner->email);
+
+						print_r($message);
+					}
+					else
+					{
+						Alert::set(Alert::ERROR, __('You made some mistake'));
+					}
+				}	
 				//$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/post/single',array('ad'=>$ad, 'hits'=>$hits->count_all()));
 
@@ -168,19 +191,19 @@ class Controller_Ad extends Controller {
 		$this->template->scripts['footer'][]= 'js/pages/new.js';
 
 		$form = ORM::factory('ad', $this->request->param('id'));
+		
 		$cat = new Model_Category();
 		$cat = $cat->find_all();
 		
 		$loc = $location = new Model_Location();
-		// $loc = $location->where('id_location','=',$form->id_location)->limit(1)->find();
 		$loc = $loc->find_all();
-
+		
 		$path = $this->_image_path($form);
 
-		$this->template->content = View::factory('pages/post/edit', array('ad'		=>$form, 
-																		'location'	=>$loc, 
-																		'category'	=>$cat,
-																		'path'		=>$path));
+		$this->template->content = View::factory('pages/post/edit', array('ad'			=>$form, 
+																		  'location'	=>$loc, 
+																		  'category'	=>$cat,
+																		  'path'		=>$path));
 		
 		if(Auth::instance()->get_user()->loaded() == $form->id_user 
 			|| Auth::instance()->get_user()->id_role == 10)
@@ -198,7 +221,7 @@ class Controller_Ad extends Controller {
 								'address'		=> $address 	= 	$this->request->post('address'),
 								'phone'			=> $phone 		= 	$this->request->post('phone'),
 								'has_images'	=> 0,
-								'user'			=> $user = new Model_User()
+								'user'			=> $user 		= new Model_User()
 								); 
 
 				//insert data
@@ -243,16 +266,16 @@ class Controller_Ad extends Controller {
 		        } else $form->has_images = 1; // update column has_images if image is added
 
 				try 
-				{	//d($seotitle);
+				{	
 					$form->save();
 					Alert::set(Alert::SUCCESS, __('Success, advertisement is updated'));
 					$this->request->redirect(Route::url('default',array('controller'=>'home','action'=>'index')));
 				
 				}
-				// catch (ORM_Validation_Exception $e)
-				// {echo $e;
-				// 	Form::errors($content->errors);
-				// }
+				catch (ORM_Validation_Exception $e)
+				{echo $e;
+					Form::errors($content->errors);
+				}
 				catch (Exception $e)
 				{echo $e;
 					throw new HTTP_Exception_500($e->getMessage());echo $e;

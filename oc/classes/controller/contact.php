@@ -40,10 +40,11 @@ class Controller_Contact extends Controller {
 			{ 
 				Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
 
-				$message = array('name'		=>$this->request->post('name'),
-								 'email'	=>$this->request->post('email'),
-								 'subject'	=>$this->request->post('subject'),
-								 'message'	=>$this->request->post('message'));
+				$message = array('name'			=>$this->request->post('name'),
+								 'email_from,'	=>$this->request->post('email'),
+								 'subject'		=>$this->request->post('subject'),
+								 'message'		=>$this->request->post('message'),
+								 'email_to'		=>'admin@admin.com');
 
 				print_r($message);
 			}

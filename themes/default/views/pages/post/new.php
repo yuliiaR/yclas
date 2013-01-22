@@ -83,6 +83,13 @@
 					</div>
 				</div>
 				<?endif?>
+				<div class="control-group">
+					<div class="controls">
+						Captcha*:<br />
+						<?php echo captcha::image_tag('contact');?><br />
+						<?= FORM::input('captcha', "", array('class' => 'input-xlarge', 'id' => 'captcha', 'required'))?>
+					</div>
+				</div>
 				<div class="form-actions">
 					<?= FORM::button('submit', 'Publish now', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 					<p class="help-block">Dynamic text, for free or pay XX€..</p>
