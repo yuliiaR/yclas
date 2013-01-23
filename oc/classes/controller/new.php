@@ -62,7 +62,6 @@
 		}
 		else if($config->config_value == 2)
 		{
-			
 			$this->template->content = View::factory('pages/post/paypal');
 		}
 

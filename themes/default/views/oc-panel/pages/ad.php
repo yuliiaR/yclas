@@ -31,7 +31,7 @@
 			</a>
 			<a class="deactivate btn btn-warning" 
 				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate'))?>" 
-				onclick="return confirm('<?=__('Deactivate?')?>'));"
+				onclick="return confirm('<?=__('Deactivate?')?>');"
 				rel"tooltip" title="<?=__('Deactivate')?>">
 				<i class="icon-remove icon-white"></i>
 			</a>
@@ -43,9 +43,6 @@
 			</a>
 		</th>
 	</tr>
-	<form>
-		<input type="hidden" class="hidden">
-	</form>
 	<? $i = 0; foreach($res['ads'] as $ad):?>
 	<tbody>
 		<tr>
@@ -96,7 +93,7 @@
 				</a>
 				<a class="btn btn-warning" 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
-					onclick="return confirm('<?=__('Deactivate?')?>'));"
+					onclick="return confirm('<?=__('Deactivate?')?>');"
 					rel"tooltip" title="<?=__('Deactivate')?>">
 					<i class="icon-remove icon-white"></i>
 				</a>

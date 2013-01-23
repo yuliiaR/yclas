@@ -5,22 +5,23 @@ $(function(){
 		"bulletlist,orderedlist|link,unlink,youtube|source",
 		resizeEnabled: "true"
 	});
-$(function () { 
+$(function () {
 
 	$("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
  
-	$('.btn').tooltip(); 
+	$('.btn').tooltip();
 	//$('textarea[name=description]').autogrow();
 });
 
 
 
-var href_del 	= $('a.delete').attr('href');
-var href_spam 	= $('a.spam').attr('href');
-var href_deact 	= $('a.deactivate').attr('href');
+var href_del = $('a.delete').attr('href');
+var href_spam = $('a.spam').attr('href');
+var href_deact = $('a.deactivate').attr('href');
+var href_active = $('a.activate').attr('href');
 
 // selected checkboxes get new class
-var selected 	= '';
+var selected = '';
 $('input.checkbox').click(function(){
 	if($(this).is(':checked')){
 		$(this).addClass("selected");
@@ -35,6 +36,7 @@ $('input.checkbox').click(function(){
 		$('a.delete').attr('href', href_del+'/'+selected);
 		$('a.spam').attr('href', href_spam+'/'+selected);
 		$('a.deactivate').attr('href', href_deact+'/'+selected);
+		$('a.activate').attr('href', href_active+'/'+selected);
 	}else{
 
 		$(this).removeClass("selected");
@@ -48,14 +50,14 @@ $('input.checkbox').click(function(){
 		$('a.spam').attr('href', "/oc-panel/ad/spam");
 		$('a.deactivate').attr('href', "/oc-panel/ad/deactivate");
 		$('a.delete').attr('href', "/oc-panel/ad/delete");
+		$('a.activate').attr('href', href_active+'/'+selected);
 	}
-			alert(selected);
 });
 
 
 //select all checkboxes and append class to all
 function check_all(){
-	var selected 	= '';
+	var selected = '';
 
 	if($('#select-all').is(':checked')){
 		$('input.checkbox').addClass('selected').attr('checked', true);
@@ -65,12 +67,14 @@ function check_all(){
 		$('a.delete').attr('href', href_del+'/'+selected);
 		$('a.spam').attr('href', href_spam+'/'+selected);
 		$('a.deactivate').attr('href', href_deact+'/'+selected);
+		$('a.activate').attr('href', href_active+'/'+selected);
 	}else{
 		selected = '';
 		$('input.checkbox').removeClass('selected').attr('checked', false);
 		$('a.spam').attr('href', "/oc-panel/ad/spam");
 		$('a.deactivate').attr('href', "/oc-panel/ad/deactivate");
 		$('a.delete').attr('href', "/oc-panel/ad/delete");
+		$('a.activate').attr('href', href_active+'/'+selected);
 	}
 }
 

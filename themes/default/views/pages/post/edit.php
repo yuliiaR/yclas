@@ -8,7 +8,7 @@
 		<?= FORM::open(Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">
-					<?if(Auth::instance()->get_user()->role = 10):?>
+					<?if(Auth::instance()->get_user()->id_role == 10):?>
 					<table class="table table-bordered span4">
 						<tr>
 							<th><?=__('Id_User')?></th>

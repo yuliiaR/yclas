@@ -280,9 +280,20 @@ class Controller_Ad extends Controller {
 				if($entry != '.' && $entry != '..') $count++;
 			}
 
-			if($count < 8) $img_permission = TRUE;
+			
+			if ($count == 0) 
+			{
+				$form->has_images = 0;
+				try {
+					$form->save();
+					$img_permission = TRUE;
+				} catch (Exception $e) {
+					echo "something went wrong";
+				}
+			}
+			else if($count < 8) $img_permission = TRUE;
 			else $img_permission = FALSE;
-			// d($img_permission);
+			
 		}else $img_permission = TRUE;
 		
 		$path = $this->_image_path($form);

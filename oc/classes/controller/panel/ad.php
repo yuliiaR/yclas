@@ -57,6 +57,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) {
+			
 			if ($id !== '')
 			{
 				$this->auto_render = FALSE;
@@ -72,7 +73,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					if (!is_dir($img_path)) 
 					{
 						$element->delete();
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+						
 					}
 					else
 					{
@@ -89,16 +90,18 @@ class Controller_Panel_Ad extends Auth_Controller {
 						
 						rmdir($img_path);
 						$element->delete();
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 					}
 				}
 				catch (Exception $e)
 				{
+					Alert::set(Alert::ALERT, __('Warning, something went wrong while deleting'));
 					throw new HTTP_Exception_500($e->getMessage());
 				}	
 			}
 			
 		}
+		Alert::set(Alert::SUCCESS, __('Success, advertisemet is deleted'));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		
 	}
 
@@ -112,9 +115,9 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
-		{
+		{ 
 			if ($id !== '')
-			{
+			{ 
 				$spam_ad = ORM::factory('ad', $id);
 
 				if ($spam_ad->loaded())
@@ -126,9 +129,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 						try
 						{
 							$spam_ad->save();
-							Alert::set(Alert::SUCCESS, __('Success, advertisemet is marked as spam'));
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
-
 						}
 						catch (Exception $e)
 						{
@@ -148,6 +148,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 				}
 			}
 		}
+		Alert::set(Alert::SUCCESS, __('Success, advertisemet is marked as spam'));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		
 	}
 
@@ -156,43 +158,102 @@ class Controller_Panel_Ad extends Auth_Controller {
 	 */
 	public function action_deactivate()
 	{
-		$deact_ad = ORM::factory('ad', $this->request->param('id'));
 
-		if ($deact_ad->loaded())
+		$id = $this->request->param('id');
+		
+		$format_id = explode('_', $id);
+
+		foreach ($format_id as $id) 
 		{
-			if ($deact_ad->status != 50)
+			if ($id !== '')
 			{
-				$deact_ad->status = 50;
-				
-				try
-				{
-					$deact_ad->save();
-					Alert::set(Alert::SUCCESS, __('Success, advertisemet is deactivated'));
-					Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 
-				}
-					catch (Exception $e)
+				$deact_ad = ORM::factory('ad', $id);
+
+				if ($deact_ad->loaded())
 				{
-					throw new HTTP_Exception_500($e->getMessage());
+					if ($deact_ad->status != 50)
+					{
+						$deact_ad->status = 50;
+						
+						try
+						{
+							$deact_ad->save();
+						}
+							catch (Exception $e)
+						{
+							throw new HTTP_Exception_500($e->getMessage());
+						}
+					}
+					else
+					{				
+						Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'deactivated'"));
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+					} 
+				}
+				else
+				{
+					//throw 404
+					throw new HTTP_Exception_404();
 				}
 			}
-			else
-			{				
-				Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'deactivated'"));
-				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
-			} 
 		}
-		else
+		Alert::set(Alert::SUCCESS, __('Success, advertisemet is deactivated'));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+	}
+
+	/**
+	 * Mark advertisement as active : STATUS = 1
+	 */
+	
+	public function action_activate()
+	{
+
+		$id = $this->request->param('id');
+		
+		$format_id = explode('_', $id);
+
+		foreach ($format_id as $id) 
 		{
-			//throw 404
-			throw new HTTP_Exception_404();
+			if ($id !== '')
+			{
+
+				$active_ad = ORM::factory('ad', $id);
+
+				if ($active_ad->loaded())
+				{
+					if ($active_ad->status != 1)
+					{
+						$active_ad->status = 1;
+						
+						try
+						{
+							$active_ad->save();
+						}
+							catch (Exception $e)
+						{
+							throw new HTTP_Exception_500($e->getMessage());
+						}
+					}
+					else
+					{				
+						Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'avtive'"));
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+					} 
+				}
+				else
+				{
+					//throw 404
+					throw new HTTP_Exception_404();
+				}
+			}
 		}
+		Alert::set(Alert::SUCCESS, __('Success, advertisemet is active and published'));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 	}
 
 	/**
 	 * Action MODERATION
-	 *
-	 * @TODO
 	 */
 	
 	public function action_moderate()
