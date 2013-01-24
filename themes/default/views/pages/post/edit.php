@@ -8,6 +8,33 @@
 		<?= FORM::open(Route::url('update', array('controller'=>'ad','action'=>'update','title'=>$ad->title,'id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">
+					<?if(Auth::instance()->get_user()->role = 10):?>
+					<table class="table table-bordered span4">
+						<tr>
+							<th><?=__('Id_User')?></th>
+							<th><?=__('Name')?></th>
+							<th><?=__('Email')?></th>
+						</tr>
+						<tbody>
+							<tr>
+								<td><p><?=Auth::instance()->get_user()->id_user;?></p></td>
+								<td><p><?=Auth::instance()->get_user()->name;?></p></td>
+								<td>	
+									<a src="#" alt=""><?=Auth::instance()->get_user()->email;?></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="control-group">
+					<?= FORM::label('status', __('Status'), array('class'=>'control-label', 'for'=>'status'))?>
+					<div class="controls">
+						<?php $status = array('0'=>__('notpublished'), '1'=>__('published'),'30'=>__('spam'),'50'=>__('unavailible'));?>
+						<?= FORM::select('status', $status, $ad->status, array('id'=>'status','class'=>'input-xlarge'));?>
+					</div>
+					<?endif?>
+				</div>
+				<div class="control-group">
 					<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
 					<div class="controls">
 						<?= FORM::input('title', $ad->title, array('placeholder' => __('Title'), 'class' => 'input-xlarge', 'id' => 'title', 'required'))?>
@@ -45,14 +72,17 @@
 						<?php if($path):?>
 						<ul class="thumbnails">
 							<?php foreach ($path as $path):?>
+							<?$img_name = str_replace(".jpg", "", substr(strrchr($path, "/"), 1 ));?>
+							<?if(strstr($path, '_') != '_original.jpg'):?>
 							<li>
 								<a href="#" class="thumbnail">
 									<img src="/<?echo $path?>" class="img-rounded" alt="">
 								</a>
-								<a class="btn btn-danger" href="<?=Route::url('update', array('controller'=>'ad', 'action'=>'delete', 'title'=>$ad->title,'id'=>$ad->id_ad, 'imgpath'=>'#' ))?>" rel"tooltip" title="<?=__('Delete image')?>">
+								<a class="btn btn-danger" href="<?=Route::url('update', array('controller'=>'ad', 'action'=>'delete', 'title'=>$ad->title,'id'=>$ad->id_ad, 'img_name'=>$img_name ))?>" rel"tooltip" title="<?=__('Delete image')?>">
 									<?=__('Delete')?>
 								</a>	
 							</li>
+							<?endif?>
 							<?endforeach?>
 						</ul>
 						<?endif?>
@@ -84,15 +114,6 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<?= FORM::input('price', $ad->price, array('placeholder' => __('Price'), 'class' => 'input-xlarge', 'id' => 'price', 'type'=>'number'))?>
-					</div>
-				</div>
-				<div class="control-group">
-					<?= FORM::label('status', __('Status'), array('class'=>'control-label', 'for'=>'status'))?>
-					<div class="controls">
-						<?if(Auth::instance()->get_user()->role = 10):?>
-						<?php $status = array('0'=>__('notpublished'), '1'=>__('published'),'30'=>__('spam'),'50'=>__('unavailible'));?>
-						<?= FORM::select('status', $status, $ad->status, array('id'=>'status','class'=>'input-xlarge'));?>
-						<?endif?>
 					</div>
 				</div>
 				<div class="form-actions">

@@ -1,6 +1,9 @@
-<?php defined('SYSPATH') or die('No direct script access.');
 
-// print_r($table = DB::select('ad.id_ad', 'category.title')->from('ad')->join('category')->on('ad.id_category', '=', 'category.id_category'));
 
-$query = DB::select('ad.id_ad')->find_all();
-print_r($query);
+<?php 
+	// get everything after last newline
+	$text ="wlhdlf5cx0svut6nfjmk_200x200.jpg.html";
+	
+	$last = str_replace(".jpg", "", substr(strrchr($text, "_"), 1 ));
+	echo $last;
+?>

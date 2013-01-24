@@ -11,14 +11,15 @@
         	<li><a href="#">Location</a> <span class="divider">&raquo;</span></li>
         	<li class="active">page 1</li>
 	 </ul>
-	  <? $i = 0; if(count($ads)):?>
+	  <?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
+	    <?// if($ad->status == 1):?>
 	    <article class="list well clearfix">
 	    	<h2>
-	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"> <?php echo $ad->seotitle; ?></a>
+	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"> <?php echo $ad->title; ?></a>
 	    	</h2>
 	    	<?if($img_path != NULL):?>
-	    		 <img src="/<?echo $img_path[$i][1];?>" class="img-polaroid"><?$i++;?>
+	    		 <img src="#" class="img-polaroid">
 	    	<?endif?>
 	    	<ul>
 	    		<?php if ($ad->published!=0){?>
@@ -45,7 +46,7 @@
 			<?endif?>
 	    </article>
 	    <?=Alert::show()?>
-
+	    <?//endif?>
 	    <?endforeach?>
 
 	    <?=$pagination?>	    

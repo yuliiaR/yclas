@@ -3,8 +3,7 @@
 class Controller_Panel_Ad extends Auth_Controller {
 
    	/**
-   	 * 
-   	 * List all Advertisements
+   	 * List all Advertisements (PUBLISHED)
    	 */
 	public function action_index()
 	{
@@ -27,7 +26,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$loc = new Model_Location();
 		$_list_loc= $loc->find_all(); // get all to print at sidebar view
 
-		$c = new Controller_Ad($this->request,$this->response);// object of listing
+		$c = new Controller_Ad($this->request,$this->response); // object of listing
         
         $arr_ads = $c->action_list_logic(); 
        	$arr_hits = array(); // array of hit integers 
@@ -42,7 +41,6 @@ class Controller_Panel_Ad extends Auth_Controller {
         	array_push($arr_hits, $count);
         }
         
-        
 	    $this->template->content = View::factory('oc-panel/pages/ad',array('res'		=>$arr_ads, 
 	    																	'hits'		=>$arr_hits, 
 	    																	'category'	=>$_list_cat,
@@ -50,27 +48,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 	}
 
 	/**
-	 * @TODO : add more dynamic, to enable admin to make changes 
-	 * One advertisement : single VIEW
-	 */
-	public function action_view()
-	{
-		$ad = ORM::factory('ad', $this->request->param('id'));
-		
-		if ($ad->loaded())
-		{
-			$this->template->bind('content', $content);
-			$this->template->content = View::factory('oc-panel/pages/single', array('ad'=>$ad));
-		}
-		else
-		{
-			//throw 404
-			throw new HTTP_Exception_404();
-		}
-	}
-
-	/**
-	 *
 	 * Delete advertisement: Delete
 	 */
 	public function action_delete()
@@ -81,9 +58,32 @@ class Controller_Panel_Ad extends Auth_Controller {
 		
 		try
 		{
-			$element->delete();
-			//$this->template->content = 'OK';
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			
+			$img_path = $element->_gen_img_path($element->seotitle, $element->created);
+			
+
+			if (!is_dir($img_path)) 
+			{
+				$element->delete();
+				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			}
+			else
+			{
+				// Loop through the folder
+				$dir = dir($img_path);
+
+				while (false !== $entry = $dir->read()) {
+				// Skip pointers
+					if ($entry == '.' || $entry == '..') {
+						continue;
+					}
+					unlink($img_path.$entry);
+				}
+				
+				rmdir($img_path);
+				$element->delete();
+				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			}
 		}
 		catch (Exception $e)
 		{
@@ -92,7 +92,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 	}
 
 	/**
-	 * 
 	 * Mark advertisement as spam : STATUS = 30
 	 */
 	public function action_spam()
@@ -112,7 +111,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 
 				}
-					catch (Exception $e)
+				catch (Exception $e)
 				{
 					throw new HTTP_Exception_500($e->getMessage());
 				}
@@ -131,8 +130,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 	}
 
 	/**
-	 * 
-	 * Mark advertisement as deactiavted : STATUS = 50
+	 * Mark advertisement as deactivated : STATUS = 50
 	 */
 	public function action_deactivate()
 	{
@@ -171,7 +169,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	/**
 	 * Action MODERATION
-	 * 
+	 *
+	 * @TODO
 	 */
 	
 	public function action_moderate()
@@ -188,24 +187,49 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 		//find all tables 
 		
-		$c = new Controller_Ad($this->request,$this->response);// object of listing
+		$ads = new Model_Ad();
+
+		$res_count = $ads->where('ad.status', '!=', Model_Ad::STATUS_PUBLISHED)->count_all();
 		
+		if ($res_count > 0)
+		{
+
+			$pagination = Pagination::factory(array(
+                    'view'           	=> 'pagination',
+                    'total_items'    	=> $res_count,
+                    'items_per_page' 	=> 5
+     	    ))->route_params(array(
+                    'controller' 		=> $this->request->controller(),
+                    'action'      		=> $this->request->action(),
+                 
+    	    ));
+    	    $ads = $ads->where('ad.status', '!=', Model_Ad::STATUS_PUBLISHED)
+    	    					->order_by('created','desc')
+                	            ->limit($pagination->items_per_page)
+                	            ->offset($pagination->offset)
+                	            ->find_all();
+			}
+		else
+		{
+			Alert::set(Alert::ALERT, __('You do not have any not published advertisemet'));
+		}
+
+		
+        //find all tables 
         $hits = new Model_Visit();
         $hits->find_all();
 
 		$cat = new Model_Category();
-		$_list_cat= $cat->find_all(); // get all to print at sidebar view
+		$_list_cat = $cat->find_all(); // get all to print at sidebar view
 		
 		$loc = new Model_Location();
-		$_list_loc= $loc->find_all(); // get all to print at sidebar view
+		$_list_loc = $loc->find_all(); // get all to print at sidebar view
 
-		
-        
-        $arr_ads = $c->action_list_logic(); 
+
        	$arr_hits = array(); // array of hit integers 
        	
         // fill array with hit integers 
-        foreach ($arr_ads['ads'] as $key_ads) {
+        foreach ($ads as $key_ads) {
         	
         	// match hits with ad
         	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
@@ -213,7 +237,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 
         	array_push($arr_hits, $count);
         }
-
 
 		// $query = DB::select('*')->from('ads')
 		// 						  ->join('categories')
@@ -227,10 +250,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 		// }
 		
 
-	// 	$this->template->content = View::factory('oc-panel/pages/ad',array('res'		=>$arr_ads, 
-	//     																	'hits'		=>$arr_hits, 
-	//     																	'category'	=>$_list_cat,
-	//     																	'location'	=>$_list_loc)); // create view, and insert list with data
+		$this->template->content = View::factory('oc-panel/pages/moderate',array('ads'			=> $ads,
+																				'pagination'	=> $pagination,
+																				'category'		=> $_list_cat,
+																				'location'		=> $_list_loc,
+																				'hits'			=> $arr_hits)); // create view, and insert list with data
 	} 
 
 }

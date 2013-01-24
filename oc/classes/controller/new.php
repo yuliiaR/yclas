@@ -1,10 +1,11 @@
 	<?php defined('SYSPATH') or die('No direct script access.');
 	/**
-	* 
-	*/
+	 * CONTROLLER NEW 
+	 */
 	class Controller_New extends Controller
 	{
-		/**
+	
+	/**
 	 * 
 	 * NEW ADVERTISEMENT 
 	 * 
@@ -69,6 +70,13 @@
 			
  	}
 
+ 	/**
+ 	 * [_save_new_ad Save new advertisement if validated, with a given parameters 
+ 	 * 
+ 	 * @param  [array] $data   [post values]
+ 	 * @param  [int] $status [status of advert.]
+ 	 * 
+ 	 */
  	public function _save_new_ad($data, $status)
  	{
  		if (!$data['_auth']->logged_in()) // this part is for users that are not logged, not finished !!!
@@ -76,6 +84,7 @@
 				
 				$name 		= $this->request->post('name');
 				$email		= $this->request->post('email');
+				$password	= $this->request->post('password');
 				
 				if (Valid::email($email,TRUE))
 				{
@@ -85,7 +94,9 @@
 
 					if ($user->loaded())
 					{
-						echo "User already exists";
+						// Alert::set(Alert::SUCCESS, __('User Exists, please login first to authenticate profile'));
+						// $this->request->redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
+						
 					}
 					else
 					{ 
@@ -93,12 +104,12 @@
 						$user->name 	= $name;
 						$user->status 	= Model_User::STATUS_ACTIVE;
 						$user->id_role	= 1;//normal user
-						$user->password = 'User'.rand(1000,90000);	// generate new user password, bad solution find better !!!
+						$user->password = $this->request->post('password');	// generate new user password, bad solution find better !!!
 
 						try
 						{
 							$user->save();
-							echo "new user";
+							Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
 							// email::send("root@slobodantumanitas-System", 
 							// 			"root@slobodantumanitas-System", 
 							// 			"new_user",
@@ -127,13 +138,7 @@
 			}	
 		
 		$_new_ad = ORM::factory('ad');
-		// $_new_ad->where('seotitle', '=', $data['seotitle'])->find();
 		
-		// // check existance of ad element
-		// if ($_new_ad->loaded()){
-		// 	Alert::set(Alert::ERROR, __('This advertisement already exist'));
-		// }
-		// else 
 		if($this->request->post()) //post submition  
 		{
 		
@@ -156,7 +161,6 @@
 				$_new_ad->price 		= $data['price']; 								
 				$_new_ad->adress 		= $data['address'];
 				$_new_ad->phone			= $data['phone']; 
-
 				
 
 			   /////////////
@@ -171,15 +175,16 @@
 	    		if (isset($_FILES['image1']) || isset($_FILES['image2']))
 	        	{
 	        		$img_files = array($_FILES['image1'], $_FILES['image2']);
-	            	$filename = $this->_save_image($img_files, $seotitle);
+	            	$filename = $this->_save_image($img_files, $seotitle, $created = NULL);
 	        	}
 	        	if ( $filename !== TRUE)
 		        {
+		        	$_new_ad->has_images = 0;
 		            $error_message = 'There was a problem while uploading the image.
 		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
 
-		                echo $error_message;
 		        }else $_new_ad->has_images = 1;
+
 			try
 				{
 					$_new_ad->save();
@@ -199,9 +204,8 @@
 					Form::errors($content->errors);
 				}
 				catch (Exception $e)
-				{echo $e;
+				{
 					throw new HTTP_Exception_500($e->getMessage());
-
 				}
 		}
 		else
@@ -222,15 +226,17 @@
 		$this->template->content->text = Text::bb2html($this->request->post('description'),TRUE);
  	}
 
- 	public function _save_image($image, $seotitle)
+ 	/**
+ 	 * _save_image upload images with given path
+ 	 * 
+ 	 * @param  [array] 	$image    	[image $_FILE-s ]
+ 	 * @param  [string] $seotitle 	[unique id, and folder name]
+ 	 * @return [bool]           	[return true if 1 or more images uploaded, false otherwise]
+ 	 */
+ 	public function _save_image($image, $seotitle, $created)
  	{
- 		////////////////////////////////////
- 		// find solutin for dynamic resizing 
- 		// dependant on template 
- 		// SAVE ONE ORIGINAL AND ONE CUSTOM
- 		// TO DO...
- 		// ///////////////////////////////// 
- 		
+ 		$counter = 0; // count how many img fields are empty
+
  		foreach ($image as $image) 
  		{
  			
@@ -242,9 +248,9 @@
             	$image = NULL;
  			}
  			
- 			if ($image != NULL)
+ 			if ($image !== NULL)
  			{
-				$path = $this->_image_path($seotitle);
+				$path = $this->_image_path($seotitle, $created);
 		 		$directory = DOCROOT.$path;
 
 		 		if ($file = Upload::save($image, NULL, $directory))
@@ -267,32 +273,55 @@
 		        	return FALSE;
 		        }
  			}
-	 		
+ 			else
+ 			{ 
+ 				$counter++;
+ 				if ($counter > 1)
+ 				{
+ 					return FALSE;
+ 				}
+ 			}	
  		}
-
  		return TRUE;
- 
-        
     }
-   
-    public function _image_path($seotitle)
-    {
-    	
-    	$date = date('y/m/d');
+   	
+   	/**
+   	 * _image_path make unique dir path with a given date and seotitle
+   	 * 
+   	 * @param  [string] $seotitle 	[unique id, and folder name]
+   	 * @return [string]     		[directory path]
+   	 */
+    public function _image_path($seotitle, $created)
+    { 
+    	if ($created !== NULL)
+    	{
+    		$obj_ad = new Model_Ad();
+    		$path = $obj_ad->_gen_img_path($seotitle, $created);
+    	}
+    	else
+    	{
+    		$date = date('y/m/d');
 
-		$parse_data = explode("/", $date); 			// make array with date values
+			$parse_data = explode("/", $date); 			// make array with date values
 		
-		$path = "upload/"; // root upload folder
+			$path = "upload/"; // root upload folder
 
-		for ($i=0; $i < count($parse_data); $i++) { 
-			$path .= $parse_data[$i].'/'; 			// append, to create path 
+			for ($i=0; $i < count($parse_data); $i++) 
+			{ 
+				$path .= $parse_data[$i].'/'; 			// append, to create path 
+			}
+				$path .= $seotitle.'/';
 		}
-		if(!is_dir($path .= $seotitle.'/')){ 					// check if path exists 
+    	
+    	
+
+		if(!is_dir($path)){ 		// check if path exists 
 				mkdir($path, 0755, TRUE);
 			}
-			echo $path;
+
 		return $path;
     }
+
 
     ///////////////////////////////
     // modify _send_email function

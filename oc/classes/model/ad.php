@@ -159,4 +159,26 @@ class Model_Ad extends ORM {
 
     }
 
+    public function _gen_img_path($seotitle, $created)
+    {
+        $obj_date = date_parse($created); // convert date to array 
+        
+            $year = substr($obj_date['year'], -2); // take last 2 integers 
+        
+        // check for length, because original path is with 2 integers 
+        if(strlen($obj_date['month']) != 2)
+            $month = '0'.$obj_date['month'];
+        else
+            $month = $obj_date['month'];
+        
+        if(strlen($obj_date['day']) != 2)
+            $day = '0'.$obj_date['day'];
+        else
+            $day = $obj_date['day'];
+
+        $directory = 'upload/'.$year.'/'.$month.'/'.$day.'/'.$seotitle.'/';
+        
+        return $directory;
+    }
+
 } // END Model_ad

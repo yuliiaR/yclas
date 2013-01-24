@@ -3,7 +3,7 @@
 class Controller_Ad extends Controller {
 	
 	/**
-	 * Serp of ads
+	 * Publis all adver.-s without filter
 	 */
 	public function action_index()
 	{ 
@@ -13,14 +13,17 @@ class Controller_Ad extends Controller {
 	    $this->template->content = View::factory('pages/post/listing',$data);
  	}
 
+ 	/**
+ 	 * [action_list_logic Returnes arrays with necessary data to publis advert.-s]
+ 	 * @return [array] [$ads, $pagination, $user, $image_path]
+ 	 */
 	public function action_list_logic()
 	{
 		$ads = new Model_Ad();
-		$ads->where('ad.status', '=', Model_Ad::STATUS_PUBLISHED);
-		$ads->find_all();
 
-		$res_count = $ads->count_all();
+		$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->count_all();
 		
+		// check if there are some advet.-s
 		if ($res_count > 0)
 		{
 
@@ -33,7 +36,8 @@ class Controller_Ad extends Controller {
                     'action'      		=> $this->request->action(),
                  
     	    ));
-    	    $ads = $ads->order_by('created','desc')
+    	    $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+    	    					->order_by('created','desc')
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
                 	            ->find_all();
@@ -65,10 +69,10 @@ class Controller_Ad extends Controller {
 		$img_path = array();
 		
 		foreach ($ads as $a) {
-			echo $a->has_images."<br/>";
+
 			if ($a->has_images == 1)
 			{
-				echo $a->seotitle."<br/>";
+	
 				if(is_array($path = $this->_image_path($a)))
 				{
 					$path = $this->_image_path($a);
@@ -82,16 +86,18 @@ class Controller_Ad extends Controller {
 				
 			}
 		}
-		
-		print_r($img_path);
 		return array('ads'=>$ads,'pagination'=>$pagination, 'user'=>$user, 'img_path' => $img_path);
 	}
 	
 
-	
+	/**
+	 * [action_search With a given parameters, return result]
+	 * @return [?] [?]
+	 *
+	 * @TODO
+	 */
 	public function action_search()
 	{
-		echo strlen($this->request->param('search',NULL));
 		
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/post/search');	
@@ -100,8 +106,9 @@ class Controller_Ad extends Controller {
 
 	/**
 	 * 
-	 * Display single ad
+	 * Display single advert. 
 	 * @throws HTTP_Exception_404
+	 * 
 	 */
 	public function action_view()
 	{
@@ -115,9 +122,10 @@ class Controller_Ad extends Controller {
 			
 			if ($ad->loaded())
 			{
-			
-				$do_hit = $ad->count_ad_hit($ad->id_ad, $ad->id_user); // hits counter
-
+				if(!Auth::instance()->get_user()->role == 10)
+				{
+					$do_hit = $ad->count_ad_hit($ad->id_ad, $ad->id_user); // hits counter
+				}
 				//count how many matches are found 
 		        $hits = new Model_Visit();
 		        $hits->find_all();
@@ -143,12 +151,12 @@ class Controller_Ad extends Controller {
 	}
 	
 	/**
-	 * 
 	 * Edit advertisement: Update
+	 *
+	 * All post fields are validated
 	 */
 	public function action_update()
 	{
-
 		//template header
 		$this->template->title           	= __('Edit advertisement');
 		$this->template->meta_description	= __('Edit advertisement');
@@ -168,6 +176,11 @@ class Controller_Ad extends Controller {
 		$loc = $loc->find_all();
 
 		$path = $this->_image_path($form);
+
+		if(!$path)
+		{
+			// d($path);
+		}
 		
 		$this->template->content = View::factory('pages/post/edit', array('ad'		=>$form, 
 																		'location'	=>$loc, 
@@ -218,22 +231,18 @@ class Controller_Ad extends Controller {
 	    		if (isset($_FILES['image1']) || isset($_FILES['image2']))
 	        	{ 
 	        		$img_files = array($_FILES['image1'], $_FILES['image2']);
-	            	
-	            	$filename = $obj_img->_save_image($img_files, $data['seotitle']);
+	            	$filename = $obj_img->_save_image($img_files, $data['seotitle'], $form->created);
 	        	}
 	        	if ( $filename !== TRUE)
 		        {
 		            $error_message = 'There was a problem while uploading the image.
 		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
-
-		                echo $error_message;
-		        } else $form->has_images = 1;
+		        } else $form->has_images = 1; // update column has_images if image is added
 
 				try 
-				{
-					
+				{	
 					$form->save();
-					Alert::set(Alert::SUCCESS, __('Success, item updated'));
+					Alert::set(Alert::SUCCESS, __('Success, advertisement is updated'));
 					$this->request->redirect(Route::url('default',array('controller'=>'home','action'=>'index')));
 				
 				}
@@ -244,45 +253,40 @@ class Controller_Ad extends Controller {
 				catch (Exception $e)
 				{
 					throw new HTTP_Exception_500($e->getMessage());
-
 				}
-				
 			}
-			
-			
-			
-			// if ($form->loaded())
-			// {
-			// 	$this->template->content = View::factory('oc-panel/pages/edit', array('ad'=>$form));
-			// }
-			// else
-			// {
-			// 	//throw 404
-			// 	throw new HTTP_Exception_404();
-			// }
 		}
-
 	}
 
+	public function action_delete()
+	{d($img_path);
+		$element = ORM::factory('ad', $this->request->param('id'));
+
+		$img_path = $element->_gen_img_path($element->seotitle, $element->created);
+
+		if (!is_dir($img_path)) 
+		{d($img_path);
+			return FALSE;
+		}
+		else
+		{	
+			d($this->request->param('img_name'));
+			unlink($img_path.$this->request->param('img_name'));
+			
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		}
+	}
+
+	/**
+	 * [_image_path Get directory path of specific advert.]
+	 * @param  [array] $data [all values of one advert.]
+	 * @return [array]       [array of dir. path where images of advert. are ]
+	 */
 	public function _image_path($data)
 	{
-		//print_r($data->created);
-		$obj_date = date_parse($data->created); // convert date to array 
-		
-			$year = substr($obj_date['year'], -2); // take last 2 integers 
-		
-		// check for length, because original path is with 2 integers 
-		if(strlen($obj_date['month']) != 2)
-			$month = '0'.$obj_date['month'];
-		else
-			$month = $obj_date['month'];
-		
-		if(strlen($obj_date['day']) != 2)
-			$day = '0'.$obj_date['day'];
-		else
-			$day = $obj_date['day'];
+		$obj_ad = new Model_Ad();
+		$directory = $obj_ad->_gen_img_path($data->seotitle, $data->created);
 
-		$directory = 'upload/'.$year.'/'.$month.'/'.$day.'/'.$data->seotitle.'/';
 		$path = array();
 
 		if(is_dir($directory))
