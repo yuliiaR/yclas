@@ -82,17 +82,32 @@ class Model_Category extends ORM {
 	 */
 	public function form_setup($form)
 	{	
+		$config = Kohana::$config->load('form')->get('category');
+
+		if ($config['description'] == TRUE) 
+			$form->fields['description']['display_as'] = 'textarea';
+		if($config['price']) 
+			$form->fields['price']['caption'] = 'currency';
 		$form->fields['order']['display_as'] = 'select';
 		$form->fields['order']['options'] = range(0,30);
 		$form->fields['parent_deep']['display_as'] = 'select';
 		$form->fields['parent_deep']['options'] = range(0,3);
-		$form->fields['description']['display_as'] = 'textarea';
-		$form->fields['price']['caption'] = 'currency';
-	}
+		
+		}
 
 	public function exclude_fields()
 	{
-	    return array('id_category', 'created', 'id_category_parent');
+		// get values from form form config file 
+		$config = Kohana::$config->load('form')->get('category');
+		$res = array();
+		foreach($config as $c => $value)
+		{
+			if($value == FALSE)
+			{
+				array_push($res, $c);
+			}
+		}
+	    return $res;
 	}
 
 
