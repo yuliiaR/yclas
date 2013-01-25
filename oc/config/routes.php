@@ -23,6 +23,14 @@ Route::set('post_new', URL::title(__('publish new')).'.html')
 		'action'     => 'index',
 ));
 
+/**
+ * Captcha / contact
+ */
+Route::set('contact', URL::title(__('contact')).'.html')
+->defaults(array(
+		'controller' => 'contact',
+		'action'	 => 'index',));
+
 //-------END reserved pages
 
 /**
@@ -38,7 +46,7 @@ Route::set('oc-panel', 'oc-panel/(<controller>(/<action>(/<id>)))')
 /**
  * user/admin edit ad route
  */
-Route::set('update', 'edit(/<title>(/<id>(/<img_name>)).html)')
+Route::set('update', 'edit(/<action>(/<seotitle>(/<id>(/<img_name>))).html)')
 ->defaults(array(
 		'controller' => 'ad',
 		'action'     => 'update',
@@ -83,7 +91,6 @@ Route::set('ad', 'ad(/<seotitle>.html)')
 		'controller' => 'ad',    
 		'action'     => 'view',
 ));
-
 
 /**
  * SERP / listing (all ads || posts sorted by category / listing)

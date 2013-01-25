@@ -87,6 +87,8 @@
 					<?= FORM::button('submit', 'Publish now', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 					<p class="help-block">Dynamic text, for free or pay XX€..</p>
 				</div>
+				<?php $config = Kohana::$config->load('captcha')?>
+				<?php if(!is_array($default = Kohana::$config->load('captcha')->get('default')))?>
 			</fieldset>
 		<?= FORM::close()?>
 

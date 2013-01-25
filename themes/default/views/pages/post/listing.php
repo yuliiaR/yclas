@@ -35,7 +35,7 @@
 	    
 	    	<?if ($user !== NULL && $user->id_role == 10):?>
 	    		<br />
-			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','title'=>$ad->title,'id'=>$ad->id_ad))?>"><?php _e("Edit");?></a> |
+			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))?>"><?php _e("Edit");?></a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>"><?php _e("Deactivate");?></a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>"><?php _e("Spam");?></a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>"><?php _e("Delete");?></a>

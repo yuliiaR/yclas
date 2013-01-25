@@ -5,7 +5,7 @@
 		<div class="page-header">
 			<h1><?=__('Edit Advertisement')?></h1>
 		</div>
-		<?= FORM::open(Route::url('update', array('controller'=>'ad','action'=>'update','title'=>$ad->title,'id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">
 					<?if(Auth::instance()->get_user()->role = 10):?>
@@ -75,10 +75,11 @@
 							<?$img_name = str_replace(".jpg", "", substr(strrchr($path, "/"), 1 ));?>
 							<?if(strstr($path, '_') != '_original.jpg'):?>
 							<li>
+								<?echo $img_name?>
 								<a href="#" class="thumbnail">
 									<img src="/<?echo $path?>" class="img-rounded" alt="">
 								</a>
-								<a class="btn btn-danger" href="<?=Route::url('update', array('controller'=>'ad', 'action'=>'delete', 'title'=>$ad->title,'id'=>$ad->id_ad, 'img_name'=>$img_name ))?>" rel"tooltip" title="<?=__('Delete image')?>">
+								<a class="btn btn-danger" href="<?=Route::url('update', array('controller'=>'ad', 'action'=>'img_delete', 'seotitle'=>$ad->seotitle,'id'=>$ad->id_ad, 'img_name'=>$img_name ))?>" rel"tooltip" title="<?=__('Delete image')?>">
 									<?=__('Delete')?>
 								</a>	
 							</li>
@@ -117,7 +118,7 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('update', array('controller'=>'ad','action'=>'update','title'=>$ad->title,'id'=>$ad->id_ad))))?>
+					<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))))?>
 					<p class="help-block">Dynamic text, for free or pay XX€..</p>
 				</div>
 			</fieldset>

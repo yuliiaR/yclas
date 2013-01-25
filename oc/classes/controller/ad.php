@@ -7,7 +7,7 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_index()
 	{ 
-		$this->template->bind('content', $content);
+		//$this->template->bind('content', $content);
 		$data = $this->action_list_logic();
 		
 	    $this->template->content = View::factory('pages/post/listing',$data);
@@ -99,7 +99,7 @@ class Controller_Ad extends Controller {
 	public function action_search()
 	{
 		
-		$this->template->bind('content', $content);
+		//$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/post/search');	
 	}
 
@@ -131,7 +131,7 @@ class Controller_Ad extends Controller {
 		        $hits->find_all();
 		        $hits->where('id_ad','=', $ad->id_ad)->and_where('id_user', '=', $ad->id_user); 
 
-				$this->template->bind('content', $content);
+				//$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/post/single',array('ad'=>$ad, 'hits'=>$hits->count_all()));
 
 			}
@@ -177,11 +177,6 @@ class Controller_Ad extends Controller {
 
 		$path = $this->_image_path($form);
 
-		if(!$path)
-		{
-			// d($path);
-		}
-		
 		$this->template->content = View::factory('pages/post/edit', array('ad'		=>$form, 
 																		'location'	=>$loc, 
 																		'category'	=>$cat,
@@ -207,11 +202,19 @@ class Controller_Ad extends Controller {
 								); 
 
 				//insert data
-				if ($this->request->post('title') != $data['title'])
+				if ($this->request->post('title') != $form->title)
 				{
+					if($form->has_images == 1)
+					{
+						$current_path = $form->_gen_img_path($form->seotitle, $form->created);
+						// rename current image path to match new seoname
+						rename($current_path, $form->_gen_img_path($form->gen_seo_title($data['title']), $form->created)); 
+
+					}
 					$seotitle = $form->gen_seo_title($data['title']);
-					$form->seotitle = $seotitle;	
-				}
+					$form->seotitle = $seotitle;
+					
+				}else $form->seotitle = $form->seotitle;
 				 
 				$form->title 			= $data['title'];
 				$form->id_location 		= $data['loc'];
@@ -231,7 +234,7 @@ class Controller_Ad extends Controller {
 	    		if (isset($_FILES['image1']) || isset($_FILES['image2']))
 	        	{ 
 	        		$img_files = array($_FILES['image1'], $_FILES['image2']);
-	            	$filename = $obj_img->_save_image($img_files, $data['seotitle'], $form->created);
+	            	$filename = $obj_img->_save_image($img_files, $form->seotitle, $form->created);
 	        	}
 	        	if ( $filename !== TRUE)
 		        {
@@ -240,26 +243,26 @@ class Controller_Ad extends Controller {
 		        } else $form->has_images = 1; // update column has_images if image is added
 
 				try 
-				{	
+				{	//d($seotitle);
 					$form->save();
 					Alert::set(Alert::SUCCESS, __('Success, advertisement is updated'));
 					$this->request->redirect(Route::url('default',array('controller'=>'home','action'=>'index')));
 				
 				}
-				catch (ORM_Validation_Exception $e)
-				{
-					Form::errors($content->errors);
-				}
+				// catch (ORM_Validation_Exception $e)
+				// {echo $e;
+				// 	Form::errors($content->errors);
+				// }
 				catch (Exception $e)
-				{
-					throw new HTTP_Exception_500($e->getMessage());
+				{echo $e;
+					throw new HTTP_Exception_500($e->getMessage());echo $e;
 				}
 			}
 		}
 	}
 
-	public function action_delete()
-	{d($img_path);
+	public function action_img_delete()
+	{
 		$element = ORM::factory('ad', $this->request->param('id'));
 
 		$img_path = $element->_gen_img_path($element->seotitle, $element->created);
@@ -270,10 +273,10 @@ class Controller_Ad extends Controller {
 		}
 		else
 		{	
-			d($this->request->param('img_name'));
-			unlink($img_path.$this->request->param('img_name'));
+			// d($img_path.$this->request->param('img_name').'.jpg');
+			unlink($img_path.$this->request->param('img_name').'.jpg');
 			
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			Request::current()->redirect(Route::url('default'));
 		}
 	}
 
