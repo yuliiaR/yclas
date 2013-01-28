@@ -29,7 +29,6 @@ class CSRF {
                 	$token = Text::random('alnum', rand(20, 30));
                     Session::instance()->set('csrf-token-'.$namespace, $token);
                 }
-
                 return $token;
         }
 

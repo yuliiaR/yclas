@@ -3,7 +3,8 @@
 class Controller_Contact extends Controller {
 
 	public function action_index()
-	{
+	{ 
+
 		//template header
 		$this->template->title           	= __('Contact Us');
 		$this->template->meta_description	= __('Contact Us');
@@ -15,7 +16,7 @@ class Controller_Contact extends Controller {
 		$this->template->scripts['footer'][]= 'js/pages/new.js';
 
 		$is_user = Auth::instance();
-		
+		//var_dump($_SESSION);
 		if($is_user->logged_in())
 		{
 			$user = new Model_User();
@@ -29,15 +30,34 @@ class Controller_Contact extends Controller {
 		}
 		else 
 		{
-			$name = NULL;
-			$email = NULL;
+			$name 	= NULL;
+			$email 	= NULL;
 		}
-		$this->template->content = View::factory('pages/contact', array('name'=>$name, 'email'=>$email));
 
 		if($this->request->post()) //message submition  
 		{
-			if(captcha::check('contact')){ echo "123";} session_name("WebsiteID");
+			if(captcha::check('contact'))
+			{ 
+				Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
+
+				$message = array('name'		=>$this->request->post('name'),
+								 'email'	=>$this->request->post('email'),
+								 'subject'	=>$this->request->post('subject'),
+								 'message'	=>$this->request->post('message'));
+
+				print_r($message);
+			}
+			else
+			{
+				Alert::set(Alert::ERROR, __('You made some mistake'));
+			}
+			
+
 		}
+
+		$this->template->content = View::factory('pages/contact', array('name'=>$name, 'email'=>$email));
+
+		
 	}
 
 }

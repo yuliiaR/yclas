@@ -6,7 +6,6 @@ class Controller_Captcha extends Kohana_Controller {
 	{
 
 		$token = $this->request->param('id');
-		
 		$captcha = new captcha();
 		die($captcha->image($token));
 	}

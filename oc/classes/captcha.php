@@ -21,7 +21,6 @@ class captcha{
 	*/
     public static function image($name='',$width=120,$height=40,$baseList = '0123456789abcdfghjkmnpqrstvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
     {
-        session_start();
 
         $length = mt_rand(3,5);//code length
         $lines = mt_rand(1,5);//to make the image dirty
@@ -44,7 +43,9 @@ class captcha{
               imagecolorallocate($image, mt_rand(0,155), mt_rand(0,155), mt_rand(0,155)));
            $code .= strtolower($actChar);
         }
-           
+        
+
+        
         // prevent client side caching
         header("Expires: Wed, 1 Jan 1997 00:00:00 GMT");
         header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
@@ -54,8 +55,9 @@ class captcha{
         header('Content-Type: image/jpeg');
         imagejpeg($image);
         imagedestroy($image);
-
-        $_SESSION['captcha'.$name] = $code;
+        
+        Session::instance()->set('captcha'.$name, $code);   
+        
     }
 
     
@@ -77,9 +79,9 @@ class captcha{
     { //TODO From config
         // if (CAPTCHA)
         // {
-            if ($_SESSION['captcha'.$name]==strtolower(OC::$_POST['captcha'])) //TODO use core 
+            if (Session::instance()->get('captcha'.$name)==strtolower($_POST['captcha'])) //TODO use core 
             {
-                $_SESSION['captcha'.$name] = '';
+                Session::instance()->set('captcha'.$name, '');
                 return TRUE;
             }
             else return FALSE;

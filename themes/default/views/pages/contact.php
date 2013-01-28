@@ -33,19 +33,24 @@
 				<div class="controls">
 					<?= FORM::textarea('message', "", array('class'=>'input-xlarge', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>7, 'required'))?>	
 					</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					Captcha*:<br />
+					<?php echo captcha::image_tag('contact');?><br />
+					<?= FORM::input('captcha', "", array('class' => 'input-xlarge', 'id' => 'captcha'))?>
 				</div>
-				<div class="control-group">
-					<div class="controls">
-						<?= FORM::button('submit', 'Contact Us', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?>
-					</div>
-					<br class="clear">
-					</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<?= FORM::button('submit', 'Contact Us', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?>
+				</div>
+				<br class="clear">
+			</div>
 		</fieldset>
 		<?= FORM::close()?>
 
 	</div><!--end span10-->
 </div> <!-- end flow-fluid-->
 
-Captcha*:<br />
-<?php echo captcha::image_tag('contact');?><br />
-<input id="captcha" name="captcha" type="text"  />
+

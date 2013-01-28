@@ -101,8 +101,6 @@ Route::set('listing', '(<category>)(/<location>)')
 		'action'     => 'index',
 ));
 
-
-
 /**
  * Error router
  */

@@ -1,7 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="row-fluid">
-
 	<?=View::factory('sidebar')?>
 	<div class="span10">
 	 
@@ -13,7 +12,7 @@
 	 </ul>
 	  <?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
-	    <?// if($ad->status == 1):?>
+	   
 	    <article class="list well clearfix">
 	    	<h2>
 	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"> <?php echo $ad->title; ?></a>
@@ -46,7 +45,6 @@
 			<?endif?>
 	    </article>
 	    <?=Alert::show()?>
-	    <?//endif?>
 	    <?endforeach?>
 
 	    <?=$pagination?>	    
