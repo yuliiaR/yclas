@@ -35,7 +35,7 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>
+					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
 					<div class="controls">
 						<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'input-xxlarge', 'name'=>'description', 'id'=>'description', 'rows'=>15, 'required'))?>
 						

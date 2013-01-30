@@ -11,6 +11,11 @@
 
 <table class="table table-bordered">
 	<tr>
+		<th>
+			<label class="checkbox ">
+					<input type="checkbox">
+			</label>
+		</th>
 		<th><?=__('Name')?></th>
 		<th><?=__('Category')?></th>
 		<th><?=__('Location')?></th>
@@ -25,7 +30,13 @@
 	<?php ?>
 	<tbody>
 		<tr>
-			<td><a href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"><? echo $ad->title; ?></a>
+			<td>
+				<label class="checkbox">
+					<input type="checkbox">
+				</label>
+			</td>
+			<? foreach($category as $cat){ if ($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
+			<td><a href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><? echo $ad->title; ?></a>
 			</td>
 
 			<? foreach($category as $cat):?>
@@ -54,7 +65,7 @@
 	    	<td><? echo substr($ad->created, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary" 
-					href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','title'=>$ad->title,'id'=>$ad->id_ad))?>" 
+					href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))?>" 
 					rel"tooltip" title="<?=__('Update')?>">
 					<i class="icon-edit icon-white"></i>
 				</a>

@@ -20,7 +20,13 @@ class Controller_Ad extends Controller {
 	public function action_list_logic()
 	{
 		$ads = new Model_Ad();
-
+		
+		$cat = new Model_Category();
+		$cat = $cat->find_all();
+		
+		$loc = new Model_Location();
+		$loc = $loc->find_all();
+		
 		$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->count_all();
 		
 		// check if there are some advet.-s
@@ -85,8 +91,14 @@ class Controller_Ad extends Controller {
 				
 				
 			}
-		}
-		return array('ads'=>$ads,'pagination'=>$pagination, 'user'=>$user, 'img_path' => $img_path);
+		} 
+		
+		return array('ads'			=> $ads,
+					 'pagination'	=> $pagination, 
+					 'user'			=> $user, 
+					 'img_path' 	=> $img_path,
+					 'cat'			=> $cat,
+					 'loc'			=> $loc);
 	}
 	
 
@@ -98,9 +110,51 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_search()
 	{
+		$slug_ad = $this->request->param('ads');
+
+		$advert = new Model_Ad();
+		$ads = $advert->where('title', '=', $slug_ad)->and_where('status', '=', Model_Ad::STATUS_PUBLISHED)->find_all();
 		
-		//$this->template->bind('content', $content);
-		$this->template->content = View::factory('pages/post/search');	
+		$res_count = $ads->count();
+
+		// check if there are some advet.-s
+		if ($res_count > 0)
+		{
+
+			$pagination = Pagination::factory(array(
+                    'view'           	=> 'pagination',
+                    'total_items'    	=> $res_count,
+                    'items_per_page' 	=> 5
+     	    ))->route_params(array(
+                    'controller' 		=> $this->request->controller(),
+                    'action'      		=> $this->request->action(),
+                 
+    	    ));
+    	    // $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+    	    // 					->order_by('created','desc')
+         //        	            ->limit($pagination->items_per_page)
+         //        	            ->offset($pagination->offset)
+         //        	            ->find_all();
+			}
+		else
+		{
+			//trow 404 Exception
+			throw new HTTP_Exception_404();
+		}
+
+		if(Auth::instance()->get_user() == NULL)
+		{
+			$user = NULL;
+		}
+		else
+		{
+			$user = Auth::instance()->get_user();
+		}
+		
+		$this->template->content = View::factory('pages/post/listing', array('ads'=>$ads, 
+																			 'pagination'=>$pagination, 
+																			 'user'=>$user, 
+																			 'img_path'=>NULL));	
 	}
 
 
@@ -113,6 +167,7 @@ class Controller_Ad extends Controller {
 	public function action_view()
 	{
 		$seotitle = $this->request->param('seotitle',NULL);
+		$category = $this->request->param('category');
 		
 		if ($seotitle!==NULL)
 		{
@@ -120,17 +175,27 @@ class Controller_Ad extends Controller {
 			$ad->where('seotitle','=', $seotitle)
 				 ->limit(1)->find();
 			
+			$cat = ORM::factory('category', $ad->id_category);
+			$loc = ORM::factory('location', $ad->id_location);
+
 			if ($ad->loaded())
 			{
+				$permission = TRUE; //permission to access advert. 
 				if(!Auth::instance()->logged_in() || Auth::instance()->get_user()->id_role != 10)
 				{
 					$do_hit = $ad->count_ad_hit($ad->id_ad, $ad->id_user); // hits counter
+					$permission = FALSE;
 				}
 				//count how many matches are found 
 		        $hits = new Model_Visit();
 		        $hits->find_all();
 		        $hits->where('id_ad','=', $ad->id_ad)->and_where('id_user', '=', $ad->id_user); 
 
+		        // show image path if they exist
+		    	if($ad->has_images == 1)
+				{
+					$path = $this->_image_path($ad); 
+				}else $path = NULL;
 
 		        if($this->request->post()) //message submition  
 				{
@@ -155,7 +220,12 @@ class Controller_Ad extends Controller {
 					}
 				}	
 				//$this->template->bind('content', $content);
-				$this->template->content = View::factory('pages/post/single',array('ad'=>$ad, 'hits'=>$hits->count_all()));
+				$this->template->content = View::factory('pages/post/single',array('ad'		=>$ad,
+																				   //'cat'	=>$cat->name,
+																				   //'loc'	=>$loc->name,
+																				   'permission'	=>$permission, 
+																				   'hits'	=>$hits->count_all(), 
+																				   'path'	=>$path));
 
 			}
 			//not found in DB
@@ -198,12 +268,29 @@ class Controller_Ad extends Controller {
 		$loc = $location = new Model_Location();
 		$loc = $loc->find_all();
 		
-		$path = $this->_image_path($form);
 
+		if($form->has_images == 1)
+		{
+			$current_path = $form->_gen_img_path($form->seotitle, $form->created);
+			
+			$handle = opendir($current_path);
+			$count = 0;
+			while(FALSE !== ($entry = readdir($handle)))
+			{
+				if($entry != '.' && $entry != '..') $count++;
+			}
+
+			if($count < 8) $img_permission = TRUE;
+			else $img_permission = FALSE;
+			// d($img_permission);
+		}else $img_permission = TRUE;
+		
+		$path = $this->_image_path($form);
 		$this->template->content = View::factory('pages/post/edit', array('ad'			=>$form, 
 																		  'location'	=>$loc, 
 																		  'category'	=>$cat,
-																		  'path'		=>$path));
+																		  'path'		=>$path,
+																		  'perm'		=>$img_permission));
 		
 		if(Auth::instance()->get_user()->loaded() == $form->id_user 
 			|| Auth::instance()->get_user()->id_role == 10)
@@ -247,7 +334,20 @@ class Controller_Ad extends Controller {
 				$form->price 			= $data['price']; 								
 				$form->adress 			= $data['address'];
 				$form->phone			= $data['phone']; 
-				
+
+
+				///////////////////////////////////
+				// TODO:
+				// HOW TO WORK WITH TIME 
+				// when advert. is republisehed
+				// or first time but diff. day etc..
+				// ////////////////////////////////
+			
+				// if($data['status'] == 1 && $form->publis != NULL)
+				// {
+				// 	$form->published = 
+				// }
+
 				$obj_img = new Controller_New($this->request,$this->response);
 
 				// image upload
@@ -263,6 +363,7 @@ class Controller_Ad extends Controller {
 		        {
 		            $error_message = 'There was a problem while uploading the image.
 		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
+
 		        } else $form->has_images = 1; // update column has_images if image is added
 
 				try 
@@ -291,15 +392,23 @@ class Controller_Ad extends Controller {
 		$img_path = $element->_gen_img_path($element->seotitle, $element->created);
 
 		if (!is_dir($img_path)) 
-		{d($img_path);
+		{
 			return FALSE;
 		}
 		else
 		{	
-			// d($img_path.$this->request->param('img_name').'.jpg');
+		
+			//delete formated image
 			unlink($img_path.$this->request->param('img_name').'.jpg');
-			
-			Request::current()->redirect(Route::url('default'));
+
+			//delete original image
+			$orig_img = str_replace('_200x200', '', $this->request->param('img_name'));
+			unlink($img_path.$orig_img.'_original.jpg');
+
+			$this->request->redirect(Route::url('update', array('controller'=>'ad',
+																'action'=>'update',
+																'seotitle'=>$element->seotitle,
+																'id'=>$element->id_ad)));
 		}
 	}
 

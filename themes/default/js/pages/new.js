@@ -12,3 +12,14 @@ $(function () {
 	$('.btn').tooltip(); 
 	//$('textarea[name=description]').autogrow();
 });
+
+$('.checkbox').change(function(){
+	if($(this).is(':checked')){
+alert("123");
+		$(this).addClass("selected");
+	}else{
+
+		$(this).removeClass("selected");
+	}
+
+});

@@ -28,8 +28,12 @@ class Date extends Kohana_Date {
 	 * @param integer $date
 	 * @return string
 	 */
-	public static function unix2mysql($date)
+	public static function unix2mysql($date = NULL)
 	{
+		if($date === NULL)
+		{
+			$date = time();
+		}
 	    return date(Date::$timestamp_format,$date);
 	}
 	

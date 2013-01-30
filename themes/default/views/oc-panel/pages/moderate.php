@@ -11,7 +11,7 @@
 		<i class="icon-eye-open icon-white"></i><?=__(' Ads')?>
 	</a>
 </div>
-
+<? if($ads != NULL):?>
 <table class="table table-bordered">
 	<tr>
 		<th><?=__('Name')?></th>
@@ -27,7 +27,8 @@
 	<? $i = 0; foreach($ads as $ad):?>	
 	<tbody>
 		<tr>
-			<td><a href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"><? echo $ad->title; ?></a>
+			<? foreach($category as $cat){ if ($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
+			<td><a href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><? echo $ad->title; ?></a>
 			</td>
 
 			<? foreach($category as $cat):?>
@@ -55,7 +56,7 @@
 	    	<td><? echo substr($ad->created, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary" 
-					href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','title'=>$ad->title,'id'=>$ad->id_ad))?>" 
+					href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))?>" 
 					rel"tooltip" title="<?=__('Update')?>">
 					<i class="icon-edit icon-white"></i>
 				</a>
@@ -83,3 +84,6 @@
 	</tbody>
 </table>
 	 <?=$pagination?>
+<?else:?>
+	<h2> <?=__("There are unpublished Advertisements")?></h2>
+<?endif?>

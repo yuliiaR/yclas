@@ -52,13 +52,13 @@
 		
 		if ($config->config_value == 0){
 			$status = Model_Ad::STATUS_PUBLISHED;
-			$this->_save_new_ad($data, $status);
+			$this->_save_new_ad($data, $status, $published = TRUE);
 
 		}
 		else if($config->config_value == 1)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status);
+			$this->_save_new_ad($data, $status, $published = FALSE);
 		}
 		else if($config->config_value == 2)
 		{
@@ -77,7 +77,7 @@
  	 * @param  [int] $status [status of advert.]
  	 * 
  	 */
- 	public function _save_new_ad($data, $status)
+ 	public function _save_new_ad($data, $status, $published)
  	{
  		if (!$data['_auth']->logged_in()) // this part is for users that are not logged, not finished !!!
 			{
@@ -161,12 +161,7 @@
 				$_new_ad->price 		= $data['price']; 								
 				$_new_ad->adress 		= $data['address'];
 				$_new_ad->phone			= $data['phone']; 
-				
 
-			   /////////////
-			   // ADD capcha
-			   // TO DO..
-			   // //////////
 			   
 			    // image upload
 				$error_message = NULL;
@@ -188,6 +183,15 @@
 			try
 				{
 					$_new_ad->save();
+					
+					// if moderation is off update db field with time of creation 
+					if($published)
+					{	
+						$_ad_published = new Model_Ad();
+						$_ad_published->where('seotitle', '=', $seotitle)->limit(1)->find();
+						$_ad_published->published = $_ad_published->created;
+						$_ad_published->save(); 
+					}
 					
 					//$this->_send_mail($title, $name, $email, $_auth); // send mail to user
 					email::send("root@slobodantumanitas-System", 
@@ -222,8 +226,6 @@
 			
 			//recaptcha validation, if recaptcha active
 		}
-		
-		$this->template->content->text = Text::bb2html($this->request->post('description'),TRUE);
  	}
 
  	/**

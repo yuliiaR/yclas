@@ -85,8 +85,13 @@ class Model_Page extends ORM {
 	 * 
 	 */
 	public function form_setup($form)
-	{
-		$form->set_sexclude_fields(array('created'));//, 'seoname'
-	}
+    {
+        $form->fields['password']['display_as'] = 'password';
+    }
+
+    public function exclude_fields()
+    {
+        return array('id_user', 'salt', 'date_created', 'date_lastlogin', 'ip_created', 'ip_lastlogin');
+    }
 
 } // END Model_Category

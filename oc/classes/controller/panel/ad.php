@@ -208,53 +208,57 @@ class Controller_Panel_Ad extends Auth_Controller {
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
                 	            ->find_all();
-			}
+		
+	        //find all tables 
+	        $hits = new Model_Visit();
+	        $hits->find_all();
+
+			$cat = new Model_Category();
+			$_list_cat = $cat->find_all(); // get all to print at sidebar view
+			
+			$loc = new Model_Location();
+			$_list_loc = $loc->find_all(); // get all to print at sidebar view
+
+
+	       	$arr_hits = array(); // array of hit integers 
+	       	
+	        // fill array with hit integers 
+	        foreach ($ads as $key_ads) {
+	        	
+	        	// match hits with ad
+	        	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
+	        	$count = $hits->count_all(); // count individual hits 
+
+	        	array_push($arr_hits, $count);
+	        }
+
+			// $query = DB::select('*')->from('ads')
+			// 						  ->join('categories')
+			// 						  ->on('ads.id_category', '=', 'categories.id_category')
+			// 						  ->where('ads.status', '=', '30');
+
+			// $
+			// $res = $query->execute();
+			// foreach ($res as $key) {
+			// 	print_r($key['id_location']);
+			// }
+			
+
+			$this->template->content = View::factory('oc-panel/pages/moderate',array('ads'			=> $ads,
+																					'pagination'	=> $pagination,
+																					'category'		=> $_list_cat,
+																					'location'		=> $_list_loc,
+																					'hits'			=> $arr_hits)); // create view, and insert list with data
+
+		}
 		else
 		{
 			Alert::set(Alert::ALERT, __('You do not have any not published advertisemet'));
+			$this->template->content = View::factory('oc-panel/pages/moderate', array('ads' => NULL));
 		}
 
 		
-        //find all tables 
-        $hits = new Model_Visit();
-        $hits->find_all();
-
-		$cat = new Model_Category();
-		$_list_cat = $cat->find_all(); // get all to print at sidebar view
-		
-		$loc = new Model_Location();
-		$_list_loc = $loc->find_all(); // get all to print at sidebar view
-
-
-       	$arr_hits = array(); // array of hit integers 
-       	
-        // fill array with hit integers 
-        foreach ($ads as $key_ads) {
-        	
-        	// match hits with ad
-        	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
-        	$count = $hits->count_all(); // count individual hits 
-
-        	array_push($arr_hits, $count);
-        }
-
-		// $query = DB::select('*')->from('ads')
-		// 						  ->join('categories')
-		// 						  ->on('ads.id_category', '=', 'categories.id_category')
-		// 						  ->where('ads.status', '=', '30');
-
-		// $
-		// $res = $query->execute();
-		// foreach ($res as $key) {
-		// 	print_r($key['id_location']);
-		// }
-		
-
-		$this->template->content = View::factory('oc-panel/pages/moderate',array('ads'			=> $ads,
-																				'pagination'	=> $pagination,
-																				'category'		=> $_list_cat,
-																				'location'		=> $_list_loc,
-																				'hits'			=> $arr_hits)); // create view, and insert list with data
+        
 	} 
 
 }

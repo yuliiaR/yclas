@@ -81,13 +81,19 @@ class Model_Category extends ORM {
 	 */
 	public function form_setup($form)
 	{
-		$form->set_sexclude_fields(array('id_category', 'created'));//, 'seoname'
+		//$form->set_sexclude_fields(array('id_category', 'created'));//, 'seoname'
+		$form->fields['password']['display_as'] = 'password';
 		// $form->fields['description']['display_as'] = 'textarea';
 		// $form->add_field('password_confirm', array('display_as' => 'password'), 'after', 'password');
 		// $form->fields['password']['display_as'] = 'password';
 		// $form->rule('password_confirm', 'matches', array(':validation', 'password', ':field'));
 		// $form->set_value('password', '');
 		// $form->set_value('password_confirm', '');
+	}
+
+	public function exclude_fields()
+	{
+	    return array('id_user', 'salt', 'date_created', 'date_lastlogin', 'ip_created', 'ip_lastlogin');
 	}
 
 

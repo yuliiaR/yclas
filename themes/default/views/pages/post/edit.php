@@ -79,7 +79,15 @@
 								<a href="#" class="thumbnail">
 									<img src="/<?echo $path?>" class="img-rounded" alt="">
 								</a>
-								<a class="btn btn-danger" href="<?=Route::url('update', array('controller'=>'ad', 'action'=>'img_delete', 'seotitle'=>$ad->seotitle,'id'=>$ad->id_ad, 'img_name'=>$img_name ))?>" rel"tooltip" title="<?=__('Delete image')?>">
+								<a class="btn btn-danger index-delete"
+								   onclick="return confirm('<?=__('Delete?')?>');" 
+								   href="<?=Route::url('update', array('controller'=>'ad', 
+								   									   'action'=>'img_delete', 
+								   									   'seotitle'=>$ad->seotitle, 
+								   									   'id'=>$ad->id_ad, 
+								   									   'img_name'=>$img_name ))?>" 
+								   rel"tooltip" 
+								   title="<?=__('Delete image')?>">
 									<?=__('Delete')?>
 								</a>	
 							</li>
@@ -90,6 +98,7 @@
 					</div>	
 				</div>
 				<div class="control-group">
+					<?if ($perm !== FALSE):?>
 					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images1'))?>
 					<div class="controls">
 						<input class="input-file" type="file" name="image1" id="fileImput1" />
@@ -98,6 +107,11 @@
 					<div class="controls">	
 						<input class="input-file" type="file" name="image2" id="fileImput2" />
 					</div>
+					<?else:?>
+					<div class="contols">
+						<h4><?= __('Maximum number of uploaded images is 4')?></h4>
+					</div>
+					<?endif?>
 				</div>
 				<div class="control-group">
 					<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>

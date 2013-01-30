@@ -76,7 +76,7 @@ Route::set('page','p/<seotitle>.html')
 /**
  * Seach results  
  */
-Route::set('search','<search>')
+Route::set('search','search/<ads>')
 ->defaults(array(
 		'controller' => 'ad',    
 		'action'     => 'search',
@@ -85,7 +85,7 @@ Route::set('search','<search>')
 /**
  * Item / ad view (public)
  */
-Route::set('ad', 'ad(/<seotitle>.html)')
+Route::set('ad', '(<category>(/<seotitle>)).html')
 ->defaults(array(
 		//'directory'  => 'panel',
 		'controller' => 'ad',    

@@ -2,15 +2,38 @@
 <div class="row-fluid">
 	<?=View::factory('sidebar')?>
 	<div class="span10">
+		<?if ($ad->status != 1 && $permission === FALSE):?>
+		<div class="page-header">
+			<h1><?= __('This advertisement does not exist, or is not yet published')?></h1>
+		</div>
+		<?else:?>
 		<?=Form::errors()?>
-	<h1><?= $ad->seotitle;?></h1>	    
-	    <div>
+		<div class="page-header">
+			<h1><?= $ad->title;?></h1>
+		</div>
+		    
+		<?php if($path):?>
+		<div class="control-group">
+			<div class="controls">
+				<ul class="thumbnails">
+					<?php foreach ($path as $path):?>
+					<?$img_name = str_replace(".jpg", "", substr(strrchr($path, "/"), 1 ));?>
+					<?if(strstr($path, '_') != '_original.jpg'):?>
+					<li>
+						<a href="" class="thumbnail">
+							<img src="/<?echo $path?>" class="img-rounded" alt="">
+						</a>	
+					</li>
+					<?endif?>
+					<?endforeach?>
+				</ul>
+			</div>	
+		</div>
+		<?endif?>
 	    	<p><strong>Price : </strong> <?= $ad->price?></p>
-		    <p><strong>description : </strong><?= $ad->description?></p>	
+		    <p><strong>description : </strong><?= Text::bb2html($ad->description,TRUE)?></p>	
 		    <p><strong>published: </strong> <?= $ad->created?></p>
 		    <p><strong>Hits: </strong><?echo $hits?></p>	    
-	    </div>
-		 
 		<?= FORM::open(Route::url('ad', array('seotitle'=>$ad->seotitle)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 		<fieldset>
 			<div class="control-group">
@@ -54,5 +77,6 @@
 			</div>
 		</fieldset>
 		<?= FORM::close()?>	
+		<?endif?>
 	</div><!--/span--> 
 </div><!--/row-->

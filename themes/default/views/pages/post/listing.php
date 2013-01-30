@@ -15,7 +15,8 @@
 	   
 	    <article class="list well clearfix">
 	    	<h2>
-	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"> <?php echo $ad->title; ?></a>
+	    	<? foreach ($cat as $c){ if($c->id_category == $ad->id_category) $cat_name = $c->name; }?>
+	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?php echo $ad->title; ?></a>
 	    	</h2>
 	    	<?if($img_path != NULL):?>
 	    		 <img src="#" class="img-polaroid">
@@ -28,9 +29,10 @@
 		    		<li class="price"><?php _e('Price');?>: <b><?php echo $ad->price;?>&euro;</b></li>
 		    	<?php }?>  
 		    </ul>
-		    <p><?php echo $ad->description;?></p>
+		 
+		    <p><?php echo Text::bb2html($ad->description,TRUE);?></p>
 		    
-		    <a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?php _e('Read more')?></a>
+		    <a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?php _e('Read more')?></a>
 	    
 	    	<?if ($user !== NULL && $user->id_role == 10):?>
 	    		<br />
