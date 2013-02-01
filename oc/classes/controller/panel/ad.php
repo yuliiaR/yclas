@@ -52,43 +52,54 @@ class Controller_Panel_Ad extends Auth_Controller {
 	 */
 	public function action_delete()
 	{
-		$this->auto_render = FALSE;
-		$this->template = View::factory('js');
-		$element = ORM::factory('ad', $this->request->param('id'));
+		$id = $this->request->param('id');
 		
-		try
-		{
-			
-			$img_path = $element->_gen_img_path($element->seotitle, $element->created);
-			
+		$format_id = explode('_', $id);
 
-			if (!is_dir($img_path)) 
+		foreach ($format_id as $id) {
+			if ($id !== '')
 			{
-				$element->delete();
-				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
-			}
-			else
-			{
-				// Loop through the folder
-				$dir = dir($img_path);
-
-				while (false !== $entry = $dir->read()) {
-				// Skip pointers
-					if ($entry == '.' || $entry == '..') {
-						continue;
-					}
-					unlink($img_path.$entry);
-				}
+				$this->auto_render = FALSE;
+				$this->template = View::factory('js');
+				$element = ORM::factory('ad', $id);
 				
-				rmdir($img_path);
-				$element->delete();
-				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+				try
+				{
+					
+					$img_path = $element->_gen_img_path($element->seotitle, $element->created);
+					
+
+					if (!is_dir($img_path)) 
+					{
+						$element->delete();
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+					}
+					else
+					{
+						// Loop through the folder
+						$dir = dir($img_path);
+
+						while (false !== $entry = $dir->read()) {
+						// Skip pointers
+							if ($entry == '.' || $entry == '..') {
+								continue;
+							}
+							unlink($img_path.$entry);
+						}
+						
+						rmdir($img_path);
+						$element->delete();
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+					}
+				}
+				catch (Exception $e)
+				{
+					throw new HTTP_Exception_500($e->getMessage());
+				}	
 			}
+			
 		}
-		catch (Exception $e)
-		{
-			throw new HTTP_Exception_500($e->getMessage());
-		}
+		
 	}
 
 	/**
@@ -96,37 +107,48 @@ class Controller_Panel_Ad extends Auth_Controller {
 	 */
 	public function action_spam()
 	{
-		$spam_ad = ORM::factory('ad', $this->request->param('id'));
+		$id = $this->request->param('id');
+		
+		$format_id = explode('_', $id);
 
-		if ($spam_ad->loaded())
+		foreach ($format_id as $id) 
 		{
-			if ($spam_ad->status != 30)
+			if ($id !== '')
 			{
-				$spam_ad->status = 30;
-				
-				try
-				{
-					$spam_ad->save();
-					Alert::set(Alert::SUCCESS, __('Success, advertisemet is marked as spam'));
-					Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+				$spam_ad = ORM::factory('ad', $id);
 
-				}
-				catch (Exception $e)
+				if ($spam_ad->loaded())
 				{
-					throw new HTTP_Exception_500($e->getMessage());
+					if ($spam_ad->status != 30)
+					{
+						$spam_ad->status = 30;
+						
+						try
+						{
+							$spam_ad->save();
+							Alert::set(Alert::SUCCESS, __('Success, advertisemet is marked as spam'));
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+
+						}
+						catch (Exception $e)
+						{
+							throw new HTTP_Exception_500($e->getMessage());
+						}
+					}
+					else
+					{				
+						Alert::set(Alert::ALERT, __('Warning, advertisemet is already marked as spam'));
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+					} 
+				}
+				else
+				{
+					//throw 404
+					throw new HTTP_Exception_404();
 				}
 			}
-			else
-			{				
-				Alert::set(Alert::ALERT, __('Warning, advertisemet is already marked as spam'));
-				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
-			} 
 		}
-		else
-		{
-			//throw 404
-			throw new HTTP_Exception_404();
-		}
+		
 	}
 
 	/**

@@ -12,8 +12,8 @@
 <table class="table table-bordered">
 	<tr>
 		<th>
-			<label class="checkbox ">
-					<input type="checkbox">
+			<label class="checkbox">
+					<input type="checkbox" id="select-all" onclick="check_all();">
 			</label>
 		</th>
 		<th><?=__('Name')?></th>
@@ -22,17 +22,36 @@
 		<th><?=__('Hits')?></th>
 		<th><?=__('Status')?></th>
 		<th><?=__('Date')?></th>
-		<th><?=__('Options')?></th>
-			
+		<th>
+			<a class="spam btn btn-warning" 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
+				onclick="return confirm('<?=__('Spam?')?>');"
+				rel"tooltip" title="<?=__('Spam')?>">
+				<i class="icon-fire icon-white"></i>
+			</a>
+			<a class="deactivate btn btn-warning" 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate'))?>" 
+				onclick="return confirm('<?=__('Deactivate?')?>'));"
+				rel"tooltip" title="<?=__('Deactivate')?>">
+				<i class="icon-remove icon-white"></i>
+			</a>
+			<a class="delete btn btn-danger index-delete" 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
+				onclick="col_selected();"
+			    rel"tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
+				<i class="icon-remove icon-white"></i>
+			</a>
+		</th>
 	</tr>
+	<form>
+		<input type="hidden" class="hidden">
+	</form>
 	<? $i = 0; foreach($res['ads'] as $ad):?>
-	
-	<?php ?>
 	<tbody>
 		<tr>
 			<td>
 				<label class="checkbox">
-					<input type="checkbox">
+					<input type="checkbox" id="<?echo $ad->id_ad.'_'?>" class="checkbox">
 				</label>
 			</td>
 			<? foreach($category as $cat){ if ($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
