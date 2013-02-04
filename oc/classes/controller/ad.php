@@ -207,25 +207,26 @@ class Controller_Ad extends Controller {
 						
 						
 						$message = array('name'			=>$this->request->post('name'),
-										 'email_from,'	=>$this->request->post('email'),
+										 'email_from'	=>$this->request->post('email'),
 										 'subject'		=>$this->request->post('subject'),
 										 'message'		=>$this->request->post('message'),
 										 'email_to'		=>$owner->email);
 
-						print_r($message);
+						$advert_owner = new Model_User();
+						$advert_owner = $advert_owner->where('id_user', '=', $ad->id_user)->limit(1)->find();
+				
+						email::send("root@slobodantumanitas-System",$message['email_from'],$message['subject'],$message['message']);
 					}
 					else
 					{
 						Alert::set(Alert::ERROR, __('You made some mistake'));
 					}
 				}	
-				//$this->template->bind('content', $content);
-				$this->template->content = View::factory('pages/post/single',array('ad'		=>$ad,
-																				   //'cat'	=>$cat->name,
-																				   //'loc'	=>$loc->name,
+				$this->template->bind('content', $content);
+				$this->template->content = View::factory('pages/post/single',array('ad'			=>$ad,
 																				   'permission'	=>$permission, 
-																				   'hits'	=>$hits->count_all(), 
-																				   'path'	=>$path));
+																				   'hits'		=>$hits->count_all(), 
+																				   'path'		=>$path));
 
 			}
 			//not found in DB

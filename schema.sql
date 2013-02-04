@@ -80,6 +80,7 @@ CREATE TABLE  `oc_ads` (
   `adress` varchar(145) DEFAULT '0',
   `price` decimal(14,3) NOT NULL DEFAULT '0',
   `phone` varchar(30) DEFAULT NULL,
+  `website` varchar(200) DEFAULT NULL,
   `ip_address` float DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `published` DATETIME  NULL,
@@ -114,17 +115,19 @@ CREATE TABLE `oc_config` (
   PRIMARY KEY (`group_name`, `config_key`) 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
 
-
-CREATE TABLE `oc_pages` (
-  `id_page` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_page_parent` int(10) unsigned NOT NULL DEFAULT '0',
+--for help tips,pages/FAQ and email templates using the type.
+CREATE TABLE `as_content` (
+  `id_content` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `order` int(2) unsigned NOT NULL DEFAULT '0',
-  `parent_deep` int(2) unsigned NOT NULL DEFAULT '0',
   `title` varchar(145) NOT NULL,
   `seotitle` varchar(145) NOT NULL,
   `description` TEXT NULL,
+  `from_email` varchar(145) NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_page`)
+  `type` enum('page','email','help') NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_content`),
+  UNIQUE KEY `as_content_UK_id_language_AND_seotitle` (`id_language`,`seotitle`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --default configs

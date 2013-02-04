@@ -34,7 +34,7 @@
 		    <p><strong>description : </strong><?= Text::bb2html($ad->description,TRUE)?></p>	
 		    <p><strong>published: </strong> <?= $ad->created?></p>
 		    <p><strong>Hits: </strong><?echo $hits?></p>	    
-		<?= FORM::open(Route::url('ad', array('seotitle'=>$ad->seotitle)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('ad', array('category'=>$ad->id_category, 'seotitle'=>$ad->seotitle)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 		<fieldset>
 			<div class="control-group">
 				<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
@@ -71,7 +71,7 @@
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<?= FORM::button('submit', 'Contact Us', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('ad', array('seotitle'=>$ad->seotitle))))?>
+					<?= FORM::button('submit', 'Send', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('ad', array('category'=>$ad->id_category, 'seotitle'=>$ad->seotitle))))?>
 				</div>
 				<br class="clear">
 			</div>

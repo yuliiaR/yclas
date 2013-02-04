@@ -12,9 +12,6 @@ class Controller_Panel_Category extends Auth_Crud {
 	/**
 	 * @var $_orm_model ORM model name
 	 */
-	protected $_orm_model = 'category';
-	
-
-	
+	protected $_orm_model = 'category';	
 
 }

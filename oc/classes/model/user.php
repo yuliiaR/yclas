@@ -120,16 +120,6 @@ class Model_User extends ORM {
         );
     }
 
-    /**
-     * Insert a new object to the database
-     * @param  Validation $validation Validation object
-     * @return ORM
-     */
-    // public function create(Validation $validation = NULL)
-    // {
-
-    //    // $self::create($validation);
-    // }
     
 	/**
 	 * complete the login for a user
@@ -330,6 +320,38 @@ class Model_User extends ORM {
         {
             return FALSE;
         }
+    }
+
+    /**
+     * sends email to the current user replacing tags
+     * @param  string $seotitle
+     * @param  array $replace
+     * @return boolean
+     */
+    public function email($seotitle, array $replace = NULL)
+    {
+        if ($this->loaded())
+        {
+            if ($replace===NULL) $replace = array();
+            $email = Model_Content::get($seotitle,'email');
+
+            //content found
+            if ($email->loaded())
+            { 
+
+                //adding extra replaces
+                $replace+= array('[USER.NAME]' =>  $this->name,
+                                 '[USER.EMAIL]' =>  $this->email);
+
+                $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
+                $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
+
+                return Email::send($this->email,$email->from_email,$subject,$body);
+
+            }
+            else return FALSE;
+        }
+        return FALSE;
     }
 
     public function form_setup($form)

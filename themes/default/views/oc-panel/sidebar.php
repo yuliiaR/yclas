@@ -16,11 +16,9 @@
 				<?php sidebar_link(__('Roles access'),'access')?>
 			<? endif ?>
 
-		
-			
 			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'page'))?>">
-				<?=__('Pages')?>
+				href="<?=Route::url('oc-panel',array('controller'=>'content'))?>">
+				<?=__('Content')?>
 			</a>
 			</li>
 			<li class="nav-header"><?=__('Settings')?></li>

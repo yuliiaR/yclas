@@ -109,11 +109,8 @@
 						{
 							$user->save();
 							Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
-							// email::send("root@slobodantumanitas-System", 
-							// 			"root@slobodantumanitas-System", 
-							// 			"new_user",
-							// 			'welcome '.$name.' with pass '.$pass,
-							// 			NULL);
+							
+							$user->email('newuser'); //this is to static
 						}
 						catch (ORM_Validation_Exception $e)
 						{
@@ -191,14 +188,9 @@
 						$_ad_published->published = $_ad_published->created;
 						$_ad_published->save(); 
 					}
+					  
 					
-					//$this->_send_mail($title, $name, $email, $_auth); // send mail to user
-					email::send("root@slobodantumanitas-System", 
-								"root@slobodantumanitas-System", 
-								$name, 
-								$name." has created new post with title: ".$data['title'], 
-								NULL); // send to administrator , check other solution !!!   
-					
+					$user->email('newadvertisement');
 					//$this->request->redirect(Route::url('default')); 
 					  
 				}
@@ -323,30 +315,3 @@
 		return $path;
     }
 
-
-    ///////////////////////////////
-    // modify _send_email function
-    // atm works but not good
-    // and it needs improuvment
-    ///////////////////////////
-  //   public function _send_mail($title, $name, $email, $_auth){
-  //   	echo 'blaasdsad';
-  //   	//message format
-  //       $message = "User: ".$_auth->get_user()->name." created post".PHP_EOL ;
-  //       $message.= "With title : ".$title.PHP_EOL;
-  //       $message.= "On date".date('d/m/Y').PHP_EOL;
-  //       $subject = "User ".$_auth->get_user()->name." created new post";
-		
-		// if(!$_auth->logged_in()){
-			
-		// 	email::send("root@slobodantumanitas-System", $email, "New post by user: ".$name, $message, NULL);
-		// }
-		// else
-		// {
-		// 	$email = $_auth->get_user()->email;
-		// 	email::send("root@slobodantumanitas-System", $email, $subject, $message, NULL);
-		// }
-  //   }
-		
-	}
-	

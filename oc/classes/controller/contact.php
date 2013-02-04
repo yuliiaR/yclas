@@ -16,7 +16,7 @@ class Controller_Contact extends Controller {
 		$this->template->scripts['footer'][]= 'js/pages/new.js';
 
 		$is_user = Auth::instance();
-		//var_dump($_SESSION);
+
 		if($is_user->logged_in())
 		{
 			$user = new Model_User();
@@ -41,12 +41,14 @@ class Controller_Contact extends Controller {
 				Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
 
 				$message = array('name'			=>$this->request->post('name'),
-								 'email_from,'	=>$this->request->post('email'),
+								 'email_from'	=>$this->request->post('email'),
 								 'subject'		=>$this->request->post('subject'),
-								 'message'		=>$this->request->post('message'),
-								 'email_to'		=>'admin@admin.com');
+								 'message'		=>$this->request->post('message'));
 
-				print_r($message);
+				$admin = new Model_User();
+				$admin = $admin->where('id_role', '=', 10)->limit(1)->find();
+				
+				email::send($admin->email,$message['email_from'],$message['subject'],$message['message']);
 			}
 			else
 			{
