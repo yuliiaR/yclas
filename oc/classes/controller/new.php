@@ -142,7 +142,6 @@
 			{		
 				
 				//insert data
-				// $data['seotitle'] = $data['title'].$data['cat']; // bad solution, find better ASK CHEMA!!! 
 
 				$seotitle = $_new_ad->gen_seo_title($data['title']); 
 				
@@ -315,3 +314,4 @@
 		return $path;
     }
 
+}

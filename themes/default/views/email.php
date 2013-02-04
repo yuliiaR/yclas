@@ -178,10 +178,7 @@
   <tr>
         <td class="col-12" id="social">
             <hr>
-                <a href="http://adserum.com" target ="_blank" title="adserum.com">Twitter</a> -
-                <a href="http://adserum.com" target ="_blank" title="adserum.com">Facebook</a> -
-                <a href="http://adserum.com" target ="_blank" title="adserum.com">Contact us</a> -
-                <a href="http://adserum.com" target ="_blank" title="adserum.com">Adserum.com</a> &copy; <?=date('Y')?>
+                <a href="#" target ="_blank" title="openclassifieds.com">Twitter</a> -
         </td>
     </tr>
 
