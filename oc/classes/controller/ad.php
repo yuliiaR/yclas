@@ -8,9 +8,112 @@ class Controller_Ad extends Controller {
 	public function action_index()
 	{ 
 		//$this->template->bind('content', $content);
-		$data = $this->action_list_logic();
 		
-	    $this->template->content = View::factory('pages/post/listing',$data);
+		$advert 	= new Model_Ad();
+		$slug_cat 	= new Model_Category();
+		$slug_loc 	= new Model_Location();
+
+		$cat = $slug_cat->find_all();
+		$loc = $slug_loc->find_all();
+
+		
+		// user 
+        if(Auth::instance()->get_user() == NULL)
+		{
+			$user = NULL;
+		}
+		else
+		{
+			$user = Auth::instance()->get_user();
+		}
+
+		if ($this->request->query('search'))
+        {
+            $search_term = $this->request->query('search');
+            
+            $this->template->bind('content', $content);
+			$this->template->content = View::factory('pages/post/listing');
+
+			$ads = $advert->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+			
+	        //search term
+	        if ( strlen($search_term)>2 )
+	        {
+	            $ads->where('title', 'like', '%'.$search_term.'%');
+
+	        }
+
+	        $res_count = count($ads);
+
+	        $pagination = Pagination::factory(array(
+	                    'view'           	=> 'pagination',
+	                    'total_items'      	=> $res_count,
+	                    'items_per_page' 	=> 5
+	        ))->route_params(array(
+	                    'controller' 		=> $this->request->controller(),
+	                    'action'     	 	=> $this->request->action(),
+	        ));
+
+	        if ($res_count>0)
+	        {
+	        	$content->ads = $ads->order_by('created','desc')
+	                                ->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
+	                                   	            
+	        } else $content->ads = NULL;
+	       	
+
+			$content->pagination = $pagination->render();
+			$content->cat = $cat;
+			$content->loc = $loc;
+			$content->user = $user;
+			$content->img_path = NULL;
+        }
+        // advansed search with many parameters
+        else if($this->request->query('advert') 
+        	 	|| $this->request->query('cat') 
+        	 	|| $this->request->query('loc'))
+        {
+        	// variables 
+        	$search_advert 	= $this->request->query('advert');
+        	$search_cat 	= $this->request->query('cat');
+        	$search_loc 	= $this->request->query('loc');
+        	
+        	$ads = $this->action_advansed_search($search_advert, $search_cat, $search_loc); // logic
+        	
+        	$this->template->bind('content', $content);
+			$this->template->content = View::factory('pages/post/listing');
+
+			$res_count = count($ads);
+
+	        $pagination = Pagination::factory(array(
+	                    'view'           	=> 'pagination',
+	                    'total_items'      	=> $res_count,
+	                    'items_per_page' 	=> 5
+	        ))->route_params(array(
+	                    'controller' 		=> $this->request->controller(),
+	                    'action'     	 	=> $this->request->action(),
+	        ));
+
+	        $content->ads = $ads = $ads->order_by('created','desc')
+	                   				   ->limit($pagination->items_per_page)
+	                   				   ->offset($pagination->offset)
+	                   				   ->find_all();
+
+			// view variables
+			$content->pagination = $pagination->render();
+			$content->cat = $cat;
+			$content->loc = $loc;
+			$content->user = $user;
+			$content->img_path = NULL;
+        }
+        // list all
+        else
+       	{
+	   		$data = $this->action_list_logic();
+			$this->template->bind('content', $content);
+			$this->template->content = View::factory('pages/post/listing',$data);
+            $search_term = $this->request->param('search',NULL);
+        }
  	}
 
  	/**
@@ -103,58 +206,42 @@ class Controller_Ad extends Controller {
 	
 
 	/**
-	 * [action_search With a given parameters, return result]
-	 * @return [?] [?]
-	 *
-	 * @TODO
+	 * [action_search filter results]
+	 * @param  [string] $search_term [search result]
+	 * @return [view]              	 [filtered ads]
 	 */
-	public function action_search()
-	{
-		$slug_ad = $this->request->param('ads');
+	public function action_advansed_search($advert, $cat, $loc)
+	{	
+		$res = new Model_Ad();
+		$res->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 
-		$advert = new Model_Ad();
-		$ads = $advert->where('title', '=', $slug_ad)->and_where('status', '=', Model_Ad::STATUS_PUBLISHED)->find_all();
-		
-		$res_count = $ads->count();
-
-		// check if there are some advet.-s
-		if ($res_count > 0)
+		if($advert != NULL)
 		{
-
-			$pagination = Pagination::factory(array(
-                    'view'           	=> 'pagination',
-                    'total_items'    	=> $res_count,
-                    'items_per_page' 	=> 5
-     	    ))->route_params(array(
-                    'controller' 		=> $this->request->controller(),
-                    'action'      		=> $this->request->action(),
-                 
-    	    ));
-    	    // $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-    	    // 					->order_by('created','desc')
-         //        	            ->limit($pagination->items_per_page)
-         //        	            ->offset($pagination->offset)
-         //        	            ->find_all();
-			}
-		else
-		{
-			//trow 404 Exception
-			throw new HTTP_Exception_404();
+			$res->where('title', 'like', '%'.$advert.'%');  
 		}
 
-		if(Auth::instance()->get_user() == NULL)
+		if($cat !== NULL)
 		{
-			$user = NULL;
+			$slug_cat = new Model_Category();
+			$slug_cat = $slug_cat->where('name', 'like', '%'.$cat.'%')
+								 ->limit(1)
+								 ->find();
+
+			$res->where('id_category', '=', $slug_cat->id_category);
+			
 		}
-		else
+		if($loc !== NULL)
 		{
-			$user = Auth::instance()->get_user();
+			$slug_loc = new Model_Location();
+			$slug_loc = $slug_loc->where('name', 'like', '%'.$loc.'%')
+								 ->limit(1)
+								 ->find();
+			
+			$res->where('id_location', '=', $slug_loc->id_location);
 		}
 		
-		$this->template->content = View::factory('pages/post/listing', array('ads'=>$ads, 
-																			 'pagination'=>$pagination, 
-																			 'user'=>$user, 
-																			 'img_path'=>NULL));	
+		return $res;
+
 	}
 
 

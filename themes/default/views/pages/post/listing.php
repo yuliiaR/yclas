@@ -57,7 +57,33 @@
 
 	    <?=$pagination?>	    
 	  <?else:?>
-	    	<h2><?=__('No items found')?></h2>
+	    	<h2><?=__('Ops! Nothing found')?></h2>
+	    	<div class="control"><p><?=__('Improve search :')?></p></div>
+	    	<div class="control-group">
+				<form class="navbar-search pull-left" method="GET" action="">
+					<div class="controls-group">
+						<?= FORM::label('Advertisement', __('Advertisement'), array('class'=>'control-label', 'for'=>'Advertisement'))?>
+						<div class="control">
+							<input type="text" name="advert" class="search-query " placeholder="<?=__('Search')?>">
+						</div>
+		            </div>
+					<div class="controls-group">
+						<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category'))?>
+						<div class="control">
+							<input type="text" name="cat" class="search-query " placeholder="<?=__('Search')?>">
+						</div>
+		            </div>
+		            <div class="controls-group">
+						<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
+						<div class="control">
+							<input type="text" name="loc" class="search-query " placeholder="<?=__('Search')?>">
+						</div>
+		            </div>
+		            <div class="control-group">
+						<?= FORM::button('', 'Publish now', array('type'=>'submit', 'class'=>'btn', 'action'=>Route::url('default')))?>
+					</div>
+				</form>
+			</div>
 	  <?endif?>
 	</div><!--/span--> 
 </div><!--/row-->

@@ -189,8 +189,7 @@
 					}
 					  
 					
-					$user->email('newadvertisement');
-					//$this->request->redirect(Route::url('default')); 
+					$user->email('newadvertisement'); 
 					  
 				}
 				catch (ORM_Validation_Exception $e)
