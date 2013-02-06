@@ -74,15 +74,6 @@ Route::set('page','p/<seotitle>.html')
 
 
 /**
- * Seach results  
- */
-Route::set('search','search/<ads>')
-->defaults(array(
-		'controller' => 'ad',    
-		'action'     => 'search',
-));
-
-/**
  * Item / ad view (public)
  */
 Route::set('ad', '(<category>(/<seotitle>)).html')

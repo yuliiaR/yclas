@@ -12,7 +12,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->meta_description	= __('Advertisements');
 				
 		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
-		//$this->template->scripts['footer'][]= 'js/autogrow-textarea.js';
 		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
 		$this->template->scripts['footer'][]= 'js/pages/new.js';
 
@@ -263,7 +262,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->meta_description	= __('Moderation');
 				
 		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
-		//$this->template->scripts['footer'][]= 'js/autogrow-textarea.js';
 		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
 		$this->template->scripts['footer'][]= 'js/pages/new.js'; 
 
@@ -314,18 +312,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	        	array_push($arr_hits, $count);
 	        }
-
-			// $query = DB::select('*')->from('ads')
-			// 						  ->join('categories')
-			// 						  ->on('ads.id_category', '=', 'categories.id_category')
-			// 						  ->where('ads.status', '=', '30');
-
-			// $
-			// $res = $query->execute();
-			// foreach ($res as $key) {
-			// 	print_r($key['id_location']);
-			// }
-			
 
 			$this->template->content = View::factory('oc-panel/pages/moderate',array('ads'			=> $ads,
 																					'pagination'	=> $pagination,

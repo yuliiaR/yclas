@@ -88,7 +88,7 @@ class Model_User extends ORM {
      * Label definitions for validation
      *
      * @return array
-     *//*
+     */
     public function labels()
     {
     	return array(
@@ -103,7 +103,7 @@ class Model_User extends ORM {
 				        'last_modified'	=> 'Last modified',
 				        'last_login'	=> 'Last login',
 				    );
-    }*/
+    }
 
     /**
      * Filters to run when data is set in this model. The password filter
@@ -357,11 +357,14 @@ class Model_User extends ORM {
     public function form_setup($form)
     {
         $form->fields['password']['display_as'] = 'password';
+        $form->fields['email']['caption'] = 'email';
+        $form->fields['status']['display_as'] = 'select';
+        $form->fields['status']['options'] = array('0','1','5');
     }
 
     public function exclude_fields()
     {
-        return array('id_user', 'salt', 'date_created', 'date_lastlogin', 'ip_created', 'ip_lastlogin');
+        return array('created', 'last_modified', 'last_login', 'last_ip', 'token', 'token_expires', 'token_created', 'logins','user_agent');
     }
 
 

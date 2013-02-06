@@ -65,12 +65,17 @@ class Model_Location extends ORM {
 
 	public function form_setup($form)
 	{
-		$form->fields['password']['display_as'] = 'password';
+		$form->fields['description']['display_as'] = 'textarea';
+		$form->fields['id_location_parent']['display_as'] = 'select';
+		$form->fields['id_location_parent']['options'] = range(0, 30);
+		$form->fields['parent_deep']['display_as'] = 'select';
+		$form->fields['parent_deep']['options'] = range(0, 3);
+		$form->fields['seoname']['caption'] = 'seoname';		
 	}
 
 	public function exclude_fields()
 	{
-	    return array('id_user', 'salt', 'date_created', 'date_lastlogin', 'ip_created', 'ip_lastlogin');
+	    return array();
 	}
 
 

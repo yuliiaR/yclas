@@ -36,7 +36,6 @@
   </head>
 
   <body>
-  	
 	<?=$header?>
     <div class="container">
 	    <div class="row">
@@ -51,7 +50,14 @@
 		<?=$footer?>
     </div><!--/.fluid-container-->
 
-	<?=View::scripts($scripts,'footer')?>	
+	<?=View::scripts($scripts,'footer')?>
+
+	<script>
+    $(function (){
+        //Theme.init ();
+        $("select").chosen();
+    });//@todo somewhere else
+    </script>	
 	
 	<!--[if lt IE 7 ]>
 		<?=HTML::script('http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js')?>

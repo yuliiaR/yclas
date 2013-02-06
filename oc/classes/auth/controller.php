@@ -75,10 +75,12 @@ class Auth_Controller extends Controller
 			$this->template->styles           = array();
 			$this->template->scripts          = array();
 			$this->template->user 			  = Auth::instance()->get_user();
-			View::$styles	        		  = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css' => 'screen');
-			View::$scripts['header']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js',	
-								'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js'
-								);
+			View::$styles	        		  = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css' => 'screen',
+													  'css/chosen.css'=>'screen');
+			View::$scripts['header']		  = array('http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js',	
+													  'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js', 
+												      );
+			View::$scripts['footer']		  = array('js/chosen.jquery.min.js',);
 		}
 		
 		

@@ -53,7 +53,8 @@ class Model_Category extends ORM {
 			        'id_category_parent'=> array(),
 			        'parent_deep'		=> array(),
 			        'seoname'			=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
-			        'description'		=> array(array('max_length', array(':value', 255)), ));
+			        'description'		=> array(array('max_length', array(':value', 255)), ),
+			        'price'				=> array(array('numeric')), );
 	}
 
 	/**
@@ -80,20 +81,18 @@ class Model_Category extends ORM {
 	 * 
 	 */
 	public function form_setup($form)
-	{
-		//$form->set_sexclude_fields(array('id_category', 'created'));//, 'seoname'
-		$form->fields['password']['display_as'] = 'password';
-		// $form->fields['description']['display_as'] = 'textarea';
-		// $form->add_field('password_confirm', array('display_as' => 'password'), 'after', 'password');
-		// $form->fields['password']['display_as'] = 'password';
-		// $form->rule('password_confirm', 'matches', array(':validation', 'password', ':field'));
-		// $form->set_value('password', '');
-		// $form->set_value('password_confirm', '');
+	{	
+		$form->fields['order']['display_as'] = 'select';
+		$form->fields['order']['options'] = range(0,30);
+		$form->fields['parent_deep']['display_as'] = 'select';
+		$form->fields['parent_deep']['options'] = range(0,3);
+		$form->fields['description']['display_as'] = 'textarea';
+		$form->fields['price']['caption'] = 'currency';
 	}
 
 	public function exclude_fields()
 	{
-	    return array('id_user', 'salt', 'date_created', 'date_lastlogin', 'ip_created', 'ip_lastlogin');
+	    return array('id_category', 'created', 'id_category_parent');
 	}
 
 

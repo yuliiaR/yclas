@@ -31,33 +31,34 @@ class Model_Config extends ORM {
      *
      * @return array
      */
-    public function rules()
-    {
-    	return array(
+    // public function rules()
+    // {
+    // 	return array(
 			       
-			    );
-    }
+			 //    );
+    // }
 
     /**
      * Label definitions for validation
      *
      * @return array
      */
-    public function labels()
-    {
-    	return array(
+    // public function labels()
+    // {
+    // 	return array(
 			       
-			    );
-    }
+			 //    );
+    // }
 
     public function form_setup($form)
     {
-        $form->fields['password']['display_as'] = 'password';
+        // $form->fields['group_name']['display_as'] = 'text';
+        // $form->fields['config_key']['display_as'] = 'text';
     }
 
     public function exclude_fields()
     {
-        return array('id_user', 'salt', 'date_created', 'date_lastlogin', 'ip_created', 'ip_lastlogin');
+        //return array('id_user', 'salt', 'date_created', 'date_lastlogin', 'ip_created', 'ip_lastlogin');
     }
 
 

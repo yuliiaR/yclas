@@ -112,7 +112,6 @@ CREATE TABLE `oc_config` (
   `group_name` VARCHAR(128)  NOT NULL, 
   `config_key` VARCHAR(128)  NOT NULL, 
   `config_value` TEXT, 
-  PRIMARY KEY (`group_name`, `config_key`) 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
 
 --for help tips,pages/FAQ and email templates using the type.
