@@ -32,6 +32,11 @@
 				<?=__('Visual')?>
 			</a>
 			</li>
+			<li><a
+				href="<?=Route::url('oc-panel',array('controller'=>'formconf'))?>">
+				<?=__('Form Configuration')?>
+			</a>
+			</li>
 			<li class="nav-header"><?=__('Tools')?></li>
 			<li><a
 				href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>">

@@ -44,7 +44,7 @@
 						'price'			=> $price 		= 	$this->request->post('price'),
 						'address'		=> $address 	= 	$this->request->post('address'),
 						'phone'			=> $phone 		= 	$this->request->post('phone'),
-						'user'			=> $user = new Model_User()
+						'user'			=> $user
 						); 
 		
 		$config = new Model_Config();
@@ -52,17 +52,18 @@
 		
 		if ($config->config_value == 0){
 			$status = Model_Ad::STATUS_PUBLISHED;
-			$this->_save_new_ad($data, $status, $published = TRUE);
+			$this->_save_new_ad($data, $status, $published = TRUE, $config->config_value);
 
 		}
 		else if($config->config_value == 1)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE);
+			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value);
 		}
 		else if($config->config_value == 2)
 		{
-			$this->template->content = View::factory('pages/post/paypal');
+			$status = Model_Ad::STATUS_NOPUBLISHED;
+			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value);
 		}
 
 
@@ -76,7 +77,7 @@
  	 * @param  [int] $status [status of advert.]
  	 * 
  	 */
- 	public function _save_new_ad($data, $status, $published)
+ 	public function _save_new_ad($data, $status, $published, $moderation)
  	{
  		if (!$data['_auth']->logged_in()) // this part is for users that are not logged, not finished !!!
 			{
@@ -128,17 +129,17 @@
 			}
 			else
 			{
-				$usr 		= $data['_auth']->get_user()->id_user; 		// returns and error if user not loged in !!! check that
+				$usr 		= $data['_auth']->get_user()->id_user; 		// returns and error if user not logged in !!! check that
 				$name 		= $data['_auth']->get_user()->name;
 				$email 		= $data['_auth']->get_user()->email;
 			}	
 		
 		$_new_ad = ORM::factory('ad');
 		
-		if($this->request->post() && captcha::check('contact')) //post submition  
+		if($this->request->post()) //post submition  
 		{
-			
-			if(Valid::not_empty($data['title']) AND Valid::not_empty($data['description']))
+
+			if(captcha::check('contact'))
 			{		
 				
 				//insert data
@@ -187,9 +188,7 @@
 						$_ad_published->published = $_ad_published->created;
 						$_ad_published->save(); 
 					}
-					  
-					
-					$user->email('newadvertisement'); 
+					//$user->email('newadvertisement'); 
 					  
 				}
 				catch (ORM_Validation_Exception $e)
@@ -200,20 +199,18 @@
 				{
 					throw new HTTP_Exception_500($e->getMessage());
 				}
-		}
-		else
-		{ 
-			Alert::set(Alert::ALERT, __('Fields Missing'));
-		}
+			}
+			else
+			{ 
+				Alert::set(Alert::ALERT, __('Captcha is not correct'));
+			}
+			
+			if($moderation == 2)
+			{
+				//Paypal::factory(false);
+				$this->template->content = View::factory('pages/post/paypal');
+			}
 
-			
-			////////////////////////////////////
-			// create HISTORY.xml file
-			// for keeping track of changes made
-			// TO DO...
-			// ///////////////////////////////// 
-			
-			//recaptcha validation, if recaptcha active
 		}
  	}
 
