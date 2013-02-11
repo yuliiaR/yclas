@@ -82,25 +82,40 @@ class Model_Category extends ORM {
 	 */
 	public function form_setup($form)
 	{	
-		$config = Kohana::$config->load('form')->get('category');
+		// get values from form form config file 
+		$config = Kohana::$config->load('form');
+		$general = $config->get('general');
+		$category = $config->get('category'); 
 
-		if ($config['description'] == TRUE) 
+		if ($general['description']) 
 			$form->fields['description']['display_as'] = 'textarea';
-		if($config['price']) 
+		if($category['price']) 
 			$form->fields['price']['caption'] = 'currency';
 		$form->fields['order']['display_as'] = 'select';
 		$form->fields['order']['options'] = range(0,30);
-		$form->fields['parent_deep']['display_as'] = 'select';
-		$form->fields['parent_deep']['options'] = range(0,3);
-		
+		if ($general['parent_deep']) 
+		{
+			$form->fields['parent_deep']['display_as'] = 'select';
+			$form->fields['parent_deep']['options'] = range(0,3);
 		}
+	}
 
 	public function exclude_fields()
 	{
 		// get values from form form config file 
-		$config = Kohana::$config->load('form')->get('category');
+		$config = Kohana::$config->load('form');
+		$general = $config->get('general');
+		$category = $config->get('category'); 
+		
 		$res = array();
-		foreach($config as $c => $value)
+		foreach ($general as $g => $value) 
+		{
+			if($value == FALSE)
+			{
+				array_push($res, $g);
+			}
+		}
+		foreach($category as $c => $value)
 		{
 			if($value == FALSE)
 			{

@@ -65,17 +65,48 @@ class Model_Location extends ORM {
 
 	public function form_setup($form)
 	{
-		$form->fields['description']['display_as'] = 'textarea';
+		// get values from form form config file 
+		$config = Kohana::$config->load('form');
+		$general = $config->get('general');
+		$location = $config->get('location'); 
+
+		if ($general['description']) 
+			$form->fields['description']['display_as'] = 'textarea';
+		if ($general['parent_deep']) 
+		{
+			$form->fields['parent_deep']['display_as'] = 'select';
+			$form->fields['parent_deep']['options'] = range(0,3);
+		}
+		if ($location['seoname']) 
+			$form->fields['seoname']['caption'] = 'seoname';
 		$form->fields['id_location_parent']['display_as'] = 'select';
 		$form->fields['id_location_parent']['options'] = range(0, 30);
-		$form->fields['parent_deep']['display_as'] = 'select';
-		$form->fields['parent_deep']['options'] = range(0, 3);
-		$form->fields['seoname']['caption'] = 'seoname';		
+				
 	}
 
 	public function exclude_fields()
 	{
-	    return array();
+	  // get values from form form config file 
+		$config = Kohana::$config->load('form');
+		$general = $config->get('general');
+		$location = $config->get('location'); 
+		
+		$res = array();
+		foreach ($general as $g => $value) 
+		{
+			if($value == FALSE)
+			{
+				array_push($res, $g);
+			}
+		}
+		foreach($location as $c => $value)
+		{
+			if($value == FALSE)
+			{
+				array_push($res, $c);
+			}
+		}
+	    return $res;
 	}
 
 

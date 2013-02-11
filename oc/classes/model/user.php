@@ -364,7 +364,27 @@ class Model_User extends ORM {
 
     public function exclude_fields()
     {
-        return array('created', 'last_modified', 'last_login', 'last_ip', 'token', 'token_expires', 'token_created', 'logins','user_agent');
+        // get values from form form config file 
+        $config = Kohana::$config->load('form');
+        $general = $config->get('general');
+        $user = $config->get('user'); 
+        
+        $res = array();
+        foreach ($general as $g => $value) 
+        {
+            if($value == FALSE)
+            {
+                array_push($res, $g);
+            }
+        }
+        foreach($user as $c => $value)
+        {
+            if($value == FALSE)
+            {
+                array_push($res, $c);
+            }
+        }
+        return $res;    
     }
 
 
