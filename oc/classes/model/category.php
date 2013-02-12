@@ -91,13 +91,14 @@ class Model_Category extends ORM {
 			$form->fields['description']['display_as'] = 'textarea';
 		if($category['price']) 
 			$form->fields['price']['caption'] = 'currency';
-		$form->fields['order']['display_as'] = 'select';
-		$form->fields['order']['options'] = range(0,30);
 		if ($general['parent_deep']) 
 		{
 			$form->fields['parent_deep']['display_as'] = 'select';
 			$form->fields['parent_deep']['options'] = range(0,3);
 		}
+		$form->fields['order']['display_as'] = 'select';
+		$form->fields['order']['options'] = range(0,30);
+		
 	}
 
 	public function exclude_fields()

@@ -356,6 +356,8 @@ class Controller_Ad extends Controller {
 		$loc = $location = new Model_Location();
 		$loc = $loc->find_all();
 		
+		$locale = new Model_Config();
+		$locale = $locale->where('config_key','=','locale')->limit(1)->find();
 
 		if($form->has_images == 1)
 		{
@@ -368,7 +370,10 @@ class Controller_Ad extends Controller {
 				if($entry != '.' && $entry != '..') $count++;
 			}
 
-			
+			$config = new Model_Config();
+			$config->where('config_key','=','num_images')->limit(1)->find();
+			$num_images = $config->config_value;
+
 			if ($count == 0) 
 			{
 				$form->has_images = 0;
@@ -379,7 +384,7 @@ class Controller_Ad extends Controller {
 					echo "something went wrong";
 				}
 			}
-			else if($count < 8) $img_permission = TRUE;
+			else if($count < $num_images*2) $img_permission = TRUE;
 			else $img_permission = FALSE;
 			
 		}else $img_permission = TRUE;
@@ -389,7 +394,8 @@ class Controller_Ad extends Controller {
 																		  'location'	=>$loc, 
 																		  'category'	=>$cat,
 																		  'path'		=>$path,
-																		  'perm'		=>$img_permission));
+																		  'perm'		=>$img_permission,
+																		  'locale'		=>$locale));
 		
 		if(Auth::instance()->get_user()->loaded() == $form->id_user 
 			|| Auth::instance()->get_user()->id_role == 10)

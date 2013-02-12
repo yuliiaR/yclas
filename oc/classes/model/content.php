@@ -75,12 +75,31 @@ class Model_Content extends ORM {
     {
         $form->fields['order']['display_as']            = 'select';
         $form->fields['order']['options']               = range(0, 30);
-       // $form->fields['password']['display_as'] = 'password';
     }
 
     public function exclude_fields()
     {
-       return array('created');
+        // get values from form form config file 
+        $config = Kohana::$config->load('form');
+        $general = $config->get('general');
+        $content = $config->get('content'); 
+        
+        $res = array();
+        foreach ($general as $g => $value) 
+        {
+            if($value == FALSE)
+            {
+                array_push($res, $g);
+            }
+        }
+        foreach($content as $c => $value)
+        {
+            if($value == FALSE)
+            {
+                array_push($res, $c);
+            }
+        }
+        return $res;
     }
 
 } // END Model_Content

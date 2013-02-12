@@ -28,12 +28,37 @@ class Model_Role extends ORM {
 
      public function form_setup($form)
     {
-       
+        // get values from form form config file 
+        $config = Kohana::$config->load('form');
+        $general = $config->get('general');
+
+        if ($general['description']) 
+            $form->fields['description']['display_as'] = 'textarea';
     }
 
     public function exclude_fields()
     {
-        return array('date_created');
+        // get values from form form config file 
+        $config = Kohana::$config->load('form');
+        $general = $config->get('general');
+        $role = $config->get('role'); 
+        
+        $res = array();
+        foreach ($general as $g => $value) 
+        {
+            if($value == FALSE)
+            {
+                array_push($res, $g);
+            }
+        }
+        foreach($role as $c => $value)
+        {
+            if($value == FALSE)
+            {
+                array_push($res, $c);
+            }
+        }
+        return $res; 
     }
 
 }

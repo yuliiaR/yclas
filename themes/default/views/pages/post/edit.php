@@ -129,7 +129,10 @@
 				<div class="control-group">
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
-						<?= FORM::input('price', $ad->price, array('placeholder' => __('Price'), 'class' => 'input-xlarge', 'id' => 'price', 'type'=>'number'))?>
+						<div class="input-prepend">
+						<span class="add-on">$</span>
+						<?= FORM::input('price', number_format($ad->price, 2), array('class' => 'input-xlarge span10', 'id' => 'price', 'type'=>'number'))?>
+						</div>
 					</div>
 				</div>
 				<div class="form-actions">

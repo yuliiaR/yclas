@@ -85,6 +85,16 @@ class I18n extends Kohana_I18n {
     {
         return __($string);
     }
+
+    public static function get_money_currency()
+    {
+        // $currencies = array('dollar'=>array('locale'=>array('en_US'), 'sign'=>'$'),
+        //                     'pound'=>array('locale'=>array('en_GB'), '$pound;'),
+        //                     'euro'=>array('locale'=>array('')),'sign'=>'$euro;'),
+        //                     ''=>'',
+        //                     ''=>'',
+        //                     ''=>'',);
+    }
     
 }//end i18n
 
