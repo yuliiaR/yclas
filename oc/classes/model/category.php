@@ -76,6 +76,11 @@ class Model_Category extends ORM {
 	}
 
 	/**
+	 * Currency deffinitio
+	 * 
+	 */
+	
+	/**
 	 * 
 	 * formmanager definitions
 	 * 
