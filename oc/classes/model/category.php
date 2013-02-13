@@ -74,11 +74,6 @@ class Model_Category extends ORM {
 			        'description'			=> __('Description'),
 			        'price'					=> __('Price'));
 	}
-
-	/**
-	 * Currency deffinitio
-	 * 
-	 */
 	
 	/**
 	 * 

@@ -83,7 +83,7 @@ $modules = array(
         	   'orm'          => MODPATH.'orm',        // Object Relationship Mapping
 			   'pagination'   => MODPATH.'pagination', // ORM Pagination
 			   'breadcrumbs'  => MODPATH.'breadcrumbs',// breadcrumb view
-               'paypal'       => MODPATH.'paypal',     // paypal payment system
+               //'paypal'       => MODPATH.'paypal',     // paypal payment system
 			   'plugin'       => MODPATH.'plugin',     // hooks used for the plugin system
 			   'formmanager'  => MODPATH.'formmanager',// forms to objects ORM
                

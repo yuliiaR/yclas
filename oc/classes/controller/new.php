@@ -48,7 +48,7 @@
 						); 
 		
 		$config = new Model_Config();
-		$config->where('group_name','=', 'general')->limit(1)->find(); // get value from config (moderation on/off)
+		$config->where('config_key','=', 'moderation')->limit(1)->find(); // get value from config (moderation on/off)
 		
 		if ($config->config_value == 0){
 			$status = Model_Ad::STATUS_PUBLISHED;
@@ -205,9 +205,23 @@
 				Alert::set(Alert::ALERT, __('Captcha is not correct'));
 			}
 			
+			// PAYMENT METHOD ACTIVE
 			if($moderation == 2)
 			{
-				//Paypal::factory(false);
+				$site_info = new Model_Config();
+				$site_info = $site_info->where('group_name', '=', 'paypal')
+									   //->and_where('config_key', '=', 'site_name')
+									  // ->and_where('config_key', '=', 'site_url')
+									   ->find_all();
+				
+				// $site_name;
+				// $site_url;
+				// $paypal_currency;
+
+				foreach ($site_info as $si) {
+					// if($si->config_key == 'currency')	
+					var_dump($si->config_value);
+				}
 				$this->template->content = View::factory('pages/post/paypal');
 			}
 

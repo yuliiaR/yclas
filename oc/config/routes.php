@@ -33,6 +33,17 @@ Route::set('contact', URL::title(__('contact')).'.html')
 
 //-------END reserved pages
 
+// /**
+//  *  PayPal payment gateway
+//  *  //test @TODO
+//  */
+// Route::set('paypal', 'paypal(/<controller>(/<action>(/<id>)))')
+// ->defaults(array(
+// 		'directory'  => 'payment',
+// 		'controller' => 'paypal',
+// 		'action'     => 'index',
+// ));
+
 /**
  * user admin/panel route
  */
