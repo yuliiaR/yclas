@@ -365,26 +365,26 @@ class Model_User extends ORM {
     public function exclude_fields()
     {
         // get values from form form config file 
-        $config = Kohana::$config->load('form');
-        $general = $config->get('general');
-        $user = $config->get('user'); 
+        $config = new Formconfig($this->request, $this->response);
+        $config = $config->form();
         
         $res = array();
-        foreach ($general as $g => $value) 
-        {
-            if($value == FALSE)
+        foreach ($config as $g => $value) 
+        { 
+            if($g == 'general' || $g == 'user')
             {
-                array_push($res, $g);
-            }
+                foreach ($value as $value => $val) 
+                {
+                    if ($val == FALSE)
+                    {
+                        array_push($res, $value);   
+                    }   
+                }
+            } 
+                
         }
-        foreach($user as $c => $value)
-        {
-            if($value == FALSE)
-            {
-                array_push($res, $c);
-            }
-        }
-        return $res;    
+        
+        return $res;   
     }
 
 

@@ -5,6 +5,8 @@ $(function(){
 		"bulletlist,orderedlist|link,unlink,youtube|source",
 		resizeEnabled: "true"
 	});
+
+// jqtwitterbootstrap form validation 
 $(function () {
 
 	$("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
@@ -13,8 +15,22 @@ $(function () {
 	//$('textarea[name=description]').autogrow();
 });
 
+// show category price
+$("#category").change(function(){
+	var price = "Price for this category is: ";
+
+	$("#category option:selected").each(function(){
+		price += $(this).text() + " ";
+	});
+	$("#cat_price").text(price);
+	
+});
 
 
+/**
+ * [MODERATION / ADVERT. selectbox script]
+ * 
+ */
 var href_del = $('a.delete').attr('href');
 var href_spam = $('a.spam').attr('href');
 var href_deact = $('a.deactivate').attr('href');

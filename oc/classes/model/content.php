@@ -80,26 +80,26 @@ class Model_Content extends ORM {
     public function exclude_fields()
     {
         // get values from form form config file 
-        $config = Kohana::$config->load('form');
-        $general = $config->get('general');
-        $content = $config->get('content'); 
+        $config = new Formconfig($this->request, $this->response);
+        $config = $config->form();
         
         $res = array();
-        foreach ($general as $g => $value) 
-        {
-            if($value == FALSE)
+        foreach ($config as $g => $value) 
+        { 
+            if($g == 'general' || $g == 'content')
             {
-                array_push($res, $g);
-            }
+                foreach ($value as $value => $val) 
+                {
+                    if ($val == FALSE)
+                    {
+                        array_push($res, $value);   
+                    }   
+                }
+            } 
+                
         }
-        foreach($content as $c => $value)
-        {
-            if($value == FALSE)
-            {
-                array_push($res, $c);
-            }
-        }
-        return $res;
+        
+        return $res; 
     }
 
 } // END Model_Content

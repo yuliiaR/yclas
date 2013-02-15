@@ -4,14 +4,15 @@ class Controller_Panel_Formconf extends Auth_Controller {
 
     public function action_index()
     {
-        $config = Kohana::$config->load('form');
+        $config = new Formconfig($this->request, $this->response);
+        $config = $config->form();
         // validation active        
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
 
         if($this->request->post())
         {
             // open config file
-            $filename = "oc/config/form.php";
+            $filename = "oc/classes/formconfig.php";
             $fhandle = fopen($filename, 'r');
             
             // string to be written (return array with config values)

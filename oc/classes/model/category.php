@@ -83,15 +83,14 @@ class Model_Category extends ORM {
 	public function form_setup($form)
 	{	
 		// get values from form form config file 
-		$config = Kohana::$config->load('form');
-		$general = $config->get('general');
-		$category = $config->get('category'); 
-
-		if ($general['description']) 
-			$form->fields['description']['display_as'] = 'textarea';
-		if($category['price']) 
+		$config = new Formconfig($this->request, $this->response);
+       	$conf =  $config->form();
+        
+		if($conf['general']['description']) 
+		$form->fields['description']['display_as'] = 'textarea';
+		if($conf['category']['price']) 
 			$form->fields['price']['caption'] = 'currency';
-		if ($general['parent_deep']) 
+		if($conf['general']['parent_deep']) 
 		{
 			$form->fields['parent_deep']['display_as'] = 'select';
 			$form->fields['parent_deep']['options'] = range(0,3);
@@ -104,25 +103,25 @@ class Model_Category extends ORM {
 	public function exclude_fields()
 	{
 		// get values from form form config file 
-		$config = Kohana::$config->load('form');
-		$general = $config->get('general');
-		$category = $config->get('category'); 
-		
+		$config = new Formconfig($this->request, $this->response);
+        $config = $config->form();
+
 		$res = array();
-		foreach ($general as $g => $value) 
-		{
-			if($value == FALSE)
+		foreach ($config as $g => $value) 
+		{ 
+			if($g == 'general' || $g == 'category')
 			{
-				array_push($res, $g);
-			}
+				foreach ($value as $value => $val) 
+				{
+					if ($val == FALSE)
+					{
+						array_push($res, $value);	
+					}	
+				}
+			} 
+				
 		}
-		foreach($category as $c => $value)
-		{
-			if($value == FALSE)
-			{
-				array_push($res, $c);
-			}
-		}
+		
 	    return $res;
 	}
 

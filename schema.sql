@@ -114,6 +114,21 @@ CREATE TABLE `oc_config` (
   `config_value` TEXT, 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
 
+CREATE TABLE  `oc_orders` (
+  `id_order` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_user` int(10) unsigned NOT NULL,
+  `id_ad` int(10) unsigned NULL, 
+  `paymethod` varchar(20) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `pay_date` DATETIME  NULL,
+  `currency` char(3) NOT NULL,
+  `amount` decimal(14,3) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_order`),
+  KEY `orders_IK_id_user` (`id_user`),
+  KEY `orders_IK_status` (`status`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --for help tips,pages/FAQ and email templates using the type.
 CREATE TABLE `as_content` (
   `id_content` int(10) unsigned NOT NULL AUTO_INCREMENT,

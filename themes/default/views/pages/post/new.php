@@ -6,6 +6,9 @@
 		<div class="page-header">
 			<h1><?=__('Publish new advertisement')?></h1>
 		</div>
+		<div id="advise" class="well advise clearfix">
+			<p class="text-warning"> Price for this advertisement is: </p>
+		</div>
 		<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">
@@ -22,6 +25,11 @@
 							<?php $_val_category[] = $cat->seoname; ?>
 						<?endforeach?>
 					<?= FORM::select('category', $_val_category, 0, array('id'=>'category','class'=>'input-xlarge', 'required') );?>
+					<?$_price_category = array('0'=>null);?>
+						<?foreach ($_cat as $cat):?>
+							<?php $_price_category[] = $cat->price; ?>
+						<?endforeach?>
+					<p id="cat_price" class="text-warning"></p>
 					</div>
 				</div>
 				<div class="control-group">
@@ -83,6 +91,7 @@
 					</div>
 				</div>
 				<?endif?>
+				<?if ($captcha_show):?>
 				<div class="control-group">
 					<div class="controls">
 						Captcha*:<br />
@@ -90,6 +99,7 @@
 						<?= FORM::input('captcha', "", array('class' => 'input-xlarge', 'id' => 'captcha', 'required'))?>
 					</div>
 				</div>
+				<?endif?>
 				<div class="form-actions">
 					<?= FORM::button('submit', 'Publish now', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 					<p class="help-block">Dynamic text, for free or pay XX€..</p>

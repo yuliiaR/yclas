@@ -14,6 +14,7 @@
 				<?php sidebar_link(__('Users'),'user')?>
 				<?php sidebar_link(__('User Roles'),'role')?>
 				<?php sidebar_link(__('Roles access'),'access')?>
+				<?php sidebar_link(__('Order List'), 'order')?>
 			<? endif ?>
 
 			<li><a

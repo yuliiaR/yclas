@@ -363,19 +363,35 @@ class Controller_Ad extends Controller {
 		{
 			$current_path = $form->_gen_img_path($form->seotitle, $form->created);
 			
-			$handle = opendir($current_path);
-			$count = 0;
-			while(FALSE !== ($entry = readdir($handle)))
-			{
-				if($entry != '.' && $entry != '..') $count++;
+			
+			if (is_dir($current_path)){ // sanity check
+				$handle = opendir($current_path);
+				$count = 0;
+				while(FALSE !== ($entry = readdir($handle)))
+				{
+					if($entry != '.' && $entry != '..') $count++;
+				}
+				
+				$config = new Model_Config();
+				$config->where('config_key','=','num_images')->limit(1)->find();
+				$num_images = $config->config_value;
+
+				if ($count == 0) 
+				{
+					$form->has_images = 0;
+					try {
+						$form->save();
+						$img_permission = TRUE;
+					} catch (Exception $e) {
+						echo "something went wrong";
+					}
+				}
+				else if($count < $num_images*2) $img_permission = TRUE;
+				else $img_permission = FALSE;
 			}
-
-			$config = new Model_Config();
-			$config->where('config_key','=','num_images')->limit(1)->find();
-			$num_images = $config->config_value;
-
-			if ($count == 0) 
+			else 
 			{
+				$img_permission = FALSE;
 				$form->has_images = 0;
 				try {
 					$form->save();
@@ -384,9 +400,6 @@ class Controller_Ad extends Controller {
 					echo "something went wrong";
 				}
 			}
-			else if($count < $num_images*2) $img_permission = TRUE;
-			else $img_permission = FALSE;
-			
 		}else $img_permission = TRUE;
 		
 		$path = $this->_image_path($form);

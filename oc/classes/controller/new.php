@@ -31,9 +31,13 @@
 		$_cat = $category->find_all();
 		$_loc = $location->find_all();
 		
+		$captcha_show = new Formconfig($this->request, $this->response);
+        $captcha_show = $captcha_show->form();
+
 		$this->template->bind('content', $content);
-		$this->template->content = View::factory('pages/post/new', array('_cat'		=> $_cat,
-																		 '_loc' 	=> $_loc,
+		$this->template->content = View::factory('pages/post/new', array('_cat'			=> $_cat,
+																		 '_loc' 		=> $_loc,
+																		 'captcha_show' => $captcha_show['captcha']['captcha'],
 																		 ));
 
 		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
@@ -52,18 +56,18 @@
 		
 		if ($config->config_value == 0){
 			$status = Model_Ad::STATUS_PUBLISHED;
-			$this->_save_new_ad($data, $status, $published = TRUE, $config->config_value);
+			$this->_save_new_ad($data, $status, $published = TRUE, $config->config_value, $captcha_show['captcha']['captcha']);
 
 		}
 		else if($config->config_value == 1)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value);
+			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show['captcha']['captcha']);
 		}
 		else if($config->config_value == 2)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value);
+			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show['captcha']['captcha']);
 		}
 
 
@@ -77,7 +81,7 @@
  	 * @param  [int] $status [status of advert.]
  	 * 
  	 */
- 	public function _save_new_ad($data, $status, $published, $moderation)
+ 	public function _save_new_ad($data, $status, $published, $moderation, $captcha_show)
  	{
  		if (!$data['_auth']->logged_in()) // this part is for users that are not logged, not finished !!!
 			{
@@ -139,7 +143,7 @@
 		if($this->request->post()) //post submition  
 		{
 
-			if(captcha::check('contact'))
+			if(!$captcha_show || captcha::check('contact') )
 			{		
 				
 				//insert data
@@ -176,7 +180,7 @@
 
 		        }else $_new_ad->has_images = 1;
 
-			try
+				try
 				{
 					$_new_ad->save();
 					
@@ -199,31 +203,33 @@
 				{
 					throw new HTTP_Exception_500($e->getMessage());
 				}
+
+				// PAYMENT METHOD ACTIVE
+				if($moderation == 2)
+				{
+					$site_info = new Model_Config();
+					$site_info = $site_info->where('group_name', '=', 'paypal')
+										   //->and_where('config_key', '=', 'site_name')
+										  // ->and_where('config_key', '=', 'site_url')
+										   ->find_all();
+					
+					// $site_name;
+					// $site_url;
+					// $paypal_currency;
+
+					foreach ($site_info as $si) {
+						// if($si->config_key == 'currency')	
+						var_dump($si->config_value);
+					}
+					$this->template->content = View::factory('pages/post/paypal');
+				}
 			}
 			else
 			{ 
 				Alert::set(Alert::ALERT, __('Captcha is not correct'));
 			}
 			
-			// PAYMENT METHOD ACTIVE
-			if($moderation == 2)
-			{
-				$site_info = new Model_Config();
-				$site_info = $site_info->where('group_name', '=', 'paypal')
-									   //->and_where('config_key', '=', 'site_name')
-									  // ->and_where('config_key', '=', 'site_url')
-									   ->find_all();
-				
-				// $site_name;
-				// $site_url;
-				// $paypal_currency;
-
-				foreach ($site_info as $si) {
-					// if($si->config_key == 'currency')	
-					var_dump($si->config_value);
-				}
-				$this->template->content = View::factory('pages/post/paypal');
-			}
+			
 
 		}
  	}
