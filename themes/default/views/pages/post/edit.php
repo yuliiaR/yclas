@@ -6,6 +6,13 @@
 		<div class="page-header">
 			<h1><?=__('Edit Advertisement')?></h1>
 		</div>
+		<div id="advise" class="well advise clearfix">
+			<?foreach ($extra_payment as $ex) {
+				
+			}?>
+			<?d($extra_payment);?>
+			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '); ?></p>
+		</div>
 		<?= FORM::open(Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">

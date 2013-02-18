@@ -12,7 +12,7 @@
 		<?= FORM::open(Route::url('oc-panel',array('controller'=>'formconf')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="accordion" id="accordion2">
-					<?foreach ($fields as $element => $value): ?>
+					<?foreach ($form_name as $element): ?>
 						<div class="accordion-group">
 							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" data-parrent="#accordion2" href='<?='#'.$element?>'>
@@ -20,19 +20,21 @@
 								</a>
 							</div>
 							<div id="<?=$element?>" class="accordion-body collapse">
-								<?foreach($value as $elem => $val):?>
-								<?if($val == 1) $val = "TRUE"; else $val = "FALSE";?>	
+								<?foreach($config as $elem => $val):?>
+								<?$field_name = str_replace('-', '', strchr($val->config_key, '-'))?>
+								<?if($element == strchr($val->config_key, '-', true)):?>	
 								<div class="control-group">
-									<?= FORM::label($elem, __($elem), array('class'=>'control-label', 'for'=>$elem))?>
+									<?= FORM::label($field_name, __($field_name), array('class'=>'control-label', 'for'=>$field_name))?>
 									<div class="controls">
-										<? $input = array("TRUE", "FALSE"); if($val == "TRUE") $i = 0; else $i = 1?>
-										<?= FORM::select($elem, $input, $i, array(
-										'placeholder' => $val, 
+										<? $input = array("TRUE", "FALSE"); if($val->config_value == "TRUE") $i = 0; else $i = 1?>
+										<?= FORM::select($element.'-'.$field_name, $input, $i, array(
+										'placeholder' => $field_name, 
 										'class' => 'input-xlarge', 
-										'id' => $element.$elem, 
+										'id' => $element.'-'.$field_name, 
 										))?> 
 									</div>
 								</div>
+								<?endif?>
 								<?endforeach?>
 							</div>
 						</div>	

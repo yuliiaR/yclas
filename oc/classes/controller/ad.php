@@ -356,9 +356,9 @@ class Controller_Ad extends Controller {
 		$loc = $location = new Model_Location();
 		$loc = $loc->find_all();
 		
-		$locale = new Model_Config();
-		$locale = $locale->where('config_key','=','locale')->limit(1)->find();
-
+		$config = new Model_Config();
+		$extra_payment = $config->where('group_name','=','general')->find_all();
+		
 		if($form->has_images == 1)
 		{
 			$current_path = $form->_gen_img_path($form->seotitle, $form->created);
@@ -403,12 +403,12 @@ class Controller_Ad extends Controller {
 		}else $img_permission = TRUE;
 		
 		$path = $this->_image_path($form);
-		$this->template->content = View::factory('pages/post/edit', array('ad'			=>$form, 
-																		  'location'	=>$loc, 
-																		  'category'	=>$cat,
-																		  'path'		=>$path,
-																		  'perm'		=>$img_permission,
-																		  'locale'		=>$locale));
+		$this->template->content = View::factory('pages/post/edit', array('ad'				=>$form, 
+																		  'location'		=>$loc, 
+																		  'category'		=>$cat,
+																		  'path'			=>$path,
+																		  'perm'			=>$img_permission,
+																		  'extra_payment'	=>$extra_payment));
 		
 		if(Auth::instance()->get_user()->loaded() == $form->id_user 
 			|| Auth::instance()->get_user()->id_role == 10)

@@ -25,12 +25,17 @@
 			<li class="nav-header"><?=__('Settings')?></li>
 			<li><a
 				href="<?=Route::url('oc-panel',array('controller'=>'config'))?>">
-				<?=__('General')?>
+				<?=__('Config')?>
 			</a>
 			</li>
 			<li><a
 				href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'visual'))?>">
 				<?=__('Visual')?>
+			</a>
+			</li>
+			<li><a
+				href="<?=Route::url('oc-panel',array('controller'=>'generalconf'))?>">
+				<?=__('General')?>
 			</a>
 			</li>
 			<li><a
