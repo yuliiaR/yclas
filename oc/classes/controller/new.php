@@ -217,19 +217,104 @@
 				{
 					throw new HTTP_Exception_500($e->getMessage());
 				}
-
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
 				// PAYMENT METHOD ACTIVE
+				// 
+				// 
+				// 
+				// 
+				// 
+				// 
+				// 
+				// 
+				// 
+				// 
 				if($moderation == 2)
 				{
-					$site_info = new Model_Config();
-					$site_info = $site_info->where('group_name', '=', 'paypal')
-										   ->find_all();
-						
-					foreach ($site_info as $si) {
-						// if($si->config_key == 'currency')	
-						var_dump($si->config_value);
+					// fields / values to be sent 
+
+					$idItem = $data['cat']; // product id 
+					$amount; // amount of product
+					$site_name; // name of the website 
+					$site_url; // url to be send back to 
+					$sendbox; // sendbox TRUE/FALSE
+					$paypal_account; // account of business 
+					$paypal_currency; // currency of paypal (can be different than currency of site) example "USD"
+
+					$amount = new Model_Category();
+					$amount = $amount->where('id_category', '=', $idItem)->limit(1)->find();
+					
+
+					// get parent price and update
+					if($amount->price == 0)
+					{
+						$id_cat_parent = $amount->id_category_parent;
+						unset($amount);
+						$amount = new Model_Category();
+						$amount = $amount->where('id_category', '=', $id_cat_parent)->limit(1)->find();
+						$amount = $amount->price;
 					}
-					$this->template->content = View::factory('pages/post/paypal');
+					else $amount = $amount->price;
+
+					if($amount != 0)
+					{
+						$paypal_info = new Model_Config();
+						$paypal_info = $paypal_info->where('group_name', '=', 'paypal')
+											   ->find_all();
+
+						foreach ($paypal_info as $si) 
+						{
+							if($si->config_key == 'sendbox')
+							{
+								$sendbox = $si->config_value;
+							}
+							elseif ($si->config_key == 'currency')
+							{
+								$paypal_currency = $si->config_value;
+							}
+							elseif ($si->config_key == 'paypal_account') 
+							{
+								$paypal_account = $si->config_value;	
+							}
+						}
+
+						$general_info = new Model_Config();
+						$general_info = $general_info->where('group_name', '=', 'general')
+											   ->find_all();
+
+						foreach ($general_info as $gi) {
+							if ($gi->config_key == 'site_name') 
+							{
+								$site_name = $gi->config_value;
+							}
+							elseif ($gi->config_key == 'site_url') 
+							{
+								$site_url = $gi->config_value;
+							}
+						}
+
+						// unset($paypal_info);
+
+						$paypal_data = array('idItem'			=>$idItem,
+											 'amount'			=>$amount,
+											 'site_name'		=>$site_name,
+											 'site_url'			=>$site_url,
+											 'sendbox'			=>$sendbox,
+											 'paypal_account'	=>$paypal_account,
+											 'paypal_currency'	=>$paypal_currency);
+						
+						$this->template->content = View::factory('pages/post/paypal', $paypal_data);
+					}
+					else $this->request->redirect(Route::url('default'));
 				}
 			}
 			else
