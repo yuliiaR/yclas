@@ -41,7 +41,7 @@ class Formconfig {
 			'from_email'=>TRUE,
 		),
 		'captcha'=>array(
-			'captcha'=>TRUE,
+			'captcha'=>FALSE,
 		),
 		);	
 	}

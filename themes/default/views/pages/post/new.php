@@ -25,10 +25,7 @@
 							<?php $_val_category[] = $cat->seoname; ?>
 						<?endforeach?>
 					<?= FORM::select('category', $_val_category, 0, array('id'=>'category','class'=>'input-xlarge', 'required') );?>
-					<?$_price_category = array('0'=>null);?>
-						<?foreach ($_cat as $cat):?>
-							<?php $_price_category[] = $cat->price; ?>
-						<?endforeach?>
+					
 					<p id="cat_price" class="text-warning"></p>
 					</div>
 				</div>
@@ -91,7 +88,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if ($captcha_show):?>
+				<?if ($captcha_show !== 'FALSE'):?>
 				<div class="control-group">
 					<div class="controls">
 						Captcha*:<br />

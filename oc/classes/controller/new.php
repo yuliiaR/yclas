@@ -31,13 +31,27 @@
 		$_cat = $category->find_all();
 		$_loc = $location->find_all();
 		
-		$captcha_show = new Formconfig($this->request, $this->response);
-        $captcha_show = $captcha_show->form();
+		// $category_pricing = array();
+		// foreach ($_cat as $c ) {
+		// 	if($c->price != 0)
+		// 	{
+		// 		$category_pricing[$c->name] = $c->price;
+		// 	}
+		// 	else
+		// 	{
+		// 		$parent = new Model_Category();
+		// 		$parent = $parent->where('id_category', '=', $c->id_category_parent)->limit(1)->find();
+		// 		$category_pricing[$c->name] = $parent->price;
+		// 	}
+		// }
+		$captcha_show = new Model_Config();
+        $captcha_show = $captcha_show->where('config_key', '=', 'captcha-captcha')->limit(1)->find();
 
 		$this->template->bind('content', $content);
-		$this->template->content = View::factory('pages/post/new', array('_cat'			=> $_cat,
-																		 '_loc' 		=> $_loc,
-																		 'captcha_show' => $captcha_show['captcha']['captcha'],
+		$this->template->content = View::factory('pages/post/new', array('_cat'				=> $_cat,
+																		 '_loc' 			=> $_loc,
+																		 'captcha_show' 	=> $captcha_show->config_value,
+																		 // 'category_pricing' => $category_pricing,
 																		 ));
 
 		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
@@ -56,18 +70,18 @@
 		
 		if ($config->config_value == 0){
 			$status = Model_Ad::STATUS_PUBLISHED;
-			$this->_save_new_ad($data, $status, $published = TRUE, $config->config_value, $captcha_show['captcha']['captcha']);
+			$this->_save_new_ad($data, $status, $published = TRUE, $config->config_value, $captcha_show->config_value);
 
 		}
 		else if($config->config_value == 1)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show['captcha']['captcha']);
+			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show->config_value);
 		}
 		else if($config->config_value == 2)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show['captcha']['captcha']);
+			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show->config_value);
 		}
 
 
@@ -209,14 +223,8 @@
 				{
 					$site_info = new Model_Config();
 					$site_info = $site_info->where('group_name', '=', 'paypal')
-										   //->and_where('config_key', '=', 'site_name')
-										  // ->and_where('config_key', '=', 'site_url')
 										   ->find_all();
-					
-					// $site_name;
-					// $site_url;
-					// $paypal_currency;
-
+						
 					foreach ($site_info as $si) {
 						// if($si->config_key == 'currency')	
 						var_dump($si->config_value);
@@ -308,7 +316,7 @@
     	}
     	else
     	{
-    		$date = date('y/m/d');
+    		$date = Date::format(time(), 'y/m/d');
 
 			$parse_data = explode("/", $date); 			// make array with date values
 		

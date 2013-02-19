@@ -57,8 +57,12 @@ class Controller_Contact extends Controller {
 			
 
 		}
+		$captcha_show = new Model_Config();
+	    $captcha_show = $captcha_show->where('config_key', '=', 'captcha-captcha')->limit(1)->find();
 
-		$this->template->content = View::factory('pages/contact', array('name'=>$name, 'email'=>$email));
+		$this->template->content = View::factory('pages/contact', array('name' =>$name, 
+																		'email'=>$email,
+																		'captcha_show'=>$captcha_show->config_value));
 
 		
 	}

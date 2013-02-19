@@ -62,6 +62,8 @@
 					<?= FORM::textarea('message', "", array('class'=>'input-xlarge', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>7, 'required'))?>	
 					</div>
 			</div>
+			
+			<?if ($captcha_show !== 'FALSE'):?>
 			<div class="control-group">
 				<div class="controls">
 					Captcha*:<br />
@@ -69,6 +71,7 @@
 					<?= FORM::input('captcha', "", array('class' => 'input-xlarge', 'id' => 'captcha', 'required'))?>
 				</div>
 			</div>
+			<?endif?>
 			<div class="control-group">
 				<div class="controls">
 					<?= FORM::button('submit', 'Send', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('ad', array('category'=>$ad->id_category, 'seotitle'=>$ad->seotitle))))?>
