@@ -146,7 +146,7 @@ class Controller_Ad extends Controller {
                  
     	    ));
     	    $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-    	    					->order_by('created','desc')
+    	    					->order_by('published','desc')
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
                 	            ->find_all();
@@ -309,11 +309,15 @@ class Controller_Ad extends Controller {
 						Alert::set(Alert::ERROR, __('You made some mistake'));
 					}
 				}	
+				$captcha_show = new Model_Config();
+	     		$captcha_show = $captcha_show->where('config_key', '=', 'captcha-captcha')->limit(1)->find();
+				
 				$this->template->bind('content', $content);
-				$this->template->content = View::factory('pages/post/single',array('ad'			=>$ad,
-																				   'permission'	=>$permission, 
-																				   'hits'		=>$hits->count_all(), 
-																				   'path'		=>$path));
+				$this->template->content = View::factory('pages/post/single',array('ad'				=>$ad,
+																				   'permission'		=>$permission, 
+																				   'hits'			=>$hits->count_all(), 
+																				   'path'			=>$path,
+																				   'captcha_show'	=>$captcha_show->config_value));
 
 			}
 			//not found in DB
@@ -556,13 +560,6 @@ class Controller_Ad extends Controller {
 		}
 
 		return $path;
-	}
-
-	public function action_image_delete()
-	{
-		// $this->auto_render = FALSE;
-		// $this->template = View::factory('js');
-		// echo $this->request->param('imgpath');
 	}
 	
 }// End ad controller

@@ -31,13 +31,27 @@
 		$_cat = $category->find_all();
 		$_loc = $location->find_all();
 		
-		$captcha_show = new Formconfig($this->request, $this->response);
-        $captcha_show = $captcha_show->form();
+		// $category_pricing = array();
+		// foreach ($_cat as $c ) {
+		// 	if($c->price != 0)
+		// 	{
+		// 		$category_pricing[$c->name] = $c->price;
+		// 	}
+		// 	else
+		// 	{
+		// 		$parent = new Model_Category();
+		// 		$parent = $parent->where('id_category', '=', $c->id_category_parent)->limit(1)->find();
+		// 		$category_pricing[$c->name] = $parent->price;
+		// 	}
+		// }
+		$captcha_show = new Model_Config();
+        $captcha_show = $captcha_show->where('config_key', '=', 'captcha-captcha')->limit(1)->find();
 
 		$this->template->bind('content', $content);
-		$this->template->content = View::factory('pages/post/new', array('_cat'			=> $_cat,
-																		 '_loc' 		=> $_loc,
-																		 'captcha_show' => $captcha_show['captcha']['captcha'],
+		$this->template->content = View::factory('pages/post/new', array('_cat'				=> $_cat,
+																		 '_loc' 			=> $_loc,
+																		 'captcha_show' 	=> $captcha_show->config_value,
+																		 // 'category_pricing' => $category_pricing,
 																		 ));
 
 		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
@@ -56,18 +70,18 @@
 		
 		if ($config->config_value == 0){
 			$status = Model_Ad::STATUS_PUBLISHED;
-			$this->_save_new_ad($data, $status, $published = TRUE, $config->config_value, $captcha_show['captcha']['captcha']);
+			$this->_save_new_ad($data, $status, $published = TRUE, $config->config_value, $captcha_show->config_value);
 
 		}
 		else if($config->config_value == 1)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show['captcha']['captcha']);
+			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show->config_value);
 		}
 		else if($config->config_value == 2)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show['captcha']['captcha']);
+			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show->config_value);
 		}
 
 
@@ -203,25 +217,104 @@
 				{
 					throw new HTTP_Exception_500($e->getMessage());
 				}
-
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
 				// PAYMENT METHOD ACTIVE
+				// 
+				// 
+				// 
+				// 
+				// 
+				// 
+				// 
+				// 
+				// 
+				// 
 				if($moderation == 2)
 				{
-					$site_info = new Model_Config();
-					$site_info = $site_info->where('group_name', '=', 'paypal')
-										   //->and_where('config_key', '=', 'site_name')
-										  // ->and_where('config_key', '=', 'site_url')
-										   ->find_all();
-					
-					// $site_name;
-					// $site_url;
-					// $paypal_currency;
+					// fields / values to be sent 
 
-					foreach ($site_info as $si) {
-						// if($si->config_key == 'currency')	
-						var_dump($si->config_value);
+					$idItem = $data['cat']; // product id 
+					$amount; // amount of product
+					$site_name; // name of the website 
+					$site_url; // url to be send back to 
+					$sendbox; // sendbox TRUE/FALSE
+					$paypal_account; // account of business 
+					$paypal_currency; // currency of paypal (can be different than currency of site) example "USD"
+
+					$amount = new Model_Category();
+					$amount = $amount->where('id_category', '=', $idItem)->limit(1)->find();
+					
+
+					// get parent price and update
+					if($amount->price == 0)
+					{
+						$id_cat_parent = $amount->id_category_parent;
+						unset($amount);
+						$amount = new Model_Category();
+						$amount = $amount->where('id_category', '=', $id_cat_parent)->limit(1)->find();
+						$amount = $amount->price;
 					}
-					$this->template->content = View::factory('pages/post/paypal');
+					else $amount = $amount->price;
+
+					if($amount != 0)
+					{
+						$paypal_info = new Model_Config();
+						$paypal_info = $paypal_info->where('group_name', '=', 'paypal')
+											   ->find_all();
+
+						foreach ($paypal_info as $si) 
+						{
+							if($si->config_key == 'sendbox')
+							{
+								$sendbox = $si->config_value;
+							}
+							elseif ($si->config_key == 'currency')
+							{
+								$paypal_currency = $si->config_value;
+							}
+							elseif ($si->config_key == 'paypal_account') 
+							{
+								$paypal_account = $si->config_value;	
+							}
+						}
+
+						$general_info = new Model_Config();
+						$general_info = $general_info->where('group_name', '=', 'general')
+											   ->find_all();
+
+						foreach ($general_info as $gi) {
+							if ($gi->config_key == 'site_name') 
+							{
+								$site_name = $gi->config_value;
+							}
+							elseif ($gi->config_key == 'site_url') 
+							{
+								$site_url = $gi->config_value;
+							}
+						}
+
+						// unset($paypal_info);
+
+						$paypal_data = array('idItem'			=>$idItem,
+											 'amount'			=>$amount,
+											 'site_name'		=>$site_name,
+											 'site_url'			=>$site_url,
+											 'sendbox'			=>$sendbox,
+											 'paypal_account'	=>$paypal_account,
+											 'paypal_currency'	=>$paypal_currency);
+						
+						$this->template->content = View::factory('pages/post/paypal', $paypal_data);
+					}
+					else $this->request->redirect(Route::url('default'));
 				}
 			}
 			else
@@ -308,7 +401,7 @@
     	}
     	else
     	{
-    		$date = date('y/m/d');
+    		$date = Date::format(time(), 'y/m/d');
 
 			$parse_data = explode("/", $date); 			// make array with date values
 		

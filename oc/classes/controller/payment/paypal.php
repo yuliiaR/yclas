@@ -17,7 +17,7 @@ class Controller_Payment_Paypal extends Controller{
 		//START PAYPAL IPN
 		
 		//manual checks
-		$idItem = cP('item_number');
+		$idItem = $this->request->post('item_number');
 		if (!is_numeric($idItem)) paypal::report_problem('PayPal IPN: not any item ID (item_number is not numeric).');
 
 		//retrieve info for the item in DB

@@ -40,10 +40,12 @@ class Controller_Panel_Ad extends Auth_Controller {
         	array_push($arr_hits, $count);
         }
         
-	    $this->template->content = View::factory('oc-panel/pages/ad',array('res'		=>$arr_ads, 
-	    																	'hits'		=>$arr_hits, 
-	    																	'category'	=>$_list_cat,
-	    																	'location'	=>$_list_loc)); // create view, and insert list with data 		
+
+	    $this->template->content = View::factory('oc-panel/pages/ad',array('res'			=>$arr_ads, 
+	    																	'hits'			=>$arr_hits, 
+	    																	'category'		=>$_list_cat,
+	    																	'location'		=>$_list_loc,
+	    																	'captcha_show'	=>$captcha_show)); // create view, and insert list with data 		
 	}
 
 	/**
@@ -216,14 +218,15 @@ class Controller_Panel_Ad extends Auth_Controller {
 		{
 			if ($id !== '')
 			{
-
 				$active_ad = ORM::factory('ad', $id);
 
 				if ($active_ad->loaded())
 				{
 					if ($active_ad->status != 1)
 					{
+						$active_ad->published = Date::unix2mysql(time());
 						$active_ad->status = 1;
+						// $active_ad->published = 
 						
 						try
 						{
@@ -236,8 +239,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 					}
 					else
 					{				
-						Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'avtive'"));
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+						Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'active'"));
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 					} 
 				}
 				else
@@ -248,7 +251,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Success, advertisemet is active and published'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 	}
 
 	/**
