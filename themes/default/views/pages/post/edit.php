@@ -8,10 +8,18 @@
 		</div>
 		<div id="advise" class="well advise clearfix">
 			<?foreach ($extra_payment as $ex) {
-				
+				if ($ex->config_key == 'pay_to_go_on_top') {
+					$to_top = $ex->config_value;
+				} elseif ($ex->config_key == 'pay_to_go_on_feature'){
+					$featured_price = $ex->config_value; 
+				} elseif ($ex->config_key == 'global-currency'){
+					$global_currency = $ex->config_value;
+				} 
 			}?>
-			<?d($extra_payment);?>
-			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '); ?></p>
+			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '.$to_top.' '.$global_currency);?></p>
+			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('ad', array('action'=>'to_top','category'=>$ad->id_category,'seotitle'=>$ad->seotitle))?>">Go Top!</a>
+			<p class="text-info"><?=__('Your Advertisement can go to featured! For only '.$featured_price.' '.$global_currency);?></p>
+			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('ad', array('action'=>'to_featured','category'=>$ad->id_category,'seotitle'=>$ad->seotitle))?>">Go Top!</a>
 		</div>
 		<?= FORM::open(Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
@@ -137,7 +145,7 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<div class="input-prepend">
-						<span class="add-on">$</span>
+						<span class="add-on"><?=$global_currency?></span>
 						<?= FORM::input('price', number_format($ad->price, 2), array('class' => 'input-xlarge span10', 'id' => 'price', 'type'=>'number'))?>
 						</div>
 					</div>

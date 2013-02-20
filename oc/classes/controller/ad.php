@@ -561,6 +561,80 @@ class Controller_Ad extends Controller {
 
 		return $path;
 	}
+
+	/**
+	 * [action_to_top] [pay to go on top, and make order]
+	 *
+	 * @TODO if paymant is corrent and done update order table(status, pay_date), and put it to top (change published date)
+	 */
+	public function action_to_top()
+	{
+		$id_cat = $this->request->param('category');
+
+		$id_item = core::config('general.ID-pay_to_go_on_top');
+
+		$to_top_paypal = new Controller_Payment_Paypal($this->request, $this->response);
+		$to_top_paypal = $to_top_paypal->payment($id_item, 'pay_to_top');
+
+		$this->template->content = View::factory('pages/post/paypal', $to_top_paypal);
+
+		// update orders table
+		if($to_top_paypal !== NULL)
+		{
+			// fields 
+			$id_user = Auth::instance()->get_user()->id_user;
+			
+			$ad = new Model_Ad();
+			$ad = $ad->where('seotitle', '=', $this->request->param('seotitle'))->limit(1)->find();
+			$id_ad = $ad->id_ad;
+
+			$id_product = $id_item;
+
+			$paymethod = 'paypal'; // @TODO - this is to static, when new payment methid is implemented deal differentlly 
+
+			$currency = core::config('paypal.paypal_currency');
+
+			$amount = $to_top_paypal['amount'];
+
+			//create order
+			
+			$order = new Model_Order();
+
+			$order->id_user = $id_user;
+			$order->id_ad = $id_ad;
+			$order->id_product = $id_product;
+			$order->paymethod = $paymethod;
+			$order->currency = $currency;
+			$order->amount = $amount;
+
+			try 
+			{
+				$order->save();
+			} 
+			catch (Exception $e) 
+			{
+				echo $e;
+			}
+			
+		}
+	}
+	
+	/**
+	 * [action_to_featured] [pay to go in featured]
+	 *
+	 * @TODO - when paypal returns token, update
+	 */
+	public function action_to_featured()
+	{
+		$id_cat = $this->request->param('category');
+
+		$id_item = core::config('general.ID-pay_to_go_on_feature');
+
+		$to_featured_paypal = new Controller_Payment_Paypal($this->request, $this->response);
+		$to_featured_paypal = $to_featured_paypal->payment($id_item->config_value, 'pay_to_featured');
+
+		$this->template->content = View::factory('pages/post/paypal', $to_featured_paypal);
+	}
 	
 }// End ad controller
 

@@ -4,7 +4,7 @@
 
 		<?php 
 		
-		if ($sendbox) $paypalWeb = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; // TEST SANDBOX
+		if ($sandbox) $paypalWeb = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; // TEST SANDBOX
 		else $paypalWeb = 'https://www.paypal.com/cgi-bin/webscr';
 		?>
 	<div style="font-family: Arial; font-size: 20px; text-align: center; margin-top: 200px;">

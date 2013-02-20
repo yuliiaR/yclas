@@ -44,8 +44,9 @@ class Controller_Panel_Ad extends Auth_Controller {
 	    $this->template->content = View::factory('oc-panel/pages/ad',array('res'			=>$arr_ads, 
 	    																	'hits'			=>$arr_hits, 
 	    																	'category'		=>$_list_cat,
+	    																	// 'captcha_show'	=>$captcha_show,
 	    																	'location'		=>$_list_loc,
-	    																	'captcha_show'	=>$captcha_show)); // create view, and insert list with data 		
+	    																	)); // create view, and insert list with data 		
 	}
 
 	/**

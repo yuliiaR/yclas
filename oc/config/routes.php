@@ -87,9 +87,8 @@ Route::set('page','p/<seotitle>.html')
 /**
  * Item / ad view (public)
  */
-Route::set('ad', '(<category>(/<seotitle>)).html')
+Route::set('ad', '(<action>(/<category>(/<seotitle>))).html')
 ->defaults(array(
-		//'directory'  => 'panel',
 		'controller' => 'ad',    
 		'action'     => 'view',
 ));
