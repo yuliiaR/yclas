@@ -569,52 +569,33 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_to_top()
 	{
+		$payer_id = Auth::instance()->get_user()->id_user; 
+
 		$id_cat = $this->request->param('category');
 
 		$id_item = core::config('general.ID-pay_to_go_on_top');
 
 		$to_top_paypal = new Controller_Payment_Paypal($this->request, $this->response);
-		$to_top_paypal = $to_top_paypal->payment($id_item, 'pay_to_top');
+		$to_top_paypal = $to_top_paypal->payment($id_item, $payer_id, 'pay_to_top');
 
 		$this->template->content = View::factory('pages/post/paypal', $to_top_paypal);
 
+		
 		// update orders table
 		if($to_top_paypal !== NULL)
 		{
-			// fields 
-			$id_user = Auth::instance()->get_user()->id_user;
-			
+			// fields
 			$ad = new Model_Ad();
-			$ad = $ad->where('seotitle', '=', $this->request->param('seotitle'))->limit(1)->find();
-			$id_ad = $ad->id_ad;
+			$ad = $ad->where('seotitle', '=', $this->request->param('seotitle'))->limit(1)->find(); 
 
-			$id_product = $id_item;
-
-			$paymethod = 'paypal'; // @TODO - this is to static, when new payment methid is implemented deal differentlly 
-
-			$currency = core::config('paypal.paypal_currency');
-
-			$amount = $to_top_paypal['amount'];
-
-			//create order
+			$ord_data = array('id_user' 	=> $payer_id,
+							  'id_ad' 		=> $ad->id_ad,
+							  'id_product' 	=> $id_item,
+							  'paymethod' 	=> 'paypal',
+							  'currency' 	=> core::config('paypal.paypal_currency'),
+							  'amount' 		=> $to_top_paypal['amount']);
 			
-			$order = new Model_Order();
-
-			$order->id_user = $id_user;
-			$order->id_ad = $id_ad;
-			$order->id_product = $id_product;
-			$order->paymethod = $paymethod;
-			$order->currency = $currency;
-			$order->amount = $amount;
-
-			try 
-			{
-				$order->save();
-			} 
-			catch (Exception $e) 
-			{
-				echo $e;
-			}
+			$this->make_order($ord_data, $payer_id);
 			
 		}
 	}
@@ -626,15 +607,61 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_to_featured()
 	{
+		$payer_id = Auth::instance()->get_user()->id_user; 
+
 		$id_cat = $this->request->param('category');
 
 		$id_item = core::config('general.ID-pay_to_go_on_feature');
 
 		$to_featured_paypal = new Controller_Payment_Paypal($this->request, $this->response);
-		$to_featured_paypal = $to_featured_paypal->payment($id_item->config_value, 'pay_to_featured');
+		$to_featured_paypal = $to_featured_paypal->payment($id_item, $payer_id, 'pay_to_featured');
 
 		$this->template->content = View::factory('pages/post/paypal', $to_featured_paypal);
+
+		// update orders table
+		if($to_featured_paypal !== NULL)
+		{
+			// fields
+			$ad = new Model_Ad();
+			$ad = $ad->where('seotitle', '=', $this->request->param('seotitle'))->limit(1)->find(); 
+
+			$ord_data = array('id_user' 	=> $payer_id,
+							  'id_ad' 		=> $ad->id_ad,
+							  'id_product' 	=> $id_item,
+							  'paymethod' 	=> 'paypal',
+							  'currency' 	=> core::config('paypal.paypal_currency'),
+							  'amount' 		=> $to_featured_paypal['amount']);
+			
+			$this->make_order($ord_data, $payer_id);	
+		}
+	}
+
+	public function make_order($res)
+	{
+
+		//create order		
+		$order = new Model_Order();
+
+		$order->id_user = $res['id_user'];
+		$order->id_ad = $res['id_ad'];
+		$order->id_product = $res['id_product'];
+		$order->paymethod = $res['paymethod'];
+		$order->currency = $res['currency'];
+		$order->amount = $res['amount'];
+
+		try 
+		{
+			$order->save();
+		} 
+		catch (Exception $e){} 
+
+	}
+
+	public function action_confirm_paymant()
+	{
+
 	}
 	
+
 }// End ad controller
 

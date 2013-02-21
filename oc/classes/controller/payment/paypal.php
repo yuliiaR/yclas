@@ -12,52 +12,39 @@
 
 class Controller_Payment_Paypal extends Controller{
 	
-	public static function ipn()
+	public function action_ipn()
 	{
 		//START PAYPAL IPN
 		
 		//manual checks
 		$idItem = $this->request->post('item_number');
-		if (!is_numeric($idItem)) paypal::report_problem('PayPal IPN: not any item ID (item_number is not numeric).');
+		$paypal_amount = $this->request->post('amount');
+		$payer_id = $this->request->post('payer_id');
 
-		//retrieve info for the item in DB
-		$query="select password,idCategory
-				from ".TABLE_PREFIX."posts p
-				where idPost=$idItem and isConfirmed=0 Limit 1";
+		// //retrieve info for the item in DB
+		$query = new Model_Order();
+		$query = $query->where('id_product', '=', $idItem)
+					   ->and_where('status', '=', '0')
+					   ->and_where('id_user', '=', $payer_id)
+					   ->limit(1)->find();
 
-		$post_password='';
-		$idCategory=0;
 
-		$post_result=$ocdb->query($query);
-		if (mysql_num_rows($post_result))
+		if ($query->loaded() && is_numeric($query->id_product))
 		{
-			$post_row=mysql_fetch_assoc($post_result);
-
-			$post_password=$post_row["password"];
-			$idCategory=$post_row["idCategory"];
+			$id_category = new Model_Category();
+			$id_category = $id_category->where('id_category', '=', $query->id_product)->limit(1)->find();
+			$id_category = $id_category->id_category;
 		}
-		else paypal::report_problem('Could not find the Item in DB.');//not found
+		
+		$amount = $query->amount; // product amount
 
-		$amount = (float)PAYPAL_AMOUNT;
-		if (PAYPAL_AMOUNT_CATEGORY)
-		{
-			$query="select price from ".TABLE_PREFIX."categories where idCategory=$idCategory Limit 1";
-		    	
-		    	$result=$ocdb->query($query);
-		    	if (mysql_num_rows($result))
-		    	{
-					$row=mysql_fetch_assoc($result);
-
-				if (is_numeric($row["price"]))
-					if ((float)$row["price"] != 0)
-						$amount=(float)$row["price"];
-				}	
-		}
-
-		if ((float)cP('mc_gross')==$amount && cP('mc_currency')==PAYPAL_CURRENCY && (cP('receiver_email')==PAYPAL_ACCOUNT || cP('business')==PAYPAL_ACCOUNT))
+		if ((float)$this->request->post('mc_gross')==$amount 
+				&& $this->request->post('mc_currency')==core::config('paypal.paypal_currency') 
+				&& ($this->request->post('receiver_email')==core::config('paypal.paypal_account') 
+					|| $this->request->post('business')==core::config('paypal.paypal_account')))
 		{//same price , currency and email no cheating ;)
 
-			if (paypal::validate_ipn()) confirmPost($idItem,$post_password); //payment succeed and we confirm the post ;)
+			if ($this->validate_ipn()) confirmPost($idItem,$post_password); //payment succeed and we confirm the post ;) (CALL TO LOGIC PUT IN ctrl AD)
 
 			else
 			{
@@ -68,12 +55,11 @@ class Controller_Payment_Paypal extends Controller{
 				$message = 'Dear Administrator,<br />
 							A payment has been made but is flagged as INVALID.<br />
 							Please verify the payment manualy and contact the buyer. <br /><br />Here is all the posted info:';
-				sendEmail(PAYPAL_ACCOUNT,$subject,$message.'<br />'.print_r($_POST,true));
+				sendEmail($paypal_account,$subject,$message.'<br />'.print_r($_POST,true));
 			}	
 
 		}
 		//trying to cheat....
-		else paypal::report_problem('Trying to fake the post data');
 			
 	} 
 
@@ -131,7 +117,14 @@ class Controller_Payment_Paypal extends Controller{
 		return $result;
 	}
 
-	public static function payment($idItem, $product = 'category')
+
+	/**
+	 * [returns all necessary data to form]
+	 * @param  [string] $idItem  [time id]
+	 * @param  [string] $product [recongnises product type]
+	 * @return [array]          [data to be send to paypal]
+	 */
+	public static function payment($idItem, $payer_id ,$product = 'category')
 	{
 		// fields / values to be sent 
 
@@ -142,6 +135,7 @@ class Controller_Payment_Paypal extends Controller{
 		$sendbox; // sendbox TRUE/FALSE
 		$paypal_account; // account of business 
 		$paypal_currency; // currency of paypal (can be different than currency of site) example "USD"
+		$payer_id;
 
 		if($product == 'pay_to_top' || $product == 'pay_to_featured')
 		{
@@ -204,6 +198,8 @@ class Controller_Payment_Paypal extends Controller{
 					$site_url = $gi->config_value;
 				}
 			}
+
+
 
 			// unset($paypal_info);
 

@@ -209,7 +209,7 @@
 				if($moderation == 2)
 				{
 					$payment_paypal = new Controller_Payment_Paypal($this->request, $this->response);
-					$payment_paypal = $payment_paypal->payment($data['cat']);
+					$payment_paypal = $payment_paypal->payment($data['cat']); // @TODO - detect user and send to paypal. if user is not logged in deal with that
 
 					if($payment_paypal !== NULL)
 					{

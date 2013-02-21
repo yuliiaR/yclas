@@ -24,7 +24,7 @@
 			<input type="hidden" name="shipping" value="0">
 			<input type="hidden" name="shipping2" value="0">
 			<input type="hidden" name="handling" value="0.00">
-			<input type="hidden" name="return" value="<?=$site_url ?>">
+			<input type="hidden" name="return" value="<?=$site_url?>">
 			<input type="hidden" name="notify_url" value="<?=$site_url ?>/ipn.php">
 			<input type="hidden" name="no_note" value="1">
 			<input type="hidden" name="custom" value="">
