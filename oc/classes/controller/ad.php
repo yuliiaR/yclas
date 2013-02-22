@@ -659,7 +659,25 @@ class Controller_Ad extends Controller {
 
 	public function action_confirm_paymant()
 	{
+		$orders = new Model_Order();
 
+		$id_product = $this->request->param('category');
+		$id_user = $this->request->param('seotitle');
+
+		$orders = $orders->where('if_product','=',$id_product)
+						 ->and_where('status','=', 0)
+						 ->and_where('id_user','=',$id_user)->limit(1)->find();
+
+		if($orders->loaded())
+		{
+			$orders->status = 1;
+
+			try {
+				$orders->save();
+			} catch (Exception $e) {
+				
+			}
+		}
 	}
 	
 

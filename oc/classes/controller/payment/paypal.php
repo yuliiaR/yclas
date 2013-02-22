@@ -21,20 +21,24 @@ class Controller_Payment_Paypal extends Controller{
 		$paypal_amount = $this->request->post('amount');
 		$payer_id = $this->request->post('payer_id');
 
-		// //retrieve info for the item in DB
+		//retrieve info for the item in DB
 		$query = new Model_Order();
 		$query = $query->where('id_product', '=', $idItem)
-					   ->and_where('status', '=', '0')
+					   ->and_where('status', '=', 0)
 					   ->and_where('id_user', '=', $payer_id)
 					   ->limit(1)->find();
 
-
+		// detect product to be processed 
 		if ($query->loaded() && is_numeric($query->id_product))
 		{
 			$id_category = new Model_Category();
 			$id_category = $id_category->where('id_category', '=', $query->id_product)->limit(1)->find();
-			$id_category = $id_category->id_category;
+			$product_id = $id_category->id_category;
 		}
+		else
+		{
+			$product_id = $query->product_id;
+		} 
 		
 		$amount = $query->amount; // product amount
 
@@ -44,7 +48,7 @@ class Controller_Payment_Paypal extends Controller{
 					|| $this->request->post('business')==core::config('paypal.paypal_account')))
 		{//same price , currency and email no cheating ;)
 
-			if ($this->validate_ipn()) confirmPost($idItem,$post_password); //payment succeed and we confirm the post ;) (CALL TO LOGIC PUT IN ctrl AD)
+			if ($this->validate_ipn()) $this->request->redirect(Route::url('ad', array('action'=>'confirm_payment','category'=>$idItem, 'seotitle'=>$payer_id))); //payment succeed and we confirm the post ;) (CALL TO LOGIC PUT IN ctrl AD)
 
 			else
 			{
@@ -209,7 +213,8 @@ class Controller_Payment_Paypal extends Controller{
 								 'site_url'			=>$site_url,
 								 'sandbox'			=>$sandbox,
 								 'paypal_account'	=>$paypal_account,
-								 'paypal_currency'	=>$paypal_currency);
+								 'paypal_currency'	=>$paypal_currency,
+								 'payer_id'			=>$payer_id);
 			
 			return $paypal_data;
 		}

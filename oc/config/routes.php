@@ -31,18 +31,20 @@ Route::set('contact', URL::title(__('contact')).'.html')
 		'controller' => 'contact',
 		'action'	 => 'index',));
 
-//-------END reserved pages
-
 /**
  *  PayPal payment gateway
  *  //test @TODO
  */
-Route::set('paypal', 'ipn.html')
+Route::set('paypal', 'ipnlistener.html')
 ->defaults(array(
 		'directory'  => 'payment',
 		'controller' => 'paypal',
 		'action'     => 'index',
 ));
+
+//-------END reserved pages
+
+
 
 /**
  * user admin/panel route

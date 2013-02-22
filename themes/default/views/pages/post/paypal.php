@@ -25,11 +25,12 @@
 			<input type="hidden" name="shipping2" value="0">
 			<input type="hidden" name="handling" value="0.00">
 			<input type="hidden" name="return" value="<?=$site_url?>">
-			<input type="hidden" name="notify_url" value="<?=$site_url ?>/ipn.php">
+			<input type="hidden" name="notify_url" value="<?=$site_url?>/ipnlistener.html">
 			<input type="hidden" name="no_note" value="1">
 			<input type="hidden" name="custom" value="">
-			<input type="hidden" name="currency_code" value="<?=$paypal_currency ?>">
+			<input type="hidden" name="currency_code" value="<?=$paypal_currency?>">
 			<input type="hidden" name="rm" value="2">
+			<input type="hidden" name="payer_id" value="<?=$payer_id?>">
 			<input type="submit" value="Paypal">
 		</form>
 		<script type="text/javascript">form1.submit();</script>
