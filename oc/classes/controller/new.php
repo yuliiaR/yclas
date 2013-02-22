@@ -192,7 +192,7 @@
 						$_ad_published->published = $_ad_published->created;
 						$_ad_published->save(); 
 					}
-					//$user->email('newadvertisement'); 
+					//$user->email('newadvertisement'); // @TODO send email
 					  
 				}
 				catch (ORM_Validation_Exception $e)
@@ -206,21 +206,67 @@
 				
 				// PAYMENT METHOD ACTIVE
 				
-				if($moderation == 2)
+				if($moderation == 2 || $moderation == 3)
 				{
-					$payment_paypal = new Controller_Payment_Paypal($this->request, $this->response);
-					$payment_paypal = $payment_paypal->payment($data['cat']); // @TODO - detect user and send to paypal. if user is not logged in deal with that
-
-					if($payment_paypal !== NULL)
+				
+					$category = new Model_Category();
+					$category = $category->where('id_category', '=', $data['cat'])->limit(1)->find();
+					
+					
+					// check category price, if 0 check parent
+					if($category->price == 0)
 					{
-						$this->template->content = View::factory('pages/post/paypal', $payment_paypal);
+						$parent = $category->id_category_parent;
+						$cat_parent = new Model_Category();
+						$cat_parent = $cat_parent->where('id_category', '=', $parent)->limit(1)->find();
+
+						if($cat_parent->price == 0) // @TODO add case of moderation+payment (moderation = 3)
+						{
+							Alert::set(Alert::SUCCESS, __('Advertisement is sheduled to be posted, you will be notified when becomes published. Thanks!'));
+							$this->request->redirect(Route::url('default'));
+						}
+						else
+						{
+							$amount = $cat_parent->price;
+						}
 					}
 					else
-					{ 
-						Alert::set(Alert::SUCCESS, __('Advertisement is sheduled to be posted, you will be notified when becomes published. Thanks!'));
-						$this->request->redirect(Route::url('default'));
-
+					{
+						$amount = $category->price;
 					}
+					// var_dump($amount);
+					$payer_id = $usr; 
+					$id_product = $category->id_category;
+
+					$ad = new Model_Ad();
+					$ad = $ad->where('seotitle', '=', $seotitle)->limit(1)->find();
+
+					$ord_data = array('id_user' 	=> $payer_id,
+						  			  'id_ad' 		=> $ad->id_ad,
+						 			  'id_product' 	=> $id_product,
+									  'paymethod' 	=> 'paypal', // @TODO - to strict
+									  'currency' 	=> core::config('paypal.paypal_currency'),
+									  'amount' 		=> $amount);
+					
+					$create_order = new Controller_Ad($this->request, $this->response);
+					$create_order->make_order($ord_data, $payer_id); 
+
+					// find correct order to make paypal invoice 
+					$order_id = new Model_Order();
+					$order_id = $order_id->where('id_ad','=',$ad->id_ad)
+										 ->where('status','=',0)
+										 ->where('id_user','=',$payer_id)
+										 ->where('id_product', '=', $id_product)
+										 ->order_by('id_order', 'desc')
+										 ->limit(1)->find();
+					$order_id = $order_id->id_order; 
+					
+					$payment_paypal = new Controller_Payment_Paypal($this->request, $this->response);
+					$payment_paypal = $payment_paypal->payment($order_id, $payer_id);
+
+					var_dump($payment_paypal);
+					$this->template->content = View::factory('pages/post/paypal', $payment_paypal);
+					
 				}
 			}
 			else

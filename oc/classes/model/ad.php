@@ -161,6 +161,32 @@ class Model_Ad extends ORM {
     }
 
     /**
+     * confirm payment for order
+     *
+     * @param string    $id_order [unique indentifier of order]
+     * @param int       $id_user  [unique indentifier of user] 
+     */
+    public function confirm_payment($id_order, $id_user)
+    {
+        $orders = new Model_Order();
+
+        $orders->where('id_order','=',$id_order)
+                         ->where('status','=', 0)
+                         ->limit(1)->find();
+
+        if($orders->loaded())
+        {
+            $orders->status = 1;
+            $orders->pay_date = Date::unix2mysql(time());
+            try {
+                $orders->save();
+            } catch (Exception $e) {
+                echo $e;  
+            }
+        }
+    }
+
+    /**
      *
      *  Create single table for each advertisement hit
      *  

@@ -35,11 +35,11 @@ Route::set('contact', URL::title(__('contact')).'.html')
  *  PayPal payment gateway
  *  //test @TODO
  */
-Route::set('paypal', 'ipnlistener.html')
+Route::set('paypal', URL::title('ipnlistener').'.html')
 ->defaults(array(
 		'directory'  => 'payment',
 		'controller' => 'paypal',
-		'action'     => 'index',
+		'action'     => 'ipn',
 ));
 
 //-------END reserved pages
