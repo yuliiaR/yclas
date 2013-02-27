@@ -31,13 +31,12 @@
 		$_cat = $category->find_all();
 		$_loc = $location->find_all();
 		
-		$captcha_show = new Model_Config();
-        $captcha_show = $captcha_show->where('config_key', '=', 'captcha-captcha')->limit(1)->find();
+        $captcha_show = core::config('general.captcha-captcha');
 
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/post/new', array('_cat'				=> $_cat,
 																		 '_loc' 			=> $_loc,
-																		 'captcha_show' 	=> $captcha_show->config_value,
+																		 'captcha_show' 	=> $captcha_show,
 																		 ));
 
 		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
@@ -51,25 +50,19 @@
 						'user'			=> $user
 						); 
 		
-		$config = new Model_Config();
-		$config->where('config_key','=', 'moderation')->limit(1)->find(); // get value from config (moderation on/off)
 		
-		if ($config->config_value == 0){
+		$config = core::config('general.moderation');
+		if ($config == 0)
+		{
 			$status = Model_Ad::STATUS_PUBLISHED;
-			$this->_save_new_ad($data, $status, $published = TRUE, $config->config_value, $captcha_show->config_value);
+			$this->_save_new_ad($data, $status, $published = TRUE, $config, $captcha_show);
 
 		}
-		else if($config->config_value == 1)
+		else if($config == 1 || $config == 2 || $config == 3)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show->config_value);
+			$this->_save_new_ad($data, $status, $published = FALSE, $config, $captcha_show);
 		}
-		else if($config->config_value == 2)
-		{
-			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE, $config->config_value, $captcha_show->config_value);
-		}
-
 
 			
  	}
@@ -180,6 +173,14 @@
 
 		        }else $_new_ad->has_images = 1;
 
+		        // file upload
+		        if(isset($_FILES['file1']))
+		        {
+		        	$file = $_FILES['file1'];
+		        	$file_name = new Model_Ad();
+		        	$file_name->save_file($file, $seotitle, $created = NULL);
+		        }
+
 				try
 				{
 					$_new_ad->save();
@@ -212,7 +213,6 @@
 					$category = new Model_Category();
 					$category = $category->where('id_category', '=', $data['cat'])->limit(1)->find();
 					
-					
 					// check category price, if 0 check parent
 					if($category->price == 0)
 					{
@@ -234,7 +234,8 @@
 					{
 						$amount = $category->price;
 					}
-					// var_dump($amount);
+					
+					// make order 
 					$payer_id = $usr; 
 					$id_product = $category->id_category;
 
@@ -264,8 +265,10 @@
 					$payment_paypal = new Controller_Payment_Paypal($this->request, $this->response);
 					$payment_paypal = $payment_paypal->payment($order_id, $payer_id);
 
-					var_dump($payment_paypal);
-					$this->template->content = View::factory('pages/post/paypal', $payment_paypal);
+					
+					$development_logic = new Model_Ad();
+					$development_logic->confirm_payment($order_id, $payer_id, core::config('general.moderation'));
+					//$this->template->content = View::factory('pages/post/paypal', $payment_paypal); //@TODO -- make this active when paypal active
 					
 				}
 			}

@@ -6,21 +6,27 @@
 		<div class="page-header">
 			<h1><?=__('Edit Advertisement')?></h1>
 		</div>
+		<?//if(core::config('formconfig.pay_to_go_on_top') && core::config('formconfig.pay_to_go_on_feature')):?>
 		<div id="advise" class="well advise clearfix">
-			<?foreach ($extra_payment as $ex) {
-				if ($ex->config_key == 'pay_to_go_on_top') {
-					$to_top = $ex->config_value;
-				} elseif ($ex->config_key == 'pay_to_go_on_feature'){
-					$featured_price = $ex->config_value; 
-				} elseif ($ex->config_key == 'global-currency'){
-					$global_currency = $ex->config_value;
+			<?foreach ($extra_payment as $ex => $value) {
+				if ($ex == 'pay_to_go_on_top') {
+					$to_top = $value;
+				} elseif ($ex == 'pay_to_go_on_feature'){
+					$featured_price = $value; 
+				} elseif ($ex == 'global-currency'){
+					$global_currency = $value;
 				} 
 			}?>
+			<?//if(core::config('formconfig.pay_to_go_on_top')):?>
 			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '.$to_top.' '.$global_currency);?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('ad', array('action'=>'to_top','category'=>$ad->id_category,'seotitle'=>$ad->seotitle))?>">Go Top!</a>
+			<?//endif?>
+			<?//if(core::config('formconfig.pay_to_go_on_feature')):?>
 			<p class="text-info"><?=__('Your Advertisement can go to featured! For only '.$featured_price.' '.$global_currency);?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('ad', array('action'=>'to_featured','category'=>$ad->id_category,'seotitle'=>$ad->seotitle))?>">Go Top!</a>
+			<?//endif?>
 		</div>
+		<?//endif?>
 		<?= FORM::open(Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">
@@ -145,7 +151,7 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<div class="input-prepend">
-						<span class="add-on"><?=$global_currency?></span>
+						<span class="add-on"><?=core::config('general.global-currency')?></span>
 						<?= FORM::input('price', number_format($ad->price, 2), array('class' => 'input-xlarge span10', 'id' => 'price', 'type'=>'number'))?>
 						</div>
 					</div>

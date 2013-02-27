@@ -48,7 +48,7 @@ class Controller_Ad extends Controller {
 	        $pagination = Pagination::factory(array(
 	                    'view'           	=> 'pagination',
 	                    'total_items'      	=> $res_count,
-	                    'items_per_page' 	=> 5
+	                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
 	        ))->route_params(array(
 	                    'controller' 		=> $this->request->controller(),
 	                    'action'     	 	=> $this->request->action(),
@@ -88,7 +88,7 @@ class Controller_Ad extends Controller {
 	        $pagination = Pagination::factory(array(
 	                    'view'           	=> 'pagination',
 	                    'total_items'      	=> $res_count,
-	                    'items_per_page' 	=> 5
+	                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
 	        ))->route_params(array(
 	                    'controller' 		=> $this->request->controller(),
 	                    'action'     	 	=> $this->request->action(),
@@ -139,7 +139,7 @@ class Controller_Ad extends Controller {
 			$pagination = Pagination::factory(array(
                     'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
-                    'items_per_page' 	=> 5
+                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
@@ -168,7 +168,7 @@ class Controller_Ad extends Controller {
 
 		
 		///////////////////
-		// BAD SOLUTION
+		// @ TODO -- BAD SOLUTION
 		//
 		// DO BETER!!!!!!!!		
 		//////////////////
@@ -176,26 +176,33 @@ class Controller_Ad extends Controller {
 
 		// return image path 
 		$img_path = array();
-		
+		$image_exists = new Model_Ad();
+
 		foreach ($ads as $a) {
 
-			if ($a->has_images == 1)
+			if(!is_dir($image_exists->_gen_img_path($a->seotitle, $a->created)))
 			{
-	
-				if(is_array($path = $this->_image_path($a)))
-				{
-					$path = $this->_image_path($a);
-					array_push($img_path, $path);
-				}else
-				{
-					$path = NULL;
-					array_push($img_path, "bla");	
-				} 
-				
-				
+				$a->has_images = 0;
+				try {
+					$a->save();
+				} catch (Exception $e) {
+					echo $e;
+				}
 			}
+			
+			if(is_array($path = $this->_image_path($a)))
+			{
+				$path = $this->_image_path($a);
+				$img_path[$a->seotitle] = $path;
+			}
+			else
+			{
+				$path = NULL;
+				$img_path[$a->seotitle] = $path;	
+			} 
+			
+
 		} 
-		
 		return array('ads'			=> $ads,
 					 'pagination'	=> $pagination, 
 					 'user'			=> $user, 
@@ -308,16 +315,15 @@ class Controller_Ad extends Controller {
 					{
 						Alert::set(Alert::ERROR, __('You made some mistake'));
 					}
-				}	
-				$captcha_show = new Model_Config();
-	     		$captcha_show = $captcha_show->where('config_key', '=', 'captcha-captcha')->limit(1)->find();
+				}
+				$captcha_show = core::config('formconfig.captcha-captcha');	
 				
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/post/single',array('ad'				=>$ad,
 																				   'permission'		=>$permission, 
 																				   'hits'			=>$hits->count_all(), 
 																				   'path'			=>$path,
-																				   'captcha_show'	=>$captcha_show->config_value));
+																				   'captcha_show'	=>$captcha_show));
 
 			}
 			//not found in DB
@@ -360,9 +366,9 @@ class Controller_Ad extends Controller {
 		$loc = $location = new Model_Location();
 		$loc = $loc->find_all();
 		
-		$config = new Model_Config();
-		$extra_payment = $config->where('group_name','=','general')->find_all();
-		
+	
+		$extra_payment = core::config('general');
+	
 		if($form->has_images == 1)
 		{
 			$current_path = $form->_gen_img_path($form->seotitle, $form->created);
@@ -376,9 +382,7 @@ class Controller_Ad extends Controller {
 					if($entry != '.' && $entry != '..') $count++;
 				}
 				
-				$config = new Model_Config();
-				$config->where('config_key','=','num_images')->limit(1)->find();
-				$num_images = $config->config_value;
+				$num_images = core::config('general.num_images');
 
 				if ($count == 0) 
 				{
@@ -457,19 +461,6 @@ class Controller_Ad extends Controller {
 				$form->adress 			= $data['address'];
 				$form->phone			= $data['phone']; 
 
-
-				///////////////////////////////////
-				// TODO:
-				// HOW TO WORK WITH TIME 
-				// when advert. is republisehed
-				// or first time but diff. day etc..
-				// ////////////////////////////////
-			
-				// if($data['status'] == 1 && $form->publis != NULL)
-				// {
-				// 	$form->published = 
-				// }
-
 				$obj_img = new Controller_New($this->request,$this->response);
 
 				// image upload
@@ -492,7 +483,7 @@ class Controller_Ad extends Controller {
 				{	
 					$form->save();
 					Alert::set(Alert::SUCCESS, __('Success, advertisement is updated'));
-					$this->request->redirect(Route::url('default',array('controller'=>'home','action'=>'index')));
+					$this->request->redirect(Route::url('default'));
 				
 				}
 				catch (ORM_Validation_Exception $e)
@@ -602,7 +593,9 @@ class Controller_Ad extends Controller {
 		$to_top_paypal = new Controller_Payment_Paypal($this->request, $this->response);
 		$to_top_paypal = $to_top_paypal->payment($order_id, $payer_id);
 		
-		$this->template->content = View::factory('pages/post/paypal', $to_top_paypal);
+		$development_logic = new Model_Ad();
+		$development_logic->confirm_payment($order_id, $payer_id, core::config('general.moderation'));
+		//$this->template->content = View::factory('pages/post/paypal', $to_top_paypal); // @TODO activate this when paypal is active
 
 	}
 	
@@ -646,7 +639,9 @@ class Controller_Ad extends Controller {
 		$to_featured_paypal = new Controller_Payment_Paypal($this->request, $this->response);
 		$to_featured_paypal = $to_featured_paypal->payment($order_id, $payer_id);
 
-		$this->template->content = View::factory('pages/post/paypal', $to_featured_paypal);
+		$development_logic = new Model_Ad();
+		$development_logic->confirm_payment($order_id, $payer_id, core::config('general.moderation'));
+		// $this->template->content = View::factory('pages/post/paypal', $to_featured_paypal); // @TODO -- activate this when paypal is active
 
 	}
 

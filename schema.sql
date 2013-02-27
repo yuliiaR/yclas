@@ -84,6 +84,7 @@ CREATE TABLE  `oc_ads` (
   `ip_address` float DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `published` DATETIME  NULL,
+  `featured` DATETIME  NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `has_images` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_ad`) USING BTREE,

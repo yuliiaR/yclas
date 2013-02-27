@@ -12,14 +12,17 @@
 	 </ul>
 	  <?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
-	   
+	   	<?if($ad->featured >= Date::unix2mysql(time())):?>
+	    <article class="list well clearfix featured">
+	    <?else:?>
 	    <article class="list well clearfix">
+	    <?endif?>
 	    	<h2>
 	    	<? foreach ($cat as $c){ if($c->id_category == $ad->id_category) $cat_name = $c->name; }?>
 	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?php echo $ad->title; ?></a>
 	    	</h2>
-	    	<?if($img_path != NULL):?>
-	    		 <img src="#" class="img-polaroid">
+	    	<?if($img_path[$ad->seotitle] != NULL):?>
+	    		 <img src="<?=$img_path[$ad->seotitle][1]?>" class="img-polaroid">
 	    	<?endif?>
 	    	<ul>
 	    		<?php if ($ad->published!=0){?>

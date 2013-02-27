@@ -51,7 +51,7 @@ class Controller_Payment_Paypal extends Controller{
 			if ($this->validate_ipn()) 
 			{
 				$confirm = new Model_Ad();
-				$confirm = $confirm->confirm_payment($idItem, $payer_id);
+				$confirm = $confirm->confirm_payment($idItem, $payer_id, core::config('general.moderation'));
 				
 			} //payment succeed and we confirm the post ;) (CALL TO LOGIC PUT IN ctrl AD)
 

@@ -40,6 +40,9 @@
       .sidebar-nav {
         padding: 9px 0;
       }
+      .featured{
+        background:#C5DBFA;
+      }
     </style>
 
   </head>

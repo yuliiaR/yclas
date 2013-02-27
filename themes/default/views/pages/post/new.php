@@ -48,11 +48,17 @@
 				<div class="control-group">
 					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images1'))?>
 					<div class="controls">
-						<input class="input-file" type="file" name="image1" id="fileImput1" />
+						<input class="input-file" type="file" name="image1" id="fileInput1" />
 					</div>
 					<?= FORM::label('images2', __('Images'), array('class'=>'control-label', 'for'=>'images2'))?>
 					<div class="controls">	
-						<input class="input-file" type="file" name="image2" id="fileImput2" />
+						<input class="input-file" type="file" name="image2" id="fileInput2" />
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label('file', __('File'), array('class'=>'control-label', 'for'=>'file1'))?>
+					<div class="controls">
+						<input class="input-file" type="file" name="file1" id="fileInput1" />
 					</div>
 				</div>
 				<div class="control-group">

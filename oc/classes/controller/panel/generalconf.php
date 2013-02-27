@@ -28,6 +28,8 @@ class Controller_Panel_Generalconf extends Auth_Controller {
                     }
                 }
             }
+            // Cache::instance()->delete_all();
+            echo core::config('general.site_url');
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'generalconf','action'=>'index')));
         }
 
