@@ -11,5 +11,6 @@ return array(
 	'analytics'	   => 'UA-4562297-22',
 	'url'		   => 'http://reoc.lo',
 	'theme'		   => 'default',
+	'cache'		   => 'file',
 
 );

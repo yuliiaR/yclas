@@ -33,8 +33,8 @@ class Core {
 		/**
 		 * Load all the configs from DB
 		 */
-		//Change the default cache system, based on your config /config/cache.php
-		Cache::$default = 'file';//Kohana::$config->load('cache')->default['driver'];//@todo dynamic
+		//Change the default cache system, based on your config /config/site.php
+		Cache::$default = Core::config('site.cache');
 		
 		//is not loaded yet in Kohana::$config
 		Kohana::$config->attach(new ConfigDB(), FALSE);
