@@ -166,7 +166,7 @@ class Model_Ad extends ORM {
      * @param string    $id_order [unique indentifier of order]
      * @param int       $id_user  [unique indentifier of user] 
      */
-    public function confirm_payment($id_order, $id_user, $moderation)
+    public function confirm_payment($id_order, $moderation)
     {
         $orders = new Model_Order();
 
@@ -175,7 +175,6 @@ class Model_Ad extends ORM {
                          ->limit(1)->find();
 
         $id_ad = $orders->id_ad;
-        $id_user = $orders->id_user;
 
         $product_find = new Model_Ad();
         $product_find = $product_find->where('id_ad', '=', $id_ad)->limit(1)->find();

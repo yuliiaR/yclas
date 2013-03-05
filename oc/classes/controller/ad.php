@@ -32,7 +32,7 @@ class Controller_Ad extends Controller {
             $search_term = $this->request->query('search');
             
             $this->template->bind('content', $content);
-			$this->template->content = View::factory('pages/post/listing');
+			$this->template->content = View::factory('pages/ad/listing');
 
 			$ads = $advert->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 			
@@ -81,7 +81,7 @@ class Controller_Ad extends Controller {
         	$ads = $this->action_advansed_search($search_advert, $search_cat, $search_loc); // logic
         	
         	$this->template->bind('content', $content);
-			$this->template->content = View::factory('pages/post/listing');
+			$this->template->content = View::factory('pages/ad/listing');
 
 			$res_count = count($ads);
 
@@ -111,7 +111,7 @@ class Controller_Ad extends Controller {
        	{
 	   		$data = $this->action_list_logic();
 			$this->template->bind('content', $content);
-			$this->template->content = View::factory('pages/post/listing',$data);
+			$this->template->content = View::factory('pages/ad/listing',$data);
             $search_term = $this->request->param('search',NULL);
         }
  	}
@@ -319,7 +319,7 @@ class Controller_Ad extends Controller {
 				$captcha_show = core::config('formconfig.captcha-captcha');	
 				
 				$this->template->bind('content', $content);
-				$this->template->content = View::factory('pages/post/single',array('ad'				=>$ad,
+				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
 																				   'permission'		=>$permission, 
 																				   'hits'			=>$hits->count_all(), 
 																				   'path'			=>$path,
@@ -411,7 +411,7 @@ class Controller_Ad extends Controller {
 		}else $img_permission = TRUE;
 		
 		$path = $this->_image_path($form);
-		$this->template->content = View::factory('pages/post/edit', array('ad'				=>$form, 
+		$this->template->content = View::factory('pages/ad/edit', array('ad'				=>$form, 
 																		  'location'		=>$loc, 
 																		  'category'		=>$cat,
 																		  'path'			=>$path,
@@ -561,9 +561,8 @@ class Controller_Ad extends Controller {
 	public function action_to_top()
 	{
 		$payer_id = Auth::instance()->get_user()->id_user; 
-		$id_cat = $this->request->param('category');
 		$id_product = core::config('general.ID-pay_to_go_on_top');
-
+		$paypal_msg = core::config('general.paypal_msg_product_to_top');
 		// update orders table
 		// fields
 		$ad = new Model_Ad();
@@ -576,26 +575,10 @@ class Controller_Ad extends Controller {
 						  'currency' 	=> core::config('paypal.paypal_currency'),
 						  'amount' 		=> core::config('general.pay_to_go_on_top'));
 		
-		$this->make_order($ord_data, $payer_id);
+		$order_id = paypal::make_order($ord_data); // create order , and returns order id
 
-		// find correct order to make paypal invoice 
-		$order_id = new Model_Order();
-		$order_id = $order_id->where('id_ad','=',$ad->id_ad)
-							 ->where('status','=',0)
-							 ->where('id_user','=',$payer_id)
-							 ->where('id_product', '=', $id_product)
-							 ->order_by('id_order', 'desc')
-							 ->limit(1)->find();
-		$order_id = $order_id->id_order;
-
-		// redirect to paypal
-		// paypal array of data needed to process
-		$to_top_paypal = new Controller_Payment_Paypal($this->request, $this->response);
-		$to_top_paypal = $to_top_paypal->payment($order_id, $payer_id);
-		
-		$development_logic = new Model_Ad();
-		$development_logic->confirm_payment($order_id, $payer_id, core::config('general.moderation'));
-		//$this->template->content = View::factory('pages/post/paypal', $to_top_paypal); // @TODO activate this when paypal is active
+		// redirect to payment
+		$this->request->redirect(Route::url('payment', array('controller'=> 'paypal','action'=>'form' ,'order_id' => $order_id, 'paypal_msg' => $paypal_msg)));
 
 	}
 	
@@ -607,8 +590,8 @@ class Controller_Ad extends Controller {
 	public function action_to_featured()
 	{
 		$payer_id = Auth::instance()->get_user()->id_user; 
-		$id_cat = $this->request->param('category');
 		$id_product = core::config('general.ID-pay_to_go_on_feature');
+		$paypal_msg = core::config('general.paypal_msg_product_to_featured');
 
 		// update orders table
 		// fields
@@ -622,47 +605,10 @@ class Controller_Ad extends Controller {
 						  'currency' 	=> core::config('paypal.paypal_currency'),
 						  'amount' 		=> core::config('general.pay_to_go_on_feature'));
 		
-		$this->make_order($ord_data, $payer_id); 
-
-		// find correct order to make paypal invoice 
-		$order_id = new Model_Order();
-		$order_id = $order_id->where('id_ad','=',$ad->id_ad)
-							 ->where('status','=',0)
-							 ->where('id_user','=',$payer_id)
-							 ->where('id_product', '=', $id_product)
-							 ->order_by('id_order', 'desc')
-							 ->limit(1)->find();
-		$order_id = $order_id->id_order;
+		$order_id = paypal::make_order($ord_data); // create order , and returns order id
 		
-		// redirect to paypal
-		// paypal array of data needed to process
-		$to_featured_paypal = new Controller_Payment_Paypal($this->request, $this->response);
-		$to_featured_paypal = $to_featured_paypal->payment($order_id, $payer_id);
-
-		$development_logic = new Model_Ad();
-		$development_logic->confirm_payment($order_id, $payer_id, core::config('general.moderation'));
-		// $this->template->content = View::factory('pages/post/paypal', $to_featured_paypal); // @TODO -- activate this when paypal is active
-
-	}
-
-	public function make_order($res)
-	{
-
-		//create order		
-		$order = new Model_Order();
-
-		$order->id_user = $res['id_user'];
-		$order->id_ad = $res['id_ad'];
-		$order->id_product = $res['id_product'];
-		$order->paymethod = $res['paymethod'];
-		$order->currency = $res['currency'];
-		$order->amount = $res['amount'];
-
-		try 
-		{
-			$order->save();
-		} 
-		catch (Exception $e){} 
+		// redirect to payment
+		$this->request->redirect(Route::url('payment', array('controller'=> 'paypal','action'=>'form' ,'order_id' => $order_id, 'paypal_msg' => $paypal_msg)));
 
 	}
 	

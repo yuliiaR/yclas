@@ -34,7 +34,7 @@
         $captcha_show = core::config('general.captcha-captcha');
 
 		$this->template->bind('content', $content);
-		$this->template->content = View::factory('pages/post/new', array('_cat'				=> $_cat,
+		$this->template->content = View::factory('pages/ad/new', array('_cat'				=> $_cat,
 																		 '_loc' 			=> $_loc,
 																		 'captcha_show' 	=> $captcha_show,
 																		 ));
@@ -238,6 +238,7 @@
 					// make order 
 					$payer_id = $usr; 
 					$id_product = $category->id_category;
+					$paypal_msg = core::config('general.paypal_msg_product_category');
 
 					$ad = new Model_Ad();
 					$ad = $ad->where('seotitle', '=', $seotitle)->limit(1)->find();
@@ -248,28 +249,10 @@
 									  'paymethod' 	=> 'paypal', // @TODO - to strict
 									  'currency' 	=> core::config('paypal.paypal_currency'),
 									  'amount' 		=> $amount);
-					
-					$create_order = new Controller_Ad($this->request, $this->response);
-					$create_order->make_order($ord_data, $payer_id); 
+					$order_id = paypal::make_order($ord_data);
 
-					// find correct order to make paypal invoice 
-					$order_id = new Model_Order();
-					$order_id = $order_id->where('id_ad','=',$ad->id_ad)
-										 ->where('status','=',0)
-										 ->where('id_user','=',$payer_id)
-										 ->where('id_product', '=', $id_product)
-										 ->order_by('id_order', 'desc')
-										 ->limit(1)->find();
-					$order_id = $order_id->id_order; 
-					
-					$payment_paypal = new Controller_Payment_Paypal($this->request, $this->response);
-					$payment_paypal = $payment_paypal->payment($order_id, $payer_id);
-
-					
-					$development_logic = new Model_Ad();
-					$development_logic->confirm_payment($order_id, $payer_id, core::config('general.moderation'));
-					//$this->template->content = View::factory('pages/post/paypal', $payment_paypal); //@TODO -- make this active when paypal active
-					
+					// redirect to payment
+					$this->request->redirect(Route::url('payment', array('controller'=> 'paypal','action'=>'form' ,'order_id' => $order_id, 'paypal_msg' => $paypal_msg)));
 				}
 			}
 			else

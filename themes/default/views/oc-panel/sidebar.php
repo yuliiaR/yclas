@@ -39,6 +39,11 @@
 			</a>
 			</li>
 			<li><a
+				href="<?=Route::url('oc-panel',array('controller'=>'emailconf'))?>">
+				<?=__('Email')?>
+			</a>
+			</li>
+			<li><a
 				href="<?=Route::url('oc-panel',array('controller'=>'formconf'))?>">
 				<?=__('Form Configuration')?>
 			</a>

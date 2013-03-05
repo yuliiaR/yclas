@@ -1,24 +1,20 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="row-fluid">
-<?=View::factory('sidebar')?>
 <div class="span10">
 		 <?=Form::errors()?>
-		<div class="page-header">
-			<h1><?=__('Contact Us')?></h1>
-		</div>
 		<?= FORM::open(Route::url('contact'), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 		<fieldset>
 			<div class="control-group">
 				<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
 				<div class="controls ">
-					<?= FORM::input('name', $name, array('placeholder' => __('Name'), 'class' => 'input-xlarge', 'id' => 'name', 'required'))?>
+					<?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => 'input-xlarge', 'id' => 'name', 'required'))?>
 				</div>
 			</div>
 			<div class="control-group">
 				
 				<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
 				<div class="controls ">
-					<?= FORM::input('email', $email, array('placeholder' => __('Email'), 'class' => 'input-xlarge', 'id' => 'email', 'type'=>'email','required'))?>
+					<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => 'input-xlarge', 'id' => 'email', 'type'=>'email','required'))?>
 				</div>
 			</div>
 			<div class="control-group">

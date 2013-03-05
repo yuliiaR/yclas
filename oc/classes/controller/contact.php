@@ -34,9 +34,11 @@ class Controller_Contact extends Controller {
 			$email 	= NULL;
 		}
 
+		$captcha_show = core::config('formconfig.captcha-captcha');
 		if($this->request->post()) //message submition  
 		{
-			if(captcha::check('contact'))
+			
+			if($captcha_show === 'FALSE' )
 			{ 
 				Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
 
@@ -48,7 +50,8 @@ class Controller_Contact extends Controller {
 				$admin = new Model_User();
 				$admin = $admin->where('id_role', '=', 10)->limit(1)->find();
 				
-				email::send($admin->email,$message['email_from'],$message['subject'],$message['message']);
+				// email::send($admin->email,$message['email_from'],$message['subject'],$message['message']);
+				email::sendEmailFile($admin->email,$message['subject'],$message['message'],$message['email_from'],$admin->name);
 			}
 			else
 			{
@@ -58,8 +61,7 @@ class Controller_Contact extends Controller {
 
 		}
 	
-	    $captcha_show = core::config('general.captcha-captcha');
-
+	    
 		$this->template->content = View::factory('pages/contact', array('name' =>$name, 
 																		'email'=>$email,
 																		'captcha_show'=>$captcha_show));

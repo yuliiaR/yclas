@@ -18,7 +18,6 @@
  */
 Route::set('post_new', URL::title(__('publish new')).'.html')
 ->defaults(array(
-		//'directory'	 => 'panel',	
 		'controller' => 'new',    
 		'action'     => 'index',
 ));
@@ -44,7 +43,16 @@ Route::set('paypal', URL::title('ipnlistener').'.html')
 
 //-------END reserved pages
 
+/**
+ * Payment route 
+ */
 
+Route::set('payment', 'payment/(<controller>(/<action>(/<order_id>(/<paypal_msg>)))).html')
+->defaults(array(
+		'directory'  => 'payment',
+		'controller' => 'paypal',
+		'action'     => 'form',
+));
 
 /**
  * user admin/panel route

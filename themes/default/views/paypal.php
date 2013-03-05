@@ -2,11 +2,7 @@
 
 <h1>PAYPAL</h1>
 
-		<?php 
 		
-		if ($sandbox) $paypalWeb = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; // TEST SANDBOX
-		else $paypalWeb = 'https://www.paypal.com/cgi-bin/webscr';
-		?>
 	<div style="font-family: Arial; font-size: 20px; text-align: center; margin-top: 200px;">
 		<?php _e('Please wait while we transfer you to Paypal');?><br />
 		<img src="<?//php echo 'reoc.zz.mu/paypal'; ?>/images/loader.gif" border="0">
@@ -15,8 +11,8 @@
 			<input type="hidden" name="cmd" value="_xclick">
 			<input type="hidden" name="cbt" value="Return To <?=$site_name?>">
 			<input type="hidden" name="business" value="<?=$paypal_account?>">
-			<input type="hidden" name="item_name" value="<?= __('Pay to post in ').$site_name ?>">
-			<input type="hidden" name="item_number" value="<?=$idItem ?>">
+			<input type="hidden" name="item_name" value="<?=$paypal_msg.' '.$site_name ?>">
+			<input type="hidden" name="item_number" value="<?=$order_id ?>">
 			<input type="hidden" name="amount" value="<?=$amount ?>">
 			<input type="hidden" name="quantity" value="1">
 			<input type="hidden" name="undefined_quantity" value="0">
@@ -30,10 +26,6 @@
 			<input type="hidden" name="custom" value="">
 			<input type="hidden" name="currency_code" value="<?=$paypal_currency?>">
 			<input type="hidden" name="rm" value="2">
-			<input type="hidden" name="payer_id" value="<?=$payer_id?>">
 			<input type="submit" value="Paypal">
 		</form>
 		<script type="text/javascript">form1.submit();</script>
-<?php 
-	die();
-?>

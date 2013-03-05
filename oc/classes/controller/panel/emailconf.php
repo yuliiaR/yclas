@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Panel_Generalconf extends Auth_Controller {
+class Controller_Panel_Emailconf extends Auth_Controller {
 
     public function action_index()
     {
@@ -8,9 +8,9 @@ class Controller_Panel_Generalconf extends Auth_Controller {
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
 
         // all form config values
-        $generalconfig = new Model_Config();
-        $config = $generalconfig->where('group_name', '=', 'general')->find_all();
-      
+        $emailconf = new Model_Config();
+        $config = $emailconf->where('group_name', '=', 'email-settings')->find_all();
+
         // save only changed values
         if($this->request->post())
         {
@@ -30,10 +30,10 @@ class Controller_Panel_Generalconf extends Auth_Controller {
             }
             // Cache::instance()->delete_all();
             echo core::config('general.site_url');
-            Alert::set(Alert::SUCCESS, __('Success, General Configuration updated'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'generalconf','action'=>'index')));
+            Alert::set(Alert::SUCCESS, __('Success, Email Configuration updated'));
+            $this->request->redirect(Route::url('oc-panel',array('controller'=>'emailconf','action'=>'index')));
         }
 
-        $this->template->content = View::factory('oc-panel/pages/generalconf', array('config'=>$config));
+        $this->template->content = View::factory('oc-panel/pages/emailconf', array('config'=>$config));
     }
 }
