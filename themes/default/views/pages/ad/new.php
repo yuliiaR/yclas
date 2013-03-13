@@ -69,18 +69,22 @@
 						<?= FORM::input('address', Request::current()->post('address'), array('class'=>'input-xlarge', 'id'=>'address', 'placeholder'=>__('Address')))?>
 					</div>
 				</div>
+				<?if($form_show['price'] !== 'FALSE'):?>
 				<div class="control-group">
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => __('Price'), 'class' => 'input-xlarge', 'id' => 'price', 'type'=>'number'))?>
 					</div>
 				</div>
+				<?endif?>
+				<?if($form_show['website'] !== 'FALSE'):?>
 				<div class="control-group">
 					<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
 					<div class="controls">
 						<?= FORM::input('website', Request::current()->post('website'), array('placeholder' => __('Website'), 'class' => 'input-xlarge', 'id' => 'website'))?>
 					</div>
 				</div>
+				<?endif?>
 				<?if (!Auth::instance()->get_user()):?>
 				<div class="control-group">
 					<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
