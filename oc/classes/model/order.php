@@ -39,10 +39,10 @@ class Model_Order extends ORM {
      * @var  array  Available statuses array
      */
     public static $statuses = array(
-        self::STATUS_CREATED       =>  'Created',
+        self::STATUS_CREATED      =>  'Created',
         self::STATUS_PAID         =>  'Paid',
-        self::STATUS_REFUSED        =>  'Refused',
-        self::STATUS_REFUND      =>  'Refund',
+        self::STATUS_REFUSED      =>  'Refused',
+        self::STATUS_REFUND       =>  'Refund',
     );
 
 

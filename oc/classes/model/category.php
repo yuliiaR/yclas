@@ -82,19 +82,14 @@ class Model_Category extends ORM {
 	 */
 	public function form_setup($form)
 	{	
-		// get values from form config file 
-		$config = new Formconfig($this->request, $this->response);
-       	$conf =  $config->form();
-        
-		if($conf['general']['description']) 
+		 
 		$form->fields['description']['display_as'] = 'textarea';
-		if($conf['category']['price']) 
+		
 			$form->fields['price']['caption'] = 'currency';
-		if($conf['general']['parent_deep']) 
-		{
+		
 			$form->fields['parent_deep']['display_as'] = 'select';
 			$form->fields['parent_deep']['options'] = range(0,3);
-		}
+
 		$form->fields['order']['display_as'] = 'select';
 		$form->fields['order']['options'] = range(0,30);
 		
@@ -102,27 +97,7 @@ class Model_Category extends ORM {
 
 	public function exclude_fields()
 	{
-		// get values from form form config file 
-		$config = new Formconfig($this->request, $this->response);
-        $config = $config->form();
-
-		$res = array();
-		foreach ($config as $g => $value) 
-		{ 
-			if($g == 'general' || $g == 'category')
-			{
-				foreach ($value as $value => $val) 
-				{
-					if ($val == FALSE)
-					{
-						array_push($res, $value);	
-					}	
-				}
-			} 
-				
-		}
-		
-	    return $res;
+		return array('created');
 	}
 
 

@@ -79,27 +79,7 @@ class Model_Content extends ORM {
 
     public function exclude_fields()
     {
-        // get values from form form config file 
-        $config = new Formconfig($this->request, $this->response);
-        $config = $config->form();
-        
-        $res = array();
-        foreach ($config as $g => $value) 
-        { 
-            if($g == 'general' || $g == 'content')
-            {
-                foreach ($value as $value => $val) 
-                {
-                    if ($val == FALSE)
-                    {
-                        array_push($res, $value);   
-                    }   
-                }
-            } 
-                
-        }
-        
-        return $res; 
+        return array('created');
     }
 
 } // END Model_Content

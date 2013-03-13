@@ -65,19 +65,13 @@ class Model_Location extends ORM {
 
 	public function form_setup($form)
 	{
-		// get values from form form config file 
-		$config = new Formconfig($this->request, $this->response);
-       	$conf =  $config->form(); 
+		$form->fields['description']['display_as'] = 'textarea';
+	
+		$form->fields['parent_deep']['display_as'] = 'select';
+		$form->fields['parent_deep']['options'] = range(0,3);
+	
 
-		if($conf['general']['description']) 
-			$form->fields['description']['display_as'] = 'textarea';
-		if($conf['general']['parent_deep']) 
-		{
-			$form->fields['parent_deep']['display_as'] = 'select';
-			$form->fields['parent_deep']['options'] = range(0,3);
-		}
-		if ($conf['location']['seoname']) 
-			$form->fields['seoname']['caption'] = 'seoname';
+		$form->fields['seoname']['caption'] = 'seoname';
 		$form->fields['id_location_parent']['display_as'] = 'select';
 		$form->fields['id_location_parent']['options'] = range(0, 30);
 				
@@ -85,27 +79,7 @@ class Model_Location extends ORM {
 
 	public function exclude_fields()
 	{
-	  // get values from form form config file 
-		$config = new Formconfig($this->request, $this->response);
-        $config = $config->form();
-
-		$res = array();
-		foreach ($config as $g => $value) 
-		{ 
-			if($g == 'general' || $g == 'location')
-			{
-				foreach ($value as $value => $val) 
-				{
-					if ($val == FALSE)
-					{
-						array_push($res, $value);	
-					}	
-				}
-			} 
-				
-		}
-		
-	    return $res;
+	  return array('created');
 	}
 
 

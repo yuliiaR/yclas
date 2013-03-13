@@ -28,37 +28,13 @@ class Model_Role extends ORM {
 
      public function form_setup($form)
     {
-        // get values from form form config file 
-        $config = new Formconfig($this->request, $this->response);
-        $conf =  $config->form();
-
-        if ($conf['general']['description']) 
-            $form->fields['description']['display_as'] = 'textarea';
+      
+        $form->fields['description']['display_as'] = 'textarea';
     }
 
     public function exclude_fields()
     {
-        // get values from form form config file 
-        $config = new Formconfig($this->request, $this->response);
-        $config = $config->form();
-        
-        $res = array();
-        foreach ($config as $g => $value) 
-        { 
-            if($g == 'general' || $g == 'role')
-            {
-                foreach ($value as $value => $val) 
-                {
-                    if ($val == FALSE)
-                    {
-                        array_push($res, $value);   
-                    }   
-                }
-            } 
-                
-        }
-        
-        return $res;
+        return array('date_created');
     }
 
 }
