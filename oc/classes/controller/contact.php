@@ -40,18 +40,29 @@ class Controller_Contact extends Controller {
 			
 			if($captcha_show === 'FALSE' )
 			{ 
-				Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
+				
 
 				$message = array('name'			=>$this->request->post('name'),
 								 'email_from'	=>$this->request->post('email'),
 								 'subject'		=>$this->request->post('subject'),
-								 'message'		=>$this->request->post('message'));
-
-				$admin = new Model_User();
-				$admin = $admin->where('id_role', '=', 10)->limit(1)->find();
+								 'message'		=>$this->request->post('message'),
+								 'file'			=>$_FILES['file']);
 				
-				// email::send($admin->email,$message['email_from'],$message['subject'],$message['message']);
-				email::sendEmailFile($admin->email,$message['subject'],$message['message'],$message['email_from'],$admin->name);
+				if (! Upload::not_empty($message['file']))
+					$message['file'] = NULL;
+				elseif (! Upload::valid($message['file']) OR
+            		! Upload::size($message['file'], array('2M')) OR
+           			! Upload::type($message['file'], array('pdf', 'xls', 'docx', 'xlsx')))
+				{
+					Alert::set(Alert::ALERT, __('Your file is not of correct type'));
+				}
+				else 
+				{
+					email::sendEmailFile(core::config('email-settings.notify_email'),$message['subject'],$message['message'],$message['email_from'],$message['name'], $message['file']);
+					Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
+				}
+
+				
 			}
 			else
 			{

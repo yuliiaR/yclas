@@ -3,14 +3,12 @@
  * Site configs various
  */
 return array(
+//@TODO
 
-	'email'		   => 'admin@ocaku.com',
-	'theme' 	   => 'default',
-	'timezone'	   => 'Europe/Madrid',
-	'charset'	   => 'utf-8',
-	'analytics'	   => 'UA-4562297-22',
-	'url'		   => 'http://reoc.lo',
-	'theme'		   => 'default',
-	'cache'		   => 'file',
+	'charset'	   => 'utf-8',//not
+	'analytics'	   => 'UA-4562297-22',//not
+	'url'		   => 'http://reoc.lo', // not
+	'theme'		   => 'default', // not
+	'cache'		   => 'file', //we need ?
 
 );

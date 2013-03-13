@@ -22,8 +22,8 @@ spl_autoload_register(array('Kohana', 'auto_load'));
  */
 ini_set('unserialize_callback_func', 'spl_autoload_call');
 
-// -- To debug enable DEVELOPMENT environment by changing your localhost @todo
-Kohana::$environment = ($_SERVER['SERVER_NAME'] !== 'reoc.lo') ? Kohana::PRODUCTION : Kohana::DEVELOPMENT;
+// -- To debug enable DEVELOPMENT environment by changing your localhost
+Kohana::$environment = ($_SERVER['SERVER_NAME'] !== 'reoc.lo') ? Kohana::PRODUCTION : Kohana::DEVELOPMENT; //@TODO 
 
 // -- Configuration and initialization -----------------------------------------
 

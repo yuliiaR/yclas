@@ -30,29 +30,7 @@ Route::set('contact', URL::title(__('contact')).'.html')
 		'controller' => 'contact',
 		'action'	 => 'index',));
 
-/**
- *  PayPal payment gateway
- *  //test @TODO
- */
-Route::set('paypal', URL::title('ipnlistener').'.html')
-->defaults(array(
-		'directory'  => 'payment',
-		'controller' => 'paypal',
-		'action'     => 'ipn',
-));
-
-//-------END reserved pages
-
-/**
- * Payment route 
- */
-
-Route::set('payment', 'payment/(<controller>(/<action>(/<order_id>(/<paypal_msg>)))).html')
-->defaults(array(
-		'directory'  => 'payment',
-		'controller' => 'paypal',
-		'action'     => 'form',
-));
+//-------END reserved pagesd
 
 /**
  * user admin/panel route
@@ -103,14 +81,6 @@ Route::set('ad', '(<action>(/<category>(/<seotitle>))).html')
 		'action'     => 'view',
 ));
 
-/**
- * SERP / listing (all ads || posts sorted by category / listing)
- */
-Route::set('listing', '(<category>)(/<location>)')
-->defaults(array(
-		'controller' => 'ad',    
-		'action'     => 'index',
-));
 
 /**
  * Error router

@@ -249,10 +249,12 @@
 									  'paymethod' 	=> 'paypal', // @TODO - to strict
 									  'currency' 	=> core::config('paypal.paypal_currency'),
 									  'amount' 		=> $amount);
-					$order_id = paypal::make_order($ord_data);
+
+					$order_id = new Model_Order(); // create order , and returns order id
+					$order_id = $order_id->make_order($ord_data);
 
 					// redirect to payment
-					$this->request->redirect(Route::url('payment', array('controller'=> 'paypal','action'=>'form' ,'order_id' => $order_id, 'paypal_msg' => $paypal_msg)));
+					$this->request->redirect(Route::url('payment', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id)));
 				}
 			}
 			else

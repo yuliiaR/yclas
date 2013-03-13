@@ -160,82 +160,6 @@ class Model_Ad extends ORM {
         return $seoname;
     }
 
-    /**
-     * confirm payment for order
-     *
-     * @param string    $id_order [unique indentifier of order]
-     * @param int       $id_user  [unique indentifier of user] 
-     */
-    public function confirm_payment($id_order, $moderation)
-    {
-        $orders = new Model_Order();
-
-        $orders->where('id_order','=',$id_order)
-                         ->where('status','=', 0)
-                         ->limit(1)->find();
-
-        $id_ad = $orders->id_ad;
-
-        $product_find = new Model_Ad();
-        $product_find = $product_find->where('id_ad', '=', $id_ad)->limit(1)->find();
-        
-        // update orders
-        if($orders->loaded())
-        {
-            $orders->status = 1;
-            $orders->pay_date = Date::unix2mysql(time());
-            try {
-                $orders->save();
-            } catch (Exception $e) {
-                echo $e;  
-            }
-        }
-
-        // update product 
-        if(is_numeric($orders->id_product))
-        {
-
-            if($moderation == 2)
-            {
-                $product_find->published = Date::unix2mysql(time());
-                $product_find->status = 1;
-                try {
-                    $product_find->save();
-                } catch (Exception $e) {
-                    echo $e;
-                }
-            }
-            else if($moderation == 3)
-            {
-                $product_find->published = Date::unix2mysql(time());
-                
-                try 
-                {
-                    $product_find->save();      
-                } catch (Exception $e) {
-                   
-                }   
-            }
-        }
-        elseif($orders->id_product == core::config('general.ID-pay_to_go_on_top'))
-        {
-            $product_find->published = Date::unix2mysql(time());
-            try {
-                $product_find->save();
-            } catch (Exception $e) {
-                echo $e;
-            }
-        }
-        elseif ($orders->id_product == core::config('general.ID-pay_to_go_on_feature'))
-        {
-            $product_find->featured = Date::unix2mysql(time() + (core::config('general.featured_timer') * 24 * 60 * 60));
-            try {
-                $product_find->save();
-            } catch (Exception $e) {
-                echo $e;
-            }
-        }
-    }
 
     /**
      *
@@ -272,43 +196,6 @@ class Model_Ad extends ORM {
         $directory = 'upload/'.$year.'/'.$month.'/'.$day.'/'.$seotitle.'/';
         
         return $directory;
-    }
-
-    public function save_file($file, $seotitle, $created)
-    {
-        if ( 
-        ! Upload::valid($file) OR
-        ! Upload::not_empty($file) OR
-        ! Upload::type($file, array('doc', 'docx', 'pdf')) OR
-        ! Upload::size($file, array('1M')))
-        {
-            $file = NULL;
-        }
-
-        if($file !== NULL)
-        {
-            if(!is_dir($path = $this->_gen_img_path($seotitle, Date::format(time(), 'y/m/d'))))
-            {
-                $directory = DOCROOT.$path;
-                d($directory);
-
-                if ($file_upload = Upload::save($file, NULL, $directory))
-                {
-                    $name = strtolower(Text::random('alnum',20));
-                    $filename_original = $name.'_file';
-                    Upload::save($directory.$filename_original);
-                    
-                    // Delete the temporary file
-                    unlink($file_upload);
-                }
-                else
-                { 
-                    echo 'bla';
-                    return FALSE;
-
-                }
-            } echo 'asd';
-        }
     }
 
 } // END Model_ad

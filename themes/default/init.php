@@ -22,7 +22,11 @@ Alert::$tpl 	= 	'<div class="alert alert-%s">
 					<h4 class="alert-heading">%s</h4>%s
 					</div>';
 
-
+/**
+ * widgets
+ */
+// Widget::$placeholder = array('footer', 'header');
+// Widget::$theme_widgets = array();
 /**
  * Theme Functions
  * 
@@ -51,3 +55,4 @@ function sidebar_link($name,$controller,$action='index',$route='oc-panel')
 	<?
 	}
 }
+

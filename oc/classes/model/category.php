@@ -82,7 +82,7 @@ class Model_Category extends ORM {
 	 */
 	public function form_setup($form)
 	{	
-		// get values from form form config file 
+		// get values from form config file 
 		$config = new Formconfig($this->request, $this->response);
        	$conf =  $config->form();
         

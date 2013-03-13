@@ -12,7 +12,7 @@
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li><a href="/">Cat 2</a></li>
-					<li class="active"><a href="/">Cat 1</a></li>
+					<li class="active"><a href="<?= Route::url('default', array('controller'=>'ad', 'action'=>'index'));?>">Listing</a></li>
 					<li><a href="<?= Route::url('contact');?>">Contact Us</a></li>
 					<li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>

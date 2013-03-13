@@ -574,11 +574,13 @@ class Controller_Ad extends Controller {
 						  'paymethod' 	=> 'paypal', // @TODO - to strict
 						  'currency' 	=> core::config('paypal.paypal_currency'),
 						  'amount' 		=> core::config('general.pay_to_go_on_top'));
-		
-		$order_id = paypal::make_order($ord_data); // create order , and returns order id
 
+		$order_id = new Model_Order(); // create order , and returns order id
+		$order_id = $order_id->make_order($ord_data);
+	
+		
 		// redirect to payment
-		$this->request->redirect(Route::url('payment', array('controller'=> 'paypal','action'=>'form' ,'order_id' => $order_id, 'paypal_msg' => $paypal_msg)));
+		$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
 
 	}
 	
@@ -605,11 +607,10 @@ class Controller_Ad extends Controller {
 						  'currency' 	=> core::config('paypal.paypal_currency'),
 						  'amount' 		=> core::config('general.pay_to_go_on_feature'));
 		
-		$order_id = paypal::make_order($ord_data); // create order , and returns order id
-		
+		$order_id = new Model_Order(); // create order , and returns order id
+		$order_id = $order_id->make_order($ord_data);
 		// redirect to payment
-		$this->request->redirect(Route::url('payment', array('controller'=> 'paypal','action'=>'form' ,'order_id' => $order_id, 'paypal_msg' => $paypal_msg)));
-
+		$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
 	}
 	
 

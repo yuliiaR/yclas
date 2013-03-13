@@ -30,6 +30,14 @@
 					<?= FORM::textarea('message', "", array('class'=>'input-xlarge', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>7, 'required'))?>	
 					</div>
 			</div>
+			<?if(core::config('email-settings.smtp_active')):?>
+			<div class="control-group">
+				<?= FORM::label('file', __('File'), array('class'=>'control-label', 'for'=>'file'))?>
+				<div class="controls">
+					<input class="input-file" type="file" name="file" id="fileInput" />
+				</div>
+			</div>
+			<?endif?>
 			<?if ($captcha_show !== 'FALSE'):?>
 			<div class="control-group">
 				<div class="controls">
