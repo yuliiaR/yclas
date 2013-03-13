@@ -28,6 +28,7 @@
 					<p id="cat_price" class="text-warning"></p>
 					</div>
 				</div>
+				<?if($form_show['location'] !== 'FALSE'):?>
 				<div class="control-group">
 					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
 					<div class="controls">
@@ -38,6 +39,7 @@
 					<?= FORM::select('location', $_val_location, 0, array('id'=>'location', 'class'=>'input-xlarge', 'required') );?>
 					</div>
 				</div>
+				<?endif?>
 				<div class="control-group">
 					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
 					<div class="controls">
@@ -53,12 +55,6 @@
 					<?= FORM::label('images2', __('Images'), array('class'=>'control-label', 'for'=>'images2'))?>
 					<div class="controls">	
 						<input class="input-file" type="file" name="image2" id="fileInput2" />
-					</div>
-				</div>
-				<div class="control-group">
-					<?= FORM::label('file', __('File'), array('class'=>'control-label', 'for'=>'file1'))?>
-					<div class="controls">
-						<input class="input-file" type="file" name="file1" id="fileInput1" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -79,6 +75,12 @@
 						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => __('Price'), 'class' => 'input-xlarge', 'id' => 'price', 'type'=>'number'))?>
 					</div>
 				</div>
+				<div class="control-group">
+					<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
+					<div class="controls">
+						<?= FORM::input('website', Request::current()->post('website'), array('placeholder' => __('Website'), 'class' => 'input-xlarge', 'id' => 'website'))?>
+					</div>
+				</div>
 				<?if (!Auth::instance()->get_user()):?>
 				<div class="control-group">
 					<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
@@ -93,7 +95,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if ($captcha_show !== 'FALSE'):?>
+				<?if ($form_show['captcha'] !== 'FALSE'):?>
 				<div class="control-group">
 					<div class="controls">
 						Captcha*:<br />

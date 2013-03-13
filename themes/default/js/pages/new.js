@@ -15,16 +15,16 @@ $(function () {
 	//$('textarea[name=description]').autogrow();
 });
 
-// show category price
-$("#category").change(function(){
-	var price = "Price for this category is: ";
+// // show category price
+// $("#category").change(function(){
+// 	var price = "Price for this category is: ";
 
-	$("#category option:selected").each(function(){
-		price += $(this).text() + " ";
-	});
-	$("#cat_price").text(price);
+// 	$("#category option:selected").each(function(){
+// 		price += $(this).text() + " ";
+// 	});
+// 	$("#cat_price").text(price);
 	
-});
+// });
 
 
 /**

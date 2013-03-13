@@ -30,7 +30,7 @@
 					<?= FORM::textarea('message', "", array('class'=>'input-xlarge', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>7, 'required'))?>	
 					</div>
 			</div>
-			<?if(core::config('email-settings.smtp_active')):?>
+			<?if(core::config('email-settings.smtp_active') && core::config('formconfig.contact-upload_file')):?>
 			<div class="control-group">
 				<?= FORM::label('file', __('File'), array('class'=>'control-label', 'for'=>'file'))?>
 				<div class="controls">

@@ -31,13 +31,15 @@
 		$_cat = $category->find_all();
 		$_loc = $location->find_all();
 		
-        $captcha_show = core::config('general.captcha-captcha');
+		$form_show = array('captcha'	=>core::config('formconfig.captcha-captcha'),
+						   'website'	=>core::config('formconfig.advertisement-website'),
+						   'phone'		=>core::config('formconfig.advertisement-phone'),
+						   'location'	=>core::config('formconfig.advertisement-location'));
 
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/ad/new', array('_cat'				=> $_cat,
-																		 '_loc' 			=> $_loc,
-																		 'captcha_show' 	=> $captcha_show,
-																		 ));
+																	   '_loc' 				=> $_loc,
+																	   'form_show'			=> $form_show));
 
 		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
 						'title' 		=> $title 		= 	$this->request->post('title'),
@@ -47,6 +49,7 @@
 						'price'			=> $price 		= 	$this->request->post('price'),
 						'address'		=> $address 	= 	$this->request->post('address'),
 						'phone'			=> $phone 		= 	$this->request->post('phone'),
+						'website'		=> $website 	= 	$this->request->post('website'),
 						'user'			=> $user
 						); 
 		
@@ -55,13 +58,13 @@
 		if ($config == 0)
 		{
 			$status = Model_Ad::STATUS_PUBLISHED;
-			$this->_save_new_ad($data, $status, $published = TRUE, $config, $captcha_show);
+			$this->_save_new_ad($data, $status, $published = TRUE, $config, $form_show['captcha']);
 
 		}
 		else if($config == 1 || $config == 2 || $config == 3)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE, $config, $captcha_show);
+			$this->_save_new_ad($data, $status, $published = FALSE, $config, $form_show['captcha']);
 		}
 
 			
@@ -133,10 +136,11 @@
 		
 		$_new_ad = ORM::factory('ad');
 		
+		$captcha_show = core::config('formconfig.captcha-captcha');
 		if($this->request->post()) //post submition  
 		{
 			
-			if($captcha_show == 'FALSE' || captcha::check('contact') )
+			if($captcha_show === 'FALSE' || captcha::check('contact') )
 			{		
 				
 				//insert data
@@ -153,7 +157,8 @@
 				$_new_ad->status 		= $status;									// need to be 0, in production 
 				$_new_ad->price 		= $data['price']; 								
 				$_new_ad->adress 		= $data['address'];
-				$_new_ad->phone			= $data['phone']; 
+				$_new_ad->phone			= $data['phone'];
+				$_new_ad->website		= $data['website']; 
 
 			   
 			    // image upload
@@ -173,27 +178,19 @@
 
 		        }else $_new_ad->has_images = 1;
 
-		        // file upload
-		        if(isset($_FILES['file1']))
-		        {
-		        	$file = $_FILES['file1'];
-		        	$file_name = new Model_Ad();
-		        	$file_name->save_file($file, $seotitle, $created = NULL);
-		        }
-
-				try
-				{
-					$_new_ad->save();
-					
-					// if moderation is off update db field with time of creation 
-					if($published)
-					{	
-						$_ad_published = new Model_Ad();
-						$_ad_published->where('seotitle', '=', $seotitle)->limit(1)->find();
-						$_ad_published->published = $_ad_published->created;
-						$_ad_published->save(); 
-					}
-					//$user->email('newadvertisement'); // @TODO send email
+					try
+					{
+						$_new_ad->save();
+						
+						// if moderation is off update db field with time of creation 
+						if($published)
+						{	
+							$_ad_published = new Model_Ad();
+							$_ad_published->where('seotitle', '=', $seotitle)->limit(1)->find();
+							$_ad_published->published = $_ad_published->created;
+							$_ad_published->save(); 
+						}
+						//$user->email('newadvertisement'); // @TODO send email
 					  
 				}
 				catch (ORM_Validation_Exception $e)
@@ -256,6 +253,11 @@
 					// redirect to payment
 					$this->request->redirect(Route::url('payment', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id)));
 				}
+				else
+				{
+					Alert::set(Alert::SUCCESS, __('Advertisement is posted. Congratulations!'));
+					$this->request->redirect(Route::url('default'));
+				} 
 			}
 			else
 			{ 

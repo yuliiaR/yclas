@@ -38,7 +38,7 @@ class Controller_Contact extends Controller {
 		if($this->request->post()) //message submition  
 		{
 			
-			if($captcha_show === 'FALSE' )
+			if($captcha_show === 'FALSE' || captcha::check('contact'))
 			{ 
 				
 

@@ -189,7 +189,7 @@ class Controller_Ad extends Controller {
 					echo $e;
 				}
 			}
-			
+			print_r($this->_image_path($a));
 			if(is_array($path = $this->_image_path($a)))
 			{
 				$path = $this->_image_path($a);
@@ -382,7 +382,7 @@ class Controller_Ad extends Controller {
 					if($entry != '.' && $entry != '..') $count++;
 				}
 				
-				$num_images = core::config('general.num_images');
+				$num_images = core::config('formconfig.num_images');
 
 				if ($count == 0) 
 				{
