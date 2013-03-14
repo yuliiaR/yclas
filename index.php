@@ -76,14 +76,13 @@ define('SYSPATH', realpath($system).DIRECTORY_SEPARATOR);
 // Clean up the configuration vars
 unset($application, $modules, $system);
 
-//@todo OC install
-/*
-if (file_exists('install'.EXT))
+// OC install
+if (file_exists('install/install.lock'))
 {
 	// Load the installation check
-	return include 'install'.EXT;
+	return include 'install/index'.EXT;
 }
-*/
+
 
 /**
  * Define the start time of the application, used for profiling.
