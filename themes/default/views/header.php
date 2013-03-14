@@ -12,7 +12,7 @@
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li><a href="/">Cat 2</a></li>
-					<li class="active"><a href="<?= Route::url('default', array('controller'=>'ad', 'action'=>'index'));?>">Listing</a></li>
+					<li class="active"><a href="<?= Route::url('default', array('controller'=>'ad', 'action'=>'all'));?>">Listing</a></li>
 					<li><a href="<?= Route::url('contact');?>">Contact Us</a></li>
 					<li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -28,10 +28,9 @@
 		            </li>
 		            <li><a href="/">Cat 5</a></li>
 		        </ul>
-		        
-		        <form class="navbar-search pull-left" method="GET" action="">
+		        <?= FORM::open(Route::url('default',array('controller'=>'ad','action'=>'all')), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>'','enctype'=>'multipart/form-data'))?>
 		            <input type="text" name="search" class="search-query span2" placeholder="<?=__('Search')?>">
-		        </form>
+		        <?= FORM::close()?>
 		        
 				<div class="btn-group pull-right">
 					<?=View::factory('widget_login')?>

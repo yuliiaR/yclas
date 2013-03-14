@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 13, 2013 at 10:16 AM
+-- Generation Time: Mar 14, 2013 at 12:53 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -72,41 +72,41 @@ CREATE TABLE IF NOT EXISTS `oc_ads` (
   KEY `ads_IK_id_category` (`id_category`),
   KEY `ads_IK_title` (`title`),
   KEY `ads_IK_status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=252 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=259 ;
 
 --
 -- Dumping data for table `oc_ads`
 --
 
 INSERT INTO `oc_ads` (`id_ad`, `id_user`, `id_category`, `id_location`, `type`, `title`, `seotitle`, `description`, `adress`, `price`, `phone`, `website`, `ip_address`, `created`, `published`, `status`, `has_images`, `featured`) VALUES
-(193, 2, 1, 1, 0, '1', '1', 'asd', '', 0.000, '', NULL, NULL, '2013-01-25 09:47:15', NULL, 1, 0, NULL),
-(194, 2, 1, 2, 0, '1', '1-1', 'asd', '', 0.000, '', NULL, NULL, '2013-01-25 09:47:34', NULL, 1, 0, NULL),
-(195, 2, 1, 1, 0, '2', '2', 'ads', '', 0.000, '', NULL, NULL, '2013-01-25 09:49:53', NULL, 1, 0, NULL),
+(193, 2, 0, 1, 0, '1', '1', 'asd', '', 0.000, '', NULL, NULL, '2013-01-25 09:47:15', NULL, 1, 0, NULL),
+(194, 2, 0, 2, 0, '1', '1-1', 'asd', '', 0.000, '', NULL, NULL, '2013-01-25 09:47:34', NULL, 1, 0, NULL),
+(195, 2, 0, 1, 0, '2', '2', 'ads', '', 0.000, '', NULL, NULL, '2013-01-25 09:49:53', NULL, 1, 0, NULL),
 (196, 2, 4, 2, 0, 'iphone 4s CHEEP!!!', 'iphone-4s-cheep', 'I have it for a about 1 year. I kept it in good condition.\nBut i want new one. And im selling this one cheep. \nGo go, contact me.', 'deu i mata', 120.000, '123123', NULL, NULL, '2013-01-29 08:58:09', NULL, 1, 0, NULL),
 (197, 2, 2, 3, 0, 'asd', 'asd', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 09:44:22', NULL, 1, 0, NULL),
-(198, 2, 1, 3, 0, 'asd', 'asd-1', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 09:46:08', NULL, 1, 0, NULL),
+(198, 2, 0, 3, 0, 'asd', 'asd-1', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 09:46:08', NULL, 1, 0, NULL),
 (199, 2, 2, 3, 0, 'asdfgsadwqe11232', 'asdfgsadwqe11232', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 09:46:36', NULL, 1, 0, NULL),
-(200, 2, 1, 2, 0, 'image deletew', 'image-deletew', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 09:47:18', NULL, 1, 0, NULL),
-(201, 2, 1, 1, 0, '123', '123', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 09:51:57', NULL, 1, 0, NULL),
-(202, 2, 1, 1, 0, 'published', 'published', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 09:53:30', '2013-01-29 10:53:30', 50, 0, NULL),
-(203, 2, 1, 1, 0, 'published', 'published-1', 'asd\n[u]asdasd[/u][ol][li][u]asd[/u][/li][li][u]asd[/u][/li][li][u]asd[/u][/li][li][u][b]asd[/b][/u][/li][/ol]', '', 0.000, '123', NULL, NULL, '2013-01-29 09:54:44', '2013-01-29 10:54:44', 1, 0, NULL),
+(200, 2, 0, 2, 0, 'image deletew', 'image-deletew', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 09:47:18', NULL, 1, 0, NULL),
+(201, 2, 0, 1, 0, '123', '123', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 09:51:57', NULL, 1, 0, NULL),
+(202, 2, 0, 1, 0, 'published', 'published', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 09:53:30', '2013-01-29 10:53:30', 50, 0, NULL),
+(203, 2, 0, 1, 0, 'published', 'published-1', 'asd\n[u]asdasd[/u][ol][li][u]asd[/u][/li][li][u]asd[/u][/li][li][u]asd[/u][/li][li][u][b]asd[/b][/u][/li][/ol]', '', 0.000, '123', NULL, NULL, '2013-01-29 09:54:44', '2013-01-29 10:54:44', 1, 0, NULL),
 (204, 2, 2, 2, 0, 'notpublished', 'notpublished', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 10:03:01', NULL, 0, 0, NULL),
 (205, 2, 2, 2, 0, 'lalalaa', 'lalalaa', 'asd', '', 0.000, '123', NULL, NULL, '2013-01-29 10:04:16', NULL, 0, 0, NULL),
 (208, 2, 4, 2, 0, 'asd', 'asd-2', '[ul][li][b]asdasdasd[/b][/li][/ul]\n[ul][li][b]asdasd[/b][/li][/ul]', 'adsa', 123.000, '123123', NULL, NULL, '2013-01-29 11:18:17', NULL, 1, 0, NULL),
 (209, 2, 3, 3, 0, 'new123', 'new123', 'asd', '', 0.000, '', NULL, NULL, '2013-01-29 11:29:30', '2013-01-29 12:29:30', 1, 0, NULL),
 (212, 2, 3, 2, 0, 'asdyusad', 'asdyusad', 'asd[b]asd[/b]', '', 0.000, '', NULL, NULL, '2013-01-30 11:06:15', '2013-01-30 12:06:15', 1, 0, NULL),
-(213, 2, 1, 5, 0, 'belgrade', 'belgrade', 'asdasd', '', 0.000, '', NULL, NULL, '2013-02-04 09:48:52', '2013-02-04 10:48:52', 1, 0, NULL),
-(214, 2, 1, 1, 0, 'send mail', 'send-mail', 'asd', '', 0.000, '', NULL, NULL, '2013-02-04 10:29:17', '2013-02-04 11:29:17', 1, 0, NULL),
+(213, 2, 0, 5, 0, 'belgrade', 'belgrade', 'asdasd', '', 0.000, '', NULL, NULL, '2013-02-04 09:48:52', '2013-02-04 10:48:52', 1, 0, NULL),
+(214, 2, 0, 1, 0, 'send mail', 'send-mail', 'asd', '', 0.000, '', NULL, NULL, '2013-02-04 10:29:17', '2013-02-04 11:29:17', 1, 0, NULL),
 (215, 2, 2, 2, 0, 'paypal', 'paypal', 'paypaltest', '', 0.000, '', NULL, NULL, '2013-02-07 08:36:13', NULL, 0, 0, NULL),
 (216, 2, 2, 3, 0, 'asd', 'asd-3', 'asd', '', 0.000, '', NULL, NULL, '2013-02-07 08:39:15', NULL, 0, 0, NULL),
 (217, 2, 4, 3, 0, 'asd', 'asd-4', 'asd', '', 0.000, '', NULL, NULL, '2013-02-07 08:41:13', NULL, 0, 0, NULL),
-(218, 2, 1, 1, 0, 'asd', 'asd-5', 'asd', '', 0.000, '', NULL, NULL, '2013-02-07 08:41:38', NULL, 0, 0, NULL),
+(218, 2, 0, 1, 0, 'asd', 'asd-5', 'asd', '', 0.000, '', NULL, NULL, '2013-02-07 08:41:38', NULL, 0, 0, NULL),
 (219, 2, 5, 4, 0, 'asd', 'asd-6', 'asd', '', 0.000, '', NULL, NULL, '2013-02-07 08:42:19', NULL, 0, 0, NULL),
 (229, 2, 2, 2, 0, 'asdyu', 'asdyu', 'das', '', 0.000, '', NULL, NULL, '2013-02-07 08:59:23', '2013-02-07 09:59:23', 1, 0, NULL),
 (230, 2, 3, 4, 0, 'asdyu', 'asdyu-1', 'das', '', 0.000, '', NULL, NULL, '2013-02-07 09:00:20', '2013-03-06 12:06:42', 1, 0, '2013-03-10 09:52:34'),
 (231, 2, 2, 3, 0, 'asdyu', 'asdyu-2', 'asd', '', 123.230, '', NULL, NULL, '2013-02-07 09:01:11', '2013-02-07 10:01:11', 50, 0, NULL),
 (232, 2, 2, 2, 0, 'pay', 'pay', 'asd', '', 0.000, '', NULL, NULL, '2013-02-07 09:07:12', NULL, 0, 0, NULL),
-(233, 2, 1, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe', 'asd', '', 0.000, '', NULL, NULL, '2013-02-07 09:35:47', NULL, 0, 0, NULL),
+(233, 2, 0, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe', 'asd', '', 0.000, '', NULL, NULL, '2013-02-07 09:35:47', NULL, 0, 0, NULL),
 (234, 2, 2, 2, 0, '123', '123-1', 'asdasd', '', 0.000, '', NULL, NULL, '2013-02-13 08:39:26', NULL, 0, 0, NULL),
 (235, 2, 2, 4, 0, 'aasdzxc', 'aasdzxc', 'asdasd', '', 0.000, '', NULL, NULL, '2013-02-13 10:48:15', NULL, 0, 0, NULL),
 (236, 2, 4, 3, 0, 'asdfgsadwqe1123', 'asdfgsadwqe1123', 'asd', '', 0.000, '', NULL, NULL, '2013-02-13 11:11:32', NULL, 0, 0, NULL),
@@ -120,11 +120,17 @@ INSERT INTO `oc_ads` (`id_ad`, `id_user`, `id_category`, `id_location`, `type`, 
 (244, 2, 3, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe-3', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:21:46', NULL, 0, 0, NULL),
 (245, 2, 2, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe-4', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:22:17', NULL, 0, 0, NULL),
 (246, 2, 2, 4, 0, 'asdasd', 'asdasd', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:27:29', NULL, 0, 0, NULL),
-(247, 2, 3, 5, 0, 'asdasd999', 'asdasd999', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:28:35', NULL, 0, 0, NULL),
-(248, 2, 6, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe-5', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:37:26', NULL, 0, 0, NULL),
-(249, 2, 6, 3, 0, 'asd', 'asd-10', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:40:57', NULL, 0, 0, NULL),
-(250, 2, 6, 4, 0, 'asd', 'asd-11', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:41:13', NULL, 0, 0, NULL),
-(251, 2, 2, 2, 0, '123asdgfasd', '123asdgfasd', '123', '', 0.000, '', NULL, NULL, '2013-02-20 10:52:36', NULL, 0, 0, NULL);
+(247, 2, 3, 5, 0, 'asdasd999', 'asdasd999', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:28:35', '2013-03-13 10:59:20', 1, 0, NULL),
+(248, 2, 6, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe-5', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:37:26', '2013-03-13 10:59:20', 1, 0, NULL),
+(249, 2, 6, 3, 0, 'asd', 'asd-10', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:40:57', '2013-03-13 10:59:20', 1, 0, NULL),
+(250, 2, 6, 4, 0, 'asd', 'asd-11', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:41:13', '2013-03-13 10:59:20', 1, 0, NULL),
+(251, 2, 2, 2, 0, '123asdgfasd', '123asdgfasd', '123', '', 0.000, '', NULL, NULL, '2013-02-20 10:52:36', '2013-03-13 10:59:20', 1, 0, NULL),
+(252, 2, 2, 2, 0, '123', '123-2', '123', '', 0.000, '', NULL, NULL, '2013-03-13 10:11:22', NULL, 0, 1, NULL),
+(253, 2, 2, 2, 0, '123', '123-3', '123', '', 0.000, '', NULL, NULL, '2013-03-13 10:12:13', NULL, 0, 1, NULL),
+(254, 2, 0, 2, 0, 'website', 'website', 'asd', '', 0.000, '', 'reoc.lo', NULL, '2013-03-13 10:32:14', '2013-03-13 11:32:14', 1, 0, NULL),
+(255, 2, 0, 0, 0, 'test', 'test', 'asd', '', 0.000, '', '', NULL, '2013-03-13 10:41:36', '2013-03-13 11:41:36', 1, 0, NULL),
+(257, 2, 0, 0, 0, 'test', 'test-1', 'asd', '', 0.000, '', '', NULL, '2013-03-13 10:45:23', '2013-03-13 11:45:23', 1, 0, NULL),
+(258, 2, 0, 1, 0, 'tests', 'tests', '123', '', 0.000, '', '', NULL, '2013-03-13 10:52:37', '2013-03-13 11:52:37', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -144,19 +150,20 @@ CREATE TABLE IF NOT EXISTS `oc_categories` (
   `price` decimal(10,0) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`) USING BTREE,
   UNIQUE KEY `categories_IK_seo_name` (`seoname`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `oc_categories`
 --
 
 INSERT INTO `oc_categories` (`id_category`, `name`, `order`, `created`, `id_category_parent`, `parent_deep`, `seoname`, `description`, `price`) VALUES
-(1, 'all', 0, '2013-02-20 09:06:26', 0, 0, 'all', 'all', 10),
+(0, 'all', 0, '2013-03-13 10:45:03', 0, 0, 'all', 'all', 10),
 (2, 'cat_car', 1, '2013-02-20 09:06:24', 1, 1, 'catcar', NULL, 20),
 (3, 'cat_house', 2, '2013-02-20 09:06:25', 2, 2, 'cathouse', NULL, 30),
 (4, 'mobile', 3, '2013-02-14 11:05:15', 2, 0, 'mobile', 'mobile', 20),
 (5, 'hosting', 1, '2013-02-06 10:24:01', 0, 0, 'housing', 'hostings ', 0),
-(6, 'bicing', 0, '2013-02-20 09:37:12', 5, 0, 'bicing', 'sad', 0);
+(6, 'bicing', 0, '2013-02-20 09:37:12', 5, 0, 'bicing', 'sad', 0),
+(7, 'bla', 8, '0000-00-00 00:00:00', 0, 0, 'bla', 'asd', 0);
 
 -- --------------------------------------------------------
 
@@ -186,44 +193,29 @@ INSERT INTO `oc_config` (`group_name`, `config_key`, `config_value`) VALUES
 ('i18n', 'timezone', 'Europe/Madrid'),
 ('i18n', 'locale', 'en_US'),
 ('cookie', 'salt', '13413mdksdf-948jd'),
-('general', 'num_images', '4'),
-('general', 'moderation', '2'),
-('paypal', 'paypal_currency', 'USD'),
+('formconfig', 'advertisement-num_images', '3'),
+('general', 'moderation', '0'),
+('payment', 'paypal_currency', 'USD'),
 ('general', 'site_name', 'openclassified'),
-('paypal', 'sandbox', 'TRUE'),
+('payment', 'sandbox', 'TRUE'),
 ('general', 'ID-pay_to_go_on_top', 'pay_to_go_on_top'),
 ('general', 'site_url', 'http://reoc.zz.mu'),
-('formconfig', 'general-created', 'TRUE'),
-('formconfig', 'general-description', 'TRUE'),
-('formconfig', 'general-parent_deep', 'FALSE'),
-('formconfig', 'category-seotitle', 'FALSE'),
-('formconfig', 'category-id_category_parent', 'FALSE'),
-('formconfig', 'category-price', 'FALSE'),
-('formconfig', 'location-seoname', 'TRUE'),
-('formconfig', 'location-lat', 'FALSE'),
-('formconfig', 'location-lng', 'FALSE'),
-('formconfig', 'user-id_location', 'FALSE'),
-('formconfig', 'user-last_modified', 'FALSE'),
-('formconfig', 'user-logins', 'FALSE'),
-('formconfig', 'user-last_login', 'FALSE'),
-('formconfig', 'user-last_ip', 'FALSE'),
-('formconfig', 'user-user_agent', 'FALSE'),
-('formconfig', 'user-token', 'FALSE'),
-('formconfig', 'user-token_created', 'FALSE'),
-('formconfig', 'user-token_expires', 'FALSE'),
-('formconfig', 'role-date_created', 'FALSE'),
-('formconfig', 'content-from_email', 'FALSE'),
+('payment', 'to_featured', 'TRUE'),
+('payment', 'to_top', 'TRUE'),
+('formconfig', 'advertisement-address', 'TRUE'),
+('formconfig', 'advertisement-phone', 'TRUE'),
+('formconfig', 'contact-upload_file', 'TRUE'),
+('formconfig', 'advertisement-location', 'TRUE'),
 ('formconfig', 'captcha-captcha', 'FALSE'),
-('formconfig', 'extrapayments-pay_to_go_on_top', 'TRUE'),
-('formconfig', 'extrapayments-pay_to_go_on_feature', 'TRUE'),
-('general', 'pay_to_go_on_feature', '10'),
-('general', 'pay_to_go_on_top', '5'),
+('formconfig', 'advertisement-website', 'TRUE'),
+('payment', 'pay_to_go_on_feature', '10'),
+('payment', 'pay_to_go_on_top', '5'),
 ('general', 'global-currency', 'USD'),
-('paypal', 'paypal_account', 'slobod_1360747823_biz@gmail.com'),
+('payment', 'paypal_account', 'slobod_1360747823_biz@gmail.com'),
 ('general', 'ID-pay_to_go_on_feature', 'pay_to_go_on_feature'),
 ('general', 'featured_timer', '5'),
 ('general', 'advertisements_per_page', '5'),
-('formconfig', 'advertisement-upload_file', 'TRUE'),
+('formconfig', 'advertisement-price', 'TRUE'),
 ('general', 'paypal_msg_product_to_top', 'Go on Top'),
 ('general', 'paypal_msg_product_to_featured', 'Go to Featured'),
 ('general', 'paypal_msg_product_category', 'Pay to publish '),
@@ -278,7 +270,7 @@ CREATE TABLE IF NOT EXISTS `oc_locations` (
   `lng` float(10,6) DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `categories_UK_seoname` (`seoname`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `oc_locations`
@@ -289,7 +281,8 @@ INSERT INTO `oc_locations` (`id_location`, `name`, `id_location_parent`, `parent
 (2, 'spain', 1, 0, 'spain', NULL, NULL, NULL),
 (3, 'barcelona', 1, 1, 'barcelona', NULL, NULL, NULL),
 (4, 'madrid', 1, 1, 'madrid', NULL, NULL, NULL),
-(5, 'Belgrade', 2, 0, 'belgrade', NULL, NULL, NULL);
+(5, 'Belgrade', 2, 0, 'belgrade', NULL, NULL, NULL),
+(6, 'lalala', 2, 1, 'lalala', 'asd', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -311,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `oc_orders` (
   PRIMARY KEY (`id_order`),
   KEY `orders_IK_id_user` (`id_user`),
   KEY `orders_IK_status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=63 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
 
 --
 -- Dumping data for table `oc_orders`
@@ -342,7 +335,9 @@ INSERT INTO `oc_orders` (`id_order`, `id_user`, `id_ad`, `id_product`, `paymetho
 (59, 2, 230, 'pay_to_go_on_top', 'paypal', '2013-03-06 20:40:58', NULL, 'USD', 5.000, 0),
 (60, 2, 230, 'pay_to_go_on_top', 'paypal', '2013-03-06 20:41:18', NULL, 'USD', 5.000, 0),
 (61, 2, 230, 'pay_to_go_on_top', 'paypal', '2013-03-06 20:42:12', NULL, 'USD', 5.000, 0),
-(62, 2, 230, 'pay_to_go_on_top', 'paypal', '2013-03-06 20:43:30', NULL, 'USD', 5.000, 0);
+(62, 2, 230, 'pay_to_go_on_top', 'paypal', '2013-03-06 20:43:30', NULL, 'USD', 5.000, 0),
+(63, 2, 252, '2', 'paypal', '2013-03-13 10:11:22', NULL, 'USD', 20.000, 0),
+(64, 2, 253, '2', 'paypal', '2013-03-13 10:12:13', NULL, 'USD', 20.000, 0);
 
 -- --------------------------------------------------------
 
@@ -395,16 +390,17 @@ CREATE TABLE IF NOT EXISTS `oc_users` (
   UNIQUE KEY `users_UK_email` (`email`),
   UNIQUE KEY `users_UK_token` (`token`),
   UNIQUE KEY `users_UK_seoname` (`seoname`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `oc_users`
 --
 
 INSERT INTO `oc_users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`, `id_location`, `created`, `last_modified`, `logins`, `last_login`, `last_ip`, `user_agent`, `token`, `token_created`, `token_expires`) VALUES
-(2, 'slobodan', NULL, 'slobodan.josifovic@gmail.com', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 1, 10, NULL, '2012-12-14 10:48:26', NULL, 92, '2013-03-12 09:32:37', 2130710000, '19b62e2f697adc030c6dcc59146d5b002dadf041', '28436ee8d782958bcf8c2ab8489a7fcba78e7b87', '2013-03-12 09:32:37', '2013-06-10 10:32:37'),
+(2, 'slobodan', NULL, 'slobodan.josifovic@gmail.com', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 1, 10, NULL, '2012-12-14 10:48:26', NULL, 93, '2013-03-13 10:58:47', 2130710000, '7653edb74ee64b1799cbcb9698248a5fa3859a36', '9d7daeb532ae934b654c8a2bf4139ec87a0ce04a', '2013-03-13 10:58:47', '2013-06-11 11:58:47'),
 (26, 'andrey', NULL, 'andrey@gmail.com', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 1, 1, NULL, '2013-01-17 11:57:57', NULL, 7, '2013-02-01 10:11:53', 2130710000, '64bf8ec195ca70e7458e2ea8aa7f6330be09ae1f', '31ea07c9136a79d691ed0aa2165e0c172bb54ffd', '2013-02-01 10:11:58', '2013-05-02 11:11:58'),
-(27, 'bla', 'bla', 'bla', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 1, 1, 2, '2013-02-06 12:47:31', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL);
+(27, 'bla', 'bla', 'bla', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 1, 1, 2, '2013-02-06 12:47:31', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 'new', 'new', 'la@la.com', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 0, 1, NULL, '0000-00-00 00:00:00', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -421,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `oc_visits` (
   PRIMARY KEY (`id_visit`),
   KEY `visits_IK_id_user` (`id_user`),
   KEY `visits_IK_id_ad` (`id_ad`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=258 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=259 ;
 
 --
 -- Dumping data for table `oc_visits`
@@ -632,7 +628,8 @@ INSERT INTO `oc_visits` (`id_visit`, `id_ad`, `id_user`, `created`, `ip_address`
 (254, 230, 2, '2013-02-27 12:16:39', NULL),
 (255, 230, 2, '2013-02-27 12:19:06', NULL),
 (256, 230, 2, '2013-02-27 12:20:11', NULL),
-(257, 230, 2, '2013-02-27 12:20:36', NULL);
+(257, 230, 2, '2013-02-27 12:20:36', NULL),
+(258, 230, 2, '2013-03-13 16:05:36', NULL);
 
 --
 -- Constraints for dumped tables

@@ -17,14 +17,14 @@
 					$global_currency = $value;
 				} 
 			}?>
-			<?//if(core::config('formconfig.pay_to_go_on_top')):?>
-			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '.$to_top.' '.$global_currency);?></p>
+			<?if(core::config('payment.to_top') !== "FALSE"):?>
+			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '.$to_top.' '.core::config('general.global-currency'));?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('ad', array('action'=>'to_top','category'=>$ad->id_category,'seotitle'=>$ad->seotitle))?>">Go Top!</a>
-			<?//endif?>
-			<?//if(core::config('formconfig.pay_to_go_on_feature')):?>
-			<p class="text-info"><?=__('Your Advertisement can go to featured! For only '.$featured_price.' '.$global_currency);?></p>
+			<?endif?>
+			<?if(core::config('payment.to_featured')):?>
+			<p class="text-info"><?=__('Your Advertisement can go to featured! For only '.$featured_price.' '.core::config('general.global-currency'));?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('ad', array('action'=>'to_featured','category'=>$ad->id_category,'seotitle'=>$ad->seotitle))?>">Go Top!</a>
-			<?//endif?>
+			<?endif?>
 		</div>
 		<?//endif?>
 		<?= FORM::open(Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>

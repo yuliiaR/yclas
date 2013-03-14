@@ -14,7 +14,7 @@
 				<?php sidebar_link(__('Users'),'user')?>
 				<?php sidebar_link(__('User Roles'),'role')?>
 				<?php sidebar_link(__('Roles access'),'access')?>
-				<?php sidebar_link(__('Order List'), 'order')?>
+				<?php sidebar_link(__('Orders'), 'order')?>
 				<?php sidebar_link(__('Widgets'), 'widget')?>
 				<?php sidebar_link(__('Content'), 'content')?>
 			<? endif ?>
@@ -32,6 +32,11 @@
 			<li><a
 				href="<?=Route::url('oc-panel',array('controller'=>'generalconf'))?>">
 				<?=__('General')?>
+			</a>
+			</li>
+			<li><a
+				href="<?=Route::url('oc-panel',array('controller'=>'paymentconf'))?>">
+				<?=__('Payment')?>
 			</a>
 			</li>
 			<li><a

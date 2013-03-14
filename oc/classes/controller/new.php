@@ -34,7 +34,9 @@
 		$form_show = array('captcha'	=>core::config('formconfig.captcha-captcha'),
 						   'website'	=>core::config('formconfig.advertisement-website'),
 						   'phone'		=>core::config('formconfig.advertisement-phone'),
-						   'location'	=>core::config('formconfig.advertisement-location'));
+						   'location'	=>core::config('formconfig.advertisement-location'),
+						   'address'	=>core::config('formconfig.advertisement-address'),
+						   'price'		=>core::config('formconfig.advertisement-price'));
 
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/ad/new', array('_cat'				=> $_cat,

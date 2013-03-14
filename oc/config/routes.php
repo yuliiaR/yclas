@@ -51,6 +51,23 @@ Route::set('update', 'edit(/<action>(/<seotitle>(/<id>(/<img_name>))).html)')
 		'action'     => 'update',
 ));
 
+/**
+ * Item / ad view (public)
+ */
+Route::set('ad', '<category>(/<seotitle>).html')
+->defaults(array(
+		'controller' => 'ad',    
+		'action'     => 'view',
+));
+
+/**
+ * Sort by Category / Location
+ */
+Route::set('sort_by', 'sort_by/<category>(/<location>)')
+->defaults(array(
+		'controller' => 'ad',    
+		'action'     => 'sort_category',
+));
 /*
 	user profile route 
  */
@@ -70,17 +87,6 @@ Route::set('page','p/<seotitle>.html')
 		'controller' => 'page',    
 		'action'     => 'view',
 ));
-
-
-/**
- * Item / ad view (public)
- */
-Route::set('ad', '(<action>(/<category>(/<seotitle>))).html')
-->defaults(array(
-		'controller' => 'ad',    
-		'action'     => 'view',
-));
-
 
 /**
  * Error router

@@ -52,7 +52,7 @@
 				</label>
 			</td>
 			<? foreach($category as $cat){ if ($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
-			<td><a href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><? echo $ad->title; ?></a>
+			<td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><? echo $ad->title; ?></a>
 			</td>
 
 			<? foreach($category as $cat):?>

@@ -26,12 +26,17 @@
 								<div class="control-group">
 									<?= FORM::label($field_name, __($field_name), array('class'=>'control-label', 'for'=>$field_name))?>
 									<div class="controls">
-										<? $input = array("TRUE", "FALSE"); if($val->config_value == "TRUE") $i = 0; else $i = 1?>
-										<?= FORM::select($element.'-'.$field_name, $input, $i, array(
-										'placeholder' => $field_name, 
-										'class' => 'input-xlarge', 
-										'id' => $element.'-'.$field_name, 
-										))?> 
+										<?if($val->config_value == "TRUE" || $val->config_value == "FALSE"):?>
+										
+											<? $input = array("TRUE"=>"TRUE","FALSE"=>"FALSE");?>
+											<?= FORM::select($element.'-'.$field_name, $input, $val->config_value, array(
+											'placeholder' => $field_name, 
+											'class' => 'input-xlarge', 
+											'id' => $element.'-'.$field_name, 
+											))?>
+										<?else:?>
+											<?= FORM::input($element.'-'.$field_name, $val->config_value, array('placeholder' => __($field_name), 'class' => 'input-xlarge', 'id' => $field_name, 'required'))?>
+										<?endif?> 
 									</div>
 								</div>
 								<?endif?>

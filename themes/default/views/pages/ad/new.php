@@ -65,20 +65,22 @@
 					</div>
 				</div>
 				<?endif?>
+				<?if($form_show['address'] !== 'FALSE'):?>
 				<div class="control-group">
 					<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
 					<div class="controls">
 						<?= FORM::input('address', Request::current()->post('address'), array('class'=>'input-xlarge', 'id'=>'address', 'placeholder'=>__('Address')))?>
 					</div>
 				</div>
-				
+				<?endif?>
+				<?if($form_show['price'] !== 'FALSE'):?>
 				<div class="control-group">
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => __('Price'), 'class' => 'input-xlarge', 'id' => 'price', 'type'=>'number'))?>
 					</div>
 				</div>
-				
+				<?endif?>
 				<?if($form_show['website'] !== 'FALSE'):?>
 				<div class="control-group">
 					<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>

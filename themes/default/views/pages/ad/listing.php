@@ -10,6 +10,8 @@
         	<li><a href="#">Location</a> <span class="divider">&raquo;</span></li>
         	<li class="active">page 1</li>
 	 </ul>
+	 <a title="123" href="<?=Route::url('sort_by', array('category'=>'all'))?>"> All</a>
+	    	
 	  <?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
 	   	<?if($ad->featured >= Date::unix2mysql(time())):?>
@@ -18,41 +20,46 @@
 	    <article class="list well clearfix">
 	    <?endif?>
 	    	<h2>
-	    	<? foreach ($cat as $c){ if($c->id_category == $ad->id_category) $cat_name = $c->name; }?>
-	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?php echo $ad->title; ?></a>
+	    		
+	    	<?//if(!is_array($cat)):?>
+	    	<?//$cat_name = $cat?>
+	    	<?//else:?>
+	    	<?foreach ($cat as $cat){ if($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
+	    	<?//endif?>
+	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 	    	</h2>
 	    	<?if($img_path[$ad->seotitle] != NULL):?>
 	    		 <img src="<?=$img_path[$ad->seotitle][1]?>" class="img-polaroid">
 	    	<?endif?>
 	    	<ul>
 	    		<?php if ($ad->published!=0){?>
-		   			<li><b><?php _e('Publish Date');?>:</b> <?php echo $ad->published;?></li>
+		   			<li><b><?= _e('Publish Date');?>:</b> <?php echo $ad->published;?></li>
 		   		<?php }?>
 		    	<?php if ($ad->price!=0){?>
-		    		<li class="price"><?php _e('Price');?>: <b><?php echo $ad->price;?>&euro;</b></li>
+		    		<li class="price"><?= _e('Price');?>: <b><?php echo $ad->price;?>&euro;</b></li>
 		    	<?php }?>  
 		    </ul>
 		 
 		    <p><?php echo Text::bb2html($ad->description,TRUE);?></p>
 		    
-		    <a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','action'=>'view','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?php _e('Read more')?></a>
+		    <a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?=_e('Read more')?></a>
 	    
 	    	<?if ($user !== NULL && $user->id_role == 10):?>
 	    		<br />
-			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))?>"><?php _e("Edit");?></a> |
+			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))?>"><?= _e("Edit");?></a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
-				onclick="return confirm('<?=__('Deactivate?')?>');"><?php _e("Deactivate");?>
+				onclick="return confirm('<?=__('Deactivate?')?>');"><?= _e("Deactivate");?>
 			</a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" 
-				onclick="return confirm('<?=__('Spam?')?>');"><?php _e("Spam");?>
+				onclick="return confirm('<?=__('Spam?')?>');"><?= _e("Spam");?>
 			</a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" 
-				onclick="return confirm('<?=__('Delete?')?>');"><?php _e("Delete");?>
+				onclick="return confirm('<?=__('Delete?')?>');"><?= _e("Delete");?>
 			</a>
 
 			<?elseif($user !== NULL && $user->id_user == $ad->id_user):?>
 				<br/>
-			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))?>"><?php _e("Edit");?></a> 
+			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> 
 			<?endif?>
 	    </article>
 	    <?=Alert::show()?>

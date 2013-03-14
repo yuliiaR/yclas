@@ -5,7 +5,7 @@ class Controller_Ad extends Controller {
 	/**
 	 * Publis all adver.-s without filter
 	 */
-	public function action_index()
+	public function action_all()
 	{ 
 		//$this->template->bind('content', $content);
 		
@@ -118,17 +118,19 @@ class Controller_Ad extends Controller {
 
  	/**
  	 * [action_list_logic Returnes arrays with necessary data to publis advert.-s]
- 	 * @return [array] [$ads, $pagination, $user, $image_path]
+ 	 * @param  [string] $sort_by_cat [name of category] 
+ 	 * @param  [string] $sort_by_loc [name of location]
+  	 * @return [array] [$ads, $pagination, $user, $image_path]
  	 */
-	public function action_list_logic()
+	public function action_list_logic($sort_by_cat = NULL, $sort_by_loc = NULL)
 	{
 		$ads = new Model_Ad();
+	
+		$cat = new Model_Category($sort_by_cat);
+		if($sort_by_cat == NULL) $cat = $cat->find_all(); else $cat = $sort_by_cat;
 		
-		$cat = new Model_Category();
-		$cat = $cat->find_all();
-		
-		$loc = new Model_Location();
-		$loc = $loc->find_all();
+		$loc = new Model_Location($sort_by_loc);
+		if($sort_by_loc == NULL)$loc = $loc->find_all(); else $loc = $sort_by_loc;
 		
 		$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->count_all();
 		
@@ -165,7 +167,6 @@ class Controller_Ad extends Controller {
 		{
 			$user = Auth::instance()->get_user();
 		}
-
 		
 		///////////////////
 		// @ TODO -- BAD SOLUTION
@@ -211,6 +212,16 @@ class Controller_Ad extends Controller {
 					 'loc'			=> $loc);
 	}
 	
+	public function action_sort_category()
+	{
+		$category = $this->request->param('category');
+
+
+		$data = $this->action_list_logic($category, $location = NULL);
+		$this->template->bind('content', $content);
+		$this->template->content = View::factory('pages/ad/listing',$data);
+		$search_term = $this->request->param('search',NULL);
+	}
 
 	/**
 	 * [action_search filter results]
@@ -367,7 +378,7 @@ class Controller_Ad extends Controller {
 		$loc = $loc->find_all();
 		
 	
-		$extra_payment = core::config('general');
+		$extra_payment = core::config('payment');
 	
 		if($form->has_images == 1)
 		{

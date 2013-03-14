@@ -103,7 +103,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			
 		}
 		Alert::set(Alert::SUCCESS, __('Success, advertisemet is deleted'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'all')));
 		
 	}
 
@@ -140,7 +140,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					else
 					{				
 						Alert::set(Alert::ALERT, __('Warning, advertisemet is already marked as spam'));
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'all')));
 					} 
 				}
 				else
@@ -151,7 +151,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Success, advertisemet is marked as spam'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'all')));
 		
 	}
 
@@ -190,7 +190,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					else
 					{				
 						Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'deactivated'"));
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'all')));
 					} 
 				}
 				else
@@ -201,7 +201,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Success, advertisemet is deactivated'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'all')));
 	}
 
 	/**

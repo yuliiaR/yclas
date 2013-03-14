@@ -31,10 +31,8 @@ class Controller_Panel_Formconf extends Auth_Controller {
             {
                 $config_res = $this->request->post($c->config_key); 
                 
-                if($config_res == 0) $config_res = 'TRUE'; else $config_res = 'FALSE';
-                
-                if($config_res != $c->config_value)
-                {
+                if($config_res !== $c->config_value)
+                {echo $config_res." ".$c->config_value;
                     $c->config_value = $config_res;
                     try {
                         $c->save();
