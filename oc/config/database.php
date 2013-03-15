@@ -4,18 +4,14 @@ return array
     'default' => array(
         'type'       => 'mysql',
         'connection' => array(
-            'hostname'   => 'localhost',
-            // 'hostname' => 'mysql.hostinger.es', // production
-            'username'   => 'root',
-            // 'username' => 'u808612650_reoc', // production
-            'password'   => '',
-            // 'password' => 'reoc12345', // production
+            'hostname'   => '[DB_HOST]',
+            'username'   => '[DB_USER]',
+            'password'   => '[DB_PASS]',
             'persistent' => FALSE,
-            'database'   => 'reoc',
-            // 'database' => 'u808612650_reoc' // production
+            'database'   => '[DB_NAME]',
             ),
-        'table_prefix' => 'oc_',
-        'charset'      => 'utf8',
-        'profiling'    => TRUE,
+        'table_prefix' => '[TABLE_PREFIX]',
+        'charset'      => '[DB_CHARSET]',
+        'profiling'    => FALSE,
      ),
 );

@@ -1,20 +1,27 @@
-CREATE TABLE `oc_roles` (
+<?
+//SQL installation import
+
+mysql_query("SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO';");
+
+mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]roles` (
   `id_role` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `description` varchar(245) DEFAULT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_role`),
-  UNIQUE KEY `oc_roles_UK_name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  UNIQUE KEY `[TABLE_PREFIX]roles_UK_name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET];");
 
-CREATE TABLE `oc_access` (
+
+mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]access` (
   `id_access` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_role` int(10) unsigned NOT NULL,
   `access` varchar(100) NOT NULL,
   PRIMARY KEY (`id_access`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET];");
 
-CREATE TABLE  `oc_users` (
+
+mysql_query("CREATE TABLE IF NOT EXISTS  `[TABLE_PREFIX]users` (
   `id_user` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(145) DEFAULT NULL,
   `seoname` varchar(145) DEFAULT NULL,
@@ -33,13 +40,13 @@ CREATE TABLE  `oc_users` (
   `token_created` datetime DEFAULT NULL,
   `token_expires` datetime DEFAULT NULL,
   PRIMARY KEY (`id_user`),
-  UNIQUE KEY `users_UK_email` (`email`),
-  UNIQUE KEY `users_UK_token` (`token`),
-  UNIQUE KEY `users_UK_seoname` (`seoname`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `[TABLE_PREFIX]users_UK_email` (`email`),
+  UNIQUE KEY `[TABLE_PREFIX]users_UK_token` (`token`),
+  UNIQUE KEY `[TABLE_PREFIX]users_UK_seoname` (`seoname`)
+) ENGINE=InnoDB DEFAULT CHARSET=[DB_CHARSET];");
 
 
-CREATE TABLE  `oc_categories` (
+mysql_query("CREATE TABLE IF NOT EXISTS  `[TABLE_PREFIX]categories` (
   `id_category` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(145) NOT NULL,
   `order` int(2) unsigned NOT NULL DEFAULT '0',
@@ -50,11 +57,11 @@ CREATE TABLE  `oc_categories` (
   `description` varchar(255) NULL,
   `price` decimal NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`) USING BTREE,
-  UNIQUE KEY `categories_IK_seo_name` (`seoname`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `[TABLE_PREFIX]categories_IK_seo_name` (`seoname`)
+) ENGINE=InnoDB DEFAULT CHARSET=[DB_CHARSET];");
 
 
-CREATE TABLE  `oc_locations` (
+mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]locations` (
   `id_location` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `id_location_parent` int(10) unsigned NOT NULL DEFAULT '0',
@@ -64,11 +71,11 @@ CREATE TABLE  `oc_locations` (
   `lat` FLOAT( 10, 6 ) NULL ,
   `lng` FLOAT( 10, 6 ) NULL ,
   PRIMARY KEY (`id_location`),
-  UNIQUE KEY `categories_UK_seoname` (`seoname`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `[TABLE_PREFIX]categories_UK_seoname` (`seoname`)
+) ENGINE=InnoDB DEFAULT CHARSET=[DB_CHARSET];");
 
 
-CREATE TABLE  `oc_ads` (
+mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]ads` (
   `id_ad` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(10) unsigned NOT NULL,
   `id_category` int(10) unsigned NOT NULL DEFAULT '0',
@@ -88,34 +95,36 @@ CREATE TABLE  `oc_ads` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `has_images` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_ad`) USING BTREE,
-  KEY `ads_IK_id_user` (`id_user`),
-  KEY `ads_IK_id_category` (`id_category`),
-  KEY `ads_IK_title` (`title`),
-  UNIQUE KEY `ads_UK_seotitle` (`seotitle`),
-  KEY `ads_IK_status` (`status`),
-  CONSTRAINT `ads_FK_id_user_AT_users` FOREIGN KEY (`id_user`) REFERENCES `oc_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `ads_FK_id_category_AT_categories` FOREIGN KEY (`id_category`) REFERENCES `oc_categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  KEY `[TABLE_PREFIX]ads_IK_id_user` (`id_user`),
+  KEY `[TABLE_PREFIX]ads_IK_id_category` (`id_category`),
+  KEY `[TABLE_PREFIX]ads_IK_title` (`title`),
+  UNIQUE KEY `[TABLE_PREFIX]ads_UK_seotitle` (`seotitle`),
+  KEY `[TABLE_PREFIX]ads_IK_status` (`status`),
+  CONSTRAINT `[TABLE_PREFIX]ads_FK_id_user_AT_users` FOREIGN KEY (`id_user`) REFERENCES `[TABLE_PREFIX]users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `[TABLE_PREFIX]ads_FK_id_category_AT_categories` FOREIGN KEY (`id_category`) REFERENCES `[TABLE_PREFIX]categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=[DB_CHARSET];");
 
 
-CREATE TABLE `oc_visits` (
+mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]visits` (
   `id_visit` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_ad` int(10) unsigned DEFAULT NULL,
   `id_user` int(10) unsigned DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ip_address` float DEFAULT NULL,
   PRIMARY KEY (`id_visit`),
-  KEY `visits_IK_id_user` (`id_user`),
-  KEY `visits_IK_id_ad` (`id_ad`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  KEY `[TABLE_PREFIX]visits_IK_id_user` (`id_user`),
+  KEY `[TABLE_PREFIX]visits_IK_id_ad` (`id_ad`)
+) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET];");
 
-CREATE TABLE `oc_config` ( 
+
+mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]config` ( 
   `group_name` VARCHAR(128)  NOT NULL, 
   `config_key` VARCHAR(128)  NOT NULL, 
-  `config_value` TEXT, 
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+  `config_value` TEXT 
+) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET] ;");
 
-CREATE TABLE  `oc_orders` (
+
+mysql_query("CREATE TABLE IF NOT EXISTS  `[TABLE_PREFIX]orders` (
   `id_order` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(10) unsigned NOT NULL,
   `id_ad` int(10) unsigned NULL,
@@ -126,14 +135,13 @@ CREATE TABLE  `oc_orders` (
   `currency` char(3) NOT NULL,
   `amount` decimal(14,3) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
-
   PRIMARY KEY (`id_order`),
-  KEY `orders_IK_id_user` (`id_user`),
-  KEY `orders_IK_status` (`status`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `[TABLE_PREFIX]orders_IK_id_user` (`id_user`),
+  KEY `[TABLE_PREFIX]orders_IK_status` (`status`)
+)ENGINE=InnoDB DEFAULT CHARSET=[DB_CHARSET];");
 
---for help tips,pages/FAQ and email templates using the type.
-CREATE TABLE `as_content` (
+
+mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]content` (
   `id_content` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `order` int(2) unsigned NOT NULL DEFAULT '0',
   `title` varchar(145) NOT NULL,
@@ -144,34 +152,17 @@ CREATE TABLE `as_content` (
   `type` enum('page','email','help') NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_content`),
-  UNIQUE KEY `as_content_UK_id_language_AND_seotitle` (`id_language`,`seotitle`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---default configs
-INSERT INTO `oc_config` (`group_name`, `config_key`, `config_value`) VALUES
-('appearance', 'theme', 'default'),
-('i18n', 'charset', 'utf-8'),
-('init', 'base_url', '/'),
-('i18n', 'timezone', 'Europe/Madrid'),
-('i18n', 'locale', 'en_US'),
-('cookie', 'salt', '13413mdksdf-948jd');
+  UNIQUE KEY `[TABLE_PREFIX]content_UK_seotitle` (`seotitle`)
+) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET];");
 
 
---roles
-INSERT INTO `oc_roles` (`id_role`, `name`, `description`, `date_created`) 
-VALUES ('1', 'user', 'Normal user', CURRENT_TIMESTAMP), 
-('10', 'Administrator', 'Access to everything', CURRENT_TIMESTAMP);
+//@todo add configs, create user, roles....
+//Create a "God" user with role 10. hash_hmac('sha256', $password, $hash_key);
+/*
+if ($_POST["SAMPLE_DB"]==1)
+{
 
-INSERT INTO `oc_access` (`id_access`, `id_role`, `access`) 
-VALUES ('1', '10', '*.*'), ('2', '1', 'profile.*');
+}
+*/
 
---admin user
-INSERT INTO `oc_users` (`name`, `email`, `password`, `status`, `id_role`)
-VALUES ('chema', 'neo22s@gmail.com', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', '1', '10');
-
---root category
-INSERT INTO `oc_categories` (`id_category`, `name`, `order`, `seoname`, `description`) 
-VALUES (1, 'all', '0', 'all', 'root category');
---root location
-INSERT INTO `oc_locations` (`id_location`, `name`, `seoname`, `description`) 
-VALUES (1, 'all','all', 'root location');
+mysql_close();

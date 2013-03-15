@@ -1,20 +1,6 @@
 <?php
-/*
-Generate configs for:
-DB
-CACHE
-AUTH
-
-Create the DB tables if they don't exists
-
-Then fill DB configs with commons config we need to run the app.
-Theme
-Locales 
-Timezones
-Cookie salt
-etc...
-
-Create a "God" user with role 10.
+/**
+ * Common functions to isntall
  */
 
 // Sanity check, install should only be checked from index.php
@@ -31,9 +17,7 @@ if (isset($_POST["LANGUAGE"])) $locale_language=$_POST["LANGUAGE"];
 elseif (isset($_GET["LANGUAGE"])) $locale_language=$_GET["LANGUAGE"];
 else  $locale_language='en_EN';
 
-//@todo load gettext
-//i18n::load($locale_language,'messages','/languages/','utf8');
-
+gettext_init($locale_language);
 
 
 $succeed = TRUE; 
@@ -136,12 +120,36 @@ $checks = array(
 
                 );
 
-function __($s){
-	return $s;
-}
+/*
+function __($s)
+{
+	return (function_exists('_'))?_($s):T_($s);
+}*/
 
-function T_($s){
-	return $s;
+function gettext_init($locale,$domain = 'messages',$charset = 'utf8')
+{
+    include APPPATH.'vendor/php-gettext/gettext.inc';
+
+    /**
+     * check if gettext exists if not uses gettext dropin
+     */
+    if ( !function_exists('_') )
+    {
+        T_setlocale(LC_MESSAGES, $locale);
+        bindtextdomain($domain,DOCROOT.'languages');
+        bind_textdomain_codeset($domain, $charset);
+        textdomain($domain);
+    }
+    /**
+     * gettext exists using fallback in case locale doesn't exists
+     */
+    else
+    {
+        T_setlocale(LC_MESSAGES, $locale);
+        T_bindtextdomain($domain,DOCROOT.'languages');
+        T_bind_textdomain_codeset($domain, $charset);
+        T_textdomain($domain);
+    }
 }
 
 function hostingAd()
@@ -228,4 +236,58 @@ function get_select_timezones($select_name='TIMEZONE',$selected=NULL)
 function cP($name,$default = NULL)
 {
     return (isset($_POST[$name])? $_POST[$name]:$default);
+}
+
+
+
+function replace_file($filename,$search, $replace)
+{
+    //check file is writable
+    if (is_writable($filename))
+    {
+        //read file content
+        $content = file_get_contents($filename);
+        //replace fields
+        $content = str_replace($search, $replace, $content);
+        //save file
+        return write_file($filename,$content);
+    }
+    
+    return FALSE;
+}
+
+
+/**
+ * write to file
+ * @param $filename fullpath file name
+ * @param $content
+ * @return boolean
+ */
+function write_file($filename,$content)
+{
+    $file = fopen($filename, 'w');
+    if ($file)
+    {//able to create the file
+        fwrite($file, $content);
+        fclose($file);
+        return TRUE;
+    }
+    return FALSE;   
+}
+
+function generate_password ($length = 16)
+{
+    $password = '';
+    // define possible characters
+    $possible = '0123456789abcdefghijklmnopqrstuvwxyz_-';
+
+    // add random characters to $password until $length is reached
+    for ($i=0; $i <$length ; $i++) 
+    { 
+        // pick a random character from the possible ones
+        $char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
+        $password .= $char;
+    }
+
+    return $password;
 }
