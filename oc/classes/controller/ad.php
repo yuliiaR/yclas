@@ -127,7 +127,7 @@ class Controller_Ad extends Controller {
 		$ads = new Model_Ad();
 	
 		$cat = new Model_Category($sort_by_cat);
-		if($sort_by_cat == NULL) $cat = $cat->find_all(); else $cat = $sort_by_cat;
+		if($sort_by_cat == NULL) $cat = $cat->find_all(); else $cat = $cat;
 		
 		$loc = new Model_Location($sort_by_loc);
 		if($sort_by_loc == NULL)$loc = $loc->find_all(); else $loc = $sort_by_loc;

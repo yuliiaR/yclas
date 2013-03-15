@@ -20,11 +20,11 @@
 	    <article class="list well clearfix">
 	    <?endif?>
 	    	<h2>
-	    		
+	    		<?=d($cat)?>
 	    	<?//if(!is_array($cat)):?>
 	    	<?//$cat_name = $cat?>
 	    	<?//else:?>
-	    	<?foreach ($cat as $cat){ if($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
+	    	<?foreach ($cat as $cat){ d($cat); if($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
 	    	<?//endif?>
 	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 	    	</h2>
