@@ -7,7 +7,7 @@
 	<meta charset="utf8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title><?=_("Installation");?></title>
+	<title><?=(SAMBA)? 'Open Classifieds':'';?> <?=_("Installation");?></title>
     <meta name="keywords" content="" >
     <meta name="description" content="" >
     <meta name="copyright" content="<?=(SAMBA)? 'Open Classifieds':'';?> <?=VERSION;?>" >
@@ -39,7 +39,7 @@
   
 	<div class="navbar navbar-fixed-top navbar-inverse">
 <div class="navbar-inner">
-<div class="container"><a class="brand"><?=_("Installation");?></a>
+<div class="container"><a class="brand"><?=(SAMBA)? 'Open Classifieds':'';?> <?=_("Installation");?></a>
 <div class="nav-collapse">
 
 <? if (SAMBA){?>

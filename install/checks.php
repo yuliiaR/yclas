@@ -27,6 +27,13 @@ if(!file_exists('install/install.lock')) die('Installation seems to be done');
 define('SAMBA',TRUE);
 define('VERSION','2.0 Beta');
 
+if (isset($_POST["LANGUAGE"])) $locale_language=$_POST["LANGUAGE"];
+elseif (isset($_GET["LANGUAGE"])) $locale_language=$_GET["LANGUAGE"];
+else  $locale_language='en_EN';
+//i18n::load($locale_language,'messages','/languages/',CHARSET);
+
+
+
 $succeed = TRUE; 
 $msg 	 = '';
 

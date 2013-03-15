@@ -15,8 +15,8 @@ include 'header.php';?>
 	<p>
 		<?=__("Welcome to the super easy and fast installation");?>. 
 		<?if (SAMBA){?>
-			<?=__("If you need any help please check");?> <a href="http://open-classifieds.com/support/" target="_blank">
-			<?=__("the forum");?></a>.
+			<a href="http://open-classifieds.com/download/" target="_blank">
+			<?=__("If you need any help please check our professional services");?></a>.
 		<?}?>
 	</p>	
 </div>
@@ -56,42 +56,42 @@ include 'header.php';?>
 <div class="control-group">
 	<label class="control-label"><?=__("Host name");?>:</label>
 	<div class="controls">
-	<input  type="text" name="DB_HOST" value="<?=($_POST['DB_HOST'])? $_POST['DB_HOST']:'localhost';?>" class="span6"  />
+	<input  type="text" name="DB_HOST" value="<?=cP('DB_HOST','localhost')?>" class="span6"  />
 	</div>
 </div>
 
 <div class="control-group">
 	<label class="control-label"><?=__("User name");?>:</label>
 	<div class="controls">
-	<input  type="text" name="DB_USER"  value="<?=($_POST['DB_USER'])? $_POST['DB_USER']:'root';?>" class="span6"   />
+	<input  type="text" name="DB_USER"  value="<?=cP('DB_USER','root')?>" class="span6"   />
 	</div>
 </div>
 
 <div class="control-group">
 	<label class="control-label"><?=__("Password");?>:</label>
 	<div class="controls">
-	<input type="password" name="DB_PASS" value="<?=$_POST['DB_PASS'];?>" class="span6" />		
+	<input type="password" name="DB_PASS" value="<?=cP('DB_PASS');?>" class="span6" />		
 	</div>
 </div>
 
 <div class="control-group">
 	<label class="control-label"><?=__("Database name");?>:</label>
 	<div class="controls">
-	<input type="text" name="DB_NAME" value="<?=($_POST['DB_NAME'])? $_POST['DB_NAME']:'openclassifieds';?>"  class="span6"  />
+	<input type="text" name="DB_NAME" value="<?=cP('DB_NAME','openclassifieds')?>"  class="span6"  />
 	</div>
 </div>
 
 <div class="control-group">
 	<label class="control-label"><?=__("Database charset");?>:</label>
 	<div class="controls">
-	<input type="text" name="DB_CHARSET" value="<?=($_POST['DB_CHARSET'])? $_POST['DB_CHARSET']:'utf8';?>"  class="span6"   />
+	<input type="text" name="DB_CHARSET" value="<?=cP('DB_CHARSET','utf8')?>"  class="span6"   />
 	</div>
 </div>
 
 <div class="control-group">
 	<label class="control-label"><?=__("Table prefix");?>:</label>
 	<div class="controls">
-	<input type="text" name="TABLE_PREFIX" value="<?=($_POST['TABLE_PREFIX'])? $_POST['TABLE_PREFIX']:'oc_';?>" class="text-medium" />
+	<input type="text" name="TABLE_PREFIX" value="<?=cP('TABLE_PREFIX','oc_')?>" class="text-medium" />
 	<span class="help-block"><?=__("Allows multiple installations in one database if you give each one a unique prefix");?>. <?=__("Only numbers, letters, and underscores");?>.</span>
 	</div>
 </div>
@@ -107,28 +107,28 @@ include 'header.php';?>
 <div class="control-group">
 	<label class="control-label"><?=__("Site Name");?>:</label>
 	<div class="controls">
-	<input  type="text" name="SITE_NAME" placeholder="<?=__("Site Name");?>" value="<?=($_POST['SITE_NAME'])? $_POST['SITE_NAME']:'';?>" class="span6" />
+	<input  type="text" name="SITE_NAME" placeholder="<?=__("Site Name");?>" value="<?=cP('SITE_NAME')?>" class="span6" />
 	</div>
 </div>
 
 <div class="control-group">
 	<label class="control-label"><?=__("Time Zone");?>:</label>
 	<div class="controls">
-	<?=get_select_timezones(TIMEZONE,$_POST['TIMEZONE']);?>
+	<?=get_select_timezones('TIMEZONE',cP('TIMEZONE',date_default_timezone_get()));?>
 	</div>
 </div>
 
 <div class="control-group">
 	<label class="control-label"><?=__("Admin email");?>:</label>
 	<div class="controls">
-	<input type="text" name="ADMIN=__MAIL" value="<?=($_POST['ADMIN'])? $_POST['ADMIN']:'admin';?>"  class="span6" />
+	<input type="text" name="ADMIN=__MAIL" value="<?=cP('ADMIN_EMAIL','your@email.com')?>"  class="span6" />
 	</div>
 </div>
 
 <div class="control-group">
 	<label class="control-label"><?=__("Admin Password");?>:</label>
 	<div class="controls">
-	<input type="password" name="ADMIN_PWD" value="<?=($_POST['ADMIN_PWD'])? $_POST['ADMIN_PWD']:'';?>" class="span6" />	
+	<input type="password" name="ADMIN_PWD" value="<?=cP('ADMIN_PWD')?>" class="span6" />	
 	</div>
 </div>
 
@@ -167,8 +167,8 @@ else {?>
 
 <?if (SAMBA){?>
 <div class="hero-unit">
-	<h2>Need professional help?</h2>
-	<p>Just for $69.90, <code>Installation</code>, commercial license, premium support, 13 premium themes and much more.</br>
+	<h2>Upgrade now!</h2>
+	<p>Just for $69.90, Installation, commercial license, premium support, 13 premium themes and much more.</br>
 		<a class="btn btn-primary btn-large" href="http://open-classifieds.com/download/"><i class=" icon-shopping-cart icon-white"></i> Buy now!</a>
 	</p>
 </div>
