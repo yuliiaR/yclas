@@ -4,15 +4,19 @@
 	<?=View::factory('sidebar')?>
 	<div class="span10">
 	 
-	 <ul class="breadcrumb">
+	<ul class="breadcrumb">
         	<li><a href="#">Home</a> <span class="divider">&raquo;</span></li>
         	<li><a href="#">Category</a> <span class="divider">&raquo;</span></li>
         	<li><a href="#">Location</a> <span class="divider">&raquo;</span></li>
         	<li class="active">page 1</li>
-	 </ul>
-	 <a title="123" href="<?=Route::url('sort_by', array('category'=>'all'))?>"> All</a>
-	    	
-	  <?if(count($ads)):?>
+	</ul>
+	<ul class="breadcrumb">
+	<?foreach($cat_list as $cat_list => $value):?>
+		<li><a title="<?=$cat_list?>" href="<?=Route::url('sort_by', array('category'=>$cat_list))?>"> <?=$cat_list?></a><span class="divider">&raquo;</span></li>
+	<?endforeach?>
+	</ul>
+	
+	<?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
 	   	<?if($ad->featured >= Date::unix2mysql(time())):?>
 	    <article class="list well clearfix featured">
@@ -20,12 +24,11 @@
 	    <article class="list well clearfix">
 	    <?endif?>
 	    	<h2>
-	    		<?=d($cat)?>
-	    	<?//if(!is_array($cat)):?>
-	    	<?//$cat_name = $cat?>
-	    	<?//else:?>
-	    	<?foreach ($cat as $cat){ d($cat); if($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
-	    	<?//endif?>
+	    	<?if(is_string($cat)):?>
+	    	<?$cat_name = $cat?>
+	    	<?else:?>
+	    	<?foreach ($cat as $cat){ if($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
+	    	<?endif?>
 	    	<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 	    	</h2>
 	    	<?if($img_path[$ad->seotitle] != NULL):?>

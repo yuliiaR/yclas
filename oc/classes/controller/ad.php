@@ -16,7 +16,6 @@ class Controller_Ad extends Controller {
 		$cat = $slug_cat->find_all();
 		$loc = $slug_loc->find_all();
 
-		
 		// user 
         if(Auth::instance()->get_user() == NULL)
 		{
@@ -69,7 +68,7 @@ class Controller_Ad extends Controller {
 			$content->img_path = NULL;
         }
         // advansed search with many parameters
-        else if($this->request->query('advert') 
+        elseif($this->request->query('advert') 
         	 	|| $this->request->query('cat') 
         	 	|| $this->request->query('loc'))
         {
@@ -127,13 +126,22 @@ class Controller_Ad extends Controller {
 		$ads = new Model_Ad();
 	
 		$cat = new Model_Category($sort_by_cat);
-		if($sort_by_cat == NULL) $cat = $cat->find_all(); else $cat = $cat;
+		if($sort_by_cat == NULL) $categ = $cat->find_all(); else $categ = $cat->name;
 		
 		$loc = new Model_Location($sort_by_loc);
-		if($sort_by_loc == NULL)$loc = $loc->find_all(); else $loc = $sort_by_loc;
+		if($sort_by_loc == NULL) $locat = $loc->find_all(); else $locat = $loc->name;
 		
-		$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->count_all();
-		
+		// if is sorted by category
+		if(is_string($categ))
+		{
+			$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->and_where('id_category', '=', $categ)->count_all();
+		}
+		else
+		{
+			$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->count_all();
+		}
+
+
 		// check if there are some advet.-s
 		if ($res_count > 0)
 		{
@@ -147,12 +155,25 @@ class Controller_Ad extends Controller {
                     'action'      		=> $this->request->action(),
                  
     	    ));
+    	    
+    	    if(is_string($categ))
+			{
     	    $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+    	    					->and_where('id_category', '=', $categ)
     	    					->order_by('published','desc')
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
                 	            ->find_all();
-			}
+            }
+            else
+            {
+    	 	$ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+    							->order_by('published','desc')
+		        	            ->limit($pagination->items_per_page)
+		        	            ->offset($pagination->offset)
+		        	            ->find_all();
+            }
+		}
 		else
 		{
 			//trow 404 Exception
@@ -190,7 +211,7 @@ class Controller_Ad extends Controller {
 					echo $e;
 				}
 			}
-			print_r($this->_image_path($a));
+			//print_r($this->_image_path($a));
 			if(is_array($path = $this->_image_path($a)))
 			{
 				$path = $this->_image_path($a);
@@ -203,19 +224,22 @@ class Controller_Ad extends Controller {
 			} 
 			
 
-		} 
+		}
+		// array of categories sorted for view
+		$cat_list = $cat->get_categories();
+
 		return array('ads'			=> $ads,
 					 'pagination'	=> $pagination, 
 					 'user'			=> $user, 
 					 'img_path' 	=> $img_path,
-					 'cat'			=> $cat,
-					 'loc'			=> $loc);
+					 'cat'			=> $categ,
+					 'loc'			=> $locat,
+					 'cat_list'		=> $cat_list);
 	}
 	
 	public function action_sort_category()
 	{
 		$category = $this->request->param('category');
-
 
 		$data = $this->action_list_logic($category, $location = NULL);
 		$this->template->bind('content', $content);
@@ -405,7 +429,7 @@ class Controller_Ad extends Controller {
 						echo "something went wrong";
 					}
 				}
-				else if($count < $num_images*2) $img_permission = TRUE;
+				elseif($count < $num_images*2) $img_permission = TRUE;
 				else $img_permission = FALSE;
 			}
 			else 
@@ -494,7 +518,7 @@ class Controller_Ad extends Controller {
 				{	
 					$form->save();
 					Alert::set(Alert::SUCCESS, __('Success, advertisement is updated'));
-					$this->request->redirect(Route::url('default'));
+					$this->request->redirect(Route::url('default', array('controller'=>'ad', 'action'=>'all')));
 				
 				}
 				catch (ORM_Validation_Exception $e)
@@ -503,7 +527,7 @@ class Controller_Ad extends Controller {
 				}
 				catch (Exception $e)
 				{echo $e;
-					throw new HTTP_Exception_500($e->getMessage());echo $e;
+					throw new HTTP_Exception_500($e->getMessage());
 				}
 			}
 		}
