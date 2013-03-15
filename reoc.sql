@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2013 at 12:53 PM
+-- Generation Time: Mar 15, 2013 at 12:43 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -116,21 +116,20 @@ INSERT INTO `oc_ads` (`id_ad`, `id_user`, `id_category`, `id_location`, `type`, 
 (240, 2, 2, 3, 0, 'asdfgsadwqe1123', 'asdfgsadwqe1123-1', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:07:08', NULL, 0, 0, NULL),
 (241, 2, 2, 3, 0, 'asdfgsadwqe', 'asdfgsadwqe-2', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:10:44', NULL, 0, 0, NULL),
 (242, 2, 3, 2, 0, 'asdyu', 'asdyu-3', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:20:18', NULL, 0, 0, NULL),
-(243, 2, 4, 3, 0, 'asd', 'asd-9', 'sad', '', 0.000, '', NULL, NULL, '2013-02-20 09:21:21', NULL, 0, 0, NULL),
-(244, 2, 3, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe-3', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:21:46', NULL, 0, 0, NULL),
-(245, 2, 2, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe-4', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:22:17', NULL, 0, 0, NULL),
-(246, 2, 2, 4, 0, 'asdasd', 'asdasd', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:27:29', NULL, 0, 0, NULL),
-(247, 2, 3, 5, 0, 'asdasd999', 'asdasd999', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:28:35', '2013-03-13 10:59:20', 1, 0, NULL),
-(248, 2, 6, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe-5', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:37:26', '2013-03-13 10:59:20', 1, 0, NULL),
-(249, 2, 6, 3, 0, 'asd', 'asd-10', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:40:57', '2013-03-13 10:59:20', 1, 0, NULL),
+(243, 2, 4, 3, 0, 'asd', 'asd-9', 'sad', '', 0.000, '', NULL, NULL, '2013-02-20 09:21:21', '2013-03-15 10:38:23', 1, 1, NULL),
+(244, 2, 3, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe-3', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:21:46', '2013-03-15 10:38:23', 1, 0, NULL),
+(245, 2, 2, 2, 0, 'asdfgsadwqe', 'asdfgsadwqe-4', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:22:17', '2013-03-15 10:38:23', 1, 0, NULL),
+(246, 2, 2, 4, 0, 'asdasd', 'asdasd', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:27:29', '2013-03-15 10:38:23', 1, 0, NULL),
+(247, 2, 3, 5, 0, 'asdasd999', 'asdasd999', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:28:35', '2013-03-15 10:38:23', 1, 0, NULL),
+(249, 2, 6, 3, 0, 'asd', 'asd-10', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:40:57', '2013-03-15 10:38:15', 1, 0, NULL),
 (250, 2, 6, 4, 0, 'asd', 'asd-11', 'asd', '', 0.000, '', NULL, NULL, '2013-02-20 09:41:13', '2013-03-13 10:59:20', 1, 0, NULL),
 (251, 2, 2, 2, 0, '123asdgfasd', '123asdgfasd', '123', '', 0.000, '', NULL, NULL, '2013-02-20 10:52:36', '2013-03-13 10:59:20', 1, 0, NULL),
-(252, 2, 2, 2, 0, '123', '123-2', '123', '', 0.000, '', NULL, NULL, '2013-03-13 10:11:22', NULL, 0, 1, NULL),
-(253, 2, 2, 2, 0, '123', '123-3', '123', '', 0.000, '', NULL, NULL, '2013-03-13 10:12:13', NULL, 0, 1, NULL),
-(254, 2, 0, 2, 0, 'website', 'website', 'asd', '', 0.000, '', 'reoc.lo', NULL, '2013-03-13 10:32:14', '2013-03-13 11:32:14', 1, 0, NULL),
-(255, 2, 0, 0, 0, 'test', 'test', 'asd', '', 0.000, '', '', NULL, '2013-03-13 10:41:36', '2013-03-13 11:41:36', 1, 0, NULL),
-(257, 2, 0, 0, 0, 'test', 'test-1', 'asd', '', 0.000, '', '', NULL, '2013-03-13 10:45:23', '2013-03-13 11:45:23', 1, 0, NULL),
-(258, 2, 0, 1, 0, 'tests', 'tests', '123', '', 0.000, '', '', NULL, '2013-03-13 10:52:37', '2013-03-13 11:52:37', 0, 0, NULL);
+(252, 2, 2, 2, 0, '123', '123-2', '123', '', 0.000, '', NULL, NULL, '2013-03-13 10:11:22', '2013-03-15 10:38:15', 1, 0, NULL),
+(253, 2, 2, 2, 0, '123', '123-3', '123', '', 0.000, '', NULL, NULL, '2013-03-13 10:12:13', '2013-03-15 10:38:15', 1, 0, NULL),
+(254, 2, 0, 2, 0, 'website', 'website', 'asd', '', 0.000, '', 'reoc.lo', NULL, '2013-03-13 10:32:14', '2013-03-15 10:38:15', 1, 0, NULL),
+(255, 2, 0, 0, 0, 'test', 'test', 'asd', '', 0.000, '', '', NULL, '2013-03-13 10:41:36', '2013-03-15 10:38:04', 1, 0, NULL),
+(257, 2, 0, 0, 0, 'test', 'test-1', 'asd', '', 0.000, '', '', NULL, '2013-03-13 10:45:23', '2013-03-15 10:37:37', 1, 0, NULL),
+(258, 2, 0, 1, 0, 'tests', 'tests', '123', '', 0.000, '', '', NULL, '2013-03-13 10:52:37', '2013-03-15 10:38:15', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -158,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `oc_categories` (
 
 INSERT INTO `oc_categories` (`id_category`, `name`, `order`, `created`, `id_category_parent`, `parent_deep`, `seoname`, `description`, `price`) VALUES
 (0, 'all', 0, '2013-03-13 10:45:03', 0, 0, 'all', 'all', 10),
-(2, 'cat_car', 1, '2013-02-20 09:06:24', 1, 1, 'catcar', NULL, 20),
+(2, 'cat_car', 1, '2013-03-15 11:10:07', 0, 0, 'catcar', NULL, 20),
 (3, 'cat_house', 2, '2013-02-20 09:06:25', 2, 2, 'cathouse', NULL, 30),
 (4, 'mobile', 3, '2013-02-14 11:05:15', 2, 0, 'mobile', 'mobile', 20),
 (5, 'hosting', 1, '2013-02-06 10:24:01', 0, 0, 'housing', 'hostings ', 0),
@@ -397,7 +396,7 @@ CREATE TABLE IF NOT EXISTS `oc_users` (
 --
 
 INSERT INTO `oc_users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`, `id_location`, `created`, `last_modified`, `logins`, `last_login`, `last_ip`, `user_agent`, `token`, `token_created`, `token_expires`) VALUES
-(2, 'slobodan', NULL, 'slobodan.josifovic@gmail.com', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 1, 10, NULL, '2012-12-14 10:48:26', NULL, 93, '2013-03-13 10:58:47', 2130710000, '7653edb74ee64b1799cbcb9698248a5fa3859a36', '9d7daeb532ae934b654c8a2bf4139ec87a0ce04a', '2013-03-13 10:58:47', '2013-06-11 11:58:47'),
+(2, 'slobodan', NULL, 'slobodan.josifovic@gmail.com', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 1, 10, NULL, '2012-12-14 10:48:26', NULL, 95, '2013-03-15 09:26:56', 2130710000, '19b62e2f697adc030c6dcc59146d5b002dadf041', '814382d276b3843b1aa14960ed743ce4214be32b', '2013-03-15 09:26:56', '2013-06-13 10:26:56'),
 (26, 'andrey', NULL, 'andrey@gmail.com', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 1, 1, NULL, '2013-01-17 11:57:57', NULL, 7, '2013-02-01 10:11:53', 2130710000, '64bf8ec195ca70e7458e2ea8aa7f6330be09ae1f', '31ea07c9136a79d691ed0aa2165e0c172bb54ffd', '2013-02-01 10:11:58', '2013-05-02 11:11:58'),
 (27, 'bla', 'bla', 'bla', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 1, 1, 2, '2013-02-06 12:47:31', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL),
 (28, 'new', 'new', 'la@la.com', '15ecfab1f55bea08e836dc0a393cc267969e9b35e4468aa5c90e2f22bd5d44fd', 0, 1, NULL, '0000-00-00 00:00:00', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL);

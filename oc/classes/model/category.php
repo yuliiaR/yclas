@@ -74,6 +74,30 @@ class Model_Category extends ORM {
 			        'description'			=> __('Description'),
 			        'price'					=> __('Price'));
 	}
+	public function get_categories()
+	{
+		$list = new self;
+		$list = $list->find_all();
+		foreach ($list as $l) {
+			$result[$l->name] = $l->id_category;
+		}
+
+		foreach ($result as $res => $value) {
+			foreach ($list as $l) {
+				if($l->id_category_parent == $value)
+				{
+					$result[$l->name] = array('id'			=> $l->id_category,
+									 // 'name'		=> $l->name, 
+									  'parent'		=> $l->id_category_parent, 
+									  'parent_deep'	=> $l->parent_deep,
+									  'order'		=> $l->order);
+				}
+			}
+			
+		}
+		
+		return $result;
+	}
 	
 	/**
 	 * 
