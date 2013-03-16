@@ -33,14 +33,14 @@ class Core {
 		/**
 		 * Load all the configs from DB
 		 */
-		//Change the default cache system, based on your config /config/site.php
-		Cache::$default = Core::config('site.cache');
+		//Change the default cache system, based on your config /config/cache.php
+		Cache::$default = Core::config('cache.default');
 		
 		//is not loaded yet in Kohana::$config
 		Kohana::$config->attach(new ConfigDB(), FALSE);
 
 		//overwrite default Kohana init configs.
-		Kohana::$base_url = Core::config('init.base_url');
+		Kohana::$base_url = Core::config('general.base_url');
 		
 		//enables friendly url @todo from config
 		Kohana::$index_file = FALSE;

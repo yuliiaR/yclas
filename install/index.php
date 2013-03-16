@@ -19,6 +19,9 @@ include 'install.php';
 	<meta name="author" content="<?=(SAMBA)? 'Open Classifieds':''?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
+	<link rel="shortcut icon" href="http://open-classifieds.com/wp-content/uploads/2012/04/favicon1.ico" />
+
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>    <![endif]-->
@@ -33,9 +36,7 @@ include 'install.php';
         padding: 9px 0;
       }
     </style>
-    
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
-	
+    	
 	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
 
   </head>
@@ -69,8 +70,6 @@ include 'install.php';
 			<li class="nav-header"><?=__("Requirements")?></li>
 			<li class="divider"></li>
 			
-			<li class="nav-header"><?=__("Server software")?></li>
-
 			<?foreach ($checks as $name => $values):
 				if ($values['mandatory'] == TRUE AND $values['result'] == FALSE)
 					$succeed = FALSE;
@@ -132,10 +131,13 @@ include 'install.php';
 <form method="post" action="" class="well" >
 <fieldset>
 
+
+<h2><?=__('Site Configuration')?></h2>
+
 <div class="control-group">
 	<label class="control-label"><?=__("Site Language")?></label>
 	<div class="controls">
-       <select name="LANGUAGE">
+       <select name="LANGUAGE" onchange="window.location.href='?LANGUAGE='+this.options[this.selectedIndex].value">
 
 		<option value="en_EN">en_EN</option>
 		    <?
@@ -150,6 +152,41 @@ include 'install.php';
 		    }
 		    ?>
 		</select>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label"><?=__("Site URL");?>:</label>
+	<div class="controls">
+    <input  type="text" size="75" name="SITE_URL" value="<?=cP('SITE_NAME',$suggest_url)?>"  class="span6" />
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label"><?=__("Site Name")?>:</label>
+	<div class="controls">
+	<input  type="text" name="SITE_NAME" placeholder="<?=__("Site Name")?>" value="<?=cP('SITE_NAME')?>" class="span6" />
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label"><?=__("Time Zone")?>:</label>
+	<div class="controls">
+	<?=get_select_timezones('TIMEZONE',cP('TIMEZONE',date_default_timezone_get()))?>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label"><?=__("Administrator email")?>:</label>
+	<div class="controls">
+	<input type="text" name="ADMIN_EMAIL" value="<?=cP('ADMIN_EMAIL')?>" placeholder="your@email.com" class="span6" />
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label"><?=__("Admin Password")?>:</label>
+	<div class="controls">
+	<input type="text" name="ADMIN_PWD" value="<?=cP('ADMIN_PWD')?>" class="span6" />	
 	</div>
 </div>
 
@@ -203,60 +240,33 @@ include 'install.php';
 
 <div class="control-group">
 	<label class="checkbox"><input type="checkbox" name="SAMPLE_DB"  value="1" /><?=__("Sample data")?></label>
-	<span class="help-block"><?=__("Creates few sample categories and posts")?></span>
+	<span class="help-block"><?=__("Creates few sample categories and locations")?></span>
 </div>
 
-<h2><?=__('Site Configuration')?></h2>
 
-<div class="control-group">
-	<label class="control-label"><?=__("Site Name")?>:</label>
-	<div class="controls">
-	<input  type="text" name="SITE_NAME" placeholder="<?=__("Site Name")?>" value="<?=cP('SITE_NAME')?>" class="span6" />
-	</div>
-</div>
+<div class="form-actions">
 
-<div class="control-group">
-	<label class="control-label"><?=__("Time Zone")?>:</label>
-	<div class="controls">
-	<?=get_select_timezones('TIMEZONE',cP('TIMEZONE',date_default_timezone_get()))?>
-	</div>
-</div>
-
-<div class="control-group">
-	<label class="control-label"><?=__("Admin email")?>:</label>
-	<div class="controls">
-	<input type="text" name="ADMIN_EMAIL" value="<?=cP('ADMIN_EMAIL','your@email.com')?>"  class="span6" />
-	</div>
-</div>
-
-<div class="control-group">
-	<label class="control-label"><?=__("Admin Password")?>:</label>
-	<div class="controls">
-	<input type="password" name="ADMIN_PWD" value="<?=cP('ADMIN_PWD')?>" class="span6" />	
-	</div>
-</div>
-
-<div class="control-group">
-	<label class="checkbox">
-		<input type="checkbox" name="OCAKU" value="1" checked="checked" />
-		<?=__("Ocaku registration")?> <a target="_blank" href="http://ocacu.com/en/terms.html">
-			<?=__('Terms')?></a>
-	</label>
-	<span class="help-block"><?=__("Allow site to be in Ocaku, classifieds community (recommended)")?></span>	
-</div>
-
-<?if (SAMBA):?>
 	<div class="control-group">
-		<label class="checkbox"><input checked="checked" type="checkbox" id="terms" name="terms" value="1" />  <?=__("I accept the license terms")?>. </label>
-		<span class="help-block"><a href="http://www.gnu.org/licenses/gpl.txt" target="_blank">GPL v3</a>
-		<?=__("Please read the following license agreement and accept the terms to continue")?>
-		</span>
+		<label class="checkbox">
+			<input type="checkbox" name="OCAKU" value="1" checked="checked" />
+			<?=__("Ocaku registration (classifieds community)")?> <a target="_blank" href="http://ocacu.com/en/terms.html">
+				<?=__('Terms')?></a>
+		</label>
 	</div>
-<?else:?>
-	<input type="hidden" id="terms" name="terms" value="1" />
-<?endif?>
 
-<input type="submit" name="action" id="submit" value="<?=__("Install")?>" class="btn btn-primary btn-large" />
+	<?if (SAMBA):?>
+		<div class="control-group">
+			<label class="checkbox"><input checked="checked" type="checkbox" id="terms" name="terms" value="1" />  <?=__("I accept the license terms")?>. 
+			<a href="http://www.gnu.org/licenses/gpl.txt" target="_blank">GPL v3 <?=__("Please read and accept the terms to continue")?></a>
+			</label>
+		</div>
+	<?else:?>
+		<input type="hidden" id="terms" name="terms" value="1" />
+	<?endif?>
+
+	<input type="submit" name="action" id="submit" value="<?=__("Install")?>" class="btn btn-primary btn-large" />
+
+</div>
 
 </fieldset>
 </form>

@@ -52,7 +52,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  caching     enable or disable internal caching                 FALSE
  */
 Kohana::init(array(
-    'base_url'  => '/',//@todo get from config
+    'base_url'  => '/',//later we change it from the location
     'errors'    => TRUE,
     'profile'   => (Kohana::$environment == Kohana::DEVELOPMENT),
     'caching'   => (Kohana::$environment == Kohana::PRODUCTION),
@@ -61,14 +61,21 @@ Kohana::init(array(
 /**
  * Attach the file write to logging. Multiple writers are supported.
  */
-Kohana::$log->attach(new Log_File(APPPATH.'logs'));
+//Kohana::$log->attach(new Log_File(APPPATH.'logs'));
+if ((Kohana::$environment !== Kohana::DEVELOPMENT) AND (Kohana::$environment !== Kohana::STAGING))
+{
+    Kohana::$log->attach(new Log_File(APPPATH.'logs'), array(LOG_ERR));
+}
+else
+{
+    Kohana::$log->attach(new Log_File(APPPATH.'logs'), array(LOG_INFO,LOG_ERR,LOG_DEBUG));
+}
+
 
 /**
  * Attach a file reader to config. Multiple readers are supported.
  */
 Kohana::$config->attach(new Config_File);
-
-
 
 
 /**
@@ -85,7 +92,6 @@ $modules = array(
 			   'breadcrumbs'  => MODPATH.'breadcrumbs',// breadcrumb view
 			   'plugin'       => MODPATH.'plugin',     // hooks used for the plugin system
 			   'formmanager'  => MODPATH.'formmanager',// forms to objects ORM
-               
 );
 
 //modules for development environment, not included in distributed KO with OC

@@ -54,6 +54,8 @@ if ($_POST AND $succeed)
 		$search  = array('[DB_HOST]', '[DB_USER]','[DB_PASS]','[DB_NAME]','[TABLE_PREFIX]','[DB_CHARSET]');
 		$replace = array($_POST['DB_HOST'], $_POST['DB_USER'], $_POST['DB_PASS'],$_POST['DB_NAME'],$_POST['TABLE_PREFIX'],$_POST['DB_CHARSET']);
 		$install = replace_file(APPPATH.'config/database.php',$search,$replace);
+		if (!$install)
+			$error_msg = __('Problem saving '.APPPATH.'config/database.php');
 	}
 
 	//install DB
@@ -68,16 +70,17 @@ if ($_POST AND $succeed)
 
 	    $search   = array('[TABLE_PREFIX]','[DB_CHARSET]','[ADMIN_EMAIL]',
 	    					'[ADMIN_PWD]','[TIMEZONE]','[LANGUAGE]',
-	    					'[HASH_KEY]','[SITE_NAME]');
+	    					'[HASH_KEY]','[SITE_NAME]','[SITE_URL]');
 		$replace  = array($_POST['TABLE_PREFIX'],$_POST['DB_CHARSET'],$_POST['ADMIN_EMAIL'],
 							$_POST['ADMIN_PWD'],$_POST['TIMEZONE'],$_POST['LANGUAGE'],
-							$hash_key,$_POST['SITE_NAME']);
+							$hash_key,$_POST['SITE_NAME'],$_POST['SITE_URL']);
 
 	    $install  = replace_file($sql_install_file,$search,$replace);
 
 	    if ($install)
-	    	include $sql_install_file;   
-
+	    	include $sql_install_file; 
+	    else
+			$error_msg = __('Problem saving '.$sql_install_file);  
 
 	}
 
@@ -88,12 +91,9 @@ if ($_POST AND $succeed)
 		$search  = array('[HASH_KEY]', '[COOKIE_SALT]','[QL_KEY]');
 		$replace = array($hash_key,generate_password(),generate_password());
 		$install = replace_file(APPPATH.'config/auth.php',$search,$replace);
+		if (!$install)
+			$error_msg = __('Problem saving '.APPPATH.'config/auth.php');
 	}
-
-	die();
-
-
-
     
 ///////////////////////////////////////////////////////
 	//ocaku register
@@ -105,8 +105,8 @@ if ($_POST AND $succeed)
 	        $ocaku=new ocaku();
 	        $data=array(
 	        					'siteName'=>$_POST['SITE_NAME'],
-	        					'siteUrl'=>$_POST['SITE_URL'],
-	        					'email'=>$_POST['NOTIFY_EMAIL'],
+	        					'siteUrl' =>$_POST['SITE_URL'],
+	        					'email'   =>$_POST['ADMIN_EMAIL'],
 	        					'language'=>substr($_POST['LANGUAGE'],0,2)
 	        );
 	        $apiKey=$ocaku->newSite($data);
@@ -116,6 +116,8 @@ if ($_POST AND $succeed)
 	    else $apiKey='';
 	}
 
+
+die();
 
 ///////////////////////////////////////////////////////
 	//create robots.txt
@@ -156,10 +158,10 @@ if ($_POST AND $succeed)
 			<p>
 				<?=__('Please now erase the folder');?> <code>/install/</code><br>
 			
-				<a class="btn btn-success btn-large" href="<?=$_POST['SITE_URL'];?>"><?=__('Go to Your Website')?></a>
+				<a class="btn btn-success btn-large" href=""><?=__('Go to Your Website')?></a>
 				
-				<a class="btn btn-warning btn-large" href="<?=$_POST['SITE_URL'];?>/admin">Admin</a> 
-				<span class="help-block">user: <?=$_POST['ADMIN']?> pass: <?=$_POST['ADMIN_PWD']?></span>
+				<a class="btn btn-warning btn-large" href="admin">Admin</a> 
+				<span class="help-block">user: <?=$_POST['ADMIN_EMAIL']?> pass: <?=$_POST['ADMIN_PWD']?></span>
 				<hr>
 				<a class='btn btn-primary btn-large" href="http://j.mp/ocdonate"><?=__('Make a donation')?></a>
 				<?=__('We really appreciate it')?>.

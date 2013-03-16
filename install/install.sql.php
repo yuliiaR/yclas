@@ -166,12 +166,11 @@ mysql_query("INSERT INTO `[TABLE_PREFIX]access` (`id_access`, `id_role`, `access
  * Create user God/Admin 
  */
 $password = hash_hmac('sha256', '[ADMIN_PWD]', '[HASH_KEY]');
-mysql_query("INSERT INTO `[TABLE_PREFIX]users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) VALUES
-(1, 'admin', NULL, '[ADMIN_EMAIL]', $password, 1, 10)");
+mysql_query("INSERT INTO `[TABLE_PREFIX]users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) 
+VALUES (1, 'admin', NULL, '[ADMIN_EMAIL]', $password, 1, 10)");
 
 /**
  * Configs to make the app work
- * @todo base_url, calculate if folder?
  * Cant be here!!
  * ('general', 'paypal_msg_product_to_top', 'Go on Top'),
 *('general', 'paypal_msg_product_to_featured', 'Go to Featured'),
@@ -179,7 +178,6 @@ mysql_query("INSERT INTO `[TABLE_PREFIX]users` (`id_user`, `name`, `seoname`, `e
 *captcha-captcha??
  */
 mysql_query("INSERT INTO `[TABLE_PREFIX]config` (`group_name`, `config_key`, `config_value`) VALUES
-('init', 'base_url', '/'),
 ('widget', 'list_of_all_widget', ''),
 ('widget', 'sidebar_widget', ''),
 ('widget', 'footer_widget', ''),
@@ -194,6 +192,7 @@ mysql_query("INSERT INTO `[TABLE_PREFIX]config` (`group_name`, `config_key`, `co
 ('payment', 'pay_to_go_on_feature', '10'),
 ('payment', 'pay_to_go_on_top', '5'),
 ('payment', 'paypal_account', ''),
+('general', 'base_url', '[SITE_URL]'),
 ('general', 'moderation', '0'),
 ('general', 'site_name', '[SITE_NAME]'),
 ('general', 'ID-pay_to_go_on_top', 'pay_to_go_on_top'),

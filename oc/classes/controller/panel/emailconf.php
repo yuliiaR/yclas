@@ -29,7 +29,6 @@ class Controller_Panel_Emailconf extends Auth_Controller {
                 }
             }
             // Cache::instance()->delete_all();
-            echo core::config('general.site_url');
             Alert::set(Alert::SUCCESS, __('Success, Email Configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'emailconf','action'=>'index')));
         }
