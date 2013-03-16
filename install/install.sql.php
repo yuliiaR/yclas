@@ -156,9 +156,74 @@ mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]content` (
 ) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET];");
 
 
-//@todo add configs, create user, roles....
-//Create a "God" user with role 10. hash_hmac('sha256', $password, $hash_key);
+/**
+ * Access @todo review normal profile
+ */
+mysql_query("INSERT INTO `[TABLE_PREFIX]roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (10, 'admin', 'Full access');");
+mysql_query("INSERT INTO `[TABLE_PREFIX]access` (`id_access`, `id_role`, `access`) VALUES (1, 10, '*.*'),(2, 1, 'profile.*');");
+
+/**
+ * Create user God/Admin 
+ */
+$password = hash_hmac('sha256', '[ADMIN_PWD]', '[HASH_KEY]');
+mysql_query("INSERT INTO `[TABLE_PREFIX]users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) VALUES
+(1, 'admin', NULL, '[ADMIN_EMAIL]', $password, 1, 10)");
+
+/**
+ * Configs to make the app work
+ * @todo base_url, calculate if folder?
+ * Cant be here!!
+ * ('general', 'paypal_msg_product_to_top', 'Go on Top'),
+*('general', 'paypal_msg_product_to_featured', 'Go to Featured'),
+*('general', 'paypal_msg_product_category', 'Pay to publish '),
+*captcha-captcha??
+ */
+mysql_query("INSERT INTO `[TABLE_PREFIX]config` (`group_name`, `config_key`, `config_value`) VALUES
+('init', 'base_url', '/'),
+('widget', 'list_of_all_widget', ''),
+('widget', 'sidebar_widget', ''),
+('widget', 'footer_widget', ''),
+('appearance', 'theme', 'default'),
+('i18n', 'charset', 'utf-8'),
+('i18n', 'timezone', '[TIMEZONE]'),
+('i18n', 'locale', '[LANGUAGE]'),
+('payment', 'paypal_currency', 'USD'),
+('payment', 'sandbox', 'FALSE'),
+('payment', 'to_featured', 'FALSE'),
+('payment', 'to_top', 'FALSE'),
+('payment', 'pay_to_go_on_feature', '10'),
+('payment', 'pay_to_go_on_top', '5'),
+('payment', 'paypal_account', ''),
+('general', 'moderation', '0'),
+('general', 'site_name', '[SITE_NAME]'),
+('general', 'ID-pay_to_go_on_top', 'pay_to_go_on_top'),
+('general', 'global-currency', 'USD'),
+('general', 'ID-pay_to_go_on_feature', 'pay_to_go_on_feature'),
+('general', 'featured_timer', '5'),
+('general', 'advertisements_per_page', '10'),
+('general', 'paypal_msg_product_to_top', 'Go on Top'),
+('general', 'paypal_msg_product_to_featured', 'Go to Featured'),
+('general', 'paypal_msg_product_category', 'Pay to publish '),
+('formconfig', 'advertisement-num_images', '4'),
+('formconfig', 'advertisement-address', 'TRUE'),
+('formconfig', 'advertisement-phone', 'TRUE'),
+('formconfig', 'contact-upload_file', 'FALSE'),
+('formconfig', 'advertisement-location', 'TRUE'),
+('formconfig', 'captcha-captcha', 'TRUE'),
+('formconfig', 'advertisement-website', 'TRUE'),
+('formconfig', 'advertisement-price', 'TRUE'),
+('email-settings', 'notify_email', '[ADMIN_EMAIL]'),
+('email-settings', 'smtp_active', 'FALSE'),
+('email-settings', 'smtp_host', ''),
+('email-settings', 'smtp_port', ''),
+('email-settings', 'smtp_auth', 'FALSE'),
+('email-settings', 'smtp_user', ''),
+('email-settings', 'smtp_pass', '');");
+
+
+
 /*
+@todo sample values categories locations...
 if ($_POST["SAMPLE_DB"]==1)
 {
 

@@ -64,9 +64,16 @@ if ($_POST AND $succeed)
 	    mysql_select_db($_POST['DB_NAME']);
 	    mysql_query('SET NAMES '.$_POST['DB_CHARSET']);
 	    
-	    $search  = array('[TABLE_PREFIX]','[DB_CHARSET]');
-		$replace = array($_POST['TABLE_PREFIX'],$_POST['DB_CHARSET']);
-	    $install = replace_file($sql_install_file,$search,$replace);
+	    $hash_key = generate_password();
+
+	    $search   = array('[TABLE_PREFIX]','[DB_CHARSET]','[ADMIN_EMAIL]',
+	    					'[ADMIN_PWD]','[TIMEZONE]','[LANGUAGE]',
+	    					'[HASH_KEY]','[SITE_NAME]');
+		$replace  = array($_POST['TABLE_PREFIX'],$_POST['DB_CHARSET'],$_POST['ADMIN_EMAIL'],
+							$_POST['ADMIN_PWD'],$_POST['TIMEZONE'],$_POST['LANGUAGE'],
+							$hash_key,$_POST['SITE_NAME']);
+
+	    $install  = replace_file($sql_install_file,$search,$replace);
 
 	    if ($install)
 	    	include $sql_install_file;   
@@ -79,7 +86,7 @@ if ($_POST AND $succeed)
 	if ($install)
 	{
 		$search  = array('[HASH_KEY]', '[COOKIE_SALT]','[QL_KEY]');
-		$replace = array(generate_password(),generate_password(),generate_password());
+		$replace = array($hash_key,generate_password(),generate_password());
 		$install = replace_file(APPPATH.'config/auth.php',$search,$replace);
 	}
 

@@ -239,7 +239,6 @@ function cP($name,$default = NULL)
 }
 
 
-
 function replace_file($filename,$search, $replace)
 {
     //check file is writable

@@ -206,7 +206,7 @@ include 'install.php';
 	<span class="help-block"><?=__("Creates few sample categories and posts")?></span>
 </div>
 
-<h2><?=__('Basic Configuration')?></h2>
+<h2><?=__('Site Configuration')?></h2>
 
 <div class="control-group">
 	<label class="control-label"><?=__("Site Name")?>:</label>
@@ -225,7 +225,7 @@ include 'install.php';
 <div class="control-group">
 	<label class="control-label"><?=__("Admin email")?>:</label>
 	<div class="controls">
-	<input type="text" name="ADMIN=__MAIL" value="<?=cP('ADMIN_EMAIL','your@email.com')?>"  class="span6" />
+	<input type="text" name="ADMIN_EMAIL" value="<?=cP('ADMIN_EMAIL','your@email.com')?>"  class="span6" />
 	</div>
 </div>
 
