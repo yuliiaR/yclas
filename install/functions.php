@@ -1,60 +1,99 @@
 <?php
 /**
- * Common functions to install
+ * Helper include to set up install
+ *
+ * @package    Install
+ * @category   Helper
+ * @author     Chema <chema@garridodiaz.com>
+ * @copyright  (c) 2009-2011 Open Classifieds Team
+ * @license    GPL v3
  */
+
+/**
+ * *************************************************************
+ * Initial variables to isntall
+ * *************************************************************
+ */
+
 
 // Sanity check, install should only be checked from index.php
 defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 
 //prevents from new install to be done
-if(!file_exists('install/install.lock')) die('Installation seems to be done, please remove /install/ folder');
+if(!file_exists(DOCROOT.'install/install.lock')) die('Installation seems to be done, please remove /install/ folder');
 
 define('VERSION','2.0 Beta');
 
+
+//Gets language to use
 if (isset($_POST['LANGUAGE'])) $locale_language=$_POST['LANGUAGE'];
 elseif (isset($_GET['LANGUAGE'])) $locale_language=$_GET['LANGUAGE'];
 else  $locale_language='en_EN';
+
 //start translations
 gettext_init($locale_language);
 
 
 // Try to guess installation URL
-$suggest_url = 'http://'.$_SERVER['SERVER_NAME'];
-if ($_SERVER['SERVER_PORT'] != '80') 
-    $suggest_url = $suggest_url.':'.$_SERVER['SERVER_PORT'];
-//getting the folder, erasing the index
-$suggest_url .=str_replace('/index.php','', $_SERVER['SCRIPT_NAME']).'/';
+    $suggest_url = 'http://'.$_SERVER['SERVER_NAME'];
+    if ($_SERVER['SERVER_PORT'] != '80') 
+        $suggest_url = $suggest_url.':'.$_SERVER['SERVER_PORT'];
+    //getting the folder, erasing the index
+    $suggest_folder = str_replace('/index.php','', $_SERVER['SCRIPT_NAME']).'/';
+    $suggest_url .=$suggest_folder;
 
 
 //bool to see if the isntallation was good
-$install = FALSE;
+    $install = FALSE;
 //installation error messages here
-$error_msg  = '';
+    $error_msg  = '';
 
 //requirements checks correct?
-$succeed = TRUE; 
+    $succeed = TRUE; 
 //message to explain what was not correct
-$msg     = '';
-
+    $msg     = '';
 
 //Software requirements
-$checks = array(
+$checks = oc_requirements();
+
+
+
+/*
+function __($s)
+{
+	return (function_exists('_'))?_($s):T_($s);
+}*/
+
+
+/**
+ * *************************************************************
+ * Functions to help inthe installation
+ * *************************************************************
+ */
+
+/**
+ * checs that your hosting has everything that needs to have
+ * @return array 
+ */
+function oc_requirements()
+{
+     return     array(
 
                 'robots.txt'=>array('message'   => 'The <code>robots.txt</code> file is not writable.',
                                     'mandatory' => FALSE,
-                                    'result'    => is_writable('robots.txt')
+                                    'result'    => is_writable(DOCROOT.'robots.txt')
                                     ),
-                '.htaccess' =>array('message'   => 'The <code>.htaccess</code> file is not writable.',
+                'example.htaccess' =>array('message'   => 'The <code>example.htaccess</code> file is not writable.',
                                     'mandatory' => TRUE,
-                                    'result'    => is_writable('.htaccess')
+                                    'result'    => is_writable(DOCROOT.'example.htaccess')
                                     ),
                 'sitemap'   =>array('message'   => 'The <code>sitemap.xml.gz</code> file is not writable.',
                                     'mandatory' => FALSE,
-                                    'result'    => is_writable('sitemap.xml.gz')
+                                    'result'    => is_writable(DOCROOT.'sitemap.xml.gz')
                                     ),
                 'images'    =>array('message'   => 'The <code>images/</code> directory is not writable.',
                                     'mandatory' => TRUE,
-                                    'result'    => is_writable('images')
+                                    'result'    => is_writable(DOCROOT.'images')
                                     ),
                 'cache'     =>array('message'   => 'The <code>'.APPPATH.'cache/</code> directory is not writable.',
                                     'mandatory' => TRUE,
@@ -134,13 +173,15 @@ $checks = array(
                                     ),
 
                 );
+}
 
-/*
-function __($s)
-{
-	return (function_exists('_'))?_($s):T_($s);
-}*/
 
+/**
+ * loads gettexts or droppin
+ * @param  string $locale  
+ * @param  string $domain  
+ * @param  string $charset 
+ */
 function gettext_init($locale,$domain = 'messages',$charset = 'utf8')
 {
     include APPPATH.'vendor/php-gettext/gettext.inc';
@@ -167,6 +208,10 @@ function gettext_init($locale,$domain = 'messages',$charset = 'utf8')
     }
 }
 
+/**
+ * suggested hosting from OC
+ * @return HTML 
+ */
 function hostingAd()
 {
     if (SAMBA){
@@ -180,6 +225,11 @@ function hostingAd()
 }
 
 
+/**
+ * gets the offset of a date
+ * @param  string $offset 
+ * @return string       
+ */
 function formatOffset($offset) 
 {
         $hours = $offset / 3600;
@@ -194,7 +244,11 @@ function formatOffset($offset)
         return $sign . str_pad($hour, 2, '0', STR_PAD_LEFT) .':'. str_pad($minutes,2, '0');
 }
 
-///timezones functions
+
+/**
+ * returns timezones ins a more friendly array way, ex Madrid [+1:00]
+ * @return array 
+ */
 function get_timezones()
 {
     if (method_exists('DateTimeZone','listIdentifiers'))
@@ -225,6 +279,12 @@ function get_timezones()
     }
 }
 
+/**
+ * return HTML select for the timezones
+ * @param  string $select_name 
+ * @param  string $selected    
+ * @return string              
+ */
 function get_select_timezones($select_name='TIMEZONE',$selected=NULL)
 {
 	$sel='';
@@ -248,12 +308,26 @@ function get_select_timezones($select_name='TIMEZONE',$selected=NULL)
     return $sel;
 }
 
+
+/**
+ * short cut to get $_POST
+ * @param  string $name    index
+ * @param  mixed $default default value to use if none is set
+ * @return mixed          value form $_POST
+ */
 function cP($name,$default = NULL)
 {
     return (isset($_POST[$name])? $_POST[$name]:$default);
 }
 
 
+/**
+ * replaces in a file 
+ * @param  string $filename 
+ * @param  array $search   
+ * @param  array $replace  
+ * @return bool           
+ */
 function replace_file($filename,$search, $replace)
 {
     //check file is writable
@@ -289,6 +363,11 @@ function write_file($filename,$content)
     return FALSE;   
 }
 
+/**
+ * generates passwords, used for the auth hash keys etc..
+ * @param  integer $length 
+ * @return string         
+ */
 function generate_password ($length = 16)
 {
     $password = '';

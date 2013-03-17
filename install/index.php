@@ -1,4 +1,13 @@
 <? 
+/**
+ * HTML for the install
+ *
+ * @package    Install
+ * @category   Helper
+ * @author     Chema <chema@garridodiaz.com>
+ * @copyright  (c) 2009-2011 Open Classifieds Team
+ * @license    GPL v3
+ */
 include 'functions.php';
 include 'install.php';
 ?>

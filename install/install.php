@@ -1,4 +1,14 @@
 <?php
+/**
+ * Helper include to actually install
+ *
+ * @package    Install
+ * @category   Helper
+ * @author     Chema <chema@garridodiaz.com>
+ * @copyright  (c) 2009-2011 Open Classifieds Team
+ * @license    GPL v3
+ */
+
 defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 
 //there was a submit from index.php
@@ -95,6 +105,32 @@ if ($_POST AND $succeed)
 			$error_msg = __('Problem saving '.APPPATH.'config/auth.php');
 	}
 
+///////////////////////////////////////////////////////
+	//create robots.txt
+	if ($install)
+	{
+		$search  = array('[SITE_URL]', '[SITE_FOLDER]');
+		$replace = array($_POST['SITE_URL'], $suggest_folder);
+		$install = replace_file(DOCROOT.'robots.txt',$search,$replace);
+		if (!$install)
+			$error_msg = __('Problem saving '.DOCROOT.'robots.txt');
+	}
+
+
+///////////////////////////////////////////////////////
+	//create htaccess
+	//replace at example.htaccess and then we rename it
+	if ($install)
+	{
+		$search  = array('[SITE_FOLDER]');
+		$replace = array($suggest_folder);
+		if ($install = replace_file(DOCROOT.'example.htaccess',$search,$replace))
+			$install = rename(DOCROOT.'example.htaccess', DOCROOT.'.htaccess');
+
+		if (!$install)
+			$error_msg = __('Problem saving '.DOCROOT.'.htaccess');
+	}
+
 /*
 
  @todo newsletter register, adserum register
@@ -118,33 +154,11 @@ if ($_POST AND $succeed)
 	    }	
 	    else $apiKey='';
 	}
-
-///////////////////////////////////////////////////////
-	//create robots.txt
-	if ($install)
-	{
-		if (!regenerateRobots($_POST['SITE_URL']))
-		{
-			$error_msg = __('Cannot write to the configuration file').' /robots.txt';
-			$install=FALSE;
-		}
-	}
-	
-///////////////////////////////////////////////////////
-	//create htaccess
-	if ($install)
-	{		
-		if (!regenerateHtaccess($_POST['SITE_URL']))
-		{
-			$error_msg = __('Cannot write to the configuration file').'/.htaccess';
-			$install=FALSE;
-		}
-	}
-	*/
+*/
 
 ///////////////////////////////////////////////////////
 	//all good!
-	if ($install) unlink('install/install.lock');//prevents from performing a new install
+	if ($install) unlink(DOCROOT.'install/install.lock');//prevents from performing a new install
 	
 	
 	

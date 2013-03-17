@@ -1,6 +1,15 @@
 <?
+/**
+ * SQL installation import
+ *
+ * @package    Install
+ * @category   Helper
+ * @author     Chema <chema@garridodiaz.com>
+ * @copyright  (c) 2009-2011 Open Classifieds Team
+ * @license    GPL v3
+ */
+
 defined('SYSPATH') or exit('Install must be loaded from within index.php!');
-//SQL installation import
 
 mysql_query("SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO';");
 
