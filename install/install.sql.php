@@ -1,4 +1,5 @@
 <?
+defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 //SQL installation import
 
 mysql_query("SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO';");
@@ -167,7 +168,7 @@ mysql_query("INSERT INTO `[TABLE_PREFIX]access` (`id_access`, `id_role`, `access
  */
 $password = hash_hmac('sha256', '[ADMIN_PWD]', '[HASH_KEY]');
 mysql_query("INSERT INTO `[TABLE_PREFIX]users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) 
-VALUES (1, 'admin', NULL, '[ADMIN_EMAIL]', $password, 1, 10)");
+VALUES (1, 'admin', NULL, '[ADMIN_EMAIL]', '$password', 1, 10)");
 
 /**
  * Configs to make the app work

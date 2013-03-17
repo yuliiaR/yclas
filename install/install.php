@@ -1,10 +1,10 @@
 <?php
+defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 
 //there was a submit from index.php
 if ($_POST AND $succeed)
 {
 	$install 	= TRUE;
-	$error_msg 	= '';
 	
 ///////////////////////////////////////////////////////
 	//check DB connection
@@ -94,7 +94,10 @@ if ($_POST AND $succeed)
 		if (!$install)
 			$error_msg = __('Problem saving '.APPPATH.'config/auth.php');
 	}
-    
+
+/*
+
+ @todo newsletter register, adserum register
 ///////////////////////////////////////////////////////
 	//ocaku register
 	if ($install)
@@ -115,9 +118,6 @@ if ($_POST AND $succeed)
 	    }	
 	    else $apiKey='';
 	}
-
-
-die();
 
 ///////////////////////////////////////////////////////
 	//create robots.txt
@@ -140,34 +140,12 @@ die();
 			$install=FALSE;
 		}
 	}
-	
+	*/
+
 ///////////////////////////////////////////////////////
 	//all good!
 	if ($install) unlink('install/install.lock');//prevents from performing a new install
 	
-	//not succesful installation, let them know what was wrong
-	if (!$install && !empty($error_msg)) {
-		echo '<div class="alert alert-error">'.$error_msg.'</div>';
-	}
-	else{
-		//let them know installation suceed
-		?>
-		<div class="alert alert-success"><?=__('Congratulations');?></div>
-		<div class="hero-unit">
-			<h1><?=__('Installation done');?></h1>
-			<p>
-				<?=__('Please now erase the folder');?> <code>/install/</code><br>
-			
-				<a class="btn btn-success btn-large" href=""><?=__('Go to Your Website')?></a>
-				
-				<a class="btn btn-warning btn-large" href="admin">Admin</a> 
-				<span class="help-block">user: <?=$_POST['ADMIN_EMAIL']?> pass: <?=$_POST['ADMIN_PWD']?></span>
-				<hr>
-				<a class='btn btn-primary btn-large" href="http://j.mp/ocdonate"><?=__('Make a donation')?></a>
-				<?=__('We really appreciate it')?>.
-			</p>
-		</div>
-		<?
-	}
+	
 	
 }

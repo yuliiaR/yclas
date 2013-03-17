@@ -4,7 +4,7 @@
  */
 
 // Sanity check, install should only be checked from index.php
-defined('SYSPATH') or exit('Install tests must be loaded from within index.php!');
+defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 
 //prevents from new install to be done
 if(!file_exists('install/install.lock')) die('Installation seems to be done, please remove /install/ folder');
@@ -14,7 +14,7 @@ define('VERSION','2.0 Beta');
 if (isset($_POST['LANGUAGE'])) $locale_language=$_POST['LANGUAGE'];
 elseif (isset($_GET['LANGUAGE'])) $locale_language=$_GET['LANGUAGE'];
 else  $locale_language='en_EN';
-
+//start translations
 gettext_init($locale_language);
 
 
@@ -23,12 +23,21 @@ $suggest_url = 'http://'.$_SERVER['SERVER_NAME'];
 if ($_SERVER['SERVER_PORT'] != '80') 
     $suggest_url = $suggest_url.':'.$_SERVER['SERVER_PORT'];
 //getting the folder, erasing the index
-$suggest_url .=str_replace('/index.php','', $_SERVER['SCRIPT_NAME']);
+$suggest_url .=str_replace('/index.php','', $_SERVER['SCRIPT_NAME']).'/';
 
 
+//bool to see if the isntallation was good
+$install = FALSE;
+//installation error messages here
+$error_msg  = '';
+
+//requirements checks correct?
 $succeed = TRUE; 
+//message to explain what was not correct
 $msg     = '';
 
+
+//Software requirements
 $checks = array(
 
                 'robots.txt'=>array('message'   => 'The <code>robots.txt</code> file is not writable.',

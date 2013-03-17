@@ -110,8 +110,30 @@ include 'install.php';
 <!--/span-->	
 
 <div class="span9">
-<?if ($succeed){?>
+<?if ($_POST && $succeed):?>
 
+	<?if (!$install && !empty($error_msg)):?>
+		<div class="alert alert-error"><?=$error_msg?></div>
+		<?hostingAd()?>
+	<?elseif($install==TRUE):?>
+		<div class="alert alert-success"><?=__('Congratulations');?></div>
+		<div class="hero-unit">
+			<h1><?=__('Installation done');?></h1>
+			<p>
+				<?=__('Please now erase the folder');?> <code>/install/</code><br>
+			
+				<a class="btn btn-success btn-large" href=""><?=__('Go to Your Website')?></a>
+				
+				<a class="btn btn-warning btn-large" href="oc-panel/">Admin</a> 
+				<span class="help-block">user: <?=$_POST['ADMIN_EMAIL']?> pass: <?=$_POST['ADMIN_PWD']?></span>
+				<hr>
+				<a class="btn btn-primary btn-large" href="http://j.mp/ocdonate"><?=__('Make a donation')?></a>
+				<?=__('We really appreciate it')?>.
+			</p>
+		</div>
+	<?endif?>
+
+<?elseif ($succeed):?>
 
 <div class="page-header">
 	<h1><?=__("Welcome to")?> Open Classifieds <?=__("installation")?></h1>
@@ -130,7 +152,6 @@ include 'install.php';
 
 <form method="post" action="" class="well" >
 <fieldset>
-
 
 <h2><?=__('Site Configuration')?></h2>
 
@@ -189,8 +210,6 @@ include 'install.php';
 	<input type="text" name="ADMIN_PWD" value="<?=cP('ADMIN_PWD')?>" class="span6" />	
 	</div>
 </div>
-
-
 
 <h2><?=__('Database Configuration')?></h2>
 
@@ -271,10 +290,7 @@ include 'install.php';
 </fieldset>
 </form>
 
-<?
-}//if requirements succeed
-
-else{?>
+<?else:?>
 
 	<div class="alert alert-error"><?=$msg?></div>
 	<?hostingAd()?>
@@ -288,7 +304,7 @@ else{?>
 	</div>
 	<?endif?>
 
-<?}?>
+<?endif?>
 
 </div><!--/span--> 
 </div><!--/row-->
