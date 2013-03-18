@@ -1,4 +1,5 @@
 oc/cache/*
 oc/logs/*
+oc/modules/profilertoolbar
 images/
 .htaccess
