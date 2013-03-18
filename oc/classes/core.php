@@ -99,6 +99,29 @@ class Core {
     {
     	return Kohana::$config->load($group);
     }
+
+    /**
+     * shortcut for the query method $_GET
+     * @param  [type] $key     [description]
+     * @param  [type] $default [description]
+     * @return [type]          [description]
+     */
+    public static function get($key,$default=NULL)
+    {
+    	return (Request::current()->query($key)!==NULL)?Request::current()->query($key):$default;
+    }
+
+    /**
+     * shortcut for $_POST[]
+     * @param  [type] $key     [description]
+     * @param  [type] $default [description]
+     * @return [type]          [description]
+     */
+    public static function post($key,$default=NULL)
+    {
+    	return (Request::current()->post($key)!==NULL)?Request::current()->post($key):$default;
+    }
+
 } //end core
 
 /**

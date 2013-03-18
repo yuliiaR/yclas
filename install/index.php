@@ -260,7 +260,7 @@ include 'install.php';
 <div class="control-group">
 	<label class="control-label"><?=__("Table prefix")?>:</label>
 	<div class="controls">
-	<input type="text" name="TABLE_PREFIX" value="<?=cP('TABLE_PREFIX','oc_')?>" class="text-medium" />
+	<input type="text" name="TABLE_PREFIX" value="<?=cP('TABLE_PREFIX','oc2_')?>" class="text-medium" />
 	<span class="help-block"><?=__("Allows multiple installations in one database if you give each one a unique prefix")?>. <?=__("Only numbers, letters, and underscores")?>.</span>
 	</div>
 </div>

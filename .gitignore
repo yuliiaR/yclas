@@ -1,5 +1,9 @@
 oc/cache/*
 oc/logs/*
 oc/modules/profilertoolbar
-images/
+images/*
+install/install.lock
 .htaccess
+robots.txt
+example.htaccess
+sitemap.xml.gz
