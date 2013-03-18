@@ -131,34 +131,30 @@ if ($_POST AND $succeed)
 			$error_msg = __('Problem saving '.DOCROOT.'.htaccess');
 	}
 
-/*
 
- @todo newsletter register, adserum register
 ///////////////////////////////////////////////////////
 	//ocaku register
 	if ($install)
 	{
 		if ($_POST['OCAKU'] == 1)
-	    {	        	    
+	    {	        	
+	    	include DOCROOT.'install/ocaku.php';
 	        //ocaku register new site!
-	        $ocaku=new ocaku();
-	        $data=array(
+	        $ocaku = new ocaku();
+	        $ocaku->newSite(array(
 	        					'siteName'=>$_POST['SITE_NAME'],
 	        					'siteUrl' =>$_POST['SITE_URL'],
 	        					'email'   =>$_POST['ADMIN_EMAIL'],
 	        					'language'=>substr($_POST['LANGUAGE'],0,2)
-	        );
-	        $apiKey=$ocaku->newSite($data);
-	        unset($ocaku);
-	        //end ocaku register
+	        ));
 	    }	
-	    else $apiKey='';
 	}
-*/
 
 ///////////////////////////////////////////////////////
 	//all good!
-	if ($install) unlink(DOCROOT.'install/install.lock');//prevents from performing a new install
+	if ($install) 
+		unlink(DOCROOT.'install/install.lock');//prevents from performing a new install
+	//else @todo mysql rollback??
 	
 	
 	

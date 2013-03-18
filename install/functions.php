@@ -385,4 +385,5 @@ function generate_password ($length = 16)
     return $password;
 }
 
+
 define('SAMBA',TRUE);

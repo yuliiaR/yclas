@@ -181,11 +181,7 @@ VALUES (1, 'admin', NULL, '[ADMIN_EMAIL]', '$password', 1, 10)");
 
 /**
  * Configs to make the app work
- * Cant be here!!
- * ('general', 'paypal_msg_product_to_top', 'Go on Top'),
-*('general', 'paypal_msg_product_to_featured', 'Go to Featured'),
-*('general', 'paypal_msg_product_category', 'Pay to publish '),
-*captcha-captcha??
+ *
  */
 mysql_query("INSERT INTO `[TABLE_PREFIX]config` (`group_name`, `config_key`, `config_value`) VALUES
 ('widget', 'list_of_all_widget', ''),

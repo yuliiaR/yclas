@@ -131,9 +131,9 @@ include 'install.php';
 			<p>
 				<?=__('Please now erase the folder');?> <code>/install/</code><br>
 			
-				<a class="btn btn-success btn-large" href=""><?=__('Go to Your Website')?></a>
+				<a class="btn btn-success btn-large" href="<?=$_POST['SITE_URL']?>"><?=__('Go to Your Website')?></a>
 				
-				<a class="btn btn-warning btn-large" href="oc-panel/">Admin</a> 
+				<a class="btn btn-warning btn-large" href="<?=$_POST['SITE_URL']?>oc-panel/home/">Admin</a> 
 				<span class="help-block">user: <?=$_POST['ADMIN_EMAIL']?> pass: <?=$_POST['ADMIN_PWD']?></span>
 				<hr>
 				<a class="btn btn-primary btn-large" href="http://j.mp/ocdonate"><?=__('Make a donation')?></a>
@@ -239,7 +239,7 @@ include 'install.php';
 <div class="control-group">
 	<label class="control-label"><?=__("Password")?>:</label>
 	<div class="controls">
-	<input type="password" name="DB_PASS" value="<?=cP('DB_PASS')?>" class="span6" />		
+	<input type="text" name="DB_PASS" value="<?=cP('DB_PASS')?>" class="span6" />		
 	</div>
 </div>
 
