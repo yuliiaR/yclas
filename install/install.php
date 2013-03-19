@@ -72,7 +72,7 @@ if ($_POST AND $succeed)
 	if ($install)
 	{
 	    $hash_key = generate_password();
-	    include 'install/install.sql.php';
+	    include DOCROOT.'install/install.sql.php';
 	}
 
 ///////////////////////////////////////////////////////
