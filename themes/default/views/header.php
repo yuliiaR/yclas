@@ -20,7 +20,9 @@
 					<li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
 		              <ul class="dropdown-menu">
+
 		              	<?foreach($cat_list as $cat_list => $value):?>
+
 		              		<?if($value['id'] <= $value['parent']):?>
 								<li class="nav-header"><?=$cat_list?></li>
 								<li class="divider"></li>							
