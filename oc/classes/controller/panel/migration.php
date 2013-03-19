@@ -60,6 +60,7 @@ class Controller_Panel_Migration extends Auth_Controller {
                 break(1);
             }   
            
+            //verify tables in DB
             foreach ($tables as $table => $value) 
             {
                 $val = array_values($value);
@@ -77,7 +78,9 @@ class Controller_Panel_Migration extends Auth_Controller {
                 }
                     
             }
-
+            //end tables verification
+            
+            
             if ($match_tables)
             {
                 //start migration

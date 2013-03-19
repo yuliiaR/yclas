@@ -83,9 +83,9 @@ function oc_requirements()
                                     'mandatory' => FALSE,
                                     'result'    => is_writable(DOCROOT.'robots.txt')
                                     ),
-                'example.htaccess' =>array('message'   => 'The <code>example.htaccess</code> file is not writable.',
+                '.htaccess' =>array('message'   => 'The <code>example.htaccess</code> file is not writable.',
                                     'mandatory' => TRUE,
-                                    'result'    => is_writable(DOCROOT.'example.htaccess')
+                                    'result'    => is_writable(DOCROOT.'.htaccess')
                                     ),
                 'sitemap'   =>array('message'   => 'The <code>sitemap.xml.gz</code> file is not writable.',
                                     'mandatory' => FALSE,
@@ -323,22 +323,25 @@ function cP($name,$default = NULL)
 
 /**
  * replaces in a file 
- * @param  string $filename 
+ * @param  string $orig_file 
  * @param  array $search   
  * @param  array $replace  
  * @return bool           
  */
-function replace_file($filename,$search, $replace)
+function replace_file($orig_file,$search, $replace,$to_file = NULL)
 {
+    if ($to_file === NULL)
+        $to_file = $orig_file;
+
     //check file is writable
-    if (is_writable($filename))
+    if (is_writable($to_file))
     {
         //read file content
-        $content = file_get_contents($filename);
+        $content = file_get_contents($orig_file);
         //replace fields
         $content = str_replace($search, $replace, $content);
         //save file
-        return write_file($filename,$content);
+        return write_file($to_file,$content);
     }
     
     return FALSE;

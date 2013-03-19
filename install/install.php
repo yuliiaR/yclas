@@ -63,7 +63,7 @@ if ($_POST AND $succeed)
 	{
 		$search  = array('[DB_HOST]', '[DB_USER]','[DB_PASS]','[DB_NAME]','[TABLE_PREFIX]','[DB_CHARSET]');
 		$replace = array($_POST['DB_HOST'], $_POST['DB_USER'], $_POST['DB_PASS'],$_POST['DB_NAME'],$_POST['TABLE_PREFIX'],$_POST['DB_CHARSET']);
-		$install = replace_file(APPPATH.'config/database.php',$search,$replace);
+		$install = replace_file(DOCROOT.'install/example.database.php',$search,$replace,APPPATH.'config/database.php');
 		if (!$install)
 			$error_msg = __('Problem saving '.APPPATH.'config/database.php');
 	}
@@ -71,27 +71,8 @@ if ($_POST AND $succeed)
 	//install DB
 	if ($install)
 	{
-		$sql_install_file = 'install/install.sql.php';
-		//selecting the db
-	    mysql_select_db($_POST['DB_NAME']);
-	    mysql_query('SET NAMES '.$_POST['DB_CHARSET']);
-	    
 	    $hash_key = generate_password();
-
-	    $search   = array('[TABLE_PREFIX]','[DB_CHARSET]','[ADMIN_EMAIL]',
-	    					'[ADMIN_PWD]','[TIMEZONE]','[LANGUAGE]',
-	    					'[HASH_KEY]','[SITE_NAME]','[SITE_URL]');
-		$replace  = array($_POST['TABLE_PREFIX'],$_POST['DB_CHARSET'],$_POST['ADMIN_EMAIL'],
-							$_POST['ADMIN_PWD'],$_POST['TIMEZONE'],$_POST['LANGUAGE'],
-							$hash_key,$_POST['SITE_NAME'],$_POST['SITE_URL']);
-
-	    $install  = replace_file($sql_install_file,$search,$replace);
-
-	    if ($install)
-	    	include $sql_install_file; 
-	    else
-			$error_msg = __('Problem saving '.$sql_install_file);  
-
+	    include 'install/install.sql.php';
 	}
 
 ///////////////////////////////////////////////////////
@@ -100,7 +81,7 @@ if ($_POST AND $succeed)
 	{
 		$search  = array('[HASH_KEY]', '[COOKIE_SALT]','[QL_KEY]');
 		$replace = array($hash_key,generate_password(),generate_password());
-		$install = replace_file(APPPATH.'config/auth.php',$search,$replace);
+		$install = replace_file(DOCROOT.'install/example.auth.php',$search,$replace,APPPATH.'config/auth.php');
 		if (!$install)
 			$error_msg = __('Problem saving '.APPPATH.'config/auth.php');
 	}
@@ -111,7 +92,7 @@ if ($_POST AND $succeed)
 	{
 		$search  = array('[SITE_URL]', '[SITE_FOLDER]');
 		$replace = array($_POST['SITE_URL'], $suggest_folder);
-		$install = replace_file(DOCROOT.'robots.txt',$search,$replace);
+		$install = replace_file(DOCROOT.'install/example.robots.txt',$search,$replace,DOCROOT.'robots.txt');
 		if (!$install)
 			$error_msg = __('Problem saving '.DOCROOT.'robots.txt');
 	}
@@ -119,13 +100,12 @@ if ($_POST AND $succeed)
 
 ///////////////////////////////////////////////////////
 	//create htaccess
-	//replace at example.htaccess and then we rename it
 	if ($install)
 	{
 		$search  = array('[SITE_FOLDER]');
 		$replace = array($suggest_folder);
-		if ($install = replace_file(DOCROOT.'example.htaccess',$search,$replace))
-			$install = rename(DOCROOT.'example.htaccess', DOCROOT.'.htaccess');
+
+		$install = replace_file(DOCROOT.'install/example.htaccess',$search,$replace,DOCROOT.'.htaccess');
 
 		if (!$install)
 			$error_msg = __('Problem saving '.DOCROOT.'.htaccess');
@@ -134,20 +114,19 @@ if ($_POST AND $succeed)
 
 ///////////////////////////////////////////////////////
 	//ocaku register
-	if ($install)
+	if ($install AND $_POST['OCAKU'] == 1)
 	{
-		if ($_POST['OCAKU'] == 1)
-	    {	        	
-	    	include DOCROOT.'install/ocaku.php';
-	        //ocaku register new site!
-	        $ocaku = new ocaku();
-	        $ocaku->newSite(array(
-	        					'siteName'=>$_POST['SITE_NAME'],
-	        					'siteUrl' =>$_POST['SITE_URL'],
-	        					'email'   =>$_POST['ADMIN_EMAIL'],
-	        					'language'=>substr($_POST['LANGUAGE'],0,2)
-	        ));
-	    }	
+		     	
+    	include DOCROOT.'install/ocaku.php';
+        //ocaku register new site!
+        $ocaku = new ocaku();
+        $ocaku->newSite(array(
+        					'siteName'=>$_POST['SITE_NAME'],
+        					'siteUrl' =>$_POST['SITE_URL'],
+        					'email'   =>$_POST['ADMIN_EMAIL'],
+        					'language'=>substr($_POST['LANGUAGE'],0,2)
+        ));
+	    
 	}
 
 ///////////////////////////////////////////////////////

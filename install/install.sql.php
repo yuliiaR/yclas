@@ -11,27 +11,30 @@
 
 defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 
+//selecting the db
+mysql_select_db($_POST['DB_NAME']);
+mysql_query('SET NAMES '.$_POST['DB_CHARSET']);
 mysql_query("SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO';");
 
-mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]roles` (
+mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."roles` (
   `id_role` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `description` varchar(245) DEFAULT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_role`),
-  UNIQUE KEY `[TABLE_PREFIX]roles_UK_name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET];");
+  UNIQUE KEY `".$_POST['TABLE_PREFIX']."roles_UK_name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 
-mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]access` (
+mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."access` (
   `id_access` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_role` int(10) unsigned NOT NULL,
   `access` varchar(100) NOT NULL,
   PRIMARY KEY (`id_access`)
-) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET];");
+) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 
-mysql_query("CREATE TABLE IF NOT EXISTS  `[TABLE_PREFIX]users` (
+mysql_query("CREATE TABLE IF NOT EXISTS  `".$_POST['TABLE_PREFIX']."users` (
   `id_user` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(145) DEFAULT NULL,
   `seoname` varchar(145) DEFAULT NULL,
@@ -50,13 +53,13 @@ mysql_query("CREATE TABLE IF NOT EXISTS  `[TABLE_PREFIX]users` (
   `token_created` datetime DEFAULT NULL,
   `token_expires` datetime DEFAULT NULL,
   PRIMARY KEY (`id_user`),
-  UNIQUE KEY `[TABLE_PREFIX]users_UK_email` (`email`),
-  UNIQUE KEY `[TABLE_PREFIX]users_UK_token` (`token`),
-  UNIQUE KEY `[TABLE_PREFIX]users_UK_seoname` (`seoname`)
-) ENGINE=InnoDB DEFAULT CHARSET=[DB_CHARSET];");
+  UNIQUE KEY `".$_POST['TABLE_PREFIX']."users_UK_email` (`email`),
+  UNIQUE KEY `".$_POST['TABLE_PREFIX']."users_UK_token` (`token`),
+  UNIQUE KEY `".$_POST['TABLE_PREFIX']."users_UK_seoname` (`seoname`)
+) ENGINE=InnoDB DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 
-mysql_query("CREATE TABLE IF NOT EXISTS  `[TABLE_PREFIX]categories` (
+mysql_query("CREATE TABLE IF NOT EXISTS  `".$_POST['TABLE_PREFIX']."categories` (
   `id_category` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(145) NOT NULL,
   `order` int(2) unsigned NOT NULL DEFAULT '0',
@@ -67,11 +70,11 @@ mysql_query("CREATE TABLE IF NOT EXISTS  `[TABLE_PREFIX]categories` (
   `description` varchar(255) NULL,
   `price` decimal NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`) USING BTREE,
-  UNIQUE KEY `[TABLE_PREFIX]categories_IK_seo_name` (`seoname`)
-) ENGINE=InnoDB DEFAULT CHARSET=[DB_CHARSET];");
+  UNIQUE KEY `".$_POST['TABLE_PREFIX']."categories_IK_seo_name` (`seoname`)
+) ENGINE=InnoDB DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 
-mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]locations` (
+mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."locations` (
   `id_location` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `id_location_parent` int(10) unsigned NOT NULL DEFAULT '0',
@@ -81,11 +84,11 @@ mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]locations` (
   `lat` FLOAT( 10, 6 ) NULL ,
   `lng` FLOAT( 10, 6 ) NULL ,
   PRIMARY KEY (`id_location`),
-  UNIQUE KEY `[TABLE_PREFIX]categories_UK_seoname` (`seoname`)
-) ENGINE=InnoDB DEFAULT CHARSET=[DB_CHARSET];");
+  UNIQUE KEY `".$_POST['TABLE_PREFIX']."categories_UK_seoname` (`seoname`)
+) ENGINE=InnoDB DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 
-mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]ads` (
+mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."ads` (
   `id_ad` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(10) unsigned NOT NULL,
   `id_category` int(10) unsigned NOT NULL DEFAULT '0',
@@ -105,36 +108,36 @@ mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]ads` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `has_images` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_ad`) USING BTREE,
-  KEY `[TABLE_PREFIX]ads_IK_id_user` (`id_user`),
-  KEY `[TABLE_PREFIX]ads_IK_id_category` (`id_category`),
-  KEY `[TABLE_PREFIX]ads_IK_title` (`title`),
-  UNIQUE KEY `[TABLE_PREFIX]ads_UK_seotitle` (`seotitle`),
-  KEY `[TABLE_PREFIX]ads_IK_status` (`status`),
-  CONSTRAINT `[TABLE_PREFIX]ads_FK_id_user_AT_users` FOREIGN KEY (`id_user`) REFERENCES `[TABLE_PREFIX]users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `[TABLE_PREFIX]ads_FK_id_category_AT_categories` FOREIGN KEY (`id_category`) REFERENCES `[TABLE_PREFIX]categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=[DB_CHARSET];");
+  KEY `".$_POST['TABLE_PREFIX']."ads_IK_id_user` (`id_user`),
+  KEY `".$_POST['TABLE_PREFIX']."ads_IK_id_category` (`id_category`),
+  KEY `".$_POST['TABLE_PREFIX']."ads_IK_title` (`title`),
+  UNIQUE KEY `".$_POST['TABLE_PREFIX']."ads_UK_seotitle` (`seotitle`),
+  KEY `".$_POST['TABLE_PREFIX']."ads_IK_status` (`status`),
+  CONSTRAINT `".$_POST['TABLE_PREFIX']."ads_FK_id_user_AT_users` FOREIGN KEY (`id_user`) REFERENCES `".$_POST['TABLE_PREFIX']."users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `".$_POST['TABLE_PREFIX']."ads_FK_id_category_AT_categories` FOREIGN KEY (`id_category`) REFERENCES `".$_POST['TABLE_PREFIX']."categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 
-mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]visits` (
+mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."visits` (
   `id_visit` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_ad` int(10) unsigned DEFAULT NULL,
   `id_user` int(10) unsigned DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ip_address` float DEFAULT NULL,
   PRIMARY KEY (`id_visit`),
-  KEY `[TABLE_PREFIX]visits_IK_id_user` (`id_user`),
-  KEY `[TABLE_PREFIX]visits_IK_id_ad` (`id_ad`)
-) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET];");
+  KEY `".$_POST['TABLE_PREFIX']."visits_IK_id_user` (`id_user`),
+  KEY `".$_POST['TABLE_PREFIX']."visits_IK_id_ad` (`id_ad`)
+) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 
-mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]config` ( 
+mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."config` ( 
   `group_name` VARCHAR(128)  NOT NULL, 
   `config_key` VARCHAR(128)  NOT NULL, 
   `config_value` TEXT 
-) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET] ;");
+) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET']." ;");
 
 
-mysql_query("CREATE TABLE IF NOT EXISTS  `[TABLE_PREFIX]orders` (
+mysql_query("CREATE TABLE IF NOT EXISTS  `".$_POST['TABLE_PREFIX']."orders` (
   `id_order` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(10) unsigned NOT NULL,
   `id_ad` int(10) unsigned NULL,
@@ -146,12 +149,12 @@ mysql_query("CREATE TABLE IF NOT EXISTS  `[TABLE_PREFIX]orders` (
   `amount` decimal(14,3) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_order`),
-  KEY `[TABLE_PREFIX]orders_IK_id_user` (`id_user`),
-  KEY `[TABLE_PREFIX]orders_IK_status` (`status`)
-)ENGINE=InnoDB DEFAULT CHARSET=[DB_CHARSET];");
+  KEY `".$_POST['TABLE_PREFIX']."orders_IK_id_user` (`id_user`),
+  KEY `".$_POST['TABLE_PREFIX']."orders_IK_status` (`status`)
+)ENGINE=InnoDB DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 
-mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]content` (
+mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."content` (
   `id_content` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `order` int(2) unsigned NOT NULL DEFAULT '0',
   `title` varchar(145) NOT NULL,
@@ -162,35 +165,35 @@ mysql_query("CREATE TABLE IF NOT EXISTS `[TABLE_PREFIX]content` (
   `type` enum('page','email','help') NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_content`),
-  UNIQUE KEY `[TABLE_PREFIX]content_UK_seotitle` (`seotitle`)
-) ENGINE=MyISAM DEFAULT CHARSET=[DB_CHARSET];");
+  UNIQUE KEY `".$_POST['TABLE_PREFIX']."content_UK_seotitle` (`seotitle`)
+) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 
 /**
  * Access @todo review normal profile
  */
-mysql_query("INSERT INTO `[TABLE_PREFIX]roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (10, 'admin', 'Full access');");
-mysql_query("INSERT INTO `[TABLE_PREFIX]access` (`id_access`, `id_role`, `access`) VALUES (1, 10, '*.*'),(2, 1, 'profile.*');");
+mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (10, 'admin', 'Full access');");
+mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."access` (`id_access`, `id_role`, `access`) VALUES (1, 10, '*.*'),(2, 1, 'profile.*');");
 
 /**
  * Create user God/Admin 
  */
-$password = hash_hmac('sha256', '[ADMIN_PWD]', '[HASH_KEY]');
-mysql_query("INSERT INTO `[TABLE_PREFIX]users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) 
-VALUES (1, 'admin', NULL, '[ADMIN_EMAIL]', '$password', 1, 10)");
+$password = hash_hmac('sha256', $_POST['ADMIN_PWD'], $hash_key);
+mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) 
+VALUES (1, 'admin', NULL, '".$_POST['ADMIN_EMAIL']."', '$password', 1, 10)");
 
 /**
  * Configs to make the app work
  *
  */
-mysql_query("INSERT INTO `[TABLE_PREFIX]config` (`group_name`, `config_key`, `config_value`) VALUES
+mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `config_key`, `config_value`) VALUES
 ('widget', 'list_of_all_widget', ''),
 ('widget', 'sidebar_widget', ''),
 ('widget', 'footer_widget', ''),
 ('appearance', 'theme', 'default'),
 ('i18n', 'charset', 'utf-8'),
-('i18n', 'timezone', '[TIMEZONE]'),
-('i18n', 'locale', '[LANGUAGE]'),
+('i18n', 'timezone', '".$_POST['TIMEZONE']."'),
+('i18n', 'locale', '".$_POST['LANGUAGE']."'),
 ('payment', 'paypal_currency', 'USD'),
 ('payment', 'sandbox', 'FALSE'),
 ('payment', 'to_featured', 'FALSE'),
@@ -198,9 +201,9 @@ mysql_query("INSERT INTO `[TABLE_PREFIX]config` (`group_name`, `config_key`, `co
 ('payment', 'pay_to_go_on_feature', '10'),
 ('payment', 'pay_to_go_on_top', '5'),
 ('payment', 'paypal_account', ''),
-('general', 'base_url', '[SITE_URL]'),
+('general', 'base_url', '".$_POST['SITE_URL']."'),
 ('general', 'moderation', '0'),
-('general', 'site_name', '[SITE_NAME]'),
+('general', 'site_name', '".$_POST['SITE_NAME']."'),
 ('general', 'ID-pay_to_go_on_top', 'pay_to_go_on_top'),
 ('general', 'global-currency', 'USD'),
 ('general', 'ID-pay_to_go_on_feature', 'pay_to_go_on_feature'),
@@ -217,7 +220,7 @@ mysql_query("INSERT INTO `[TABLE_PREFIX]config` (`group_name`, `config_key`, `co
 ('formconfig', 'captcha-captcha', 'TRUE'),
 ('formconfig', 'advertisement-website', 'TRUE'),
 ('formconfig', 'advertisement-price', 'TRUE'),
-('email-settings', 'notify_email', '[ADMIN_EMAIL]'),
+('email-settings', 'notify_email', '".$_POST['ADMIN_EMAIL']."'),
 ('email-settings', 'smtp_active', 'FALSE'),
 ('email-settings', 'smtp_host', ''),
 ('email-settings', 'smtp_port', ''),
@@ -225,6 +228,18 @@ mysql_query("INSERT INTO `[TABLE_PREFIX]config` (`group_name`, `config_key`, `co
 ('email-settings', 'smtp_user', ''),
 ('email-settings', 'smtp_pass', '');");
 
+
+//base category
+mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."categories` 
+  (`id_category` ,`name` ,`order` ,`id_category_parent` ,`parent_deep` ,`seoname` ,`description` )
+VALUES (1, 'all', 0 , 0, 0, 'all', 'root category');");
+
+//base location
+mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."locations` 
+  (`id_location` ,`name` ,`id_location_parent` ,`parent_deep` ,`seoname` ,`description`)
+VALUES (1 , 'all', 0, 0, 'all', 'root location');");
+
+ 
 
 
 /*
