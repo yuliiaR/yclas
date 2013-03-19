@@ -11,15 +11,25 @@
 */
 
 class Widget {
-
+	
+	/**  
+	 * @var array of widget placeholders in theme
+	 */
+	public static $placeholder = array();
+	
+	/**
+	 * @var array of widget specific to theme
+	 */
+	public static $theme_widgets = array();
+	
 	/**
 	 * Gets from conf DB json object of active widgets
 	 * @param  string $name_placeholder [name of colling placeholder]
-	 * @return [string]                   [widget code]
+	 * @return [string]                 [widget code]
 	 */
 	public static function get($name_placeholder = 'sidebar')
 	{
-		$jsonObject = core::config('widget.'.$name_placeholder.'_widget');
+		$jsonObject = core::config('widget.'.$name_placeholder.'_placeholder');
 		$obj = json_decode($jsonObject, true); // to array
 
 		if($obj)
@@ -38,9 +48,19 @@ class Widget {
 		return $active_widgets;
 	}
 
-	public static function save_active()
+	public static function get_widgets()
 	{
-
+		$obj_widgets = core::config('widget');
+		
+		foreach ($obj_widgets as $obj_w => $value) 
+		{
+			if(preg_match('/_widget/', $obj_w))
+			{
+				$w_name = str_replace('_widget', '', $obj_w);
+				$widgets[$w_name] = $value;
+			}
+		}
+		return $widgets;
 	}
 
 }//end class Widget

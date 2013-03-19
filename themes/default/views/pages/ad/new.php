@@ -19,10 +19,9 @@
 				</div>
 				<div class="control-group">
 					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category'))?>
-					<div class="controls">
-						<?$_val_category = array('0'=>null);?>
+					<div class="controls">						
 						<?foreach ($_cat as $cat):?>
-							<?php $_val_category[] = $cat->seoname; ?>
+							<?php $_val_category[$cat->id_category] = $cat->seoname; ?>
 						<?endforeach?>
 					<?= FORM::select('category', $_val_category, 0, array('id'=>'category','class'=>'input-xlarge', 'required') );?>
 					<p id="cat_price" class="text-warning"></p>
@@ -32,9 +31,9 @@
 				<div class="control-group">
 					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
 					<div class="controls">
-						<?$_val_location = array('0'=>NULL);?>
+					
 						<?foreach ($_loc as $loc):?>
-							<?php $_val_location[] = $loc->seoname; ?>
+							<?php $_val_location[$loc->id_location] = $loc->seoname; ?>
 						<?endforeach?>
 					<?= FORM::select('location', $_val_location, 0, array('id'=>'location', 'class'=>'input-xlarge', 'required') );?>
 					</div>
@@ -48,14 +47,12 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images1'))?>
-					<div class="controls">
-						<input class="input-file" type="file" name="image1" id="fileInput1" />
-					</div>
-					<?= FORM::label('images2', __('Images'), array('class'=>'control-label', 'for'=>'images2'))?>
-					<div class="controls">	
-						<input class="input-file" type="file" name="image2" id="fileInput2" />
-					</div>
+					<?for ($i=0; $i < core::config("formconfig.advertisement-num_images") ; $i++):?> 
+						<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'.$i))?>
+						<div class="controls">
+							<input class="input-file" type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" />
+						</div>
+					<?endfor?>
 				</div>
 				<?if($form_show['phone'] !== 'FALSE'):?>
 				<div class="control-group">

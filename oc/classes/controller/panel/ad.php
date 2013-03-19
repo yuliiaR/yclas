@@ -27,7 +27,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 		$c = new Controller_Ad($this->request,$this->response); // object of listing
         
-        $arr_ads = $c->action_list_logic(); 
+        $arr_ads = $c->list_logic(); 
        	$arr_hits = array(); // array of hit integers 
        	
         // fill array with hit integers 

@@ -9,21 +9,24 @@
 			</a>
 			<a class="brand" href="<?=Route::url('default')?>">Site name</a>
 			
+			<?$cat = new Model_Category(); $cat_list = $cat->get_categories();?>
+			
 			<div class="nav-collapse">
 				<ul class="nav">
+
 					<li><a href="/">Cat 2</a></li>
 					<li class="active"><a href="<?= Route::url('default', array('controller'=>'ad', 'action'=>'all'));?>">Listing</a></li>
 					<li><a href="<?= Route::url('contact');?>">Contact Us</a></li>
 					<li class="dropdown">
-		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
 		              <ul class="dropdown-menu">
-		                <li><a href="#">Action</a></li>
-		                <li><a href="#">Another action</a></li>
-		                <li><a href="#">Something else here</a></li>
-		                <li class="divider"></li>
-		                <li class="nav-header">Nav header</li>
-		                <li><a href="#">Separated link</a></li>
-		                <li><a href="#">One more separated link</a></li>
+		              	<?foreach($cat_list as $cat_list => $value):?>
+		              		<?if($value['id'] <= $value['parent']):?>
+								<li class="nav-header"><?=$cat_list?></li>
+								<li class="divider"></li>							
+							<?endif?>
+								<li><a title="<?=$cat_list?>" href="<?=Route::url('sort_by', array('category'=>$cat_list))?>"> <?=$cat_list?></a></li>
+						<?endforeach?>
 		              </ul>
 		            </li>
 		            <li><a href="/">Cat 5</a></li>

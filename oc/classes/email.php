@@ -5,7 +5,7 @@
  *
  * @package    OC
  * @category   Core
- * @author     Chema <chema@garridodiaz.com>
+ * @author     Chema <chema@garridodiaz.com>, Slobodan <slobodan.josifovic@gmail.com>
  * @copyright  (c) 2009-2012 Open Classifieds Team
  * @license    GPL v3
  */
