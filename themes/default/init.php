@@ -25,8 +25,8 @@ Alert::$tpl 	= 	'<div class="alert alert-%s">
 /**
  * widgets
  */
-// Widget::$placeholder = array('footer', 'header');
-// Widget::$theme_widgets = array();
+Widget::$placeholder = array('footer', 'header');
+Widget::$theme_widgets = array();
 /**
  * Theme Functions
  * 

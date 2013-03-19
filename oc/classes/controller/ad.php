@@ -39,7 +39,6 @@ class Controller_Ad extends Controller {
 	        if ( strlen($search_term)>2 )
 	        {
 	            $ads->where('title', 'like', '%'.$search_term.'%');
-
 	        }
 
 	        $res_count = count($ads);
@@ -56,7 +55,9 @@ class Controller_Ad extends Controller {
 	        if ($res_count>0)
 	        {
 	        	$content->ads = $ads->order_by('created','desc')
-	                                ->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
+	                                ->limit($pagination->items_per_page)
+	                                ->offset($pagination->offset)
+	                                ->find_all();
 	                                   	            
 	        } else $content->ads = NULL;
 	       	
@@ -66,6 +67,7 @@ class Controller_Ad extends Controller {
 			$content->loc = $loc;
 			$content->user = $user;
 			$content->img_path = NULL;
+			
         }
         // advansed search with many parameters
         elseif($this->request->query('advert') 
@@ -78,7 +80,7 @@ class Controller_Ad extends Controller {
         	$search_loc 	= $this->request->query('loc');
         	
         	$ads = $this->action_advansed_search($search_advert, $search_cat, $search_loc); // logic
-        	
+
         	$this->template->bind('content', $content);
 			$this->template->content = View::factory('pages/ad/listing');
 
@@ -104,11 +106,12 @@ class Controller_Ad extends Controller {
 			$content->loc = $loc;
 			$content->user = $user;
 			$content->img_path = NULL;
+			
         }
         // list all
         else
        	{
-	   		$data = $this->action_list_logic();
+	   		$data = $this->list_logic();
 			$this->template->bind('content', $content);
 			$this->template->content = View::factory('pages/ad/listing',$data);
             $search_term = $this->request->param('search',NULL);
@@ -116,23 +119,25 @@ class Controller_Ad extends Controller {
  	}
 
  	/**
- 	 * [action_list_logic Returnes arrays with necessary data to publis advert.-s]
+ 	 * [list_logic Returnes arrays with necessary data to publis advert.-s]
  	 * @param  [string] $sort_by_cat [name of category] 
  	 * @param  [string] $sort_by_loc [name of location]
   	 * @return [array] [$ads, $pagination, $user, $image_path]
  	 */
-	public function action_list_logic($sort_by_cat = NULL, $sort_by_loc = NULL)
+	public function list_logic($sort_by_cat = NULL, $sort_by_loc = NULL)
 	{
 		$ads = new Model_Ad();
-	
+		
 		$cat = new Model_Category($sort_by_cat);
-		if($sort_by_cat == NULL) $categ = $cat->find_all(); else $categ = $cat->name;
+		if($sort_by_cat == NULL) $categ = $cat->find_all(); 
+		else $categ = $cat->id_category;	
 		
-		$loc = new Model_Location($sort_by_loc);
-		if($sort_by_loc == NULL) $locat = $loc->find_all(); else $locat = $loc->name;
-		
+	
+		$loc = new Model_Location();
+		if($sort_by_loc == NULL) $locat = $loc->find_all(); else $locat = $sort_by_loc;
+	
 		// if is sorted by category
-		if(is_string($categ))
+		if(is_numeric($categ))
 		{
 			$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->and_where('id_category', '=', $categ)->count_all();
 		}
@@ -154,12 +159,12 @@ class Controller_Ad extends Controller {
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
                  
-    	    ));
+    	    )); //d($this->request->controller()." ".$this->request->action());
     	    
-    	    if(is_string($categ))
+    	    if(is_numeric($categ))
 			{
     	    $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-    	    					->and_where('id_category', '=', $categ)
+    	    					->where('id_category', '=', $categ)
     	    					->order_by('published','desc')
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
@@ -189,13 +194,7 @@ class Controller_Ad extends Controller {
 			$user = Auth::instance()->get_user();
 		}
 		
-		///////////////////
-		// @ TODO -- BAD SOLUTION
-		//
-		// DO BETER!!!!!!!!		
-		//////////////////
-
-
+		
 		// return image path 
 		$img_path = array();
 		$image_exists = new Model_Ad();
@@ -211,7 +210,7 @@ class Controller_Ad extends Controller {
 					echo $e;
 				}
 			}
-			//print_r($this->_image_path($a));
+			
 			if(is_array($path = $this->_image_path($a)))
 			{
 				$path = $this->_image_path($a);
@@ -225,26 +224,39 @@ class Controller_Ad extends Controller {
 			
 
 		}
+
 		// array of categories sorted for view
-		$cat_list = $cat->get_categories();
+		
 
 		return array('ads'			=> $ads,
 					 'pagination'	=> $pagination, 
 					 'user'			=> $user, 
 					 'img_path' 	=> $img_path,
 					 'cat'			=> $categ,
-					 'loc'			=> $locat,
-					 'cat_list'		=> $cat_list);
+					 'loc'			=> $locat,);
 	}
 	
 	public function action_sort_category()
 	{
-		$category = $this->request->param('category');
+		$category_name = $this->request->param('category');
 
-		$data = $this->action_list_logic($category, $location = NULL);
-		$this->template->bind('content', $content);
-		$this->template->content = View::factory('pages/ad/listing',$data);
-		$search_term = $this->request->param('search',NULL);
+		$sql_cat = new Model_Category();
+		$id_cat = $sql_cat->where('name', '=', $category_name)->limit(1)->find();
+		
+		if($id_cat->loaded())
+		{
+			$data = $this->list_logic($id_cat->id_category, $location = NULL);
+
+			$this->template->bind('content', $content);
+			$this->template->content = View::factory('pages/ad/listing',$data);
+			$search_term = $this->request->param('search',NULL);
+		}
+		else
+		{
+			Alert::set(Alert::ERROR, __('Category '.'"'.$category_name.'"'.' was not found. Please try again!'));
+			$this->request->redirect(Route::url('default', array('controller'=>'ad', 'action'=>'all')));
+		}
+		
 	}
 
 	/**
@@ -252,14 +264,15 @@ class Controller_Ad extends Controller {
 	 * @param  [string] $search_term [search result]
 	 * @return [view]              	 [filtered ads]
 	 */
-	public function action_advansed_search($advert, $cat, $loc)
+	public function action_advansed_search($advert = NULL, $cat = NULL, $loc = NULL)
 	{	
 		$res = new Model_Ad();
 		$res->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 
-		if($advert != NULL)
-		{
-			$res->where('title', 'like', '%'.$advert.'%');  
+		if($advert !== NULL)
+		{echo $advert;
+			$res->where('title', '=', $advert);
+
 		}
 
 		if($cat !== NULL)
@@ -281,7 +294,6 @@ class Controller_Ad extends Controller {
 			
 			$res->where('id_location', '=', $slug_loc->id_location);
 		}
-		
 		return $res;
 
 	}
@@ -403,22 +415,21 @@ class Controller_Ad extends Controller {
 		
 	
 		$extra_payment = core::config('payment');
-	
+		$count = 0;
 		if($form->has_images == 1)
 		{
 			$current_path = $form->_gen_img_path($form->seotitle, $form->created);
 			
-			
 			if (is_dir($current_path)){ // sanity check
 				$handle = opendir($current_path);
-				$count = 0;
+				
 				while(FALSE !== ($entry = readdir($handle)))
 				{
 					if($entry != '.' && $entry != '..') $count++;
 				}
 				
-				$num_images = core::config('formconfig.num_images');
-
+				$num_images = core::config('formconfig.advertisement-num_images');
+				
 				if ($count == 0) 
 				{
 					$form->has_images = 0;
@@ -430,7 +441,11 @@ class Controller_Ad extends Controller {
 					}
 				}
 				elseif($count < $num_images*2) $img_permission = TRUE;
-				else $img_permission = FALSE;
+				else
+				{
+					Alert::set(Alert::INFO, __('You can not upload images anymore limit is: '.$num_images));
+					$img_permission = FALSE;
+				} 
 			}
 			else 
 			{
@@ -491,7 +506,7 @@ class Controller_Ad extends Controller {
 				$form->id_location 		= $data['loc'];
 				$form->id_category 		= $data['cat'];
 				$form->description 		= $data['description'];
-				$form->status 			= $data['status'];									// need to be 0, in production 
+				$form->status 			= $data['status'];	
 				$form->price 			= $data['price']; 								
 				$form->adress 			= $data['address'];
 				$form->phone			= $data['phone']; 
@@ -501,34 +516,26 @@ class Controller_Ad extends Controller {
 				// image upload
 				$error_message = NULL;
 	    		$filename = NULL;
+	    		echo $count/2;
+	    			if (isset($_FILES['image0']) && $count/2 <= 3)
+	        		{
+		        		$img_files = array($_FILES['image0']);
+		            	$filename = $obj_img->_save_image($img_files, $form->seotitle, $form->created);
+	        		}
+	        		if ( $filename == TRUE)
+		       		{
+			        	$form->has_images = 1;
+		        	}
+
+		        	try {
+		        		$form->save();
+		        	} catch (Exception $e) {
+		        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures'));
+		        	}
+
+
+
 	    		
-	    		if (isset($_FILES['image1']) || isset($_FILES['image2']))
-	        	{ 
-	        		$img_files = array($_FILES['image1'], $_FILES['image2']);
-	            	$filename = $obj_img->_save_image($img_files, $form->seotitle, $form->created);
-	        	}
-	        	if ( $filename !== TRUE)
-		        {
-		            $error_message = 'There was a problem while uploading the image.
-		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
-
-		        } else $form->has_images = 1; // update column has_images if image is added
-
-				try 
-				{	
-					$form->save();
-					Alert::set(Alert::SUCCESS, __('Success, advertisement is updated'));
-					$this->request->redirect(Route::url('default', array('controller'=>'ad', 'action'=>'all')));
-				
-				}
-				catch (ORM_Validation_Exception $e)
-				{echo $e;
-					Form::errors($content->errors);
-				}
-				catch (Exception $e)
-				{echo $e;
-					throw new HTTP_Exception_500($e->getMessage());
-				}
 			}
 		}
 	}

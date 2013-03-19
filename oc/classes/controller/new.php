@@ -162,24 +162,6 @@
 				$_new_ad->phone			= $data['phone'];
 				$_new_ad->website		= $data['website']; 
 
-			   
-			    // image upload
-				$error_message = NULL;
-	    		$filename = NULL;
-	    		
-	    		if (isset($_FILES['image1']) || isset($_FILES['image2']))
-	        	{
-	        		$img_files = array($_FILES['image1'], $_FILES['image2']);
-	            	$filename = $this->_save_image($img_files, $seotitle, $created = NULL);
-	        	}
-	        	if ( $filename !== TRUE)
-		        {
-		        	$_new_ad->has_images = 0;
-		            $error_message = 'There was a problem while uploading the image.
-		                Make sure it is uploaded and must be JPG/PNG/GIF file.';
-
-		        }else $_new_ad->has_images = 1;
-
 					try
 					{
 						$_new_ad->save();
@@ -190,7 +172,14 @@
 							$_ad_published = new Model_Ad();
 							$_ad_published->where('seotitle', '=', $seotitle)->limit(1)->find();
 							$_ad_published->published = $_ad_published->created;
-							$_ad_published->save(); 
+							$_ad_published->save();
+							$created = $_ad_published->created;
+						}
+						else 
+						{
+							$created = new Model_Ad();
+							$created = $created->where('seotitle', '=', $seotitle)->limit(1)->find(); 
+							$created = $created->created;
 						}
 						//$user->email('newadvertisement'); // @TODO send email
 					  
@@ -204,6 +193,30 @@
 					throw new HTTP_Exception_500($e->getMessage());
 				}
 				
+
+				// image upload
+				$error_message = NULL;
+	    		$filename = NULL;
+
+	    		for ($i=0; $i < core::config("formconfig.advertisement-num_images"); $i++) { 
+	    			
+	    			if (isset($_FILES['image'.$i]))
+	        		{
+		        		$img_files = array($_FILES['image'.$i]);
+		            	$filename = $this->_save_image($img_files, $seotitle, $created);
+	        		}
+	        		if ( $filename == TRUE)
+		       		{
+			        	$_new_ad->has_images = 1;
+		        	}
+
+		        	try {
+		        		$_new_ad->save();
+		        	} catch (Exception $e) {
+		        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures'));
+		        	}
+	    		}
+
 				// PAYMENT METHOD ACTIVE
 				
 				if($moderation == 2 || $moderation == 3)
@@ -219,9 +232,9 @@
 						$cat_parent = new Model_Category();
 						$cat_parent = $cat_parent->where('id_category', '=', $parent)->limit(1)->find();
 
-						if($cat_parent->price == 0) // @TODO add case of moderation+payment (moderation = 3)
+						if($cat_parent->price == 0) // @TODO add case of moderation + payment (moderation = 3)
 						{
-							Alert::set(Alert::SUCCESS, __('Advertisement is sheduled to be posted, you will be notified when becomes published. Thanks!'));
+							Alert::set(Alert::SUCCESS, __('Advertisement is scheduled to be posted, you will be notified when becomes published. Thanks!'));
 							$this->request->redirect(Route::url('default'));
 						}
 						else
@@ -280,17 +293,17 @@
  	 */
  	public function _save_image($image, $seotitle, $created)
  	{
- 		$counter = 0; // count how many img fields are empty
-
  		foreach ($image as $image) 
  		{
  			
  			if ( 
             ! Upload::valid($image) OR
             ! Upload::not_empty($image) OR
-            ! Upload::type($image, array('jpg', 'jpeg', 'png', 'gif')))
+            ! Upload::type($image, array('jpg', 'jpeg', 'png')))
         	{
-            	$image = NULL;
+        		if ( Upload::not_empty($image) && ! Upload::type($image, array('jpg', 'jpeg', 'png'))) 
+        			Alert::set(Alert::ALERT, __($image['name'].' Is not valid format, please use one of this formats "jpg, jpeg, png"'));
+            	return FALSE;
  			}
  			
  			if ($image !== NULL)
@@ -312,22 +325,15 @@
 		            
 		            // Delete the temporary file
 		            unlink($file);
+		            return TRUE;
 		        }
 		        else
 		        { 
 		        	return FALSE;
 		        }
- 			}
- 			else
- 			{ 
- 				$counter++;
- 				if ($counter > 1)
- 				{
- 					return FALSE;
- 				}
  			}	
  		}
- 		return TRUE;
+ 		return FALSE;
     }
    	
    	/**
@@ -349,11 +355,12 @@
 
 			$parse_data = explode("/", $date); 			// make array with date values
 		
-			$path = "upload/"; // root upload folder
+			$path = "images/"; // root upload folder
 
 			for ($i=0; $i < count($parse_data); $i++) 
 			{ 
 				$path .= $parse_data[$i].'/'; 			// append, to create path 
+				
 			}
 				$path .= $seotitle.'/';
 		}

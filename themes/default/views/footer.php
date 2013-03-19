@@ -8,7 +8,6 @@
 <!--LOAD ACTIVE WIDGETS-->
 <?$view = Widget::get('footer') ?>
 <?foreach ( $view as $view => $val):?>
-	<?=$val->class; // load widget class?> 
 	<?=$val; // load widget view?>
 <?endforeach?>
 </footer>

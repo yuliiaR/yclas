@@ -114,5 +114,5 @@
 </table>
 	 <?=$pagination?>
 <?else:?>
-	<h2> <?=__("There are unpublished Advertisements")?></h2>
+	<h2> <?=__("There are no unpublished Advertisements")?></h2>
 <?endif?>

@@ -145,6 +145,11 @@ class Model_Ad extends ORM {
         return $seotitle;
     }
 
+    /**
+     * [gen_to_seo] Converts string to SEO 
+     * @param  [string] $to_seo [string to convert]
+     * @return [string]         [coverted string]
+     */
     public function gen_to_seo($to_seo)
     {
 
@@ -176,6 +181,13 @@ class Model_Ad extends ORM {
 
     }
 
+    /**
+     * [_gen_img_path] Generate image path with a given parameters $seotitke and 
+     * date of advertisement cration 
+     * @param  [string] $seotitle   [seo title of ad ]
+     * @param  [date]   $created     [date of creation]
+     * @return [string]             [directory path]
+     */
     public function _gen_img_path($seotitle, $created)
     {
         $obj_date = date_parse($created); // convert date to array 
@@ -193,7 +205,7 @@ class Model_Ad extends ORM {
         else
             $day = $obj_date['day'];
 
-        $directory = 'upload/'.$year.'/'.$month.'/'.$day.'/'.$seotitle.'/';
+        $directory = 'images/'.$year.'/'.$month.'/'.$day.'/'.$seotitle.'/';
         
         return $directory;
     }

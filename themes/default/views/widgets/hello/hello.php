@@ -4,4 +4,5 @@
 	<div class="controls">
 		<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'input-xlarge', 'id' => 'title', 'required'))?>
 	</div>
+	<?=Widget::$placeholder_name;?>
 </div>

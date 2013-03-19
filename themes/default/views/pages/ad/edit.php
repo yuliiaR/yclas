@@ -97,7 +97,6 @@
 							<?$img_name = str_replace(".jpg", "", substr(strrchr($path, "/"), 1 ));?>
 							<?if(strstr($path, '_') != '_original.jpg'):?>
 							<li>
-								<?echo $img_name?>
 								<a href="#" class="thumbnail">
 									<img src="/<?echo $path?>" class="img-rounded" alt="">
 								</a>
@@ -121,18 +120,10 @@
 				</div>
 				<div class="control-group">
 					<?if ($perm !== FALSE):?>
-					<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images1'))?>
-					<div class="controls">
-						<input class="input-file" type="file" name="image1" id="fileImput1" />
-					</div>
-					<?= FORM::label('images2', __('Images'), array('class'=>'control-label', 'for'=>'images2'))?>
-					<div class="controls">	
-						<input class="input-file" type="file" name="image2" id="fileImput2" />
-					</div>
-					<?else:?>
-					<div class="contols">
-						<h4><?= __('Maximum number of uploaded images is 4')?></h4>
-					</div>
+						<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images0'))?>
+						<div class="controls">
+							<input class="input-file" type="file" name='image0' id='fileInput0' />
+						</div>
 					<?endif?>
 				</div>
 				<div class="control-group">

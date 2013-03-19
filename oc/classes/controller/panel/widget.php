@@ -1,4 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');
+
 /**
  * Widget
  *
@@ -11,16 +12,14 @@ class Controller_Panel_Widget extends Auth_Controller {
 
    public function action_index()
    {
-   		$placeholders = new Model_Config();
-   		$placeholders = $placeholders->where('group_name', '=', 'widget')->find_all(); 
+   		$placeholders = Widget::$placeholder; 
+        $theme_widgets = Widget::$theme_widgets;
    		
-   		// list of placeholders
-   		foreach ($placeholders as $place => $value) 
-   		{
-   			$placeholder_name[] = $value->config_key; 
-   		}
-   		d($placeholder_name);
-   		$this->template->content = View::factory('oc-panel/pages/widget', array('placeholder'=>$placeholder_name,
+        $widgets = Widget::get_widgets();
+        foreach ($widgets as $key => $value) {
+            print_r($value);
+        }
+   		$this->template->content = View::factory('oc-panel/pages/widget', array('placeholder'=>$placeholders,
 
    																				));
    }
