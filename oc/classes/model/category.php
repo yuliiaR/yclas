@@ -78,6 +78,7 @@ class Model_Category extends ORM {
 	{
 		$list = new self;
 		$list = $list->find_all();
+		
 		foreach ($list as $l) {
 			$result[$l->name] = $l->id_category;
 		}
