@@ -232,12 +232,12 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 //base category
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."categories` 
   (`id_category` ,`name` ,`order` ,`id_category_parent` ,`parent_deep` ,`seoname` ,`description` )
-VALUES (1, 'all', 0 , 0, 0, 'all', 'root category');");
+VALUES (1, 'all', 0, 1, 0, 'all', 'root category');");
 
 //base location
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."locations` 
   (`id_location` ,`name` ,`id_location_parent` ,`parent_deep` ,`seoname` ,`description`)
-VALUES (1 , 'all', 0, 0, 'all', 'root location');");
+VALUES (1 , 'all', 1, 0, 'all', 'root location');");
 
  
 
