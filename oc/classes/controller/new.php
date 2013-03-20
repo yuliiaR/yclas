@@ -158,7 +158,7 @@
 				$_new_ad->seotitle 		= $seotitle;	 
 				$_new_ad->status 		= $status;									// need to be 0, in production 
 				$_new_ad->price 		= $data['price']; 								
-				$_new_ad->adress 		= $data['address'];
+				$_new_ad->address 		= $data['address'];
 				$_new_ad->phone			= $data['phone'];
 				$_new_ad->website		= $data['website']; 
 

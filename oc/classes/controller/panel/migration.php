@@ -12,13 +12,15 @@ class Controller_Panel_Migration extends Auth_Controller {
 
     public function action_index()
     {
-
-        //form where information was previously stored 
-        //populate form from current config to help a bit
-        //on submit 
-        // connect to new mysql connection
-        // create config group migration to store in which ID was stuck (if happens)
-        // do migration using iframe autorefresh?
+        //@todo improve
+        //flow: ask for new connection, if success we store it ina  config as an array.
+        //then we display the tables with how many rows --> new view, bottom load the db connection form in case they want to change it
+        //in the form ask to do diet in current DB cleanins visits users posts inactive?
+        //Migration button
+            //on submit 
+            // create config group migration to store in which ID was stuck (if happens)
+            // save ids migration for maps in configs?
+            // do migration using iframe autorefresh
 
         $this->template->title   = __('Open Classifieds migration');
         Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__('Migration'))));
@@ -101,10 +103,12 @@ class Controller_Panel_Migration extends Auth_Controller {
 
     private function migrate($db,$pf)
     {
+        set_time_limit(0);
         
+        //oc_accounts --> oc_users
+        $users_map = array();
         $accounts = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'accounts`');
 
-        //oc_accounts --> oc_users
         foreach ($accounts as $account) 
         {
             $user = new Model_User();
@@ -118,6 +122,8 @@ class Controller_Panel_Migration extends Auth_Controller {
             $user->id_role      = 1;
             $user->seoname      = $user->gen_seo_title($user->name);
             $user->save();
+
+            $users_map[$account['email']] = $user->id_user;
         }
 
         //categories --> categories
@@ -163,8 +169,80 @@ class Controller_Panel_Migration extends Auth_Controller {
 
         }
 
-        
-        die();
+        //posts --> ads
+        $ads_map = array();
+        $ads = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'posts`');
+
+        foreach ($ads as $a) 
+        {
+            if (Valid::email($a['email']))
+            {
+                $ad = new Model_Ad();
+                $ad->id_user        = (isset($users_map[$a['email']]))?$users_map[$a['email']]:Model_User::create_email($a['email'], $a['name']);
+                $ad->id_category    = (isset($categories_map[$a['idCategory']]))?$categories_map[$a['idCategory']]:1;
+                $ad->id_location    = (isset($locations_map[$a['idLocation']]))?$locations_map[$a['idLocation']]:1;
+                $ad->title          = $a['title'];
+                $ad->seotitle       = $ad->gen_seo_title($a['title']);
+                $ad->description    = (!empty($a['description']))?$a['description']:$a['title'];
+                $ad->address        = $a['place'];
+                $ad->price          = $a['price'];
+                $ad->phone          = $a['phone'];
+                $ad->has_images     = $a['hasImages'];
+                $ad->ip_address     = ip2long($a['ip']);
+                $ad->created        = $a['insertDate'];
+
+                //Status migration...big mess!
+                if ($a['isAvailable']==0 AND $a['isConfirmed'] ==0)
+                {
+                    $ad->status = Model_Ad::STATUS_NOPUBLISHED;
+                }
+                elseif ($a['isAvailable']==1 AND   $a['isConfirmed'] ==0)
+                {
+                    $ad->status = Model_Ad::STATUS_NOPUBLISHED;
+                }
+                elseif ($a['isAvailable']==1 AND   $a['isConfirmed'] ==1)
+                {
+                    $ad->status = Model_Ad::STATUS_PUBLISHED;
+                }
+                elseif ($a['isAvailable']==0 AND   $a['isConfirmed'] ==1)
+                {
+                    $ad->status = Model_Ad::STATUS_UNAVAILABLE;
+                }
+                elseif ($a['isAvailable']==2 )
+                {
+                    $ad->status = Model_Ad::STATUS_SPAM;
+                }
+                else
+                {
+                    $ad->status = Model_Ad::STATUS_UNAVAILABLE;
+                }
+
+                try
+                {
+                    $ad->save();
+                }
+                catch (ORM_Validation_Exception $e)
+                {
+                    d($e->errors(''));
+                }
+
+                $ads_map[$a['idPost']] = $ad->id_ad;
+                }
+            
+        }
+
+        //posthits --> visits
+        $hits = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'postshits`');
+
+        foreach ($hits as $hit) 
+        {
+            $visit = new Model_Visit();
+            $visit->id_ad       = (isset($ads_map[$hit['idPost']]))?$ads_map[$hit['idPost']]:NULL;
+            $visit->created     = $hit['hitTime'];
+            $visit->ip_address  = ip2long($hit['ip']);
+            $visit->save();
+        }
+
     }
 
 

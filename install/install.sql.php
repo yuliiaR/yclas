@@ -97,7 +97,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."ads` (
   `title` varchar(145) NOT NULL,
   `seotitle` varchar(145) NOT NULL,
   `description` text NOT NULL,
-  `adress` varchar(145) DEFAULT '0',
+  `address` varchar(145) DEFAULT '0',
   `price` decimal(14,3) NOT NULL DEFAULT '0',
   `phone` varchar(30) DEFAULT NULL,
   `website` varchar(200) DEFAULT NULL,

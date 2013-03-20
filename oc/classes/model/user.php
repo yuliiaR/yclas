@@ -407,5 +407,37 @@ class Model_User extends ORM {
         return $seotitle;
     }
 
+    /**
+     * creates a user from email if exists doesn't...
+     * @param  string $email 
+     * @param  string $name  
+     * @return integer        
+     */
+    public static function create_email($email,$name=NULL)
+    {
+        $user = new self();
+        $user->where('email','=',$email)->limit(1)->find();
+
+        if (!$user->loaded())
+        {
+            $user->email        = $email;
+            $user->name         = $name;
+            $user->status       = self::STATUS_ACTIVE;
+            $user->id_role      = 1;
+            $user->seoname      = $user->gen_seo_title($user->name);
+            $user->password     = Text::random('alnum', 8);
+            try
+            {
+                $user->save();
+            }
+            catch (ORM_Validation_Exception $e)
+            {
+                d($e->errors(''));
+            }
+        }
+
+        return $user->id_user;
+    }
+
 
 } // END Model_User
