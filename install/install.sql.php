@@ -133,7 +133,8 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."visits` (
 mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."config` ( 
   `group_name` VARCHAR(128)  NOT NULL, 
   `config_key` VARCHAR(128)  NOT NULL, 
-  `config_value` TEXT 
+  `config_value` TEXT,
+   KEY `".$_POST['TABLE_PREFIX']."config_IK_group_name_AND_config_key` (`group_name`,`config_key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET']." ;");
 
 
