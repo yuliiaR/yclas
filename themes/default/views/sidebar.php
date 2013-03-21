@@ -17,10 +17,9 @@
 	    <li><a href="#">Link</a></li>
 	  </ul>
 	  <!--LOAD ACTIVE WIDGETS-->
-<?$view = Widget::get('sidebar') ?>
+<?$view = Widgets::get('sidebar') ?>
 <?if($view !== NULL):?>
 	<?foreach ( $view as $view => $val):?>
-		<?=$val->class; // load widget class?> 
 		<?=$val; // load widget view?>
 	<?endforeach?>
 <?endif?>

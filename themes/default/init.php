@@ -1,10 +1,17 @@
-<?php
+<?php defined('SYSPATH') or die('No direct access allowed.');
+
+/**
+ * widgets
+ */
+Widgets::$placeholder = array('footer', 'sidebar', 'header', 'something');
+Widgets::$theme_widgets = array();
+
 //twitter theme initialization
 View::$styles	            = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css' => 'screen',
 									 'css/chosen.css' => 'screen');
 
 //@todo add in the header some sompatibility js?  html5shiv already at main template
-View::$scripts['header']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js',	
+View::$scripts['header']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js',
 									'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js',
 									);
 
@@ -22,11 +29,7 @@ Alert::$tpl 	= 	'<div class="alert alert-%s">
 					<h4 class="alert-heading">%s</h4>%s
 					</div>';
 
-/**
- * widgets
- */
-Widget::$placeholder = array('footer', 'header');
-Widget::$theme_widgets = array();
+
 /**
  * Theme Functions
  * 

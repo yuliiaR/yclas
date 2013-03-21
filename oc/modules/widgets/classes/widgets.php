@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
-* Extended functionality for Kohana View
+* 
 *
 * @package    OC
 * @category   Widget
@@ -10,7 +10,7 @@
 * @license    GPL v3
 */
 
-class Widget {
+class Widgets {
 	
 	/**  
 	 * @var array of widget placeholders in theme
@@ -21,46 +21,42 @@ class Widget {
 	 * @var array of widget specific to theme
 	 */
 	public static $theme_widgets = array();
+
+	/**
+	 * @var array of default widgets
+	 */
+	public static $default_widgets = array();
 	
 	/**
 	 * Gets from conf DB json object of active widgets
 	 * @param  string $name_placeholder [name of colling placeholder]
 	 * @return [string]                 [widget code]
 	 */
-	public static function get($name_placeholder = 'sidebar')
+	public static function get($name_placeholder)
 	{
 		$jsonObject = core::config('widget.'.$name_placeholder.'_placeholder');
-		$obj = json_decode($jsonObject, true); // to array
-
-		if($obj)
+		
+		if($jsonObject)
 		{
-			if(!empty($obj[$name_placeholder][0]))
+			if(!empty($jsonObject))
 			{
+				$active = explode(' ,', $jsonObject);
+				
 				// array of widget path, to include to view
-				foreach ($obj[$name_placeholder] as $o => $value) 
-				{
-					$active_widgets[$value['name'].$o] = View::factory($value['path'], array('class'=>View::factory($value['class'])));
+				foreach ($active as $a => $value) 
+				{	
+					$widget_name = preg_replace('/[0-9]/', '', $value); 
+					if(in_array($widget_name, self::$default_widgets) || in_array($widget_name, self::$theme_widgets))
+						$active_widgets[$value] = View::factory($widget_name);
+					else $active_widgets[$value] = NULL;
+
 				}
+
 			} else $active_widgets = NULL;
 
 		} else $active_widgets = NULL;
 		
 		return $active_widgets;
-	}
-
-	public static function get_widgets()
-	{
-		$obj_widgets = core::config('widget');
-		
-		foreach ($obj_widgets as $obj_w => $value) 
-		{
-			if(preg_match('/_widget/', $obj_w))
-			{
-				$w_name = str_replace('_widget', '', $obj_w);
-				$widgets[$w_name] = $value;
-			}
-		}
-		return $widgets;
 	}
 
 }//end class Widget

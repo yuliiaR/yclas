@@ -6,8 +6,10 @@
 2009 - <?=date('Y')?>
 </p>
 <!--LOAD ACTIVE WIDGETS-->
-<?$view = Widget::get('footer') ?>
+<?$view = Widgets::get('footer') ?>
+<?if($view !== NULL):?>
 <?foreach ( $view as $view => $val):?>
 	<?=$val; // load widget view?>
 <?endforeach?>
+<?endif?>
 </footer>

@@ -187,9 +187,9 @@ VALUES (1, 'admin', NULL, '".$_POST['ADMIN_EMAIL']."', '$password', 1, 10)");
  *
  */
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `config_key`, `config_value`) VALUES
-('widget', 'list_of_all_widget', ''),
-('widget', 'sidebar_widget', ''),
-('widget', 'footer_widget', ''),
+('widget', 'sidebar_placeholder', ''),
+('widget', 'header_placeholder', ''),
+('widget', 'footer_placeholder', ''),
 ('appearance', 'theme', 'default'),
 ('i18n', 'charset', 'utf-8'),
 ('i18n', 'timezone', '".$_POST['TIMEZONE']."'),
