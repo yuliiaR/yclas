@@ -181,13 +181,15 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."access` (`id_access`, `id_ro
  */
 $password = hash_hmac('sha256', $_POST['ADMIN_PWD'], $hash_key);
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) 
-VALUES (1, 'admin', NULL, '".$_POST['ADMIN_EMAIL']."', '$password', 1, 10)");
+VALUES (1, 'admin', 'admin', '".$_POST['ADMIN_EMAIL']."', '$password', 1, 10)");
 
 /**
  * Configs to make the app work
  *
  */
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `config_key`, `config_value`) VALUES
+('sitemap', 'expires', '43200'),
+('sitemap', 'on_post', 'TRUE'),
 ('widget', 'list_of_all_widget', ''),
 ('widget', 'sidebar_widget', ''),
 ('widget', 'footer_widget', ''),

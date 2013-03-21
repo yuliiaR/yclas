@@ -55,6 +55,10 @@
 				<?=__('Migration')?>
 			</a>
 			<li><a
+				href="<?=Route::url('oc-panel',array('controller'=>'sitemap','action'=>'index'))?>">
+				<?=__('Sitemap')?>
+			</a>
+			<li><a
 				href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>">
 				<?=__('Optimize')?>
 			</a>

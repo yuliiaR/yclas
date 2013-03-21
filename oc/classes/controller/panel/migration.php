@@ -20,9 +20,9 @@ class Controller_Panel_Migration extends Auth_Controller {
             //on submit 
             // create config group migration to store in which ID was stuck (if happens)
             // save ids migration for maps in configs?
-            // do migration using iframe autorefresh
+            // do migration using iframe this
 
-        $this->template->title   = __('Open Classifieds migration');
+        $autorefresh->template->title   = __('Open Classifieds migration');
         Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__('Migration'))));
 
         if ($this->request->post())
