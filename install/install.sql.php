@@ -97,7 +97,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."ads` (
   `title` varchar(145) NOT NULL,
   `seotitle` varchar(145) NOT NULL,
   `description` text NOT NULL,
-  `adress` varchar(145) DEFAULT '0',
+  `address` varchar(145) DEFAULT '0',
   `price` decimal(14,3) NOT NULL DEFAULT '0',
   `phone` varchar(30) DEFAULT NULL,
   `website` varchar(200) DEFAULT NULL,
@@ -133,7 +133,8 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."visits` (
 mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."config` ( 
   `group_name` VARCHAR(128)  NOT NULL, 
   `config_key` VARCHAR(128)  NOT NULL, 
-  `config_value` TEXT 
+  `config_value` TEXT,
+   KEY `".$_POST['TABLE_PREFIX']."config_IK_group_name_AND_config_key` (`group_name`,`config_key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET']." ;");
 
 
@@ -180,16 +181,19 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."access` (`id_access`, `id_ro
  */
 $password = hash_hmac('sha256', $_POST['ADMIN_PWD'], $hash_key);
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) 
-VALUES (1, 'admin', NULL, '".$_POST['ADMIN_EMAIL']."', '$password', 1, 10)");
+VALUES (1, 'admin', 'admin', '".$_POST['ADMIN_EMAIL']."', '$password', 1, 10)");
 
 /**
  * Configs to make the app work
  *
  */
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `config_key`, `config_value`) VALUES
+
 ('widget', 'sidebar_placeholder', ''),
 ('widget', 'header_placeholder', ''),
 ('widget', 'footer_placeholder', ''),
+('sitemap', 'expires', '43200'),
+('sitemap', 'on_post', 'TRUE'),
 ('appearance', 'theme', 'default'),
 ('i18n', 'charset', 'utf-8'),
 ('i18n', 'timezone', '".$_POST['TIMEZONE']."'),

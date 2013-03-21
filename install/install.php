@@ -114,7 +114,7 @@ if ($_POST AND $succeed)
 
 ///////////////////////////////////////////////////////
 	//ocaku register
-	if ($install AND $_POST['OCAKU'] == 1)
+	if ($install AND cP('OCAKU',0) == 1)
 	{
 		     	
     	include DOCROOT.'install/ocaku.php';

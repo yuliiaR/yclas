@@ -508,7 +508,7 @@ class Controller_Ad extends Controller {
 				$form->description 		= $data['description'];
 				$form->status 			= $data['status'];	
 				$form->price 			= $data['price']; 								
-				$form->adress 			= $data['address'];
+				$form->address 			= $data['address'];
 				$form->phone			= $data['phone']; 
 
 				$obj_img = new Controller_New($this->request,$this->response);

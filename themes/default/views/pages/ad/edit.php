@@ -135,7 +135,7 @@
 				<div class="control-group">
 					<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
 					<div class="controls">
-						<?= FORM::input('address', $ad->adress, array('class'=>'input-xlarge', 'id'=>'address', 'placeholder'=>__('Address')))?>
+						<?= FORM::input('address', $ad->address, array('class'=>'input-xlarge', 'id'=>'address', 'placeholder'=>__('Address')))?>
 					</div>
 				</div>
 				<div class="control-group">

@@ -51,6 +51,14 @@
 			</li>
 			<li class="nav-header"><?=__('Tools')?></li>
 			<li><a
+				href="<?=Route::url('oc-panel',array('controller'=>'migration','action'=>'index'))?>">
+				<?=__('Migration')?>
+			</a>
+			<li><a
+				href="<?=Route::url('oc-panel',array('controller'=>'sitemap','action'=>'index'))?>">
+				<?=__('Sitemap')?>
+			</a>
+			<li><a
 				href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>">
 				<?=__('Optimize')?>
 			</a>

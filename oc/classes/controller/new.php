@@ -59,6 +59,9 @@
 		$config = core::config('general.moderation');
 		if ($config == 0)
 		{
+			if (Core::config('sitemap.on_post') == TRUE)
+				Sitemap::generate();
+
 			$status = Model_Ad::STATUS_PUBLISHED;
 			$this->_save_new_ad($data, $status, $published = TRUE, $config, $form_show['captcha']);
 
@@ -158,7 +161,7 @@
 				$_new_ad->seotitle 		= $seotitle;	 
 				$_new_ad->status 		= $status;									// need to be 0, in production 
 				$_new_ad->price 		= $data['price']; 								
-				$_new_ad->adress 		= $data['address'];
+				$_new_ad->address 		= $data['address'];
 				$_new_ad->phone			= $data['phone'];
 				$_new_ad->website		= $data['website']; 
 
