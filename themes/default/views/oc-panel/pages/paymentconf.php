@@ -11,17 +11,86 @@
 		<?= FORM::open(Route::url('oc-panel',array('controller'=>'generalconf')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<?foreach ($config as $c):?>
-					<div class="control-group">
-						<?= FORM::label($c->config_key, __($c->config_key), array('class'=>'control-label', 'for'=>$c->config_key))?>
-						<div class="controls">
-							<?= FORM::input($c->config_key, $c->config_value, array(
-							'placeholder' => $c->config_value, 
-							'class' => 'input-xlarge', 
-							'id' => $c->config_key, 
-							))?> 
-						</div>
-					</div>
+					<?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
 				<?endforeach?>
+				<div class="control-group">
+					<?= FORM::label($forms['paypal_currency']['key'], __('Paypal currency'), array('class'=>'control-label', 'for'=>$forms['paypal_currency']['key']))?>
+					<div class="controls">
+						<?= FORM::input($forms['paypal_currency']['key'], $forms['paypal_currency']['value'], array(
+						'placeholder' => "youremail@mail.com", 
+						'class' => 'input-xlarge', 
+						'id' => $forms['paypal_currency']['key'], 
+						))?> 
+						<a title="" data-content="<?=__("Paypal currency")?>" data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['sandbox']['key']))?>
+					<div class="controls">
+						<?= FORM::input($forms['sandbox']['key'], $forms['sandbox']['value'], array(
+						'placeholder' => "TRUE or FALSE", 
+						'class' => 'input-xlarge', 
+						'id' => $forms['sandbox']['key'], 
+						))?> 
+						<a title="" data-content="<?=__("Sandbox")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['to_featured']['key'], __('To featured active'), array('class'=>'control-label', 'for'=>$forms['to_featured']['key']))?>
+					<div class="controls">
+						<?= FORM::input($forms['to_featured']['key'], $forms['to_featured']['value'], array(
+						'placeholder' => '', 
+						'class' => 'input-xlarge', 
+						'id' => $forms['to_featured']['key'], 
+						))?> 
+						<a title="" data-content="<?=__("To featured active")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['to_top']['key'], __('To top active'), array('class'=>'control-label', 'for'=>$forms['to_top']['key']))?>
+					<div class="controls">
+						<?= FORM::input($forms['to_top']['key'], $forms['to_top']['value'], array(
+						'placeholder' => "", 
+						'class' => 'input-xlarge', 
+						'id' => $forms['to_top']['key'], 
+						))?> 
+						<a title="" data-content="<?=__("To top active")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['pay_to_go_on_top']['key'], __('To top payment'), array('class'=>'control-label', 'for'=>$forms['pay_to_go_on_top']['key']))?>
+					<div class="controls">
+							<?= FORM::input($forms['pay_to_go_on_top']['key'], $forms['pay_to_go_on_top']['value'], array(
+							'placeholder' => "", 
+							'class' => 'input-xlarge', 
+							'id' => "10", 
+							));?> 
+						<a title="" data-content="<?=__("To top payment")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['pay_to_go_on_feature']['key'], __('To featured payment'), array('class'=>'control-label', 'for'=>$forms['pay_to_go_on_feature']['key']))?>
+					<div class="controls">
+							<?= FORM::input($forms['pay_to_go_on_feature']['key'], $forms['pay_to_go_on_feature']['value'], array(
+							'placeholder' => "", 
+							'class' => 'input-xlarge', 
+							'id' => "10", 
+							));?> 
+						<a title="" data-content="<?=__("To featured payment")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['paypal_account']['key'], __('Paypal accout'), array('class'=>'control-label', 'for'=>$forms['paypal_account']['key']))?>
+					<div class="controls">
+						<?= FORM::input($forms['paypal_account']['key'], $forms['paypal_account']['value'], array(
+						'placeholder' => "", 
+						'class' => 'input-xlarge', 
+						'id' => $forms['paypal_account']['key'], 
+						))?> 
+						<a title="" data-content="<?=__("Paypal accout")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+					</div>
+				</div>
+
 				<div class="form-actions">
 					<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'paymentconf'))))?>
 				</div>
