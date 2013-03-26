@@ -6,6 +6,7 @@ class Controller_Panel_Emailconf extends Auth_Controller {
     {
     	// validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
+        $this->template->scripts['footer'][]= 'js/pages/config.js'; 
 
         // all form config values
         $emailconf = new Model_Config();
