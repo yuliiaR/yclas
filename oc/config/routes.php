@@ -73,7 +73,7 @@ Route::set('sort_by', 'sort_by/<category>(/<location>)')
 	user profile route 
  */
  
-Route::set('profile', 'user/<seoname>')
+Route::set('profile', 'user/<seoname>(/<action>)')
 ->defaults(array(
 		'controller' => 'user',
 		'action'     => 'index',

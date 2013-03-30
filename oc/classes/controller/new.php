@@ -30,7 +30,7 @@
 		//find all, for populating form select fields 
 		$_cat = $category->find_all();
 		$_loc = $location->find_all();
-		
+	
 		$form_show = array('captcha'	=>core::config('formconfig.captcha-captcha'),
 						   'website'	=>core::config('formconfig.advertisement-website'),
 						   'phone'		=>core::config('formconfig.advertisement-phone'),
@@ -42,7 +42,7 @@
 		$this->template->content = View::factory('pages/ad/new', array('_cat'				=> $_cat,
 																	   '_loc' 				=> $_loc,
 																	   'form_show'			=> $form_show));
-
+	
 		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
 						'title' 		=> $title 		= 	$this->request->post('title'),
 						'cat'			=> $cat 		= 	$this->request->post('category'),
@@ -60,7 +60,7 @@
 		if ($config == 0)
 		{
 			if (Core::config('sitemap.on_post') == TRUE)
-				Sitemap::generate();
+				//Sitemap::generate();
 
 			$status = Model_Ad::STATUS_PUBLISHED;
 			$this->_save_new_ad($data, $status, $published = TRUE, $config, $form_show['captcha']);
@@ -90,6 +90,7 @@
 				$name 		= $this->request->post('name');
 				$email		= $this->request->post('email');
 				$password	= $this->request->post('password');
+				$seoname	= URL::title($this->request->post('name'), '-', FALSE);
 				
 				if (Valid::email($email,TRUE))
 				{
@@ -109,14 +110,15 @@
 						$user->name 	= $name;
 						$user->status 	= Model_User::STATUS_ACTIVE;
 						$user->id_role	= 1;//normal user
-						$user->password = $this->request->post('password');	// generate new user password, bad solution find better !!!
-
+						$user->password = '1234';	// @TODO generate new user password, bad solution find better !!!
+						$user->seoname 	= $seoname;
+						
 						try
 						{
 							$user->save();
 							Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
 							
-							$user->email('newuser'); //this is to static
+							//$user->email('newuser'); //this is to static
 						}
 						catch (ORM_Validation_Exception $e)
 						{

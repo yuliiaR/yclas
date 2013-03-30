@@ -159,8 +159,9 @@ class Controller_Panel_Auth extends Controller {
 						$user->email 	= $email;
 						$user->name		= $this->request->post('name');
 						$user->status	= Model_User::STATUS_ACTIVE;
-						$user->role		= 1;//normal user
+						$user->id_role	= 1;//normal user
 						$user->password = $this->request->post('password1');
+						$user->seoname 	= URL::title($this->request->post('name'), '-', FALSE);
 						
 						try
 						{
@@ -174,11 +175,10 @@ class Controller_Panel_Auth extends Controller {
 						{
 							throw new HTTP_Exception_500($e->getMessage());
 						}
-						echo "bla";
 						
 						//login the user
 						Auth::instance()->login($this->request->post('email'), $this->request->post('password1'));
-						$this->request->redirect(Route::get('oc-panel')->uri());
+						$this->request->redirect(Route::uri('profile'));
 						
 					}
 		
