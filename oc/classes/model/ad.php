@@ -117,7 +117,7 @@ class Model_Ad extends ORM {
 
         $ad = new self;
 
-        $title = $ad->gen_to_seo($title);
+        $title = URL::title($title, '-', FALSE);
         $seotitle = $title;
 
         //find a ad same seotitle
@@ -145,25 +145,7 @@ class Model_Ad extends ORM {
         return $seotitle;
     }
 
-    /**
-     * [gen_to_seo] Converts string to SEO 
-     * @param  [string] $to_seo [string to convert]
-     * @return [string]         [coverted string]
-     */
-    public function gen_to_seo($to_seo)
-    {
-
-        $seoname = preg_replace('/\%/',' percentage',$to_seo);
-        $seoname = preg_replace('/\@/',' at ',$seoname);
-        $seoname = preg_replace('/\&/',' and ',$seoname);
-        $seoname = preg_replace('/\s[\s]+/','-',$seoname);    // Strip off multiple spaces
-        $seoname = preg_replace('/[\s\W]+/','-',$seoname);    // Strip off spaces and non-alpha-numeric
-        $seoname = preg_replace('/^[\-]+/','',$seoname); // Strip off the starting hyphens
-        $seoname = preg_replace('/[\-]+$/','',$seoname); // // Strip off the ending hyphens
-        $seoname = strtolower($seoname);
-
-        return $seoname;
-    }
+   
 
 
     /**
