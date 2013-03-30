@@ -152,7 +152,7 @@
 				
 				//insert data
 
-				$seotitle = $_new_ad->gen_seo_title($data['title']); 
+				$seotitle = URL::title($data['title'], '-', FALSE); 
 				
 				$_new_ad->title 		= $data['title'];
 				$_new_ad->id_location 	= $data['loc'];
