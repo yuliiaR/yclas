@@ -152,7 +152,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS  `".$_POST['TABLE_PREFIX']."orders` (
   PRIMARY KEY (`id_order`),
   KEY `".$_POST['TABLE_PREFIX']."orders_IK_id_user` (`id_user`),
   KEY `".$_POST['TABLE_PREFIX']."orders_IK_status` (`status`)
-)ENGINE=InnoDB DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
+)ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 
 mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."content` (

@@ -7,16 +7,16 @@
 
 				<li class="nav-header"><?=__('Administration')?></li>
 
-				<?php sidebar_link(__('Ads'),'ad')?>
-				<?php sidebar_link(__('Moderation'),'ad','moderate')?>
-				<?php sidebar_link(__('Categories'),'category')?>
-				<?php sidebar_link(__('Locations'),'location')?>
-				<?php sidebar_link(__('Users'),'user')?>
-				<?php sidebar_link(__('User Roles'),'role')?>
-				<?php sidebar_link(__('Roles access'),'access')?>
-				<?php sidebar_link(__('Orders'), 'order')?>
-				<?php sidebar_link(__('Widgets'), 'widget')?>
-				<?php sidebar_link(__('Content'), 'content')?>
+				<?sidebar_link(__('Ads'),'ad')?>
+				<?sidebar_link(__('Moderation'),'ad','moderate')?>
+				<?sidebar_link(__('Categories'),'category')?>
+				<?sidebar_link(__('Locations'),'location')?>
+				<?sidebar_link(__('Users'),'user')?>
+				<?sidebar_link(__('User Roles'),'role')?>
+				<?sidebar_link(__('Roles access'),'access')?>
+				<?sidebar_link(__('Orders'), 'order')?>
+				<?sidebar_link(__('Widgets'), 'widget')?>
+				<?sidebar_link(__('Content'), 'content')?>
 			<? endif ?>
 			<li class="nav-header"><?=__('Settings')?></li>
 			<li><a
@@ -50,28 +50,13 @@
 			</a>
 			</li>
 			<li class="nav-header"><?=__('Tools')?></li>
-			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'migration','action'=>'index'))?>">
-				<?=__('Migration')?>
-			</a>
-			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'sitemap','action'=>'index'))?>">
-				<?=__('Sitemap')?>
-			</a>
-			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>">
-				<?=__('Optimize')?>
-			</a>
-			</li>
-			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'backup'))?>">
-				<?=__('Backup')?>
-			</a>
-			</li>
-			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'phpinfo'))?>">
-					PHP Info</a>
-			</li>
+
+			<?sidebar_link(__('Sitemap'), 'tools','sitemap')?>
+			<?sidebar_link(__('Migration'), 'tools','migration')?>
+			<?sidebar_link(__('Optimize'), 'tools','optimize')?>
+			<?sidebar_link(__('Cache'), 'tools','cache')?>
+			<?sidebar_link(__('PHP Info'), 'tools','phpinfo')?>
+
 			<li class="divider"></li>
 			<li class="nav-header">Open Classifieds</li>
 			<li><a href="http://open-classifieds.com/themes/"><?=__('Themes')?>

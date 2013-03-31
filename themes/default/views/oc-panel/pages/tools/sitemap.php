@@ -4,11 +4,11 @@
 	<div class="page-header">
 		<h1><?=__('Sitemap')?></h1>
     <p><?=__('Last time generated')?> <?=Date::unix2mysql(Kohana::cache('sitemap_last'))?></p>
-    <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'sitemap','action'=>'index'))?>?force=1">
+    <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap'))?>?force=1">
       <?=__('Generate')?></a>
 	</div>
 
-	<form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'sitemap','action'=>'index'))?>">         
+	<form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap'))?>">         
       
       <?=Form::errors()?>        
 
