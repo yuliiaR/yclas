@@ -5,7 +5,7 @@
 		<h1><?=__('Migration')?></h1>
     <p>Your PHP time limit is <?=ini_get('max_execution_time')?> seconds</p>
 	</div>
-	<form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'migration','action'=>'index'))?>">         
+	<form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'migration'))?>">         
           <?=Form::errors()?>        
     
 
