@@ -494,10 +494,10 @@ class Controller_Ad extends Controller {
 					{
 						$current_path = $form->_gen_img_path($form->seotitle, $form->created);
 						// rename current image path to match new seoname
-						rename($current_path, $form->_gen_img_path(URL::title($data['title'], '-', FALSE), $form->created)); 
+						rename($current_path, $form->_gen_img_path($form->gen_seo_title($data['title']), $form->created)); 
 
 					}
-					$seotitle = URL::title($data['title'], '-', FALSE);
+					$seotitle = $form->gen_seo_title($data['title']);
 					$form->seotitle = $seotitle;
 					
 				}else $form->seotitle = $form->seotitle;
