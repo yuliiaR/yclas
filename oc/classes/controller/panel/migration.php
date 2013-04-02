@@ -120,7 +120,7 @@ class Controller_Panel_Migration extends Auth_Controller {
             $user->last_login   = $account['lastSigninDate'];
             $user->status       = $account['active'];
             $user->id_role      = 1;
-            $user->seoname      = $user->gen_seo_title($user->name);
+            $user->seoname      = URL::title($user->name, '-', FALSE);
             $user->save();
 
             $users_map[$account['email']] = $user->id_user;
@@ -182,7 +182,7 @@ class Controller_Panel_Migration extends Auth_Controller {
                 $ad->id_category    = (isset($categories_map[$a['idCategory']]))?$categories_map[$a['idCategory']]:1;
                 $ad->id_location    = (isset($locations_map[$a['idLocation']]))?$locations_map[$a['idLocation']]:1;
                 $ad->title          = $a['title'];
-                $ad->seotitle       = $ad->gen_seo_title($a['title']);
+                $ad->seotitle       = URL::title($a['title'], '-', FALSE);
                 $ad->description    = (!empty($a['description']))?$a['description']:$a['title'];
                 $ad->address        = $a['place'];
                 $ad->price          = $a['price'];
