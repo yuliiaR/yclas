@@ -90,7 +90,7 @@ $modules = array(
         	   'orm'          => MODPATH.'orm',        // Object Relationship Mapping
 			   'pagination'   => MODPATH.'pagination', // ORM Pagination
 			   'breadcrumbs'  => MODPATH.'breadcrumbs',// breadcrumb view
-			   'plugin'       => MODPATH.'plugin',     // hooks used for the plugin system
+			   //'plugin'       => MODPATH.'plugin',     // hooks used for the plugin system
 			   'formmanager'  => MODPATH.'formmanager',// forms to objects ORM
                'widgets'      => MODPATH.'widgets',    // loads default widgets
 );

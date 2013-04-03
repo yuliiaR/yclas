@@ -185,6 +185,7 @@ VALUES (1, 'admin', 'admin', '".$_POST['ADMIN_EMAIL']."', '$password', 1, 10)");
 
 /**
  * Configs to make the app work
+ * @todo refactor to use same coding standard
  *
  */
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `config_key`, `config_value`) VALUES
@@ -207,6 +208,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('payment', 'paypal_account', ''),
 ('general', 'base_url', '".$_POST['SITE_URL']."'),
 ('general', 'moderation', '0'),
+('general', 'analytics', ''),
 ('general', 'feed_elements', '20'),
 ('general', 'site_name', '".$_POST['SITE_NAME']."'),
 ('general', 'ID-pay_to_go_on_top', 'pay_to_go_on_top'),

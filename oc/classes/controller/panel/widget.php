@@ -24,7 +24,7 @@ class Controller_Panel_Widget extends Auth_Controller {
 		// $this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
 		// $this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
 		$this->template->scripts['header'][] = 'js/oc-panel/widget.js';
-		$this->template->scripts['header'][] = 'js/jqueryui.min.js';
+		$this->template->scripts['header'][] = 'http://code.jquery.com/ui/1.10.2/jquery-ui.js';
 
 
    		$placeholders 		= Widgets::$placeholder;

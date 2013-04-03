@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <!--<![endif]-->
 <head>
 	<meta charset="<?=Kohana::$charset?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -12,7 +12,7 @@
     <meta name="keywords" content="<?=$meta_keywords?>" >
     <meta name="description" content="<?=$meta_description?>" >
     <meta name="copyright" content="<?=$meta_copywrite?>" >
-	<meta name="author" content="Open Classifieds 2013">
+	<meta name="author" content="open-classifieds.com">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="alternate" type="application/atom+xml" title="RSS <?=Core::config('general.site_name')?>" href="<?=Route::url('default',array('controller'=>'feed'))?>" />
@@ -23,10 +23,9 @@
     <![endif]-->
     
     <?=View::styles($styles)?>	
-	  <?=View::scripts($scripts)?>
+	<?=View::scripts($scripts)?>
 
     <link rel="shortcut icon" href="<?=View::public_path('img/favicon.ico')?>">
-  
 
     <style type="text/css">
       body {
@@ -47,26 +46,21 @@
   
 	<?=$header?>
     <div class="container-fluid">
-      <?=Alert::show()?>
-		  <?=$content?>
-	    <?=$footer?>
+        <?=Alert::show()?>
+	   <?=$content?>
+	   <?=$footer?>
     </div><!--/.fluid-container-->
 
 	<?=View::scripts($scripts,'footer')?>
 	
-  <script>
-    $(function (){
-        //Theme.init ();
-        $("select").chosen();
-    });//@todo somewhere else
-  </script> 
-	
-  <script>
-		var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']]; // @TODO Change UA-XXXXX-X to be your site's ID
+    <?if ( core::config('general.analytics')!='' AND Kohana::$environment === Kohana::PRODUCTION ): ?>
+    <script>
+		var _gaq=[['_setAccount','<?=Core::config('general.analytics')?>'],['_trackPageview']]; 
 		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
 		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 		s.parentNode.insertBefore(g,s)}(document,'script'));
 	</script>
+    <?endif?>
 	
 	<!--[if lt IE 7 ]>
 		<?=HTML::script('http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js')?>
@@ -75,4 +69,3 @@
   <?php if (Kohana::$environment === Kohana::DEVELOPMENT) ProfilerToolbar::render(true); ?>
   </body>
 </html>
-
