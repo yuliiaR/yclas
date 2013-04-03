@@ -52,8 +52,7 @@ class Controller_Panel_Settings extends Auth_Controller {
     public function action_email()
     {
     	// validation active 
-        $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
-        $this->template->scripts['footer'][]= 'js/pages/config.js'; 
+        $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js'; 
 
         // all form config values
         $emailconf = new Model_Config();
@@ -88,7 +87,6 @@ class Controller_Panel_Settings extends Auth_Controller {
     {
     	// validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
-        $this->template->scripts['footer'][]= 'js/pages/config.js'; 
 
         // all form config values
         $generalconfig = new Model_Config();
@@ -123,7 +121,6 @@ class Controller_Panel_Settings extends Auth_Controller {
     {
     	// validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
-        $this->template->scripts['footer'][]= 'js/pages/config.js'; 
 
         // all form config values
         $paymentconf = new Model_Config();

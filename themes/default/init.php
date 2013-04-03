@@ -61,4 +61,3 @@ function sidebar_link($name,$controller,$action='index',$route='oc-panel')
 	<?
 	}
 }
-

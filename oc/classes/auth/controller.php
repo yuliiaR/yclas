@@ -1,7 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
  * Front end controller for OC user/admin auth in the app
- * Also contains basic CRUD actions for the
  *
  * @package    OC
  * @category   Controller
@@ -65,7 +64,7 @@ class Auth_Controller extends Controller
 			$this->template = View::factory($this->template);
 				
 			// Initialize empty values
-			$this->template->title            = 'Panel';
+			$this->template->title            = __('Dashboard').' - '.core::config('general.site_name');
 			$this->template->meta_keywords    = '';
 			$this->template->meta_description = '';
 			$this->template->meta_copywrite   = 'Open Classifieds '.Core::version;
@@ -75,12 +74,12 @@ class Auth_Controller extends Controller
 			$this->template->styles           = array();
 			$this->template->scripts          = array();
 			$this->template->user 			  = Auth::instance()->get_user();
-			View::$styles	        		  = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css' => 'screen',
+			View::$styles	        		  = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css' => 'screen',
 													  'css/chosen.css'=>'screen');
-			View::$scripts['header']		  = array('http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js',	
-													  'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js', 
+			View::$scripts['header']		  = array('http://code.jquery.com/jquery-1.9.1.min.js',	
+													  'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js', 
 												      );
-			View::$scripts['footer']		  = array('js/chosen.jquery.min.js',);
+			View::$scripts['footer']		  = array('js/chosen.jquery.min.js','js/oc-panel/theme.init.js');
 		}
 		
 		

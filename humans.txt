@@ -8,7 +8,7 @@ Location: Barcelona, Spain.
 Name: Kohana Framework.
                         
 /* SITE */                
-Last update: 2012/01/28.                         
+Last update: 2013/04/03.                         
 Standards: HTML5, CSS3.
-Components: Modernizr, jQuery.
-Software: PHP, MySQL, Ubuntu, Eclipse.
+Components: Twitter Bootstrap, jQuery.
+Software: Kohana, PHP, MySQL, Ubuntu, SublimeText.

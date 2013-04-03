@@ -1,8 +1,9 @@
+<?php defined('SYSPATH') or die('No direct script access.');?>
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <!--<![endif]-->
 <head>
 	<meta charset="<?=Kohana::$charset?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,10 +12,9 @@
     <meta name="keywords" content="<?=$meta_keywords?>" >
     <meta name="description" content="<?=$meta_description?>" >
     <meta name="copyright" content="<?=$meta_copywrite?>" >
-	<meta name="author" content="Open Classifieds">
+	<meta name="author" content="open-classifieds.com">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="canonical" href="http://@todo add current uri" />
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <?=HTML::script('http://html5shim.googlecode.com/svn/trunk/html5.js')?>
@@ -52,13 +52,6 @@
 
 	<?=View::scripts($scripts,'footer')?>
 
-	<script>
-    $(function (){
-        //Theme.init ();
-        $("select").chosen();
-    });//@todo somewhere else
-    </script>	
-	
 	<!--[if lt IE 7 ]>
 		<?=HTML::script('http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js')?>
 		<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
