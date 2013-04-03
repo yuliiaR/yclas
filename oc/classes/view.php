@@ -171,8 +171,8 @@ class View extends Kohana_View{
      */
     public static function widget($name_placeholder = 'sidebar')
     {
-        $jsonObject = core::config('widget.'.$name_placeholder.'_widget');
-        $obj = json_decode($jsonObject, true); // to array
+        $json_object = core::config('widget.'.$name_placeholder.'_widget');
+        $obj = json_decode($json_object, true); // to array
 
         if($obj)
         {

@@ -12,11 +12,10 @@
     <meta name="keywords" content="<?=$meta_keywords?>" >
     <meta name="description" content="<?=$meta_description?>" >
     <meta name="copyright" content="<?=$meta_copywrite?>" >
-	<meta name="author" content="Open Classifieds">
+	<meta name="author" content="Open Classifieds 2013">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="canonical" href="http://@todo add current uri" />
-	<link rel="alternate" type="application/atom+xml" title="RSS" href="http://@todo" />
+    <link rel="alternate" type="application/atom+xml" title="RSS <?=Core::config('general.site_name')?>" href="<?=Route::url('default',array('controller'=>'feed'))?>" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -26,11 +25,8 @@
     <?=View::styles($styles)?>	
 	  <?=View::scripts($scripts)?>
 
-    <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="<?=View::public_path('img/favicon.ico')?>">
-    <link rel="apple-touch-icon" href="<?=View::public_path('img/bootstrap-apple-57x57.png')?>">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?=View::public_path('img/bootstrap-apple-72x72.png')?>">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?=View::public_path('img/bootstrap-apple-114x114.png')?>">
+  
 
     <style type="text/css">
       body {
@@ -51,8 +47,8 @@
   
 	<?=$header?>
     <div class="container-fluid">
-    <?=Alert::show()?>
-		<?=$content?>
+      <?=Alert::show()?>
+		  <?=$content?>
 	    <?=$footer?>
     </div><!--/.fluid-container-->
 

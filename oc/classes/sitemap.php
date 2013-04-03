@@ -4,7 +4,7 @@
  * Sitemap 
  *
  * @package    OC
- * @category   Cron
+ * @category   Tools
  * @author     Chema <chema@garridodiaz.com>
  * @copyright  (c) 2009-2012 Open Classifieds Team
  * @license    GPL v3
