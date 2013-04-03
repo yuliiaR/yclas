@@ -104,7 +104,7 @@
 				<div class="control-group">
 					<div class="controls">
 						Captcha*:<br />
-						<?php echo captcha::image_tag('contact');?><br />
+						<?= captcha::image_tag('contact');?><br />
 						<?= FORM::input('captcha', "", array('class' => 'input-xlarge', 'id' => 'captcha', 'required'))?>
 					</div>
 				</div>

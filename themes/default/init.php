@@ -3,7 +3,7 @@
 /**
  * widgets
  */
-Widgets::$placeholder = array('footer', 'sidebar', 'header', 'something');
+Widgets::$placeholder = array('footer', 'sidebar', 'header');
 Widgets::$theme_widgets = array();
 
 //twitter theme initialization

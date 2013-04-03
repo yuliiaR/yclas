@@ -34,9 +34,6 @@
 	</a>
 	<ul class="dropdown-menu">
 		
-		<li><a	href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>"><i
-				class="icon-cog"></i> <?=__('Admin')?></a></li>
-		
 		<li><a	href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))?>"><i
 				class="icon-edit"></i> <?=__('Edit profile')?></a></li>
 		<li><a	href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'changepass'))?>"><i

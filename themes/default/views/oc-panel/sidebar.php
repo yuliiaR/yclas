@@ -3,7 +3,7 @@
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
 
-			<?if ($user->has_access_to_any('post,category')):?>
+			<?if ($user->has_access_to_any('post,category')): //@TODO add rest of parameters?>
 
 				<li class="nav-header"><?=__('Administration')?></li>
 
@@ -30,25 +30,26 @@
 			</a>
 			</li>
 			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'generalconf'))?>">
+				href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))?>">
 				<?=__('General')?>
 			</a>
 			</li>
 			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'paymentconf'))?>">
+				href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>">
 				<?=__('Payment')?>
 			</a>
 			</li>
 			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'emailconf'))?>">
+				href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))?>">
 				<?=__('Email')?>
 			</a>
 			</li>
 			<li><a
-				href="<?=Route::url('oc-panel',array('controller'=>'formconf'))?>">
-				<?=__('Form Configuration')?>
+				href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))?>">
+				<?=__('Form')?>
 			</a>
 			</li>
+			<?if ($user->has_access_to_any('tools')):?>
 			<li class="nav-header"><?=__('Tools')?></li>
 
 			<?sidebar_link(__('Sitemap'), 'tools','sitemap')?>
@@ -56,6 +57,20 @@
 			<?sidebar_link(__('Optimize'), 'tools','optimize')?>
 			<?sidebar_link(__('Cache'), 'tools','cache')?>
 			<?sidebar_link(__('PHP Info'), 'tools','phpinfo')?>
+			<?endif?>
+
+			<?if ($user->has_access_to_any('profile')):?>
+			<li class="nav-header"><?=__('Profile')?></li>
+
+			<?sidebar_link(__('Edit'), 'profile','edit')?>
+			<?sidebar_link(__('Change password'), 'profile','changepass')?>
+
+			<li><a
+				href="<?=Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname))?>">
+				<?=__('Public profile')?>
+			</a>
+			</li>
+			<?endif?>
 
 			<li class="divider"></li>
 			<li class="nav-header">Open Classifieds</li>

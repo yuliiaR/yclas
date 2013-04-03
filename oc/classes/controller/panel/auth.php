@@ -161,7 +161,7 @@ class Controller_Panel_Auth extends Controller {
 						$user->status	= Model_User::STATUS_ACTIVE;
 						$user->id_role	= 1;//normal user
 						$user->password = $this->request->post('password1');
-						$user->seoname 	= URL::title($this->request->post('name'), '-', FALSE);
+						$user->seoname 	= $user->gen_seo_title($this->request->post('name'));
 						
 						try
 						{

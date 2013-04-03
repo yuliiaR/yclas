@@ -66,13 +66,12 @@
 					<tbody id="drop-here">
 						<tr>
 							<td><?=$placeholder_name?></td>
-							
 							<td>
-								
 								<?foreach($active_widgets as $aw => $value):?>
 								<?if($placeholder_name == $aw && $value !== NULL):?>
 									<?foreach ($value as $v):?>
 										<?if(!empty($v)):?>
+								
 										<div class="well advise clearfix">
 											<h4><?=$v?></h4>​
 										</div>
@@ -103,11 +102,12 @@
 					</thead>
 					<tbody>
 						<?foreach($default_widgets as $dw => $value):?>
-						<?//if($dw)?>
+						
 							<tr>
 								<td><?=$value?></td>
 								<td><div id="<?=$value?>" class="well advise makeMeDraggable" name="<?=$placeholder_name?>"><?=$value?></div></td>
 							</tr>
+					
 						<?endforeach?>
 					</tbody>
 				<table>

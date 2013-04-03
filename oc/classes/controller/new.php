@@ -60,7 +60,7 @@
 		if ($config == 0)
 		{
 			if (Core::config('sitemap.on_post') == TRUE)
-				//Sitemap::generate();
+				// Sitemap::generate(); // @TODO CHECK WHY DOESNT WORK
 
 			$status = Model_Ad::STATUS_PUBLISHED;
 			$this->_save_new_ad($data, $status, $published = TRUE, $config, $form_show['captcha']);
@@ -152,7 +152,7 @@
 				
 				//insert data
 
-				$seotitle = URL::title($data['title'], '-', FALSE); 
+				$seotitle = $_new_ad->gen_seo_title($data['title']); 
 				
 				$_new_ad->title 		= $data['title'];
 				$_new_ad->id_location 	= $data['loc'];

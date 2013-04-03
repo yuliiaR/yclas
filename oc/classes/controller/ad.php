@@ -181,8 +181,8 @@ class Controller_Ad extends Controller {
 		}
 		else
 		{
-			//trow 404 Exception
-			throw new HTTP_Exception_404();
+			Alert::set(Alert::INFO, __('You do not have any advertisements active'));
+			$this->request->redirect(Route::url('default'));	
 		}
 
 		if(Auth::instance()->get_user() == NULL)
@@ -412,26 +412,46 @@ class Controller_Ad extends Controller {
 		
 		$loc = $location = new Model_Location();
 		$loc = $loc->find_all();
-		
-	
-		$extra_payment = core::config('payment');
-		$count = 0;
-		if($form->has_images == 1)
+		// d(Auth::instance()->logged_in());
+		if(Auth::instance()->logged_in() && Auth::instance()->get_user()->id_user == $form->id_user 
+			|| Auth::instance()->logged_in() && Auth::instance()->get_user()->id_role == 10)
 		{
-			$current_path = $form->_gen_img_path($form->seotitle, $form->created);
-			
-			if (is_dir($current_path)){ // sanity check
-				$handle = opendir($current_path);
+			$extra_payment = core::config('payment');
+			$count = 0;
+			if($form->has_images == 1)
+			{
+				$current_path = $form->_gen_img_path($form->seotitle, $form->created);
 				
-				while(FALSE !== ($entry = readdir($handle)))
-				{
-					if($entry != '.' && $entry != '..') $count++;
+				if (is_dir($current_path)){ // sanity check
+					$handle = opendir($current_path);
+					
+					while(FALSE !== ($entry = readdir($handle)))
+					{
+						if($entry != '.' && $entry != '..') $count++;
+					}
+					
+					$num_images = core::config('formconfig.advertisement-num_images');
+					
+					if ($count == 0) 
+					{
+						$form->has_images = 0;
+						try {
+							$form->save();
+							$img_permission = TRUE;
+						} catch (Exception $e) {
+							echo "something went wrong";
+						}
+					}
+					elseif($count < $num_images*2) $img_permission = TRUE;
+					else
+					{
+						Alert::set(Alert::INFO, __('You can not upload images anymore limit is: '.$num_images));
+						$img_permission = FALSE;
+					} 
 				}
-				
-				$num_images = core::config('formconfig.advertisement-num_images');
-				
-				if ($count == 0) 
+				else 
 				{
+					$img_permission = FALSE;
 					$form->has_images = 0;
 					try {
 						$form->save();
@@ -440,39 +460,49 @@ class Controller_Ad extends Controller {
 						echo "something went wrong";
 					}
 				}
-				elseif($count < $num_images*2) $img_permission = TRUE;
-				else
-				{
-					Alert::set(Alert::INFO, __('You can not upload images anymore limit is: '.$num_images));
-					$img_permission = FALSE;
-				} 
-			}
-			else 
-			{
-				$img_permission = FALSE;
-				$form->has_images = 0;
-				try {
-					$form->save();
-					$img_permission = TRUE;
-				} catch (Exception $e) {
-					echo "something went wrong";
-				}
-			}
-		}else $img_permission = TRUE;
+			}else $img_permission = TRUE;
+			
+			$path = $this->_image_path($form);
+			$this->template->content = View::factory('pages/ad/edit', array('ad'				=>$form, 
+																			  'location'		=>$loc, 
+																			  'category'		=>$cat,
+																			  'path'			=>$path,
+																			  'perm'			=>$img_permission,
+																			  'extra_payment'	=>$extra_payment));
 		
-		$path = $this->_image_path($form);
-		$this->template->content = View::factory('pages/ad/edit', array('ad'				=>$form, 
-																		  'location'		=>$loc, 
-																		  'category'		=>$cat,
-																		  'path'			=>$path,
-																		  'perm'			=>$img_permission,
-																		  'extra_payment'	=>$extra_payment));
 		
-		if(Auth::instance()->get_user()->loaded() == $form->id_user 
-			|| Auth::instance()->get_user()->id_role == 10)
-		{
 			if ($this->request->post())
 			{
+
+				// deleting single image by path 
+				$deleted_image = $this->request->post('img_delete');
+				if($deleted_image)
+				{
+					//$this->request->redirect(Route::url('default', array('controller'=>'ad', 'action'=>'img_delete', 'id'=>$this->request->param('id'))));
+
+					$img_path = $form->_gen_img_path($form->seotitle, $form->created);
+
+					
+					if (!is_dir($img_path)) 
+					{
+						return FALSE;
+					}
+					else
+					{	
+					
+						//delete formated image
+						unlink($img_path.$deleted_image.'.jpg');
+
+						//delete original image
+						$orig_img = str_replace('_200x200', '', $deleted_image);
+						unlink($img_path.$orig_img.'_original.jpg');
+
+						$this->request->redirect(Route::url('default', array('controller'=>'ad',
+																			'action'=>'update',
+																			'id'=>$form->id_ad)));
+					}
+				}// end of img delete
+
 				$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
 								'title' 		=> $title 		= 	$this->request->post('title'),
 								'seotitle' 		=> $seotitle 	= 	$this->request->post('title'),
@@ -494,10 +524,10 @@ class Controller_Ad extends Controller {
 					{
 						$current_path = $form->_gen_img_path($form->seotitle, $form->created);
 						// rename current image path to match new seoname
-						rename($current_path, $form->_gen_img_path(URL::title($data['title'], '-', FALSE), $form->created)); 
+						rename($current_path, $form->_gen_img_path($form->gen_seo_title($data['title']), $form->created)); 
 
 					}
-					$seotitle = URL::title($data['title'], '-', FALSE);
+					$seotitle = $form->gen_seo_title($data['title']);
 					$form->seotitle = $seotitle;
 					
 				}else $form->seotitle = $form->seotitle;
@@ -517,53 +547,28 @@ class Controller_Ad extends Controller {
 				$error_message = NULL;
 	    		$filename = NULL;
 	    		echo $count/2;
-	    			if (isset($_FILES['image0']) && $count/2 <= 3)
-	        		{
-		        		$img_files = array($_FILES['image0']);
-		            	$filename = $obj_img->_save_image($img_files, $form->seotitle, $form->created);
-	        		}
-	        		if ( $filename == TRUE)
-		       		{
-			        	$form->has_images = 1;
-		        	}
+    			if (isset($_FILES['image0']) && $count/2 <= 3)
+        		{
+	        		$img_files = array($_FILES['image0']);
+	            	$filename = $obj_img->_save_image($img_files, $form->seotitle, $form->created);
+        		}
+        		if ( $filename == TRUE)
+	       		{
+		        	$form->has_images = 1;
+	        	}
 
-		        	try {
-		        		$form->save();
-		        	} catch (Exception $e) {
-		        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures'));
-		        	}
-
-
-
-	    		
+	        	try {
+	        		$form->save();
+	        	} catch (Exception $e) {
+	        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures'));
+	        	}
+    		
 			}
 		}
-	}
-
-	public function action_img_delete()
-	{
-		$element = ORM::factory('ad', $this->request->param('id'));
-
-		$img_path = $element->_gen_img_path($element->seotitle, $element->created);
-
-		if (!is_dir($img_path)) 
-		{
-			return FALSE;
-		}
 		else
-		{	
-		
-			//delete formated image
-			unlink($img_path.$this->request->param('img_name').'.jpg');
-
-			//delete original image
-			$orig_img = str_replace('_200x200', '', $this->request->param('img_name'));
-			unlink($img_path.$orig_img.'_original.jpg');
-
-			$this->request->redirect(Route::url('update', array('controller'=>'ad',
-																'action'=>'update',
-																'seotitle'=>$element->seotitle,
-																'id'=>$element->id_ad)));
+		{
+			Alert::set(Alert::ERROR, __('You dont have permission to access this link'));
+			$this->request->redirect(Route::url('default'));
 		}
 	}
 
