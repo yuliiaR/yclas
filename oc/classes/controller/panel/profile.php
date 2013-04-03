@@ -21,35 +21,97 @@ class Controller_Panel_Profile extends Auth_Controller {
 		$this->template->content = View::factory('oc-panel/profile/changepass');
 		$this->template->content->msg ='';
 
+
 		if ($this->request->post() AND CSRF::valid())
 		{
-			if ($this->request->post('password1')==$this->request->post('password2'))
-			{
-				$user = Auth::instance()->get_user();
-				$user->password = $this->request->post('password1');
+			$user = Auth::instance()->get_user();
+			$old_pass = new Model_User();
+			$old_pass->where('id_user', '=', $user->id_user)->limit(1)->find();
 
-				try
+			
+				if ($this->request->post('password1')==$this->request->post('password2'))
 				{
-					$user->save();
+					$new_pass = $this->request->post('password1');
+					if(!empty($new_pass)){
+
+						$user->password = $this->request->post('password1');
+
+						try
+						{
+							$user->save();
+						}
+						catch (ORM_Validation_Exception $e)
+						{
+							//Form::errors($content->errors);
+						}
+						catch (Exception $e)
+						{
+							throw new HTTP_Exception_500($e->getMessage());
+						}
+						
+						
+						Alert::set(Alert::SUCCESS, __('Password is changed'));
+					}
+					else
+					{
+						Form::set_errors(array(__('Nothing is provided')));
+					}
 				}
-				catch (ORM_Validation_Exception $e)
+				else
 				{
-					//Form::errors($content->errors);
+					Form::set_errors(array(__('Passwords do not match')));
 				}
-				catch (Exception $e)
-				{
-					throw new HTTP_Exception_500($e->getMessage());
-				}
-				
-				$this->template->content->msg =__('Password changed');
-			}
-			else
-			{
-				Form::set_errors(array(__('Passwords do not match')));
-			}
 		}
 
 	  
+	}
+
+	public function action_edit()
+	{
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__('Edit profile'))));
+		// $this->template->title = $user->name;
+		//$this->template->meta_description = $user->name;//@todo phpseo
+		$user = Auth::instance()->get_user();
+
+		$this->template->bind('content', $content);
+		$this->template->content = View::factory('oc-panel/profile/useredit',array('user'=>$user));
+		// $this->template->content = View::factory('pages/useredit',array('user'=>$user, 'captcha_show'=>$captcha_show));
+
+		if($this->request->post())
+		{
+			
+			$user->name = $this->request->post('name');
+			$user->email = $this->request->post('email');
+			$user->seoname = URL::title($this->request->post('name'), '-', FALSE);
+			// $user->password2 = $this->request->post('password2');
+			
+			$password1 = $this->request->post('password1');
+			if(!empty($password1))
+			{
+				if($this->request->post('password1') == $this->request->post('password2'))
+				{
+					$user->password = $this->request->post('password1');
+				}
+				else
+				{
+					Alert::set(Alert::ERROR, __('New password is invalid, or they do not match! Please try again.'));
+					$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
+				}
+			} 
+
+			try {
+				$user->save();
+				Alert::set(Alert::SUCCESS, __('You have successfuly chaged your data'));
+				$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
+				
+			} catch (Exception $e) {
+				//throw 500
+				throw new HTTP_Exception_500();
+			}
+			
+		}
+
+			
 	}
 
 

@@ -54,57 +54,67 @@ class Controller_Panel_Ad extends Auth_Controller {
 	 */
 	public function action_delete()
 	{
+		$element = ORM::factory('ad', $this->request->param('id'));
 		$id = $this->request->param('id');
 		
 		$format_id = explode('_', $id);
 
-		foreach ($format_id as $id) {
-			
-			if ($id !== '')
+		if(Auth::instance()->logged_in() && Auth::instance()->get_user()->id_user == $element->id_user 
+			|| Auth::instance()->logged_in() && Auth::instance()->get_user()->id_role == 10)
+		{
+			foreach ($format_id as $id) 
 			{
-				$this->auto_render = FALSE;
-				$this->template = View::factory('js');
-				$element = ORM::factory('ad', $id);
 				
-				try
+				if ($id !== '')
 				{
+					$this->auto_render = FALSE;
+					$this->template = View::factory('js');
+					$element = ORM::factory('ad', $id);
 					
-					$img_path = $element->_gen_img_path($element->seotitle, $element->created);
-					
-
-					if (!is_dir($img_path)) 
+					try
 					{
-						$element->delete();
 						
-					}
-					else
-					{
-						// Loop through the folder
-						$dir = dir($img_path);
+						$img_path = $element->_gen_img_path($element->seotitle, $element->created);
+						
 
-						while (false !== $entry = $dir->read()) {
-						// Skip pointers
-							if ($entry == '.' || $entry == '..') {
-								continue;
-							}
-							unlink($img_path.$entry);
+						if (!is_dir($img_path)) 
+						{
+							$element->delete();
+							
 						}
-						
-						rmdir($img_path);
-						$element->delete();
+						else
+						{
+							// Loop through the folder
+							$dir = dir($img_path);
+
+							while (false !== $entry = $dir->read()) {
+							// Skip pointers
+								if ($entry == '.' || $entry == '..') {
+									continue;
+								}
+								unlink($img_path.$entry);
+							}
+							
+							rmdir($img_path);
+							$element->delete();
+						}
 					}
+					catch (Exception $e)
+					{
+						Alert::set(Alert::ALERT, __('Warning, something went wrong while deleting'));
+						throw new HTTP_Exception_500($e->getMessage());
+					}	
 				}
-				catch (Exception $e)
-				{
-					Alert::set(Alert::ALERT, __('Warning, something went wrong while deleting'));
-					throw new HTTP_Exception_500($e->getMessage());
-				}	
+				
 			}
-			
+			Alert::set(Alert::SUCCESS, __('Success, advertisemet is deleted'));
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		}
-		Alert::set(Alert::SUCCESS, __('Success, advertisemet is deleted'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
-		
+		else
+		{
+			Alert::set(Alert::ERROR, __('You dont have permission to access this link'));
+			$this->request->redirect(Route::url('default'));
+		}
 	}
 
 	/**

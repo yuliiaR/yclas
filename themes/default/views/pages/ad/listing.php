@@ -44,7 +44,7 @@
 	    
 	    	<?if ($user !== NULL && $user->id_role == 10):?>
 	    		<br />
-			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))?>"><?= _e("Edit");?></a> |
+			<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))?>"><?= _e("Edit");?></a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
 				onclick="return confirm('<?=__('Deactivate?')?>');"><?= _e("Deactivate");?>
 			</a> |

@@ -15,7 +15,7 @@
 	    <?if (Auth::instance()->get_user()->id_role == 1): //@todo ad acccess control?>
 		    <li class="nav-header">User Profile</li>
 		    <li><a href="<?=Route::url('profile',array('controller'=>'user','action'=>'index', 'seoname'=> Auth::instance()->get_user()->seoname))?>">Home</a></li>
-		    <li><a href="<?=Route::url('profile',array('controller'=>'user','action'=>'edit', 'seoname'=> Auth::instance()->get_user()->seoname))?>">Edit</a></li>
+		   
 		    <li><a href="#">Link</a></li>
 		<?endif?>
 		<?endif?>

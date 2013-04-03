@@ -27,7 +27,7 @@
 			<?endif?>
 		</div>
 		<?//endif?>
-		<?= FORM::open(Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">
 					<?if(Auth::instance()->get_user()->id_role == 10):?>
@@ -95,22 +95,25 @@
 						<ul class="thumbnails">
 							<?php foreach ($path as $path):?>
 							<?$img_name = str_replace(".jpg", "", substr(strrchr($path, "/"), 1 ));?>
-							<?if(strstr($path, '_') != '_original.jpg'):?>
+							<?print_r($img_name);?>
+							<?if(strstr($path, '_') != '_original.jpg'): // only formated images (not originals)?>
 							<li>
 								<a href="#" class="thumbnail">
 									<img src="/<?echo $path?>" class="img-rounded" alt="">
 								</a>
-								<a class="btn btn-danger index-delete"
+								
+								<button class="btn btn-danger index-delete"
 								   onclick="return confirm('<?=__('Delete?')?>');" 
-								   href="<?=Route::url('update', array('controller'=>'ad', 
+								   type="submit" 
+								   name="img_delete"
+								   value="<?=$img_name?>" 
+								   href="<?=Route::url('default', array('controller'=>'ad', 
 								   									   'action'=>'img_delete', 
-								   									   'seotitle'=>$ad->seotitle, 
-								   									   'id'=>$ad->id_ad, 
-								   									   'img_name'=>$img_name ))?>" 
+								   									   'id'=>$ad->id_ad))?>" 
 								   rel"tooltip" 
 								   title="<?=__('Delete image')?>">
 									<?=__('Delete')?>
-								</a>	
+								</button>
 							</li>
 							<?endif?>
 							<?endforeach?>
@@ -148,7 +151,7 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))))?>
+					<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))))?>
 					<p class="help-block">Dynamic text, for free or pay XX€..</p>
 				</div>
 			</fieldset>

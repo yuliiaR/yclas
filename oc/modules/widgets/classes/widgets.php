@@ -37,10 +37,10 @@ class Widgets {
 		$jsonObject = core::config('widget.'.$name_placeholder.'_placeholder');
 		
 		if($jsonObject)
-		{
-			if(!empty($jsonObject))
+		{ 
+			if(!empty($jsonObject) && $jsonObject !== '[]')
 			{
-				$active = explode(' ,', $jsonObject);
+				$active = json_decode($jsonObject, true);
 				
 				// array of widget path, to include to view
 				foreach ($active as $a => $value) 
@@ -49,7 +49,7 @@ class Widgets {
 					if(in_array($widget_name, self::$default_widgets) || in_array($widget_name, self::$theme_widgets))
 						$active_widgets[$value] = View::factory($widget_name);
 					else $active_widgets[$value] = NULL;
-
+					// d($widget_name);
 				}
 
 			} else $active_widgets = NULL;

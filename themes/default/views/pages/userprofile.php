@@ -13,6 +13,14 @@
 				<p>Seoname : <?= $user->seoname?></p>
 			</article>
 		</div>
+		<?if($profile_ads!==NULL):?>
+			<?foreach($profile_ads as $ads):?>
+			<article class="list well clearfix">
+				<h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads['category'],'seotitle'=>$ads['seotitle']))?>"><?=$ads['title']?></a></h4>
+				<p><?=$ads['description']?><p>
+			</article>
+			<?endforeach?>
+		<?endif?>
 	</div>
 	<!--/span-->
 </div>

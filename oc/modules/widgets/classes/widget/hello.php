@@ -16,7 +16,7 @@ class Widget_Hello extends Widget
 	 * 
 	 * @var array
 	 */
-	public static $deactivate_placeholder = array('');
+	public static $deactivate_placeholder = array('footer');
 
 	public function set_info()
 	{

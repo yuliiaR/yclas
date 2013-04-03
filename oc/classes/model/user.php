@@ -367,45 +367,45 @@ class Model_User extends ORM {
        return array('created');
     }
 
-    // /**
-    //  * return the title formatted for the URL
-    //  *
-    //  * @param  string $title
-    //  * 
-    //  */
-    // public function gen_seo_title($title)
-    // {
-    //     $seotitle = URL::title($title, '-', FALSE);
+    /**
+     * return the title formatted for the URL
+     *
+     * @param  string $title
+     * 
+     */
+    public function gen_seo_title($title)
+    {
+        $seotitle = URL::title($title, '-', FALSE);
         
-    //     $user = new self;
-    //     //find a user same seotitle
-    //     $s = $user->where('seoname', '=', $seotitle)->where('id_user', '!=', $this->id_user)->limit(1)->find();
+        $user = new self;
+        //find a user same seotitle
+        $s = $user->where('seoname', '=', $seotitle)->where('id_user', '!=', $this->id_user)->limit(1)->find();
 
-    //     //found, increment the last digit of the seotitle
-    //     if ($s->loaded())
-    //     {
-    //         $cont = 2;
-    //         $loop = TRUE;
-    //         while($loop)
-    //         {
-    //             $attempt = $seotitle.'-'.$cont;
-    //             $user = new self;
-    //             unset($s);
-    //             $s = $user->where('seoname', '=', $attempt)->where('id_user', '!=', $this->id_user)->limit(1)->find();
-    //             if(!$s->loaded())
-    //             {
-    //                 $loop = FALSE;
-    //                 $seotitle = $attempt;
-    //             }
-    //             else
-    //           {
-    //                 $cont++;
-    //             }
-    //         }
-    //     }
+        //found, increment the last digit of the seotitle
+        if ($s->loaded())
+        {
+            $cont = 2;
+            $loop = TRUE;
+            while($loop)
+            {
+                $attempt = $seotitle.'-'.$cont;
+                $user = new self;
+                unset($s);
+                $s = $user->where('seoname', '=', $attempt)->where('id_user', '!=', $this->id_user)->limit(1)->find();
+                if(!$s->loaded())
+                {
+                    $loop = FALSE;
+                    $seotitle = $attempt;
+                }
+                else
+              {
+                    $cont++;
+                }
+            }
+        }
 
-    //     return $seotitle;
-    // }
+        return $seotitle;
+    }
 
     /**
      * creates a user from email if exists doesn't...

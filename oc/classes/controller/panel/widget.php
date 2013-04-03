@@ -46,12 +46,14 @@ class Controller_Panel_Widget extends Auth_Controller {
 	   	   		{
 	   	   			$active_widgets[$value] = json_decode(core::config('widget.'.$value.'_placeholder'), true);
 	   	   			
+
                     // get basic info for each widget
+                    $basic_info[$value] = NULL;
                     foreach ($active_widgets[$value] as $key => $value) {
                     
                         $widget_class = 'widget_'.preg_replace('/[0-9]/', '', $value);
                         $basic_info[$value] = $widget_class::get_info();
-                       
+                        
                     } 
 	   	   		}
 	   	   		else 
@@ -69,7 +71,6 @@ class Controller_Panel_Widget extends Auth_Controller {
   			throw new HTTP_Exception_404();	
 	   	}
    		
-
 
    		$this->template->content = View::factory('oc-panel/pages/widget', array('placeholders'		=>$placeholders, // list of all active placeholders
    																				'default_widgets'	=>$default_widgets, // list of all default widgets
