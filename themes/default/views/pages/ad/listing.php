@@ -24,23 +24,23 @@
 	    	<?else:?>
 	    	<?foreach ($cat as $cat){ if($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
 	    	<?endif?>
-	    		<a title="<?php echo $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
+	    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 	    	</h2>
 	    	<?if($img_path[$ad->seotitle] != NULL):?>
 	    		 <img src="/<?=$img_path[$ad->seotitle][1]?>" class="img-polaroid">
 	    	<?endif?>
 	    	<ul>
 	    		<?php if ($ad->published!=0){?>
-		   			<li><b><?= _e('Publish Date');?>:</b> <?php echo $ad->published;?></li>
+		   			<li><b><?= _e('Publish Date');?>:</b> <?= $ad->published;?></li>
 		   		<?php }?>
 		    	<?php if ($ad->price!=0){?>
-		    		<li class="price"><?= _e('Price');?>: <b><?php echo $ad->price;?>&euro;</b></li>
+		    		<li class="price"><?= _e('Price');?>: <b><?= $ad->price;?>&euro;</b></li>
 		    	<?php }?>  
 		    </ul>
 		 
-		    <p><?php echo Text::bb2html($ad->description,TRUE);?></p>
+		    <p><?= Text::bb2html($ad->description,TRUE);?></p>
 		    
-		    <a title="<?php echo $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?=_e('Read more')?></a>
+		    <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?=_e('Read more')?></a>
 	    
 	    	<?if ($user !== NULL && $user->id_role == 10):?>
 	    		<br />
@@ -57,7 +57,7 @@
 
 			<?elseif($user !== NULL && $user->id_user == $ad->id_user):?>
 				<br/>
-			<a href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> 
+			<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> 
 			<?endif?>
 	    </article>
 	    <?=Alert::show()?>

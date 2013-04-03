@@ -42,14 +42,6 @@ Route::set('oc-panel', 'oc-panel/(<controller>(/<action>(/<id>)))')
 		'action'     => 'index',
 ));
 
-/**
- * user/admin edit ad route
- */
-Route::set('update', '/(<action>/(<seotitle>(/<id>(/<img_name>))))')
-->defaults(array(
-		'controller' => 'ad',
-		'action'     => 'update',
-));
 
 /**
  * Item / ad view (public)

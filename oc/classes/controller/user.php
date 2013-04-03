@@ -46,7 +46,9 @@ class Controller_User extends Controller {
 					$profile_ads[] = array('title'		=>$value->title, 
 										   'category'	=>$cat,
 										   'description'=>$value->description,
-										   'seotitle'	=>$value->seotitle); 
+										   'seotitle'	=>$value->seotitle,
+										   'id_ad'		=>$value->id_ad,
+										   'id_user'	=>$value->id_user); 
 					}	
 				}
 				else $profile_ads = NULL;

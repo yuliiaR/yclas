@@ -18,17 +18,21 @@ class Controller_Panel_Profile extends Auth_Controller {
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__('Change password'))));
 		
 		$this->template->title   = __('Change password');
-		$this->template->content = View::factory('oc-panel/profile/changepass');
-		$this->template->content->msg ='';
 
+		$user = Auth::instance()->get_user();
+
+		$this->template->bind('content', $content);
+		$this->template->content = View::factory('oc-panel/profile/edit',array('user'=>$user));
+		$this->template->content->msg ='';
 
 		if ($this->request->post() AND CSRF::valid())
 		{
-			$user = Auth::instance()->get_user();
-			$old_pass = new Model_User();
-			$old_pass->where('id_user', '=', $user->id_user)->limit(1)->find();
+			// $user = Auth::instance()->get_user();
 
 			
+			if(Auth::instance()->hash(core::post('password_old')) == $user->password )
+			{
+
 				if ($this->request->post('password1')==$this->request->post('password2'))
 				{
 					$new_pass = $this->request->post('password1');
@@ -61,6 +65,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				{
 					Form::set_errors(array(__('Passwords do not match')));
 				}
+			}
 		}
 
 	  
@@ -74,7 +79,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		$user = Auth::instance()->get_user();
 
 		$this->template->bind('content', $content);
-		$this->template->content = View::factory('oc-panel/profile/useredit',array('user'=>$user));
+		$this->template->content = View::factory('oc-panel/profile/edit',array('user'=>$user));
 		// $this->template->content = View::factory('pages/useredit',array('user'=>$user, 'captcha_show'=>$captcha_show));
 
 		if($this->request->post())

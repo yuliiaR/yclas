@@ -31,18 +31,24 @@
 			<fieldset>
 				<div class="control-group">
 					<?if(Auth::instance()->get_user()->id_role == 10):?>
-					<table class="table table-bordered span4">
+					<? $owner = new Model_User($ad->id_user)?>
+					<table class="table table-bordered ">
 						<tr>
 							<th><?=__('Id_User')?></th>
+							<th><?=__('Profile')?></th>
 							<th><?=__('Name')?></th>
 							<th><?=__('Email')?></th>
+
 						</tr>
 						<tbody>
 							<tr>
 								<td><p><?= $ad->id_user?></p></td>
-								<td><p><??></p></td>
 								<td>	
-									<a src="#" alt=""><??></a>
+									<a href="<?=Route::url('profile', array('seoname'=>$owner->seoname))?>" alt=""><?= $owner->seoname?></a>
+								</td>
+								<td><p><?= $owner->name?></p></td>
+								<td>	
+									<a href="<?=Route::url('contact')?>"><?= $owner->email?></a>
 								</td>
 							</tr>
 						</tbody>
