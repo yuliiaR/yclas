@@ -10,3 +10,6 @@
  * @var array
  */
 Widgets::$default_widgets = array('hello', 'text');
+
+//new
+Widgetsn::$default_widgets = array('rss', 'pages');

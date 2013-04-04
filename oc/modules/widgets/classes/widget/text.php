@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
-class Widget_Text extends Widget
+class Widget_Text
 {
 
 	/**
@@ -11,7 +11,8 @@ class Widget_Text extends Widget
 	public static $title = 'text';
 
 	
-
+	public static $deactivate_placeholder = array();
+	
 	public static function get_info()
 	{
 		

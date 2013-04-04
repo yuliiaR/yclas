@@ -150,6 +150,7 @@ class View extends Kohana_View{
 	    		//still not found :(, try from cascading system
 	    		if (($path = Kohana::find_file('views', $file)) === FALSE)
 	    		{
+                    //d($file);
 	    			throw new View_Exception('The requested view :file could not be found', array(
 	    	                				':file' => $file,
 	    			));

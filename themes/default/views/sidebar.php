@@ -27,6 +27,21 @@
 		<?=$val; // load widget view?>
 	<?endforeach?>
 <?endif?>
+
+<?
+
+//d(json_encode(Widgetsn::$default_widgets));
+/*d(json_encode(array('class'	=> get_class(),
+					 'created'	=> time(),
+					 'data'		=> array('rss_items' => 10, 'rss_url' => 'http://url.com')
+					)));*/
+
+?>
+<?foreach ( Widgetsn::get('sidebar') as $widget):?>
+	<?=$widget;?>
+<?endforeach?>
+
+
 </footer>
 	</div><!--/.well -->
 </div><!--/span-->
