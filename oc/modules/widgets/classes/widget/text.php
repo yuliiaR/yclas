@@ -10,14 +10,7 @@ class Widget_Text extends Widget
 	 */
 	public static $title = 'text';
 
-	/**
-	 * $deactivate_placeholder 
-	 * limit placeholders for this widget 
-	 * (leave empty array for NO restrictions )
-	 * 
-	 * @var array
-	 */
-	public static $deactivate_placeholder = array('');
+	
 
 	public static function get_info()
 	{

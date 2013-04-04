@@ -9,6 +9,22 @@ class Widget_Hello extends Widget
 	 */
 	public static $title = 'hello';
 
+
+	public static $fields = array();
+
+
+	public function __construct()
+	{
+		self::$fields = array(	  'rss_items' => array( 'type'		=> 'select',
+														'label'		=> __('# items to display'),
+														'value'     => range(1,10), 
+														'required'	=> TRUE),
+
+						 		  'rss_url'  => array( 'type'		=> 'uri',
+						 		  						'label'		=> __('items you need'),
+														'required'	=> TRUE),);
+	}
+
 	/**
 	 * $deactivate_placeholder 
 	 * limit placeholders for this widget 
@@ -18,11 +34,6 @@ class Widget_Hello extends Widget
 	 */
 	public static $deactivate_placeholder = array('footer');
 
-	public function set_info()
-	{
-		$this->$title = 'hello';
-		$this->$short_description = __('Hello world is our first widget');
-	}
 
 	public static function get_info()
 	{
