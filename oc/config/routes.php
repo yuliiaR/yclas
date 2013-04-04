@@ -81,6 +81,14 @@ Route::set('page','p/<seotitle>.html')
 		'action'     => 'view',
 ));
 
+/**
+* user/admin edit ad route
+*/
+Route::set('update', '/(<action>/(<seotitle>(/<id>(/<img_name>))))')
+->defaults(array(
+		'controller' => 'ad',
+		'action'     => 'update',
+));
 
 /**
  * Error router

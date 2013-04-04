@@ -6,7 +6,11 @@
 		<div class="page-header">
 			<h1><?=__('Edit Advertisement')?></h1>
 		</div>
-		<?//if(core::config('formconfig.pay_to_go_on_top') && core::config('formconfig.pay_to_go_on_feature')):?>
+		
+		<?if((core::config('payment.pay_to_go_on_top') >= 0  
+			&& core::config('payment.to_top') !== "FALSE" )
+			&& (core::config('payment.pay_to_go_on_feature') > 0 
+			&& core::config('payment.to_featured') !== "FALSE")):?>
 		<div id="advise" class="well advise clearfix">
 			<?foreach ($extra_payment as $ex => $value) {
 				if ($ex == 'pay_to_go_on_top') {
@@ -21,12 +25,12 @@
 			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '.$to_top.' '.core::config('general.global-currency'));?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('ad', array('action'=>'to_top','category'=>$ad->id_category,'seotitle'=>$ad->seotitle))?>">Go Top!</a>
 			<?endif?>
-			<?if(core::config('payment.to_featured')):?>
+			<?if(core::config('payment.to_featured') !== "FALSE"):?>
 			<p class="text-info"><?=__('Your Advertisement can go to featured! For only '.$featured_price.' '.core::config('general.global-currency'));?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('ad', array('action'=>'to_featured','category'=>$ad->id_category,'seotitle'=>$ad->seotitle))?>">Go Top!</a>
 			<?endif?>
 		</div>
-		<?//endif?>
+		<?endif?>
 		<?= FORM::open(Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">

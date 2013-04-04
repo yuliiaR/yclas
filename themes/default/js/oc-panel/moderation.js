@@ -6,6 +6,8 @@ var href_del = $('a.delete').attr('href');
 var href_spam = $('a.spam').attr('href');
 var href_deact = $('a.deactivate').attr('href');
 var href_active = $('a.activate').attr('href');
+var href_feature = $('a.featured').attr('href');
+var href_deact_feature = $('a.featured').attr('href');
 
 // selected checkboxes get new class
 var selected = '';
@@ -24,6 +26,8 @@ $('input.checkbox').click(function(){
 		$('a.spam').attr('href', href_spam+'/'+selected);
 		$('a.deactivate').attr('href', href_deact+'/'+selected);
 		$('a.activate').attr('href', href_active+'/'+selected);
+		$('a.featured').attr('href', href_feature+'/'+selected);
+		$('a.featured').attr('href', href_deact_feature+'/'+selected);
 	}else{
 
 		$(this).removeClass("selected");
@@ -38,6 +42,7 @@ $('input.checkbox').click(function(){
 		$('a.deactivate').attr('href', "/oc-panel/ad/deactivate");
 		$('a.delete').attr('href', "/oc-panel/ad/delete");
 		$('a.activate').attr('href', href_active+'/'+selected);
+		$('a.featured').attr('href', "/oc-panel/ad/featured");
 	}
 });
 
@@ -55,6 +60,8 @@ function check_all(){
 		$('a.spam').attr('href', href_spam+'/'+selected);
 		$('a.deactivate').attr('href', href_deact+'/'+selected);
 		$('a.activate').attr('href', href_active+'/'+selected);
+		$('a.featured').attr('href', href_feature+'/'+selected);
+		$('a.featured').attr('href', href_deact_feature+'/'+selected);
 	}else{
 		selected = '';
 		$('input.checkbox').removeClass('selected').attr('checked', false);
@@ -62,5 +69,7 @@ function check_all(){
 		$('a.deactivate').attr('href', "/oc-panel/ad/deactivate");
 		$('a.delete').attr('href', "/oc-panel/ad/delete");
 		$('a.activate').attr('href', href_active+'/'+selected);
+		$('a.featured').attr('href', "/oc-panel/ad/featured");
+		$('a.featured').attr('href', "/oc-panel/ad/featured");
 	}
 }

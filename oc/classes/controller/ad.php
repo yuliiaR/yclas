@@ -615,6 +615,7 @@ class Controller_Ad extends Controller {
 		$ad = new Model_Ad();
 		$ad = $ad->where('seotitle', '=', $this->request->param('seotitle'))->limit(1)->find(); 
 
+		
 		$ord_data = array('id_user' 	=> $payer_id,
 						  'id_ad' 		=> $ad->id_ad,
 						  'id_product' 	=> $id_product,

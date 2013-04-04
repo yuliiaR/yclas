@@ -50,6 +50,83 @@ class Controller_Panel_Ad extends Auth_Controller {
 	}
 
 	/**
+	 * Action MODERATION
+	 */
+	
+	public function action_moderate()
+	{
+		//template header
+		$this->template->title           	= __('Moderation');
+		$this->template->meta_description	= __('Moderation');
+				
+		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
+		//$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
+		$this->template->scripts['footer'][]= 'js/oc-panel/moderation.js'; 
+
+
+		//find all tables 
+		
+		$ads = new Model_Ad();
+
+		$res_count = $ads->where('ad.status', '!=', Model_Ad::STATUS_PUBLISHED)->count_all();
+		
+		if ($res_count > 0)
+		{
+
+			$pagination = Pagination::factory(array(
+                    'view'           	=> 'pagination',
+                    'total_items'    	=> $res_count,
+                    'items_per_page' 	=> 5
+     	    ))->route_params(array(
+                    'controller' 		=> $this->request->controller(),
+                    'action'      		=> $this->request->action(),
+                 
+    	    ));
+    	    $ads = $ads->where('ad.status', '!=', Model_Ad::STATUS_PUBLISHED)
+    	    					->order_by('created','desc')
+                	            ->limit($pagination->items_per_page)
+                	            ->offset($pagination->offset)
+                	            ->find_all();
+		
+	        //find all tables 
+	        $hits = new Model_Visit();
+	        $hits->find_all();
+
+			$cat = new Model_Category();
+			$_list_cat = $cat->find_all(); // get all to print at sidebar view
+			
+			$loc = new Model_Location();
+			$_list_loc = $loc->find_all(); // get all to print at sidebar view
+
+
+	       	$arr_hits = array(); // array of hit integers 
+	       	
+	        // fill array with hit integers 
+	        foreach ($ads as $key_ads) {
+	        	
+	        	// match hits with ad
+	        	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
+	        	$count = $hits->count_all(); // count individual hits 
+
+	        	array_push($arr_hits, $count);
+	        }
+
+			$this->template->content = View::factory('oc-panel/pages/moderate',array('ads'			=> $ads,
+																					'pagination'	=> $pagination,
+																					'category'		=> $_list_cat,
+																					'location'		=> $_list_loc,
+																					'hits'			=> $arr_hits)); // create view, and insert list with data
+
+		}
+		else
+		{
+			Alert::set(Alert::ALERT, __('You do not have any not published advertisemet'));
+			$this->template->content = View::factory('oc-panel/pages/moderate', array('ads' => NULL));
+		}
+        
+	} 
+
+	/**
 	 * Delete advertisement: Delete
 	 */
 	public function action_delete()
@@ -269,83 +346,54 @@ class Controller_Panel_Ad extends Auth_Controller {
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 	}
 
-	/**
-	 * Action MODERATION
-	 */
-	
-	public function action_moderate()
+	public function action_featured()
 	{
-		//template header
-		$this->template->title           	= __('Moderation');
-		$this->template->meta_description	= __('Moderation');
-				
-		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
-		//$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
-		$this->template->scripts['footer'][]= 'js/oc-panel/moderation.js'; 
 
+		$id = $this->request->param('id');
+	
+		$format_id = explode('_', $id);
 
-		//find all tables 
-		
-		$ads = new Model_Ad();
-
-		$res_count = $ads->where('ad.status', '!=', Model_Ad::STATUS_PUBLISHED)->count_all();
-		
-		if ($res_count > 0)
+		foreach ($format_id as $id) 
 		{
+			if ($id !== '')
+			{
+				$featured_ad = ORM::factory('ad', $id);
 
-			$pagination = Pagination::factory(array(
-                    'view'           	=> 'pagination',
-                    'total_items'    	=> $res_count,
-                    'items_per_page' 	=> 5
-     	    ))->route_params(array(
-                    'controller' 		=> $this->request->controller(),
-                    'action'      		=> $this->request->action(),
-                 
-    	    ));
-    	    $ads = $ads->where('ad.status', '!=', Model_Ad::STATUS_PUBLISHED)
-    	    					->order_by('created','desc')
-                	            ->limit($pagination->items_per_page)
-                	            ->offset($pagination->offset)
-                	            ->find_all();
-		
-	        //find all tables 
-	        $hits = new Model_Visit();
-	        $hits->find_all();
-
-			$cat = new Model_Category();
-			$_list_cat = $cat->find_all(); // get all to print at sidebar view
-			
-			$loc = new Model_Location();
-			$_list_loc = $loc->find_all(); // get all to print at sidebar view
-
-
-	       	$arr_hits = array(); // array of hit integers 
-	       	
-	        // fill array with hit integers 
-	        foreach ($ads as $key_ads) {
-	        	
-	        	// match hits with ad
-	        	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
-	        	$count = $hits->count_all(); // count individual hits 
-
-	        	array_push($arr_hits, $count);
-	        }
-
-			$this->template->content = View::factory('oc-panel/pages/moderate',array('ads'			=> $ads,
-																					'pagination'	=> $pagination,
-																					'category'		=> $_list_cat,
-																					'location'		=> $_list_loc,
-																					'hits'			=> $arr_hits)); // create view, and insert list with data
-
+				if ($featured_ad->loaded())
+				{
+					
+					if($featured_ad->featured == NULL)
+					{
+						$featured_ad->featured = Date::unix2mysql(time() + (core::config('general.featured_timer') * 24 * 60 * 60));
+	        
+				        try {
+				            $featured_ad->save();
+				        } catch (Exception $e) {
+				 	          
+				        }
+				    }
+				    else
+					{				
+						$featured_ad->featured = NULL;
+						try {
+				            $featured_ad->save();
+				        } catch (Exception $e) {
+				 	          
+				        }
+					} 
+			    }
+			    else
+				{
+					//throw 404
+					throw new HTTP_Exception_404();
+				}
+			    
+			}
 		}
-		else
-		{
-			Alert::set(Alert::ALERT, __('You do not have any not published advertisemet'));
-			$this->template->content = View::factory('oc-panel/pages/moderate', array('ads' => NULL));
-		}
+		Alert::set(Alert::SUCCESS, __('Success, advertisemet is featured'));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 
-		
-        
-	} 
+	}
+
 
 }
