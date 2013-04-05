@@ -1,23 +1,41 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
+/**
+ * Text widget
+ *
+ * @author      Chema <chema@garridodiaz.com>
+ * @package     Widget
+ * @copyright   (c) 2012 AdSerum.com
+ * @license     GPL v3
+ */
 
-class Widget_Text
+
+class Widget_Text extends Widget
 {
 
-	/**
-	 * $name
-	 * Name of placeholder
-	 * @var string
-	 */
-	public static $title = 'text';
+	public function __construct()
+	{	
 
-	
-	public static $deactivate_placeholder = array();
-	
-	public static function get_info()
-	{
-		
-		return array('short_description' 		=>__('This is simple text'),
-					 'title'					=>self::$title, 
-					 'deactivate_placeholder'	=>self::$deactivate_placeholder);
+		$this->title = __('Text');
+		$this->description = __('HTML textarea');
+
+		$this->fields = array(	
+								'text_title'  => array(	'type'		=> 'text',
+						 		  						'display'	=> 'text',
+						 		  						'label'		=> __('Text title displayed'),
+						 		  						'default'   => 'Title',
+														'required'	=> TRUE),
+								
+						 		'text_body'  => array(	'type'		=> 'textarea',
+						 		  						'display'	=> 'textarea',
+						 		  						'label'		=> __('HTML/text content here'),
+						 		  						'default'   => 'Text',
+														'required'	=> TRUE),
+
+						 		
+						 		);
 	}
+
+
+
+
 }

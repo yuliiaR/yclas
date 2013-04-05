@@ -118,12 +118,12 @@ abstract class Widget{
 		//stores $data array as json in the config. We need the placeholder?
 		$save = array('class'	=> get_class($this),
 					  'created'	=> time(),
-					  'data'		=> $this->data
+					  'data'	=> $this->data
 					);
 
 		//since was not loaded we assume is new o generate a new name that doesn't exists
 		if(!$this->loaded)
-			$this->widget_name = get_class($this).'_'.time();
+			$this->widget_name = $this->gen_name();
 
 		// save widget to DB
    		$conf = new Model_Config();
@@ -192,26 +192,73 @@ abstract class Widget{
 		}
 		else//if new generate unique ID, action save.
 		{
-
+			$this->widget_name = $this->gen_name();
 		}
 
 		//for each field reder html_tag
-		
+		$tags = array();
+		foreach ($this->fields as $name => $options) 
+		{
+			$value = (isset($this->data[$name]))?$this->data[$name]:NULL;
+			$tags[] = $this->html_tag($name, $options, $value);
+		}
+
 		//render view
-		
-		//return
+		return View::factory('oc-panel/pages/widgets/form_widget', array('widget' => $this, 
+																		  'tags'   => $tags
+																		 )
+							);
+
 	}
 
 	/**
 	 * get the html tag code for a field
-	 * @param  array  $field as defined
+	 * @param  string $name input name
+	 * @param  array  $options as defined
 	 * @param  mixed $value value of the field, optional.
 	 * @return string        HTML
 	 */
-	public function html_tag(array $field, $value = NULL)
+	public function html_tag($name, array $options, $value = NULL)
 	{
+		$out = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label', 'for'=>$name));
+
+		if ($value === NULL)
+			$value = (isset($options['default'])) ? $options['default']:NULL;
 
 
+		$attributes = array('placeholder' => (isset($options['default'])) ? $options['default']:$name, 
+					'class'		 => 'input-large', 
+					'id' 		=> $name, 
+					(isset($options['required']))?'required':''
+					);
+
+		switch ($options['display']) 
+		{
+			case 'select':
+				$out.=FORM::select($name, $options['options'],$value , $attributes);
+				break;
+			case 'textarea':
+				$out.=FORM::textarea($name, $value, $attributes);
+				break;
+			case 'text':
+			default:
+				$out.=FORM::input($name, $value, $attributes);
+				break;
+		}
+
+		
+
+		return $out;
+
+	}
+
+	/**
+	 * generates a name for this widget
+	 * @return string
+	 */
+	public function gen_name()
+	{
+		return get_class($this).'_'.time();
 	}
 
 	/**

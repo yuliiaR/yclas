@@ -10,6 +10,32 @@
  */
 class Controller_Panel_Widget extends Auth_Controller {
 
+    public function action_test()
+    {
+
+        //template header
+        $this->template->title              = __('Widgets Test');
+
+
+        $forms = array();
+
+        $widgets = array_merge(Widgetsn::$default_widgets, Widgetsn::$theme_widgets);
+
+        // array of widget path, to include to view
+        foreach ($widgets as $widget_name) 
+        {   
+            
+            //creating an instance of that widget
+            $widget = new $widget_name;
+
+            $forms[] = $widget->form();
+    
+        }
+
+
+        $this->template->content = View::factory('oc-panel/pages/widgets/test',array('forms' => $forms));
+    }
+
 	/**
 	 * action_index
 	 * @return admin widget view 

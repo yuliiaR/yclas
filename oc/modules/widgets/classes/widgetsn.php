@@ -58,7 +58,7 @@ class Widgetsn {
 					//creating an instance of that widget
 					$widget = new $widget_data['class'];
 					//populate the data we got
-					$widget->load ($widget_name,$widget_data['data']);
+					$widget->load($widget_name, $widget_data['data']);
 
 					$widgets[] = $widget->render();
 				}

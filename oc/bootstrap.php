@@ -99,7 +99,7 @@ $modules = array(
 
 if (Kohana::$environment == Kohana::DEVELOPMENT)
 {
-    $modules['profilertoolbar'] = MODPATH.'profilertoolbar'; // delete files before production!
+    //$modules['profilertoolbar'] = MODPATH.'profilertoolbar'; // not using it anymore
     //$modules['unittest'] =  MODPATH.'unittest';   // Unit testing
     //$modules['codebench'] = MODPATH.'codebench'; // Benchmarking tool
     //$modules['userguide'] = MODPATH.'userguide';  // User guide and API documentation

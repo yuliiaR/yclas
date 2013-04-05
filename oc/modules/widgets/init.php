@@ -9,7 +9,7 @@
  * This way we do not scan the folder for widgets.
  * @var array
  */
-Widgets::$default_widgets = array('hello', 'text');
+Widgets::$default_widgets = array('hello');
 
 //new
-Widgetsn::$default_widgets = array('rss', 'pages');
+Widgetsn::$default_widgets = array('widget_rss', 'widget_pages','widget_text');
