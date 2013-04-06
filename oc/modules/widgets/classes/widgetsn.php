@@ -12,10 +12,16 @@
 
 class Widgetsn {
 	
+
 	/**  
 	 * @var array of widget placeholders in theme, @ /themes/THEMENAME/init.php
 	 */
-	public static $placeholders = array();
+	public static $theme_placeholders = array();
+
+	/**
+	 * @var array of default placeholders, @ /modules/widgets/init.php
+	 */
+	public static $default_placeholders = array();
 	
 	/**
 	 * @var array of widget specific to theme, @ /themes/THEMENAME/init.php
@@ -32,7 +38,7 @@ class Widgetsn {
 	 * @param  string $name_placeholder name of placeholder
 	 * @return array widgets html
 	 */
-	public static function get($name_placeholder)
+	public static function get($name_placeholder, $form = FALSE)
 	{
 
 		$widgets = array();
@@ -60,7 +66,10 @@ class Widgetsn {
 					//populate the data we got
 					$widget->load($widget_name, $widget_data['data']);
 
-					$widgets[] = $widget->render();
+					if (!$form)
+						$widgets[] = $widget->render();
+					elseif ($form)
+						$widgets[] = $widget->form();
 				}
 
 		
@@ -70,6 +79,24 @@ class Widgetsn {
 		
 		
 		return $widgets;
+	}
+
+	/**
+	 * returns widgets names 
+	 * @return array 
+	 */
+	public static function get_widgets()
+	{
+		return array_unique(array_merge(Widgetsn::$default_widgets, Widgetsn::$theme_widgets));
+	}
+
+	/**
+	 * returns placeholders names + widgets
+	 * @return array 
+	 */
+	public static function get_placeholders()
+	{
+		return array_unique(array_merge(Widgetsn::$default_placeholders, Widgetsn::$theme_placeholders));
 	}
 
 }//end class Widget

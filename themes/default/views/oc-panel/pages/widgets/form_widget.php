@@ -1,11 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="well">
+<div class="well span4">
 
-	<h3><?=$widget->title?></h3>
+	<h4><?=$widget->title?></h4>
 	<p><?=$widget->description?></p>
 
-	<form method="post" action="<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'test'))?>">
+	<form class="<?=($widget->widget_name)?'':'collapse'?>" method="post" action="<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'test'))?>">
 		<?foreach ($tags as $tag):?>
 			<?=$tag?>
 		<?endforeach?>
@@ -21,4 +21,3 @@
 
 
 </div>
-

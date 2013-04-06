@@ -13,3 +13,10 @@ Widgets::$default_widgets = array('hello');
 
 //new
 Widgetsn::$default_widgets = array('widget_rss', 'widget_pages','widget_text');
+
+
+/**
+ * placeholders that exists in the default module
+ * @var array
+ */
+Widgetsn::$default_placeholders	 = array('sidebar', 'inactive');

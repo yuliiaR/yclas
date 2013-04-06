@@ -190,9 +190,9 @@ abstract class Widget{
 		{
 
 		}
-		else//if new generate unique ID, action save.
+		else//if new generate unique ID, action save. Update we can not give it a name....
 		{
-			$this->widget_name = $this->gen_name();
+			//$this->widget_name = $this->gen_name();
 		}
 
 		//for each field reder html_tag
@@ -204,7 +204,7 @@ abstract class Widget{
 		}
 
 		//render view
-		return View::factory('oc-panel/pages/widgets/form_widget', array('widget' => $this, 
+		return View::factory('oc-panel/pages/widgets/form_widget', array( 'widget' => $this, 
 																		  'tags'   => $tags
 																		 )
 							);

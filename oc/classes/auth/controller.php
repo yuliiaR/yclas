@@ -50,17 +50,20 @@ class Auth_Controller extends Controller
 		
 	}
 
+
 	/**
 	 * Initialize properties before running the controller methods (actions),
 	 * so they are available to our action.
+	 * @param  string $template view to use as template
+	 * @return void           
 	 */
-	public function before()
+	public function before($template = NULL)
 	{
 	
 		if($this->auto_render===TRUE)
 		{
 			// Load the template
-			$this->template = 'oc-panel/main';
+			$this->template = ($template===NULL)?'oc-panel/main':$template;
 			$this->template = View::factory($this->template);
 				
 			// Initialize empty values

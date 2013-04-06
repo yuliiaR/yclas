@@ -7,8 +7,8 @@ Widgets::$placeholder = array('footer', 'sidebar', 'header');
 Widgets::$theme_widgets = array();
 
 //new
-Widgetsn::$placeholders	 = array('footer', 'sidebar', 'header');
-Widgetsn::$theme_widgets = array();
+Widgetsn::$theme_placeholders	= array('footer', 'sidebar');
+Widgetsn::$theme_widgets 		= array();
 
 //twitter theme initialization
 View::$styles	            = array('http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulean/bootstrap.min.css' => 'screen',

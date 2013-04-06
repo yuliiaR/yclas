@@ -12,14 +12,20 @@ class Controller_Panel_Widget extends Auth_Controller {
 
     public function action_test()
     {
+        $this->before('oc-panel/pages/widgets/main');
+        $this->template->bind('content', $content);
 
         //template header
-        $this->template->title              = __('Widgets Test');
+        $this->template->title  = __('Widgets');
 
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Widgets')));
+
+
+        //widget to drag / new create
 
         $forms = array();
 
-        $widgets = array_merge(Widgetsn::$default_widgets, Widgetsn::$theme_widgets);
+        $widgets = Widgetsn::get_widgets();
 
         // array of widget path, to include to view
         foreach ($widgets as $widget_name) 
@@ -33,7 +39,20 @@ class Controller_Panel_Widget extends Auth_Controller {
         }
 
 
-        $this->template->content = View::factory('oc-panel/pages/widgets/test',array('forms' => $forms));
+        $placeholders = Widgetsn::get_placeholders();
+
+        $place_forms = array();
+
+        foreach ($placeholders as $placeholder) 
+        {
+            $place_forms[$placeholder] = Widgetsn::get($placeholder,TRUE);
+        }
+
+        $this->template->content                 = View::factory('oc-panel/pages/widgets/drag_widgets',array('forms' => $forms));
+        $this->template->content->placeholders   = View::factory('oc-panel/pages/widgets/placeholders',array('placeholders'=>$place_forms));
+
+
+
     }
 
 	/**
