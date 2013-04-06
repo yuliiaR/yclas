@@ -44,7 +44,7 @@ abstract class Widget{
 
 	/**
 	 * limit placeholders for this widget 
-	 * (leave empty array for NO restrictions )
+	 * (leave empty array for NO restrictions ) @TODO
 	 * 
 	 * @var array
 	 */
@@ -259,6 +259,15 @@ abstract class Widget{
 	public function gen_name()
 	{
 		return get_class($this).'_'.time();
+	}
+
+	/**
+	 * returns the name of the widget class
+	 * @return string 
+	 */
+	public function id_name()
+	{
+		return ($this->widget_name)?$this->widget_name:get_class($this);
 	}
 
 	/**

@@ -31,6 +31,26 @@
       .sidebar-nav {
         padding: 9px 0;
       }
+
+      body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+ol.example li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.example li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+
     </style>
 
   </head>
@@ -47,14 +67,106 @@
 
 	    	<div class="span8">
 
-				<?=$content?>
+				<div class="row-fluid" id="widgets_empty">
+					<?foreach ($widgets as $widget):?>
+						<?=$widget->form()?>
+					<?endforeach?>
+				</div><!--/row-->
+
+				<div class="row-fluid">
+					Inactive widgets
+				</div><!--/row-->
 
 	    	</div><!--/span--> 
 	    	
-	    	<?=$content->placeholders?>
+	    	<!--placeholders-->
+	    	<div class="span4">
+				<?foreach ($placeholders as $placeholder=>$widgets):?>
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<li class="nav-header"><?=$placeholder?></li>
+					</ul>
 
+					<?foreach ($widgets as $widget):?>
+						<?=$widget->form()?>
+					<?endforeach?>
+				</div>
+				<?endforeach?>
+			</div>
+			<!--placeholders-->
 
 		</div><!--/row-->
+
+
+
+  <div class='span4'>
+    <h3>I'm draggable and droppable</h3>
+    <ol class='simple_with_drop vertical'>
+      <li>
+          <i class='icon-move'></i>
+          Item 1
+        </li>
+        <li>
+          <i class='icon-move'></i>
+          Item 2
+        </li>
+        <li>
+          <i class='icon-move'></i>
+          Item 3
+        </li>
+        <li>
+          <i class='icon-move'></i>
+          Item 4
+        </li>
+        <li>
+          <i class='icon-move'></i>
+          Item 5
+        </li>
+        <li>
+          <i class='icon-move'></i>
+          Item 6
+        </li>
+    </ol>
+  </div>
+
+  <div class='span4'>
+    <h3>I'm only draggable</h3>
+    <ol class='simple_with_no_drop vertical'>
+      <li class='highlight'>
+          <i class='icon-move'></i>
+          Item 1
+        </li>
+        <li class='highlight'>
+          <i class='icon-move'></i>
+          Item 2
+        </li>
+        <li class='highlight'>
+          <i class='icon-move'></i>
+          Item 3
+        </li>
+    </ol>
+    <h3>I'm only droppable</h3>
+    <ol class='simple_with_no_drag vertical'>
+      <li>
+          <i class='icon-move'></i>
+          Item 1
+        </li>
+        <li>
+          <i class='icon-move'></i>
+          Item 2
+        </li>
+        <li>
+          <i class='icon-move'></i>
+          Item 3
+        </li>
+    </ol>
+  </div>
+
+</div>
+
+
+
+
 		<?=$footer?>
     </div><!--/.fluid-container-->
 

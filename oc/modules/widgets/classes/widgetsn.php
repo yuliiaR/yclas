@@ -36,9 +36,9 @@ class Widgetsn {
 	/**
 	 * Gets from conf DB json object of active widgets
 	 * @param  string $name_placeholder name of placeholder
-	 * @return array widgets html
+	 * @return array widgets
 	 */
-	public static function get($name_placeholder, $form = FALSE)
+	public static function get($name_placeholder)
 	{
 
 		$widgets = array();
@@ -66,37 +66,59 @@ class Widgetsn {
 					//populate the data we got
 					$widget->load($widget_name, $widget_data['data']);
 
-					if (!$form)
-						$widgets[] = $widget->render();
-					elseif ($form)
-						$widgets[] = $widget->form();
+					$widgets[] = $widget;
+					
 				}
+				
+			}//end for
 
-		
-			}
-
-		} 
+		} //end if widgets
 		
 		
 		return $widgets;
 	}
 
 	/**
-	 * returns widgets names 
+	 * returns all the widgets 
+	 * @param bool $only_names, returns only an array with the widgets names, if not array with widgets instances
 	 * @return array 
 	 */
-	public static function get_widgets()
+	public static function get_widgets($only_names = FALSE)
 	{
-		return array_unique(array_merge(Widgetsn::$default_widgets, Widgetsn::$theme_widgets));
+		$widgets = array();
+
+		$list = array_unique(array_merge(Widgetsn::$default_widgets, Widgetsn::$theme_widgets));
+		if ($only_names)
+			return $list;
+
+		 //creating an instance of each widget
+        foreach ($list as $widget_name) 
+			$widgets[] = new $widget_name;
+
+
+        return $widgets;
 	}
 
 	/**
 	 * returns placeholders names + widgets
+	 * @param bool $only_names, returns only an array with the placeholders names, if not array with widgets instances
 	 * @return array 
 	 */
-	public static function get_placeholders()
+	public static function get_placeholders($only_names = FALSE)
 	{
-		return array_unique(array_merge(Widgetsn::$default_placeholders, Widgetsn::$theme_placeholders));
+		$placeholders = array();
+
+		$list = array_unique(array_merge(Widgetsn::$default_placeholders, Widgetsn::$theme_placeholders));
+
+		if ($only_names)
+			return $list;
+
+		//get the widgets for the placeolders
+        foreach ($list as $placeholder) 
+        	$placeholders[$placeholder] = Widgetsn::get($placeholder);
+
+        return $placeholders;
+        
 	}
 
 }//end class Widget

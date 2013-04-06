@@ -21,7 +21,7 @@
 		<?endif?>
 
 		<?foreach ( Widgetsn::get('sidebar') as $widget):?>
-			<li><?=$widget;?></li>
+			<li><?=$widget->render()?></li>
 		<?endforeach?>
 
 	  </ul>
