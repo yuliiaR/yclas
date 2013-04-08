@@ -43,9 +43,15 @@
   <body>
   
 	<?=$header?>
+  <div class="row-fluid">
     <div class="container-fluid">
+      <div class="span9">
         <?=Alert::show()?>
 	   <?=$content?>
+      
+      </div>
+      <?=View::factory('sidebar')?>
+    </div>
 	   <?=$footer?>
     </div><!--/.fluid-container-->
 

@@ -46,6 +46,7 @@
 				<?=Alert::show()?>
 				<?=$content?>
 	    	</div><!--/span--> 
+	    	
 		</div><!--/row-->
 		<?=$footer?>
     </div><!--/.fluid-container-->

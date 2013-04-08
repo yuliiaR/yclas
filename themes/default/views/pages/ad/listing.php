@@ -1,7 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="row-fluid">
-	<div class="span9">
+
 	 
 	<ul class="breadcrumb">
     	<li><a href="#">Home</a> <span class="divider">&raquo;</span></li>
@@ -96,23 +95,3 @@
 				</form>
 			</div>
 	  <?endif?>
-	</div><!--/span-->
-	<div class="span3">
-        <div class="category_box_title custom_box">
-        </div>
-        <div class="well custom_box_content" style="padding: 8px 0;">
-        </div>
-    </div>
-    <div class="span3">
-        <div class="category_box_title custom_box">
-        </div>
-        <div class="well custom_box_content" style="padding: 8px 0;">
-        </div>
-    </div>
-    <div class="span3">
-        <div class="category_box_title custom_box">
-        </div>
-        <div class="well custom_box_content" style="padding: 8px 0;">
-        </div>
-    </div>  
-</div><!--/row-->
