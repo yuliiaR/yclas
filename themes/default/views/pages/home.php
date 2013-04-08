@@ -1,6 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="row-fluid">
-	<div class="span9 well">
+
         <h3>Categories</h3>
     	<ul class="thumbnails">
 
@@ -24,28 +23,7 @@
             <?endforeach?>
         </ul>
         
-    </div><!--/span-->
-    <div class="span3">
-        <div class="category_box_title custom_box">
-        </div>
-        <div class="well custom_box_content" style="padding: 8px 0;">
-        </div>
-    </div>
-    <div class="span3">
-        <div class="category_box_title custom_box">
-        </div>
-        <div class="well custom_box_content" style="padding: 8px 0;">
-        </div>
-    </div>
-    <div class="span3">
-        <div class="category_box_title custom_box">
-        </div>
-        <div class="well custom_box_content" style="padding: 8px 0;">
-        </div>
-    </div> 
-</div><!--/row-->
-<div class="row-fluid">  
-    <div class="span9 well ">
+
         <h3>Categories</h3>
         <ul class="thumbnails">
             <?foreach($categ as $c):?>
@@ -67,5 +45,5 @@
             <?endif?>
             <?endforeach?>
         </ul>
-    </div><!--/span--> 
-</div><!--/row-->
+
+
