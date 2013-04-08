@@ -23,8 +23,7 @@ class Widgets {
 	 */
 	public static $default_placeholders = array();
 	
-	/**
-	 * @var array of widget specific to theme, @ /themes/THEMENAME/init.php
+	/**widgets	 * @var array of widget specific to theme, @ /themes/THEMENAME/init.php
 	 */
 	public static $theme_widgets = array();
 
@@ -36,11 +35,11 @@ class Widgets {
 	/**
 	 * Gets from conf DB json object of active widgets
 	 * @param  string $name_placeholder name of placeholder
+	 * @param bool $only_names, returns only an array with the widgets names
 	 * @return array widgets
 	 */
-	public static function get($name_placeholder)
+	public static function get($name_placeholder, $only_names = FALSE)
 	{
-
 		$widgets = array();
 
 		$active_widgets = core::config('placeholder.'.$name_placeholder);
@@ -53,22 +52,31 @@ class Widgets {
 			// array of widget path, to include to view
 			foreach ($active_widgets as $widget_name) 
 			{	
-				//search for widget config
-				$widget_data = core::config('widget.'.$widget_name);
-
-				//found and with data!
-				if($widget_data!==NULL AND !empty($widget_data) AND $widget_data !== '[]')
-				{ 
-					$widget_data = json_decode($widget_data, TRUE);
-					
-					//creating an instance of that widget
-					$widget = new $widget_data['class'];
-					//populate the data we got
-					$widget->load($widget_name, $widget_data['data']);
-
-					$widgets[] = $widget;
-					
+				if ($only_names)
+				{
+					$widgets[] = $widget_name;
 				}
+				else
+				{
+					//search for widget config
+					//d('widget.'.$widget_name);
+					$widget_data = core::config('widget.'.$widget_name);
+					//d($widget_data);
+					//found and with data!
+					if($widget_data!==NULL AND !empty($widget_data) AND $widget_data !== '[]')
+					{ 
+						$widget_data = json_decode($widget_data, TRUE);
+						
+						//creating an instance of that widget
+						$widget = new $widget_data['class'];
+						//populate the data we got
+						$widget->load($widget_name, $widget_data);
+
+						$widgets[] = $widget;
+						
+					}
+				}
+				
 				
 			}//end for
 
@@ -87,7 +95,7 @@ class Widgets {
 	{
 		$widgets = array();
 
-		$list = array_unique(array_merge(Widgetsn::$default_widgets, Widgetsn::$theme_widgets));
+		$list = array_unique(array_merge(widgets::$default_widgets, widgets::$theme_widgets));
 		if ($only_names)
 			return $list;
 
@@ -108,14 +116,17 @@ class Widgets {
 	{
 		$placeholders = array();
 
-		$list = array_unique(array_merge(Widgetsn::$default_placeholders, Widgetsn::$theme_placeholders));
+		$list = array_unique(array_merge(widgets::$default_placeholders, widgets::$theme_placeholders));
+
+		//This is a forced placeholders for those widgets that we don't want to lose.
+		$list[] = 'inactive';
 
 		if ($only_names)
 			return $list;
 
 		//get the widgets for the placeolders
         foreach ($list as $placeholder) 
-        	$placeholders[$placeholder] = Widgetsn::get($placeholder);
+        	$placeholders[$placeholder] = widgets::get($placeholder);
 
         return $placeholders;
         

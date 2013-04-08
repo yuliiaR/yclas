@@ -39,7 +39,7 @@ abstract class Widget{
 	 * data stored for each field
 	 * @var array
 	 */
-	protected $data = array();
+	public $data = array();
 	
 
 	/**
@@ -63,9 +63,19 @@ abstract class Widget{
 
 
 	/**
-	 * @var  unique name of the widget in the configs
+	 * @var  unique name of the widget in the configs, used to retrieve it later
 	 */
 	public $widget_name = NULL;
+
+	/**
+	 * @var  placeholder where the widget is stored
+	 */
+	public $placeholder = NULL;
+
+	/**
+	 * @var  when was created/saved
+	 */
+	public $created = NULL;
 
 
 	/**
@@ -85,7 +95,7 @@ abstract class Widget{
 	 */
 	public function load($widget_name,array $widget_data = NULL)
 	{
-
+		
 		//search for widget config
 		if ($widget_data==NULL OR !is_array($widget_data))
 		{
@@ -93,16 +103,16 @@ abstract class Widget{
 			//found and with data!
 			if($widget_data!==NULL AND !empty($widget_data) AND $widget_data !== '[]')
 			{ 
-				$widget_data = json_decode($widget_data, TRUE);
-				$widget_data = $widget_data['data'];
-				
+				$widget_data = json_decode($widget_data,TRUE);
 			}
 			else return FALSE;
 		}
 
 		//populate the data we got
+		$this->placeholder  = $widget_data['placeholder'];
+		$this->created 		= $widget_data['created'];
+		$this->data 		= $widget_data['data'];
 		$this->widget_name 	= $widget_name;
-		$this->data 	   	= $widget_data;
 		$this->loaded 		= TRUE;
 
 		return TRUE;
@@ -111,14 +121,16 @@ abstract class Widget{
 
 	/**
 	 * saves current widget data into the DB config
+	 * @param string $old_placeholder
 	 * @return boolean 
 	 */
-	public function save()
+	public function save($old_placeholder = NULL)
 	{
 		//stores $data array as json in the config. We need the placeholder?
-		$save = array('class'	=> get_class($this),
-					  'created'	=> time(),
-					  'data'	=> $this->data
+		$save = array('class'		=> get_class($this),
+					  'created'		=> time(),
+					  'placeholder'	=> $this->placeholder,
+					  'data'		=> $this->data
 					);
 
 		//since was not loaded we assume is new o generate a new name that doesn't exists
@@ -126,14 +138,75 @@ abstract class Widget{
 			$this->widget_name = $this->gen_name();
 
 		// save widget to DB
-   		$conf = new Model_Config();
-   		$conf->group_name = 'widget';
-   		$conf->config_key = $this->widget_name;
-   		$conf->config_value = json_encode($save);
+   		$confw = new Model_Config();
+   		$confw->where('group_name','=','widget')
+		   			->where('config_key','=',$this->widget_name)
+		   			->limit(1)->find();
+   		if (!$confw->loaded())
+   		{
+   			$confw->group_name = 'widget';
+   			$confw->config_key = $this->widget_name;
+   		}
+   		
+   		$confw->config_value = json_encode($save);
 
    		try {
-   			$conf->save();
-   			$this->loaded = TRUE;
+   			$confw->save();
+
+   			//remove from previous placeholder, only if they are different
+        	if ($this->placeholder !== $old_placeholder AND $old_placeholder!=NULL)
+        	{
+        		$confp = new Model_Config();
+
+		   		$confp->where('group_name','=','placeholder')
+		   			->where('config_key','=',$old_placeholder)
+		   			->limit(1)->find();
+		   			
+		   		if ($confp->loaded())
+		   		{
+		   			$confp->group_name = 'placeholder';
+		   			$confp->config_key = $old_placeholder;
+		   			//remove the key
+		   			$wid = json_decode($confp->config_value);
+		   			$key = array_search($this->widget_name, $wid);
+
+		   			if ($key!==FALSE)
+		   				unset($wid[$key]);
+
+		   			$confp->config_value = json_encode($wid);
+
+		   			$confp->save();
+		   		}
+
+        	}
+
+   			//adding the widget to the placeholder
+   			//get widgets in the placeholder array
+   			$w_placeholders = widgets::get($this->placeholder, TRUE);
+   			//if name exists in placeholder don't change anything
+   			if (!in_array($this->widget_name, $w_placeholders))
+   			{
+   				//if doesnt exists add it to the end and save
+   				$w_placeholders[] = $this->widget_name;
+
+   				// save palceholder to DB
+		   		$confp = new Model_Config();
+		   		$confp->where('group_name','=','placeholder')
+		   			->where('config_key','=',$this->placeholder)
+		   			->limit(1)->find();
+		   		if (!$confp->loaded())
+		   		{
+		   			$confp->group_name = 'placeholder';
+		   			$confp->config_key = $this->placeholder;
+		   		}
+		   		
+		   		$confp->config_value = json_encode($w_placeholders);
+		   		$confp->save();
+
+   			}
+
+        	
+        	$this->loaded = TRUE;
    			return TRUE;
    		} 
    		catch (Exception $e) {
@@ -220,31 +293,33 @@ abstract class Widget{
 	 */
 	public function html_tag($name, array $options, $value = NULL)
 	{
-		$out = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label', 'for'=>$name));
-
+		$label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label', 'for'=>$name));
+		//$out = '';
 		if ($value === NULL)
 			$value = (isset($options['default'])) ? $options['default']:NULL;
 
 
-		$attributes = array('placeholder' => (isset($options['default'])) ? $options['default']:$name, 
-					'class'		 => 'input-large', 
-					'id' 		=> $name, 
-					(isset($options['required']))?'required':''
+		$attributes = array('placeholder' => (isset($options['label'])) ? $options['label']:$name, 
+							'class'		  => 'input-large', 
+							'id' 		  => $name, 
+							(isset($options['required']))?'required':''
 					);
 
 		switch ($options['display']) 
 		{
 			case 'select':
-				$out.=FORM::select($name, $options['options'],$value , $attributes);
+				$input = FORM::select($name, $options['options'], $value, $attributes);
 				break;
 			case 'textarea':
-				$out.=FORM::textarea($name, $value, $attributes);
+				$input = FORM::textarea($name, $value, $attributes);
 				break;
 			case 'text':
 			default:
-				$out.=FORM::input($name, $value, $attributes);
+				$input = FORM::input($name, $value, $attributes);
 				break;
 		}
+
+		$out = $label.'<div class="controls">'.$input.'</div>';
 
 		
 

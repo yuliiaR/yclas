@@ -22,20 +22,15 @@ class Widget_Text extends Widget
 								'text_title'  => array(	'type'		=> 'text',
 						 		  						'display'	=> 'text',
 						 		  						'label'		=> __('Text title displayed'),
-						 		  						'default'   => 'Title',
 														'required'	=> TRUE),
-								
+								//@todo allow HTML in the body
 						 		'text_body'  => array(	'type'		=> 'textarea',
 						 		  						'display'	=> 'textarea',
 						 		  						'label'		=> __('HTML/text content here'),
-						 		  						'default'   => 'Text',
 														'required'	=> TRUE),
 
 						 		
 						 		);
 	}
-
-
-
 
 }
