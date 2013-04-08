@@ -6,7 +6,6 @@
 
 			<?if ($user->has_access_to_any('ad,category,location,user,role,access,widget,content')):?>
 				<li class="nav-header"><?=__('Administration')?></li>
-
 				<?sidebar_link(__('Ads'),'ad')?>
 				<?sidebar_link(__('Moderation'),'ad','moderate')?>
 				<?sidebar_link(__('Categories'),'category')?>
