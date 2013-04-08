@@ -10,6 +10,25 @@
  */
 class Controller_Panel_Widget extends Auth_Controller {
 
+    public function action_test()
+    {
+        $this->before('oc-panel/pages/widgets/main');
+
+        //template header
+        $this->template->title  = __('Widgets');
+
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Widgets')));
+
+        $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
+        $this->template->scripts['footer'][] = 'js/oc-panel/widgets.js';
+
+
+        $this->template->widgets        = Widgetsn::get_widgets();
+        $this->template->placeholders   = Widgetsn::get_placeholders();
+
+    }
+    
+
 	/**
 	 * action_index
 	 * @return admin widget view 
@@ -18,17 +37,17 @@ class Controller_Panel_Widget extends Auth_Controller {
    	{
 
    		//template header
-		$this->template->title           	= __('Widgets');
-		$this->template->meta_description	= __('Widgets');
-				
-		// $this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
-		// $this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
-		$this->template->scripts['header'][] = 'js/oc-panel/widget.js';
-		$this->template->scripts['header'][] = 'http://code.jquery.com/ui/1.10.2/jquery-ui.js';
+   		$this->template->title           	= __('Widgets');
+   		$this->template->meta_description	= __('Widgets');
+   				
+   		// $this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
+   		// $this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
+   		$this->template->scripts['header'][] = 'js/oc-panel/widget.js';
+   		$this->template->scripts['header'][] = 'http://code.jquery.com/ui/1.10.2/jquery-ui.js';
 
 
    		$placeholders 		= Widgets::$placeholder;
-        $theme_widgets 		= Widgets::$theme_widgets;
+        $theme_widgets 	    = Widgets::$theme_widgets;
    		$default_widgets 	= Widgets::$default_widgets;
    		// $basic_information  = Widgets::basic_information();
 
@@ -36,25 +55,25 @@ class Controller_Panel_Widget extends Auth_Controller {
    		// d($placeholder_name);
    		if(in_array($placeholder_name, $placeholders) || empty($placeholder_name))
    		{
-	   		foreach ($placeholders as $p => $value) { 
-	   			$config = new Model_Config();
+	   	    foreach ($placeholders as $p => $value) 
+            { 
+	   		    $config = new Model_Config();
 	   			$placeholder_ref = $config->where('config_key', '=', $value.'_placeholder')
 	   											   ->and_where('group_name', '=', 'widget')
 	   											   ->limit(1)->find();
 
 	   	   		if($placeholder_ref->loaded())
 	   	   		{
-	   	   			$active_widgets[$value] = json_decode(core::config('widget.'.$value.'_placeholder'), true);
-	   	   			
+   	   	   			$active_widgets[$value] = json_decode(core::config('widget.'.$value.'_placeholder'), true);
 
                     // get basic info for each widget
                     $basic_info[$value] = NULL;
-                    foreach ($active_widgets[$value] as $key => $value) {
-                    
-                        $widget_class = 'widget_'.preg_replace('/[0-9]/', '', $value);
-                        $basic_info[$value] = $widget_class::get_info();
-                        
+                    foreach ($active_widgets[$value] as $key => $value) 
+                    {
+                       $widget_class = 'widget_'.preg_replace('/[0-9]/', '', $value);
+                       $basic_info[$value] = $widget_class::get_info();
                     } 
+
 	   	   		}
 	   	   		else 
 	   	   		{
@@ -90,7 +109,8 @@ class Controller_Panel_Widget extends Auth_Controller {
    	{
    		$save_widget = $this->request->query();
    		
-   		foreach ($save_widget as $key => $value) {
+   		foreach ($save_widget as $key => $value) 
+        {
    			$placeholder_name = $value;
    			$placeholder_id = $placeholder_name.'_placeholder';
 
@@ -132,7 +152,8 @@ class Controller_Panel_Widget extends Auth_Controller {
    	{
    		$remove_widget = $this->request->query();
 
-   		foreach ($remove_widget as $key => $value) {
+   		foreach ($remove_widget as $key => $value) 
+        {
    			$placeholder_name = $value;
    			$placeholder_id = $placeholder_name.'_placeholder';
 

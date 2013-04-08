@@ -19,14 +19,13 @@
 		    <li><a href="#">Link</a></li>
 		<?endif?>
 		<?endif?>
+
+		<?foreach ( Widgetsn::get('sidebar') as $widget):?>
+			<li><?=$widget->render()?></li>
+		<?endforeach?>
+
 	  </ul>
-	  <!--LOAD ACTIVE WIDGETS-->
-<?$view = Widgets::get('sidebar') ?>
-<?if($view !== NULL):?>
-	<?foreach ( $view as $view => $val):?>
-		<?=$val; // load widget view?>
-	<?endforeach?>
-<?endif?>
-</footer>
+
+
 	</div><!--/.well -->
 </div><!--/span-->

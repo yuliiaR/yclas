@@ -150,6 +150,7 @@ class View extends Kohana_View{
 	    		//still not found :(, try from cascading system
 	    		if (($path = Kohana::find_file('views', $file)) === FALSE)
 	    		{
+                    //d($file);
 	    			throw new View_Exception('The requested view :file could not be found', array(
 	    	                				':file' => $file,
 	    			));
@@ -164,30 +165,5 @@ class View extends Kohana_View{
     	return $this;
     }
 
-    /**
-     * Gets from conf DB json object of active widgets
-     * @param  string $name_placeholder [name of colling placeholder]
-     * @return [string]                   [widget code]
-     */
-    public static function widget($name_placeholder = 'sidebar')
-    {
-        $json_object = core::config('widget.'.$name_placeholder.'_widget');
-        $obj = json_decode($json_object, true); // to array
-
-        if($obj)
-        {
-            if(!empty($obj[$name_placeholder][0]))
-            {
-                // array of widget path, to include to view
-                foreach ($obj[$name_placeholder] as $o => $value) 
-                {
-                    $active_widgets[$value['name'].$o] = View::factory($value['path'], array('class'=>View::factory($value['class'])));
-                }
-            } else $active_widgets = NULL;
-
-        } else $active_widgets = NULL;
-        
-        return $active_widgets;
-    }
     
 }

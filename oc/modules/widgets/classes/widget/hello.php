@@ -1,7 +1,8 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
-class Widget_Hello extends Widget
+class Widget_Hello
 {
+
 	/**
 	 * $name
 	 * Name of placeholder
@@ -9,28 +10,14 @@ class Widget_Hello extends Widget
 	 */
 	public static $title = 'hello';
 
-	/**
-	 * $deactivate_placeholder 
-	 * limit placeholders for this widget 
-	 * (leave empty array for NO restrictions )
-	 * 
-	 * @var array
-	 */
-	public static $deactivate_placeholder = array('footer');
-
-	public function set_info()
-	{
-		$this->$title = 'hello';
-		$this->$short_description = __('Hello world is our first widget');
-	}
+	
+public static $deactivate_placeholder = array();
 
 	public static function get_info()
 	{
 		
-		return array('short_description' 		=>__('Hello world is our first widget'),
+		return array('short_description' 		=>__('This is simple hello text'),
 					 'title'					=>self::$title, 
 					 'deactivate_placeholder'	=>self::$deactivate_placeholder);
 	}
-
-
 }

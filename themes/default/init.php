@@ -6,6 +6,10 @@
 Widgets::$placeholder = array('footer', 'sidebar', 'header');
 Widgets::$theme_widgets = array();
 
+//new
+Widgetsn::$theme_placeholders	= array('footer', 'sidebar');
+Widgetsn::$theme_widgets 		= array();
+
 //twitter theme initialization
 View::$styles	            = array('css/styles.css' => 'screen',
 									'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulean/bootstrap.min.css' => 'screen',
