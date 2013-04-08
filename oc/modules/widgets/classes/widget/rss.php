@@ -15,8 +15,8 @@ class Widget_RSS extends Widget
 	public function __construct()
 	{	
 
-		$this->title = __('RSS reader');
-		$this->description = __('Reads the RSS URL');
+		$this->title 		= __('RSS reader');
+		$this->description 	= __('Reads the RSS URL');
 
 		$this->fields = array(	'rss_limit' => array( 	'type'		=> 'numeric',
 														'display'	=> 'select',

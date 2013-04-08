@@ -186,13 +186,10 @@ VALUES (1, 'admin', 'admin', '".$_POST['ADMIN_EMAIL']."', '$password', 1, 10)");
 /**
  * Configs to make the app work
  * @todo refactor to use same coding standard
+ * @todo widgets examples? at least at sidebar, rss, text advert, pages, locations...
  *
  */
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `config_key`, `config_value`) VALUES
-
-('widget', 'sidebar_placeholder', '[]'),
-('widget', 'header_placeholder', '[]'),
-('widget', 'footer_placeholder', '[]'),
 ('sitemap', 'expires', '43200'),
 ('sitemap', 'on_post', 'TRUE'),
 ('appearance', 'theme', 'default'),

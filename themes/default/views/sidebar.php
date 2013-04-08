@@ -20,7 +20,7 @@
 		<?endif?>
 		<?endif?>
 
-		<?foreach ( Widgetsn::get('sidebar') as $widget):?>
+		<?foreach ( widgets::get('sidebar') as $widget):?>
 			<li><?=$widget->render()?></li>
 		<?endforeach?>
 

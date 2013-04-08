@@ -5,17 +5,23 @@
  *
  * @package    OC
  * @category   Widget
- * @author     Slobodan <slobodan.josifovic@gmail.com>
- * @copyright  (c) 2009-2011 Open Classifieds Team
+ * @author     Chema <chema@garridodiaz.com>, Slobodan <slobodan.josifovic@gmail.com>
+ * @copyright  (c) 2009-2013 Open Classifieds Team
  * @license    GPL v3
  */
 
 class Widgets {
 	
+
 	/**  
 	 * @var array of widget placeholders in theme, @ /themes/THEMENAME/init.php
 	 */
-	public static $placeholder = array();
+	public static $theme_placeholders = array();
+
+	/**
+	 * @var array of default placeholders, @ /modules/widgets/init.php
+	 */
+	public static $default_placeholders = array();
 	
 	/**
 	 * @var array of widget specific to theme, @ /themes/THEMENAME/init.php
@@ -30,39 +36,89 @@ class Widgets {
 	/**
 	 * Gets from conf DB json object of active widgets
 	 * @param  string $name_placeholder name of placeholder
-	 * @return [string]                 [widget code]
+	 * @return array widgets
 	 */
 	public static function get($name_placeholder)
 	{
-		$json_object = core::config('widget.'.$name_placeholder.'_placeholder');
-		
-		if($json_object)
+
+		$widgets = array();
+
+		$active_widgets = core::config('placeholder.'.$name_placeholder);
+
+		if($active_widgets!==NULL AND !empty($active_widgets) AND $active_widgets !== '[]')
 		{ 
-			if(!empty($json_object) && $json_object !== '[]')
-			{
-				$active = json_decode($json_object, true);
-				
-				// array of widget path, to include to view
-				foreach ($active as $a => $value) 
-				{	
-					$widget_name = preg_replace('/[0-9]/', '', $value); 
-					if(in_array($widget_name, self::$default_widgets) || in_array($widget_name, self::$theme_widgets))
-					{
-						$active_widgets[$value] = View::factory($widget_name);
-					}
-					else $active_widgets[$value] = NULL;
-					// d($widget_name);
+			
+			$active_widgets = json_decode($active_widgets, TRUE);
+			
+			// array of widget path, to include to view
+			foreach ($active_widgets as $widget_name) 
+			{	
+				//search for widget config
+				$widget_data = core::config('widget.'.$widget_name);
+
+				//found and with data!
+				if($widget_data!==NULL AND !empty($widget_data) AND $widget_data !== '[]')
+				{ 
+					$widget_data = json_decode($widget_data, TRUE);
+					
+					//creating an instance of that widget
+					$widget = new $widget_data['class'];
+					//populate the data we got
+					$widget->load($widget_name, $widget_data['data']);
+
+					$widgets[] = $widget;
+					
 				}
+				
+			}//end for
 
-			} 
-			else 
-				$active_widgets = NULL;
-
-		} 
-		else 
-			$active_widgets = NULL;
+		} //end if widgets
 		
-		return $active_widgets;
+		
+		return $widgets;
+	}
+
+	/**
+	 * returns all the widgets 
+	 * @param bool $only_names, returns only an array with the widgets names, if not array with widgets instances
+	 * @return array 
+	 */
+	public static function get_widgets($only_names = FALSE)
+	{
+		$widgets = array();
+
+		$list = array_unique(array_merge(Widgetsn::$default_widgets, Widgetsn::$theme_widgets));
+		if ($only_names)
+			return $list;
+
+		 //creating an instance of each widget
+        foreach ($list as $widget_name) 
+			$widgets[] = new $widget_name;
+
+
+        return $widgets;
+	}
+
+	/**
+	 * returns placeholders names + widgets
+	 * @param bool $only_names, returns only an array with the placeholders names, if not array with widgets instances
+	 * @return array 
+	 */
+	public static function get_placeholders($only_names = FALSE)
+	{
+		$placeholders = array();
+
+		$list = array_unique(array_merge(Widgetsn::$default_placeholders, Widgetsn::$theme_placeholders));
+
+		if ($only_names)
+			return $list;
+
+		//get the widgets for the placeolders
+        foreach ($list as $placeholder) 
+        	$placeholders[$placeholder] = Widgetsn::get($placeholder);
+
+        return $placeholders;
+        
 	}
 
 }//end class Widget

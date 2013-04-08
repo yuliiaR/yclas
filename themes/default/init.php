@@ -1,14 +1,10 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
- * widgets
+ * placeholders & widgets for this theme
  */
-Widgets::$placeholder = array('footer', 'sidebar', 'header');
-Widgets::$theme_widgets = array();
-
-//new
-Widgetsn::$theme_placeholders	= array('footer', 'sidebar');
-Widgetsn::$theme_widgets 		= array();
+widgets::$theme_placeholders	= array('footer', 'sidebar');
+widgets::$theme_widgets 		= array();
 
 //twitter theme initialization
 View::$styles	            = array('css/styles.css' => 'screen',
