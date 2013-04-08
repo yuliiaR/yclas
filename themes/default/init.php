@@ -7,7 +7,8 @@ Widgets::$placeholder = array('footer', 'sidebar', 'header');
 Widgets::$theme_widgets = array();
 
 //twitter theme initialization
-View::$styles	            = array('http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulean/bootstrap.min.css' => 'screen',
+View::$styles	            = array('css/styles.css' => 'screen',
+									'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulean/bootstrap.min.css' => 'screen',
 									'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css' => 'screen',
 									 'css/chosen.css' => 'screen');
 
@@ -56,6 +57,30 @@ function sidebar_link($name,$controller,$action='index',$route='oc-panel')
 			<a href="<?=Route::url($route,array('controller'=>$controller,
 												'action'=>$action))?>">
 				<?=$name?>
+			</a>
+		</li>
+	<?
+	}
+}
+
+/**
+ * nav_link generates a link for main nav-bar
+ * @param  string $name       translated name in the A
+ * @param  string $controller
+ * @param  string $action  
+ * @param  string $icon 		class name of bootstrap	icon to append with nav-link   
+ * @param  string $route      
+ */
+function nav_link($name,$controller, $icon=NULL, $action='index', $route='default')
+{	
+	if (Auth::instance()->get_user()->has_access($controller))
+ 	{
+ 	?>
+		<li <?=(Request::current()->controller()==$controller 
+				&& Request::current()->action()==$action)?'class="active"':''?> >
+			<a href="<?=Route::url($route,array('controller'=>$controller,
+												'action'=>$action))?>">
+				<i class="<?=$icon?>"></i><?=$name?>
 			</a>
 		</li>
 	<?

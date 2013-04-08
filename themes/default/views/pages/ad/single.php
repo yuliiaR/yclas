@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="row-fluid">
-	<?=View::factory('sidebar')?>
-	<div class="span10">
+
+	<div class="span9 well">
 		<?if ($ad->status != 1 && $permission === FALSE):?>
 		<div class="page-header">
 			<h1><?= __('This advertisement does not exist, or is not yet published')?></h1>
@@ -31,8 +31,8 @@
 		</div>
 		<?endif?>
 	    	<p><strong>Price : </strong> <?= $ad->price?></p>
-		    <p><strong>description : </strong><?= Text::bb2html($ad->description,TRUE)?></p>	
-		    <p><strong>published: </strong> <?= $ad->created?></p>
+		    <p><strong>Description : </strong><?= Text::bb2html($ad->description,TRUE)?></p>	
+		    <p><strong>Published: </strong> <?= $ad->created?></p>
 		    <p><strong>Hits: </strong><?echo $hits?></p>	    
 			
 			<button class="btn btn-success"type="button" data-toggle="modal" data-target="#contact-modal">Send Message</button>

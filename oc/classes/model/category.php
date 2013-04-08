@@ -74,30 +74,37 @@ class Model_Category extends ORM {
 			        'description'			=> __('Description'),
 			        'price'					=> __('Price'));
 	}
-	public function get_categories()
+	
+	/**
+	 * [get_category_children] Array of self children 
+	 * @return [array]
+	 */
+	public function get_category_children()
 	{
 		$list = new self;
-		$list = $list->find_all();
+		$categories = $list->find_all();
 		
-		foreach ($list as $l) {
-			$result[$l->name] = $l->id_category;
-		}
+		$ads = new Model_Ad();
+		
 
-		foreach ($result as $res => $value) {
-			foreach ($list as $l) {
-				if($l->id_category_parent == $value)
-				{
-					$result[$l->name] = array('id'			=> $l->id_category,
-									 // 'name'		=> $l->name, 
-									  'parent'		=> $l->id_category_parent, 
-									  'parent_deep'	=> $l->parent_deep,
-									  'order'		=> $l->order);
-				}
+		foreach ($categories as $c) 
+		{
+			$count = $ads->where('id_category', '=', $c->id_category)->count_all();
+
+			if($c->id_category != $c->id_category_parent)
+			{	
+				$children_categ[$c->id_category] = array('id_category'	=> $c->id_category,
+														'name'			=> $c->name,
+														'parent'		=> $c->id_category_parent,
+														'parent_deep'	=> $c->parent_deep,
+														'order'			=> $c->order,
+														'price'			=> $c->price,
+														'count'			=> $count
+														);
 			}
-			
 		}
 		
-		return $result;
+		return $children_categ;
 	}
 	
 	/**
@@ -110,10 +117,13 @@ class Model_Category extends ORM {
 		 
 		$form->fields['description']['display_as'] = 'textarea';
 		
-			$form->fields['price']['caption'] = 'currency';
-		
-			$form->fields['parent_deep']['display_as'] = 'select';
-			$form->fields['parent_deep']['options'] = range(0,3);
+		$form->fields['price']['caption'] = 'currency';
+	
+		$form->fields['parent_deep']['display_as'] = 'select';
+		$form->fields['parent_deep']['options'] = range(0,3);
+
+		$form->fields['id_category_parent']['display_as'] = 'select';
+		$form->fields['id_category_parent']['options'] = range(0,1000);
 
 		$form->fields['order']['display_as'] = 'select';
 		$form->fields['order']['options'] = range(0,30);

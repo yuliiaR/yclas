@@ -30,6 +30,7 @@
 		//find all, for populating form select fields 
 		$_cat = $category->find_all();
 		$_loc = $location->find_all();
+		$children_categ = $category->get_category_children();
 	
 		$form_show = array('captcha'	=>core::config('formconfig.captcha-captcha'),
 						   'website'	=>core::config('formconfig.advertisement-website'),
@@ -41,6 +42,7 @@
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/ad/new', array('_cat'				=> $_cat,
 																	   '_loc' 				=> $_loc,
+																	   'children_categ'		=> $children_categ,
 																	   'form_show'			=> $form_show));
 	
 		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),

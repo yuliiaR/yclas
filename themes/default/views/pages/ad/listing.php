@@ -1,41 +1,44 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="row-fluid">
-	<?=View::factory('sidebar')?>
-	<div class="span10">
+	<div class="span9">
 	 
 	<ul class="breadcrumb">
-        	<li><a href="#">Home</a> <span class="divider">&raquo;</span></li>
-        	<li><a href="#">Category</a> <span class="divider">&raquo;</span></li>
-        	<li><a href="#">Location</a> <span class="divider">&raquo;</span></li>
-        	<li class="active">page 1</li>
+    	<li><a href="#">Home</a> <span class="divider">&raquo;</span></li>
+    	<li><a href="#">Category</a> <span class="divider">&raquo;</span></li>
+    	<li><a href="#">Location</a> <span class="divider">&raquo;</span></li>
+    	<li class="active">page 1</li>
 	</ul>
-	
+	<div class="well advise clearfix" id="advise">
+		<p><?=__('Apartments, flats, monthly rentals, long terms, for days... this is the section to have your apartment!')?></p>
+		<i class="icon-pencil"></i> <a title="New Advertisement" href="<?=Route::url('post_new')?>">Publish new advertisement</a>
+	</div><!--end of advise-->
 	<?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
 	   	<?if($ad->featured >= Date::unix2mysql(time())):?>
-	    <article class="list well clearfix featured">
+	    	<article class="list well clearfix featured">
 	    <?else:?>
-	    <article class="list well clearfix">
+	    	<article class="list well clearfix">
 	    <?endif?>
 	    	<h2>
-	    	<?if(is_string($cat)):?>
-	    		<?$cat_name = $cat?>
-	    	<?else:?>
-	    	<?foreach ($cat as $cat){ if($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
-	    	<?endif?>
-	    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
+		    	<?if(is_string($cat)):?>
+		    		<?$cat_name = $cat?>
+		    	<?else:?>
+		    	<?foreach ($cat as $cat){ if($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
+		    	<?endif?>
+		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 	    	</h2>
 	    	<?if($img_path[$ad->seotitle] != NULL):?>
-	    		 <img src="/<?=$img_path[$ad->seotitle][1]?>" class="img-polaroid">
+	    		 <img src="/<?=$img_path[$ad->seotitle][1]?>" class="img-polaroid advert_img" >
 	    	<?endif?>
+	    	
 	    	<ul>
-	    		<?php if ($ad->published!=0){?>
-		   			<li><b><?= _e('Publish Date');?>:</b> <?= $ad->published;?></li>
-		   		<?php }?>
-		    	<?php if ($ad->price!=0){?>
+	    		<?if ($ad->published!=0){?>
+		   			<li><b><?= _e('Publish Date');?>:</b> <?= Date::format($ad->published)?></li>
+		   		<? }?>
+		    	<?if ($ad->price!=0){?>
 		    		<li class="price"><?= _e('Price');?>: <b><?= $ad->price;?>&euro;</b></li>
-		    	<?php }?>  
+		    	<?}?>  
 		    </ul>
 		 
 		    <p><?= Text::bb2html($ad->description,TRUE);?></p>
@@ -93,5 +96,23 @@
 				</form>
 			</div>
 	  <?endif?>
-	</div><!--/span--> 
+	</div><!--/span-->
+	<div class="span3">
+        <div class="category_box_title custom_box">
+        </div>
+        <div class="well custom_box_content" style="padding: 8px 0;">
+        </div>
+    </div>
+    <div class="span3">
+        <div class="category_box_title custom_box">
+        </div>
+        <div class="well custom_box_content" style="padding: 8px 0;">
+        </div>
+    </div>
+    <div class="span3">
+        <div class="category_box_title custom_box">
+        </div>
+        <div class="well custom_box_content" style="padding: 8px 0;">
+        </div>
+    </div>  
 </div><!--/row-->

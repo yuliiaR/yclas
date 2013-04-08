@@ -3,9 +3,9 @@
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
 
-			<?if ($user->has_access_to_any('post,category')): //@TODO add rest of parameters?>
+			<?if ($user->has_access_to_any('ad,category,location,user,role,access,order,widget,content')): //@TODO add rest of parameters?>
 
-				<li class="nav-header"><?=__('Administration')?></li>
+			<li class="nav-header"><?=__('Administration')?></li>
 
 				<?sidebar_link(__('Ads'),'ad')?>
 				<?sidebar_link(__('Moderation'),'ad','moderate')?>

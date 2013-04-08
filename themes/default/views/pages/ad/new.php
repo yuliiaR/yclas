@@ -1,14 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="row-fluid">
-<?=View::factory('sidebar')?>
-	<div class="span10">
+	<div class="span9 well">
 		 <?=Form::errors()?>
 		<div class="page-header">
 			<h1><?=__('Publish new advertisement')?></h1>
 		</div>
-		<div id="advise" class="well advise clearfix">
-			<p class="text-warning"> Price for this advertisement is: </p>
-		</div>
+		
 		<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control-group">

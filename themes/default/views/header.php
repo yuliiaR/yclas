@@ -7,31 +7,34 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="<?=Route::url('default')?>">Site name</a>
+			<a class="brand" href="<?=Route::url('default')?>"><?=core::config('general.site_name')?></a>
 			
-			<?$cat = new Model_Category(); $cat_list = $cat->get_categories();?>
+			<?$cat = new Model_Category(); $cat_list = $cat->find_all(); $children_categ = $cat->get_category_children()?>
 			
-			<div class="nav-collapse">
+			<div class="nav-collapse main_nav">
 				<ul class="nav">
-
-					<li><a href="/">Cat 2</a></li>
-					<li class="active"><a href="<?= Route::url('default', array('controller'=>'ad', 'action'=>'all'));?>">Listing</a></li>
-					<li><a href="<?= Route::url('contact');?>">Contact Us</a></li>
+					<?nav_link(__('Home'),'home', 'icon-home')?>
+					<?nav_link(__('Listing'),'ad', 'icon-list' ,'all')?>
+					<?nav_link(__('Contact Us'),'contact', 'icon-envelope')?>
 					<li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
 		              <ul class="dropdown-menu">
 
-		              	<?foreach($cat_list as $cat_list => $value):?>
+		              	<?foreach($cat_list as $c ):?>
+		              		<?if($c->id_category == $c->id_category_parent || $c->id_category_parent == 0 || $c->id_category_parent == NULL):?>
 
-		              		<?if($value['id'] <= $value['parent']):?>
-								<li class="nav-header"><?=$cat_list?></li>
-								<li class="divider"></li>							
+								<li class="nav-header"><p><a title="<?=$c->name?>" href="<?=Route::url('sort_by', array('category'=>$c->name))?>"><?=$c->name?></a></p></li>
+															
+							 	<?foreach($children_categ as $chi):?>
+                            	<?if($chi['parent'] == $c->id_category):?>
+                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('sort_by', array('category'=>$chi['name']))?>"><?=$chi['name']?> <span class="count_ads">( <?=$chi['count']?> )</span></a></li>
+                           		<?endif?>
+                         		<?endforeach?>
+								<li class="divider"></li>
 							<?endif?>
-								<li><a title="<?=$cat_list?>" href="<?=Route::url('sort_by', array('category'=>$cat_list))?>"> <?=$cat_list?></a></li>
 						<?endforeach?>
 		              </ul>
 		            </li>
-		            <li><a href="/">Cat 5</a></li>
 		        </ul>
 		        <?= FORM::open(Route::url('default',array('controller'=>'ad','action'=>'all')), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>'','enctype'=>'multipart/form-data'))?>
 		            <input type="text" name="search" class="search-query span2" placeholder="<?=__('Search')?>">

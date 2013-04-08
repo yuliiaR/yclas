@@ -2,6 +2,7 @@
 
 class Controller_Ad extends Controller {
 	
+
 	/**
 	 * Publis all adver.-s without filter
 	 */
@@ -221,8 +222,6 @@ class Controller_Ad extends Controller {
 				$path = NULL;
 				$img_path[$a->seotitle] = $path;	
 			} 
-			
-
 		}
 
 		// array of categories sorted for view

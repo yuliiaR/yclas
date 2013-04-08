@@ -1,7 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="row-fluid">
-<div class="span10">
-		 <?=Form::errors()?>
+	<div class="span9 well">
+		<?=Form::errors()?>
+		<h1>Contact Us</h1>
 		<?= FORM::open(Route::url('contact'), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 		<fieldset>
 			<div class="control-group">

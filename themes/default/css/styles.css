@@ -1,0 +1,57 @@
+/**
+ * Custom theme styles that overwrites theme 
+ */
+li{
+	list-style-type: none;
+}
+
+.category_box_title{
+	height: 30px;
+	top: 2px;
+	position: relative;
+	border: 1px solid #e3e3e3;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	border-radius:5px 5px 2px 0px;
+	padding: 10px 0px 0px 0px;
+	background-color: #2fa3e6;
+}
+.custom_box {
+	height: 10px;
+}
+.custom_box_content{
+	background-color: #FFF;
+}
+
+.category_box_title a{
+	color: white;
+	font-size: 17px;
+	margin-left: 5px;
+}
+
+.count_ads{
+	float:right;
+}
+.nav-header a{
+	text-decoration: none;
+	font-size: 12px;
+	position: relative;
+	top: 5px;
+}
+
+.featured{
+	background:#C5DBFA;
+}
+
+.advert_img {
+	float: left;
+	margin-right: 5px;
+}
+
+.price{
+	color: rgb(192, 79, 79);
+}
+
+.latest_ads {
+	background-color: #FFF;
+}
