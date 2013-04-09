@@ -9,8 +9,8 @@
     </button>
 </div> 
 <?else:?>
-    <li id="li_<?=$widget->id_name()?>"><i class="icon-move"></i>  <?=$widget->title?>
-        <button class="btn btn-primary btn-mini" data-toggle="modal" data-target="#<?=$widget->id_name()?>" type="button"><?=__('Edit')?></button>
+    <li id="li_<?=$widget->id_name()?>"><i class="icon-move"></i>  <?=$widget->title()?> <span class="muted"><?=$widget->title?></span>
+        <button class="btn btn-primary btn-mini pull-right" data-toggle="modal" data-target="#<?=$widget->id_name()?>" type="button"><?=__('Edit')?></button>
     </li>
 <?endif?>
 

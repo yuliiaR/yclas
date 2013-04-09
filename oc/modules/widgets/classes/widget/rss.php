@@ -15,8 +15,8 @@ class Widget_RSS extends Widget
 	public function __construct()
 	{	
 
-		$this->title 		= __('RSS reader');
-		$this->description 	= __('Reads the RSS URL');
+		$this->title 		= __('RSS');
+		$this->description 	= __('RSS reader with cache');
 
 		$this->fields = array(	'rss_limit' => array( 	'type'		=> 'numeric',
 														'display'	=> 'select',
@@ -41,11 +41,20 @@ class Widget_RSS extends Widget
 						 		  						'display'	=> 'text',
 						 		  						'label'		=> __('RSS title displayed'),
 						 		  						'default'   => 'Open Classifieds',
-														'required'	=> TRUE),
+														'required'	=> FALSE),
 						 		);
 	}
 
-	
+	/**
+     * get the title for the widget
+     * @param string $title we will use it for the loaded widgets
+     * @return string 
+     */
+    public function title($title = NULL)
+    {
+        return parent::title($this->rss_title);
+    }
+
 	/**
 	 * Automatically executed before the widget action. Can be used to set
 	 * class properties, do authorization checks, and execute other custom code.

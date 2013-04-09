@@ -51,6 +51,7 @@
             border: 1px solid #CCC;
             color: white;
             background: gray;
+            width: 90%;
         }
     
         ul.plholder li.placeholder{
@@ -104,16 +105,14 @@
 				<?foreach ($placeholders as $placeholder=>$widgets):?>
 				<div class="well sidebar-nav">
                 <p class="nav-header"><?=$placeholder?></p>
-                    <?if (count($widgets)>0):?>
 					<ul class="nav nav-list plholder" id="ul_<?=$placeholder?>" >
                         <?foreach ($widgets as $widget):?>
                           <?=$widget->form()?>
                         <?endforeach?>
 					</ul>
-                    <?endif?>
-                <pre id='serialize_output'></pre>
 				</div>
 				<?endforeach?>
+                <pre id='serialize_output'></pre>
 			</div>
 			<!--placeholders-->
 

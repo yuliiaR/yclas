@@ -15,18 +15,28 @@ class Widget_Pages extends Widget
 	public function __construct()
 	{	
 
-		$this->title = __('Display pages');
-		$this->description = __('Siplays pages');
+		$this->title = __('Pages');
+		$this->description = __('Display CMS pages');
 
 		$this->fields = array(	
 						 		'page_title'  => array(	'type'		=> 'text',
 						 		  						'display'	=> 'text',
 						 		  						'label'		=> __('Page title displayed'),
-						 		  						'default'   => 'Pages',
-														'required'	=> TRUE),
+						 		  						'default'   => __('Pages'),
+														'required'	=> FALSE),
 						 		);
 	}
 
+
+    /**
+     * get the title for the widget
+     * @param string $title we will use it for the loaded widgets
+     * @return string 
+     */
+    public function title($title = NULL)
+    {
+        return parent::title($this->page_title);
+    }
 	
 	/**
 	 * Automatically executed before the widget action. Can be used to set

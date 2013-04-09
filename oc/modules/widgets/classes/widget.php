@@ -331,18 +331,7 @@ abstract class Widget{
 	 * @return string html
 	 */
 	public function form()
-	{
-		//renders the view with data if widget is loaded or without if it's for new
-		
-		//if loaded actions: delete, save
-		if ($this->loaded)
-		{
-
-		}
-		else//if new generate unique ID, action save. Update we can not give it a name....
-		{
-			//$this->widget_name = $this->gen_name();
-		}
+	{		
 
 		//for each field reder html_tag
 		$tags = array();
@@ -357,7 +346,6 @@ abstract class Widget{
 																		  'tags'   => $tags
 																		 )
 							);
-
 	}
 
 	/**
@@ -420,6 +408,16 @@ abstract class Widget{
 	{
 		return ($this->widget_name)?$this->widget_name:get_class($this);
 	}
+
+    /**
+     * get the title for the widget
+     * @param string $title we will use it for the loaded widgets
+     * @return string 
+     */
+    public function title($title = NULL)
+    {
+        return ($title!==NULL)?$title:NULL;
+    }
 
 	/**
 	 * Automatically executed before the widget action. Can be used to set
