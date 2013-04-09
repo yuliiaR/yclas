@@ -94,8 +94,20 @@ class Controller_Panel_Widget extends Auth_Controller {
    	 */
    	public function action_remove()
    	{
-   	    Alert::set(Alert::SUCCESS,__('Widget deleted'));
+        $widget_name = $this->request->param('id');
+        if ($widget_name!==NULL)
+        {
+            $w = Widget::factory($widget_name);
 
+            if ($w->delete())
+                Alert::set(Alert::SUCCESS,__('Widget '.$widget_name.' deleted'));
+            else
+                Alert::set(Alert::ERROR,__('Widget '.$widget_name.' can not be deleted'));
+        }
+        else
+            Alert::set(Alert::ERROR,__('Widget param missing'));
+
+        $this->request->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index')));
     }
 
 }

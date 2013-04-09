@@ -58,23 +58,7 @@ class Widgets {
 				}
 				else
 				{
-					//search for widget config
-					//d('widget.'.$widget_name);
-					$widget_data = core::config('widget.'.$widget_name);
-					//d($widget_data);
-					//found and with data!
-					if($widget_data!==NULL AND !empty($widget_data) AND $widget_data !== '[]')
-					{ 
-						$widget_data = json_decode($widget_data, TRUE);
-						
-						//creating an instance of that widget
-						$widget = new $widget_data['class'];
-						//populate the data we got
-						$widget->load($widget_name, $widget_data);
-
-						$widgets[] = $widget;
-						
-					}
+                    $widgets[] = Widget::factory($widget_name);
 				}
 				
 				

@@ -86,6 +86,34 @@ abstract class Widget{
 
 	public function __construct(){}
 
+    /**
+     * generates an instance of the correct widget
+     * @param  string  $widget_name 
+     * @param  boolean $loaded      if you wnat the widget to be loaded from DB
+     * @return Widget               
+     */
+    public static function factory($widget_name, $loaded = TRUE)
+    {
+        //search for widget config
+        $widget_data = core::config('widget.'.$widget_name);
+
+        //found and with data!
+        if($widget_data!==NULL AND !empty($widget_data) AND $widget_data !== '[]')
+        { 
+            $widget_data = json_decode($widget_data, TRUE);
+            
+            //creating an instance of that widget
+            $widget = new $widget_data['class'];
+
+            //populate the data we got
+            if ($loaded)
+                $widget->load($widget_name, $widget_data);
+
+            return $widget;
+        }
+
+        return NULL;
+    }
 
 	/**
 	 * gets the fields value form the DB config
@@ -216,6 +244,54 @@ abstract class Widget{
    		return FALSE;
 		
 	}
+
+
+    /**
+     * delete current widget data from the DB config
+     * @return boolean 
+     */
+    public function delete()
+    {
+
+        if($this->loaded)
+        {
+            // save widget to DB
+            $confw = new Model_Config();
+            $confw->where('group_name','=','widget')
+                        ->where('config_key','=',$this->widget_name)
+                        ->limit(1)->find();
+            if ($confw->loaded())
+            {
+                try {
+                    $confw->delete();
+                    //remove from previous placeholder, only if they are different
+                    $confp = new Model_Config();
+                    $confp->where('group_name','=','placeholder')
+                        ->where('config_key','=',$this->placeholder)
+                        ->limit(1)->find();
+                        
+                    if ($confp->loaded())
+                    {
+                        //remove the key
+                        $wid = json_decode($confp->config_value);
+                        $key = array_search($this->widget_name, $wid);
+                        if ($key!==FALSE)
+                            unset($wid[$key]);
+                        $confp->config_value = json_encode($wid);
+                        $confp->save();
+                    }
+                    
+                    $this->data = array();
+                    $this->loaded = FALSE;
+                    return TRUE;
+                } 
+                catch (Exception $e) {
+                    throw new HTTP_Exception_500();     
+                }
+            }
+        }
+        return FALSE;        
+    }
 
 	/**
 	 * unload the widget

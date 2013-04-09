@@ -9,7 +9,7 @@
     </button>
 </div> 
 <?else:?>
-    <li><i class="icon-move"></i>  <?=$widget->title?>
+    <li id="li_<?=$widget->id_name()?>"><i class="icon-move"></i>  <?=$widget->title?>
         <button class="btn btn-primary btn-mini" data-toggle="modal" data-target="#<?=$widget->id_name()?>" type="button"><?=__('Edit')?></button>
     </li>
 <?endif?>
@@ -49,8 +49,8 @@
     <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true" ><?=__('Close')?></button>
     
     <?if ($widget->loaded):?>
-        <a onclick="return form_action('delete','<?=__('Sure you want to delete the widget? You can move it to the inactive placeholder')?>');"
-            href="<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'remove','id'=>$widget->widget_name))?>" class="btn btn-danger">
+        <a onclick="return confirm('<?=__('Sure you want to delete the widget? You can move it to the inactive placeholder')?>');"
+            href="<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'remove','id'=>$widget->widget_name))?>" class="btn btn-danger pull-left">
             <i class="icon-trash icon-white"></i></a>
     <?endif?>
 

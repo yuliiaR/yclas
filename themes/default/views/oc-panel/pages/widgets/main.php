@@ -31,14 +31,49 @@
         .sidebar-nav {
             padding: 9px 0;
         }
+
+
         body.dragging, body.dragging * {
           cursor: move !important;
         }
         .dragged {
             position: absolute;
-            opacity: 0.5;
+            top: 0;
+            opacity: .5;
             z-index: 2000;
         }
+
+        ul.plholder li{
+            cursor: move !important;
+            display: block;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #CCC;
+            color: white;
+            background: gray;
+        }
+    
+        ul.plholder li.placeholder{
+            position: relative;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        ul.plholder li.placeholder:before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            margin-top: -5px;
+            left: -5px;
+            top: -4px;
+            border: 5px solid transparent;
+            border-left-color: red;
+            border-right: none;
+            color: red;
+        }
+
     </style>
 
   </head>
@@ -69,11 +104,14 @@
 				<?foreach ($placeholders as $placeholder=>$widgets):?>
 				<div class="well sidebar-nav">
                 <p class="nav-header"><?=$placeholder?></p>
-					<ul class="nav nav-list placeholder">
+                    <?if (count($widgets)>0):?>
+					<ul class="nav nav-list plholder" id="ul_<?=$placeholder?>" >
                         <?foreach ($widgets as $widget):?>
                           <?=$widget->form()?>
                         <?endforeach?>
 					</ul>
+                    <?endif?>
+                <pre id='serialize_output'></pre>
 				</div>
 				<?endforeach?>
 			</div>
