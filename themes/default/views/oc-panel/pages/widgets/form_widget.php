@@ -9,7 +9,7 @@
     </button>
 </div> 
 <?else:?>
-    <li id="li_<?=$widget->id_name()?>"><i class="icon-move"></i>  <?=$widget->title()?> <span class="muted"><?=$widget->title?></span>
+    <li class="liholder" id="li_<?=$widget->id_name()?>"><i class="icon-move"></i>  <?=$widget->title()?> <span class="muted"><?=$widget->title?></span>
         <button class="btn btn-primary btn-mini pull-right" data-toggle="modal" data-target="#<?=$widget->id_name()?>" type="button"><?=__('Edit')?></button>
     </li>
 <?endif?>
@@ -26,7 +26,7 @@
     <form class="form-horizontal" id="form_widget_<?=$widget->id_name()?>" name="form_widget_<?=$widget->id_name()?>" method="post" action="<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'save'))?>" >
         
         <div class="control-group">
-                <label class="control-label" for="placeholder"><?=__('Where do you want the widget displayed?')?></label>
+                <label class="control-label" for="placeholder_form"><?=__('Where do you want the widget displayed?')?></label>
                 <div class="controls">
                     <?=FORM::select('placeholder', array_combine(widgets::get_placeholders(TRUE),widgets::get_placeholders(TRUE)),$widget->placeholder)?>
                 </div>

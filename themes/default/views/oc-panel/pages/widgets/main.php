@@ -43,7 +43,7 @@
             z-index: 2000;
         }
 
-        ul.plholder li{
+        ul.plholder li.liholder{
             cursor: move !important;
             display: block;
             margin: 5px;
