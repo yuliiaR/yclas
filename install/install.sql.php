@@ -203,6 +203,8 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('payment', 'pay_to_go_on_feature', '10'),
 ('payment', 'pay_to_go_on_top', '5'),
 ('payment', 'paypal_account', ''),
+('general', 'number_format', ''),
+('general', 'date_format', ''),
 ('general', 'base_url', '".$_POST['SITE_URL']."'),
 ('general', 'moderation', '0'),
 ('general', 'analytics', ''),
