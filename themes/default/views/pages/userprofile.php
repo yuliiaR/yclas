@@ -7,7 +7,7 @@
 				<h1><?= __('User Profile')?></h1>
 				<p>Name : <?=$user->name?></p>
 				<p>Email : <?= $user->email?></p>
-				<p>Created : <?= $user->created?></p>
+				<p>Created : <?= Date::format($user->created, core::config('general.date_format')) ?></p>
 				<p>Number Logins : <?= $user->logins?></p>
 				<p>Last Login : <?= $user->last_login?></p>
 				<p>Seoname : <?= $user->seoname?></p>

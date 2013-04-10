@@ -73,8 +73,7 @@ function sidebar_link($name,$controller,$action='index',$route='oc-panel')
  */
 function nav_link($name,$controller, $icon=NULL, $action='index', $route='default')
 {	
-	if (Auth::instance()->get_user()->has_access($controller))
- 	{
+	
  	?>
 		<li <?=(Request::current()->controller()==$controller 
 				&& Request::current()->action()==$action)?'class="active"':''?> >
@@ -84,5 +83,4 @@ function nav_link($name,$controller, $icon=NULL, $action='index', $route='defaul
 			</a>
 		</li>
 	<?
-	}
 }

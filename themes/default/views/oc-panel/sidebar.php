@@ -5,7 +5,7 @@
 
 
 			<?if ($user->has_access_to_any('ad,category,location,user,role,access,widget,content')):?>
-				<li class="nav-header"><?=__('Administration')?></li>
+				<li class="nav-header"><i class="icon-briefcase"></i><?=__('Administration')?></li>
 				<?sidebar_link(__('Ads'),'ad')?>
 				<?sidebar_link(__('Moderation'),'ad','moderate')?>
 				<?sidebar_link(__('Categories'),'category')?>
@@ -19,7 +19,7 @@
 			<? endif ?>
 
 			<?if ($user->has_access_to_any('settings,config')):?>
-				<li class="nav-header"><?=__('Settings')?></li>
+				<li class="nav-header"><i class="icon-edit"></i><?=__('Settings')?></li>
 				<?sidebar_link(__('General'), 'settings','general')?>
 				<?sidebar_link(__('Payment'), 'settings','payment')?>
 				<?sidebar_link(__('Email'), 'settings','email')?>
@@ -28,7 +28,7 @@
 			<?endif?>
 
 			<?if ($user->has_access_to_any('tools')):?>
-				<li class="nav-header"><?=__('Tools')?></li>
+				<li class="nav-header"><i class="icon-wrench"></i><?=__('Tools')?></li>
 				<?sidebar_link(__('Sitemap'), 'tools','sitemap')?>
 				<?sidebar_link(__('Migration'), 'tools','migration')?>
 				<?sidebar_link(__('Optimize'), 'tools','optimize')?>
@@ -37,7 +37,7 @@
 			<?endif?>
 
 			<?if ($user->has_access_to_any('profile')):?>
-				<li class="nav-header"><?=__('Profile')?></li>
+				<li class="nav-header"><i class="icon-user"></i><?=__('Profile')?></li>
 				<?sidebar_link(__('Edit'), 'profile','edit')?>
 				<?sidebar_link(__('Change password'), 'profile','changepass')?>
 				<li><a
@@ -47,10 +47,12 @@
 				</li>
 			<?endif?>
 
-			<li class="divider"></li>
-			<li class="nav-header">Open Classifieds</li>
-			<li><a href="http://open-classifieds.com/themes/"><?=__('Themes')?></a></li>
-			<li><a href="http://open-classifieds.com/support/"><?=__('Support')?></a></li>
+			<?if ($user->has_access_to_any('tools'))://@TODO promotions for basic user?> 
+				<li class="divider"></li>
+				<li class="nav-header">Open Classifieds</li>
+				<li><a href="http://open-classifieds.com/themes/"><?=__('Themes')?></a></li>
+				<li><a href="http://open-classifieds.com/download/"><?=__('Support')?></a></li>
+			<?endif?>
 			<li class="divider"></li>
 			
 		</ul>

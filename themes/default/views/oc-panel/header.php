@@ -9,9 +9,6 @@
 	<li><a
 		href="<?=Route::url('oc-panel',array('controller'=>'stats'))?>">
 		<?=__('Stats')?></a></li>
-	<li><a
-		href="<?=Route::url('oc-panel',array('controller'=>'stats'))?>">
-		<?=__('Clean Cache')?></a></li>
 	<li  class="dropdown active"><a href="#" class="dropdown-toggle"
 		data-toggle="dropdown"><i class="icon-plus icon-white"></i> <?=__('New')?> <b class="caret"></b></a>
 	<ul class="dropdown-menu">
@@ -19,8 +16,12 @@
 			<?=__('Category')?> </a></li>
 		<li><a href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?>">
 			<?=__('Location')?> </a></li>
-		<li><a href="<?=Route::url('oc-panel',array('controller'=>'page','action'=>'create'))?>">
-			<?=__('Page')?> </a></li>
+		<li><a href="<?=Route::url('oc-panel',array('controller'=>'user','action'=>'create'))?>">
+			<?=__('User')?> </a></li>
+		<li><a href="<?=Route::url('oc-panel',array('controller'=>'role','action'=>'create'))?>">
+			<?=__('Role')?> </a></li>
+		<li><a href="<?=Route::url('oc-panel',array('controller'=>'content','action'=>'create'))?>">
+			<?=__('Content')?> </a></li>
 		<li class="divider"></li>
 		<li><a href="<?=Route::url('post_new')?>">
 						<i class="icon-pencil"></i>

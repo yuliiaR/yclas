@@ -1,28 +1,28 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
+/**
+ * Controller SETTINGS contains all basic configurations displayed to Admin.
+ */
+
+
 class Controller_Panel_Settings extends Auth_Controller {
 
-	 public function action_form()
+
+    /**
+     * Contains all data releated to new advertisment optional form inputs,
+     * captcha, uploading text file  
+     * @return [view] Renders view with form inputs
+     */
+	public function action_form()
     {
         // validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
 
         // all form config values
-        $formconfig = new Model_Config();
-        $config = $formconfig->where('group_name', '=', 'formconfig')->find_all();
+        $advertisement = new Model_Config();
+        $config = $advertisement->where('group_name', '=', 'advertisement')->find_all();
 
-        // form config name
-        $form_name = array();
-        foreach ($config as $c) 
-        {
-            $form = strchr($c->config_key, '-', true);
-            
-            if(!in_array($form, $form_name))
-            {
-                array_push($form_name, $form);    
-            }
-            
-        }
+       
 
         // save only changed values
         if($this->request->post())
@@ -30,9 +30,9 @@ class Controller_Panel_Settings extends Auth_Controller {
             foreach ($config as $c) 
             {
                 $config_res = $this->request->post($c->config_key); 
-                
+
                 if($config_res !== $c->config_value)
-                {echo $config_res." ".$c->config_value;
+                {
                     $c->config_value = $config_res;
                     try {
                         $c->save();
@@ -45,10 +45,14 @@ class Controller_Panel_Settings extends Auth_Controller {
             
         }
 
-        $this->template->content = View::factory('oc-panel/pages/settings/form', array('form_name'   =>$form_name,
-                                                                                  	   'config'      =>$config));
+        $this->template->content = View::factory('oc-panel/pages/settings/form', array('config'=>$config));
     }
 
+
+    /**
+     * Email configuration 
+     * @return [view] Renders view with form inputs
+     */
     public function action_email()
     {
     	// validation active 
@@ -64,7 +68,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         	foreach ($config as $c) 
             {
                 $config_res = $this->request->post($c->config_key); 
-                
+
                 if($config_res != $c->config_value)
                 {
                     $c->config_value = $config_res;
@@ -83,6 +87,10 @@ class Controller_Panel_Settings extends Auth_Controller {
         $this->template->content = View::factory('oc-panel/pages/settings/email', array('config'=>$config));
     }
 
+    /**
+     * All general configuration related with configuring site.
+     * @return [view] Renders view with form inputs
+     */
     public function action_general()
     {
     	// validation active 
@@ -96,17 +104,23 @@ class Controller_Panel_Settings extends Auth_Controller {
         if($this->request->post())
         {
         	foreach ($config as $c) 
-            {
-                $config_res = $this->request->post($c->config_key); 
-                
-                if($config_res != $c->config_value)
-                {
-                    $c->config_value = $config_res;
-                    try {
-                        $c->save();
-                    } catch (Exception $e) {
-                        echo $e;
-                    }
+            {   
+                if ($c->config_key !== 'ID-pay_to_go_on_top')
+                { 
+                    if($c->config_key !== 'ID-pay_to_go_on_feature')
+                    {
+                        $config_res = $this->request->post($c->config_key); 
+                    
+                        if($config_res != $c->config_value)
+                        {
+                            $c->config_value = $config_res;
+                            try {
+                                $c->save();
+                            } catch (Exception $e) {
+                                echo $e;
+                            }
+                        }
+                    } 
                 }
             }
             // Cache::instance()->delete_all();
@@ -117,6 +131,10 @@ class Controller_Panel_Settings extends Auth_Controller {
         $this->template->content = View::factory('oc-panel/pages/settings/general', array('config'=>$config));
     }
 
+    /**
+     * Payment deatails and paypal configuration can be configured here
+     * @return [view] Renders view with form inputs
+     */
     public function action_payment()
     {
     	// validation active 
@@ -125,14 +143,23 @@ class Controller_Panel_Settings extends Auth_Controller {
         // all form config values
         $paymentconf = new Model_Config();
         $config = $paymentconf->where('group_name', '=', 'payment')->find_all();
-      
+        
+        $paypal_currency = Paypal::get_currency(); // currencies limited by paypal
+
+
         // save only changed values
         if($this->request->post())
         {
         	foreach ($config as $c) 
             {
                 $config_res = $this->request->post($c->config_key); 
+
                 
+                if($c->config_key == 'paypal_currency')
+                {   
+                    $config_res = $paypal_currency[core::post('paypal_currency')];
+                }
+
                 if($config_res != $c->config_value)
                 {
                     $c->config_value = $config_res;
@@ -148,6 +175,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
         }
 
-        $this->template->content = View::factory('oc-panel/pages/settings/payment', array('config'=>$config));
+        $this->template->content = View::factory('oc-panel/pages/settings/payment', array('config'          => $config,
+                                                                                          'paypal_currency' => $paypal_currency));
     }
 }//end of controller

@@ -34,7 +34,7 @@ class Controller_Contact extends Controller {
 			$email 	= NULL;
 		}
 
-		$captcha_show = core::config('formconfig.captcha-captcha');
+		$captcha_show = core::config('advertisement.captcha-captcha');
 		if($this->request->post()) //message submition  
 		{
 			

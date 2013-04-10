@@ -44,7 +44,7 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<?for ($i=0; $i < core::config("formconfig.advertisement-num_images") ; $i++):?> 
+					<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?> 
 						<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'.$i))?>
 						<div class="controls">
 							<input class="input-file" type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" />
@@ -71,7 +71,10 @@
 				<div class="control-group">
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
-						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => __('Price'), 'class' => 'input-xlarge', 'id' => 'price', 'type'=>'number'))?>
+						<div class="input-prepend">
+						<span class="add-on"><?=core::config('general.global-currency')?></span>
+						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => __('Price'), 'class' => 'input-large', 'id' => 'price', 'type'=>'number'))?>
+						</div>
 					</div>
 				</div>
 				<?endif?>

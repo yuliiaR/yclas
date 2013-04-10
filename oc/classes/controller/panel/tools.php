@@ -373,7 +373,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 }
                 catch (ORM_Validation_Exception $e)
                 {
-                    d($e->errors(''));
+                    // d($e->errors(''));
                 }
 
                 $ads_map[$a['idPost']] = $ad->id_ad;

@@ -27,7 +27,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['smtp_active']['key'], __('Smtp active'), array('class'=>'control-label', 'for'=>$forms['smtp_active']['key']))?>
 					<div class="controls">
-						<?= FORM::input($forms['smtp_active']['key'], $forms['smtp_active']['value'], array(
+						<?= FORM::select($forms['smtp_active']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"), $forms['smtp_active']['value'], array(
 						'placeholder' => "TRUE or FALSE", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['smtp_active']['key'], 
@@ -60,7 +60,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['smtp_auth']['key'], __('Smtp auth'), array('class'=>'control-label', 'for'=>$forms['smtp_auth']['key']))?>
 					<div class="controls">
-							<?= FORM::input($forms['smtp_auth']['key'], $forms['smtp_auth']['value'], array(
+							<?= FORM::select($forms['smtp_auth']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"), $forms['smtp_auth']['value'], array(
 							'placeholder' => "", 
 							'class' => 'input-xlarge', 
 							'id' => "10", 
@@ -90,7 +90,6 @@
 						<a title="" data-content="<?=__("Smtp password")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
-				<?var_dump($forms)?>
 				<div class="form-actions">
 					<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))))?>
 				</div>

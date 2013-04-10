@@ -27,7 +27,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['moderation']['key'], __('Moderation'), array('class'=>'control-label', 'for'=>$forms['moderation']['key']))?>
 					<div class="controls">
-						<?= FORM::input($forms['moderation']['key'], $forms['moderation']['value'], array(
+						<?= FORM::select($forms['moderation']['key'], array(0,1,2,3), $forms['moderation']['value'], array(
 						'placeholder' => $forms['moderation']['value'], 
 						'class' => 'input-xlarge', 
 						'id' => $forms['moderation']['key'], 
@@ -79,7 +79,40 @@
 						'class' => 'input-xlarge', 
 						'id' => $forms['advertisements_per_page']['key'], 
 						))?> 
-						<a title="" data-content="<?=__("Base url")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+						<a title="" data-content="<?=__("Base url")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Locale")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['number_format']['key'], __('Number format'), array('class'=>'control-label', 'for'=>$forms['number_format']['key']))?>
+					<div class="controls">
+						<?= FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
+						'placeholder' => "20", 
+						'class' => 'input-xlarge', 
+						'id' => $forms['number_format']['key'], 
+						))?> 
+						<a title="" data-content="<?=__("Number format")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Number format")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['date_format']['key'], __('Date format'), array('class'=>'control-label', 'for'=>$forms['date_format']['key']))?>
+					<div class="controls">
+						<?= FORM::input($forms['date_format']['key'], $forms['date_format']['value'], array(
+						'placeholder' => "d/m/Y", 
+						'class' => 'input-xlarge', 
+						'id' => $forms['date_format']['key'], 
+						))?> 
+						<a title="" data-content="<?=__("Date format")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Date format")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
+					<div class="controls">
+						<?= FORM::input('locale', core::config('i18n.locale'), array(
+						'placeholder' => "en_EN", 
+						'class' => 'input-xlarge', 
+						'id' => 'locale', 
+						))?> 
+						<a title="" data-content="<?=__("Locale")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Locale")?>">?</a>
 					</div>
 				</div>
 				

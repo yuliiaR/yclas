@@ -31,7 +31,7 @@
 					<?= FORM::textarea('message', "", array('class'=>'input-xlarge', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>7, 'required'))?>	
 					</div>
 			</div>
-			<?if(core::config('email-settings.smtp_active') !== 'FALSE' && core::config('formconfig.contact-upload_file') !== 'FALSE'):?>
+			<?if(core::config('email-settings.smtp_active') !== 'FALSE' && core::config('advertisement.contact-upload_file') !== 'FALSE'):?>
 			<div class="control-group">
 				<?= FORM::label('file', __('File'), array('class'=>'control-label', 'for'=>'file'))?>
 				<div class="controls">

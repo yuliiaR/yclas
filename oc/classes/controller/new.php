@@ -32,12 +32,12 @@
 		$_loc = $location->find_all();
 		$children_categ = $category->get_category_children();
 	
-		$form_show = array('captcha'	=>core::config('formconfig.captcha-captcha'),
-						   'website'	=>core::config('formconfig.advertisement-website'),
-						   'phone'		=>core::config('formconfig.advertisement-phone'),
-						   'location'	=>core::config('formconfig.advertisement-location'),
-						   'address'	=>core::config('formconfig.advertisement-address'),
-						   'price'		=>core::config('formconfig.advertisement-price'));
+		$form_show = array('captcha'	=>core::config('advertisement.captcha-captcha'),
+						   'website'	=>core::config('advertisement.website'),
+						   'phone'		=>core::config('advertisement.phone'),
+						   'location'	=>core::config('advertisement.location'),
+						   'address'	=>core::config('advertisement.address'),
+						   'price'		=>core::config('advertisement.price'));
 
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/ad/new', array('_cat'				=> $_cat,
@@ -145,7 +145,7 @@
 		
 		$_new_ad = ORM::factory('ad');
 		
-		$captcha_show = core::config('formconfig.captcha-captcha');
+		$captcha_show = core::config('advertisement.captcha-captcha');
 		if($this->request->post()) //post submition  
 		{
 			
@@ -205,7 +205,7 @@
 				$error_message = NULL;
 	    		$filename = NULL;
 
-	    		for ($i=0; $i < core::config("formconfig.advertisement-num_images"); $i++) { 
+	    		for ($i=0; $i < core::config("advertisement.num_images"); $i++) { 
 	    			
 	    			if (isset($_FILES['image'.$i]))
 	        		{

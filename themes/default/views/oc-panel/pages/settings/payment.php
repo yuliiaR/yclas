@@ -14,20 +14,9 @@
 					<?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
 				<?endforeach?>
 				<div class="control-group">
-					<?= FORM::label($forms['paypal_currency']['key'], __('Paypal currency'), array('class'=>'control-label', 'for'=>$forms['paypal_currency']['key']))?>
-					<div class="controls">
-						<?= FORM::input($forms['paypal_currency']['key'], $forms['paypal_currency']['value'], array(
-						'placeholder' => "youremail@mail.com", 
-						'class' => 'input-xlarge', 
-						'id' => $forms['paypal_currency']['key'], 
-						))?> 
-						<a title="" data-content="<?=__("Paypal currency")?>" data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
-					</div>
-				</div>
-				<div class="control-group">
 					<?= FORM::label($forms['sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['sandbox']['key']))?>
 					<div class="controls">
-						<?= FORM::input($forms['sandbox']['key'], $forms['sandbox']['value'], array(
+						<?= FORM::select($forms['sandbox']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"),$forms['sandbox']['value'], array(
 						'placeholder' => "TRUE or FALSE", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['sandbox']['key'], 
@@ -38,7 +27,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['to_featured']['key'], __('To featured active'), array('class'=>'control-label', 'for'=>$forms['to_featured']['key']))?>
 					<div class="controls">
-						<?= FORM::input($forms['to_featured']['key'], $forms['to_featured']['value'], array(
+						<?= FORM::select($forms['to_featured']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE") ,$forms['to_featured']['value'], array(
 						'placeholder' => '', 
 						'class' => 'input-xlarge', 
 						'id' => $forms['to_featured']['key'], 
@@ -49,7 +38,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['to_top']['key'], __('To top active'), array('class'=>'control-label', 'for'=>$forms['to_top']['key']))?>
 					<div class="controls">
-						<?= FORM::input($forms['to_top']['key'], $forms['to_top']['value'], array(
+						<?= FORM::select($forms['to_top']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE") ,$forms['to_top']['value'], array(
 						'placeholder' => "", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['to_top']['key'], 
@@ -60,23 +49,40 @@
 				<div class="control-group">
 					<?= FORM::label($forms['pay_to_go_on_top']['key'], __('To top payment'), array('class'=>'control-label', 'for'=>$forms['pay_to_go_on_top']['key']))?>
 					<div class="controls">
+						<div class="input-prepend">
+						<span class="add-on"><?=core::config('payment.paypal_currency')?></span>
 							<?= FORM::input($forms['pay_to_go_on_top']['key'], $forms['pay_to_go_on_top']['value'], array(
 							'placeholder' => "", 
-							'class' => 'input-xlarge', 
+							'class' => 'input-large', 
 							'id' => "10", 
 							));?> 
 						<a title="" data-content="<?=__("To top payment")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+						</div>
 					</div>
 				</div>
 				<div class="control-group">
 					<?= FORM::label($forms['pay_to_go_on_feature']['key'], __('To featured payment'), array('class'=>'control-label', 'for'=>$forms['pay_to_go_on_feature']['key']))?>
 					<div class="controls">
+						<div class="input-prepend">
+						<span class="add-on"><?=core::config('payment.paypal_currency')?></span>
 							<?= FORM::input($forms['pay_to_go_on_feature']['key'], $forms['pay_to_go_on_feature']['value'], array(
 							'placeholder' => "", 
-							'class' => 'input-xlarge', 
+							'class' => 'input-large ', 
 							'id' => "10", 
 							));?> 
 						<a title="" data-content="<?=__("To featured payment")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+						</div>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['paypal_currency']['key'], __('Paypal currency'), array('class'=>'control-label', 'for'=>$forms['paypal_currency']['key']))?>
+					<div class="controls">
+						<?= FORM::select($forms['paypal_currency']['key'], $paypal_currency , array_search($forms['paypal_currency']['value'], $paypal_currency), array(
+						'placeholder' => "youremail@mail.com", 
+						'class' => 'input-xlarge', 
+						'id' => $forms['paypal_currency']['key'], 
+						))?> 
+						<a title="" data-content="<?=__("Paypal currency")?>" data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">

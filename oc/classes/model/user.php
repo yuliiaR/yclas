@@ -432,7 +432,7 @@ class Model_User extends ORM {
             }
             catch (ORM_Validation_Exception $e)
             {
-                d($e->errors(''));
+                // d($e->errors(''));
             }
         }
 

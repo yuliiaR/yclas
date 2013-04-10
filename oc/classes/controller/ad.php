@@ -259,9 +259,11 @@ class Controller_Ad extends Controller {
 	}
 
 	/**
-	 * [action_search filter results]
-	 * @param  [string] $search_term [search result]
-	 * @return [view]              	 [filtered ads]
+	 * Advanced search by title, category or location
+	 * @param  [string] $advert [Advertisement title]
+	 * @param  [string] $cat    [Category name]
+	 * @param  [string] $loc    [Location name]
+	 * @return [view]         
 	 */
 	public function action_advansed_search($advert = NULL, $cat = NULL, $loc = NULL)
 	{	
@@ -362,7 +364,7 @@ class Controller_Ad extends Controller {
 						Alert::set(Alert::ERROR, __('You made some mistake'));
 					}
 				}
-				$captcha_show = core::config('formconfig.captcha-captcha');	
+				$captcha_show = core::config('advertisement.captcha-captcha');	
 				
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
@@ -429,7 +431,7 @@ class Controller_Ad extends Controller {
 						if($entry != '.' && $entry != '..') $count++;
 					}
 					
-					$num_images = core::config('formconfig.advertisement-num_images');
+					$num_images = core::config('advertisement.num_images');
 					
 					if ($count == 0) 
 					{

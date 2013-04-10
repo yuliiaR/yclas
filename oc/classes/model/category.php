@@ -38,7 +38,7 @@ class Model_Category extends ORM {
 		),
 	);
 
-
+	
 
 	/**
 	 * Rule definitions for validation
@@ -75,6 +75,28 @@ class Model_Category extends ORM {
 			        'price'					=> __('Price'));
 	}
 	
+
+	/**
+	 * 
+	 */
+	
+	public function category_parent()
+	{
+		$parent = new self;
+		$list = $parent->find_all();
+		
+		foreach ($list as $l) 
+		{
+			if($l->id_category_parent == 1)
+			{
+				$list_parent[$l->id_category] = $l->name;
+			}
+			
+		}
+
+		return $list_parent;
+	}
+
 	/**
 	 * [get_category_children] Array of self children 
 	 * @return [array]
@@ -106,6 +128,8 @@ class Model_Category extends ORM {
 		
 		return $children_categ;
 	}
+
+
 	
 	/**
 	 * 
@@ -123,7 +147,7 @@ class Model_Category extends ORM {
 		$form->fields['parent_deep']['options'] = range(0,3);
 
 		$form->fields['id_category_parent']['display_as'] = 'select';
-		$form->fields['id_category_parent']['options'] = range(0,1000);
+		$form->fields['id_category_parent']['options'] = $this->category_parent();
 
 		$form->fields['order']['display_as'] = 'select';
 		$form->fields['order']['options'] = range(0,30);

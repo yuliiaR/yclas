@@ -15,7 +15,7 @@
 				<ul class="nav">
 					<?nav_link(__('Home'),'home', 'icon-home')?>
 					<?nav_link(__('Listing'),'ad', 'icon-list' ,'all')?>
-					<?nav_link(__('Contact Us'),'contact', 'icon-envelope')?>
+					<?nav_link(__('Contact Us'),'contact', 'icon-envelope', 'index', 'contact')?>
 					<li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
 		              <ul class="dropdown-menu">
@@ -27,7 +27,7 @@
 															
 							 	<?foreach($children_categ as $chi):?>
                             	<?if($chi['parent'] == $c->id_category):?>
-                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('sort_by', array('category'=>$chi['name']))?>"><?=$chi['name']?> <span class="count_ads">( <?=$chi['count']?> )</span></a></li>
+                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('sort_by', array('category'=>$chi['name']))?>"><?=$chi['name']?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
                            		<?endif?>
                          		<?endforeach?>
 								<li class="divider"></li>

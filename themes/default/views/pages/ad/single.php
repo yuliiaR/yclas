@@ -32,7 +32,7 @@
 		<?endif?>
 	    	<p><strong>Price : </strong> <?= $ad->price?></p>
 		    <p><strong>Description : </strong><?= Text::bb2html($ad->description,TRUE)?></p>	
-		    <p><strong>Published: </strong> <?= $ad->created?></p>
+		    <p><strong>Published: </strong> <?= Date::format($ad->published, core::config('general.date_format'))?></p>
 		    <p><strong>Hits: </strong><?echo $hits?></p>	    
 			
 			<button class="btn btn-success"type="button" data-toggle="modal" data-target="#contact-modal">Send Message</button>

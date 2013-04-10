@@ -94,7 +94,7 @@ class Auth_Crud extends Auth_Controller
 
 		$elements = $elements->limit($pagination->items_per_page)
 		->offset($pagination->offset)
-		->find_all();//d($contacts);
+		->find_all();
 
 		$pagination = $pagination->render();
 
