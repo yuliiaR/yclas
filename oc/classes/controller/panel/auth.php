@@ -178,7 +178,7 @@ class Controller_Panel_Auth extends Controller {
 						
 						//login the user
 						Auth::instance()->login($this->request->post('email'), $this->request->post('password1'));
-						$this->request->redirect(Route::uri('profile'));
+						$this->request->redirect(Route::url('oc-panel'));
 						
 					}
 		
