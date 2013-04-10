@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="well">
-    <h3>Categories</h3>
+    <h3>Latest Ads</h3>
     <ul class="thumbnails">
 
         <?foreach($ads as $ad):?>
