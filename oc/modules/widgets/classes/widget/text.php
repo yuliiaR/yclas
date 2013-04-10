@@ -22,13 +22,11 @@ class Widget_Text extends Widget
 								'text_title'  => array(	'type'		=> 'text',
 						 		  						'display'	=> 'text',
 						 		  						'label'		=> __('Text title displayed'),
-						 		  						'default'   => 'Title',
-														'required'	=> TRUE),
-								
+														'required'	=> FALSE),
+								//@todo allow HTML in the body
 						 		'text_body'  => array(	'type'		=> 'textarea',
 						 		  						'display'	=> 'textarea',
 						 		  						'label'		=> __('HTML/text content here'),
-						 		  						'default'   => 'Text',
 														'required'	=> TRUE),
 
 						 		
@@ -36,6 +34,14 @@ class Widget_Text extends Widget
 	}
 
 
-
+    /**
+     * get the title for the widget
+     * @param string $title we will use it for the loaded widgets
+     * @return string 
+     */
+    public function title($title = NULL)
+    {
+        return parent::title($this->text_title);
+    }
 
 }

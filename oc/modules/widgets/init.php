@@ -15,4 +15,4 @@ widgets::$default_widgets = array('widget_rss', 'widget_pages','widget_text');
  * placeholders that exists in the default module
  * @var array
  */
-widgets::$default_placeholders	 = array('sidebar', 'inactive');
+widgets::$default_placeholders	 = array('sidebar');

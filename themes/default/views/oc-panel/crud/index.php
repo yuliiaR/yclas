@@ -36,7 +36,7 @@
 					<?if ($controller->allowed_crud_action('delete')):?>
 					<a data-text="<?=__('Are you sure you want to delete?')?>" 
 						data-id="tr<?=$element->pk()?>" class="btn btn-danger index-delete" title="<?=__('Delete')?>" href="<?=Route::url($route, array('controller'=> Request::current()->controller(), 'action'=>'delete','id'=>$element->pk()))?>">
-						<i class="icon-remove icon-white"></i>
+						<i class="icon-trash icon-white"></i>
 					</a>
 					<?endif?>
 				</td>

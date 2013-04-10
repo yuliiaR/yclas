@@ -24,32 +24,56 @@
 	<?=View::scripts($scripts)?>
 
 	<style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
 
-      body.dragging, body.dragging * {
-  cursor: move !important;
-}
 
-.dragged {
-  position: absolute;
-  opacity: 0.5;
-  z-index: 2000;
-}
+        body.dragging, body.dragging * {
+          cursor: move !important;
+        }
+        .dragged {
+            position: absolute;
+            top: 0;
+            opacity: .5;
+            z-index: 2000;
+        }
 
-ol.example li.placeholder {
-  position: relative;
-  /** More li styles **/
-}
-ol.example li.placeholder:before {
-  position: absolute;
-  /** Define arrowhead **/
-}
+        ul.plholder li{
+            cursor: move !important;
+            display: block;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #CCC;
+            color: white;
+            background: gray;
+            width: 90%;
+        }
+    
+        ul.plholder li.placeholder{
+            position: relative;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        ul.plholder li.placeholder:before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            margin-top: -5px;
+            left: -5px;
+            top: -4px;
+            border: 5px solid transparent;
+            border-left-color: red;
+            border-right: none;
+            color: red;
+        }
 
     </style>
 
@@ -66,16 +90,13 @@ ol.example li.placeholder:before {
 	    	</div><!--/span--> 
 
 	    	<div class="span8">
-
-				<div class="row-fluid" id="widgets_empty">
+                <h2><?=__('Available widgets')?></h2>
+				<div class="row-fluid">
 					<?foreach ($widgets as $widget):?>
 						<?=$widget->form()?>
 					<?endforeach?>
 				</div><!--/row-->
 
-				<div class="row-fluid">
-					Inactive widgets
-				</div><!--/row-->
 
 	    	</div><!--/span--> 
 	    	
@@ -83,88 +104,19 @@ ol.example li.placeholder:before {
 	    	<div class="span4">
 				<?foreach ($placeholders as $placeholder=>$widgets):?>
 				<div class="well sidebar-nav">
-					<ul class="nav nav-list">
-						<li class="nav-header"><?=$placeholder?></li>
+                <p class="nav-header"><?=$placeholder?></p>
+					<ul class="nav nav-list plholder" id="ul_<?=$placeholder?>" >
+                        <?foreach ($widgets as $widget):?>
+                          <?=$widget->form()?>
+                        <?endforeach?>
 					</ul>
-
-					<?foreach ($widgets as $widget):?>
-						<?=$widget->form()?>
-					<?endforeach?>
 				</div>
 				<?endforeach?>
+                <pre id='serialize_output'></pre>
 			</div>
 			<!--placeholders-->
 
 		</div><!--/row-->
-
-
-
-  <div class='span4'>
-    <h3>I'm draggable and droppable</h3>
-    <ol class='simple_with_drop vertical'>
-      <li>
-          <i class='icon-move'></i>
-          Item 1
-        </li>
-        <li>
-          <i class='icon-move'></i>
-          Item 2
-        </li>
-        <li>
-          <i class='icon-move'></i>
-          Item 3
-        </li>
-        <li>
-          <i class='icon-move'></i>
-          Item 4
-        </li>
-        <li>
-          <i class='icon-move'></i>
-          Item 5
-        </li>
-        <li>
-          <i class='icon-move'></i>
-          Item 6
-        </li>
-    </ol>
-  </div>
-
-  <div class='span4'>
-    <h3>I'm only draggable</h3>
-    <ol class='simple_with_no_drop vertical'>
-      <li class='highlight'>
-          <i class='icon-move'></i>
-          Item 1
-        </li>
-        <li class='highlight'>
-          <i class='icon-move'></i>
-          Item 2
-        </li>
-        <li class='highlight'>
-          <i class='icon-move'></i>
-          Item 3
-        </li>
-    </ol>
-    <h3>I'm only droppable</h3>
-    <ol class='simple_with_no_drag vertical'>
-      <li>
-          <i class='icon-move'></i>
-          Item 1
-        </li>
-        <li>
-          <i class='icon-move'></i>
-          Item 2
-        </li>
-        <li>
-          <i class='icon-move'></i>
-          Item 3
-        </li>
-    </ol>
-  </div>
-
-</div>
-
-
 
 
 		<?=$footer?>

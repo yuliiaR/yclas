@@ -23,8 +23,8 @@ class Controller_Panel_Widget extends Auth_Controller {
         $this->template->scripts['footer'][] = 'js/oc-panel/widgets.js';
 
 
-        $this->template->widgets        = Widgets::get_widgets();
-        $this->template->placeholders   = Widgets::get_placeholders();
+        $this->template->widgets           = Widgets::get_widgets();
+        $this->template->placeholders      = Widgets::get_placeholders();
 
     }
     
@@ -35,41 +35,57 @@ class Controller_Panel_Widget extends Auth_Controller {
    	 */
    	public function action_save()
    	{
-   		$save_widget = $this->request->query();
-   		
-   		foreach ($save_widget as $key => $value) 
+
+        // save only changed values
+        if($this->request->post())
         {
-   			$placeholder_name = $value;
-   			$placeholder_id = $placeholder_name.'_placeholder';
+            //get place holder name
+            $placeholder    = core::post('placeholder');
+            //get widget class
+            $widget         = core::post('widget_class');
+            //widget name
+            $widget_name    = core::post('widget_name');
 
-   			$placeholder = core::config('widget.'.$placeholder_id);
-   			
-   			if(!empty($placeholder))
-   			{
-   				$str = str_replace($key, "", $placeholder, $count); //count if multiple times used same widget	
-   				$jsobj_placeholder = json_decode($placeholder, true); // json object decode
-   				
-   			}
-   			else $count = 0;
-   			
-   			$jsobj_placeholder[] = $key.$count;
-   			$placeholder = json_encode($jsobj_placeholder); // to json
-   			
-   		}
+            //$data = array();
+            //extract all the data and prepare array
+            foreach ($this->request->post() as $name=>$value) 
+            {
+                if ($name!='placeholder' AND $name!='widget_class' AND $name!='widget_name')
+                    $data[$name] = $value;
+            }
 
-   		// save widget to DB
-   		$activate_widget = new Model_Config();
-   		$activate_widget = $activate_widget->where('config_key', '=', $placeholder_id)->limit(1)->find();
+            $old_placeholder = NULL;
 
-   		$activate_widget->config_value = $placeholder;
+            $widget = new $widget();
+            
+            //the widget exists, we load it since we need the previous placeholder
+            if ($widget_name!=NULL)
+            {
+                $widget->load($widget_name);
+                $old_placeholder = $widget->placeholder;
+            }
 
-   		try {
-   			$activate_widget->save();
-   			$this->request->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index', 'id'=>$placeholder_name)));
-   		} catch (Exception $e) {
-   			//throw 500
-  			throw new HTTP_Exception_500();		
-   		}
+            $widget->placeholder = $placeholder;
+            $widget->data = $data;
+
+
+            try {
+
+                $widget->save($old_placeholder);
+
+                if ($widget_name!=NULL)
+                    Alert::set(Alert::SUCCESS,__('Widget '.$widget_name.' saved in '.$placeholder));
+                else
+                    Alert::set(Alert::SUCCESS,__('Widget created in '.$placeholder));
+
+                $this->request->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index')));
+            } catch (Exception $e) {
+                //throw 500
+                throw new HTTP_Exception_500();     
+            }
+        }
+  
+        
    	}
 
    	/**
@@ -78,30 +94,20 @@ class Controller_Panel_Widget extends Auth_Controller {
    	 */
    	public function action_remove()
    	{
-   		$remove_widget = $this->request->query();
-
-   		foreach ($remove_widget as $key => $value) 
+        $widget_name = $this->request->param('id');
+        if ($widget_name!==NULL)
         {
-   			$placeholder_name = $value;
-   			$placeholder_id = $placeholder_name.'_placeholder';
+            $w = Widget::factory($widget_name);
 
-   			$placeholder = core::config('widget.'.$placeholder_id);
-   			$jsobj_placeholder = json_decode($placeholder, true);
-   			$placeholder = array_diff($jsobj_placeholder, array($key));
-   		}
+            if ($w->delete())
+                Alert::set(Alert::SUCCESS,__('Widget '.$widget_name.' deleted'));
+            else
+                Alert::set(Alert::ERROR,__('Widget '.$widget_name.' can not be deleted'));
+        }
+        else
+            Alert::set(Alert::ERROR,__('Widget param missing'));
 
-   		$deactivate_widget = new Model_Config();
-   		$deactivate_widget = $deactivate_widget->where('config_key', '=', $placeholder_id)->limit(1)->find();
-
-   		$deactivate_widget->config_value = json_encode($placeholder);
-
-   		try {
-   			$deactivate_widget->save();
-   			$this->request->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index', 'id'=>$placeholder_name)));
-   		} catch (Exception $e) {
-   			//throw 500
-  			throw new HTTP_Exception_500();		
-   		}
-   }
+        $this->request->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index')));
+    }
 
 }
