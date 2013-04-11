@@ -13,21 +13,21 @@
 			
 			<div class="nav-collapse main_nav">
 				<ul class="nav">
-					<?nav_link(__('Home'),'home', 'icon-home')?>
-					<?nav_link(__('Listing'),'ad', 'icon-list' ,'all')?>
+					<?nav_link(__('Home'), '', 'icon-home', '')?>
+					<?nav_link(__('Listing'),'ad', 'icon-list' ,'lisitng', 'listing')?>
 					<?nav_link(__('Contact Us'),'contact', 'icon-envelope', 'index', 'contact')?>
 					<li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
 		              <ul class="dropdown-menu">
 
 		              	<?foreach($cat_list as $c ):?>
-		              		<?if($c->id_category == $c->id_category_parent || $c->id_category_parent == 0 || $c->id_category_parent == NULL):?>
+		              		<?if($c->id_category_parent == 1 && $c->id_category != 1):?>
 
-								<li class="nav-header"><p><a title="<?=$c->name?>" href="<?=Route::url('sort_by', array('category'=>$c->name))?>"><?=$c->name?></a></p></li>
+								<li class="nav-header"><p><a title="<?=$c->name?>" href="<?=Route::url('listing', array('category'=>$c->name))?>"><?=$c->name?></a></p></li>
 															
 							 	<?foreach($children_categ as $chi):?>
                             	<?if($chi['parent'] == $c->id_category):?>
-                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('sort_by', array('category'=>$chi['name']))?>"><?=$chi['name']?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
+                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('listing', array('category'=>$chi['name']))?>"><?=$chi['name']?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
                            		<?endif?>
                          		<?endforeach?>
 								<li class="divider"></li>

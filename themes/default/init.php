@@ -71,7 +71,7 @@ function sidebar_link($name,$controller,$action='index',$route='oc-panel')
  * @param  string $icon 		class name of bootstrap	icon to append with nav-link   
  * @param  string $route      
  */
-function nav_link($name,$controller, $icon=NULL, $action='index', $route='default')
+function nav_link($name, $controller, $icon=NULL, $action='index', $route='default')
 {	
 	
  	?>
