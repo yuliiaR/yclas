@@ -116,12 +116,33 @@ class Controller_Panel_Widget extends Auth_Controller {
         $this->auto_render = FALSE;
         $this->template = View::factory('js');
 
-        d($_GET );
+        DB::delete('config')->where('group_name','=','placeholder')->execute();
 
-        //I send id placeholder with arrays to server. 
-        //Compare to what we have store. 
-        //If they are the same in same order do nothing. 
-        //If content is same different order only update placeholder. 
-        //If totally different update widget placeholder information.
+        //for each placeholder
+        foreach ($_GET as $placeholder => $widgets) 
+        {
+            if (!is_array($widgets))
+                $widgets = array();
+
+            //insert in DB palceholders
+            $confp = new Model_Config();
+            $confp->group_name = 'placeholder';
+            $confp->config_key = $placeholder;
+            $confp->config_value = json_encode($widgets); 
+            $confp->save();
+
+            //edit each widget change placeholder
+            foreach ($widgets as $wname) 
+            {
+                $w = Widget::factory($wname);
+                $w->placeholder = $placeholder;
+                $w->save();
+            }
+            
+            
+        }
+
+        $this->template->content = __('Saved');
+
     }
 }

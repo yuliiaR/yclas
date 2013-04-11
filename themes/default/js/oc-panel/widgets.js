@@ -2,46 +2,55 @@ $(function  () {
    var group = $("ul.plholder").sortable({
           group: 'plholder',
           onDrop: function (item, container, _super) {
-        
-             _super(item, container);
+            //first we execute the normal plugins behaviour
+            _super(item, container);
 
-            var item_id = item.attr("id");
-            var placeholder = '';
-            var data = {};
-            $('.plholder').each(function() {
-                val = $(this).sortable().sortable('serialize').get();
+            //we delay the save for 3 seconds @todo doesnt work
+            //var save_placeholders = _debounce(function(item, container)
+            //{
+                var item_id = item.attr("id");
+                var placeholder = '';
+                var data = {};
+                $('.plholder').each(function() {
+                    val = $(this).sortable().sortable('serialize').get();
 
-                //empty UL
-                if (val == '[object HTMLUListElement]') {
-                    val = '';
-                }
-                else{
-                    //array of values
-                    val = val[0].split(',');
+                    //empty UL
+                    if (val == '[object HTMLUListElement]') {
+                        val = '';
+                    }
+                    else{
+                        //array of values
+                        val = val[0].split(',');
 
-                    //we get the placeholder where we drop
-                    if ($.inArray(item_id,val)>-1)
-                        placeholder = this.id;
-                }
+                        //we get the placeholder where we drop
+                        if ($.inArray(item_id,val)>-1)
+                            placeholder = this.id;
+                    }
+                    
+                    //generating the array to send to the server
+                    data[this.id] = val;
+                });
+
+                //item update the placeholder form input
+                var input_placeholder = $('#form_widget_'+item_id+' [name=placeholder]');
+                input_placeholder.val(placeholder);
+                input_placeholder.trigger("liszt:updated");
                 
-                //generating the array to send to the server
-                data[this.id] = val;
-            });
+                //saving the order
+                $.ajax({
+                    type: "GET",
+                    url: $('#ajax_result').data('url'),
+                    beforeSend: function(text) {
+                        $('#ajax_result').text('Saving').removeClass().addClass("label label-warning");
+                    },
+                    data: data,
+                    success: function(text) {
+                        $('#ajax_result').text(text).removeClass().addClass("label label-success");
+                    }               
+                });
 
-            //item update the placeholder form input
-            var input_placeholder = $('#form_widget_'+item_id+' [name=placeholder]');
-            input_placeholder.val(placeholder);
-            input_placeholder.trigger("liszt:updated");
-            
-            //saving the order
-            $.ajax({
-                type: "GET",
-                url: $('#ajax_result').data('url'),
-                data: data,
-                success: function(text) {
-                    $('#ajax_result').text(text);
-                }               
-            });
+            //},300);
+
 
           },
           serialize: function (parent, children, isContainer) {
@@ -50,23 +59,3 @@ $(function  () {
     });
 
 })
-
-
-// var searchLocation = _debounce(function(query, process)
-//     {
-//         $.get( $('#city').data('source'), { s: query, countries: $('#countries').val() }, function ( data ) 
-//         {
-//             location = {};
-//             locationLabels = [];
-//             data = $.parseJSON(data);
-//             for (var item in data) 
-//             {
-//                 location[ data[item].label ] = {
-//                     label: data[item].label,
-//                     id: data[item].id,
-//                 }
-//                 locationLabels.push( data[item].label );
-//             }    
-//             process( locationLabels );
-//         });
-//     },300);

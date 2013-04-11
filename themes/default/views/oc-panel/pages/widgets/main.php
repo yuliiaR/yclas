@@ -112,7 +112,7 @@
 					</ul>
 				</div>
 				<?endforeach?>
-                <pre id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'saveplaceholders'))?>'></pre>
+                <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'saveplaceholders'))?>'></span>
 			</div>
 			<!--placeholders-->
 

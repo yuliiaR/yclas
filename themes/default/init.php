@@ -46,8 +46,9 @@ Alert::$tpl 	= 	'<div class="alert alert-%s">
  * @param  string $controller
  * @param  string $action     
  * @param  string $route      
+ * @param  string $icon         class name of bootstrap icon to append with nav-link 
  */
-function sidebar_link($name,$controller,$action='index',$route='oc-panel')
+function sidebar_link($name,$controller,$action='index',$route='oc-panel', $icon=NULL)
 {	
 	if (Auth::instance()->get_user()->has_access($controller))
  	{
@@ -56,7 +57,9 @@ function sidebar_link($name,$controller,$action='index',$route='oc-panel')
 				&& Request::current()->action()==$action)?'class="active"':''?> >
 			<a href="<?=Route::url($route,array('controller'=>$controller,
 												'action'=>$action))?>">
-				<?=$name?>
+				<?if($icon!==NULL)?>
+                    <i class="<?=$icon?>"></i>
+                <?=$name?>
 			</a>
 		</li>
 	<?
@@ -79,7 +82,9 @@ function nav_link($name, $controller, $icon=NULL, $action='index', $route='defau
 				&& Request::current()->action()==$action)?'class="active"':''?> >
 			<a href="<?=Route::url($route,array('controller'=>$controller,
 												'action'=>$action))?>">
-				<i class="<?=$icon?>"></i><?=$name?>
+				<?if($icon!==NULL)?>
+                    <i class="<?=$icon?>"></i>
+                <?=$name?>
 			</a>
 		</li>
 	<?
