@@ -110,4 +110,18 @@ class Controller_Panel_Widget extends Auth_Controller {
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index')));
     }
 
+
+    public function action_saveplaceholders()
+    {
+        $this->auto_render = FALSE;
+        $this->template = View::factory('js');
+
+        d($_GET );
+
+        //I send id placeholder with arrays to server. 
+        //Compare to what we have store. 
+        //If they are the same in same order do nothing. 
+        //If content is same different order only update placeholder. 
+        //If totally different update widget placeholder information.
+    }
 }
