@@ -13,16 +13,18 @@
 class Controller_Payment_Paypal extends Controller{
 	
 	public function action_ipn()
-	{paypal::validate_ipn();
-Email::sendEmailFile("slobodan.josifovic@gmail.com",'1111asdasd1','item_number',"reply",'replyName', NULL);
-	d('');
+	{
+        //todo delete
+        paypal::validate_ipn();
+
+
 		$this->auto_render = FALSE;
 
 		//START PAYPAL IPN
 		//manual checks
-		$id_order = $_POST['item_number'];
-		$paypal_amount = $_POST['mc_gross'];
-		$payer_id = $_POST['payer_id'];
+		$id_order         = Core::post('item_number');
+		$paypal_amount    = Core::post('mc_gross');
+		$payer_id         = Core::post('payer_id');
 
 		//retrieve info for the item in DB
 		$order = new Model_Order();
@@ -37,31 +39,26 @@ Email::sendEmailFile("slobodan.josifovic@gmail.com",'1111asdasd1','item_number',
 			{
 				$id_category = new Model_Category();
 				$id_category = $id_category->where('id_category', '=', $order->id_product)->limit(1)->find();
-				$product_id = $id_category->id_category;
+				$product_id  = $id_category->id_category;
 			}
 			else
 			{
 				$product_id = $order->id_product;
 			} 
 
-			if (	$_POST['mc_gross']==number_format($order->amount, 2, '.', '')
-				&&  $_POST['mc_currency']==core::config('paypal.paypal_currency') 
-				&& ($_POST['receiver_email']==core::config('paypal.paypal_account') 
-					|| $_POST['business']==core::config('paypal.paypal_account')))
+			if (	Core::post('mc_gross')          == number_format($order->amount, 2, '.', '')
+				&&  Core::post('mc_currency')       == core::config('paypal.paypal_currency') 
+				&& (Core::post('receiver_email')    == core::config('paypal.paypal_account') 
+					|| Core::post('business')       == core::config('paypal.paypal_account')))
 			{//same price , currency and email no cheating ;)
-//Email::sendEmailFile("slobodan.josifovic@gmail.com",'11111',$_POST['item_number'].' '.'item_number',"reply",'replyName', NULL);
 				if (paypal::validate_ipn()) 
 				{
-					
-					$order->confirm_payment($id_order, core::config('general.moderation'));
-					//email::send("slobodan.josifovic@gmail.com",'TEST',"test", $_POST['mc_gross']); // debug mode
-					
+					$order->confirm_payment($id_order, core::config('general.moderation'));	
 				} //payment succeed and we confirm the post ;) (CALL TO LOGIC PUT IN ctrl AD)
 
 				else
 				{
 					Email::sendEmailFile("slobodan.josifovic@gmail.com",'qwe','xxxxxxx',"reply",'replyName', NULL);
-	d('');
 					// Log an invalid request to look into
 					// PAYMENT INVALID & INVESTIGATE MANUALY!
 					$subject = 'Invalid Payment';
