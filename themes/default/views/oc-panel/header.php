@@ -2,12 +2,11 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
         <div class="container"><a class="brand"
-        	href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Administration')?></a>
+        	href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Dashboard')?></a>
             <div class="nav-collapse">
                 <ul class="nav">
-                    <?=sidebar_link('','home','index','oc-panel','icon-home icon-white')?>
-                	<?=sidebar_link(__('Stats'),'stats')?>
-                    <?=sidebar_link(__('Widgets'),'widget')?>
+                	<?=sidebar_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
+                    <?=sidebar_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"
             		      data-toggle="dropdown"><i class="icon-plus icon-white"></i> <?=__('New')?> <b class="caret"></b></a>
                     	<ul class="dropdown-menu">
@@ -21,7 +20,7 @@
                     			<i class="icon-pencil"></i><?=__('Publish new ')?></a>	</li>
                     	</ul>
             	   </li>
-                    <?=nav_link(__('View site'),'home')?>
+                    <?=nav_link(__('Visit site'),'home','icon-eye-open icon-white','index','default')?>
                 </ul>
                 <div class="btn-group pull-right">
                     <?=View::factory('widget_login')?>

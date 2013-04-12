@@ -11,26 +11,26 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th><?=__('Today')?></th>
                     <th><?=__('Yesterday')?></th>
-                    <th><?=__('Last week')?></th>
-                    <th><?=__('Last month')?></th>
+                    <th><?=__('Last 30 days')?></th>
                     <th><?=__('Total')?></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><b><?=__('Ads')?></b></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?=$ads_today?></td>
+                    <td><?=$ads_yesterday?></td>
+                    <td><?=$ads_month?></td>
+                    <td><?=$ads_total?></td>
                 </tr>
                 <tr>
-                    <td><b><?=__('Views')?></b></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><b><?=__('Visits')?></b></td>
+                    <td><?=$visits_today?></td>
+                    <td><?=$visits_yesterday?></td>
+                    <td><?=$visits_month?></td>
+                    <td><?=$visits_total?></td>
                 </tr>
             </tbody>
         </table>
@@ -62,10 +62,10 @@
 
 
 
-<?=Chart::column($ads_daily,array('title'=>__('Visits Daily'),
+<?=Chart::column($ads_daily,array('title'=>__('Ads'),
                                     'height'=>400,
                                     'width'=>800))?>      
 
-<?=Chart::column($visits_daily,array('title'=>__('Visits Daily'),
+<?=Chart::column($visits_daily,array('title'=>__('Visits'),
                                     'height'=>400,
                                     'width'=>800))?>                                    

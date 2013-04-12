@@ -61,7 +61,6 @@ class Controller_Panel_Stats extends Auth_Controller {
         $ads = $query->as_array('date');
 
         $ads_daily = array();
-
         foreach ($dates as $date) 
         {
             $count = (isset($ads[$date['date']]['count']))?$ads[$date['date']]['count']:0;
@@ -71,14 +70,40 @@ class Controller_Panel_Stats extends Auth_Controller {
         $content->ads_daily =  $ads_daily;
 
 
+        //Today and Yesterday Ads
+        $query = DB::select(DB::expr('COUNT(id_ad) count'))
+                        ->from('ads')
+                        ->where('status','=',Model_Ad::STATUS_PUBLISHED)
+                        ->where('published','between',array(date('Y-m-d',strtotime('-1 day')),date::unix2mysql()))
+                        ->group_by(DB::expr('DATE( published )'))
+                        ->order_by('published','asc')
+                        ->execute();
 
-        //monthly published ads
- // "SELECT CONCAT( MONTH(  `insertDate` ) ,  ' - ', YEAR(  `insertDate` ) ) month , COUNT( idPost) Ads
- //        FROM  `".TABLE_PREFIX."posts` 
- //        GROUP BY MONTH(  `insertDate` ) , YEAR(  `insertDate` ) 
- //        ORDER BY YEAR(  `insertDate` ) ASC , MONTH(  `insertDate` ) ASC ";
- 
+        $ads = $query->as_array();
+        $content->ads_yesterday = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        $content->ads_today     = (isset($ads[1]['count']))?$ads[1]['count']:0;
 
+
+        //Last 30 days ads
+        $query = DB::select(DB::expr('COUNT(id_ad) count'))
+                        ->from('ads')
+                        ->where('status','=',Model_Ad::STATUS_PUBLISHED)
+                        ->where('published','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
+                        ->execute();
+
+        $ads = $query->as_array();
+        $content->ads_month = (isset($ads[0]['count']))?$ads[0]['count']:0;
+
+        //total ads
+        $query = DB::select(DB::expr('COUNT(id_ad) count'))
+                        ->from('ads')
+                        ->where('status','=',Model_Ad::STATUS_PUBLISHED)
+                        ->execute();
+
+        $ads = $query->as_array();
+        $content->ads_total = (isset($ads[0]['count']))?$ads[0]['count']:0;
+
+        /////////////////////VISITS STATS////////////////////////////////
 
         //visits created last XX days
         $query = DB::select(DB::expr('DATE(created) date'))
@@ -92,7 +117,6 @@ class Controller_Panel_Stats extends Auth_Controller {
         $visits = $query->as_array('date');
 
         $visits_daily = array();
-
         foreach ($dates as $date) 
         {
             $count = (isset($visits[$date['date']]['count']))?$visits[$date['date']]['count']:0;
@@ -101,6 +125,36 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         $content->visits_daily =  $visits_daily;
 
+
+        //Today and Yesterday Views
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+                        ->from('visits')
+                        ->where('created','between',array(date('Y-m-d',strtotime('-1 day')),date::unix2mysql()))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('created','asc')
+                        ->execute();
+
+        $visits = $query->as_array();
+        $content->visits_yesterday = (isset($visits[0]['count']))?$visits[0]['count']:0;
+        $content->visits_today     = (isset($visits[1]['count']))?$visits[1]['count']:0;
+
+
+        //Last 30 days visits
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+                        ->from('visits')
+                        ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
+                        ->execute();
+
+        $visits = $query->as_array();
+        $content->visits_month = (isset($visits[0]['count']))?$visits[0]['count']:0;
+
+        //total visits
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+                        ->from('visits')
+                        ->execute();
+
+        $visits = $query->as_array();
+        $content->visits_total = (isset($visits[0]['count']))?$visits[0]['count']:0;
         
     }
 

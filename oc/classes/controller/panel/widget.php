@@ -73,6 +73,10 @@ class Controller_Panel_Widget extends Auth_Controller {
 
                 $widget->save($old_placeholder);
 
+                //clean cache config
+                $c = new ConfigDB(); 
+                $c->reload_config();
+
                 if ($widget_name!=NULL)
                     Alert::set(Alert::SUCCESS,__('Widget '.$widget_name.' saved in '.$placeholder));
                 else
