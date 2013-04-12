@@ -23,11 +23,11 @@
 		              	<?foreach($cat_list as $c ):?>
 		              		<?if($c->id_category == $c->id_category_parent || $c->id_category_parent == 0 || $c->id_category_parent == NULL):?>
 
-								<li class="nav-header"><p><a title="<?=$c->name?>" href="<?=Route::url('sort_by', array('category'=>$c->name))?>"><?=$c->name?></a></p></li>
+								<li class="nav-header"><p><a title="<?=$c->name?>" href="<?=Route::url('list', array('category'=>$c->name))?>"><?=$c->name?></a></p></li>
 															
 							 	<?foreach($children_categ as $chi):?>
                             	<?if($chi['parent'] == $c->id_category):?>
-                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('sort_by', array('category'=>$chi['name']))?>"><?=$chi['name']?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
+                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['name']))?>"><?=$chi['name']?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
                            		<?endif?>
                          		<?endforeach?>
 								<li class="divider"></li>

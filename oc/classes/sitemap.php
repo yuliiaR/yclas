@@ -81,13 +81,13 @@ class Sitemap {
             $cats = $cats->select('seoname')->find_all();
             foreach($cats as $cat)
             {
-                $url = Route::url('sort_by',  array('category'=>$cat->seoname));
+                $url = Route::url('list',  array('category'=>$cat->seoname));
                 $sitemap->addUrl($url, date('c'),  'daily',    '0.7');
 
                 //adding the categories->locations
                 foreach($locs as $loc)
                 {
-                    $url = Route::url('sort_by',  array('category'=>$cat->seoname,'location'=>$loc->seoname));
+                    $url = Route::url('list',  array('category'=>$cat->seoname,'location'=>$loc->seoname));
                     $sitemap->addUrl($url, date('c'),  'weekly',    '0.5');
                 }
             }

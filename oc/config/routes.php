@@ -55,7 +55,7 @@ Route::set('ad', '<category>/<seotitle>.html')
 /**
  * Sort by Category / Location
  */
-Route::set('sort_by', 'sort_by/<category>(/<location>)')
+Route::set('list', '<category>(/<location>)')
 ->defaults(array(
 		'controller' => 'ad',    
 		'action'     => 'sort_category',
