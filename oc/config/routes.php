@@ -55,7 +55,11 @@ Route::set('ad', '<category>/<seotitle>.html')
 /**
  * Sort by Category / Location
  */
+<<<<<<< HEAD
+Route::set('list', '<category>(/<location>)')
+=======
 Route::set('listing', '<category>(/<location>)')
+>>>>>>> 580df611b9a2d3a283c531b8c324c3998e8db4de
 ->defaults(array(
 		'category'	 => 'all',
 		'controller' => 'ad',    
