@@ -3,7 +3,7 @@
 	<div class="span10 well">
 		 <?=Form::errors()?>
 		<div class="page-header">
-			<h1><?=__('Genral Configuration')?></h1>
+			<h1><?=__('Payments Configuration')?></h1>
 		</div>
 		<div id="advise" class="well advise clearfix">
 			<p class="text-info"><?=__('Here are listed payment configuration values. Replace input fileds with new desired values')?></p>

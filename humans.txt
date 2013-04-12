@@ -3,7 +3,13 @@ Your title: Chema Garrido.
 Site: http://open-classifieds.com/.                         
 Twitter: openclassifieds.                  
 Location: Barcelona, Spain.
+         
+Your title: Slobodan Josifovics.                       
+Site: http://open-classifieds.com/.                         
+Twitter: openclassifieds.                  
+Location: Barcelona, Spain.
 						
+
 /* THANKS */						
 Name: Kohana Framework.
                         

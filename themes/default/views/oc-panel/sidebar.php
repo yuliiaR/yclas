@@ -24,7 +24,6 @@
 				<?sidebar_link(__('Payment'), 'settings','payment')?>
 				<?sidebar_link(__('Email'), 'settings','email')?>
 				<?sidebar_link(__('Form'), 'settings','form')?>
-				<?sidebar_link(__('All configs'), 'config')?>
 			<?endif?>
 
 			<?if ($user->has_access_to_any('tools')):?>
@@ -36,16 +35,16 @@
 				<?sidebar_link(__('PHP Info'), 'tools','phpinfo')?>
 			<?endif?>
 
-			<?if ($user->has_access_to_any('profile')):?>
+			<?/* if($user->has_access_to_any('profile'))
 				<li class="nav-header"><i class="icon-user"></i><?=__('Profile')?></li>
-				<?sidebar_link(__('Edit'), 'profile','edit')?>
+				<?sidebar_link(__('Edit profile'), 'profile','edit')?>
 				<?sidebar_link(__('Change password'), 'profile','changepass')?>
 				<li><a
 					href="<?=Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname))?>">
 					<?=__('Public profile')?>
 				</a>
 				</li>
-			<?endif?>
+			endif*/?>
 
 			<?if ($user->has_access_to_any('tools'))://@TODO promotions for basic user?> 
 				<li class="divider"></li>

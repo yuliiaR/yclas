@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="well">
-    <h3>Categories</h3>
+    <h3>Latest Ads</h3>
     <ul class="thumbnails">
 
         <?foreach($ads as $ad):?>
@@ -27,16 +27,24 @@
     <h3>Categories</h3>
     <ul class="thumbnails">
         <?foreach($categ as $c):?>
-        <?if($c->id_category == $c->id_category_parent || $c->id_category_parent == 0 || $c->id_category_parent == NULL):?>
+        <?if($c->id_category_parent == 1 && $c->id_category != 1):?>
         <div class="span4">
             <div class="category_box_title">
+<<<<<<< HEAD
                 <p><a title="<?=$c->name?>" href="<?=Route::url('list', array('category'=>$c->name))?>"><?=strtoupper($c->name);?></a></p>
+=======
+                <p><a title="<?=$c->name?>" href="<?=Route::url('listing', array('category'=>$c->name))?>"><?=strtoupper($c->name);?></a></p>
+>>>>>>> 580df611b9a2d3a283c531b8c324c3998e8db4de
             </div>  
             <div class="well custom_box_content" style="padding: 8px 0;">
                 <ul class="nav nav-list">
                     <?foreach($children_categ as $chi):?>
                         <?if($chi['parent'] == $c->id_category):?>
+<<<<<<< HEAD
                         <li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['name']))?>"><?=$chi['name'];?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
+=======
+                        <li><a title="<?=$chi['name']?>" href="<?=Route::url('listing', array('category'=>$chi['name']))?>"><?=$chi['name'];?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
+>>>>>>> 580df611b9a2d3a283c531b8c324c3998e8db4de
                         <?endif?>
                      <?endforeach?>
                 </ul>

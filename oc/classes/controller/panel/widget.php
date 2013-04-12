@@ -73,6 +73,10 @@ class Controller_Panel_Widget extends Auth_Controller {
 
                 $widget->save($old_placeholder);
 
+                //clean cache config
+                $c = new ConfigDB(); 
+                $c->reload_config();
+
                 if ($widget_name!=NULL)
                     Alert::set(Alert::SUCCESS,__('Widget '.$widget_name.' saved in '.$placeholder));
                 else
@@ -110,4 +114,39 @@ class Controller_Panel_Widget extends Auth_Controller {
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index')));
     }
 
+
+    public function action_saveplaceholders()
+    {
+        $this->auto_render = FALSE;
+        $this->template = View::factory('js');
+
+        DB::delete('config')->where('group_name','=','placeholder')->execute();
+
+        //for each placeholder
+        foreach ($_GET as $placeholder => $widgets) 
+        {
+            if (!is_array($widgets))
+                $widgets = array();
+
+            //insert in DB palceholders
+            $confp = new Model_Config();
+            $confp->group_name = 'placeholder';
+            $confp->config_key = $placeholder;
+            $confp->config_value = json_encode($widgets); 
+            $confp->save();
+
+            //edit each widget change placeholder
+            foreach ($widgets as $wname) 
+            {
+                $w = Widget::factory($wname);
+                $w->placeholder = $placeholder;
+                $w->save();
+            }
+            
+            
+        }
+
+        $this->template->content = __('Saved');
+
+    }
 }

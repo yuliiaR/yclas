@@ -110,7 +110,6 @@ class ConfigDB extends Config_Database {
      */
     public function reload_config()
     {
-        unset(self::$data);
         // Clears cached data
         $this->_cache->delete('config_db');  
         //load config

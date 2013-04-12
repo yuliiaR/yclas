@@ -35,7 +35,7 @@ Route::set('contact', URL::title(__('contact')).'.html')
 /**
  * user admin/panel route
  */
-Route::set('oc-panel', 'oc-panel/(<controller>(/<action>(/<id>)))')
+Route::set('oc-panel', 'oc-panel(/<controller>(/<action>(/<id>)))')
 ->defaults(array(
 		'directory'  => 'panel',
 		'controller' => 'home',
@@ -55,11 +55,18 @@ Route::set('ad', '<category>/<seotitle>.html')
 /**
  * Sort by Category / Location
  */
+<<<<<<< HEAD
 Route::set('list', '<category>(/<location>)')
+=======
+Route::set('listing', '<category>(/<location>)')
+>>>>>>> 580df611b9a2d3a283c531b8c324c3998e8db4de
 ->defaults(array(
+		'category'	 => 'all',
 		'controller' => 'ad',    
-		'action'     => 'sort_category',
+		'action'     => 'listing',
 ));
+
+
 
 /*
 	user profile route 
@@ -79,15 +86,6 @@ Route::set('page','p/<seotitle>.html')
 ->defaults(array(
 		'controller' => 'page',    
 		'action'     => 'view',
-));
-
-/**
-* user/admin edit ad route
-*/
-Route::set('update', '/(<action>/(<seotitle>(/<id>(/<img_name>))))')
-->defaults(array(
-		'controller' => 'ad',
-		'action'     => 'update',
 ));
 
 /**

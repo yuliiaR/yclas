@@ -4,17 +4,17 @@
 <div class="span4 well">
     <b><?=$widget->title?></b>
     <p><?=$widget->description?></p>
-    <button  class="btn btn-primary btn-mini" data-toggle="modal" data-target="#<?=$widget->id_name()?>" type="button">
+    <button  class="btn btn-primary btn-mini" data-toggle="modal" data-target="#modal_<?=$widget->id_name()?>" type="button">
             <?=__('Create')?>
     </button>
 </div> 
 <?else:?>
-    <li class="liholder" id="li_<?=$widget->id_name()?>"><i class="icon-move"></i>  <?=$widget->title()?> <span class="muted"><?=$widget->title?></span>
-        <button class="btn btn-primary btn-mini pull-right" data-toggle="modal" data-target="#<?=$widget->id_name()?>" type="button"><?=__('Edit')?></button>
+    <li class="liholder" id="<?=$widget->id_name()?>"><i class="icon-move"></i>  <?=$widget->title()?> <span class="muted"><?=$widget->title?></span>
+        <button class="btn btn-primary btn-mini pull-right" data-toggle="modal" data-target="#modal_<?=$widget->id_name()?>" type="button"><?=__('Edit')?></button>
     </li>
 <?endif?>
 
-<div id="<?=$widget->id_name()?>" class="modal hide fade" role="dialog" aria-labelledby="<?=$widget->id_name()?>" aria-hidden="true">
+<div id="modal_<?=$widget->id_name()?>" class="modal hide fade" role="dialog" aria-labelledby="modal_<?=$widget->id_name()?>" aria-hidden="true">
 
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

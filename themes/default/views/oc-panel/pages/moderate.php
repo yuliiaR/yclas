@@ -91,7 +91,7 @@
 	    	<td><? echo substr($ad->created, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary" 
-					href="<?=Route::url('update', array('controller'=>'ad','action'=>'update','seotitle'=>$ad->seotitle,'id'=>$ad->id_ad))?>" 
+					href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))?>" 
 					rel"tooltip" title="<?=__('Update')?>">
 					<i class="icon-edit icon-white"></i>
 				</a>

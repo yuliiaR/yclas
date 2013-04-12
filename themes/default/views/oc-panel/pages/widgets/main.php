@@ -105,14 +105,14 @@
 				<?foreach ($placeholders as $placeholder=>$widgets):?>
 				<div class="well sidebar-nav">
                 <p class="nav-header"><?=$placeholder?></p>
-					<ul class="nav nav-list plholder" id="ul_<?=$placeholder?>" >
+					<ul class="nav nav-list plholder" id="<?=$placeholder?>" >
                         <?foreach ($widgets as $widget):?>
                           <?=$widget->form()?>
                         <?endforeach?>
 					</ul>
 				</div>
 				<?endforeach?>
-                <pre id='serialize_output'></pre>
+                <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'saveplaceholders'))?>'></span>
 			</div>
 			<!--placeholders-->
 

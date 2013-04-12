@@ -85,6 +85,7 @@ class Model_Category extends ORM {
 		$parent = new self;
 		$list = $parent->find_all();
 		
+		$list_parent = array();
 		foreach ($list as $l) 
 		{
 			if($l->id_category_parent == 1)
@@ -146,8 +147,9 @@ class Model_Category extends ORM {
 		$form->fields['parent_deep']['display_as'] = 'select';
 		$form->fields['parent_deep']['options'] = range(0,3);
 
+
 		$form->fields['id_category_parent']['display_as'] = 'select';
-		$form->fields['id_category_parent']['options'] = $this->category_parent();
+		$form->fields['id_category_parent']['select'] = array(1=>2);
 
 		$form->fields['order']['display_as'] = 'select';
 		$form->fields['order']['options'] = range(0,30);
