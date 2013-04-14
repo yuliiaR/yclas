@@ -12,11 +12,5 @@ class Controller_Panel_Order extends Auth_Crud {
 	 */
 	protected $_orm_model = 'order';
 
-	/**
-	 *
-	 * list of actions for the crud
-	 * @var array
-	 */
-	public $crud_actions = array();	
 
 }
