@@ -9,7 +9,7 @@
  * This way we do not scan the folder for widgets.
  * @var array
  */
-widgets::$default_widgets = array('widget_rss', 'widget_pages','widget_text');
+widgets::$default_widgets = array('widget_rss', 'widget_pages','widget_text', 'widget_ads');
 
 /**
  * placeholders that exists in the default module

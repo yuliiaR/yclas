@@ -56,6 +56,23 @@ class Model_Visit extends ORM {
 			    );
     }
 
+    /**
+     * get popular ads
+     * @param  integer $days number of days to calculate
+     * @return array        id_ad and count
+     */
+    public static function popular_ads($days = 30)
+    {
+        $query = DB::select('id_ad',DB::expr('COUNT(id_visit) count'))
+                        ->from('visits')
+                        ->where('created','between',array(date('Y-m-d',strtotime('-'.$days.' day')),date::unix2mysql()))
+                        ->group_by(DB::expr('id_ad'))
+                        ->order_by('count','asc')
+                        ->execute();
+
+        return $query->as_array('id_ad');
+    }
+
 
 
 } // END Model_Visit

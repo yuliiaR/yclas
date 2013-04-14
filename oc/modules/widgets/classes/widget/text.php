@@ -41,7 +41,9 @@ class Widget_Text extends Widget
      */
     public function save($old_placeholder = NULL)
     {
-        $this->text_body = Core::$_POST_ORIG['text_body'];
+        if (isset(Core::$_POST_ORIG['text_body']))
+            $this->text_body = Core::$_POST_ORIG['text_body'];
+
         return parent::save($old_placeholder);
     }
 
