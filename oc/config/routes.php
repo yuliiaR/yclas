@@ -30,6 +30,15 @@ Route::set('contact', URL::title(__('contact')).'.html')
 		'controller' => 'contact',
 		'action'	 => 'index',));
 
+/**
+ * page view public
+ */
+Route::set('page','p/<seotitle>.html')
+->defaults(array(
+        'controller' => 'page',    
+        'action'     => 'view',
+));
+
 //-------END reserved pagesd
 
 /**
@@ -74,15 +83,6 @@ Route::set('profile', 'user/<seoname>(/<action>)')
 		'action'     => 'index',
 ));
 
-
-/**
- * page view public
- */
-Route::set('page','p/<seotitle>.html')
-->defaults(array(
-		'controller' => 'page',    
-		'action'     => 'view',
-));
 
 /**
  * Error router

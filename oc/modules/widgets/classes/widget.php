@@ -372,7 +372,7 @@ abstract class Widget{
 		switch ($options['display']) 
 		{
 			case 'select':
-				$input = FORM::select($name, $options['options'], $value, $attributes);
+				$input = FORM::select($name, $options['options'], $value);
 				break;
 			case 'textarea':
 				$input = FORM::textarea($name, $value, $attributes);

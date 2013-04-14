@@ -16,6 +16,7 @@
             <div class="nav-collapse collapse">
 
                 <ul class="nav">
+                    <?=nav_link(__('Visit site'),'home','icon-eye-open icon-white','index','default')?>
                 	<?=sidebar_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
                     <?=sidebar_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"
@@ -30,7 +31,6 @@
                     		<li><a href="<?=Route::url('post_new')?>">
                     			<i class="icon-pencil"></i><?=__('Publish new ')?></a>	</li>
                     	</ul>
-                        <?=nav_link(__('Visit site'),'home','icon-eye-open icon-white','index','default')?>
             	   </li>
                 </ul>
                 
