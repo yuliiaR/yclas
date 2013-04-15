@@ -62,4 +62,6 @@ class Controller_Home extends Controller {
 		
 	}
 
+	// public function action_parent_cat() 
+
 } // End Welcome

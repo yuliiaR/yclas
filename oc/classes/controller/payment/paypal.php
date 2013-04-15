@@ -17,7 +17,6 @@ class Controller_Payment_Paypal extends Controller{
         //todo delete
         paypal::validate_ipn();
 
-
 		$this->auto_render = FALSE;
 
 		//START PAYPAL IPN
@@ -111,7 +110,7 @@ class Controller_Payment_Paypal extends Controller{
         {
 
 			$paypal_url = (Core::config('paypal.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
-// d($order->amount);
+
 		 	$paypal_data = array('order_id'            	=> $order_id,
 	                             'amount'            	=> number_format($order->amount, 2, '.', ''),
 	                             'site_name'        	=> core::config('general.site_name'),
@@ -120,9 +119,7 @@ class Controller_Payment_Paypal extends Controller{
 	                             'paypal_account'    	=> core::config('paypal.paypal_account'),
 	                             'paypal_currency'    	=> core::config('paypal.paypal_currency'));
 
-			// d($payment_paypal);
-			// $development_logic = new Model_Order();
-			// $development_logic->confirm_payment($order_id, core::config('general.moderation'));
+			
 			$this->template->content = View::factory('paypal', $paypal_data); //@TODO -- make this active when paypal active
 			$this->response->body($this->template->render());
 		}

@@ -67,7 +67,7 @@
 				// Sitemap::generate(); // @TODO CHECK WHY DOESNT WORK
 
 			$status = Model_Ad::STATUS_PUBLISHED;
-			$this->_save_new_ad($data, $status, $published = TRUE, $config, $form_show['captcha']);
+			$this->_save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
 
 		}
 		else if($moderation == 1 || $moderation == 2 || $moderation == 3)
@@ -254,7 +254,7 @@
 						$this->request->redirect(Route::url('default'));
 					}
 					// redirect to payment
-        			$this->request->redirect(Route::url('payment', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
+        			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
 				}
 				else
 				{

@@ -124,9 +124,11 @@ class Controller_Ad extends Controller {
 			$content->img_path = NULL;
 			
         }
-        // list all
+        // list by category / location
         else
        	{ 
+       		// d($cat_filter);
+
        		if($this->request->param('category') != 'all' && $this->request->param('location') != NULL)
        			$data = $this->list_logic($cat_filter, $loc_filter);
        		else if ($this->request->param('category') != 'all' && $this->request->param('location') == NULL)
