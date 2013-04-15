@@ -214,6 +214,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'global-currency', 'USD'),
 ('general', 'ID-pay_to_go_on_feature', 'pay_to_go_on_feature'),
 ('general', 'featured_timer', '5'),
+('general', 'max_image_size', '5'),
 ('general', 'advertisements_per_page', '10'),
 ('advertisement', 'num_images', '4'),
 ('advertisement', 'address', 'TRUE'),

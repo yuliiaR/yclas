@@ -1,7 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="row-fluid">
-<?=View::factory('sidebar')?>
-	<div class="span10">
+	<div class="well">
 		 <?=Form::errors()?>
 		<div class="page-header">
 			<h1><?=__('Edit Advertisement')?></h1>
@@ -83,6 +81,7 @@
 					<?= FORM::select('category', $_val_category, $ad->id_category, array('id'=>'category','class'=>'input-xlarge', 'required'));?>
 					</div>
 				</div>
+				<?if(core::config('advertisement.location') != 'FALSE'):?>
 				<div class="control-group">
 					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
 					<div class="controls">
@@ -93,6 +92,7 @@
 					<?= FORM::select('location', $_val_location, $ad->id_location, array('id'=>'location', 'class'=>'input-xlarge', 'required'));?>
 					</div>
 				</div>
+				<?endif?>
 				<div class="control-group">
 					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>
 					<div class="controls">
@@ -105,11 +105,10 @@
 						<ul class="thumbnails">
 							<?php foreach ($path as $path):?>
 							<?$img_name = str_replace(".jpg", "", substr(strrchr($path, "/"), 1 ));?>
-							<?print_r($img_name);?>
-							<?if(strstr($path, '_') != '_original.jpg'): // only formated images (not originals)?>
+							<?if(strstr($path, '_') == '_200x200.jpg'): // only formated images (not originals)?>
 							<li>
-								<a href="#" class="thumbnail">
-									<img src="/<?echo $path?>" class="img-rounded" alt="">
+								<a class="thumbnail">
+									<img src="/<?= $path?>" class="img-rounded" alt="">
 								</a>
 								
 								<button class="btn btn-danger index-delete"
@@ -139,35 +138,48 @@
 						</div>
 					<?endif?>
 				</div>
+				<?if(core::config('advertisement.phone') != 'FALSE'):?>
 				<div class="control-group">
 					<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
 					<div class="controls">
 						<?= FORM::input('phone', $ad->phone, array('class'=>'input-xlarge', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
 					</div>
 				</div>
+				<?endif?>
+				<?if(core::config('advertisement.address') != 'FALSE'):?>
 				<div class="control-group">
 					<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
 					<div class="controls">
 						<?= FORM::input('address', $ad->address, array('class'=>'input-xlarge', 'id'=>'address', 'placeholder'=>__('Address')))?>
 					</div>
 				</div>
+				<?endif?>
+				<?if(core::config('advertisement.website') != 'FALSE'):?>
+				<div class="control-group">
+					<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
+					<div class="controls">
+						<?= FORM::input('website', $ad->website, array('class'=>'input-xlarge', 'id'=>'website', 'placeholder'=>__('Website')))?>
+					</div>
+				</div>
+				<?endif?>
+				<?if(core::config('advertisement.price') != 'FALSE'):?>
 				<div class="control-group">
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<div class="input-prepend">
 						<span class="add-on"><?=core::config('general.global-currency')?></span>
+						<?//=d($ad->price)?>
 						<?= FORM::input('price', number_format($ad->price, 2), array('class' => 'input-xlarge span10', 'id' => 'price', 'type'=>'number'))?>
 						</div>
 					</div>
 				</div>
+				<?endif?>
 				<div class="form-actions">
 					<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))))?>
 					<p class="help-block">Dynamic text, for free or pay XX€..</p>
 				</div>
 			</fieldset>
 		<?= FORM::close()?>
-
 	</div>
-	<!--/span-->
-</div>
-<!--/row-->
+	<!--/well-->
+

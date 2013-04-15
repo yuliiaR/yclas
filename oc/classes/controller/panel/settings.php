@@ -95,6 +95,7 @@ class Controller_Panel_Settings extends Auth_Controller {
     {
     	// validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
+        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
 
         // all form config values
         $generalconfig = new Model_Config();
@@ -109,8 +110,11 @@ class Controller_Panel_Settings extends Auth_Controller {
                 { 
                     if($c->config_key !== 'ID-pay_to_go_on_feature')
                     {
-                        $config_res = $this->request->post($c->config_key); 
-                    
+                        $config_res = $this->request->post($c->config_key);
+                        if($c->config_key == 'allowed_formats'){
+                            
+                        } 
+                        
                         if($config_res != $c->config_value)
                         {
                             $c->config_value = $config_res;

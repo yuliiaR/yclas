@@ -36,6 +36,18 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<?= FORM::label($forms['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label', 'for'=>$forms['allowed_formats']['key']))?>
+					<div class="controls">
+						<?= FORM::select($forms['allowed_formats']['key'], array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), $forms['allowed_formats']['value'], array(
+						'placeholder' => $forms['allowed_formats']['value'],
+						'multiple' => 'true',
+						'class' => 'input-xlarge', 
+						'id' => $forms['allowed_formats']['key'], 
+						))?> 
+						<a title="" data-content="<?=__("Allowed image formats")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Allowed image formats")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
 					<?= FORM::label($forms['site_name']['key'], __('Site name'), array('class'=>'control-label', 'for'=>$forms['site_name']['key']))?>
 					<div class="controls">
 						<?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
@@ -102,6 +114,20 @@
 						'id' => $forms['date_format']['key'], 
 						))?> 
 						<a title="" data-content="<?=__("Date format")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Date format")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['max_image_size']['key'], __('Max image size'), array('class'=>'control-label', 'for'=>$forms['max_image_size']['key']))?>
+					<div class="controls">
+						<div class="input-append">
+							<?= FORM::input($forms['max_image_size']['key'], $forms['max_image_size']['value'], array(
+							'placeholder' => "5", 
+							'class' => 'input-xlarge', 
+							'id' => $forms['max_image_size']['key'], 
+							))?>
+							<span class="add-on"><?=__("MB")?></span>
+						</div> 
+						<a title="" data-content="<?=__("Max image size")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Max image size")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">

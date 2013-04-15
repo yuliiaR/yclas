@@ -192,4 +192,119 @@ class Model_Ad extends ORM {
         return $directory;
     }
 
+    /**
+     * _save_image upload images with given path
+     * 
+     * @param  [array]  $image      [image $_FILE-s ]
+     * @param  [string] $seotitle   [unique id, and folder name]
+     * @return [bool]               [return true if 1 or more images uploaded, false otherwise]
+     */
+    public function _save_image($image, $seotitle, $created)
+    {
+        $ad = new self;
+        $ad = $ad->where('seotitle', '=', $seotitle)->limit(1)->find();
+
+        foreach ($image as $image) 
+        {
+         
+            if ( 
+            ! Upload::valid($image) OR
+            ! Upload::not_empty($image) OR
+            ! Upload::type($image, array('jpg', 'jpeg', 'png')) OR
+            ! Upload::size($image, core::config('general.max_image_size').'M'))
+            {
+                if ( Upload::not_empty($image) && ! Upload::type($image, array('jpg', 'jpeg', 'png')))
+                {
+                    Alert::set(Alert::ALERT, __($image['name'].' Is not valid format, please use one of this formats "jpg, jpeg, png"'));
+                    return array("error"=>FALSE, "error_name"=>"wrong_format");
+                } 
+                if(!Upload::size($image, core::config('general.max_image_size').'M'))
+                {
+                    Alert::set(Alert::ALERT, __($image['name'].' Is not of valid size. Size is limited on '.core::config('general.max_image_size').'MB per image'));
+                    return array("error"=>FALSE, "error_name"=>"wrong_format");
+                }
+                return array("error"=>FALSE, "error_name"=>"no_image");
+            }
+            
+            if ($image !== NULL)
+            {
+                $path = $this->_image_path($seotitle, $created);
+                $directory = DOCROOT.$path;
+                $max_image_width = 1024;
+
+                if ($file = Upload::save($image, NULL, $directory))
+                {
+                    $name = strtolower(Text::random('alnum',20));
+                    $filename_big = $name.'_200x200.jpg';
+                    $filename_original = $name.'_'.$max_image_width.'px.jpg';
+                    $image_size_orig = getimagesize($file);
+                    
+                    Image::factory($file)
+                        ->resize(200, 200, Image::NONE)
+                        ->save($directory.$filename_big);
+                    
+                    if($image_size_orig[0] >= $max_image_width)
+                    {
+                        Image::factory($file)
+                            ->resize($max_image_width, NULL, Image::AUTO)
+                            ->save($directory.$filename_original);    
+                    }
+                    else
+                    {
+                         Image::factory($file)
+                            ->save($directory.$filename_original); 
+                    }
+                    
+                    
+                    // Delete the temporary file
+                    unlink($file);
+                    return array("error"=>TRUE, "error_name"=>NULL);
+                }
+                else
+                { 
+                    return array("error"=>FALSE, "error_name"=>"upload_unsuccessful");
+                }
+            }   
+        }
+        return array("error"=>FALSE, "error_name"=>"no_image");
+    }
+
+    /**
+     * _image_path make unique dir path with a given date and seotitle
+     * 
+     * @param  [string] $seotitle   [unique id, and folder name]
+     * @return [string]             [directory path]
+     */
+    public function _image_path($seotitle, $created)
+    { 
+        if ($created !== NULL)
+        {
+            $obj_ad = new Model_Ad();
+            $path = $obj_ad->_gen_img_path($seotitle, $created);
+        }
+        else
+        {
+            $date = Date::format(time(), 'y/m/d');
+
+            $parse_data = explode("/", $date);          // make array with date values
+        
+            $path = "images/"; // root upload folder
+
+            for ($i=0; $i < count($parse_data); $i++) 
+            { 
+                $path .= $parse_data[$i].'/';           // append, to create path 
+                
+            }
+                $path .= $seotitle.'/';
+        }
+        
+        
+
+        if(!is_dir($path)){         // check if path exists 
+                mkdir($path, 0755, TRUE);
+            }
+
+        return $path;
+    }
+
 } // END Model_ad

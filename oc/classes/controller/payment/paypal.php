@@ -110,12 +110,6 @@ Email::sendEmailFile("slobodan.josifovic@gmail.com",'1111asdasd1','item_number',
             ->where('status','=',Model_Order::STATUS_CREATED)
             ->limit(1)->find();
 
-        // different product name (message)
-        if(is_numeric($order->id_product)) $paypal_msg = core::config('general.paypal_msg_product_category');
-        elseif ($order->id_product == 'pay_to_go_on_top') $paypal_msg = core::config('general.paypal_msg_product_to_top');
-        else $paypal_msg = core::config('general.paypal_msg_product_to_featured');
-
-        
         if ($order->loaded())
         {
 
@@ -127,8 +121,7 @@ Email::sendEmailFile("slobodan.josifovic@gmail.com",'1111asdasd1','item_number',
 	                             'site_url'            	=> URL::base(TRUE),
 	                             'paypal_url'        	=> $paypal_url,
 	                             'paypal_account'    	=> core::config('paypal.paypal_account'),
-	                             'paypal_currency'    	=> core::config('paypal.paypal_currency'),
-	                             'item_name'        	=> $paypal_msg);
+	                             'paypal_currency'    	=> core::config('paypal.paypal_currency'));
 
 			// d($payment_paypal);
 			// $development_logic = new Model_Order();

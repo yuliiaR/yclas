@@ -39,7 +39,7 @@ class Controller_User extends Controller {
 						{
 							if($key->id_category == $value->id_category)
 							{
-								$cat = $key->name;
+								$cat = $key->seoname;
 							}
 						}
 					

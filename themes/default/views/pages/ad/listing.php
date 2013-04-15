@@ -23,12 +23,12 @@
 		    	<?if(is_string($cat)):?>
 		    		<?$cat_name = $cat?>
 		    	<?else:?>
-		    	<?foreach ($cat as $cat){ if($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
+		    	<?foreach ($cat as $cat){ if($cat->id_category == $ad->id_category) $cat_name = $cat->seoname; }?>
 		    	<?endif?>
 		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 	    	</h2>
 	    	<?if($img_path[$ad->seotitle] != NULL):?>
-	    		 <img src="/<?=$img_path[$ad->seotitle][1]?>" class="img-polaroid advert_img" >
+	    		 <img src="/<?=$img_path[$ad->seotitle][0]?>" class="img-polaroid advert_img" >
 	    	<?endif?>
 	    	
 	    	<ul>

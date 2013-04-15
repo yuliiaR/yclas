@@ -22,12 +22,14 @@ class Controller_Ad extends Controller {
 		{
 			$seo_cat = $slug_cat->where('seoname', '=', $this->request->param('category'))->limit(1)->find();
 			$cat_filter = $seo_cat->id_category;
+			
 		}
 		
 		if($this->request->param('location') != NULL || $this->request->param('location') != "all")
 		{
 			$seo_loc = $slug_loc->where('seoname', '=', $this->request->param('location'))->limit(1)->find();
 			$loc_filter = $seo_loc->id_location;
+			
 		}
 
 		// user 
@@ -43,7 +45,45 @@ class Controller_Ad extends Controller {
 
 		if ($this->request->query('search'))
         {
-        
+        	$search_term = $this->request->query('search');
+            
+            $this->template->bind('content', $content);
+			$this->template->content = View::factory('pages/ad/listing');
+
+			$ads = $advert->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+			
+	        //search term
+	        if ( strlen($search_term)>2 )
+	        {
+	            $ads->where('title', 'like', '%'.$search_term.'%');
+	        }
+
+	        $res_count = count($ads);
+
+	        $pagination = Pagination::factory(array(
+	                    'view'           	=> 'pagination',
+	                    'total_items'      	=> $res_count,
+	                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
+	        ))->route_params(array(
+	                    'controller' 		=> $this->request->controller(),
+	                    'action'     	 	=> $this->request->action(),
+	        ));
+
+	        if ($res_count>0)
+	        {
+	        	$content->ads = $ads->order_by('created','desc')
+	                                ->limit($pagination->items_per_page)
+	                                ->offset($pagination->offset)
+	                                ->find_all();
+	                                   	            
+	        } else $content->ads = NULL;
+	       	
+
+			$content->pagination = $pagination->render();
+			$content->cat = $cat;
+			$content->loc = $loc;
+			$content->user = $user;
+			$content->img_path = NULL;
         }
         // advansed search with many parameters
         elseif($this->request->query('advert') 
@@ -86,7 +126,7 @@ class Controller_Ad extends Controller {
         }
         // list all
         else
-       	{ echo($this->request->param('category')." ==== ".$this->request->param('location')); 
+       	{ 
        		if($this->request->param('category') != 'all' && $this->request->param('location') != NULL)
        			$data = $this->list_logic($cat_filter, $loc_filter);
        		else if ($this->request->param('category') != 'all' && $this->request->param('location') == NULL)
@@ -95,6 +135,7 @@ class Controller_Ad extends Controller {
        			$data = $this->list_logic( NULL ,  $loc_filter);
        		else
        			$data = $this->list_logic();
+       			
 	   		
 			$this->template->bind('content', $content);
 			$this->template->content = View::factory('pages/ad/listing',$data);
@@ -109,7 +150,7 @@ class Controller_Ad extends Controller {
   	 * @return [array] [$ads, $pagination, $user, $image_path]
  	 */
 	public function list_logic($sort_by_cat = NULL, $sort_by_loc = NULL)
-	{echo(">>>>>>>>>".$sort_by_cat." ===== ".$sort_by_loc);
+	{
 		$ads = new Model_Ad();
 		
 		$cat = new Model_Category($sort_by_cat);
@@ -120,8 +161,23 @@ class Controller_Ad extends Controller {
 		if($sort_by_loc == NULL) $locat = $loc->find_all(); else $locat = $loc->id_location;
 		
 
-		// if is sorted by category
-		if(is_numeric($categ))
+		// if is sorted by category , or category + location
+		if(is_numeric($locat))
+		{//d(is_numeric($categ));
+			if(!is_numeric($categ))
+			{
+				$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+							 ->and_where('id_location', '=', $locat)->count_all();	
+			}
+			else
+			{
+				$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+								 ->and_where('id_category', '=', $categ)
+								 ->and_where('id_location', '=', $locat)->count_all();
+			}
+			
+		} 
+		else if(is_numeric($categ))
 		{
 			if(is_numeric($locat))
 			{
@@ -155,7 +211,31 @@ class Controller_Ad extends Controller {
                  
     	    )); //d($this->request->controller()." ".$this->request->action());
     	    
-    	    if(is_numeric($categ))
+    	    
+     	    if(is_numeric($locat) )
+     	    {
+     	    	if(!is_numeric($categ))
+     	    	{
+     	    		$ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+	    					   ->where('id_location', '=', $locat)
+	    					   ->order_by('published','desc')
+            	               ->limit($pagination->items_per_page)
+            	               ->offset($pagination->offset)
+            	               ->find_all();
+     	    	}
+     	    	else
+     	    	{
+     	    		$ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+	    					   ->where('id_category', '=', $categ)
+	    					   ->where('id_location', '=', $locat)
+	    					   ->order_by('published','desc')
+            	               ->limit($pagination->items_per_page)
+            	               ->offset($pagination->offset)
+            	               ->find_all();
+     	    	}
+     	    	
+     	    }
+    	    else if(is_numeric($categ))
 			{
 				if(is_numeric($locat))
 				{
@@ -466,7 +546,8 @@ class Controller_Ad extends Controller {
 		
 		$loc = $location = new Model_Location();
 		$loc = $loc->find_all();
-		// d(Auth::instance()->logged_in());
+
+	
 		if(Auth::instance()->logged_in() && Auth::instance()->get_user()->id_user == $form->id_user 
 			|| Auth::instance()->logged_in() && Auth::instance()->get_user()->id_role == 10)
 		{
@@ -524,7 +605,6 @@ class Controller_Ad extends Controller {
 																			  'perm'			=>$img_permission,
 																			  'extra_payment'	=>$extra_payment));
 		
-		
 			if ($this->request->post())
 			{
 
@@ -549,7 +629,7 @@ class Controller_Ad extends Controller {
 
 						//delete original image
 						$orig_img = str_replace('_200x200', '', $deleted_image);
-						unlink($img_path.$orig_img.'_original.jpg');
+						unlink($img_path.$orig_img.'_1024px.jpg');
 
 						$this->request->redirect(Route::url('default', array('controller'=>'ad',
 																			'action'=>'update',
@@ -566,6 +646,7 @@ class Controller_Ad extends Controller {
 								'price'			=> $price 		= 	$this->request->post('price'),
 								'status'		=> $status		= 	$this->request->post('status'),
 								'address'		=> $address 	= 	$this->request->post('address'),
+								'website'		=> $website 	= 	$this->request->post('website'),
 								'phone'			=> $phone 		= 	$this->request->post('phone'),
 								'has_images'	=> 0,
 								'user'			=> $user 		= new Model_User()
@@ -593,14 +674,15 @@ class Controller_Ad extends Controller {
 				$form->status 			= $data['status'];	
 				$form->price 			= $data['price']; 								
 				$form->address 			= $data['address'];
+				$form->website 			= $data['website'];
 				$form->phone			= $data['phone']; 
 
-				$obj_img = new Controller_New($this->request,$this->response);
+				$obj_img = new Model_Ad();
 
 				// image upload
 				$error_message = NULL;
 	    		$filename = NULL;
-	    		echo $count/2;
+
     			if (isset($_FILES['image0']) && $count/2 <= 3)
         		{
 	        		$img_files = array($_FILES['image0']);
@@ -613,6 +695,35 @@ class Controller_Ad extends Controller {
 
 	        	try {
 	        		$form->save();
+	        		Alert::set(Alert::SUCCESS, __('Advertisement is updated'));
+
+	        		// PAYMENT METHOD ACTIVE
+					$moderation = core::config('general.moderation');
+					$payment_order = new Model_Order();
+					$advert_order = $payment_order->where('id_ad', '=', $this->request->param('id'))
+												  ->and_where('status', '=', 0)
+												  ->and_where('pay_date', '=', NULL)
+												  ->limit(1)->find();
+
+					if(!$advert_order->loaded())
+					{
+						if($moderation == 2 || $moderation == 3)
+						{
+							$order_id = $payment_order->make_new_order($data, Auth::instance()->get_user()->id_user, $form->seotitle);
+
+							if($order_id == NULL)
+							{
+								$this->request->redirect(Route::url('default'));
+							}
+							// redirect to payment
+        					$this->request->redirect(Route::url('payment', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
+						}
+					}
+						
+
+	        		$this->request->redirect(Route::url('default', array('controller'=>'ad',
+																			'action'=>'update',
+																			'id'=>$form->id_ad)));
 	        	} catch (Exception $e) {
 	        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures'));
 	        	}
@@ -662,8 +773,7 @@ class Controller_Ad extends Controller {
 	public function action_to_top()
 	{
 		$payer_id = Auth::instance()->get_user()->id_user; 
-		$id_product = core::config('general.ID-pay_to_go_on_top');
-		$paypal_msg = core::config('general.paypal_msg_product_to_top');
+		
 		// update orders table
 		// fields
 		$ad = new Model_Ad();
@@ -678,7 +788,7 @@ class Controller_Ad extends Controller {
 						  'amount' 		=> core::config('general.pay_to_go_on_top'));
 
 		$order_id = new Model_Order(); // create order , and returns order id
-		$order_id = $order_id->make_order($ord_data);
+		$order_id = $order_id->set_new_order($ord_data);
 	
 		
 		// redirect to payment
@@ -710,7 +820,7 @@ class Controller_Ad extends Controller {
 						  'amount' 		=> core::config('general.pay_to_go_on_feature'));
 		
 		$order_id = new Model_Order(); // create order , and returns order id
-		$order_id = $order_id->make_order($ord_data);
+		$order_id = $order_id->set_new_order($ord_data);
 		// redirect to payment
 		$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
 	}

@@ -30,10 +30,10 @@ class Model_Order extends ORM {
 	/**
 	 * Status constants
 	 */
-    const STATUS_CREATED        = 0;    // just created
+    const STATUS_CREATED        = 0;   // just created
     const STATUS_PAID           = 1;   // paid!
     const STATUS_REFUSED        = 5;   //tried to paid but not succeed
-    const STATUS_REFUND         = 99;   //we refunded the money
+    const STATUS_REFUND         = 99;  //we refunded the money
 
     /**
      * @var  array  Available statuses array
@@ -137,11 +137,11 @@ class Model_Order extends ORM {
     }
 
     /**
-	 * [make_order] Creates new order with given parameters, and gets newlly created id_order
+	 * [set_new_order] Creates new order with given parameters, and gets newlly created id_order
 	 * @param  [array] $ord_data array of necessary parameters to create order
 	 * @return [int] self order id
 	 */
-	public static function make_order($ord_data)
+	public static function set_new_order($ord_data)
 	{
 
 		//create order		
@@ -174,4 +174,58 @@ class Model_Order extends ORM {
 
 		return $order_id;
 	}
+
+    /**
+     * [make_new_order] Process data related to new advert and makes call to payment system. 
+     * Controlls price of a product and calls function for seting new order to create new order in DB 
+     * @param  [array] $data        [Array with data related to advert]
+     * @param  [int] $usr           [user id]
+     * @param  [string] $seotitle   [seotitle of advertisement]
+     * @return [view]               [Redirect to payment or back to home if price is 0]
+     */
+    public function make_new_order($data, $usr, $seotitle)
+    {
+        $category = new Model_Category();
+        $cat = $category->where('id_category', '=', $data['cat'])->limit(1)->find();
+
+        // check category price, if 0 check parent
+        if($cat->price == 0)
+        {
+            $parent = $cat->id_category_parent;
+            $cat_parent = new Model_Category();
+            $cat_parent = $cat_parent->where('id_category', '=', $parent)->limit(1)->find();
+
+            if($cat_parent->price == 0) // @TODO add case of moderation + payment (moderation = 3)
+            {
+                Alert::set(Alert::SUCCESS, __('Advertisement is scheduled to be posted, you will be notified when becomes published. Thanks!'));
+                return $order_id = NULL;
+            }
+            else
+            {
+                $amount = $cat_parent->price;
+            }
+        }
+        else
+        {
+            $amount = $cat->price;
+        }
+        // make order 
+        $payer_id = $usr; 
+        $id_product = $cat->id_category;
+
+        $ad = new Model_Ad();
+        $ad = $ad->where('seotitle', '=', $seotitle)->limit(1)->find();
+
+        $ord_data = array('id_user'     => $payer_id,
+                          'id_ad'       => $ad->id_ad,
+                          'id_product'  => $id_product,
+                          'paymethod'   => 'paypal', // @TODO - to strict
+                          'currency'    => core::config('paypal.paypal_currency'),
+                          'amount'      => $amount);
+
+        $order_id = new self; // create order , and returns order id
+        $order_id = $this->set_new_order($ord_data);
+
+        return $order_id;
+    }
 }

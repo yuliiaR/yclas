@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="row-fluid">
-	<div class="span9 well">
+
+	<div class=" well">
 		<?=Form::errors()?>
 		<h1>Contact Us</h1>
 		<?= FORM::open(Route::url('contact'), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
@@ -58,6 +58,6 @@
 		<?= FORM::close()?>
 
 	</div><!--end span10-->
-</div> <!-- end flow-fluid-->
+
 
 

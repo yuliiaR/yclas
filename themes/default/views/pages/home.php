@@ -6,17 +6,17 @@
         <?foreach($ads as $ad):?>
           <?foreach ($categ as $cat):?>
             <?if($cat->id_category == $ad->id_category):?>
-                <?$cat_name = $cat->name;?>
+                <?$cat_name = $cat->seoname;?>
             <?endif?>
         <?endforeach?>
         <li class="span3">
             <div class="thumbnail latest_ads" style="height: 300px; overflow: hidden;">
                 <?if($img_path[$ad->seotitle] != NULL):?>
-                <img src="/<?=$img_path[$ad->seotitle][1]?>" class="img-polaroid">
+                <img src="/<?=$img_path[$ad->seotitle][0]?>" class="img-polaroid">
                 <?endif?>
                 <div class="caption">
                     <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h5>
-                    <p ><?=$ad->description?></p>
+                    <p ><?=substr(Text::removebbcode($ad->description), 0 , 120)?></p>
                 </div>
             </div>
         </li>     

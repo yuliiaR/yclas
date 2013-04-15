@@ -62,8 +62,6 @@ Route::set('listing', '<category>(/<location>)')
 		'action'     => 'listing',
 ));
 
-
-
 /*
 	user profile route 
  */

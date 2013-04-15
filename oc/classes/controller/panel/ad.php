@@ -76,7 +76,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			$pagination = Pagination::factory(array(
                     'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
-                    'items_per_page' 	=> 5
+                    'items_per_page' 	=> core::config('general.advertisements_per_page')
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),

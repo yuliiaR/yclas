@@ -59,36 +59,36 @@
 		<tr>
 			<td>
 				<label class="checkbox">
-					<input type="checkbox" id="<?echo $ad->id_ad.'_'?>" class="checkbox">
+					<input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
 				</label>
 			</td>
-			<? foreach($category as $cat){ if ($cat->id_category == $ad->id_category) $cat_name = $cat->name; }?>
-			<td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><? echo $ad->title; ?></a>
+			<? foreach($category as $cat){ if ($cat->id_category == $ad->id_category) $cat_name = $cat->seoname; }?>
+			<td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?= $ad->title; ?></a>
 			</td>
 
 			<? foreach($category as $cat):?>
 				<? if ($cat->id_category == $ad->id_category): ?>
-					<td><?php echo $cat->name ?>
+					<td><?= $cat->name ?>
 				<?endif?>
 	    	<?endforeach?>
 			
 			<?php foreach($location as $loc):?>
 				<? if ($loc->id_location == $ad->id_location): ?>
-					<td><?php echo $loc->name?></td>
+					<td><?= $loc->name?></td>
 				<?endif?>
 	    	<?endforeach?>
 
-			<td><? echo $hits[$i++];?></td>
+			<td><?= $hits[$i++];?></td>
 			<? if($ad->status == 0):?>
-				<td><? echo __('Notpublished')?></td>
+				<td><?= __('Notpublished')?></td>
 			<? elseif($ad->status == 1):?>
-				<td><? echo __('Published')?></td>
+				<td><?= __('Published')?></td>
 			<? elseif($ad->status == 30):?>
-				<td><? echo __('Spam')?></td>
+				<td><?= __('Spam')?></td>
 	    	<? elseif($ad->status == 50):?>
-				<td><? echo __('Unavailable')?></td>
+				<td><?= __('Unavailable')?></td>
 			<?endif?>
-	    	<td><? echo substr($ad->created, 0, 11)?></td>
+	    	<td><?= substr($ad->created, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary" 
 					href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))?>" 

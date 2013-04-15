@@ -109,7 +109,7 @@ class Model_Category extends ORM {
 		
 		$ads = new Model_Ad();
 		
-
+		$children_categ = NULL;
 		foreach ($categories as $c) 
 		{
 			$count = $ads->where('id_category', '=', $c->id_category)->count_all();
@@ -149,7 +149,10 @@ class Model_Category extends ORM {
 
 
 		$form->fields['id_category_parent']['display_as'] = 'select';
-		$form->fields['id_category_parent']['select'] = array(1=>2);
+		$form->fields['id_category_parent']['options'] = range(1,10);
+		
+		
+
 
 		$form->fields['order']['display_as'] = 'select';
 		$form->fields['order']['options'] = range(0,30);

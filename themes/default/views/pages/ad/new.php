@@ -1,6 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="row-fluid">
-	<div class="span9 well">
+	<div class=" well">
 		 <?=Form::errors()?>
 		<div class="page-header">
 			<h1><?=__('Publish new advertisement')?></h1>
@@ -15,12 +14,15 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category'))?>
+					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' , 'multiple'))?>
 					<div class="controls">						
 						<?foreach ($_cat as $cat):?>
-							<?php $_val_category[$cat->id_category] = $cat->seoname; ?>
+							<?if($cat->seoname != 'all'):?>
+							<?php $_val_category[$cat->id_category] = $cat->name; ?>
+							<?endif?>
 						<?endforeach?>
-					<?= FORM::select('category', $_val_category, 0, array('id'=>'category','class'=>'input-xlarge', 'required') );?>
+						<?var_dump($_val_category)?>
+					<?= FORM::select('category', $_val_category, 0,array('id'=>'category','class'=>'input-xlarge', 'required') );?>
 					<p id="cat_price" class="text-warning"></p>
 					</div>
 				</div>
@@ -30,7 +32,7 @@
 					<div class="controls">
 					
 						<?foreach ($_loc as $loc):?>
-							<?php $_val_location[$loc->id_location] = $loc->seoname; ?>
+							<?php $_val_location[$loc->id_location] = $loc->name; ?>
 						<?endforeach?>
 					<?= FORM::select('location', $_val_location, 0, array('id'=>'location', 'class'=>'input-xlarge', 'required') );?>
 					</div>
@@ -117,6 +119,4 @@
 		<?= FORM::close()?>
 
 	</div>
-	<!--/span-->
-</div>
-<!--/row-->
+	<!--/well-->
