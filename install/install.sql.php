@@ -169,9 +169,13 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."content` (
   UNIQUE KEY `".$_POST['TABLE_PREFIX']."content_UK_seotitle` (`seotitle`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
+/**
+ * @todo add basic content like emails
+ */
+
 
 /**
- * Access @todo review normal profile
+ * Access
  */
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (10, 'admin', 'Full access');");
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."access` (`id_access`, `id_role`, `access`) VALUES (1, 10, '*.*'),(2, 1, 'profile.*');");
@@ -229,6 +233,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('email-settings', 'smtp_host', ''),
 ('email-settings', 'smtp_port', ''),
 ('email-settings', 'smtp_auth', 'FALSE'),
+('email-settings', 'smtp_ssl', 'FALSE'),
 ('email-settings', 'smtp_user', ''),
 ('email-settings', 'smtp_pass', '');");
 

@@ -7,11 +7,7 @@
 		<h1><?=__('Remember password')?></h1>
 	</div>
 
-	<?if ($msg):?>
-  		<h2><?=$msg?></h2>
-    <?else:?>
-		<?=View::factory('pages/auth/forgot-form')?>
-	<?endif?>
+	<?=View::factory('pages/auth/forgot-form')?>
 	
 	</div><!--/span--> 
 </div><!--/row-->

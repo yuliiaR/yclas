@@ -57,7 +57,7 @@ class Controller_Payment_Paypal extends Controller{
 
 				else
 				{
-					Email::sendEmailFile("slobodan.josifovic@gmail.com",'qwe','xxxxxxx',"reply",'replyName', NULL);
+					Email::send("slobodan.josifovic@gmail.com",'qwe','xxxxxxx',"reply",'replyName', NULL);
 					// Log an invalid request to look into
 					// PAYMENT INVALID & INVESTIGATE MANUALY!
 					$subject = 'Invalid Payment';

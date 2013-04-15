@@ -35,6 +35,17 @@
 						<a title="" data-content="<?=__("Smtp active")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
+                <div class="control-group">
+                    <?= FORM::label($forms['smtp_ssl']['key'], __('Smtp ssl'), array('class'=>'control-label', 'for'=>$forms['smtp_ssl']['key']))?>
+                    <div class="controls">
+                        <?= FORM::select($forms['smtp_ssl']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"), $forms['smtp_ssl']['value'], array(
+                        'placeholder' => "TRUE or FALSE", 
+                        'class' => 'input-xlarge', 
+                        'id' => $forms['smtp_ssl']['key'], 
+                        ))?> 
+                        <a title="" data-content="<?=__("Smtp ssl")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+                    </div>
+                </div>
 				<div class="control-group">
 					<?= FORM::label($forms['smtp_host']['key'], __('Smtp host'), array('class'=>'control-label', 'for'=>$forms['smtp_host']['key']))?>
 					<div class="controls">
