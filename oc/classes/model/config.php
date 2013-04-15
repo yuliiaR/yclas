@@ -26,29 +26,43 @@ class Model_Config extends ORM {
      */
     protected $_primary_key = 'config_key';
 
+    
     /**
-     * Rule definitions for validation
-     *
-     * @return array
+     * Insert a new object to the database
+     * @param  Validation $validation Validation object
+     * @return ORM
      */
-    // public function rules()
-    // {
-    // 	return array(
-			       
-			 //    );
-    // }
+    public function create(Validation $validation = NULL)
+    {
+        $this->reload_config();
+        parent::create($validation);
+    }
 
     /**
-     * Label definitions for validation
+     * Updates a single record or multiple records
      *
-     * @return array
+     * @chainable
+     * @param  Validation $validation Validation object
+     * @return ORM
      */
-    // public function labels()
-    // {
-    // 	return array(
-			       
-			 //    );
-    // }
+    public function update(Validation $validation = NULL)
+    {
+        $this->reload_config();
+        parent::update($validation);
+    }
+
+    /**
+     * Deletes a single record while ignoring relationships.
+     *
+     * @chainable
+     * @return ORM
+     */
+    public function delete()
+    {
+        $this->reload_config();
+        parent::delete();
+    }
+
 
     public function form_setup($form)
     {
@@ -61,6 +75,15 @@ class Model_Config extends ORM {
         //return array('id_user', 'salt', 'date_created', 'date_lastlogin', 'ip_created', 'ip_lastlogin');
     }
 
+    /**
+     * everytime we save the config we relad the cache
+     * @return boolean 
+     */
+    public function reload_config()
+    {
+        $c = new ConfigDB(); 
+        return $c->reload_config();
+    }
 
 
 } // END Model_Config

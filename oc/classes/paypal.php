@@ -21,90 +21,97 @@ Class Paypal {
     /**
      * For IPN validation
      */
-    const ipn_sandbox_url      	= 'ssl://www.sandbox.paypal.com';
-    const ipn_url              	= 'ssl://www.paypal.com';
-    const ipn_sandbox_host   	= 'www.sandbox.paypal.com';
-    const ipn_host              = 'www.paypal.com';
-
-	/**
-	*
-	* validates the IPN
-	*/
-	public static function validate_ipn()
-	{	
-Email::sendEmailFile("slobodan.josifovic@gmail.com",'qwe','end'.'died !fp',"reply",'replyName', NULL);
-	d('');
-		if (core::config('paypal.sandbox')) 
-		{
-			$url = self::ipn_sandbox_url;
-			$host = self::ipn_sandbox_host;
-		}
-		else 
-		{
-			$url = self::ipn_url;
-			$host = self::ipn_host;
-		}
-		$result = FALSE;
-
-		// read the post from PayPal system and add 'cmd'
-		$req = 'cmd=_notify-validate';
-
-		foreach ($_REQUEST as $key => $value) 
-		{
-			$value = urlencode(stripslashes($value));
-			
-			if($key=="sess" || $key=="session") continue;
-				$req .= "&$key=$value";
-		}
-		$header = '';
-		$header .= 'POST /cgi-bin/webscr HTTP/1.1\r\n';
-		$header .= 'Content-Type: application/x-www-form-urlencoded\r\n';
-		$header .= 'Host: '.$host.'\r\n';  
-		$header .= 'Content-Length: ' . strlen($req) . '\r\n';
-		$header .= 'Connection: close\r\n\r\n';
+    const ipn_sandbox_url      	= 'ttps://www.sandbox.paypal.com/cgi-bin/webscr';
+    const ipn_url              	= 'https://www.paypal.com/cgi-bin/webscr';
 
 
-		$fp = fsockopen('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 60);
-		
-		if (!$fp) 
-		{
-			//error email
-			// paypalProblem('Paypal connection error'); // @TODO -- see implementation of this
-			// email::send("slobodan.josifovic@gmail.com",'OPENCLASS','!$fp'.'<br />'.$fp.'<br />', '123');
-			Kohana::$log->add(Log::ERROR, 'Paypal connection error');
-Email::sendEmailFile("slobodan.josifovic@gmail.com",'qwe',$url.$errno.$fp.'died !fp',"reply",'replyName', NULL);
-	d('');
-		} 
-		else 
-	 	{
-			fputs ($fp, $header . $req);
-			
-			while (!feof($fp)) 
-			{
-				$res = fgets ($fp, 1024);
-					
-				if (stripos($res, "VERIFIED") !== FALSE) 
-				{
-					$result = TRUE;
-			
-				}
-				else if (stripos($res, "INVALID") !== FALSE) 
-				{
-					//log the error in some system?
-					//paypalProblem('Invalid payment');
-					Kohana::$log->add(Log::ERROR, "INVALID payment");
+    /**
+     * validates the data at paypal c&p from https://www.x.com/developers/PayPal/documentation-tools/code-sample/216623
+     * @note impossible to test on sandbox, paypal wont work.
+     * I really dislike this code but seems to work...
+     * @return boolean
+     */
+    public static function validate_ipn()
+    {
+        if (core::config('paypal.sandbox'))
+            $ipn_url  = self::ipn_sandbox_url;
+        else
+            $ipn_url  = self::ipn_url;
 
-				}
-			}
-			fclose ($fp);
-			
-		}
-		return $result;
-	}
+        // STEP 1: Read POST data
+ 
+        // reading posted data from directly from $_POST causes serialization 
+        // issues with array data in POST
+        // reading raw POST data from input stream instead. 
+        $raw_post_data = file_get_contents('php://input');
+        $raw_post_array = explode('&', $raw_post_data);
+        $myPost = array();
+        foreach ($raw_post_array as $keyval) {
+          $keyval = explode ('=', $keyval);
+          if (count($keyval) == 2)
+             $myPost[$keyval[0]] = urldecode($keyval[1]);
+        }
+        // read the post from PayPal system and add 'cmd'
+        $req = 'cmd=_notify-validate';
+        if(function_exists('get_magic_quotes_gpc')) {
+           $get_magic_quotes_exists = true;
+        } 
+        foreach ($myPost as $key => $value) {        
+           if($get_magic_quotes_exists == true && get_magic_quotes_gpc() == 1) { 
+                $value = urlencode(stripslashes($value)); 
+           } else {
+                $value = urlencode($value);
+           }
+           $req .= "&$key=$value";
+        }
+         
+         
+        // STEP 2: Post IPN data back to paypal to validate
+        $ch = curl_init($ipn_url);
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
+         
+        if( !($res = curl_exec($ch)) ) {
+            // error_log("Got " . curl_error($ch) . " when processing IPN data");
+            curl_close($ch);
+            exit;
+        }
+        curl_close($ch);
+         
+        // STEP 3: Inspect IPN validation result and act accordingly
+        if (strcmp ($res, "VERIFIED") == 0) 
+        {
+            return TRUE;
+        }
+        // Verfication result was invalid.  Log it.
+        elseif(strcmp ($res, "INVALID") == 0)
+        {
+            Kohana::$log->add(Log::ERROR, 'Paypal invalid payment error. Result: '.$result.' Data: '. json_encode($_POST));
+            return FALSE;
+        }
+        // Unknown result. Log it.
+        else
+        {
+            Kohana::$log->add(Log::ERROR, 'Unknown result from IPN verification. Result: '.$result.' Data: '. json_encode($_POST));
+            return FALSE;
+        }
 
+    }
+
+
+    /**
+     * returns allowed Paypal currencies
+     * @return array currencies
+     */
 	public static function get_currency()
 	{
-		$currency_codes=array(
+		return array(
 						'Australian Dollars'								=>  'AUD',
 						'Canadian Dollars' 									=>	'CAD',
 						'Euros' 											=>	'EUR',
@@ -129,8 +136,6 @@ Email::sendEmailFile("slobodan.josifovic@gmail.com",'qwe',$url.$errno.$fp.'died 
 						'Taiwan New Dollars' 								=>	'TWD',
 						'Thai Baht' 										=>	'THB'
 		);
-
-		return $currency_codes;
 
 	}
 }

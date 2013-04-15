@@ -12,6 +12,6 @@ return array
             ),
         'table_prefix' => '[TABLE_PREFIX]',
         'charset'      => '[DB_CHARSET]',
-        'profiling'    => FALSE,
+        'profiling'    => (Kohana::$environment===Kohana::DEVELOPMENT)? TRUE:FALSE,
      ),
 );

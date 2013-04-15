@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 /**
- * RSS widget reader
+ * Locations widget reader
  *
  * @author      Chema <chema@garridodiaz.com>
  * @package     Widget
@@ -9,20 +9,20 @@
  */
 
 
-class Widget_Pages extends Widget
+class Widget_Locations extends Widget
 {
 
 	public function __construct()
 	{	
 
-		$this->title = __('Pages');
-		$this->description = __('Display CMS pages');
+		$this->title = __('Locations');
+		$this->description = __('Display Locations');
 
 		$this->fields = array(	
-						 		'page_title'  => array(	'type'		=> 'text',
+						 		'locations_title'  => array(	'type'		=> 'text',
 						 		  						'display'	=> 'text',
-						 		  						'label'		=> __('Page title displayed'),
-						 		  						'default'   => __('Pages'),
+						 		  						'label'		=> __('Locations title displayed'),
+						 		  						'default'   => __('Locations'),
 														'required'	=> FALSE),
 						 		);
 	}
@@ -35,7 +35,7 @@ class Widget_Pages extends Widget
      */
     public function title($title = NULL)
     {
-        return parent::title($this->page_title);
+        return parent::title($this->Locations_title);
     }
 	
 	/**
@@ -46,14 +46,9 @@ class Widget_Pages extends Widget
 	 */
 	public function before()
 	{
-		$pages = new Model_Content();
-        $pages = $pages ->select('seotitle','title')
-                        ->where('type','=', 'page')
-                        ->where('status','=', 1)
-                        ->order_by('order','asc')
-                        ->cached()
-                        ->find_all();
-		$this->page_items = $pages;
+		$loc = new Model_Location();
+        $loc = $loc->order_by('name','asc')->cached()->find_all();
+		$this->loc_items = $loc;
 	}
 
 

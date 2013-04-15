@@ -3,10 +3,13 @@
 	<div class="span10 well">
 		 <?=Form::errors()?>
 		<div class="page-header">
-			<h1><?=__('Genral Configuration')?></h1>
+			<h1><?=__('General Configuration')?></h1>
 		</div>
+        <a class="btn pull-right" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>"><?=__('All configs')?></a>.
 		<div id="advise" class="well advise clearfix">
-			<p class="text-info"><?=__('Here are listed general configuration values. Replace input fileds with new desired values')?></p>
+			<p class="text-info">
+                <?=__('Here are listed general configuration values. Replace input fileds with new desired values')?>.
+            </p>
 		</div>
 		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>

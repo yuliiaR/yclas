@@ -47,6 +47,78 @@ class Date extends Kohana_Date {
 	{
 	    return strtotime($date);
 	}
+
+    /**
+     * get an array range with dates in a specific format
+     * @param  string $start      from
+     * @param  string $end        to
+     * @param  string $step       strtotime style
+     * @param  string $format     date format
+     * @param  array $array_fill default fill for the array to return
+     * @param  string $d_field      the field we use to put the date into
+     * @return array             
+     */
+    public static function range($start, $end, $step = '+1 day', $format = 'Y-m-d', $array_fill = NULL, $d_field = 'date') 
+    {
+        //return array
+        $range = array();
+
+        if (is_string($start) === TRUE) 
+            $start = strtotime($start);
+        if (is_string($end) === TRUE) 
+            $end   = strtotime($end);
+
+        do 
+        {
+            $date = date($format, $start);
+
+            if (is_array($array_fill))
+            {
+                $array_fill[$d_field]  = $date;
+                $range[] = $array_fill;
+            }   
+            else
+                $range[] = $date;
+            
+            $start  = strtotime($step, $start);//increase
+
+        } while($start <= $end);
+
+        return $range;
+    }
+    
+
+    /**
+     * seconds to readable time format h:i:s
+     * @param  integer $secs 
+     * @return string      
+     */
+    public static function secs_to_time($secs) 
+    {
+        $times = array(3600, 60, 1);
+        $time = '';
+        $tmp  = '';
+
+        for($i = 0; $i < 3; $i++) 
+        {
+            $tmp = floor($secs / $times[$i]);
+            if($tmp < 1) 
+            {
+                $tmp = '00';
+            }
+            elseif($tmp < 10) 
+            {
+                $tmp = '0' . $tmp;
+            }
+            $time .= $tmp;
+            if($i < 2) 
+            {
+                $time .= ':';
+            }
+            $secs = $secs % $times[$i];
+        }
+        return $time;
+    }
 	
    
     

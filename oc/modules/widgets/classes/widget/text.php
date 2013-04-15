@@ -35,6 +35,20 @@ class Widget_Text extends Widget
 
 
     /**
+     * saves current widget data into the DB config
+     * @param string $old_placeholder
+     * @return boolean 
+     */
+    public function save($old_placeholder = NULL)
+    {
+        if (isset(Core::$_POST_ORIG['text_body']))
+            $this->text_body = Core::$_POST_ORIG['text_body'];
+
+        return parent::save($old_placeholder);
+    }
+
+
+    /**
      * get the title for the widget
      * @param string $title we will use it for the loaded widgets
      * @return string 

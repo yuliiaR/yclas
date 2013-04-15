@@ -30,6 +30,15 @@ Route::set('contact', URL::title(__('contact')).'.html')
 		'controller' => 'contact',
 		'action'	 => 'index',));
 
+/**
+ * page view public
+ */
+Route::set('page','p/<seotitle>.html')
+->defaults(array(
+        'controller' => 'page',    
+        'action'     => 'view',
+));
+
 //-------END reserved pagesd
 
 /**
@@ -55,7 +64,7 @@ Route::set('ad', '<category>/<seotitle>.html')
 /**
  * Sort by Category / Location
  */
-Route::set('listing', '<category>(/<location>)')
+Route::set('list', '<category>(/<location>)')
 ->defaults(array(
 		'category'	 => 'all',
 		'controller' => 'ad',    
@@ -72,15 +81,6 @@ Route::set('profile', 'user/<seoname>(/<action>)')
 		'action'     => 'index',
 ));
 
-
-/**
- * page view public
- */
-Route::set('page','p/<seotitle>.html')
-->defaults(array(
-		'controller' => 'page',    
-		'action'     => 'view',
-));
 
 /**
  * Error router

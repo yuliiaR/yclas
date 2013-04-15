@@ -17,6 +17,15 @@ class Core {
 	 * @var string
 	 */
 	const version = '2.0 Alpha';
+
+    /**
+     * original requested data
+     * @var array
+     */
+    public static $_POST_ORIG;
+    public static $_GET_ORIG;
+    public static $_COOKIE_ORIG;
+
 	
 	/**
 	 * 
@@ -24,7 +33,11 @@ class Core {
 	 */
 	public static function initialize()
 	{	
-		
+        //before cleaning getting a copy of the original in case we need it.
+        self::$_POST_ORIG   = $_POST;
+        self::$_GET_ORIG    = $_GET;
+        self::$_COOKIE_ORIG = $_COOKIE;
+      
 		// Strip HTML from all request variables
 		$_GET    = Core::strip_tags($_GET);
 		$_POST   = Core::strip_tags($_POST);

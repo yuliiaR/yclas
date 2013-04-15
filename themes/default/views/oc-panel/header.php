@@ -1,13 +1,24 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="navbar navbar-fixed-top navbar-inverse">
+<div class="navbar navbar-inverse navbar-fixed-top">
+
     <div class="navbar-inner">
-        <div class="container"><a class="brand"
-        	href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Administration')?></a>
-            <div class="nav-collapse">
+
+        <div class="container">
+
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="brand" href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Dashboard')?></a>
+
+            <div class="nav-collapse collapse">
+
                 <ul class="nav">
-                    <?=sidebar_link('','home','index','oc-panel','icon-home icon-white')?>
-                	<?=sidebar_link(__('Stats'),'stats')?>
-                    <?=sidebar_link(__('Widgets'),'widget')?>
+                    <?=nav_link(__('Visit site'),'home','icon-eye-open icon-white','index','default')?>
+                	<?=sidebar_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
+                    <?=sidebar_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"
             		      data-toggle="dropdown"><i class="icon-plus icon-white"></i> <?=__('New')?> <b class="caret"></b></a>
                     	<ul class="dropdown-menu">
@@ -21,12 +32,16 @@
                     			<i class="icon-pencil"></i><?=__('Publish new ')?></a>	</li>
                     	</ul>
             	   </li>
-                    <?=nav_link(__('View site'),'home')?>
                 </ul>
-                <div class="btn-group pull-right">
-                    <?=View::factory('widget_login')?>
-                </div>
+                
             </div> <!--/.nav-collapse -->
-        </div>
-    </div>
-</div>
+
+            <div class="btn-group pull-right visible-desktop">
+                <?=View::factory('widget_login')?>
+            </div>
+
+        </div><!--/.container -->
+
+    </div><!--/.navbar-inner -->
+
+</div><!--/.navbar -->
