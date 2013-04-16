@@ -212,14 +212,15 @@
 				// in case something wrong happens user is redirected to edit advert. 
 				$error_message = NULL;
 	    		$filename = NULL;
-
+	    		$counter = 0;
 	    		for ($i=0; $i < core::config("advertisement.num_images"); $i++) { 
-	    			
+	    			$counter++;
 
 	    			if (isset($_FILES['image'.$i]))
 	        		{
 		        		$img_files = array($_FILES['image'.$i]);
-		            	$filename = $_new_ad->_save_image($img_files, $seotitle, $created);
+
+		            	$filename = $_new_ad->save_image($img_files, $_new_ad->id_ad, $created, $_new_ad->seotitle, $counter);
 
 	        		}
 

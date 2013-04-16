@@ -14,7 +14,10 @@
 		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<?foreach ($config as $c):?>
-				<?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
+					<?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
+				<?endforeach?>
+				<?foreach ($config_img as $c):?>
+					<?$forms_img[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
 				<?endforeach?>
 				<div class="control-group">
 					<?= FORM::label($forms['base_url']['key'], __('Base URL'), array('class'=>'control-label', 'for'=>$forms['base_url']['key']))?>
@@ -36,18 +39,6 @@
 						'id' => $forms['moderation']['key'], 
 						))?> 
 						<a title="" data-content="<?=__("Base url")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
-					</div>
-				</div>
-				<div class="control-group">
-					<?= FORM::label($forms['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label', 'for'=>$forms['allowed_formats']['key']))?>
-					<div class="controls">
-						<?= FORM::select($forms['allowed_formats']['key'], array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), $forms['allowed_formats']['value'], array(
-						'placeholder' => $forms['allowed_formats']['value'],
-						'multiple' => 'true',
-						'class' => 'input-xlarge', 
-						'id' => $forms['allowed_formats']['key'], 
-						))?> 
-						<a title="" data-content="<?=__("Allowed image formats")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Allowed image formats")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -120,20 +111,6 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<?= FORM::label($forms['max_image_size']['key'], __('Max image size'), array('class'=>'control-label', 'for'=>$forms['max_image_size']['key']))?>
-					<div class="controls">
-						<div class="input-append">
-							<?= FORM::input($forms['max_image_size']['key'], $forms['max_image_size']['value'], array(
-							'placeholder' => "5", 
-							'class' => 'input-xlarge', 
-							'id' => $forms['max_image_size']['key'], 
-							))?>
-							<span class="add-on"><?=__("MB")?></span>
-						</div> 
-						<a title="" data-content="<?=__("Max image size")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Max image size")?>">?</a>
-					</div>
-				</div>
-				<div class="control-group">
 					<?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
 					<div class="controls">
 						<?= FORM::input('locale', core::config('i18n.locale'), array(
@@ -144,7 +121,88 @@
 						<a title="" data-content="<?=__("Locale")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Locale")?>">?</a>
 					</div>
 				</div>
-				
+				<div class="control-group">
+					<?= FORM::label($forms_img['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label', 'for'=>$forms_img['allowed_formats']['key']))?>
+					<div class="controls">
+						<?= FORM::select($forms_img['allowed_formats']['key'], array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), $forms_img['allowed_formats']['value'], array(
+						'placeholder' => $forms_img['allowed_formats']['value'],
+						'multiple' => 'true',
+						'class' => 'input-xlarge', 
+						'id' => $forms_img['allowed_formats']['key'], 
+						))?> 
+						<a title="" data-content="<?=__("Allowed image formats")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Allowed image formats")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms_img['max_image_size']['key'], __('Max image size'), array('class'=>'control-label', 'for'=>$forms_img['max_image_size']['key']))?>
+					<div class="controls">
+						<div class="input-append">
+							<?= FORM::input($forms_img['max_image_size']['key'], $forms_img['max_image_size']['value'], array(
+							'placeholder' => "5", 
+							'class' => 'input-xlarge', 
+							'id' => $forms_img['max_image_size']['key'], 
+							))?>
+							<span class="add-on"><?=__("px")?></span>
+						</div> 
+						<a title="" data-content="<?=__("Max image size")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Max image size")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms_img['height']['key'], __('Image height'), array('class'=>'control-label', 'for'=>$forms_img['height']['key']))?>
+					<div class="controls">
+						<div class="input-append">
+							<?= FORM::input($forms_img['height']['key'], $forms_img['height']['value'], array(
+							'placeholder' => "700", 
+							'class' => 'input-xlarge', 
+							'id' => $forms_img['height']['key'], 
+							))?>
+							<span class="add-on"><?=__("px")?></span>
+						</div> 
+						<a title="" data-content="<?=__("Image height")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Image height")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms_img['width']['key'], __('Image width'), array('class'=>'control-label', 'for'=>$forms_img['width']['key']))?>
+					<div class="controls">
+						<div class="input-append">
+							<?= FORM::input($forms_img['width']['key'], $forms_img['width']['value'], array(
+							'placeholder' => "1024", 
+							'class' => 'input-xlarge', 
+							'id' => $forms_img['width']['key'], 
+							))?>
+							<span class="add-on"><?=__("px")?></span>
+						</div> 
+						<a title="" data-content="<?=__("Image width")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Image width")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms_img['height_thumb']['key'], __('Thumb height'), array('class'=>'control-label', 'for'=>$forms_img['height_thumb']['key']))?>
+					<div class="controls">
+						<div class="input-append">
+							<?= FORM::input($forms_img['height_thumb']['key'], $forms_img['height_thumb']['value'], array(
+							'placeholder' => "200", 
+							'class' => 'input-xlarge', 
+							'id' => $forms_img['height_thumb']['key'], 
+							))?>
+							<span class="add-on"><?=__("px")?></span>
+						</div> 
+						<a title="" data-content="<?=__("Thumb height")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Thumb height")?>">?</a>
+					</div>
+				</div>
+				<div class="control-group">
+					<?= FORM::label($forms_img['width_thumb']['key'], __('Thumb wid'), array('class'=>'control-label', 'for'=>$forms_img['width_thumb']['key']))?>
+					<div class="controls">
+						<div class="input-append">
+							<?= FORM::input($forms_img['width_thumb']['key'], $forms_img['width_thumb']['value'], array(
+							'placeholder' => "200", 
+							'class' => 'input-xlarge', 
+							'id' => $forms_img['width_thumb']['key'], 
+							))?>
+							<span class="add-on"><?=__("px")?></span>
+						</div> 
+						<a title="" data-content="<?=__("Thumb wid")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Thumb wid")?>">?</a>
+					</div>
+				</div>
 				<div class="form-actions">
 					<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
 				</div>

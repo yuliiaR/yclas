@@ -105,7 +105,7 @@
 						<ul class="thumbnails">
 							<?php foreach ($path as $path):?>
 							<?$img_name = str_replace(".jpg", "", substr(strrchr($path, "/"), 1 ));?>
-							<?if(strstr($path, '_') == '_200x200.jpg'): // only formated images (not originals)?>
+							<?if(strstr($path, '_') == '_smallthumb.jpg'): // only formated images (not originals)?>
 							<li>
 								<a class="thumbnail">
 									<img src="/<?= $path?>" class="img-rounded" alt="">

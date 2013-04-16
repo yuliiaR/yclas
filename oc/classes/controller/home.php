@@ -30,7 +30,7 @@ class Controller_Home extends Controller {
 		// generates image roots 
 		foreach ($display_ads as $a) {
 
-			if(!is_dir($image_exists->_gen_img_path($a->seotitle, $a->created)))
+			if(!is_dir($image_exists->gen_img_path($a->id_ad, $a->created)))
 			{
 				$a->has_images = 0;
 				try {
@@ -41,9 +41,9 @@ class Controller_Home extends Controller {
 			}
 			
 			$rep = new Controller_Ad($this->request, $this->response);
-			if(is_array($path = $rep->_image_path($a)))
+			if(is_array($path = $rep->image_path($a)))
 			{
-				$path = $rep->_image_path($a);
+				$path = $rep->image_path($a);
 				$img_path[$a->seotitle] = $path;
 			}
 			else

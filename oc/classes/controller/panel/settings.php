@@ -100,7 +100,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         // all form config values
         $generalconfig = new Model_Config();
         $config = $generalconfig->where('group_name', '=', 'general')->find_all();
-      
+        $config_img = $generalconfig->where('group_name', '=', 'image')->find_all();
         // save only changed values
         if($this->request->post())
         {
@@ -112,7 +112,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                     {
                         $config_res = $this->request->post($c->config_key);
                         if($c->config_key == 'allowed_formats'){
-                            
+                            //@TODO
                         } 
                         
                         if($config_res != $c->config_value)
@@ -127,12 +127,24 @@ class Controller_Panel_Settings extends Auth_Controller {
                     } 
                 }
             }
+            foreach ($config_img as $ci) {
+                $config_res = $this->request->post($ci->config_key);
+                if($config_res != $ci->config_value)
+                {
+                    $ci->config_value = $config_res;
+                    try {
+                        $ci->save();
+                    } catch (Exception $e) {
+                        echo $e;
+                    }
+                }
+            }
             // Cache::instance()->delete_all();
             Alert::set(Alert::SUCCESS, __('Success, General Configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'general')));
         }
 
-        $this->template->content = View::factory('oc-panel/pages/settings/general', array('config'=>$config));
+        $this->template->content = View::factory('oc-panel/pages/settings/general', array('config'=>$config, 'config_img'=>$config_img));
     }
 
     /**

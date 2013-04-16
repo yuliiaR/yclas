@@ -164,17 +164,18 @@ class Model_Ad extends ORM {
     }
 
     /**
-     * [_gen_img_path] Generate image path with a given parameters $seotitke and 
+     * [gen_img_path] Generate image path with a given parameters $seotitke and 
      * date of advertisement cration 
-     * @param  [string] $seotitle   [seo title of ad ]
+     * @param  [string] $id         [id of advert ]
      * @param  [date]   $created     [date of creation]
      * @return [string]             [directory path]
      */
-    public function _gen_img_path($seotitle, $created)
-    {
+    public function gen_img_path($id, $created)
+    { 
+        
         $obj_date = date_parse($created); // convert date to array 
         
-            $year = substr($obj_date['year'], -2); // take last 2 integers 
+            $year = $obj_date['year']; // take last 2 integers 
         
         // check for length, because original path is with 2 integers 
         if(strlen($obj_date['month']) != 2)
@@ -187,31 +188,29 @@ class Model_Ad extends ORM {
         else
             $day = $obj_date['day'];
 
-        $directory = 'images/'.$year.'/'.$month.'/'.$day.'/'.$seotitle.'/';
+        $directory = 'images/'.$year.'/'.$month.'/'.$day.'/'.$id.'/';
         
         return $directory;
     }
 
     /**
-     * _save_image upload images with given path
+     * save_image upload images with given path
      * 
      * @param  [array]  $image      [image $_FILE-s ]
      * @param  [string] $seotitle   [unique id, and folder name]
      * @return [bool]               [return true if 1 or more images uploaded, false otherwise]
      */
-    public function _save_image($image, $seotitle, $created)
+    public function save_image($image, $id, $created, $seotitle)
     {
-        $ad = new self;
-        $ad = $ad->where('seotitle', '=', $seotitle)->limit(1)->find();
-
+        $counter = 0;
         foreach ($image as $image) 
-        {
+        { $counter++;
          
             if ( 
             ! Upload::valid($image) OR
             ! Upload::not_empty($image) OR
             ! Upload::type($image, array('jpg', 'jpeg', 'png')) OR
-            ! Upload::size($image, core::config('general.max_image_size').'M'))
+            ! Upload::size($image, core::config('image.max_image_size').'M'))
             {
                 if ( Upload::not_empty($image) && ! Upload::type($image, array('jpg', 'jpeg', 'png')))
                 {
@@ -228,25 +227,26 @@ class Model_Ad extends ORM {
             
             if ($image !== NULL)
             {
-                $path = $this->_image_path($seotitle, $created);
+                $path = $this->image_path($id , $created);
                 $directory = DOCROOT.$path;
-                $max_image_width = 1024;
+                $width = core::config('image.width');
+                $height = core::config('image.height');
+                $width_thumb = core::config('image.width_thumb');
+                $height_thumb = core::config('image.height_thumb');
+
 
                 if ($file = Upload::save($image, NULL, $directory))
                 {
                     $name = strtolower(Text::random('alnum',20));
-                    $filename_big = $name.'_200x200.jpg';
-                    $filename_original = $name.'_'.$max_image_width.'px.jpg';
+                    $filename_thumb = 'thumb_'.$seotitle.'_'.$counter.'.jpg';
+                    $filename_original = $seotitle.'_'.$counter.'.jpg';
+                    $filename_crop = $name.'_crop.jpg';
                     $image_size_orig = getimagesize($file);
                     
-                    Image::factory($file)
-                        ->resize(200, 200, Image::NONE)
-                        ->save($directory.$filename_big);
-                    
-                    if($image_size_orig[0] >= $max_image_width)
+                     if($image_size_orig[0] >= $width)
                     {
                         Image::factory($file)
-                            ->resize($max_image_width, NULL, Image::AUTO)
+                            ->resize($width, NULL, Image::AUTO)
                             ->save($directory.$filename_original);    
                     }
                     else
@@ -254,6 +254,14 @@ class Model_Ad extends ORM {
                          Image::factory($file)
                             ->save($directory.$filename_original); 
                     }
+
+
+                    Image::factory($directory.$filename_original)->crop($width_thumb, $height_thumb)->save($directory.$filename_crop);
+                    Image::factory($file)
+                        ->resize(200, 200, Image::NONE)
+                        ->save($directory.$filename_thumb);
+                    
+                   
                     
                     
                     // Delete the temporary file
@@ -270,21 +278,21 @@ class Model_Ad extends ORM {
     }
 
     /**
-     * _image_path make unique dir path with a given date and seotitle
+     * image_path make unique dir path with a given date and id
      * 
-     * @param  [string] $seotitle   [unique id, and folder name]
+     * @param  [int] $id   [unique id, and folder name]
      * @return [string]             [directory path]
      */
-    public function _image_path($seotitle, $created)
+    public function image_path($id, $created)
     { 
         if ($created !== NULL)
         {
             $obj_ad = new Model_Ad();
-            $path = $obj_ad->_gen_img_path($seotitle, $created);
+            $path = $obj_ad->gen_img_path($id, $created);
         }
         else
         {
-            $date = Date::format(time(), 'y/m/d');
+            $date = Date::format(time(), 'Y/m/d');
 
             $parse_data = explode("/", $date);          // make array with date values
         
@@ -295,7 +303,7 @@ class Model_Ad extends ORM {
                 $path .= $parse_data[$i].'/';           // append, to create path 
                 
             }
-                $path .= $seotitle.'/';
+                $path .= $id.'/';
         }
         
         

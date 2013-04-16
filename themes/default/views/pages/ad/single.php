@@ -17,7 +17,7 @@
 			<ul class="thumbnails">
 				<?php foreach ($path as $path):?>
 				<?$img_name = str_replace(".jpg", "", substr(strrchr($path, "/"), 1 ));?>
-				<?if(strstr($path, '_') != '_1024px.jpg'):?>
+				<?if(strstr($path, '_') != '_bigthumb.jpg'):?>
 				<li>
 					<a href="" class="thumbnail">
 						<img src="/<?echo $path?>" class="img-rounded" alt="">

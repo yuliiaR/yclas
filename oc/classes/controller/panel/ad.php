@@ -151,7 +151,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					try
 					{
 						
-						$img_path = $element->_gen_img_path($element->seotitle, $element->created);
+						$img_path = $element->gen_img_path($element->id_ad, $element->created);
 						
 
 						if (!is_dir($img_path)) 

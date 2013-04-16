@@ -216,6 +216,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'featured_timer', '5'),
 ('general', 'max_image_size', '5'),
 ('general', 'advertisements_per_page', '10'),
+('general', 'allowed_formats', 'jpag, jpg, png,'),
 ('advertisement', 'num_images', '4'),
 ('advertisement', 'address', 'TRUE'),
 ('advertisement', 'phone', 'TRUE'),

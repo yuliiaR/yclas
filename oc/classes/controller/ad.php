@@ -287,23 +287,25 @@ class Controller_Ad extends Controller {
 		
 		// return image path 
 		$img_path = array();
-		$image_exists = new Model_Ad();
+		
 
-		foreach ($ads as $a) {
+		foreach ($ads as $a) 
+		{
 
-			if(!is_dir($image_exists->_gen_img_path($a->seotitle, $a->created)))
+			if(!is_dir($a->gen_img_path($a->seotitle, $a->created)))
 			{
 				$a->has_images = 0;
-				try {
+				try 
+				{
 					$a->save();
 				} catch (Exception $e) {
 					echo $e;
 				}
 			}
 			
-			if(is_array($path = $this->_image_path($a)))
+			if(is_array($path = $this->image_path($a)))
 			{
-				$path = $this->_image_path($a);
+				$path = $this->image_path($a);
 				$img_path[$a->seotitle] = $path;
 			}
 			else
@@ -471,7 +473,7 @@ class Controller_Ad extends Controller {
 		        // show image path if they exist
 		    	if($ad->has_images == 1)
 				{
-					$path = $this->_image_path($ad); 
+					$path = $this->image_path($ad); 
 				}else $path = NULL;
 
 		        if($this->request->post()) //message submition  
@@ -557,7 +559,7 @@ class Controller_Ad extends Controller {
 			$count = 0;
 			if($form->has_images == 1)
 			{
-				$current_path = $form->_gen_img_path($form->seotitle, $form->created);
+				$current_path = $form->gen_img_path($form->id_ad, $form->created);
 				
 				if (is_dir($current_path)){ // sanity check
 					$handle = opendir($current_path);
@@ -599,7 +601,7 @@ class Controller_Ad extends Controller {
 				}
 			}else $img_permission = TRUE;
 			
-			$path = $this->_image_path($form);
+			$path = $this->image_path($form);
 			$this->template->content = View::factory('pages/ad/edit', array('ad'				=>$form, 
 																			  'location'		=>$loc, 
 																			  'category'		=>$cat,
@@ -616,7 +618,7 @@ class Controller_Ad extends Controller {
 				{
 					//$this->request->redirect(Route::url('default', array('controller'=>'ad', 'action'=>'img_delete', 'id'=>$this->request->param('id'))));
 
-					$img_path = $form->_gen_img_path($form->seotitle, $form->created);
+					$img_path = $form->gen_img_path($form->id_ad, $form->created);
 
 					
 					if (!is_dir($img_path)) 
@@ -630,8 +632,8 @@ class Controller_Ad extends Controller {
 						unlink($img_path.$deleted_image.'.jpg');
 
 						//delete original image
-						$orig_img = str_replace('_200x200', '', $deleted_image);
-						unlink($img_path.$orig_img.'_1024px.jpg');
+						$orig_img = str_replace('_smallthumb', '', $deleted_image);
+						unlink($img_path.$orig_img.'_bigthumb.jpg');
 
 						$this->request->redirect(Route::url('default', array('controller'=>'ad',
 																			'action'=>'update',
@@ -659,9 +661,9 @@ class Controller_Ad extends Controller {
 				{
 					if($form->has_images == 1)
 					{
-						$current_path = $form->_gen_img_path($form->seotitle, $form->created);
+						$current_path = $form->gen_img_path($form->id_ad, $form->created);
 						// rename current image path to match new seoname
-						rename($current_path, $form->_gen_img_path($form->gen_seo_title($data['title']), $form->created)); 
+						rename($current_path, $form->gen_img_path($form->id_ad, $form->created)); 
 
 					}
 					$seotitle = $form->gen_seo_title($data['title']);
@@ -688,7 +690,7 @@ class Controller_Ad extends Controller {
     			if (isset($_FILES['image0']) && $count/2 <= 3)
         		{
 	        		$img_files = array($_FILES['image0']);
-	            	$filename = $obj_img->_save_image($img_files, $form->seotitle, $form->created);
+	            	$filename = $obj_img->save_image($img_files, $form->seotitle, $form->created, $form->seotitle);
         		}
         		if ( $filename == TRUE)
 	       		{
@@ -740,14 +742,14 @@ class Controller_Ad extends Controller {
 	}
 
 	/**
-	 * [_image_path Get directory path of specific advert.]
+	 * [image_path Get directory path of specific advert.]
 	 * @param  [array] $data [all values of one advert.]
 	 * @return [array]       [array of dir. path where images of advert. are ]
 	 */
-	public function _image_path($data)
+	public function image_path($data)
 	{
 		$obj_ad = new Model_Ad();
-		$directory = $obj_ad->_gen_img_path($data->seotitle, $data->created);
+		$directory = $obj_ad->gen_img_path($data->id_ad, $data->created);
 
 		$path = array();
 
