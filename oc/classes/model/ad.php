@@ -189,7 +189,7 @@ class Model_Ad extends ORM {
             $day = $obj_date['day'];
 
         $directory = 'images/'.$year.'/'.$month.'/'.$day.'/'.$id.'/';
-        
+       
         return $directory;
     }
 
@@ -202,9 +202,9 @@ class Model_Ad extends ORM {
      */
     public function save_image($image, $id, $created, $seotitle)
     {
-        $counter = 0;
+        
         foreach ($image as $image) 
-        { $counter++;
+        { 
          
             if ( 
             ! Upload::valid($image) OR
@@ -225,6 +225,7 @@ class Model_Ad extends ORM {
                 return array("error"=>FALSE, "error_name"=>"no_image");
             }
             
+
             if ($image !== NULL)
             {
                 $path = $this->image_path($id , $created);
@@ -234,7 +235,17 @@ class Model_Ad extends ORM {
                 $width_thumb = core::config('image.width_thumb');
                 $height_thumb = core::config('image.height_thumb');
 
-
+                // count howmany files are saved 
+                if (glob($directory . "*.jpg") != false)
+                {
+                    $filecount = count(glob($directory . "*.jpg"));
+                    $counter = ($filecount / 2) + 1;
+                }
+                else
+                {
+                    $counter = 1;
+                }
+                
                 if ($file = Upload::save($image, NULL, $directory))
                 {
                     $name = strtolower(Text::random('alnum',20));
@@ -243,10 +254,10 @@ class Model_Ad extends ORM {
                     $filename_crop = $name.'_crop.jpg';
                     $image_size_orig = getimagesize($file);
                     
-                     if($image_size_orig[0] >= $width)
+                    if($image_size_orig[0] >= $width)
                     {
                         Image::factory($file)
-                            ->resize($width, NULL, Image::AUTO)
+                            ->resize($width, $height, Image::AUTO)
                             ->save($directory.$filename_original);    
                     }
                     else
@@ -256,13 +267,9 @@ class Model_Ad extends ORM {
                     }
 
 
-                    Image::factory($directory.$filename_original)->crop($width_thumb, $height_thumb)->save($directory.$filename_crop);
-                    Image::factory($file)
-                        ->resize(200, 200, Image::NONE)
+                    Image::factory($directory.$filename_original)
+                        ->crop($width_thumb, $height_thumb)
                         ->save($directory.$filename_thumb);
-                    
-                   
-                    
                     
                     // Delete the temporary file
                     unlink($file);

@@ -292,7 +292,7 @@ class Controller_Ad extends Controller {
 		foreach ($ads as $a) 
 		{
 
-			if(!is_dir($a->gen_img_path($a->seotitle, $a->created)))
+			if(!is_dir($a->gen_img_path($a->id_ad, $a->created)))
 			{
 				$a->has_images = 0;
 				try 
@@ -314,7 +314,7 @@ class Controller_Ad extends Controller {
 				$img_path[$a->seotitle] = $path;	
 			} 
 		}
-
+		var_dump($img_path);
 		// array of categories sorted for view
 		
 
@@ -560,7 +560,6 @@ class Controller_Ad extends Controller {
 			if($form->has_images == 1)
 			{
 				$current_path = $form->gen_img_path($form->id_ad, $form->created);
-				
 				if (is_dir($current_path)){ // sanity check
 					$handle = opendir($current_path);
 					
@@ -627,13 +626,13 @@ class Controller_Ad extends Controller {
 					}
 					else
 					{	
-					
+					// d($img_path.$deleted_image.'.jpg');
 						//delete formated image
 						unlink($img_path.$deleted_image.'.jpg');
 
 						//delete original image
-						$orig_img = str_replace('_smallthumb', '', $deleted_image);
-						unlink($img_path.$orig_img.'_bigthumb.jpg');
+						$orig_img = str_replace('thumb_', '', $deleted_image);
+						unlink($img_path.$orig_img.".jpg");
 
 						$this->request->redirect(Route::url('default', array('controller'=>'ad',
 																			'action'=>'update',
@@ -690,7 +689,7 @@ class Controller_Ad extends Controller {
     			if (isset($_FILES['image0']) && $count/2 <= 3)
         		{
 	        		$img_files = array($_FILES['image0']);
-	            	$filename = $obj_img->save_image($img_files, $form->seotitle, $form->created, $form->seotitle);
+	            	$filename = $obj_img->save_image($img_files, $form->id_ad, $form->created, $form->seotitle);
         		}
         		if ( $filename == TRUE)
 	       		{
@@ -752,7 +751,6 @@ class Controller_Ad extends Controller {
 		$directory = $obj_ad->gen_img_path($data->id_ad, $data->created);
 
 		$path = array();
-
 		if(is_dir($directory))
 		{	
 			$filename = array_diff(scandir($directory, 1), array('..','.')); //return all file names , and store in array 
