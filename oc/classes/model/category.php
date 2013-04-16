@@ -38,6 +38,12 @@ class Model_Category extends ORM {
 		),
 	);
 
+   /* protected $_belongs_to = array(
+        'parent'   => array('model'       => 'Category',
+                            'foreign_key' => 'id_category_parent'),
+    );*/
+
+
 	
 
 	/**
@@ -80,21 +86,17 @@ class Model_Category extends ORM {
 	 * 
 	 */
 	
-	public function category_parent()
+	public static function category_parent()
 	{
 		$parent = new self;
-		$list = $parent->find_all();
+		$list = $parent->where('id_category_parent','=',1)->find_all();
 		
 		$list_parent = array();
 		foreach ($list as $l) 
 		{
-			if($l->id_category_parent == 1)
-			{
-				$list_parent[$l->id_category] = $l->name;
-			}
-			
+			$list_parent[$l->id_category] = $l->name;	
 		}
-
+    //d($list_parent);
 		return $list_parent;
 	}
 
@@ -145,13 +147,12 @@ class Model_Category extends ORM {
 		$form->fields['price']['caption'] = 'currency';
 	
 		$form->fields['parent_deep']['display_as'] = 'select';
-		$form->fields['parent_deep']['options'] = range(0,3);
+		$form->fields['parent_deep']['options'] = range(0,2);
 
 
-		$form->fields['id_category_parent']['display_as'] = 'select';
-		$form->fields['id_category_parent']['options'] = range(1,10);
-		
-		
+        $form->fields['id_category_parent']['dont_reindex_options']  = true;
+		$form->fields['id_category_parent']['display_as']     = 'select';
+		$form->fields['id_category_parent']['options']        = self::category_parent();// range(1,10);
 
 
 		$form->fields['order']['display_as'] = 'select';

@@ -56,8 +56,9 @@ class Controller_Panel_Auth extends Controller {
 	 */
 	public function action_forgot()
 	{
+        //template header
+        $this->template->title            = __('Remember password');
 		$this->template->content = View::factory('pages/auth/forgot');
-		$this->template->content->msg = '';
 		
 		//if user loged in redirect home
 		if (Auth::instance()->logged_in())
@@ -79,27 +80,20 @@ class Controller_Panel_Auth extends Controller {
 				
 				if ($user->loaded())
 				{
-					//regenerating the token, for security
-					$user->create_token();
 					
-					//url to redirect after ql success, change the pass
-					$url_change = Route::url('oc-panel',array('directory'  => 'user',
-														  'controller' => 'profile', 
-														  'action'     => 'changepass'),'http');					
-				
-					$ql = Auth::instance()->ql_encode($user->token,$url_change);
-					
-					$url_ql = Route::url('oc-panel',array('directory'  => 'user',
-													  'controller' => 'auth', 
-													  'action'     => 'ql',
-													  'id'		=>$ql),'http');
-					//@todo not hard coded
-					$ret = Email::send($email,
-										'neo22s@gmail.com',
-										__('Remember password'),
-										'<a href="'.$url_ql.'">click here</a>');
-					
-					if ($ret) $this->template->content->msg = __('Email with link sent');
+                    //we get the QL, and force the regen of token for security
+                    $url_ql = $user->ql('oc-panel',array( 'controller' => 'profile', 
+                                                          'action'     => 'changepass'),TRUE);
+
+                    $ret = $user->email('auth.remember',array('[URL.QL]'=>$url_ql));
+
+                    //email sent notify and redirect him
+                    if ($ret)
+                    {
+                        Alert::set(Alert::SUCCESS, __('Email to recover password sent'));
+                        $this->request->redirect(Route::url('default',array('controller'=>'auth','action'=>'login')));
+                    }
+
 				}
 				else
 				{
@@ -113,10 +107,7 @@ class Controller_Panel_Auth extends Controller {
 			}
 			
 		}
-		
-		//template header
-		$this->template->title            = __('Remember password');
-		
+				
 			
 	}
 	
@@ -178,6 +169,13 @@ class Controller_Panel_Auth extends Controller {
 						
 						//login the user
 						Auth::instance()->login($this->request->post('email'), $this->request->post('password1'));
+                        //send email
+                        $user->email('auth.register',array('[USER.PWD]'=>$this->request->post('password1'),
+                                                            '[URL.QL]'=>$user->ql('default',NULL,TRUE))
+                                                    );
+
+                        Alert::set(Alert::SUCCESS, __('Welcome!'));
+                        //login the user
 						$this->request->redirect(Route::url('oc-panel'));
 						
 					}
@@ -207,7 +205,6 @@ class Controller_Panel_Auth extends Controller {
 	public function action_ql()
 	{
 		$ql = $this->request->param('id');
-		
 		$url = Auth::instance()->ql_login($ql);
 		
 		//not a url go to login!

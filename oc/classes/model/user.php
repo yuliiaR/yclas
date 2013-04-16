@@ -340,19 +340,43 @@ class Model_User extends ORM {
             { 
 
                 //adding extra replaces
-                $replace+= array('[USER.NAME]' =>  $this->name,
+                $replace+= array('[SITE.NAME]'  =>  core::config('general.site_name'),
+                                 '[SITE.URL]'   =>  core::config('general.base_url'),
+                                 '[USER.NAME]'  =>  $this->name,
                                  '[USER.EMAIL]' =>  $this->email);
 
                 $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
                 $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
 
-                return Email::send($this->email,$email->from_email,$subject,$body);
+                return Email::send($this->email,$subject,$body,$email->from_email,core::config('general.site_name'));
 
             }
             else return FALSE;
         }
         return FALSE;
     }
+
+
+    /**
+     * get url with autolo QL login and redirect
+     * @param  string  $route            
+     * @param  array  $params           
+     * @param  boolean $regenerate_token 
+     * @return string                    
+     */
+    public function ql($route = 'default', array $params = NULL, $regenerate_token = FALSE)
+    {
+        if ($this->loaded())
+        {
+            if ($regenerate_token==TRUE)//regenerating the token, for security or new user...
+                $this->create_token();
+
+            $ql = Auth::instance()->ql_encode($this->token,Route::url($route,$params,'http'));
+            return Route::url('oc-panel',array('controller' => 'auth', 'action' => 'ql', 'id' =>$ql),'http');
+        }
+        return NULL;               
+    }
+
 
     public function form_setup($form)
     {

@@ -47,8 +47,6 @@
     .col-12 { width: 580px; }
 
 
-
-
     /* col-12-wow overrides col-12 class and creates a full 600px
        table with no padding.  This class can be used with any grid */
     .full-width {
@@ -115,7 +113,6 @@
     }
 
 
-
     @media only screen and (max-width: 480px) {
 
       td[class="background-container"] { padding:0 10px !important; }
@@ -164,8 +161,8 @@
 <table align="left" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td valign="top" class="col-12">
-        <a href="http://adserum.com" target ="_blank" title="adserum.com">
-                <img src="<?=Core::config('common.front_url').'themes/smart/img/logo.png';?>" alt="Adserum.com" title="Adserum.com" width="225" height="47" />
+        <a href="<?=core::config('general.base_url')?>" target ="_blank" title="<?=core::config('general.site_name')?>">
+                <?=core::config('general.site_name')?>
             </a>
           <h1><?=$title?></h1>
     </td>
@@ -175,12 +172,6 @@
         <?=$content?>
     </td>
   </tr>
-  <tr>
-        <td class="col-12" id="social">
-            <hr>
-                <a href="#" target ="_blank" title="openclassifieds.com">Twitter</a> -
-        </td>
-    </tr>
 
 </table>
 
