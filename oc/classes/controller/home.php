@@ -16,7 +16,7 @@ class Controller_Home extends Controller {
 	   
         //$ads = ORM::factory('ad');
         $ads = new Model_Ad();
-        $display_ads = $ads->where('status', '=', 1)->limit(4)->find_all();
+        $display_ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->order_by('published','desc')->limit(4)->cached()->find_all();
         
         $categ = new Model_Category();
 
