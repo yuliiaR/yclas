@@ -197,6 +197,7 @@ class Controller_Panel_Auth extends Controller {
 		$this->template->title            = __('Register new user');
 			
 	}
+    
 	/**
 	 *
 	 * Quick login for users.

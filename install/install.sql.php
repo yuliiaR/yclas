@@ -172,6 +172,10 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."content` (
 /**
  * @todo add basic content like emails
  */
+mysql_query("INSERT INTO `oc2_content` (`order`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) 
+    VALUES
+(0, 'Change Password [SITE.NAME]', 'auth.remember', 'Hello [USER.NAME],\n\nFollow this link  [URL.QL]\n\nThanks!!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, 'Welcome to [SITE.NAME]!', 'auth.register', 'Welcome [USER.NAME],\n\nWe are really happy that you joined us! [URL.QL]\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1);");
 
 
 /**
@@ -195,13 +199,13 @@ VALUES (1, 'admin', 'admin', '".$_POST['ADMIN_EMAIL']."', '$password', 1, 10)");
  */
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `config_key`, `config_value`) VALUES
 ('sitemap', 'expires', '43200'),
-('sitemap', 'on_post', 'TRUE'),
+('sitemap', 'on_post', 1),
 ('appearance', 'theme', 'default'),
 ('i18n', 'charset', 'utf-8'),
 ('i18n', 'timezone', '".$_POST['TIMEZONE']."'),
 ('i18n', 'locale', '".$_POST['LANGUAGE']."'),
 ('payment', 'paypal_currency', 'USD'),
-('payment', 'sandbox', 'FALSE'),
+('payment', 'sandbox', 0),
 ('payment', 'to_featured', 'FALSE'),
 ('payment', 'to_top', 'FALSE'),
 ('payment', 'pay_to_go_on_feature', '10'),
@@ -210,7 +214,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'number_format', ''),
 ('general', 'date_format', ''),
 ('general', 'base_url', '".$_POST['SITE_URL']."'),
-('general', 'moderation', '0'),
+('general', 'moderation', 0),
 ('general', 'analytics', ''),
 ('general', 'feed_elements', '20'),
 ('general', 'site_name', '".$_POST['SITE_NAME']."'),
@@ -221,21 +225,21 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'max_image_size', '5'),
 ('general', 'advertisements_per_page', '10'),
 ('advertisement', 'num_images', '4'),
-('advertisement', 'address', 'TRUE'),
-('advertisement', 'phone', 'TRUE'),
-('advertisement', 'upload_file', 'FALSE'),
-('advertisement', 'location', 'TRUE'),
-('advertisement', 'captcha-captcha', 'TRUE'),
-('advertisement', 'website', 'TRUE'),
-('advertisement', 'price', 'TRUE'),
-('email-settings', 'notify_email', '".$_POST['ADMIN_EMAIL']."'),
-('email-settings', 'smtp_active', 'FALSE'),
-('email-settings', 'smtp_host', ''),
-('email-settings', 'smtp_port', ''),
-('email-settings', 'smtp_auth', 'FALSE'),
-('email-settings', 'smtp_ssl', 'FALSE'),
-('email-settings', 'smtp_user', ''),
-('email-settings', 'smtp_pass', '');");
+('advertisement', 'address', 1),
+('advertisement', 'phone', 1),
+('advertisement', 'upload_file', 0),
+('advertisement', 'location', 1),
+('advertisement', 'captcha-captcha', 1),
+('advertisement', 'website', 1),
+('advertisement', 'price', 1),
+('email', 'notify_email', '".$_POST['ADMIN_EMAIL']."'),
+('email', 'smtp_active', 0),
+('email', 'smtp_host', ''),
+('email', 'smtp_port', ''),
+('email', 'smtp_auth', 0),
+('email', 'smtp_ssl', 0),
+('email', 'smtp_user', ''),
+('email', 'smtp_pass', '');");
 
 
 //base category
