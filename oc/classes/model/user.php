@@ -448,7 +448,7 @@ class Model_User extends ORM {
             $user->name         = $name;
             $user->status       = self::STATUS_ACTIVE;
             $user->id_role      = 1;
-            $user->seoname      = URL::title($user->name, '-', FALSE);
+            $user->seoname      = $user->gen_seo_title($user->name);
             $user->password     = Text::random('alnum', 8);
             try
             {
