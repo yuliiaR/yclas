@@ -82,6 +82,69 @@ class Model_Category extends ORM {
 	}
 	
 
+    public static function get_all()
+    {
+        $cats = new self;
+        $cats = $cats->order_by('order','asc')->find_all()->as_array('id_category');
+
+        //transform the cats to an array
+        $cats_arr = array();
+        foreach ($cats as $cat) 
+        {
+            $cats_arr[$cat->id_category] =  array('name' => $cat->name,
+                                                    'order' => $cat->order,
+                                                    'id_category_parent' => $cat->id_category_parent,
+                                                    'parent_deep' => $cat->parent_deep,
+                                                );
+        }
+        
+
+        //for each category we get his siblings
+        $cats_s = array();
+        foreach ($cats as $cat) 
+             $cats_s[$cat->id_category_parent][] = $cat->id_category;
+        
+
+        //last build multidimensional array
+        $cats_m = self::multi_cats($cats_s);
+
+        return array($cats_arr,$cats_m);
+    }
+
+    public static function multi_cats($cats_s,$id_category = 1, $deep = 0)
+    {   
+        $log = FALSE;
+
+        if ($log) for ($i=0, $deep_c=''; $i < $deep; $i++) $deep_c.='----';
+        if ($log) echo $deep_c.'id_category:'.$id_category.' deep:'.$deep.'<br>';
+        if ($log) echo $deep_c.'siblings:'.print_r($cats_s[$id_category],1).'<br>';
+        $ret = NULL;
+
+        //we take all the siblings and try to set the grandsons...
+        //we check that the id_category sibling has other siblings
+        foreach ($cats_s[$id_category] as $id_sibling) 
+        {
+            if ($log) echo $deep_c.'sibling id_category:'.$id_sibling.'<br>';
+
+            //we check that the id_category sibling has other siblings
+            if (isset($cats_s[$id_sibling]))
+            {
+                if (is_array($cats_s[$id_sibling]))
+                {
+                    $ret[$id_sibling] = self::multi_cats($cats_s,$id_sibling,$deep+1);
+                }
+            }
+            //no siblings we only set the key
+            else 
+                $ret[$id_sibling] = NULL;
+            
+        }
+        
+        if ($log) echo $deep_c.'id_category:'.$id_category.' end multi<br><br>';
+        return $ret;
+    }
+
+
 	/**
 	 * 
 	 */
