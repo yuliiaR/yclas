@@ -3,7 +3,7 @@
 
 	<div class="page-header">
 		<h1><?=__('Migration')?></h1>
-    <p>Your PHP time limit is <?=ini_get('max_execution_time')?> seconds</p>
+    <p><?=__("Your PHP time limit is")?> <?=ini_get('max_execution_time')?> <?=__("seconds")?></p>
 	</div>
 	<form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'migration'))?>">         
           <?=Form::errors()?>        
