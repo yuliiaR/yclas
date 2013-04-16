@@ -171,6 +171,14 @@ class Controller_Panel_Tools extends Auth_Controller {
         $this->template->title   = __('Open Classifieds migration');
         Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__('Migration'))));
 
+
+        //force clean database from migration, not public, just internal helper
+        if (Core::get('delete')==1)
+        {
+            //$this->clean_migration();
+            //Alert::set(Alert::SUCCESS,__('Database cleaned'));
+        }
+
         if ($this->request->post())
         {
             $db_config = array (
@@ -232,8 +240,9 @@ class Controller_Panel_Tools extends Auth_Controller {
             if ($match_tables)
             {
                 //start migration
+                $start_time = microtime(true);
                 $this->migrate($db,$pf);
-                Alert::set(Alert::SUCCESS, ('oh yeah!'));
+                Alert::set(Alert::SUCCESS, 'oh yeah! '.round((microtime(true)-$start_time),3).__('seconds'));
             }
             
         }
@@ -246,6 +255,23 @@ class Controller_Panel_Tools extends Auth_Controller {
     }
 
 
+    private function clean_migration()
+    {
+        set_time_limit(0);
+
+        DB::delete('ads')->execute();
+
+        DB::delete('categories')->where('id_category','!=','1')->execute();
+
+        DB::delete('locations')->where('id_location','!=','1')->execute();
+
+        DB::delete('users')->where('id_user','!=','1')->execute();
+
+        DB::delete('visits')->execute();
+
+    }
+
+
     /**
      * does the DB migration
      * @param  pointer $db 
@@ -254,6 +280,12 @@ class Controller_Panel_Tools extends Auth_Controller {
     private function migrate($db,$pf)
     {
         set_time_limit(0);
+
+        $db_config = core::config('database.default');
+        $prefix = $db_config['table_prefix'];
+        //connect DB original/to where we migrate
+        $dbo = Database::instance('default');
+
         
         //oc_accounts --> oc_users
         $users_map = array();
@@ -261,17 +293,24 @@ class Controller_Panel_Tools extends Auth_Controller {
 
         foreach ($accounts as $account) 
         {
+
             $user = new Model_User();
-            $user->name         = $account['name'];
-            $user->email        = $account['email'];
-            $user->password     = $account['password'];
-            $user->created      = $account['createdDate'];
-            $user->last_modified= $account['lastModifiedDate'];
-            $user->last_login   = $account['lastSigninDate'];
-            $user->status       = $account['active'];
-            $user->id_role      = 1;
-            $user->seoname      = URL::title($user->name, '-', FALSE);
-            $user->save();
+
+            $user->where('email','=',$account['email'])->limit(1)->find();
+
+            if (!$user->loaded())
+            {
+                $user->name         = $account['name'];
+                $user->email        = $account['email'];
+                $user->password     = $account['password'];
+                $user->created      = $account['createdDate'];
+                $user->last_modified= $account['lastModifiedDate'];
+                $user->last_login   = $account['lastSigninDate'];
+                $user->status       = $account['active'];
+                $user->id_role      = 1;
+                $user->seoname      = $user->gen_seo_title($user->name);
+                $user->save();
+            }
 
             $users_map[$account['email']] = $user->id_user;
         }
@@ -328,11 +367,12 @@ class Controller_Panel_Tools extends Auth_Controller {
             if (Valid::email($a['email']))
             {
                 $ad = new Model_Ad();
+                $ad->id_ad          = $a['idPost']; //so images still work
                 $ad->id_user        = (isset($users_map[$a['email']]))?$users_map[$a['email']]:Model_User::create_email($a['email'], $a['name']);
                 $ad->id_category    = (isset($categories_map[$a['idCategory']]))?$categories_map[$a['idCategory']]:1;
                 $ad->id_location    = (isset($locations_map[$a['idLocation']]))?$locations_map[$a['idLocation']]:1;
                 $ad->title          = $a['title'];
-                $ad->seotitle       = URL::title($a['title'], '-', FALSE);
+                $ad->seotitle       = $ad->gen_seo_title($a['title']);
                 $ad->description    = (!empty($a['description']))?$a['description']:$a['title'];
                 $ad->address        = $a['place'];
                 $ad->price          = $a['price'];
@@ -340,6 +380,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 $ad->has_images     = $a['hasImages'];
                 $ad->ip_address     = ip2long($a['ip']);
                 $ad->created        = $a['insertDate'];
+                $ad->published      = $ad->created;
 
                 //Status migration...big mess!
                 if ($a['isAvailable']==0 AND $a['isConfirmed'] ==0)
@@ -381,17 +422,39 @@ class Controller_Panel_Tools extends Auth_Controller {
             
         }
 
-        //posthits --> visits
-        $hits = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'postshits`');
+        //posthits --> visits, mass migration
+        $insert = 'INSERT INTO `'.$prefix.'visits` ( `id_ad`, `created`, `ip_address`) VALUES';
 
-        foreach ($hits as $hit) 
-        {
-            $visit = new Model_Visit();
-            $visit->id_ad       = (isset($ads_map[$hit['idPost']]))?$ads_map[$hit['idPost']]:NULL;
-            $visit->created     = $hit['hitTime'];
-            $visit->ip_address  = ip2long($hit['ip']);
-            $visit->save();
+        $step  = 5000;
+        $total = $db->query(Database::SELECT, 'SELECT count(*) cont FROM `'.$pf.'postshits`')->as_array();
+        $total = $total[0]['cont'];
+
+        for ($i=0; $i < $total; $i+=$step) 
+        { 
+            $hits = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'postshits` LIMIT '.$i.', '.$step);
+            $values = '';
+            foreach ($hits as $hit) 
+            {
+                //build insert query
+                $values.= '('.$hit['idPost'].',  \''.$hit['hitTime'].'\', \''.ip2long($hit['ip']).'\'),';
+            }
+
+            $dbo->query(Database::INSERT, $insert.substr($values,0,-1));
         }
+            //old way of migrating
+            // $hits = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'postshits` ');
+
+            // foreach ($hits as $hit) 
+            // {
+            //     //build insert query
+                
+            //     $visit = new Model_Visit();
+            //     $visit->id_ad       = (isset($ads_map[$hit['idPost']]))?$ads_map[$hit['idPost']]:NULL;
+            //     $visit->created     = $hit['hitTime'];
+            //     $visit->ip_address  = ip2long($hit['ip']);
+            //     $visit->save();
+            // }
+       
 
     }
 
