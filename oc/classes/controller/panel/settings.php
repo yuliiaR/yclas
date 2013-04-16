@@ -60,7 +60,7 @@ class Controller_Panel_Settings extends Auth_Controller {
 
         // all form config values
         $emailconf = new Model_Config();
-        $config = $emailconf->where('group_name', '=', 'email-settings')->find_all();
+        $config = $emailconf->where('group_name', '=', 'email')->find_all();
 
         // save only changed values
         if($this->request->post())

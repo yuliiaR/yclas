@@ -24,7 +24,7 @@ class Controller_Contact extends Controller {
 								 'message'		=>core::post('message'),);
 				
 
-				email::send(core::config('email-settings.notify_email'),$message['subject'],$message['message'],$message['email_from'],$message['name']);
+				email::send(core::config('email.notify_email'),$message['subject'],$message['message'],$message['email_from'],$message['name']);
 				Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
 
 				
