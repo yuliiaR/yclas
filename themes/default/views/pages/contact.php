@@ -32,7 +32,7 @@
 					</div>
 			</div>
 			
-			<?if (core::config('advertisement.captcha-captcha') !== 'FALSE'):?>
+			<?if (core::config('advertisement.captcha-captcha') != FALSE):?>
 			<div class="control-group">
 				<div class="controls">
 					<?=__('Captcha')?>*:<br />

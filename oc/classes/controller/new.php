@@ -156,7 +156,7 @@
 		if($this->request->post()) 
 		{
 			
-			if($captcha_show === 'FALSE' || captcha::check('contact') ) 
+			if($captcha_show == FALSE || captcha::check('contact') ) 
 			{		
 				
 				//insert data

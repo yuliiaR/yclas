@@ -26,7 +26,7 @@
 					<p id="cat_price" class="text-warning"></p>
 					</div>
 				</div>
-				<?if($form_show['location'] !== 'FALSE'):?>
+				<?if($form_show['location'] != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
 					<div class="controls">
@@ -53,7 +53,7 @@
 						</div>
 					<?endfor?>
 				</div>
-				<?if($form_show['phone'] !== 'FALSE'):?>
+				<?if($form_show['phone'] != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
 					<div class="controls">
@@ -61,7 +61,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if($form_show['address'] !== 'FALSE'):?>
+				<?if($form_show['address'] != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
 					<div class="controls">
@@ -69,7 +69,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if($form_show['price'] !== 'FALSE'):?>
+				<?if($form_show['price'] != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
@@ -80,7 +80,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if($form_show['website'] !== 'FALSE'):?>
+				<?if($form_show['website'] != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
 					<div class="controls">
@@ -102,7 +102,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if ($form_show['captcha'] !== 'FALSE'):?>
+				<?if ($form_show['captcha'] != FALSE):?>
 				<div class="control-group">
 					<div class="controls">
 						Captcha*:<br />

@@ -314,10 +314,7 @@ class Controller_Ad extends Controller {
 				$img_path[$a->seotitle] = $path;	
 			} 
 		}
-		var_dump($img_path);
 		// array of categories sorted for view
-		
-
 		return array('ads'			=> $ads,
 					 'pagination'	=> $pagination, 
 					 'user'			=> $user, 

@@ -28,7 +28,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['address']['key'], __('Address'), array('class'=>'control-label', 'for'=>$forms['address']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['address']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"),$forms['address']['value'], array(
+						<?= FORM::select($forms['address']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['address']['value'], array(
 						'placeholder' => "http://foo.com/", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['address']['key'], 
@@ -39,7 +39,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['phone']['key'], __('Phone'), array('class'=>'control-label', 'for'=>$forms['phone']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['phone']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"),$forms['phone']['value'], array(
+						<?= FORM::select($forms['phone']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['phone']['value'], array(
 						'placeholder' => "http://foo.com/", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['phone']['key'], 
@@ -50,7 +50,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['website']['key'], __('Website'), array('class'=>'control-label', 'for'=>$forms['website']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['website']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"),$forms['website']['value'], array(
+						<?= FORM::select($forms['website']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['website']['value'], array(
 						'placeholder' => "http://foo.com/", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['website']['key'], 
@@ -61,7 +61,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['location']['key'], __('Location'), array('class'=>'control-label', 'for'=>$forms['location']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['location']['key'],array("FALSE"=>"FALSE","TRUE"=>"TRUE"), $forms['location']['value'], array(
+						<?= FORM::select($forms['location']['key'],array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['location']['value'], array(
 						'placeholder' => "http://foo.com/", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['location']['key'], 
@@ -72,7 +72,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['price']['key'], __('Price'), array('class'=>'control-label', 'for'=>$forms['price']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['price']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"),$forms['price']['value'], array(
+						<?= FORM::select($forms['price']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['price']['value'], array(
 						'placeholder' => "http://foo.com/", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['price']['key'], 
@@ -83,7 +83,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['upload_file']['key'], __('Upload file'), array('class'=>'control-label', 'for'=>$forms['upload_file']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['upload_file']['key'],array("FALSE"=>"FALSE","TRUE"=>"TRUE"), $forms['upload_file']['value'], array(
+						<?= FORM::select($forms['upload_file']['key'],array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['upload_file']['value'], array(
 						'placeholder' => "http://foo.com/", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['upload_file']['key'], 
@@ -94,7 +94,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['captcha-captcha']['key'], __('Captcha'), array('class'=>'control-label', 'for'=>$forms['captcha-captcha']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['captcha-captcha']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"), $forms['captcha-captcha']['value'], array(
+						<?= FORM::select($forms['captcha-captcha']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['captcha-captcha']['value'], array(
 						'placeholder' => "http://foo.com/", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['captcha-captcha']['key'], 

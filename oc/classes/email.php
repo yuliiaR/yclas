@@ -33,7 +33,7 @@ class Email {
 
         $mail= new PHPMailer();
 
-        if(core::config('email.smtp_active') == 'TRUE')
+        if(core::config('email.smtp_active') == TRUE)
         { 
             //SMTP HOST config
             if (core::config('email.smtp_host')!="")
@@ -50,14 +50,14 @@ class Email {
 
             //SMTP AUTH config
 
-            if (core::config('email.smtp_auth') == 'TRUE')
+            if (core::config('email.smtp_auth') == TRUE)
             {
                 $mail->SMTPAuth   = TRUE;                                                  // enable SMTP authentication
                 $mail->Username   = core::config('email.smtp_user');              // SMTP username
                 $mail->Password   = core::config('email.smtp_pass');              // SMTP password
                
 
-                if (core::config('email.smtp_ssl') == 'TRUE')
+                if (core::config('email.smtp_ssl') == TRUE)
                 {
                     $mail->SMTPSecure = "ssl";                  // sets the prefix to the server
                 }

@@ -22,7 +22,7 @@
 
 		              	<?foreach($cat_list as $c ):?>
 		              		<?if($c->id_category_parent == 1 && $c->id_category != 1):?>
-								<li class="nav-header"><p><a title="<?=$c->name?>" href="<?=Route::url('list', array('category'=>$c->name))?>"><?=$c->name?></a></p></li>
+								<li class="nav-header"><p><a title="<?=$c->name?>" href="<?=Route::url('list', array('category'=>$c->seoname))?>"><?=$c->name?></a></p></li>
 															
 							 	<?foreach($children_categ as $chi):?>
                             	<?if($chi['parent'] == $c->id_category):?>

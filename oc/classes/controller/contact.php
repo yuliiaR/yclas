@@ -15,7 +15,7 @@ class Controller_Contact extends Controller {
 		if($this->request->post()) //message submition  
 		{
 			
-			if(core::config('advertisement.captcha-captcha') === 'FALSE' || captcha::check('contact'))
+			if(core::config('advertisement.captcha-captcha') == FALSE || captcha::check('contact'))
 			{ 
 				
 				$message = array('name'			=>core::post('name'),

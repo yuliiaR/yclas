@@ -27,7 +27,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['smtp_active']['key'], __('Smtp active'), array('class'=>'control-label', 'for'=>$forms['smtp_active']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['smtp_active']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"), $forms['smtp_active']['value'], array(
+						<?= FORM::select($forms['smtp_active']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['smtp_active']['value'], array(
 						'placeholder' => "TRUE or FALSE", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['smtp_active']['key'], 
@@ -38,7 +38,7 @@
                 <div class="control-group">
                     <?= FORM::label($forms['smtp_ssl']['key'], __('Smtp ssl'), array('class'=>'control-label', 'for'=>$forms['smtp_ssl']['key']))?>
                     <div class="controls">
-                        <?= FORM::select($forms['smtp_ssl']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"), $forms['smtp_ssl']['value'], array(
+                        <?= FORM::select($forms['smtp_ssl']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['smtp_ssl']['value'], array(
                         'placeholder' => "TRUE or FALSE", 
                         'class' => 'input-xlarge', 
                         'id' => $forms['smtp_ssl']['key'], 
@@ -71,7 +71,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['smtp_auth']['key'], __('Smtp auth'), array('class'=>'control-label', 'for'=>$forms['smtp_auth']['key']))?>
 					<div class="controls">
-							<?= FORM::select($forms['smtp_auth']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"), $forms['smtp_auth']['value'], array(
+							<?= FORM::select($forms['smtp_auth']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['smtp_auth']['value'], array(
 							'placeholder' => "", 
 							'class' => 'input-xlarge', 
 							'id' => "10", 

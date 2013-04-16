@@ -16,7 +16,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['sandbox']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['sandbox']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE"),$forms['sandbox']['value'], array(
+						<?= FORM::select($forms['sandbox']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['sandbox']['value'], array(
 						'placeholder' => "TRUE or FALSE", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['sandbox']['key'], 
@@ -27,7 +27,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['to_featured']['key'], __('To featured active'), array('class'=>'control-label', 'for'=>$forms['to_featured']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['to_featured']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE") ,$forms['to_featured']['value'], array(
+						<?= FORM::select($forms['to_featured']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE") ,$forms['to_featured']['value'], array(
 						'placeholder' => '', 
 						'class' => 'input-xlarge', 
 						'id' => $forms['to_featured']['key'], 
@@ -38,7 +38,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['to_top']['key'], __('To top active'), array('class'=>'control-label', 'for'=>$forms['to_top']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['to_top']['key'], array("FALSE"=>"FALSE","TRUE"=>"TRUE") ,$forms['to_top']['value'], array(
+						<?= FORM::select($forms['to_top']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE") ,$forms['to_top']['value'], array(
 						'placeholder' => "", 
 						'class' => 'input-xlarge', 
 						'id' => $forms['to_top']['key'], 

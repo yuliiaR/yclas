@@ -6,9 +6,9 @@
 		</div>
 		
 		<?if((core::config('payment.pay_to_go_on_top') >= 0  
-			&& core::config('payment.to_top') !== "FALSE" )
+			&& core::config('payment.to_top') != FALSE )
 			&& (core::config('payment.pay_to_go_on_feature') > 0 
-			&& core::config('payment.to_featured') !== "FALSE")):?>
+			&& core::config('payment.to_featured') != FALSE)):?>
 		<div id="advise" class="well advise clearfix">
 			<?foreach ($extra_payment as $ex => $value) {
 				if ($ex == 'pay_to_go_on_top') {
@@ -19,11 +19,11 @@
 					$global_currency = $value;
 				} 
 			}?>
-			<?if(core::config('payment.to_top') !== "FALSE"):?>
+			<?if(core::config('payment.to_top') != FALSE):?>
 			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '.$to_top.' '.core::config('general.global-currency'));?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('ad', array('action'=>'to_top','category'=>$ad->id_category,'seotitle'=>$ad->seotitle))?>">Go Top!</a>
 			<?endif?>
-			<?if(core::config('payment.to_featured') !== "FALSE"):?>
+			<?if(core::config('payment.to_featured') != FALSE):?>
 			<p class="text-info"><?=__('Your Advertisement can go to featured! For only '.$featured_price.' '.core::config('general.global-currency'));?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('ad', array('action'=>'to_featured','category'=>$ad->id_category,'seotitle'=>$ad->seotitle))?>">Go Top!</a>
 			<?endif?>
@@ -81,7 +81,7 @@
 					<?= FORM::select('category', $_val_category, $ad->id_category, array('id'=>'category','class'=>'input-xlarge', 'required'));?>
 					</div>
 				</div>
-				<?if(core::config('advertisement.location') != 'FALSE'):?>
+				<?if(core::config('advertisement.location') != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
 					<div class="controls">
@@ -138,7 +138,7 @@
 						</div>
 					<?endif?>
 				</div>
-				<?if(core::config('advertisement.phone') != 'FALSE'):?>
+				<?if(core::config('advertisement.phone') != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
 					<div class="controls">
@@ -146,7 +146,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if(core::config('advertisement.address') != 'FALSE'):?>
+				<?if(core::config('advertisement.address') != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
 					<div class="controls">
@@ -154,7 +154,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if(core::config('advertisement.website') != 'FALSE'):?>
+				<?if(core::config('advertisement.website') != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
 					<div class="controls">
@@ -162,7 +162,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if(core::config('advertisement.price') != 'FALSE'):?>
+				<?if(core::config('advertisement.price') != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
