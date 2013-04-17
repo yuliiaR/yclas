@@ -82,6 +82,69 @@ class Model_Category extends ORM {
 	}
 	
 
+    /**
+     * we get the categories in an array and a multidimensional array to know the deep
+     * @return array 
+     */
+    public static function get_all()
+    {
+        $cats = new self;
+        $cats = $cats->order_by('order','asc')->find_all()->as_array('id_category');
+
+        //transform the cats to an array
+        $cats_arr = array();
+        foreach ($cats as $cat) 
+        {
+            $cats_arr[$cat->id_category] =  array('name' => $cat->name,
+                                                    'order' => $cat->order,
+                                                    'id_category_parent' => $cat->id_category_parent,
+                                                    'parent_deep' => $cat->parent_deep,
+                                                );
+        }
+
+        //for each category we get his siblings
+        $cats_s = array();
+        foreach ($cats as $cat) 
+             $cats_s[$cat->id_category_parent][] = $cat->id_category;
+        
+
+        //last build multidimensional array
+        $cats_m = self::multi_cats($cats_s);
+
+        return array($cats_arr,$cats_m);
+    }
+
+    /**
+     * gets a multidimensional array wit the categories
+     * @param  array  $cats_s      id_category->array(id_siblings)
+     * @param  integer $id_category 
+     * @param  integer $deep        
+     * @return array               
+     */
+    public static function multi_cats($cats_s,$id_category = 1, $deep = 0)
+    {    
+        $ret = NULL;
+        //we take all the siblings and try to set the grandsons...
+        //we check that the id_category sibling has other siblings
+        foreach ($cats_s[$id_category] as $id_sibling) 
+        {
+            //we check that the id_category sibling has other siblings
+            if (isset($cats_s[$id_sibling]))
+            {
+                if (is_array($cats_s[$id_sibling]))
+                {
+                    $ret[$id_sibling] = self::multi_cats($cats_s,$id_sibling,$deep+1);
+                }
+            }
+            //no siblings we only set the key
+            else 
+                $ret[$id_sibling] = NULL;
+            
+        }
+        return $ret;
+    }
+
+
 	/**
 	 * 
 	 */
@@ -143,8 +206,11 @@ class Model_Category extends ORM {
 	{	
 		 
 		$form->fields['description']['display_as'] = 'textarea';
-		
-		$form->fields['price']['caption'] = 'currency';
+
+        $form->fields['id_category_parent']['display_as'] = 'hidden';
+        $form->fields['id_category_parent']['value'] = 1;
+
+		/*$form->fields['price']['caption'] = 'currency';
 	
 		$form->fields['parent_deep']['display_as'] = 'select';
 		$form->fields['parent_deep']['options'] = range(0,2);
@@ -156,13 +222,13 @@ class Model_Category extends ORM {
 
 
 		$form->fields['order']['display_as'] = 'select';
-		$form->fields['order']['options'] = range(0,30);
+		$form->fields['order']['options'] = range(0,30);*/
 		
 	}
 
 	public function exclude_fields()
 	{
-		return array('created');
+		return array('created','parent_deep','order');
 	}
 
 
