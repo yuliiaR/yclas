@@ -12,16 +12,16 @@ $(function  () {
             val = $(parent).sortable().sortable('serialize').get();
             val = val[0].split(',');
 
-            //how deep are we?
-            var deep = $(item).parentsUntil($("ol.plholder"),'ol')['length'];
-            
+            //how deep are we? we don't need it we process it in the php
+            //var deep = $(item).parentsUntil($("ol.plholder"),'ol')['length'];  
 
             //building data to send
             var data = {
                   "id_category" : $(item).data('id'),
                   "id_category_parent" : $(parent).data('id'),
                   "order" : $.inArray($(item).attr('id'),val),
-                  "deep" : deep,
+                  //"deep" : deep,
+                  "brothers" : val,
                 };
 
             //saving the order
@@ -45,13 +45,3 @@ $(function  () {
 
     })
 })
-
-
-function dump(obj) {
-    var out = '';
-    for (var i in obj) {
-        out += i + ": " + obj[i] + "\n";
-    }
-
-    alert(out);
-}
