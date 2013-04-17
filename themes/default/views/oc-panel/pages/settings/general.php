@@ -33,7 +33,6 @@
 						'data-toggle'=>"popover",
 						'data-original-title'=>__("Thumb wid"), 
 						))?> 
-						<a title="" data-content="<?=__("Base url")?>" data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -49,7 +48,6 @@
 						'data-toggle'=>"popover",
 						'data-original-title'=>__("Thumb wid"), 
 						))?> 
-						<a title="" data-content="<?=__("Base url")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -65,7 +63,6 @@
 						'data-toggle'=>"popover",
 						'data-original-title'=>__("Thumb wid"), 
 						))?> 
-						<a title="" data-content="<?=__("Base url")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -80,9 +77,7 @@
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
 						'data-original-title'=>__("Thumb wid"),
-
 						))?> 
-						<a title="" data-content="<?=__("Base url")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -99,9 +94,8 @@
 							'data-toggle'=>"popover",
 							'data-original-title'=>__("Thumb wid"),
 							));?>
-							<span class="add-on"><?=__("Day")?></span>
+							<span class="add-on"><?=__("Days")?></span>
 						</div> 
-						<a title="" data-content="<?=__("Base url")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -117,7 +111,6 @@
 						'data-toggle'=>"popover",
 						'data-original-title'=>__("Thumb wid"),
 						))?> 
-						<a title="" data-content="<?=__("Base url")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Locale")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -133,7 +126,6 @@
 						'data-toggle'=>"popover",
 						'data-original-title'=>__("Thumb wid"), 
 						))?> 
-						<a title="" data-content="<?=__("Number format")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Number format")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -149,7 +141,6 @@
 						'data-toggle'=>"popover",
 						'data-original-title'=>__("Thumb wid"),
 						))?> 
-						<a title="" data-content="<?=__("Date format")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Date format")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -165,7 +156,6 @@
 						'data-toggle'=>"popover",
 						'data-original-title'=>__("Thumb wid"), 
 						))?> 
-						<a title="" data-content="<?=__("Locale")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Locale")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -182,7 +172,6 @@
 						'data-toggle'=>"popover",
 						'data-original-title'=>__("Thumb wid"), 
 						))?> 
-						<a title="" data-content="<?=__("Allowed image formats")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Allowed image formats")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -201,7 +190,6 @@
 							))?>
 							<span class="add-on"><?=__("px")?></span>
 						</div> 
-						<a title="" data-content="<?=__("Max image size")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Max image size")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -220,7 +208,6 @@
 							))?>
 							<span class="add-on"><?=__("px")?></span>
 						</div> 
-						<a title="" data-content="<?=__("Image height")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Image height")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -239,7 +226,6 @@
 							))?>
 							<span class="add-on"><?=__("px")?></span>
 						</div> 
-						<a title="" data-content="<?=__("Image width")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Image width")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -258,7 +244,6 @@
 							))?>
 							<span class="add-on"><?=__("px")?></span>
 						</div> 
-						<a title="" data-content="<?=__("Thumb height")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Thumb height")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -278,7 +263,6 @@
 							))?>
 							<span class="add-on"><?=__("px")?></span>
 						</div> 
-						<a title="" data-content="<?=__("Thumb wid")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Thumb wid")?>">?</a>
 					</div>
 				</div>
 				<div class="form-actions">
