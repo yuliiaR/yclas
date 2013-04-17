@@ -120,7 +120,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		}
 		else
 		{
-			Alert::set(Alert::ALERT, __('You do not have any not published advertisemet'));
+			Alert::set(Alert::INFO, __('You do not have any not published advertisemet'));
 			$this->template->content = View::factory('oc-panel/pages/moderate', array('ads' => NULL));
 		}
         

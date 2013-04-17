@@ -67,7 +67,7 @@ class Model_Order extends ORM {
      */
     public function confirm_payment($id_order, $moderation)
     {
-        $orders = new Model_Order();
+        $orders = new self;
 
         $orders->where('id_order','=',$id_order)
                          ->where('status','=', 0)
@@ -116,7 +116,7 @@ class Model_Order extends ORM {
                 }   
             }
         }
-        elseif($orders->id_product == core::config('general.ID-pay_to_go_on_top'))
+        elseif($orders->id_product == core::config('general.ID_pay_to_go_on_top'))
         {
             $product_find->published = Date::unix2mysql(time());
             try {
@@ -125,7 +125,7 @@ class Model_Order extends ORM {
                 echo $e;
             }
         }
-        elseif ($orders->id_product == core::config('general.ID-pay_to_go_on_feature'))
+        elseif ($orders->id_product == core::config('general.ID_pay_to_go_on_feature'))
         {
             $product_find->featured = Date::unix2mysql(time() + (core::config('general.featured_timer') * 24 * 60 * 60));
             try {

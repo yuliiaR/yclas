@@ -48,7 +48,7 @@ $('input.checkbox').click(function(){
 
 
 //select all checkboxes and append class to all
-function check_all(){alert('231');
+function check_all(){
 	var selected = '';
 
 	if($('#select-all').is(':checked')){

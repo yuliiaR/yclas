@@ -498,7 +498,7 @@ class Controller_Ad extends Controller {
 						Alert::set(Alert::ERROR, __('You made some mistake'));
 					}
 				}
-				$captcha_show = core::config('advertisement.captcha-captcha');	
+				$captcha_show = core::config('advertisement.captcha');	
 				
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
@@ -803,7 +803,7 @@ class Controller_Ad extends Controller {
 	public function action_to_featured()
 	{
 		$payer_id = Auth::instance()->get_user()->id_user; 
-		$id_product = core::config('general.ID-pay_to_go_on_feature');
+		$id_product = core::config('general.ID_pay_to_go_on_feature');
 		$paypal_msg = core::config('general.paypal_msg_product_to_featured');
 
 		// update orders table

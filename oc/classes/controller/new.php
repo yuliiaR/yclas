@@ -33,7 +33,7 @@
 		$_loc = $location->find_all();
 		$children_categ = $category->get_category_children();
 	
-		$form_show = array('captcha'	=>core::config('advertisement.captcha-captcha'),
+		$form_show = array('captcha'	=>core::config('advertisement.captcha'),
 						   'website'	=>core::config('advertisement.website'),
 						   'phone'		=>core::config('advertisement.phone'),
 						   'location'	=>core::config('advertisement.location'),

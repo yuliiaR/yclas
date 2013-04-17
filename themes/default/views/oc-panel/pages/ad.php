@@ -1,7 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?=Alert::show()?>
-<h1><?=__('Advertisements')?></h1>
+<div class="page-header">
+	<h1><?=__('Advertisements')?></h1>
+</div>
+
 <a class="btn btn-primary" href="<?=Route::url('post_new')?>" rel"tooltip" title="<?=__('New Advertisement')?>">
 	<i class="icon-pencil icon-white"></i><?=__(' New')?>
 </a>
@@ -9,6 +12,11 @@
 	<i class="icon-eye-open icon-white"></i><?=__(' Moderation')?>
 </a>
 
+<div id="advise" class="well advise clearfix">
+	<p class="text-info">
+        <?=__('General coonfigurations are here. Replace input fileds with new desired values')?>.
+    </p>
+</div>
 <table class="table table-bordered">
 	<tr>
 		<th>

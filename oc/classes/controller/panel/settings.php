@@ -106,9 +106,9 @@ class Controller_Panel_Settings extends Auth_Controller {
         {
         	foreach ($config as $c) 
             {   
-                if ($c->config_key !== 'ID-pay_to_go_on_top')
+                if ($c->config_key !== 'ID_pay_to_go_on_top')
                 { 
-                    if($c->config_key !== 'ID-pay_to_go_on_feature')
+                    if($c->config_key !== 'ID_pay_to_go_on_feature')
                     {
                         $config_res = $this->request->post($c->config_key);
                         if($c->config_key == 'allowed_formats'){

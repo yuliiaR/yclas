@@ -1,16 +1,17 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?=Alert::show()?>
-<h1><?=__('Moderation')?></h1>
-
-<div class="">
-	<a class="btn btn-primary" href="<?=Route::url('post_new')?>" rel"tooltip" title="<?=__('New Advertisement')?>">
-		<i class="icon-pencil icon-white"></i><?=__(' New')?>
-	</a>
-	<a class="btn btn-info" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index'))?>" rel"tooltip" title="<?=__('Published Advertisements')?>">
-		<i class="icon-eye-open icon-white"></i><?=__(' Ads')?>
-	</a>
+<div class="page-header">
+	<h1><?=__('Moderation')?></h1>
 </div>
+
+<a class="btn btn-primary" href="<?=Route::url('post_new')?>" rel"tooltip" title="<?=__('New Advertisement')?>">
+	<i class="icon-pencil icon-white"></i><?=__(' New')?>
+</a>
+<a class="btn btn-info" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index'))?>" rel"tooltip" title="<?=__('Published Advertisements')?>">
+	<i class="icon-eye-open icon-white"></i><?=__(' Ads')?>
+</a>
+
 <? if($ads != NULL):?>
 <table class="table table-bordered">
 	<tr>
@@ -114,5 +115,5 @@
 </table>
 	 <?=$pagination?>
 <?else:?>
-	<h2> <?=__("There are no unpublished Advertisements")?></h2>
+	
 <?endif?>

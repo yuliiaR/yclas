@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="row-fluid">
-	<div class="span10 well">
+
+	
 		 <?=Form::errors()?>
 		<div class="page-header">
 			<h1><?=__('Email Configuration')?></h1>
@@ -8,6 +8,8 @@
 		<div id="advise" class="well advise clearfix">
 			<p class="text-info"><?=__('Here are listed general configuration values. Replace input fileds with new desired values')?></p>
 		</div>
+
+		<div class="well">
 		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<?foreach ($config as $c):?>
@@ -18,10 +20,14 @@
 					<div class="controls">
 						<?= FORM::input($forms['notify_email']['key'], $forms['notify_email']['value'], array(
 						'placeholder' => "youremail@mail.com", 
-						'class' => 'input-xlarge', 
+						'class' => 'tips', 
 						'id' => $forms['notify_email']['key'], 
+						'data-content'=> __("Thumb wid"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-original-title'=>__("Thumb wid"),
 						))?> 
-						<a title="" data-content="<?=__("Notify email")?>" data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -29,10 +35,14 @@
 					<div class="controls">
 						<?= FORM::select($forms['smtp_active']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['smtp_active']['value'], array(
 						'placeholder' => "TRUE or FALSE", 
-						'class' => 'input-xlarge', 
+						'class' => 'tips', 
 						'id' => $forms['smtp_active']['key'], 
+						'data-content'=> __("Thumb wid"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-original-title'=>__("Thumb wid"),
 						))?> 
-						<a title="" data-content="<?=__("Smtp active")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
                 <div class="control-group">
@@ -40,10 +50,14 @@
                     <div class="controls">
                         <?= FORM::select($forms['smtp_ssl']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['smtp_ssl']['value'], array(
                         'placeholder' => "TRUE or FALSE", 
-                        'class' => 'input-xlarge', 
+                        'class' => 'tips', 
                         'id' => $forms['smtp_ssl']['key'], 
-                        ))?> 
-                        <a title="" data-content="<?=__("Smtp ssl")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
+						'data-content'=> __("Thumb wid"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-original-title'=>__("Thumb wid"),                     
+						))?> 
                     </div>
                 </div>
 				<div class="control-group">
@@ -51,10 +65,14 @@
 					<div class="controls">
 						<?= FORM::input($forms['smtp_host']['key'], $forms['smtp_host']['value'], array(
 						'placeholder' => '', 
-						'class' => 'input-xlarge', 
+						'class' => 'tips', 
 						'id' => $forms['smtp_host']['key'], 
+						'data-content'=> __("Thumb wid"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-original-title'=>__("Thumb wid"),				
 						))?> 
-						<a title="" data-content="<?=__("Smtp host")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -62,10 +80,14 @@
 					<div class="controls">
 						<?= FORM::input($forms['smtp_port']['key'], $forms['smtp_port']['value'], array(
 						'placeholder' => "", 
-						'class' => 'input-xlarge', 
+						'class' => 'tips', 
 						'id' => $forms['smtp_port']['key'], 
+						'data-content'=> __("Thumb wid"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-original-title'=>__("Thumb wid"),			
 						))?> 
-						<a title="" data-content="<?=__("Smtp port")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -73,21 +95,29 @@
 					<div class="controls">
 							<?= FORM::select($forms['smtp_auth']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['smtp_auth']['value'], array(
 							'placeholder' => "", 
-							'class' => 'input-xlarge', 
-							'id' => "10", 
-							));?> 
-						<a title="" data-content="<?=__("Smtp auth")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
-					</div>
+							'class' => 'tips', 
+							'id' => $forms['smtp_auth']['key'], 
+							'data-content'=> __("Thumb wid"),
+							'data-trigger'=>"hover",
+							'data-placement'=>"right",
+							'data-toggle'=>"popover",
+							'data-original-title'=>__("Thumb wid"),					
+							))?> 
+						</div>
 				</div>
 				<div class="control-group">
 					<?= FORM::label($forms['smtp_user']['key'], __('Smtp user'), array('class'=>'control-label', 'for'=>$forms['smtp_user']['key']))?>
 					<div class="controls">
 						<?= FORM::input($forms['smtp_user']['key'], $forms['smtp_user']['value'], array(
 						'placeholder' => "", 
-						'class' => 'input-xlarge', 
+						'class' => 'tips', 
 						'id' => $forms['smtp_user']['key'], 
+						'data-content'=> __("Thumb wid"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-original-title'=>__("Thumb wid"),				
 						))?> 
-						<a title="" data-content="<?=__("Smtp user")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -95,10 +125,14 @@
 					<div class="controls">
 						<?= FORM::input($forms['smtp_pass']['key'], $forms['smtp_pass']['value'], array(
 						'placeholder' => "", 
-						'class' => 'input-xlarge', 
+						'class' => 'tips', 
 						'id' => $forms['smtp_pass']['key'], 
+						'data-content'=> __("Thumb wid"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-original-title'=>__("Thumb wid"),				
 						))?> 
-						<a title="" data-content="<?=__("Smtp password")?>"  data-trigger="hover" data-placement="right" data-toggle="popover" class="tips" href="#" data-original-title="<?=__("Base URL")?>">?</a>
 					</div>
 				</div>
 				<div class="form-actions">
@@ -106,4 +140,3 @@
 				</div>
 			</fieldset>	
 	</div><!--end span10-->
-</div><!--end row-fluid-->
