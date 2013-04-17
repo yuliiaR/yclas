@@ -15,6 +15,10 @@ class Controller_Panel_Category extends Auth_Crud {
 	protected $_orm_model = 'category';	
 
 
+    public function action_index($view = NULL)
+    {
+        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'category','action'=>'dashboard')));  
+    }
 
     public function action_dashboard()
     {
@@ -26,6 +30,7 @@ class Controller_Panel_Category extends Auth_Crud {
 
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/categories.js';
+        $this->template->scripts['footer'][] = 'js/oc-panel/crud/index.js';
 
 
         list($cats,$order)  = Model_Category::get_all();
@@ -41,33 +46,19 @@ class Controller_Panel_Category extends Auth_Crud {
         $this->auto_render = FALSE;
         $this->template = View::factory('js');
 
-        DB::delete('config')->where('group_name','=','placeholder')->execute();
+        $cat = new Model_Category(core::get('id_category'));
 
-        //for each placeholder
-        foreach ($_GET as $placeholder => $widgets) 
+        if ($cat->loaded())
         {
-            if (!is_array($widgets))
-                $widgets = array();
-
-            //insert in DB palceholders
-            $confp = new Model_Config();
-            $confp->group_name = 'placeholder';
-            $confp->config_key = $placeholder;
-            $confp->config_value = json_encode($widgets); 
-            $confp->save();
-
-            //edit each widget change placeholder
-            foreach ($widgets as $wname) 
-            {
-                $w = Widget::factory($wname);
-                $w->placeholder = $placeholder;
-                $w->save();
-            }
-            
-            
+            $cat->id_category_parent = core::get('id_category_parent');
+            $cat->order              = core::get('order');
+            $cat->parent_deep        = core::get('deep');
+            $cat->save();
+            $this->template->content = __('Saved');
         }
-
-        $this->template->content = __('Saved');
+        else
+            $this->template->content = __('Error');
+        
 
     }
 

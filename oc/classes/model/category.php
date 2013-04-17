@@ -97,7 +97,6 @@ class Model_Category extends ORM {
                                                     'parent_deep' => $cat->parent_deep,
                                                 );
         }
-        
 
         //for each category we get his siblings
         $cats_s = array();
@@ -206,8 +205,11 @@ class Model_Category extends ORM {
 	{	
 		 
 		$form->fields['description']['display_as'] = 'textarea';
-		
-		$form->fields['price']['caption'] = 'currency';
+
+        $form->fields['id_category_parent']['display_as'] = 'hidden';
+        $form->fields['id_category_parent']['value'] = 1;
+
+		/*$form->fields['price']['caption'] = 'currency';
 	
 		$form->fields['parent_deep']['display_as'] = 'select';
 		$form->fields['parent_deep']['options'] = range(0,2);
@@ -219,13 +221,13 @@ class Model_Category extends ORM {
 
 
 		$form->fields['order']['display_as'] = 'select';
-		$form->fields['order']['options'] = range(0,30);
+		$form->fields['order']['options'] = range(0,30);*/
 		
 	}
 
 	public function exclude_fields()
 	{
-		return array('created');
+		return array('created','parent_deep','order');
 	}
 
 
