@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
-		<div class="container-fluid">
+		<div class="container">
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -13,11 +13,11 @@
 			
 			<div class="nav-collapse main_nav">
 				<ul class="nav">
-					<?nav_link(__('Home'), '', 'icon-home', '')?>
+					<?nav_link('', '', 'icon-home', '')?>
 					<?nav_link(__('Listing'),'ad', 'icon-list' ,'listing', 'list')?>
-					<?nav_link(__('Contact Us'),'contact', 'icon-envelope', 'index', 'contact')?>
+					<?nav_link(__('Contact'),'contact', 'icon-envelope', 'index', 'contact')?>
 					<li class="dropdown">
-		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Caegories')?> <b class="caret"></b></a>
 		              <ul class="dropdown-menu">
 
 		              	<?foreach($cat_list as $c ):?>
@@ -42,7 +42,7 @@
 				<div class="btn-group pull-right">
 					<?=View::factory('widget_login')?>
 				
-					<a class="btn btn-primary" href="<?=Route::url('post_new')?>">
+					<a class="btn btn-danger" href="<?=Route::url('post_new')?>">
 						<i class="icon-pencil icon-white"></i>
 						<?=__('Publish new ')?>
 					</a>				
