@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="well">
+
 	<?if ($ad->status != 1 && $permission === FALSE):?>
 	<div class="page-header">
 		<h3><?= __('This advertisement doesn\'t exist, or is not yet published')?></h3>
@@ -64,4 +65,23 @@
 	        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
 	    </div>
 	</div>
+
+    <?if ( strlen(core::config('advertisement.disqus'))>0 ):?>
+    <hr>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '<?=core::config('advertisement.disqus')?>'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    <?endif?>
+
 </div><!--/well--> 
