@@ -286,9 +286,9 @@ class Controller_Ad extends Controller {
 		
 		
 		// return image path 
-		$img_path = array();
+		// $img_path = array();
 		
-
+		$thumb = array();
 		foreach ($ads as $a) 
 		{
 
@@ -303,22 +303,36 @@ class Controller_Ad extends Controller {
 				}
 			}
 			
+			// search and creat path of ads, fill array $thumb
 			if(is_array($path = $this->image_path($a)))
 			{
-				$path = $this->image_path($a);
-				$img_path[$a->seotitle] = $path;
+				foreach ($path as $key => $value) 
+				{
+					$hashtag = (core::config("theme_default.listing_images") != FALSE) ? strstr($value, 'thumb') : !strstr($value, 'thumb') ;
+
+					if( $hashtag && strstr($value, '_1'))
+					{
+						$thumb[$a->seotitle] = $value;
+					}
+					else if (strstr($value, 'thumb') && !array_key_exists($a->seotitle, $thumb))
+					{
+						$thumb[$a->seotitle] = $value;	
+					}
+				}
 			}
 			else
 			{
 				$path = NULL;
-				$img_path[$a->seotitle] = $path;	
+				$thumb[$a->seotitle] = $path;	
 			} 
+
 		}
+		
 		// array of categories sorted for view
 		return array('ads'			=> $ads,
 					 'pagination'	=> $pagination, 
 					 'user'			=> $user, 
-					 'img_path' 	=> $img_path,
+					 'thumb' 		=> $thumb,
 					 'cat'			=> $categ,
 					 'loc'			=> $locat,);
 	}
@@ -442,6 +456,11 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_view()
 	{
+		$this->template->styles 			 = array('css/bootstrap-image-gallery.css' => 'screen',);
+		$this->template->scripts['footer'][] = 'js/load-image.min.js';
+		$this->template->scripts['footer'][] = 'js/bootstrap-image-gallery.min.js';
+
+
 		$seotitle = $this->request->param('seotitle',NULL);
 		$category = $this->request->param('category');
 		
@@ -491,7 +510,7 @@ class Controller_Ad extends Controller {
 						$advert_owner = new Model_User();
 						$advert_owner = $advert_owner->where('id_user', '=', $ad->id_user)->limit(1)->find();
 				
-						email::send("root@slobodantumanitas-System",$message['email_from'],$message['subject'],$message['message']);
+						// email::send("root@slobodantumanitas-System",$message['email_from'],$message['subject'],$message['message']); // @TODO EMAIL
 					}
 					else
 					{
@@ -534,11 +553,12 @@ class Controller_Ad extends Controller {
 		$this->template->title           	= __('Edit advertisement');
 		$this->template->meta_description	= __('Edit advertisement');
 				
-		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
+		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen' , 'css/chosen.css' => 'screen');
 		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
 		$this->template->scripts['footer'][]= '/js/chosen.jquery.min.js';
 		$this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
 		$this->template->scripts['footer'][]= 'js/pages/new.js';
+
 
 		$form = ORM::factory('ad', $this->request->param('id'));
 		

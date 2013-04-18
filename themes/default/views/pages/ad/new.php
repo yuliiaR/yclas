@@ -21,7 +21,7 @@
 							<?php $_val_category[$cat->id_category] = $cat->name; ?>
 							<?endif?>
 						<?endforeach?>
-						<?var_dump($_val_category)?>
+						<?//var_dump($_val_category)?>
 					<?= FORM::select('category', $_val_category, 0,array('id'=>'category','class'=>'input-xlarge', 'required') );?>
 					<p id="cat_price" class="text-warning"></p>
 					</div>
@@ -41,7 +41,7 @@
 				<div class="control-group">
 					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
 					<div class="controls">
-						<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'input-xxlarge', 'name'=>'description', 'id'=>'description', 'rows'=>15, 'required'))?>
+						<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'span6', 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
 						
 					</div>
 				</div>

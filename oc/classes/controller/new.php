@@ -18,9 +18,9 @@
 		$this->template->meta_description	= __('Publish new advertisement');
 		
 		//scripts	
-		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
+		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen', 'css/chosen.css' => 'screen');
 		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
-		$this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
+		$this->template->scripts['footer'][]= 'js/jqBootstrapValidation.js';
 		$this->template->scripts['footer'][]= 'js/chosen.jquery.min.js';
 		$this->template->scripts['footer'][]= 'js/pages/new.js';
 		
@@ -70,7 +70,7 @@
 			$this->_save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
 
 		}
-		else if($moderation == 1 || $moderation == 2 || $moderation == 3)
+		else if($moderation == 1 || $moderation == 2 ||  $moderation == 3 || $moderation == 4 || $moderation == 5)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
 			$this->_save_new_ad($data, $status, $published = FALSE, $moderation, $form_show['captcha']);
@@ -195,7 +195,12 @@
 						$created = $created->where('seotitle', '=', $seotitle)->limit(1)->find(); 
 						$created = $created->created;
 					}
-					//$user->email('newadvertisement'); // @TODO send email
+
+					if($moderation == 3 || $moderation == 4)
+					{
+						//$user->email('newadvertisement'); // @TODO EMAIL
+					}
+					
 					  
 				}
 				catch (ORM_Validation_Exception $e)
@@ -245,7 +250,7 @@
 	    		}
 
 				// PAYMENT METHOD ACTIVE
-				if($moderation == 2 || $moderation == 3)
+				if($moderation == 2 || $moderation == 5)
 				{
 					$payment_order = new Model_Order();
 					$order_id = $payment_order->make_new_order($data, $usr, $seotitle);

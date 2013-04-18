@@ -102,38 +102,46 @@ class Controller_Panel_Settings extends Auth_Controller {
         $config = $generalconfig->where('group_name', '=', 'general')->find_all();
         $config_img = $generalconfig->where('group_name', '=', 'image')->find_all();
         // save only changed values
+        
         if($this->request->post())
         {
         	foreach ($config as $c) 
             {   
-                if ($c->config_key !== 'ID_pay_to_go_on_top')
-                { 
-                    if($c->config_key !== 'ID_pay_to_go_on_feature')
-                    {
-                        $config_res = $this->request->post($c->config_key);
-                        if($c->config_key == 'allowed_formats'){
-                            //@TODO
-                        } 
-                        
-                        if($config_res != $c->config_value)
-                        {
-                            $c->config_value = $config_res;
-                            try {
-                                $c->save();
-                            } catch (Exception $e) {
-                                echo $e;
-                            }
-                        }
-                    } 
+                
+                $config_res = $this->request->post($c->config_key);
+                if($config_res != $c->config_value)
+                {
+                    $c->config_value = $config_res;
+                    try {
+                        $c->save();
+                    } catch (Exception $e) {
+                        echo $e;
+                    }
                 }
+                  
             }
-            foreach ($config_img as $ci) {
+            foreach ($config_img as $ci) 
+            {   
+                
+                $allowed_formats = '';
                 $config_res = $this->request->post($ci->config_key);
                 if($config_res != $ci->config_value)
                 {
+                    if($ci->config_key == 'allowed_formats')
+                    {
+                        
+                      foreach ($config_res as $key => $value) 
+                      {
+                          $allowed_formats .= $value.",";
+                      }
+                      $config_res = $allowed_formats;
+                    } 
+                    
                     $ci->config_value = $config_res;
                     try {
+
                         $ci->save();
+
                     } catch (Exception $e) {
                         echo $e;
                     }

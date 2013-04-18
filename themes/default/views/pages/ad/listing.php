@@ -27,8 +27,10 @@
 		    	<?endif?>
 		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 	    	</h2>
-	    	<?if($img_path[$ad->seotitle] != NULL):?>
-	    		 <img src="/<?=$img_path[$ad->seotitle][1]?>" class="img-polaroid advert_img" >
+	    	<?//d($thumb)?>
+	    	<?if($thumb[$ad->seotitle] != NULL):?>
+
+	    		 <img src="/<?=$thumb[$ad->seotitle]?>" class="img-polaroid advert_img" >
 	    	<?endif?>
 	    	
 	    	<ul>

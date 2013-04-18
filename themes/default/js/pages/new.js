@@ -15,16 +15,11 @@ $(function () {
 	//$('textarea[name=description]').autogrow();
 });
 
-// // show category price
-// $("#category").change(function(){
-// 	var price = "Price for this category is: ";
+$(function (){
+	$("select").chosen();
+});
 
-// 	$("#category option:selected").each(function(){
-// 		price += $(this).text() + " ";
-// 	});
-// 	$("#cat_price").text(price);
-	
-// });
+
 
 
 

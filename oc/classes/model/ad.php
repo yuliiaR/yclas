@@ -212,7 +212,7 @@ class Model_Ad extends ORM {
             ! Upload::type($image, array('jpg', 'jpeg', 'png')) OR
             ! Upload::size($image, core::config('image.max_image_size').'M'))
             {
-                if ( Upload::not_empty($image) && ! Upload::type($image, array('jpg', 'jpeg', 'png')))
+                if ( Upload::not_empty($image) && ! Upload::type($image, array(core::config('image.allowed_formats'))))
                 {
                     Alert::set(Alert::ALERT, __($image['name'].' Is not valid format, please use one of this formats "jpg, jpeg, png"'));
                     return array("error"=>FALSE, "error_name"=>"wrong_format");
