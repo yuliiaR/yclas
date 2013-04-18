@@ -77,6 +77,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS  `".$_POST['TABLE_PREFIX']."categories` 
 mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."locations` (
   `id_location` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
+  `order` int(2) unsigned NOT NULL DEFAULT '0',
   `id_location_parent` int(10) unsigned NOT NULL DEFAULT '0',
   `parent_deep` int(2) unsigned NOT NULL DEFAULT '0',
   `seoname` varchar(145) NOT NULL,

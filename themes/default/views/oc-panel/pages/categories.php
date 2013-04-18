@@ -48,7 +48,7 @@
 
 <div class="page-header">
     <h1><?=__('Categories')?></h1>
-    <p><?=__('Change the order of your categores, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme')?></p>
+    <p><?=__('Change the order of your categories, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme')?></p>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>">
   <?=__('New category')?></a>
 </div>
