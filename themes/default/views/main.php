@@ -35,7 +35,13 @@
       .sidebar-nav {
         padding: 9px 0;
       }
-      
+
+
+        @media screen and (max-width: 979px) {
+            body { padding-top:0; }
+            .navbar .nav { float:none; }
+            .navbar .nav > li { border:0; }
+        }
     </style>
 
   </head>
@@ -43,17 +49,19 @@
   <body>
   
 	<?=$header?>
-  <div class="row-fluid">
-    <div class="container-fluid">
-      <div class="span9">
-        <?=Alert::show()?>
-	   <?=$content?>
-      
-      </div>
-      <?=View::factory('sidebar')?>
-    </div>
-	   <?=$footer?>
+    <div class="container">
+        <div class="row">
+            
+            <div class="span9">
+                <?=Alert::show()?>
+                <?=$content?>
+            </div><!--/span--> 
+            <?=View::factory('sidebar')?>
+
+        </div><!--/row-->
+        <?=$footer?>
     </div><!--/.fluid-container-->
+
 
 	<?=View::scripts($scripts,'footer')?>
 	

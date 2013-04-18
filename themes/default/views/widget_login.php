@@ -2,7 +2,7 @@
 <?if (Auth::instance()->logged_in()):?>
 <a class="btn btn-success"
 	href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
-	<i class="icon-user icon-white"></i> <?=Auth::instance()->get_user()->email?>
+	<i class="icon-user icon-white"></i> 
 </a>
 <a class="btn dropdown-toggle btn-success" data-toggle="dropdown"
 	href="#"> <span class="caret"></span>
@@ -26,6 +26,7 @@
 		href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'logout'))?>">
 			<i class="icon-off"></i> <?=__('Logout')?>
 	</a>
+    <?nav_link(__('Home'), '', 'icon-home', '')?>
 	</li>
 </ul>
 <?else:?>
