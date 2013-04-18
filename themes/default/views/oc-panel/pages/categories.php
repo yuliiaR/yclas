@@ -58,8 +58,8 @@
 <?function lili($item, $key,$cats){?>
     <li data-id="<?=$key?>" id="li_<?=$key?>"><i class="icon-move"></i> <?=$cats[$key]['name']?>
         
-        <a data-text="<?=__('Are you sure you want to delete?')?>" 
-           data-id="li<?=$key?>" 
+        <a data-text="<?=__('Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category.')?>" 
+           data-id="li_<?=$key?>" 
            class="btn btn-mini btn-danger index-delete pull-right" 
            title="<?=__('Delete')?>" 
            href="<?=Route::url('oc-panel', array('controller'=> 'category', 'action'=>'delete','id'=>$key))?>">

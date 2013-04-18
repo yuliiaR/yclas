@@ -28,7 +28,6 @@ class Controller_Panel_Category extends Auth_Crud {
 
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/categories.js';
-        $this->template->scripts['footer'][] = 'js/oc-panel/crud/index.js';
 
 
         list($cats,$order)  = Model_Category::get_all();
@@ -83,6 +82,52 @@ class Controller_Panel_Category extends Auth_Crud {
         else
             $this->template->content = __('Error');
 
+
+    }
+
+
+
+    /**
+     * CRUD controller: DELETE
+     */
+    public function action_delete()
+    {
+        $this->auto_render = FALSE;
+
+        $category = new Model_Category($this->request->param('id'));
+
+        //update the elements related to that ad
+        if ($category->loaded())
+        {
+            //update all the siblings this category has and set the category parent
+            $query = DB::update('categories')
+                        ->set(array('id_category_parent' => $category->id_category_parent))
+                        ->where('id_category_parent','=',$category->id_category)
+                        ->execute();
+
+            //update all the ads this category has and set the category parent
+            $query = DB::update('ads')
+                        ->set(array('id_category' => $category->id_category_parent))
+                        ->where('id_category','=',$category->id_category)
+                        ->execute();
+
+            try
+            {
+                $category->delete();
+                $this->template->content = 'OK';
+                Alert::set(Alert::SUCCESS, __('Success, category deleted'));
+                
+            }
+            catch (Exception $e)
+            {
+                 Alert::set(Alert::ERROR, $e->getMessage());
+            }
+        }
+        else
+             Alert::set(Alert::SUCCESS, __('Category not deleted'));
+
+        
+        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'category','action'=>'index')));  
 
     }
 

@@ -45,3 +45,17 @@ $(function  () {
 
     })
 })
+
+$(function(){
+    $('.index-delete').click(function(event) {
+          
+          $this = $(this);
+          if (confirm($this.data('text')))
+          {
+              $('#'+$this.data('id')).hide("slow");
+                return true;
+          }
+          else event.preventDefault();
+
+    });
+});

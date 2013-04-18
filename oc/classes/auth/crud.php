@@ -113,15 +113,21 @@ class Auth_Crud extends Auth_Controller
 		$this->template = View::factory('js');
 		$element = ORM::Factory($this->_orm_model, $this->request->param('id'));
 
-		try
-		{
-			$element->delete();
-			$this->template->content = 'OK';
-		}
-		catch (Exception $e)
-		{
-			throw new HTTP_Exception_500($e->getMessage());
-		}
+        if ($element->loaded())
+        {
+            try
+            {
+                $element->delete();
+                $this->template->content = 'OK';
+            }
+            catch (Exception $e)
+            {
+                $this->template->content = $e->getMessage();
+            }
+        }
+        else
+            $this->template->content = 'KO';
+		
 
 	}
 
