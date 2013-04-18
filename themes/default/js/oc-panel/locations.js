@@ -5,7 +5,7 @@ $(function  () {
             //first we execute the normal plugins behaviour
             _super(item, container);
 
-            //where we drop the category
+            //where we drop the location
             var parent = $(item).parent();
 
             //values of the list
@@ -17,8 +17,8 @@ $(function  () {
 
             //building data to send
             var data = {
-                  "id_category" : $(item).data('id'),
-                  "id_category_parent" : $(parent).data('id'),
+                  "id_location" : $(item).data('id'),
+                  "id_location_parent" : $(parent).data('id'),
                   //"order" : $.inArray($(item).attr('id'),val),
                   "deep" : deep,
                   "brothers" : val,

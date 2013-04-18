@@ -258,7 +258,7 @@ VALUES (1, 'Home category', 0 , 0, 0, 'all', 'root category');");
 //base location
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."locations` 
   (`id_location` ,`name` ,`id_location_parent` ,`parent_deep` ,`seoname` ,`description`)
-VALUES (1 , 'Home location', 1, 0, 'all', 'root location');");
+VALUES (1 , 'Home location', 0, 0, 'all', 'root location');");
 
  
 
