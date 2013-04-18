@@ -31,7 +31,7 @@ class Controller extends Kohana_Controller
         	$this->template = View::factory($this->template);
         	
             // Initialize empty values
-            $this->template->title            = 'Site name here';
+            $this->template->title            = core::config('general.site_name');
             $this->template->meta_keywords    = '';
             $this->template->meta_description = '';
             $this->template->meta_copywrite   = 'Open Classifieds '.Core::version;

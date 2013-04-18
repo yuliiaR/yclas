@@ -91,12 +91,12 @@
 
 	    	<div class="span8">
                 <h2><?=__('Available widgets')?></h2>
-				<div class="row-fluid">
+
+				<ul class="inline">
 					<?foreach ($widgets as $widget):?>
 						<?=$widget->form()?>
 					<?endforeach?>
-				</div><!--/row-->
-
+				</li>
 
 	    	</div><!--/span--> 
 	    	
