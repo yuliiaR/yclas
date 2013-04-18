@@ -21,6 +21,7 @@ https://github.com/open-classifieds/openclassifieds2
 * jQuery http://jquery.com/
 * jQueryUI http://jqueryui.com/
 * jQuery sortable http://johnny.github.io/jquery-sortable/
+* Bootstrap Image Gallery https://github.com/blueimp/Bootstrap-Image-Gallery
 
 # Open Classifieds License Agreement
 

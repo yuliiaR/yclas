@@ -136,6 +136,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                       }
                       $config_res = $allowed_formats;
                     } 
+                    
                     $ci->config_value = $config_res;
                     try {
 
