@@ -348,7 +348,7 @@ class Model_User extends ORM {
                 $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
                 $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
 
-                return Email::send($this->email,$subject,$body,$email->from_email,core::config('general.site_name'));
+                return Email::send($this->email,$subject,$body,$email->from_email,core::config('general.site_name')); // @TODO EMAIL
 
             }
             else return FALSE;

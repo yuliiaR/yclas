@@ -104,7 +104,7 @@ class Model_Order extends ORM {
                     echo $e;
                 }
             }
-            else if($moderation == 3)
+            else if($moderation == 5)
             {
                 $product_find->published = Date::unix2mysql(time());
                 

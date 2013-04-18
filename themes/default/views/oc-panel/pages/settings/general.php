@@ -38,7 +38,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms['moderation']['key'], __('Moderation'), array('class'=>'control-label', 'for'=>$forms['moderation']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms['moderation']['key'], array(0,1,2,3), $forms['moderation']['value'], array(
+						<?= FORM::select($forms['moderation']['key'], array(0=>"Post directly",1=>"Moderation on",2=>"Payment on",3=>"Email confirmation on", 4=>"Email confirmation with Moderation", 5=>"Payment with Moderation"), $forms['moderation']['value'], array(
 						'placeholder' => $forms['moderation']['value'], 
 						'class' => 'tips ', 
 						'id' => $forms['moderation']['key'],
@@ -86,7 +86,7 @@
 						<div class="input-append">
 							<?= FORM::input($forms['featured_timer']['key'], $forms['featured_timer']['value'], array(
 							'placeholder' => $forms['featured_timer']['value'], 
-							'class' => 'tips', 
+							'class' => 'tips span2', 
 							'id' => $forms['featured_timer']['key'], 
 							'data-content'=> __("Thumb wid"),
 							'data-trigger'=>"hover",
@@ -161,7 +161,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms_img['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label', 'for'=>$forms_img['allowed_formats']['key']))?>
 					<div class="controls">
-						<?= FORM::select($forms_img['allowed_formats']['key'], array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), $forms_img['allowed_formats']['value'], array(
+						<?= FORM::select("allowed_formats[]", array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), $forms_img['allowed_formats']['value'], array(
 						'placeholder' => $forms_img['allowed_formats']['value'],
 						'multiple' => 'true',
 						'class' => 'tips', 
@@ -180,7 +180,7 @@
 						<div class="input-append">
 							<?= FORM::input($forms_img['max_image_size']['key'], $forms_img['max_image_size']['value'], array(
 							'placeholder' => "5", 
-							'class' => 'tips', 
+							'class' => 'tips span', 
 							'id' => $forms_img['max_image_size']['key'],
 							'data-content'=> __("Thumb wid"),
 							'data-trigger'=>"hover",

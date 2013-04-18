@@ -57,14 +57,14 @@ class Controller_Payment_Paypal extends Controller{
 
 				else
 				{
-					Email::send("slobodan.josifovic@gmail.com",'qwe','xxxxxxx',"reply",'replyName', NULL);
+					Email::send("slobodan.josifovic@gmail.com",'qwe','xxxxxxx',"reply",'replyName', NULL); // @TODO EMAIL
 					// Log an invalid request to look into
 					// PAYMENT INVALID & INVESTIGATE MANUALY!
 					$subject = 'Invalid Payment';
 					$message = 'Dear Administrator,<br />
 								A payment has been made but is flagged as INVALID.<br />
 								Please verify the payment manualy and contact the buyer. <br /><br />Here is all the posted info:';
-					//email::send("slobodan.josifovic@gmail.com",$subject,$message.'<br />'.print_r($_POST,true)); // @TODO send email
+					//email::send("slobodan.josifovic@gmail.com",$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
 				}	
 
 			} 
@@ -75,7 +75,7 @@ class Controller_Payment_Paypal extends Controller{
 							A payment has been made but is flagged as Cheat.<br />
 							We suspect some forbiden or illegal actions have been made with this transaction.<br />
 							Please verify the payment manualy and contact the buyer. <br /><br />Here is all posted info:';
-				//email::send("slobodan.josifovic@gmail.com",$subject,$message.'<br />'.print_r($_POST,true)); // @TODO send email
+				//email::send("slobodan.josifovic@gmail.com",$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
 			}
 		}// END order loaded
 		else
@@ -85,7 +85,7 @@ class Controller_Payment_Paypal extends Controller{
             $message = 'Dear Administrator,<br />
                         Someone is trying to pay an inexistent Order...
                         Please verify the payment manually and contact the buyer. <br /><br />Here is all posted info:';
-            email::send(Core::config('common.email'),Core::config('common.email'),$subject,$message.'<br />'.print_r($_POST,true));
+            // email::send(Core::config('common.email'),Core::config('common.email'),$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
 		}
 
 		$this->response->body('OK');
@@ -120,7 +120,7 @@ class Controller_Payment_Paypal extends Controller{
 	                             'paypal_currency'    	=> core::config('paypal.paypal_currency'));
 
 			
-			$this->template->content = View::factory('paypal', $paypal_data); //@TODO -- make this active when paypal active
+			$this->template->content = View::factory('paypal', $paypal_data);
 			$this->response->body($this->template->render());
 		}
 		else

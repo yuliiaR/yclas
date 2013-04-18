@@ -63,7 +63,7 @@ class Email {
                 }
                     
             }
-           // d(core::config('email.smtp_active').' '.core::config('email.smtp_auth').' '.core::config('email.smtp_host').' '.core::config('email.smtp_port').' '.core::config('email.smtp_user').' '.core::config('email.smtp_pass'));
+
             $mail->From       = core::config('email.notify_email');
             $mail->FromName   = "no-reply ".core::config('general.site_name');
             $mail->Subject    = $subject;
@@ -82,7 +82,7 @@ class Email {
             } 
             else 
                 return TRUE;
-            // echo "Message sent! $to";
+           
             
         }    
         else
