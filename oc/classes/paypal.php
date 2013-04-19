@@ -27,8 +27,9 @@ Class Paypal {
     /**
      * Id of products 
      */
-    const id_to_top             = to_top;
-    const id_to_featured        = to_featured;
+    const category_product      = 1;
+    const to_top                = 2;
+    const to_featured           = 3;
 
     /**
      * validates the data at paypal c&p from https://www.x.com/developers/PayPal/documentation-tools/code-sample/216623

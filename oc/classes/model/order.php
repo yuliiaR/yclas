@@ -45,20 +45,6 @@ class Model_Order extends ORM {
         self::STATUS_REFUND       =>  'Refund',
     );
 
-
-    // public function form_setup($form)
-    // {
-    //     $form->fields['id_product']['caption']  = 'name';
-    //     $form->fields['status']['display_as']      = 'text';
-    //     //$form->fields['status']['options']      = self::$statuses;
-    //     $form->fields['id_user']['display_as']  = 'text';
-    // }
-
-    // public function exclude_fields()
-    // {
-    //    return array('created');
-    // }
-
     /**
      * confirm payment for order
      *
@@ -77,12 +63,15 @@ class Model_Order extends ORM {
 
         $product_find = new Model_Ad();
         $product_find = $product_find->where('id_ad', '=', $id_ad)->limit(1)->find();
+        $categ = new Model_Category($product_find->id_category);
+
         
         // update orders
         if($orders->loaded())
         {
             $orders->status = 1;
             $orders->pay_date = Date::unix2mysql(time());
+            
             try {
                 $orders->save();
             } catch (Exception $e) {
@@ -91,13 +80,14 @@ class Model_Order extends ORM {
         }
 
         // update product 
-        if(is_numeric($orders->id_product))
+        if($orders->id_product == Paypal::category_product)
         {
 
             if($moderation == 2)
             {
                 $product_find->published = Date::unix2mysql(time());
                 $product_find->status = 1;
+
                 try {
                     $product_find->save();
                 } catch (Exception $e) {
@@ -116,7 +106,7 @@ class Model_Order extends ORM {
                 }   
             }
         }
-        elseif($orders->id_product == Paypal::id_to_top)
+        elseif($orders->id_product == Paypal::to_top)
         {
             $product_find->published = Date::unix2mysql(time());
             try {
@@ -125,7 +115,7 @@ class Model_Order extends ORM {
                 echo $e;
             }
         }
-        elseif ($orders->id_product == Paypal::id_to_featured)
+        elseif ($orders->id_product == Paypal::to_featured)
         {
             $product_find->featured = Date::unix2mysql(time() + (core::config('general.featured_timer') * 24 * 60 * 60));
             try {
@@ -145,14 +135,15 @@ class Model_Order extends ORM {
 	{
 
 		//create order		
-		$order = new Model_Order();
+		$order = new self;
 
-		$order->id_user = $ord_data['id_user'];
-		$order->id_ad = $ord_data['id_ad'];
-		$order->id_product = $ord_data['id_product'];
-		$order->paymethod = $ord_data['paymethod'];
-		$order->currency = $ord_data['currency'];
-		$order->amount = $ord_data['amount'];
+		$order->id_user       = $ord_data['id_user'];
+		$order->id_ad         = $ord_data['id_ad'];
+		$order->id_product    = $ord_data['id_product'];
+		$order->paymethod     = $ord_data['paymethod'];
+		$order->currency      = $ord_data['currency'];
+		$order->amount        = $ord_data['amount'];
+        $order->description   = $ord_data['description'];
 
 		try 
 		{
@@ -185,13 +176,13 @@ class Model_Order extends ORM {
      */
     public function make_new_order($data, $usr, $seotitle)
     {
-        $category = new Model_Category();
-        $cat = $category->where('id_category', '=', $data['cat'])->limit(1)->find();
+        $category   = new Model_Category();
+        $cat        = $category->where('id_category', '=', $data['cat'])->limit(1)->find();
 
         // check category price, if 0 check parent
         if($cat->price == 0)
         {
-            $parent = $cat->id_category_parent;
+            $parent     = $cat->id_category_parent;
             $cat_parent = new Model_Category();
             $cat_parent = $cat_parent->where('id_category', '=', $parent)->limit(1)->find();
 
@@ -211,7 +202,7 @@ class Model_Order extends ORM {
         }
         // make order 
         $payer_id = $usr; 
-        $id_product = $cat->id_category;
+        $id_product = Paypal::category_product;
 
         $ad = new Model_Ad();
         $ad = $ad->where('seotitle', '=', $seotitle)->limit(1)->find();
@@ -221,7 +212,8 @@ class Model_Order extends ORM {
                           'id_product'  => $id_product,
                           'paymethod'   => 'paypal', // @TODO - to strict
                           'currency'    => core::config('paypal.paypal_currency'),
-                          'amount'      => $amount);
+                          'amount'      => $amount,
+                          'description' => $cat->seoname);
 
         $order_id = new self; // create order , and returns order id
         $order_id = $this->set_new_order($ord_data);

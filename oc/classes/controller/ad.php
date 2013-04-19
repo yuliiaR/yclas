@@ -789,20 +789,22 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_to_top()
 	{
-		$payer_id = Auth::instance()->get_user()->id_user; 
-		$id_product = Paypal::id_to_top;
+		$payer_id 		= Auth::instance()->get_user()->id_user; 
+		$id_product 	= Paypal::to_top;
+		$description 	= 'to_top';
 		// update orders table
 		// fields
-		$ad = new Model_Ad();
-		$ad = $ad->where('seotitle', '=', $this->request->param('seotitle'))->limit(1)->find(); 
+		$ad = new Model_Ad($this->request->param('id'));
+	
 
 		
 		$ord_data = array('id_user' 	=> $payer_id,
 						  'id_ad' 		=> $ad->id_ad,
 						  'id_product' 	=> $id_product,
 						  'paymethod' 	=> 'paypal', // @TODO - to strict
-						  'currency' 	=> core::config('paypal.paypal_currency'),
-						  'amount' 		=> core::config('general.pay_to_go_on_top'));
+						  'currency' 	=> core::config('payment.paypal_currency'),
+						  'amount' 		=> core::config('payment.pay_to_go_on_top'),
+						  'description'	=> $description);
 
 		$order_id = new Model_Order(); // create order , and returns order id
 		$order_id = $order_id->set_new_order($ord_data);
@@ -820,21 +822,22 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_to_featured()
 	{
-		$payer_id = Auth::instance()->get_user()->id_user; 
-		$id_product = Paypal::id_to_featured;
-
+		$payer_id 		= Auth::instance()->get_user()->id_user; 
+		$id_product 	= Paypal::to_featured;
+		$description 	= 'to_featured';
 
 		// update orders table
 		// fields
-		$ad = new Model_Ad();
-		$ad = $ad->where('seotitle', '=', $this->request->param('seotitle'))->limit(1)->find();
+		$ad = new Model_Ad($this->request->param('id'));
+	
 
 		$ord_data = array('id_user' 	=> $payer_id,
 						  'id_ad' 		=> $ad->id_ad,
 						  'id_product' 	=> $id_product,
 						  'paymethod' 	=> 'paypal', // @TODO - to strict
-						  'currency' 	=> core::config('paypal.paypal_currency'),
-						  'amount' 		=> core::config('general.pay_to_go_on_feature'));
+						  'currency' 	=> core::config('payment.paypal_currency'),
+						  'amount' 		=> core::config('payment.pay_to_go_on_feature'),
+						  'description'	=> $description);
 		
 		$order_id = new Model_Order(); // create order , and returns order id
 		$order_id = $order_id->set_new_order($ord_data);
