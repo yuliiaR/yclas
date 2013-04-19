@@ -91,12 +91,12 @@
 
 	    	<div class="span8">
                 <h2><?=__('Available widgets')?></h2>
-				<div class="row-fluid">
+
+				<ul class="inline">
 					<?foreach ($widgets as $widget):?>
 						<?=$widget->form()?>
 					<?endforeach?>
-				</div><!--/row-->
-
+				</li>
 
 	    	</div><!--/span--> 
 	    	
@@ -112,7 +112,7 @@
 					</ul>
 				</div>
 				<?endforeach?>
-                <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'saveorder'))?>'></span>
+                <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'widget','action'=>'saveplaceholders'))?>'></span>
 			</div>
 			<!--placeholders-->
 

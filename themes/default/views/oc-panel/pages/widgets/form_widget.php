@@ -1,13 +1,13 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?if (!$widget->loaded):?>
-<div class="span4 well">
+<li class="well span2">
     <b><?=$widget->title?></b>
     <p><?=$widget->description?></p>
     <button  class="btn btn-primary btn-mini" data-toggle="modal" data-target="#modal_<?=$widget->id_name()?>" type="button">
             <?=__('Create')?>
     </button>
-</div> 
+</li> 
 <?else:?>
     <li class="liholder" id="<?=$widget->id_name()?>"><i class="icon-move"></i>  <?=$widget->title()?> <span class="muted"><?=$widget->title?></span>
         <button class="btn btn-primary btn-mini pull-right" data-toggle="modal" data-target="#modal_<?=$widget->id_name()?>" type="button"><?=__('Edit')?></button>

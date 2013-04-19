@@ -32,11 +32,11 @@
         padding: 9px 0;
       }
 
-        @media screen and (max-width: 979px) {
-            body { padding-top:0; }
-            .navbar .nav { float:none; }
-            .navbar .nav > li { border:0; }
-        }
+    @media screen and (max-width: 979px) {
+        body { padding-top:0; }
+        .navbar .nav { float:none; }
+        .navbar .nav > li { border:0; }
+    }
     </style>
 
   </head>

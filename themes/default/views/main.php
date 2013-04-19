@@ -28,23 +28,6 @@
 
     <link rel="shortcut icon" href="<?=View::public_path('img/favicon.ico')?>">
 
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-
-
-        @media screen and (max-width: 979px) {
-            body { padding-top:0; }
-            .navbar .nav { float:none; }
-            .navbar .nav > li { border:0; }
-        }
-    </style>
-
   </head>
 
   <body>
