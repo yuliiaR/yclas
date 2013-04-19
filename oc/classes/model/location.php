@@ -87,10 +87,13 @@ class Model_Location extends ORM {
         $locs_s = array();
         foreach ($locs as $loc) 
              $locs_s[$loc->id_location_parent][] = $loc->id_location;
-        
+            
 
         //last build multidimensional array
-        $locs_m = self::multi_locs($locs_s);
+        if (count($locs_s)>1)
+            $locs_m = self::multi_locs($locs_s);
+        else
+            $locs_m = array();
 
         return array($locs_arr,$locs_m);
     }

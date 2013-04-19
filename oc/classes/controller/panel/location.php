@@ -30,7 +30,6 @@ class Controller_Panel_Location extends Auth_Crud {
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/locations.js';
 
-
         list($locs,$order)  = Model_Location::get_all();
 
         $this->template->content = View::factory('oc-panel/pages/locations',array('locs' => $locs,'order'=>$order));

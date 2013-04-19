@@ -29,7 +29,6 @@ class Controller_Panel_Category extends Auth_Crud {
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/categories.js';
 
-
         list($cats,$order)  = Model_Category::get_all();
 
         $this->template->content = View::factory('oc-panel/pages/categories',array('cats' => $cats,'order'=>$order));

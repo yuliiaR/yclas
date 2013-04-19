@@ -109,8 +109,11 @@ class Model_Category extends ORM {
         
 
         //last build multidimensional array
-        $cats_m = self::multi_cats($cats_s);
-
+        if (count($cats_s)>1)
+            $cats_m = self::multi_cats($cats_s);
+        else
+            $cats_m = array();
+        
         return array($cats_arr,$cats_m);
     }
 
