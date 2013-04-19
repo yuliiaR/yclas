@@ -165,9 +165,10 @@ class Controller_Ad extends Controller {
 
 		// if is sorted by category , or category + location
 		if(is_numeric($locat))
-		{//d(is_numeric($categ));
+		{
 			if(!is_numeric($categ))
 			{
+				
 				$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
 							 ->and_where('id_location', '=', $locat)->count_all();	
 			}
@@ -213,7 +214,7 @@ class Controller_Ad extends Controller {
                  
     	    )); //d($this->request->controller()." ".$this->request->action());
     	    
-    	    
+    		// cases depending on input provided    
      	    if(is_numeric($locat) )
      	    {
      	    	if(!is_numeric($categ))
@@ -275,19 +276,10 @@ class Controller_Ad extends Controller {
 			$this->request->redirect(Route::url('default'));	
 		}
 
-		if(Auth::instance()->get_user() == NULL)
-		{
-			$user = NULL;
-		}
-		else
-		{
-			$user = Auth::instance()->get_user();
-		}
+		// user recognition 
+		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user() ;
 		
-		
-		// return image path 
-		// $img_path = array();
-		
+		// return image path to display in view 
 		$thumb = array();
 		foreach ($ads as $a) 
 		{
@@ -303,11 +295,12 @@ class Controller_Ad extends Controller {
 				}
 			}
 			
-			// search and creat path of ads, fill array $thumb
+			// search and create path of ads, fill array $thumb
 			if(is_array($path = $this->image_path($a)))
 			{
 				foreach ($path as $key => $value) 
 				{
+					// hash tag to distinguish thumb from big image
 					$hashtag = (core::config("theme_default.listing_images") != FALSE) ? strstr($value, 'thumb') : !strstr($value, 'thumb') ;
 
 					if( $hashtag && strstr($value, '_1'))
@@ -318,6 +311,11 @@ class Controller_Ad extends Controller {
 					{
 						$thumb[$a->seotitle] = $value;	
 					}
+				}
+				// case when there are no images , sanity check
+				if(!isset($thumb[$a->seotitle]))
+				{
+					$thumb[$a->seotitle] = NULL;
 				}
 			}
 			else
@@ -792,7 +790,7 @@ class Controller_Ad extends Controller {
 	public function action_to_top()
 	{
 		$payer_id = Auth::instance()->get_user()->id_user; 
-		
+		$id_product = Paypal::id_to_top;
 		// update orders table
 		// fields
 		$ad = new Model_Ad();
@@ -823,8 +821,8 @@ class Controller_Ad extends Controller {
 	public function action_to_featured()
 	{
 		$payer_id = Auth::instance()->get_user()->id_user; 
-		$id_product = core::config('general.ID_pay_to_go_on_feature');
-		$paypal_msg = core::config('general.paypal_msg_product_to_featured');
+		$id_product = Paypal::id_to_featured;
+
 
 		// update orders table
 		// fields

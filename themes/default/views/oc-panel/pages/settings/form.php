@@ -130,6 +130,21 @@
 					))?> 
 				</div>
 			</div>
+			<div class="control-group">
+				<?= FORM::label($forms['disqus']['key'], __('Disqus'), array('class'=>'control-label', 'for'=>$forms['disqus']['key']))?>
+				<div class="controls">
+					<?= FORM::input($forms['disqus']['key'], $forms['disqus']['value'], array(
+					'placeholder' => "", 
+					'class' => 'tips', 
+					'id' => $forms['disqus']['key'], 
+					'data-content'=> __("Thumb wid"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Thumb wid"),
+					))?> 
+				</div>
+			</div>
 			<div class="form-actions">
 				<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
 			</div>

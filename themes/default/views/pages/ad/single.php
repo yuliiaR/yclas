@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="well">
-	<?if ($ad->status != 1 && $permission === FALSE):?>
+	<?if ($ad->status != Model_Ad::STATUS_PUBLISHED && $permission === FALSE):?>
 	<div class="page-header">
 		<h3><?= __('This advertisement doesn\'t exist, or is not yet published')?></h3>
 	</div>
@@ -20,7 +20,6 @@
 				
 				<?if(strstr($path, 'thumb') != FALSE):?>
 				<li>
-				
 					<a data-href="/<?= str_replace("thumb_", '', $path)?>" class="thumbnail gallery-item" data-gallery="gallery">
 						<img src="/<?= $path?>"  class="img-rounded" alt="">
 					</a>	

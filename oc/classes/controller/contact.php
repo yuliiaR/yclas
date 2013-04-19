@@ -12,6 +12,7 @@ class Controller_Contact extends Controller {
 		$this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
 		$this->template->scripts['footer'][]= 'js/pages/new.js';
 
+
 		if($this->request->post()) //message submition  
 		{
 			
@@ -24,7 +25,14 @@ class Controller_Contact extends Controller {
 								 'message'		=>core::post('message'),);
 				
 
-				email::send(core::config('email.notify_email'),$message['subject'],$message['message'],$message['email_from'],$message['name']);
+
+                    // //we get the QL, and force the regen of token for security
+                    // $url_ql = $user->ql('oc-panel',array( 'controller' => 'profile', 
+                    //                                       'action'     => 'changepass'),TRUE);
+                    // $ret = $user->email('auth.remember',array('[URL.QL]'=>$url_ql));
+
+
+				 email::send(core::config('email.notify_email'),$message['subject'],$message['message'],$message['email_from'],$message['name']);
 				Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
 
 				

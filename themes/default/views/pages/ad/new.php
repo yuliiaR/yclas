@@ -7,25 +7,30 @@
 		
 		<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
+
 				<div class="control-group">
 					<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
 					<div class="controls">
 						<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'input-xlarge', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
+
 				<div class="control-group">
 					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' , 'multiple'))?>
-					<div class="controls">						
+					<div class="controls">			
+					
+					
 						<?foreach ($_cat as $cat):?>
 							<?if($cat->seoname != 'all'):?>
-							<?php $_val_category[$cat->id_category] = $cat->name; ?>
+							<? $_val_category[$cat->id_category] = $cat->name; ?>
 							<?endif?>
-						<?endforeach?>
-						<?//var_dump($_val_category)?>
-					<?= FORM::select('category', $_val_category, 0,array('id'=>'category','class'=>'input-xlarge', 'required') );?>
-					<p id="cat_price" class="text-warning"></p>
+						<?endforeach?>		
+						<?= FORM::select('category', $_val_category, 0, array('id'=>'category','class'=>'input-xlarge', 'required') );?>
+						<p id="cat_price" class="text-warning"></p>
+					
 					</div>
 				</div>
+
 				<?if($form_show['location'] != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
@@ -34,10 +39,12 @@
 						<?foreach ($_loc as $loc):?>
 							<?php $_val_location[$loc->id_location] = $loc->name; ?>
 						<?endforeach?>
-					<?= FORM::select('location', $_val_location, 0, array('id'=>'location', 'class'=>'input-xlarge', 'required') );?>
+						<?= FORM::select('location', $_val_location, 0, array('id'=>'location', 'class'=>'input-xlarge', 'required') );?>
+					
 					</div>
 				</div>
 				<?endif?>
+
 				<div class="control-group">
 					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
 					<div class="controls">

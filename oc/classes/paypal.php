@@ -24,6 +24,11 @@ Class Paypal {
     const ipn_sandbox_url      	= 'ttps://www.sandbox.paypal.com/cgi-bin/webscr';
     const ipn_url              	= 'https://www.paypal.com/cgi-bin/webscr';
 
+    /**
+     * Id of products 
+     */
+    const id_to_top             = to_top;
+    const id_to_featured        = to_featured;
 
     /**
      * validates the data at paypal c&p from https://www.x.com/developers/PayPal/documentation-tools/code-sample/216623

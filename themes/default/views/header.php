@@ -17,7 +17,7 @@
 					<?nav_link(__('Listing'),'ad', 'icon-list' ,'listing', 'list')?>
 					<?nav_link(__('Contact'),'contact', 'icon-envelope', 'index', 'contact')?>
 					<li class="dropdown">
-		              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Caegories')?> <b class="caret"></b></a>
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Categories')?> <b class="caret"></b></a>
 		              <ul class="dropdown-menu">
 
 		              	<?foreach($cat_list as $c ):?>

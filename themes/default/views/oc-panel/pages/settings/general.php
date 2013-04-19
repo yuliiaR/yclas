@@ -161,7 +161,7 @@
 				<div class="control-group">
 					<?= FORM::label($forms_img['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label', 'for'=>$forms_img['allowed_formats']['key']))?>
 					<div class="controls">
-						<?= FORM::select("allowed_formats[]", array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), $forms_img['allowed_formats']['value'], array(
+						<?= FORM::select("allowed_formats[]", array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), explode(',', $forms_img['allowed_formats']['value']), array(
 						'placeholder' => $forms_img['allowed_formats']['value'],
 						'multiple' => 'true',
 						'class' => 'tips', 
