@@ -1,51 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<style type="text/css">
-
-    body.dragging, body.dragging * {
-      cursor: move !important;
-    }
-    .dragged {
-        position: absolute;
-        top: 0;
-        opacity: .5;
-        z-index: 2000;
-    }
-
-    ol.plholder li{
-        cursor: move !important;
-        display: block;
-        margin: 5px;
-        padding: 5px;
-        border: 1px solid #CCC;
-        color: white;
-        background: gray;
-        width: 90%;
-    }
-
-    ol.plholder li.placeholder{
-        position: relative;
-        margin: 0;
-        padding: 0;
-        border: none;
-    }
-
-    ol.plholder li.placeholder:before {
-        position: absolute;
-        content: "";
-        width: 0;
-        height: 0;
-        margin-top: -5px;
-        left: -5px;
-        top: -4px;
-        border: 5px solid transparent;
-        border-left-color: red;
-        border-right: none;
-        color: red;
-    }
-
-</style>
-
 <div class="page-header">
     <h1><?=__('Categories')?></h1>
     <p><?=__('Change the order of your categories, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme')?></p>
