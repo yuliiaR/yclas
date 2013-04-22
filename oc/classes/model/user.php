@@ -338,20 +338,16 @@ class Model_User extends ORM {
             //content found
             if ($email->loaded())
             { 
-
                 //adding extra replaces
                 $replace+= array('[SITE.NAME]'      =>  core::config('general.site_name'),
                                  '[SITE.URL]'       =>  core::config('general.base_url'),
                                  '[USER.NAME]'      =>  $this->name,
-                                 '[USER.EMAIL]'     =>  $this->email,
-                                 '[EMAIL.BODY]'     =>  $replace['body'] = NULL,
-                                 '[EMAIL.SENDER]'   =>  $replace['sender'] = NULL,
-                                 '[EMAIL.FROM]'     =>  $replace['from'] = NULL);
+                                 '[USER.EMAIL]'     =>  $this->email);
 
                 $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
                 $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
 
-                return Email::send($this->email,$subject,$body,$email->from_email,core::config('general.site_name')); // @TODO EMAIL
+                return Email::send($this->email,$subject,$body,$email->from_email,core::config('general.site_name')); 
 
             }
             else return FALSE;

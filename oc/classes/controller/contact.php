@@ -25,9 +25,9 @@ class Controller_Contact extends Controller {
 			{			
 				if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
 				{ 
-					$ret = $user->email('contact.us',array('body'=>core::post('message'),
-                    									 	'sender'=>core::post('name'),
-                    									 	'from'=>core::post('email_from')));
+					$ret = $user->email('contact.us',array('[EMAIL.BODY]'		=>core::post('message'),
+                    									   '[EMAIL.SENDER]'		=>core::post('name'),
+                    									   '[EMAIL.FROM]'		=>core::post('email_from')));
 					Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
 				}
 				else
@@ -58,9 +58,9 @@ class Controller_Contact extends Controller {
 			if(captcha::check('contact'))
 			{ 
 				Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
-                $ret = $user->email('user.contact',array('body'=>core::post('message'),
-                    									 'sender'=>core::post('name'),
-                    									 'from'=>core::post('email_from')));
+                $ret = $user->email('user.contact',array('[EMAIL.BODY]'		=>core::post('message'),
+                    									 '[EMAIL.SENDER]'	=>core::post('name'),
+                    									 '[EMAIL.FROM]'		=>core::post('email_from')));
 			}
 			else
 			{

@@ -338,7 +338,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 
-		$this->mas_mail($format_id); // sending many mails at the same time 
+		$this->multiple_mails($format_id); // sending many mails at the same time @TODO EMAIl
 
 		if (Core::config('sitemap.on_post') == TRUE)
 			Sitemap::generate();
@@ -396,20 +396,26 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	}
 
-//temporary function until i figure out how to deal with mass mails @TODO EMAIL
-	public function mas_mail($receivers)
+	//temporary function until i figure out how to deal with mass mails @TODO EMAIL
+	public function multiple_mails($receivers)
 	{
-		$admin = Auth::instance()->get_user()->id_user;
-		$user = new Model_User($admin);
+		
+		$user 		= new Model_User();
+		$ads 		= new Model_Ad();
+		$category 	= new Model_Category();
 
-		$category = new Model_Category();
+		foreach ($receivers as $num => $receiver_id) {
+			$ad = $ads->where('id_ad', '=', $receiver_id)->limit(1)->find();
+			$cat = $category->where('id_category', '=', $ad->id_category)->limit(1)->find();
+			$usr = $user->where('id_user', '=', $ad->id_user)->limit(1)->find();
 
-		d($receivers);
-		//we get the QL, and force the regen of token for security
-    	$url_ql = $user->ql('ad',array( 'category' => $category->seoname, 
-     	                                'seotitle'=> $active_ad->seotitle),TRUE);
+			//we get the QL, and force the regen of token for security
+			$url_ql = $user->ql('ad',array( 'category' => $cat->seoname, 
+		 	                                'seotitle'=> $ad->seotitle),TRUE);
 
-    	$ret = $user->email('ads.activated',array());
+			$ret = $user->email('ads.activated',array("[URL.QL]"=>$url_ql, "[USER.OWNER]"=>$usr->name));
+		}
+		
 	}
 
 }
