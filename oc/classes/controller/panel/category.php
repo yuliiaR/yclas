@@ -25,10 +25,9 @@ class Controller_Panel_Category extends Auth_Crud {
         $this->template->title  = __('Categories');
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Categories')));
-
+        $this->template->styles              = array('css/sortable.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/categories.js';
-
 
         list($cats,$order)  = Model_Category::get_all();
 

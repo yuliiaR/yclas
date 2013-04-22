@@ -26,10 +26,9 @@ class Controller_Panel_Location extends Auth_Crud {
         $this->template->title  = __('Locations');
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Locations')));
-
+        $this->template->styles              = array('css/sortable.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/locations.js';
-
 
         list($locs,$order)  = Model_Location::get_all();
 

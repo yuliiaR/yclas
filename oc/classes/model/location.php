@@ -87,10 +87,13 @@ class Model_Location extends ORM {
         $locs_s = array();
         foreach ($locs as $loc) 
              $locs_s[$loc->id_location_parent][] = $loc->id_location;
-        
+            
 
         //last build multidimensional array
-        $locs_m = self::multi_locs($locs_s);
+        if (count($locs_s)>1)
+            $locs_m = self::multi_locs($locs_s);
+        else
+            $locs_m = array();
 
         return array($locs_arr,$locs_m);
     }
@@ -129,19 +132,17 @@ class Model_Location extends ORM {
 	{
 		$form->fields['description']['display_as'] = 'textarea';
 	
-		$form->fields['parent_deep']['display_as'] = 'select';
-		$form->fields['parent_deep']['options'] = range(0,3);
-	
 
 		$form->fields['seoname']['caption'] = 'seoname';
-		$form->fields['id_location_parent']['display_as'] = 'select';
-		$form->fields['id_location_parent']['options'] = range(0, 30);
+
+        $form->fields['id_location_parent']['display_as'] = 'hidden';
+        $form->fields['id_location_parent']['value'] = 1;
 				
 	}
 
 	public function exclude_fields()
 	{
-	  return array('created');
+	  return array('created','parent_deep','order');
 	}
 
 
