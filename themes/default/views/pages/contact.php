@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-	<div class=" well">
+<?if($user_auth !== FALSE):?>
+	<div class="well">
 		<?=Form::errors()?>
 		<h1><?=__('Contact US')?></h1>
 		<?= FORM::open(Route::url('contact'), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
@@ -51,6 +52,10 @@
 		<?= FORM::close()?>
 
 	</div><!--end span10-->
-
+<?else:?>
+	<div class="advice well">
+		<h4><?=__("Welcome to ".core::config('general.site_name')."! Unfortunately you have to log in to send us a message. \n" )?></h4>
+	</div>
+<?endif?>
 
 

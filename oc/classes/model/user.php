@@ -340,10 +340,13 @@ class Model_User extends ORM {
             { 
 
                 //adding extra replaces
-                $replace+= array('[SITE.NAME]'  =>  core::config('general.site_name'),
-                                 '[SITE.URL]'   =>  core::config('general.base_url'),
-                                 '[USER.NAME]'  =>  $this->name,
-                                 '[USER.EMAIL]' =>  $this->email);
+                $replace+= array('[SITE.NAME]'      =>  core::config('general.site_name'),
+                                 '[SITE.URL]'       =>  core::config('general.base_url'),
+                                 '[USER.NAME]'      =>  $this->name,
+                                 '[USER.EMAIL]'     =>  $this->email,
+                                 '[EMAIL.BODY]'     =>  $replace['body'] = NULL,
+                                 '[EMAIL.SENDER]'   =>  $replace['sender'] = NULL,
+                                 '[EMAIL.FROM]'     =>  $replace['from'] = NULL);
 
                 $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
                 $body    = str_replace(array_keys($replace), array_values($replace), $email->description);

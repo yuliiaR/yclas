@@ -68,7 +68,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		
 		$ads = new Model_Ad();
 
-		$res_count = $ads->where('ad.status', '!=', Model_Ad::STATUS_PUBLISHED)->count_all();
+		$res_count = $ads->where('status', '!=', Model_Ad::STATUS_PUBLISHED)->count_all();
 		
 		if ($res_count > 0)
 		{
@@ -306,7 +306,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		{
 			if ($id !== '')
 			{
-				$active_ad = ORM::factory('ad', $id);
+				$active_ad = new Model_Ad($id);
 
 				if ($active_ad->loaded())
 				{
@@ -314,7 +314,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 					{
 						$active_ad->published = Date::unix2mysql(time());
 						$active_ad->status = 1;
-						// $active_ad->published = 
 						
 						try
 						{
@@ -338,6 +337,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 				}
 			}
 		}
+
+		$this->mas_mail($format_id); // sending many mails at the same time 
 
 		if (Core::config('sitemap.on_post') == TRUE)
 			Sitemap::generate();
@@ -395,5 +396,20 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	}
 
+//temporary function until i figure out how to deal with mass mails @TODO EMAIL
+	public function mas_mail($receivers)
+	{
+		$admin = Auth::instance()->get_user()->id_user;
+		$user = new Model_User($admin);
+
+		$category = new Model_Category();
+
+		d($receivers);
+		//we get the QL, and force the regen of token for security
+    	$url_ql = $user->ql('ad',array( 'category' => $category->seoname, 
+     	                                'seotitle'=> $active_ad->seotitle),TRUE);
+
+    	$ret = $user->email('ads.activated',array());
+	}
 
 }

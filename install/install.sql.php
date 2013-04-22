@@ -177,8 +177,12 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."content` (
 mysql_query("INSERT INTO `oc2_content` (`order`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) 
     VALUES
 (0, 'Change Password [SITE.NAME]', 'auth.remember', 'Hello [USER.NAME],\n\nFollow this link  [URL.QL]\n\nThanks!!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
-(0, 'Welcome to [SITE.NAME]!', 'auth.register', 'Welcome [USER.NAME],\n\nWe are really happy that you joined us! [URL.QL]\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1);");
 
+(0, 'Welcome to [SITE.NAME]!', 'auth.register', 'Welcome [USER.NAME],\n\nWe are really happy that you joined us! [URL.QL]\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, 'Hello [USER.NAME]!', 'user.contact', 'You have been contacted regarding to your advertisement. User [EMAIL.SENDER] [EMAIL.FROM], has a message for you: \n\n[EMAIL.BODY]. \n\n Regards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, 'User [USER.NAME] wants to contact you!', 'contact.admin', 'Welcome [USER.NAME],\n\nWe are really happy that you joined us! [URL.QL]\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, 'Success! Your advertisement is created on [SITE.NAME]!', 'ads.notify', 'Hello [USER.NAME],\n\nWe are really happy that you created advertisement at [SITE.NAME]! \n\nYou can can edit your advertisement here [URL.QL].\n\n But for now its still not published, it needs to be validated by administrator. \n\n We are sorry for inconveniance. But it wont be long until it gets posted. \n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, 'Success! Your advertisement is created on [SITE.NAME]!', 'ads.confirm', 'Welcome [USER.NAME],\n\nWe are really happy that you created advertisement at [SITE.NAME]! \n\nPlease click on this link [URL.QL] to confirm post.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1);");
 
 /**
  * Access
@@ -214,18 +218,16 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('payment', 'pay_to_go_on_top', '5'),
 ('payment', 'paypal_account', ''),
 ('general', 'number_format', ''),
-('general', 'date_format', ''),
+('general', 'date_format', 'd/m/y'),
 ('general', 'base_url', '".$_POST['SITE_URL']."'),
 ('general', 'moderation', 0),
 ('general', 'analytics', ''),
 ('general', 'feed_elements', '20'),
 ('general', 'site_name', '".$_POST['SITE_NAME']."'),
-('general', 'ID_pay_to_go_on_top', 'pay_to_go_on_top'),
 ('general', 'global-currency', 'USD'),
-('general', 'ID_pay_to_go_on_feature', 'pay_to_go_on_feature'),
 ('general', 'featured_timer', '5'),
 ('general', 'advertisements_per_page', '10'),
-('image', 'allowed_formats', 'jpag, jpg, png'),
+('image', 'allowed_formats', 'jpag,jpg,png,'),
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),
 ('image', 'width', '1200'),

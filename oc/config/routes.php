@@ -75,7 +75,7 @@ Route::set('list', '<category>(/<location>)')
 	user profile route 
  */
  
-Route::set('profile', 'user/<seoname>(/<action>)')
+Route::set('profile', 'user/<seoname>/<action>')
 ->defaults(array(
 		'controller' => 'user',
 		'action'     => 'index',

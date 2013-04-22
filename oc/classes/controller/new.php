@@ -61,6 +61,7 @@
 		
 		// depending on user flow (moderation mode), change usecase
 		$moderation = core::config('general.moderation'); 
+
 		if ($moderation == 0)
 		{
 			if (Core::config('sitemap.on_post') == TRUE)
@@ -128,7 +129,12 @@
 						$user->save();
 						Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
 						
-						//$user->email('newuser'); //this is to static
+						// //we get the QL, and force the regen of token for security
+      //               	$url_ql = $user->ql('profile',array( 'seoname' => 'ad'),TRUE);
+
+      //               	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql));
+						//@TODO EMAIL
+						
 					}
 					catch (ORM_Validation_Exception $e)
 					{
@@ -195,10 +201,36 @@
 						$created = $created->where('seotitle', '=', $seotitle)->limit(1)->find(); 
 						$created = $created->created;
 					}
+					
+					$user = new Model_User();
+					$user = $user->where('email', '=', $email)
+						->limit(1)
+						->find();
 
-					if($moderation == 3 || $moderation == 4)
+
+					// after successful posting send them email depending on moderation
+					if($moderation == 3)
 					{
-						//$user->email('newadvertisement'); // @TODO EMAIL
+						//we get the QL, and force the regen of token for security
+                    	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
+                                                          	 'action'     => 'confirm_post',
+                                                          	 'id'		  => $_new_ad->id_ad),TRUE);
+
+                    	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql));
+
+					
+					
+					}
+					else if($moderation == 4)
+					{
+						//we get the QL, and force the regen of token for security
+                    	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
+                                                          	  'action'    => 'update',
+                                                          	  'id'		  => $_new_ad->id_ad),TRUE);
+
+                    	$ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql));
+
+
 					}
 					
 					  
@@ -261,6 +293,16 @@
 					}
 					// redirect to payment
         			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
+				}
+				else if ($moderation == 3)
+				{
+					Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
+					$this->request->redirect(Route::url('default'));
+				}
+				else if ($moderation == 4)
+				{
+					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
+					$this->request->redirect(Route::url('default'));
 				}
 				else
 				{

@@ -58,7 +58,7 @@ class Email {
                
 
                 if (core::config('email.smtp_ssl') == TRUE)
-                {
+                {d('smtp ');
                     $mail->SMTPSecure = "ssl";                  // sets the prefix to the server
                 }
                     
@@ -82,22 +82,15 @@ class Email {
             } 
             else 
                 return TRUE;
-           
-            
         }    
         else
         {
-            // d(func_get_args());
-            if ($headers==NULL)
-            {
-                $headers = 'MIME-Version: 1.0' . PHP_EOL;
-                $headers.= 'Content-type: text/html; charset=utf8'. PHP_EOL;
-                $headers.= 'From: '.$reply.PHP_EOL;
-                $headers.= 'Reply-To: '.$reply.PHP_EOL;
-                $headers.= 'Return-Path: '.$reply.PHP_EOL;
-                $headers.= 'X-Mailer: PHP/' . phpversion().PHP_EOL;
-            }
-
+            $headers = 'MIME-Version: 1.0' . PHP_EOL;
+            $headers.= 'Content-type: text/html; charset=utf8'. PHP_EOL;
+            $headers.= 'From: '.$reply.PHP_EOL;
+            $headers.= 'Reply-To: '.$reply.PHP_EOL;
+            $headers.= 'Return-Path: '.$reply.PHP_EOL;
+            $headers.= 'X-Mailer: PHP/' . phpversion().PHP_EOL;
 
             return mail($to,$subject,$body,$headers);
         }

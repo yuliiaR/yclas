@@ -124,7 +124,8 @@
 					<?= FORM::label($forms['smtp_pass']['key'], __('Smtp password'), array('class'=>'control-label', 'for'=>$forms['smtp_pass']['key']))?>
 					<div class="controls">
 						<?= FORM::input($forms['smtp_pass']['key'], $forms['smtp_pass']['value'], array(
-						'placeholder' => "", 
+						'placeholder' => "",
+						'type' => "password", 
 						'class' => 'tips', 
 						'id' => $forms['smtp_pass']['key'], 
 						'data-content'=> __("Thumb wid"),

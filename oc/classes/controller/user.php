@@ -25,35 +25,15 @@ class Controller_User extends Controller {
 				$this->template->bind('content', $content);
 
 				$ads = new Model_Ad();
-				$ads = $ads->where('id_user', '=', $user->id_user)->find_all();
+				$ads = $ads->where('id_user', '=', $user->id_user)->order_by('created','desc')->cached()->find_all();
 				
 				$category = new Model_Category();
 				$category = $category->find_all();
 				
-		
-				if($ads->count() !== 0)
-				{
-					foreach ($ads as $value) 
-					{
-						foreach ($category as $key) 
-						{
-							if($key->id_category == $value->id_category)
-							{
-								$cat = $key->seoname;
-							}
-						}
-					
-					$profile_ads[] = array('title'		=>$value->title, 
-										   'category'	=>$cat,
-										   'description'=>$value->description,
-										   'seotitle'	=>$value->seotitle,
-										   'id_ad'		=>$value->id_ad,
-										   'id_user'	=>$value->id_user); 
-					}	
-				}
-				else $profile_ads = NULL;
+				// case when user dont have any ads
+				if($ads->count() == 0) $profile_ads = NULL;
 
-				$this->template->content = View::factory('pages/userprofile',array('user'=>$user, 'profile_ads'=>$profile_ads));
+				$this->template->content = View::factory('pages/userprofile',array('user'=>$user, 'profile_ads'=>$ads));
 			}
 			//not found in DB
 			else

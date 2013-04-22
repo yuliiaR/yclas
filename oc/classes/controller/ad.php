@@ -490,31 +490,6 @@ class Controller_Ad extends Controller {
 					$path = $this->image_path($ad); 
 				}else $path = NULL;
 
-		        if($this->request->post()) //message submition  
-				{
-					if(captcha::check('contact'))
-					{ 
-						Alert::set(Alert::SUCCESS, __('Success, your message is sent'));
-						
-						$owner = ORM::factory('user', $ad->id_user);
-						
-						
-						$message = array('name'			=>$this->request->post('name'),
-										 'email_from'	=>$this->request->post('email'),
-										 'subject'		=>$this->request->post('subject'),
-										 'message'		=>$this->request->post('message'),
-										 'email_to'		=>$owner->email);
-
-						$advert_owner = new Model_User();
-						$advert_owner = $advert_owner->where('id_user', '=', $ad->id_user)->limit(1)->find();
-				
-						// email::send("root@slobodantumanitas-System",$message['email_from'],$message['subject'],$message['message']); // @TODO EMAIL
-					}
-					else
-					{
-						Alert::set(Alert::ERROR, __('You made some mistake'));
-					}
-				}
 				$captcha_show = core::config('advertisement.captcha');	
 				
 				$this->template->bind('content', $content);
@@ -845,6 +820,34 @@ class Controller_Ad extends Controller {
 		$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
 	}
 	
+	public function action_confirm_post()
+	{
+		$advert_id = $this->request->param('id');
 
+		$advert = new Model_Ad($advert_id);
+
+		if($advert->loaded())
+		{
+			if(core::config('general.moderation') == 3)
+			{
+
+				$advert->status = 1; // status active
+				$advert->published = Date::unix2mysql(time());
+
+				try 
+				{
+					$advert->save();
+					Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
+					$this->request->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
+				} 
+				catch (Exception $e) 
+				{
+					throw new HTTP_Exception_500($e->getMessage());
+				}
+			}
+		}
+	}
+
+	
 }// End ad controller
 
