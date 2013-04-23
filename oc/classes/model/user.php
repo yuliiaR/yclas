@@ -221,21 +221,15 @@ class Model_User extends ORM {
         }
         */
 
-
-
         $granted = $this->get_access_actions();
 
         if((in_array('*.*', $granted)) OR (in_array($controller.'.*', $granted)) 
         	OR (in_array($controller.'.'.$action, $granted)))
         {
-            //die('1');
             return TRUE;
         }
         else
         {
-            //die(print_r($this->granted));
-            //die($controller.'.'.$action);
-            //die('2');
             return FALSE;
         }
 
