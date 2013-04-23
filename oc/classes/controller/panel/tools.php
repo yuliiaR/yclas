@@ -175,8 +175,8 @@ class Controller_Panel_Tools extends Auth_Controller {
         //force clean database from migration, not public, just internal helper
         if (Core::get('delete')==1)
         {
-            $this->clean_migration();
-            Alert::set(Alert::SUCCESS,__('Database cleaned'));
+            // $this->clean_migration();
+            // Alert::set(Alert::SUCCESS,__('Database cleaned'));
         }
 
         if ($this->request->post())
