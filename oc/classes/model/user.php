@@ -204,11 +204,11 @@ class Model_User extends ORM {
 	
 
     /**
-    * Check the actual controller and action request and validates if the user has access to it
-    * @todo    code something that you can show to your mom.
-    * @param   string  $action
-    * @return  boolean
-    */
+     * Check the actual controller and action request and validates if the user has access to it
+     * @todo    code something that you can show to your mom.
+     * @param   string  $action
+     * @return  boolean
+     */
     public function has_access($controller, $action='index', $directory='')
     {
         $this->get_access_controllers();
@@ -221,21 +221,15 @@ class Model_User extends ORM {
         }
         */
 
-        //die(print_r($this->role->access->find_all()->as_array()));
-
         $granted = $this->get_access_actions();
 
         if((in_array('*.*', $granted)) OR (in_array($controller.'.*', $granted)) 
         	OR (in_array($controller.'.'.$action, $granted)))
         {
-            //die('1');
             return TRUE;
         }
         else
         {
-            //die(print_r($this->granted));
-            //die($controller.'.'.$action);
-            //die('2');
             return FALSE;
         }
 
@@ -357,7 +351,7 @@ class Model_User extends ORM {
 
 
     /**
-     * get url with autolo QL login and redirect
+     * get url with auto QL login and redirect
      * @param  string  $route            
      * @param  array  $params           
      * @param  boolean $regenerate_token 

@@ -167,7 +167,7 @@ class Auth_OC extends Kohana_Auth {
 	 * Log a user out and remove any autologin cookies.
 	 *
 	 * @param   boolean  completely destroy the session
-	 * @param	boolean  remove all tokens for user
+	 * @param	boolean  remove all token for user
 	 * @return  boolean
 	 */
 	public function logout($destroy = FALSE, $logout_all = FALSE)
@@ -180,17 +180,16 @@ class Auth_OC extends Kohana_Auth {
 			// Delete the autologin cookie to prevent re-login
 			Cookie::delete('authautologin');
 
-			// Load the user from the token
-			$user = new Model_User;
-			$user ->where('token', '=', $token)
-			->limit(1)
-			->find();
+            if ($logout_all)
+            {
+                // Load the user from the token
+                $user = new Model_User;
+                $user ->where('token', '=', $token)->limit(1)->find();
 
-			// generates new autologin token from the database
-			if ($user->loaded())
-			{
-				$user->create_token();
-			}
+                // generates new autologin token from the database
+                if ($user->loaded())
+                    $user->create_token();
+            }
 			 
 		}
 
@@ -309,10 +308,16 @@ class Auth_OC extends Kohana_Auth {
 		//if the QL is not expired we try to login the user
 		if  ($expires >= time())
 		{
-			if ($this->auto_login($token)!==FALSE)
-			{
-				return $url;//loged in!!!
-			}
+			//if user loged in no new token
+            if (Auth::instance()->logged_in())
+            {
+                //he was already loged in...
+                return $url;
+            }
+            else if ($this->auto_login($token)!==FALSE)
+            {
+                return $url;//loged in!!!
+            }
 		}
 
 		return FALSE;

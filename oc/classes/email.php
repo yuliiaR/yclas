@@ -26,7 +26,7 @@ class Email {
      */
     public static function send($to,$subject,$body,$reply,$replyName,$file = NULL)
     {
-        require Kohana::find_file('vendor', 'php-mailer/phpmailer','php');
+        require_once Kohana::find_file('vendor', 'php-mailer/phpmailer','php');
 
         //get the template from the html email boilerplate
         $body = View::factory('email',array('title'=>$subject,'content'=>$body))->render();
