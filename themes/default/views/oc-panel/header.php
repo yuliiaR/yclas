@@ -16,7 +16,7 @@
             <div class="nav-collapse collapse">
 
                 <ul class="nav">
-                    <?=nav_link('','home','icon-home icon-white','index','default')?>
+                    <?=nav_link(_('Visit Site'),'home','icon-home icon-white','index','default')?>
                 	<?=sidebar_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
                     <?=sidebar_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"
@@ -32,6 +32,7 @@
                     			<i class="icon-pencil"></i><?=__('Publish new ')?></a>	</li>
                     	</ul>
             	   </li>
+                   <?=sidebar_link(__('Moderation'),'ad','moderate','oc-panel','icon-list-alt icon-white')?>
                 </ul>
                 
             </div> <!--/.nav-collapse -->

@@ -27,9 +27,8 @@
 		    	<?endif?>
 		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 	    	</h2>
-	    	<?//d($thumb)?>
+	    	
 	    	<?if($thumb[$ad->seotitle] != NULL):?>
-
 	    		 <img src="/<?=$thumb[$ad->seotitle]?>" class="img-polaroid advert_img" >
 	    	<?endif?>
 	    	
@@ -45,7 +44,6 @@
 		    <p><?= Text::bb2html($ad->description,TRUE);?></p>
 		    
 		    <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?=_e('Read more')?></a>
-	    
 	    	<?if ($user !== NULL && $user->id_role == 10):?>
 	    		<br />
 			<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))?>"><?= _e("Edit");?></a> |

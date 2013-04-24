@@ -247,7 +247,7 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<?= FORM::label($forms_img['width_thumb']['key'], __('Thumb wid'), array('class'=>'control-label', 'for'=>$forms_img['width_thumb']['key']))?>
+					<?= FORM::label($forms_img['width_thumb']['key'], __('Thumb width'), array('class'=>'control-label', 'for'=>$forms_img['width_thumb']['key']))?>
 					<div class="controls">
 						<div class="input-append">
 							<?= FORM::input($forms_img['width_thumb']['key'], $forms_img['width_thumb']['value'], array(

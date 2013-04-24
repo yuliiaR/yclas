@@ -399,21 +399,26 @@ class Controller_Panel_Ad extends Auth_Controller {
 	//temporary function until i figure out how to deal with mass mails @TODO EMAIL
 	public function multiple_mails($receivers)
 	{
-		
-		$user 		= new Model_User();
-		$ads 		= new Model_Ad();
-		$category 	= new Model_Category();
+	
 
 		foreach ($receivers as $num => $receiver_id) {
-			$ad = $ads->where('id_ad', '=', $receiver_id)->limit(1)->find();
-			$cat = $category->where('id_category', '=', $ad->id_category)->limit(1)->find();
-			$usr = $user->where('id_user', '=', $ad->id_user)->limit(1)->find();
+			if(is_numeric($receiver_id))
+			{
+				$ad 		= new Model_Ad($receiver_id);
+				$cat 		= new Model_Category($ad->id_category);
+				$usr 		= new Model_User($ad->id_user);
 
-			//we get the QL, and force the regen of token for security
-			$url_ql = $user->ql('ad',array( 'category' => $cat->seoname, 
-		 	                                'seotitle'=> $ad->seotitle),TRUE);
+				if($usr->loaded())
+				{
+					//we get the QL, and force the regen of token for security
+					$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
+				 	                                'seotitle'=> $ad->seotitle),TRUE);
 
-			$ret = $user->email('ads.activated',array("[URL.QL]"=>$url_ql, "[USER.OWNER]"=>$usr->name));
+					$ret = $usr->email('ads.activated',array("[USER.OWNER]"=>$usr->name, "[AD.ID]"=>$ad->id_ad));
+					
+				}	
+			}
+			
 		}
 		
 	}

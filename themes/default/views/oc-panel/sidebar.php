@@ -10,9 +10,14 @@
 				<?sidebar_link(__('Moderation'),'ad','moderate')?>
 				<?sidebar_link(__('Categories'),'category')?>
 				<?sidebar_link(__('Locations'),'location')?>
-				<?sidebar_link(__('Users'),'user')?>
-				<?sidebar_link(__('User Roles'),'role')?>
-				<?sidebar_link(__('Roles access'),'access')?>
+				<li class="dropdown-submenu">
+    			<a tabindex="-1" href="#">User</a>
+    				<ul class="dropdown-menu">
+				      <?sidebar_link(__('Users'),'user')?>
+				      <?sidebar_link(__('User Roles'),'role')?>
+				      <?sidebar_link(__('Roles access'),'access')?>
+				    </ul>
+				</li>
 				<?sidebar_link(__('Orders'), 'order')?>
 				<?sidebar_link(__('Widgets'), 'widget')?>
 				<?sidebar_link(__('Content'), 'content')?>
@@ -23,7 +28,7 @@
 				<?sidebar_link(__('General'), 'settings','general')?>
 				<?sidebar_link(__('Payment'), 'settings','payment')?>
 				<?sidebar_link(__('Email'), 'settings','email')?>
-				<?sidebar_link(__('Form'), 'settings','form')?>
+				<?sidebar_link(__('Advertisement'), 'settings','form')?>
 			<?endif?>
 
 			<?if ($user->has_access_to_any('tools')):?>

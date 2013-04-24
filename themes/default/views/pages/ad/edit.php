@@ -31,7 +31,7 @@
 		<?endif?>
 		<?= FORM::open(Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
-				<div class="control-group">
+				<div class="control input-xxlarge">
 					<?if(Auth::instance()->get_user()->id_role == 10):?>
 					<? $owner = new Model_User($ad->id_user)?>
 					<table class="table table-bordered ">
@@ -40,7 +40,6 @@
 							<th><?=__('Profile')?></th>
 							<th><?=__('Name')?></th>
 							<th><?=__('Email')?></th>
-
 						</tr>
 						<tbody>
 							<tr>
@@ -60,14 +59,14 @@
 					<?= FORM::label('status', __('Status'), array('class'=>'control-label', 'for'=>'status'))?>
 					<div class="controls">
 						<?php $status = array('0'=>__('notpublished'), '1'=>__('published'),'30'=>__('spam'),'50'=>__('unavailible'));?>
-						<?= FORM::select('status', $status, $ad->status, array('id'=>'status','class'=>'input-xlarge'));?>
+						<?= FORM::select('status', $status, $ad->status, array('id'=>'status','class'=>''));?>
 					</div>
 					<?endif?>
 				</div>
 				<div class="control-group">
 					<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
 					<div class="controls">
-						<?= FORM::input('title', $ad->title, array('placeholder' => __('Title'), 'class' => 'input-xlarge', 'id' => 'title', 'required'))?>
+						<?= FORM::input('title', $ad->title, array('placeholder' => __('Title'), 'class' => '', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
 				<div class="control-group">
@@ -78,7 +77,7 @@
 						<? $id = $cat->id_category; ?>
 							<? $_val_category[$cat->id_category] = $cat->seoname; ?>
 						<?endforeach?>
-					<?= FORM::select('category', $_val_category, $ad->id_category, array('id'=>'category','class'=>'input-xlarge', 'required'));?>
+					<?= FORM::select('category', $_val_category, $ad->id_category, array('id'=>'category','class'=>'', 'required'));?>
 					</div>
 				</div>
 				<?if(core::config('advertisement.location') != FALSE):?>
@@ -89,14 +88,14 @@
 						<?php foreach ($location as $loc):?>
 							<? $_val_location[$loc->id_location] = $loc->seoname; ?>
 						<?endforeach?>
-					<?= FORM::select('location', $_val_location, $ad->id_location, array('id'=>'location', 'class'=>'input-xlarge', 'required'));?>
+					<?= FORM::select('location', $_val_location, $ad->id_location, array('id'=>'location', 'class'=>'', 'required'));?>
 					</div>
 				</div>
 				<?endif?>
 				<div class="control-group">
 					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>
 					<div class="controls">
-						<?= FORM::textarea('description', $ad->description, array('class'=>'input-xxlarge', 'name'=>'description', 'id'=>'description', 'rows'=>15, 'required'))?>
+						<?= FORM::textarea('description', $ad->description, array('class'=>'span6', 'name'=>'description', 'id'=>'description', 'rows'=>8, 'required'))?>
 					</div>
 				</div>
 				<div class="control-group">
@@ -142,7 +141,7 @@
 				<div class="control-group">
 					<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
 					<div class="controls">
-						<?= FORM::input('phone', $ad->phone, array('class'=>'input-xlarge', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
+						<?= FORM::input('phone', $ad->phone, array('class'=>'', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
 					</div>
 				</div>
 				<?endif?>
@@ -150,7 +149,7 @@
 				<div class="control-group">
 					<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
 					<div class="controls">
-						<?= FORM::input('address', $ad->address, array('class'=>'input-xlarge', 'id'=>'address', 'placeholder'=>__('Address')))?>
+						<?= FORM::input('address', $ad->address, array('class'=>'', 'id'=>'address', 'placeholder'=>__('Address')))?>
 					</div>
 				</div>
 				<?endif?>
@@ -158,7 +157,7 @@
 				<div class="control-group">
 					<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
 					<div class="controls">
-						<?= FORM::input('website', $ad->website, array('class'=>'input-xlarge', 'id'=>'website', 'placeholder'=>__('Website')))?>
+						<?= FORM::input('website', $ad->website, array('class'=>'', 'id'=>'website', 'placeholder'=>__('Website')))?>
 					</div>
 				</div>
 				<?endif?>
@@ -167,9 +166,8 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<div class="input-prepend">
-						<span class="add-on"><?=core::config('general.global-currency')?></span>
-						<?//=d($ad->price)?>
-						<?= FORM::input('price', number_format($ad->price, 2), array('class' => 'input-xlarge span10', 'id' => 'price', 'type'=>'number'))?>
+							<span class="add-on"><?=core::config('general.global-currency')?></span>
+							<?= FORM::input('price', number_format($ad->price, 2), array('class' => '', 'id' => 'price', 'type'=>'number'))?>
 						</div>
 					</div>
 				</div>
