@@ -20,14 +20,15 @@
 
 		              	<?foreach($cat_list as $c ):?>
 		              		<?if($c->id_category_parent == 1 && $c->id_category != 1):?>
-								<li class="nav-header"><p><a title="<?=$c->name?>" href="<?=Route::url('list', array('category'=>$c->seoname))?>"><?=$c->name?></a></p></li>
-															
-							 	<?foreach($children_categ as $chi):?>
-                            	<?if($chi['parent'] == $c->id_category):?>
-                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['name']))?>"><span class="header_cat_list"><?=$chi['name']?></span> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
-                           		<?endif?>
-                         		<?endforeach?>
-								
+								<li class="nav-header dropdown-submenu"><p><a tabindex="-1" title="<?=$c->name?>" href="<?=Route::url('list', array('category'=>$c->seoname))?>"><?=$c->name?></p></a>
+									<ul class="dropdown-menu">							
+								 	<?foreach($children_categ as $chi):?>
+	                            	<?if($chi['parent'] == $c->id_category):?>
+	                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['name']))?>"><span class="header_cat_list"><?=$chi['name']?></span> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
+	                           		<?endif?>
+	                         		<?endforeach?>
+									</ul>
+								</li>
 							<?endif?>
 						<?endforeach?>
 		              </ul>

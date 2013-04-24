@@ -10,13 +10,12 @@
 <ol class='plholder span8' id="ol_1" data-id="1">
 <?=_('Home')?>
 <?function lili($item, $key,$locs){?>
-<div class="control">
+
     <li data-id="<?=$key?>" id="li_<?=$key?>"><i class="icon-move"></i> <?=$locs[$key]['name']?>
         
         <a data-text="<?=__('Are you sure you want to delete? We will move the siblings Locations and ads to the parent of this location.')?>" 
            data-id="li_<?=$key?>" 
            class="btn btn-mini btn-danger index-delete pull-right" 
-           title="<?=__('Delete')?>" 
            href="<?=Route::url('oc-panel', array('controller'=> 'location', 'action'=>'delete','id'=>$key))?>">
                     <i class="icon-trash icon-white"></i>
         </a>
@@ -31,7 +30,7 @@
         </ol><!--ol_<?=$key?>-->
 
     </li><!--li_<?=$key?>-->
-</div>
+
 <?}array_walk($order, 'lili',$locs);?>
 </ol><!--ol_1-->
 

@@ -39,9 +39,10 @@
             <div class="span9">
                 <?=Alert::show()?>
                 <?=$content?>
-            </div><!--/span--> 
+            </div><!--/span-->
+            <div class="span3"> 
             <?=View::factory('sidebar')?>
-
+            </div>
         </div><!--/row-->
         <?=$footer?>
     </div><!--/.fluid-container-->

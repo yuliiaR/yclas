@@ -322,8 +322,8 @@ class Controller_Ad extends Controller {
 		}
 		else
 		{
-			Alert::set(Alert::INFO, __('You do not have any advertisements active'));
-			$this->request->redirect(Route::url('default'));	
+			// Alert::set(Alert::INFO, __('You do not have any advertisements active'));
+			$this->request->redirect(Route::url('list', array('category'=>'all')));	
 		}
 
 		// user recognition 
