@@ -1,12 +1,13 @@
-<?php
+<?php defined('SYSPATH') or die('No direct script access.');
 /**
  * Controllers user access
  *
  * @author      Chema <chema@garridodiaz.com>
  * @package     Core
- * @copyright   (c) 2009-2012 Open Classifieds Team
+ * @copyright   (c) 2009-2013 Open Classifieds Team
  * @license     GPL v3
  */
+
 class Model_Access extends ORM {
 
     /**

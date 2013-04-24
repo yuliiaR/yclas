@@ -5,7 +5,7 @@
  * @package    OC
  * @category   Tools
  * @author     Chema <chema@garridodiaz.com>
- * @copyright  (c) 2009-2012 Open Classifieds Team
+ * @copyright  (c) 2009-2013 Open Classifieds Team
  * @license    GPL v3
  */
 class Controller_Panel_Tools extends Auth_Controller {

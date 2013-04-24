@@ -1,14 +1,14 @@
-<?php 
-
+<?php defined('SYSPATH') or die('No direct script access.');
 /**
  * Sitemap 
  *
  * @package    OC
  * @category   Tools
  * @author     Chema <chema@garridodiaz.com>
- * @copyright  (c) 2009-2012 Open Classifieds Team
+ * @copyright  (c) 2009-2013 Open Classifieds Team
  * @license    GPL v3
  */
+
 class Sitemap {
 
 	

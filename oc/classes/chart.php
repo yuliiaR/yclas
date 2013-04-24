@@ -6,7 +6,7 @@
  * @package    OC
  * @category   Chart
  * @author     Chema <chema@garridodiaz.com>
- * @copyright  (c) 2009-2012 Open Classifieds Team
+ * @copyright  (c) 2009-2013 Open Classifieds Team
  * @license    GPL v3
  * @see 		http://code.google.com/apis/chart/
  * @see			http://code.google.com/apis/ajax/playground/?type=visualization
