@@ -11,13 +11,14 @@ class Controller_Map extends Controller {
         $this->template->title  = __('Map').' '.Core::config('general.site_name');
 
         $height = Core::get('height','100%');
-        $width = Core::get('width','100%');
+        $width  = Core::get('width','100%');
 
         $map = new GoogleMapAPI();
         $map->setWidth($width);
         $map->setHeight($height);
         $map->disableSidebar();
         $map->setMapType('map');
+        $map->setZoomLevel(Core::get('zoom',16));
         //$map->mobile = TRUE;
         
         if ( core::get('controls')==0 )
@@ -27,6 +28,7 @@ class Controller_Map extends Controller {
             $map->disableScaleControl();
             $map->disableZoomEncompass();
             $map->disableStreetViewControls();
+            $map->disableOverviewControl();
         }
         
         //only 1 marker

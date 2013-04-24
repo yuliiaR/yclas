@@ -28,6 +28,11 @@ class Widget_Map extends Widget
                                                         'label'     => __('Map height in pixels'),
                                                         'default'   => '200',
                                                         'required'  => FALSE),
+                                'map_zoom'  => array(  'type'      => 'numeric',
+                                                        'display'   => 'text',
+                                                        'label'     => __('Zoom in the map'),
+                                                        'default'   => '10',
+                                                        'required'  => FALSE),
 								
 						 		);
 	}
