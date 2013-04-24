@@ -22,12 +22,14 @@ class Controller extends Kohana_Controller
      * Initialize properties before running the controller methods (actions),
      * so they are available to our action.
      */
-    public function before()
+    public function before($template = NULL)
     {
         parent::before();
         if($this->auto_render===TRUE)
         {
         	// Load the template
+            if ($template!==NULL)
+                $this->template= $template; 
         	$this->template = View::factory($this->template);
         	
             // Initialize empty values

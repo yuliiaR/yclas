@@ -113,6 +113,36 @@
 						))?> 
 					</div>
 				</div>
+                <div class="control-group">
+                    <?= FORM::label($forms['feed_elements']['key'], __('Advertisements in RSS'), array('class'=>'control-label', 'for'=>$forms['feed_elements']['key']))?>
+                    <div class="controls">
+                        <?= FORM::input($forms['feed_elements']['key'], $forms['feed_elements']['value'], array(
+                        'placeholder' => "20", 
+                        'class' => 'tips', 
+                        'id' => $forms['feed_elements']['key'], 
+                        'data-content'=> __("Thumb wid"),
+                        'data-trigger'=>"hover",
+                        'data-placement'=>"right",
+                        'data-toggle'=>"popover",
+                        'data-original-title'=>__("Thumb wid"),
+                        ))?> 
+                    </div>
+                </div>
+                <div class="control-group">
+                    <?= FORM::label($forms['map_elements']['key'], __('Advertisements in Map'), array('class'=>'control-label', 'for'=>$forms['map_elements']['key']))?>
+                    <div class="controls">
+                        <?= FORM::input($forms['map_elements']['key'], $forms['map_elements']['value'], array(
+                        'placeholder' => "20", 
+                        'class' => 'tips', 
+                        'id' => $forms['map_elements']['key'], 
+                        'data-content'=> __("Thumb wid"),
+                        'data-trigger'=>"hover",
+                        'data-placement'=>"right",
+                        'data-toggle'=>"popover",
+                        'data-original-title'=>__("Thumb wid"),
+                        ))?> 
+                    </div>
+                </div>
 				<div class="control-group">
 					<?= FORM::label($forms['number_format']['key'], __('Number format'), array('class'=>'control-label', 'for'=>$forms['number_format']['key']))?>
 					<div class="controls">

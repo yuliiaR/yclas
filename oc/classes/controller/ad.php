@@ -519,7 +519,7 @@ class Controller_Ad extends Controller {
 				 ->limit(1)->find();
 			
 			$cat = ORM::factory('category', $ad->id_category);
-			$loc = ORM::factory('location', $ad->id_location);
+			//$loc = ORM::factory('location', $ad->id_location);
 
 			if ($ad->loaded())
 			{
@@ -531,8 +531,7 @@ class Controller_Ad extends Controller {
 				}
 				//count how many matches are found 
 		        $hits = new Model_Visit();
-		        $hits->find_all();
-		        $hits->where('id_ad','=', $ad->id_ad)->and_where('id_user', '=', $ad->id_user); 
+		        $hits = $hits->where('id_ad','=', $ad->id_ad)->count_all();
 
 		        // show image path if they exist
 		    	if($ad->has_images == 1)
@@ -541,13 +540,27 @@ class Controller_Ad extends Controller {
 				}else $path = NULL;
 
 				$captcha_show = core::config('advertisement.captcha');	
+
+
+                $map = FALSE;
+                if ($ad->address!=='')
+                {
+                    require_once Kohana::find_file('vendor', 'php-googlemap/GoogleMap','php');
+                    $map = new GoogleMapAPI('map_ad_'.$ad->id_ad);
+                    $map->setWidth('100%');
+                    $map->setHeight('400px');
+                    $map->disableSidebar();
+                    $map->setMapType('map');
+                    $map->addMarkerByAddress($ad->address, $ad->title);
+                }
 				
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
 																				   'permission'		=>$permission, 
-																				   'hits'			=>$hits->count_all(), 
+																				   'hits'			=>$hits, 
 																				   'path'			=>$path,
-																				   'captcha_show'	=>$captcha_show));
+																				   'captcha_show'	=>$captcha_show,
+                                                                                   'map'            =>$map));
 
 			}
 			//not found in DB

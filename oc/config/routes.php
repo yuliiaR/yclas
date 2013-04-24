@@ -31,6 +31,14 @@ Route::set('contact', URL::title(__('contact')).'.html')
 		'action'	 => 'index',));
 
 /**
+ * maps
+ */
+Route::set('map', URL::title(__('map')).'.html')
+->defaults(array(
+        'controller' => 'map',
+        'action'     => 'index',));
+
+/**
  * page view public
  */
 Route::set('page','p/<seotitle>.html')

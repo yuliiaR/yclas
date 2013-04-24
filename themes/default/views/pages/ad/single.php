@@ -5,7 +5,7 @@
 	<?if ($ad->status != Model_Ad::STATUS_PUBLISHED && $permission === FALSE):?>
 
 	<div class="page-header">
-		<h3><?= __('This advertisement doesn\'t exist, or is not yet published')?></h3>
+		<h3><?= __("This advertisement doesn't exist, or is not yet published")?></h3>
 	</div>
 	<?else:?>
 	<?=Form::errors()?>
@@ -38,7 +38,7 @@
 	    <p><strong>Description : </strong><?= Text::bb2html($ad->description,TRUE)?></p>	
 	    <p><strong>Published: </strong> <?= Date::format($ad->published, core::config('general.date_format'))?></p>
 	    <p><strong>Hits: </strong><?echo $hits?></p>	    
-		
+
 		<button class="btn btn-success"type="button" data-toggle="modal" data-target="#contact-modal">Send Message</button>
 		<div id="contact-modal" class="modal hide fade">
         	<div class="modal-header">
@@ -96,6 +96,15 @@
 					<?= FORM::close()?>
     		</div>
 		</div>
+
+        <?if ($map!==FALSE):?>
+        <div>
+            <?=$map->getHeaderJS();?>
+            <?=$map->getMapJS();?>
+            <?=$map->printOnLoad();?> 
+            <?=$map->printMap();?>
+        </div>
+        <?endif?>
 
 	<?endif?>
 	<!-- modal-gallery is the modal dialog used for the image gallery -->

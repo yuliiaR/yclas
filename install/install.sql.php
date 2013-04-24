@@ -224,6 +224,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'moderation', 0),
 ('general', 'analytics', ''),
 ('general', 'feed_elements', '20'),
+('general', 'map_elements', '100'),
 ('general', 'site_name', '".$_POST['SITE_NAME']."'),
 ('general', 'global-currency', 'USD'),
 ('general', 'featured_timer', '5'),
