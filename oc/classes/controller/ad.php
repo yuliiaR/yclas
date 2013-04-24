@@ -541,26 +541,12 @@ class Controller_Ad extends Controller {
 
 				$captcha_show = core::config('advertisement.captcha');	
 
-
-                $map = FALSE;
-                if ($ad->address!=='')
-                {
-                    require_once Kohana::find_file('vendor', 'php-googlemap/GoogleMap','php');
-                    $map = new GoogleMapAPI('map_ad_'.$ad->id_ad);
-                    $map->setWidth('100%');
-                    $map->setHeight('400px');
-                    $map->disableSidebar();
-                    $map->setMapType('map');
-                    $map->addMarkerByAddress($ad->address, $ad->title);
-                }
-				
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
 																				   'permission'		=>$permission, 
 																				   'hits'			=>$hits, 
 																				   'path'			=>$path,
-																				   'captcha_show'	=>$captcha_show,
-                                                                                   'map'            =>$map));
+																				   'captcha_show'	=>$captcha_show));
 
 			}
 			//not found in DB

@@ -97,13 +97,11 @@
     		</div>
 		</div>
 
-        <?if ($map!==FALSE):?>
-        <div>
-            <?=$map->getHeaderJS();?>
-            <?=$map->getMapJS();?>
-            <?=$map->printOnLoad();?> 
-            <?=$map->printMap();?>
-        </div>
+        <?if ($ad->address!==''):?>
+        <iframe frameborder="0" noresize="noresize" 
+            height="420px" width="100%" 
+            src="<?=Route::url('map')?>?height=400&address=<?=$ad->address?>">
+        </iframe>
         <?endif?>
 
 	<?endif?>
