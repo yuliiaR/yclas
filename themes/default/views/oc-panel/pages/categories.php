@@ -14,8 +14,7 @@
         
         <a data-text="<?=__('Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category.')?>" 
            data-id="li_<?=$key?>" 
-           class="btn btn-mini btn-danger index-delete pull-right" 
-           title="<?=__('Delete')?>" 
+           class="btn btn-mini btn-danger index-delete pull-right"  
            href="<?=Route::url('oc-panel', array('controller'=> 'category', 'action'=>'delete','id'=>$key))?>">
                     <i class="icon-trash icon-white"></i>
         </a>
