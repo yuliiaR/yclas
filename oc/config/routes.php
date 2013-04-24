@@ -39,6 +39,16 @@ Route::set('page','p/<seotitle>.html')
         'action'     => 'view',
 ));
 
+
+/**
+ * rss
+ */
+Route::set('rss','rss(/<seocategory>).xml')
+->defaults(array(
+        'controller' => 'feed',    
+        'action'     => 'index',
+));
+
 //-------END reserved pagesd
 
 /**
