@@ -523,6 +523,9 @@ class Controller_Ad extends Controller {
 
 			if ($ad->loaded())
 			{
+                $this->template->title = $ad->title. ' - '.$cat->name;
+                $this->template->meta_description = text::removebbcode($ad->description);
+
 				$permission = TRUE; //permission to access advert. 
 				if(!Auth::instance()->logged_in() || Auth::instance()->get_user()->id_role != 10)
 				{
