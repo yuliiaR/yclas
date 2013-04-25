@@ -17,6 +17,18 @@ class Controller extends Kohana_Controller
      * @var  boolean  auto render template
      */
     public $auto_render = TRUE;
+
+    /**
+     * global category get form controller so we can access form anywhere like Controller::$category;
+     * @var Model_Category
+     */
+    public static $category = NULL;
+
+    /**
+     * global Location get form controller so we can access form anywhere like Controller::$location;
+     * @var Model_Location
+     */
+    public static $location = NULL;
     
     /**
      * Initialize properties before running the controller methods (actions),
@@ -42,6 +54,31 @@ class Controller extends Kohana_Controller
             $this->template->footer           = View::factory('footer');
             $this->template->styles           = array();
             $this->template->scripts          = array();
+
+            /**
+             * selected category
+             */
+            if($this->request->param('category',NULL) != 'all' )
+            {
+                $slug_cat   = new Model_Category();
+                $seo_cat = $slug_cat->where('seoname', '=', $this->request->param('category'))->limit(1)->find();
+                if ($seo_cat->loaded())
+                    self::$category = $seo_cat;
+            }
+            
+            /**
+             * selected location
+             */
+            if($this->request->param('location',NULL) != NULL || $this->request->param('location') != 'all')
+            {
+                $slug_loc   = new Model_Location();
+                $seo_loc = $slug_loc->where('seoname', '=', $this->request->param('location'))->limit(1)->find();
+                
+                if ($seo_loc->loaded())
+                    self::$location = $seo_loc;
+            }
+
+
         }
     }
     

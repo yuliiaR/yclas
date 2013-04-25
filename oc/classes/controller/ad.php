@@ -11,26 +11,36 @@ class Controller_Ad extends Controller {
 		//$this->template->bind('content', $content);
 		
 		$advert 	= new Model_Ad();
+
+
+        /*
+        refactor this @todo
+         */
+        //////////////////////////////////////////////////
 		$slug_cat 	= new Model_Category();
 		$slug_loc 	= new Model_Location();
 
 		$cat = $slug_cat->find_all();
 		$loc = $slug_loc->find_all();
+        //////////////////////////////////////////////////
 
-		// category filtring
-		if($this->request->param('category') != "all" )
-		{
-			$seo_cat = $slug_cat->where('seoname', '=', $this->request->param('category'))->limit(1)->find();
-			$cat_filter = $seo_cat->id_category;
-			
-		}
-		
-		if($this->request->param('location') != NULL || $this->request->param('location') != "all")
-		{
-			$seo_loc = $slug_loc->where('seoname', '=', $this->request->param('location'))->limit(1)->find();
-			$loc_filter = $seo_loc->id_location;
-			
-		}
+
+        /**
+         * we get the id of category and location from controller 
+         */
+        
+        if (Controller::$category!==NULL)
+        {
+            if (Controller::$category->loaded())
+                $cat_filter = Controller::$category->id_category;
+        }
+            
+        if (Controller::$location!==NULL)
+        {
+            if (Controller::$location->loaded())
+                $loc_filter = Controller::$location->id_location;
+        }
+
 
 		// user 
         if(Auth::instance()->get_user() == NULL)

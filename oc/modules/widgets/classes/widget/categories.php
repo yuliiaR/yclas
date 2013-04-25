@@ -47,8 +47,16 @@ class Widget_Categories extends Widget
 	public function before()
 	{
 		$cat = new Model_Category();
-        $cat = $cat->order_by('order','asc')->cached()->find_all();
+        $cat = $cat->where('id_category','!=',1)->order_by('order','asc')->cached()->find_all();
 		$this->cat_items = $cat;
+
+        $this->loc_seoname = NULL;
+        if (Controller::$location!==NULL)
+        {
+            if (Controller::$location->loaded())
+                $this->loc_seoname = Controller::$location->seoname;
+        }
+
 	}
 
 

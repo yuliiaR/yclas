@@ -180,7 +180,9 @@ class Model_Category extends ORM {
 		$children_categ = NULL;
 		foreach ($categories as $c) 
 		{
-			$count = $ads->where('id_category', '=', $c->id_category)->count_all();
+			$count = $ads->where('id_category', '=', $c->id_category)
+                    ->where('status','=',Model_Ad::STATUS_PUBLISHED)
+                    ->count_all();
 
 			if($c->id_category != $c->id_category_parent)
 			{	
