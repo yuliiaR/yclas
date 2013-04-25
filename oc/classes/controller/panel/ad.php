@@ -365,7 +365,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					
 					if($featured_ad->featured == NULL)
 					{
-						$featured_ad->featured = Date::unix2mysql(time() + (core::config('general.featured_timer') * 24 * 60 * 60));
+						$featured_ad->featured = Date::unix2mysql(time() + (core::config('advertisement.featured_timer') * 24 * 60 * 60));
 	        
 				        try {
 				            $featured_ad->save();
