@@ -200,10 +200,10 @@ class Model_Ad extends ORM {
      * @param  [string] $seotitle   [unique id, and folder name]
      * @return [bool]               [return true if 1 or more images uploaded, false otherwise]
      */
-    public function save_image($image, $id, $created, $seotitle)
+    public function save_image($images, $id, $created, $seotitle)
     {
         
-        foreach ($image as $image) 
+        foreach ($images as $image) 
         { 
          
             if ( 
@@ -214,12 +214,12 @@ class Model_Ad extends ORM {
             {
                 if ( Upload::not_empty($image) && ! Upload::type($image, array(core::config('image.allowed_formats'))))
                 {
-                    Alert::set(Alert::ALERT, __($image['name'].' Is not valid format, please use one of this formats "jpg, jpeg, png"'));
+                    Alert::set(Alert::ALERT, $image['name'].' '.__('Is not valid format, please use one of this formats "jpg, jpeg, png"'));
                     return array("error"=>FALSE, "error_name"=>"wrong_format");
                 } 
                 if(!Upload::size($image, core::config('general.max_image_size').'M'))
                 {
-                    Alert::set(Alert::ALERT, __($image['name'].' Is not of valid size. Size is limited on '.core::config('general.max_image_size').'MB per image'));
+                    Alert::set(Alert::ALERT, $image['name'].' '.__('Is not of valid size. Size is limited on '.core::config('general.max_image_size').'MB per image'));
                     return array("error"=>FALSE, "error_name"=>"wrong_format");
                 }
                 return array("error"=>FALSE, "error_name"=>"no_image");
@@ -228,12 +228,13 @@ class Model_Ad extends ORM {
 
             if ($image !== NULL)
             {
-                $path = $this->image_path($id , $created);
-                $directory = DOCROOT.$path;
-                $width = core::config('image.width');
-                $height = core::config('image.height');
-                $width_thumb = core::config('image.width_thumb');
-                $height_thumb = core::config('image.height_thumb');
+                $path           = $this->image_path($id , $created);
+                $directory      = DOCROOT.$path;
+                $image_quality  = core::config('image.quality');
+                $width          = core::config('image.width');
+                $height         = core::config('image.height');
+                $width_thumb    = core::config('image.width_thumb');
+                $height_thumb   = core::config('image.height_thumb');
 
                 // count howmany files are saved 
                 if (glob($directory . "*.jpg") != false)
@@ -242,37 +243,44 @@ class Model_Ad extends ORM {
                     $counter = ($filecount / 2) + 1;
                 }
                 else
-                {
                     $counter = 1;
-                }
+                
                 
                 if ($file = Upload::save($image, NULL, $directory))
                 {
-                    $name = strtolower(Text::random('alnum',20));
-                    $filename_thumb = 'thumb_'.$seotitle.'_'.$counter.'.jpg';
-                    $filename_original = $seotitle.'_'.$counter.'.jpg';
-                    $filename_crop = $name.'_crop.jpg';
-                    $image_size_orig = getimagesize($file);
+                    $filename_thumb     = 'thumb_'.$seotitle.'_'.$counter.'.jpg';
+                    $filename_original  = $seotitle.'_'.$counter.'.jpg';
                     
-                    if($image_size_orig[0] >= $width)
+                    //if original image is bigger that our constants we resize
+                    $image_size_orig    = getimagesize($file);
+                    if($image_size_orig[0] > $width || $image_size_orig[1] > $height)
                     {
                         Image::factory($file)
                             ->resize($width, $height, Image::AUTO)
-                            ->save($directory.$filename_original);    
+                            ->save($directory.$filename_original,$image_quality);    
                     }
+                    //we just save the image changing the quality and different name
                     else
-                    {
-                         Image::factory($file)
-                            ->save($directory.$filename_original); 
-                    }
+                        Image::factory($file)
+                            ->save($directory.$filename_original,$image_quality); 
+                    
 
-
+                    //creating the thumb and resizing using the the biggest side INVERSE
                     Image::factory($directory.$filename_original)
-                        ->crop($width_thumb, $height_thumb)
-                        ->save($directory.$filename_thumb);
+                        ->resize($width_thumb, $height_thumb, Image::INVERSE)
+                        ->save($directory.$filename_thumb,$image_quality);
+
+                    //check if the height or width of the thumb is bigger than default then crop
+                    $image_size_orig = getimagesize($directory.$filename_thumb);
+                    if ($image_size_orig[1] > $height_thumb || $image_size_orig[0] > $width_thumb)
+                        Image::factory($directory.$filename_thumb)
+                                    ->crop($width_thumb, $height_thumb)
+                                    ->save($directory.$filename_thumb);
+
                     
                     // Delete the temporary file
                     unlink($file);
+
                     return array("error"=>TRUE, "error_name"=>NULL);
                 }
                 else
