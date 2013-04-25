@@ -58,8 +58,6 @@ class Model_Location extends ORM {
 	        'parent_deep'			=> 'Parent deep',
 	        'seoname'				=> 'Seoname',
 	        'description'			=> 'Description',
-	        'lat'					=> 'Lat',
-	        'lng'					=> 'Lng',
 		);
 	}
 

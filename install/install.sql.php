@@ -82,8 +82,6 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."locations` (
   `parent_deep` int(2) unsigned NOT NULL DEFAULT '0',
   `seoname` varchar(145) NOT NULL,
   `description` varchar(255) NULL,
-  `lat` FLOAT( 10, 6 ) NULL ,
-  `lng` FLOAT( 10, 6 ) NULL ,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".$_POST['TABLE_PREFIX']."categories_UK_seoname` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
