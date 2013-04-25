@@ -40,7 +40,7 @@
                 <?=Alert::show()?>
                 <?=$content?>
             </div><!--/span-->
-            <div class="span3 pull-right"> 
+            <div class="span3"> 
             <?=View::factory('sidebar')?>
             </div>
         </div><!--/row-->

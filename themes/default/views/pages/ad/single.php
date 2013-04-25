@@ -88,7 +88,7 @@
 							</div>
 						</div>
 						<?endif?>
-  						</div>
+  						
   						<div class="modal-footer">	
 							<?= FORM::button('submit', 'Contact Us', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'user_contact' , 'id'=>$ad->id_ad))))?>
 						</div>
