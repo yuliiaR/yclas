@@ -45,7 +45,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             
         }
 
-        $this->template->content = View::factory('oc-panel/pages/settings/form', array('config'=>$config));
+        $this->template->content = View::factory('oc-panel/pages/settings/advertisement', array('config'=>$config));
     }
 
 
