@@ -1,7 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="row-fluid">
-	<?=View::factory('sidebar')?>
-	<div class="span10">
+
+	<div class="well">
 	  <div class="hero-unit">
 	  
 	    <h2>Wow this seems to be an error...</h2>
@@ -20,5 +19,4 @@
 	    <p><a href="<?php echo URL::site('/', TRUE) ?>">If you wanted to go to the main page, click here.</a></p>
 		
 		</div>
-	</div><!--/span--> 
-</div><!--/row-->
+	</div><!--/well--> 
