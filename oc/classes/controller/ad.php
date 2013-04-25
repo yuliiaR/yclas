@@ -8,6 +8,7 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_listing()
 	{ 
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		//$this->template->bind('content', $content);
 		
 		$advert 	= new Model_Ad();
@@ -32,14 +33,28 @@ class Controller_Ad extends Controller {
         if (Controller::$category!==NULL)
         {
             if (Controller::$category->loaded())
-                $cat_filter = Controller::$category->id_category;
+            {
+        	    $cat_filter = Controller::$category->id_category;
+            	Breadcrumbs::add(Breadcrumb::factory()->set_title(Controller::$category->name)->set_url(Route::url('list', array('category'=>Controller::$category->seoname))));	
+           	}
+           	else
+            	$cat_filter = NULL;       
         }
-            
+        else
+        	$cat_filter = NULL;
+
         if (Controller::$location!==NULL)
         {
             if (Controller::$location->loaded())
-                $loc_filter = Controller::$location->id_location;
+            {
+            	$loc_filter = Controller::$location->id_location;
+            	Breadcrumbs::add(Breadcrumb::factory()->set_title(Controller::$location->name)->set_url(Route::url('list', array('location'=>Controller::$location->seoname))));
+            }
+            else
+            	$loc_filter = NULL;       
         }
+        else
+        	$loc_filter = NULL;
 
 
 		// user 
@@ -78,7 +93,8 @@ class Controller_Ad extends Controller {
 	                    'controller' 		=> $this->request->controller(),
 	                    'action'     	 	=> $this->request->action(),
 	        ));
-
+	        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
+           
 	        if ($res_count>0)
 	        {
 	        	$content->ads = $ads->order_by('created','desc')
@@ -169,7 +185,7 @@ class Controller_Ad extends Controller {
 	                    'controller' 		=> $this->request->controller(),
 	                    'action'     	 	=> $this->request->action(),
 	        ));
-
+	        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
 	        $content->ads = $ads->order_by('created','desc')
 	                   				   ->limit($pagination->items_per_page)
 	                   				   ->offset($pagination->offset)
@@ -187,7 +203,7 @@ class Controller_Ad extends Controller {
         // list by category / location
         else
        	{ 
-       		// d($cat_filter);
+       
 
        		if($this->request->param('category') != 'all' && $this->request->param('location') != NULL)
        			$data = $this->list_logic($cat_filter, $loc_filter);
@@ -273,7 +289,9 @@ class Controller_Ad extends Controller {
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
                  
-    	    )); //d($this->request->controller()." ".$this->request->action());
+    	    )); 
+     	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
+    	    //d($this->request->controller()." ".$this->request->action());
     	    // d($categ);
     		// cases depending on input provided    
      	    if(is_numeric($locat) )
@@ -524,8 +542,7 @@ class Controller_Ad extends Controller {
 		$this->template->styles 			 = array('css/bootstrap-image-gallery.css' => 'screen',);
 		$this->template->scripts['footer'][] = 'js/load-image.min.js';
 		$this->template->scripts['footer'][] = 'js/bootstrap-image-gallery.min.js';
-
-
+		
 		$seotitle = $this->request->param('seotitle',NULL);
 		$category = $this->request->param('category');
 		
@@ -540,6 +557,10 @@ class Controller_Ad extends Controller {
 
 			if ($ad->loaded())
 			{
+				Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+				Breadcrumbs::add(Breadcrumb::factory()->set_title(Controller::$category->name)->set_url(Route::url('list', array('category'=>Controller::$category->seoname))));
+		        Breadcrumbs::add(Breadcrumb::factory()->set_title($ad->title));   	
+
                 $this->template->title = $ad->title. ' - '.$cat->name;
                 $this->template->meta_description = text::removebbcode($ad->description);
 
@@ -594,7 +615,9 @@ class Controller_Ad extends Controller {
 		//template header
 		$this->template->title           	= __('Edit advertisement');
 		$this->template->meta_description	= __('Edit advertisement');
-				
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+		 	
+		
 		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen' , 'css/chosen.css' => 'screen');
 		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
 		$this->template->scripts['footer'][]= '/js/chosen.jquery.min.js';
@@ -658,7 +681,8 @@ class Controller_Ad extends Controller {
 					}
 				}
 			}else $img_permission = TRUE;
-			
+			// Breadcrumbs::add(Breadcrumb::factory()->set_title($form->title)->set_url(Route::url('ad', array('category'=>Controller::$category->seoname))));
+			Breadcrumbs::add(Breadcrumb::factory()->set_title("Update"));  
 			$path = $this->image_path($form);
 			$this->template->content = View::factory('pages/ad/edit', array('ad'				=>$form, 
 																			  'location'		=>$loc, 

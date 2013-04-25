@@ -1,11 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 	 
-	<ul class="breadcrumb">
-    	<li><a href="#">Home</a> <span class="divider">&raquo;</span></li>
-    	<li><a href="#">Category</a> <span class="divider">&raquo;</span></li>
-    	<li><a href="#">Location</a> <span class="divider">&raquo;</span></li>
-    	<li class="active">page 1</li>
-	</ul>
+
 	<div class="well advise clearfix" id="advise">
 		<p><?=__('Apartments, flats, monthly rentals, long terms, for days... this is the section to have your apartment!')?></p>
 		<i class="icon-pencil"></i> <a title="New Advertisement" href="<?=Route::url('post_new')?>">Publish new advertisement</a>

@@ -16,7 +16,7 @@
             <div class="nav-collapse collapse">
 
                 <ul class="nav">
-                    <?=nav_link(_('Visit Site'),'home','icon-home icon-white','index','default')?>
+                    <?=nav_link(_('Visit Site'),'','icon-home icon-white','','default')?>
                 	<?=sidebar_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
                     <?=sidebar_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"

@@ -37,6 +37,7 @@
         <div class="row">
             
             <div class="span9">
+                <?=Breadcrumbs::render('breadcrumbs')?>
                 <?=Alert::show()?>
                 <?=$content?>
             </div><!--/span-->
