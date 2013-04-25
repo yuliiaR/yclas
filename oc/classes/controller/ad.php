@@ -519,10 +519,13 @@ class Controller_Ad extends Controller {
 				 ->limit(1)->find();
 			
 			$cat = ORM::factory('category', $ad->id_category);
-			$loc = ORM::factory('location', $ad->id_location);
+			//$loc = ORM::factory('location', $ad->id_location);
 
 			if ($ad->loaded())
 			{
+                $this->template->title = $ad->title. ' - '.$cat->name;
+                $this->template->meta_description = text::removebbcode($ad->description);
+
 				$permission = TRUE; //permission to access advert. 
 				if(!Auth::instance()->logged_in() || Auth::instance()->get_user()->id_role != 10)
 				{
@@ -531,8 +534,7 @@ class Controller_Ad extends Controller {
 				}
 				//count how many matches are found 
 		        $hits = new Model_Visit();
-		        $hits->find_all();
-		        $hits->where('id_ad','=', $ad->id_ad)->and_where('id_user', '=', $ad->id_user); 
+		        $hits = $hits->where('id_ad','=', $ad->id_ad)->count_all();
 
 		        // show image path if they exist
 		    	if($ad->has_images == 1)
@@ -541,11 +543,11 @@ class Controller_Ad extends Controller {
 				}else $path = NULL;
 
 				$captcha_show = core::config('advertisement.captcha');	
-				
+
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
 																				   'permission'		=>$permission, 
-																				   'hits'			=>$hits->count_all(), 
+																				   'hits'			=>$hits, 
 																				   'path'			=>$path,
 																				   'captcha_show'	=>$captcha_show));
 

@@ -5,7 +5,7 @@
 * @package    I18n
 * @category   Translations
 * @author     Chema <chema@garridodiaz.com>
-* @copyright  (c) 2009-2011 Open Classifieds Team
+* @copyright  (c) 2009-2013 Open Classifieds Team
 * @license    GPL v3
 */
 

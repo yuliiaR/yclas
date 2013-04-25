@@ -1,5 +1,4 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
 /**
  * Form specific to use with orm, used in the Auth Crud
  *
@@ -7,7 +6,7 @@
  * @package    OC
  * @category   Helpers
  * @author     Chema <chema@garridodiaz.com>
- * @copyright  (c) 2009-2012 Open Classifieds Team
+ * @copyright  (c) 2009-2013 Open Classifieds Team
  * @license    GPL v3
  * @see https://github.com/colinbm/kohana-formmanager
  */

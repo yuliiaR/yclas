@@ -4,7 +4,7 @@
  *
  * @author      Chema <chema@garridodiaz.com>
  * @package     Core
- * @copyright   (c) 2012 AdSerum.com
+ * @copyright   (c) 2009-2013 Open Classifieds Team
  * @license     GPL v3
  */
 class Model_Content extends ORM {

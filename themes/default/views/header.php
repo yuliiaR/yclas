@@ -13,9 +13,7 @@
 			
 			<div class="nav-collapse main_nav">
 				<ul class="nav">
-					<?nav_link('', '', 'icon-home', '')?>
 					<?nav_link(__('Listing'),'ad', 'icon-list' ,'listing', 'list')?>
-					<?nav_link(__('Contact'),'contact', 'icon-envelope', 'index', 'contact')?>
 					<li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Categories')?> <b class="caret"></b></a>
 		              <ul class="dropdown-menu">
@@ -35,6 +33,9 @@
 						<?endforeach?>
 		              </ul>
 		            </li>
+                    <?nav_link('','map', 'icon-globe', 'index', 'map')?>
+                    <?nav_link('','rss', 'icon-signal', 'index', 'rss')?>
+                    <?nav_link('','contact', 'icon-envelope', 'index', 'contact')?>
 		        </ul>
 		        <?= FORM::open(Route::url('default',array('controller'=>'ad','action'=>'all')), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>'','enctype'=>'multipart/form-data'))?>
 		            <input type="text" name="search" class="search-query span2" placeholder="<?=__('Search')?>">

@@ -14,15 +14,16 @@ https://github.com/open-classifieds/openclassifieds2
 # Open Classifieds works thanks to other GPL software
 
 * Kohana 3.2.2. http://kohanaframework.org/
-* KO Profiler Toolbar http://alertdevelop.ru/projects/profilertoolbar
 * KO Formmanager https://github.com/colinbm/kohana-formmanager
 * PHP-Gettext https://launchpad.net/php-gettext/
+* PHP-Google maps API http://www.bradwedell.com/php-google-maps-api/
+* PHP-Mailer https://code.google.com/a/apache-extras.org/p/phpmailer/
+* PHP-SitemapGenerator http://www.phpclasses.org/package/5838-PHP-Generate-sitemaps-and-notify-updates.html
 * Twitter Bootstrap http://twitter.github.com/bootstrap/
 * Bootswatch http://bootswatch.com/
 * Chosen https://github.com/harvesthq/chosen
 * jqBootstrapValidation http://ReactiveRaven.github.com/jqBootstrapValidation/
 * SCEditor https://github.com/samclarke/SCEditor
 * jQuery http://jquery.com/
-* jQueryUI http://jqueryui.com/
-* jQuery sortable http://johnny.github.io/jquery-sortable/
+* jQuery Sortable http://johnny.github.io/jquery-sortable/
 * Bootstrap Image Gallery https://github.com/blueimp/Bootstrap-Image-Gallery

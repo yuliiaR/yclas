@@ -1,13 +1,13 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
 /**
  * Widget
  *
- * @author      Slobodan <slobodan.josifovic@gmail.com>
+ * @author      Chema <chema@garridodiaz.com>
  * @package     Core
- * @copyright   (c) 2012 AdSerum.com
+ * @copyright   (c) 2009-2013 Open Classifieds Team
  * @license     GPL v3
  */
+
 class Controller_Panel_Widget extends Auth_Controller {
 
     public function action_index()

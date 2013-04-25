@@ -4,7 +4,7 @@
  *
  * @author		Chema <chema@garridodiaz.com>
  * @package		OC
- * @copyright	(c) 2009-2011 Open Classifieds Team
+ * @copyright	(c) 2009-2013 Open Classifieds Team
  * @license		GPL v3
  * *
  */
@@ -58,8 +58,6 @@ class Model_Location extends ORM {
 	        'parent_deep'			=> 'Parent deep',
 	        'seoname'				=> 'Seoname',
 	        'description'			=> 'Description',
-	        'lat'					=> 'Lat',
-	        'lng'					=> 'Lng',
 		);
 	}
 

@@ -5,7 +5,7 @@
  * @package    Install
  * @category   Helper
  * @author     Chema <chema@garridodiaz.com>
- * @copyright  (c) 2009-2011 Open Classifieds Team
+ * @copyright  (c) 2009-2013 Open Classifieds Team
  * @license    GPL v3
  */
 
@@ -82,8 +82,6 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."locations` (
   `parent_deep` int(2) unsigned NOT NULL DEFAULT '0',
   `seoname` varchar(145) NOT NULL,
   `description` varchar(255) NULL,
-  `lat` FLOAT( 10, 6 ) NULL ,
-  `lng` FLOAT( 10, 6 ) NULL ,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".$_POST['TABLE_PREFIX']."categories_UK_seoname` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
@@ -224,6 +222,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'moderation', 0),
 ('general', 'analytics', ''),
 ('general', 'feed_elements', '20'),
+('general', 'map_elements', '100'),
 ('general', 'site_name', '".$_POST['SITE_NAME']."'),
 ('general', 'global-currency', 'USD'),
 ('general', 'advertisements_per_page', '10'),
