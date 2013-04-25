@@ -264,7 +264,7 @@ class Controller_Ad extends Controller {
                     'action'      		=> $this->request->action(),
                  
     	    )); //d($this->request->controller()." ".$this->request->action());
-    	    
+    	    // d($categ);
     		// cases depending on input provided    
      	    if(is_numeric($locat) )
      	    {
@@ -308,7 +308,8 @@ class Controller_Ad extends Controller {
 	    					   ->order_by('published','desc')
             	               ->limit($pagination->items_per_page)
             	               ->offset($pagination->offset)
-            	               ->find_all();	
+            	               ->find_all();
+					$categ = $cat->seoname;	
 				}
     	  
             }
@@ -381,7 +382,7 @@ class Controller_Ad extends Controller {
 			} 
 
 		}
-		
+		// d($categ);
 		// array of categories sorted for view
 		return array('ads'			=> $ads,
 					 'pagination'	=> $pagination, 

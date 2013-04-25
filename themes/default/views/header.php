@@ -20,7 +20,7 @@
 
 		              	<?foreach($cat_list as $c ):?>
 		              		<?if($c->id_category_parent == 1 && $c->id_category != 1):?>
-								<li class="nav-header dropdown-submenu"><p><a tabindex="-1" title="<?=$c->name?>" href="<?=Route::url('list', array('category'=>$c->seoname))?>"><?=$c->name?></p></a>
+								<li class="nav-header dropdown-submenu"><p><a tabindex="-1" title="<?=$c->seoname?>" href="<?=Route::url('list', array('category'=>$c->seoname))?>"><?=$c->name?></p></a>
 									<ul class="dropdown-menu">							
 								 	<?foreach($children_categ as $chi):?>
 	                            	<?if($chi['parent'] == $c->id_category):?>

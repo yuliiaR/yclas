@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-
+	<?=Breadcrumbs::render('breadcrumbs')?>
 
 	<?if ($ad->status != Model_Ad::STATUS_PUBLISHED && $permission === FALSE):?>
 
