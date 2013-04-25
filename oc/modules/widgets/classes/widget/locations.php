@@ -47,8 +47,15 @@ class Widget_Locations extends Widget
 	public function before()
 	{
 		$loc = new Model_Location();
-        $loc = $loc->order_by('name','asc')->cached()->find_all();
+        $loc = $loc->where('id_location','!=',1)->order_by('order','asc')->cached()->find_all();
 		$this->loc_items = $loc;
+
+        $this->cat_seoname = NULL;
+        if (Controller::$category!==NULL)
+        {
+            if (Controller::$category->loaded())
+                $this->cat_seoname = Controller::$category->seoname;
+        }
 	}
 
 

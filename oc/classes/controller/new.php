@@ -29,8 +29,8 @@
 		$user 		= new Model_User();
 		
 		//find all, for populating form select fields 
-		$_cat = $category->find_all();
-		$_loc = $location->find_all();
+		$_cat = $category->where('id_category','!=',1)->order_by('order','asc')->cached()->find_all();
+		$_loc = $location->where('id_location','!=',1)->order_by('order','asc')->cached()->find_all();
 		$children_categ = $category->get_category_children();
 	
 		$form_show = array('captcha'	=>core::config('advertisement.captcha'),
