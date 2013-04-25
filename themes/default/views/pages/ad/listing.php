@@ -10,8 +10,7 @@
 		<p><?=__('Apartments, flats, monthly rentals, long terms, for days... this is the section to have your apartment!')?></p>
 		<i class="icon-pencil"></i> <a title="New Advertisement" href="<?=Route::url('post_new')?>">Publish new advertisement</a>
 	</div><!--end of advise-->
-<??>
-<?if($ads != NULL):?>
+
 	<?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
 	   	<?if($ad->featured >= Date::unix2mysql(time())):?>
@@ -65,7 +64,12 @@
 	    <?=Alert::show()?>
 	    <?endforeach?>
 
-	    <?=$pagination?>	    
+	    <?=$pagination?>
+	   <?elseif (count($ads) == 0):?>
+	   <!-- Case when we dont have ads for specific category / location -->
+	   	<div class="page-header">
+			<h3><?= __("We dont have any advertisements for desired category")?></h3>
+		</div>
 	  <?else:?>
 	    	<h2><?=__('Ops! Nothing found')?></h2>
 	    	<div class="control"><p><?=__('Improve search :')?></p></div>
@@ -95,4 +99,3 @@
 				</form>
 			</div>
 	  <?endif?>
-<?endif?>

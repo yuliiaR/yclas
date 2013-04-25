@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="well">
+
 
 	<?if ($ad->status != Model_Ad::STATUS_PUBLISHED && $permission === FALSE):?>
 
@@ -12,7 +12,7 @@
 	<div class="page-header">
 		<h1><?= $ad->title;?></h1>
 	</div>
-
+<div class="well">
 	<?php if($path):?>
 	<div class="control-group">
 		<div class="controls">

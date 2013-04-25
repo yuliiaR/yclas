@@ -227,6 +227,7 @@ class Controller_Ad extends Controller {
 				$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
 								 ->and_where('id_category', '=', $categ)
 								 ->and_where('id_location', '=', $locat)->count_all();
+
 			}
 			
 		} 
@@ -240,7 +241,7 @@ class Controller_Ad extends Controller {
 			}
 			else
 			{
-				$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->and_where('id_category', '=', $categ)->count_all();	
+				$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->and_where('id_category', '=', $categ)->count_all();
 			}
 			
 		}
@@ -322,8 +323,13 @@ class Controller_Ad extends Controller {
 		}
 		else
 		{
-			// Alert::set(Alert::INFO, __('You do not have any advertisements active'));
-			$this->request->redirect(Route::url('list', array('category'=>'all')));	
+			// array of categories sorted for view
+		return array('ads'			=> NULL,
+					 'pagination'	=> NULL, 
+					 'user'			=> NULL, 
+					 'thumb' 		=> NULL,
+					 'cat'			=> NULL,
+					 'loc'			=> NULL,);
 		}
 
 		// user recognition 
