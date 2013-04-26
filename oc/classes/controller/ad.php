@@ -234,8 +234,13 @@ class Controller_Ad extends Controller {
 			if ($ad->loaded())
 			{
 				Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
-				Breadcrumbs::add(Breadcrumb::factory()->set_title(Controller::$category->name)->set_url(Route::url('list', array('category'=>Controller::$category->seoname))));
-		        Breadcrumbs::add(Breadcrumb::factory()->set_title($ad->title));   	
+				if (Controller::$category!==NULL)
+		       {
+		           if (Controller::$category->loaded())
+		               Breadcrumbs::add(Breadcrumb::factory()->set_title(Controller::$category->name)->set_url(Route::url('list', array('category'=>Controller::$category->seoname))));
+		        
+		       }
+				Breadcrumbs::add(Breadcrumb::factory()->set_title($ad->title));   	
 
                 $this->template->title = $ad->title. ' - '.$cat->name;
                 $this->template->meta_description = text::removebbcode($ad->description);
