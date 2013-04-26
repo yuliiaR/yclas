@@ -1,4 +1,4 @@
-Open Classifieds 2.0. Beta 1
+Open Classifieds 2.0. RC 1
 # Installation
 Installation procedure link 
 Videos
