@@ -13,7 +13,6 @@ class Controller_Ad extends Controller {
 		
 		$advert 	= new Model_Ad();
 
-
         /*
         refactor this @todo
          */
@@ -68,141 +67,9 @@ class Controller_Ad extends Controller {
 		}
 
 		
-		if ($this->request->query('search'))
-        {
-        	$search_term = $this->request->query('search');
-            
-            $this->template->bind('content', $content);
-			$this->template->content = View::factory('pages/ad/listing');
-
-			$ads = $advert->where('status', '=', Model_Ad::STATUS_PUBLISHED);
-			
-	        //search term
-	        if ( strlen($search_term)>2 )
-	        {
-	            $ads->where('title', 'like', '%'.$search_term.'%');
-	        }
-
-	        $res_count = count($ads);
-
-	        $pagination = Pagination::factory(array(
-	                    'view'           	=> 'pagination',
-	                    'total_items'      	=> $res_count,
-	                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
-	        ))->route_params(array(
-	                    'controller' 		=> $this->request->controller(),
-	                    'action'     	 	=> $this->request->action(),
-	        ));
-	        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
-           
-	        if ($res_count>0)
-	        {
-	        	$content->ads = $ads->order_by('created','desc')
-	                                ->limit($pagination->items_per_page)
-	                                ->offset($pagination->offset)
-	                                ->find_all();
-	                                   	            
-	        } else $content->ads = NULL;
-	       	
-	       	// return image path to display in view 
-			$thumb = array();
-			$all_ads = $ads->where('title', 'like', '%'.$search_term.'%')->find_all();
-			foreach ($all_ads as $a) 
-			{
-
-				if(!is_dir($a->gen_img_path($a->id_ad, $a->created)))
-				{
-					$a->has_images = 0;
-					try 
-					{
-						$a->save();
-					} catch (Exception $e) {
-						echo $e;
-					}
-				}
-				
-				// search and create path of ads, fill array $thumb
-				if(is_array($path = $this->image_path($a)))
-				{
-					foreach ($path as $key => $value) 
-					{
-						// hash tag to distinguish thumb from big image
-						$hashtag = (core::config("theme_default.listing_images") != FALSE) ? strstr($value, 'thumb') : !strstr($value, 'thumb') ;
-
-						if( $hashtag && strstr($value, '_1'))
-						{
-							$thumb[$a->seotitle] = $value;
-						}
-						else if (strstr($value, 'thumb') && !array_key_exists($a->seotitle, $thumb))
-						{
-							$thumb[$a->seotitle] = $value;	
-						}
-					}
-					// case when there are no images , sanity check
-					if(!isset($thumb[$a->seotitle]))
-					{
-						$thumb[$a->seotitle] = NULL;
-					}
-				}
-				else
-				{
-					$path = NULL;
-					$thumb[$a->seotitle] = $path;	
-				} 
-
-			}
-
-
-			$content->pagination = $pagination->render();
-			$content->cat = $cat;
-			$content->loc = $loc;
-			$content->thumb = $thumb;
-			$content->user = $user;
-			$content->img_path = NULL;
-        }
-        // advansed search with many parameters
-        elseif($this->request->query('advert') 
-        	 	|| $this->request->query('cat') 
-        	 	|| $this->request->query('loc'))
-        {
-        	// variables 
-        	$search_advert 	= $this->request->query('advert');
-        	$search_cat 	= $this->request->query('cat');
-        	$search_loc 	= $this->request->query('loc');
-        	
-        	$ads = $this->action_advansed_search($search_advert, $search_cat, $search_loc); // logic
-
-        	$this->template->bind('content', $content);
-			$this->template->content = View::factory('pages/ad/listing');
-
-			$res_count = count($ads);
-
-	        $pagination = Pagination::factory(array(
-	                    'view'           	=> 'pagination',
-	                    'total_items'      	=> $res_count,
-	                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
-	        ))->route_params(array(
-	                    'controller' 		=> $this->request->controller(),
-	                    'action'     	 	=> $this->request->action(),
-	        ));
-	        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
-	        $content->ads = $ads->order_by('created','desc')
-	                   				   ->limit($pagination->items_per_page)
-	                   				   ->offset($pagination->offset)
-	                   				   ->find_all();
-
-			// view variables
-			$content->pagination = $pagination->render();
-			$content->cat = $cat;
-			$content->loc = $loc;
-			$content->user = $user;
-			$content->thumb = NULL;
-			$content->img_path = NULL;
-			
-        }
+		
         // list by category / location
-        else
-       	{ 
+        
        
 
        		if($this->request->param('category') != 'all' && $this->request->param('location') != NULL)
@@ -218,7 +85,7 @@ class Controller_Ad extends Controller {
 			$this->template->bind('content', $content);
 			$this->template->content = View::factory('pages/ad/listing',$data);
             $search_term = $this->request->param('search',NULL);
-        }
+        
  	}
 
  	/**
@@ -288,6 +155,8 @@ class Controller_Ad extends Controller {
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
+                    'category' 			=> $cat->seoname,
+                    'location'			=> $loc->seoname,
                  
     	    )); 
      	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
@@ -420,52 +289,7 @@ class Controller_Ad extends Controller {
 					 'loc'			=> $locat,);
 	}
 
-	// public function search()
-	// {
-	// 	$search_term = $this->request->query('search');
-            
- //            $this->template->bind('content', $content);
-	// 		$this->template->content = View::factory('pages/ad/listing');
-
-	// 		$ads = $advert->where('status', '=', Model_Ad::STATUS_PUBLISHED);
-			
-	//         //search term
-	//         if ( strlen($search_term)>2 )
-	//         {
-	//             $ads->where('title', 'like', '%'.$search_term.'%');
-	//         }
-
-	//         $res_count = count($ads);
-
-	//         $pagination = Pagination::factory(array(
-	//                     'view'           	=> 'pagination',
-	//                     'total_items'      	=> $res_count,
-	//                     'items_per_page' 	=> core::config('general.advertisements_per_page'),
-	//         ))->route_params(array(
-	//                     'controller' 		=> $this->request->controller(),
-	//                     'action'     	 	=> $this->request->action(),
-	//         ));
-
-	//         if ($res_count>0)
-	//         {
-	//         	$content->ads = $ads->order_by('created','desc')
-	//                                 ->limit($pagination->items_per_page)
-	//                                 ->offset($pagination->offset)
-	//                                 ->find_all();
-	                                   	            
-	//         } else $content->ads = NULL;
-	       	
-
-	// 		$content->pagination = $pagination->render();
-	// 		$content->cat = $cat;
-	// 		$content->loc = $loc;
-	// 		$content->thumb = NULL;
-	// 		$content->user = $user;
-	// 		$content->img_path = NULL;
-			
-        
-        
-	// }
+	
 	
 	public function action_sort_category()
 	{
@@ -939,6 +763,145 @@ class Controller_Ad extends Controller {
 				}
 			}
 		}
+	}
+
+	public function search()
+	{
+		if ($this->request->query('search'))
+        {
+        	$search_term = $this->request->query('search');
+            
+            $this->template->bind('content', $content);
+			$this->template->content = View::factory('pages/ad/listing');
+
+			$ads = $advert->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+			
+	        //search term
+	        if ( strlen($search_term)>2 )
+	        {
+	            $ads->where('title', 'like', '%'.$search_term.'%');
+	        }
+
+	        $res_count = count($ads);
+
+	        $pagination = Pagination::factory(array(
+	                    'view'           	=> 'pagination',
+	                    'total_items'      	=> $res_count,
+	                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
+	        ))->route_params(array(
+	                    'controller' 		=> $this->request->controller(),
+	                    'action'     	 	=> $this->request->action(),
+	                    //'category' 			=> $this->request->controller(),
+	        ));
+	        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
+           
+	        if ($res_count>0)
+	        {
+	        	$content->ads = $ads->order_by('created','desc')
+	                                ->limit($pagination->items_per_page)
+	                                ->offset($pagination->offset)
+	                                ->find_all();
+	                                   	            
+	        } else $content->ads = NULL;
+	       	
+	       	// return image path to display in view 
+			$thumb = array();
+			$all_ads = $ads->where('title', 'like', '%'.$search_term.'%')->find_all();
+			foreach ($all_ads as $a) 
+			{
+
+				if(!is_dir($a->gen_img_path($a->id_ad, $a->created)))
+				{
+					$a->has_images = 0;
+					try 
+					{
+						$a->save();
+					} catch (Exception $e) {
+						echo $e;
+					}
+				}
+				
+				// search and create path of ads, fill array $thumb
+				if(is_array($path = $this->image_path($a)))
+				{
+					foreach ($path as $key => $value) 
+					{
+						// hash tag to distinguish thumb from big image
+						$hashtag = (core::config("theme_default.listing_images") != FALSE) ? strstr($value, 'thumb') : !strstr($value, 'thumb') ;
+
+						if( $hashtag && strstr($value, '_1'))
+						{
+							$thumb[$a->seotitle] = $value;
+						}
+						else if (strstr($value, 'thumb') && !array_key_exists($a->seotitle, $thumb))
+						{
+							$thumb[$a->seotitle] = $value;	
+						}
+					}
+					// case when there are no images , sanity check
+					if(!isset($thumb[$a->seotitle]))
+					{
+						$thumb[$a->seotitle] = NULL;
+					}
+				}
+				else
+				{
+					$path = NULL;
+					$thumb[$a->seotitle] = $path;	
+				} 
+
+			}
+
+
+			$content->pagination = $pagination->render();
+			$content->cat = $cat;
+			$content->loc = $loc;
+			$content->thumb = $thumb;
+			$content->user = $user;
+			$content->img_path = NULL;
+        }
+        // advansed search with many parameters
+        elseif($this->request->query('advert') 
+        	 	|| $this->request->query('cat') 
+        	 	|| $this->request->query('loc'))
+        {
+        	// variables 
+        	$search_advert 	= $this->request->query('advert');
+        	$search_cat 	= $this->request->query('cat');
+        	$search_loc 	= $this->request->query('loc');
+        	
+        	$ads = $this->action_advansed_search($search_advert, $search_cat, $search_loc); // logic
+
+        	$this->template->bind('content', $content);
+			$this->template->content = View::factory('pages/ad/listing');
+
+			$res_count = count($ads);
+
+	        $pagination = Pagination::factory(array(
+	                    'view'           	=> 'pagination',
+	                    'total_items'      	=> $res_count,
+	                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
+	        ))->route_params(array(
+	                    'controller' 		=> $this->request->controller(),
+	                    'action'     	 	=> $this->request->action(),
+	        ));
+	        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
+	        $content->ads = $ads->order_by('created','desc')
+	                   				   ->limit($pagination->items_per_page)
+	                   				   ->offset($pagination->offset)
+	                   				   ->find_all();
+
+			// view variables
+			$content->pagination = $pagination->render();
+			$content->cat = $cat;
+			$content->loc = $loc;
+			$content->user = $user;
+			$content->thumb = NULL;
+			$content->img_path = NULL;
+			
+        }
+        
+        
 	}
 
 	

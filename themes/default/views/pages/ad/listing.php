@@ -9,7 +9,8 @@
 	<?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
 	    <!-- if ad have passed expiration time dont show -->
-	    <?if(Date::unix2mysql(Date::mysql2unix($ad->published) + (core::config('advertisement.expire_date') * 24 * 60 * 60)) > Date::unix2mysql(time())):?>
+	    <?if((core::config('advertisement.expire_date') == 0) || 
+	    	Date::unix2mysql(Date::mysql2unix($ad->published) + (core::config('advertisement.expire_date') * 24 * 60 * 60)) > Date::unix2mysql(time())):?>
 		   	<?if($ad->featured >= Date::unix2mysql(time())):?>
 		    	<article class="list well clearfix featured">
 		    <?else:?>
