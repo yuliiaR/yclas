@@ -36,11 +36,12 @@
                     <?nav_link('','map', 'icon-globe', 'index', 'map')?>
                     <?nav_link('','rss', 'icon-signal', 'index', 'rss')?>
                     <?nav_link('','contact', 'icon-envelope', 'index', 'contact')?>
+                    <?nav_link('','search', 'icon-search', 'index', 'search')?>
 		        </ul>
-		        <?= FORM::open(Route::url('default',array('controller'=>'ad','action'=>'all')), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>'','enctype'=>'multipart/form-data'))?>
+		        <?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>'','enctype'=>'multipart/form-data'))?>
 		            <input type="text" name="search" class="search-query span2" placeholder="<?=__('Search')?>">
 		        <?= FORM::close()?>
-		        
+
 				<div class="btn-group pull-right">
 					<?=View::factory('widget_login')?>
 				

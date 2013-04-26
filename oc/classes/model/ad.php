@@ -329,5 +329,5 @@ class Model_Ad extends ORM {
 
         return $path;
     }
-
+    
 } // END Model_ad

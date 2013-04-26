@@ -23,6 +23,15 @@ Route::set('post_new', URL::title(__('publish new')).'.html')
 ));
 
 /**
+ * search
+ */
+Route::set('search',URL::title(__('search')).'.html')
+->defaults(array(
+        'controller' => 'ad',    
+        'action'     => 'search',
+));
+
+/**
  * Captcha / contact
  */
 Route::set('contact', URL::title(__('contact')).'.html')
@@ -56,6 +65,9 @@ Route::set('rss','rss(/<seocategory>).xml')
         'controller' => 'feed',    
         'action'     => 'index',
 ));
+
+
+
 
 //-------END reserved pagesd
 

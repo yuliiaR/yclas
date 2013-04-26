@@ -9,22 +9,7 @@ class Controller_Ad extends Controller {
 	public function action_listing()
 	{ 
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
-		//$this->template->bind('content', $content);
 		
-		$advert 	= new Model_Ad();
-
-        /*
-        refactor this @todo
-         */
-        //////////////////////////////////////////////////
-		$slug_cat 	= new Model_Category();
-		$slug_loc 	= new Model_Location();
-
-		$cat = $slug_cat->find_all();
-		$loc = $slug_loc->find_all();
-        //////////////////////////////////////////////////
-
-
         /**
          * we get the id of category and location from controller 
          */
@@ -50,41 +35,34 @@ class Controller_Ad extends Controller {
             	Breadcrumbs::add(Breadcrumb::factory()->set_title(Controller::$location->name)->set_url(Route::url('list', array('location'=>Controller::$location->seoname))));
             }
             else
-            	$loc_filter = NULL;       
+            	$loc_filter = Controller::$location;       
         }
         else
-        	$loc_filter = NULL;
-
-
-		// user 
-        if(Auth::instance()->get_user() == NULL)
-		{
-			$user = NULL;
-		}
-		else
-		{
-			$user = Auth::instance()->get_user();
-		}
-
-		
+        	$loc_filter = Controller::$location;
 		
         // list by category / location
-        
+   		if(Controller::$category !== NULL && Controller::$location !== NULL) // cat(specific) + loc(specific)
+   			$data = $this->list_logic($cat_filter, $loc_filter);
+   		else if ($this->request->param('category') == 'all' && Controller::$location !== NULL) // for all categories with a specific location
+   			$data = $this->list_logic( 'all' ,  $loc_filter);
+   		else if (is_numeric($cat_filter) && $this->request->param('location') == NULL) // specific category
+   			$data = $this->list_logic( $cat_filter );
+   		else if ($this->request->param('category') == 'all' && $this->request->param('location') == NULL) // all ads 
+   			$data = $this->list_logic('all');	
+   		else if ((Controller::$category == NULL && Controller::$location == NULL) || 
+   				 (Controller::$category != NULL && Controller::$location == NULL) || 
+   				 (Controller::$category == NULL && Controller::$location != NULL)) // one of choices is non existing 
+   			{
+   			//@TODO if sort_by_cat and sort_by_loc == NULL redirect to search
+   			$this->request->redirect(Route::url('default', array('controller'=>'ad', 'action'=>'search')));
+   			}
+   		else
+   			$data = $this->list_logic();
+   			
+   		
+		$this->template->bind('content', $content);
+		$this->template->content = View::factory('pages/ad/listing',$data);
        
-
-       		if($this->request->param('category') != 'all' && $this->request->param('location') != NULL)
-       			$data = $this->list_logic($cat_filter, $loc_filter);
-       		else if ($this->request->param('category') != 'all' && $this->request->param('location') == NULL)
-       			$data = $this->list_logic($cat_filter);
-       		else if ($this->request->param('category') == 'all' && $this->request->param('location') != "all")
-       			$data = $this->list_logic( NULL ,  $loc_filter);
-       		else
-       			$data = $this->list_logic();
-       			
-	   		
-			$this->template->bind('content', $content);
-			$this->template->content = View::factory('pages/ad/listing',$data);
-            $search_term = $this->request->param('search',NULL);
         
  	}
 
@@ -96,59 +74,54 @@ class Controller_Ad extends Controller {
  	 */
 	public function list_logic($sort_by_cat = NULL, $sort_by_loc = NULL)
 	{
+
+		//user recognition 
+		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user();
+
 		$ads = new Model_Ad();
 		
+
 		$cat = new Model_Category($sort_by_cat);
-		if($sort_by_cat == NULL) $categ = $cat->find_all(); else $categ = $cat->id_category;	
-		
+		if($sort_by_cat == 'all') $categ = $cat->find_all(); else if ($sort_by_cat == NULL) $res_count = 0; else $categ = $cat->id_category;	
 		
 		$loc = new Model_Location($sort_by_loc);
 		if($sort_by_loc == NULL) $locat = $loc->find_all(); else $locat = $loc->id_location;
 		
 
-		// if is sorted by category , or category + location
+		// if is sorted by category , or category + location (filter query)
 		if(is_numeric($locat))
 		{
 			if(!is_numeric($categ))
-			{
-				
-				$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-							 ->and_where('id_location', '=', $locat)->count_all();	
-			}
+				$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+					->and_where('id_location', '=', $locat);	
 			else
-			{
-				$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-								 ->and_where('id_category', '=', $categ)
-								 ->and_where('id_location', '=', $locat)->count_all();
-
-			}
-			
+				$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+					->and_where('id_category', '=', $categ)
+					->and_where('id_location', '=', $locat);
 		} 
 		else if(is_numeric($categ))
 		{
 			if(is_numeric($locat))
-			{
-				$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-								 ->and_where('id_category', '=', $categ)
-								 ->and_where('id_location', '=', $locat)->count_all();
-			}
+				$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+					->and_where('id_category', '=', $categ)
+					->and_where('id_location', '=', $locat);
 			else
-			{
-				$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->and_where('id_category', '=', $categ)->count_all();
-			}
+				$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+					->and_where('id_category', '=', $categ);
 			
 		}
 		else
 		{
-			$res_count = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)->count_all();
+			$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 		}
 
-
+		$res_count = $ads->count_all();
 		// check if there are some advet.-s
 		if ($res_count > 0)
 		{
-
-			$pagination = Pagination::factory(array(
+   
+       		// pagination module
+       		$pagination = Pagination::factory(array(
                     'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
                     'items_per_page' 	=> core::config('general.advertisements_per_page'),
@@ -156,83 +129,28 @@ class Controller_Ad extends Controller {
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
                     'category' 			=> $cat->seoname,
-                    'location'			=> $loc->seoname,
-                 
-    	    )); 
-     	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
-    	    //d($this->request->controller()." ".$this->request->action());
-    	    // d($categ);
-    		// cases depending on input provided    
-     	    if(is_numeric($locat) )
-     	    {
-     	    	if(!is_numeric($categ))
-     	    	{
-     	    		$ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-	    					   ->where('id_location', '=', $locat)
-	    					   ->order_by('published','desc')
-            	               ->limit($pagination->items_per_page)
-            	               ->offset($pagination->offset)
-            	               ->find_all();
-     	    	}
-     	    	else
-     	    	{
-     	    		$ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-	    					   ->where('id_category', '=', $categ)
-	    					   ->where('id_location', '=', $locat)
-	    					   ->order_by('published','desc')
-            	               ->limit($pagination->items_per_page)
-            	               ->offset($pagination->offset)
-            	               ->find_all();
-     	    	}
-     	    	
-     	    }
-    	    else if(is_numeric($categ))
-			{
-				if(is_numeric($locat))
-				{
-					$ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-	    					   ->where('id_category', '=', $categ)
-	    					   ->where('id_location', '=', $locat)
-	    					   ->order_by('published','desc')
-            	               ->limit($pagination->items_per_page)
-            	               ->offset($pagination->offset)
-            	               ->find_all();
-				}
-				else
-				{
-				  	$ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-	    					   ->where('id_category', '=', $categ)
-	    					   ->order_by('published','desc')
-            	               ->limit($pagination->items_per_page)
-            	               ->offset($pagination->offset)
-            	               ->find_all();
-					$categ = $cat->seoname;	
-				}
-    	  
-            }
-            else
-            {
-    	 	$ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-    							->order_by('published','desc')
+                    'location'			=> $loc->seoname, 
+    	    ));
+    	   
+     	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->current_page));
+
+     	    //we sort all ads with few parameters
+       		$ads = $ads->order_by('published','desc')
 		        	            ->limit($pagination->items_per_page)
 		        	            ->offset($pagination->offset)
 		        	            ->find_all();
-            }
 		}
 		else
 		{
 			// array of categories sorted for view
-		return array('ads'			=> NULL,
-					 'pagination'	=> NULL, 
-					 'user'			=> NULL, 
-					 'thumb' 		=> NULL,
-					 'cat'			=> NULL,
-					 'loc'			=> NULL,);
+			return array('ads'			=> NULL,
+						 'pagination'	=> NULL, 
+						 'user'			=> NULL, 
+						 'thumb' 		=> NULL,
+						 'cat'			=> NULL,
+						 'loc'			=> NULL,);
 		}
 
-		// user recognition 
-		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user() ;
-		
 		// return image path to display in view 
 		$thumb = array();
 		foreach ($ads as $a) 
@@ -279,7 +197,7 @@ class Controller_Ad extends Controller {
 			} 
 
 		}
-		// d($categ);
+		
 		// array of categories sorted for view
 		return array('ads'			=> $ads,
 					 'pagination'	=> $pagination, 
@@ -288,72 +206,6 @@ class Controller_Ad extends Controller {
 					 'cat'			=> $categ,
 					 'loc'			=> $locat,);
 	}
-
-	
-	
-	public function action_sort_category()
-	{
-		$category_name = $this->request->param('category');
-
-		$sql_cat = new Model_Category();
-		$id_cat = $sql_cat->where('name', '=', $category_name)->limit(1)->find();
-		
-		if($id_cat->loaded())
-		{
-			$data = $this->list_logic($id_cat->id_category, $location = NULL);
-
-			$this->template->bind('content', $content);
-			$this->template->content = View::factory('pages/ad/listing',$data);
-			$search_term = $this->request->param('search',NULL);
-		}
-		else
-		{
-			Alert::set(Alert::ERROR, __('Category '.'"'.$category_name.'"'.' was not found. Please try again!'));
-			$this->request->redirect(Route::url('default', array('controller'=>'ad', 'action'=>'all')));
-		}
-		
-	}
-
-	/**
-	 * Advanced search by title, category or location
-	 * @param  [string] $advert [Advertisement title]
-	 * @param  [string] $cat    [Category name]
-	 * @param  [string] $loc    [Location name]
-	 * @return [view]         
-	 */
-	public function action_advansed_search($advert = NULL, $cat = NULL, $loc = NULL)
-	{	
-		$res = new Model_Ad();
-		$res->where('status', '=', Model_Ad::STATUS_PUBLISHED);
-
-		if($advert !== NULL)
-		{
-			$res->where('title', 'like', '%'.$advert.'%');
-		}
-
-		if($cat !== NULL)
-		{
-			$slug_cat = new Model_Category();
-			$slug_cat = $slug_cat->where('name', 'like', '%'.$cat.'%')
-								 ->limit(1)
-								 ->find();
-
-			$res->where('id_category', '=', $slug_cat->id_category);
-			
-		}
-		if($loc !== NULL)
-		{
-			$slug_loc = new Model_Location();
-			$slug_loc = $slug_loc->where('name', 'like', '%'.$loc.'%')
-								 ->limit(1)
-								 ->find();
-			
-			$res->where('id_location', '=', $slug_loc->id_location);
-		}
-		return $res;
-
-	}
-
 
 	/**
 	 * 
@@ -765,24 +617,28 @@ class Controller_Ad extends Controller {
 		}
 	}
 
-	public function search()
-	{
+	public function action_search()
+	{	
+		$adverts = new Model_Ad();
+		$cat_obj = new Model_Category();
+		$loc_obj = new Model_Location();
+
+		$cat = $cat_obj->find_all();
+		$loc = $loc_obj->find_all();
+
+		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user();
+
 		if ($this->request->query('search'))
         {
         	$search_term = $this->request->query('search');
-            
-            $this->template->bind('content', $content);
-			$this->template->content = View::factory('pages/ad/listing');
-
-			$ads = $advert->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 			
 	        //search term
-	        if ( strlen($search_term)>2 )
+	        if ( strlen($search_term)>2)
 	        {
-	            $ads->where('title', 'like', '%'.$search_term.'%');
+	            $adverts->where('title', 'like', '%'.$search_term.'%');
 	        }
 
-	        $res_count = count($ads);
+	        $res_count = count($adverts);
 
 	        $pagination = Pagination::factory(array(
 	                    'view'           	=> 'pagination',
@@ -791,22 +647,21 @@ class Controller_Ad extends Controller {
 	        ))->route_params(array(
 	                    'controller' 		=> $this->request->controller(),
 	                    'action'     	 	=> $this->request->action(),
-	                    //'category' 			=> $this->request->controller(),
 	        ));
 	        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
            
 	        if ($res_count>0)
 	        {
-	        	$content->ads = $ads->order_by('created','desc')
+	        	$ads = $adverts->order_by('created','desc')
 	                                ->limit($pagination->items_per_page)
 	                                ->offset($pagination->offset)
 	                                ->find_all();
 	                                   	            
-	        } else $content->ads = NULL;
+	        } else $ads = NULL;
 	       	
 	       	// return image path to display in view 
 			$thumb = array();
-			$all_ads = $ads->where('title', 'like', '%'.$search_term.'%')->find_all();
+			$all_ads = $adverts->where('title', 'like', '%'.$search_term.'%')->find_all();
 			foreach ($all_ads as $a) 
 			{
 
@@ -817,7 +672,8 @@ class Controller_Ad extends Controller {
 					{
 						$a->save();
 					} catch (Exception $e) {
-						echo $e;
+						 //throw 500
+						throw new HTTP_Exception_500();
 					}
 				}
 				
@@ -851,56 +707,84 @@ class Controller_Ad extends Controller {
 				} 
 
 			}
-
-
-			$content->pagination = $pagination->render();
-			$content->cat = $cat;
-			$content->loc = $loc;
-			$content->thumb = $thumb;
-			$content->user = $user;
-			$content->img_path = NULL;
-        }
-        // advansed search with many parameters
-        elseif($this->request->query('advert') 
-        	 	|| $this->request->query('cat') 
-        	 	|| $this->request->query('loc'))
-        {
-        	// variables 
-        	$search_advert 	= $this->request->query('advert');
-        	$search_cat 	= $this->request->query('cat');
-        	$search_loc 	= $this->request->query('loc');
-        	
-        	$ads = $this->action_advansed_search($search_advert, $search_cat, $search_loc); // logic
-
-        	$this->template->bind('content', $content);
-			$this->template->content = View::factory('pages/ad/listing');
-
-			$res_count = count($ads);
-
-	        $pagination = Pagination::factory(array(
-	                    'view'           	=> 'pagination',
-	                    'total_items'      	=> $res_count,
-	                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
-	        ))->route_params(array(
-	                    'controller' 		=> $this->request->controller(),
-	                    'action'     	 	=> $this->request->action(),
-	        ));
-	        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
-	        $content->ads = $ads->order_by('created','desc')
-	                   				   ->limit($pagination->items_per_page)
-	                   				   ->offset($pagination->offset)
-	                   				   ->find_all();
-
-			// view variables
-			$content->pagination = $pagination->render();
-			$content->cat = $cat;
-			$content->loc = $loc;
-			$content->user = $user;
-			$content->thumb = NULL;
-			$content->img_path = NULL;
 			
+			$this->template->bind('content', $content);
+			$this->template->content = View::factory('pages/ad/listing', array('ads'		=>$ads, 
+																			   'cat'		=>$cat,
+																			   'loc'		=>$loc, 
+																			   'thumb'		=>$thumb, 
+																			   'pagination'	=>$pagination, 
+																			   'user'		=>$user));
+
+
         }
-        
+   //      // advansed search with many parameters
+   //      elseif($this->request->query('advert') 
+   //      	 	|| $this->request->query('cat') 
+   //      	 	|| $this->request->query('loc'))
+   //      {
+   //      	// variables 
+   //      	$search_advert 	= $this->request->query('advert');
+   //      	$search_cat 	= $this->request->query('cat');
+   //      	$search_loc 	= $this->request->query('loc');
+        	
+        	
+   //      	$adverts->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+
+	  //       if(!empty($search_advert))
+	  //         	$adverts->where('title', 'like', '%'.$adverts.'%');
+
+	  //       if(!empty($search_cat))
+	  //       {  
+	  //           $cat_obj->where('name', 'like', '%'.$search_cat.'%')
+	  //                                ->limit(1)
+	  //                                ->find();
+
+	  //           $adverts->where('id_category', '=', $cat_obj->id_category);
+	            
+	  //       }
+
+	  //       if(!empty($search_loc))
+	  //       {
+	  //          $loc_obj->where('name', 'like', '%'.$search_loc.'%')
+	  //                                ->limit(1)
+	  //                                ->find();
+	            
+	  //           $adverts->where('id_location', '=', $loc_obj->id_location);
+	  //       }
+			// $ads = $adverts->;
+			
+			// $res_count = count($ads);
+
+			// $pagination = Pagination::factory(array(
+	  //                   'view'           	=> 'pagination',
+	  //                   'total_items'      	=> $res_count,
+	  //                   'items_per_page' 	=> core::config('general.advertisements_per_page'),
+	  //       ))->route_params(array(
+	  //                   'controller' 		=> $this->request->controller(),
+	  //                   'action'     	 	=> $this->request->action(),
+	  //       ));
+
+	  //       Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
+			
+			// $this->template->bind('content', $content);
+			// $this->template->content = View::factory('pages/ad/listing', array('ads'		=>$adverts, 
+			// 																   'cat'		=>$cat,
+			// 																   'loc'		=>$loc, 
+			// 																   'thumb'		=>NULL, 
+			// 																   'pagination'	=>$pagination, 
+			// 																   'user'		=>$user));
+   //      }
+        else
+        {
+        	$this->template->bind('content', $content);
+			$this->template->content = View::factory('pages/ad/search', array('ads'		=>NULL, 
+																			   'cat'		=>NULL,
+																			   'loc'		=>NULL, 
+																			   'thumb'		=>NULL, 
+																			   'pagination'	=>NULL, 
+																			   'user'		=>NULL));
+        }
         
 	}
 
