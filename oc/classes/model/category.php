@@ -174,12 +174,11 @@ class Model_Category extends ORM {
 	{
 		$list = new self;
 		$categories = $list->find_all();
-		
-		$ads = new Model_Ad();
-		
+				
 		$children_categ = NULL;
 		foreach ($categories as $c) 
 		{
+            $ads = new Model_Ad();
 			$count = $ads->where('id_category', '=', $c->id_category)
                     ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                     ->count_all();
