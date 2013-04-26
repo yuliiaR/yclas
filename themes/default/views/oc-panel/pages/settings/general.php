@@ -200,7 +200,7 @@
 					'data-toggle'=>"popover",
 					'data-original-title'=>__("Image size in mega bites(Mb)"), 
 					))?>
-					<span class="add-on"><?=__("MB")?></span>
+					<span class="add-on">MB</span>
 				</div> 
 			</div>
 		</div>
@@ -218,7 +218,7 @@
 					'data-toggle'=>"popover",
 					'data-original-title'=>__("Image height in pixels(px)"),
 					))?>
-					<span class="add-on"><?=__("px")?></span>
+					<span class="add-on">px</span>
 				</div> 
 			</div>
 		</div>
@@ -236,7 +236,7 @@
 					'data-toggle'=>"popover",
 					'data-original-title'=>__("Image width in pixels(px)"), 
 					))?>
-					<span class="add-on"><?=__("px")?></span>
+					<span class="add-on">px</span>
 				</div> 
 			</div>
 		</div>
@@ -254,7 +254,7 @@
 					'data-toggle'=>"popover",
 					'data-original-title'=>__("Thumb height in pixels(px)"), 
 					))?>
-					<span class="add-on"><?=__("px")?></span>
+					<span class="add-on">px</span>
 				</div> 
 			</div>
 		</div>
@@ -273,10 +273,29 @@
 					'data-original-title'=>__("Thumb width in pixels(px)"),
 
 					))?>
-					<span class="add-on"><?=__("px")?></span>
+					<span class="add-on">px</span>
 				</div> 
 			</div>
 		</div>
+        <div class="control-group">
+            <?= FORM::label($forms_img['quality']['key'], __('Image quality'), array('class'=>'control-label', 'for'=>$forms_img['quality']['key']))?>
+            <div class="controls">
+                <div class="input-append">
+                    <?= FORM::input($forms_img['quality']['key'], $forms_img['quality']['value'], array(
+                    'placeholder' => "200", 
+                    'class' => 'tips', 
+                    'id' => $forms_img['quality']['key'],
+                    'data-content'=> __("Choose the quality of images when stored 1-100."),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-original-title'=>__("Image Quality)"),
+
+                    ))?>
+                    <span class="add-on">%</span>
+                </div> 
+            </div>
+        </div>
 		<div class="form-actions">
 			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
 		</div>
