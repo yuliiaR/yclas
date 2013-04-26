@@ -128,6 +128,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	/**
 	 * Delete advertisement: Delete
+     * @todo move to model ad
 	 */
 	public function action_delete()
 	{
