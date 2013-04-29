@@ -648,7 +648,8 @@ class Controller_Ad extends Controller {
 
 		if($this->request->query()) // after query has detected
 		{
-			Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Advansed Search'))->set_url(Route::url('search')));
+			
+			
         	// variables 
         	$search_advert 	= $this->request->query('advert');
         	$search_cat 	= $this->request->query('category');
@@ -691,6 +692,12 @@ class Controller_Ad extends Controller {
 
 			if($res_count>0)
 			{
+				
+	           		if ($cat_obj->loaded())
+	               		Breadcrumbs::add(Breadcrumb::factory()->set_title($cat_obj->name)->set_url(Route::url('list', array('category'=>$cat_obj->seoname))));
+	               	if ($loc_obj->loaded())
+	               		Breadcrumbs::add(Breadcrumb::factory()->set_title($loc_obj->name)->set_url(Route::url('list', array('location'=>$loc_obj->seoname))));
+	        
 				$pagination = Pagination::factory(array(
 		                    'view'           	=> 'pagination',
 		                    'total_items'      	=> $res_count,
@@ -698,6 +705,7 @@ class Controller_Ad extends Controller {
 		        ))->route_params(array(
 		                    'controller' 		=> $this->request->controller(),
 		                    'action'     	 	=> $this->request->action(),
+		                    'category'			=> $cat_obj->seoname,
 		        ));
 
 		        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
