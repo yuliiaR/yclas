@@ -26,9 +26,9 @@ define('VERSION','2.0 Beta');
 
 
 //Gets language to use
-if (isset($_POST['LANGUAGE'])) $locale_language=$_POST['LANGUAGE'];
-elseif (isset($_GET['LANGUAGE'])) $locale_language=$_GET['LANGUAGE'];
-else  $locale_language='en_EN';
+if      (isset($_POST['LANGUAGE'])) $locale_language=$_POST['LANGUAGE'];
+elseif  (isset($_GET['LANGUAGE'])) $locale_language=$_GET['LANGUAGE'];
+else    $locale_language='en_EN';
 
 //start translations
 gettext_init($locale_language);
@@ -71,27 +71,55 @@ function __($s)
  * *************************************************************
  */
 
+
 /**
  * checs that your hosting has everything that needs to have
  * @return array 
  */
 function oc_requirements()
 {
-     return     array(
 
-                'robots.txt'=>array('message'   => 'The <code>robots.txt</code> file is not writable.',
+    /**
+     * mod rewrite check
+     */
+    if(function_exists('apache_get_modules'))
+    {
+        $mod_msg        = 'OC Requires Apache mod_rewrite module to be installed';
+        $mod_mandatory  = TRUE;
+
+        if (in_array('mod_rewrite',apache_get_modules()))
+            $mod_result = TRUE;
+        else 
+            $mod_result     = FALSE;
+        
+    }
+    //in case they dont use apache a nicer message
+    else 
+    {
+        $mod_msg        = 'Can not check if mod_rewrite installed, probably everything is fine. Try to proceed installation anyway ;)';
+        $mod_mandatory  = FALSE;
+        $mod_result     = FALSE;
+    }
+            
+            
+    /**
+     * all the install checks
+     */
+    return     array(
+
+                'robots.txt'=>array('message'   => 'The <code>'.DOCROOT.'robots.txt</code> file is not writable.',
                                     'mandatory' => FALSE,
                                     'result'    => is_writable(DOCROOT.'robots.txt')
                                     ),
-                '.htaccess' =>array('message'   => 'The <code>example.htaccess</code> file is not writable.',
+                '.htaccess' =>array('message'   => 'The <code>'.DOCROOT.'example.htaccess</code> file is not writable.',
                                     'mandatory' => TRUE,
                                     'result'    => is_writable(DOCROOT.'.htaccess')
                                     ),
-                'sitemap'   =>array('message'   => 'The <code>sitemap.xml.gz</code> file is not writable.',
+                'sitemap'   =>array('message'   => 'The <code>'.DOCROOT.'sitemap.xml.gz</code> file is not writable.',
                                     'mandatory' => FALSE,
                                     'result'    => is_writable(DOCROOT.'sitemap.xml.gz')
                                     ),
-                'images'    =>array('message'   => 'The <code>images/</code> directory is not writable.',
+                'images'    =>array('message'   => 'The <code>'.DOCROOT.'images/</code> directory is not writable.',
                                     'mandatory' => TRUE,
                                     'result'    => is_writable(DOCROOT.'images')
                                     ),
@@ -114,6 +142,10 @@ function oc_requirements()
                 'PHP'       =>array('message'   => 'PHP 5.2.4 or newer required, this version is '. PHP_VERSION,
                                     'mandatory' => TRUE,
                                     'result'    => version_compare(PHP_VERSION, '5.2.4', '>=')
+                                    ),
+                'mod_rewrite'=>array('message'  => $mod_msg,
+                                    'mandatory' => $mod_mandatory,
+                                    'result'    => $mod_result
                                     ),
                 'PCRE UTF8' =>array('message'   => '<a href="http://php.net/pcre">PCRE</a> has not been compiled with UTF-8 support.',
                                     'mandatory' => TRUE,
@@ -216,7 +248,7 @@ function hostingAd()
 {
     if (SAMBA){
     ?>
-    <div class="alert alert-info">Get free 100% compatible hosting or a professional hosting for just $3.95 month.
+    <div class="alert alert-info">Get 100% compatible professional hosting + free domain + installation + 1 premium for less than $5 month.
 	    <a class="btn btn-info" href="http://open-classifieds.com/hosting/">
 	        <i class="icon-ok icon-white"></i> Sign now!
 	    </a>
