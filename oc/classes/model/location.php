@@ -144,5 +144,116 @@ class Model_Location extends ORM {
 	}
 
 
-
+    protected $_table_columns =  
+array (
+  'id_location' => 
+  array (
+    'type' => 'int',
+    'min' => '0',
+    'max' => '4294967295',
+    'column_name' => 'id_location',
+    'column_default' => NULL,
+    'data_type' => 'int unsigned',
+    'is_nullable' => false,
+    'ordinal_position' => 1,
+    'display' => '10',
+    'comment' => '',
+    'extra' => 'auto_increment',
+    'key' => 'PRI',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'name' => 
+  array (
+    'type' => 'string',
+    'column_name' => 'name',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => false,
+    'ordinal_position' => 2,
+    'character_maximum_length' => '64',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'order' => 
+  array (
+    'type' => 'int',
+    'min' => '0',
+    'max' => '4294967295',
+    'column_name' => 'order',
+    'column_default' => '0',
+    'data_type' => 'int unsigned',
+    'is_nullable' => false,
+    'ordinal_position' => 3,
+    'display' => '2',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'id_location_parent' => 
+  array (
+    'type' => 'int',
+    'min' => '0',
+    'max' => '4294967295',
+    'column_name' => 'id_location_parent',
+    'column_default' => '0',
+    'data_type' => 'int unsigned',
+    'is_nullable' => false,
+    'ordinal_position' => 4,
+    'display' => '10',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'parent_deep' => 
+  array (
+    'type' => 'int',
+    'min' => '0',
+    'max' => '4294967295',
+    'column_name' => 'parent_deep',
+    'column_default' => '0',
+    'data_type' => 'int unsigned',
+    'is_nullable' => false,
+    'ordinal_position' => 5,
+    'display' => '2',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'seoname' => 
+  array (
+    'type' => 'string',
+    'column_name' => 'seoname',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => false,
+    'ordinal_position' => 6,
+    'character_maximum_length' => '145',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => 'UNI',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'description' => 
+  array (
+    'type' => 'string',
+    'column_name' => 'description',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => true,
+    'ordinal_position' => 7,
+    'character_maximum_length' => '255',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+);
 } // END Model_Location
