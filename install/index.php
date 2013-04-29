@@ -51,7 +51,26 @@ include 'install.php';
   </head>
 
   <body>
-  
+
+    <!--phpinfo Modal -->
+    <div id="phpinfoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-body">
+        <?
+        //getting the php info clean!
+        ob_start();                                                                                                        
+        phpinfo();                                                                                                     
+        $phpinfo = ob_get_contents();                                                                                         
+        ob_end_clean();  
+        //strip the body html                                                                                                  
+        $phpinfo = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
+        //adding our class
+        echo str_replace('<table', '<table class="table table-striped  table-bordered"', $phpinfo);
+        ?>
+      </div>
+    </div>
+    <!--END phpinfo Modal -->
+
+
 	<div class="navbar navbar-fixed-top navbar-inverse">
 	<div class="navbar-inner">
 	<div class="container"><a class="brand"><?=(SAMBA)? 'Open Classifieds':''?> <?=_("Installation")?></a>
@@ -73,50 +92,50 @@ include 'install.php';
 		    <div class="row">
 		    
 			<div class="span3">
-	<div class="well sidebar-nav">
-	
-		<ul class="nav nav-list">
-			<li class="nav-header"><?=__("Requirements")?></li>
-			<li class="divider"></li>
-			
-			<?foreach ($checks as $name => $values):
-				if ($values['mandatory'] == TRUE AND $values['result'] == FALSE)
-					$succeed = FALSE;
+            	<div class="well sidebar-nav">
+            	
+            		<ul class="nav nav-list">
+            			<li class="nav-header"><?=__("Requirements")?></li>
+            			<li class="divider"></li>
+            			
+            			<?foreach ($checks as $name => $values):
+            				if ($values['mandatory'] == TRUE AND $values['result'] == FALSE)
+            					$succeed = FALSE;
 
-				if ($values['result'] == FALSE)
-					$msg .= $values['message'].'<br>';
-			?>
+            				if ($values['result'] == FALSE)
+            					$msg .= $values['message'].'<br>';
+            			?>
 
-				<li><i class="icon-<?=($values['result'])?"ok":"remove"?>"></i> 
-					<?=$name?>
-				</li>
-			<?endforeach?>
+            				<li><i class="icon-<?=($values['result'])?"ok":"remove"?>"></i> 
+            					<?=$name?>
+            				</li>
+            			<?endforeach?>
 
-			<li class="divider"></li>
-			<li><a href="install/phpinfo.php"><?=__("PHP Info")?></a></li>
-			<li class="divider"></li>
-			<? if (SAMBA){?>
-			<li class="nav-header">Open Classifieds</li>
-			<li><a href="http://open-classifieds.com/themes/">Themes</a></li>
-			<li><a href="http://open-classifieds.com/download/">Support</a></li>
-			<li><a href="http://j.mp/ocdonate" target="_blank">
-					<img src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="">
-			</a></li>
-			<li class="divider"></li>
-			<? }?>
-		</ul>
-		<? if (SAMBA){?>
-		<a href="https://twitter.com/openclassifieds"
-				onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);"
-				class="twitter-follow-button" data-show-count="false"
-				data-size="large">Follow @openclassifieds</a><br />
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-		<? }?>
-		
-	</div>
-	<!--/.well -->
-</div>
-<!--/span-->	
+            			<li class="divider"></li>
+            			<li><a href="#phpinfoModal" role="button" data-toggle="modal">PHP Info</a></li>
+            			<li class="divider"></li>
+            			<? if (SAMBA){?>
+            			<li class="nav-header">Open Classifieds</li>
+            			<li><a href="http://open-classifieds.com/themes/">Themes</a></li>
+            			<li><a href="http://open-classifieds.com/download/">Support</a></li>
+            			<li><a href="http://j.mp/ocdonate" target="_blank">
+            					<img src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="">
+            			</a></li>
+            			<li class="divider"></li>
+            			<? }?>
+            		</ul>
+            		<? if (SAMBA){?>
+            		<a href="https://twitter.com/openclassifieds"
+            				onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);"
+            				class="twitter-follow-button" data-show-count="false"
+            				data-size="large">Follow @openclassifieds</a><br />
+            			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            		<? }?>
+            		
+            	</div>
+            	<!--/.well -->
+            </div>
+            <!--/span-->	
 
 <div class="span9">
 <?if ($_POST && $succeed):?>
@@ -307,7 +326,7 @@ include 'install.php';
 	<?if (SAMBA):?>
 	<div class="hero-unit">
 		<h2>Upgrade now!</h2>
-		<p>Just for $69.90, Installation, commercial license, premium support, 13 premium themes and much more.</br>
+		<p>Just for $99.90, Installation, commercial license, premium support, 1 premium theme and much more.</br>
 			<a class="btn btn-primary btn-large" href="http://open-classifieds.com/download/"><i class=" icon-shopping-cart icon-white"></i> Buy now!</a>
 		</p>
 	</div>
@@ -331,6 +350,22 @@ include 'install.php';
 
 </div><!--/.fluid-container-->
 	
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+    $(function  () {
+        $('.modal').css({
+          'width': function () { 
+            return ($(document).width() * .7) + 'px';  
+          },
+          'margin-left': function () { 
+            return -($(this).width() / 2); 
+          },
+          //'max-height': '800px';
+        });
+    })
+    </script>
 	<!--[if lt IE 7 ]>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>		<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
 	<![endif]-->
