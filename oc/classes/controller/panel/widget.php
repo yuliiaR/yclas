@@ -126,7 +126,11 @@ class Controller_Panel_Widget extends Auth_Controller {
         foreach ($_GET as $placeholder => $widgets) 
         {
             if (!is_array($widgets))
-                $widgets = array();
+            {
+                $widgets = array($widgets);
+                //d($widgets);
+            }
+                
 
             //insert in DB palceholders
             $confp = new Model_Config();
@@ -139,8 +143,15 @@ class Controller_Panel_Widget extends Auth_Controller {
             foreach ($widgets as $wname) 
             {
                 $w = Widget::factory($wname);
-                $w->placeholder = $placeholder;
-                $w->save();
+                if ($w!==NULL)
+                {
+                    if ($w->loaded)
+                    {
+                        $w->placeholder = $placeholder;
+                        $w->save();
+                    }
+                }
+               
             }
             
             

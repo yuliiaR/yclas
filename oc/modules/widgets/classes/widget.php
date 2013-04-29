@@ -89,10 +89,10 @@ abstract class Widget{
     /**
      * generates an instance of the correct widget
      * @param  string  $widget_name 
-     * @param  boolean $loaded      if you wnat the widget to be loaded from DB
+     * @param  boolean $load      if you wnat the widget to be loaded from DB
      * @return Widget               
      */
-    public static function factory($widget_name, $loaded = TRUE)
+    public static function factory($widget_name, $load = TRUE)
     {
         //search for widget config
         $widget_data = core::config('widget.'.$widget_name);
@@ -106,7 +106,7 @@ abstract class Widget{
             $widget = new $widget_data['class'];
 
             //populate the data we got
-            if ($loaded)
+            if ($load)
                 $widget->load($widget_name, $widget_data);
 
             return $widget;
