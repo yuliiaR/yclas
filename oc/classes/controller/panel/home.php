@@ -5,7 +5,8 @@ class Controller_Panel_Home extends Auth_Controller {
     
 	public function action_index()
 	{
-		$this->template->title = 'Panel home';
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Welcome')));
+		$this->template->title = 'Welcome';
 		$this->template->content = View::factory('oc-panel/home');
 	}
     
