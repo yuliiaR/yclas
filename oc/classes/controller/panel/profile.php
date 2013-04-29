@@ -2,12 +2,17 @@
 
 class Controller_Panel_Profile extends Auth_Controller {
 
+    public function __construct($request, $response)
+    {
+        parent::__construct($request, $response);
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('User'))->set_url(Route::url('oc-panel',array('controller'  => 'profile'))));
+    }
 
 	public function action_index()
 	{
-		Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__('Home'))));
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home')));
 		
-		$this->template->title = __('User home');
+		$this->template->title = __('Home');
 		//$this->template->scripts['footer'][] = 'js/user/index.js';
 		$this->template->content = View::factory('oc-panel/home-user');
 	}
@@ -15,7 +20,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 	public function action_changepass()
 	{
-		Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__('Change password'))));
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Change password')));
 		
 		$this->template->title   = __('Change password');
 
@@ -73,7 +78,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 	public function action_edit()
 	{
-		Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__('Edit profile'))));
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit profile')));
 		// $this->template->title = $user->name;
 		//$this->template->meta_description = $user->name;//@todo phpseo
 		$user = Auth::instance()->get_user();

@@ -10,13 +10,13 @@
 <ul class="dropdown-menu">
 	
 	<li><a href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
-        <i class="icon-cog"></i> <?=__('Admin')?></a></li>
+        <i class="icon-cog"></i> <?=__('Panel')?></a></li>
+
+    <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'ads'))?>"><i
+           class="icon-edit"></i> <?=__('My Advertisements')?></a></li>
 	
 	<li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))?>"><i
-		   class="icon-edit"></i> <?=__('Edit profile')?></a></li>
-
-	<li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'changepass'))?>">
-        <i class="icon-lock"></i> <?=__('Change Password')?></a></li>
+		   class="icon-lock"></i> <?=__('Edit profile')?></a></li>
 
     <li><a href="<?=Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname))?>">
          <i class="icon-eye-open"></i> <?=__('Public profile')?></a></li>
@@ -26,7 +26,7 @@
 		href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'logout'))?>">
 			<i class="icon-off"></i> <?=__('Logout')?>
 	</a>
-    <?nav_link(__('Home'), '', 'icon-home', '')?>
+    <?nav_link(__('Visit Site'), '', 'icon-home', '')?>
 	</li>
 </ul>
 <?else:?>

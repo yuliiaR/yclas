@@ -11,12 +11,16 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="brand" href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Dashboard')?></a>
+            <a class="brand" href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Panel')?></a>
+
+            <div class="btn-group pull-right visible-desktop">
+                <?=View::factory('widget_login')?>
+            </div>
 
             <div class="nav-collapse collapse">
-
                 <ul class="nav">
-                    <?=nav_link(_('Visit Site'),'','icon-home icon-white','','default')?>
+                    
+                    <?=sidebar_link(__('Moderation'),'ad','moderate','oc-panel','icon-list-alt icon-white')?>
                 	<?=sidebar_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
                     <?=sidebar_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"
@@ -24,22 +28,21 @@
                     	<ul class="dropdown-menu">
                             <?=sidebar_link(__('Category'),'category')?>
                             <?=sidebar_link(__('Location'),'location')?>
-                            <?=sidebar_link(__('User'),'user')?>
-                            <?=sidebar_link(__('Role'),'role')?>
-                            <?=sidebar_link(__('Content'),'content')?>
+                            <?=sidebar_link(__('Page'),'content')?>
                     		<li class="divider"></li>
                     		<li><a href="<?=Route::url('post_new')?>">
                     			<i class="icon-pencil"></i><?=__('Publish new ')?></a>	</li>
                     	</ul>
-            	   </li>
-                   <?=sidebar_link(__('Moderation'),'ad','moderate','oc-panel','icon-list-alt icon-white')?>
+            	   </li> 
                 </ul>
                 
-            </div> <!--/.nav-collapse -->
+                <div class="nav pull-right">
+                    <ul class="nav">
+                        <?=nav_link(_('Visit Site'),'','icon-home icon-white','','default')?>
+                    </ul>
+                </div>
 
-            <div class="btn-group pull-right visible-desktop">
-                <?=View::factory('widget_login')?>
-            </div>
+            </div> <!--/.nav-collapse -->
 
         </div><!--/.container -->
 

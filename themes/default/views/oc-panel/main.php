@@ -63,7 +63,7 @@
 		<?=HTML::script('http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js')?>
 		<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
 	<![endif]-->
-  <?//=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
+  <?=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
   </body>
 </html>
 
