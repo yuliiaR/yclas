@@ -162,6 +162,27 @@ class Controller_Panel_Tools extends Auth_Controller {
 
     }
 
+    public function action_logs()
+    {
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('System logs')));
+        
+        $this->template->title = __('System logs');
+
+        $this->template->styles = array('css/datepicker.css' => 'screen');
+        $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js', 'js/oc-panel/logs.js');
+        
+        
+        $date = core::get('date',date('Y-m-d'));
+
+        $file = APPPATH.'logs/'.str_replace('-', '/', $date).'.php';
+
+        if (file_exists($file))
+            $log = file_get_contents($file);
+        else $log = NULL;
+
+        $this->template->content = View::factory('oc-panel/pages/tools/logs',array('file'=>$file,'log'=>$log,'date'=>$date));
+    }
+
 
     public function action_sitemap()
     {

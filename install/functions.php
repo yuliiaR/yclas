@@ -22,7 +22,7 @@ defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 //prevents from new install to be done
 if(!file_exists(DOCROOT.'install/install.lock')) die('Installation seems to be done, please remove /install/ folder');
 
-define('VERSION','2.0 Beta');
+define('VERSION','2.0.RC1');
 
 
 //Gets language to use
@@ -57,17 +57,9 @@ gettext_init($locale_language);
 $checks = oc_requirements();
 
 
-
-/*
-function __($s)
-{
-	return (function_exists('_'))?_($s):T_($s);
-}*/
-
-
 /**
  * *************************************************************
- * Functions to help inthe installation
+ * Functions to help in the installation
  * *************************************************************
  */
 

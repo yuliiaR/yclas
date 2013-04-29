@@ -43,6 +43,7 @@
                         <?sidebar_link(__('Migration'), 'tools','migration')?>
                         <?sidebar_link(__('Optimize'), 'tools','optimize')?>
                         <?sidebar_link(__('Cache'), 'tools','cache')?>
+                        <?sidebar_link(__('Logs'), 'tools','logs')?>
                         <?sidebar_link(__('PHP Info'), 'tools','phpinfo')?>
                     </ul>
                 </li>
