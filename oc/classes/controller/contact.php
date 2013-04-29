@@ -12,7 +12,8 @@ class Controller_Contact extends Controller {
 		$this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
 		$this->template->scripts['footer'][]= 'js/pages/new.js';
 
-		
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Contact Us')));
 
 		if($this->request->post()) //message submition  
 		{

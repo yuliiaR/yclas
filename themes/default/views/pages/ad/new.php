@@ -1,10 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-	<div class=" well">
-		 <?=Form::errors()?>
-		<div class="page-header">
-			<h1><?=__('Publish new advertisement')?></h1>
-		</div>
+	
 		
+	<div class="page-header">
+		<h1><?=__('Publish new advertisement')?></h1>
+	</div>
+	<div class=" well">
 		<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 
@@ -18,7 +18,6 @@
 				<div class="control-group">
 					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' , 'multiple'))?>
 					<div class="controls">			
-					
 					
 						<?foreach ($_cat as $cat):?>
 							<?if($cat->seoname != 'all'):?>

@@ -28,7 +28,7 @@ Route::set('post_new', URL::title(__('publish new')).'.html')
 Route::set('search',URL::title(__('search')).'.html')
 ->defaults(array(
         'controller' => 'ad',    
-        'action'     => 'search',
+        'action'     => 'advansed_search',
 ));
 
 /**
