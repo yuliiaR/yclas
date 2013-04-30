@@ -72,7 +72,7 @@ class Core {
 			require_once $init_routes[0];//returns array of files but we need only 1 file
 		}
 
-        //getting the selected theme, and loading defaults
+        //getting the selected theme, and loading options
         Theme::initialize();
 
 	}

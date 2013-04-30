@@ -66,7 +66,7 @@ class Auth_Controller extends Controller
 			$this->template = View::factory($this->template);
 				
 			// Initialize empty values
-			$this->template->title            = __('Dashboard').' - '.core::config('general.site_name');
+			$this->template->title            = __('Panel').' - '.core::config('general.site_name');
 			$this->template->meta_keywords    = '';
 			$this->template->meta_description = '';
 			$this->template->meta_copywrite   = 'Open Classifieds '.Core::version;

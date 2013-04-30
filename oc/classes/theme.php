@@ -12,7 +12,7 @@
 class Theme {
     
     
-    private static $theme       = 'default';
+    public static $theme        = 'default';
     private static $views_path  = 'views';
     public  static $scripts     = array();
     public  static $styles      = array();
@@ -48,7 +48,7 @@ class Theme {
     
     /**
      *
-     * gets the where the views are located in the default theme
+     * gets where the views are located in the default theme
      * @return string path
      *
      */
@@ -179,11 +179,115 @@ class Theme {
     	self::$theme = $theme;
     	Kohana::load(self::theme_folder(self::$theme));
     	
+        self::load();
+            	
+    }
+
+
+
+
+    /**
+     * All the Custom options for the theme goes here
+     */
     
-    	//this is much slower, but more flexible...mmmm
-    	/*if (($init_theme = Kohana::find_file(self::$path,'init'))){
-    	require_once $init_theme;
-    	}*/
+
+    /**
+     * array option the theme have, defined in the theme/ init.php
+     * ex:
+     * array(     'rss_items' => array( 'type'      => 'numeric',
+     *                                                  'display'   => 'select',
+     *                                                  'label'     => __('# items to display'),
+     *                                                  'options'   => range(1,10), 
+     *                                                  'required'  => TRUE),);
+     * @var array
+     */
+    public static $options = array();
+
+
+    /**
+     * data stored for each field
+     * @var array
+     */
+    public static $data = array();
+
+
+    /**
+     * loads the theme data from the config
+     * @return void 
+     */
+    public static function load()
+    {   
+        //search for theme config
+        $theme_data = core::config('theme.'.self::$theme);
+
+        //found and with data!
+        if($theme_data!==NULL AND !empty($theme_data) AND $theme_data !== '[]')
+        { 
+            self::$data = json_decode($theme_data, TRUE);
+        }
+        ///save empty with default values
+        else
+        {
+            //we set the array with empty values or the default in the option attributes
+            foreach (self::$options as $field => $attributes) 
+            {
+                self::$data[$field] = (isset($attributes['default']))?$attributes['default']:'';
+            }
+            self::save();
+        }
+
+    }
+
+
+    /**
+     * saves thme options as json 'theme.NAMETHEME' = array json
+     * @return void 
+     */
+    public static function save()
+    {
+
+        // save theme to DB
+        $conf = new Model_Config();
+        $conf->where('group_name','=','theme')
+                    ->where('config_key','=',self::$theme)
+                    ->limit(1)->find();
+
+        if (!$conf->loaded())
+        {
+            $conf->group_name = 'theme';
+            $conf->config_key = self::$theme;
+        }
+        
+        $conf->config_value = json_encode(self::$data);
+
+        try 
+        {
+            $conf->save();
+        } 
+        catch (Exception $e) 
+        {
+            throw new HTTP_Exception_500();     
+        }   
+    }
+
+    /**
+     * to know if we need to render form for example
+     * @return boolean 
+     */
+    public static function has_options()
+    {
+        return (count(self::$data)>0)? TRUE:FALSE;
+    }
+
+    /**
+     * get from data array
+     * @param  string $name key
+     * @return mixed       
+     */
+    public static function get($name)
+    {
+        return (array_key_exists($name, self::$data)) ? self::$data[$name] : NULL;
     }
     
+
 }

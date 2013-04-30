@@ -36,7 +36,7 @@
 
 <hr>
 
-<?if (core::config('theme.premium')!=1):?>
+<?if (Theme::get('premium')!==1):?>
 
 <div class="visible-desktop">
 <script type="text/javascript">

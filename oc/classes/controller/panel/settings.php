@@ -7,10 +7,12 @@
 
 class Controller_Panel_Settings extends Auth_Controller {
 
-        public function __construct($request, $response)
+    public function __construct($request, $response)
     {
         parent::__construct($request, $response);
+        
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Settings'))->set_url(Route::url('oc-panel',array('controller'  => 'settings'))));
+
     }
 
     /**
@@ -21,14 +23,11 @@ class Controller_Panel_Settings extends Auth_Controller {
 	public function action_form()
     {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Form')));
-        // validation active 
-        $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
-
+       
         // all form config values
         $advertisement = new Model_Config();
         $config = $advertisement->where('group_name', '=', 'advertisement')->find_all();
 
-       
 
         // save only changed values
         if($this->request->post())
@@ -62,8 +61,6 @@ class Controller_Panel_Settings extends Auth_Controller {
     public function action_email()
     {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Email')));
-    	// validation active 
-        $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js'; 
 
         // all form config values
         $emailconf = new Model_Config();
@@ -100,10 +97,11 @@ class Controller_Panel_Settings extends Auth_Controller {
      */
     public function action_general()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('General')));
-    	// validation active 
+        // validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
-        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
+        //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
+        
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('General')));
 
         // all form config values
         $generalconfig = new Model_Config();
@@ -169,9 +167,11 @@ class Controller_Panel_Settings extends Auth_Controller {
      */
     public function action_payment()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Payments')));
-    	// validation active 
+        // validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
+        //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
+        
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Payments')));
 
         // all form config values
         $paymentconf = new Model_Config();
@@ -211,4 +211,38 @@ class Controller_Panel_Settings extends Auth_Controller {
         $this->template->content = View::factory('oc-panel/pages/settings/payment', array('config'          => $config,
                                                                                           'paypal_currency' => $paypal_currency));
     }
+
+
+    /**
+     * theme options/settings
+     * @return [view] Renders view with form inputs
+     */
+    public function action_theme()
+    {
+        // validation active 
+        $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
+        //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Theme Options')));       
+
+        // save only changed values
+        if($this->request->post())
+        {
+            //for each option read the post and store it
+            foreach ($_POST as $key => $value) 
+            {
+                if (isset(Theme::$options[$key]))
+                {
+                    Theme::$data[$key] = core::post($key);
+                }
+            }
+            
+            Theme::save();
+            
+            Alert::set(Alert::SUCCESS, __('Success, Theme configuration updated'));
+            $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'theme')));
+        }
+
+        $this->template->content = View::factory('oc-panel/pages/settings/theme', array('options' => Theme::$options, 'data'=>Theme::$data));
+    }
+
 }//end of controller
