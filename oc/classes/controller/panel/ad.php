@@ -17,7 +17,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 		//find all tables 
         $hits = new Model_Visit();
-        $hits->find_all();
+       
 
 		$cat = new Model_Category();
 		$_list_cat= $cat->find_all(); // get all to print at sidebar view
@@ -25,13 +25,13 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$loc = new Model_Location();
 		$_list_loc= $loc->find_all(); // get all to print at sidebar view
 
-		$c = new Controller_Ad($this->request,$this->response); // object of listing
+		$c = new Model_Ad(); // object of listing
         
-        $arr_ads = $c->list_logic(); 
+        $arr_ads = $c->where('status', '=', Model_Ad::STATUS_PUBLISHED)->find_all(); 
        	$arr_hits = array(); // array of hit integers 
-       	
+       
         // fill array with hit integers 
-        foreach ($arr_ads['ads'] as $key_ads) {
+        foreach ($arr_ads as $key_ads) {
         	
         	// match hits with ad
         	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
@@ -39,7 +39,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
         	array_push($arr_hits, $count);
         }
-        
+        //@TODO CONTROLLER DOENST WORK~!!
 
 	    $this->template->content = View::factory('oc-panel/pages/ad',array('res'			=>$arr_ads, 
 	    																	'hits'			=>$arr_hits, 
@@ -143,7 +143,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			foreach ($format_id as $id) 
 			{
 				
-				if ($id !== '')
+				if (!empty($id))
 				{
 					$this->auto_render = FALSE;
 					$this->template = View::factory('js');
@@ -157,8 +157,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 						if (!is_dir($img_path)) 
 						{
-							$element->delete();
-							
+							$element->delete();	
 						}
 						else
 						{

@@ -57,7 +57,7 @@
 			</a>
 		</th>
 	</tr>
-	<? $i = 0; foreach($res['ads'] as $ad):?>
+	<? $i = 0; foreach($res as $ad):?>
 	<tbody>
 		<tr>
 			<td>

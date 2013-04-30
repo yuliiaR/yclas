@@ -329,5 +329,10 @@ class Model_Ad extends ORM {
 
         return $path;
     }
+
+    public function image_delete()
+    {
+        
+    }
     
 } // END Model_ad
