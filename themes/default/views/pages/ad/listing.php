@@ -56,7 +56,10 @@
 
 				<?elseif($user !== NULL && $user->id_user == $ad->id_user):?>
 					<br/>
-				<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> 
+				<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> |
+				<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
+					onclick="return confirm('<?=__('Deactivate?')?>');"><?= _e("Deactivate");?>
+				</a>
 				<?endif?>
 		    </article>
 		<?endif?>

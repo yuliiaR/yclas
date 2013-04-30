@@ -544,8 +544,21 @@ class Controller_Ad extends Controller {
 		// update orders table
 		// fields
 		$ad = new Model_Ad($this->request->param('id'));
-	
+		
+		//case when payment is set to 0, it gets published without payment
+		if(core::config('payment.pay_to_go_on_top') == FALSE)
+		{
+			$ad->status = 1;
+			$ad->published = Date::unix2mysql(time());
 
+			try {
+				$ad->save();
+				$this->request->redirect(Route::url('list')); 
+
+			} catch (Exception $e) {
+				throw new HTTP_Exception_500($e->getMessage());
+			}
+		}
 		
 		$ord_data = array('id_user' 	=> $payer_id,
 						  'id_ad' 		=> $ad->id_ad,
@@ -579,6 +592,20 @@ class Controller_Ad extends Controller {
 		// fields
 		$ad = new Model_Ad($this->request->param('id'));
 	
+		//case when payment is set to 0, it gets published without payment
+		if(core::config('payment.pay_to_go_on_feature') == FALSE)
+		{
+			$ad->status = 1;
+			$ad->featured = Date::unix2mysql(time() + (core::config('advertisement.featured_timer') * 24 * 60 * 60));
+
+			try {
+				$ad->save();
+				$this->request->redirect(Route::url('list')); 
+
+			} catch (Exception $e) {
+				throw new HTTP_Exception_500($e->getMessage());
+			}
+		}
 
 		$ord_data = array('id_user' 	=> $payer_id,
 						  'id_ad' 		=> $ad->id_ad,

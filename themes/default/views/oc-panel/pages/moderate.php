@@ -80,13 +80,13 @@
 	    	<?endforeach?>
 
 			<td><?= $hits[$i++];?></td>
-			<? if($ad->status == 0):?>
+			<? if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
 				<td><?= __('Notpublished')?></td>
-			<? elseif($ad->status == 1):?>
+			<? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
 				<td><?= __('Published')?></td>
-			<? elseif($ad->status == 30):?>
+			<? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
 				<td><?= __('Spam')?></td>
-	    	<? elseif($ad->status == 50):?>
+	    	<? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
 				<td><?= __('Unavailable')?></td>
 			<?endif?>
 	    	<td><?= substr($ad->created, 0, 11)?></td>

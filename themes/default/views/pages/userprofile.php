@@ -22,7 +22,7 @@
 		<article class="list well clearfix">
 		<?endif?>
 			<h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category,'seotitle'=>$ads->seotitle))?>"><?=$ads->title?></a></h4>
-			<p><strong>Description: </strong><?=$ads->description?><p>
+			<p><strong>Description: </strong><?=Text::removebbcode($ads->description)?><p>
 		<?if($ads->published != NULL):?>
 			<p><b><?= _e('Publish Date');?>:</b> <?= Date::format($ads->published, core::config('general.date_format'))?><p>
 		<?else:?>

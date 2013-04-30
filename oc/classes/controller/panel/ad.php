@@ -8,11 +8,10 @@ class Controller_Panel_Ad extends Auth_Controller {
 	public function action_index()
 	{
 		//template header
-		$this->template->title           	= __('Moderation');
-		$this->template->meta_description	= __('Moderation');
+		$this->template->title           	= __('Advertisements');
+		$this->template->meta_description	= __('Advertisements');
 				
 		$this->template->styles 			= array('/css/jquery.sceditor.min.css' => 'screen');
-		//$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
 		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js'; 
 
 
@@ -62,7 +61,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 	        	array_push($arr_hits, $count);
 	        }
 
-	        
+
 			$this->template->content = View::factory('oc-panel/pages/ad',array('res'			=> $ads,
 																				'pagination'	=> $pagination,
 																				'category'		=> $_list_cat,
@@ -171,7 +170,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			foreach ($format_id as $id) 
 			{
 				
-				if (!empty($id))
+				if (isset($id))
 				{
 					$this->auto_render = FALSE;
 					$this->template = View::factory('js');
@@ -282,7 +281,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 		foreach ($format_id as $id) 
 		{
-			if ($id !== '')
+			if (isset($id))
 			{
 
 				$deact_ad = ORM::factory('ad', $id);

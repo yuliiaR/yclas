@@ -36,7 +36,6 @@ class Auth_Controller extends Controller
 			if (!Auth::instance()->logged_in( $request->controller(), $request->action(), $request->directory()))
 			{
 				Alert::set(Alert::ERROR, __('You do not have permissions to access '.$request->controller().' '.$request->action()));
-				//d('You do not have permissions to access '.$request->controller().' '.$request->action()); 
 				$url = Route::get('oc-panel')->uri(array(
 													 'controller' => 'auth', 
 													 'action'     => 'login'));

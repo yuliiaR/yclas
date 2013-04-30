@@ -82,13 +82,13 @@
 	    	<?endforeach?>
 			<td><?= $hits[$i++];?></td>
 			
-			<? if($ad->status == 0):?>
+			<? if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
 				<td><?= __('Notpublished')?></td>
-			<? elseif($ad->status == 1):?>
+			<? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
 				<td><?= __('Published')?></td>
-			<? elseif($ad->status == 30):?>
+			<? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
 				<td><?= __('Spam')?></td>
-	    	<? elseif($ad->status == 50):?>
+	    	<? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
 				<td><?= __('Unavailable')?></td>
 			<?endif?>
 	    	
@@ -117,8 +117,8 @@
 				    rel"tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
 					<i class="icon-remove icon-white"></i>
 				</a>
-				<?$deact_featured = new Model_Ad($ad->id_ad);?>
-				<?if($deact_featured->featured == NULL):?>
+				
+				<?if($ad->featured == NULL):?>
 				<a class="btn btn-primary" 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Make featured?')?>');"

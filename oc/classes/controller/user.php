@@ -9,6 +9,8 @@ class Controller_User extends Controller {
 		
 	public function action_index()
 	{
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('User Profile')));
 		$seoname = $this->request->param('seoname',NULL);
 		if ($seoname!==NULL)
 		{
