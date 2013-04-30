@@ -330,9 +330,21 @@ class Model_Ad extends ORM {
         return $path;
     }
 
-    public function image_delete()
+    public function delete_images($img_path)
     {
+        // Loop through the folder
+        $dir = dir($img_path);
+
+        while (false !== $entry = $dir->read()) {
+        // Skip pointers
+          if ($entry == '.' || $entry == '..') {
+            continue;
+          }
+          unlink($img_path.$entry);
+        }
         
+        rmdir($img_path);
+        return TRUE;
     }
     
     protected $_table_columns =     

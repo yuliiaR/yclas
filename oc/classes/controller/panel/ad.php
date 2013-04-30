@@ -183,25 +183,13 @@ class Controller_Panel_Ad extends Auth_Controller {
 						
 
 						if (!is_dir($img_path)) 
-						{
 							$element->delete();	
-						}
 						else
 						{
-							// Loop through the folder
-							$dir = dir($img_path);
-
-							while (false !== $entry = $dir->read()) {
-							// Skip pointers
-								if ($entry == '.' || $entry == '..') {
-									continue;
-								}
-								unlink($img_path.$entry);
-							}
-							
-							rmdir($img_path);
+							$element->delete_images($img_path);
 							$element->delete();
 						}
+							
 					}
 					catch (Exception $e)
 					{
