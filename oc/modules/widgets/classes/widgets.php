@@ -44,7 +44,7 @@ class Widgets {
 
 		$active_widgets = core::config('placeholder.'.$name_placeholder);
 
-		if($active_widgets!==NULL AND !empty($active_widgets) AND $active_widgets !== '[]' AND $active_widgets !== '""')
+		if($active_widgets!==NULL AND !empty($active_widgets) AND $active_widgets !== '[]' AND $active_widgets !== '[""]' AND $active_widgets !== '""')
 		{ 
 			
 			$active_widgets = json_decode($active_widgets, TRUE);

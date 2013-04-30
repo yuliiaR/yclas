@@ -7,6 +7,11 @@
 
 class Controller_Panel_Settings extends Auth_Controller {
 
+        public function __construct($request, $response)
+    {
+        parent::__construct($request, $response);
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Settings'))->set_url(Route::url('oc-panel',array('controller'  => 'settings'))));
+    }
 
     /**
      * Contains all data releated to new advertisment optional form inputs,
@@ -15,6 +20,7 @@ class Controller_Panel_Settings extends Auth_Controller {
      */
 	public function action_form()
     {
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Form')));
         // validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
 
@@ -55,6 +61,7 @@ class Controller_Panel_Settings extends Auth_Controller {
      */
     public function action_email()
     {
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Email')));
     	// validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js'; 
 
@@ -93,6 +100,7 @@ class Controller_Panel_Settings extends Auth_Controller {
      */
     public function action_general()
     {
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('General')));
     	// validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
         $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
@@ -161,6 +169,7 @@ class Controller_Panel_Settings extends Auth_Controller {
      */
     public function action_payment()
     {
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Payments')));
     	// validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
 

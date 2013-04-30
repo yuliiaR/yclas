@@ -72,13 +72,14 @@ function sidebar_link($name,$controller,$action='index',$route='oc-panel', $icon
  * @param  string $action  
  * @param  string $icon 		class name of bootstrap	icon to append with nav-link   
  * @param  string $route      
+ * @param  string $style extra class div 
  */
-function nav_link($name, $controller, $icon=NULL, $action='index', $route='default')
+function nav_link($name, $controller, $icon=NULL, $action='index', $route='default' , $style = NULL)
 {	
 	
  	?>
-		<li <?=(Request::current()->controller()==$controller 
-				&& Request::current()->action()==$action)?'class="active"':''?> >
+		<li class="<?=(Request::current()->controller()==$controller 
+				&& Request::current()->action()==$action)?'active':''?> <?=$style?>" >
 			<a href="<?=Route::url($route,array('controller'=>$controller,
 												'action'=>$action))?>">
 				<?if($icon!==NULL)?>

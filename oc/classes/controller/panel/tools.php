@@ -20,7 +20,7 @@ class Controller_Panel_Tools extends Auth_Controller {
     public function action_index()
     {
         //@todo just a view with links?
-        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'tools','action'=>'sitemap')));  
+        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'tools','action'=>'updates')));  
     }
 
 
@@ -94,6 +94,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         $this->template->content = View::factory('oc-panel/pages/tools/cache',array('cache_config'=>$cache_config));
     }
 
+
     public function action_phpinfo()
     {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('PHP Info')));
@@ -112,6 +113,74 @@ class Controller_Panel_Tools extends Auth_Controller {
 
         $this->template->content = View::factory('oc-panel/pages/tools/phpinfo',array('phpinfo'=>$phpinfo));
 
+    }
+
+    public function action_updates()
+    {
+
+        //we check the date of our local versions.php
+        $version_file = APPPATH.'config/versions.php';
+        
+        //if older than a month or ?reload=1 force reload
+        if ( time() > strtotime('+1 week',filemtime($version_file)) OR Core::get('reload')==1 )
+        {
+            //read from oc/versions.json on CDN
+            $json = file_get_contents('http://openclassifieds.googlecode.com/files/versions.json?r='.time());
+            $versions = json_decode($json,TRUE);
+            if (is_array($versions))
+            {
+                //update our local versions.php
+                $content = "<?php defined('SYSPATH') or die('No direct script access.');
+                return ".var_export($versions,TRUE).";";// die($content);
+                //@todo check file permissions?
+                core::fwrite($version_file, $content);
+            }
+            
+        }
+        
+        //Kohana::$config->load('versions');
+        $versions = core::config('versions');
+
+        if (Core::get('json')==1)
+        {
+            $this->auto_render = FALSE;
+            $this->template = View::factory('js');
+            $this->template->content = json_encode($versions);  
+        }
+        else
+        {
+            Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Updates')));
+            $this->template->title = __('Updates');
+        
+            //check if we have latest version of OC
+            if (key($versions)!=core::version)
+                Alert::set(Alert::ALERT,__('You are not using OC latest version, please update.'));
+            
+            //pass to view from local versions.php         
+            $this->template->content = View::factory('oc-panel/pages/tools/versions',array('versions'=>$versions,'latest_version'=>key($versions)));
+        }        
+
+    }
+
+    public function action_logs()
+    {
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('System logs')));
+        
+        $this->template->title = __('System logs');
+
+        $this->template->styles = array('css/datepicker.css' => 'screen');
+        $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js', 'js/oc-panel/logs.js');
+        
+        
+        $date = core::get('date',date('Y-m-d'));
+
+        $file = APPPATH.'logs/'.str_replace('-', '/', $date).'.php';
+
+        if (file_exists($file))
+            $log = file_get_contents($file);
+        else $log = NULL;
+
+        $this->template->content = View::factory('oc-panel/pages/tools/logs',array('file'=>$file,'log'=>$log,'date'=>$date));
     }
 
 

@@ -16,7 +16,7 @@ class Core {
 	 * OC version
 	 * @var string
 	 */
-	const version = '2.0 RC1';
+	const version = '2.0.RC1';
 
     /**
      * original requested data
@@ -133,6 +133,44 @@ class Core {
     public static function post($key,$default=NULL)
     {
     	return (Request::current()->post($key)!==NULL)?Request::current()->post($key):$default;
+    }
+
+    /**
+     * write to file
+     * @param $filename fullpath file name
+     * @param $content
+     * @return boolean
+     */
+    public static function fwrite($filename,$content)
+    {
+        $file = fopen($filename, 'w');
+        if ($file)
+        {//able to create the file
+            fwrite($file, $content);
+            fclose($file);
+            return TRUE;
+        }
+        return FALSE;   
+    }
+    
+    /**
+     * read file content
+     * @param $filename fullpath file name
+     * @return $string or false if not found
+     */
+    public static function fread($filename)
+    {
+        if (is_readable($filename))
+        {
+            $file = fopen($filename, 'r');
+            if ($file)
+            {//able to read the file
+                $data = fread($file, filesize($filename));
+                fclose($file);
+                return $data;
+            }
+        }
+        return FALSE;   
     }
 
 } //end core

@@ -85,5 +85,53 @@ class Model_Config extends ORM {
         return $c->reload_config();
     }
 
+    protected $_table_columns =    
+array (
+  'group_name' => 
+  array (
+    'type' => 'string',
+    'column_name' => 'group_name',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => false,
+    'ordinal_position' => 1,
+    'character_maximum_length' => '128',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => 'MUL',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'config_key' => 
+  array (
+    'type' => 'string',
+    'column_name' => 'config_key',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => false,
+    'ordinal_position' => 2,
+    'character_maximum_length' => '128',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'config_value' => 
+  array (
+    'type' => 'string',
+    'character_maximum_length' => '65535',
+    'column_name' => 'config_value',
+    'column_default' => NULL,
+    'data_type' => 'text',
+    'is_nullable' => true,
+    'ordinal_position' => 3,
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+);
 
 } // END Model_Config
