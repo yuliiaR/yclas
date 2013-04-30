@@ -7,16 +7,16 @@ widgets::$theme_placeholders	= array('footer', 'sidebar');
 widgets::$theme_widgets 		= array();
 
 //twitter theme initialization
-View::$styles	            = array('css/styles.css' => 'screen',
+Theme::$styles	            = array('css/styles.css' => 'screen',
 									'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulean/bootstrap.min.css' => 'screen',
 									'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css' => 'screen',
 									);
 
-View::$scripts['header']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
+Theme::$scripts['header']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
 									'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js',
 									);
 
-// View::$scripts['footer']	= array('js/theme.init.js',);
+// Theme::$scripts['footer']	= array('js/theme.init.js',);
 
 /**
  * custom error alerts

@@ -18,6 +18,7 @@ https://github.com/open-classifieds/openclassifieds2
 * PHP-Google maps API http://www.bradwedell.com/php-google-maps-api/
 * PHP-Mailer https://code.google.com/a/apache-extras.org/p/phpmailer/
 * PHP-SitemapGenerator http://www.phpclasses.org/package/5838-PHP-Generate-sitemaps-and-notify-updates.html
+* Mobile Detect https://github.com/serbanghita/Mobile-Detect
 * Twitter Bootstrap http://twitter.github.com/bootstrap/
 * Bootswatch http://bootswatch.com/
 * Chosen https://github.com/harvesthq/chosen

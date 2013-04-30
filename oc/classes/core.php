@@ -62,12 +62,9 @@ class Core {
 		
 
 		// -- i18n Configuration and initialization -----------------------------------------
-		//I18n::initialize(Core::config('i18n.locale'),Core::config('i18n.charset'));
-		//@todo delete next line:
-		//I18n::initialize('es_ES',Core::config('i18n.charset'));
-		I18n::initialize();
-		//getting the selected theme, and loading defaults
-		View::initialize();
+		I18n::initialize(Core::config('i18n.locale'),Core::config('i18n.charset'));
+		
+		
 		
 		//Loading the OC Routes
 		if (($init_routes = Kohana::find_file('config','routes')))
@@ -75,6 +72,8 @@ class Core {
 			require_once $init_routes[0];//returns array of files but we need only 1 file
 		}
 
+        //getting the selected theme, and loading defaults
+        Theme::initialize();
 
 	}
 	
@@ -121,7 +120,7 @@ class Core {
      */
     public static function get($key,$default=NULL)
     {
-    	return (Request::current()->query($key)!==NULL)?Request::current()->query($key):$default;
+    	return (isset($_GET[$key]))?$_GET[$key]:$default;
     }
 
     /**

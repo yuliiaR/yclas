@@ -91,8 +91,8 @@ class Controller extends Kohana_Controller
     	if ($this->auto_render === TRUE)
     	{
     		// Add defaults to template variables.
-    		$this->template->styles  = array_reverse(array_merge($this->template->styles, View::$styles));
-    		$this->template->scripts = array_reverse(array_merge_recursive(View::$scripts,$this->template->scripts));
+    		$this->template->styles  = array_reverse(array_merge($this->template->styles, Theme::$styles));
+    		$this->template->scripts = array_reverse(array_merge_recursive(Theme::$scripts,$this->template->scripts));
     		
     		$this->template->title.=' - '.core::config('general.site_name');
 

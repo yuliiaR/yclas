@@ -32,6 +32,7 @@
     				    <?sidebar_link(__('Payment'), 'settings','payment')?>
     				    <?sidebar_link(__('Email'), 'settings','email')?>
     				    <?sidebar_link(__('Advertisement'), 'settings','form')?>
+                        <?sidebar_link(__('Theme Options'), 'settings','theme')?>
                     </ul>
                 </li>
 			<?endif?>
