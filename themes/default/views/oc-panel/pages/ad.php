@@ -138,4 +138,4 @@
 	<?endforeach?>
 	</tbody>
 </table>
-	 <?=$res['pagination']?>
+	 <?=$pagination?>

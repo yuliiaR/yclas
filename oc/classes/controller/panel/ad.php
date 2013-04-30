@@ -8,45 +8,73 @@ class Controller_Panel_Ad extends Auth_Controller {
 	public function action_index()
 	{
 		//template header
-		$this->template->title           	= __('Advertisements');
-		$this->template->meta_description	= __('Advertisements');
+		$this->template->title           	= __('Moderation');
+		$this->template->meta_description	= __('Moderation');
 				
-		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen');
-		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
-		$this->template->scripts['footer'][]= 'js/oc-panel/moderation.js';
+		$this->template->styles 			= array('/css/jquery.sceditor.min.css' => 'screen');
+		//$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
+		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js'; 
+
 
 		//find all tables 
-        $hits = new Model_Visit();
-       
-
-		$cat = new Model_Category();
-		$_list_cat= $cat->find_all(); // get all to print at sidebar view
 		
-		$loc = new Model_Location();
-		$_list_loc= $loc->find_all(); // get all to print at sidebar view
+		$ads = new Model_Ad();
+		$ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+		$res_count = $ads->count_all();
+		
+		if ($res_count > 0)
+		{
 
-		$c = new Model_Ad(); // object of listing
-        
-        $arr_ads = $c->where('status', '=', Model_Ad::STATUS_PUBLISHED)->find_all(); 
-       	$arr_hits = array(); // array of hit integers 
-       
-        // fill array with hit integers 
-        foreach ($arr_ads as $key_ads) {
-        	
-        	// match hits with ad
-        	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
-        	$count = $hits->count_all(); // count individual hits 
+			$pagination = Pagination::factory(array(
+                    'view'           	=> 'pagination',
+                    'total_items'    	=> $res_count,
+                    'items_per_page' 	=> core::config('general.advertisements_per_page')
+     	    ))->route_params(array(
+                    'controller' 		=> $this->request->controller(),
+                    'action'      		=> $this->request->action(),
+                 
+    	    ));
+    	    $ads = $ads->order_by('created','desc')
+                	            ->limit($pagination->items_per_page)
+                	            ->offset($pagination->offset)
+                	            ->find_all();
+		
+	        //find all tables 
+	        $hits = new Model_Visit();
+	        $hits->find_all();
 
-        	array_push($arr_hits, $count);
-        }
-        //@TODO CONTROLLER DOENST WORK~!!
+			$cat = new Model_Category();
+			$_list_cat = $cat->find_all(); // get all to print at sidebar view
+			
+			$loc = new Model_Location();
+			$_list_loc = $loc->find_all(); // get all to print at sidebar view
 
-	    $this->template->content = View::factory('oc-panel/pages/ad',array('res'			=>$arr_ads, 
-	    																	'hits'			=>$arr_hits, 
-	    																	'category'		=>$_list_cat,
-	    																	// 'captcha_show'	=>$captcha_show,
-	    																	'location'		=>$_list_loc,
-	    																	)); // create view, and insert list with data 		
+
+	       	$arr_hits = array(); // array of hit integers 
+	       	
+	        // fill array with hit integers 
+	        foreach ($ads as $key_ads) {
+	        	
+	        	// match hits with ad
+	        	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
+	        	$count = $hits->count_all(); // count individual hits 
+
+	        	array_push($arr_hits, $count);
+	        }
+
+	        
+			$this->template->content = View::factory('oc-panel/pages/ad',array('res'			=> $ads,
+																				'pagination'	=> $pagination,
+																				'category'		=> $_list_cat,
+																				'location'		=> $_list_loc,
+																				'hits'			=> $arr_hits)); // create view, and insert list with data
+
+		}
+		else
+		{
+			Alert::set(Alert::INFO, __('You do not have any not published advertisemet'));
+			$this->template->content = View::factory('oc-panel/pages/ad', array('ads' => NULL));
+		}		
 	}
 
 	/**
