@@ -60,7 +60,7 @@ Route::set('page','p/<seotitle>.html')
 /**
  * rss
  */
-Route::set('rss','rss(/<seocategory>).xml')
+Route::set('rss','rss(/<category>(/<location>)).xml')
 ->defaults(array(
         'controller' => 'feed',    
         'action'     => 'index',

@@ -17,6 +17,14 @@
 
     <link rel="alternate" type="application/atom+xml" title="RSS <?=Core::config('general.site_name')?>" href="<?=Route::url('rss')?>" />
 
+    <?if (Controller::$category!==NULL AND Controller::$location!==NULL):?>
+    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Controller::$category->name?> - <?=Controller::$location->name?>"  href="<?=Route::url('rss',array('category'=>Controller::$category->seoname,'location'=>Controller::$location->seoname))?>" />
+    <?elseif (Controller::$location!==NULL):?>
+    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Controller::$location->name?>"  href="<?=Route::url('rss',array('category'=>'all','location'=>Controller::$location->seoname))?>" />
+    <?elseif (Controller::$category!==NULL):?>
+    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Controller::$category->name?>"  href="<?=Route::url('rss',array('category'=>Controller::$category->seoname))?>" />
+    <?endif?>     
+        
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
     <!--[if lt IE 9]>
