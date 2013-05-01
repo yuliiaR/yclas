@@ -245,4 +245,35 @@ class Controller_Panel_Settings extends Auth_Controller {
         $this->template->content = View::factory('oc-panel/pages/settings/theme', array('options' => Theme::$options, 'data'=>Theme::$data));
     }
 
+    /**
+     * theme selector
+     * @return [view] Renders view with form inputs
+     */
+    public function action_appearance()
+    {
+        // validation active 
+        $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
+        //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Appearance Options')));       
+
+        //getting the themes
+        //$themes = Theme::get_installed_themes();
+        $themes = array();
+        // @todo future from RSS Theme::get_market_themes();
+
+        // save only changed values
+        if($this->request->param('id'))
+        {
+            d($this->request->param('id'));
+
+            //we check the theme exists and it's correct
+            //it is so save in conifg
+            //delete cache
+            
+            Alert::set(Alert::SUCCESS, __('Success, Appearance configuration updated'));
+            $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'appearance')));
+        }
+
+        $this->template->content = View::factory('oc-panel/pages/settings/appearance', array('themes' => $themes, 'selected'=>Theme::$theme));
+    }
 }//end of controller

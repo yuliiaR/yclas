@@ -21,11 +21,11 @@ include 'install.php';
 	<meta charset="utf8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title><?=(SAMBA)? 'Open Classifieds':''?> <?=_("Installation")?></title>
+	<title>Open Classifieds <?=_("Installation")?></title>
     <meta name="keywords" content="" >
     <meta name="description" content="" >
-    <meta name="copyright" content="<?=(SAMBA)? 'Open Classifieds':''?> <?=VERSION?>" >
-	<meta name="author" content="<?=(SAMBA)? 'Open Classifieds':''?>">
+    <meta name="copyright" content="Open Classifieds <?=VERSION?>" >
+	<meta name="author" content="Open Classifieds">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
 	<link rel="shortcut icon" href="http://open-classifieds.com/wp-content/uploads/2012/04/favicon1.ico" />
@@ -73,16 +73,14 @@ include 'install.php';
 
 	<div class="navbar navbar-fixed-top navbar-inverse">
 	<div class="navbar-inner">
-	<div class="container"><a class="brand"><?=(SAMBA)? 'Open Classifieds':''?> <?=_("Installation")?></a>
+	<div class="container"><a class="brand">Open Classifieds <?=_("Installation")?></a>
 	<div class="nav-collapse">
 
-	<? if (SAMBA){?>
 	<div class="btn-group pull-right">
 		<a class="btn btn-primary" href="http://open-classifieds.com/download/">
 			<i class="icon-shopping-cart icon-white"></i> We install it for you, Buy now!
 		</a>
 	</div>
-	<? }?>
 
 	</div>
 	<!--/.nav-collapse --></div>
@@ -114,23 +112,23 @@ include 'install.php';
             			<li class="divider"></li>
             			<li><a href="#phpinfoModal" role="button" data-toggle="modal">PHP Info</a></li>
             			<li class="divider"></li>
-            			<? if (SAMBA){?>
+            			
             			<li class="nav-header">Open Classifieds</li>
             			<li><a href="http://open-classifieds.com/themes/">Themes</a></li>
-            			<li><a href="http://open-classifieds.com/download/">Support</a></li>
-            			<li><a href="http://j.mp/ocdonate" target="_blank">
+            			<li><a href="http://open-classifieds.com/">Support & More</a></li>
+            			<li><a href="http://j.mp/thanksdonate" target="_blank">
             					<img src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="">
             			</a></li>
             			<li class="divider"></li>
-            			<? }?>
+            			
             		</ul>
-            		<? if (SAMBA){?>
+            		
             		<a href="https://twitter.com/openclassifieds"
             				onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);"
             				class="twitter-follow-button" data-show-count="false"
             				data-size="large">Follow @openclassifieds</a><br />
             			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            		<? }?>
+            		
             		
             	</div>
             	<!--/.well -->
@@ -155,7 +153,7 @@ include 'install.php';
 				<a class="btn btn-warning btn-large" href="<?=$_POST['SITE_URL']?>oc-panel/home/">Admin</a> 
 				<span class="help-block">user: <?=$_POST['ADMIN_EMAIL']?> pass: <?=$_POST['ADMIN_PWD']?></span>
 				<hr>
-				<a class="btn btn-primary btn-large" href="http://j.mp/ocdonate"><?=__('Make a donation')?></a>
+				<a class="btn btn-primary btn-large" href="http://j.mp/thanksdonate"><?=__('Make a donation')?></a>
 				<?=__('We really appreciate it')?>.
 			</p>
 		</div>
@@ -167,10 +165,8 @@ include 'install.php';
 	<h1><?=__("Welcome to")?> Open Classifieds <?=__("installation")?></h1>
 	<p>
 		<?=__("Welcome to the super easy and fast installation")?>. 
-		<?if (SAMBA):?>
 			<a href="http://open-classifieds.com/download/" target="_blank">
 			<?=__("If you need any help please check our professional services")?></a>.
-		<?endif?>
 	</p>	
 </div>
 
@@ -286,33 +282,22 @@ include 'install.php';
 
 
 <div class="control-group">
-	<label class="checkbox"><input type="checkbox" name="SAMPLE_DB"  value="1" /><?=__("Sample data")?></label>
-	<span class="help-block"><?=__("Creates few sample categories and locations")?></span>
+	<label class="checkbox"><input type="checkbox" name="SAMPLE_DB" checked /><?=__("Sample data")?></label>
+	<span class="help-block"><?=__("Creates few sample categories to start with")?></span>
 </div>
 
 
 <div class="form-actions">
 
-	<div class="control-group">
-		<label class="checkbox">
-			<input type="checkbox" name="OCAKU" value="1" checked="checked" />
-			<?=__("Ocaku registration (classifieds community)")?> <a target="_blank" href="http://ocacu.com/en/terms.html">
-				<?=__('Terms')?></a>
-		</label>
-	</div>
-
-	<?if (SAMBA):?>
-		<div class="control-group">
-			<label class="checkbox"><input checked="checked" type="checkbox" id="terms" name="terms" value="1" />  <?=__("I accept the license terms")?>. 
-			<a href="http://www.gnu.org/licenses/gpl.txt" target="_blank">GPL v3 <?=__("Please read and accept the terms to continue")?></a>
-			</label>
-		</div>
-	<?else:?>
-		<input type="hidden" id="terms" name="terms" value="1" />
-	<?endif?>
-
 	<input type="submit" name="action" id="submit" value="<?=__("Install")?>" class="btn btn-primary btn-large" />
-
+    <hr>
+    <div class="control-group">
+        <label class="checkbox">
+            <input type="checkbox" name="OCAKU" checked />
+            <?=__("Ocacu classifieds community registration")?> <a target="_blank" href="http://ocacu.com/en/terms.html">
+                <?=__('Terms')?></a>
+        </label>
+    </div>
 </div>
 
 </fieldset>
@@ -323,15 +308,6 @@ include 'install.php';
 	<div class="alert alert-error"><?=$msg?></div>
 	<?hostingAd()?>
 
-	<?if (SAMBA):?>
-	<div class="hero-unit">
-		<h2>Upgrade now!</h2>
-		<p>Just for $99.90, Installation, commercial license, premium support, 1 premium theme and much more.</br>
-			<a class="btn btn-primary btn-large" href="http://open-classifieds.com/download/"><i class=" icon-shopping-cart icon-white"></i> Buy now!</a>
-		</p>
-	</div>
-	<?endif?>
-
 <?endif?>
 
 </div><!--/span--> 
@@ -340,11 +316,7 @@ include 'install.php';
 
 <footer>
 <p>
-&copy; 
-<?if (SAMBA):?>
-	<a href="http://open-classifieds.com" title="Open Source PHP Classifieds">Open Classifieds</a> 2009 - 
-<?endif?>
-<?=date('Y')?>
+&copy; 	<a href="http://open-classifieds.com" title="Open Source PHP Classifieds">Open Classifieds</a> 2009 - <?=date('Y')?>
 </p>
 </footer>    
 

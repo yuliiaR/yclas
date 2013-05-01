@@ -268,13 +268,37 @@ VALUES (1 , 'Home location', 0, 0, 'all', 'root location');");
 
  
 
-
-/*
-@todo sample values categories locations...
-if ($_POST["SAMPLE_DB"]==1)
+//sample values 
+if ( cP('SAMPLE_DB') !== NULL)
 {
-
+    //sample catpegories
+    mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."categories` (`id_category`, `name`, `order`, `created`, `id_category_parent`, `parent_deep`, `seoname`, `description`, `price`) VALUES
+    (2, 'Jobs', 1, '2013-05-01 16:41:04', 1, 0, 'jobs', 'The best place to find work is with our job offers. Also you can ask for work in the ''Need'' section.', 0),
+    (3, 'Languages', 2, '2013-05-01 16:41:04', 1, 0, 'languages', 'You want to learn a new language? Or can you teach a language? This is your section!', 0),
+    (4, 'Others', 4, '2013-05-01 16:41:04', 1, 0, 'others', 'Whatever you can imagine is in this section.', 0),
+    (5, 'Housing', 0, '2013-05-01 16:41:53', 1, 0, 'housing', 'Do you need a place to sleep, or you have something to offer; rooms, shared apartments, houses... etc.\n\nFind your perfect roommate here!', 0),
+    (6, 'Market', 3, '2013-05-01 16:41:04', 1, 0, 'market', 'Buy or sell things that you don''t need anymore in the City, you will find someone interested, or maybe you are going to find exactly what you need.', 0),
+    (7, 'Full Time', 1, '2009-04-22 17:31:43', 2, 1, 'full-time', 'Are you looking for a fulltime job? Or do you have a fulltime job to offer? Post your Ad here!', 0),
+    (8, 'Part Time', 2, '2009-04-22 17:32:15', 2, 1, 'part-time', 'Are you looking for a parttime job? Or do you have a partime job to offer? Post your Ad here!', 0),
+    (9, 'Internship', 3, '2009-04-22 17:33:05', 2, 1, 'internship', 'Are you looking for a internship in the City? Or do you have an internship to offer? Post it here!', 0),
+    (10, 'Au pair', 4, '2009-06-19 09:26:22', 2, 1, 'au-pair', 'Find or require for a Au Pair service. Here is the best place', 0),
+    (11, 'English', 1, '2009-04-22 17:33:52', 3, 1, 'english', 'Do you speak English? Or can you teach it? Do you want to learn? This is your category.', 0),
+    (12, 'Spanish', 2, '2009-04-22 17:34:29', 3, 1, 'spanish', 'You want to learn Spanish? Or can you teach Spanish? This is your section!', 0),
+    (13, 'Other Languages', 3, '2009-04-22 17:35:34', 3, 1, 'other-languages', 'Are you interested in learning or teaching any other language that is not listed? Post it here!', 0),
+    (14, 'Events', 0, '2013-05-01 16:41:11', 4, 1, 'events', 'Upcoming Parties, Cinema, Museums, Parades, Birthdays, Dinners.... Everything!', 0),
+    (15, 'Hobbies', 1, '2013-05-01 16:41:11', 4, 1, 'hobbies', 'Share your hobby with someone! Football, running, cinema, music, cinema, party ... Post it here!', 0),
+    (16, 'Services', 3, '2009-04-22 17:38:33', 4, 1, 'services', 'Do you need a service? Relocation? Insurance? Doctor? Cleaning? Here you can ask for it or offer services!', 0),
+    (17, 'Friendship', 2, '2013-05-01 16:41:17', 1, 1, 'friendship', 'Are you alone in the City? Here you can find new friends! or a new boyfriend/girlfriend ;)', 0),
+    (18, 'Apartment', 1, '2009-04-22 17:39:32', 5, 1, 'apartment', 'Apartments, flats, monthly rentals, long terms, for days... this is the section to have your apartment in the City!', 0),
+    (19, 'Shared Apartments - Rooms', 2, '2009-05-03 21:53:57', 5, 1, 'shared-apartments-rooms', 'You want to share an apartment? Then you need a room! Ask for rooms or add yours in this section.', 0),
+    (20, 'House', 3, '2009-04-22 17:40:50', 5, 1, 'house', 'Rent a house, or offer your house for rent! Here you can find your beach house close to the City!', 0),
+    (21, 'TV', 1, '2009-04-22 17:41:39', 6, 1, 'tv', 'TV, Video Games, TFT, Plasma, your old TV, or your new one can find a new owner!', 0),
+    (22, 'Audio', 2, '2009-04-22 17:42:13', 6, 1, 'audio', 'HI-FI systems, iPod, MP3 players, MP4, if you don''t use it anymore sell it! If you try to find a second hand one, this is your place!', 0),
+    (23, 'Furniture', 3, '2009-04-22 17:43:16', 6, 1, 'furniture', 'Do you need to furnish your home? Or would you like to sell your furniture? Post it here!', 0),
+    (24, 'IT', 4, '2009-04-22 17:43:48', 6, 1, 'it', 'You need a computer? Laptop? Or do you have some old components? This is the IT market of the City!', 0),
+    (25, 'Other Market', 5, '2009-04-22 17:44:12', 6, 1, 'other-market', 'In this market you can sell everything you want! Or search for it!', 0);
+    ");
 }
-*/
+
 
 mysql_close();
