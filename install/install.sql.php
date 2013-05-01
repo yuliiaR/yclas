@@ -170,16 +170,15 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."content` (
 ) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
 /**
- * @todo add basic content like emails
+ * add basic content like emails
  */
-mysql_query("INSERT INTO `oc2_content` (`order`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) 
+mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."content` (`order`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) 
     VALUES
 (0, 'Change Password [SITE.NAME]', 'auth.remember', 'Hello [USER.NAME],\n\nFollow this link  [URL.QL]\n\nThanks!!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
-
 (0, 'Welcome to [SITE.NAME]!', 'auth.register', 'Welcome [USER.NAME],\n\nWe are really happy that you joined us! [URL.QL]\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Hello [USER.NAME]!', 'user.contact', 'You have been contacted regarding to your advertisement. User [EMAIL.SENDER] [EMAIL.FROM], has a message for you: \n\n[EMAIL.BODY]. \n\n Regards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'User [USER.NAME] wants to contact you!', 'contact.admin', 'Welcome [USER.NAME],\n\nWe are really happy that you joined us! [URL.QL]\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
-(0, 'Your advertisement at [SITE.NAME], has been activated!', 'ads.activated', 'Hello [USER.OWNER],\n\n We want to inform you that your advertisement [URL.QL] has been activated!\n\n Now can be seen buy others. \n\n We hope we didn't make you waiting for so long. \n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, 'Your advertisement at [SITE.NAME], has been activated!', 'ads.activated', 'Hello [USER.OWNER],\n\n We want to inform you that your advertisement [URL.QL] has been activated!\n\n Now can be seen buy others. \n\n We hope we didn´t make you waiting for so long. \n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Success! Your advertisement is created on [SITE.NAME]!', 'ads.notify', 'Hello [USER.NAME],\n\nWe are really happy that you created advertisement at [SITE.NAME]! \n\nYou can can edit your advertisement here [URL.QL].\n\n But for now its still not published, it needs to be validated by administrator. \n\n We are sorry for inconveniance. But it wont be long until it gets posted. \n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Success! Your advertisement is created on [SITE.NAME]!', 'ads.confirm', 'Welcome [USER.NAME],\n\nWe are really happy that you created advertisement at [SITE.NAME]! \n\nPlease click on this link [URL.QL] to confirm post.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1);");
 
