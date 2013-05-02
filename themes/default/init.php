@@ -2,7 +2,7 @@
 /**
   * Theme Name: Ocean Free
   * Description: Clean free theme that includes full admin. It has publicity. Do not delete this theme, all the views depend in this theme.
-  * Tags: HTML5, Admin, Free, Bootstrap
+  * Tags: HTML5, Admin, Free
   * Version: 1.1.
   * Author: Chema <chema@garridodiaz.com>
   * License: GPL v3
@@ -21,7 +21,6 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
  */
 
 Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulean/bootstrap.min.css' => 'screen',
-                        'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css' => 'screen',
                         'css/styles.css' => 'screen',
                         'css/chosen.css' => 'screen',
                         'css/jquery.sceditor.min.css' => 'screen', 
