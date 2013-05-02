@@ -41,7 +41,7 @@ endforeach?>
 
 
 
-Market Themes @todo
+Market Themes @todo from json?
 <div class="row-fluid">
 <ul class="thumbnails">
               
