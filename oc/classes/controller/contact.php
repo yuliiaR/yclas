@@ -8,9 +8,6 @@ class Controller_Contact extends Controller {
 		//template header
 		$this->template->title           	= __('Contact Us');
 		$this->template->meta_description	= __('Contact Us');
-				
-		$this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
-		$this->template->scripts['footer'][]= 'js/pages/new.js';
 
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Contact Us')));

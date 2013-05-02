@@ -304,6 +304,34 @@ class Theme {
     }
 
 
+    /**
+     * this belongs to the admin, so needs to be loaded no matter, the theme. not a good place here?? not nice...
+     * generates a link used in the admin HTML
+     * @param  string $name       translated name in the A
+     * @param  string $controller
+     * @param  string $action     
+     * @param  string $route      
+     * @param  string $icon         class name of bootstrap icon to append with nav-link 
+     */
+    public static function admin_link($name,$controller,$action='index',$route='oc-panel', $icon=NULL)
+    {   
+        if (Auth::instance()->get_user()->has_access($controller))
+        {
+        ?>
+            <li <?=(Request::current()->controller()==$controller 
+                    && Request::current()->action()==$action)?'class="active"':''?> >
+                <a href="<?=Route::url($route,array('controller'=>$controller,
+                                                    'action'=>$action))?>">
+                    <?if($icon!==NULL)?>
+                        <i class="<?=$icon?>"></i>
+                    <?=$name?>
+                </a>
+            </li>
+        <?
+        }
+    }
+
+
 
     /**
      * All the Custom options for the theme goes here

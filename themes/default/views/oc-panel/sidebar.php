@@ -4,22 +4,22 @@
 		<ul class="nav nav-list">
 			<?if ($user->has_access_to_any('ad,category,location,widget,content')):?>
 				<li class="nav-header"><i class="icon-briefcase"></i><?=__('Administration')?></li>
-				<?sidebar_link(__('Advertisement'),'ad')?>
-				<?sidebar_link(__('Moderation'),'ad','moderate')?>
-				<?sidebar_link(__('Categories'),'category')?>
-				<?sidebar_link(__('Locations'),'location')?>
-				<?sidebar_link(__('Orders'), 'order')?>
-				<?sidebar_link(__('Widgets'), 'widget')?>
-				<?sidebar_link(__('Content'), 'content')?>
+				<?Theme::admin_link(__('Advertisement'),'ad')?>
+				<?Theme::admin_link(__('Moderation'),'ad','moderate')?>
+				<?Theme::admin_link(__('Categories'),'category')?>
+				<?Theme::admin_link(__('Locations'),'location')?>
+				<?Theme::admin_link(__('Orders'), 'order')?>
+				<?Theme::admin_link(__('Widgets'), 'widget')?>
+				<?Theme::admin_link(__('Content'), 'content')?>
 			<? endif ?>
 
             <?if ($user->has_access_to_any('user,role,access')):?>
                 <li class="nav-header dropdown-submenu <?=(in_array(Request::current()->controller(),array('user','role','access'))) ?'active':''?>">
                 <a tabindex="-1" href="#"><i class="icon-user"></i><?=__('Users')?></a>
                     <ul class="dropdown-menu">
-                      <?sidebar_link(__('Users'),'user')?>
-                      <?sidebar_link(__('User Roles'),'role')?>
-                      <?sidebar_link(__('Roles access'),'access')?>
+                      <?Theme::admin_link(__('Users'),'user')?>
+                      <?Theme::admin_link(__('User Roles'),'role')?>
+                      <?Theme::admin_link(__('Roles access'),'access')?>
                     </ul>
                 </li>
             <? endif ?>
@@ -30,13 +30,13 @@
 				<li class="nav-header dropdown-submenu <?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">
                 <a tabindex="-1" href="#"><i class="icon-edit"></i><?=__('Settings')?></a>
                     <ul class="dropdown-menu">
-                        <?sidebar_link(__('Themes'), 'settings','appearance')?>
+                        <?Theme::admin_link(__('Themes'), 'settings','appearance')?>
                         <?if (Theme::has_options()) 
-                            sidebar_link(__('Theme Options'), 'settings','theme')?>
-    				    <?sidebar_link(__('General'), 'settings','general')?>
-    				    <?sidebar_link(__('Payment'), 'settings','payment')?>
-    				    <?sidebar_link(__('Email'), 'settings','email')?>
-    				    <?sidebar_link(__('Advertisement'), 'settings','form')?>
+                            Theme::admin_link(__('Theme Options'), 'settings','theme')?>
+    				    <?Theme::admin_link(__('General'), 'settings','general')?>
+    				    <?Theme::admin_link(__('Payment'), 'settings','payment')?>
+    				    <?Theme::admin_link(__('Email'), 'settings','email')?>
+    				    <?Theme::admin_link(__('Advertisement'), 'settings','form')?>
                     </ul>
                 </li>
 			<?endif?>
@@ -45,13 +45,13 @@
 				<li class="nav-header dropdown-submenu <?=(Request::current()->controller()=='tools') ?'active':''?>">
                 <a tabindex="-1" href="#"><i class="icon-wrench"></i><?=__('Tools')?></a>
                     <ul class="dropdown-menu">
-                        <?sidebar_link(__('Updates'), 'tools','updates')?>
-                        <?sidebar_link(__('Sitemap'), 'tools','sitemap')?>
-                        <?sidebar_link(__('Migration'), 'tools','migration')?>
-                        <?sidebar_link(__('Optimize'), 'tools','optimize')?>
-                        <?sidebar_link(__('Cache'), 'tools','cache')?>
-                        <?sidebar_link(__('Logs'), 'tools','logs')?>
-                        <?sidebar_link(__('PHP Info'), 'tools','phpinfo')?>
+                        <?Theme::admin_link(__('Updates'), 'tools','updates')?>
+                        <?Theme::admin_link(__('Sitemap'), 'tools','sitemap')?>
+                        <?Theme::admin_link(__('Migration'), 'tools','migration')?>
+                        <?Theme::admin_link(__('Optimize'), 'tools','optimize')?>
+                        <?Theme::admin_link(__('Cache'), 'tools','cache')?>
+                        <?Theme::admin_link(__('Logs'), 'tools','logs')?>
+                        <?Theme::admin_link(__('PHP Info'), 'tools','phpinfo')?>
                     </ul>
                 </li>
 				
@@ -59,8 +59,8 @@
 
 			<? if($user->has_access_to_any('profile') AND $user->id_role!=10):?>
 				<li class="nav-header"><i class="icon-user"></i><?=__('Profile')?></li>
-				<?sidebar_link(__('Edit profile'), 'profile','edit')?>
-                <?sidebar_link(__('My Advertisements'), 'profile','ads')?>
+				<?Theme::admin_link(__('Edit profile'), 'profile','edit')?>
+                <?Theme::admin_link(__('My Advertisements'), 'profile','ads')?>
 				<li><a
 					href="<?=Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname))?>">
 					<?=__('Public profile')?>

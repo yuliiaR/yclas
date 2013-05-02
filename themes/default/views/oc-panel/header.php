@@ -20,15 +20,15 @@
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     
-                    <?=sidebar_link(__('Moderation'),'ad','moderate','oc-panel','icon-list-alt icon-white')?>
-                	<?=sidebar_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
-                    <?=sidebar_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
+                    <?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','icon-list-alt icon-white')?>
+                	<?=Theme::admin_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
+                    <?=Theme::admin_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"
             		      data-toggle="dropdown"><i class="icon-plus icon-white"></i> <?=__('New')?> <b class="caret"></b></a>
                     	<ul class="dropdown-menu">
-                            <?=sidebar_link(__('Category'),'category','create')?>
-                            <?=sidebar_link(__('Location'),'location','create')?>
-                            <?=sidebar_link(__('Page'),'content','create')?>
+                            <?=Theme::admin_link(__('Category'),'category','create')?>
+                            <?=Theme::admin_link(__('Location'),'location','create')?>
+                            <?=Theme::admin_link(__('Page'),'content','create')?>
                     		<li class="divider"></li>
                     		<li><a href="<?=Route::url('post_new')?>">
                     			<i class="icon-pencil"></i><?=__('Publish new ')?></a>	</li>
