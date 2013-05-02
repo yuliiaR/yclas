@@ -121,6 +121,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."visits` (
   `id_visit` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_ad` int(10) unsigned DEFAULT NULL,
   `id_user` int(10) unsigned DEFAULT NULL,
+  `contacted` tinyint(1) NOT NULL DEFAULT '0',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ip_address` float DEFAULT NULL,
   PRIMARY KEY (`id_visit`),
@@ -186,7 +187,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."content` (`order`, `title`, 
  * Access
  */
 mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (10, 'admin', 'Full access');");
-mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."access` (`id_access`, `id_role`, `access`) VALUES (1, 10, '*.*'),(2, 1, 'profile.*');");
+mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."access` (`id_access`, `id_role`, `access`) VALUES (1, 10, '*.*'),(2, 1, 'profile.*'),(3, 1, 'stats.user');");
 
 /**
  * Create user God/Admin 
