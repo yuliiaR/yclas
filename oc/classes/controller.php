@@ -37,6 +37,30 @@ class Controller extends Kohana_Controller
     public function before($template = NULL)
     {
         parent::before();
+
+        /**
+         * selected category
+         */
+        if($this->request->param('category',NULL) != 'all' )
+        {
+            $slug_cat   = new Model_Category();
+            $seo_cat = $slug_cat->where('seoname', '=', $this->request->param('category'))->limit(1)->find();
+            if ($seo_cat->loaded())
+                self::$category = $seo_cat;
+        }
+        
+        /**
+         * selected location
+         */
+        if($this->request->param('location',NULL) != NULL || $this->request->param('location') != 'all')
+        {
+            $slug_loc   = new Model_Location();
+            $seo_loc = $slug_loc->where('seoname', '=', $this->request->param('location'))->limit(1)->find();
+            
+            if ($seo_loc->loaded())
+                self::$location = $seo_loc;
+        }
+
         if($this->auto_render===TRUE)
         {
         	// Load the template
@@ -55,30 +79,6 @@ class Controller extends Kohana_Controller
             $this->template->styles           = array();
             $this->template->scripts          = array();
 
-            /**
-             * selected category
-             */
-            if($this->request->param('category',NULL) != 'all' )
-            {
-                $slug_cat   = new Model_Category();
-                $seo_cat = $slug_cat->where('seoname', '=', $this->request->param('category'))->limit(1)->find();
-                if ($seo_cat->loaded())
-                    self::$category = $seo_cat;
-            }
-            
-            /**
-             * selected location
-             */
-            if($this->request->param('location',NULL) != NULL || $this->request->param('location') != 'all')
-            {
-                $slug_loc   = new Model_Location();
-                $seo_loc = $slug_loc->where('seoname', '=', $this->request->param('location'))->limit(1)->find();
-                
-                if ($seo_loc->loaded())
-                    self::$location = $seo_loc;
-            }
-
-
         }
     }
     
@@ -91,8 +91,8 @@ class Controller extends Kohana_Controller
     	if ($this->auto_render === TRUE)
     	{
     		// Add defaults to template variables.
-    		$this->template->styles  = array_reverse(array_merge($this->template->styles, View::$styles));
-    		$this->template->scripts = array_reverse(array_merge_recursive(View::$scripts,$this->template->scripts));
+    		$this->template->styles  = array_reverse(array_merge($this->template->styles, Theme::$styles));
+    		$this->template->scripts = array_reverse(array_merge_recursive(Theme::$scripts,$this->template->scripts));
     		
     		$this->template->title.=' - '.core::config('general.site_name');
 

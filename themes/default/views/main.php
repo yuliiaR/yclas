@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <!--<![endif]-->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="<?=i18n::html_lang()?>"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="<?=i18n::html_lang()?>"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="<?=i18n::html_lang()?>"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="<?=i18n::html_lang()?>"> <!--<![endif]-->
 <head>
 	<meta charset="<?=Kohana::$charset?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -17,16 +17,24 @@
 
     <link rel="alternate" type="application/atom+xml" title="RSS <?=Core::config('general.site_name')?>" href="<?=Route::url('rss')?>" />
 
+    <?if (Controller::$category!==NULL AND Controller::$location!==NULL):?>
+    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Controller::$category->name?> - <?=Controller::$location->name?>"  href="<?=Route::url('rss',array('category'=>Controller::$category->seoname,'location'=>Controller::$location->seoname))?>" />
+    <?elseif (Controller::$location!==NULL):?>
+    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Controller::$location->name?>"  href="<?=Route::url('rss',array('category'=>'all','location'=>Controller::$location->seoname))?>" />
+    <?elseif (Controller::$category!==NULL):?>
+    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Controller::$category->name?>"  href="<?=Route::url('rss',array('category'=>Controller::$category->seoname))?>" />
+    <?endif?>     
+        
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
     <!--[if lt IE 9]>
       <?=HTML::script('http://html5shim.googlecode.com/svn/trunk/html5.js')?>
     <![endif]-->
     
-    <?=View::styles($styles)?>	
-	<?=View::scripts($scripts)?>
+    <?=Theme::styles($styles)?>	
+	<?=Theme::scripts($scripts)?>
 
-    <link rel="shortcut icon" href="<?=View::public_path('img/favicon.ico')?>">
+    <link rel="shortcut icon" href="<?=Theme::public_path('img/favicon.ico')?>">
 
   </head>
 
@@ -49,7 +57,7 @@
     </div><!--/.fluid-container-->
 
 
-	<?=View::scripts($scripts,'footer')?>
+	<?=Theme::scripts($scripts,'footer')?>
 	
     <?if ( core::config('general.analytics')!='' AND Kohana::$environment === Kohana::PRODUCTION ): ?>
     <script>

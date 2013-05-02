@@ -74,6 +74,15 @@ class I18n extends Kohana_I18n {
         }
         
     }    
+
+    /**
+     * get the language used in the HTML
+     * @return string 
+     */
+    public static function html_lang()
+    {
+        return substr(core::config('i18n.locale'),0,2);
+    }
     
     /**
      * 

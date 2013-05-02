@@ -136,4 +136,49 @@ class Form extends Kohana_Form {
 		return CSRF::form($namespace);		
 	}
 
+
+
+    /**
+     * get the html tag code for a field
+     * @param  string $name input name
+     * @param  array  $options as defined
+     * @param  mixed $value value of the field, optional.
+     * @return string        HTML
+     */
+    public static function form_tag($name, array $options, $value = NULL)
+    {
+        $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label', 'for'=>$name));
+        //$out = '';
+        if ($value === NULL)
+            $value = (isset($options['default'])) ? $options['default']:NULL;
+
+
+        $attributes = array('placeholder' => (isset($options['label'])) ? $options['label']:$name, 
+                            'class'       => 'input-large', 
+                            'id'          => $name, 
+                            (isset($options['required']))?'required':''
+                    );
+
+        switch ($options['display']) 
+        {
+            case 'select':
+                $input = FORM::select($name, $options['options'], $value);
+                break;
+            case 'textarea':
+                $input = FORM::textarea($name, $value, $attributes);
+                break;
+            case 'text':
+            default:
+                $input = FORM::input($name, $value, $attributes);
+                break;
+        }
+
+        $out = $label.'<div class="controls">'.$input.'</div>';
+
+        
+
+        return $out;
+
+    }
+
 } // End TM_Form

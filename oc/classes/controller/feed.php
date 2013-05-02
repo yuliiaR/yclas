@@ -1,9 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Feed extends Kohana_Controller {
+class Controller_Feed extends Controller {
 
 	public function action_index()
 	{
+        $this->auto_render = FALSE;
+
 		$info = array(
 						'title' 	=> 'RSS '.Core::config('general.site_name'),
 						'pubDate' => date("D, d M Y H:i:s T"),
@@ -20,10 +22,22 @@ class Controller_Feed extends Kohana_Controller {
                 ->join(array('categories', 'c'),'INNER')
                 ->on('a.id_category','=','c.id_category')
                 ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
-                ->limit(Core::config('general.feed_elements'))
-                ->as_object()
-                ->cached()
-                ->execute();
+                ->limit(Core::config('general.feed_elements'));
+
+        //filter by category aor location
+        if (Controller::$category!==NULL)
+        {
+            if (Controller::$category->loaded())
+                $ads->where('a.id_category','=',Controller::$category->id_category);
+        }
+
+        if (Controller::$location!==NULL)
+        {
+            if (Controller::$location->loaded())
+                $ads->where('a.id_location','=',Controller::$location->id_location);
+        }
+
+        $ads = $ads->as_object()->cached()->execute();
 
         foreach($ads as $a)
         {
@@ -44,6 +58,10 @@ class Controller_Feed extends Kohana_Controller {
 	
 	}
 
+    /**
+     * after does nothing since we send an XML
+     */
+    public function after(){}
 
 
 } // End feed

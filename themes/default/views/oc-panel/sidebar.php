@@ -32,6 +32,9 @@
     				    <?sidebar_link(__('Payment'), 'settings','payment')?>
     				    <?sidebar_link(__('Email'), 'settings','email')?>
     				    <?sidebar_link(__('Advertisement'), 'settings','form')?>
+                        <?sidebar_link(__('Appearance'), 'settings','appearance')?>
+                        <?if (Theme::has_options()) 
+                            sidebar_link(__('Theme Options'), 'settings','theme')?>
                     </ul>
                 </li>
 			<?endif?>
@@ -63,7 +66,7 @@
 				</li>
 			<?endif?>
 
-			<?if (core::config('theme.premium')!=1):?>
+			<?if (Theme::get('premium')!==1):?>
 			<li class="divider"></li>
 			<li class="nav-header">Open Classifieds</li>
 			<li><a href="http://open-classifieds.com/themes/"><?=__('Themes')?></a></li>

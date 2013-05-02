@@ -238,14 +238,24 @@ function gettext_init($locale,$domain = 'messages',$charset = 'utf8')
  */
 function hostingAd()
 {
-    if (SAMBA){
+
     ?>
-    <div class="alert alert-info">Get 100% compatible professional hosting + free domain + installation + 1 premium for less than $5 month.
-	    <a class="btn btn-info" href="http://open-classifieds.com/hosting/">
-	        <i class="icon-ok icon-white"></i> Sign now!
-	    </a>
+    <div class="hero-unit">
+        <h2>Ups! You need a compatible Hosting</h2>
+        <p class="text-error">This is an ugly error message since your Hosting seems to be not compatible.<p>
+        <p>We have great deals, probably cheaper than what you have now, all our offers include: 
+            <ul>
+                <li>100% Compatible High Speed Hosting</li>
+                <li>1 Premium Theme, of your choice worth $99</li>
+                <li>Free Domain name, worth $10</li>
+                <li>Open Classifieds Installation, worth $25</li>
+                <li>Professional Support, worth $99</li>
+                <li>Only from $5.95 per month</li>
+            <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/installation/">
+                <i class=" icon-shopping-cart icon-white"></i> Get Hosting!</a>
+        </p>
     </div>
-    <?php }
+    <?
 }
 
 
@@ -411,6 +421,3 @@ function generate_password ($length = 16)
 
     return $password;
 }
-
-
-define('SAMBA',TRUE);

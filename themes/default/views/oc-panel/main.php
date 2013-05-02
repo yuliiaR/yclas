@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="<?=substr(core::config('i18n.locale'),0,2)?>"> <!--<![endif]-->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="<?=i18n::html_lang()?>"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="<?=i18n::html_lang()?>"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="<?=i18n::html_lang()?>"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="<?=i18n::html_lang()?>"> <!--<![endif]-->
 <head>
 	<meta charset="<?=Kohana::$charset?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,8 +20,9 @@
       <?=HTML::script('http://html5shim.googlecode.com/svn/trunk/html5.js')?>
     <![endif]-->
     
-    <?=View::styles($styles)?>	
-	<?=View::scripts($scripts)?>
+    <?=Theme::styles($styles)?>	
+	<?=Theme::scripts($scripts)?>
+    <link rel="shortcut icon" href="<?=Theme::public_path('img/favicon.ico')?>">
 
 	<style type="text/css">
       body {
@@ -57,7 +58,7 @@
 		<?=$footer?>
     </div><!--/.fluid-container-->
 
-	<?=View::scripts($scripts,'footer')?>
+	<?=Theme::scripts($scripts,'footer')?>
 
 	<!--[if lt IE 7 ]>
 		<?=HTML::script('http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js')?>

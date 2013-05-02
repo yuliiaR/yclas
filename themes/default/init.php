@@ -3,20 +3,52 @@
 /**
  * placeholders & widgets for this theme
  */
-widgets::$theme_placeholders	= array('footer', 'sidebar');
-widgets::$theme_widgets 		= array();
+Widgets::$theme_placeholders	= array('footer', 'sidebar');
+Widgets::$theme_widgets 		= array();
 
 //twitter theme initialization
-View::$styles	            = array('css/styles.css' => 'screen',
+Theme::$styles	            = array('css/styles.css' => 'screen',
 									'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulean/bootstrap.min.css' => 'screen',
 									'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css' => 'screen',
 									);
 
-View::$scripts['header']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
+Theme::$scripts['header']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
 									'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js',
 									);
 
-// View::$scripts['footer']	= array('js/theme.init.js',);
+// Theme::$scripts['footer']	= array('js/theme.init.js',);
+
+
+/**
+ * custom options for the theme
+ * @var array
+ */
+Theme::$options = array(    'rss_limit' => array(   'type'      => 'numeric',
+                                                        'display'   => 'select',
+                                                        'label'     => __('Number items to display'),
+                                                        'options'   => array_combine(range(1,50),range(1,50)), 
+                                                        'default'   => 5,
+                                                        'required'  => TRUE),
+
+                                'rss_expire' => array(  'type'      => 'numeric',
+                                                        'display'   => 'text',
+                                                        'label'     => __('How often we refresh the RSS, in seconds'),
+                                                        'default'   => 86400,
+                                                        'required'  => TRUE),
+
+                                'rss_url'  => array(    'type'      => 'uri',
+                                                        'display'   => 'text',
+                                                        'label'     => __('RSS url address'),
+                                                        'default'   => 'http://feeds.feedburner.com/OpenClassifieds',
+                                                        'required'  => TRUE),
+
+                                'rss_title'  => array(  'type'      => 'text',
+                                                        'display'   => 'text',
+                                                        'label'     => __('RSS title displayed'),
+                                                        'default'   => 'Open Classifieds',
+                                                        'required'  => FALSE),
+                                );
+
 
 /**
  * custom error alerts
