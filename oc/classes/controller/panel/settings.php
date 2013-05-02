@@ -23,6 +23,7 @@ class Controller_Panel_Settings extends Auth_Controller {
 	public function action_form()
     {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Form')));
+        $this->template->title = __('Form');
        
         // all form config values
         $advertisement = new Model_Config();
@@ -61,6 +62,7 @@ class Controller_Panel_Settings extends Auth_Controller {
     public function action_email()
     {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Email')));
+        $this->template->title = __('Email');
 
         // all form config values
         $emailconf = new Model_Config();
@@ -102,6 +104,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('General')));
+        $this->template->title = __('General');
 
         // all form config values
         $generalconfig = new Model_Config();
@@ -172,6 +175,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Payments')));
+        $this->template->title = __('Payments');
 
         // all form config values
         $paymentconf = new Model_Config();
@@ -222,7 +226,8 @@ class Controller_Panel_Settings extends Auth_Controller {
         // validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Theme Options')));       
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Theme Options')));     
+        $this->template->title = __('Theme Options');  
 
         // save only changed values
         if($this->request->post())
@@ -254,7 +259,8 @@ class Controller_Panel_Settings extends Auth_Controller {
         // validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Appearance Options')));       
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Appearance')));  
+        $this->template->title = __('Appearance');     
 
         //getting the themes
         $themes = Theme::get_installed_themes();

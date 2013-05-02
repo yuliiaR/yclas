@@ -45,7 +45,7 @@ Market Themes @todo
 <div class="row-fluid">
 <ul class="thumbnails">
               
-<?for ($i=0; $i < 13; $i++):?>
+<?for ($i=0; $i < 5; $i++):?>
     <?if ($i%3==0):?></ul></div><div class="row-fluid"><ul class="thumbnails"><?endif?>
     
     <li class="span4">
