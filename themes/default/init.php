@@ -1,4 +1,13 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
+/**
+  * Theme Name: Ocean Free
+  * Description: Clean free theme that includes full admin. It has publicity. Do not delete this theme, all the views depend in this theme.
+  * Tags: HTML5, Admin, Free, Bootstrap
+  * Version: 1.1.
+  * Author: Chema <chema@garridodiaz.com>
+  * License: GPL v3
+  */
+
 
 /**
  * placeholders & widgets for this theme

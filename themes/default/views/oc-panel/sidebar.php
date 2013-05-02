@@ -24,17 +24,19 @@
                 </li>
             <? endif ?>
 
+            
+                        
 			<?if ($user->has_access_to_any('settings,config')):?>
 				<li class="nav-header dropdown-submenu <?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">
                 <a tabindex="-1" href="#"><i class="icon-edit"></i><?=__('Settings')?></a>
                     <ul class="dropdown-menu">
+                        <?sidebar_link(__('Themes'), 'settings','appearance')?>
+                        <?if (Theme::has_options()) 
+                            sidebar_link(__('Theme Options'), 'settings','theme')?>
     				    <?sidebar_link(__('General'), 'settings','general')?>
     				    <?sidebar_link(__('Payment'), 'settings','payment')?>
     				    <?sidebar_link(__('Email'), 'settings','email')?>
     				    <?sidebar_link(__('Advertisement'), 'settings','form')?>
-                        <?sidebar_link(__('Appearance'), 'settings','appearance')?>
-                        <?if (Theme::has_options()) 
-                            sidebar_link(__('Theme Options'), 'settings','theme')?>
                     </ul>
                 </li>
 			<?endif?>

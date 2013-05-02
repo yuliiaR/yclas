@@ -167,6 +167,9 @@ class Form extends Kohana_Form {
             case 'textarea':
                 $input = FORM::textarea($name, $value, $attributes);
                 break;
+            case 'hidden':
+                $input = FORM::hidden($name, $value, $attributes);
+                break;
             case 'text':
             default:
                 $input = FORM::input($name, $value, $attributes);

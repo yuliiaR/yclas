@@ -257,18 +257,14 @@ class Controller_Panel_Settings extends Auth_Controller {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Appearance Options')));       
 
         //getting the themes
-        //$themes = Theme::get_installed_themes();
-        $themes = array();
+        $themes = Theme::get_installed_themes();
+        
         // @todo future from RSS Theme::get_market_themes();
 
         // save only changed values
         if($this->request->param('id'))
         {
-            d($this->request->param('id'));
-
-            //we check the theme exists and it's correct
-            //it is so save in conifg
-            //delete cache
+            Theme::set_theme($this->request->param('id'));
             
             Alert::set(Alert::SUCCESS, __('Success, Appearance configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'appearance')));

@@ -72,15 +72,19 @@ class Theme {
      *
      * given a file returns it's public path relative to the selected theme
      * @param string $file
+     * @param string $theme optional
      * @return string
      */
-    public static function public_path($file)
+    public static function public_path($file, $theme = NULL)
     {
+        if ($theme === NULL)
+            $theme = self::$theme;
+
     	//not external file we need the public link
     	if (!Valid::url($file))
     	{
     		//@todo add a hook here in case we want to use a CDN
-    		return URL::base('http').'themes'.DIRECTORY_SEPARATOR.self::$theme.DIRECTORY_SEPARATOR.$file;
+    		return URL::base('http').'themes'.DIRECTORY_SEPARATOR.$theme.DIRECTORY_SEPARATOR.$file;
     	}
     	 
     	//seems an external url
@@ -94,11 +98,22 @@ class Theme {
      */
     public static function theme_folder($theme = 'default')
     {
-        return DOCROOT.'themes'.DIRECTORY_SEPARATOR.$theme.DIRECTORY_SEPARATOR.'init.php';
+        return DOCROOT.'themes'.DIRECTORY_SEPARATOR.$theme;
     }
 
     /**
-     * detect if browser is mobile
+     * get the full path folder for the theme init.php file
+     * @param  string $theme 
+     * @return string        
+     */
+    public static function theme_init_path($theme = 'default')
+    {
+        return self::theme_folder($theme).DIRECTORY_SEPARATOR.'init.php';
+    }
+
+
+    /**
+     * detect if visitor browser is mobile
      * @return boolean
      */
     public static function is_mobile()
@@ -145,44 +160,148 @@ class Theme {
     public static function initialize($theme = 'default')
     {
     	/**
+         * @todo crashes on theme change set_theme /oc-panel/settings/appearance
     	 * Get the theme
     	 * 1st by get
     	 * 2nd by cookie
     	 * 3rd mobile (only if mobile is ON)
     	 * 4th the one seted in config
     	 */
-        if (Core::get('theme', NULL)!==NULL)
-        {
-            if (file_exists(self::theme_folder(Core::get('theme'))))
-                $theme = Core::get('theme');
-        }
-        elseif (Cookie::get('theme',NULL)!==NULL)
-        {
-            if (file_exists(self::theme_folder(Cookie::get('theme'))))
-                $theme = Cookie::get('theme');
-        }
-        elseif(self::is_mobile())
-        {
-            if (file_exists(self::theme_folder('mobile')))
-                $theme = 'mobile';
-        }
-        else
-        {
-            if (file_exists(self::theme_folder(Core::config('appearance.theme'))))
+        // if (Core::get('theme', NULL)!==NULL)
+        // {
+        //     if (file_exists(self::theme_init_path(Core::get('theme'))))
+        //         $theme = Core::get('theme');
+        // }
+        // elseif (Cookie::get('theme',NULL)!==NULL)
+        // {
+        //     if (file_exists(self::theme_init_path(Cookie::get('theme'))))
+        //         $theme = Cookie::get('theme');
+        // }
+        // elseif(self::is_mobile())
+        // {
+        //     if (file_exists(self::theme_init_path('mobile')))
+        //         $theme = 'mobile';
+        // }
+        // else
+        // {
+            if (file_exists(self::theme_init_path(Core::config('appearance.theme'))))
                 $theme = Core::config('appearance.theme');
-        }
+        //  }
 
         //we save the cookie for next time
         Cookie::set('theme', $theme, Core::config('auth.lifetime'));
 
     	//load theme init.php like in module, to load default JS and CSS for example
     	self::$theme = $theme;
-    	Kohana::load(self::theme_folder(self::$theme));
+    	Kohana::load(self::theme_init_path(self::$theme));
     	
         self::load();
             	
     }
 
+    /**
+     * sets the theme we need to use in front
+     * @param string $theme 
+     */
+    public static function set_theme($theme)
+    {
+        //we check the theme exists and it's correct
+        if (!file_exists($file = self::theme_init_path($theme)))
+            return FALSE;
+
+        // save theme to DB
+        $conf = new Model_Config();
+        $conf->where('group_name','=','appearance')
+                    ->where('config_key','=','theme')
+                    ->limit(1)->find();
+
+        if (!$conf->loaded())
+        {
+            $conf->group_name = 'appearance';
+            $conf->config_key = 'theme';
+        }
+        
+        $conf->config_value = $theme;
+
+        try 
+        {
+            $conf->save();
+            return TRUE;
+        } 
+        catch (Exception $e) 
+        {
+            throw new HTTP_Exception_500();     
+        }   
+
+    }
+    
+    /**
+     * Read the folder /themes/ for themes
+     */
+    public static function get_installed_themes()
+    {
+        //read folders in theme folder
+        $folder = DOCROOT.'themes';
+
+        $themes = array();
+
+        //check directory for themes
+        foreach (new DirectoryIterator($folder) as $file) 
+        {
+            if($file->isDir() AND !$file->isDot())
+            {
+                if ( ($info = self::get_theme_info($file->getFilename())) !==FALSE)
+                    $themes[$file->getFilename()] = $info;
+            }
+        }
+
+        return $themes;
+    }
+
+    /**
+     * returns the info regarding to the theme stores at init.php
+     * @param  string $theme theme to search info
+     * @return array        
+     */
+    public static function get_theme_info($theme = NULL)
+    {
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        if (!file_exists($file = self::theme_init_path($theme)))
+            return FALSE;
+
+        return Core::get_file_data($file , array(
+            'Name'        => 'Theme Name',
+            'ThemeURI'    => 'Theme URI',
+            'ThemeDemo'   => 'Theme Demo',
+            'Description' => 'Description',
+            'Author'      => 'Author',
+            'AuthorURI'   => 'Author URI',
+            'Version'     => 'Version',
+            'License'     => 'License',
+            'Tags'        => 'Tags',
+        )); 
+    }
+
+    /**
+     * returns the screenshot
+     * @param  string $theme theme to search info
+     * @return array        
+     */
+    public static function get_theme_screenshot($theme = NULL)
+    {
+
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        $file = self::theme_folder($theme).DIRECTORY_SEPARATOR.'screenshot.png';
+
+        if (file_exists($file))
+            return self::public_path('screenshot.png',$theme);
+
+        return FALSE;
+    }
 
 
 
@@ -282,12 +401,15 @@ class Theme {
     /**
      * get from data array
      * @param  string $name key
+     * @param mixed default value in case is not set
      * @return mixed       
      */
-    public static function get($name)
+    public static function get($name, $default = NULL)
     {
-        return (array_key_exists($name, self::$data)) ? self::$data[$name] : NULL;
+        return (array_key_exists($name, self::$data)) ? self::$data[$name] : $default;
     }
-    
+
+
+   
 
 }
