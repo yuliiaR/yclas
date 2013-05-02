@@ -38,7 +38,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target=".subnav" data-offset="50">
   
 	<?=$header?>
     <div class="container">

@@ -26,9 +26,9 @@
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"
             		      data-toggle="dropdown"><i class="icon-plus icon-white"></i> <?=__('New')?> <b class="caret"></b></a>
                     	<ul class="dropdown-menu">
-                            <?=sidebar_link(__('Category'),'category')?>
-                            <?=sidebar_link(__('Location'),'location')?>
-                            <?=sidebar_link(__('Page'),'content')?>
+                            <?=sidebar_link(__('Category'),'category','create')?>
+                            <?=sidebar_link(__('Location'),'location','create')?>
+                            <?=sidebar_link(__('Page'),'content','create')?>
                     		<li class="divider"></li>
                     		<li><a href="<?=Route::url('post_new')?>">
                     			<i class="icon-pencil"></i><?=__('Publish new ')?></a>	</li>

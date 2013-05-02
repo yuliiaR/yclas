@@ -16,9 +16,9 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
 Widgets::$theme_widgets 		= array();
 
 //twitter theme initialization
-Theme::$styles	            = array('css/styles.css' => 'screen',
-									'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulean/bootstrap.min.css' => 'screen',
+Theme::$styles	            = array('css/styles.css' => 'screen',									
 									'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css' => 'screen',
+                                    'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulean/bootstrap.min.css' => 'screen',
 									);
 
 Theme::$scripts['header']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
