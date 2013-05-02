@@ -12,6 +12,11 @@
 
 class Controller_Payment_Paypal extends Controller{
 	
+	public function after()
+    {
+    	
+    }
+
 	public function action_ipn()
 	{
         //todo delete
@@ -119,8 +124,8 @@ class Controller_Payment_Paypal extends Controller{
 	                             'paypal_account'    	=> core::config('paypal.paypal_account'),
 	                             'paypal_currency'    	=> core::config('paypal.paypal_currency'));
 
-			
-			$this->template->content = View::factory('paypal', $paypal_data);
+			$this->before('paypal');
+			// $this->template->content = View::factory('paypal', $paypal_data);
 			$this->response->body($this->template->render());
 		}
 		else

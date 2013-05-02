@@ -215,6 +215,7 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_view()
 	{
+		
 		$this->template->styles 			 = array('css/bootstrap-image-gallery.css' => 'screen',);
 		$this->template->scripts['footer'][] = 'js/load-image.min.js';
 		$this->template->scripts['footer'][] = 'js/bootstrap-image-gallery.min.js';
@@ -228,8 +229,8 @@ class Controller_Ad extends Controller {
 			$ad->where('seotitle','=', $seotitle)
 				 ->limit(1)->find();
 			
-			$cat = ORM::factory('category', $ad->id_category);
-			//$loc = ORM::factory('location', $ad->id_location);
+			$cat = new Model_Category($ad->id_category);
+			$loc = new Model_Location($ad->id_location);
 
 			if ($ad->loaded())
 			{
@@ -242,7 +243,22 @@ class Controller_Ad extends Controller {
 		       }
 				Breadcrumbs::add(Breadcrumb::factory()->set_title($ad->title));   	
 
-                $this->template->title = $ad->title. ' - '.$cat->name;
+				// seo title and descr
+				
+				$parent_categ = new Model_Category($cat->id_category_parent);
+                $parent_locat = new Model_Category($loc->id_location_parent);
+                if($parent_categ->loaded() AND ($cat->id_category_parent != 1))
+                	$parent_categ_concat = '-'.$parent_categ->seoname;
+                else
+                	$parent_categ_concat = NULL;
+                if($parent_locat->loaded() AND ($loc->id_location_parent != 1))
+                	$parent_locat_concat = '-'.$parent_locat->seoname;
+                else 
+                	$parent_locat_concat = NULL;
+
+               
+              
+           		$this->template->title = $ad->title.$parent_categ_concat.'-'.$cat->seoname.$parent_locat_concat.'-'.$loc->seoname ;
                 $this->template->meta_description = text::removebbcode($ad->description);
 
 				$permission = TRUE; //permission to access advert. 
