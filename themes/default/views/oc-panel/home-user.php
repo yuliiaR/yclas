@@ -12,7 +12,7 @@
 
 
 
-<?if (Theme::get('premium')!==1):?>
+<?if (Theme::get('premium')!=1):?>
 <script type="text/javascript">
 if (typeof geoip_city!="function")document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://j.maxmind.com/app/geoip.js\"></scr"+"ipt>");
 document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://api.adserum.com/sync.js?a=6&f=8&w=728&h=90\"></scr"+"ipt>");

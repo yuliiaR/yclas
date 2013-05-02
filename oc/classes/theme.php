@@ -19,7 +19,7 @@ class Theme {
     
     
     //@todo merge and minify
-    public static function scripts($scripts,$type='header')
+    public static function scripts($scripts, $type = 'header' , $theme = NULL)
     {
     	$ret = '';
     
@@ -27,7 +27,7 @@ class Theme {
     	{
     		foreach($scripts[$type] as $file)
     		{
-    			$file = self::public_path($file);
+    			$file = self::public_path($file, $theme);
     			$ret .= HTML::script($file, NULL, TRUE);
     		}
     	}
@@ -35,12 +35,12 @@ class Theme {
     }
     
     //@todo merge and minify, vendor
-    public static function styles($styles)
+    public static function styles($styles , $theme = NULL)
     {
     	$ret = '';
     	foreach($styles as $file => $type)
     	{
-    		$file = self::public_path($file);
+    		$file = self::public_path($file, $theme);
     		$ret .= HTML::style($file, array('media' => $type));
     	}
     	return $ret;
@@ -357,6 +357,11 @@ class Theme {
      */
     public static $data = array();
 
+    /**
+     * to know if we loaded...
+     * @var bool
+     */
+    public static $loaded = FALSE;
 
     /**
      * loads the theme data from the config
@@ -364,24 +369,29 @@ class Theme {
      */
     public static function load()
     {   
-        //search for theme config
-        $theme_data = core::config('theme.'.self::$theme);
-
-        //found and with data!
-        if($theme_data!==NULL AND !empty($theme_data) AND $theme_data !== '[]')
-        { 
-            self::$data = json_decode($theme_data, TRUE);
-        }
-        ///save empty with default values
-        else
+        if (!self::$loaded)
         {
-            //we set the array with empty values or the default in the option attributes
-            foreach (self::$options as $field => $attributes) 
-            {
-                self::$data[$field] = (isset($attributes['default']))?$attributes['default']:'';
+            //search for theme config
+            $theme_data = core::config('theme.'.self::$theme);
+
+            //found and with data!
+            if($theme_data!==NULL AND !empty($theme_data) AND $theme_data !== '[]')
+            { 
+                self::$data = json_decode($theme_data, TRUE);
             }
-            self::save();
+            ///save empty with default values
+            else
+            {
+                //we set the array with empty values or the default in the option attributes
+                foreach (self::$options as $field => $attributes) 
+                {
+                    self::$data[$field] = (isset($attributes['default']))?$attributes['default']:'';
+                }
+                self::save();
+            }
+            self::$loaded = TRUE;
         }
+        
 
     }
 

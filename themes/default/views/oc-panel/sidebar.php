@@ -68,7 +68,7 @@
 				</li>
 			<?endif?>
 
-			<?if (Theme::get('premium')!==1):?>
+			<?if (Theme::get('premium')!=1):?>
 			<li class="divider"></li>
 			<li class="nav-header">Open Classifieds</li>
 			<li><a href="http://open-classifieds.com/themes/"><?=__('Themes')?></a></li>

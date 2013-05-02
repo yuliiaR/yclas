@@ -8,7 +8,7 @@
         </div>
     </div>
 <?endforeach?>
-<?if (Theme::get('premium')!==1):?>
+<?if (Theme::get('premium')!=1):?>
 <div class="span3">
     <script type="text/javascript">if (typeof geoip_city!="function")document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://j.maxmind.com/app/geoip.js\"></scr"+"ipt>");
         document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://api.adserum.com/sync.js?a=6&f=3&w=200&h=200\"></scr"+"ipt>");

@@ -27,11 +27,10 @@ Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulea
                         'css/bootstrap-image-gallery.css' => 'screen',
         				);
 
-Theme::$scripts['header']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
-									'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js',
-									);
 
-Theme::$scripts['footer']	= array('js/jquery.sceditor.min.js',
+Theme::$scripts['footer']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
+                                    'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js',
+                                    'js/jquery.sceditor.min.js',
                                     'js/chosen.jquery.min.js',
                                     'js/jqBootstrapValidation.js',
                                     'js/load-image.min.js',
