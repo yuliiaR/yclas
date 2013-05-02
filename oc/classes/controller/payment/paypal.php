@@ -12,6 +12,12 @@
 
 class Controller_Payment_Paypal extends Controller{
 	
+
+	public function after()
+	{
+
+	}
+	
 	public function action_ipn()
 	{
         //todo delete
@@ -108,6 +114,15 @@ class Controller_Payment_Paypal extends Controller{
 
         if ($order->loaded())
         {
+        	// dependant on product we have different names
+        	if($order->id_product == Paypal::to_featured)
+        		$item_name = __('Advertisement to top');
+        	else if ($order->id_product == Paypal::to_top)
+        		$item_name = __('Advertisement to featured');
+        	else
+        		$item_name = $order->description.__(' category');
+
+
 
 			$paypal_url = (Core::config('paypal.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
 
@@ -117,11 +132,14 @@ class Controller_Payment_Paypal extends Controller{
 	                             'site_url'            	=> URL::base(TRUE),
 	                             'paypal_url'        	=> $paypal_url,
 	                             'paypal_account'    	=> core::config('paypal.paypal_account'),
-	                             'paypal_currency'    	=> core::config('paypal.paypal_currency'));
+	                             'paypal_currency'    	=> core::config('paypal.paypal_currency'),
+	                             'item_name'			=> $item_name);
 
+			// $this->before('paypal');
 			
-			$this->template->content = View::factory('paypal', $paypal_data);
-			$this->response->body($this->template->render());
+			$this->template = View::factory('paypal', $paypal_data);
+            $this->response->body($this->template->render());
+			
 		}
 		else
 		{

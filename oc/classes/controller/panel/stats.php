@@ -10,7 +10,10 @@
  */
 class Controller_Panel_Stats extends Auth_Controller {
 
-   
+   public function action_user()
+   {
+    d('');
+   }
 
 
     public function action_index()

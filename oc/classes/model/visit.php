@@ -150,5 +150,21 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
+  'contacted' => 
+  array (
+    'type' => 'int',
+    'min' => '-128',
+    'max' => '127',
+    'column_name' => 'contacted',
+    'column_default' => '0',
+    'data_type' => 'tinyint',
+    'is_nullable' => false,
+    'ordinal_position' => 18,
+    'display' => '1',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
 );
 } // END Model_Visit
