@@ -62,7 +62,7 @@
 				<?Theme::admin_link(__('Edit profile'), 'profile','edit')?>
                 <?Theme::admin_link(__('My Advertisements'), 'profile','ads')?>
 				<li><a
-					href="<?=Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname))?>">
+					href="<?=Route::url('profile',array('seoname'=>$user->seoname))?>">
 					<?=__('Public profile')?>
 				</a>
 				</li>
