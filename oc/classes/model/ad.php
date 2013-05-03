@@ -154,11 +154,11 @@ class Model_Ad extends ORM {
      *  
      *  @param $id_ad (model_ad), $id_user(model_user) 
      */
-    public function count_ad_hit($id_ad, $id_user){
+    public function count_ad_hit($id_ad, $visitor_id, $ip_address){
         
         //inser new table, as a hit
-        $new_hit = DB::insert('visits', array('id_ad', 'id_user'))
-                                ->values(array($id_ad, $id_user))
+        $new_hit = DB::insert('visits', array('id_ad', 'id_user', 'ip_address'))
+                                ->values(array($id_ad, $visitor_id, $ip_address))
                                 ->execute();
 
     }

@@ -242,7 +242,7 @@ class Controller_Ad extends Controller {
 				// seo title and descr
 				
 				$parent_categ = new Model_Category($cat->id_category_parent);
-                $parent_locat = new Model_Category($loc->id_location_parent);
+                $parent_locat = new Model_Location($loc->id_location_parent);
                 if($parent_categ->loaded() AND ($cat->id_category_parent != 1))
                 	$parent_categ_concat = '-'.$parent_categ->seoname;
                 else
@@ -260,7 +260,13 @@ class Controller_Ad extends Controller {
 				$permission = TRUE; //permission to access advert. 
 				if(!Auth::instance()->logged_in() || Auth::instance()->get_user()->id_role != 10)
 				{
-					$do_hit = $ad->count_ad_hit($ad->id_ad, $ad->id_user); // hits counter
+					
+					if(!Auth::instance()->logged_in())
+						$visitor_id = NULL;
+					else
+						$visitor_id = Auth::instance()->get_user()->id_user;
+					$do_hit = $ad->count_ad_hit($ad->id_ad, $visitor_id, ip2long(Request::$client_ip)); // hits counter
+					
 					$permission = FALSE;
 					$user = NULL;
 					

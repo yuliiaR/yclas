@@ -59,6 +59,22 @@ class Controller_Contact extends Controller {
                 $ret = $user->email('user.contact',array('[EMAIL.BODY]'		=>core::post('message'),
                     									 '[EMAIL.SENDER]'	=>core::post('name'),
                     									 '[EMAIL.FROM]'		=>core::post('email_from')));
+
+                // we are updating field of visit table (contact)
+                $visit_contact_obj = new Model_Visit();
+
+                $visit_contact_obj->where('id_ad', '=', $this->request->param('id'))
+                				  ->order_by('created', 'desc')
+                				  ->limit(1)->find();
+                								  
+                try {
+                	$visit_contact_obj->contacted = 1;
+                	$visit_contact_obj->save();
+                } catch (Exception $e) {
+                	//throw 500
+					throw new HTTP_Exception_500($e->getMessage());
+                }
+                Request::current()->redirect(Route::url('default'));
 			}
 			else
 			{
