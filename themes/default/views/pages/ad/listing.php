@@ -43,7 +43,7 @@
 			    <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?=_e('Read more')?></a>
 		    	<?if ($user !== NULL && $user->id_role == 10):?>
 		    		<br />
-				<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))?>"><?= _e("Edit");?></a> |
+				<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><?= _e("Edit");?></a> |
 				<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Deactivate?')?>');"><?= _e("Deactivate");?>
 				</a> |
@@ -56,7 +56,7 @@
 
 				<?elseif($user !== NULL && $user->id_user == $ad->id_user):?>
 					<br/>
-				<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> |
+				<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> |
 				<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Deactivate?')?>');"><?= _e("Deactivate");?>
 				</a>

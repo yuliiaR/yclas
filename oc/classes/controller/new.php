@@ -218,7 +218,7 @@
 					else if($moderation == 4)
 					{
 						//we get the QL, and force the regen of token for security
-                    	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
+                    	$url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
                                                           	  'action'    => 'update',
                                                           	  'id'		  => $_new_ad->id_ad),TRUE);
 
@@ -264,14 +264,14 @@
 		        	{
 		        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures, please check format'));
 
-		        		$this->request->redirect(Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$_new_ad->id_ad)));
+		        		$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$_new_ad->id_ad)));
 		        	}
 
 		        	try {
 		        		$_new_ad->save();
 		        	} catch (Exception $e) {
 		        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures'));
-		        		$this->request->redirect(Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad)));
+		        		$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad)));
 		        	}
 	    		}
 

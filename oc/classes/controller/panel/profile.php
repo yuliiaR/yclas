@@ -277,4 +277,282 @@ class Controller_Panel_Profile extends Auth_Controller {
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 	}
 
+	/**
+	 * Edit advertisement: Update
+	 *
+	 * All post fields are validated
+	 */
+	public function action_update()
+	{
+		//template header
+		$this->template->title           	= __('Edit advertisement');
+		$this->template->meta_description	= __('Edit advertisement');
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+		 	
+
+		$form = new Model_Ad($this->request->param('id'));
+		
+		$cat = new Model_Category();
+		$cat_list = $cat->find_all();
+		
+		$loc = $location = new Model_Location();
+		$loc = $loc->find_all();
+
+	
+		if(Auth::instance()->logged_in() && Auth::instance()->get_user()->id_user == $form->id_user 
+			|| Auth::instance()->logged_in() && Auth::instance()->get_user()->id_role == 10)
+		{
+			$extra_payment = core::config('payment');
+			$count = 0;
+			if($form->has_images == 1)
+			{
+				//get path of image
+				$current_path = $form->gen_img_path($form->id_ad, $form->created);
+				if (is_dir($current_path)){ // sanity check
+					$handle = opendir($current_path);
+					
+					// ignore . and .. in folder
+					while(FALSE !== ($entry = readdir($handle)))
+					{
+						if($entry != '.' && $entry != '..') $count++;
+					}
+					
+					$num_images = core::config('advertisement.num_images'); // get limit 
+					
+					// count them and if 0 set has_images to 0, send param img_permission to alow uploading more
+					if ($count == 0) 
+					{
+						$form->has_images = 0;
+						try {
+							$form->save();
+							$img_permission = TRUE;
+						} catch (Exception $e) {
+							//throw 500
+ 			 				throw new HTTP_Exception_500($e->getMessage());
+						}
+					}
+					elseif($count < $num_images*2) $img_permission = TRUE;
+					else
+						$img_permission = FALSE; // doesnt allow uploading more images 
+				}
+				else // case when we have images 
+				{
+					$img_permission = FALSE;
+					$form->has_images = 0;
+					try {
+						$form->save();
+						$img_permission = TRUE;
+					} catch (Exception $e) {
+						//throw 500
+ 			 			throw new HTTP_Exception_500($e->getMessage());
+					}
+				}
+			}else $img_permission = TRUE;
+			
+			Breadcrumbs::add(Breadcrumb::factory()->set_title("Update"));
+			$instance_ad = new Controller_Ad($this->request, $this->response);  
+			$path = $instance_ad->image_path($form);
+			$this->template->content = View::factory('oc-panel/profile/edit_ad', array('ad'				=>$form, 
+																					   'location'		=>$loc, 
+																					   'category'		=>$cat_list,
+																					   'path'			=>$path,
+																					   'perm'			=>$img_permission,
+																					   'extra_payment'	=>$extra_payment));
+		
+			if ($this->request->post())
+			{
+
+				// deleting single image by path 
+				$deleted_image = $this->request->post('img_delete');
+				if($deleted_image)
+				{
+					$img_path = $form->gen_img_path($form->id_ad, $form->created);
+					
+					if (!is_dir($img_path)) 
+					{
+						return FALSE;
+					}
+					else
+					{	
+					
+						//delete formated image
+						unlink($img_path.$deleted_image.'.jpg');
+
+						//delete original image
+						$orig_img = str_replace('thumb_', '', $deleted_image);
+						unlink($img_path.$orig_img.".jpg");
+
+						$this->request->redirect(Route::url('oc-panel', array('controller'	=>'profile',
+																			  'action'		=>'update',
+																			  'id'			=>$form->id_ad)));
+					}
+				}// end of img delete
+
+				$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
+								'title' 		=> $title 		= 	$this->request->post('title'),
+								'seotitle' 		=> $seotitle 	= 	$this->request->post('title'),
+								'cat'			=> $category 	= 	$this->request->post('category'),
+								'loc'			=> $loc 		= 	$this->request->post('location'),
+								'description'	=> $description = 	$this->request->post('description'),
+								'price'			=> $price 		= 	$this->request->post('price'),
+								'status'		=> $status		= 	$this->request->post('status'),
+								'address'		=> $address 	= 	$this->request->post('address'),
+								'website'		=> $website 	= 	$this->request->post('website'),
+								'phone'			=> $phone 		= 	$this->request->post('phone'),
+								'has_images'	=> 0,
+								'user'			=> $user 		= new Model_User()
+								); 
+
+				//insert data
+				if ($this->request->post('title') != $form->title)
+				{
+					if($form->has_images == 1)
+					{
+						$current_path = $form->gen_img_path($form->id_ad, $form->created);
+						// rename current image path to match new seoname
+						rename($current_path, $form->gen_img_path($form->id_ad, $form->created)); 
+
+					}
+					$seotitle = $form->gen_seo_title($data['title']);
+					$form->seotitle = $seotitle;
+					
+				}
+				else 
+					$form->seotitle = $form->seotitle;
+				 
+				$form->title 			= $data['title'];
+				$form->id_location 		= $data['loc'];
+				$form->id_category 		= $data['cat'];
+				$form->description 		= $data['description'];
+				$form->status 			= $data['status'];	
+				$form->price 			= $data['price']; 								
+				$form->address 			= $data['address'];
+				$form->website 			= $data['website'];
+				$form->phone			= $data['phone']; 
+
+				$obj_ad = new Model_Ad();
+
+				// image upload
+				$error_message = NULL;
+	    		$filename = NULL;
+
+    			if (isset($_FILES['image0']) && $count/2 <= 3)
+        		{
+	        		$img_files = array($_FILES['image0']);
+	            	$filename = $obj_ad->save_image($img_files, $form->id_ad, $form->created, $form->seotitle);
+        		}
+        		if ( $filename == TRUE)
+	       		{
+		        	$form->has_images = 1;
+	        	}
+
+	        	try 
+	        	{
+	        		//@TODO - PAYMENT
+	        		// if user changes category, do payment first
+	        		// moderation 2 -> payment on, moderation 5 -> payment with moderation
+	        		// data['cat'] -> category selected , last_known_ad->id_category -> obj of current ad (before save) 
+	        		$moderation = core::config('general.moderation');
+	        		$last_known_ad = $obj_ad->where('id_ad', '=', $this->request->param('id'))->limit(1)->find();
+	        		if($moderation == 2 || $moderation == 5)
+	        		{
+	        			// PAYMENT METHOD ACTIVE
+						$payment_order = new Model_Order();
+						$advert_have_order = $payment_order->where('id_ad', '=', $this->request->param('id'));
+						   
+	        			if($data['cat'] == $last_known_ad->id_category) // user didn't changed category 
+	        			{
+	        				// check if he payed when ad was created (is successful), 
+	        				// if not give him alert that he didn't payed, and ad will not be published until he do  
+							$cat_check = $cat->where('id_category', '=', $last_known_ad->id_category)->limit(1)->find(); // current category
+							$advert_have_order->and_where('description', '=', $cat_check->seoname)->limit(1)->find();
+							if($advert_have_order->loaded()) // if user have order
+							{
+
+								if($advert_have_order->status != Model_Order::STATUS_PAID)
+								{ // order is not payed,  
+									$form->status = 0;
+									Alert::set(Alert::INFO, __('Advertisement is updated, but it won\'t be published until payment is done.'));
+								}
+								else // order is payed, update status and publish 
+								{
+									if($moderation == 2)
+									{
+										$form->status = 1;
+										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));	
+									}
+									else if($moderation == 5)
+										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));
+								}
+							}
+							$form->save();
+	        				$this->request->redirect(Route::url('oc-panel', array('controller'	=>'profile',
+																				  'action'		=>'update',
+																				  'id'			=>$form->id_ad)));
+						
+	        			} // end - same category
+	        			else // different category
+	        			{ 
+	        				// user have pending order with new category(possible that he previously tried to do the same action)
+	        				
+							$cat_check = $cat->where('id_category', '=', $data['cat'])->limit(1)->find(); // newly selected category
+							$advert_have_order->and_where('description', '=', $cat_check->seoname)->limit(1)->find();
+	        				if($advert_have_order->loaded())
+	        				{
+	        					// sanity check -> we don't want to charge him twice for same category 
+	        					if($advert_have_order->status != Model_Order::STATUS_PAID)
+	        						$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $advert_have_order->id_order))); 	
+								else // order is payed, update status and publish 
+								{
+									if($moderation == 2)
+									{
+										$form->status = 1;
+										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));	
+									}
+									else if($moderation == 5)
+										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));
+									
+								}
+	        				}
+	        				else // user doesn't have order -> create new order and redirect him to payment (do not update status until payment is confirmed)
+	        				{
+	        					$order_id = $payment_order->make_new_order($data, Auth::instance()->get_user()->id_user, $form->seotitle);
+	        					
+	        					if($order_id == NULL) // this is the case when in make_new_order we detect that category OR category_parent doesn't have price
+								{
+									if($moderation == 2) // publish
+										$form->status = 1;
+								}
+								else
+								{
+									// redirect to payment
+				        			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route	
+								}								
+	        				}	
+	        			}
+	        		}
+	        		
+	        		// save ad  
+	        		$form->save();
+	        		Alert::set(Alert::SUCCESS, __('Advertisement is updated'));
+
+	        		$this->request->redirect(Route::url('oc-panel', array('controller'	=>'profile',
+																		  'action'		=>'update',
+																		  'id'			=>$form->id_ad)));
+	        	} catch (Exception $e) {
+	 				//throw 500
+					throw new HTTP_Exception_500($e->getMessage());       		
+	        	}
+
+	        	
+			}
+		}
+		else
+		{
+			Alert::set(Alert::ERROR, __('You dont have permission to access this link'));
+			$this->request->redirect(Route::url('default'));
+		}
+	}
+
+
 }

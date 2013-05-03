@@ -33,7 +33,7 @@
 		<? //var_dump($visitor)?>
 		<?if ($visitor != FALSE && $visitor->id_role == 10):?>
 			<br />
-			<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ads->id_ad))?>"><?= _e("Edit");?></a> |
+			<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?= _e("Edit");?></a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ads->id_ad))?>" 
 				onclick="return confirm('<?=__('Deactivate?')?>');"><?= _e("Deactivate");?>
 			</a> |
@@ -46,7 +46,7 @@
 
 			<?elseif($visitor != FALSE && $visitor->id_user == $ads->id_user):?>
 			<br/>
-			<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ads->id_ad))?>"><?=_e("Edit");?></a> 
+			<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?=_e("Edit");?></a> 
 		<?endif?>
 		</article>
 		<?endforeach?>
