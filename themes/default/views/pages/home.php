@@ -4,11 +4,6 @@
     <ul class="thumbnails">
 
         <?foreach($ads as $ad):?>
-          <?foreach ($categ as $cat):?>
-            <?if($cat->id_category == $ad->id_category):?>
-                <?$cat_name = $cat->seoname;?>
-            <?endif?>
-        <?endforeach?>
         <li class="span3">
             <div class="thumbnail latest_ads" style="height: 300px; overflow: hidden;">
                 
@@ -21,7 +16,7 @@
                 <img src="/<?=$thumb?>" class="img-polaroid">
                 <?endif?>
                 <div class="caption">
-                    <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h5>
+                    <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h5>
 
                     <p ><?=substr(Text::removebbcode($ad->description), 0, 30)?></p>
 

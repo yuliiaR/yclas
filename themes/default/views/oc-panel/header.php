@@ -14,7 +14,7 @@
             <a class="brand" href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Panel')?></a>
 
             <div class="btn-group pull-right visible-desktop">
-                <?=View::factory('widget_login')?>
+                <?=View::factory('oc-panel/widget_login')?>
             </div>
 
             <div class="nav-collapse collapse">

@@ -186,7 +186,8 @@ class Model_Category extends ORM {
 			if($c->id_category != $c->id_category_parent)
 			{	
 				$children_categ[$c->id_category] = array('id_category'	=> $c->id_category,
-														'name'			=> $c->seoname,
+														'seoname'			=> $c->seoname,
+                                                        'name'          => $c->name,
 														'parent'		=> $c->id_category_parent,
 														'parent_deep'	=> $c->parent_deep,
 														'order'			=> $c->order,

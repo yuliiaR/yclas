@@ -2,8 +2,13 @@
 	 
 
 	<div class="well advise clearfix" id="advise">
-		<p><?=__('Apartments, flats, monthly rentals, long terms, for days... this is the section to have your apartment!')?></p>
-		<i class="icon-pencil"></i> <a title="New Advertisement" href="<?=Route::url('post_new')?>">Publish new advertisement</a>
+		<?if (Controller::$category!==NULL):?>
+            <?if(Controller::$category->loaded()):?>
+                <p><?=Controller::$category->description?></p> 
+            <?endif?>
+        <?endif?>
+		<i class="icon-pencil"></i> <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>"><?=__('Publish new advertisement')?></a>
+
 	</div><!--end of advise-->
 
 	<?if(count($ads)):?>
@@ -20,7 +25,7 @@
 			    	<?if(is_string($cat)):?>
 			    		<?$cat_name = $cat?>
 			    	<?else:?>
-			    	<?foreach ($cat as $cat){ if($cat->id_category == $ad->id_category) $cat_name = $cat->seoname; }?>
+			    	    <? $cat_name = $ad->category->seoname; ?>
 			    	<?endif?>
 			    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 		    	</h2>
