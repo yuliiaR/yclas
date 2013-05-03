@@ -186,9 +186,8 @@ class Model_Order extends ORM {
             $cat_parent = new Model_Category();
             $cat_parent = $cat_parent->where('id_category', '=', $parent)->limit(1)->find();
 
-            if($cat_parent->price == 0) // @TODO add case of moderation + payment (moderation = 3)
+            if($cat_parent->price == 0) // @TODO add case of moderation + payment (moderation = 5)
             {
-                Alert::set(Alert::SUCCESS, __('Advertisement is scheduled to be posted, you will be notified when becomes published. Thanks!'));
                 return $order_id = NULL;
             }
             else
@@ -200,6 +199,7 @@ class Model_Order extends ORM {
         {
             $amount = $cat->price;
         }
+        
         // make order 
         $payer_id = $usr; 
         $id_product = Paypal::category_product;

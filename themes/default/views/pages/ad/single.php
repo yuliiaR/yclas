@@ -2,11 +2,12 @@
 
 	
 
-	<?if ($ad->status != Model_Ad::STATUS_PUBLISHED && $permission === FALSE):?>
+	<?if ($ad->status != Model_Ad::STATUS_PUBLISHED && $permission === FALSE && ($ad->id_user != $user)):?>
 
 	<div class="page-header">
-		<h3><?= __("This advertisement doesn't exist, or is not yet published")?></h3>
+		<h1><?= __("This advertisement doesn't exist, or is not yet published!")?></h1>
 	</div>
+
 	<?else:?>
 	<?=Form::errors()?>
 	<div class="page-header">
@@ -103,7 +104,7 @@
             src="<?=Route::url('map')?>?height=400&address=<?=$ad->address?>">
         </iframe>
         <?endif?>
-
+ </div><!--/well--> 
 	<?endif?>
 	<!-- modal-gallery is the modal dialog used for the image gallery -->
 	<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
@@ -136,6 +137,7 @@
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+   
     <?endif?>
 
-</div><!--/well--> 
+

@@ -122,8 +122,6 @@ class Controller_Payment_Paypal extends Controller{
         	else
         		$item_name = $order->description.__(' category');
 
-
-
 			$paypal_url = (Core::config('paypal.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
 
 		 	$paypal_data = array('order_id'            	=> $order_id,
@@ -134,8 +132,6 @@ class Controller_Payment_Paypal extends Controller{
 	                             'paypal_account'    	=> core::config('paypal.paypal_account'),
 	                             'paypal_currency'    	=> core::config('paypal.paypal_currency'),
 	                             'item_name'			=> $item_name);
-
-			// $this->before('paypal');
 			
 			$this->template = View::factory('paypal', $paypal_data);
             $this->response->body($this->template->render());

@@ -240,7 +240,21 @@ class Model_Ad extends ORM {
                 if (glob($directory . "*.jpg") != false)
                 {
                     $filecount = count(glob($directory . "*.jpg"));
+
                     $counter = ($filecount / 2) + 1;
+                    
+                    if(file_exists($directory.$seotitle.'_'.$counter.'.jpg')) // in case we update image, we have to find available number to replace
+                    {
+                      for($i=1; $i<=core::config('advertisement.num_images'); $i++)
+                      {
+                        $counter = $i;
+                        if(!file_exists($directory.$seotitle.'_'.$counter.'.jpg'))
+                        {
+                          break;
+                        }
+                      }
+                    }
+                    
                 }
                 else
                     $counter = 1;
