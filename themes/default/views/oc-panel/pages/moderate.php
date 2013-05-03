@@ -12,7 +12,7 @@
 	<i class="icon-eye-open icon-white"></i><?=__(' Ads')?>
 </a>
 
-<? if($ads != NULL):?>
+
 <table class="table table-bordered">
 	<tr>
 		<th>
@@ -26,6 +26,8 @@
 		<th><?=__('Hits')?></th>
 		<th><?=__('Status')?></th>
 		<th><?=__('Date')?></th>
+		<!-- in case there are no ads we dont show buttons -->
+		<?if(isset($ads)):?>
 		<th>
 			<a class="spam btn btn-warning" 
 				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
@@ -52,9 +54,9 @@
 				<i class="icon-remove icon-white"></i>
 			</a>
 		</th>
-			
+		<?endif?>
 	</tr>
-	
+<? if($ads != NULL):?>
 	<? $i = 0; foreach($ads as $ad):?>	
 	<tbody>
 		<tr>
@@ -73,14 +75,18 @@
 				<?endif?>
 	    	<?endforeach?>
 			
-			<?php foreach($location as $loc):?>
+			<? foreach($location as $loc):?>
+				<?$locat_name = NULL;?>
 				<? if ($loc->id_location == $ad->id_location): ?>
-					<td><?= $loc->name?></td>
+					<td><?= $locat_name = $loc->name?></td>
+				<?endif?>
+				<?if($locat_name == NULL):?>
+					<td><?= _e('NoN')?></td>
 				<?endif?>
 	    	<?endforeach?>
 
 			<td><?= $hits[$i++];?></td>
-			<? if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
+			<?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
 				<td><?= __('Notpublished')?></td>
 			<? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
 				<td><?= __('Published')?></td>
@@ -111,9 +117,11 @@
 			</td>
 		</tr>
 	<?endforeach?>
+	<?endif?>
 	</tbody>
 </table>
-	 <?=$pagination?>
-<?else:?>
-	
+<?if(isset($pagination)):?>
+<?=$pagination?>
 <?endif?>
+	
+

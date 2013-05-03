@@ -30,7 +30,11 @@
 		<th><?=__('Hits')?></th>
 		<th><?=__('Status')?></th>
 		<th><?=__('Date')?></th>
+		<!-- in case there are no ads we dont show buttons -->
+		<?if(isset($res)):?>
 		<th>
+			
+			
 			<a class="spam btn btn-warning" 
 				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
 				onclick="return confirm('<?=__('Spam?')?>');"
@@ -55,8 +59,11 @@
 			    rel"tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
 				<i class="icon-bookmark icon-white"></i>
 			</a>
+			
 		</th>
+		<?endif?>
 	</tr>
+<?if(isset($res)):?>
 	<? $i = 0; foreach($res as $ad):?>
 	<tbody>
 		<tr>
@@ -75,11 +82,16 @@
 				<?endif?>
 	    	<?endforeach?>
 			
-			<?php foreach($location as $loc):?>
+			<? foreach($location as $loc):?>
+				<?$locat_name = NULL;?>
 				<? if ($loc->id_location == $ad->id_location): ?>
-					<td><?= $loc->name?></td>
+					<td><?= $locat_name = $loc->name?></td>
+				<?endif?>
+				<?if($locat_name == NULL):?>
+					<td><?= _e('NoN')?></td>
 				<?endif?>
 	    	<?endforeach?>
+			
 			<td><?= $hits[$i++];?></td>
 			
 			<? if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
@@ -136,6 +148,9 @@
 			</td>
 		</tr>
 	<?endforeach?>
+	<?endif?>
 	</tbody>
 </table>
-	 <?=$pagination?>
+<?if(isset($pagination)):?>
+<?=$pagination?>
+<?endif?>

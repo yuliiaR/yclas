@@ -14,19 +14,20 @@
 						<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'input-xlarge', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
-
+				
 				<div class="control-group">
 					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' , 'multiple'))?>
 					<div class="controls">			
 					
 						<?foreach ($_cat as $cat):?>
 							<?if($cat->seoname != 'all'):?>
-							<? $_val_category[$cat->id_category] = $cat->name; ?>
+								<?$val_category[$cat->id_category] = $cat->name; ?>
 							<?endif?>
-						<?endforeach?>		
-						<?= FORM::select('category', $_val_category, 0, array('id'=>'category','class'=>'input-xlarge', 'required') );?>
+						<?endforeach?>
+						<?if(!isset($val_category)){$val_category = NULL;} //like this we avoid trowing error if val_category doesnt exists?>		
+						<?= FORM::select('category', $val_category, 0, array('id'=>'category','class'=>'input-xlarge', 'required') );?>
 						<p id="cat_price" class="text-warning"></p>
-					
+				
 					</div>
 				</div>
 
@@ -36,9 +37,12 @@
 					<div class="controls">
 					
 						<?foreach ($_loc as $loc):?>
-							<?php $_val_location[$loc->id_location] = $loc->name; ?>
+							<?if($loc->seoname != 'all'):?>
+								<?$val_location[$loc->id_location] = $loc->name; ?>
+							<?endif?>	
 						<?endforeach?>
-						<?= FORM::select('location', $_val_location, 0, array('id'=>'location', 'class'=>'input-xlarge', 'required') );?>
+						<?if(!isset($val_location)){$val_location = NULL;} //like this we avoid trowing error if val_location doesnt exists?>
+						<?= FORM::select('location', $val_location, 0, array('id'=>'location', 'class'=>'input-xlarge') );?>
 					
 					</div>
 				</div>
