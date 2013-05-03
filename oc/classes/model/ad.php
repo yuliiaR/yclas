@@ -232,10 +232,14 @@ class Model_Ad extends ORM {
                 $directory      = DOCROOT.$path;
                 $image_quality  = core::config('image.quality');
                 $width          = core::config('image.width');
-                $height         = core::config('image.height');
                 $width_thumb    = core::config('image.width_thumb');
                 $height_thumb   = core::config('image.height_thumb');
-
+                $height         = core::config('image.height');
+                if(!isset($height)) // when installing this field is empty, to avoid crash we check here
+                    $height         = NULL;
+                if(!isset($height_thumb))
+                    $height_thumb   = NULL;    
+                
                 // count howmany files are saved 
                 if (glob($directory . "*.jpg") != false)
                 {
@@ -245,14 +249,14 @@ class Model_Ad extends ORM {
                     
                     if(file_exists($directory.$seotitle.'_'.$counter.'.jpg')) // in case we update image, we have to find available number to replace
                     {
-                      for($i=1; $i<=core::config('advertisement.num_images'); $i++)
-                      {
-                        $counter = $i;
-                        if(!file_exists($directory.$seotitle.'_'.$counter.'.jpg'))
+                        for($i=1; $i<=core::config('advertisement.num_images'); $i++)
                         {
-                          break;
+                            $counter = $i;
+                            if(!file_exists($directory.$seotitle.'_'.$counter.'.jpg'))
+                            {
+                                break;
+                            }
                         }
-                      }
                     }
                     
                 }
