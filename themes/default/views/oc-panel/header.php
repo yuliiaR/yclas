@@ -23,6 +23,8 @@
                     <?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','icon-list-alt icon-white')?>
                 	<?=Theme::admin_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
                     <?=Theme::admin_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
+
+                    <? if(Auth::instance()->get_user()->id_role==10):?>
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"
             		      data-toggle="dropdown"><i class="icon-plus icon-white"></i> <?=__('New')?> <b class="caret"></b></a>
                     	<ul class="dropdown-menu">
@@ -34,6 +36,11 @@
                     			<i class="icon-pencil"></i><?=__('Publish new ')?></a>	</li>
                     	</ul>
             	   </li> 
+                   <?else:?>
+                    <li><a href="<?=Route::url('post_new')?>">
+                                <i class="icon-pencil"></i><?=__('Publish new ')?></a>  </li>
+                   <?endif?>
+
                 </ul>
                 
                 <div class="nav pull-right">
