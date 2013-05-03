@@ -221,6 +221,11 @@ class Model_Order extends ORM {
         return $order_id;
     }
 
+    public function exclude_fields()
+    {
+        return array('created','parent_deep','order');
+    }
+    
     protected $_table_columns =  
 array (
   'id_order' => 

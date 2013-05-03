@@ -76,9 +76,26 @@ class Auth_Controller extends Controller
 			$this->template->styles           = array();
 			$this->template->scripts          = array();
 			$this->template->user 			  = Auth::instance()->get_user();
-			Theme::$styles	        		  = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css' => 'screen',
-													  'css/chosen.css'=>'screen');
-			Theme::$scripts['header']		  = array('http://code.jquery.com/jquery-1.9.1.min.js',	
+
+            //other color
+            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
+            {
+                Theme::$styles               = array(                                  
+                                                'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',
+                                                'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css' => 'screen',
+                                                'css/chosen.css' => 'screen', 
+                                                );
+            }
+            //default theme
+            else
+            {
+                Theme::$styles                    = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css' => 'screen',
+                                                      'css/chosen.css'=>'screen');
+            }
+			
+
+
+            Theme::$scripts['header']		  = array('http://code.jquery.com/jquery-1.9.1.min.js',	
 													  'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js', 
 												      );
 			Theme::$scripts['footer']		  = array('js/chosen.jquery.min.js','js/oc-panel/theme.init.js');

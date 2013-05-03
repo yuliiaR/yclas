@@ -172,6 +172,50 @@ class Core {
         return FALSE;   
     }
 
+
+    /**
+     * Function modified from WordPress = http://phpdoc.wordpress.org/trunk/WordPress/_wp-includes---functions.php.html#functionget_file_data
+     * 
+     * Retrieve metadata from a file.
+     *
+     * Searches for metadata in the first 8kiB of a file, such as a plugin or theme.
+     * Each piece of metadata must be on its own line. Fields can not span multiple
+     * lines, the value will get cut at the end of the first line.
+     *
+     * If the file data is not within that first 8kiB, then the author should correct
+     * their plugin file and move the data headers to the top.
+     *     
+     * 
+     * @param string $file Path to the file
+     * @param array $default_headers List of headers, in the format array('HeaderKey' => 'Header Name')
+     * @return array
+     */
+    public static function get_file_data( $file, $default_headers) 
+    {
+        // We don't need to write to the file, so just open for reading.
+        $fp = fopen( $file, 'r' );
+
+        // Pull only the first 8kiB of the file in.
+        $file_data = fread( $fp, 8192 );
+
+        // PHP will close file handle, but we are good citizens.
+        fclose( $fp );
+
+        // Make sure we catch CR-only line endings.
+        $file_data = str_replace( "\r", "\n", $file_data );
+
+        foreach ( $default_headers as $field => $regex )
+        {
+            if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi', $file_data, $match ) && $match[1] )
+                $default_headers[ $field ] = trim(preg_replace("/\s*(?:\*\/|\?>).*/", '',  $match[1] ));
+            else
+                $default_headers[ $field ] = '';
+        }
+
+        return $default_headers;
+    }
+
+
 } //end core
 
 /**

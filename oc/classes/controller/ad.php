@@ -172,7 +172,7 @@ class Controller_Ad extends Controller {
 			{
 				foreach ($path as $key => $value) 
 				{
-					// hash tag to distinguish thumb from big image
+					// hash tag to distinguish thumb from big image @todo
 					$hashtag = (core::config("theme_default.listing_images") != FALSE) ? strstr($value, 'thumb') : !strstr($value, 'thumb') ;
 
 					if( $hashtag && strstr($value, '_1'))
@@ -215,10 +215,6 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_view()
 	{
-		
-		$this->template->styles 			 = array('css/bootstrap-image-gallery.css' => 'screen',);
-		$this->template->scripts['footer'][] = 'js/load-image.min.js';
-		$this->template->scripts['footer'][] = 'js/bootstrap-image-gallery.min.js';
 		
 		$seotitle = $this->request->param('seotitle',NULL);
 		$category = $this->request->param('category');
@@ -317,13 +313,6 @@ class Controller_Ad extends Controller {
 		$this->template->meta_description	= __('Edit advertisement');
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		 	
-		
-		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen' , 'css/chosen.css' => 'screen');
-		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
-		$this->template->scripts['footer'][]= '/js/chosen.jquery.min.js';
-		$this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
-		$this->template->scripts['footer'][]= 'js/pages/new.js';
-
 
 		$form = new Model_Ad($this->request->param('id'));
 		
@@ -738,11 +727,6 @@ class Controller_Ad extends Controller {
 		//template header
 		$this->template->title           	= __('Advansed Search');
 		$this->template->meta_description	= __('Advansed Search');
-
-		//scripts	
-		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen', 'css/chosen.css' => 'screen');
-		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
-		$this->template->scripts['footer'][]= 'js/chosen.jquery.min.js';
 
 		//breadcrumbs
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));

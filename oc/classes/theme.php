@@ -19,7 +19,7 @@ class Theme {
     
     
     //@todo merge and minify
-    public static function scripts($scripts,$type='header')
+    public static function scripts($scripts, $type = 'header' , $theme = NULL)
     {
     	$ret = '';
     
@@ -27,7 +27,7 @@ class Theme {
     	{
     		foreach($scripts[$type] as $file)
     		{
-    			$file = self::public_path($file);
+    			$file = self::public_path($file, $theme);
     			$ret .= HTML::script($file, NULL, TRUE);
     		}
     	}
@@ -35,12 +35,12 @@ class Theme {
     }
     
     //@todo merge and minify, vendor
-    public static function styles($styles)
+    public static function styles($styles , $theme = NULL)
     {
     	$ret = '';
     	foreach($styles as $file => $type)
     	{
-    		$file = self::public_path($file);
+    		$file = self::public_path($file, $theme);
     		$ret .= HTML::style($file, array('media' => $type));
     	}
     	return $ret;
@@ -72,15 +72,19 @@ class Theme {
      *
      * given a file returns it's public path relative to the selected theme
      * @param string $file
+     * @param string $theme optional
      * @return string
      */
-    public static function public_path($file)
+    public static function public_path($file, $theme = NULL)
     {
+        if ($theme === NULL)
+            $theme = self::$theme;
+
     	//not external file we need the public link
     	if (!Valid::url($file))
     	{
     		//@todo add a hook here in case we want to use a CDN
-    		return URL::base('http').'themes'.DIRECTORY_SEPARATOR.self::$theme.DIRECTORY_SEPARATOR.$file;
+    		return URL::base('http').'themes'.DIRECTORY_SEPARATOR.$theme.DIRECTORY_SEPARATOR.$file;
     	}
     	 
     	//seems an external url
@@ -94,11 +98,22 @@ class Theme {
      */
     public static function theme_folder($theme = 'default')
     {
-        return DOCROOT.'themes'.DIRECTORY_SEPARATOR.$theme.DIRECTORY_SEPARATOR.'init.php';
+        return DOCROOT.'themes'.DIRECTORY_SEPARATOR.$theme;
     }
 
     /**
-     * detect if browser is mobile
+     * get the full path folder for the theme init.php file
+     * @param  string $theme 
+     * @return string        
+     */
+    public static function theme_init_path($theme = 'default')
+    {
+        return self::theme_folder($theme).DIRECTORY_SEPARATOR.'init.php';
+    }
+
+
+    /**
+     * detect if visitor browser is mobile
      * @return boolean
      */
     public static function is_mobile()
@@ -145,44 +160,176 @@ class Theme {
     public static function initialize($theme = 'default')
     {
     	/**
+         * @todo crashes on theme change set_theme /oc-panel/settings/appearance
     	 * Get the theme
     	 * 1st by get
     	 * 2nd by cookie
     	 * 3rd mobile (only if mobile is ON)
     	 * 4th the one seted in config
     	 */
-        if (Core::get('theme', NULL)!==NULL)
-        {
-            if (file_exists(self::theme_folder(Core::get('theme'))))
-                $theme = Core::get('theme');
-        }
-        elseif (Cookie::get('theme',NULL)!==NULL)
-        {
-            if (file_exists(self::theme_folder(Cookie::get('theme'))))
-                $theme = Cookie::get('theme');
-        }
-        elseif(self::is_mobile())
-        {
-            if (file_exists(self::theme_folder('mobile')))
-                $theme = 'mobile';
-        }
-        else
-        {
-            if (file_exists(self::theme_folder(Core::config('appearance.theme'))))
+        // if (Core::get('theme', NULL)!==NULL)
+        // {
+        //     if (file_exists(self::theme_init_path(Core::get('theme'))))
+        //         $theme = Core::get('theme');
+        // }
+        // elseif (Cookie::get('theme',NULL)!==NULL)
+        // {
+        //     if (file_exists(self::theme_init_path(Cookie::get('theme'))))
+        //         $theme = Cookie::get('theme');
+        // }
+        // elseif(self::is_mobile())
+        // {
+        //     if (file_exists(self::theme_init_path('mobile')))
+        //         $theme = 'mobile';
+        // }
+        // else
+        // {
+            if (file_exists(self::theme_init_path(Core::config('appearance.theme'))))
                 $theme = Core::config('appearance.theme');
-        }
+        //  }
 
         //we save the cookie for next time
         Cookie::set('theme', $theme, Core::config('auth.lifetime'));
 
     	//load theme init.php like in module, to load default JS and CSS for example
     	self::$theme = $theme;
-    	Kohana::load(self::theme_folder(self::$theme));
+    	Kohana::load(self::theme_init_path(self::$theme));
     	
         self::load();
             	
     }
 
+    /**
+     * sets the theme we need to use in front
+     * @param string $theme 
+     */
+    public static function set_theme($theme)
+    {
+        //we check the theme exists and it's correct
+        if (!file_exists($file = self::theme_init_path($theme)))
+            return FALSE;
+
+        // save theme to DB
+        $conf = new Model_Config();
+        $conf->where('group_name','=','appearance')
+                    ->where('config_key','=','theme')
+                    ->limit(1)->find();
+
+        if (!$conf->loaded())
+        {
+            $conf->group_name = 'appearance';
+            $conf->config_key = 'theme';
+        }
+        
+        $conf->config_value = $theme;
+
+        try 
+        {
+            $conf->save();
+            return TRUE;
+        } 
+        catch (Exception $e) 
+        {
+            throw new HTTP_Exception_500();     
+        }   
+
+    }
+    
+    /**
+     * Read the folder /themes/ for themes
+     */
+    public static function get_installed_themes()
+    {
+        //read folders in theme folder
+        $folder = DOCROOT.'themes';
+
+        $themes = array();
+
+        //check directory for themes
+        foreach (new DirectoryIterator($folder) as $file) 
+        {
+            if($file->isDir() AND !$file->isDot())
+            {
+                if ( ($info = self::get_theme_info($file->getFilename())) !==FALSE)
+                    $themes[$file->getFilename()] = $info;
+            }
+        }
+
+        return $themes;
+    }
+
+    /**
+     * returns the info regarding to the theme stores at init.php
+     * @param  string $theme theme to search info
+     * @return array        
+     */
+    public static function get_theme_info($theme = NULL)
+    {
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        if (!file_exists($file = self::theme_init_path($theme)))
+            return FALSE;
+
+        return Core::get_file_data($file , array(
+            'Name'        => 'Theme Name',
+            'ThemeURI'    => 'Theme URI',
+            'ThemeDemo'   => 'Theme Demo',
+            'Description' => 'Description',
+            'Author'      => 'Author',
+            'AuthorURI'   => 'Author URI',
+            'Version'     => 'Version',
+            'License'     => 'License',
+            'Tags'        => 'Tags',
+        )); 
+    }
+
+    /**
+     * returns the screenshot
+     * @param  string $theme theme to search info
+     * @return array        
+     */
+    public static function get_theme_screenshot($theme = NULL)
+    {
+
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        $file = self::theme_folder($theme).DIRECTORY_SEPARATOR.'screenshot.png';
+
+        if (file_exists($file))
+            return self::public_path('screenshot.png',$theme);
+
+        return FALSE;
+    }
+
+
+    /**
+     * this belongs to the admin, so needs to be loaded no matter, the theme. not a good place here?? not nice...
+     * generates a link used in the admin HTML
+     * @param  string $name       translated name in the A
+     * @param  string $controller
+     * @param  string $action     
+     * @param  string $route      
+     * @param  string $icon         class name of bootstrap icon to append with nav-link 
+     */
+    public static function admin_link($name,$controller,$action='index',$route='oc-panel', $icon=NULL)
+    {   
+        if (Auth::instance()->get_user()->has_access($controller))
+        {
+        ?>
+            <li <?=(Request::current()->controller()==$controller 
+                    && Request::current()->action()==$action)?'class="active"':''?> >
+                <a href="<?=Route::url($route,array('controller'=>$controller,
+                                                    'action'=>$action))?>">
+                    <?if($icon!==NULL)?>
+                        <i class="<?=$icon?>"></i>
+                    <?=$name?>
+                </a>
+            </li>
+        <?
+        }
+    }
 
 
 
@@ -210,6 +357,11 @@ class Theme {
      */
     public static $data = array();
 
+    /**
+     * to know if we loaded...
+     * @var bool
+     */
+    public static $loaded = FALSE;
 
     /**
      * loads the theme data from the config
@@ -217,24 +369,29 @@ class Theme {
      */
     public static function load()
     {   
-        //search for theme config
-        $theme_data = core::config('theme.'.self::$theme);
-
-        //found and with data!
-        if($theme_data!==NULL AND !empty($theme_data) AND $theme_data !== '[]')
-        { 
-            self::$data = json_decode($theme_data, TRUE);
-        }
-        ///save empty with default values
-        else
+        if (!self::$loaded)
         {
-            //we set the array with empty values or the default in the option attributes
-            foreach (self::$options as $field => $attributes) 
-            {
-                self::$data[$field] = (isset($attributes['default']))?$attributes['default']:'';
+            //search for theme config
+            $theme_data = core::config('theme.'.self::$theme);
+
+            //found and with data!
+            if($theme_data!==NULL AND !empty($theme_data) AND $theme_data !== '[]')
+            { 
+                self::$data = json_decode($theme_data, TRUE);
             }
-            self::save();
+            ///save empty with default values
+            else
+            {
+                //we set the array with empty values or the default in the option attributes
+                foreach (self::$options as $field => $attributes) 
+                {
+                    self::$data[$field] = (isset($attributes['default']))?$attributes['default']:'';
+                }
+                self::save();
+            }
+            self::$loaded = TRUE;
         }
+        
 
     }
 
@@ -282,12 +439,15 @@ class Theme {
     /**
      * get from data array
      * @param  string $name key
+     * @param mixed default value in case is not set
      * @return mixed       
      */
-    public static function get($name)
+    public static function get($name, $default = NULL)
     {
-        return (array_key_exists($name, self::$data)) ? self::$data[$name] : NULL;
+        return (array_key_exists($name, self::$data)) ? self::$data[$name] : $default;
     }
-    
+
+
+   
 
 }

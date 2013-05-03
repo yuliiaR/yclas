@@ -20,8 +20,8 @@
       <?=HTML::script('http://html5shim.googlecode.com/svn/trunk/html5.js')?>
     <![endif]-->
     
-    <?=Theme::styles($styles)?>	
-	<?=Theme::scripts($scripts)?>
+    <?=Theme::styles($styles,'default')?>	
+	<?=Theme::scripts($scripts,'header','default')?>
     <link rel="shortcut icon" href="<?=Theme::public_path('img/favicon.ico')?>">
 
 	<style type="text/css">
@@ -58,7 +58,7 @@
 		<?=$footer?>
     </div><!--/.fluid-container-->
 
-	<?=Theme::scripts($scripts,'footer')?>
+	<?=Theme::scripts($scripts,'footer','default')?>
 
 	<!--[if lt IE 7 ]>
 		<?=HTML::script('http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js')?>

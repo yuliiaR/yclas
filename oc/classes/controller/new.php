@@ -17,12 +17,6 @@
 		$this->template->title           	= __('Publish new advertisement');
 		$this->template->meta_description	= __('Publish new advertisement');
 		
-		//scripts	
-		$this->template->styles 			= array('css/jquery.sceditor.min.css' => 'screen', 'css/chosen.css' => 'screen');
-		$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
-		$this->template->scripts['footer'][]= 'js/jqBootstrapValidation.js';
-		$this->template->scripts['footer'][]= 'js/chosen.jquery.min.js';
-		$this->template->scripts['footer'][]= 'js/pages/new.js';
 		
 		$category 	= new Model_Category();
 		$location 	= new Model_Location();

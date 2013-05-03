@@ -147,7 +147,11 @@ class Form extends Kohana_Form {
      */
     public static function form_tag($name, array $options, $value = NULL)
     {
-        $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label', 'for'=>$name));
+        if ($options['display'] != 'hidden')
+            $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label', 'for'=>$name));
+        else
+            $label = '';
+
         //$out = '';
         if ($value === NULL)
             $value = (isset($options['default'])) ? $options['default']:NULL;
@@ -166,6 +170,9 @@ class Form extends Kohana_Form {
                 break;
             case 'textarea':
                 $input = FORM::textarea($name, $value, $attributes);
+                break;
+            case 'hidden':
+                $input = FORM::hidden($name, $value, $attributes);
                 break;
             case 'text':
             default:
