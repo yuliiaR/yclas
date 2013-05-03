@@ -29,7 +29,7 @@
 			<?endif?>
 		</div>
 		<?endif?>
-		<?= FORM::open(Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control input-xxlarge">
 					<?if(Auth::instance()->get_user()->id_role == 10):?>
@@ -173,7 +173,7 @@
 				</div>
 				<?endif?>
 				<div class="form-actions">
-					<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('default', array('controller'=>'ad','action'=>'update','id'=>$ad->id_ad))))?>
+					<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))))?>
 					<p class="help-block">Dynamic text, for free or pay XX€..</p>
 				</div>
 			</fieldset>

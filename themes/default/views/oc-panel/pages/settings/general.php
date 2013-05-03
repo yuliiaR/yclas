@@ -171,6 +171,21 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<?= FORM::label($forms['analytics']['key'], __('Analytics'), array('class'=>'control-label', 'for'=>$forms['analytics']['key']))?>
+			<div class="controls">
+				<?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
+				'placeholder' => 'Open-classifieds', 
+				'class' => 'tips', 
+				'id' => $forms['analytics']['key'],
+				'data-content'=> __(""),
+				'data-trigger'=>"hover",
+				'data-placement'=>"right",
+				'data-toggle'=>"popover",
+				'data-original-title'=>__("Analytics"), 
+				))?> 
+			</div>
+		</div>
+		<div class="control-group">
 			<?= FORM::label($forms_img['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label', 'for'=>$forms_img['allowed_formats']['key']))?>
 			<div class="controls">
 				<?= FORM::select("allowed_formats[]", array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), explode(',', $forms_img['allowed_formats']['value']), array(
