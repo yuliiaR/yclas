@@ -61,6 +61,7 @@
 				<li class="nav-header"><i class="icon-user"></i><?=__('Profile')?></li>
 				<?Theme::admin_link(__('Edit profile'), 'profile','edit')?>
                 <?Theme::admin_link(__('My Advertisements'), 'profile','ads')?>
+                <?Theme::admin_link(__('Stats'),'profile','stats')?>
 				<li><a
 					href="<?=Route::url('profile',array('seoname'=>$user->seoname))?>">
 					<?=__('Public profile')?>

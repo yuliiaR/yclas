@@ -56,6 +56,11 @@ class Model_Visit extends ORM {
 			    );
     }
 
+    public function get_id()
+    {
+      $id_visit = $this->id_visit;
+      return $id_visit;
+    }
     /**
      * get popular ads
      * @param  integer $days number of days to calculate

@@ -448,7 +448,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 	        	try 
 	        	{
-	        		//@TODO - PAYMENT
+	        		
 	        		// if user changes category, do payment first
 	        		// moderation 2 -> payment on, moderation 5 -> payment with moderation
 	        		// data['cat'] -> category selected , last_known_ad->id_category -> obj of current ad (before save) 
@@ -553,6 +553,111 @@ class Controller_Panel_Profile extends Auth_Controller {
 			$this->request->redirect(Route::url('default'));
 		}
 	}
+
+	public function action_stats()
+   	{
+    
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats')));
+
+        $this->template->styles = array('css/datepicker.css' => 'screen');
+        $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
+                                                    'js/oc-panel/stats/dashboard.js');
+        
+        $this->template->title = __('Stats');
+        $this->template->bind('content', $content);        
+        $content = View::factory('oc-panel/profile/stats');
+
+        //Getting the dates and range
+        $from_date = Core::post('from_date',strtotime('-1 month'));
+        $to_date   = Core::post('to_date',time());
+
+        //we assure is a proper time stamp if not we transform it
+        if (is_string($from_date) === TRUE) 
+            $from_date = strtotime($from_date);
+        if (is_string($to_date) === TRUE) 
+            $to_date   = strtotime($to_date);
+
+        //mysql formated dates
+        $my_from_date = Date::unix2mysql($from_date);
+        $my_to_date   = Date::unix2mysql($to_date);
+
+        //dates range we are filtering
+        $dates     = Date::range($from_date, $to_date,'+1 day','Y-m-d',array('date'=>0,'count'=> 0),'date');
+        
+        //dates displayed in the form
+        $content->from_date = date('Y-m-d',$from_date);
+        $content->to_date   = date('Y-m-d',$to_date) ;
+
+
+        /////////////////////VISITS STATS////////////////////////////////
+
+        $user = Auth::instance()->get_user();
+        $ads = new Model_Ad();
+        $collection_of_user_ads = $ads->where('id_user', '=', $user->id_user)->find_all();
+
+        $list_ad = array();
+        foreach ($collection_of_user_ads as $key) {
+        	//TODO make a list of ads (array), and than pass this array to query (IN).. To get correct visits
+        	$list_ad[] = $key->id_ad;
+        }
+        
+        //visits created last XX days
+        $query = DB::select(DB::expr('DATE(created) date'))
+                        ->select(DB::expr('COUNT(id_visit) count'))
+                        ->from('visits')
+                        ->where('id_ad', 'in', $list_ad)
+                        ->where('created','between',array($my_from_date,$my_to_date))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('date','asc')
+                        ->execute();
+
+        $visits = $query->as_array('date');
+
+        $visits_daily = array();
+        foreach ($dates as $date) 
+        {
+            $count = (isset($visits[$date['date']]['count']))?$visits[$date['date']]['count']:0;
+            $visits_daily[] = array('date'=>$date['date'],'count'=> $count);
+        } 
+
+        $content->visits_daily =  $visits_daily;
+
+
+        //Today and Yesterday Views
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+                        ->from('visits')
+                        ->where('id_ad', 'in', $list_ad)
+                        ->where('created','between',array(date('Y-m-d',strtotime('-1 day')),date::unix2mysql()))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('created','asc')
+                        ->execute();
+
+        $visits = $query->as_array();
+        $content->visits_yesterday = (isset($visits[0]['count']))?$visits[0]['count']:0;
+        $content->visits_today     = (isset($visits[1]['count']))?$visits[1]['count']:0;
+
+
+        //Last 30 days visits
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+                        ->from('visits')
+                        ->where('id_ad', 'in', $list_ad)
+                        ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
+                        ->execute();
+
+        $visits = $query->as_array();
+        $content->visits_month = (isset($visits[0]['count']))?$visits[0]['count']:0;
+
+        //total visits
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+                        ->where('id_ad', 'in', $list_ad)
+                        ->from('visits')
+                        ->execute();
+
+        $visits = $query->as_array();
+        $content->visits_total = (isset($visits[0]['count']))?$visits[0]['count']:0;
+        
+   }
+
 
 
 }
