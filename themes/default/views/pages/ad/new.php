@@ -123,7 +123,7 @@
 				<?endif?>
 				<div class="form-actions">
 					<?= FORM::button('submit', 'Publish now', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
-					<p class="help-block">Dynamic text, for free or pay XX€..</p>
+					<p class="help-block"><?=__('We will also create a user for you')?></p>
 				</div>
 			</fieldset>
 		<?= FORM::close()?>

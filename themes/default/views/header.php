@@ -24,7 +24,7 @@
 									<ul class="dropdown-menu">							
 								 	<?foreach($children_categ as $chi):?>
 	                            	<?if($chi['parent'] == $c->id_category):?>
-	                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['name']))?>"><span class="header_cat_list"><?=$chi['name']?></span> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
+	                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><span class="header_cat_list"><?=$chi['name']?></span> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
 	                           		<?endif?>
 	                         		<?endforeach?>
 									</ul>
