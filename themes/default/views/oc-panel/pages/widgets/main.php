@@ -88,7 +88,7 @@
 	    		<?=Breadcrumbs::render('oc-panel/breadcrumbs')?>
 	    		<?=Alert::show()?>
 	    	</div><!--/span--> 
-W
+
 	    	<div class="span8">
                 <h2><?=__('Available widgets')?></h2>
 
@@ -96,7 +96,7 @@ W
 					<?foreach ($widgets as $widget):?>
 						<?=$widget->form()?>
 					<?endforeach?>
-				</li>W
+				</li>
 
 	    	</div><!--/span--> 
 	    	
