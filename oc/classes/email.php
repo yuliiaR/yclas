@@ -56,7 +56,7 @@ class Email {
                
 
                 if (core::config('email.smtp_ssl') == TRUE)
-                {d('smtp ');
+                {
                     $mail->SMTPSecure = "ssl";                  // sets the prefix to the server
                 }
                     

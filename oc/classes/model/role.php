@@ -11,6 +11,11 @@
 class Model_Role extends ORM {
 
     /**
+     * user roles
+     */
+    const ROLE_USER         = 1;
+    const ROLE_ADMIN        = 10;
+    /**
      * @var  string  Table name
      */
     protected $_table_name = 'roles';

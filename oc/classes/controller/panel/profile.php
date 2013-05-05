@@ -28,12 +28,9 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 		if ($this->request->post() AND CSRF::valid())
 		{
-			// $user = Auth::instance()->get_user();
-
-			
+			$user = Auth::instance()->get_user();
 			if(Auth::instance()->hash(core::post('password_old')) == $user->password )
 			{
-
 				if ($this->request->post('password1')==$this->request->post('password2'))
 				{
 					$new_pass = $this->request->post('password1');
@@ -47,7 +44,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 						}
 						catch (ORM_Validation_Exception $e)
 						{
-							//Form::errors($content->errors);
+							throw new HTTP_Exception_500($e->getMessage());
 						}
 						catch (Exception $e)
 						{

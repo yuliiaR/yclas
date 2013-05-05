@@ -1,9 +1,9 @@
-	<?php defined('SYSPATH') or die('No direct script access.');
-	/**
-	 * CONTROLLER NEW 
-	 */
-	class Controller_New extends Controller
-	{
+<?php defined('SYSPATH') or die('No direct script access.');
+/**
+ * CONTROLLER NEW 
+ */
+class Controller_New extends Controller
+{
 	
 	/**
 	 * 
@@ -41,7 +41,7 @@
 																	   'form_show'			=> $form_show));
 		
 		// $_POST array with all fields 
-		$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
+		$data = array(	'auth' 			=> $auth 		= 	Auth::instance(),
 						'title' 		=> $title 		= 	$this->request->post('title'),
 						'cat'			=> $cat 		= 	$this->request->post('category'),
 						'loc'			=> $loc 		= 	$this->request->post('location'),
@@ -56,26 +56,27 @@
 		// depending on user flow (moderation mode), change usecase
 		$moderation = core::config('general.moderation'); 
 
-		if ($moderation == 0)
+
+		if ($moderation == 0) // direct post no moderation
 		{
 			if (Core::config('sitemap.on_post') == TRUE)
 				// Sitemap::generate(); // @TODO CHECK WHY DOESNT WORK
 
 			$status = Model_Ad::STATUS_PUBLISHED;
-			$this->_save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
+			$this->save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
 
 		}
 		else if($moderation == 1 || $moderation == 2 ||  $moderation == 3 || $moderation == 4 || $moderation == 5)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->_save_new_ad($data, $status, $published = FALSE, $moderation, $form_show['captcha']);
+			$this->save_new_ad($data, $status, $published = FALSE, $moderation, $form_show['captcha']);
 		}
 
 			
  	}
 
  	/**
- 	 * [_save_new_ad Save new advertisement if validated, with a given parameters 
+ 	 * [save_new_ad Save new advertisement if validated, with a given parameters 
  	 * 
  	 * @param  [array] $data   [post values]
  	 * @param  [int] $status [status of advert.]
@@ -85,71 +86,10 @@
  	 * 
  	 * @return [view] View dependant on usecase 
  	 */
- 	public function _save_new_ad($data, $status, $published, $moderation, $captcha_show)
+ 	public function save_new_ad($data, $status, $published, $moderation, $captcha_show)
  	{
  		
- 		// case when user is not logged in. We create new user if he doesnt exists in DB
- 		if (!$data['_auth']->logged_in()) 
-		{
-			
-			$name 		= $this->request->post('name');
-			$email		= $this->request->post('email');
-			$password	= $this->request->post('password');
-			$seoname	= URL::title($this->request->post('name'), '-', FALSE);
-			
-			if (Valid::email($email,TRUE))
-			{
-				$user = $data['user']->where('email', '=', $email)
-						->limit(1)
-						->find();
-
-				if ($user->loaded())
-				{ //@TODO - check this usecase, why is commented 
-					// Alert::set(Alert::SUCCESS, __('User Exists, please login first to authenticate profile'));
-					// $this->request->redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
-					
-				}
-				else
-				{ 
-					$user->email 	= $email;
-					$user->name 	= $name;
-					$user->status 	= Model_User::STATUS_ACTIVE;
-					$user->id_role	= 1;//normal user
-					$user->password = '1234';	// @TODO generate new user password, bad solution find better !!!
-					$user->seoname 	= $seoname;
-					
-					try
-					{
-						$user->save();
-						Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
-						
-						// //we get the QL, and force the regen of token for security
-      //               	$url_ql = $user->ql('profile',array( 'seoname' => 'ad'),TRUE);
-
-      //               	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql));
-						//@TODO EMAIL
-						
-					}
-					catch (ORM_Validation_Exception $e)
-					{
-						//Form::errors($content->errors);
-					}
-					catch (Exception $e)
-					{
-						throw new HTTP_Exception_500($e->getMessage());
-					}
-				}
-					$usr = $data['user']->id_user; 
-			}
-		}
-		else
-		{
-			$usr 		= $data['_auth']->get_user()->id_user;
-			$name 		= $data['_auth']->get_user()->name;
-			$email 		= $data['_auth']->get_user()->email;
-		}	
-		
-		$_new_ad = ORM::factory('ad');
+		$new_ad = new Model_Ad();
 		
 
 		//$_POST is submitted for a new ad 
@@ -159,27 +99,114 @@
 			if($captcha_show == FALSE || captcha::check('contact') ) 
 			{		
 				
-				//insert data
-
-				$seotitle = $_new_ad->gen_seo_title($data['title']); 
+				//FORM DATA 
+				$seotitle = $new_ad->gen_seo_title($data['title']); 
 				
-				$_new_ad->title 		= $data['title'];
-				$_new_ad->id_location 	= $data['loc'];
-				$_new_ad->id_category 	= $data['cat'];
-				$_new_ad->id_user 		= $usr;
-				$_new_ad->description 	= $data['description'];
-				$_new_ad->type 	 		= '0';
-				$_new_ad->seotitle 		= $seotitle;	 
-				$_new_ad->status 		= $status; 
-				$_new_ad->price 		= $data['price']; 								
-				$_new_ad->address 		= $data['address'];
-				$_new_ad->phone			= $data['phone'];
-				$_new_ad->website		= $data['website']; 
+				$new_ad->title 			= $data['title'];
+				$new_ad->id_location 	= $data['loc'];
+				$new_ad->id_category 	= $data['cat'];
+				$new_ad->description 	= $data['description'];
+				$new_ad->type 	 		= '0';
+				$new_ad->seotitle 		= $seotitle;	 
+				$new_ad->status 		= $status; 
+				$new_ad->price 			= $data['price']; 								
+				$new_ad->address 		= $data['address'];
+				$new_ad->phone			= $data['phone'];
+				$new_ad->website		= $data['website']; 
 
 				try
 				{
-					$_new_ad->save();
-					
+
+					/////////////////// USER DETECTION ////////////////
+	        		// case when user is not logged in. 
+	        		// We create new user if he doesn't exists in DB
+	        		// and send him mail for ad created + new profile created
+			 		if (!$data['auth']->logged_in()) 
+					{
+						
+						$name 		= $this->request->post('name');
+						$email		= $this->request->post('email');
+						$password	= $this->request->post('password');
+						$seoname	= URL::title($this->request->post('name'), '-', FALSE);
+						
+						// check validity of email
+						if (Valid::email($email,TRUE))
+						{
+							// search for email in DB
+							$user = $data['user']->where('email', '=', $email)
+									->limit(1)
+									->find();
+
+							// if loaded, he exists but he's not logged in
+							// send him email for ad confirmation to ensure he is the one that created this ad
+							if ($user->loaded())
+							{  
+								// Send user email to inform him that new ad has been created,
+								// with a link to deactivate if this ad, if he is not the one that created.
+   
+									//we get the QL, and force the regen of token for security
+			                    	$url_cont = $user->ql('contact', array(),TRUE);
+			                    	$url_ad = $user->ql('ad', array('category'=>$data['cat'],
+			                    									'seotitle'=>$seotitle), TRUE);
+
+			                    	$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
+			                    											   '[URL.AD]'		=>$url_ad));
+							}
+							else
+							{ 
+								$new_password_hash = Auth::instance()->hash_password('password'); 
+								$user->email 	= $email;
+								$user->name 	= $name;
+								$user->status 	= Model_User::STATUS_ACTIVE;
+								$user->id_role	= Model_Role::ROLE_USER;//normal user
+								$user->password = $new_password_hash;	// @TODO generate new user password, bad solution find better !!!
+								$user->seoname 	= $seoname;
+								
+								try
+								{
+									$user->save();
+									Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
+									
+									//we get the QL, and force the regen of token for security
+			                    	$url_pwch = $user->ql('oc-panel',array('controller' => 'profile', 
+			                    										   'action'		=> 'edit'),TRUE);
+
+			                    	$ret = $user->email('user.new',array('[URL.PWCH]'=>$url_pwch,
+			                    										 '[USER.PWD]'=>$new_password_hash));
+														
+								}
+								catch (ORM_Validation_Exception $e)
+								{
+									throw new HTTP_Exception_500($e->getMessage());
+								}
+								catch (Exception $e)
+								{
+									throw new HTTP_Exception_500($e->getMessage());
+								}
+							}
+								$usr = $data['user']->id_user; 
+						}
+					}
+					else
+					{
+						$usr 		= $data['auth']->get_user()->id_user;
+						$name 		= $data['auth']->get_user()->name;
+						$email 		= $data['auth']->get_user()->email;
+					}
+
+					// SAVE AD
+					$new_ad->id_user 		= $usr; // after handling user
+					$new_ad->save();
+
+					// CONFIRMATION EMAIL SENT UPON CREATING NEW AD
+					//we get the QL, and force the regen of token for security
+                	$url_cont = $user->ql('contact', array(),TRUE);
+                	$url_ad = $user->ql('ad', array('category'=>$data['cat'],
+                									'seotitle'=>$seotitle), TRUE);
+
+                	$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
+                											   '[URL.AD]'		=>$url_ad));
+	
 					// if moderation is off update db field with time of creation 
 					if($published)
 					{	
@@ -208,26 +235,19 @@
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
                                                           	 'action'     => 'confirm_post',
-                                                          	 'id'		  => $_new_ad->id_ad),TRUE);
+                                                          	 'id'		  => $new_ad->id_ad),TRUE);
 
                     	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql));
-
-					
-					
 					}
 					else if($moderation == 4)
 					{
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
                                                           	  'action'    => 'update',
-                                                          	  'id'		  => $_new_ad->id_ad),TRUE);
+                                                          	  'id'		  => $new_ad->id_ad),TRUE);
 
                     	$ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql));
-
-
-					}
-					
-					  
+					}  
 				}
 				catch (ORM_Validation_Exception $e)
 				{
@@ -237,9 +257,8 @@
 				{
 					throw new HTTP_Exception_500($e->getMessage());
 				}
-				
 
-				// image upload,
+				// IMAGE UPLOAD 
 				// in case something wrong happens user is redirected to edit advert. 
 				$error_message = NULL;
 	    		$filename = NULL;
@@ -251,31 +270,31 @@
 	        		{
 		        		$img_files = array($_FILES['image'.$i]);
 
-		            	$filename = $_new_ad->save_image($img_files, $_new_ad->id_ad, $created, $_new_ad->seotitle, $counter);
+		            	$filename = $new_ad->save_image($img_files, $new_ad->id_ad, $created, $new_ad->seotitle, $counter);
 
 	        		}
 
 	        		if ($filename['error'] == TRUE)
 		       		{
-			        	$_new_ad->has_images = 1;
+			        	$new_ad->has_images = 1;
 		        	}
 		        	
 		        	if($filename['error_name'] == "wrong_format" || $filename['error_name'] == 'upload_unsuccessful')
 		        	{
 		        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures, please check format'));
 
-		        		$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$_new_ad->id_ad)));
+		        		$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad)));
 		        	}
 
 		        	try {
-		        		$_new_ad->save();
+		        		$new_ad->save();
 		        	} catch (Exception $e) {
 		        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures'));
 		        		$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad)));
 		        	}
 	    		}
 
-				// PAYMENT METHOD ACTIVE
+				// PAYMENT METHOD ACTIVE (and other alerts)
 				if($moderation == 2 || $moderation == 5)
 				{
 					$payment_order = new Model_Order();
