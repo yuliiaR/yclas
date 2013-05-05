@@ -160,33 +160,32 @@ class Theme {
     public static function initialize($theme = 'default')
     {
     	/**
-         * @todo crashes on theme change set_theme /oc-panel/settings/appearance
     	 * Get the theme
     	 * 1st by get
     	 * 2nd by cookie
     	 * 3rd mobile (only if mobile is ON)
     	 * 4th the one seted in config
     	 */
-        // if (Core::get('theme', NULL)!==NULL)
-        // {
-        //     if (file_exists(self::theme_init_path(Core::get('theme'))))
-        //         $theme = Core::get('theme');
-        // }
-        // elseif (Cookie::get('theme',NULL)!==NULL)
-        // {
-        //     if (file_exists(self::theme_init_path(Cookie::get('theme'))))
-        //         $theme = Cookie::get('theme');
-        // }
+        if (Core::get('theme', NULL)!==NULL)
+        {
+            if (file_exists(self::theme_init_path(Core::get('theme'))))
+                $theme = Core::get('theme');
+        }
+        elseif (Cookie::get('theme',NULL)!==NULL)
+        {
+            if (file_exists(self::theme_init_path(Cookie::get('theme'))))
+                $theme = Cookie::get('theme');
+        }
         // elseif(self::is_mobile())
         // {
         //     if (file_exists(self::theme_init_path('mobile')))
         //         $theme = 'mobile';
         // }
-        // else
-        // {
+        else
+        {
             if (file_exists(self::theme_init_path(Core::config('appearance.theme'))))
                 $theme = Core::config('appearance.theme');
-        //  }
+        }
 
         //we save the cookie for next time
         Cookie::set('theme', $theme, Core::config('auth.lifetime'));
@@ -225,6 +224,7 @@ class Theme {
 
         try 
         {
+            Cookie::set('theme', $theme, Core::config('auth.lifetime'));
             $conf->save();
             return TRUE;
         } 
