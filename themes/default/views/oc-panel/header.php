@@ -19,7 +19,7 @@
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    
+                    <?=Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift icon-white')?>
                     <?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','icon-list-alt icon-white')?>
                 	<?=Theme::admin_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
                     <?=Theme::admin_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
@@ -38,14 +38,20 @@
             	   </li> 
                    <?else:?>
                     <li><a href="<?=Route::url('post_new')?>">
-                                <i class="icon-pencil"></i><?=__('Publish new ')?></a>  </li>
+                                <i class="icon-pencil"></i><?=__('Publish new ')?></a>
+                    </li>
                    <?endif?>
 
                 </ul>
                 
                 <div class="nav pull-right">
                     <ul class="nav">
-                        <?=nav_link(_('Visit Site'),'','icon-home icon-white','','default')?>
+                        <li>
+                            <a href="<?=Route::url('default')?>">
+                                    <i class="icon-home icon-white"></i>
+                                <?=_('Visit Site')?>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 

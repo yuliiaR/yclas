@@ -7,7 +7,7 @@
 </div>
 
 <div class="well">
-<?= FORM::open(Route::url('oc-panel',array('controller'=>'market', 'action'=>'options')), array('class'=>'form-horizontal'))?>
+<?= FORM::open(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'options')), array('class'=>'form-horizontal'))?>
     <fieldset>
         <?foreach ($options as $field => $attributes):?>
             <div class="control-group">
@@ -16,7 +16,7 @@
         <?endforeach?>
 		<div class="form-actions">
 			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary',
-             'action'=>Route::url('oc-panel',array('controller'=>'market', 'action'=>'options'))))?>
+             'action'=>Route::url('oc-panel',array('controller'=>'theme', 'action'=>'options'))))?>
 		</div>
 	</fieldset>	
 <?=FORM::close()?>

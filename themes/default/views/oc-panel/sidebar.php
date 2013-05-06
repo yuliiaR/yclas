@@ -2,30 +2,28 @@
 <div class="span3">
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
-			<?if ($user->has_access_to_any('ad,category,location,widget,content')):?>
+			<?if ($user->has_access_to_any('ad,category,location,order,content,translate')):?>
 				<li class="nav-header"><i class="icon-briefcase"></i><?=__('Administration')?></li>
 				<?Theme::admin_link(__('Advertisement'),'ad')?>
 				<?Theme::admin_link(__('Moderation'),'ad','moderate')?>
 				<?Theme::admin_link(__('Categories'),'category')?>
 				<?Theme::admin_link(__('Locations'),'location')?>
 				<?Theme::admin_link(__('Orders'), 'order')?>
-				<?Theme::admin_link(__('Widgets'), 'widget')?>
 				<?Theme::admin_link(__('Content'), 'content')?>
                 <?Theme::admin_link(__('Translations'), 'translate')?>
                 <li class="divider"></li>
 			<? endif ?>
 
-                   
-            <?if ($user->has_access_to_any('market')):?>
-                <?Theme::admin_link(__('Themes'), 'market','theme','oc-panel','icon-picture')?>
+            <?if ($user->has_access_to_any('market,theme,widget')):?>
+                <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','icon-move')?>      
+                <?Theme::admin_link(__('Themes'), 'theme','index','oc-panel','icon-picture')?>
                 <?if (Theme::has_options()) 
-                        Theme::admin_link(__('Theme Options'), 'market','options','oc-panel','icon-leaf')?>       
-                <?Theme::admin_link(__('Extras'), 'market','extras','oc-panel','icon-gift')?>
+                        Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel','icon-leaf')?>       
+                <?Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift')?>
                 <li class="divider"></li>
             <?endif?>
 
 			<?if ($user->has_access_to_any('settings,config')):?>
-               
 				<li class="nav-header dropdown-submenu <?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">
                 <a tabindex="-1" href="#"><i class="icon-edit"></i><?=__('Settings')?></a>
                     <ul class="dropdown-menu">

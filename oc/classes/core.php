@@ -216,6 +216,36 @@ class Core {
     }
 
 
+
+    /**
+     * get updates from json hosted currently at google code
+     * @param  boolean $reload  
+     * @return void
+     */
+    public static function get_updates($reload = FALSE)
+    {
+        //we check the date of our local versions.php
+        $version_file = APPPATH.'config/versions.php';
+        
+        //if older than a month or ?reload=1 force reload
+        if ( time() > strtotime('+1 week',filemtime($version_file)) OR $reload === TRUE )
+        {
+            //read from oc/versions.json on CDN
+            $json = file_get_contents('http://openclassifieds.googlecode.com/files/versions.json?r='.time());
+            $versions = json_decode($json,TRUE);
+            if (is_array($versions))
+            {
+                //update our local versions.php
+                $content = "<?php defined('SYSPATH') or die('No direct script access.');
+                return ".var_export($versions,TRUE).";";// die($content);
+                //@todo check file permissions?
+                core::fwrite($version_file, $content);
+            }
+            
+        }
+    }
+
+
 } //end core
 
 /**

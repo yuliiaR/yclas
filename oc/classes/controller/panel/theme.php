@@ -1,0 +1,81 @@
+<?php defined('SYSPATH') or die('No direct script access.');
+
+/**
+ * Controller Market seettings
+ */
+
+
+class Controller_Panel_Theme extends Auth_Controller {
+
+    public function __construct($request, $response)
+    {
+        parent::__construct($request, $response);
+        
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Themes'))->set_url(Route::url('oc-panel',array('controller'  => 'theme'))));
+
+    }
+
+    /**
+     * theme options/settings
+     * @return [view] Renders view with form inputs
+     */
+    public function action_options()
+    {
+        // validation active 
+        $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
+        //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Theme Options')));     
+        $this->template->title = __('Theme Options');  
+
+        // save only changed values
+        if($this->request->post())
+        {
+            //for each option read the post and store it
+            foreach ($_POST as $key => $value) 
+            {
+                if (isset(Theme::$options[$key]))
+                {
+                    Theme::$data[$key] = core::post($key);
+                }
+            }
+            
+            Theme::save();
+            
+            Alert::set(Alert::SUCCESS, __('Success, Theme configuration updated'));
+            $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'options')));
+        }
+
+        $this->template->content = View::factory('oc-panel/pages/themes/options', array('options' => Theme::$options, 'data'=>Theme::$data));
+    }
+
+    /**
+     * theme selector
+     * @return [view] 
+     */
+    public function action_index()
+    {
+        // validation active 
+        $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
+        //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Selector')));  
+        $this->template->title = __('Themes');     
+
+        //getting the themes
+        $themes = Theme::get_installed_themes();
+        
+        // @todo future from openclassifieds market
+
+        // save only changed values
+        if($this->request->param('id'))
+        {
+            Theme::set_theme($this->request->param('id'));
+            
+            Alert::set(Alert::SUCCESS, __('Success, Appearance configuration updated'));
+            $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'index')));
+        }
+
+        $this->template->content = View::factory('oc-panel/pages/themes/theme', array('themes' => $themes, 'selected'=>Theme::get_theme_info(Theme::$theme)));
+    }
+
+
+}//end of controller
