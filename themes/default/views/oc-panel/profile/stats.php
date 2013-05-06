@@ -19,6 +19,13 @@
             </thead>
             <tbody>
                 <tr>
+                    <td><b><?=__('Contacts')?></b></td>
+                    <td><?=$contacts_today?></td>
+                    <td><?=$contacts_yesterday?></td>
+                    <td><?=$contacts_month?></td>
+                    <td><?=$contacts_total?></td>
+                </tr>
+                <tr>
                     <td><b><?=__('Visits')?></b></td>
                     <td><?=$visits_today?></td>
                     <td><?=$visits_yesterday?></td>
@@ -53,6 +60,9 @@
     
 </div> <!-- /.row -->
    
+<?=Chart::column($contacts_daily,array('title'=>__('Contacts'),
+                                    'height'=>400,
+                                    'width'=>800))?>
 
 <?=Chart::column($visits_daily,array('title'=>__('Visits'),
                                     'height'=>400,

@@ -30,10 +30,14 @@
 					<td><?= $cat->name ?>
 				<?endif?>
 	    	<?endforeach?>
-			
-			<?php foreach($location as $loc):?>
+
+	    	<? foreach($location as $loc):?>
+				<?$locat_name = NULL;?>
 				<? if ($loc->id_location == $ad->id_location): ?>
-					<td><?= $loc->name?></td>
+					<td><?= $locat_name = $loc->name?></td>
+				<?endif?>
+				<?if($locat_name == NULL):?>
+					<td><?= _e('NoN')?></td>
 				<?endif?>
 	    	<?endforeach?>
 		
@@ -55,18 +59,21 @@
 					rel"tooltip" title="<?=__('Update')?>">
 					<i class="icon-edit icon-white"></i>
 				</a>
+				<? if($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
 				<a class="btn btn-success" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Activate?')?>');"
 					rel"tooltip" title="<?=__('Activate')?>">
 					<i class="icon-ok icon-white"></i>
 				</a>
+				<?else:?>
 				<a class="btn btn-warning" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Deactivate?')?>');"
 					rel"tooltip" title="<?=__('Deactivate')?>">
 					<i class="icon-remove icon-white"></i>
 				</a>
+				<?endif?>
 				<?if(($user->id_role == 10) OR (core::config('payment.to_top'))):?>
 					<a class="btn btn-info" 
 						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 

@@ -30,7 +30,7 @@
 		<?endif?>
 
 		<?$visitor = Auth::instance()->get_user()?>
-		<? //var_dump($visitor)?>
+		
 		<?if ($visitor != FALSE && $visitor->id_role == 10):?>
 			<br />
 			<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?= _e("Edit");?></a> |

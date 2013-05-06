@@ -552,7 +552,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 	public function action_stats()
    	{
-    
+   
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats')));
 
         $this->template->styles = array('css/datepicker.css' => 'screen');
@@ -584,19 +584,84 @@ class Controller_Panel_Profile extends Auth_Controller {
         $content->from_date = date('Y-m-d',$from_date);
         $content->to_date   = date('Y-m-d',$to_date) ;
 
-
-        /////////////////////VISITS STATS////////////////////////////////
-
+        // user and his ads
         $user = Auth::instance()->get_user();
         $ads = new Model_Ad();
         $collection_of_user_ads = $ads->where('id_user', '=', $user->id_user)->find_all();
 
         $list_ad = array();
         foreach ($collection_of_user_ads as $key) {
-        	//TODO make a list of ads (array), and than pass this array to query (IN).. To get correct visits
+        	// make a list of ads (array), and than pass this array to query (IN).. To get correct visits
         	$list_ad[] = $key->id_ad;
         }
         
+        // if user doesn't have any ads
+       	if(empty($list_ad))
+        	$list_ad = array(NULL);
+        
+        /////////////////////CONTACT STATS////////////////////////////////
+
+        //visits created last XX days
+        $query = DB::select(DB::expr('DATE(created) date'))
+                        ->select(DB::expr('COUNT(contacted) count'))
+                        ->from('visits')
+                        ->where('contacted', '=', 1)
+                        ->where('id_ad', 'in', $list_ad)
+                        ->where('created','between',array($my_from_date,$my_to_date))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('date','asc')
+                        ->execute();
+
+        $contacts = $query->as_array('date');
+ 
+        $contacts_daily = array();
+        foreach ($dates as $date) 
+        {
+            $count = (isset($contacts[$date['date']]['count']))?$contacts[$date['date']]['count']:0;
+            $contacts_daily[] = array('date'=>$date['date'],'count'=> $count);
+        } 
+
+        $content->contacts_daily = $contacts_daily;
+
+
+        //Today and Yesterday Views
+        $query = DB::select(DB::expr('COUNT(contacted) count'))
+                        ->from('visits')
+                        ->where('contacted', '=', 1)
+                        ->where('id_ad', 'in', $list_ad)
+                        ->where('created','between',array(date('Y-m-d',strtotime('-1 day')),date::unix2mysql()))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('created','asc')
+                        ->execute();
+
+        $contacts = $query->as_array();
+        $content->contacts_yesterday = (isset($contacts[0]['count']))?$contacts[0]['count']:0;
+        $content->contacts_today     = (isset($contacts[1]['count']))?$contacts[1]['count']:0;
+
+
+        //Last 30 days contacts
+        $query = DB::select(DB::expr('COUNT(contacted) count'))
+                        ->from('visits')
+                        ->where('contacted', '=', 1)
+                        ->where('id_ad', 'in', $list_ad)
+                        ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
+                        ->execute();
+
+        $contacts = $query->as_array();
+        $content->contacts_month = (isset($contacts[0]['count']))?$contacts[0]['count']:0;
+
+        //total contacts
+        $query = DB::select(DB::expr('COUNT(contacted) count'))
+        				->where('contacted', '=', 1)
+                        ->where('id_ad', 'in', $list_ad)
+                        ->from('visits')
+                        ->execute();
+
+        $contacts = $query->as_array();
+        $content->contacts_total = (isset($contacts[0]['count']))?$contacts[0]['count']:0;
+
+        /////////////////////VISITS STATS////////////////////////////////
+
         //visits created last XX days
         $query = DB::select(DB::expr('DATE(created) date'))
                         ->select(DB::expr('COUNT(id_visit) count'))
@@ -608,7 +673,7 @@ class Controller_Panel_Profile extends Auth_Controller {
                         ->execute();
 
         $visits = $query->as_array('date');
-
+ 
         $visits_daily = array();
         foreach ($dates as $date) 
         {
