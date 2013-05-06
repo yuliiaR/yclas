@@ -112,29 +112,14 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if(core::config('advertisement.tos')):?>
+				<?if(is_string(core::config('advertisement.tos'))):?>
 				<div class="control-group">
 					<?= FORM::label('tos', __('Terms of service'), array('class'=>'control-label', 'for'=>'tos'))?>
 					<div class="controls">
-					<?= FORM::input('tos', '', array('id'=>'tos', 'type'=>'checkbox' ,'required','placeholder'=>__('Terms of service')))?>
-					
-						<!-- Button to trigger modal -->
-						<a href="#myModal" role="button" class="" data-toggle="modal"> Read</a>
-						 
-						<!-- Modal -->
-						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						  <div class="modal-header">
-						    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						    <h3 id="myModalLabel">Modal header</h3>
-						  </div>
-						  <div class="modal-body">
-						    <p>One fine body…</p>
-						  </div>
-						  <div class="modal-footer">
-						    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-						    <button class="btn btn-primary">Save changes</button>
-						  </div>
-						</div>
+						<?= FORM::input('tos', '', array('id'=>'tos', 'type'=>'checkbox' ,'required','placeholder'=>__('Terms of service')))?>
+						
+						<!-- Button to trigger read TOS -->
+						<a href="<?=Route::url('page', array('seotitle'=>'tos'))?>"> Read Terms of Service</a>
 					</div>
 				</div>
 				<?endif?>
