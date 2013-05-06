@@ -56,16 +56,8 @@ class Controller_Panel_Stats extends Auth_Controller {
                         ->order_by('date','asc')
                         ->execute();
 
-        $ads = $query->as_array('date');
+        $ads_dates = $query->as_array('date');
 
-        $ads_daily = array();
-        foreach ($dates as $date) 
-        {
-            $count = (isset($ads[$date['date']]['count']))?$ads[$date['date']]['count']:0;
-            $ads_daily[] = array('date'=>$date['date'],'ads'=> $count, 'views'=>rand(0,5));
-        } 
-
-        $content->ads_daily =  $ads_daily;
 
         //Today 
         $query = DB::select(DB::expr('COUNT(id_ad) count'))
@@ -124,14 +116,17 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         $visits = $query->as_array('date');
 
-        $visits_daily = array();
+
+        $stats_daily = array();
         foreach ($dates as $date) 
         {
-            $count = (isset($visits[$date['date']]['count']))?$visits[$date['date']]['count']:0;
-            $visits_daily[] = array('date'=>$date['date'],'count'=> $count);
+            $count_views = (isset($visits[$date['date']]['count']))?$visits[$date['date']]['count']:0;
+            $count_ads = (isset($ads_dates[$date['date']]['count']))?$ads_dates[$date['date']]['count']:0;
+            
+            $stats_daily[] = array('date'=>$date['date'],'views'=> $count_views,'ads'=>$count_ads);
         } 
 
-        $content->visits_daily =  $visits_daily;
+        $content->stats_daily =  $stats_daily;
 
 
         //Today and Yesterday Views
