@@ -15,6 +15,11 @@ class Controller_Panel_Settings extends Auth_Controller {
 
     }
 
+    public function action_index()
+    {
+        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'settings','action'=>'general')));  
+    }
+
     /**
      * Contains all data releated to new advertisment optional form inputs,
      * captcha, uploading text file  
@@ -217,65 +222,4 @@ class Controller_Panel_Settings extends Auth_Controller {
     }
 
 
-    /**
-     * theme options/settings
-     * @return [view] Renders view with form inputs
-     */
-    public function action_theme()
-    {
-        // validation active 
-        $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
-        //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Theme Options')));     
-        $this->template->title = __('Theme Options');  
-
-        // save only changed values
-        if($this->request->post())
-        {
-            //for each option read the post and store it
-            foreach ($_POST as $key => $value) 
-            {
-                if (isset(Theme::$options[$key]))
-                {
-                    Theme::$data[$key] = core::post($key);
-                }
-            }
-            
-            Theme::save();
-            
-            Alert::set(Alert::SUCCESS, __('Success, Theme configuration updated'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'theme')));
-        }
-
-        $this->template->content = View::factory('oc-panel/pages/settings/theme', array('options' => Theme::$options, 'data'=>Theme::$data));
-    }
-
-    /**
-     * theme selector
-     * @return [view] Renders view with form inputs
-     */
-    public function action_appearance()
-    {
-        // validation active 
-        $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
-        //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Appearance')));  
-        $this->template->title = __('Appearance');     
-
-        //getting the themes
-        $themes = Theme::get_installed_themes();
-        
-        // @todo future from RSS Theme::get_market_themes();
-
-        // save only changed values
-        if($this->request->param('id'))
-        {
-            Theme::set_theme($this->request->param('id'));
-            
-            Alert::set(Alert::SUCCESS, __('Success, Appearance configuration updated'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'appearance')));
-        }
-
-        $this->template->content = View::factory('oc-panel/pages/settings/appearance', array('themes' => $themes, 'selected'=>Theme::$theme));
-    }
 }//end of controller

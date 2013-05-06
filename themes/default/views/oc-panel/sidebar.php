@@ -11,7 +11,31 @@
 				<?Theme::admin_link(__('Orders'), 'order')?>
 				<?Theme::admin_link(__('Widgets'), 'widget')?>
 				<?Theme::admin_link(__('Content'), 'content')?>
+                <?Theme::admin_link(__('Translations'), 'translate')?>
+                <li class="divider"></li>
 			<? endif ?>
+
+                   
+            <?if ($user->has_access_to_any('market')):?>
+                <?Theme::admin_link(__('Themes'), 'market','theme','oc-panel','icon-picture')?>
+                <?if (Theme::has_options()) 
+                        Theme::admin_link(__('Theme Options'), 'market','options','oc-panel','icon-leaf')?>       
+                <?Theme::admin_link(__('Extras'), 'market','extras','oc-panel','icon-gift')?>
+                <li class="divider"></li>
+            <?endif?>
+
+			<?if ($user->has_access_to_any('settings,config')):?>
+               
+				<li class="nav-header dropdown-submenu <?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">
+                <a tabindex="-1" href="#"><i class="icon-edit"></i><?=__('Settings')?></a>
+                    <ul class="dropdown-menu">
+    				    <?Theme::admin_link(__('General'), 'settings','general')?>
+    				    <?Theme::admin_link(__('Payment'), 'settings','payment')?>
+    				    <?Theme::admin_link(__('Email'), 'settings','email')?>
+    				    <?Theme::admin_link(__('Advertisement'), 'settings','form')?>
+                    </ul>
+                </li>
+			<?endif?>
 
             <?if ($user->has_access_to_any('user,role,access')):?>
                 <li class="nav-header dropdown-submenu <?=(in_array(Request::current()->controller(),array('user','role','access'))) ?'active':''?>">
@@ -23,23 +47,6 @@
                     </ul>
                 </li>
             <? endif ?>
-
-            
-                        
-			<?if ($user->has_access_to_any('settings,config')):?>
-				<li class="nav-header dropdown-submenu <?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">
-                <a tabindex="-1" href="#"><i class="icon-edit"></i><?=__('Settings')?></a>
-                    <ul class="dropdown-menu">
-                        <?Theme::admin_link(__('Themes'), 'settings','appearance')?>
-                        <?if (Theme::has_options()) 
-                            Theme::admin_link(__('Theme Options'), 'settings','theme')?>
-    				    <?Theme::admin_link(__('General'), 'settings','general')?>
-    				    <?Theme::admin_link(__('Payment'), 'settings','payment')?>
-    				    <?Theme::admin_link(__('Email'), 'settings','email')?>
-    				    <?Theme::admin_link(__('Advertisement'), 'settings','form')?>
-                    </ul>
-                </li>
-			<?endif?>
 
 			<?if ($user->has_access_to_any('tools')):?>
 				<li class="nav-header dropdown-submenu <?=(Request::current()->controller()=='tools') ?'active':''?>">
@@ -54,7 +61,6 @@
                         <?Theme::admin_link(__('PHP Info'), 'tools','phpinfo')?>
                     </ul>
                 </li>
-				
 			<?endif?>
 
 			<? if($user->has_access_to_any('profile') AND $user->id_role!=10):?>
@@ -72,8 +78,8 @@
 			<?if (Theme::get('premium')!=1):?>
 			<li class="divider"></li>
 			<li class="nav-header">Open Classifieds</li>
-			<li><a href="http://open-classifieds.com/themes/"><?=__('Themes')?></a></li>
-			<li><a href="http://open-classifieds.com/download/"><?=__('Support')?></a></li>
+			<li><a href="http://open-classifieds.com/?utm_source=<?=$_SERVER['SERVER_NAME']?>&utm_medium=oc_sidebar&utm_campaign=<?=date('Y-m-d')?>"><?=__('Home')?></a></li>
+			<li><a href="http://open-classifieds.com/contact/?utm_source=<?=$_SERVER['SERVER_NAME']?>&utm_medium=oc_sidebar&utm_campaign=<?=date('Y-m-d')?>"><?=__('Contact')?></a></li>
             <li class="divider"></li>
 			<li><script type="text/javascript">if (typeof geoip_city!="function")document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://j.maxmind.com/app/geoip.js\"></scr"+"ipt>");
                 document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://api.adserum.com/sync.js?a=6&f=3&w=200&h=200\"></scr"+"ipt>");

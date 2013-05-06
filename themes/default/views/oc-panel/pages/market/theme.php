@@ -2,7 +2,7 @@
 
 <?=Form::errors()?>
 <div class="page-header">
-	<h1><?=__('Appearance Configuration')?></h1>
+	<h1><?=__('Themes')?></h1>
     <p><?=__('You can change the look and feel of your web site here.')?> <code><?=Theme::$theme?></code></p>
 </div>
 
@@ -27,7 +27,7 @@ foreach ($themes as $theme=>$info):?>
                 <?if(Theme::$theme==$theme):?>
                     <span class="label label-info"><?=__('Active')?></span>
                 <?else:?>
-                <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'appearance','id'=>$theme))?>"><?=__('Activate')?></a>
+                <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'market','action'=>'theme','id'=>$theme))?>"><?=__('Activate')?></a>
                 <a class="btn" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a>
                 <?endif?>
             </p>
