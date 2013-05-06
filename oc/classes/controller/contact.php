@@ -35,8 +35,7 @@ class Controller_Contact extends Controller {
 			}	
 		}
 
-		// we ensure that user is logged in to avoid spam
-		$user_auth = (!Auth::instance()->logged_in()) ? $this->template->content = View::factory('pages/contact', array('user_auth'=>FALSE)) : $this->template->content = View::factory('pages/contact', array('user_auth'=>TRUE));
+        $this->template->content = View::factory('pages/contact');
 		
 	}
 

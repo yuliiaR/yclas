@@ -39,7 +39,7 @@
                 <ul class="nav nav-list">
                     <?foreach($children_categ as $chi):?>
                         <?if($chi['parent'] == $c->id_category):?>
-                        <li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['name']))?>"><?=$chi['name'];?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
+                        <li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><?=$chi['name'];?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
                         <?endif?>
                      <?endforeach?>
                 </ul>

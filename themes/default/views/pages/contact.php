@@ -1,61 +1,53 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<?if($user_auth !== FALSE):?>
-	<div class="well">
-		<?=Form::errors()?>
-		<h1><?=__('Contact US')?></h1>
-		<?= FORM::open(Route::url('contact'), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
-		<fieldset>
-			<div class="control-group">
-				<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
-				<div class="controls ">
-					<?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => 'input-xlarge', 'id' => 'name', 'required'))?>
-				</div>
+<div class="well">
+	<?=Form::errors()?>
+	<h1><?=__('Contact US')?></h1>
+	<?= FORM::open(Route::url('contact'), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+	<fieldset>
+		<div class="control-group">
+			<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
+			<div class="controls ">
+				<?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => 'input-xlarge', 'id' => 'name', 'required'))?>
 			</div>
-			<div class="control-group">
-				
-				<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
-				<div class="controls ">
-					<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => 'input-xlarge', 'id' => 'email', 'type'=>'email','required'))?>
-				</div>
-			</div>
-			<div class="control-group">
-				
-				<?= FORM::label('subject', __('Subject'), array('class'=>'control-label', 'for'=>'subject'))?>
-				<div class="controls ">
-					<?= FORM::input('subject', "", array('placeholder' => __('Subject'), 'class' => 'input-xlarge', 'id' => 'subject'))?>
-				</div>
-			</div>
-			<div class="control-group">
-				<?= FORM::label('message', __('Message'), array('class'=>'control-label', 'for'=>'message'))?>
-				<div class="controls">
-					<?= FORM::textarea('message', "", array('class'=>'input-xlarge', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>7, 'required'))?>	
-					</div>
-			</div>
+		</div>
+		<div class="control-group">
 			
-			<?if (core::config('advertisement.captcha') != FALSE):?>
-			<div class="control-group">
-				<div class="controls">
-					<?=__('Captcha')?>*:<br />
-					<?=captcha::image_tag('contact')?><br />
-					<?= FORM::input('captcha', "", array('class' => 'input-xlarge', 'id' => 'captcha', 'required'))?>
-				</div>
+			<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
+			<div class="controls ">
+				<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => 'input-xlarge', 'id' => 'email', 'type'=>'email','required'))?>
 			</div>
-			<?endif?>
-			<div class="control-group">
-				<div class="controls">
-					<?= FORM::button('submit', 'Contact Us', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?>
-				</div>
-				<br class="clear">
+		</div>
+		<div class="control-group">
+			
+			<?= FORM::label('subject', __('Subject'), array('class'=>'control-label', 'for'=>'subject'))?>
+			<div class="controls ">
+				<?= FORM::input('subject', "", array('placeholder' => __('Subject'), 'class' => 'input-xlarge', 'id' => 'subject'))?>
 			</div>
-		</fieldset>
-		<?= FORM::close()?>
+		</div>
+		<div class="control-group">
+			<?= FORM::label('message', __('Message'), array('class'=>'control-label', 'for'=>'message'))?>
+			<div class="controls">
+				<?= FORM::textarea('message', "", array('class'=>'input-xlarge', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>7, 'required'))?>	
+				</div>
+		</div>
+		
+		<?if (core::config('advertisement.captcha') != FALSE):?>
+		<div class="control-group">
+			<div class="controls">
+				<?=__('Captcha')?>*:<br />
+				<?=captcha::image_tag('contact')?><br />
+				<?= FORM::input('captcha', "", array('class' => 'input-xlarge', 'id' => 'captcha', 'required'))?>
+			</div>
+		</div>
+		<?endif?>
+		<div class="control-group">
+			<div class="controls">
+				<?= FORM::button('submit', 'Contact Us', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?>
+			</div>
+			<br class="clear">
+		</div>
+	</fieldset>
+	<?= FORM::close()?>
 
-	</div><!--end span10-->
-<?else:?>
-	<div class="advice well">
-		<h4><?=__("Welcome to ".core::config('general.site_name')."! Unfortunately you have to log in to send us a message. \n" )?></h4>
-	</div>
-<?endif?>
-
-
+</div><!--end span10-->

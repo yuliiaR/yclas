@@ -16,7 +16,7 @@ foreach ($themes as $theme=>$info):?>
     <div class="thumbnail">
 
         <?if ($scr = Theme::get_theme_screenshot($theme))?>
-            <img src="<?=$scr?>">
+            <img width="300px" height="200px" src="<?=$scr?>">
 
         <div class="caption">
             <h3><?=$info['Name']?></h3>
@@ -28,7 +28,7 @@ foreach ($themes as $theme=>$info):?>
                     <span class="label label-info"><?=__('Active')?></span>
                 <?else:?>
                 <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'appearance','id'=>$theme))?>"><?=__('Activate')?></a>
-                <a class="btn" target="_blank" href="http://open-classifieds.com/demo/?theme=<?=$theme?>"><?=__('Demo')?></a>
+                <a class="btn" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a>
                 <?endif?>
             </p>
         </div>
