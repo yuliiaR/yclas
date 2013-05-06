@@ -62,7 +62,7 @@ class Controller_Panel_Stats extends Auth_Controller {
         foreach ($dates as $date) 
         {
             $count = (isset($ads[$date['date']]['count']))?$ads[$date['date']]['count']:0;
-            $ads_daily[] = array('date'=>$date['date'],'count'=> $count);
+            $ads_daily[] = array('date'=>$date['date'],'ads'=> $count, 'views'=>rand(0,5));
         } 
 
         $content->ads_daily =  $ads_daily;
