@@ -54,6 +54,7 @@ Route::set('page','p/<seotitle>.html')
 ->defaults(array(
         'controller' => 'page',    
         'action'     => 'view',
+        'seotitle'	 => '',
 ));
 
 

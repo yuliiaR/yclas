@@ -67,19 +67,29 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         $content->ads_daily =  $ads_daily;
 
-
-        //Today and Yesterday Ads
+        //Today 
         $query = DB::select(DB::expr('COUNT(id_ad) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->where('published','between',array(date('Y-m-d',strtotime('-1 day')),date::unix2mysql()))
+                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
+                        ->group_by(DB::expr('DATE( published )'))
+                        ->order_by('published','asc')
+                        ->execute();
+
+        $ads = $query->as_array();
+        $content->ads_today     = (isset($ads[0]['count']))?$ads[0]['count']:0;
+
+        //Yesterday
+        $query = DB::select(DB::expr('COUNT(id_ad) count'))
+                        ->from('ads')
+                        ->where('status','=',Model_Ad::STATUS_PUBLISHED)
+                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
                         ->group_by(DB::expr('DATE( published )'))
                         ->order_by('published','asc')
                         ->execute();
 
         $ads = $query->as_array();
         $content->ads_yesterday = (isset($ads[0]['count']))?$ads[0]['count']:0;
-        $content->ads_today     = (isset($ads[1]['count']))?$ads[1]['count']:0;
 
 
         //Last 30 days ads

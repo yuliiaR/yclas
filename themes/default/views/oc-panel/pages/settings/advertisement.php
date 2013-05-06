@@ -167,6 +167,21 @@
 				</div>
 			</div>
 			<div class="control-group">
+				<?= FORM::label($forms['tos']['key'], __('Terms of Service'), array('class'=>'control-label', 'for'=>$forms['tos']['key']))?>
+				<div class="controls">
+					<?= FORM::select($forms['tos']['key'], array(FALSE=>'Deactivate',TRUE=>"terms of service"), $forms['tos']['value'], array(
+					'placeholder' => "http://foo.com/", 
+					'class' => 'tips', 
+					'id' => $forms['tos']['key'], 
+					'data-content'=> __("If you choose to use terms of service, you can select activate. And to edit content, select link 'Content' on your admin panel sidebar. Find page named 'Terms of service' click 'Edit'. In section 'Description' add content that suits you."),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Terms of Service"),
+					))?> 
+				</div>
+			</div>
+			<div class="control-group">
 				<?= FORM::label($forms['disqus']['key'], __('Disqus'), array('class'=>'control-label', 'for'=>$forms['disqus']['key']))?>
 				<div class="controls">
 					<?= FORM::input($forms['disqus']['key'], $forms['disqus']['value'], array(
