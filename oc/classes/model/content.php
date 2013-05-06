@@ -71,6 +71,18 @@ class Model_Content extends ORM {
 
     }
 
+    public static function get_pages()
+    {
+      $pages = new self;
+      $pages = $pages ->select('seotitle','title')
+                        ->where('type','=', 'page')
+                        ->where('status','=', 1)
+                        ->order_by('order','asc')
+                        ->cached()
+                        ->find_all();
+      return $pages;
+    }
+
     public function form_setup($form)
     {
         $form->fields['order']['display_as']            = 'select';

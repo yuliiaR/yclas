@@ -53,7 +53,7 @@ class Widget_Pages extends Widget
                         ->order_by('order','asc')
                         ->cached()
                         ->find_all();
-		$this->page_items = $pages;
+		$this->page_items = Model_Content::get_pages();
 	}
 
 
