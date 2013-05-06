@@ -166,10 +166,14 @@
 					))?> 
 				</div>
 			</div>
+			<?$pages = array(FALSE=>"NoN")?>
+			<?foreach (Model_Content::get_pages() as $key => $value) {
+				$pages[$value->seotitle] = $value->title;
+			}?>
 			<div class="control-group">
 				<?= FORM::label($forms['tos']['key'], __('Terms of Service'), array('class'=>'control-label', 'for'=>$forms['tos']['key']))?>
 				<div class="controls">
-					<?= FORM::select($forms['tos']['key'], array(FALSE=>'Deactivate',TRUE=>"terms of service"), $forms['tos']['value'], array(
+					<?= FORM::select($forms['tos']['key'], $pages, $forms['tos']['value'], array(
 					'placeholder' => "http://foo.com/", 
 					'class' => 'tips', 
 					'id' => $forms['tos']['key'], 

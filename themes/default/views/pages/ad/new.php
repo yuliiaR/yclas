@@ -112,7 +112,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if(is_string(core::config('advertisement.tos'))):?>
+				<?if(core::config('advertisement.tos') != FALSE):?>
 				<div class="control-group">
 					<?= FORM::label('tos', __('Terms of service'), array('class'=>'control-label', 'for'=>'tos'))?>
 					<div class="controls">
