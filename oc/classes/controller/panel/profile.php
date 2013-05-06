@@ -31,12 +31,12 @@ class Controller_Panel_Profile extends Auth_Controller {
 			$user = Auth::instance()->get_user();
 			if(Auth::instance()->hash(core::post('password_old')) == $user->password )
 			{
-				if ($this->request->post('password1')==$this->request->post('password2'))
+				if (core::post('password1')==core::post('password2'))
 				{
-					$new_pass = $this->request->post('password1');
+					$new_pass = core::post('password1');
 					if(!empty($new_pass)){
 
-						$user->password = $this->request->post('password1');
+						$user->password = core::post('password1');
 
 						try
 						{
@@ -50,8 +50,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 						{
 							throw new HTTP_Exception_500($e->getMessage());
 						}
-						
-						
+
 						Alert::set(Alert::SUCCESS, __('Password is changed'));
 					}
 					else
@@ -83,17 +82,17 @@ class Controller_Panel_Profile extends Auth_Controller {
 		if($this->request->post())
 		{
 			
-			$user->name = $this->request->post('name');
-			$user->email = $this->request->post('email');
-			$user->seoname = URL::title($this->request->post('name'), '-', FALSE);
-			// $user->password2 = $this->request->post('password2');
+			$user->name = core::post('name');
+			$user->email = core::post('email');
+			$user->seoname = URL::title(core::post('name'), '-', FALSE);
+			// $user->password2 = core::post('password2');
 			
-			$password1 = $this->request->post('password1');
+			$password1 = core::post('password1');
 			if(!empty($password1))
 			{
-				if($this->request->post('password1') == $this->request->post('password2'))
+				if(core::post('password1') == core::post('password2'))
 				{
-					$user->password = $this->request->post('password1');
+					$user->password = core::post('password1');
 				}
 				else
 				{
@@ -360,7 +359,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			{
 
 				// deleting single image by path 
-				$deleted_image = $this->request->post('img_delete');
+				$deleted_image = core::post('img_delete');
 				if($deleted_image)
 				{
 					$img_path = $form->gen_img_path($form->id_ad, $form->created);
@@ -386,22 +385,22 @@ class Controller_Panel_Profile extends Auth_Controller {
 				}// end of img delete
 
 				$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
-								'title' 		=> $title 		= 	$this->request->post('title'),
-								'seotitle' 		=> $seotitle 	= 	$this->request->post('title'),
-								'cat'			=> $category 	= 	$this->request->post('category'),
-								'loc'			=> $loc 		= 	$this->request->post('location'),
-								'description'	=> $description = 	$this->request->post('description'),
-								'price'			=> $price 		= 	$this->request->post('price'),
-								'status'		=> $status		= 	$this->request->post('status'),
-								'address'		=> $address 	= 	$this->request->post('address'),
-								'website'		=> $website 	= 	$this->request->post('website'),
-								'phone'			=> $phone 		= 	$this->request->post('phone'),
+								'title' 		=> $title 		= 	core::post('title'),
+								'seotitle' 		=> $seotitle 	= 	core::post('title'),
+								'cat'			=> $category 	= 	core::post('category'),
+								'loc'			=> $loc 		= 	core::post('location'),
+								'description'	=> $description = 	core::post('description'),
+								'price'			=> $price 		= 	core::post('price'),
+								'status'		=> $status		= 	core::post('status'),
+								'address'		=> $address 	= 	core::post('address'),
+								'website'		=> $website 	= 	core::post('website'),
+								'phone'			=> $phone 		= 	core::post('phone'),
 								'has_images'	=> 0,
 								'user'			=> $user 		= new Model_User()
 								); 
 
 				//insert data
-				if ($this->request->post('title') != $form->title)
+				if (core::post('title') != $form->title)
 				{
 					if($form->has_images == 1)
 					{

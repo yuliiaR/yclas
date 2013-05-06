@@ -235,11 +235,12 @@ class Model_Ad extends ORM {
                 $width_thumb    = core::config('image.width_thumb');
                 $height_thumb   = core::config('image.height_thumb');
                 $height         = core::config('image.height');
-                if(!isset($height)) // when installing this field is empty, to avoid crash we check here
+                if(empty($height)) // when installing this field is empty, to avoid crash we check here
                     $height         = NULL;
-                if(!isset($height_thumb))
+                if(empty($height_thumb))
                     $height_thumb   = NULL;    
                 
+                // d($height_thumb);
                 // count howmany files are saved 
                 if (glob($directory . "*.jpg") != false)
                 {

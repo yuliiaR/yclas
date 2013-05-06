@@ -17,9 +17,9 @@ class Controller_Panel_Auth extends Controller {
 	    //posting data so try to login
 	    elseif ($this->request->post() AND CSRF::valid('login'))
 	    {	        
-            Auth::instance()->login($this->request->post('email'), 
-            						$this->request->post('password'),
-            						(bool) $this->request->post('remember'));
+            Auth::instance()->login(core::post('email'), 
+            						core::post('password'),
+            						(bool) core::post('remember'));
             
             //redirect index
             if (Auth::instance()->logged_in())
@@ -66,9 +66,9 @@ class Controller_Panel_Auth extends Controller {
 			$this->request->redirect(Route::get('oc-panel')->uri());
 		}
 		//posting data so try to remember password
-		elseif ($this->request->post('email') AND CSRF::valid('forgot'))
+		elseif (core::post('email') AND CSRF::valid('forgot'))
 		{
-			$email = $this->request->post('email');
+			$email = core::post('email');
 			
 			if (Valid::email($email,TRUE))
 			{
@@ -126,13 +126,13 @@ class Controller_Panel_Auth extends Controller {
 			$this->request->redirect(Route::get('oc-panel')->uri());
 		}
 		//posting data so try to remember password
-		elseif ($this->request->post('email') AND CSRF::valid('register'))
+		elseif (core::post('email') AND CSRF::valid('register'))
 		{
-			$email = $this->request->post('email');
+			$email = core::post('email');
 				
 			if (Valid::email($email,TRUE))
 			{
-				if ($this->request->post('password1')==$this->request->post('password2'))
+				if (core::post('password1')==core::post('password2'))
 				{
 					//check we have this email in the DB
 					$user = new Model_User();
@@ -148,11 +148,11 @@ class Controller_Panel_Auth extends Controller {
 					{
 						//create user
 						$user->email 	= $email;
-						$user->name		= $this->request->post('name');
+						$user->name		= core::post('name');
 						$user->status	= Model_User::STATUS_ACTIVE;
 						$user->id_role	= 1;//normal user
-						$user->password = $this->request->post('password1');
-						$user->seoname 	= $user->gen_seo_title($this->request->post('name'));
+						$user->password = core::post('password1');
+						$user->seoname 	= $user->gen_seo_title(core::post('name'));
 						
 						try
 						{
@@ -168,9 +168,9 @@ class Controller_Panel_Auth extends Controller {
 						}
 						
 						//login the user
-						Auth::instance()->login($this->request->post('email'), $this->request->post('password1'));
+						Auth::instance()->login(core::post('email'), core::post('password1'));
                         //send email
-                        $user->email('auth.register',array('[USER.PWD]'=>$this->request->post('password1'),
+                        $user->email('auth.register',array('[USER.PWD]'=>core::post('password1'),
                                                             '[URL.QL]'=>$user->ql('default',NULL,TRUE))
                                                     );
 

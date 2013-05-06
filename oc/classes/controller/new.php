@@ -26,7 +26,8 @@ class Controller_New extends Controller
 		$_cat = $category->where('id_category','!=',1)->order_by('order','asc')->cached()->find_all();
 		$_loc = $location->where('id_location','!=',1)->order_by('order','asc')->cached()->find_all();
 		$children_categ = $category->get_category_children();
-	
+		
+		// bool values from DB, to show or hide this fields in view
 		$form_show = array('captcha'	=>core::config('advertisement.captcha'),
 						   'website'	=>core::config('advertisement.website'),
 						   'phone'		=>core::config('advertisement.phone'),
@@ -184,7 +185,16 @@ class Controller_New extends Controller
 									throw new HTTP_Exception_500($e->getMessage());
 								}
 							}
-								$usr = $data['user']->id_user; 
+								$usr = $data['user']->id_user;
+
+								// CONFIRMATION EMAIL SENT UPON CREATING NEW AD (for non recognized user)
+								//we get the QL, and force the regen of token for security
+			                	$url_cont = $user->ql('contact', array(),TRUE);
+			                	$url_ad = $user->ql('ad', array('category'=>$data['cat'],
+			                									'seotitle'=>$seotitle), TRUE);
+
+			                	$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
+			                											   '[URL.AD]'		=>$url_ad)); 
 						}
 					}
 					else
@@ -197,15 +207,6 @@ class Controller_New extends Controller
 					// SAVE AD
 					$new_ad->id_user 		= $usr; // after handling user
 					$new_ad->save();
-
-					// CONFIRMATION EMAIL SENT UPON CREATING NEW AD
-					//we get the QL, and force the regen of token for security
-                	$url_cont = $user->ql('contact', array(),TRUE);
-                	$url_ad = $user->ql('ad', array('category'=>$data['cat'],
-                									'seotitle'=>$seotitle), TRUE);
-
-                	$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
-                											   '[URL.AD]'		=>$url_ad));
 	
 					// if moderation is off update db field with time of creation 
 					if($published)

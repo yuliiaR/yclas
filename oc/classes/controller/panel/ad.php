@@ -176,25 +176,28 @@ class Controller_Panel_Ad extends Auth_Controller {
 					$this->template = View::factory('js');
 					$element = ORM::factory('ad', $id);
 					
-					try
+					if($element->loaded())
 					{
-						
-						$img_path = $element->gen_img_path($element->id_ad, $element->created);
-						
-
-						if (!is_dir($img_path)) 
-							$element->delete();	
-						else
+						try
 						{
-							$element->delete_images($img_path);
-							$element->delete();
-						}
 							
-					}
-					catch (Exception $e)
-					{
-						Alert::set(Alert::ALERT, __('Warning, something went wrong while deleting'));
-						throw new HTTP_Exception_500($e->getMessage());
+							$img_path = $element->gen_img_path($element->id_ad, $element->created);
+							
+
+							if (!is_dir($img_path)) 
+								$element->delete();	
+							else
+							{
+								$element->delete_images($img_path);
+								$element->delete();
+							}
+								
+						}
+						catch (Exception $e)
+						{
+							Alert::set(Alert::ALERT, __('Warning, something went wrong while deleting'));
+							throw new HTTP_Exception_500($e->getMessage());
+						}
 					}	
 				}
 				
