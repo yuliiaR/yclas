@@ -53,8 +53,8 @@ class Controller_Ad extends Controller {
    				 (Controller::$category != NULL && Controller::$location == NULL) || 
    				 (Controller::$category == NULL && Controller::$location != NULL)) // one of choices is non existing 
    			{
-   			//@TODO if sort_by_cat and sort_by_loc == NULL redirect to search
-   			$this->request->redirect(Route::url('default', array('controller'=>'ad', 'action'=>'search')));
+   			// if sort_by_cat and sort_by_loc == NULL redirect to search
+   			$this->request->redirect(Route::url('search'));
    			}
    		else
    			$data = $this->list_logic();
@@ -257,10 +257,11 @@ class Controller_Ad extends Controller {
            		$this->template->title = $ad->title.$parent_categ_concat.'-'.$cat->seoname.$parent_locat_concat.'-'.$loc->seoname ;
                 $this->template->meta_description = text::removebbcode($ad->description);
 
-				$permission = TRUE; //permission to access advert. 
-				if(!Auth::instance()->logged_in() || Auth::instance()->get_user()->id_role != 10)
-				{
-					
+				$permission = TRUE; //permission to add hit to advert and give access rights. 
+				if(!Auth::instance()->logged_in() || 
+					(Auth::instance()->get_user()->id_user != $ad->id_user && Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN) || 
+					Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN)
+				{	
 					if(!Auth::instance()->logged_in())
 						$visitor_id = NULL;
 					else

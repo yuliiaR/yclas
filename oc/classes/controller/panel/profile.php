@@ -623,21 +623,31 @@ class Controller_Panel_Profile extends Auth_Controller {
 
         $content->contacts_daily = $contacts_daily;
 
-
-        //Today and Yesterday Views
+        //Today 
         $query = DB::select(DB::expr('COUNT(contacted) count'))
                         ->from('visits')
                         ->where('contacted', '=', 1)
                         ->where('id_ad', 'in', $list_ad)
-                        ->where('created','between',array(date('Y-m-d',strtotime('-1 day')),date::unix2mysql()))
+                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
 
         $contacts = $query->as_array();
-        $content->contacts_yesterday = (isset($contacts[0]['count']))?$contacts[0]['count']:0;
-        $content->contacts_today     = (isset($contacts[1]['count']))?$contacts[1]['count']:0;
+        $content->contacts_today     = (isset($contacts[0]['count']))?$contacts[0]['count']:0;
 
+        //Yesterday
+        $query = DB::select(DB::expr('COUNT(contacted) count'))
+                        ->from('visits')
+                        ->where('contacted', '=', 1)
+                        ->where('id_ad', 'in', $list_ad)
+                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('created','asc')
+                        ->execute();
+        
+        $contacts = $query->as_array();
+        $content->contacts_yesterday = (isset($contacts[0]['count']))?$contacts[0]['count']:0; //
 
         //Last 30 days contacts
         $query = DB::select(DB::expr('COUNT(contacted) count'))
@@ -684,18 +694,31 @@ class Controller_Panel_Profile extends Auth_Controller {
         $content->visits_daily =  $visits_daily;
 
 
-        //Today and Yesterday Views
+        //Today 
         $query = DB::select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
+                        
                         ->where('id_ad', 'in', $list_ad)
-                        ->where('created','between',array(date('Y-m-d',strtotime('-1 day')),date::unix2mysql()))
+                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
 
         $visits = $query->as_array();
+        $content->visits_today     = (isset($visits[0]['count']))?$visits[0]['count']:0;
+
+        //Yesterday
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+                        ->from('visits')
+                        
+                        ->where('id_ad', 'in', $list_ad)
+                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('created','asc')
+                        ->execute();
+        
+        $visits = $query->as_array();
         $content->visits_yesterday = (isset($visits[0]['count']))?$visits[0]['count']:0;
-        $content->visits_today     = (isset($visits[1]['count']))?$visits[1]['count']:0;
 
 
         //Last 30 days visits

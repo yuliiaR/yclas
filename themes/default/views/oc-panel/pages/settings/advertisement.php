@@ -167,6 +167,21 @@
 				</div>
 			</div>
 			<div class="control-group">
+				<?= FORM::label($forms['tos']['key'], __('Terms of Service'), array('class'=>'control-label', 'for'=>$forms['tos']['key']))?>
+				<div class="controls">
+					<?= FORM::select($forms['tos']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['tos']['value'], array(
+					'placeholder' => "http://foo.com/", 
+					'class' => 'tips', 
+					'id' => $forms['tos']['key'], 
+					'data-content'=> __("Thumb wid"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Thumb wid"),
+					))?> 
+				</div>
+			</div>
+			<div class="control-group">
 				<?= FORM::label($forms['disqus']['key'], __('Disqus'), array('class'=>'control-label', 'for'=>$forms['disqus']['key']))?>
 				<div class="controls">
 					<?= FORM::input($forms['disqus']['key'], $forms['disqus']['value'], array(
