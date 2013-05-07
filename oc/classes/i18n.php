@@ -85,6 +85,29 @@ class I18n extends Kohana_I18n {
     }
     
     /**
+     * [get_languages description]
+     * @return array
+     */
+    public static function get_languages()
+    {
+        //read folders in theme folder
+        $folder = DOCROOT.'languages';
+
+        $languages = array();
+
+        //check directory for langs
+        foreach (new DirectoryIterator($folder) as $file) 
+        {
+            if($file->isDir() AND !$file->isDot())
+            {
+                $languages[$file->getFilename()] = $file->getFilename();
+            }
+        }
+
+        return $languages;
+    }
+
+    /**
      * 
      * Override normal translate
      * @param string $string to translate

@@ -23,7 +23,7 @@ spl_autoload_register(array('Kohana', 'auto_load'));
 ini_set('unserialize_callback_func', 'spl_autoload_call');
 
 // -- To debug enable DEVELOPMENT environment by changing your localhost
-Kohana::$environment = ($_SERVER['SERVER_NAME'] !== 'reoc.lo') ? Kohana::PRODUCTION : Kohana::DEVELOPMENT; //@TODO 
+Kohana::$environment = ($_SERVER['SERVER_NAME'] !== 'reoc.lo') ? Kohana::PRODUCTION : Kohana::DEVELOPMENT;
 
 // -- Configuration and initialization -----------------------------------------
 
@@ -52,7 +52,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  caching     enable or disable internal caching                 FALSE
  */
 Kohana::init(array(
-    'base_url'  => '/',//later we change it from the location
+    'base_url'  => '/',//later we change it taking it from the config
     'errors'    => TRUE,
     'profile'   => (Kohana::$environment == Kohana::DEVELOPMENT),
     'caching'   => (Kohana::$environment == Kohana::PRODUCTION),

@@ -226,7 +226,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'feed_elements', '20'),
 ('general', 'map_elements', '100'),
 ('general', 'site_name', '".$_POST['SITE_NAME']."'),
-('general', 'global-currency', 'USD'),
+('general', 'global_currency', 'USD'),
 ('general', 'advertisements_per_page', '10'),
 ('image', 'allowed_formats', 'jpag,jpg,png,'),
 ('image', 'max_image_size', '5'),

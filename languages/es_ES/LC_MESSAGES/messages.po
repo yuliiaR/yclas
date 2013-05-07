@@ -1,0 +1,12 @@
+#: String 9
+msgid "Categories"
+msgstr "Categorias"
+
+#: String 90
+msgid "Advertisement"
+msgstr "Anuncio"
+
+#: String 259
+msgid "Advertisements"
+msgstr "Anuncios"
+

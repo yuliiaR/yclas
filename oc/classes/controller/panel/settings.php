@@ -115,8 +115,8 @@ class Controller_Panel_Settings extends Auth_Controller {
         $generalconfig = new Model_Config();
         $config = $generalconfig->where('group_name', '=', 'general')->find_all();
         $config_img = $generalconfig->where('group_name', '=', 'image')->find_all();
+
         // save only changed values
-        
         if($this->request->post())
         {
         	foreach ($config as $c) 
@@ -161,6 +161,20 @@ class Controller_Panel_Settings extends Auth_Controller {
                     }
                 }
             }
+
+            //save language
+            $locale = new Model_Config();
+            $locale->group_name = 'i18n';
+            $locale->config_key = 'locale';
+            $locale->config_value = Core::post('locale');
+            try {
+
+                $locale->save();
+
+            } catch (Exception $e) {
+                echo $e;
+            }
+            
             // Cache::instance()->delete_all();
             Alert::set(Alert::SUCCESS, __('Success, General Configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'general')));

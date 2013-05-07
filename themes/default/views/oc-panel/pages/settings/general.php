@@ -20,6 +20,21 @@
 		<?foreach ($config_img as $c):?>
 			<?$forms_img[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
 		<?endforeach?>
+        <div class="control-group">
+            <?= FORM::label($forms['site_name']['key'], __('Site name'), array('class'=>'control-label', 'for'=>$forms['site_name']['key']))?>
+            <div class="controls">
+                <?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
+                'placeholder' => 'Open-classifieds', 
+                'class' => 'tips', 
+                'id' => $forms['site_name']['key'],
+                'data-content'=> __("Here you can declare your display name. This is seen by everyone!"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Site Name"), 
+                ))?> 
+            </div>
+        </div>
 		<div class="control-group">
 			<?= FORM::label($forms['base_url']['key'], __('Base URL'), array('class'=>'control-label', 'for'=>$forms['base_url']['key']))?>
 			<div class="controls">
@@ -35,6 +50,12 @@
 				))?> 
 			</div>
 		</div>
+        <div class="control-group">
+            <?= FORM::label('locale', __('Language'), array('class'=>'control-label', 'for'=>'locale'))?>
+            <div class="controls">
+            <?= FORM::select("locale", i18n::get_languages(), core::config('i18n.locale'))?> 
+            </div>
+        </div>
 		<div class="control-group">
 			<?= FORM::label($forms['moderation']['key'], __('Moderation'), array('class'=>'control-label', 'for'=>$forms['moderation']['key']))?>
 			<div class="controls">
@@ -51,27 +72,12 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<?= FORM::label($forms['site_name']['key'], __('Site name'), array('class'=>'control-label', 'for'=>$forms['site_name']['key']))?>
+			<?= FORM::label($forms['global_currency']['key'], __('Global currency'), array('class'=>'control-label', 'for'=>$forms['global_currency']['key']))?>
 			<div class="controls">
-				<?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
-				'placeholder' => 'Open-classifieds', 
-				'class' => 'tips', 
-				'id' => $forms['site_name']['key'],
-				'data-content'=> __("Here you can declare your display name. This is seen by everyone!"),
-				'data-trigger'=>"hover",
-				'data-placement'=>"right",
-				'data-toggle'=>"popover",
-				'data-original-title'=>__("Site Name"), 
-				))?> 
-			</div>
-		</div>
-		<div class="control-group">
-			<?= FORM::label($forms['global-currency']['key'], __('Global currency'), array('class'=>'control-label', 'for'=>$forms['global-currency']['key']))?>
-			<div class="controls">
-				<?= FORM::input($forms['global-currency']['key'], $forms['global-currency']['value'], array(
+				<?= FORM::input($forms['global_currency']['key'], $forms['global_currency']['value'], array(
 				'placeholder' => "USD", 
 				'class' => 'tips', 
-				'id' => $forms['global-currency']['key'],
+				'id' => $forms['global_currency']['key'],
 				'data-content'=> __("Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "),
 				'data-trigger'=>"hover",
 				'data-placement'=>"right",
@@ -152,21 +158,6 @@
 				'data-placement'=>"right",
 				'data-toggle'=>"popover",
 				'data-original-title'=>__("Date format"),
-				))?> 
-			</div>
-		</div>
-		<div class="control-group">
-			<?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
-			<div class="controls">
-				<?= FORM::input('locale', core::config('i18n.locale'), array(
-				'placeholder' => "en_EN", 
-				'class' => 'tips', 
-				'id' => 'locale',
-				'data-content'=> __("Locale parameter that defines the website language that the user wants to see in their user interface."),
-				'data-trigger'=>"hover",
-				'data-placement'=>"right",
-				'data-toggle'=>"popover",
-				'data-original-title'=>__("Locale"), 
 				))?> 
 			</div>
 		</div>

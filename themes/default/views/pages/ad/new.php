@@ -84,7 +84,7 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<div class="input-prepend">
-						<span class="add-on"><?=core::config('general.global-currency')?></span>
+						<span class="add-on"><?=core::config('general.global_currency')?></span>
 						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => __('Price'), 'class' => 'input-large', 'id' => 'price', 'type'=>'number'))?>
 						</div>
 					</div>

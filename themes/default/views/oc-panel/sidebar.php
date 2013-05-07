@@ -10,7 +10,7 @@
 				<?Theme::admin_link(__('Locations'),'location')?>
 				<?Theme::admin_link(__('Orders'), 'order')?>
 				<?Theme::admin_link(__('Content'), 'content')?>
-                <?Theme::admin_link(__('Translations'), 'translate')?>
+                <?Theme::admin_link(__('Translations'), 'translations')?>
                 <li class="divider"></li>
 			<? endif ?>
 
