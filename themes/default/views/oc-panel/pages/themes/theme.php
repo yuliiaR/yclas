@@ -33,8 +33,9 @@ foreach ($themes as $theme=>$info):?>
     <li class="span4">
     <div class="thumbnail">
 
-        <?if ($scr = Theme::get_theme_screenshot($theme))?>
+        <?if ($scr = Theme::get_theme_screenshot($theme)):?>
             <img width="300px" height="200px" src="<?=$scr?>">
+        <?endif?>
 
         <div class="caption">
             <h3><?=$info['Name']?></h3>
@@ -59,27 +60,4 @@ foreach ($themes as $theme=>$info):?>
 <p><?=__('Here you can find a selection from our premium themes.')?></p>
 <p class="text-success"><?=__('All themes include support, updates and license.')?></p>
 
-<div class="row-fluid">
-<ul class="thumbnails">
-              
-<?for ($i=0; $i < 5; $i++):?>
-    <?if ($i%3==0):?></ul></div><div class="row-fluid"><ul class="thumbnails"><?endif?>
-    
-    <li class="span4">
-    <div class="thumbnail">
-        <img src="http://lorempixel.com/300/200/?text=<?=rand()?>" alt="">
-          <div class="caption">
-      <h3>Theme <?=$i?></h3>
-      <p><?=($i==0)?'<span class="label label-info">'.__('Active').'</span>':''?>
-        Some description herea justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. 
-    </p>
-      <p>
-        <a class="btn btn-primary" href=""><?=__('Buy Now')?></a>
-        <a class="btn" target="_blank" href="http://open-classifieds.com/demo/?theme=<?=$i?>"><?=__('Demo')?></a>
-        </p>
-</div>
-    </div>
-</li>
-<?endfor?>
-</ul>
-</div><!--/row-->
+<?=View::factory('oc-panel/pages/market/listing',array('market'=>$market))?>    

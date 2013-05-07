@@ -63,9 +63,7 @@ class Core {
 
 		// -- i18n Configuration and initialization -----------------------------------------
 		I18n::initialize(Core::config('i18n.locale'),Core::config('i18n.charset'));
-		
-		
-		
+				
 		//Loading the OC Routes
 		if (($init_routes = Kohana::find_file('config','routes')))
 		{
@@ -243,6 +241,31 @@ class Core {
             }
             
         }
+    }
+
+
+    /**
+     * get market from json hosted currently at google code
+     * @param  boolean $reload  
+     * @return void
+     */
+    public static function get_market($reload = FALSE)
+    {
+        $market_url = 'http://openclassifieds.googlecode.com/files/market.json';
+
+        //try to get the json from the cache
+        $market = Kohana::cache($market_url,NULL,strtotime('+1 week'));
+
+        //not cached :(
+        if ($market === NULL OR  $reload === TRUE)
+        {
+            $market = file_get_contents($market_url);
+            //save the json
+            Kohana::cache($market_url,$market,strtotime('+1 week'));
+        }
+
+        return json_decode($market,TRUE);
+
     }
 
 

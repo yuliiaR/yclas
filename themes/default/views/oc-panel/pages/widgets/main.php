@@ -118,7 +118,8 @@
 			<!--placeholders-->
 
             <div class="span12">
-                <p><a href="<?=Route::url('oc-panel',array('controller'=>'market'))?>"><?=__('You can buy extra widgets in the market')?></a></p>
+                <p><a href="<?=Route::url('oc-panel',array('controller'=>'market'))?>"><i class="icon-gift"></i> 
+                    <?=__('You can buy extra widgets in the market')?></a></p>
             </div><!--/span--> 
 		</div><!--/row-->
 

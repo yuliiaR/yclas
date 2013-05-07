@@ -15,11 +15,10 @@ class Controller_Panel_Market extends Auth_Controller {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Market')));  
         $this->template->title = __('Market');     
 
-        $extras = array();
-        
-        // @todo future from json
+        $market = Core::get_market();
 
-        $this->template->content = View::factory('oc-panel/pages/market', array('extras' => $extras));
+
+        $this->template->content = View::factory('oc-panel/pages/market/index', array('market' => $market));
     }
 
 

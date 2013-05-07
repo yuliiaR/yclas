@@ -63,7 +63,15 @@ class Controller_Panel_Theme extends Auth_Controller {
         //getting the themes
         $themes = Theme::get_installed_themes();
         
-        // @todo future from openclassifieds market
+        //getting themes from market
+        $market = array();
+        $json = Core::get_market();
+        foreach ($json as $theme) 
+        {
+            if ($theme['type'] == 'theme')
+                $market[] = $theme;
+        }
+
 
         // save only changed values
         if($this->request->param('id'))
@@ -74,7 +82,9 @@ class Controller_Panel_Theme extends Auth_Controller {
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'index')));
         }
 
-        $this->template->content = View::factory('oc-panel/pages/themes/theme', array('themes' => $themes, 'selected'=>Theme::get_theme_info(Theme::$theme)));
+        $this->template->content = View::factory('oc-panel/pages/themes/theme', array('market' => $market,
+                                                                                    'themes' => $themes, 
+                                                                                    'selected'=>Theme::get_theme_info(Theme::$theme)));
     }
 
 
