@@ -2,10 +2,12 @@
 
 <div class="page-header">
 	<h1><?=__('Translations')?></h1>
-    <p><?=__('Translations files available in the system')?></p>
+    <p><?=__('Translations files available in the system.')?>
+        </p>
 
-    <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'translations','action'=>'index'))?>?parse=1" >
-        <?=__('Scan for strings')?></a>
+    <a class="btn btn-warnind pull-right" href="<?=Route::url('oc-panel',array('controller'=>'translations','action'=>'index'))?>?parse=1" >
+        <?=__('Scan')?></a>
+    <a class="btn btn-primary pull-right" href="http://open-classifieds.com/documentation/translate/"><?=__('New translation')?></a>
 
 </div>
 

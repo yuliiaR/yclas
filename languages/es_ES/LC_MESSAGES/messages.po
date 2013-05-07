@@ -8,7 +8,7 @@ msgstr "Click here if you are not redirected"
 
 #: String 3
 msgid "First"
-msgstr "First"
+msgstr "Primero"
 
 #: String 4
 msgid "Previous"
@@ -356,7 +356,7 @@ msgstr "Administration"
 
 #: String 90
 msgid "Advertisement"
-msgstr "Advertisement"
+msgstr "Anuncio"
 
 #: String 91
 msgid "Locations"

@@ -49,7 +49,7 @@ class Controller_Panel_Translations extends Auth_Controller {
             $locale->config_value = $this->request->param('id');
             try {
                 $locale->save();
-                Alert::set(Alert::SUCCESS, 'Language changed');
+                Alert::set(Alert::SUCCESS, __('Language changed'));
                 Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'translations')));  
 
 
@@ -126,6 +126,9 @@ class Controller_Panel_Translations extends Auth_Controller {
 
             //generate the .mo from the .po file
             phpmo_convert($default);
+
+             Alert::set(Alert::SUCCESS, $this->request->param('id').' '.__('Language saved'));
+            Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'translations','action'=>'edit','id'=>$this->request->param('id'))));  
         }
 
         $content->edit_language = $this->request->param('id');
