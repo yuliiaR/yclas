@@ -129,17 +129,27 @@ class Controller_Panel_Stats extends Auth_Controller {
         $content->stats_daily =  $stats_daily;
 
 
-        //Today and Yesterday Views
+         //Today 
         $query = DB::select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
-                        ->where('created','between',array(date('Y-m-d',strtotime('-1 day')),date::unix2mysql()))
+                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('created','asc')
                         ->execute();
 
-        $visits = $query->as_array();
-        $content->visits_yesterday = (isset($visits[0]['count']))?$visits[0]['count']:0;
-        $content->visits_today     = (isset($visits[1]['count']))?$visits[1]['count']:0;
+        $ads = $query->as_array();
+        $content->visits_yesterday     = (isset($ads[0]['count']))?$ads[0]['count']:0;
+
+        //Yesterday
+        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+                        ->from('visits')
+                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('created','asc')
+                        ->execute();
+
+        $ads = $query->as_array();
+        $content->visits_today = (isset($ads[0]['count']))?$ads[0]['count']:0;
 
 
         //Last 30 days visits
@@ -158,6 +168,78 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         $visits = $query->as_array();
         $content->visits_total = (isset($visits[0]['count']))?$visits[0]['count']:0;
+
+
+        /////////////////////ORDERS STATS////////////////////////////////
+
+        //orders created last XX days
+        $query = DB::select(DB::expr('DATE(created) date'))
+                        ->select(DB::expr('COUNT(id_order) count'))
+                        ->select(DB::expr('SUM(amount) total'))
+                        ->from('orders')
+                        ->where('created','between',array($my_from_date,$my_to_date))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('date','asc')
+                        ->execute();
+
+        $orders = $query->as_array('date');
+
+
+        $stats_orders = array();
+        foreach ($dates as $date) 
+        {
+            $count_orders = (isset($ads_dates[$date['date']]['count']))?$ads_dates[$date['date']]['count']:0;
+            $count_sum = (isset($ads_dates[$date['date']]['total']))?$ads_dates[$date['date']]['total']:0;
+            
+            $stats_orders[] = array('date'=>$date['date'],'#orders'=> $count_orders,'$'=>$count_sum);
+        } 
+
+        $content->stats_orders =  $stats_orders;
+
+
+         //Today 
+        $query = DB::select(DB::expr('COUNT(id_order) count'))
+                        ->from('orders')
+                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
+                        ->where('status','=',Model_Order::STATUS_PAID)
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('created','asc')
+                        ->execute();
+
+        $ads = $query->as_array();
+        $content->orders_yesterday     = (isset($ads[0]['count']))?$ads[0]['count']:0;
+
+        //Yesterday
+        $query = DB::select(DB::expr('COUNT(id_order) count'))
+                        ->from('orders')
+                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
+                        ->where('status','=',Model_Order::STATUS_PAID)
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('created','asc')
+                        ->execute();
+
+        $ads = $query->as_array();
+        $content->orders_today = (isset($ads[0]['count']))?$ads[0]['count']:0;
+
+
+        //Last 30 days orders
+        $query = DB::select(DB::expr('COUNT(id_order) count'))
+                        ->from('orders')
+                        ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
+                        ->where('status','=',Model_Order::STATUS_PAID)
+                        ->execute();
+
+        $orders = $query->as_array();
+        $content->orders_month = (isset($orders[0]['count']))?$orders[0]['count']:0;
+
+        //total orders
+        $query = DB::select(DB::expr('COUNT(id_order) count'))
+                        ->from('orders')
+                        ->where('status','=',Model_Order::STATUS_PAID)
+                        ->execute();
+
+        $orders = $query->as_array();
+        $content->orders_total = (isset($orders[0]['count']))?$orders[0]['count']:0;
         
     }
 

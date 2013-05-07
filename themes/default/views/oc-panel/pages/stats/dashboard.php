@@ -32,6 +32,13 @@
                     <td><?=$visits_month?></td>
                     <td><?=$visits_total?></td>
                 </tr>
+                <tr>
+                    <td><b><?=__('Sales')?></b></td>
+                    <td><?=$orders_today?></td>
+                    <td><?=$orders_yesterday?></td>
+                    <td><?=$orders_month?></td>
+                    <td><?=$orders_total?></td>
+                </tr>
             </tbody>
         </table>
 
@@ -64,4 +71,10 @@
 <?=Chart::column($stats_daily,array('title'=>__('Views and Ads statistics'),
                                     'height'=>400,
                                     'width'=>800,
-                                    'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>                                    
+                                    'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>          
+
+
+<?=Chart::column($stats_orders,array('title'=>__('Sales statistics'),
+                                    'height'=>400,
+                                    'width'=>800,
+                                    'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>                                                              

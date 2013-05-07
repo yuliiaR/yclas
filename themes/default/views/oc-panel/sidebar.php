@@ -15,10 +15,10 @@
 			<? endif ?>
 
             <?if ($user->has_access_to_any('market,theme,widget')):?>
-                <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','icon-move')?>      
                 <?Theme::admin_link(__('Themes'), 'theme','index','oc-panel','icon-picture')?>
                 <?if (Theme::has_options()) 
-                        Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel','icon-leaf')?>       
+                        Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel','icon-leaf')?>   
+                <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','icon-move')?>       
                 <?Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift')?>
                 <li class="divider"></li>
             <?endif?>
