@@ -7,24 +7,19 @@
 
 class Controller_Panel_Translations extends Auth_Controller {
 
+    public function __construct($request, $response)
+    {
+        parent::__construct($request, $response);
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Translations'))->set_url(Route::url('oc-panel',array('controller'  => 'translations'))));
+        
+    }
 
     public function action_index()
     {
 
         // validation active 
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Translations')));  
-        $this->template->title = __('Translations');     
-
-        $this->template->bind('content', $content);
-
-        $content = View::factory('oc-panel/pages/translations');
-
-        $base_translation = DOCROOT.'languages/en_EN/LC_MESSAGES/messages.po';
-
-        $path = DOCROOT.'languages/es_ES/LC_MESSAGES/messages.po';
-        $default = $path;
-        $path = DOCROOT.'languages/es_ES/LC_MESSAGES/messages.po';
-        $default_mo = $path;
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('List')));  
+        $this->template->title = __('Translations');
 
         //scan project files and generate .po
         $parse = $this->request->query('parse');
@@ -34,18 +29,61 @@ class Controller_Panel_Translations extends Auth_Controller {
             require_once Kohana::find_file('vendor', 'POTCreator/POTCreator','php');
 
             $obj = new POTCreator;
-
             $obj->set_root(DOCROOT);
             $obj->set_exts('php|tpl');
             $obj->set_regular('/_[_|e]\([\"|\']([^\"|\']+)[\"|\']\)/i');
             $obj->set_base_path('..');
             $obj->set_read_subdir(true);
-
-            $potfile = $base_translation;
-            $obj->write_pot($potfile);
+            
+            $obj->write_pot(i18n::get_language_path());
             Alert::set(Alert::SUCCESS, 'File regenerated');
-            $this->request->redirect($this->request->url());
         }
+
+        //change default site language
+        if($this->request->param('id'))
+        {
+         //save language
+            $locale = new Model_Config();
+            $locale->group_name = 'i18n';
+            $locale->config_key = 'locale';
+            $locale->config_value = $this->request->param('id');
+            try {
+                $locale->save();
+                Alert::set(Alert::SUCCESS, 'Language changed');
+                Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'translations')));  
+
+
+            } catch (Exception $e) {
+                echo $e;
+            }
+        }
+
+        $this->template->content = View::factory('oc-panel/pages/translations/index',array('languages' => i18n::get_languages(),
+                                                                                            'current_language' => core::config('i18n.locale')
+                                                                                            ));
+
+    }
+
+    public function action_edit()
+    {
+        if($this->request->param('id'))
+        {   
+            $language   = $this->request->param('id');
+            $default    = DOCROOT.'languages/'.$language.'/LC_MESSAGES/messages.po';
+            $default_mo = DOCROOT.'languages/'.$language.'/LC_MESSAGES/messages.mo';
+        }
+        else
+             Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'translations')));  
+
+
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit Translation')));  
+        $this->template->title = __('Edit Translation');     
+        $this->template->bind('content', $content);
+        $content = View::factory('oc-panel/pages/translations/edit');
+
+        $this->template->scripts['footer'][] = 'js/oc-panel/translations.js';
+
+        $base_translation = i18n::get_language_path();
 
         //pear gettext scripts
         require_once Kohana::find_file('vendor', 'GT/Gettext','php');
@@ -90,6 +128,7 @@ class Controller_Panel_Translations extends Auth_Controller {
             phpmo_convert($default);
         }
 
+        $content->edit_language = $this->request->param('id');
         $content->strings_en = $pocreator_en->strings;
         $content->strings_default = $pocreator_default->strings;
 

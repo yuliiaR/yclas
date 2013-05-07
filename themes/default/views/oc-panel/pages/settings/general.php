@@ -50,12 +50,6 @@
 				))?> 
 			</div>
 		</div>
-        <div class="control-group">
-            <?= FORM::label('locale', __('Language'), array('class'=>'control-label', 'for'=>'locale'))?>
-            <div class="controls">
-            <?= FORM::select("locale", i18n::get_languages(), core::config('i18n.locale'))?> 
-            </div>
-        </div>
 		<div class="control-group">
 			<?= FORM::label($forms['moderation']['key'], __('Moderation'), array('class'=>'control-label', 'for'=>$forms['moderation']['key']))?>
 			<div class="controls">

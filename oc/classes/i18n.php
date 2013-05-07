@@ -85,7 +85,7 @@ class I18n extends Kohana_I18n {
     }
     
     /**
-     * [get_languages description]
+     * get languages
      * @return array
      */
     public static function get_languages()
@@ -105,6 +105,15 @@ class I18n extends Kohana_I18n {
         }
 
         return $languages;
+    }
+
+    /**
+     * get the path for the original/base translation path
+     * @return array
+     */
+    public static function get_language_path()
+    {
+        return DOCROOT.'languages/messages.po';
     }
 
     /**

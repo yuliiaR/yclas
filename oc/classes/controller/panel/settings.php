@@ -162,18 +162,6 @@ class Controller_Panel_Settings extends Auth_Controller {
                 }
             }
 
-            //save language
-            $locale = new Model_Config();
-            $locale->group_name = 'i18n';
-            $locale->config_key = 'locale';
-            $locale->config_value = Core::post('locale');
-            try {
-
-                $locale->save();
-
-            } catch (Exception $e) {
-                echo $e;
-            }
             
             // Cache::instance()->delete_all();
             Alert::set(Alert::SUCCESS, __('Success, General Configuration updated'));
