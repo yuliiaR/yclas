@@ -426,7 +426,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 $ad->id_location    = (isset($locations_map[$a['idLocation']]))?$locations_map[$a['idLocation']]:1;
                 $ad->title          = $a['title'];
                 $ad->seotitle       = $ad->gen_seo_title($a['title']);
-                $ad->description    = (!empty($a['description']))?$a['description']:$a['title'];
+                $ad->description    = (!empty($a['description']))?Text::html2bb($a['description']):$a['title'];
                 $ad->address        = $a['place'];
                 $ad->price          = $a['price'];
                 $ad->phone          = $a['phone'];

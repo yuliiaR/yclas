@@ -22,11 +22,7 @@
 		    	<article class="list well clearfix">
 		    <?endif?>
 		    	<h2>
-			    	<?if(is_string($cat)):?>
-			    		<?$cat_name = $cat?>
-			    	<?else:?>
 			    	    <? $cat_name = $ad->category->seoname; ?>
-			    	<?endif?>
 			    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 		    	</h2>
 		    	
@@ -36,34 +32,34 @@
 		    	
 		    	<ul>
 		    		<?if ($ad->published!=0){?>
-			   			<li><b><?= _e('Publish Date');?>:</b> <?= Date::format($ad->published, core::config('general.date_format'))?></li>
+			   			<li><b><?=__('Publish Date');?>:</b> <?= Date::format($ad->published, core::config('general.date_format'))?></li>
 			   		<? }?>
 			    	<?if ($ad->price!=0){?>
-			    		<li class="price"><?= _e('Price');?>: <b><?= $ad->price;?><?=core::config('general.global_currency')?></b></li>
+			    		<li class="price"><?=__('Price');?>: <b><?= $ad->price;?><?=core::config('general.global_currency')?></b></li>
 			    	<?}?>  
 			    </ul>
 			 
-			    <p><?= Text::bb2html($ad->description,TRUE);?></p>
+			    <p><?=substr(Text::removebbcode($ad->description),0, 255);?></p>
 			    
 			    <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?=_e('Read more')?></a>
 		    	<?if ($user !== NULL && $user->id_role == 10):?>
 		    		<br />
-				<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><?= _e("Edit");?></a> |
+				<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><?=__("Edit");?></a> |
 				<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
-					onclick="return confirm('<?=__('Deactivate?')?>');"><?= _e("Deactivate");?>
+					onclick="return confirm('<?=__('Deactivate?')?>');"><?=__("Deactivate");?>
 				</a> |
 				<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" 
-					onclick="return confirm('<?=__('Spam?')?>');"><?= _e("Spam");?>
+					onclick="return confirm('<?=__('Spam?')?>');"><?=__("Spam");?>
 				</a> |
 				<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" 
-					onclick="return confirm('<?=__('Delete?')?>');"><?= _e("Delete");?>
+					onclick="return confirm('<?=__('Delete?')?>');"><?=__("Delete");?>
 				</a>
 
 				<?elseif($user !== NULL && $user->id_user == $ad->id_user):?>
 					<br/>
 				<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> |
 				<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
-					onclick="return confirm('<?=__('Deactivate?')?>');"><?= _e("Deactivate");?>
+					onclick="return confirm('<?=__('Deactivate?')?>');"><?=__("Deactivate");?>
 				</a>
 				<?endif?>
 		    </article>
@@ -77,32 +73,5 @@
 	   	<div class="page-header">
 			<h3><?= __("We don't have any advertisements in this category")?></h3>
 		</div>
-	  <?else:?>
-	    	<h2><?=__('Ops! Nothing found')?></h2>
-	    	<div class="control"><p><?=__('Improve search :')?></p></div>
-	    	<div class="control-group">
-				<form class="navbar-search pull-left" method="GET" action="">
-					<div class="controls-group">
-						<?= FORM::label('Advertisement', __('Advertisement'), array('class'=>'control-label', 'for'=>'Advertisement'))?>
-						<div class="control">
-							<input type="text" name="advert" class="search-query " placeholder="<?=__('Search')?>">
-						</div>
-		            </div>
-					<div class="controls-group">
-						<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category'))?>
-						<div class="control">
-							<input type="text" name="cat" class="search-query " placeholder="<?=__('Search')?>">
-						</div>
-		            </div>
-		            <div class="controls-group">
-						<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
-						<div class="control">
-							<input type="text" name="loc" class="search-query " placeholder="<?=__('Search')?>">
-						</div>
-		            </div>
-		            <div class="control-group">
-						<?= FORM::button('', 'Publish now', array('type'=>'submit', 'class'=>'btn', 'action'=>Route::url('default')))?>
-					</div>
-				</form>
-			</div>
+	  
 	  <?endif?>

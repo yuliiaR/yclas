@@ -10,6 +10,81 @@
  */
 class Text extends Kohana_Text {
 
+
+        /**
+         * This array contains the main static bbcode
+         * @var array $basic_bbcode
+         */
+        static $basic_bbcode = array(
+                                '[b]', '[/b]',
+                                '[i]', '[/i]',
+                                '[u]', '[/u]',
+                                '[s]','[/s]',
+                                '[ul]','[/ul]',
+                                '[li]', '[/li]',
+                                '[ol]', '[/ol]',
+                                '[center]', '[/center]',
+                                '[left]', '[/left]',
+                                '[right]', '[/right]',
+        );
+
+        /**
+         * This array contains the main static bbcode's html
+         * @var array $basic_html
+         */
+        static $basic_html = array(
+                                '<b>', '</b>',
+                                '<i>', '</i>',
+                                '<u>', '</u>',
+                                '<s>', '</s>',
+                                '<ul>','</ul>',
+                                '<li>','</li>',
+                                '<ol>','</ol>',
+                                '<div style="text-align: center;">', '</div>',
+                                '<div style="text-align: left;">',   '</div>',
+                                '<div style="text-align: right;">',  '</div>',
+        );
+
+        /**
+         * This array contains the advanced static bbcode
+         * @var array $advanced_bbcode
+         */
+        static $advanced_bbcode = array(
+                                 '#\[color=([a-zA-Z]*|\#?[0-9a-fA-F]{6})](.+)\[/color\]#Usi',
+                                 '#\[size=([0-9][0-9]?)](.+)\[/size\]#Usi',
+                                 '#\[quote](\r\n)?(.+?)\[/quote]#si',
+                                 '#\[quote=(.*?)](\r\n)?(.+?)\[/quote]#si',
+                                 '#\[url](.+)\[/url]#Usi',
+                                 '#\[url=(.+)](.+)\[/url\]#Usi',
+                                 '#\[email]([\w\.\-]+@[a-zA-Z0-9\-]+\.?[a-zA-Z0-9\-]*\.\w{1,4})\[/email]#Usi',
+                                 '#\[email=([\w\.\-]+@[a-zA-Z0-9\-]+\.?[a-zA-Z0-9\-]*\.\w{1,4})](.+)\[/email]#Usi',
+                                 '#\[img](.+)\[/img]#Usi',
+                                 '#\[img=(.+)](.+)\[/img]#Usi',
+                                 '#\[code](\r\n)?(.+?)(\r\n)?\[/code]#si',
+                                 '#\[youtube]http://[a-z]{0,3}.youtube.com/watch\?v=([0-9a-zA-Z]{1,11})\[/youtube]#Usi',
+                                 '#\[youtube]([0-9a-zA-Z]{1,11})\[/youtube]#Usi'
+        );
+
+        /**
+         * This array contains the advanced static bbcode's html
+         * @var array $advanced_html
+         */
+        static $advanced_html = array(
+                                 '<span style="color: $1">$2</span>',
+                                 '<span style="font-size: $1px">$2</span>',
+                                 "<div class=\"quote\"><span class=\"quoteby\">Disse:</span>\r\n$2</div>",
+                                 "<div class=\"quote\"><span class=\"quoteby\">Disse <b>$1</b>:</span>\r\n$3</div>",
+                                 '<a rel="nofollow" target="_blank" href="$1">$1</a>',
+                                 '<a rel="nofollow" target="_blank" href="$1">$2</a>',
+                                 '<a href="mailto: $1">$1</a>',
+                                 '<a href="mailto: $1">$2</a>',
+                                 '<img src="$1" alt="$1" />',
+                                 '<img src="$1" alt="$2" />',
+                                 '<div class="code">$2</div>',
+                                 '<object type="application/x-shockwave-flash" style="width: 450px; height: 366px;" data="http://www.youtube.com/v/$1"><param name="movie" value="http://www.youtube.com/v/$1" /><param name="wmode" value="transparent" /></object>',
+                                 '<object type="application/x-shockwave-flash" style="width: 450px; height: 366px;" data="http://www.youtube.com/v/$1"><param name="movie" value="http://www.youtube.com/v/$1" /><param name="wmode" value="transparent" /></object>'
+        );
+
 	/**
 	 *
 	 * This function parses BBcode tag to HTML code (XHTML transitional 1.0)
@@ -22,101 +97,49 @@ class Text extends Kohana_Text {
 	 * @param boolean $advanced his var describes if the parser run in advanced mode (only *simple* bbcode is parsed).
 	 * @return string
 	 */
-	public static function bb2html($text,$advanced=FALSE){
+	public static function bb2html($text,$advanced=FALSE)
+    {
 
 		//special chars
 		$text  = htmlspecialchars($text, ENT_QUOTES, Kohana::$charset);
 
 		/**
-		 * This array contains the main static bbcode
-		 * @var array $basic_bbcode
-		 */
-		$basic_bbcode = array(
-								'[b]', '[/b]',
-								'[i]', '[/i]',
-								'[u]', '[/u]',
-								'[s]','[/s]',
-								'[ul]','[/ul]',
-								'[li]', '[/li]',
-								'[ol]', '[/ol]',
-								'[center]', '[/center]',
-								'[left]', '[/left]',
-								'[right]', '[/right]',
-		);
-
-		/**
-		 * This array contains the main static bbcode's html
-		 * @var array $basic_html
-		 */
-		$basic_html = array(
-								'<b>', '</b>',
-								'<i>', '</i>',
-								'<u>', '</u>',
-								'<s>', '</s>',
-								'<ul>','</ul>',
-								'<li>','</li>',
-								'<ol>','</ol>',
-								'<div style="text-align: center;">', '</div>',
-								'<div style="text-align: left;">',   '</div>',
-								'<div style="text-align: right;">',  '</div>',
-		);
-
-		/**
 		 *
 		 * Parses basic bbcode, used str_replace since seems to be the fastest
 		 */
-		$text = str_replace($basic_bbcode, $basic_html, $text);
+		$text = str_replace(self::$basic_bbcode, self::$basic_html, $text);
 
 		//advanced BBCODE
 		if ($advanced)
 		{
-			/**
-			 * This array contains the advanced static bbcode
-			 * @var array $advanced_bbcode
-			 */
-			$advanced_bbcode = array(
-									 '#\[color=([a-zA-Z]*|\#?[0-9a-fA-F]{6})](.+)\[/color\]#Usi',
-									 '#\[size=([0-9][0-9]?)](.+)\[/size\]#Usi',
-									 '#\[quote](\r\n)?(.+?)\[/quote]#si',
-									 '#\[quote=(.*?)](\r\n)?(.+?)\[/quote]#si',
-									 '#\[url](.+)\[/url]#Usi',
-									 '#\[url=(.+)](.+)\[/url\]#Usi',
-									 '#\[email]([\w\.\-]+@[a-zA-Z0-9\-]+\.?[a-zA-Z0-9\-]*\.\w{1,4})\[/email]#Usi',
-									 '#\[email=([\w\.\-]+@[a-zA-Z0-9\-]+\.?[a-zA-Z0-9\-]*\.\w{1,4})](.+)\[/email]#Usi',
-									 '#\[img](.+)\[/img]#Usi',
-									 '#\[img=(.+)](.+)\[/img]#Usi',
-									 '#\[code](\r\n)?(.+?)(\r\n)?\[/code]#si',
-									 '#\[youtube]http://[a-z]{0,3}.youtube.com/watch\?v=([0-9a-zA-Z]{1,11})\[/youtube]#Usi',
-									 '#\[youtube]([0-9a-zA-Z]{1,11})\[/youtube]#Usi'
-			);
-
-			/**
-			 * This array contains the advanced static bbcode's html
-			 * @var array $advanced_html
-			 */
-			$advanced_html = array(
-									 '<span style="color: $1">$2</span>',
-									 '<span style="font-size: $1px">$2</span>',
-									 "<div class=\"quote\"><span class=\"quoteby\">Disse:</span>\r\n$2</div>",
-									 "<div class=\"quote\"><span class=\"quoteby\">Disse <b>$1</b>:</span>\r\n$3</div>",
-									 '<a rel="nofollow" target="_blank" href="$1">$1</a>',
-									 '<a rel="nofollow" target="_blank" href="$1">$2</a>',
-									 '<a href="mailto: $1">$1</a>',
-									 '<a href="mailto: $1">$2</a>',
-									 '<img src="$1" alt="$1" />',
-									 '<img src="$1" alt="$2" />',
-									 '<div class="code">$2</div>',
-									 '<object type="application/x-shockwave-flash" style="width: 450px; height: 366px;" data="http://www.youtube.com/v/$1"><param name="movie" value="http://www.youtube.com/v/$1" /><param name="wmode" value="transparent" /></object>',
-									 '<object type="application/x-shockwave-flash" style="width: 450px; height: 366px;" data="http://www.youtube.com/v/$1"><param name="movie" value="http://www.youtube.com/v/$1" /><param name="wmode" value="transparent" /></object>'
-			);
-
-			$text = preg_replace($advanced_bbcode, $advanced_html,$text);
+			$text = preg_replace(self::$advanced_bbcode, self::$advanced_html, $text);
 		}
-
+       
 		//before return convert line breaks to HTML
 		return Text::nl2br($text);
-
 	}
+
+    /**
+     * html 2 bbcode basic, usage for migration tool
+     * @param  string $text 
+     * @return string       
+     */
+    public static function html2bb($text)
+    {
+        //br to nl
+        $text = preg_replace('#<br\s*/?>#i', "\n", $text);
+
+        /**
+         *
+         * Parses basic bbcode, used str_replace since seems to be the fastest
+         */
+        $text = str_replace(self::$basic_html,self::$basic_bbcode, $text);
+
+        
+
+        //before return strip the rest of tags
+        return strip_tags($text);
+    }
 
 	/**
 	 *

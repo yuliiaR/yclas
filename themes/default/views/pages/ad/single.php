@@ -35,12 +35,12 @@
 	</div>
 
 	<?endif?>
-    	<p><strong>Price : </strong> <?= $ad->price?></p>
-	    <p><strong>Description : </strong><?= Text::bb2html($ad->description,TRUE)?></p>	
-	    <p><strong>Published: </strong> <?= Date::format($ad->published, core::config('general.date_format'))?></p>
-	    <p><strong>Hits: </strong><?echo $hits?></p>	    
+    	<p><strong><?=__('Price')?> : </strong> <?= $ad->price?></p>
+	    <p><strong><?=__('Description')?> : </strong><?= Text::bb2html($ad->description,TRUE)?></p>	
+	    <p><strong><?=__('Published')?>: </strong> <?= Date::format($ad->published, core::config('general.date_format'))?></p>
+	    <p><strong><?=__('Hits')?>: </strong><?=$hits?></p>	    
 
-		<button class="btn btn-success"type="button" data-toggle="modal" data-target="#contact-modal">Send Message</button>
+		<button class="btn btn-success"type="button" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></button>
 		<div id="contact-modal" class="modal hide fade">
         	<div class="modal-header">
          		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
@@ -114,10 +114,10 @@
 	    </div>
 	    <div class="modal-body"><div class="modal-image"></div></div>
 	    <div class="modal-footer">
-	        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
-	        <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
-	        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
-	        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
+	        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> <?=__('Previous')?></a>
+	        <a class="btn btn-primary modal-next"><?=__('Next')?> <i class="icon-arrow-right icon-white"></i></a>
+	        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> <?=__('Slideshow')?></a>
+	        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> <?=__('Download')?></a>
 	    </div>
 	</div>
 

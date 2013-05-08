@@ -88,7 +88,7 @@
 					<td><?= $locat_name = $loc->name?></td>
 				<?endif?>
 				<?if($locat_name == NULL):?>
-					<td><?= _e('NoN')?></td>
+					<td><?=__('NoN')?></td>
 				<?endif?>
 	    	<?endforeach?>
 			
