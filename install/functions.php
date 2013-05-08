@@ -88,7 +88,7 @@ function oc_requirements()
     //in case they dont use apache a nicer message
     else 
     {
-        $mod_msg        = 'Can not check if mod_rewrite installed, probably everything is fine. Try to proceed installation anyway ;)';
+        $mod_msg        = 'Can not check if mod_rewrite installed, probably everything is fine. Try to proceed with the installation anyway ;)';
         $mod_mandatory  = FALSE;
         $mod_result     = FALSE;
     }

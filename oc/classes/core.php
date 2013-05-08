@@ -63,9 +63,7 @@ class Core {
 
 		// -- i18n Configuration and initialization -----------------------------------------
 		I18n::initialize(Core::config('i18n.locale'),Core::config('i18n.charset'));
-		
-		
-		
+				
 		//Loading the OC Routes
 		if (($init_routes = Kohana::find_file('config','routes')))
 		{
@@ -213,6 +211,61 @@ class Core {
         }
 
         return $default_headers;
+    }
+
+
+
+    /**
+     * get updates from json hosted currently at google code
+     * @param  boolean $reload  
+     * @return void
+     */
+    public static function get_updates($reload = FALSE)
+    {
+        //we check the date of our local versions.php
+        $version_file = APPPATH.'config/versions.php';
+        
+        //if older than a month or ?reload=1 force reload
+        if ( time() > strtotime('+1 week',filemtime($version_file)) OR $reload === TRUE )
+        {
+            //read from oc/versions.json on CDN
+            $json = file_get_contents('http://openclassifieds.googlecode.com/files/versions.json?r='.time());
+            $versions = json_decode($json,TRUE);
+            if (is_array($versions))
+            {
+                //update our local versions.php
+                $content = "<?php defined('SYSPATH') or die('No direct script access.');
+                return ".var_export($versions,TRUE).";";// die($content);
+                //@todo check file permissions?
+                core::fwrite($version_file, $content);
+            }
+            
+        }
+    }
+
+
+    /**
+     * get market from json hosted currently at google code
+     * @param  boolean $reload  
+     * @return void
+     */
+    public static function get_market($reload = FALSE)
+    {
+        $market_url = 'http://openclassifieds.googlecode.com/files/market.json';
+
+        //try to get the json from the cache
+        $market = Kohana::cache($market_url,NULL,strtotime('+1 week'));
+
+        //not cached :(
+        if ($market === NULL OR  $reload === TRUE)
+        {
+            $market = file_get_contents($market_url);
+            //save the json
+            Kohana::cache($market_url,$market,strtotime('+1 week'));
+        }
+
+        return json_decode($market,TRUE);
+
     }
 
 

@@ -15,16 +15,16 @@
 					$to_top = $value;
 				} elseif ($ex == 'pay_to_go_on_feature'){
 					$featured_price = $value; 
-				} elseif ($ex == 'global-currency'){
+				} elseif ($ex == 'global_currency'){
 					$global_currency = $value;
 				} 
 			}?>
 			<?if(core::config('payment.to_top') != FALSE):?>
-			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '.$to_top.' '.core::config('general.global-currency'));?></p>
+			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '.$to_top.' '.core::config('general.global_currency'));?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>">Go Top!</a>
 			<?endif?>
 			<?if(core::config('payment.to_featured') != FALSE):?>
-			<p class="text-info"><?=__('Your Advertisement can go to featured! For only '.$featured_price.' '.core::config('general.global-currency'));?></p>
+			<p class="text-info"><?=__('Your Advertisement can go to featured! For only '.$featured_price.' '.core::config('general.global_currency'));?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>">Go Featured!</a>
 			<?endif?>
 		</div>
@@ -166,7 +166,7 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<div class="input-prepend">
-							<span class="add-on"><?=core::config('general.global-currency')?></span>
+							<span class="add-on"><?=core::config('general.global_currency')?></span>
 							<?= FORM::input('price', number_format($ad->price, 2), array('class' => '', 'id' => 'price', 'type'=>'number'))?>
 						</div>
 					</div>

@@ -39,7 +39,7 @@
 			   			<li><b><?= _e('Publish Date');?>:</b> <?= Date::format($ad->published, core::config('general.date_format'))?></li>
 			   		<? }?>
 			    	<?if ($ad->price!=0){?>
-			    		<li class="price"><?= _e('Price');?>: <b><?= $ad->price;?><?=core::config('general.global-currency')?></b></li>
+			    		<li class="price"><?= _e('Price');?>: <b><?= $ad->price;?><?=core::config('general.global_currency')?></b></li>
 			    	<?}?>  
 			    </ul>
 			 
