@@ -23,7 +23,7 @@
 
     <?$cont = 1; $chars=0;?>
     <?foreach($strings_en as $key => $value):?>
-    <?$chars+=strlen($key)?>
+    <?//$chars+=strlen($key)?>
         <? $value = (isset($strings_default[$key])) ? $strings_default[$key] : ''?>
         <tr id="tr_<?=$cont?>" class="<?=($value)? 'success': 'error'?>">
             <td width="5%"><?=$cont?></td>
@@ -55,7 +55,7 @@
     </table>
     <button type="submit" class="btn btn-primary pull-right" name="translation[submit]"><i class="icon-hdd icon-white"></i> <?=__('Save')?></button>
 
-    <?=$chars?>
+    <?//$chars?>
 
     <div id="translate-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-body">

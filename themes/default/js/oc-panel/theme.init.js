@@ -2,7 +2,7 @@ $(function (){
     $('.tips').popover();
     $("select").chosen();
 
-    $('textarea').addClass('span6').sceditorBBCodePlugin({
+    $('textarea[name=description]').addClass('span6').sceditorBBCodePlugin({
         toolbar: "bold,italic,underline,strike,size|left,center,right,justify|" +
         "bulletlist,orderedlist|link,unlink|source",
         resizeEnabled: "true"});
