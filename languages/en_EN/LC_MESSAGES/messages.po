@@ -1,18 +1,22 @@
+#: String 1
+msgid "Please wait while we transfer you to Paypal"
+msgstr "Por favor espere mientras le redirigimos a Paypal"
+
 #: String 2
 msgid "Click here if you are not redirected"
-msgstr "Click here if you are not redirected"
+msgstr "Haga clic aquí si la redirección no se ha realizado"
 
 #: String 3
 msgid "First"
-msgstr "First"
+msgstr "Primero"
 
 #: String 4
 msgid "Previous"
-msgstr "Previous"
+msgstr "Anterior"
 
 #: String 5
 msgid "Page"
-msgstr "Page"
+msgstr "Página"
 
 #: String 6
 msgid "Next"

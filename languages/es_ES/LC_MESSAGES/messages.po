@@ -1,46 +1,46 @@
 #: String 1
 msgid "Please wait while we transfer you to Paypal"
-msgstr "Please wait while we transfer you to Paypal"
+msgstr "Por favor espere mientras lo transferimos a Paypal"
 
 #: String 2
 msgid "Click here if you are not redirected"
-msgstr "Click here if you are not redirected"
+msgstr "Haga clic aquí si la redirección no se"
 
 #: String 3
 msgid "First"
-msgstr "First"
+msgstr "Primero"
 
 #: String 4
 msgid "Previous"
-msgstr "Previous"
+msgstr "Anterior"
 
 #: String 5
 msgid "Page"
-msgstr "Page"
+msgstr "Página"
 
 #: String 6
 msgid "Next"
-msgstr "Next"
+msgstr "Próximo"
 
 #: String 7
 msgid "Last"
-msgstr "Last"
+msgstr "Último"
 
 #: String 8
 msgid "Listing"
-msgstr "Listing"
+msgstr "Listado"
 
 #: String 9
 msgid "Categories"
-msgstr "Categories"
+msgstr "Categorías"
 
 #: String 10
 msgid "Search"
-msgstr "Search"
+msgstr "Buscar"
 
 #: String 11
 msgid "Publish new "
-msgstr "Publish new "
+msgstr "Publicar nuevo"
 
 #: String 12
 msgid "Login"
@@ -48,19 +48,19 @@ msgstr "Login"
 
 #: String 13
 msgid "Forgot password"
-msgstr "Forgot password"
+msgstr "Contraseña olvidada"
 
 #: String 14
 msgid "Register"
-msgstr "Register"
+msgstr "Registro"
 
 #: String 15
 msgid "Edit Profile"
-msgstr "Edit Profile"
+msgstr "Editar Perfil"
 
 #: String 16
 msgid "Name"
-msgstr "Name"
+msgstr "Nombre"
 
 #: String 17
 msgid "Email"
@@ -68,63 +68,63 @@ msgstr "Email"
 
 #: String 18
 msgid "Change password"
-msgstr "Change password"
+msgstr "Cambiar contraseña"
 
 #: String 19
 msgid "Old password"
-msgstr "Old password"
+msgstr "Old contraseña"
 
 #: String 20
 msgid "Password"
-msgstr "Password"
+msgstr "Contraseña"
 
 #: String 21
 msgid "New password"
-msgstr "New password"
+msgstr "Nueva contraseña"
 
 #: String 22
 msgid "Repat password"
-msgstr "Repat password"
+msgstr "REPAT contraseña"
 
 #: String 23
 msgid "Type your password twice to change"
-msgstr "Type your password twice to change"
+msgstr "Escriba la contraseña dos veces para cambiar"
 
 #: String 24
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Cancelar"
 
 #: String 25
 msgid "Send"
-msgstr "Send"
+msgstr "Enviar"
 
 #: String 26
 msgid "My Advertisements"
-msgstr "My Advertisements"
+msgstr "Mis anuncios"
 
 #: String 27
 msgid "New Advertisement"
-msgstr "New Advertisement"
+msgstr "Nuevo Anuncio"
 
 #: String 28
 msgid " New"
-msgstr " New"
+msgstr "Nuevo"
 
 #: String 29
 msgid "Category"
-msgstr "Category"
+msgstr "Categoría"
 
 #: String 30
 msgid "Location"
-msgstr "Location"
+msgstr "Ubicación"
 
 #: String 31
 msgid "Status"
-msgstr "Status"
+msgstr "Estado"
 
 #: String 32
 msgid "Date"
-msgstr "Date"
+msgstr "Fecha"
 
 #: String 33
 msgid "NoN"
@@ -136,7 +136,7 @@ msgstr "Notpublished"
 
 #: String 35
 msgid "Published"
-msgstr "Published"
+msgstr "Publicado"
 
 #: String 36
 msgid "Spam"
@@ -144,79 +144,79 @@ msgstr "Spam"
 
 #: String 37
 msgid "Unavailable"
-msgstr "Unavailable"
+msgstr "Indisponible"
 
 #: String 38
 msgid "Update"
-msgstr "Update"
+msgstr "Actualizar"
 
 #: String 39
 msgid "Activate?"
-msgstr "Activate?"
+msgstr "Activa?"
 
 #: String 40
 msgid "Activate"
-msgstr "Activate"
+msgstr "Activar"
 
 #: String 41
 msgid "Deactivate?"
-msgstr "Deactivate?"
+msgstr "Desactive?"
 
 #: String 42
 msgid "Deactivate"
-msgstr "Deactivate"
+msgstr "Desactivar"
 
 #: String 43
 msgid "Refresh listing, go to top?"
-msgstr "Refresh listing, go to top?"
+msgstr "Refrescar lista, vaya a la parte superior?"
 
 #: String 44
 msgid "Go to top"
-msgstr "Go to top"
+msgstr "Ir al inicio"
 
 #: String 45
 msgid "Are you sure you want to refresh listing and go to top?"
-msgstr "Are you sure you want to refresh listing and go to top?"
+msgstr "¿Está seguro que desea actualizar anuncio y el principio?"
 
 #: String 46
 msgid "Make featured?"
-msgstr "Make featured?"
+msgstr "Haga ofrecido?"
 
 #: String 47
 msgid "Featured"
-msgstr "Featured"
+msgstr "Destacado"
 
 #: String 48
 msgid "Are you sure you want to make it featured?"
-msgstr "Are you sure you want to make it featured?"
+msgstr "¿Seguro que quieres hacerlo aparece?"
 
 #: String 49
 msgid "Deactivate featured?"
-msgstr "Deactivate featured?"
+msgstr "Desactivar aparece?"
 
 #: String 50
 msgid "Deactivate Featured"
-msgstr "Deactivate Featured"
+msgstr "Desactivar destacados"
 
 #: String 51
 msgid "Are you sure you want to deactivate featured advertisement?"
-msgstr "Are you sure you want to deactivate featured advertisement?"
+msgstr "¿Está seguro de que desea desactivar anuncio destacado?"
 
 #: String 52
 msgid "Site Usage Statistics"
-msgstr "Site Usage Statistics"
+msgstr "Estadísticas de uso del sitio"
 
 #: String 53
 msgid "Today"
-msgstr "Today"
+msgstr "Hoy"
 
 #: String 54
 msgid "Yesterday"
-msgstr "Yesterday"
+msgstr "Ayer"
 
 #: String 55
 msgid "Last 30 days"
-msgstr "Last 30 days"
+msgstr "Últimos 30 días"
 
 #: String 56
 msgid "Total"
@@ -224,31 +224,31 @@ msgstr "Total"
 
 #: String 57
 msgid "Contacts"
-msgstr "Contacts"
+msgstr "Contactos"
 
 #: String 58
 msgid "Visits"
-msgstr "Visits"
+msgstr "Visitas"
 
 #: String 59
 msgid "Charts"
-msgstr "Charts"
+msgstr "Gráficos"
 
 #: String 60
 msgid "From"
-msgstr "From"
+msgstr "De"
 
 #: String 61
 msgid "To"
-msgstr "To"
+msgstr "A"
 
 #: String 62
 msgid "Filter"
-msgstr "Filter"
+msgstr "Filtrar"
 
 #: String 63
 msgid "Edit Advertisement"
-msgstr "Edit Advertisement"
+msgstr "Editar Publicidad"
 
 #: String 64
 msgid "Id_User"
@@ -256,7 +256,7 @@ msgstr "Id_User"
 
 #: String 65
 msgid "Profile"
-msgstr "Profile"
+msgstr "Perfil"
 
 #: String 66
 msgid "notpublished"
@@ -264,11 +264,11 @@ msgstr "notpublished"
 
 #: String 67
 msgid "published"
-msgstr "published"
+msgstr "publicado"
 
 #: String 68
 msgid "spam"
-msgstr "spam"
+msgstr "correo no deseado"
 
 #: String 69
 msgid "unavailible"
@@ -276,47 +276,47 @@ msgstr "unavailible"
 
 #: String 70
 msgid "Title"
-msgstr "Title"
+msgstr "Título"
 
 #: String 71
 msgid "Description"
-msgstr "Description"
+msgstr "Descripción"
 
 #: String 72
 msgid "Delete?"
-msgstr "Delete?"
+msgstr "Eliminar?"
 
 #: String 73
 msgid "Delete image"
-msgstr "Delete image"
+msgstr "Borrar la imagen"
 
 #: String 74
 msgid "Delete"
-msgstr "Delete"
+msgstr "Borrar"
 
 #: String 75
 msgid "Images"
-msgstr "Images"
+msgstr "Imágenes"
 
 #: String 76
 msgid "Phone"
-msgstr "Phone"
+msgstr "Teléfono"
 
 #: String 77
 msgid "Address"
-msgstr "Address"
+msgstr "Dirección"
 
 #: String 78
 msgid "Website"
-msgstr "Website"
+msgstr "Sitio web"
 
 #: String 79
 msgid "Price"
-msgstr "Price"
+msgstr "Precio"
 
 #: String 80
 msgid "We will also create a user for you"
-msgstr "We will also create a user for you"
+msgstr "También vamos a crear un usuario para que"
 
 #: String 81
 msgid "Panel"
@@ -324,35 +324,35 @@ msgstr "Panel"
 
 #: String 82
 msgid "Market"
-msgstr "Market"
+msgstr "Mercado"
 
 #: String 83
 msgid "Moderation"
-msgstr "Moderation"
+msgstr "Moderación"
 
 #: String 84
 msgid "Stats"
-msgstr "Stats"
+msgstr "Estadísticas"
 
 #: String 85
 msgid "Widgets"
-msgstr "Widgets"
+msgstr "Reproductores"
 
 #: String 86
 msgid "New"
-msgstr "New"
+msgstr "Nuevo"
 
 #: String 87
 msgid "Welcome"
-msgstr "Welcome"
+msgstr "Bienvenida"
 
 #: String 88
 msgid "Thanks for using our website."
-msgstr "Thanks for using our website."
+msgstr "Gracias por utilizar nuestra página web."
 
 #: String 89
 msgid "Administration"
-msgstr "Administration"
+msgstr "Administración"
 
 #: String 90
 msgid "Advertisement"
@@ -360,31 +360,31 @@ msgstr "Anuncio"
 
 #: String 91
 msgid "Locations"
-msgstr "Locations"
+msgstr "Ubicaciones"
 
 #: String 92
 msgid "Orders"
-msgstr "Orders"
+msgstr "Órdenes"
 
 #: String 93
 msgid "Content"
-msgstr "Content"
+msgstr "Contenido"
 
 #: String 94
 msgid "Translations"
-msgstr "Translations"
+msgstr "Traducciones"
 
 #: String 95
 msgid "Themes"
-msgstr "Themes"
+msgstr "Temas"
 
 #: String 96
 msgid "Theme Options"
-msgstr "Theme Options"
+msgstr "Opciones de Tema"
 
 #: String 97
 msgid "Settings"
-msgstr "Settings"
+msgstr "Configuración"
 
 #: String 98
 msgid "General"
@@ -392,39 +392,39 @@ msgstr "General"
 
 #: String 99
 msgid "Payment"
-msgstr "Payment"
+msgstr "Pago"
 
 #: String 100
 msgid "Users"
-msgstr "Users"
+msgstr "Usuarios"
 
 #: String 101
 msgid "User Roles"
-msgstr "User Roles"
+msgstr "Funciones de usuario"
 
 #: String 102
 msgid "Roles access"
-msgstr "Roles access"
+msgstr "Acceso Roles"
 
 #: String 103
 msgid "Tools"
-msgstr "Tools"
+msgstr "Instrumentos"
 
 #: String 104
 msgid "Updates"
-msgstr "Updates"
+msgstr "Actualizaciones"
 
 #: String 105
 msgid "Sitemap"
-msgstr "Sitemap"
+msgstr "Mapa del sitio"
 
 #: String 106
 msgid "Migration"
-msgstr "Migration"
+msgstr "Migración"
 
 #: String 107
 msgid "Optimize"
-msgstr "Optimize"
+msgstr "Optimizar"
 
 #: String 108
 msgid "Cache"
@@ -432,7 +432,7 @@ msgstr "Cache"
 
 #: String 109
 msgid "Logs"
-msgstr "Logs"
+msgstr "Registros"
 
 #: String 110
 msgid "PHP Info"
@@ -440,1393 +440,1421 @@ msgstr "PHP Info"
 
 #: String 111
 msgid "Edit profile"
-msgstr "Edit profile"
+msgstr "Editar perfil"
 
 #: String 112
 msgid "Public profile"
-msgstr "Public profile"
+msgstr "Perfil público"
 
 #: String 113
 msgid "Home"
-msgstr "Home"
+msgstr "Casa"
 
 #: String 114
 msgid "Contact"
-msgstr "Contact"
+msgstr "Contacto"
 
 #: String 115
 msgid "Actions"
-msgstr "Actions"
+msgstr "Acciones"
 
 #: String 116
 msgid "Edit"
-msgstr "Edit"
+msgstr "Editar"
 
 #: String 117
 msgid "Are you sure you want to delete?"
-msgstr "Are you sure you want to delete?"
+msgstr "¿Está seguro de que desea eliminar?"
 
 #: String 118
 msgid "Logout"
-msgstr "Logout"
+msgstr "Salir"
 
 #: String 119
 msgid "Visit Site"
-msgstr "Visit Site"
+msgstr "Visite el sitio"
 
 #: String 120
 msgid "Here are listed specific theme configuration values. Replace input fileds with new desired values for theme"
-msgstr "Here are listed specific theme configuration values. Replace input fileds with new desired values for theme"
+msgstr "A continuación se enumeran los valores de configuración de tema. Reemplace fileds entrada con nuevos valores deseados para el tema"
 
 #: String 121
 msgid "You can change the look and feel of your web site here."
-msgstr "You can change the look and feel of your web site here."
+msgstr "Puede cambiar la apariencia de su sitio web aquí."
 
 #: String 122
 msgid "Current Theme"
-msgstr "Current Theme"
+msgstr "Tema actual"
 
 #: String 123
 msgid "Available Themes"
-msgstr "Available Themes"
+msgstr "Temas disponibles"
 
 #: String 124
 msgid "Preview"
-msgstr "Preview"
+msgstr "Avance"
 
 #: String 125
 msgid "Market Themes"
-msgstr "Market Themes"
+msgstr "Temas de Mercado"
 
 #: String 126
 msgid "Here you can find a selection from our premium themes."
-msgstr "Here you can find a selection from our premium themes."
+msgstr "Aquí puede encontrar una selección de nuestros temas premium."
 
 #: String 127
 msgid "All themes include support, updates and license."
-msgstr "All themes include support, updates and license."
+msgstr "Todos los temas incluye soporte, actualizaciones y licencia."
 
 #: String 128
 msgid "Ads"
-msgstr "Ads"
+msgstr "Anuncios"
 
 #: String 129
-msgid "Views and Ads statistics"
-msgstr "Views and Ads statistics"
+msgid "Sales"
+msgstr "Venta"
 
 #: String 130
-msgid "Available widgets"
-msgstr "Available widgets"
+msgid "Views and Ads statistics"
+msgstr "Visitas y estadísticas Anuncios"
 
 #: String 131
-msgid "You can buy extra widgets in the market"
-msgstr "You can buy extra widgets in the market"
+msgid "Sales statistics"
+msgstr "Estadísticas de ventas"
 
 #: String 132
-msgid "Create"
-msgstr "Create"
+msgid "Available widgets"
+msgstr "Los widgets disponibles"
 
 #: String 133
-msgid "Where do you want the widget displayed?"
-msgstr "Where do you want the widget displayed?"
+msgid "You can buy extra widgets in the market"
+msgstr "Usted puede comprar aparatos adicionales en el mercado"
 
 #: String 134
-msgid "Close"
-msgstr "Close"
+msgid "Create"
+msgstr "Crear"
 
 #: String 135
-msgid "Sure you want to delete the widget? You can move it to the inactive placeholder"
-msgstr "Sure you want to delete the widget? You can move it to the inactive placeholder"
+msgid "Where do you want the widget displayed?"
+msgstr "¿Dónde quiere el widget aparece?"
 
 #: String 136
-msgid "Save changes"
-msgstr "Save changes"
+msgid "Close"
+msgstr "Cerrar"
 
 #: String 137
-msgid "Published Advertisements"
-msgstr "Published Advertisements"
+msgid "Sure you want to delete the widget? You can move it to the inactive placeholder"
+msgstr "¿Seguro que quieres eliminar el widget? Usted puede mover al marcador de posición inactiva"
 
 #: String 138
-msgid " Ads"
-msgstr " Ads"
+msgid "Save changes"
+msgstr "Guardar cambios"
 
 #: String 139
-msgid "Hits"
-msgstr "Hits"
+msgid "Published Advertisements"
+msgstr "Publicaciones"
 
 #: String 140
+msgid " Ads"
+msgstr "Anuncios"
+
+#: String 141
+msgid "Hits"
+msgstr "Impactos"
+
+#: String 142
 msgid "Spam?"
 msgstr "Spam?"
 
-#: String 141
-msgid "Make active?"
-msgstr "Make active?"
-
-#: String 142
-msgid "Buy Now"
-msgstr "Buy Now"
-
 #: String 143
-msgid "More info"
-msgstr "More info"
+msgid "Make active?"
+msgstr "Hacer activo?"
 
 #: String 144
-msgid "Selection of nice extras for your installation."
-msgstr "Selection of nice extras for your installation."
+msgid "Buy Now"
+msgstr "Compre Ahora"
 
 #: String 145
-msgid "Change the order of your categories, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme"
-msgstr "Change the order of your categories, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme"
+msgid "More info"
+msgstr "Más info"
 
 #: String 146
-msgid "New category"
-msgstr "New category"
+msgid "Selection of nice extras for your installation."
+msgstr "Selección de extras muy agradables para su instalación."
 
 #: String 147
-msgid "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
-msgstr "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
+msgid "Change the order of your categories, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme"
+msgstr "Cambiar el orden de las categorías, no recomiendo más de 2 nivel anidado ya probablemente no se mostrará int tema"
 
 #: String 148
-msgid "Change the order of your locations, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme"
-msgstr "Change the order of your locations, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme"
+msgid "New category"
+msgstr "Nueva categoría"
 
 #: String 149
-msgid "New location"
-msgstr "New location"
+msgid "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
+msgstr "¿Está seguro de que desea eliminar? Vamos a mover las categorías y los anuncios de los hermanos a los padres de esta categoría."
 
 #: String 150
-msgid "Are you sure you want to delete? We will move the siblings Locations and ads to the parent of this location."
-msgstr "Are you sure you want to delete? We will move the siblings Locations and ads to the parent of this location."
+msgid "Change the order of your locations, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme"
+msgstr "Cambiar el orden de las ubicaciones, no recomiendo más de 2 nivel anidado ya probablemente no se mostrará int tema"
 
 #: String 151
-msgid "Optimize Data Base"
-msgstr "Optimize Data Base"
+msgid "New location"
+msgstr "Nueva ubicación"
 
 #: String 152
-msgid "Data Base space"
-msgstr "Data Base space"
+msgid "Are you sure you want to delete? We will move the siblings Locations and ads to the parent of this location."
+msgstr "¿Está seguro de que desea eliminar? Vamos a mover los hermanos Lugares y sugerencias a los padres de esta ubicación."
 
 #: String 153
-msgid "Space to optimize"
-msgstr "Space to optimize"
+msgid "Optimize Data Base"
+msgstr "Optimizar la Base de Datos"
 
 #: String 154
-msgid "Table"
-msgstr "Table"
+msgid "Data Base space"
+msgstr "Espacio de la Base de Datos"
 
 #: String 155
-msgid "Rows"
-msgstr "Rows"
+msgid "Space to optimize"
+msgstr "Espacio para optimizar"
 
 #: String 156
-msgid "Size"
-msgstr "Size"
+msgid "Table"
+msgstr "Tabla"
 
 #: String 157
-msgid "Save size"
-msgstr "Save size"
+msgid "Rows"
+msgstr "Filas"
 
 #: String 158
-msgid "Cache configuration information"
-msgstr "Cache configuration information"
+msgid "Size"
+msgstr "Tamaño"
 
 #: String 159
-msgid "Clean"
-msgstr "Clean"
+msgid "Save size"
+msgstr "Guardar tamaño"
 
 #: String 160
-msgid "Config file"
-msgstr "Config file"
+msgid "Cache configuration information"
+msgstr "Información de configuración de caché"
 
 #: String 161
-msgid "System Logs"
-msgstr "System Logs"
+msgid "Clean"
+msgstr "Limpiar"
 
 #: String 162
-msgid "Reading log file"
-msgstr "Reading log file"
+msgid "Config file"
+msgstr "El archivo de configuración"
 
 #: String 163
+msgid "System Logs"
+msgstr "Registros del sistema"
+
+#: String 164
+msgid "Reading log file"
+msgstr "Lectura del archivo de registro"
+
+#: String 165
 msgid "Log"
 msgstr "Log"
 
-#: String 164
-msgid "Your PHP time limit is"
-msgstr "Your PHP time limit is"
-
-#: String 165
-msgid "seconds"
-msgstr "seconds"
-
 #: String 166
-msgid "Host name"
-msgstr "Host name"
+msgid "Your PHP time limit is"
+msgstr "El límite de tiempo es PHP"
 
 #: String 167
-msgid "User name"
-msgstr "User name"
+msgid "seconds"
+msgstr "segundo"
 
 #: String 168
-msgid "Database name"
-msgstr "Database name"
+msgid "Host name"
+msgstr "Nombre del Host"
 
 #: String 169
+msgid "User name"
+msgstr "Nombre de usuario"
+
+#: String 170
+msgid "Database name"
+msgstr "Nombre de la base"
+
+#: String 171
 msgid "Database charset"
 msgstr "Database charset"
 
-#: String 170
-msgid "Table prefix"
-msgstr "Table prefix"
-
-#: String 171
-msgid "Migrate"
-msgstr "Migrate"
-
 #: String 172
-msgid "Last time generated"
-msgstr "Last time generated"
+msgid "Table prefix"
+msgstr "Prefijo de tabla"
 
 #: String 173
-msgid "Generate"
-msgstr "Generate"
+msgid "Migrate"
+msgstr "Migrar"
 
 #: String 174
-msgid "Expire time"
-msgstr "Expire time"
+msgid "Last time generated"
+msgstr "La última vez que genera"
 
 #: String 175
-msgid "Update on publish"
-msgstr "Update on publish"
+msgid "Generate"
+msgstr "Generar"
 
 #: String 176
-msgid "Save"
-msgstr "Save"
+msgid "Expire time"
+msgstr "Caducidad"
 
 #: String 177
-msgid "Versions"
-msgstr "Versions"
+msgid "Update on publish"
+msgstr "Actualización sobre la publicación"
 
 #: String 178
-msgid "Open Classifieds release history information."
-msgstr "Open Classifieds release history information."
+msgid "Save"
+msgstr "Guardar"
 
 #: String 179
-msgid "Your installation version is"
-msgstr "Your installation version is"
+msgid "Versions"
+msgstr "Versiones"
 
 #: String 180
-msgid "Check for updates"
-msgstr "Check for updates"
+msgid "Open Classifieds release history information."
+msgstr "Abra Clasificados liberación de la información de la historia."
 
 #: String 181
-msgid "Version"
-msgstr "Version"
+msgid "Your installation version is"
+msgstr "Su versión de la instalación"
 
 #: String 182
-msgid "Information"
-msgstr "Information"
+msgid "Check for updates"
+msgstr "Buscar actualizaciones"
 
 #: String 183
-msgid "Latest"
-msgstr "Latest"
+msgid "Version"
+msgstr "Versión"
 
 #: String 184
-msgid "Current"
-msgstr "Current"
+msgid "Information"
+msgstr "Información"
 
 #: String 185
-msgid "Email Configuration"
-msgstr "Email Configuration"
+msgid "Latest"
+msgstr "Más reciente"
 
 #: String 186
-msgid "Here are listed general configuration values. Replace input fileds with new desired values"
-msgstr "Here are listed general configuration values. Replace input fileds with new desired values"
+msgid "Current"
+msgstr "Corriente"
 
 #: String 187
-msgid "Notify email"
-msgstr "Notify email"
+msgid "Email Configuration"
+msgstr "Configuración de correo electrónico"
 
 #: String 188
-msgid "Thumb wid"
-msgstr "Thumb wid"
+msgid "Here are listed general configuration values. Replace input fileds with new desired values"
+msgstr "A continuación se enumeran los valores de configuración generales. Reemplace fileds entrada con nuevos valores deseados"
 
 #: String 189
-msgid "Smtp active"
-msgstr "Smtp active"
+msgid "Notify email"
+msgstr "Notifique email"
 
 #: String 190
+msgid "Thumb wid"
+msgstr "Wid Thumb"
+
+#: String 191
+msgid "Smtp active"
+msgstr "Smtp activo"
+
+#: String 192
 msgid "Smtp ssl"
 msgstr "Smtp ssl"
 
-#: String 191
-msgid "Smtp host"
-msgstr "Smtp host"
-
-#: String 192
-msgid "Smtp port"
-msgstr "Smtp port"
-
 #: String 193
+msgid "Smtp host"
+msgstr "Host SMTP"
+
+#: String 194
+msgid "Smtp port"
+msgstr "Puerto SMTP"
+
+#: String 195
 msgid "Smtp auth"
 msgstr "Smtp auth"
 
-#: String 194
-msgid "Smtp user"
-msgstr "Smtp user"
-
-#: String 195
-msgid "Smtp password"
-msgstr "Smtp password"
-
 #: String 196
-msgid "Form Configuration"
-msgstr "Form Configuration"
+msgid "Smtp user"
+msgstr "Usuario Smtp"
 
 #: String 197
-msgid "Number of images"
-msgstr "Number of images"
+msgid "Smtp password"
+msgstr "Contraseña SMTP"
 
 #: String 198
-msgid "Featured timer"
-msgstr "Featured timer"
+msgid "Form Configuration"
+msgstr "Configuración del formulario"
 
 #: String 199
-msgid "Days"
-msgstr "Days"
+msgid "Number of images"
+msgstr "Número de imágenes"
 
 #: String 200
-msgid "Ad expiring date"
-msgstr "Ad expiring date"
+msgid "Featured timer"
+msgstr "Temporizador destacados"
 
 #: String 201
-msgid "Upload file"
-msgstr "Upload file"
+msgid "Days"
+msgstr "Días"
 
 #: String 202
+msgid "Ad expiring date"
+msgstr "Publicado el vencimiento"
+
+#: String 203
+msgid "Upload file"
+msgstr "Subir archivo"
+
+#: String 204
 msgid "Captcha"
 msgstr "Captcha"
 
-#: String 203
+#: String 205
 msgid "Terms of Service"
-msgstr "Terms of Service"
+msgstr "Términos de Servicio"
 
-#: String 204
+#: String 206
 msgid "Disqus"
 msgstr "Disqus"
 
-#: String 205
-msgid "Payments Configuration"
-msgstr "Payments Configuration"
-
-#: String 206
-msgid "Here are listed payment configuration values. Replace input fileds with new desired values"
-msgstr "Here are listed payment configuration values. Replace input fileds with new desired values"
-
 #: String 207
-msgid "Sandbox"
-msgstr "Sandbox"
+msgid "Payments Configuration"
+msgstr "Configuración de pagos"
 
 #: String 208
-msgid "Paypal currency"
-msgstr "Paypal currency"
+msgid "Here are listed payment configuration values. Replace input fileds with new desired values"
+msgstr "A continuación se enumeran los valores de configuración de pago. Reemplace fileds entrada con nuevos valores deseados"
 
 #: String 209
-msgid "To featured active"
-msgstr "To featured active"
+msgid "Sandbox"
+msgstr "Arenero"
 
 #: String 210
-msgid "To top active"
-msgstr "To top active"
+msgid "Paypal currency"
+msgstr "Moneda Paypal"
 
 #: String 211
-msgid "To top payment"
-msgstr "To top payment"
+msgid "To featured active"
+msgstr "Para ofrecido activo"
 
 #: String 212
-msgid "To featured payment"
-msgstr "To featured payment"
+msgid "To top active"
+msgstr "Al principio activo"
 
 #: String 213
+msgid "To top payment"
+msgstr "Para el pago superior"
+
+#: String 214
+msgid "To featured payment"
+msgstr "Para el pago ofrecido"
+
+#: String 215
 msgid "Paypal accout"
 msgstr "Paypal accout"
 
-#: String 214
-msgid "General Configuration"
-msgstr "General Configuration"
-
-#: String 215
-msgid "All configs"
-msgstr "All configs"
-
 #: String 216
-msgid "Published Advertisements are placed here. You can use settings to manage them."
-msgstr "Published Advertisements are placed here. You can use settings to manage them."
+msgid "General Configuration"
+msgstr "Configuración general"
 
 #: String 217
-msgid "Site name"
-msgstr "Site name"
+msgid "All configs"
+msgstr "Todas las configuraciones"
 
 #: String 218
-msgid "Here you can declare your display name. This is seen by everyone!"
-msgstr "Here you can declare your display name. This is seen by everyone!"
+msgid "Published Advertisements are placed here. You can use settings to manage them."
+msgstr "Anuncios se colocan aquí. Puede utilizar la configuración para su gestión."
 
 #: String 219
-msgid "Site Name"
-msgstr "Site Name"
+msgid "Site name"
+msgstr "Nombre del sitio"
 
 #: String 220
-msgid "Base URL"
-msgstr "Base URL"
+msgid "Here you can declare your display name. This is seen by everyone!"
+msgstr "Aquí podrá declarar su nombre para mostrar. Esto es visto por todo el mundo!"
 
 #: String 221
-msgid "Is a base path of your site (e.g. http://open-classifieds.com/ ). Everything else is built based on this filed."
-msgstr "Is a base path of your site (e.g. http://open-classifieds.com/ ). Everything else is built based on this filed."
+msgid "Site Name"
+msgstr "Nombre del sitio"
 
 #: String 222
-msgid "Base URL path"
-msgstr "Base URL path"
+msgid "Base URL"
+msgstr "URL Base"
 
 #: String 223
-msgid "Language"
-msgstr "Language"
+msgid "Is a base path of your site (e.g. http://open-classifieds.com/ ). Everything else is built based on this filed."
+msgstr "Es una ruta de la base de su sitio (pe http://open-classifieds.com/). Todo lo demás se construye sobre la base de esta archivada."
 
 #: String 224
-msgid "Moderation controls"
-msgstr "Moderation controls"
+msgid "Base URL path"
+msgstr "Ruta URL Base"
 
 #: String 225
-msgid "Global currency"
-msgstr "Global currency"
+msgid "Moderation controls"
+msgstr "Controles de moderación"
 
 #: String 226
-msgid "Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "
-msgstr "Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "
+msgid "Global currency"
+msgstr "Moneda global"
 
 #: String 227
-msgid "Country specific currency"
-msgstr "Country specific currency"
+msgid "Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "
+msgstr "Moneda global es específica de cada país. No hay restricciones, esto es sólo para declarar la moneda para los anuncios. Nota: Esto es diferente de las monedas de pago."
 
 #: String 228
-msgid "Advertisements per page"
-msgstr "Advertisements per page"
+msgid "Country specific currency"
+msgstr "Moneda específica País"
 
 #: String 229
-msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
-msgstr "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
+msgid "Advertisements per page"
+msgstr "Anuncios por página"
 
 #: String 230
-msgid "Number of ads per page"
-msgstr "Number of ads per page"
+msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
+msgstr "Esto es para controlar el número de anuncios que están siendo mostradas por página. Introduzca un valor entero, como un límite de número."
 
 #: String 231
-msgid "Advertisements in RSS"
-msgstr "Advertisements in RSS"
+msgid "Number of ads per page"
+msgstr "Número de anuncios por página"
 
 #: String 232
-msgid "Advertisements in Map"
-msgstr "Advertisements in Map"
+msgid "Advertisements in RSS"
+msgstr "Anuncios en RSS"
 
 #: String 233
-msgid "Number format"
-msgstr "Number format"
+msgid "Advertisements in Map"
+msgstr "Anuncios en mapa"
 
 #: String 234
-msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
-msgstr "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
+msgid "Number format"
+msgstr "Formato de número"
 
 #: String 235
-msgid "Decimal representation"
-msgstr "Decimal representation"
+msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
+msgstr "Formato de número es cómo desea mostrar los números relacionados con la publicidad. Precio de anuncio más específico. Cada país tiene una forma específica de hacer frente a los dígitos decimales."
 
 #: String 236
-msgid "Date format"
-msgstr "Date format"
+msgid "Decimal representation"
+msgstr "Representación decimal"
 
 #: String 237
-msgid "Each advertisement have publish date. By selecting format, you can change how is shown on your website."
-msgstr "Each advertisement have publish date. By selecting format, you can change how is shown on your website."
+msgid "Date format"
+msgstr "Formato de la fecha"
 
 #: String 238
-msgid "Analytics"
-msgstr "Analytics"
+msgid "Each advertisement have publish date. By selecting format, you can change how is shown on your website."
+msgstr "Cada anuncio se publicará la fecha. Mediante la selección de formato, puede cambiar la manera en que se muestra en su sitio web."
 
 #: String 239
-msgid "Allowed image formats"
-msgstr "Allowed image formats"
+msgid "Analytics"
+msgstr "Analítica"
 
 #: String 240
-msgid "Set this up to restrict image formats that are being uploaded to your server."
-msgstr "Set this up to restrict image formats that are being uploaded to your server."
+msgid "Allowed image formats"
+msgstr "Formatos de imágenes permitidas"
 
 #: String 241
-msgid "Max image size"
-msgstr "Max image size"
+msgid "Set this up to restrict image formats that are being uploaded to your server."
+msgstr "Establezca esto para restringir formatos de imagen que se está cargando en su servidor."
 
 #: String 242
-msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
-msgstr "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
+msgid "Max image size"
+msgstr "Max tamaño de la imagen"
 
 #: String 243
-msgid "Image size in mega bites(Mb)"
-msgstr "Image size in mega bites(Mb)"
+msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
+msgstr "Controlar el tamaño de las imágenes que se han subido. Introduzca un valor entero para establecer el tamaño máximo de la imagen en el mega-picaduras (Mb)."
 
 #: String 244
-msgid "Image height"
-msgstr "Image height"
+msgid "Image size in mega bites(Mb)"
+msgstr "Tamaño de imagen en mega-picaduras (Mb)"
 
 #: String 245
-msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
-msgstr "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
+msgid "Image height"
+msgstr "Altura de la imagen"
 
 #: String 246
-msgid "Image height in pixels(px)"
-msgstr "Image height in pixels(px)"
+msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
+msgstr "Cada imagen cambia de tamaño cuando se envían. Esta es la altura de la gran imagen. Nota: se puede dejar este campo en blanco para establecer la altura de tamaño automático."
 
 #: String 247
-msgid "Image width"
-msgstr "Image width"
+msgid "Image height in pixels(px)"
+msgstr "Altura de la imagen en píxeles (px)"
 
 #: String 248
-msgid "Each image is resized when uploaded. This is the width of big image."
-msgstr "Each image is resized when uploaded. This is the width of big image."
+msgid "Image width"
+msgstr "Ancho de la imagen"
 
 #: String 249
-msgid "Image width in pixels(px)"
-msgstr "Image width in pixels(px)"
+msgid "Each image is resized when uploaded. This is the width of big image."
+msgstr "Cada imagen cambia de tamaño cuando se envían. Esta es la anchura de la imagen grande."
 
 #: String 250
-msgid "Thumb height"
-msgstr "Thumb height"
+msgid "Image width in pixels(px)"
+msgstr "Ancho de la imagen en píxeles (px)"
 
 #: String 251
-msgid "Thumb is a small image resized to fit certain elements. This is height of this image."
-msgstr "Thumb is a small image resized to fit certain elements. This is height of this image."
+msgid "Thumb height"
+msgstr "Altura del pulgar"
 
 #: String 252
-msgid "Thumb height in pixels(px)"
-msgstr "Thumb height in pixels(px)"
+msgid "Thumb is a small image resized to fit certain elements. This is height of this image."
+msgstr "Thumb es una pequeña imagen redimensionada para ajustarse a ciertos elementos. Esta es la altura de esta imagen."
 
 #: String 253
-msgid "Thumb width"
-msgstr "Thumb width"
+msgid "Thumb height in pixels(px)"
+msgstr "Thumb altura en píxeles (px)"
 
 #: String 254
-msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
-msgstr "Thumb is a small image resized to fit certain elements. This is width of this image."
+msgid "Thumb width"
+msgstr "Anchura del pulgar"
 
 #: String 255
-msgid "Thumb width in pixels(px)"
-msgstr "Thumb width in pixels(px)"
+msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
+msgstr "Thumb es una pequeña imagen redimensionada para ajustarse a ciertos elementos. Este es el ancho de esta imagen."
 
 #: String 256
-msgid "Image quality"
-msgstr "Image quality"
+msgid "Thumb width in pixels(px)"
+msgstr "Anchura del pulgar en píxeles (px)"
 
 #: String 257
-msgid "Choose the quality of images when stored 1-100."
-msgstr "Choose the quality of images when stored 1-100."
+msgid "Image quality"
+msgstr "La calidad de imagen"
 
 #: String 258
-msgid "Image Quality)"
-msgstr "Image Quality)"
+msgid "Choose the quality of images when stored 1-100."
+msgstr "Seleccione la calidad de las imágenes cuando se almacena 1-100."
 
 #: String 259
-msgid "Translations files available in the system"
-msgstr "Translations files available in the system"
+msgid "Image Quality)"
+msgstr "Calidad de la imagen)"
 
 #: String 260
-msgid "Scan for strings"
-msgstr "Scan for strings"
+msgid "Here you can modify any text you find in your web"
+msgstr "Aquí puede modificar el texto que se encuentra en su web"
 
 #: String 261
-msgid "Active"
-msgstr "Active"
+msgid "Original Translation"
+msgstr "La traducción original"
 
 #: String 262
-msgid "Advertisements"
-msgstr "Advertisements"
+msgid "Translation"
+msgstr "Traducción"
 
 #: String 263
-msgid "Not Published Advertisements"
-msgstr "Not Published Advertisements"
+msgid "Translations files available in the system."
+msgstr "Archivos en el sistema de traducciones."
 
 #: String 264
-msgid " Moderation"
-msgstr " Moderation"
+msgid "Scan"
+msgstr "Escanear"
 
 #: String 265
-msgid "General coonfigurations are here. Replace input fileds with new desired values"
-msgstr "General coonfigurations are here. Replace input fileds with new desired values"
+msgid "New translation"
+msgstr "Nueva traducción"
 
 #: String 266
-msgid "Ad Page"
-msgstr "Ad Page"
+msgid "Language"
+msgstr "Idioma"
 
 #: String 267
-msgid "Thanks for using Open Classifieds."
-msgstr "Thanks for using Open Classifieds."
+msgid "Active"
+msgstr "Activo"
 
 #: String 268
-msgid "Latest News"
-msgstr "Latest News"
+msgid "Advertisements"
+msgstr "Anuncios"
 
 #: String 269
-msgid "Contact US"
-msgstr "Contact US"
+msgid "Not Published Advertisements"
+msgstr "Los anuncios no se publican"
 
 #: String 270
-msgid "Subject"
-msgstr "Subject"
+msgid " Moderation"
+msgstr "Moderación"
 
 #: String 271
-msgid "Message"
-msgstr "Message"
+msgid "General coonfigurations are here. Replace input fileds with new desired values"
+msgstr "Coonfigurations generales están aquí. Reemplace fileds entrada con nuevos valores deseados"
 
 #: String 272
-msgid "User Profile"
-msgstr "User Profile"
+msgid "Ad Page"
+msgstr "Ad página"
 
 #: String 273
-msgid "Created"
-msgstr "Created"
+msgid "Thanks for using Open Classifieds."
+msgstr "Gracias por usar Clasificados Abierto."
 
 #: String 274
-msgid "Last Login"
-msgstr "Last Login"
+msgid "Latest News"
+msgstr "Últimas Noticias"
 
 #: String 275
-msgid " advertisements"
-msgstr " advertisements"
+msgid "Contact US"
+msgstr "Contacto EE.UU."
 
 #: String 276
-msgid "Publish Date"
-msgstr "Publish Date"
+msgid "Subject"
+msgstr "Tema"
 
 #: String 277
-msgid "Not yet published"
-msgstr "Not yet published"
+msgid "Message"
+msgstr "Mensaje"
 
 #: String 278
-msgid "Remember password"
-msgstr "Remember password"
+msgid "User Profile"
+msgstr "Perfil del usuario"
 
 #: String 279
-msgid "Forgot password?"
-msgstr "Forgot password?"
+msgid "Created"
+msgstr "Creado"
 
 #: String 280
-msgid "Remember me"
-msgstr "Remember me"
+msgid "Last Login"
+msgstr "Última sesión"
 
 #: String 281
-msgid "Type your password twice"
-msgstr "Type your password twice"
+msgid " advertisements"
+msgstr "anuncios"
 
 #: String 282
-msgid "Latest Ads"
-msgstr "Latest Ads"
+msgid "Publish Date"
+msgstr "Fecha de Publicación"
 
 #: String 283
-msgid "Publish new advertisement"
-msgstr "Publish new advertisement"
+msgid "Not yet published"
+msgstr "Pendiente de publicación"
 
 #: String 284
-msgid "Read more"
-msgstr "Read more"
+msgid "Remember password"
+msgstr "Recordar contraseña"
 
 #: String 285
-msgid "Ops! Nothing found"
-msgstr "Ops! Nothing found"
+msgid "Forgot password?"
+msgstr "¿Olvidó su contraseña?"
 
 #: String 286
-msgid "Improve search :"
-msgstr "Improve search :"
+msgid "Remember me"
+msgstr "Recuérdame"
 
 #: String 287
-msgid "Terms of service"
-msgstr "Terms of service"
+msgid "Type your password twice"
+msgstr "Escriba la contraseña dos veces"
 
 #: String 288
-msgid "Advansed Search"
-msgstr "Advansed Search"
+msgid "Latest Ads"
+msgstr "Últimas ofertas"
 
 #: String 289
-msgid "Requirements"
-msgstr "Requirements"
+msgid "Publish new advertisement"
+msgstr "Publicar un nuevo anuncio"
 
 #: String 290
-msgid "Congratulations"
-msgstr "Congratulations"
+msgid "Read more"
+msgstr "Leer más"
 
 #: String 291
-msgid "Installation done"
-msgstr "Installation done"
+msgid "Ops! Nothing found"
+msgstr "Ops! No se encontró nada"
 
 #: String 292
-msgid "Please now erase the folder"
-msgstr "Please now erase the folder"
+msgid "Improve search :"
+msgstr "Mejorar resultados:"
 
 #: String 293
-msgid "Go to Your Website"
-msgstr "Go to Your Website"
+msgid "Terms of service"
+msgstr "Términos del servicio"
 
 #: String 294
-msgid "Make a donation"
-msgstr "Make a donation"
+msgid "Advansed Search"
+msgstr "Advansed Buscar"
 
 #: String 295
-msgid "We really appreciate it"
-msgstr "We really appreciate it"
+msgid "Requirements"
+msgstr "Requerimientos"
 
 #: String 296
-msgid "Welcome to"
-msgstr "Welcome to"
+msgid "Congratulations"
+msgstr "¡Felicidades"
 
 #: String 297
-msgid "installation"
-msgstr "installation"
+msgid "Installation done"
+msgstr "INSTALACIÓN"
 
 #: String 298
-msgid "Welcome to the super easy and fast installation"
-msgstr "Welcome to the super easy and fast installation"
+msgid "Please now erase the folder"
+msgstr "Por favor, ahora borrar la carpeta"
 
 #: String 299
-msgid "If you need any help please check our professional services"
-msgstr "If you need any help please check our professional services"
+msgid "Go to Your Website"
+msgstr "Ir a su sitio web"
 
 #: String 300
-msgid "Site Configuration"
-msgstr "Site Configuration"
+msgid "Make a donation"
+msgstr "Hacer una donación"
 
 #: String 301
-msgid "Site Language"
-msgstr "Site Language"
+msgid "We really appreciate it"
+msgstr "Realmente apreciamos"
 
 #: String 302
-msgid "Site URL"
-msgstr "Site URL"
+msgid "Welcome to"
+msgstr "Bienvenido a"
 
 #: String 303
-msgid "Time Zone"
-msgstr "Time Zone"
+msgid "installation"
+msgstr "instalación"
 
 #: String 304
-msgid "Administrator email"
-msgstr "Administrator email"
+msgid "Welcome to the super easy and fast installation"
+msgstr "Bienvenido a la instalación muy fácil y rápida"
 
 #: String 305
+msgid "If you need any help please check our professional services"
+msgstr "Si necesitas ayuda visita nuestros servicios profesionales, por favor"
+
+#: String 306
+msgid "Site Configuration"
+msgstr "Configuración del sitio"
+
+#: String 307
+msgid "Site Language"
+msgstr "El idioma del sitio"
+
+#: String 308
+msgid "Site URL"
+msgstr "URL del sitio"
+
+#: String 309
+msgid "Time Zone"
+msgstr "Zona Horaria"
+
+#: String 310
+msgid "Administrator email"
+msgstr "Correo electrónico del administrador"
+
+#: String 311
 msgid "Admin Password"
 msgstr "Admin Password"
 
-#: String 306
-msgid "Database Configuration"
-msgstr "Database Configuration"
-
-#: String 307
-msgid "Allows multiple installations in one database if you give each one a unique prefix"
-msgstr "Allows multiple installations in one database if you give each one a unique prefix"
-
-#: String 308
-msgid "Only numbers, letters, and underscores"
-msgstr "Only numbers, letters, and underscores"
-
-#: String 309
-msgid "Sample data"
-msgstr "Sample data"
-
-#: String 310
-msgid "Creates few sample categories to start with"
-msgstr "Creates few sample categories to start with"
-
-#: String 311
-msgid "Install"
-msgstr "Install"
-
 #: String 312
-msgid "Ocacu classifieds community registration"
-msgstr "Ocacu classifieds community registration"
+msgid "Database Configuration"
+msgstr "Configuración de base de datos"
 
 #: String 313
-msgid "Terms"
-msgstr "Terms"
+msgid "Allows multiple installations in one database if you give each one a unique prefix"
+msgstr "Permite múltiples instalaciones en una base de datos si se le da a cada uno un prefijo único"
 
 #: String 314
-msgid "Cannot connect to server"
-msgstr "Cannot connect to server"
+msgid "Only numbers, letters, and underscores"
+msgstr "Sólo números, letras y guiones"
 
 #: String 315
-msgid "No database name was given"
-msgstr "No database name was given"
+msgid "Sample data"
+msgstr "Datos de la muestra"
 
 #: String 316
-msgid "Available databases"
-msgstr "Available databases"
+msgid "Creates few sample categories to start with"
+msgstr "Crea pocas categorías de muestra para comenzar con"
 
 #: String 317
-msgid "Invalid query"
-msgstr "Invalid query"
+msgid "Install"
+msgstr "Instalar"
 
 #: String 318
-msgid "Benchmark"
-msgstr "Benchmark"
+msgid "Ocacu classifieds community registration"
+msgstr "Ocacu clasificados registro comunitario"
 
 #: String 319
-msgid "Application Execution"
-msgstr "Application Execution"
+msgid "Terms"
+msgstr "Condiciones"
 
 #: String 320
-msgid "Hello, world"
-msgstr "Hello, world"
+msgid "Cannot connect to server"
+msgstr "No se puede conectar con el servidor"
 
 #: String 321
-msgid "Environment"
-msgstr "Environment"
+msgid "No database name was given"
+msgstr "No se le dio el nombre de base de datos"
 
 #: String 322
-msgid "Included files"
-msgstr "Included files"
+msgid "Available databases"
+msgstr "Bases de datos disponibles"
 
 #: String 323
-msgid "Loaded extensions"
-msgstr "Loaded extensions"
+msgid "Invalid query"
+msgstr "Consulta no es válida"
 
 #: String 324
-msgid "publish new"
-msgstr "publish new"
+msgid "Benchmark"
+msgstr "Punto de referencia"
 
 #: String 325
-msgid "search"
-msgstr "search"
+msgid "Application Execution"
+msgstr "Ejecución de aplicaciones"
 
 #: String 326
-msgid "contact"
-msgstr "contact"
+msgid "Hello, world"
+msgstr "Hola, mundo"
 
 #: String 327
-msgid "map"
-msgstr "map"
+msgid "Environment"
+msgstr "Medio ambiente"
 
 #: String 328
-msgid "# items to display"
-msgstr "# items to display"
+msgid "Included files"
+msgstr "Archivos incluidos"
 
 #: String 329
+msgid "Loaded extensions"
+msgstr "Extensiones cargadas"
+
+#: String 330
+msgid "publish new"
+msgstr "publicar nuevo"
+
+#: String 331
+msgid "search"
+msgstr "búsqueda"
+
+#: String 332
+msgid "contact"
+msgstr "contacto"
+
+#: String 333
+msgid "map"
+msgstr "mapa"
+
+#: String 334
+msgid "# items to display"
+msgstr "# Artículos para mostrar"
+
+#: String 335
 msgid "RSS"
 msgstr "RSS"
 
-#: String 330
-msgid "RSS reader with cache"
-msgstr "RSS reader with cache"
-
-#: String 331
-msgid "Number items to display"
-msgstr "Number items to display"
-
-#: String 332
-msgid "How often we refresh the RSS, in seconds"
-msgstr "How often we refresh the RSS, in seconds"
-
-#: String 333
-msgid "RSS url address"
-msgstr "RSS url address"
-
-#: String 334
-msgid "RSS title displayed"
-msgstr "RSS title displayed"
-
-#: String 335
-msgid "Add latest comments"
-msgstr "Add latest comments"
-
 #: String 336
-msgid "Comments"
-msgstr "Comments"
+msgid "RSS reader with cache"
+msgstr "Lector de RSS con caché"
 
 #: String 337
-msgid "Title displayed"
-msgstr "Title displayed"
+msgid "Number items to display"
+msgstr "Número de artículos para mostrar"
 
 #: String 338
-msgid "Number comments to display"
-msgstr "Number comments to display"
+msgid "How often we refresh the RSS, in seconds"
+msgstr "¿Con qué frecuencia nos refrescamos la RSS, en segundo"
 
 #: String 339
-msgid "Map"
-msgstr "Map"
+msgid "RSS url address"
+msgstr "RSS dirección url"
 
 #: String 340
-msgid "Google Maps with ads"
-msgstr "Google Maps with ads"
+msgid "RSS title displayed"
+msgstr "RSS título que se visualiza"
 
 #: String 341
-msgid "Map title displayed"
-msgstr "Map title displayed"
+msgid "Add latest comments"
+msgstr "Añadir últimos Comentarios"
 
 #: String 342
-msgid "Map height in pixels"
-msgstr "Map height in pixels"
+msgid "Comments"
+msgstr "Comentarios"
 
 #: String 343
-msgid "Zoom in the map"
-msgstr "Zoom in the map"
+msgid "Title displayed"
+msgstr "Título representada"
 
 #: String 344
-msgid "Display categories"
-msgstr "Display categories"
+msgid "Number comments to display"
+msgstr "Número de comentarios para mostrar"
 
 #: String 345
-msgid "Categories title displayed"
-msgstr "Categories title displayed"
+msgid "Map"
+msgstr "Mapa"
 
 #: String 346
-msgid "Display Locations"
-msgstr "Display Locations"
+msgid "Google Maps with ads"
+msgstr "Google Maps con anuncios"
 
 #: String 347
-msgid "Locations title displayed"
-msgstr "Locations title displayed"
+msgid "Map title displayed"
+msgstr "Título de mapa muestra"
 
 #: String 348
-msgid "Text"
-msgstr "Text"
+msgid "Map height in pixels"
+msgstr "Mapa altura en píxeles"
 
 #: String 349
+msgid "Zoom in the map"
+msgstr "Ampliar el mapa"
+
+#: String 350
+msgid "Display categories"
+msgstr "Mostrar categorías"
+
+#: String 351
+msgid "Categories title displayed"
+msgstr "Categorías título que se visualiza"
+
+#: String 352
+msgid "Display Locations"
+msgstr "Mostrar Ubicaciones"
+
+#: String 353
+msgid "Locations title displayed"
+msgstr "Título localizaciones mostradas"
+
+#: String 354
+msgid "Text"
+msgstr "Texto"
+
+#: String 355
 msgid "HTML textarea"
 msgstr "HTML textarea"
 
-#: String 350
-msgid "Text title displayed"
-msgstr "Text title displayed"
-
-#: String 351
-msgid "HTML/text content here"
-msgstr "HTML/text content here"
-
-#: String 352
-msgid "Ads reader"
-msgstr "Ads reader"
-
-#: String 353
-msgid "Type ads to display"
-msgstr "Type ads to display"
-
-#: String 354
-msgid "Popular Ads last month"
-msgstr "Popular Ads last month"
-
-#: String 355
-msgid "Featured Ads"
-msgstr "Featured Ads"
-
 #: String 356
-msgid "Number ads to display"
-msgstr "Number ads to display"
+msgid "Text title displayed"
+msgstr "Título Texto de muestra"
 
 #: String 357
-msgid "Ads title displayed"
-msgstr "Ads title displayed"
+msgid "HTML/text content here"
+msgstr "Copiar el contenido / texto aquí"
 
 #: String 358
-msgid "Pages"
-msgstr "Pages"
+msgid "Ads reader"
+msgstr "Anuncios lector"
 
 #: String 359
-msgid "Display CMS pages"
-msgstr "Display CMS pages"
+msgid "Type ads to display"
+msgstr "Tipo anuncios para mostrar"
 
 #: String 360
-msgid "Page title displayed"
-msgstr "Page title displayed"
+msgid "Popular Ads last month"
+msgstr "Anuncios populares mes pasado"
 
 #: String 361
-msgid "Submit"
-msgstr "Submit"
+msgid "Featured Ads"
+msgstr "Anuncios destacados"
 
 #: String 362
-msgid "Other"
-msgstr "Other"
+msgid "Number ads to display"
+msgstr "Número de anuncios para mostrar"
 
 #: String 363
-msgid "Hello world!"
-msgstr "Hello world!"
+msgid "Ads title displayed"
+msgstr "Título de tu anuncio aparezca"
 
 #: String 364
-msgid "Welcome!"
-msgstr "Welcome!"
+msgid "Pages"
+msgstr "Páginas"
 
 #: String 365
-msgid "Hello %s"
-msgstr "Hello %s"
+msgid "Display CMS pages"
+msgstr "Mostrar las páginas CMS"
 
 #: String 366
+msgid "Page title displayed"
+msgstr "Título de la página aparece"
+
+#: String 367
+msgid "Submit"
+msgstr "Presentar"
+
+#: String 368
+msgid "Other"
+msgstr "Otro"
+
+#: String 369
+msgid "Hello world!"
+msgstr "¡Hola, mundo!"
+
+#: String 370
+msgid "Welcome!"
+msgstr "¡Bienvenido!"
+
+#: String 371
+msgid "Hello %s"
+msgstr "Hola% s"
+
+#: String 372
 msgid "Id ad"
 msgstr "Id ad"
 
-#: String 367
-msgid "Id user"
-msgstr "Id user"
-
-#: String 368
-msgid "Id category"
-msgstr "Id category"
-
-#: String 369
-msgid "Id location"
-msgstr "Id location"
-
-#: String 370
-msgid "Type"
-msgstr "Type"
-
-#: String 371
-msgid "SEO title"
-msgstr "SEO title"
-
-#: String 372
-msgid "address"
-msgstr "address"
-
 #: String 373
-msgid "Ip address"
-msgstr "Ip address"
+msgid "Id user"
+msgstr "ID de usuario"
 
 #: String 374
-msgid "Has images"
-msgstr "Has images"
+msgid "Id category"
+msgstr "Id categoría"
 
 #: String 375
-msgid "Id"
-msgstr "Id"
+msgid "Id location"
+msgstr "Ubicación Id"
 
 #: String 376
-msgid "Order"
-msgstr "Order"
+msgid "Type"
+msgstr "Tipo"
 
 #: String 377
-msgid "Parent"
-msgstr "Parent"
+msgid "SEO title"
+msgstr "Título de SEO"
 
 #: String 378
-msgid "Parent deep"
-msgstr "Parent deep"
+msgid "address"
+msgstr "dirección"
 
 #: String 379
+msgid "Ip address"
+msgstr "Dirección IP"
+
+#: String 380
+msgid "Has images"
+msgstr "Tiene imágenes"
+
+#: String 381
+msgid "Id"
+msgstr "Identificación"
+
+#: String 382
+msgid "Order"
+msgstr "Orden"
+
+#: String 383
+msgid "Parent"
+msgstr "Padre"
+
+#: String 384
+msgid "Parent deep"
+msgstr "Padres profunda"
+
+#: String 385
 msgid "Seoname"
 msgstr "Seoname"
 
-#: String 380
+#: String 386
 msgid "Info"
 msgstr "Info"
 
-#: String 381
+#: String 387
 msgid "Warning"
-msgstr "Warning"
+msgstr "Advertencia"
 
-#: String 382
+#: String 388
 msgid "Error"
 msgstr "Error"
 
-#: String 383
-msgid "Success"
-msgstr "Success"
-
-#: String 384
-msgid "New profile has been created. Welcome "
-msgstr "New profile has been created. Welcome "
-
-#: String 385
-msgid "Something went wrong with uploading pictures, please check format"
-msgstr "Something went wrong with uploading pictures, please check format"
-
-#: String 386
-msgid "Something went wrong with uploading pictures"
-msgstr "Something went wrong with uploading pictures"
-
-#: String 387
-msgid "Advertisement is posted but first you need to activate. Please check your email!"
-msgstr "Advertisement is posted but first you need to activate. Please check your email!"
-
-#: String 388
-msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
-msgstr "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
-
 #: String 389
-msgid "Advertisement is posted. Congratulations!"
-msgstr "Advertisement is posted. Congratulations!"
+msgid "Success"
+msgstr "Éxito"
 
 #: String 390
-msgid "Captcha is not correct"
-msgstr "Captcha is not correct"
+msgid "New profile has been created. Welcome "
+msgstr "Nuevo perfil ha sido creado. Bienvenida"
 
 #: String 391
-msgid "Latest published"
-msgstr "Latest published"
+msgid "Something went wrong with uploading pictures, please check format"
+msgstr "Algo salió mal con la carga de imágenes, por favor compruebe formato"
 
 #: String 392
-msgid "Form"
-msgstr "Form"
+msgid "Something went wrong with uploading pictures"
+msgstr "Algo salió mal con la carga de imágenes"
 
 #: String 393
-msgid "Success, Email Configuration updated"
-msgstr "Success, Email Configuration updated"
+msgid "Advertisement is posted but first you need to activate. Please check your email!"
+msgstr "Publicidad se publica, pero primero debes activar. Por favor revise su correo electrónico!"
 
 #: String 394
-msgid "Success, General Configuration updated"
-msgstr "Success, General Configuration updated"
+msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
+msgstr "Se recibe Publicidad, pero primero administrador debe validar. Gracias por ser paciente usted!"
 
 #: String 395
-msgid "Payments"
-msgstr "Payments"
+msgid "Advertisement is posted. Congratulations!"
+msgstr "Publicidad se publica. ¡Enhorabuena!"
 
 #: String 396
-msgid "Widget param missing"
-msgstr "Widget param missing"
+msgid "Captcha is not correct"
+msgstr "Codigo de seguridad no es correcto"
 
 #: String 397
-msgid "Saved"
-msgstr "Saved"
+msgid "Latest published"
+msgstr "Últimos estudios publicados"
 
 #: String 398
-msgid "Password is changed"
-msgstr "Password is changed"
+msgid "Form"
+msgstr "Forma"
 
 #: String 399
-msgid "Nothing is provided"
-msgstr "Nothing is provided"
+msgid "Success, Email Configuration updated"
+msgstr "Éxito, Configuración de correo electrónico actualizado"
 
 #: String 400
-msgid "Passwords do not match"
-msgstr "Passwords do not match"
+msgid "Success, General Configuration updated"
+msgstr "Éxito, Configuración general actualizado"
 
 #: String 401
-msgid "New password is invalid, or they do not match! Please try again."
-msgstr "New password is invalid, or they do not match! Please try again."
+msgid "Payments"
+msgstr "Pagos"
 
 #: String 402
-msgid "You have successfuly chaged your data"
-msgstr "You have successfuly chaged your data"
+msgid "Widget param missing"
+msgstr "Param Widget falta"
 
 #: String 403
-msgid "My Advertisement page "
-msgstr "My Advertisement page "
+msgid "Saved"
+msgstr "Guardado"
 
 #: String 404
-msgid "Success, advertisemet is deactivated"
-msgstr "Success, advertisemet is deactivated"
+msgid "Password is changed"
+msgstr "Se ha modificado la contraseña"
 
 #: String 405
-msgid "Success, advertisemet is active and published"
-msgstr "Success, advertisemet is active and published"
+msgid "Nothing is provided"
+msgstr "Nada se proporciona"
 
 #: String 406
-msgid "Edit advertisement"
-msgstr "Edit advertisement"
+msgid "Passwords do not match"
+msgstr "Las contraseñas no coinciden"
 
 #: String 407
-msgid "Advertisement is updated!"
-msgstr "Advertisement is updated!"
+msgid "New password is invalid, or they do not match! Please try again."
+msgstr "Nueva contraseña no es válida, o no coinciden! Por favor, inténtelo de nuevo."
 
 #: String 408
-msgid "Advertisement is updated"
-msgstr "Advertisement is updated"
+msgid "You have successfuly chaged your data"
+msgstr "Has chaged exitosamente sus datos"
 
 #: String 409
-msgid "You dont have permission to access this link"
-msgstr "You dont have permission to access this link"
+msgid "My Advertisement page "
+msgstr "Mi página de Publicidad"
 
 #: String 410
-msgid "List"
-msgstr "List"
+msgid "Success, advertisemet is deactivated"
+msgstr "Éxito, advertisemet se desactiva"
 
 #: String 411
-msgid "Edit Translation"
-msgstr "Edit Translation"
+msgid "Success, advertisemet is active and published"
+msgstr "El éxito, advertisemet está activo y publicado"
 
 #: String 412
-msgid "Edit Translations"
-msgstr "Edit Translations"
+msgid "Edit advertisement"
+msgstr "Editar anuncio"
 
 #: String 413
-msgid "Success, Theme configuration updated"
-msgstr "Success, Theme configuration updated"
+msgid "Advertisement is updated!"
+msgstr "Publicidad se actualiza!"
 
 #: String 414
+msgid "Advertisement is updated"
+msgstr "Publicidad se actualiza"
+
+#: String 415
+msgid "You dont have permission to access this link"
+msgstr "Usted no tiene permiso para acceder a este enlace"
+
+#: String 416
+msgid "List"
+msgstr "Lista"
+
+#: String 417
+msgid "Language changed"
+msgstr "Idioma cambiado"
+
+#: String 418
+msgid "Edit Translation"
+msgstr "Editar Traducción"
+
+#: String 419
+msgid "Language saved"
+msgstr "Idioma guardado"
+
+#: String 420
+msgid "Success, Theme configuration updated"
+msgstr "Éxito, configuración Tema actualizado"
+
+#: String 421
 msgid "Selector"
 msgstr "Selector"
 
-#: String 415
-msgid "Success, Appearance configuration updated"
-msgstr "Success, Appearance configuration updated"
-
-#: String 416
-msgid "Optimize DB"
-msgstr "Optimize DB"
-
-#: String 417
-msgid "Database Optimized"
-msgstr "Database Optimized"
-
-#: String 418
-msgid "Cache deleted"
-msgstr "Cache deleted"
-
-#: String 419
-msgid "You are not using OC latest version, please update."
-msgstr "You are not using OC latest version, please update."
-
-#: String 420
-msgid "System logs"
-msgstr "System logs"
-
-#: String 421
-msgid "Success, Sitemap Configuration updated"
-msgstr "Success, Sitemap Configuration updated"
-
 #: String 422
-msgid "Open Classifieds migration"
-msgstr "Open Classifieds migration"
+msgid "Success, Appearance configuration updated"
+msgstr "Éxito, configuración Apariencia actualizado"
 
 #: String 423
-msgid "Database cleaned"
-msgstr "Database cleaned"
+msgid "Optimize DB"
+msgstr "Optimizar DB"
 
 #: String 424
-msgid "Review Database connection params"
-msgstr "Review Database connection params"
+msgid "Database Optimized"
+msgstr "Base de Datos Optimizado"
 
 #: String 425
-msgid "Wrong email or password"
-msgstr "Wrong email or password"
+msgid "Cache deleted"
+msgstr "Caché elimina"
 
 #: String 426
-msgid "Email to recover password sent"
-msgstr "Email to recover password sent"
+msgid "You are not using OC latest version, please update."
+msgstr "No está utilizando OC última versión, por favor, actualice."
 
 #: String 427
-msgid "User not in database"
-msgstr "User not in database"
+msgid "System logs"
+msgstr "Los registros del Sistema"
 
 #: String 428
-msgid "Email required"
-msgstr "Email required"
+msgid "Success, Sitemap Configuration updated"
+msgstr "Éxito, Configuración del sitio actualizado"
 
 #: String 429
-msgid "User already exists"
-msgstr "User already exists"
+msgid "Open Classifieds migration"
+msgstr "Open Classifieds migración"
 
 #: String 430
-msgid "Register new user"
-msgstr "Register new user"
+msgid "Database cleaned"
+msgstr "Base de datos limpia"
 
 #: String 431
-msgid "You do not have any published advertisemet"
-msgstr "You do not have any published advertisemet"
+msgid "Review Database connection params"
+msgstr "Revisión params conexión de base de datos"
 
 #: String 432
-msgid "You do not have any not published advertisemet"
-msgstr "You do not have any not published advertisemet"
+msgid "Wrong email or password"
+msgstr "Correo electrónico o contraseña incorrecta"
 
 #: String 433
-msgid "Warning, something went wrong while deleting"
-msgstr "Warning, something went wrong while deleting"
+msgid "Email to recover password sent"
+msgstr "Correo electrónico para recuperar la contraseña enviada"
 
 #: String 434
-msgid "Success, advertisemet is deleted"
-msgstr "Success, advertisemet is deleted"
+msgid "User not in database"
+msgstr "El usuario no en la base de datos"
 
 #: String 435
-msgid "Warning, advertisemet is already marked as spam"
-msgstr "Warning, advertisemet is already marked as spam"
+msgid "Email required"
+msgstr "Email requerido"
 
 #: String 436
-msgid "Success, advertisemet is marked as spam"
-msgstr "Success, advertisemet is marked as spam"
+msgid "User already exists"
+msgstr "Usuario ya existe"
 
 #: String 437
-msgid "Success, advertisemet is featured"
-msgstr "Success, advertisemet is featured"
+msgid "Register new user"
+msgstr "Registro nuevo usuario"
 
 #: String 438
-msgid "Success, location deleted"
-msgstr "Success, location deleted"
+msgid "You do not have any published advertisemet"
+msgstr "Usted no tiene publicada ninguna advertisemet"
 
 #: String 439
-msgid "Location not deleted"
-msgstr "Location not deleted"
+msgid "You do not have any not published advertisemet"
+msgstr "Usted no tiene ninguna advertisemet no publicado"
 
 #: String 440
-msgid "Success, category deleted"
-msgstr "Success, category deleted"
+msgid "Warning, something went wrong while deleting"
+msgstr "Advertencia, algo salió mal durante el borrado"
 
 #: String 441
-msgid "Category not deleted"
-msgstr "Category not deleted"
+msgid "Success, advertisemet is deleted"
+msgstr "Éxito, advertisemet se elimina"
 
 #: String 442
-msgid "Contact Us"
-msgstr "Contact Us"
+msgid "Warning, advertisemet is already marked as spam"
+msgstr "Advertencia, advertisemet ya está marcado como spam"
 
 #: String 443
-msgid "Success, your message is sent"
-msgstr "Success, your message is sent"
+msgid "Success, advertisemet is marked as spam"
+msgstr "Éxito, advertisemet está marcado como spam"
 
 #: String 444
-msgid "Check the form for errors"
-msgstr "Check the form for errors"
+msgid "Success, advertisemet is featured"
+msgstr "Éxito, advertisemet aparece"
 
 #: String 445
-msgid "You made some mistake"
-msgstr "You made some mistake"
+msgid "Success, location deleted"
+msgstr "El éxito, la ubicación eliminada"
 
 #: String 446
-msgid "Advertisement to top"
-msgstr "Advertisement to top"
+msgid "Location not deleted"
+msgstr "Localización no se eliminan"
 
 #: String 447
-msgid "Advertisement to featured"
-msgstr "Advertisement to featured"
+msgid "Success, category deleted"
+msgstr "Éxito, categoría eliminada"
 
 #: String 448
-msgid " category"
-msgstr " category"
+msgid "Category not deleted"
+msgstr "Categoría no borrado"
 
 #: String 449
-msgid "Order could not be loaded"
-msgstr "Order could not be loaded"
+msgid "Contact Us"
+msgstr "Contáctenos"
 
 #: String 450
-msgid "Page "
-msgstr "Page "
+msgid "Success, your message is sent"
+msgstr "Éxito, se envía el mensaje"
 
 #: String 451
-msgid "Your advertisement is successfully activated! Thank you!"
-msgstr "Your advertisement is successfully activated! Thank you!"
+msgid "Check the form for errors"
+msgstr "Revise la forma de los errores"
 
 #: String 452
-msgid "We did not find any advertisement for a desired search."
-msgstr "We did not find any advertisement for a desired search."
+msgid "You made some mistake"
+msgstr "Usted ha hecho un error"
 
 #: String 453
-msgid "No sitemap generated"
-msgstr "No sitemap generated"
+msgid "Advertisement to top"
+msgstr "Publicidad al inicio"
 
 #: String 454
-msgid "Success, item created"
-msgstr "Success, item created"
+msgid "Advertisement to featured"
+msgstr "Publicidad de las funciones"
 
 #: String 455
-msgid "Check for form errors"
-msgstr "Check for form errors"
+msgid " category"
+msgstr "categoría"
 
 #: String 456
-msgid "Success, item updated"
-msgstr "Success, item updated"
+msgid "Order could not be loaded"
+msgstr "El pedido no se pudo cargar"
 
 #: String 457
-msgid "Access not allowed"
-msgstr "Access not allowed"
+msgid "Page "
+msgstr "Página"
 
 #: String 458
+msgid "Your advertisement is successfully activated! Thank you!"
+msgstr "Su anuncio se activa correctamente! ¡Gracias!"
+
+#: String 459
+msgid "We did not find any advertisement for a desired search."
+msgstr "No hemos encontrado ningún anuncio para una búsqueda deseado."
+
+#: String 460
+msgid "No sitemap generated"
+msgstr "No hay mapa generados"
+
+#: String 461
+msgid "Success, item created"
+msgstr "Éxito, artículo creado"
+
+#: String 462
+msgid "Check for form errors"
+msgstr "Compruebe si hay errores de forma"
+
+#: String 463
+msgid "Success, item updated"
+msgstr "Éxito, elemento actualizado"
+
+#: String 464
+msgid "Access not allowed"
+msgstr "El acceso no permitido"
+
+#: String 465
 msgid "Some errors in the form"
-msgstr "Some errors in the form"
+msgstr "Algunos errores en el formulario"
 

@@ -93,15 +93,15 @@ class Model_User extends ORM {
     {
     	return array(
     					'id_user'	    => 'Id',
-				        'name'	    	=> 'Name',
-				        'email'	    	=> 'Email',
-				        'password'		=> 'Password',
-				        'status'		=> 'Status',
-				        'id_role'		=> 'Role',
-				        'id_location'	=> 'Location',
-				        'created'	    => 'Created',
-				        'last_modified'	=> 'Last modified',
-				        'last_login'	=> 'Last login',
+				        'name'	    	=> __('Name'),
+				        'email'	    	=> __('Email'),
+				        'password'		=> __('Password'),
+				        'status'		=> __('Status'),
+				        'id_role'		=> __('Role'),
+				        'id_location'	=> __('Location'),
+				        'created'	    => __('Created'),
+				        'last_modified'	=> __('Last modified'),
+				        'last_login'	=> __('Last login'),
 				    );
     }
 
