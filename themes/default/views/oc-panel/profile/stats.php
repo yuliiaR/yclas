@@ -60,10 +60,7 @@
     
 </div> <!-- /.row -->
    
-<?=Chart::column($contacts_daily,array('title'=>__('Contacts'),
+<?=Chart::column($stats_daily,array('title'=>__('Views and Contacts statistic'),
                                     'height'=>400,
-                                    'width'=>800))?>
-
-<?=Chart::column($visits_daily,array('title'=>__('Visits'),
-                                    'height'=>400,
-                                    'width'=>800))?>                                    
+                                    'width'=>800,
+                                    'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>                                 

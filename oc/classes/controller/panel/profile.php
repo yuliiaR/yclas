@@ -612,16 +612,7 @@ class Controller_Panel_Profile extends Auth_Controller {
                         ->order_by('date','asc')
                         ->execute();
 
-        $contacts = $query->as_array('date');
- 
-        $contacts_daily = array();
-        foreach ($dates as $date) 
-        {
-            $count = (isset($contacts[$date['date']]['count']))?$contacts[$date['date']]['count']:0;
-            $contacts_daily[] = array('date'=>$date['date'],'count'=> $count);
-        } 
-
-        $content->contacts_daily = $contacts_daily;
+        $contacts_dates = $query->as_array('date');
 
         //Today 
         $query = DB::select(DB::expr('COUNT(contacted) count'))
@@ -684,15 +675,16 @@ class Controller_Panel_Profile extends Auth_Controller {
 
         $visits = $query->as_array('date');
  
-        $visits_daily = array();
+        $stats_daily = array();
         foreach ($dates as $date) 
         {
-            $count = (isset($visits[$date['date']]['count']))?$visits[$date['date']]['count']:0;
-            $visits_daily[] = array('date'=>$date['date'],'count'=> $count);
+            $count_contants = (isset($contacts[$date['date']]['count']))?$contacts[$date['date']]['count']:0;
+            $count_visits = (isset($visits[$date['date']]['count']))?$visits[$date['date']]['count']:0;
+            
+            $stats_daily[] = array('date'=>$date['date'],'views'=> $count_visits, 'contacts'=>$count_contants);
         } 
 
-        $content->visits_daily =  $visits_daily;
-
+        $content->stats_daily = $stats_daily;
 
         //Today 
         $query = DB::select(DB::expr('COUNT(id_visit) count'))
