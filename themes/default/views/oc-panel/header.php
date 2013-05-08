@@ -33,12 +33,12 @@
                             <?=Theme::admin_link(__('Page'),'content','create')?>
                     		<li class="divider"></li>
                     		<li><a href="<?=Route::url('post_new')?>">
-                    			<i class="icon-pencil"></i><?=__('Publish new ')?></a>	</li>
+                    			<i class="icon-pencil"></i> <?=__('Publish new ')?></a>	</li>
                     	</ul>
             	   </li> 
                    <?else:?>
                     <li><a href="<?=Route::url('post_new')?>">
-                                <i class="icon-pencil"></i><?=__('Publish new ')?></a>
+                                <i class="icon-pencil icon-white"></i> <?=__('Publish new ')?></a>
                     </li>
                    <?endif?>
 

@@ -1,7 +1,6 @@
 <div class="page-header">
-    <h1><?=__('Site Usage Statistics')?></h1>   
+    <h1><?=__('Statistics')?></h1>   
 </div>
-
 
 <div class="row">
 
