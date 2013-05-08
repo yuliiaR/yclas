@@ -37,7 +37,7 @@ foreach ($market as $item):?>
             <?endif?>
             <p>
                 <a class="btn btn-primary btn-large" href="<?=$item['url_buy']?>">
-                    <i class="icon-hdd icon-white"></i>  <?=__('Buy Now')?>
+                    <i class="icon-shopping-cart icon-white"></i>  <?=__('Buy Now')?>
                 </a>
                 <?if (empty($item['url_demo'])===FALSE):?>
                     <a class="btn" target="_blank" href="<?=$item['url_demo']?>">

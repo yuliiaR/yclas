@@ -2,26 +2,26 @@
 <div class="span3">
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
-			<?if ($user->has_access_to_any('ad,category,location,order,content,translate')):?>
-				<li class="nav-header"><i class="icon-briefcase"></i><?=__('Administration')?></li>
-				<?Theme::admin_link(__('Advertisement'),'ad')?>
-				<?Theme::admin_link(__('Moderation'),'ad','moderate')?>
-				<?Theme::admin_link(__('Categories'),'category')?>
-				<?Theme::admin_link(__('Locations'),'location')?>
-				<?Theme::admin_link(__('Orders'), 'order')?>
-				<?Theme::admin_link(__('Content'), 'content')?>
-                <?Theme::admin_link(__('Translations'), 'translations')?>
                 <li class="divider"></li>
-			<? endif ?>
+				
+                <?Theme::admin_link(__('Advertisement'),'ad','index','oc-panel','icon-th-large')?>
+				<?Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','icon-ban-circle')?>
+				<?Theme::admin_link(__('Categories'),'category','index','oc-panel','icon-tags')?>
+				<?Theme::admin_link(__('Locations'),'location','index','oc-panel','icon-map-marker')?>
+				<?Theme::admin_link(__('Orders'), 'order','index','oc-panel','icon-shopping-cart')?>
+                <li class="divider"></li>
 
-            <?if ($user->has_access_to_any('market,theme,widget')):?>
+				<?Theme::admin_link(__('Content'), 'content','index','oc-panel','icon-file')?>
+                <?Theme::admin_link(__('Translations'), 'translations','index','oc-panel','icon-globe')?>
+                <?Theme::admin_link(__('Newsletters'), 'newsletter','index','oc-panel','icon-envelope')?>
+                <li class="divider"></li>
+
                 <?Theme::admin_link(__('Themes'), 'theme','index','oc-panel','icon-picture')?>
                 <?if (Theme::has_options()) 
                         Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel','icon-leaf')?>   
                 <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','icon-move')?>       
                 <?Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift')?>
                 <li class="divider"></li>
-            <?endif?>
 
 			<?if ($user->has_access_to_any('settings,config')):?>
 				<li class="nav-header dropdown-submenu <?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">

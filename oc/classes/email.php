@@ -14,7 +14,8 @@ class Email {
 
     /**
      * sends an email using our configs
-     * @param  [type] $to        [description]
+     * @param  string/array $to       array(array('name'=>'chema','email'=>'chema@'),)
+     * @param  [type] $to_name   [description]
      * @param  [type] $subject   [description]
      * @param  [type] $body      [description]
      * @param  [type] $reply     [description]
@@ -22,7 +23,7 @@ class Email {
      * @param  [type] $file      [description]
      * @return boolean
      */
-    public static function send($to,$subject,$body,$reply,$replyName,$file = NULL)
+    public static function send($to,$to_name='',$subject,$body,$reply,$replyName,$file = NULL)
     {
         require_once Kohana::find_file('vendor', 'php-mailer/phpmailer','php');
 
@@ -70,7 +71,17 @@ class Email {
             if($file !== NULL) $mail->AddAttachment($file['tmp_name'],$file['name']);
 
             $mail->AddReplyTo($reply,$replyName);//they answer here
-            $mail->AddAddress($to,$to);
+
+
+            if (is_array($to))
+            {
+                foreach ($to as $contact) 
+                    $mail->AddBCC($contact['email'],$contact['name']);               
+            }
+            else
+                $mail->AddAddress($to,$to_name);
+
+
             $mail->IsHTML(TRUE); // send as HTML
 
             if(!$mail->Send()) 
@@ -89,6 +100,19 @@ class Email {
             $headers.= 'Reply-To: '.$reply.PHP_EOL;
             $headers.= 'Return-Path: '.$reply.PHP_EOL;
             $headers.= 'X-Mailer: PHP/' . phpversion().PHP_EOL;
+
+            if (is_array($to))
+            {
+                $headers.='Bcc: '; 
+                foreach ($to as $contact) 
+                {
+                    $headers.= $contact['name'].' <'.$contact['email'].'>, '; 
+                }
+                $headers.='\r\n'; 
+                $to = '';
+            }
+            else 
+                $to = $to_name.' <'.$to.'>';
 
             return mail($to,$subject,$body,$headers);
         }

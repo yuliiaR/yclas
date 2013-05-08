@@ -20,7 +20,7 @@
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <?=Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift icon-white')?>
-                    <?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','icon-list-alt icon-white')?>
+                    <?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','icon-ban-circle icon-white')?>
                 	<?=Theme::admin_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
                     <?=Theme::admin_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
 
