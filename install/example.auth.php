@@ -9,7 +9,7 @@ return array(
 	'session_type' => Session::$default,
 	'session_key'  => 'auth_user',
 	'cookie_salt'  => 'cookie_[COOKIE_SALT]',
-	'ql_key'       => '[QL_KEY]',
+	'ql_key'       => 'ql_[QL_KEY]',
     'ql_lifetime'  => 7*24*60*60,
     'ql_separator' => '|',
     'ql_mode'      => MCRYPT_MODE_NOFB,
