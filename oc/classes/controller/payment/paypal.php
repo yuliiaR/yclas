@@ -70,7 +70,7 @@ class Controller_Payment_Paypal extends Controller{
 					$message = 'Dear Administrator,<br />
 								A payment has been made but is flagged as INVALID.<br />
 								Please verify the payment manualy and contact the buyer. <br /><br />Here is all the posted info:';
-					email::send(core::config('general.notify_email'),$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
+					email::send(core::config('general.notify_email'),'',$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
 				}	
 
 			} 

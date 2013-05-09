@@ -53,11 +53,11 @@ class Model_Location extends ORM {
 	{
 		return  array(
 	        'id_location'			=> 'Id',
-	        'name'					=> 'Name',
-	        'id_location_parent'	=> 'Id parent',
-	        'parent_deep'			=> 'Parent deep',
-	        'seoname'				=> 'Seoname',
-	        'description'			=> 'Description',
+	        'name'					=> __('Name'),
+	        'id_location_parent'	=> __('Parent'),
+	        'parent_deep'			=> __('Parent deep'),
+	        'seoname'				=> __('Seoname'),
+	        'description'			=> __('Description'),
 		);
 	}
 

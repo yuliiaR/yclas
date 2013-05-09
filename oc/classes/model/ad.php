@@ -71,15 +71,15 @@ class Model_Ad extends ORM {
     public function labels()
     {
     	return array(
-			        'id_ad'		=> __('Id ad'),
-			        'id_user'		=> __('Id user'),
-			        'id_category'	=> __('Id category'),
-			        'id_location'	=> __('Id location'),
+			        'id_ad'		=> 'Id ad',
+			        'id_user'		=> __('User'),
+			        'id_category'	=> __('Category'),
+			        'id_location'	=> __('Location'),
 			        'type'			=> __('Type'),
 			        'title'			=> __('Title'),
 			        'seotitle'		=> __('SEO title'),
 			        'description'	=> __('Description'),
-			        'address'		=> __('address'),
+			        'address'		=> __('Address'),
 			        'price'			=> __('Price'),
 			        'phone'			=> __('Phone'),
 			        'ip_address'	=> __('Ip address'),
@@ -235,9 +235,9 @@ class Model_Ad extends ORM {
                 $width_thumb    = core::config('image.width_thumb');
                 $height_thumb   = core::config('image.height_thumb');
                 $height         = core::config('image.height');
-                if(empty($height)) // when installing this field is empty, to avoid crash we check here
+                if(!is_numeric($height)) // when installing this field is empty, to avoid crash we check here
                     $height         = NULL;
-                if(empty($height_thumb))
+                if(!is_numeric($height_thumb))
                     $height_thumb   = NULL;    
                 
                 // d($height_thumb);

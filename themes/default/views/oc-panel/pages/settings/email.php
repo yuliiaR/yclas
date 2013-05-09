@@ -4,10 +4,10 @@
 		 <?=Form::errors()?>
 		<div class="page-header">
 			<h1><?=__('Email Configuration')?></h1>
-		</div>
-		<div id="advise" class="well advise clearfix">
-			<p class="text-info"><?=__('Here are listed general configuration values. Replace input fileds with new desired values')?></p>
-		</div>
+		<p><?=__('Here are listed general configuration values. Replace input fileds with new desired values')?></p>
+            <p><?=__('If you need to send many emails and you high delivery rate check')?> <a href="http://j.mp/ocelastic">ElasticEmail</a></p>
+        </div>
+
 
 		<div class="well">
 		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>

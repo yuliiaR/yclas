@@ -24,24 +24,24 @@
 			<h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category,'seotitle'=>$ads->seotitle))?>"><?=$ads->title?></a></h4>
 			<p><strong>Description: </strong><?=Text::removebbcode($ads->description)?><p>
 		<?if($ads->published != NULL):?>
-			<p><b><?= _e('Publish Date');?>:</b> <?= Date::format($ads->published, core::config('general.date_format'))?><p>
+			<p><b><?=__('Publish Date');?>:</b> <?= Date::format($ads->published, core::config('general.date_format'))?><p>
 		<?else:?>
-			<p><b><?= _e('Publish Date');?>:</b> <?=__('Not yet published')?><p>
+			<p><b><?=__('Publish Date');?>:</b> <?=__('Not yet published')?><p>
 		<?endif?>
 
 		<?$visitor = Auth::instance()->get_user()?>
 		
 		<?if ($visitor != FALSE && $visitor->id_role == 10):?>
 			<br />
-			<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?= _e("Edit");?></a> |
+			<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?=__("Edit");?></a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ads->id_ad))?>" 
-				onclick="return confirm('<?=__('Deactivate?')?>');"><?= _e("Deactivate");?>
+				onclick="return confirm('<?=__('Deactivate?')?>');"><?=__("Deactivate");?>
 			</a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ads->id_ad))?>" 
-				onclick="return confirm('<?=__('Spam?')?>');"><?= _e("Spam");?>
+				onclick="return confirm('<?=__('Spam?')?>');"><?=__("Spam");?>
 			</a> |
 			<a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ads->id_ad))?>" 
-				onclick="return confirm('<?=__('Delete?')?>');"><?= _e("Delete");?>
+				onclick="return confirm('<?=__('Delete?')?>');"><?=__("Delete");?>
 			</a>
 
 			<?elseif($visitor != FALSE && $visitor->id_user == $ads->id_user):?>

@@ -24,7 +24,7 @@
           </div>
           
           <div class="control-group">
-            <label class="control-label"><?=__('Repat password')?></label>
+            <label class="control-label"><?=__('Repeat password')?></label>
             <div class="controls docs-input-sizes">
             <input class="input-medium" type="password" name="password2" placeholder="<?=__('Password')?>">
               <p class="help-block">

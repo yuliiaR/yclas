@@ -93,15 +93,15 @@ class Model_User extends ORM {
     {
     	return array(
     					'id_user'	    => 'Id',
-				        'name'	    	=> 'Name',
-				        'email'	    	=> 'Email',
-				        'password'		=> 'Password',
-				        'status'		=> 'Status',
-				        'id_role'		=> 'Role',
-				        'id_location'	=> 'Location',
-				        'created'	    => 'Created',
-				        'last_modified'	=> 'Last modified',
-				        'last_login'	=> 'Last login',
+				        'name'	    	=> __('Name'),
+				        'email'	    	=> __('Email'),
+				        'password'		=> __('Password'),
+				        'status'		=> __('Status'),
+				        'id_role'		=> __('Role'),
+				        'id_location'	=> __('Location'),
+				        'created'	    => __('Created'),
+				        'last_modified'	=> __('Last modified'),
+				        'last_login'	=> __('Last login'),
 				    );
     }
 
@@ -341,7 +341,7 @@ class Model_User extends ORM {
                 $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
                 $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
 
-                return Email::send($this->email,$subject,$body,$email->from_email,core::config('general.site_name')); 
+                return Email::send($this->email,$this->name,$subject,$body,$email->from_email,core::config('general.site_name')); 
 
             }
             else return FALSE;
@@ -455,6 +455,7 @@ class Model_User extends ORM {
 
         return $user->id_user;
     }
+
 
     protected $_table_columns =  
 array (

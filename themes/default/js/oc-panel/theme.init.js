@@ -1,6 +1,12 @@
 $(function (){
     $('.tips').popover();
     $("select").chosen();
+
+    $('#formorm_description').addClass('span6').sceditorBBCodePlugin({
+        toolbar: "bold,italic,underline,strike,size|left,center,right,justify|" +
+        "bulletlist,orderedlist|link,unlink|source",
+        resizeEnabled: "true"});
+
 });
 
 _debounce = function(func, wait, immediate) {

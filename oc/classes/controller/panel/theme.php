@@ -62,13 +62,14 @@ class Controller_Panel_Theme extends Auth_Controller {
 
         //getting the themes
         $themes = Theme::get_installed_themes();
-        
+
         //getting themes from market
         $market = array();
         $json = Core::get_market();
         foreach ($json as $theme) 
         {
-            if ($theme['type'] == 'theme')
+
+            if ($theme['type'] == 'theme' AND !in_array(strtolower($theme['title']), array_keys($themes)) )
                 $market[] = $theme;
         }
 

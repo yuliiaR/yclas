@@ -229,7 +229,7 @@ class Core {
         if ( time() > strtotime('+1 week',filemtime($version_file)) OR $reload === TRUE )
         {
             //read from oc/versions.json on CDN
-            $json = file_get_contents('http://openclassifieds.googlecode.com/files/versions.json?r='.time());
+            $json = file_get_contents('http://open-classifieds.com/files/versions.json?r='.time());
             $versions = json_decode($json,TRUE);
             if (is_array($versions))
             {
@@ -251,17 +251,17 @@ class Core {
      */
     public static function get_market($reload = FALSE)
     {
-        $market_url = 'http://openclassifieds.googlecode.com/files/market.json';
+        $market_url = 'http://open-classifieds.com/files/market.json';
 
         //try to get the json from the cache
-        $market = Kohana::cache($market_url,NULL,strtotime('+1 week'));
+        $market = Kohana::cache($market_url,NULL,strtotime('+1 day'));
 
         //not cached :(
         if ($market === NULL OR  $reload === TRUE)
         {
-            $market = file_get_contents($market_url);
+            $market = file_get_contents($market_url.'?r='.time());
             //save the json
-            Kohana::cache($market_url,$market,strtotime('+1 week'));
+            Kohana::cache($market_url,$market,strtotime('+1 day'));
         }
 
         return json_decode($market,TRUE);

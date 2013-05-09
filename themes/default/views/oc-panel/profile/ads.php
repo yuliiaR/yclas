@@ -31,25 +31,26 @@
 				<?endif?>
 	    	<?endforeach?>
 
-	    	<? foreach($location as $loc):?>
-				<?$locat_name = NULL;?>
-				<? if ($loc->id_location == $ad->id_location): ?>
-					<td><?= $locat_name = $loc->name?></td>
-				<?endif?>
-				<?if($locat_name == NULL):?>
-					<td><?= _e('NoN')?></td>
-				<?endif?>
-	    	<?endforeach?>
+	    	<?$locat_name = NULL;?>
+            <?foreach($location as $loc):?>
+                <? if ($loc->id_location == $ad->id_location): 
+                    $locat_name=$loc->name;?>
+                    <td><?=$locat_name?></td>
+                <?endif?>
+            <?endforeach?>
+            <?if($locat_name == NULL):?>
+                <td>n/a</td>
+            <?endif?>
 		
 			
 			<? if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
-				<td><?= __('Notpublished')?></td>
+				<td><?=__('Not published')?></td>
 			<? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
-				<td><?= __('Published')?></td>
+				<td><?=__('Published')?></td>
 			<? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
-				<td><?= __('Spam')?></td>
+				<td><?=__('Spam')?></td>
 	    	<? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
-				<td><?= __('Unavailable')?></td>
+				<td><?=__('Unavailable')?></td>
 			<?endif?>
 	    	
 	    	<td><?= substr($ad->created, 0, 11)?></td>
