@@ -5,6 +5,9 @@
     <p><?=__('Open Classifieds release history information.')?> 
         <?=__('Your installation version is')?> <span class="label label-info"><?=core::version?></span>
     </p>
+    <p><?=__('Your Hash Key for this installation is')?> 
+         <span class="label label-info"><?=core::config('auth.hash_key')?></span>
+    </p>
         <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'updates'))?>?reload=1">
             <?=__('Check for updates')?></a>
 
