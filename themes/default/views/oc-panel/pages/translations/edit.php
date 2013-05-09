@@ -36,8 +36,8 @@
                 <?if (strlen(Core::config('general.translate'))>0):?>
                     <button class="btn button-translate" data-orig="orig_<?=$cont?>" data-dest="dest_<?=$cont?>" data-tr="tr_<?=$cont?>" ><i class="icon-globe"></i></button>
                 <?else:?>
-                    <a target="_blank" class="btn button-translate" 
-                    href="http://translate.google.com/#en/<?=i18n::html_lang()?>/<?=urlencode($key)?>">
+                    <a target="_blank" class="btn" 
+                    href="http://translate.google.com/#en/<?=substr($edit_language,0,2)?>/<?=urlencode($key)?>">
                     <i class="icon-globe"></i></a>
                 <?endif?>
             </td>

@@ -235,9 +235,9 @@ class Model_Ad extends ORM {
                 $width_thumb    = core::config('image.width_thumb');
                 $height_thumb   = core::config('image.height_thumb');
                 $height         = core::config('image.height');
-                if(empty($height)) // when installing this field is empty, to avoid crash we check here
+                if(!is_numeric($height)) // when installing this field is empty, to avoid crash we check here
                     $height         = NULL;
-                if(empty($height_thumb))
+                if(!is_numeric($height_thumb))
                     $height_thumb   = NULL;    
                 
                 // d($height_thumb);

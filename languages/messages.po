@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OfficeGate Language Pack\n"
-"POT-Creation-Date: 2013-05-08 21:10+0200\n"
+"POT-Creation-Date: 2013-05-09 09:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -183,7 +183,7 @@ msgstr ""
 
 #: themes/default/views/oc-panel/profile/edit.php:53
 #: themes/default/views/pages/auth/register-form.php:27
-msgid "Repat password"
+msgid "Repeat password"
 msgstr ""
 
 #: themes/default/views/oc-panel/profile/edit.php:57
@@ -385,58 +385,57 @@ msgid "Are you sure you want to deactivate featured advertisement?"
 msgstr ""
 
 #: themes/default/views/oc-panel/profile/stats.php:2
-#: themes/default/views/oc-panel/pages/stats/dashboard.php:2
-msgid "Site Usage Statistics"
+msgid "Statistics"
 msgstr ""
 
-#: themes/default/views/oc-panel/profile/stats.php:14
+#: themes/default/views/oc-panel/profile/stats.php:13
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:14
 msgid "Today"
 msgstr ""
 
-#: themes/default/views/oc-panel/profile/stats.php:15
+#: themes/default/views/oc-panel/profile/stats.php:14
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:15
 msgid "Yesterday"
 msgstr ""
 
-#: themes/default/views/oc-panel/profile/stats.php:16
+#: themes/default/views/oc-panel/profile/stats.php:15
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:16
 msgid "Last 30 days"
 msgstr ""
 
-#: themes/default/views/oc-panel/profile/stats.php:17
+#: themes/default/views/oc-panel/profile/stats.php:16
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:17
 msgid "Total"
 msgstr ""
 
-#: themes/default/views/oc-panel/profile/stats.php:22
-#: themes/default/views/oc-panel/profile/stats.php:63
+#: themes/default/views/oc-panel/profile/stats.php:21
+#: themes/default/views/oc-panel/profile/stats.php:62
 msgid "Contacts"
 msgstr ""
 
-#: themes/default/views/oc-panel/profile/stats.php:29
-#: themes/default/views/oc-panel/profile/stats.php:67
+#: themes/default/views/oc-panel/profile/stats.php:28
+#: themes/default/views/oc-panel/profile/stats.php:66
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:29
 msgid "Visits"
 msgstr ""
 
-#: themes/default/views/oc-panel/profile/stats.php:39
+#: themes/default/views/oc-panel/profile/stats.php:38
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:46
 msgid "Charts"
 msgstr ""
 
-#: themes/default/views/oc-panel/profile/stats.php:43
+#: themes/default/views/oc-panel/profile/stats.php:42
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:50
 #: themes/default/views/oc-panel/pages/newsletter.php:16
 msgid "From"
 msgstr ""
 
-#: themes/default/views/oc-panel/profile/stats.php:47
+#: themes/default/views/oc-panel/profile/stats.php:46
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:54
 msgid "To"
 msgstr ""
 
-#: themes/default/views/oc-panel/profile/stats.php:52
+#: themes/default/views/oc-panel/profile/stats.php:51
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:59
 msgid "Filter"
 msgstr ""
@@ -840,6 +839,10 @@ msgstr ""
 
 #: themes/default/views/oc-panel/pages/themes/theme.php:61
 msgid "All themes include support, updates and license."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:2
+msgid "Site Usage Statistics"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:22

@@ -36,7 +36,7 @@
       <div class="control-group">
         <label class="control-label"><?=__('Message')?>:</label>
         <div class="controls">
-        <textarea  name="description"  class="span6" rows="15" ></textarea>
+        <textarea  name="description"  id="formorm_description" class="span6" rows="15" ></textarea>
         </div>
       </div>
           
