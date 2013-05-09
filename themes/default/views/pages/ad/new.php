@@ -114,12 +114,11 @@
 				<?endif?>
 				<?if(core::config('advertisement.tos') != FALSE):?>
 				<div class="control-group">
-					<?= FORM::label('tos', __('Terms of service'), array('class'=>'control-label', 'for'=>'tos'))?>
 					<div class="controls">
-						<?= FORM::input('tos', '', array('id'=>'tos', 'type'=>'checkbox' ,'required','placeholder'=>__('Terms of service')))?>
-						
-						<!-- Button to trigger read TOS -->
-						<a href="<?=Route::url('page', array('seotitle'=>'tos'))?>"> Read Terms of Service</a>
+                        <label class="checkbox">
+                          <input type="checkbox" required id="tos"> 
+                          <a target="_blank" href="<?=Route::url('page', array('seotitle'=>'tos'))?>"> <?=__('Terms of service')?></a>
+                        </label>
 					</div>
 				</div>
 				<?endif?>
