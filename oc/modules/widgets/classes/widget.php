@@ -102,6 +102,9 @@ abstract class Widget{
         { 
             $widget_data = json_decode($widget_data, TRUE);
             
+            if (!class_exists($widget_data['class']))
+                return NULL;
+            
             //creating an instance of that widget
             $widget = new $widget_data['class'];
 

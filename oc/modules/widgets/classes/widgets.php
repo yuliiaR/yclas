@@ -78,18 +78,42 @@ class Widgets {
 	public static function get_widgets($only_names = FALSE)
 	{
 		$widgets = array();
+        
+        Widgets::$default_widgets = self::get_installed_widgets();
 
+        //merge the possible widgets of the theme
 		$list = array_unique(array_merge(widgets::$default_widgets, widgets::$theme_widgets));
+
 		if ($only_names)
 			return $list;
 
 		 //creating an instance of each widget
         foreach ($list as $widget_name) 
-			$widgets[] = new $widget_name;
-
+        {
+            if (class_exists($widget_name))
+                $widgets[] = new $widget_name; 
+        }
 
         return $widgets;
 	}
+
+    /**
+     * get the widgets that he finds in the folder
+     * @return array 
+     */
+    public static function get_installed_widgets()
+    {
+        $widgets = array();
+
+        //check directory for widgets
+        foreach (new DirectoryIterator(MODPATH.'widgets/classes/widget') as $file) 
+        {
+            if($file->isFile())
+                $widgets[] = 'widget_'.$file->getBasename('.php');            
+        }
+
+        return $widgets;
+    }
 
 	/**
 	 * returns placeholders names + widgets

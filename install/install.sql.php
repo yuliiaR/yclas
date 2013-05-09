@@ -11,8 +11,6 @@
 
 defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 
-//selecting the db
-mysql_select_db($_POST['DB_NAME']);
 mysql_query('SET NAMES '.$_POST['DB_CHARSET']);
 mysql_query("SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO';");
 
