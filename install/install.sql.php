@@ -233,7 +233,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),
 ('image', 'width', '1200'),
-('image', 'height_thumb', ''),
+('image', 'height_thumb', '200'),
 ('image', 'width_thumb', '200'),
 ('image', 'quality', '90'),
 ('advertisement', 'num_images', '4'),

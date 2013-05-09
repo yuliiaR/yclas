@@ -235,6 +235,7 @@ class Model_Ad extends ORM {
                 $width_thumb    = core::config('image.width_thumb');
                 $height_thumb   = core::config('image.height_thumb');
                 $height         = core::config('image.height');
+
                 if(!is_numeric($height)) // when installing this field is empty, to avoid crash we check here
                     $height         = NULL;
                 if(!is_numeric($height_thumb))
@@ -290,11 +291,15 @@ class Model_Ad extends ORM {
                         ->save($directory.$filename_thumb,$image_quality);
 
                     //check if the height or width of the thumb is bigger than default then crop
-                    $image_size_orig = getimagesize($directory.$filename_thumb);
-                    if ($image_size_orig[1] > $height_thumb || $image_size_orig[0] > $width_thumb)
+                    if ($height_thumb!==NULL)
+                    {
+                        $image_size_orig = getimagesize($directory.$filename_thumb);
+                        if ($image_size_orig[1] > $height_thumb || $image_size_orig[0] > $width_thumb)
                         Image::factory($directory.$filename_thumb)
                                     ->crop($width_thumb, $height_thumb)
-                                    ->save($directory.$filename_thumb);
+                                    ->save($directory.$filename_thumb); 
+                    }
+                   
 
                     
                     // Delete the temporary file

@@ -180,6 +180,7 @@ class Controller_Ad extends Controller {
 			{
 				foreach ($path as $key => $value) 
 				{
+                    d($value);
 					// hash tag to distinguish thumb from big image @todo
 					$hashtag = (core::config("theme_default.listing_images") != FALSE) ? strstr($value, 'thumb') : !strstr($value, 'thumb') ;
 
