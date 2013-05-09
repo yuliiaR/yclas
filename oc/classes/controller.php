@@ -30,6 +30,7 @@ class Controller extends Kohana_Controller
      */
     public static $location = NULL;
     
+
     /**
      * Initialize properties before running the controller methods (actions),
      * so they are available to our action.
@@ -37,6 +38,8 @@ class Controller extends Kohana_Controller
     public function before($template = NULL)
     {
         parent::before();
+
+        $this->maintenance();
 
         /**
          * selected category
@@ -111,4 +114,30 @@ class Controller extends Kohana_Controller
     	$this->response->body($this->template->render());
        
     }
+
+    /**
+     * in case you set up general.maintenance to TRUE
+     * @return void 
+     */
+    public function maintenance()
+    {
+        //maintenance mode
+        if (core::config('general.maintenance')==1)
+        {
+            $user = Auth::instance()->get_user();
+
+            if ($user!==FALSE)
+            {           
+                if ($user->id_role==10)
+                    Alert::set(Alert::INFO, __('You are in maintenance mode, only you can see the website'));
+                else
+                    $this->request->redirect(Route::get('maintenance'));
+            }
+            else
+                $this->request->redirect(Route::get('maintenance'));
+        }
+    }    
+        
+        
+    
 }

@@ -46,6 +46,13 @@ Route::set('map', URL::title(__('map')).'.html')
 ->defaults(array(
         'controller' => 'map',
         'action'     => 'index',));
+/**
+ * maintenance
+ */
+Route::set('maintenance', URL::title(__('maintenance')).'.html')
+->defaults(array(
+        'controller' => 'maintenance',
+        'action'     => 'index',));
 
 /**
  * page view public
