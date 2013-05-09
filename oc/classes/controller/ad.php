@@ -115,6 +115,14 @@ class Controller_Ad extends Controller {
 			$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 		}
 
+
+        //if ad have passed expiration time dont show 
+        if(core::config('advertisement.expire_date') > 0)
+        {
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
+        }
+        
+
 		$res_count = $ads->count_all();
 		// check if there are some advet.-s
 		if ($res_count > 0)
