@@ -299,60 +299,11 @@ class Controller_Panel_Profile extends Auth_Controller {
 			|| Auth::instance()->logged_in() && Auth::instance()->get_user()->id_role == 10)
 		{
 			$extra_payment = core::config('payment');
-			$count = 0;
-			if($form->has_images == 1)
-			{
-				//get path of image
-				$current_path = $form->gen_img_path($form->id_ad, $form->created);
-				if (is_dir($current_path)){ // sanity check
-					$handle = opendir($current_path);
-					
-					// ignore . and .. in folder
-					while(FALSE !== ($entry = readdir($handle)))
-					{
-						if($entry != '.' && $entry != '..') $count++;
-					}
-					
-					$num_images = core::config('advertisement.num_images'); // get limit 
-					
-					// count them and if 0 set has_images to 0, send param img_permission to alow uploading more
-					if ($count == 0) 
-					{
-						$form->has_images = 0;
-						try {
-							$form->save();
-							$img_permission = TRUE;
-						} catch (Exception $e) {
-							//throw 500
- 			 				throw new HTTP_Exception_500($e->getMessage());
-						}
-					}
-					elseif($count < $num_images*2) $img_permission = TRUE;
-					else
-						$img_permission = FALSE; // doesnt allow uploading more images 
-				}
-				else // case when we have images 
-				{
-					$img_permission = FALSE;
-					$form->has_images = 0;
-					try {
-						$form->save();
-						$img_permission = TRUE;
-					} catch (Exception $e) {
-						//throw 500
- 			 			throw new HTTP_Exception_500($e->getMessage());
-					}
-				}
-			}else $img_permission = TRUE;
 			
 			Breadcrumbs::add(Breadcrumb::factory()->set_title("Update"));
-			$instance_ad = new Controller_Ad($this->request, $this->response);  
-			$path = $instance_ad->image_path($form);
 			$this->template->content = View::factory('oc-panel/profile/edit_ad', array('ad'				=>$form, 
 																					   'location'		=>$loc, 
 																					   'category'		=>$cat_list,
-																					   'path'			=>$path,
-																					   'perm'			=>$img_permission,
 																					   'extra_payment'	=>$extra_payment));
 		
 			if ($this->request->post())
@@ -432,7 +383,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				$error_message = NULL;
 	    		$filename = NULL;
 
-    			if (isset($_FILES['image0']) && $count/2 <= 3)
+    			if (isset($_FILES['image0']) && count($obj_ad->get_images()) <= core::config('advertisement.num_images'))
         		{
 	        		$img_files = array($_FILES['image0']);
 	            	$filename = $obj_ad->save_image($img_files, $form->id_ad, $form->created, $form->seotitle);
@@ -678,7 +629,7 @@ class Controller_Panel_Profile extends Auth_Controller {
         $stats_daily = array();
         foreach ($dates as $date) 
         {
-            $count_contants = (isset($contacts[$date['date']]['count']))?$contacts[$date['date']]['count']:0;
+            $count_contants = (isset($contacts_dates[$date['date']]['count']))?$contacts_dates[$date['date']]['count']:0;
             $count_visits = (isset($visits[$date['date']]['count']))?$visits[$date['date']]['count']:0;
             
             $stats_daily[] = array('date'=>$date['date'],'views'=> $count_visits, 'contacts'=>$count_contants);

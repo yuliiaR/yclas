@@ -158,60 +158,11 @@ class Controller_Ad extends Controller {
 						 'cat'			=> NULL,
 						 'loc'			=> NULL,);
 		}
-
-		// return image path to display in view 
-		$thumb = array();
-		foreach ($ads as $a) 
-		{
-
-			if(!is_dir($a->gen_img_path($a->id_ad, $a->created)))
-			{
-				$a->has_images = 0;
-				try 
-				{
-					$a->save();
-				} catch (Exception $e) {
-					echo $e;
-				}
-			}
-			
-			// search and create path of ads, fill array $thumb
-			if(is_array($path = $this->image_path($a)))
-			{
-				foreach ($path as $key => $value) 
-				{
-                    d($value);
-					// hash tag to distinguish thumb from big image @todo
-					$hashtag = (core::config("theme_default.listing_images") != FALSE) ? strstr($value, 'thumb') : !strstr($value, 'thumb') ;
-
-					if( $hashtag && strstr($value, '_1'))
-					{
-						$thumb[$a->seotitle] = $value;
-					}
-					else if (strstr($value, 'thumb') && !array_key_exists($a->seotitle, $thumb))
-					{
-						$thumb[$a->seotitle] = $value;	
-					}
-				}
-				// case when there are no images , sanity check
-				if(!isset($thumb[$a->seotitle]))
-				{
-					$thumb[$a->seotitle] = NULL;
-				}
-			}
-			else
-			{
-				$path = NULL;
-				$thumb[$a->seotitle] = $path;	
-			} 
-
-		}
 		
 		// array of categories sorted for view
 		return array('ads'			=> $ads,
 					 'pagination'	=> $pagination, 
 					 'user'			=> $user, 
-					 'thumb' 		=> $thumb,
 					 'cat'			=> $categ,
 					 'loc'			=> $locat,);
 	}
@@ -285,19 +236,12 @@ class Controller_Ad extends Controller {
 		        $hits = new Model_Visit();
 		        $hits = $hits->where('id_ad','=', $ad->id_ad)->count_all();
 
-		        // show image path if they exist
-		    	if($ad->has_images == 1)
-				{
-					$path = $this->image_path($ad); 
-				}else $path = NULL;
-
 				$captcha_show = core::config('advertisement.captcha');	
 
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
 																				   'permission'		=>$permission, 
 																				   'hits'			=>$hits, 
-																				   'path'			=>$path,
 																				   'captcha_show'	=>$captcha_show,
 																				   'user'			=>$user));
 
@@ -483,9 +427,7 @@ class Controller_Ad extends Controller {
 		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user();
 
 		if($this->request->query()) // after query has detected
-		{
-			
-			
+		{			
         	// variables 
         	$search_advert 	= $this->request->query('advert');
         	$search_cat 	= $this->request->query('category');
@@ -494,6 +436,12 @@ class Controller_Ad extends Controller {
         	// filter by each variable
         	$adverts = new Model_Ad();
         	$ads = $adverts->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+
+        	//if ad have passed expiration time dont show 
+	        if(core::config('advertisement.expire_date') > 0)
+	        {
+	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
+	        }
 
 	        if(!empty($search_advert) OR $this->request->query('search'))
 	        {	
@@ -523,7 +471,7 @@ class Controller_Ad extends Controller {
 	           
 	            $ads = $ads->where('id_location', '=', $loc_obj->id_location);
 	        }
-	        // count them for pafination
+	        // count them for pagination
 			$res_count = $adverts->count_all();
 
 			if($res_count>0)
@@ -550,55 +498,6 @@ class Controller_Ad extends Controller {
 							   ->limit($pagination->items_per_page)
 			        	       ->offset($pagination->offset)
 			        	       ->find_all();
-
-			    // return image path to display in view 
-				$thumb = array();
-
-				foreach ($ads as $a) 
-				{
-
-					if(!is_dir($a->gen_img_path($a->id_ad, $a->created)))
-					{
-						$a->has_images = 0;
-						try 
-						{
-							$a->save();
-						} catch (Exception $e) {
-							 //throw 500
-							throw new HTTP_Exception_500();
-						}
-					}
-					
-					// search and create path of ads, fill array $thumb
-					if(is_array($path = $this->image_path($a)))
-					{
-						foreach ($path as $key => $value) 
-						{
-							// hash tag to distinguish thumb from big image
-							$hashtag = (core::config("theme_default.listing_images") != FALSE) ? strstr($value, 'thumb') : !strstr($value, 'thumb') ;
-
-							if( $hashtag && strstr($value, '_1'))
-							{
-								$thumb[$a->seotitle] = $value;
-							}
-							else if (strstr($value, 'thumb') && !array_key_exists($a->seotitle, $thumb))
-							{
-								$thumb[$a->seotitle] = $value;	
-							}
-						}
-						// case when there are no images , sanity check
-						if(!isset($thumb[$a->seotitle]))
-						{
-							$thumb[$a->seotitle] = NULL;
-						}
-					}
-					else
-					{
-						$path = NULL;
-						$thumb[$a->seotitle] = $path;	
-					} 
-
-				}
 			}
 			else 
 			{
@@ -612,7 +511,6 @@ class Controller_Ad extends Controller {
 			$this->template->content = View::factory('pages/ad/listing', array('ads'		=>$ads, 
 																			   'cat'		=>$cat,
 																			   'loc'		=>$loc, 
-																			   'thumb'		=>$thumb, 
 																			   'pagination'	=>$pagination, 
 																			   'user'		=>$user));
         }

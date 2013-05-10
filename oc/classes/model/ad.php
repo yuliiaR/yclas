@@ -162,10 +162,66 @@ class Model_Ad extends ORM {
                                 ->execute();
 
     }
+    /**
+     * Gets all images
+     * @return [array] [array with image names]
+     */
+    public function get_images()
+    {
+        $image_path = array();
+       
+        if($this->loaded())
+        {  
+            $route = $this->gen_img_path($this->id_ad, $this->created);
+            $folder = DOCROOT.$route;
+
+            if(is_dir($folder))
+            { 
+                foreach (new DirectoryIterator($folder) as $file) 
+                {   
+
+                    if(!$file->isDot())
+                    {   
+
+                        $key = explode('_', $file->getFilename());
+                        $key = end($key);
+                        $key = explode('.', $key);
+                        $key = (isset($key[0])) ? $key[0] : NULL ;
+
+                        if(is_numeric($key))
+                        {
+                            $type = (strpos($file->getFilename(), 'thumb_') === 0) ? 'thumb' : 'image' ;
+                            $image_path[$key][$type] = $route.$file->getFilename();
+                        }
+                    }
+                }
+            }
+        }
+
+        return $image_path;
+    }
 
     /**
-     * [gen_img_path] Generate image path with a given parameters $seotitke and 
-     * date of advertisement cration 
+     * Gets the first image, and checks type of $type
+     * @param  string $type [type of image (image or thumb) ]
+     * @return string       [image path]
+     */
+    public function get_first_image($type = 'thumb')
+    {
+      
+        $images = $this->get_images();
+        sort($images);
+        if(count($images) >= 1)
+        {
+            $first_image = reset($images);
+        }
+
+        return (isset($first_image[$type])) ? $first_image[$type] : NULL ;
+    }
+
+    /**
+     * [gen_img_path] Generate image path with a given parameters $seotitle and 
+     * date of advertisement creation 
      * @param  [string] $id         [id of advert ]
      * @param  [date]   $created     [date of creation]
      * @return [string]             [directory path]

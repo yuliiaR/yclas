@@ -14,20 +14,20 @@
 		<h1><?= $ad->title;?></h1>
 	</div>
 <div class="well">
-	<?php if($path):?>
+	<?$images = $ad->get_images()?>
+	<?if($images):?>
 	<div class="control-group">
 		<div class="controls">
 			<div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery" data-selector="a.gallery-item">
 			<ul class="thumbnails">
-				<?php foreach ($path as $path):?>
-				
-				<?if(strstr($path, 'thumb') != FALSE):?>
+				<?foreach ($images as $path => $value):?>
+				<?if(isset($value['thumb'])):?>
 				<li>
-					<a data-href="/<?= str_replace("thumb_", '', $path)?>" class="thumbnail gallery-item" data-gallery="gallery">
-						<img src="/<?= $path?>"  class="img-rounded" alt="">
-					</a>	
+					<a data-href="/<?= str_replace("thumb_", '', $value['thumb'])?>" class="thumbnail gallery-item" data-gallery="gallery">
+						<img src="/<?= $value['thumb']?>"  class="img-rounded" alt="">
+					</a>
 				</li>
-				<?endif?>
+				<?endif?>	
 				<?endforeach?>
 			</ul>
 			</div>

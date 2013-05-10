@@ -100,14 +100,15 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<?php if($path):?>
+						<?$images = $ad->get_images()?>
+						<?php if($images):?>
 						<ul class="thumbnails">
-							<?php foreach ($path as $path):?>
-							<?$img_name = str_replace(".jpg", "", substr(strrchr($path, "/"), 1 ));?>
-							<?if(strstr($path, 'thumb') != FALSE): // only formated images (not originals)?>
+							<?php foreach ($images as $path => $value):?>
+							<?if(isset($value['thumb'])): // only formated images (not originals)?>
+							<?$img_name = str_replace(".jpg", "", substr(strrchr($value['thumb'], "/"), 1 ));?>
 							<li>
 								<a class="thumbnail">
-									<img src="/<?= $path?>" class="img-rounded" alt="">
+									<img src="/<?= $value['thumb']?>" class="img-rounded" alt="">
 								</a>
 								
 								<button class="btn btn-danger index-delete"
@@ -130,7 +131,7 @@
 					</div>	
 				</div>
 				<div class="control-group">
-					<?if ($perm !== FALSE):?>
+					<?if (core::config('advertisement.num_images') > count($images)):?> <!-- permition to add more images-->
 						<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images0'))?>
 						<div class="controls">
 							<input class="input-file" type="file" name='image0' id='fileInput0' />

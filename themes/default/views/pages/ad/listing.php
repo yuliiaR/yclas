@@ -13,18 +13,19 @@
 
 	<?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
+	   
 	       	<?if($ad->featured >= Date::unix2mysql(time())):?>
 		    	<article class="list well clearfix featured">
 		    <?else:?>
 		    	<article class="list well clearfix">
 		    <?endif?>
 		    	<h2>
-			    	    <? $cat_name = $ad->category->seoname; ?>
-			    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
+		    	    <? $cat_name = $ad->category->seoname; ?>
+		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 		    	</h2>
 		    	
-		    	<?if($thumb[$ad->seotitle] != NULL):?>
-		    		 <img src="/<?=$thumb[$ad->seotitle]?>" class="img-polaroid advert_img" >
+		    	<?if($ad->get_first_image() !== NULL):?>
+		    		 <img src="/<?=$ad->get_first_image()?>" class="img-polaroid advert_img" >
 		    	<?endif?>
 		    	
 		    	<ul>

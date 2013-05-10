@@ -7,13 +7,8 @@
         <li class="span3">
             <div class="thumbnail latest_ads" style="height: 300px; overflow: hidden;">
                 
-                <?if($img_path[$ad->seotitle] != NULL):?>
-                <?foreach($img_path[$ad->seotitle] as $key => $value):?>
-                    <?if(strstr($value, 'thumb') && strstr($value, '_1')):?>
-                        <?$thumb = $value;?>
-                    <?endif?>
-                <?endforeach?>
-                <img src="/<?=$thumb?>" class="img-polaroid">
+                <?if($ad->get_first_image()!== NULL):?>
+                <img src="/<?=$ad->get_first_image()?>" class="img-polaroid">
                 <?endif?>
                 <div class="caption">
                     <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h5>

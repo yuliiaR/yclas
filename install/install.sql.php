@@ -248,7 +248,6 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('advertisement', 'price', 1),
 ('advertisement', 'tos', 1),
 ('advertisement', 'disqus', ''),
-('theme_default', 'listing_images', 1),
 ('email', 'notify_email', '".$_POST['ADMIN_EMAIL']."'),
 ('email', 'smtp_active', 0),
 ('email', 'smtp_host', ''),
