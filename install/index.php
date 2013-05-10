@@ -183,8 +183,6 @@ include 'install.php';
 	<label class="control-label"><?=__("Site Language")?></label>
 	<div class="controls">
        <select name="LANGUAGE" onchange="window.location.href='?LANGUAGE='+this.options[this.selectedIndex].value">
-
-		<option value="en_EN">en_EN</option>
 		    <?
 		    $languages = scandir("languages");
 		    foreach ($languages as $lang) {
@@ -221,19 +219,48 @@ include 'install.php';
 	</div>
 </div>
 
-<div class="control-group">
-	<label class="control-label"><?=__("Administrator email")?>:</label>
-	<div class="controls">
-	<input type="text" name="ADMIN_EMAIL" value="<?=cP('ADMIN_EMAIL')?>" placeholder="your@email.com" class="span6" />
-	</div>
+
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#install" data-toggle="tab"><?=__('New Install')?></a></li>
+  <li><a href="#upgrade" data-toggle="tab"><?=__('Upgrade System')?></a></li>
+</ul>
+ 
+<div class="tab-content">
+
+    <div class="tab-pane active" id="install">
+        <div class="control-group">
+            <label class="control-label"><?=__("Administrator email")?>:</label>
+            <div class="controls">
+                <input type="text" name="ADMIN_EMAIL" value="<?=cP('ADMIN_EMAIL')?>" placeholder="your@email.com" class="span6" />
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label"><?=__("Admin Password")?>:</label>
+            <div class="controls">
+                <input type="text" name="ADMIN_PWD" value="<?=cP('ADMIN_PWD')?>" class="span6" />   
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="checkbox"><input type="checkbox" name="SAMPLE_DB" checked /><?=__("Sample data")?></label>
+            <span class="help-block"><?=__("Creates few sample categories to start with")?></span>
+        </div>
+        
+    </div>
+
+    <div class="tab-pane" id="upgrade">
+        <div class="control-group">
+            <label class="control-label"><?=__("Hash Key")?>:</label>
+            <div class="controls">
+                <input type="text" name="HASH_KEY" value="<?=cP('HASH_KEY')?>" class="span6" />   
+                <span class="help-block"><?=__('You need the Hash Key to re-install. You can find this value if you lost it at')?> <code>/oc/config/auth.php</code></span>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<div class="control-group">
-	<label class="control-label"><?=__("Admin Password")?>:</label>
-	<div class="controls">
-	<input type="text" name="ADMIN_PWD" value="<?=cP('ADMIN_PWD')?>" class="span6" />	
-	</div>
-</div>
 
 <h2><?=__('Database Configuration')?></h2>
 
@@ -278,12 +305,6 @@ include 'install.php';
 	<input type="text" name="TABLE_PREFIX" value="<?=cP('TABLE_PREFIX','oc2_')?>" class="text-medium" />
 	<span class="help-block"><?=__("Allows multiple installations in one database if you give each one a unique prefix")?>. <?=__("Only numbers, letters, and underscores")?>.</span>
 	</div>
-</div>
-
-
-<div class="control-group">
-	<label class="checkbox"><input type="checkbox" name="SAMPLE_DB" checked /><?=__("Sample data")?></label>
-	<span class="help-block"><?=__("Creates few sample categories to start with")?></span>
 </div>
 
 

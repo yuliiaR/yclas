@@ -10,10 +10,9 @@
 
 
 /**
- * placeholders & widgets for this theme
+ * placeholders for this theme
  */
 Widgets::$theme_placeholders	= array('footer', 'sidebar');
-//Widgets::$theme_widgets 		= array();
 
 
 /**

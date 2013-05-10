@@ -68,11 +68,21 @@ if ($_POST AND $succeed)
 			$error_msg = __('Problem saving '.APPPATH.'config/database.php');
 	}
 
+    
 	//install DB
 	if ($install)
 	{
-	    $hash_key = generate_password();
-	    include DOCROOT.'install/install.sql.php';
+        //check if has key is posted if not generate
+        $hash_key = cP('HASH_KEY', generate_password() );
+       
+        //check if DB was already installed, I use content since is the last table to be created
+        if(mysql_num_rows(mysql_query("SHOW TABLES LIKE '".$_POST['TABLE_PREFIX']."content'"))==1) 
+            $installed = TRUE;
+        else
+            $installed = FALSE;
+
+        if ($installed===FALSE)//if was installed do not launch the SQL. 
+            include DOCROOT.'install/install.sql.php';
 	}
 
 ///////////////////////////////////////////////////////
@@ -80,7 +90,7 @@ if ($_POST AND $succeed)
 	if ($install)
 	{
 		$search  = array('[HASH_KEY]', '[COOKIE_SALT]','[QL_KEY]');
-		$replace = array($hash_key,generate_password(),generate_password());
+		$replace = array($hash_key,$hash_key,$hash_key);
 		$install = replace_file(DOCROOT.'install/example.auth.php',$search,$replace,APPPATH.'config/auth.php');
 		if (!$install)
 			$error_msg = __('Problem saving '.APPPATH.'config/auth.php');

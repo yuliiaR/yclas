@@ -45,6 +45,7 @@ class Auth_Controller extends Controller
 		}
 
 		//the user was loged in and with the right permissions
+        parent::__construct($request,$response);
 		
 		
 	}
@@ -58,6 +59,7 @@ class Auth_Controller extends Controller
 	 */
 	public function before($template = NULL)
 	{
+        $this->maintenance();
 	
 		if($this->auto_render===TRUE)
 		{

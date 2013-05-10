@@ -20,6 +20,23 @@
 		<?foreach ($config_img as $c):?>
 			<?$forms_img[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
 		<?endforeach?>
+
+        <div class="control-group">
+            <?= FORM::label($forms['maintenance']['key'], __('Maintenance Mode'), array('class'=>'control-label', 'for'=>$forms['maintenance']['key']))?>
+            <div class="controls">
+                <?= FORM::select($forms['maintenance']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['maintenance']['value'], array(
+                'placeholder' => "TRUE or FALSE", 
+                'class' => 'tips', 
+                'id' => $forms['maintenance']['key'], 
+                'data-content'=> __("Enables the site to maintenance"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Maintenance Mode"),
+                ))?> 
+            </div>
+        </div>
+
         <div class="control-group">
             <?= FORM::label($forms['site_name']['key'], __('Site name'), array('class'=>'control-label', 'for'=>$forms['site_name']['key']))?>
             <div class="controls">
