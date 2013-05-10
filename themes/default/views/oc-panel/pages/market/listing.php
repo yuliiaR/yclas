@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<? if (count($market)>1):?>
+<? if (count($market)>=1):?>
 <div class="row-fluid">
 <ul class="thumbnails">
 <?$i=0;

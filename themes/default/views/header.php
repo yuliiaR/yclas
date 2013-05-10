@@ -38,7 +38,7 @@
                     <?nav_link('','contact', 'icon-envelope', 'index', 'contact')?>
                     <?nav_link('','search', 'icon-search', 'index', 'search')?>
 		        </ul>
-		        <?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>'','enctype'=>'multipart/form-data'))?>
+		        <?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>''))?>
 		            <input type="text" name="search" class="search-query span2" placeholder="<?=__('Search')?>">
 		        <?= FORM::close()?>
 

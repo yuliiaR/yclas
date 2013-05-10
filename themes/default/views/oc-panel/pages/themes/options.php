@@ -11,7 +11,7 @@
     <fieldset>
         <?foreach ($options as $field => $attributes):?>
             <div class="control-group">
-                <?=FORM::form_tag($field, $attributes, $data[$field])?>
+                <?=FORM::form_tag($field, $attributes, (isset($data[$field]))?$data[$field]:NULL)?>
             </div>
         <?endforeach?>
 		<div class="form-actions">

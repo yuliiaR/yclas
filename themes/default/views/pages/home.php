@@ -4,8 +4,8 @@
     <ul class="thumbnails">
 
         <?foreach($ads as $ad):?>
-        <li class="span3">
-            <div class="thumbnail latest_ads" style="height: 300px; overflow: hidden;">
+        <li class="span2">
+            <div class="thumbnail latest_ads" >
                 
                 <?if($ad->get_first_image()!== NULL):?>
                 <img src="/<?=$ad->get_first_image()?>" class="img-polaroid">
