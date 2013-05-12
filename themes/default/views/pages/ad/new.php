@@ -112,12 +112,12 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if(core::config('advertisement.tos') != FALSE):?>
+				<?if(core::config('advertisement.tos') != ''):?>
 				<div class="control-group">
 					<div class="controls">
                         <label class="checkbox">
                           <input type="checkbox" required id="tos"> 
-                          <a target="_blank" href="<?=Route::url('page', array('seotitle'=>'tos'))?>"> <?=__('Terms of service')?></a>
+                          <a target="_blank" href="<?=Route::url('page', array('seotitle'=>core::config('advertisement.tos')))?>"> <?=__('Terms of service')?></a>
                         </label>
 					</div>
 				</div>

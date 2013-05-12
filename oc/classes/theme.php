@@ -168,8 +168,9 @@ class Theme {
         {
            $theme = $mobile_theme;
         }
+
         //if we allow the user to select the theme, perfect for the demo
-        elseif (Core::config('allow_query_theme')=='1')
+        if (Core::config('appearance.allow_query_theme')=='1')
         {
             if (Core::get('theme')!==NULL)
             {
