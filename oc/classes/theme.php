@@ -120,7 +120,7 @@ class Theme {
         $is_mobile = FALSE;
 
         //we check if we are forcing not to show mobile
-        if( Core::get('mobile')=='0')
+        if( Core::get('mobile')!='active')
         {
             $is_mobile = FALSE;
         }
