@@ -120,7 +120,7 @@ class Theme {
         $is_mobile = FALSE;
 
         //we check if we are forcing not to show mobile
-        if( Core::get('mobile')==0 OR Cookie::get('mobile')==0 )
+        if( Core::get('mobile')==0)
         {
             $is_mobile = FALSE;
         }
@@ -203,7 +203,7 @@ class Theme {
     public static function set_theme($theme)
     {
         //we check the theme exists and it's correct
-        if (!file_exists($file = self::theme_init_path($theme)))
+        if (!file_exists(self::theme_init_path($theme)))
             return FALSE;
 
         // save theme to DB
@@ -232,11 +232,48 @@ class Theme {
         }   
 
     }
+
+     /**
+     * sets the theme we need to use in front
+     * @param string $theme 
+     */
+    public static function set_mobile_theme($theme)
+    {
+        if ($theme == 'disable' OR !file_exists(self::theme_init_path($theme)))
+            $theme = '';
+
+        // save theme to DB
+        $conf = new Model_Config();
+        $conf->where('group_name','=','appearance')
+                    ->where('config_key','=','theme_mobile')
+                    ->limit(1)->find();
+
+        if (!$conf->loaded())
+        {
+            $conf->group_name = 'appearance';
+            $conf->config_key = 'theme_mobile';
+        }
+        
+        $conf->config_value = $theme;
+
+        try 
+        {
+            $conf->save();
+            return TRUE;
+        } 
+        catch (Exception $e) 
+        {
+            throw new HTTP_Exception_500();     
+        }   
+
+    }
     
     /**
      * Read the folder /themes/ for themes
+     * @param  boolean $only_mobile set to true an returns the mobile themes
+     * @return array               
      */
-    public static function get_installed_themes()
+    public static function get_installed_themes($only_mobile = FALSE)
     {
         //read folders in theme folder
         $folder = DOCROOT.'themes';
@@ -248,8 +285,15 @@ class Theme {
         {
             if($file->isDir() AND !$file->isDot())
             {
-                if ( ($info = self::get_theme_info($file->getFilename())) !==FALSE)
-                    $themes[$file->getFilename()] = $info;
+                if ( ($info = self::get_theme_info($file->getFilename())) !==FALSE )
+                {
+
+                    if ($only_mobile AND $info['Mobile']=='TRUE')
+                        $themes[$file->getFilename()] = $info;
+                    elseif(!$only_mobile AND $info['Mobile']!='TRUE')
+                        $themes[$file->getFilename()] = $info;
+                }
+                    
             }
         }
 
@@ -279,6 +323,7 @@ class Theme {
             'Version'     => 'Version',
             'License'     => 'License',
             'Tags'        => 'Tags',
+            'Mobile'      => 'Mobile',
         )); 
     }
 
