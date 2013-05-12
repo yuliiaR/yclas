@@ -9,7 +9,7 @@
 			</a>
 			<a class="brand" href="<?=Route::url('default')?>"><?=core::config('general.site_name')?></a>
 			
-			<?$cat = new Model_Category(); $cat_list = $cat->find_all(); $children_categ = $cat->get_category_children()?>
+			<?$cats = Model_Category::get_category_count();?>
 			
 			<div class="nav-collapse main_nav">
 				<ul class="nav">
@@ -18,12 +18,13 @@
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Categories')?> <b class="caret"></b></a>
 		              <ul class="dropdown-menu">
 
-		              	<?foreach($cat_list as $c ):?>
-		              		<?if($c->id_category_parent == 1 && $c->id_category != 1):?>
-								<li class="nav-header dropdown-submenu"><p><a tabindex="-1" title="<?=$c->seoname?>" href="<?=Route::url('list', array('category'=>$c->seoname))?>"><?=$c->name?></p></a>
+		              	<?foreach($cats as $c ):?>
+		              		<?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
+								<li class="nav-header dropdown-submenu"><p><a tabindex="-1" title="<?=$c['seoname']?>" href="<?=Route::url('list', array('category'=>$c['seoname']))?>">
+                                    <?=$c['name']?></p></a>
 									<ul class="dropdown-menu">							
-								 	<?foreach($children_categ as $chi):?>
-	                            	<?if($chi['parent'] == $c->id_category):?>
+								 	<?foreach($cats as $chi):?>
+	                            	<?if($chi['id_category_parent'] == $c['id_category']):?>
 	                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><span class="header_cat_list"><?=$chi['name']?></span> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
 	                           		<?endif?>
 	                         		<?endforeach?>
@@ -33,10 +34,10 @@
 						<?endforeach?>
 		              </ul>
 		            </li>
-                    <?nav_link('','map', 'icon-globe', 'index', 'map')?>
-                    <?nav_link('','rss', 'icon-signal', 'index', 'rss')?>
-                    <?nav_link('','contact', 'icon-envelope', 'index', 'contact')?>
-                    <?nav_link('','search', 'icon-search', 'index', 'search')?>
+                    <?nav_link(__('Search'),'ad', 'icon-search ', 'advanced_search', 'search')?>
+                    <?nav_link(__('Map'),'map', 'icon-globe ')?>
+                    <?nav_link(__('Contact'),'contact', 'icon-envelope ', 'index', 'contact')?>
+                    <?nav_link('','rss', 'icon-signal ', 'index', 'rss')?>
 		        </ul>
 		        <?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>''))?>
 		            <input type="text" name="search" class="search-query span2" placeholder="<?=__('Search')?>">

@@ -17,21 +17,18 @@ class Controller_Home extends Controller {
         //$ads = ORM::factory('ad');
         $ads = new Model_Ad();
         $display_ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-        ->order_by('published','desc')
-        ->limit(Theme::get('num_home_latest_ads',4))
-        ->cached()->find_all();
+                        ->order_by('published','desc')
+                        ->limit(Theme::get('num_home_latest_ads',4))
+                        ->cached()->find_all();
         
-        $categ = new Model_Category();
 
-        $all_categories = $categ->find_all();
-
-		$children_categ = $categ->get_category_children();
+		$categs = Model_Category::get_category_count();
 	
         $this->template->bind('content', $content);
         
         $this->template->content = View::factory('pages/home',array('ads'=>$display_ads, 
-        															'categ'=>$all_categories,
-        															'children_categ'=>$children_categ));
+        															'categs'=>$categs,
+        															));
 		
 	}
 

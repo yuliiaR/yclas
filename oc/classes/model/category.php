@@ -167,39 +167,56 @@ class Model_Category extends ORM {
 	}
 
 	/**
-	 * [get_category_children] Array of self children 
-	 * @return [array]
+	 * counts the categories ads
+	 * @return array
 	 */
-	public function get_category_children()
+	public static function get_category_count()
 	{
-		$list = new self;
-		$categories = $list->find_all();
-				
-		$children_categ = NULL;
-		foreach ($categories as $c) 
-		{
-            $ads = new Model_Ad();
-			$count = $ads->where('id_category', '=', $c->id_category)
-                    ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                    ->count_all();
 
-			if($c->id_category != $c->id_category_parent)
-			{	
-				$children_categ[$c->id_category] = array('id_category'	=> $c->id_category,
-														'seoname'			=> $c->seoname,
-                                                        'name'          => $c->name,
-														'parent'		=> $c->id_category_parent,
-														'parent_deep'	=> $c->parent_deep,
-														'order'			=> $c->order,
-														'price'			=> $c->price,
-														'count'			=> $count
-														);
-			}
-		}
+        $cats = DB::select('c.*')
+                ->select(array(DB::select('COUNT("id_ad")')
+                        ->from(array('ads','a'))
+                        ->where('a.id_category','=',DB::expr(core::config('database.default.table_prefix').'c.id_category'))
+                        ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
+                        ->group_by('id_category'), 'count'))
+                ->from(array('categories', 'c'))
+                ->as_object()
+                ->cached()
+                ->execute();
+
+        $cats_count = array();
+        $parent_count = array();
+
+        foreach ($cats as $c) 
+        {
+            $cats_count[$c->id_category] = array('id_category'    => $c->id_category,
+                                    'seoname'           => $c->seoname,
+                                    'name'          => $c->name,
+                                    'id_category_parent'        => $c->id_category_parent,
+                                    'parent_deep'   => $c->parent_deep,
+                                    'order'         => $c->order,
+                                    'price'         => $c->price,
+                                    'count'         => (is_numeric($c->count))?$c->count:0
+                                    );
+            //counting the ads the parent have
+            if ($c->id_category_parent!=0)
+            {
+                if (!isset($parent_count[$c->id_category_parent]))
+                    $parent_count[$c->id_category_parent] = 0;
+
+                $parent_count[$c->id_category_parent]+=$c->count;
+            }
+            
+        }
+
+        //attaching the count to the parents so we know each parent how many ads have
+        foreach ($parent_count as $id_category => $count) 
+            $cats_count[$id_category]['count'] += $count;
+                
+
 		
-		return $children_categ;
+		return $cats_count;
 	}
-
 
 	
 	/**

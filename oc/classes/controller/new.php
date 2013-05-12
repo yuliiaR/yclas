@@ -25,7 +25,7 @@ class Controller_New extends Controller
 		//find all, for populating form select fields 
 		$_cat = $category->where('id_category','!=',1)->order_by('order','asc')->cached()->find_all();
 		$_loc = $location->where('id_location','!=',1)->order_by('order','asc')->cached()->find_all();
-		$children_categ = $category->get_category_children();
+		$children_categ = $category->get_category_count();
 		
 		// bool values from DB, to show or hide this fields in view
 		$form_show = array('captcha'	=>core::config('advertisement.captcha'),

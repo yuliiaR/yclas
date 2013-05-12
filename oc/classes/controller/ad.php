@@ -407,7 +407,7 @@ class Controller_Ad extends Controller {
 		}
 	}
 
-	public function action_advansed_search()
+	public function action_advanced_search()
 	{
 		//template header
 		$this->template->title           	= __('Advansed Search');
