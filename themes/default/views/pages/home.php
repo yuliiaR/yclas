@@ -4,8 +4,8 @@
     <ul class="thumbnails">
 
         <?foreach($ads as $ad):?>
-        <li class="span3">
-            <div class="thumbnail latest_ads" style="height: 300px; overflow: hidden;">
+        <li class="span2">
+            <div class="thumbnail latest_ads" >
                 
                 <?if($ad->get_first_image()!== NULL):?>
                 <img src="/<?=$ad->get_first_image()?>" class="img-polaroid">
@@ -21,19 +21,20 @@
         <?endforeach?>
     </ul>
 </div>
+
 <div class='well'>
     <h3><?=__("Categories")?></h3>
     <ul class="thumbnails">
-        <?foreach($categ as $c):?>
-        <?if($c->id_category_parent == 1 && $c->id_category != 1):?>
+        <?foreach($categs as $c):?>
+        <?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
         <div class="span4">
             <div class="category_box_title">
-                <p><a title="<?=$c->name?>" href="<?=Route::url('list', array('category'=>$c->seoname))?>"><?=strtoupper($c->name);?></a></p>
+                <p><a title="<?=$c['name']?>" href="<?=Route::url('list', array('category'=>$c['seoname']))?>"><?=strtoupper($c['name']);?></a></p>
             </div>  
             <div class="well custom_box_content" style="padding: 8px 0;">
                 <ul class="nav nav-list">
-                    <?foreach($children_categ as $chi):?>
-                        <?if($chi['parent'] == $c->id_category):?>
+                    <?foreach($categs as $chi):?>
+                        <?if($chi['id_category_parent'] == $c['id_category']):?>
                         <li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><?=$chi['name'];?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
                         <?endif?>
                      <?endforeach?>
@@ -44,5 +45,3 @@
         <?endforeach?>
     </ul>
 </div>
-
-

@@ -71,6 +71,7 @@ li{
 .latest_ads {
 	height: 300px !important;
 	background-color: #FFF;
+    overflow: hidden;
 }
 
 #modal-gallery{

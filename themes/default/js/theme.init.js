@@ -6,14 +6,9 @@ $(function(){
         resizeEnabled: "true"
     });
 
-// jqtwitterbootstrap form validation 
-$(function () {
-
-    $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+    $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); 
  
     $('.btn').tooltip();
-});
 
-$(function (){
     $("select").chosen();
 });

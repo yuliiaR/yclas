@@ -23,7 +23,7 @@
 				<?foreach ($images as $path => $value):?>
 				<?if(isset($value['thumb'])):?>
 				<li>
-					<a data-href="/<?= str_replace("thumb_", '', $value['thumb'])?>" class="thumbnail gallery-item" data-gallery="gallery">
+					<a data-href="/<?= $value['image']?>" class="thumbnail gallery-item" data-gallery="gallery">
 						<img src="/<?= $value['thumb']?>"  class="img-rounded" alt="">
 					</a>
 				</li>
