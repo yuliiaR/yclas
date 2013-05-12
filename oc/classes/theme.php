@@ -120,22 +120,23 @@ class Theme {
         $is_mobile = FALSE;
 
         //we check if we are forcing not to show mobile
-        if( Core::get('mobile')==0)
+        if( Core::get('mobile')=='0')
         {
             $is_mobile = FALSE;
         }
         //check if we selected a mobile theme
         elseif ( Core::config('appearance.theme_mobile')!='' )
         {
+            //d(Cookie::get('mobile'));
             //they are forcing to show the mobile
-            if (Core::get('mobile')==1 OR Cookie::get('mobile')==1)
+            if (Core::get('mobile')==1 OR Cookie::get('mobile')=='active')
             {
                 $is_mobile = TRUE;
             }
             //none of this scenarios try to detect if ismobile
             else
             {
-                require Kohana::find_file('vendor', 'Mobile-Detect/Mobile_Detect',EXT);
+                require Kohana::find_file('vendor', 'Mobile-Detect/Mobile_Detect','php');
                 $detect = new Mobile_Detect();
                 if ($detect->isMobile() AND ! $detect->isTablet())
                     $is_mobile = TRUE;    
@@ -144,11 +145,11 @@ class Theme {
 
         if ($is_mobile)
         {
-            Cookie::set('mobile',1,Core::config('auth.lifetime'));
+            Cookie::set('mobile','active',Core::config('auth.lifetime'));
             $is_mobile = Core::config('appearance.theme_mobile');
         }
         else
-            Cookie::set('mobile',0, Core::config('auth.lifetime'));
+            Cookie::set('mobile','inactive', Core::config('auth.lifetime'));
 
         return $is_mobile;
     }
