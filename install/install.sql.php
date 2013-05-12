@@ -206,6 +206,8 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('sitemap', 'expires', '43200'),
 ('sitemap', 'on_post', 1),
 ('appearance', 'theme', 'default'),
+('appearance', 'theme_mobile', ''),
+('appearance', 'allow_query_theme', 0),
 ('i18n', 'charset', 'utf-8'),
 ('i18n', 'timezone', '".$_POST['TIMEZONE']."'),
 ('i18n', 'locale', '".$_POST['LANGUAGE']."'),

@@ -111,45 +111,46 @@ class Theme {
         return self::theme_folder($theme).DIRECTORY_SEPARATOR.'init.php';
     }
 
-
     /**
      * detect if visitor browser is mobile
      * @return boolean
      */
     public static function is_mobile()
     {
-        //@todo decide how to do this when we have the mobile theme
-        if (Core::config('general.mobile') == 0)
-        {
-            return FALSE;
-        }
-        //we check if we are forcing not to show mobile
-        elseif(Core::get('mobile')==0)
-        {
-            Cookie::set('mobile',0, Core::config('auth.lifetime'));
-            return FALSE;
-        }
-        //they want to show the mobile
-        elseif (Core::get('mobile')==1 OR Cookie::get('mobile')==1)
-        {
-            Cookie::set('mobile',1, Core::config('auth.lifetime'));
-            return TRUE;
-        }
-        //none of this scenarios try to detect if ismobile
-        else
-        {
-            require Kohana::find_file('vendor', 'Mobile-Detect/Mobile_Detect',EXT);
+        $is_mobile = FALSE;
 
-            $detect = new Mobile_Detect();
-            if ($detect->isMobile() AND ! $detect->isTablet())
-            {
-                Cookie::set('mobile',1,Core::config('auth.lifetime'));
-                return TRUE;
-            }
-            else
-                return FALSE;
+        //we check if we are forcing not to show mobile
+        if( Core::get('mobile')==0 OR Cookie::get('mobile')==0 )
+        {
+            $is_mobile = FALSE;
         }
-        
+        //check if we selected a mobile theme
+        elseif ( Core::config('appearance.theme_mobile')!='' )
+        {
+            //they are forcing to show the mobile
+            if (Core::get('mobile')==1 OR Cookie::get('mobile')==1)
+            {
+                $is_mobile = TRUE;
+            }
+            //none of this scenarios try to detect if ismobile
+            else
+            {
+                require Kohana::find_file('vendor', 'Mobile-Detect/Mobile_Detect',EXT);
+                $detect = new Mobile_Detect();
+                if ($detect->isMobile() AND ! $detect->isTablet())
+                    $is_mobile = TRUE;    
+            }
+        }
+
+        if ($is_mobile)
+        {
+            Cookie::set('mobile',1,Core::config('auth.lifetime'));
+            $is_mobile = Core::config('appearance.theme_mobile');
+        }
+        else
+            Cookie::set('mobile',0, Core::config('auth.lifetime'));
+
+        return $is_mobile;
     }
 
 
@@ -157,46 +158,43 @@ class Theme {
      * Initialization of the theme that we want to see.
      *
      */
-    public static function initialize($theme = 'default')
+    public static function initialize()
     {
-    	/**
-    	 * Get the theme
-    	 * 1st by get
-    	 * 2nd by cookie
-    	 * 3rd mobile (only if mobile is ON)
-    	 * 4th the one seted in config
-    	 */
-        if (Core::get('theme', NULL)!==NULL)
-        {
-            if (file_exists(self::theme_init_path(Core::get('theme'))))
-                $theme = Core::get('theme');
-        }
-        elseif (Cookie::get('theme',NULL)!==NULL)
-        {
-            if (file_exists(self::theme_init_path(Cookie::get('theme'))))
-                $theme = Cookie::get('theme');
-        }
-        // elseif(self::is_mobile())
-        // {
-        //     if (file_exists(self::theme_init_path('mobile')))
-        //         $theme = 'mobile';
-        // }
-        else
-        {
-            if (file_exists(self::theme_init_path(Core::config('appearance.theme'))))
-                $theme = Core::config('appearance.theme');
-        }
+        $theme = NULL;
 
+        //first we check if it's a mobile device
+        if(($mobile_theme = self::is_mobile())!==FALSE)
+        {
+           $theme = $mobile_theme;
+        }
+        //if we allow the user to select the theme, perfect for the demo
+        elseif (Core::config('allow_query_theme')=='1')
+        {
+            if (Core::get('theme')!==NULL)
+            {
+                $theme = Core::get('theme');
+            }
+            elseif (Cookie::get('theme')!==NULL)
+            {
+                $theme = Cookie::get('theme');
+            }
+        }
+        
+        //check the theme exists..
+        if (!file_exists(self::theme_init_path($theme)))
+            $theme = Core::config('appearance.theme');
+            
         //we save the cookie for next time
         Cookie::set('theme', $theme, Core::config('auth.lifetime'));
 
-    	//load theme init.php like in module, to load default JS and CSS for example
-    	self::$theme = $theme;
-    	Kohana::load(self::theme_init_path(self::$theme));
-    	
+        //load theme init.php like in module, to load default JS and CSS for example
+        self::$theme = $theme;
+        Kohana::load(self::theme_init_path(self::$theme));
+        
         self::load();
-            	
+                
     }
+
 
     /**
      * sets the theme we need to use in front
