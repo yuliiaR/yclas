@@ -34,9 +34,9 @@
 						<?endforeach?>
 		              </ul>
 		            </li>
-                    <?nav_link(__('Search'),'ad', 'icon-search ', 'advanced_search', 'search')?>
-                    <?nav_link(__('Map'),'map', 'icon-globe ')?>
-                    <?nav_link(__('Contact'),'contact', 'icon-envelope ', 'index', 'contact')?>
+                    <?nav_link('','ad', 'icon-search ', 'advanced_search', 'search')?>
+                    <?nav_link('','map', 'icon-globe ')?>
+                    <?nav_link('','contact', 'icon-envelope ', 'index', 'contact')?>
                     <?nav_link('','rss', 'icon-signal ', 'index', 'rss')?>
 		        </ul>
 		        <?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>''))?>

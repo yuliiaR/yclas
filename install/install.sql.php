@@ -209,6 +209,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('i18n', 'charset', 'utf-8'),
 ('i18n', 'timezone', '".$_POST['TIMEZONE']."'),
 ('i18n', 'locale', '".$_POST['LANGUAGE']."'),
+('i18n', 'allow_query_language', 0),
 ('payment', 'paypal_currency', 'USD'),
 ('payment', 'sandbox', 0),
 ('payment', 'to_featured', 0),

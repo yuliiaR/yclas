@@ -42,6 +42,21 @@ class I18n extends Kohana_I18n {
         /**
          * setting the statics so later we can access them from anywhere
          */
+        
+        //we allow to choose lang from the url
+        if (Core::config('i18n.allow_query_language')==1)
+        {
+            if(Core::get('language')!==NULL)
+            {
+                $locale  = Core::get('language');
+            }
+            elseif (Cookie::get('user_language')!==NULL)
+            {
+                $locale = Cookie::get('user_language');
+            }
+            Cookie::set('user_language',$locale, Core::config('auth.lifetime'));
+        }
+     
         self::$locale  = $locale;
         self::$charset = $charset;
         self::$domain  = $domain;
