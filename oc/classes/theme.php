@@ -120,17 +120,21 @@ class Theme {
         $is_mobile = FALSE;
 
         //we check if we are forcing not to show mobile
-        if( Core::get('mobile')!='active')
+        if( Core::get('mobile')=='inactive')
         {
             $is_mobile = FALSE;
         }
         //check if we selected a mobile theme
         elseif ( Core::config('appearance.theme_mobile')!='' )
         {
-            //d(Cookie::get('mobile'));
+            
             //they are forcing to show the mobile
-            if (Core::get('mobile')==1 OR Cookie::get('mobile')=='active')
+            if (Core::get('mobile')=='active' OR Cookie::get('mobile')=='active')
             {
+                //we set the theme cookie to null so this overrides
+                if (Core::get('mobile')=='active')
+                    Cookie::set('theme', NULL, Core::config('auth.lifetime'));
+
                 $is_mobile = TRUE;
             }
             //none of this scenarios try to detect if ismobile
@@ -169,6 +173,8 @@ class Theme {
            $theme = $mobile_theme;
         }
 
+        
+
         //if we allow the user to select the theme, perfect for the demo
         if (Core::config('appearance.allow_query_theme')=='1')
         {
@@ -181,7 +187,8 @@ class Theme {
                 $theme = Cookie::get('theme');
             }
         }
-        
+
+
         //check the theme exists..
         if (!file_exists(self::theme_init_path($theme)))
             $theme = Core::config('appearance.theme');

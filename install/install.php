@@ -73,7 +73,7 @@ if ($_POST AND $succeed)
 	if ($install)
 	{
         //check if has key is posted if not generate
-        $hash_key = cP('HASH_KEY', generate_password() );
+        $hash_key = ((cP('HASH_KEY')!='')?cP('HASH_KEY'): generate_password() );
        
         //check if DB was already installed, I use content since is the last table to be created
         if(mysql_num_rows(mysql_query("SHOW TABLES LIKE '".$_POST['TABLE_PREFIX']."content'"))==1) 
