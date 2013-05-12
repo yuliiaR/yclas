@@ -151,7 +151,7 @@ include 'install.php';
 				<a class="btn btn-success btn-large" href="<?=$_POST['SITE_URL']?>"><?=__('Go to Your Website')?></a>
 				
 				<a class="btn btn-warning btn-large" href="<?=$_POST['SITE_URL']?>oc-panel/home/">Admin</a> 
-				<span class="help-block">user: <?=$_POST['ADMIN_EMAIL']?> pass: <?=$_POST['ADMIN_PWD']?></span>
+				<?if($_POST['ADMIN_EMAIL'])?><span class="help-block">user: <?=$_POST['ADMIN_EMAIL']?> pass: <?=$_POST['ADMIN_PWD']?></span>
 				<hr>
 				<a class="btn btn-primary btn-large" href="http://j.mp/thanksdonate"><?=__('Make a donation')?></a>
 				<?=__('We really appreciate it')?>.
