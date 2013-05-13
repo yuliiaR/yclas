@@ -18,14 +18,12 @@ class Controller_New extends Controller
 		$this->template->meta_description	= __('Publish new advertisement');
 		
 		
-		$category 	= new Model_Category();
-		$location 	= new Model_Location();
 		$user 		= new Model_User();
 		
 		//find all, for populating form select fields 
-		$_cat = $category->where('id_category','!=',1)->order_by('order','asc')->cached()->find_all();
-		$_loc = $location->where('id_location','!=',1)->order_by('order','asc')->cached()->find_all();
-		$children_categ = $category->get_category_count();
+		list($categories,$order_categories)  = Model_Category::get_all();
+
+		list($locations,$order_locations)  = Model_Location::get_all();
 		
 		// bool values from DB, to show or hide this fields in view
 		$form_show = array('captcha'	=>core::config('advertisement.captcha'),
@@ -36,9 +34,10 @@ class Controller_New extends Controller
 						   'price'		=>core::config('advertisement.price'));
 
 		//render view publish new
-		$this->template->content = View::factory('pages/ad/new', array('_cat'				=> $_cat,
-																	   '_loc' 				=> $_loc,
-																	   'children_categ'		=> $children_categ,
+		$this->template->content = View::factory('pages/ad/new', array('categories'		    => $categories,
+                                                                        'order_categories'  => $order_categories,
+																	   'locations' 			=> $locations,
+                                                                        'order_locations'  => $order_locations,
 																	   'form_show'			=> $form_show));
 		
 		// $_POST array with all fields 

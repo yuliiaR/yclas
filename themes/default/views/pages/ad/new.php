@@ -14,39 +14,40 @@
 						<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'input-xlarge', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
+
+                <div class="control-group">
+                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' , 'multiple'))?>
+                    <div class="controls">          
+                        <select name="category" id="category" class="input-xlarge"   required>
+                        <option></option>
+                        <?function lili($item, $key,$cats){?>
+                        <option value="<?=$key?>"><?=$cats[$key]['name']?></option>
+                            <?if (count($item)>0):?>
+                            <optgroup label="<?=$cats[$key]['name']?>">    
+                                <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
+                            <?endif?>
+                        <?}array_walk($order_categories, 'lili',$categories);?>
+                        </select>
+                    </div>
+                </div>
 				
-				<div class="control-group">
-					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' , 'multiple'))?>
-					<div class="controls">			
-					
-						<?foreach ($_cat as $cat):?>
-							<?if($cat->seoname != 'all'):?>
-								<?$val_category[$cat->id_category] = $cat->name; ?>
-							<?endif?>
-						<?endforeach?>
-						<?if(!isset($val_category)){$val_category = NULL;} //like this we avoid trowing error if val_category doesnt exists?>		
-						<?= FORM::select('category', $val_category, 0, array('id'=>'category','class'=>'input-xlarge', 'required') );?>
-						<p id="cat_price" class="text-warning"></p>
-				
-					</div>
-				</div>
-				
-				<?if(count($_loc) !== 0):?>
+				<?if(count($locations) !== 0):?>
 					<?if($form_show['location'] != FALSE):?>
-						<div class="control-group">
-							<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
-							<div class="controls">
-							
-								<?foreach ($_loc as $loc):?>
-									<?if($loc->seoname != 'all'):?>
-										<?$val_location[$loc->id_location] = $loc->name; ?>
-									<?endif?>	
-								<?endforeach?>
-								<?if(!isset($val_location)){$val_location = NULL;} //like this we avoid trowing error if val_location doesnt exists?>
-								<?= FORM::select('location', $val_location, 0, array('id'=>'location', 'class'=>'input-xlarge') );?>
-							
-							</div>
-						</div>
+                    <div class="control-group">
+                        <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' , 'multiple'))?>
+                        <div class="controls">          
+                            <select name="location" id="location" class="input-xlarge"   required>
+                            <option></option>
+                            <?function lolo($item, $key,$locs){?>
+                            <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
+                                <?if (count($item)>0):?>
+                                <optgroup label="<?=$locs[$key]['name']?>">    
+                                    <? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
+                                <?endif?>
+                            <?}array_walk($order_locations, 'lolo',$locations);?>
+                            </select>
+                        </div>
+                    </div>
 					<?endif?>
 				<?endif?>
 
