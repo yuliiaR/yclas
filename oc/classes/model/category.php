@@ -218,7 +218,30 @@ class Model_Category extends ORM {
 		return $cats_count;
 	}
 
-	
+    /**
+     * returns all the siblings ids+ the idcategory, used to filter the ads
+     * @return array
+     */
+	public function get_siblings_ids()
+    {
+        $cats = array();
+
+        if ($this->loaded())
+        {
+            $cats[] = $this->id_category;
+
+            $cat_ids = new self();
+            $cat_ids = $cat_ids->where('id_category_parent','=',$this->id_category)->cached()->find_all();
+
+            foreach ($cat_ids as $c) 
+            {
+                $cats[] = $c->id_category;
+            }
+        }
+
+        return $cats;
+    }
+    
 	/**
 	 * 
 	 * formmanager definitions

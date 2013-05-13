@@ -143,6 +143,29 @@ class Model_Location extends ORM {
 	  return array('created','parent_deep','order');
 	}
 
+    /**
+     * returns all the siblings ids+ the idlocation, used to filter the ads
+     * @return array
+     */
+    public function get_siblings_ids()
+    {
+        $locs = array();
+
+        if ($this->loaded())
+        {
+            $locs[] = $this->id_location;
+
+            $cat_ids = new self();
+            $cat_ids = $cat_ids->where('id_location_parent','=',$this->id_location)->cached()->find_all();
+
+            foreach ($cat_ids as $c) 
+            {
+                $locs[] = $c->id_location;
+            }
+        }
+
+        return $locs;
+    }
 
     protected $_table_columns =  
 array (

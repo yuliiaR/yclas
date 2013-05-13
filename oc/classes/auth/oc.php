@@ -329,8 +329,7 @@ class Auth_OC extends Kohana_Auth {
 	 */
 	public function login_redirect()
 	{
-
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'home','action'=>'index')));
+		Request::current()->redirect(Route::url('oc-panel'));
 	}
 
 
