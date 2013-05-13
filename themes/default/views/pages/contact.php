@@ -2,7 +2,7 @@
 
 <div class="well">
 	<?=Form::errors()?>
-	<h1><?=__('Contact US')?></h1>
+	<h1><?=__('Contact Us')?></h1>
 	<?= FORM::open(Route::url('contact'), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 	<fieldset>
 		<div class="control-group">
