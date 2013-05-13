@@ -2,10 +2,8 @@
 	 
 
 	<div class="well advise clearfix" id="advise">
-		<?if (Controller::$category!==NULL):?>
-            <?if(Controller::$category->loaded()):?>
-                <p><?=Controller::$category->description?></p> 
-            <?endif?>
+		<?if ($category!==NULL):?>
+            <p><?=Controller::$category->description?></p> 
         <?endif?>
 		<i class="icon-pencil"></i> <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>"><?=__('Publish new advertisement')?></a>
 

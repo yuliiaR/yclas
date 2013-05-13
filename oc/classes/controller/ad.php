@@ -11,54 +11,31 @@ class Controller_Ad extends Controller {
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		
         /**
-         * we get the id of category and location from controller 
+         * we get the model of category and location from controller 
          */
         
+        $category = NULL;
         if (Controller::$category!==NULL)
         {
             if (Controller::$category->loaded())
             {
-        	    $cat_filter = Controller::$category->id_category;
-            	Breadcrumbs::add(Breadcrumb::factory()->set_title(Controller::$category->name)->set_url(Route::url('list', array('category'=>Controller::$category->seoname))));	
+        	    $category = Controller::$category;
+            	Breadcrumbs::add(Breadcrumb::factory()->set_title($category->name)->set_url(Route::url('list', array('category'=>$category->seoname))));	
            	}
-           	else
-            	$cat_filter = NULL;       
         }
-        else
-        	$cat_filter = NULL;
 
+        $location = NULL;
         if (Controller::$location!==NULL)
         {
             if (Controller::$location->loaded())
             {
-            	$loc_filter = Controller::$location->id_location;
-            	Breadcrumbs::add(Breadcrumb::factory()->set_title(Controller::$location->name)->set_url(Route::url('list', array('location'=>Controller::$location->seoname))));
-            }
-            else
-            	$loc_filter = Controller::$location;       
+            	$location = Controller::$location;
+            	Breadcrumbs::add(Breadcrumb::factory()->set_title($location->name)->set_url(Route::url('list', array('location'=>$location->seoname))));
+            }  
         }
-        else
-        	$loc_filter = Controller::$location;
-		
-        // list by category / location
-   		if(Controller::$category !== NULL && Controller::$location !== NULL) // cat(specific) + loc(specific)
-   			$data = $this->list_logic($cat_filter, $loc_filter);
-   		else if ($this->request->param('category') == 'all' && Controller::$location !== NULL) // for all categories with a specific location
-   			$data = $this->list_logic( 'all' ,  $loc_filter);
-   		else if (is_numeric($cat_filter) && $this->request->param('location') == NULL) // specific category
-   			$data = $this->list_logic( $cat_filter );
-   		else if ($this->request->param('category') == 'all' && $this->request->param('location') == NULL) // all ads 
-   			$data = $this->list_logic('all');	
-   		else if ((Controller::$category == NULL && Controller::$location == NULL) || 
-   				 (Controller::$category != NULL && Controller::$location == NULL) || 
-   				 (Controller::$category == NULL && Controller::$location != NULL)) // one of choices is non existing 
-   			{
-   			// if sort_by_cat and sort_by_loc == NULL redirect to search
-   			$this->request->redirect(Route::url('search'));
-   			}
-   		else
-   			$data = $this->list_logic();
-   			
+    
+
+        $data = $this->list_logic($category, $location);
    		
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/ad/listing',$data);
@@ -66,13 +43,13 @@ class Controller_Ad extends Controller {
         
  	}
 
- 	/**
- 	 * [list_logic Returnes arrays with necessary data to publis advert.-s]
- 	 * @param  [string] $sort_by_cat [name of category] 
- 	 * @param  [string] $sort_by_loc [name of location]
-  	 * @return [array] [$ads, $pagination, $user, $image_path]
- 	 */
-	public function list_logic($sort_by_cat = NULL, $sort_by_loc = NULL)
+    /**
+     * gets data to the view and filters the ads
+     * @param  Model_Category $category 
+     * @param  Model_Location $location
+     * @return array           
+     */
+	public function list_logic($category = NULL, $location = NULL)
 	{
 
 		//user recognition 
@@ -80,41 +57,21 @@ class Controller_Ad extends Controller {
 
 		$ads = new Model_Ad();
 		
+		//filter by category or location
+        if ($category!==NULL)
+        {
+            $ads->where('id_category', 'in', $category->get_siblings_ids());
+        }
 
-		$cat = new Model_Category($sort_by_cat);
-		if($sort_by_cat == 'all') $categ = $cat->find_all(); else if ($sort_by_cat == NULL) $res_count = 0; else $categ = $cat->id_category;	
+        if ($location!==NULL)
+        {
+            $ads->where('id_location', 'in', $location->get_siblings_ids());
+        }
+
+
+		//only published ads
+        $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 		
-		$loc = new Model_Location($sort_by_loc);
-		if($sort_by_loc == NULL) $locat = $loc->find_all(); else $locat = $loc->id_location;
-		
-
-		// if is sorted by category , or category + location (filter query)
-		if(is_numeric($locat))
-		{
-			if(!is_numeric($categ))
-				$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-					->and_where('id_location', '=', $locat);	
-			else
-				$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-					->and_where('id_category', '=', $categ)
-					->and_where('id_location', '=', $locat);
-		} 
-		else if(is_numeric($categ))
-		{
-			if(is_numeric($locat))
-				$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-					->and_where('id_category', '=', $categ)
-					->and_where('id_location', '=', $locat);
-			else
-				$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-					->and_where('id_category', '=', $categ);
-			
-		}
-		else
-		{
-			$ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
-		}
-
 
         //if ad have passed expiration time dont show 
         if(core::config('advertisement.expire_date') > 0)
@@ -136,8 +93,8 @@ class Controller_Ad extends Controller {
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
-                    'category' 			=> $cat->seoname,
-                    'location'			=> $loc->seoname, 
+                    'category' 			=> ($category!==NULL)?$category->seoname:NULL,
+                    'location'			=> ($location!==NULL)?$location->seoname:NULL, 
     	    ));
     	   
      	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->current_page));
@@ -155,16 +112,16 @@ class Controller_Ad extends Controller {
 						 'pagination'	=> NULL, 
 						 'user'			=> NULL, 
 						 'thumb' 		=> NULL,
-						 'cat'			=> NULL,
-						 'loc'			=> NULL,);
+						 'category'		=> NULL,
+						 'location'		=> NULL,);
 		}
 		
 		// array of categories sorted for view
 		return array('ads'			=> $ads,
 					 'pagination'	=> $pagination, 
 					 'user'			=> $user, 
-					 'cat'			=> $categ,
-					 'loc'			=> $locat,);
+					 'category'		=> $category,
+					 'location'		=> $location,);
 	}
 
 	/**
@@ -177,44 +134,64 @@ class Controller_Ad extends Controller {
 	{
 		
 		$seotitle = $this->request->param('seotitle',NULL);
-		$category = $this->request->param('category');
 		
 		if ($seotitle!==NULL)
 		{
 			$ad = new Model_Ad();
 			$ad->where('seotitle','=', $seotitle)
 				 ->limit(1)->find();
-			
-			$cat = new Model_Category($ad->id_category);
-			$loc = new Model_Location($ad->id_location);
 
 			if ($ad->loaded())
 			{
-				Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
-				if (Controller::$category!==NULL)
-		       	{
-		           	if (Controller::$category->loaded())
-		               	Breadcrumbs::add(Breadcrumb::factory()->set_title(Controller::$category->name)->set_url(Route::url('list', array('category'=>Controller::$category->seoname))));
-		        
-		       }
+                Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+
+                //Category
+                $category = NULL;
+                if (Controller::$category!==NULL)
+                {
+                    if (Controller::$category->loaded())
+                    {
+                        $category = Controller::$category;
+                    }
+                    else
+                        $category = new Model_Category($ad->id_category);
+                }
+                else
+                    $category = new Model_Category($ad->id_category);
+
+                Breadcrumbs::add(Breadcrumb::factory()->set_title($category->name)->set_url(Route::url('list', array('category'=>$category->seoname))));    
+
+                //Location setup
+                $location_seoname = NULL;
+                $parent_locat = new Model_Location();
+                if ($ad->id_location!=1)
+                {
+                    $location = new Model_Location($ad->id_location);
+                    if ($location->loaded())
+                    {   
+                        $location_seoname.' - '.$location->seoname;
+                        $parent_locat = new Model_Location($location->id_location_parent);
+                        Breadcrumbs::add(Breadcrumb::factory()->set_title($location->name)->set_url(Route::url('list', array('location'=>$location->seoname))));    
+                    }
+                }
+				
 				Breadcrumbs::add(Breadcrumb::factory()->set_title($ad->title));   	
 
-				// seo title and descr
-				
-				$parent_categ = new Model_Category($cat->id_category_parent);
-                $parent_locat = new Model_Location($loc->id_location_parent);
-                if($parent_categ->loaded() AND ($cat->id_category_parent != 1))
+				// seo title and descr dynamic generated
+				$parent_categ = new Model_Category($category->id_category_parent);
+
+                if($parent_categ->loaded() AND ($category->id_category_parent != 1))
                 	$parent_categ_concat = '-'.$parent_categ->seoname;
                 else
                 	$parent_categ_concat = NULL;
-                if($parent_locat->loaded() AND ($loc->id_location_parent != 1))
+
+                if($parent_locat->loaded() AND ($location->id_location_parent != 1))
                 	$parent_locat_concat = '-'.$parent_locat->seoname;
                 else 
                 	$parent_locat_concat = NULL;
 
-               
-              
-           		$this->template->title = $ad->title.$parent_categ_concat.'-'.$cat->seoname.$parent_locat_concat.'-'.$loc->seoname ;
+                //title description
+           		$this->template->title = $ad->title.$parent_categ_concat.'-'.$category->seoname.$parent_locat_concat.$location_seoname ;
                 $this->template->meta_description = text::removebbcode($ad->description);
 
 				$permission = TRUE; //permission to add hit to advert and give access rights. 
@@ -231,7 +208,10 @@ class Controller_Ad extends Controller {
 					$permission = FALSE;
 					$user = NULL;
 					
-				} else $user = Auth::instance()->get_user()->id_user;
+				} 
+                else 
+                    $user = Auth::instance()->get_user()->id_user;
+
 				//count how many matches are found 
 		        $hits = new Model_Visit();
 		        $hits = $hits->where('id_ad','=', $ad->id_ad)->count_all();

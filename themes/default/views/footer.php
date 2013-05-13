@@ -9,13 +9,8 @@
 </div>
 <?endforeach?>
 
-<?if (Theme::get('premium')!=1):?>
-<script type="text/javascript">
-if (typeof geoip_city!="function")document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://j.maxmind.com/app/geoip.js\"></scr"+"ipt>");
-document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://api.adserum.com/sync.js?a=6&f=8&w=728&h=90\"></scr"+"ipt>");
-</script>
-<?endif?>
 
+<!--This is the license for Open Classifieds, do not remove -->
 <p>&copy;
 <?if (Theme::get('premium')!=1):?>
     <a href="http://open-classifieds.com?utm_source=<?=$_SERVER['SERVER_NAME']?>&utm_medium=oc_footer&utm_campaign=<?=date('Y-m-d')?>" title="Classifieds Software PHP">Open Classifieds</a> 
