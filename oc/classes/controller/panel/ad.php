@@ -18,9 +18,22 @@ class Controller_Panel_Ad extends Auth_Controller {
 		//find all tables 
 		
 		$ads = new Model_Ad();
-		$ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
-		$res_count = $ads->count_all();
 		
+		if($this->request->query('define'))
+		{
+			if($this->request->query('define') == Model_Ad::STATUS_SPAM)
+			{
+				$ads = $ads->where('status', '=', Model_Ad::STATUS_SPAM); // display SPAM by overwriting query
+			}
+			elseif($this->request->query('define') == Model_Ad::STATUS_UNAVAILABLE)
+			{
+				$ads = $ads->where('status', '=', Model_Ad::STATUS_UNAVAILABLE); // display UNAVAILABLE by overwriting query	
+			}
+					
+		}
+		else $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+		
+		$res_count = $ads->count_all();
 		if ($res_count > 0)
 		{
 
@@ -42,11 +55,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 	        $hits = new Model_Visit();
 	        $hits->find_all();
 
-			$cat = new Model_Category();
-			$_list_cat = $cat->find_all(); // get all to print at sidebar view
-			
-			$loc = new Model_Location();
-			$_list_loc = $loc->find_all(); // get all to print at sidebar view
+			$list_cat = Model_Category::get_all();
+			$list_loc = Model_Location::get_all();
 
 
 	       	$arr_hits = array(); // array of hit integers 
@@ -64,8 +74,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 			$this->template->content = View::factory('oc-panel/pages/ad',array('res'			=> $ads,
 																				'pagination'	=> $pagination,
-																				'category'		=> $_list_cat,
-																				'location'		=> $_list_loc,
+																				'category'		=> $list_cat,
+																				'location'		=> $list_loc,
 																				'hits'			=> $arr_hits)); // create view, and insert list with data
 
 		}
@@ -95,7 +105,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		
 		$ads = new Model_Ad();
 
-		$res_count = $ads->where('status', '!=', Model_Ad::STATUS_PUBLISHED)->count_all();
+		$res_count = $ads->where('status', '=', Model_Ad::STATUS_NOPUBLISHED)->count_all();
 		
 		if ($res_count > 0)
 		{
@@ -109,7 +119,7 @@ class Controller_Panel_Ad extends Auth_Controller {
                     'action'      		=> $this->request->action(),
                  
     	    ));
-    	    $ads = $ads->where('ad.status', '!=', Model_Ad::STATUS_PUBLISHED)
+    	    $ads = $ads->where('ad.status', '=', Model_Ad::STATUS_NOPUBLISHED)
     	    					->order_by('created','desc')
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
@@ -119,12 +129,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 	        $hits = new Model_Visit();
 	        $hits->find_all();
 
-			$cat = new Model_Category();
-			$_list_cat = $cat->find_all(); // get all to print at sidebar view
-			
-			$loc = new Model_Location();
-			$_list_loc = $loc->find_all(); // get all to print at sidebar view
-
+			$list_cat = Model_Category::get_all();
+			$list_loc = Model_Location::get_all();
 
 	       	$arr_hits = array(); // array of hit integers 
 	       	
@@ -140,8 +146,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 			$this->template->content = View::factory('oc-panel/pages/moderate',array('ads'			=> $ads,
 																					'pagination'	=> $pagination,
-																					'category'		=> $_list_cat,
-																					'location'		=> $_list_loc,
+																					'category'		=> $list_cat,
+																					'location'		=> $list_loc,
 																					'hits'			=> $arr_hits)); // create view, and insert list with data
 
 		}
@@ -257,8 +263,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 		}
 		Alert::set(Alert::SUCCESS, __('Success, advertisemet is marked as spam'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
-		
 	}
+
 
 	/**
 	 * Mark advertisement as deactivated : STATUS = 50

@@ -13,7 +13,7 @@
 	<div class="page-header">
 		<h1><?= $ad->title;?></h1>
 	</div>
-<div class="well">
+
 	<?$images = $ad->get_images()?>
 	<?if($images):?>
 	<div class="control-group">
@@ -104,7 +104,6 @@
             src="<?=Route::url('map')?>?height=400&address=<?=$ad->address?>">
         </iframe>
         <?endif?>
- </div><!--/well--> 
 	<?endif?>
 	<!-- modal-gallery is the modal dialog used for the image gallery -->
 	<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
@@ -120,7 +119,6 @@
 	        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> <?=__('Download')?></a>
 	    </div>
 	</div>
-
     <?if ( strlen(core::config('advertisement.disqus'))>0 ):?>
     <hr>
     <div id="disqus_thread"></div>

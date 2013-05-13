@@ -5,12 +5,13 @@
 	<h1><?=__('Advertisements')?></h1>
 </div>
 
-<a class="btn btn-primary" href="<?=Route::url('post_new')?>" rel"tooltip" title="<?=__('New Advertisement')?>">
-	<i class="icon-pencil icon-white"></i><?=__(' New')?>
+<a class="btn btn-warning" type="submit" value="spam" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index?define='.Model_Ad::STATUS_SPAM))?>" rel"tooltip" title="<?=__('Spam Sort')?>">
+	<i class="icon-fire icon-white"></i><?=__('Spam')?>
 </a>
-<a class="btn btn-info" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'moderate'))?>" rel"tooltip" title="<?=__('Not Published Advertisements')?>">
-	<i class="icon-eye-open icon-white"></i><?=__(' Moderation')?>
+<a class="btn btn-inverse" type="submit" value="unavailable" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index?define='.Model_Ad::STATUS_UNAVAILABLE))?>" rel"tooltip" title="<?=__('Unavailable Sort')?>">
+	<i class=" icon-exclamation-sign icon-white"></i><?=__(' Unavailable')?>
 </a>
+
 
 <div id="advise" class="well advise clearfix">
 	<p class="text-info">
@@ -33,8 +34,6 @@
 		<!-- in case there are no ads we dont show buttons -->
 		<?if(isset($res)):?>
 		<th>
-			
-			
 			<a class="spam btn btn-warning" 
 				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
 				onclick="return confirm('<?=__('Spam?')?>');"
@@ -72,20 +71,21 @@
 					<input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
 				</label>
 			</td>
-			<? foreach($category as $cat){ if ($cat->id_category == $ad->id_category) $cat_name = $cat->seoname; }?>
+			
+			<?foreach($category[0] as $cat => $c){ if ($c['id'] == $ad->id_category) $cat_name = $c['seoname']; }?>
 			<td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?= $ad->title; ?></a>
 			</td>
 
-			<? foreach($category as $cat):?>
-				<? if ($cat->id_category == $ad->id_category): ?>
-					<td><?= $cat->name ?>
+			<? foreach($category[0] as $cat => $c ):?>
+				<? if ($c['id'] == $ad->id_category): ?>
+					<td><?= $c['name'] ?>
 				<?endif?>
 	    	<?endforeach?>
 			
             <?$locat_name = NULL;?>
-			<?foreach($location as $loc):?>
-				<? if ($loc->id_location == $ad->id_location): 
-                    $locat_name=$loc->name;?>
+			<?foreach($location[0] as $loc => $l):?>
+				<? if ($l['id'] == $ad->id_location): 
+                    $locat_name=$l['name'];?>
 					<td><?=$locat_name?></td>
 				<?endif?>
 	    	<?endforeach?>

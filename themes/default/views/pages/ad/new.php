@@ -30,22 +30,24 @@
 				
 					</div>
 				</div>
-
-				<?if($form_show['location'] != FALSE):?>
-				<div class="control-group">
-					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
-					<div class="controls">
-					
-						<?foreach ($_loc as $loc):?>
-							<?if($loc->seoname != 'all'):?>
-								<?$val_location[$loc->id_location] = $loc->name; ?>
-							<?endif?>	
-						<?endforeach?>
-						<?if(!isset($val_location)){$val_location = NULL;} //like this we avoid trowing error if val_location doesnt exists?>
-						<?= FORM::select('location', $val_location, 0, array('id'=>'location', 'class'=>'input-xlarge') );?>
-					
-					</div>
-				</div>
+				
+				<?if(count($_loc) !== 0):?>
+					<?if($form_show['location'] != FALSE):?>
+						<div class="control-group">
+							<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
+							<div class="controls">
+							
+								<?foreach ($_loc as $loc):?>
+									<?if($loc->seoname != 'all'):?>
+										<?$val_location[$loc->id_location] = $loc->name; ?>
+									<?endif?>	
+								<?endforeach?>
+								<?if(!isset($val_location)){$val_location = NULL;} //like this we avoid trowing error if val_location doesnt exists?>
+								<?= FORM::select('location', $val_location, 0, array('id'=>'location', 'class'=>'input-xlarge') );?>
+							
+							</div>
+						</div>
+					<?endif?>
 				<?endif?>
 
 				<div class="control-group">
