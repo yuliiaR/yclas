@@ -27,8 +27,8 @@ class Controller_Panel_Settings extends Auth_Controller {
      */
 	public function action_form()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Form')));
-        $this->template->title = __('Form');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Advertisement')));
+        $this->template->title = __('Advertisement');
        
         // all form config values
         $advertisement = new Model_Config();

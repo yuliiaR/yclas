@@ -3,11 +3,11 @@
 	
 <?=Form::errors()?>
 <div class="page-header">
-	<h1><?=__('Form Configuration')?></h1>
+	<h1><?=__('Advertisement Configuration')?></h1>
+        <p class="text-info"><?=__('Here are listed only form fields that are optional. To activate/deactiave select "TRUE/FALSE" in desired field. ')?></p>
+
 </div>
-<div id="advise" class="well advise clearfix">
-	<p class="text-info"><?=__('Here are listed only form fields that are optional. To activate/deactiave select "TRUE/FALSE" in desired field. ')?></p>
-</div>
+
 
 <div class="well">
 	<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
@@ -166,7 +166,7 @@
 					))?> 
 				</div>
 			</div>
-			<?$pages = array(FALSE=>"NoN")?>
+			<?$pages = array(''=>__('Deactivated'))?>
 			<?foreach (Model_Content::get_pages() as $key => $value) {
 				$pages[$value->seotitle] = $value->title;
 			}?>

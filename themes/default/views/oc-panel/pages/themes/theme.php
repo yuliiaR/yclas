@@ -19,6 +19,13 @@
             <?endif?>
         </p>
         <p><?=$selected['Description']?></p>
+        <?if(Core::config('appearance.theme_mobile')!=''):?>
+            <p>
+                <?=__('Using mobile theme')?> <code><?=Core::config('appearance.theme_mobile')?></code>
+                <a href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>'disable'))?>">
+                     <?=__('Disable')?></a>
+            </p>
+        <?endif?>
     </div>
 </div>
 
@@ -56,8 +63,48 @@ foreach ($themes as $theme=>$info):?>
 <?endif?>
 
 
+<?
+$a_m_themes = count($mobile_themes);
+if(Core::config('appearance.theme_mobile')!='')
+    $a_m_themes--;
+
+if ($a_m_themes>0):?>
+<h2><?=__('Available Mobile Themes')?></h2>
+<div class="row-fluid">
+<ul class="thumbnails">
+<?$i=0;
+foreach ($mobile_themes as $theme=>$info):?>
+    <?if(Core::config('appearance.theme_mobile')!==$theme):?>
+    <?if ($i%3==0):?></ul></div><div class="row-fluid"><ul class="thumbnails"><?endif?>
+    <li class="span4">
+    <div class="thumbnail">
+
+        <?if ($scr = Theme::get_theme_screenshot($theme)):?>
+            <img width="300px" height="200px" src="<?=$scr?>">
+        <?endif?>
+
+        <div class="caption">
+            <h3><?=$info['Name']?></h3>
+            <p><?=$info['Description']?></p>
+            <p><?=$info['License']?> v<?=$info['Version']?></p>
+            <p>
+                <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>$theme))?>"><?=__('Activate')?></a>
+                <a class="btn" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a>    
+            </p>
+        </div>
+    </div>
+    </li>
+    <?$i++;
+    endif?>
+<?endforeach?>
+</ul>
+</div><!--/row-->    
+<?endif?>
+
+<? if (count($market)>1):?>
 <h2><?=__('Market Themes')?></h2>
 <p><?=__('Here you can find a selection from our premium themes.')?></p>
 <p class="text-success"><?=__('All themes include support, updates and license.')?></p>
 
 <?=View::factory('oc-panel/pages/market/listing',array('market'=>$market))?>    
+<?endif?>

@@ -15,6 +15,9 @@ https://github.com/open-classifieds/openclassifieds2
 * Kohana 3.2.2. http://kohanaframework.org/
 * KO Formmanager https://github.com/colinbm/kohana-formmanager
 * PHP-Gettext https://launchpad.net/php-gettext/
+* Pear File_Gettext http://pear.php.net/package/File_Gettext
+* POTCreator http://hpyer.cn/codes/potcreator
+* PHP.mo https://github.com/josscrowcroft/php.mo
 * PHP-Google maps API http://www.bradwedell.com/php-google-maps-api/
 * PHP-Mailer https://code.google.com/a/apache-extras.org/p/phpmailer/
 * PHP-SitemapGenerator http://www.phpclasses.org/package/5838-PHP-Generate-sitemaps-and-notify-updates.html

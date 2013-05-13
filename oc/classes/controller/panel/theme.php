@@ -57,11 +57,13 @@ class Controller_Panel_Theme extends Auth_Controller {
         // validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Selector')));  
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Themes')));  
         $this->template->title = __('Themes');     
 
         //getting the themes
         $themes = Theme::get_installed_themes();
+
+        $mobile_themes = Theme::get_installed_themes(TRUE);
 
         //getting themes from market
         $market = array();
@@ -85,8 +87,28 @@ class Controller_Panel_Theme extends Auth_Controller {
 
         $this->template->content = View::factory('oc-panel/pages/themes/theme', array('market' => $market,
                                                                                     'themes' => $themes, 
+                                                                                    'mobile_themes' => $mobile_themes,
                                                                                     'selected'=>Theme::get_theme_info(Theme::$theme)));
     }
 
+
+    /**
+     * mobile theme selector
+     * @return [view] 
+     */
+    public function action_mobile()
+    {
+
+        // save only changed values
+        if($this->request->param('id'))
+        {
+            Theme::set_mobile_theme($this->request->param('id'));
+            
+            Alert::set(Alert::SUCCESS, __('Success, Mobile Theme updated'));
+            $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'index')));
+        }
+
+       
+    }
 
 }//end of controller

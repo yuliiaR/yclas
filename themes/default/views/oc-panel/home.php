@@ -32,24 +32,3 @@
     </div>
 
 </div>
-
-
-<hr>
-
-<?if (Theme::get('premium')!=1):?>
-
-<div class="visible-desktop">
-<script type="text/javascript">
-if (typeof geoip_city!="function")document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://j.maxmind.com/app/geoip.js\"></scr"+"ipt>");
-document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://api.adserum.com/sync.js?a=6&f=8&w=728&h=90\"></scr"+"ipt>");
-</script>
-</div>
-
-<div class="visible-phone">
-<script type="text/javascript">
-if (typeof geoip_city!="function")document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://j.maxmind.com/app/geoip.js\"></scr"+"ipt>");
-document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://api.adserum.com/sync.js?a=6&f=3&w=200&h=200\"></scr"+"ipt>");
-</script>
-</div>
-
-<?endif?>

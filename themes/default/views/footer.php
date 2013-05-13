@@ -21,5 +21,9 @@ document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://api.adserum.com
     <a href="http://open-classifieds.com?utm_source=<?=$_SERVER['SERVER_NAME']?>&utm_medium=oc_footer&utm_campaign=<?=date('Y-m-d')?>" title="Classifieds Software PHP">Open Classifieds</a> 
 <?endif?>    
 2009 - <?=date('Y')?>
+
+<?if(Core::config('appearance.theme_mobile')!=''):?>
+- <a href="<?=Route::url('default')?>?mobile=active"><?=__('Mobile Version')?></a>
+<?endif?>
 </p>
 </footer>
