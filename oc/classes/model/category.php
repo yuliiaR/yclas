@@ -95,10 +95,12 @@ class Model_Category extends ORM {
         $cats_arr = array();
         foreach ($cats as $cat) 
         {
-            $cats_arr[$cat->id_category] =  array('name' => $cat->name,
-                                                    'order' => $cat->order,
-                                                    'id_category_parent' => $cat->id_category_parent,
-                                                    'parent_deep' => $cat->parent_deep,
+            $cats_arr[$cat->id_category] =  array('name'               => $cat->name,
+                                                  'order'              => $cat->order,
+                                                  'id_category_parent' => $cat->id_category_parent,
+                                                  'parent_deep'        => $cat->parent_deep,
+                                                  'seoname'            => $cat->seoname,
+                                                  'id'                 => $cat->id_category,
                                                 );
         }
 

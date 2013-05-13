@@ -74,10 +74,12 @@ class Model_Location extends ORM {
         $locs_arr = array();
         foreach ($locs as $loc) 
         {
-            $locs_arr[$loc->id_location] =  array('name' => $loc->name,
-                                                    'order' => $loc->order,
-                                                    'id_location_parent' => $loc->id_location_parent,
-                                                    'parent_deep' => $loc->parent_deep,
+            $locs_arr[$loc->id_location] =  array('name'               => $loc->name,
+                                                  'order'              => $loc->order,
+                                                  'id_location_parent' => $loc->id_location_parent,
+                                                  'parent_deep'        => $loc->parent_deep,
+                                                  'seoname'            => $loc->seoname,
+                                                  'id'                 => $loc->id_location,
                                                 );
         }
 
