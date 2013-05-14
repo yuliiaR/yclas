@@ -16,7 +16,7 @@
 				</div>
 
                 <div class="control-group">
-                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' , 'multiple'))?>
+                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
                     <div class="controls">          
                         <select name="category" id="category" class="input-xlarge"   required>
                         <option></option>
@@ -34,7 +34,7 @@
 				<?if(count($locations) !== 0):?>
 					<?if($form_show['location'] != FALSE):?>
                     <div class="control-group">
-                        <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' , 'multiple'))?>
+                        <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
                         <div class="controls">          
                             <select name="location" id="location" class="input-xlarge"   required>
                             <option></option>

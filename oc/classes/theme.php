@@ -113,14 +113,14 @@ class Theme {
 
     /**
      * detect if visitor browser is mobile
-     * @return boolean
+     * @return boolean/theme name
      */
     public static function is_mobile()
     {
         $is_mobile = FALSE;
 
         //we check if we are forcing not to show mobile
-        if( Core::get('mobile')=='inactive')
+        if( Core::get('theme')!=Core::config('appearance.theme_mobile') AND Core::get('theme')!==NULL)
         {
             $is_mobile = FALSE;
         }
@@ -129,12 +129,8 @@ class Theme {
         {
             
             //they are forcing to show the mobile
-            if (Core::get('mobile')=='active' OR Cookie::get('mobile')=='active')
+            if (Core::get('theme')!=Core::config('appearance.theme_mobile') OR Cookie::get('theme')!=Core::config('appearance.theme_mobile'))
             {
-                //we set the theme cookie to null so this overrides
-                if (Core::get('mobile')=='active')
-                    Cookie::set('theme', NULL, Core::config('auth.lifetime'));
-
                 $is_mobile = TRUE;
             }
             //none of this scenarios try to detect if ismobile
@@ -147,15 +143,8 @@ class Theme {
             }
         }
 
-        if ($is_mobile)
-        {
-            Cookie::set('mobile','active',Core::config('auth.lifetime'));
-            $is_mobile = Core::config('appearance.theme_mobile');
-        }
-        else
-            Cookie::set('mobile','inactive', Core::config('auth.lifetime'));
 
-        return $is_mobile;
+        return ($is_mobile)?Core::config('appearance.theme_mobile'):FALSE;
     }
 
 
@@ -173,8 +162,6 @@ class Theme {
            $theme = $mobile_theme;
         }
 
-        
-
         //if we allow the user to select the theme, perfect for the demo
         if (Core::config('appearance.allow_query_theme')=='1')
         {
@@ -182,12 +169,11 @@ class Theme {
             {
                 $theme = Core::get('theme');
             }
-            elseif (Cookie::get('theme')!==NULL)
+            elseif (Cookie::get('theme')!=='')
             {
                 $theme = Cookie::get('theme');
             }
         }
-
 
         //check the theme exists..
         if (!file_exists(self::theme_init_path($theme)))
@@ -198,10 +184,10 @@ class Theme {
 
         //load theme init.php like in module, to load default JS and CSS for example
         self::$theme = $theme;
+
         Kohana::load(self::theme_init_path(self::$theme));
-        
+
         self::load();
-                
     }
 
 
