@@ -17,34 +17,125 @@ class Theme {
     public  static $scripts     = array();
     public  static $styles      = array();
     
-    
-    //@todo merge and minify
+
+
+    /**
+     * returns the JS scripts to include in the view with the tag
+     * @param  array $scripts 
+     * @param  string $type    placeholder
+     * @param  string $theme   
+     * @return string          HTML
+     */
     public static function scripts($scripts, $type = 'header' , $theme = NULL)
     {
-    	$ret = '';
+        
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        $ret = '';
     
-    	if (isset($scripts[$type])===TRUE)
-    	{
-    		foreach($scripts[$type] as $file)
-    		{
-    			$file = self::public_path($file, $theme);
-    			$ret .= HTML::script($file, NULL, TRUE);
-    		}
-    	}
-    	return $ret;
+        if (isset($scripts[$type])===TRUE)
+        {
+            $files = array();
+
+            foreach($scripts[$type] as $file)
+            {
+                //not external file we need the public link
+                if (!Valid::url($file))
+                {
+                    $files[] = $file;
+                }
+                //externals do nothing...
+                else
+                    $ret .= HTML::script($file, NULL, TRUE); 
+                
+            }
+
+            //name for the minify js file
+            $js_minified_name = URL::title(str_replace('js', '', implode('-',$files)) ).'.js';
+
+            //check if file exists.
+            $file_name = self::theme_folder($theme).'/js/'.$js_minified_name;
+
+            if (!file_exists($file_name))
+            {
+                $min = '';
+                require_once Kohana::find_file('vendor', 'minify/jsmin','php');
+                //getting the content form files
+                foreach ($files as $file) 
+                {
+                    
+                    if ( ($version = strpos($file, '?'))>0 )
+                        $file = substr($file, 0, $version );
+
+                    $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
+                }
+
+                Core::fwrite($file_name,JSMin::minify($min));
+            }
+
+            $ret .= HTML::script(self::public_path('js/'.$js_minified_name), NULL, TRUE);
+        }
+        return $ret;
     }
+
     
-    //@todo merge and minify, vendor
+    /**
+     * merges and minifies the styles
+     * @param  array $styles 
+     * @param  string $theme  
+     * @return string         HTML
+     */
     public static function styles($styles , $theme = NULL)
     {
-    	$ret = '';
-    	foreach($styles as $file => $type)
-    	{
-    		$file = self::public_path($file, $theme);
-    		$ret .= HTML::style($file, array('media' => $type));
-    	}
-    	return $ret;
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        $ret = '';
+        
+        $files = array();
+
+        foreach($styles as $file => $type)
+        {            
+            //not external file we need the public link
+            if (!Valid::url($file))
+            {
+                $files[] = $file;
+            }
+            //externals do nothing...
+            else
+                $ret .= HTML::style($file, array('media' => $type));
+        }
+
+        //name for the minify js file
+        $css_minified_name = URL::title(str_replace('css', '', implode('-',$files)) ).'.css';
+
+        //check if file exists.
+        $file_name = self::theme_folder($theme).'/css/'.$css_minified_name;
+
+        if (!file_exists($file_name))
+        {
+            $min = '';
+            require_once Kohana::find_file('vendor', 'minify/css','php');
+            //getting the content from files
+            foreach ($files as $file) 
+            {
+                
+                if ( ($version = strpos($file, '?'))>0 )
+                    $file = substr($file, 0, $version );
+
+                $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
+
+            }
+
+            Core::fwrite($file_name,Minify_CSS_Compressor::process($min));
+        }
+
+        $ret .= HTML::style(self::public_path('css/'.$css_minified_name), array('media' => 'screen'));
+        
+        return $ret;
     }
+
     
     /**
      *
