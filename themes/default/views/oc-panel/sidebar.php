@@ -4,7 +4,7 @@
 		<ul class="nav nav-list">
                 <li class="divider"></li>
 				
-                <?Theme::admin_link(__('Advertisement'),'ad','index','oc-panel','icon-th-large')?>
+                <?Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','icon-th-large')?>
 				<?Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','icon-ban-circle')?>
 				<?Theme::admin_link(__('Categories'),'category','index','oc-panel','icon-tags')?>
 				<?Theme::admin_link(__('Locations'),'location','index','oc-panel','icon-map-marker')?>

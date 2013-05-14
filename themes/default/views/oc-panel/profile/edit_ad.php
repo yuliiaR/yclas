@@ -175,7 +175,6 @@
 				<?endif?>
 				<div class="form-actions">
 					<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))))?>
-					<p class="help-block"><?=__('We will also create a user for you')?></p>
 				</div>
 			</fieldset>
 		<?= FORM::close()?>

@@ -4,13 +4,13 @@
  <?=Form::errors()?>
 <div class="page-header">
 	<h1><?=__('General Configuration')?></h1>
-</div>
-<a class="btn pull-right" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>"><?=__('All configs')?></a>.
-<div id="advise" class="well advise clearfix">
-	<p class="text-info">
-        <?=__('Published Advertisements are placed here. You can use settings to manage them.')?>.
+    <p class="">
+        <?=__('General site settings.')?>
+        <a class="btn pull-right" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>"><?=__('All configs')?></a>
+
     </p>
 </div>
+
 <div class="well">
 <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 	<fieldset>

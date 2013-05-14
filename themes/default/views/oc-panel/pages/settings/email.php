@@ -4,7 +4,7 @@
 		 <?=Form::errors()?>
 		<div class="page-header">
 			<h1><?=__('Email Configuration')?></h1>
-		<p><?=__('Here are listed general configuration values. Replace input fileds with new desired values')?></p>
+		<p><?=__('List of general configuration values. Replace input fields with new desired values')?></p>
             <p><?=__('If you need to send many emails and you high delivery rate check')?> <a href="http://j.mp/ocelastic">ElasticEmail</a></p>
         </div>
 

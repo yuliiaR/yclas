@@ -2366,7 +2366,7 @@ msgstr ""
 
 #: oc/classes/auth/crud.php:154
 #: oc/classes/auth/crud.php:181
-msgid "Check for form errors"
+msgid "Check form for errors"
 msgstr ""
 
 #: oc/classes/auth/crud.php:176
