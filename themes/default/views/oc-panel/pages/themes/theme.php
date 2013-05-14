@@ -14,16 +14,22 @@
         <p>
             <span class="badge badge-info"><?=__('Current Theme')?></span>
             <?if (Theme::has_options()):?>
-            <a href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>">
-                <i class="icon-leaf"></i> <?=__('Theme Options')?></a>
+            <a class="btn btn-mini btn-primary" title="<?=__('Theme Options')?>" 
+                href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>">
+                <i class="icon-wrench icon-white"></i> </a>
             <?endif?>
         </p>
         <p><?=$selected['Description']?></p>
         <?if(Core::config('appearance.theme_mobile')!=''):?>
             <p>
                 <?=__('Using mobile theme')?> <code><?=Core::config('appearance.theme_mobile')?></code>
-                <a href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>'disable'))?>">
-                     <?=__('Disable')?></a>
+                <a class="btn btn-mini btn-warning" title="<?=__('Disable')?>" 
+                    href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>'disable'))?>">
+                    <i class="icon-remove icon-white"></i>
+                </a>
+                <a class="btn btn-mini btn-primary" title="<?=__('Options')?>" 
+                    href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options','id'=>Core::config('appearance.theme_mobile')))?>">
+                <i class="icon-wrench icon-white"></i></a>
             </p>
         <?endif?>
     </div>

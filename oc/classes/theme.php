@@ -149,38 +149,43 @@ class Theme {
 
 
     /**
-     * Initialization of the theme that we want to see.
-     *
+     * initialize theme
+     * @param  string $theme forcing theme to load used in the admin
+     * @return void        
      */
-    public static function initialize()
+    public static function initialize($theme = NULL)
     {
-        $theme = NULL;
 
-        //first we check if it's a mobile device
-        if(($mobile_theme = self::is_mobile())!==FALSE)
+        //we are not forcing the view of other theme
+        if ($theme === NULL)
         {
-           $theme = $mobile_theme;
-        }
+            //first we check if it's a mobile device
+            if(($mobile_theme = self::is_mobile())!==FALSE)
+            {
+               $theme = $mobile_theme;
+            }
 
-        //if we allow the user to select the theme, perfect for the demo
-        if (Core::config('appearance.allow_query_theme')=='1')
-        {
-            if (Core::get('theme')!==NULL)
+            //if we allow the user to select the theme, perfect for the demo
+            if (Core::config('appearance.allow_query_theme')=='1')
             {
-                $theme = Core::get('theme');
+                if (Core::get('theme')!==NULL)
+                {
+                    $theme = Core::get('theme');
+                }
+                elseif (Cookie::get('theme')!=='')
+                {
+                    $theme = Cookie::get('theme');
+                }
             }
-            elseif (Cookie::get('theme')!=='')
-            {
-                $theme = Cookie::get('theme');
-            }
+
+            //we save the cookie for next time
+            Cookie::set('theme', $theme, Core::config('auth.lifetime'));
         }
 
         //check the theme exists..
         if (!file_exists(self::theme_init_path($theme)))
             $theme = Core::config('appearance.theme');
             
-        //we save the cookie for next time
-        Cookie::set('theme', $theme, Core::config('auth.lifetime'));
 
         //load theme init.php like in module, to load default JS and CSS for example
         self::$theme = $theme;
@@ -395,65 +400,70 @@ class Theme {
      */
     public static $data = array();
 
-    /**
-     * to know if we loaded...
-     * @var bool
-     */
-    public static $loaded = FALSE;
+ 
 
     /**
      * loads the theme data from the config
+     * @param  string $theme theme to load from
      * @return void 
      */
-    public static function load()
+    public static function load($theme = NULL)
     {   
-        if (!self::$loaded)
-        {
-            //search for theme config
-            $theme_data = core::config('theme.'.self::$theme);
+        self::$data = array();
 
-            //found and with data!
-            if($theme_data!==NULL AND !empty($theme_data) AND $theme_data !== '[]')
-            { 
-                self::$data = json_decode($theme_data, TRUE);
-            }
-            ///save empty with default values
-            else
-            {
-                //we set the array with empty values or the default in the option attributes
-                foreach (self::$options as $field => $attributes) 
-                {
-                    self::$data[$field] = (isset($attributes['default']))?$attributes['default']:'';
-                }
-                self::save();
-            }
-            self::$loaded = TRUE;
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        //search for theme config
+        $theme_data = core::config('theme.'.$theme);
+
+        //found and with data!
+        if($theme_data!==NULL AND !empty($theme_data) AND $theme_data !== '[]')
+        { 
+            self::$data = json_decode($theme_data, TRUE);
         }
-        
+        ///save empty with default values
+        else
+        {
+            //we set the array with empty values or the default in the option attributes
+            foreach (self::$options as $field => $attributes) 
+            {
+                self::$data[$field] = (isset($attributes['default']))?$attributes['default']:'';
+            }
+            self::save($theme);
+        }
 
     }
 
 
     /**
      * saves thme options as json 'theme.NAMETHEME' = array json
+     * @param  string $theme theme to save at
+     * @param  array $data to save
      * @return void 
      */
-    public static function save()
-    {
+    public static function save($theme = NULL, $data = NULL)
+    {   
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        if ($data === NULL)
+            $data = self::$data;
+
 
         // save theme to DB
         $conf = new Model_Config();
         $conf->where('group_name','=','theme')
-                    ->where('config_key','=',self::$theme)
+                    ->where('config_key','=',$theme)
                     ->limit(1)->find();
 
         if (!$conf->loaded())
         {
             $conf->group_name = 'theme';
-            $conf->config_key = self::$theme;
+            $conf->config_key = $theme;
         }
         
-        $conf->config_value = json_encode(self::$data);
+        $conf->config_value = json_encode($data);
 
         try 
         {
@@ -483,6 +493,23 @@ class Theme {
     public static function get($name, $default = NULL)
     {
         return (array_key_exists($name, self::$data)) ? self::$data[$name] : $default;
+    }
+
+    /**
+     * gets the options array from and external file options.php
+     * @param  string $theme theme to load from
+     * @return array        
+     */
+    public static function get_options($theme = NULL)
+    {
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        $options = self::theme_folder($theme).DIRECTORY_SEPARATOR.'options.php';
+        if (file_exists($options))
+            return Kohana::load($options);
+        else 
+            return array();
     }
 
 

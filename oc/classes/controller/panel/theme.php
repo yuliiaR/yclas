@@ -21,6 +21,23 @@ class Controller_Panel_Theme extends Auth_Controller {
      */
     public function action_options()
     {
+        $options = NULL;
+        $data    = NULL;
+
+        //this is how we manage the mobile options, or if we want to set other theme options without enableing it. ;)
+        if($this->request->param('id'))
+        {
+           $options = Theme::get_options($this->request->param('id'));
+           $data    = Theme::load($this->request->param('id'));
+        }
+
+        if ($options === NULL)
+            $options = Theme::$options;
+
+        if ($data === NULL)
+            $data = Theme::$data;
+
+
         // validation active 
         $this->template->scripts['footer'][]= '/js/jqBootstrapValidation.js';
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
@@ -30,22 +47,23 @@ class Controller_Panel_Theme extends Auth_Controller {
         // save only changed values
         if($this->request->post())
         {
+
             //for each option read the post and store it
             foreach ($_POST as $key => $value) 
             {
-                if (isset(Theme::$options[$key]))
+                if (isset($options[$key]))
                 {
-                    Theme::$data[$key] = core::post($key);
+                    $data[$key] = core::post($key);
                 }
             }
             
-            Theme::save();
+            Theme::save($this->request->param('id'),$data);
             
             Alert::set(Alert::SUCCESS, __('Success, Theme configuration updated'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'options')));
+            $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'options','id'=>$this->request->param('id'))));
         }
 
-        $this->template->content = View::factory('oc-panel/pages/themes/options', array('options' => Theme::$options, 'data'=>Theme::$data));
+        $this->template->content = View::factory('oc-panel/pages/themes/options', array('options' => $options, 'data'=>$data));
     }
 
     /**

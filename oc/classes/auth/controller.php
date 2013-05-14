@@ -42,6 +42,8 @@ class Auth_Controller extends Controller
 				$this->request->redirect($url);
 			}
 
+            Theme::initialize(Core::config('appearance.theme'));
+
 		}
 
 		//the user was loged in and with the right permissions
