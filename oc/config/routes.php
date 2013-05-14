@@ -74,6 +74,14 @@ Route::set('rss','rss(/<category>(/<location>)).xml')
         'action'     => 'index',
 ));
 
+/**
+ * site info json
+ */
+Route::set('sitejson','info.json')
+->defaults(array(
+        'controller' => 'feed',    
+        'action'     => 'info',
+));
 
 
 

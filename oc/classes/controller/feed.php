@@ -58,6 +58,60 @@ class Controller_Feed extends Controller {
 	
 	}
 
+
+    public function action_info()
+    {
+
+        //try to get the info from the cache
+        $info = Kohana::cache('action_info',NULL);
+
+        //not cached :(
+        if ($info === NULL)
+        {
+            $ads = new Model_Ad();
+            $total_ads = $ads->count_all();
+
+            $last_ad = $ads->select('published')->order_by('published','desc')->limit(1)->find();
+            $last_ad = $last_ad->published;
+
+            $ads = new Model_Ad();
+            $first_ad = $ads->select('published')->order_by('published','asc')->limit(1)->find();
+            $first_ad = $first_ad->published;
+
+            $views = new Model_Visit();
+            $total_views = $views->count_all();
+
+            $users = new Model_User();
+            $total_users = $users->count_all();
+
+            $info = array(
+                            'site_name'     => Core::config('general.site_name'),
+                            'site_url'      => Core::config('general.base_url'),
+                            'created'       => $first_ad,   
+                            'updated'       => $last_ad,   
+                            'email'         => Core::config('email.notify_email'),
+                            'version'       => Core::version,
+                            'theme'         => Core::config('appearance.theme'),
+                            'theme_mobile'  => Core::config('appearance.theme_mobile'),
+                            'charset'       => Core::config('i18n.charset'),
+                            'timezone'      => Core::config('i18n.timezone'),
+                            'locale'        => Core::config('i18n.locale'),
+                            'currency'      => Core::config('general.global_currency'),
+                            'ads'           => $total_ads,
+                            'views'         => $total_views,
+                            'users'         => $total_users,
+            );
+
+            Kohana::cache('action_info',$info);
+        }
+       
+
+        $this->response->headers('Content-type','application/javascript');
+        $this->response->body(json_encode($info));
+
+    }
+
+
     /**
      * after does nothing since we send an XML
      */
