@@ -4,7 +4,7 @@
 <?=Form::errors()?>
 <div class="page-header">
 	<h1><?=__('Advertisement Configuration')?></h1>
-        <p class="text-info"><?=__('Here are listed only form fields that are optional. To activate/deactiave select "TRUE/FALSE" in desired field. ')?></p>
+    <p class=""><?=__('List of optional fields. To activate/deactivate select "TRUE/FALSE" in desired field.')?></p>
 
 </div>
 
@@ -19,35 +19,18 @@
 				<?= FORM::label($forms['num_images']['key'], __('Number of images'), array('class'=>'control-label', 'for'=>$forms['num_images']['key']))?>
 				<div class="controls">
 					<?= FORM::input($forms['num_images']['key'], $forms['num_images']['value'], array(
-					'placeholder' => "http://foo.com/", 
+					'placeholder' => "4", 
 					'class' => 'tips', 
 					'id' => $forms['num_images']['key'], 
-					'data-content'=> __("Thumb wid"),
+					'data-content'=> __("Number of images"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Thumb wid"),
+					'data-original-title'=>__("Number of images displayed"),
 					))?> 
 				</div>
 			</div>
-			<div class="control-group">
-				<?= FORM::label($forms['featured_timer']['key'], __('Featured timer'), array('class'=>'control-label', 'for'=>$forms['featured_timer']['key']))?>
-				<div class="controls">
-					<div class="input-append">
-						<?= FORM::input($forms['featured_timer']['key'], $forms['featured_timer']['value'], array(
-						'placeholder' => $forms['featured_timer']['value'], 
-						'class' => 'tips span2', 
-						'id' => $forms['featured_timer']['key'], 
-						'data-content'=> __("Thumb wid"),
-						'data-trigger'=>"hover",
-						'data-placement'=>"right",
-						'data-toggle'=>"popover",
-						'data-original-title'=>__("Thumb wid"),
-						));?>
-						<span class="add-on"><?=__("Days")?></span>
-					</div> 
-				</div>
-			</div>
+			
 			<div class="control-group">
 				<?= FORM::label($forms['expire_date']['key'], __('Ad expiring date'), array('class'=>'control-label', 'for'=>$forms['expire_date']['key']))?>
 				<div class="controls">
@@ -56,11 +39,11 @@
 						'placeholder' => $forms['expire_date']['value'], 
 						'class' => 'tips span2', 
 						'id' => $forms['expire_date']['key'], 
-						'data-content'=> __("Thumb wid"),
+						'data-content'=> __("Expire days"),
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Thumb wid"),
+						'data-original-title'=>__("How many days an Ad will expire. 0 for never."),
 						));?>
 						<span class="add-on"><?=__("Days")?></span>
 					</div> 
@@ -70,14 +53,14 @@
 				<?= FORM::label($forms['address']['key'], __('Address'), array('class'=>'control-label', 'for'=>$forms['address']['key']))?>
 				<div class="controls">
 					<?= FORM::select($forms['address']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['address']['value'], array(
-					'placeholder' => "http://foo.com/", 
+					'placeholder' => "", 
 					'class' => 'tips', 
 					'id' => $forms['address']['key'], 
-					'data-content'=> __("Thumb wid"),
+					'data-content'=> __("Address field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Thumb wid"),
+					'data-original-title'=>__("Displays the field address in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -85,14 +68,14 @@
 				<?= FORM::label($forms['phone']['key'], __('Phone'), array('class'=>'control-label', 'for'=>$forms['phone']['key']))?>
 				<div class="controls">
 					<?= FORM::select($forms['phone']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['phone']['value'], array(
-					'placeholder' => "http://foo.com/", 
+					'placeholder' => "", 
 					'class' => 'tips', 
 					'id' => $forms['phone']['key'], 
-					'data-content'=> __("Thumb wid"),
+					'data-content'=> __("Phone Field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Thumb wid"),
+					'data-original-title'=>__("Displays the field phone in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -103,11 +86,11 @@
 					'placeholder' => "http://foo.com/", 
 					'class' => 'tips', 
 					'id' => $forms['website']['key'], 
-					'data-content'=> __("Thumb wid"),
+					'data-content'=> __("Website Field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Thumb wid"),
+					'data-original-title'=>__("Displays the field website in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -115,14 +98,14 @@
 				<?= FORM::label($forms['location']['key'], __('Location'), array('class'=>'control-label', 'for'=>$forms['location']['key']))?>
 				<div class="controls">
 					<?= FORM::select($forms['location']['key'],array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['location']['value'], array(
-					'placeholder' => "http://foo.com/", 
+					'placeholder' => "", 
 					'class' => 'tips', 
 					'id' => $forms['location']['key'], 
-					'data-content'=> __("Thumb wid"),
+					'data-content'=> __("Location select"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Thumb wid"),
+					'data-original-title'=>__("Displays the select location in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -130,14 +113,14 @@
 				<?= FORM::label($forms['price']['key'], __('Price'), array('class'=>'control-label', 'for'=>$forms['price']['key']))?>
 				<div class="controls">
 					<?= FORM::select($forms['price']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['price']['value'], array(
-					'placeholder' => "http://foo.com/", 
+					'placeholder' => "", 
 					'class' => 'tips', 
 					'id' => $forms['price']['key'], 
-					'data-content'=> __("Thumb wid"),
+					'data-content'=> __("Price Field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Thumb wid"),
+					'data-original-title'=>__("Displays the field price in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -145,7 +128,7 @@
 				<?= FORM::label($forms['upload_file']['key'], __('Upload file'), array('class'=>'control-label', 'for'=>$forms['upload_file']['key']))?>
 				<div class="controls">
 					<?= FORM::select($forms['upload_file']['key'],array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['upload_file']['value'], array(
-					'placeholder' => "http://foo.com/", 
+					'placeholder' => "", 
 					'class' => 'tips', 
 					'id' => $forms['upload_file']['key'], 
 					))?>
@@ -158,11 +141,11 @@
 					'placeholder' => "http://foo.com/", 
 					'class' => 'tips', 
 					'id' => $forms['captcha']['key'], 
-					'data-content'=> __("Thumb wid"),
+					'data-content'=> __("Enables Captcha"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Thumb wid"),
+					'data-original-title'=>__("Captcha appears in the form."),
 					))?> 
 				</div>
 			</div>
@@ -192,11 +175,11 @@
 					'placeholder' => "", 
 					'class' => 'tips', 
 					'id' => $forms['disqus']['key'], 
-					'data-content'=> __("Thumb wid"),
+					'data-content'=> __("Disqus Comments"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Thumb wid"),
+					'data-original-title'=>__("You need to write you disqus ID to enalbe the service."),
 					))?> 
 				</div>
 			</div>

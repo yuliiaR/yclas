@@ -117,7 +117,7 @@ class Model_Order extends ORM {
         }
         elseif ($orders->id_product == Paypal::to_featured)
         {
-            $product_find->featured = Date::unix2mysql(time() + (core::config('advertisement.featured_timer') * 24 * 60 * 60));
+            $product_find->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
             try {
                 $product_find->save();
             } catch (Exception $e) {

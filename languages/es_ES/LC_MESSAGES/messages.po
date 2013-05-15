@@ -1,1824 +1,2830 @@
-#: String 1
-msgid "Please wait while we transfer you to Paypal"
-msgstr "Por favor espere mientras le transferimos a Paypal"
+msgid ""
+msgstr ""
+"Project-Id-Version: OfficeGate Language Pack\n"
+"POT-Creation-Date: 2013-05-15 12:25+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
 
-#: String 2
-msgid "Click here if you are not redirected"
-msgstr "Haga clic aquí si la redirección no se"
+#: themes/rtl/init.php:54
+#: themes/ocean/init.php:54
+#: themes/responsive/init.php:45
+#: themes/kamaleon/init.php:50
+#: themes/reclassifieds/init.php:29
+msgid "Change the admin color theme"
+msgstr ""
 
-#: String 3
-msgid "First"
-msgstr "Primero"
+#: themes/responsive/views/footer.php:10
+#: themes/default/views/footer.php:21
+#: themes/kamaleon/views/footer.php:11
+#: themes/reclassifieds/views/footer.php:10
+msgid "Mobile Version"
+msgstr ""
 
-#: String 4
-msgid "Previous"
-msgstr "Anterior"
-
-#: String 5
-msgid "Page"
-msgstr "Página"
-
-#: String 6
-msgid "Next"
-msgstr "Próximo"
-
-#: String 7
-msgid "Last"
-msgstr "Último"
-
-#: String 8
-msgid "Listing"
-msgstr "Listado"
-
-#: String 9
-msgid "Categories"
-msgstr "Categorías"
-
-#: String 10
-msgid "Search"
-msgstr "Buscar"
-
-#: String 11
+#: themes/responsive/views/header.php:17
+#: themes/default/views/header.php:51
+#: themes/kamaleon/views/header.php:16
+#: themes/reclassifieds/views/header.php:21
+#: themes/mobile/views/footer.php:12
 msgid "Publish new "
-msgstr "Publicar nuevo"
-
-#: String 12
-msgid "Login"
-msgstr "Login"
-
-#: String 13
-msgid "Forgot password"
-msgstr "Contraseña olvidada"
-
-#: String 14
-msgid "Register"
-msgstr "Registro"
-
-#: String 15
-msgid "Edit Profile"
-msgstr "Editar Perfil"
-
-#: String 16
-msgid "Name"
-msgstr "Nombre"
-
-#: String 17
-msgid "Email"
-msgstr "Email"
-
-#: String 18
-msgid "Change password"
-msgstr "Cambiar contraseña"
-
-#: String 19
-msgid "Old password"
-msgstr "Old contraseña"
-
-#: String 20
-msgid "Password"
-msgstr "Contraseña"
-
-#: String 21
-msgid "New password"
-msgstr "Nueva contraseña"
-
-#: String 22
-msgid "Repeat password"
-msgstr "Repetir contraseña"
-
-#: String 23
-msgid "Type your password twice to change"
-msgstr "Escriba la contraseña dos veces para cambiar"
-
-#: String 24
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: String 25
-msgid "Send"
-msgstr "Enviar"
-
-#: String 26
-msgid "My Advertisements"
-msgstr "Mis anuncios"
-
-#: String 27
-msgid "New Advertisement"
-msgstr "Nuevo Anuncio"
-
-#: String 28
-msgid " New"
-msgstr "Nuevo"
-
-#: String 29
-msgid "Category"
-msgstr "Categoría"
-
-#: String 30
-msgid "Location"
-msgstr "Ubicación"
-
-#: String 31
-msgid "Status"
-msgstr "Estado"
-
-#: String 32
-msgid "Date"
-msgstr "Fecha"
-
-#: String 33
-msgid "NoN"
-msgstr "NoN"
-
-#: String 34
-msgid "Notpublished"
-msgstr "Notpublished"
-
-#: String 35
-msgid "Published"
-msgstr "Publicado"
-
-#: String 36
-msgid "Spam"
-msgstr "Spam"
-
-#: String 37
-msgid "Unavailable"
-msgstr "Indisponible"
-
-#: String 38
-msgid "Update"
-msgstr "Actualizar"
-
-#: String 39
-msgid "Activate?"
-msgstr "Activa?"
-
-#: String 40
-msgid "Activate"
-msgstr "Activar"
-
-#: String 41
-msgid "Deactivate?"
-msgstr "Desactive?"
-
-#: String 42
-msgid "Deactivate"
-msgstr "Desactivar"
-
-#: String 43
-msgid "Refresh listing, go to top?"
-msgstr "Refrescar lista, vaya a la parte superior?"
-
-#: String 44
-msgid "Go to top"
-msgstr "Ir al inicio"
-
-#: String 45
-msgid "Are you sure you want to refresh listing and go to top?"
-msgstr "¿Está seguro que desea actualizar anuncio y el principio?"
-
-#: String 46
-msgid "Make featured?"
-msgstr "Haga ofrecido?"
-
-#: String 47
-msgid "Featured"
-msgstr "Destacado"
-
-#: String 48
-msgid "Are you sure you want to make it featured?"
-msgstr "¿Seguro que quieres hacerlo aparece?"
-
-#: String 49
-msgid "Deactivate featured?"
-msgstr "Desactivar aparece?"
-
-#: String 50
-msgid "Deactivate Featured"
-msgstr "Desactivar destacados"
-
-#: String 51
-msgid "Are you sure you want to deactivate featured advertisement?"
-msgstr "¿Está seguro de que desea desactivar anuncio destacado?"
-
-#: String 53
-msgid "Today"
-msgstr "Hoy"
-
-#: String 54
-msgid "Yesterday"
-msgstr "Ayer"
-
-#: String 55
-msgid "Last 30 days"
-msgstr "Últimos 30 días"
-
-#: String 56
-msgid "Total"
-msgstr "Total"
-
-#: String 57
-msgid "Contacts"
-msgstr "Contactos"
-
-#: String 58
-msgid "Visits"
-msgstr "Visitas"
-
-#: String 59
-msgid "Charts"
-msgstr "Gráficos"
-
-#: String 60
-msgid "From"
-msgstr "De"
-
-#: String 61
-msgid "To"
-msgstr "A"
-
-#: String 62
-msgid "Filter"
-msgstr "Filtrar"
-
-#: String 63
-msgid "Edit Advertisement"
-msgstr "Editar Publicidad"
-
-#: String 64
-msgid "Id_User"
-msgstr "Id_User"
-
-#: String 65
-msgid "Profile"
-msgstr "Perfil"
-
-#: String 66
-msgid "notpublished"
-msgstr "notpublished"
-
-#: String 67
-msgid "published"
-msgstr "publicado"
-
-#: String 68
-msgid "spam"
-msgstr "correo no deseado"
-
-#: String 69
-msgid "unavailible"
-msgstr "unavailible"
-
-#: String 70
-msgid "Title"
-msgstr "Título"
-
-#: String 71
-msgid "Description"
-msgstr "Descripción"
-
-#: String 72
-msgid "Delete?"
-msgstr "Eliminar?"
-
-#: String 73
-msgid "Delete image"
-msgstr "Borrar la imagen"
-
-#: String 74
-msgid "Delete"
-msgstr "Borrar"
-
-#: String 75
-msgid "Images"
-msgstr "Imágenes"
-
-#: String 76
-msgid "Phone"
-msgstr "Teléfono"
-
-#: String 77
-msgid "Address"
-msgstr "Dirección"
-
-#: String 78
-msgid "Website"
-msgstr "Sitio web"
-
-#: String 79
-msgid "Price"
-msgstr "Precio"
-
-#: String 80
-msgid "We will also create a user for you"
-msgstr "También vamos a crear un usuario para que"
-
-#: String 81
-msgid "Panel"
-msgstr "Panel"
-
-#: String 82
-msgid "Market"
-msgstr "Mercado"
-
-#: String 83
-msgid "Moderation"
-msgstr "Moderación"
-
-#: String 84
-msgid "Stats"
-msgstr "Estadísticas"
-
-#: String 85
-msgid "Widgets"
-msgstr "Reproductores"
-
-#: String 86
-msgid "New"
-msgstr "Nuevo"
-
-#: String 87
-msgid "Welcome"
-msgstr "Bienvenida"
-
-#: String 88
-msgid "Thanks for using our website."
-msgstr "Gracias por utilizar nuestra página web."
-
-#: String 89
-msgid "Advertisement"
-msgstr "Anuncio"
-
-#: String 90
-msgid "Locations"
-msgstr "Ubicaciones"
-
-#: String 91
-msgid "Orders"
-msgstr "Órdenes"
-
-#: String 92
-msgid "Content"
-msgstr "Contenido"
-
-#: String 93
-msgid "Translations"
-msgstr "Traducciones"
-
-#: String 95
-msgid "Themes"
-msgstr "Temas"
-
-#: String 96
-msgid "Theme Options"
-msgstr "Opciones de Tema"
-
-#: String 97
-msgid "Settings"
-msgstr "Configuración"
-
-#: String 98
-msgid "General"
-msgstr "General"
-
-#: String 99
-msgid "Payment"
-msgstr "Pago"
-
-#: String 100
-msgid "Users"
-msgstr "Usuarios"
-
-#: String 101
-msgid "User Roles"
-msgstr "Funciones de usuario"
-
-#: String 102
-msgid "Roles access"
-msgstr "Acceso Roles"
-
-#: String 103
-msgid "Tools"
-msgstr "Instrumentos"
-
-#: String 104
-msgid "Updates"
-msgstr "Actualizaciones"
-
-#: String 105
-msgid "Sitemap"
-msgstr "Mapa del sitio"
-
-#: String 106
-msgid "Migration"
-msgstr "Migración"
-
-#: String 107
-msgid "Optimize"
-msgstr "Optimizar"
-
-#: String 108
-msgid "Cache"
-msgstr "Cache"
-
-#: String 109
-msgid "Logs"
-msgstr "Registros"
-
-#: String 110
-msgid "PHP Info"
-msgstr "PHP Info"
-
-#: String 111
-msgid "Edit profile"
-msgstr "Editar perfil"
-
-#: String 112
-msgid "Public profile"
-msgstr "Perfil público"
-
-#: String 113
-msgid "Home"
-msgstr "Casa"
-
-#: String 114
-msgid "Contact"
-msgstr "Contacto"
-
-#: String 115
-msgid "Actions"
-msgstr "Acciones"
-
-#: String 116
-msgid "Edit"
-msgstr "Editar"
-
-#: String 117
-msgid "Are you sure you want to delete?"
-msgstr "¿Está seguro de que desea eliminar?"
-
-#: String 118
-msgid "Logout"
-msgstr "Salir"
-
-#: String 119
-msgid "Visit Site"
-msgstr "Visite el sitio"
-
-#: String 120
-msgid "Here are listed specific theme configuration values. Replace input fileds with new desired values for theme"
-msgstr "A continuación se enumeran los valores de configuración de tema. Reemplace fileds entrada con nuevos valores deseados para el tema"
-
-#: String 121
-msgid "You can change the look and feel of your web site here."
-msgstr "Puede cambiar la apariencia de su sitio web aquí."
-
-#: String 122
-msgid "Current Theme"
-msgstr "Tema actual"
-
-#: String 123
-msgid "Available Themes"
-msgstr "Temas disponibles"
-
-#: String 124
-msgid "Preview"
-msgstr "Avance"
-
-#: String 125
-msgid "Market Themes"
-msgstr "Temas de Mercado"
-
-#: String 126
-msgid "Here you can find a selection from our premium themes."
-msgstr "Aquí puede encontrar una selección de nuestros temas premium."
-
-#: String 127
-msgid "All themes include support, updates and license."
-msgstr "Todos los temas incluye soporte, actualizaciones y licencia."
-
-#: String 128
-msgid "Site Usage Statistics"
-msgstr "Estadísticas de uso del sitio"
-
-#: String 129
-msgid "Ads"
-msgstr "Anuncios"
-
-#: String 130
-msgid "Sales"
-msgstr "Venta"
-
-#: String 131
-msgid "Views and Ads statistics"
-msgstr "Visitas y estadísticas Anuncios"
-
-#: String 132
-msgid "Sales statistics"
-msgstr "Estadísticas de ventas"
-
-#: String 133
-msgid "Available widgets"
-msgstr "Los widgets disponibles"
-
-#: String 134
-msgid "You can buy extra widgets in the market"
-msgstr "Usted puede comprar aparatos adicionales en el mercado"
-
-#: String 135
-msgid "Create"
-msgstr "Crear"
-
-#: String 136
-msgid "Where do you want the widget displayed?"
-msgstr "¿Dónde quiere el widget aparece?"
-
-#: String 137
-msgid "Close"
-msgstr "Cerrar"
-
-#: String 138
-msgid "Sure you want to delete the widget? You can move it to the inactive placeholder"
-msgstr "¿Seguro que quieres eliminar el widget? Usted puede mover al marcador de posición inactiva"
-
-#: String 139
-msgid "Save changes"
-msgstr "Guardar cambios"
-
-#: String 140
-msgid "Published Advertisements"
-msgstr "Publicaciones"
-
-#: String 141
-msgid " Ads"
-msgstr "Anuncios"
-
-#: String 142
-msgid "Hits"
-msgstr "Impactos"
-
-#: String 143
-msgid "Spam?"
-msgstr "Spam?"
-
-#: String 144
-msgid "Make active?"
-msgstr "Hacer activo?"
-
-#: String 147
-msgid "Buy Now"
-msgstr "Compre Ahora"
-
-#: String 148
-msgid "More info"
-msgstr "Más info"
-
-#: String 149
-msgid "Selection of nice extras for your installation."
-msgstr "Selección de extras muy agradables para su instalación."
-
-#: String 150
-msgid "Change the order of your categories, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme"
-msgstr "Cambiar el orden de las categorías, no recomiendo más de 2 nivel anidado ya probablemente no se mostrará int tema"
-
-#: String 151
-msgid "New category"
-msgstr "Nueva categoría"
-
-#: String 152
-msgid "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
-msgstr "¿Está seguro de que desea eliminar? Vamos a mover las categorías y los anuncios de los hermanos a los padres de esta categoría."
-
-#: String 153
-msgid "Change the order of your locations, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme"
-msgstr "Cambiar el orden de las ubicaciones, no recomiendo más de 2 nivel anidado ya probablemente no se mostrará int tema"
-
-#: String 154
-msgid "New location"
-msgstr "Nueva ubicación"
-
-#: String 155
-msgid "Are you sure you want to delete? We will move the siblings Locations and ads to the parent of this location."
-msgstr "¿Está seguro de que desea eliminar? Vamos a mover los hermanos Lugares y sugerencias a los padres de esta ubicación."
-
-#: String 160
-msgid "Subject"
-msgstr "Tema"
-
-#: String 161
-msgid "Message"
-msgstr "Mensaje"
-
-#: String 162
-msgid "Optimize Data Base"
-msgstr "Optimizar la Base de Datos"
-
-#: String 163
-msgid "Data Base space"
-msgstr "Espacio de la Base de Datos"
-
-#: String 164
-msgid "Space to optimize"
-msgstr "Espacio para optimizar"
-
-#: String 165
-msgid "Table"
-msgstr "Tabla"
-
-#: String 166
-msgid "Rows"
-msgstr "Filas"
-
-#: String 167
-msgid "Size"
-msgstr "Tamaño"
-
-#: String 168
-msgid "Save size"
-msgstr "Guardar tamaño"
-
-#: String 169
-msgid "Cache configuration information"
-msgstr "Información de configuración de caché"
-
-#: String 170
-msgid "Clean"
-msgstr "Limpiar"
-
-#: String 171
-msgid "Config file"
-msgstr "El archivo de configuración"
-
-#: String 172
-msgid "System Logs"
-msgstr "Registros del sistema"
-
-#: String 173
-msgid "Reading log file"
-msgstr "Lectura del archivo de registro"
-
-#: String 174
-msgid "Log"
-msgstr "Log"
-
-#: String 175
-msgid "Your PHP time limit is"
-msgstr "El límite de tiempo es PHP"
-
-#: String 176
-msgid "seconds"
-msgstr "segundo"
-
-#: String 177
-msgid "Host name"
-msgstr "Nombre del Host"
-
-#: String 178
-msgid "User name"
-msgstr "Nombre de usuario"
-
-#: String 179
-msgid "Database name"
-msgstr "Nombre de la base"
-
-#: String 180
-msgid "Database charset"
-msgstr "Database charset"
-
-#: String 181
-msgid "Table prefix"
-msgstr "Prefijo de tabla"
-
-#: String 182
-msgid "Migrate"
-msgstr "Migrar"
-
-#: String 183
-msgid "Last time generated"
-msgstr "La última vez que genera"
-
-#: String 184
-msgid "Generate"
-msgstr "Generar"
-
-#: String 185
-msgid "Expire time"
-msgstr "Caducidad"
-
-#: String 186
-msgid "Update on publish"
-msgstr "Actualización sobre la publicación"
-
-#: String 187
-msgid "Save"
-msgstr "Guardar"
-
-#: String 188
-msgid "Versions"
-msgstr "Versiones"
-
-#: String 189
-msgid "Open Classifieds release history information."
-msgstr "Abra Clasificados liberación de la información de la historia."
-
-#: String 190
-msgid "Your installation version is"
-msgstr "Su versión de la instalación"
-
-#: String 191
-msgid "Check for updates"
-msgstr "Buscar actualizaciones"
-
-#: String 192
-msgid "Version"
-msgstr "Versión"
-
-#: String 193
-msgid "Information"
-msgstr "Información"
-
-#: String 194
-msgid "Latest"
-msgstr "Más reciente"
-
-#: String 195
-msgid "Current"
-msgstr "Corriente"
-
-#: String 196
-msgid "Email Configuration"
-msgstr "Configuración de correo electrónico"
-
-#: String 197
-msgid "Here are listed general configuration values. Replace input fileds with new desired values"
-msgstr "A continuación se enumeran los valores de configuración generales. Reemplace fileds entrada con nuevos valores deseados"
-
-#: String 199
-msgid "Notify email"
-msgstr "Notifique email"
-
-#: String 200
-msgid "Thumb wid"
-msgstr "Wid Thumb"
-
-#: String 201
-msgid "Smtp active"
-msgstr "Smtp activo"
-
-#: String 202
-msgid "Smtp ssl"
-msgstr "Smtp ssl"
-
-#: String 203
-msgid "Smtp host"
-msgstr "Host SMTP"
-
-#: String 204
-msgid "Smtp port"
-msgstr "Puerto SMTP"
-
-#: String 205
-msgid "Smtp auth"
-msgstr "Smtp auth"
-
-#: String 206
-msgid "Smtp user"
-msgstr "Usuario Smtp"
-
-#: String 207
-msgid "Smtp password"
-msgstr "Contraseña SMTP"
-
-#: String 208
-msgid "Form Configuration"
-msgstr "Configuración del formulario"
-
-#: String 209
-msgid "Number of images"
-msgstr "Número de imágenes"
-
-#: String 210
-msgid "Featured timer"
-msgstr "Temporizador destacados"
-
-#: String 211
-msgid "Days"
-msgstr "Días"
-
-#: String 212
-msgid "Ad expiring date"
-msgstr "Publicado el vencimiento"
-
-#: String 213
-msgid "Upload file"
-msgstr "Subir archivo"
-
-#: String 214
-msgid "Captcha"
-msgstr "Captcha"
-
-#: String 215
-msgid "Terms of Service"
-msgstr "Términos de Servicio"
-
-#: String 216
-msgid "Disqus"
-msgstr "Disqus"
-
-#: String 217
-msgid "Payments Configuration"
-msgstr "Configuración de pagos"
-
-#: String 218
-msgid "Here are listed payment configuration values. Replace input fileds with new desired values"
-msgstr "A continuación se enumeran los valores de configuración de pago. Reemplace fileds entrada con nuevos valores deseados"
-
-#: String 219
-msgid "Sandbox"
-msgstr "Arenero"
-
-#: String 220
-msgid "Paypal currency"
-msgstr "Moneda Paypal"
-
-#: String 221
-msgid "To featured active"
-msgstr "Para ofrecido activo"
-
-#: String 222
-msgid "To top active"
-msgstr "Al principio activo"
-
-#: String 223
-msgid "To top payment"
-msgstr "Para el pago superior"
-
-#: String 224
-msgid "To featured payment"
-msgstr "Para el pago ofrecido"
-
-#: String 225
-msgid "Paypal accout"
-msgstr "Paypal accout"
-
-#: String 226
-msgid "General Configuration"
-msgstr "Configuración general"
-
-#: String 227
-msgid "All configs"
-msgstr "Todas las configuraciones"
-
-#: String 228
-msgid "Published Advertisements are placed here. You can use settings to manage them."
-msgstr "Anuncios se colocan aquí. Puede utilizar la configuración para su gestión."
-
-#: String 229
-msgid "Site name"
-msgstr "Nombre del sitio"
-
-#: String 230
-msgid "Here you can declare your display name. This is seen by everyone!"
-msgstr "Aquí podrá declarar su nombre para mostrar. Esto es visto por todo el mundo!"
-
-#: String 231
-msgid "Site Name"
-msgstr "Nombre del sitio"
-
-#: String 232
-msgid "Base URL"
-msgstr "URL Base"
-
-#: String 233
-msgid "Is a base path of your site (e.g. http://open-classifieds.com/ ). Everything else is built based on this filed."
-msgstr "Es una ruta de la base de su sitio (pe http://open-classifieds.com/). Todo lo demás se construye sobre la base de esta archivada."
-
-#: String 234
-msgid "Base URL path"
-msgstr "Ruta URL Base"
-
-#: String 235
-msgid "Moderation controls"
-msgstr "Controles de moderación"
-
-#: String 236
-msgid "Global currency"
-msgstr "Moneda global"
-
-#: String 237
-msgid "Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "
-msgstr "Moneda global es específica de cada país. No hay restricciones, esto es sólo para declarar la moneda para los anuncios. Nota: Esto es diferente de las monedas de pago."
-
-#: String 238
-msgid "Country specific currency"
-msgstr "Moneda específica País"
-
-#: String 239
-msgid "Advertisements per page"
-msgstr "Anuncios por página"
-
-#: String 240
-msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
-msgstr "Esto es para controlar el número de anuncios que están siendo mostradas por página. Introduzca un valor entero, como un límite de número."
-
-#: String 241
-msgid "Number of ads per page"
-msgstr "Número de anuncios por página"
-
-#: String 242
-msgid "Advertisements in RSS"
-msgstr "Anuncios en RSS"
-
-#: String 243
-msgid "Advertisements in Map"
-msgstr "Anuncios en mapa"
-
-#: String 244
-msgid "Number format"
-msgstr "Formato de número"
-
-#: String 245
-msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
-msgstr "Formato de número es cómo desea mostrar los números relacionados con la publicidad. Precio de anuncio más específico. Cada país tiene una forma específica de hacer frente a los dígitos decimales."
-
-#: String 246
-msgid "Decimal representation"
-msgstr "Representación decimal"
-
-#: String 247
-msgid "Date format"
-msgstr "Formato de la fecha"
-
-#: String 248
-msgid "Each advertisement have publish date. By selecting format, you can change how is shown on your website."
-msgstr "Cada anuncio se publicará la fecha. Mediante la selección de formato, puede cambiar la manera en que se muestra en su sitio web."
-
-#: String 249
-msgid "Analytics"
-msgstr "Analítica"
-
-#: String 250
-msgid "Allowed image formats"
-msgstr "Formatos de imágenes permitidas"
-
-#: String 251
-msgid "Set this up to restrict image formats that are being uploaded to your server."
-msgstr "Establezca esto para restringir formatos de imagen que se está cargando en su servidor."
-
-#: String 252
-msgid "Max image size"
-msgstr "Max tamaño de la imagen"
-
-#: String 253
-msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
-msgstr "Controlar el tamaño de las imágenes que se han subido. Introduzca un valor entero para establecer el tamaño máximo de la imagen en el mega-picaduras (Mb)."
-
-#: String 254
-msgid "Image size in mega bites(Mb)"
-msgstr "Tamaño de imagen en mega-picaduras (Mb)"
-
-#: String 255
-msgid "Image height"
-msgstr "Altura de la imagen"
-
-#: String 256
-msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
-msgstr "Cada imagen cambia de tamaño cuando se envían. Esta es la altura de la gran imagen. Nota: se puede dejar este campo en blanco para establecer la altura de tamaño automático."
-
-#: String 257
-msgid "Image height in pixels(px)"
-msgstr "Altura de la imagen en píxeles (px)"
-
-#: String 258
-msgid "Image width"
-msgstr "Ancho de la imagen"
-
-#: String 259
-msgid "Each image is resized when uploaded. This is the width of big image."
-msgstr "Cada imagen cambia de tamaño cuando se envían. Esta es la anchura de la imagen grande."
-
-#: String 260
-msgid "Image width in pixels(px)"
-msgstr "Ancho de la imagen en píxeles (px)"
-
-#: String 261
-msgid "Thumb height"
-msgstr "Altura del pulgar"
-
-#: String 262
-msgid "Thumb is a small image resized to fit certain elements. This is height of this image."
-msgstr "Thumb es una pequeña imagen redimensionada para ajustarse a ciertos elementos. Esta es la altura de esta imagen."
-
-#: String 263
-msgid "Thumb height in pixels(px)"
-msgstr "Thumb altura en píxeles (px)"
-
-#: String 264
-msgid "Thumb width"
-msgstr "Anchura del pulgar"
-
-#: String 265
-msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
-msgstr "Thumb es una pequeña imagen redimensionada para ajustarse a ciertos elementos. Este es el ancho de esta imagen."
-
-#: String 266
-msgid "Thumb width in pixels(px)"
-msgstr "Anchura del pulgar en píxeles (px)"
-
-#: String 267
-msgid "Image quality"
-msgstr "La calidad de imagen"
-
-#: String 268
-msgid "Choose the quality of images when stored 1-100."
-msgstr "Seleccione la calidad de las imágenes cuando se almacena 1-100."
-
-#: String 269
-msgid "Image Quality)"
-msgstr "Calidad de la imagen)"
-
-#: String 271
-msgid "Original Translation"
-msgstr "La traducción original"
-
-#: String 272
-msgid "Translation"
-msgstr "Traducción"
-
-#: String 273
-msgid "Translations files available in the system."
-msgstr "Archivos en el sistema de traducciones."
-
-#: String 274
-msgid "Scan"
-msgstr "Escanear"
-
-#: String 275
-msgid "New translation"
-msgstr "Nueva traducción"
-
-#: String 276
-msgid "Language"
-msgstr "Idioma"
-
-#: String 277
-msgid "Active"
-msgstr "Activo"
-
-#: String 278
-msgid "Advertisements"
-msgstr "Anuncios"
-
-#: String 279
-msgid "Not Published Advertisements"
-msgstr "Los anuncios no se publican"
-
-#: String 280
-msgid " Moderation"
-msgstr "Moderación"
-
-#: String 281
-msgid "General coonfigurations are here. Replace input fileds with new desired values"
-msgstr "Coonfigurations generales están aquí. Reemplace fileds entrada con nuevos valores deseados"
-
-#: String 282
-msgid "Ad Page"
-msgstr "Ad página"
-
-#: String 283
-msgid "Thanks for using Open Classifieds."
-msgstr "Gracias por usar Clasificados Abierto."
-
-#: String 284
-msgid "Latest News"
-msgstr "Últimas Noticias"
-
-#: String 285
-msgid "Contact US"
-msgstr "Contacto EE.UU."
-
-#: String 286
-msgid "User Profile"
-msgstr "Perfil del usuario"
-
-#: String 287
-msgid "Created"
-msgstr "Creado"
-
-#: String 288
-msgid "Last Login"
-msgstr "Última sesión"
-
-#: String 289
-msgid " advertisements"
-msgstr "anuncios"
-
-#: String 290
-msgid "Publish Date"
-msgstr "Fecha de Publicación"
-
-#: String 291
-msgid "Not yet published"
-msgstr "Pendiente de publicación"
-
-#: String 292
-msgid "Remember password"
-msgstr "Recordar contraseña"
-
-#: String 293
-msgid "Forgot password?"
-msgstr "¿Olvidó su contraseña?"
-
-#: String 294
-msgid "Remember me"
-msgstr "Recuérdame"
-
-#: String 295
-msgid "Type your password twice"
-msgstr "Escriba la contraseña dos veces"
-
-#: String 296
-msgid "Latest Ads"
-msgstr "Últimas ofertas"
-
-#: String 297
-msgid "Publish new advertisement"
-msgstr "Publicar un nuevo anuncio"
-
-#: String 298
-msgid "Read more"
-msgstr "Leer más"
-
-#: String 299
-msgid "Terms of service"
-msgstr "Términos del servicio"
-
-#: String 300
-msgid "Advansed Search"
-msgstr "Advansed Buscar"
-
-#: String 304
-msgid "Requirements"
-msgstr "Requerimientos"
-
-#: String 305
-msgid "Congratulations"
-msgstr "¡Felicidades"
-
-#: String 306
-msgid "Installation done"
-msgstr "INSTALACIÓN"
-
-#: String 307
-msgid "Please now erase the folder"
-msgstr "Por favor, ahora borrar la carpeta"
-
-#: String 308
-msgid "Go to Your Website"
-msgstr "Ir a su sitio web"
-
-#: String 309
-msgid "Make a donation"
-msgstr "Hacer una donación"
-
-#: String 310
-msgid "We really appreciate it"
-msgstr "Realmente apreciamos"
-
-#: String 311
-msgid "Welcome to"
-msgstr "Bienvenido a"
-
-#: String 312
-msgid "installation"
-msgstr "instalación"
-
-#: String 313
-msgid "Welcome to the super easy and fast installation"
-msgstr "Bienvenido a la instalación muy fácil y rápida"
-
-#: String 314
-msgid "If you need any help please check our professional services"
-msgstr "Si necesitas ayuda visita nuestros servicios profesionales, por favor"
-
-#: String 315
-msgid "Site Configuration"
-msgstr "Configuración del sitio"
-
-#: String 316
-msgid "Site Language"
-msgstr "El idioma del sitio"
-
-#: String 317
-msgid "Site URL"
-msgstr "URL del sitio"
-
-#: String 318
-msgid "Time Zone"
-msgstr "Zona Horaria"
-
-#: String 319
-msgid "Administrator email"
-msgstr "Correo electrónico del administrador"
-
-#: String 320
-msgid "Admin Password"
-msgstr "Admin Password"
-
-#: String 321
-msgid "Database Configuration"
-msgstr "Configuración de base de datos"
-
-#: String 322
-msgid "Allows multiple installations in one database if you give each one a unique prefix"
-msgstr "Permite múltiples instalaciones en una base de datos si se le da a cada uno un prefijo único"
-
-#: String 323
-msgid "Only numbers, letters, and underscores"
-msgstr "Sólo números, letras y guiones"
-
-#: String 324
-msgid "Sample data"
-msgstr "Datos de la muestra"
-
-#: String 325
-msgid "Creates few sample categories to start with"
-msgstr "Crea pocas categorías de muestra para comenzar con"
-
-#: String 326
-msgid "Install"
-msgstr "Instalar"
-
-#: String 327
-msgid "Ocacu classifieds community registration"
-msgstr "Ocacu clasificados registro comunitario"
-
-#: String 328
-msgid "Terms"
-msgstr "Condiciones"
-
-#: String 329
-msgid "Cannot connect to server"
-msgstr "No se puede conectar con el servidor"
-
-#: String 330
-msgid "No database name was given"
-msgstr "No se le dio el nombre de base de datos"
-
-#: String 331
-msgid "Available databases"
-msgstr "Bases de datos disponibles"
-
-#: String 332
-msgid "Invalid query"
-msgstr "Consulta no es válida"
-
-#: String 333
-msgid "Benchmark"
-msgstr "Punto de referencia"
-
-#: String 334
-msgid "Application Execution"
-msgstr "Ejecución de aplicaciones"
-
-#: String 335
-msgid "Hello, world"
-msgstr "Hola, mundo"
-
-#: String 336
-msgid "Environment"
-msgstr "Medio ambiente"
-
-#: String 337
-msgid "Included files"
-msgstr "Archivos incluidos"
-
-#: String 338
-msgid "Loaded extensions"
-msgstr "Extensiones cargadas"
-
-#: String 339
-msgid "publish new"
-msgstr "publicar nuevo"
-
-#: String 340
-msgid "search"
-msgstr "búsqueda"
-
-#: String 341
-msgid "contact"
-msgstr "contacto"
-
-#: String 342
-msgid "map"
-msgstr "mapa"
-
-#: String 343
-msgid "# items to display"
-msgstr "# Artículos para mostrar"
-
-#: String 344
-msgid "RSS"
-msgstr "RSS"
-
-#: String 345
-msgid "RSS reader with cache"
-msgstr "Lector de RSS con caché"
-
-#: String 346
-msgid "Number items to display"
-msgstr "Número de artículos para mostrar"
-
-#: String 347
-msgid "How often we refresh the RSS, in seconds"
-msgstr "¿Con qué frecuencia nos refrescamos la RSS, en segundo"
-
-#: String 348
-msgid "RSS url address"
-msgstr "RSS dirección url"
-
-#: String 349
-msgid "RSS title displayed"
-msgstr "RSS título que se visualiza"
-
-#: String 350
-msgid "Add latest comments"
-msgstr "Añadir últimos Comentarios"
-
-#: String 351
-msgid "Comments"
-msgstr "Comentarios"
-
-#: String 352
-msgid "Title displayed"
-msgstr "Título representada"
-
-#: String 353
-msgid "Number comments to display"
-msgstr "Número de comentarios para mostrar"
-
-#: String 354
+msgstr ""
+
+#: themes/responsive/views/header.php:23
+#: themes/default/views/header.php:16
+#: themes/kamaleon/views/header.php:24
+#: themes/reclassifieds/views/header.php:37
+#: themes/mobile/views/header.php:12
+#: themes/mobile/views/pages/ad/listing.php:4
+msgid "Listing"
+msgstr ""
+
+#: themes/responsive/views/header.php:24
+#: themes/responsive/views/header.php:46
+#: themes/default/views/header.php:43
+#: themes/default/views/pages/ad/advanced_search.php:12
+#: themes/default/views/pages/ad/advanced_search.php:53
+#: themes/kamaleon/views/header.php:25
+#: themes/kamaleon/views/header.php:62
+#: themes/reclassifieds/views/header.php:38
+#: themes/reclassifieds/views/header.php:48
+#: themes/mobile/views/pages/home.php:4
+#: themes/mobile/views/pages/ad/advansed_search.php:12
+msgid "Search"
+msgstr ""
+
+#: themes/responsive/views/header.php:25
+#: themes/reclassifieds/views/header.php:39
+#: themes/mobile/views/header.php:13
+#: oc/modules/widgets/classes/widget/map.php:18
+#: oc/classes/controller/map.php:11
 msgid "Map"
-msgstr "Mapa"
+msgstr ""
 
-#: String 355
-msgid "Google Maps with ads"
-msgstr "Google Maps con anuncios"
+#: themes/responsive/views/header.php:26
+#: themes/responsive/views/pages/ad/single.php:41
+#: themes/default/views/oc-panel/sidebar.php:80
+#: themes/default/views/pages/ad/single.php:47
+#: themes/kamaleon/views/header.php:27
+#: themes/kamaleon/views/pages/ad/single.php:41
+#: themes/reclassifieds/views/header.php:40
+#: themes/reclassifieds/views/pages/ad/single.php:41
+msgid "Contact"
+msgstr ""
 
-#: String 356
-msgid "Map title displayed"
-msgstr "Título de mapa muestra"
+#: themes/responsive/views/header.php:51
+#: themes/responsive/views/pages/home.php:36
+#: themes/default/views/header.php:18
+#: themes/default/views/oc-panel/sidebar.php:9
+#: themes/default/views/oc-panel/pages/categories.php:4
+#: themes/default/views/pages/home.php:26
+#: themes/kamaleon/views/pages/home.php:41
+#: themes/reclassifieds/views/pages/home.php:41
+#: themes/mobile/views/pages/home.php:25
+#: oc/modules/widgets/classes/widget/categories.php:18
+#: oc/modules/widgets/classes/widget/categories.php:25
+#: oc/classes/controller/panel/category.php:25
+#: oc/classes/controller/panel/category.php:27
+msgid "Categories"
+msgstr ""
 
-#: String 357
-msgid "Map height in pixels"
-msgstr "Mapa altura en píxeles"
+#: themes/responsive/views/header.php:107
+#: themes/responsive/views/widget_login.php:8
+#: themes/responsive/views/widget_login.php:10
+#: themes/default/views/header.php:65
+#: themes/default/views/widget_login.php:33
+#: themes/default/views/widget_login.php:35
+#: themes/default/views/pages/auth/login-form.php:31
+#: themes/default/views/pages/auth/login.php:4
+#: themes/default/views/pages/auth/register-form.php:37
+#: themes/default/views/pages/auth/register-form.php:39
+#: themes/kamaleon/views/header.php:123
+#: themes/reclassifieds/views/header.php:110
+#: themes/mobile/views/widget_login.php:33
+#: themes/mobile/views/widget_login.php:35
+#: themes/mobile/views/pages/auth/login-form.php:32
+#: themes/mobile/views/pages/auth/login.php:4
+#: themes/mobile/views/pages/auth/register-form.php:37
+#: themes/mobile/views/pages/auth/register-form.php:39
+#: oc/classes/controller/panel/auth.php:38
+msgid "Login"
+msgstr ""
 
-#: String 358
-msgid "Zoom in the map"
-msgstr "Ampliar el mapa"
+#: themes/responsive/views/header.php:118
+#: themes/default/views/header.php:76
+#: themes/kamaleon/views/header.php:134
+#: themes/reclassifieds/views/header.php:121
+msgid "Forgot password"
+msgstr ""
 
-#: String 359
-msgid "Display categories"
-msgstr "Mostrar categorías"
+#: themes/responsive/views/header.php:129
+#: themes/default/views/header.php:87
+#: themes/default/views/pages/auth/forgot-form.php:13
+#: themes/default/views/pages/auth/register.php:5
+#: themes/default/views/pages/auth/login-form.php:28
+#: themes/default/views/pages/auth/register-form.php:41
+#: themes/kamaleon/views/header.php:145
+#: themes/reclassifieds/views/header.php:132
+#: themes/mobile/views/pages/auth/forgot-form.php:13
+#: themes/mobile/views/pages/auth/register.php:5
+#: themes/mobile/views/pages/auth/login-form.php:29
+#: themes/mobile/views/pages/auth/register-form.php:41
+msgid "Register"
+msgstr ""
 
-#: String 360
-msgid "Categories title displayed"
-msgstr "Categorías título que se visualiza"
+#: themes/responsive/views/pages/home.php:4
+#: themes/default/views/pages/home.php:3
+#: themes/kamaleon/views/pages/home.php:4
+#: themes/reclassifieds/views/pages/home.php:4
+#: themes/mobile/views/pages/home.php:10
+#: oc/modules/widgets/classes/widget/ads.php:24
+msgid "Latest Ads"
+msgstr ""
 
-#: String 361
-msgid "Display Locations"
-msgstr "Mostrar Ubicaciones"
+#: themes/responsive/views/pages/ad/listing.php:11
+#: themes/default/views/oc-panel/profile/ads.php:7
+#: themes/default/views/pages/ad/listing.php:8
+#: themes/kamaleon/views/pages/ad/listing.php:11
+#: themes/reclassifieds/views/pages/ad/listing.php:13
+msgid "New Advertisement"
+msgstr ""
 
-#: String 362
-msgid "Locations title displayed"
-msgstr "Título localizaciones mostradas"
+#: themes/responsive/views/pages/ad/listing.php:11
+#: themes/default/views/pages/ad/listing.php:8
+#: themes/default/views/pages/ad/new.php:5
+#: themes/kamaleon/views/pages/ad/listing.php:11
+#: themes/reclassifieds/views/pages/ad/listing.php:13
+#: themes/mobile/views/pages/ad/new.php:5
+#: oc/classes/controller/new.php:17
+#: oc/classes/controller/new.php:18
+msgid "Publish new advertisement"
+msgstr ""
 
-#: String 363
-msgid "Text"
-msgstr "Texto"
+#: themes/responsive/views/pages/ad/listing.php:36
+#: themes/default/views/pages/userprofile.php:27
+#: themes/default/views/pages/userprofile.php:29
+#: themes/default/views/pages/ad/listing.php:31
+#: themes/kamaleon/views/pages/ad/listing.php:36
+#: themes/reclassifieds/views/pages/ad/listing.php:38
+#: themes/mobile/views/pages/userprofile.php:27
+#: themes/mobile/views/pages/userprofile.php:29
+msgid "Publish Date"
+msgstr ""
 
-#: String 364
-msgid "HTML textarea"
-msgstr "HTML textarea"
+#: themes/responsive/views/pages/ad/listing.php:39
+#: themes/default/views/oc-panel/profile/edit_ad.php:167
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:113
+#: themes/default/views/pages/ad/listing.php:34
+#: themes/default/views/pages/ad/new.php:87
+#: themes/default/views/pages/ad/new.php:91
+#: themes/default/views/pages/ad/single.php:38
+#: themes/kamaleon/views/pages/ad/listing.php:39
+#: themes/reclassifieds/views/pages/ad/listing.php:41
+#: themes/mobile/views/pages/ad/listing.php:27
+#: themes/mobile/views/pages/ad/new.php:86
+#: themes/mobile/views/pages/ad/new.php:90
+#: themes/mobile/views/pages/ad/single.php:29
+#: oc/classes/model/ad.php:83
+#: oc/classes/model/category.php:81
+msgid "Price"
+msgstr ""
 
-#: String 365
-msgid "Text title displayed"
-msgstr "Título Texto de muestra"
+#: themes/responsive/views/pages/ad/listing.php:45
+#: themes/default/views/pages/ad/listing.php:40
+#: themes/kamaleon/views/pages/ad/listing.php:45
+#: themes/reclassifieds/views/pages/ad/listing.php:47
+msgid "Read more"
+msgstr ""
 
-#: String 366
-msgid "HTML/text content here"
-msgstr "Copiar el contenido / texto aquí"
+#: themes/responsive/views/pages/ad/listing.php:48
+#: themes/responsive/views/pages/ad/listing.php:61
+#: themes/default/views/oc-panel/crud/index.php:32
+#: themes/default/views/oc-panel/pages/index.php:41
+#: themes/default/views/oc-panel/pages/widgets/form_widget.php:13
+#: themes/default/views/oc-panel/pages/categories.php:24
+#: themes/default/views/oc-panel/pages/locations.php:25
+#: themes/default/views/oc-panel/pages/translations/index.php:25
+#: themes/default/views/pages/userprofile.php:36
+#: themes/default/views/pages/userprofile.php:49
+#: themes/default/views/pages/ad/listing.php:43
+#: themes/default/views/pages/ad/listing.php:56
+#: themes/kamaleon/views/pages/ad/listing.php:48
+#: themes/kamaleon/views/pages/ad/listing.php:61
+#: themes/reclassifieds/views/pages/ad/listing.php:50
+#: themes/reclassifieds/views/pages/ad/listing.php:63
+#: themes/mobile/views/pages/ad/single.php:34
+msgid "Edit"
+msgstr ""
 
-#: String 367
-msgid "Ads reader"
-msgstr "Anuncios lector"
+#: themes/responsive/views/pages/ad/listing.php:50
+#: themes/responsive/views/pages/ad/listing.php:63
+#: themes/default/views/oc-panel/profile/ads.php:73
+#: themes/default/views/oc-panel/pages/moderate.php:32
+#: themes/default/views/oc-panel/pages/ad.php:45
+#: themes/default/views/oc-panel/pages/ad.php:123
+#: themes/default/views/pages/userprofile.php:38
+#: themes/default/views/pages/ad/listing.php:45
+#: themes/default/views/pages/ad/listing.php:58
+#: themes/kamaleon/views/pages/ad/listing.php:50
+#: themes/kamaleon/views/pages/ad/listing.php:63
+#: themes/reclassifieds/views/pages/ad/listing.php:52
+#: themes/reclassifieds/views/pages/ad/listing.php:65
+msgid "Deactivate?"
+msgstr ""
 
-#: String 368
-msgid "Type ads to display"
-msgstr "Tipo anuncios para mostrar"
+#: themes/responsive/views/pages/ad/listing.php:50
+#: themes/responsive/views/pages/ad/listing.php:63
+#: themes/default/views/oc-panel/profile/ads.php:74
+#: themes/default/views/oc-panel/pages/moderate.php:33
+#: themes/default/views/oc-panel/pages/ad.php:46
+#: themes/default/views/oc-panel/pages/ad.php:124
+#: themes/default/views/pages/userprofile.php:38
+#: themes/default/views/pages/ad/listing.php:45
+#: themes/default/views/pages/ad/listing.php:58
+#: themes/kamaleon/views/pages/ad/listing.php:50
+#: themes/kamaleon/views/pages/ad/listing.php:63
+#: themes/reclassifieds/views/pages/ad/listing.php:52
+#: themes/reclassifieds/views/pages/ad/listing.php:65
+msgid "Deactivate"
+msgstr ""
 
-#: String 369
-msgid "Popular Ads last month"
-msgstr "Anuncios populares mes pasado"
+#: themes/responsive/views/pages/ad/listing.php:53
+#: themes/default/views/oc-panel/pages/moderate.php:26
+#: themes/default/views/oc-panel/pages/ad.php:39
+#: themes/default/views/oc-panel/pages/ad.php:117
+#: themes/default/views/pages/userprofile.php:41
+#: themes/default/views/pages/ad/listing.php:48
+#: themes/kamaleon/views/pages/ad/listing.php:53
+#: themes/reclassifieds/views/pages/ad/listing.php:55
+msgid "Spam?"
+msgstr ""
 
-#: String 370
+#: themes/responsive/views/pages/ad/listing.php:53
+#: themes/default/views/oc-panel/profile/ads.php:51
+#: themes/default/views/oc-panel/pages/moderate.php:27
+#: themes/default/views/oc-panel/pages/moderate.php:87
+#: themes/default/views/oc-panel/pages/ad.php:9
+#: themes/default/views/oc-panel/pages/ad.php:40
+#: themes/default/views/oc-panel/pages/ad.php:103
+#: themes/default/views/oc-panel/pages/ad.php:118
+#: themes/default/views/pages/userprofile.php:41
+#: themes/default/views/pages/ad/listing.php:48
+#: themes/kamaleon/views/pages/ad/listing.php:53
+#: themes/reclassifieds/views/pages/ad/listing.php:55
+msgid "Spam"
+msgstr ""
+
+#: themes/responsive/views/pages/ad/listing.php:56
+#: themes/default/views/oc-panel/profile/edit_ad.php:115
+#: themes/default/views/oc-panel/pages/moderate.php:106
+#: themes/default/views/oc-panel/pages/ad.php:129
+#: themes/default/views/pages/userprofile.php:44
+#: themes/default/views/pages/ad/listing.php:51
+#: themes/kamaleon/views/pages/ad/listing.php:56
+#: themes/reclassifieds/views/pages/ad/listing.php:58
+msgid "Delete?"
+msgstr ""
+
+#: themes/responsive/views/pages/ad/listing.php:56
+#: themes/default/views/oc-panel/profile/edit_ad.php:124
+#: themes/default/views/oc-panel/crud/index.php:38
+#: themes/default/views/oc-panel/pages/index.php:47
+#: themes/default/views/oc-panel/pages/moderate.php:45
+#: themes/default/views/oc-panel/pages/moderate.php:107
+#: themes/default/views/oc-panel/pages/ad.php:52
+#: themes/default/views/oc-panel/pages/ad.php:130
+#: themes/default/views/pages/userprofile.php:44
+#: themes/default/views/pages/ad/listing.php:51
+#: themes/kamaleon/views/pages/ad/listing.php:56
+#: themes/reclassifieds/views/pages/ad/listing.php:58
+msgid "Delete"
+msgstr ""
+
+#: themes/responsive/views/pages/ad/single.php:51
+#: themes/responsive/views/pages/ad/single.php:53
+#: themes/default/views/oc-panel/profile/edit.php:10
+#: themes/default/views/oc-panel/profile/edit.php:12
+#: themes/default/views/oc-panel/profile/ads.php:13
+#: themes/default/views/oc-panel/profile/edit_ad.php:41
+#: themes/default/views/oc-panel/pages/moderate.php:15
+#: themes/default/views/oc-panel/pages/ad.php:28
+#: themes/default/views/pages/contact.php:9
+#: themes/default/views/pages/contact.php:11
+#: themes/default/views/pages/auth/register-form.php:6
+#: themes/default/views/pages/auth/register-form.php:8
+#: themes/default/views/pages/ad/new.php:106
+#: themes/default/views/pages/ad/new.php:108
+#: themes/default/views/pages/ad/single.php:57
+#: themes/default/views/pages/ad/single.php:59
+#: themes/kamaleon/views/pages/ad/single.php:51
+#: themes/kamaleon/views/pages/ad/single.php:53
+#: themes/reclassifieds/views/pages/ad/single.php:51
+#: themes/reclassifieds/views/pages/ad/single.php:53
+#: themes/mobile/views/pages/contact.php:10
+#: themes/mobile/views/pages/contact.php:12
+#: themes/mobile/views/pages/auth/register-form.php:6
+#: themes/mobile/views/pages/auth/register-form.php:8
+#: themes/mobile/views/pages/ad/new.php:105
+#: themes/mobile/views/pages/ad/new.php:107
+#: themes/mobile/views/pages/ad/single.php:50
+#: themes/mobile/views/pages/ad/single.php:52
+#: oc/classes/model/user.php:96
+#: oc/classes/model/location.php:56
+#: oc/classes/model/category.php:74
+msgid "Name"
+msgstr ""
+
+#: themes/responsive/views/pages/ad/single.php:58
+#: themes/responsive/views/pages/ad/single.php:60
+#: themes/default/views/oc-panel/profile/edit.php:16
+#: themes/default/views/oc-panel/profile/edit.php:18
+#: themes/default/views/oc-panel/profile/edit_ad.php:42
+#: themes/default/views/oc-panel/sidebar.php:32
+#: themes/default/views/pages/contact.php:16
+#: themes/default/views/pages/contact.php:18
+#: themes/default/views/pages/userprofile.php:9
+#: themes/default/views/pages/auth/forgot-form.php:5
+#: themes/default/views/pages/auth/forgot-form.php:7
+#: themes/default/views/pages/auth/login-form.php:5
+#: themes/default/views/pages/auth/login-form.php:7
+#: themes/default/views/pages/auth/register-form.php:13
+#: themes/default/views/pages/auth/register-form.php:15
+#: themes/default/views/pages/ad/new.php:112
+#: themes/default/views/pages/ad/new.php:114
+#: themes/default/views/pages/ad/single.php:64
+#: themes/default/views/pages/ad/single.php:66
+#: themes/kamaleon/views/pages/ad/single.php:58
+#: themes/kamaleon/views/pages/ad/single.php:60
+#: themes/reclassifieds/views/pages/ad/single.php:58
+#: themes/reclassifieds/views/pages/ad/single.php:60
+#: themes/mobile/views/pages/contact.php:17
+#: themes/mobile/views/pages/contact.php:19
+#: themes/mobile/views/pages/userprofile.php:10
+#: themes/mobile/views/pages/auth/forgot-form.php:5
+#: themes/mobile/views/pages/auth/forgot-form.php:7
+#: themes/mobile/views/pages/auth/login-form.php:6
+#: themes/mobile/views/pages/auth/login-form.php:8
+#: themes/mobile/views/pages/auth/register-form.php:13
+#: themes/mobile/views/pages/auth/register-form.php:15
+#: themes/mobile/views/pages/ad/new.php:111
+#: themes/mobile/views/pages/ad/new.php:113
+#: themes/mobile/views/pages/ad/single.php:57
+#: themes/mobile/views/pages/ad/single.php:59
+#: oc/classes/model/user.php:97
+#: oc/classes/controller/panel/settings.php:69
+#: oc/classes/controller/panel/settings.php:70
+msgid "Email"
+msgstr ""
+
+#: themes/responsive/views/pages/ad/single.php:65
+#: themes/responsive/views/pages/ad/single.php:67
+#: themes/default/views/oc-panel/pages/newsletter.php:30
+#: themes/default/views/pages/contact.php:23
+#: themes/default/views/pages/contact.php:25
+#: themes/default/views/pages/ad/single.php:71
+#: themes/default/views/pages/ad/single.php:73
+#: themes/kamaleon/views/pages/ad/single.php:65
+#: themes/kamaleon/views/pages/ad/single.php:67
+#: themes/reclassifieds/views/pages/ad/single.php:65
+#: themes/reclassifieds/views/pages/ad/single.php:67
+#: themes/mobile/views/pages/contact.php:24
+#: themes/mobile/views/pages/contact.php:26
+#: themes/mobile/views/pages/ad/single.php:64
+#: themes/mobile/views/pages/ad/single.php:66
+msgid "Subject"
+msgstr ""
+
+#: themes/responsive/views/pages/ad/single.php:71
+#: themes/responsive/views/pages/ad/single.php:73
+#: themes/default/views/oc-panel/pages/newsletter.php:37
+#: themes/default/views/pages/contact.php:29
+#: themes/default/views/pages/contact.php:31
+#: themes/default/views/pages/ad/single.php:77
+#: themes/default/views/pages/ad/single.php:79
+#: themes/kamaleon/views/pages/ad/single.php:71
+#: themes/kamaleon/views/pages/ad/single.php:73
+#: themes/reclassifieds/views/pages/ad/single.php:71
+#: themes/reclassifieds/views/pages/ad/single.php:73
+#: themes/mobile/views/pages/contact.php:30
+#: themes/mobile/views/pages/contact.php:32
+#: themes/mobile/views/pages/ad/single.php:70
+#: themes/mobile/views/pages/ad/single.php:72
+msgid "Message"
+msgstr ""
+
+#: themes/responsive/views/pages/ad/single.php:80
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:138
+#: themes/default/views/pages/contact.php:38
+#: themes/default/views/pages/ad/single.php:86
+#: themes/kamaleon/views/pages/ad/single.php:80
+#: themes/reclassifieds/views/pages/ad/single.php:80
+#: themes/mobile/views/pages/contact.php:39
+#: themes/mobile/views/pages/ad/single.php:79
+msgid "Captcha"
+msgstr ""
+
+#: themes/responsive/init.php:30
+#: themes/mobile/options.php:11
+msgid "Number of latest ads to display in the home page"
+msgstr ""
+
+#: themes/responsive/init.php:35
+#: themes/kamaleon/init.php:30
+#: themes/mobile/options.php:16
+msgid "Change the theme color scheme and style"
+msgstr ""
+
+#: themes/default/views/paypal.php:7
+msgid "Please wait while we transfer you to Paypal"
+msgstr ""
+
+#: themes/default/views/paypal.php:27
+msgid "Click here if you are not redirected"
+msgstr ""
+
+#: themes/default/views/pagination.php:5
+#: themes/mobile/views/pagination.php:5
+#: oc/modules/pagination/views/pagination/basic.php:4
+#: oc/modules/pagination/views/pagination/basic.php:6
+#: oc/modules/pagination/views/pagination/floating.php:61
+#: oc/modules/pagination/views/pagination/floating.php:63
+msgid "First"
+msgstr ""
+
+#: themes/default/views/pagination.php:9
+#: themes/default/views/pages/ad/single.php:116
+#: themes/mobile/views/pagination.php:9
+#: oc/modules/pagination/views/pagination/basic.php:10
+#: oc/modules/pagination/views/pagination/basic.php:12
+#: oc/modules/pagination/views/pagination/floating.php:67
+#: oc/modules/pagination/views/pagination/floating.php:69
+msgid "Previous"
+msgstr ""
+
+#: themes/default/views/pagination.php:14
+#: themes/default/views/oc-panel/header.php:33
+#: themes/mobile/views/pagination.php:14
+msgid "Page"
+msgstr ""
+
+#: themes/default/views/pagination.php:19
+#: themes/default/views/pages/ad/single.php:117
+#: themes/mobile/views/pagination.php:19
+#: oc/modules/pagination/views/pagination/basic.php:26
+#: oc/modules/pagination/views/pagination/basic.php:28
+#: oc/modules/pagination/views/pagination/floating.php:83
+#: oc/modules/pagination/views/pagination/floating.php:85
+msgid "Next"
+msgstr ""
+
+#: themes/default/views/pagination.php:23
+#: themes/mobile/views/pagination.php:23
+#: oc/modules/pagination/views/pagination/basic.php:32
+#: oc/modules/pagination/views/pagination/basic.php:34
+#: oc/modules/pagination/views/pagination/floating.php:89
+#: oc/modules/pagination/views/pagination/floating.php:91
+msgid "Last"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit.php:5
+msgid "Edit Profile"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit.php:32
+#: oc/classes/controller/panel/profile.php:19
+#: oc/classes/controller/panel/profile.php:21
+msgid "Change password"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit.php:39
+msgid "Old password"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit.php:41
+#: themes/default/views/oc-panel/profile/edit.php:48
+#: themes/default/views/oc-panel/profile/edit.php:55
+#: themes/default/views/oc-panel/pages/tools/migration.php:27
+#: themes/default/views/pages/auth/login-form.php:12
+#: themes/default/views/pages/auth/login-form.php:14
+#: themes/default/views/pages/auth/register-form.php:22
+#: themes/default/views/pages/auth/register-form.php:29
+#: themes/mobile/views/pages/auth/login-form.php:13
+#: themes/mobile/views/pages/auth/login-form.php:15
+#: themes/mobile/views/pages/auth/register-form.php:22
+#: themes/mobile/views/pages/auth/register-form.php:29
+#: install/index.php:282
+#: oc/classes/model/user.php:98
+msgid "Password"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit.php:46
+#: themes/default/views/pages/auth/register-form.php:20
+#: themes/mobile/views/pages/auth/register-form.php:20
+msgid "New password"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit.php:53
+#: themes/default/views/pages/auth/register-form.php:27
+#: themes/mobile/views/pages/auth/register-form.php:27
+msgid "Repeat password"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit.php:57
+msgid "Type your password twice to change"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit.php:63
+#: themes/default/views/oc-panel/pages/newsletter.php:45
+#: themes/default/views/oc-panel/pages/tools/migration.php:57
+#: themes/default/views/oc-panel/pages/tools/sitemap.php:37
+msgid "Cancel"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit.php:64
+#: themes/default/views/oc-panel/pages/newsletter.php:46
+#: themes/default/views/pages/auth/forgot-form.php:15
+#: themes/mobile/views/pages/auth/forgot-form.php:15
+msgid "Send"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:4
+#: themes/default/views/oc-panel/sidebar.php:67
+#: themes/default/views/oc-panel/widget_login.php:15
+#: themes/default/views/widget_login.php:16
+#: themes/mobile/views/widget_login.php:16
+msgid "My Advertisements"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:8
+msgid " New"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:14
+#: themes/default/views/oc-panel/profile/edit_ad.php:73
+#: themes/default/views/oc-panel/header.php:31
+#: themes/default/views/oc-panel/pages/moderate.php:16
+#: themes/default/views/oc-panel/pages/ad.php:29
+#: themes/default/views/pages/ad/new.php:19
+#: themes/default/views/pages/ad/advanced_search.php:18
+#: themes/mobile/views/pages/ad/listing.php:10
+#: themes/mobile/views/pages/ad/new.php:19
+#: themes/mobile/views/pages/ad/advansed_search.php:16
+#: oc/classes/model/ad.php:76
+msgid "Category"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:15
+#: themes/default/views/oc-panel/profile/edit_ad.php:85
+#: themes/default/views/oc-panel/header.php:32
+#: themes/default/views/oc-panel/pages/moderate.php:17
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:98
+#: themes/default/views/oc-panel/pages/ad.php:30
+#: themes/default/views/pages/ad/new.php:37
+#: themes/default/views/pages/ad/advanced_search.php:35
+#: themes/mobile/views/pages/ad/new.php:36
+#: themes/mobile/views/pages/ad/advansed_search.php:27
+#: oc/classes/model/user.php:101
+#: oc/classes/model/ad.php:77
+msgid "Location"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:16
+#: themes/default/views/oc-panel/profile/edit_ad.php:59
+#: themes/default/views/oc-panel/pages/moderate.php:19
+#: themes/default/views/oc-panel/pages/ad.php:32
+#: oc/classes/model/user.php:99
+#: oc/classes/model/ad.php:88
+msgid "Status"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:17
+#: themes/default/views/oc-panel/pages/moderate.php:20
+#: themes/default/views/oc-panel/pages/ad.php:33
+msgid "Date"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:47
+#: themes/default/views/oc-panel/pages/moderate.php:83
+#: themes/default/views/oc-panel/pages/ad.php:99
+msgid "Not published"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:49
+#: themes/default/views/oc-panel/pages/moderate.php:85
+#: themes/default/views/oc-panel/pages/ad.php:101
+#: themes/default/views/pages/ad/single.php:40
+#: themes/mobile/views/pages/ad/single.php:31
+#: oc/classes/model/ad.php:87
+msgid "Published"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:53
+#: themes/default/views/oc-panel/pages/moderate.php:89
+#: themes/default/views/oc-panel/pages/ad.php:105
+msgid "Unavailable"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:60
+#: themes/default/views/oc-panel/crud/update.php:3
+#: themes/default/views/oc-panel/pages/moderate.php:95
+#: themes/default/views/oc-panel/pages/ad.php:112
+#: oc/classes/auth/crud.php:167
+msgid "Update"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:66
+msgid "Activate?"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:67
+#: themes/default/views/oc-panel/pages/themes/theme.php:58
+#: themes/default/views/oc-panel/pages/themes/theme.php:97
+#: themes/default/views/oc-panel/pages/moderate.php:39
+#: themes/default/views/oc-panel/pages/moderate.php:101
+#: themes/default/views/oc-panel/pages/translations/index.php:34
+#: themes/default/views/oc-panel/pages/translations/index.php:35
+msgid "Activate"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:81
+msgid "Refresh listing, go to top?"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:82
+msgid "Go to top"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:82
+msgid "Are you sure you want to refresh listing and go to top?"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:90
+#: themes/default/views/oc-panel/pages/ad.php:137
+msgid "Make featured?"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:91
+#: themes/default/views/oc-panel/pages/ad.php:58
+#: themes/default/views/oc-panel/pages/ad.php:138
+msgid "Featured"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:91
+#: themes/default/views/oc-panel/pages/ad.php:58
+#: themes/default/views/oc-panel/pages/ad.php:138
+msgid "Are you sure you want to make it featured?"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:97
+#: themes/default/views/oc-panel/pages/ad.php:144
+msgid "Deactivate featured?"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:98
+#: themes/default/views/oc-panel/pages/ad.php:145
+msgid "Deactivate Featured"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/ads.php:98
+#: themes/default/views/oc-panel/pages/ad.php:145
+msgid "Are you sure you want to deactivate featured advertisement?"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:2
+msgid "Statistics"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:13
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:14
+msgid "Today"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:14
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:15
+msgid "Yesterday"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:15
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:16
+msgid "Last 30 days"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:16
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:17
+msgid "Total"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:21
+msgid "Contacts"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:28
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:29
+msgid "Visits"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:38
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:46
+msgid "Charts"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:42
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:50
+#: themes/default/views/oc-panel/pages/newsletter.php:16
+msgid "From"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:46
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:54
+msgid "To"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:51
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:59
+msgid "Filter"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/stats.php:62
+msgid "Views and Contacts statistic"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:5
+msgid "Edit Advertisement"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:39
+msgid "Id_User"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:40
+#: themes/default/views/oc-panel/sidebar.php:65
+#: themes/mobile/views/header.php:19
+msgid "Profile"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:61
+msgid "notpublished"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:61
+msgid "published"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:61
+msgid "spam"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:61
+msgid "unavailible"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:67
+#: themes/default/views/oc-panel/profile/edit_ad.php:69
+#: themes/default/views/pages/ad/new.php:12
+#: themes/default/views/pages/ad/new.php:14
+#: themes/mobile/views/pages/ad/new.php:12
+#: themes/mobile/views/pages/ad/new.php:14
+#: oc/vendor/POTCreator/example/view/view.tpl:5
+#: oc/classes/model/ad.php:79
+msgid "Title"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:96
+#: themes/default/views/pages/ad/new.php:55
+#: themes/default/views/pages/ad/single.php:39
+#: themes/mobile/views/pages/ad/new.php:54
+#: themes/mobile/views/pages/ad/single.php:30
+#: oc/classes/model/ad.php:81
+#: oc/classes/model/location.php:60
+#: oc/classes/model/category.php:80
+msgid "Description"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:123
+msgid "Delete image"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:135
+#: themes/default/views/pages/ad/new.php:63
+#: themes/mobile/views/pages/ad/new.php:62
+msgid "Images"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:143
+#: themes/default/views/oc-panel/profile/edit_ad.php:145
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:68
+#: themes/default/views/pages/ad/new.php:71
+#: themes/default/views/pages/ad/new.php:73
+#: themes/mobile/views/pages/ad/new.php:70
+#: themes/mobile/views/pages/ad/new.php:72
+#: oc/classes/model/ad.php:84
+msgid "Phone"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:151
+#: themes/default/views/oc-panel/profile/edit_ad.php:153
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:53
+#: themes/default/views/pages/ad/new.php:79
+#: themes/default/views/pages/ad/new.php:81
+#: themes/mobile/views/pages/ad/new.php:78
+#: themes/mobile/views/pages/ad/new.php:80
+#: oc/classes/model/ad.php:82
+msgid "Address"
+msgstr ""
+
+#: themes/default/views/oc-panel/profile/edit_ad.php:159
+#: themes/default/views/oc-panel/profile/edit_ad.php:161
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:83
+#: themes/default/views/pages/ad/new.php:98
+#: themes/default/views/pages/ad/new.php:100
+#: themes/mobile/views/pages/ad/new.php:97
+#: themes/mobile/views/pages/ad/new.php:99
+msgid "Website"
+msgstr ""
+
+#: themes/default/views/oc-panel/header.php:14
+#: themes/default/views/oc-panel/widget_login.php:12
+#: themes/default/views/widget_login.php:13
+#: themes/mobile/views/widget_login.php:13
+#: oc/classes/auth/controller.php:33
+#: oc/classes/auth/controller.php:73
+msgid "Panel"
+msgstr ""
+
+#: themes/default/views/oc-panel/header.php:22
+#: themes/default/views/oc-panel/sidebar.php:23
+#: themes/default/views/oc-panel/pages/market/index.php:4
+#: oc/classes/controller/panel/market.php:15
+#: oc/classes/controller/panel/market.php:16
+msgid "Market"
+msgstr ""
+
+#: themes/default/views/oc-panel/header.php:23
+#: themes/default/views/oc-panel/sidebar.php:8
+#: themes/default/views/oc-panel/pages/moderate.php:5
+#: themes/default/views/oc-panel/pages/settings/general.php:71
+#: oc/classes/controller/panel/ad.php:96
+#: oc/classes/controller/panel/ad.php:97
+msgid "Moderation"
+msgstr ""
+
+#: themes/default/views/oc-panel/header.php:24
+#: themes/default/views/oc-panel/sidebar.php:68
+#: oc/classes/controller/panel/profile.php:507
+#: oc/classes/controller/panel/profile.php:513
+#: oc/classes/controller/panel/stats.php:16
+#: oc/classes/controller/panel/stats.php:22
+msgid "Stats"
+msgstr ""
+
+#: themes/default/views/oc-panel/header.php:25
+#: themes/default/views/oc-panel/sidebar.php:22
+#: oc/classes/controller/panel/widget.php:18
+#: oc/classes/controller/panel/widget.php:20
+msgid "Widgets"
+msgstr ""
+
+#: themes/default/views/oc-panel/header.php:29
+#: themes/default/views/oc-panel/crud/index.php:7
+#: themes/default/views/oc-panel/crud/create.php:3
+#: themes/default/views/oc-panel/pages/index.php:7
+#: oc/classes/auth/crud.php:140
+msgid "New"
+msgstr ""
+
+#: themes/default/views/oc-panel/header.php:36
+#: themes/default/views/oc-panel/header.php:41
+msgid "Publish new"
+msgstr ""
+
+#: themes/default/views/oc-panel/home-user.php:5
+#: themes/default/views/oc-panel/home.php:3
+#: oc/classes/controller/panel/home.php:13
+msgid "Welcome"
+msgstr ""
+
+#: themes/default/views/oc-panel/home-user.php:10
+msgid "Thanks for using our website."
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:7
+#: themes/default/views/oc-panel/pages/ad.php:5
+#: oc/classes/controller/panel/ad.php:11
+#: oc/classes/controller/panel/ad.php:12
+msgid "Advertisements"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:10
+#: themes/default/views/oc-panel/pages/locations.php:4
+#: oc/modules/widgets/classes/widget/locations.php:18
+#: oc/modules/widgets/classes/widget/locations.php:25
+#: oc/classes/controller/panel/location.php:26
+#: oc/classes/controller/panel/location.php:28
+msgid "Locations"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:11
+msgid "Orders"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:14
+msgid "Content"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:15
+#: themes/default/views/oc-panel/pages/translations/edit.php:2
+#: themes/default/views/oc-panel/pages/translations/index.php:4
+#: oc/classes/controller/panel/translations.php:13
+#: oc/classes/controller/panel/translations.php:22
+msgid "Translations"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:16
+msgid "Newsletters"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:19
+#: themes/default/views/oc-panel/pages/themes/theme.php:5
+#: oc/classes/controller/panel/theme.php:14
+#: oc/classes/controller/panel/theme.php:78
+#: oc/classes/controller/panel/theme.php:79
+msgid "Themes"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:21
+#: themes/default/views/oc-panel/pages/themes/options.php:5
+#: themes/default/views/oc-panel/pages/themes/theme.php:17
+#: oc/classes/controller/panel/theme.php:44
+#: oc/classes/controller/panel/theme.php:45
+msgid "Theme Options"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:28
+#: oc/classes/controller/panel/settings.php:14
+msgid "Settings"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:30
+#: oc/classes/controller/panel/settings.php:111
+#: oc/classes/controller/panel/settings.php:112
+msgid "General"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:31
+msgid "Payment"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:33
+#: themes/mobile/views/pages/ad/advansed_search.php:10
+#: oc/classes/controller/panel/settings.php:30
+#: oc/classes/controller/panel/settings.php:31
+msgid "Advertisement"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:40
+#: themes/default/views/oc-panel/sidebar.php:42
+msgid "Users"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:43
+msgid "User Roles"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:44
+msgid "Roles access"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:51
+#: oc/classes/controller/panel/tools.php:16
+msgid "Tools"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:53
+#: oc/classes/controller/panel/tools.php:136
+#: oc/classes/controller/panel/tools.php:137
+msgid "Updates"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:54
+#: themes/default/views/oc-panel/pages/tools/sitemap.php:5
+#: oc/classes/controller/panel/tools.php:173
+#: oc/classes/controller/panel/tools.php:175
+msgid "Sitemap"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:55
+#: themes/default/views/oc-panel/pages/tools/migration.php:5
+#: oc/classes/controller/panel/tools.php:225
+msgid "Migration"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:56
+#: themes/default/views/oc-panel/pages/tools/optimize.php:7
+msgid "Optimize"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:57
+#: themes/default/views/oc-panel/pages/tools/cache.php:4
+#: oc/classes/controller/panel/tools.php:81
+#: oc/classes/controller/panel/tools.php:83
+msgid "Cache"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:58
+msgid "Logs"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:59
+#: oc/classes/controller/panel/tools.php:100
+#: oc/classes/controller/panel/tools.php:102
+msgid "PHP Info"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:66
+#: themes/default/views/oc-panel/widget_login.php:18
+#: themes/default/views/widget_login.php:19
+#: themes/mobile/views/widget_login.php:19
+#: oc/classes/controller/panel/profile.php:73
+msgid "Edit profile"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:71
+#: themes/default/views/oc-panel/widget_login.php:21
+#: themes/default/views/widget_login.php:22
+#: themes/mobile/views/widget_login.php:22
+msgid "Public profile"
+msgstr ""
+
+#: themes/default/views/oc-panel/sidebar.php:79
+#: themes/kamaleon/views/header.php:23
+#: themes/reclassifieds/views/header.php:36
+#: oc/classes/controller/panel/profile.php:9
+#: oc/classes/controller/panel/profile.php:11
+#: oc/classes/controller/panel/profile.php:286
+#: oc/classes/controller/user.php:12
+#: oc/classes/controller/contact.php:12
+#: oc/classes/controller/ad.php:11
+#: oc/classes/controller/ad.php:146
+#: oc/classes/controller/ad.php:397
+msgid "Home"
+msgstr ""
+
+#: themes/default/views/oc-panel/crud/index.php:19
+#: themes/default/views/oc-panel/pages/index.php:19
+msgid "Actions"
+msgstr ""
+
+#: themes/default/views/oc-panel/crud/index.php:37
+#: themes/default/views/oc-panel/pages/index.php:46
+#: themes/default/views/oc-panel/pages/moderate.php:45
+#: themes/default/views/oc-panel/pages/moderate.php:107
+#: themes/default/views/oc-panel/pages/ad.php:52
+#: themes/default/views/oc-panel/pages/ad.php:130
+msgid "Are you sure you want to delete?"
+msgstr ""
+
+#: themes/default/views/oc-panel/widget_login.php:26
+#: themes/default/views/widget_login.php:27
+#: themes/mobile/views/header.php:20
+#: themes/mobile/views/widget_login.php:27
+msgid "Logout"
+msgstr ""
+
+#: themes/default/views/oc-panel/widget_login.php:28
+#: themes/default/views/widget_login.php:29
+#: themes/mobile/views/widget_login.php:29
+msgid "Visit Site"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/options.php:6
+msgid "Here are listed specific theme configuration values. Replace input fileds with new desired values for theme."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/options.php:9
+#: themes/default/views/oc-panel/pages/themes/theme.php:25
+msgid "Using mobile theme"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/options.php:10
+#: themes/default/views/oc-panel/pages/themes/theme.php:26
+msgid "Disable"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/options.php:14
+#: themes/default/views/oc-panel/pages/themes/theme.php:30
+msgid "Options"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/theme.php:6
+msgid "You can change the look and feel of your web site here."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/theme.php:15
+msgid "Current Theme"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/theme.php:39
+msgid "Available Themes"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/theme.php:59
+#: themes/default/views/oc-panel/pages/themes/theme.php:98
+#: themes/default/views/oc-panel/pages/market/listing.php:48
+msgid "Preview"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/theme.php:78
+msgid "Available Mobile Themes"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/theme.php:111
+msgid "Market Themes"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/theme.php:112
+msgid "Here you can find a selection from our premium themes."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/themes/theme.php:113
+msgid "All themes include support, updates and license."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:2
+msgid "Site Usage Statistics"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:22
+#: oc/modules/widgets/classes/widget/ads.php:18
+msgid "Ads"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:36
+msgid "Sales"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:71
+msgid "Views and Ads statistics"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/stats/dashboard.php:77
+msgid "Sales statistics"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/widgets/main.php:93
+msgid "Available widgets"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/widgets/main.php:122
+msgid "You can buy extra widgets in the market"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/widgets/form_widget.php:8
+msgid "Create"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/widgets/form_widget.php:29
+msgid "Where do you want the widget displayed?"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/widgets/form_widget.php:49
+msgid "Close"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/widgets/form_widget.php:52
+msgid "Sure you want to delete the widget? You can move it to the inactive placeholder"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/widgets/form_widget.php:57
+msgid "Save changes"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/moderate.php:18
+#: themes/default/views/oc-panel/pages/ad.php:31
+#: themes/default/views/pages/ad/single.php:41
+#: themes/mobile/views/pages/ad/single.php:32
+msgid "Hits"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/moderate.php:38
+#: themes/default/views/oc-panel/pages/moderate.php:100
+msgid "Make active?"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/market/listing.php:34
+msgid "Limited Offer!"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/market/listing.php:35
+msgid "Valid Until"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/market/listing.php:40
+msgid "Buy Now"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/market/listing.php:46
+msgid "More info"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/market/index.php:5
+msgid "Selection of nice extras for your installation."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/categories.php:5
+msgid "Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/categories.php:7
+msgid "New category"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/categories.php:15
+msgid "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/locations.php:5
+msgid "Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/locations.php:7
+msgid "New location"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/locations.php:16
+msgid "Are you sure you want to delete? We will move the siblings Locations and ads to the parent of this location."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/newsletter.php:5
+#: oc/classes/controller/panel/newsletter.php:16
+#: oc/classes/controller/panel/newsletter.php:17
+msgid "Newsletter"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/newsletter.php:7
+msgid "Email Settings"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/newsletter.php:8
+msgid "You can send a mass email to all active users."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/newsletter.php:23
+msgid "From Email"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/optimize.php:5
+msgid "Optimize Data Base"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/optimize.php:10
+msgid "Data Base space"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/optimize.php:11
+msgid "Space to optimize"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/optimize.php:16
+msgid "Table"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/optimize.php:17
+msgid "Rows"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/optimize.php:18
+msgid "Size"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/optimize.php:19
+msgid "Save size"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/cache.php:5
+msgid "Cache configuration information"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/cache.php:7
+msgid "Clean"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/cache.php:12
+msgid "Config file"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/logs.php:4
+msgid "System Logs"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/logs.php:5
+msgid "Reading log file"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/logs.php:9
+msgid "Log"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/migration.php:6
+msgid "Your PHP time limit is"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/migration.php:6
+#: oc/classes/controller/panel/tools.php:298
+msgid "seconds"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/migration.php:13
+#: install/index.php:268
+msgid "Host name"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/migration.php:20
+#: install/index.php:275
+msgid "User name"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/migration.php:34
+#: install/index.php:289
+#: install/install.php:35
+msgid "Database name"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/migration.php:41
+#: install/index.php:296
+msgid "Database charset"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/migration.php:48
+#: install/index.php:303
+msgid "Table prefix"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/migration.php:58
+msgid "Migrate"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/sitemap.php:6
+msgid "Last time generated"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/sitemap.php:8
+msgid "Generate"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/sitemap.php:16
+msgid "Expire time"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/sitemap.php:23
+msgid "Update on publish"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/sitemap.php:38
+#: themes/default/views/oc-panel/pages/translations/edit.php:22
+#: themes/default/views/oc-panel/pages/translations/edit.php:56
+msgid "Save"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/versions.php:4
+msgid "Versions"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/versions.php:5
+msgid "Open Classifieds release history information."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/versions.php:6
+#: themes/default/views/oc-panel/home.php:5
+msgid "Your installation version is"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/versions.php:8
+msgid "Your Hash Key for this installation is"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/versions.php:12
+#: themes/default/views/oc-panel/home.php:7
+msgid "Check for updates"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/versions.php:18
+msgid "Version"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/versions.php:19
+msgid "Information"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/versions.php:25
+msgid "Latest"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/tools/versions.php:26
+msgid "Current"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:6
+msgid "Email Configuration"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:7
+msgid "List of general configuration values. Replace input fields with new desired values"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:8
+msgid "If you need to send many emails and you high delivery rate check"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:19
+msgid "Notify email"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:25
+msgid "Email from where we send the emails, also used for software communications."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:29
+msgid "Email From"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:34
+msgid "Smtp active"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:49
+msgid "Smtp ssl"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:64
+msgid "Smtp host"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:79
+msgid "Smtp port"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:94
+msgid "Smtp auth"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:109
+msgid "Smtp user"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/email.php:124
+msgid "Smtp password"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:6
+msgid "Advertisement Configuration"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:19
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:25
+msgid "Number of images"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:29
+msgid "Number of images displayed"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:35
+msgid "Ad expiring date"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:42
+msgid "Expire days"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:46
+msgid "How many days an Ad will expire. 0 for never."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:48
+#: themes/default/views/oc-panel/pages/settings/payment.php:114
+msgid "Days"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:59
+msgid "Address field"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:63
+msgid "Displays the field address in the Ad form."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:74
+msgid "Phone Field"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:78
+msgid "Displays the field phone in the Ad form."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:89
+msgid "Website Field"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:93
+msgid "Displays the field website in the Ad form."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:104
+msgid "Location select"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:108
+msgid "Displays the select location in the Ad form."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:119
+msgid "Price Field"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:123
+msgid "Displays the field price in the Ad form."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:128
+msgid "Upload file"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:144
+msgid "Enables Captcha"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:148
+msgid "Captcha appears in the form."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:152
+msgid "Deactivated"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:157
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:167
+msgid "Terms of Service"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:172
+#: oc/modules/widgets/classes/widget/disqus.php:18
+msgid "Disqus"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:178
+msgid "Disqus Comments"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:182
+msgid "You need to write you disqus ID to enalbe the service."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:6
+msgid "Payments Configuration"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:7
+msgid "List of payment configuration values. Replace input fields with new desired values."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:20
+msgid "Paypal account"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:26
+msgid "Paypal mail address"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:30
+msgid "The paypal email address where the payments will be sent"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:36
+msgid "Sandbox"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:51
+msgid "Paypal currency"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:57
+msgid "Currency"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:61
+msgid "Please be sure you are using a currency that paypal supports."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:66
+#: oc/modules/widgets/classes/widget/ads.php:26
 msgid "Featured Ads"
-msgstr "Anuncios destacados"
-
-#: String 371
-msgid "Number ads to display"
-msgstr "Número de anuncios para mostrar"
-
-#: String 372
-msgid "Ads title displayed"
-msgstr "Título de tu anuncio aparezca"
-
-#: String 373
-msgid "Pages"
-msgstr "Páginas"
-
-#: String 374
-msgid "Display CMS pages"
-msgstr "Mostrar las páginas CMS"
-
-#: String 375
-msgid "Page title displayed"
-msgstr "Título de la página aparece"
-
-#: String 376
-msgid "Submit"
-msgstr "Presentar"
-
-#: String 377
-msgid "Other"
-msgstr "Otro"
-
-#: String 378
-msgid "Hello world!"
-msgstr "¡Hola, mundo!"
-
-#: String 379
-msgid "Welcome!"
-msgstr "¡Bienvenido!"
-
-#: String 380
-msgid "Hello %s"
-msgstr "Hola% s"
-
-#: String 385
-msgid "Type"
-msgstr "Tipo"
-
-#: String 386
-msgid "SEO title"
-msgstr "Título de SEO"
-
-#: String 387
-msgid "Ip address"
-msgstr "Dirección IP"
-
-#: String 388
-msgid "Has images"
-msgstr "Tiene imágenes"
-
-#: String 389
-msgid "Parent"
-msgstr "Padre"
-
-#: String 390
-msgid "Parent deep"
-msgstr "Padres profunda"
-
-#: String 391
-msgid "Seoname"
-msgstr "Seoname"
-
-#: String 392
-msgid "Id"
-msgstr "Identificación"
-
-#: String 393
-msgid "Order"
-msgstr "Orden"
-
-#: String 394
-msgid "Info"
-msgstr "Info"
-
-#: String 395
-msgid "Warning"
-msgstr "Advertencia"
-
-#: String 396
-msgid "Error"
-msgstr "Error"
-
-#: String 397
-msgid "Success"
-msgstr "Éxito"
-
-#: String 398
-msgid "New profile has been created. Welcome "
-msgstr "Nuevo perfil ha sido creado. Bienvenida"
-
-#: String 399
-msgid "Something went wrong with uploading pictures, please check format"
-msgstr "Algo salió mal con la carga de imágenes, por favor compruebe formato"
-
-#: String 400
-msgid "Something went wrong with uploading pictures"
-msgstr "Algo salió mal con la carga de imágenes"
-
-#: String 401
-msgid "Advertisement is posted but first you need to activate. Please check your email!"
-msgstr "Publicidad se publica, pero primero debes activar. Por favor revise su correo electrónico!"
-
-#: String 402
-msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
-msgstr "Se recibe Publicidad, pero primero administrador debe validar. Gracias por ser paciente usted!"
-
-#: String 403
-msgid "Advertisement is posted. Congratulations!"
-msgstr "Publicidad se publica. ¡Enhorabuena!"
-
-#: String 404
-msgid "Captcha is not correct"
-msgstr "Codigo de seguridad no es correcto"
-
-#: String 405
-msgid "Latest published"
-msgstr "Últimos estudios publicados"
-
-#: String 406
-msgid "Form"
-msgstr "Forma"
-
-#: String 407
-msgid "Success, Email Configuration updated"
-msgstr "Éxito, Configuración de correo electrónico actualizado"
-
-#: String 408
-msgid "Success, General Configuration updated"
-msgstr "Éxito, Configuración general actualizado"
-
-#: String 409
-msgid "Payments"
-msgstr "Pagos"
-
-#: String 410
-msgid "Widget param missing"
-msgstr "Param Widget falta"
-
-#: String 411
-msgid "Saved"
-msgstr "Guardado"
-
-#: String 412
-msgid "Password is changed"
-msgstr "Se ha modificado la contraseña"
-
-#: String 413
-msgid "Nothing is provided"
-msgstr "Nada se proporciona"
-
-#: String 414
-msgid "Passwords do not match"
-msgstr "Las contraseñas no coinciden"
-
-#: String 415
-msgid "New password is invalid, or they do not match! Please try again."
-msgstr "Nueva contraseña no es válida, o no coinciden! Por favor, inténtelo de nuevo."
-
-#: String 416
-msgid "You have successfuly chaged your data"
-msgstr "Has chaged exitosamente sus datos"
-
-#: String 417
-msgid "My Advertisement page "
-msgstr "Mi página de Publicidad"
-
-#: String 418
-msgid "Success, advertisemet is deactivated"
-msgstr "Éxito, advertisemet se desactiva"
-
-#: String 419
-msgid "Success, advertisemet is active and published"
-msgstr "El éxito, advertisemet está activo y publicado"
-
-#: String 420
-msgid "Edit advertisement"
-msgstr "Editar anuncio"
-
-#: String 421
-msgid "Advertisement is updated!"
-msgstr "Publicidad se actualiza!"
-
-#: String 422
-msgid "Advertisement is updated"
-msgstr "Publicidad se actualiza"
-
-#: String 423
-msgid "You dont have permission to access this link"
-msgstr "Usted no tiene permiso para acceder a este enlace"
-
-#: String 424
-msgid "List"
-msgstr "Lista"
-
-#: String 425
-msgid "Language changed"
-msgstr "Idioma cambiado"
-
-#: String 426
-msgid "Edit Translation"
-msgstr "Editar Traducción"
-
-#: String 427
-msgid "Language saved"
-msgstr "Idioma guardado"
-
-#: String 431
-msgid "Success, Theme configuration updated"
-msgstr "Éxito, configuración Tema actualizado"
-
-#: String 432
-msgid "Selector"
-msgstr "Selector"
-
-#: String 433
-msgid "Success, Appearance configuration updated"
-msgstr "Éxito, configuración Apariencia actualizado"
-
-#: String 434
-msgid "Optimize DB"
-msgstr "Optimizar DB"
-
-#: String 435
-msgid "Database Optimized"
-msgstr "Base de Datos Optimizado"
-
-#: String 436
-msgid "Cache deleted"
-msgstr "Caché elimina"
-
-#: String 437
-msgid "You are not using OC latest version, please update."
-msgstr "No está utilizando OC última versión, por favor, actualice."
-
-#: String 438
-msgid "System logs"
-msgstr "Los registros del Sistema"
-
-#: String 439
-msgid "Success, Sitemap Configuration updated"
-msgstr "Éxito, Configuración del sitio actualizado"
-
-#: String 440
-msgid "Open Classifieds migration"
-msgstr "Open Classifieds migración"
-
-#: String 441
-msgid "Database cleaned"
-msgstr "Base de datos limpia"
-
-#: String 442
-msgid "Review Database connection params"
-msgstr "Revisión params conexión de base de datos"
-
-#: String 443
-msgid "Wrong email or password"
-msgstr "Correo electrónico o contraseña incorrecta"
-
-#: String 444
-msgid "Email to recover password sent"
-msgstr "Correo electrónico para recuperar la contraseña enviada"
-
-#: String 445
-msgid "User not in database"
-msgstr "El usuario no en la base de datos"
-
-#: String 446
-msgid "Email required"
-msgstr "Email requerido"
-
-#: String 447
-msgid "User already exists"
-msgstr "Usuario ya existe"
-
-#: String 448
-msgid "Register new user"
-msgstr "Registro nuevo usuario"
-
-#: String 449
-msgid "You do not have any published advertisemet"
-msgstr "Usted no tiene publicada ninguna advertisemet"
-
-#: String 450
-msgid "You do not have any not published advertisemet"
-msgstr "Usted no tiene ninguna advertisemet no publicado"
-
-#: String 451
-msgid "Warning, something went wrong while deleting"
-msgstr "Advertencia, algo salió mal durante el borrado"
-
-#: String 452
-msgid "Success, advertisemet is deleted"
-msgstr "Éxito, advertisemet se elimina"
-
-#: String 453
-msgid "Warning, advertisemet is already marked as spam"
-msgstr "Advertencia, advertisemet ya está marcado como spam"
-
-#: String 454
-msgid "Success, advertisemet is marked as spam"
-msgstr "Éxito, advertisemet está marcado como spam"
-
-#: String 455
-msgid "Success, advertisemet is featured"
-msgstr "Éxito, advertisemet aparece"
-
-#: String 456
-msgid "Success, location deleted"
-msgstr "El éxito, la ubicación eliminada"
-
-#: String 457
-msgid "Location not deleted"
-msgstr "Localización no se eliminan"
-
-#: String 458
-msgid "Success, category deleted"
-msgstr "Éxito, categoría eliminada"
-
-#: String 459
-msgid "Category not deleted"
-msgstr "Categoría no borrado"
-
-#: String 460
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:72
+msgid "Featured ads"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:76
+msgid "Featured ads will be highlighted forn an amount of days defined"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:82
+msgid "Price to Feature Ad"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:90
+#: themes/default/views/oc-panel/pages/settings/payment.php:141
+msgid "Pricing"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:94
+msgid "How much the user needs to pay to feature an Ad"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:101
+msgid "Days Featured"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:108
+msgid "Featured length"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:112
+msgid "How many days an ad will be featured after paying."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:119
+#: themes/default/views/oc-panel/pages/settings/payment.php:125
+msgid "Bring to top Ad"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:129
+msgid "Brings your Ad to the top of the listing."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:134
+msgid "To top price"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/payment.php:145
+msgid "How much the user needs to pay to top up an Ad"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:6
+msgid "General Configuration"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:8
+msgid "General site settings."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:9
+msgid "All configurations"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:25
+#: themes/default/views/oc-panel/pages/settings/general.php:35
+msgid "Maintenance Mode"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:31
+msgid "Enables the site to maintenance"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:41
+msgid "Site name"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:47
+msgid "Here you can declare your display name. This is seen by everyone!"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:51
+#: install/index.php:209
+#: install/index.php:211
+msgid "Site Name"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:56
+msgid "Base URL"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:62
+msgid "Is a base path of your site (e.g. http://open-classifieds.com/ ). Everything else is built based on this filed."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:66
+msgid "Base URL path"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:81
+msgid "Moderation controls"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:86
+msgid "Global currency"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:92
+msgid "Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:96
+msgid "Country specific currency"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:101
+msgid "Advertisements per page"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:107
+msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:111
+msgid "Number of ads per page"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:116
+msgid "Advertisements in RSS"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:122
+#: themes/default/views/oc-panel/pages/settings/general.php:137
+msgid "Number of Ads"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:126
+msgid "How many ads are going to appear in the RSS of your site."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:131
+msgid "Advertisements in Map"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:141
+msgid "How many ads are going to appear in the map of your site."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:146
+msgid "Number format"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:152
+msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:156
+msgid "Decimal representation"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:161
+#: themes/default/views/oc-panel/pages/settings/general.php:171
+msgid "Date format"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:167
+msgid "Each advertisement have publish date. By selecting format, you can change how is shown on your website."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:176
+#: themes/default/views/oc-panel/pages/settings/general.php:186
+msgid "Analytics"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:191
+#: themes/default/views/oc-panel/pages/settings/general.php:202
+msgid "Allowed image formats"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:198
+msgid "Set this up to restrict image formats that are being uploaded to your server."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:207
+msgid "Max image size"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:214
+msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:218
+msgid "Image size in mega bites(Mb)"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:225
+msgid "Image height"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:232
+msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:236
+msgid "Image height in pixels(px)"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:243
+msgid "Image width"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:250
+msgid "Each image is resized when uploaded. This is the width of big image."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:254
+msgid "Image width in pixels(px)"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:261
+msgid "Thumb height"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:268
+msgid "Thumb is a small image resized to fit certain elements. This is height of this image."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:272
+msgid "Thumb height in pixels(px)"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:279
+msgid "Thumb width"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:286
+msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:290
+msgid "Thumb width in pixels(px)"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:298
+msgid "Image quality"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:305
+msgid "Choose the quality of the stored images (1-100% of the original)."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/general.php:309
+msgid "Image Quality)"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/translations/edit.php:3
+msgid "Here you can modify any text you find in your web."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/translations/edit.php:11
+msgid "Original Translation"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/translations/edit.php:19
+msgid "Translation"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/translations/index.php:5
+msgid "Translations files available in the system."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/translations/index.php:9
+msgid "Scan"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/translations/index.php:10
+msgid "New translation"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/translations/index.php:16
+msgid "Language"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/translations/index.php:38
+msgid "Active"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/ad.php:8
+msgid "Spam Sort"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/ad.php:11
+msgid "Unavailable Sort"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/ad.php:12
+msgid " Unavailable"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/ad.php:18
+msgid "General configurations are set. Replace input fields with new desired values."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/single.php:5
+msgid "Ad Page"
+msgstr ""
+
+#: themes/default/views/oc-panel/home.php:4
+msgid "Thanks for using Open Classifieds."
+msgstr ""
+
+#: themes/default/views/oc-panel/home.php:17
+msgid "Latest News"
+msgstr ""
+
+#: themes/default/views/pages/contact.php:5
+#: themes/mobile/views/pages/contact.php:5
+#: oc/classes/controller/contact.php:9
+#: oc/classes/controller/contact.php:10
+#: oc/classes/controller/contact.php:13
 msgid "Contact Us"
-msgstr "Contáctenos"
+msgstr ""
 
-#: String 461
+#: themes/default/views/pages/userprofile.php:4
+#: themes/mobile/views/pages/userprofile.php:4
+#: oc/classes/controller/user.php:13
+msgid "User Profile"
+msgstr ""
+
+#: themes/default/views/pages/userprofile.php:10
+#: themes/mobile/views/pages/userprofile.php:11
+#: oc/classes/model/user.php:102
+#: oc/classes/model/ad.php:86
+#: oc/classes/model/category.php:76
+msgid "Created"
+msgstr ""
+
+#: themes/default/views/pages/userprofile.php:11
+#: themes/mobile/views/pages/userprofile.php:12
+msgid "Last Login"
+msgstr ""
+
+#: themes/default/views/pages/userprofile.php:15
+msgid " advertisements"
+msgstr ""
+
+#: themes/default/views/pages/userprofile.php:29
+#: themes/mobile/views/pages/userprofile.php:29
+msgid "Not yet published"
+msgstr ""
+
+#: themes/default/views/pages/auth/forgot.php:5
+#: themes/mobile/views/pages/auth/forgot.php:5
+#: oc/classes/controller/panel/auth.php:60
+msgid "Remember password"
+msgstr ""
+
+#: themes/default/views/pages/auth/login-form.php:17
+#: themes/mobile/views/pages/auth/login-form.php:18
+msgid "Forgot password?"
+msgstr ""
+
+#: themes/default/views/pages/auth/login-form.php:21
+#: themes/mobile/views/pages/auth/login-form.php:22
+msgid "Remember me"
+msgstr ""
+
+#: themes/default/views/pages/auth/register-form.php:31
+#: themes/mobile/views/pages/auth/register-form.php:31
+msgid "Type your password twice"
+msgstr ""
+
+#: themes/default/views/pages/ad/new.php:123
+#: themes/mobile/views/pages/ad/new.php:122
+msgid "Terms of service"
+msgstr ""
+
+#: themes/default/views/pages/ad/new.php:139
+msgid "User account will be created"
+msgstr ""
+
+#: themes/default/views/pages/ad/advanced_search.php:4
+#: oc/classes/controller/ad.php:393
+#: oc/classes/controller/ad.php:394
+msgid "Advanced Search"
+msgstr ""
+
+#: themes/default/views/pages/ad/advanced_search.php:10
+msgid "Advertisement Title"
+msgstr ""
+
+#: themes/default/views/pages/ad/single.php:43
+#: themes/mobile/views/pages/ad/single.php:38
+#: themes/mobile/views/pages/ad/single.php:44
+msgid "Send Message"
+msgstr ""
+
+#: themes/default/views/pages/ad/single.php:118
+msgid "Slideshow"
+msgstr ""
+
+#: themes/default/views/pages/ad/single.php:119
+msgid "Download"
+msgstr ""
+
+#: themes/kamaleon/init.php:63
+msgid "Header tool bar gets fixed in the top"
+msgstr ""
+
+#: themes/kamaleon/init.php:64
+#: themes/kamaleon/init.php:73
+msgid "Yes"
+msgstr ""
+
+#: themes/kamaleon/init.php:65
+#: themes/kamaleon/init.php:74
+msgid "No"
+msgstr ""
+
+#: themes/kamaleon/init.php:72
+msgid "Display breadcrumb"
+msgstr ""
+
+#: themes/kamaleon/init.php:81
+msgid "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
+msgstr ""
+
+#: themes/kamaleon/init.php:85
+msgid "Short description that appears after the site name."
+msgstr ""
+
+#: themes/kamaleon/init.php:90
+msgid "Numbers of ads to display in home slider"
+msgstr ""
+
+#: themes/kamaleon/init.php:96
+msgid "Where you want the sidebar to appear"
+msgstr ""
+
+#: themes/kamaleon/init.php:97
+msgid "Right side"
+msgstr ""
+
+#: themes/kamaleon/init.php:98
+msgid "Left side"
+msgstr ""
+
+#: themes/mobile/views/header.php:6
+msgid "Menu"
+msgstr ""
+
+#: themes/mobile/views/header.php:14
+#: oc/modules/widgets/classes/widget/rss.php:18
+msgid "RSS"
+msgstr ""
+
+#: themes/mobile/views/header.php:15
+msgid "Contact us"
+msgstr ""
+
+#: themes/mobile/views/header.php:16
+msgid "Advanced search"
+msgstr ""
+
+#: themes/mobile/views/header.php:18
+msgid "Public Profile"
+msgstr ""
+
+#: themes/mobile/views/pages/userprofile.php:15
+msgid "advertisements"
+msgstr ""
+
+#: themes/mobile/views/pages/ad/advansed_search.php:4
+#: oc/classes/controller/ad.php:503
+msgid "Advansed Search"
+msgstr ""
+
+#: install/index.php:96
+msgid "Requirements"
+msgstr ""
+
+#: install/index.php:145
+msgid "Congratulations"
+msgstr ""
+
+#: install/index.php:147
+msgid "Installation done"
+msgstr ""
+
+#: install/index.php:149
+msgid "Please now erase the folder"
+msgstr ""
+
+#: install/index.php:151
+msgid "Go to Your Website"
+msgstr ""
+
+#: install/index.php:156
+msgid "Make a donation"
+msgstr ""
+
+#: install/index.php:157
+msgid "We really appreciate it"
+msgstr ""
+
+#: install/index.php:165
+msgid "Welcome to"
+msgstr ""
+
+#: install/index.php:165
+msgid "installation"
+msgstr ""
+
+#: install/index.php:167
+msgid "Welcome to the super easy and fast installation"
+msgstr ""
+
+#: install/index.php:169
+msgid "If you need any help please check our professional services"
+msgstr ""
+
+#: install/index.php:180
+msgid "Site Configuration"
+msgstr ""
+
+#: install/index.php:183
+msgid "Site Language"
+msgstr ""
+
+#: install/index.php:202
+msgid "Site URL"
+msgstr ""
+
+#: install/index.php:216
+msgid "Time Zone"
+msgstr ""
+
+#: install/index.php:224
+msgid "New Install"
+msgstr ""
+
+#: install/index.php:225
+msgid "Upgrade System"
+msgstr ""
+
+#: install/index.php:232
+msgid "Administrator email"
+msgstr ""
+
+#: install/index.php:239
+msgid "Admin Password"
+msgstr ""
+
+#: install/index.php:246
+msgid "Sample data"
+msgstr ""
+
+#: install/index.php:247
+msgid "Creates few sample categories to start with"
+msgstr ""
+
+#: install/index.php:254
+msgid "Hash Key"
+msgstr ""
+
+#: install/index.php:257
+msgid "You need the Hash Key to re-install. You can find this value if you lost it at"
+msgstr ""
+
+#: install/index.php:265
+msgid "Database Configuration"
+msgstr ""
+
+#: install/index.php:306
+msgid "Allows multiple installations in one database if you give each one a unique prefix"
+msgstr ""
+
+#: install/index.php:306
+msgid "Only numbers, letters, and underscores"
+msgstr ""
+
+#: install/index.php:313
+msgid "Install"
+msgstr ""
+
+#: install/index.php:318
+msgid "Ocacu classifieds community registration"
+msgstr ""
+
+#: install/index.php:319
+msgid "Terms"
+msgstr ""
+
+#: install/install.php:24
+msgid "Cannot connect to server"
+msgstr ""
+
+#: install/install.php:41
+msgid "No database name was given"
+msgstr ""
+
+#: install/install.php:41
+msgid "Available databases"
+msgstr ""
+
+#: install/install.php:46
+msgid "Invalid query"
+msgstr ""
+
+#: oc/ko322/views/profiler/stats.php:24
+#: oc/views/profiler.php:24
+msgid "Benchmark"
+msgstr ""
+
+#: oc/ko322/views/profiler/stats.php:63
+#: oc/views/profiler.php:63
+msgid "Application Execution"
+msgstr ""
+
+#: oc/ko322/classes/kohana/i18n.php:10
+msgid "Hello, world"
+msgstr ""
+
+#: oc/views/profiler.php:120
+msgid "Environment"
+msgstr ""
+
+#: oc/views/profiler.php:123
+msgid "Included files"
+msgstr ""
+
+#: oc/views/profiler.php:134
+msgid "Loaded extensions"
+msgstr ""
+
+#: oc/config/routes.php:17
+#: oc/config/routes.php:19
+msgid "publish new"
+msgstr ""
+
+#: oc/config/routes.php:28
+msgid "search"
+msgstr ""
+
+#: oc/config/routes.php:37
+msgid "contact"
+msgstr ""
+
+#: oc/config/routes.php:45
+msgid "map"
+msgstr ""
+
+#: oc/config/routes.php:52
+msgid "maintenance"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget.php:30
+#: oc/classes/theme.php:507
+msgid "# items to display"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/rss.php:19
+msgid "RSS reader with cache"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/rss.php:23
+msgid "Number items to display"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/rss.php:30
+msgid "How often we refresh the RSS, in seconds"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/rss.php:36
+msgid "RSS url address"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/rss.php:42
+msgid "RSS title displayed"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/disqus.php:19
+msgid "Add latest comments"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/disqus.php:24
+msgid "Comments"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/disqus.php:25
+msgid "Title displayed"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/disqus.php:29
+msgid "Number comments to display"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/map.php:19
+msgid "Google Maps with ads"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/map.php:24
+msgid "Map title displayed"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/map.php:28
+msgid "Map height in pixels"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/map.php:33
+msgid "Zoom in the map"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/categories.php:19
+msgid "Display categories"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/categories.php:24
+msgid "Categories title displayed"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/locations.php:19
+msgid "Display Locations"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/locations.php:24
+msgid "Locations title displayed"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/text.php:18
+msgid "Text"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/text.php:19
+msgid "HTML textarea"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/text.php:24
+msgid "Text title displayed"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/text.php:29
+msgid "HTML/text content here"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/ads.php:19
+msgid "Ads reader"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/ads.php:23
+msgid "Type ads to display"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/ads.php:25
+msgid "Popular Ads last month"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/ads.php:33
+msgid "Number ads to display"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/ads.php:40
+msgid "Ads title displayed"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/pages.php:18
+#: oc/modules/widgets/classes/widget/pages.php:25
+msgid "Pages"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/pages.php:19
+msgid "Display CMS pages"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/pages.php:24
+msgid "Page title displayed"
+msgstr ""
+
+#: oc/modules/formmanager/classes/formmanager/core/formmanager.php:420
+msgid "Submit"
+msgstr ""
+
+#: oc/modules/formmanager/classes/formmanager/core/formmanager.php:504
+msgid "Other"
+msgstr ""
+
+#: oc/vendor/POTCreator/example/view/view.tpl:10
+msgid "Hello world!"
+msgstr ""
+
+#: oc/vendor/POTCreator/example/view/view.tpl:10
+#: oc/vendor/POTCreator/example/controller/controller.php:5
+#: oc/classes/controller/panel/auth.php:177
+msgid "Welcome!"
+msgstr ""
+
+#: oc/vendor/POTCreator/example/controller/controller.php:4
+msgid "Hello %s"
+msgstr ""
+
+#: oc/classes/model/user.php:100
+msgid "Role"
+msgstr ""
+
+#: oc/classes/model/user.php:103
+msgid "Last modified"
+msgstr ""
+
+#: oc/classes/model/user.php:104
+msgid "Last login"
+msgstr ""
+
+#: oc/classes/model/ad.php:75
+msgid "User"
+msgstr ""
+
+#: oc/classes/model/ad.php:78
+msgid "Type"
+msgstr ""
+
+#: oc/classes/model/ad.php:80
+msgid "SEO title"
+msgstr ""
+
+#: oc/classes/model/ad.php:85
+msgid "Ip address"
+msgstr ""
+
+#: oc/classes/model/ad.php:89
+msgid "Has images"
+msgstr ""
+
+#: oc/classes/model/location.php:57
+#: oc/classes/model/category.php:77
+msgid "Parent"
+msgstr ""
+
+#: oc/classes/model/location.php:58
+#: oc/classes/model/category.php:78
+msgid "Parent deep"
+msgstr ""
+
+#: oc/classes/model/location.php:59
+#: oc/classes/model/category.php:79
+msgid "Seoname"
+msgstr ""
+
+#: oc/classes/model/category.php:73
+msgid "Id"
+msgstr ""
+
+#: oc/classes/model/category.php:75
+msgid "Order"
+msgstr ""
+
+#: oc/classes/alert.php:137
+msgid "Info"
+msgstr ""
+
+#: oc/classes/alert.php:140
+msgid "Warning"
+msgstr ""
+
+#: oc/classes/alert.php:143
+#: oc/classes/controller/panel/location.php:83
+#: oc/classes/controller/panel/category.php:82
+msgid "Error"
+msgstr ""
+
+#: oc/classes/alert.php:146
+msgid "Success"
+msgstr ""
+
+#: oc/classes/controller/new.php:168
+msgid "New profile has been created. Welcome "
+msgstr ""
+
+#: oc/classes/controller/new.php:284
+msgid "Something went wrong with uploading pictures, please check format"
+msgstr ""
+
+#: oc/classes/controller/new.php:292
+msgid "Something went wrong with uploading pictures"
+msgstr ""
+
+#: oc/classes/controller/new.php:312
+msgid "Advertisement is posted but first you need to activate. Please check your email!"
+msgstr ""
+
+#: oc/classes/controller/new.php:317
+msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
+msgstr ""
+
+#: oc/classes/controller/new.php:322
+msgid "Advertisement is posted. Congratulations!"
+msgstr ""
+
+#: oc/classes/controller/new.php:328
+msgid "Captcha is not correct"
+msgstr ""
+
+#: oc/classes/controller/maintenance.php:11
+msgid "We are working in our site, please visit later. Thanks"
+msgstr ""
+
+#: oc/classes/controller/feed.php:12
+msgid "Latest published"
+msgstr ""
+
+#: oc/classes/controller/panel/settings.php:94
+msgid "Success, Email Configuration updated"
+msgstr ""
+
+#: oc/classes/controller/panel/settings.php:167
+#: oc/classes/controller/panel/settings.php:218
+msgid "General Configuration updated"
+msgstr ""
+
+#: oc/classes/controller/panel/settings.php:184
+#: oc/classes/controller/panel/settings.php:185
+msgid "Payments"
+msgstr ""
+
+#: oc/classes/controller/panel/widget.php:112
+msgid "Widget param missing"
+msgstr ""
+
+#: oc/classes/controller/panel/widget.php:160
+#: oc/classes/controller/panel/location.php:80
+#: oc/classes/controller/panel/category.php:79
+msgid "Saved"
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:54
+msgid "Password is changed"
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:58
+msgid "Nothing is provided"
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:63
+#: oc/classes/controller/panel/auth.php:186
+msgid "Passwords do not match"
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:99
+msgid "New password is invalid, or they do not match! Please try again."
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:106
+msgid "You have successfuly chaged your data"
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:144
+msgid "My Advertisement page "
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:210
+#: oc/classes/controller/panel/ad.php:314
+msgid "Success, advertisemet is deactivated"
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:272
+#: oc/classes/controller/panel/ad.php:370
+msgid "Success, advertisemet is active and published"
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:284
+#: oc/classes/controller/panel/profile.php:285
+msgid "Edit advertisement"
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:429
+#: oc/classes/controller/panel/profile.php:432
+#: oc/classes/controller/panel/profile.php:457
+#: oc/classes/controller/panel/profile.php:460
+msgid "Advertisement is updated!"
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:484
+msgid "Advertisement is updated"
+msgstr ""
+
+#: oc/classes/controller/panel/profile.php:499
+#: oc/classes/controller/panel/ad.php:216
+msgid "You dont have permission to access this link"
+msgstr ""
+
+#: oc/classes/controller/panel/translations.php:21
+msgid "List"
+msgstr ""
+
+#: oc/classes/controller/panel/translations.php:52
+msgid "Language changed"
+msgstr ""
+
+#: oc/classes/controller/panel/translations.php:79
+#: oc/classes/controller/panel/translations.php:80
+msgid "Edit Translation"
+msgstr ""
+
+#: oc/classes/controller/panel/translations.php:130
+msgid "Language saved"
+msgstr ""
+
+#: oc/classes/controller/panel/newsletter.php:34
+msgid "Error on mail delivery, not sent"
+msgstr ""
+
+#: oc/classes/controller/panel/newsletter.php:36
+msgid "Email sent to all the users"
+msgstr ""
+
+#: oc/classes/controller/panel/newsletter.php:40
+msgid "Mail not sent"
+msgstr ""
+
+#: oc/classes/controller/panel/theme.php:62
+msgid "Success, Theme configuration updated"
+msgstr ""
+
+#: oc/classes/controller/panel/theme.php:102
+msgid "Success, Appearance configuration updated"
+msgstr ""
+
+#: oc/classes/controller/panel/theme.php:125
+msgid "Success, Mobile Theme updated"
+msgstr ""
+
+#: oc/classes/controller/panel/tools.php:29
+#: oc/classes/controller/panel/tools.php:31
+msgid "Optimize DB"
+msgstr ""
+
+#: oc/classes/controller/panel/tools.php:46
+msgid "Database Optimized"
+msgstr ""
+
+#: oc/classes/controller/panel/tools.php:91
+msgid "Cache deleted"
+msgstr ""
+
+#: oc/classes/controller/panel/tools.php:141
+msgid "You are not using OC latest version, please update."
+msgstr ""
+
+#: oc/classes/controller/panel/tools.php:151
+#: oc/classes/controller/panel/tools.php:153
+msgid "System logs"
+msgstr ""
+
+#: oc/classes/controller/panel/tools.php:200
+msgid "Success, Sitemap Configuration updated"
+msgstr ""
+
+#: oc/classes/controller/panel/tools.php:224
+msgid "Open Classifieds migration"
+msgstr ""
+
+#: oc/classes/controller/panel/tools.php:232
+msgid "Database cleaned"
+msgstr ""
+
+#: oc/classes/controller/panel/tools.php:268
+msgid "Review Database connection params"
+msgstr ""
+
+#: oc/classes/controller/panel/auth.php:32
+msgid "Wrong email or password"
+msgstr ""
+
+#: oc/classes/controller/panel/auth.php:93
+msgid "Email to recover password sent"
+msgstr ""
+
+#: oc/classes/controller/panel/auth.php:100
+msgid "User not in database"
+msgstr ""
+
+#: oc/classes/controller/panel/auth.php:106
+#: oc/classes/controller/panel/auth.php:191
+msgid "Email required"
+msgstr ""
+
+#: oc/classes/controller/panel/auth.php:145
+msgid "User already exists"
+msgstr ""
+
+#: oc/classes/controller/panel/auth.php:197
+msgid "Register new user"
+msgstr ""
+
+#: oc/classes/controller/panel/ad.php:84
+msgid "You do not have any published advertisemet"
+msgstr ""
+
+#: oc/classes/controller/panel/ad.php:156
+msgid "You do not have any advertisements waiting to be published"
+msgstr ""
+
+#: oc/classes/controller/panel/ad.php:204
+msgid "Warning, something went wrong while deleting"
+msgstr ""
+
+#: oc/classes/controller/panel/ad.php:211
+msgid "Success, advertisemet is deleted"
+msgstr ""
+
+#: oc/classes/controller/panel/ad.php:253
+msgid "Warning, advertisemet is already marked as spam"
+msgstr ""
+
+#: oc/classes/controller/panel/ad.php:264
+msgid "Success, advertisemet is marked as spam"
+msgstr ""
+
+#: oc/classes/controller/panel/ad.php:418
+msgid "Success, advertisemet is featured"
+msgstr ""
+
+#: oc/classes/controller/panel/location.php:116
+msgid "Success, location deleted"
+msgstr ""
+
+#: oc/classes/controller/panel/location.php:125
+msgid "Location not deleted"
+msgstr ""
+
+#: oc/classes/controller/panel/category.php:117
+msgid "Success, category deleted"
+msgstr ""
+
+#: oc/classes/controller/panel/category.php:126
+msgid "Category not deleted"
+msgstr ""
+
+#: oc/classes/controller/contact.php:29
+#: oc/classes/controller/contact.php:57
 msgid "Success, your message is sent"
-msgstr "Éxito, se envía el mensaje"
+msgstr ""
 
-#: String 462
+#: oc/classes/controller/contact.php:33
 msgid "Check the form for errors"
-msgstr "Revise la forma de los errores"
+msgstr ""
 
-#: String 463
+#: oc/classes/controller/contact.php:80
 msgid "You made some mistake"
-msgstr "Usted ha hecho un error"
+msgstr ""
 
-#: String 464
+#: oc/classes/controller/payment/paypal.php:119
 msgid "Advertisement to top"
-msgstr "Publicidad al inicio"
+msgstr ""
 
-#: String 465
+#: oc/classes/controller/payment/paypal.php:121
 msgid "Advertisement to featured"
-msgstr "Publicidad de las funciones"
+msgstr ""
 
-#: String 466
+#: oc/classes/controller/payment/paypal.php:123
 msgid " category"
-msgstr "categoría"
+msgstr ""
 
-#: String 467
+#: oc/classes/controller/payment/paypal.php:142
 msgid "Order could not be loaded"
-msgstr "El pedido no se pudo cargar"
+msgstr ""
 
-#: String 468
+#: oc/classes/controller/ad.php:100
+#: oc/classes/controller/ad.php:472
 msgid "Page "
-msgstr "Página"
+msgstr ""
 
-#: String 469
+#: oc/classes/controller/ad.php:379
 msgid "Your advertisement is successfully activated! Thank you!"
-msgstr "Su anuncio se activa correctamente! ¡Gracias!"
+msgstr ""
 
-#: String 470
-msgid "We did not find any advertisement for a desired search."
-msgstr "No hemos encontrado ningún anuncio para una búsqueda deseado."
+#: oc/classes/controller/ad.php:486
+msgid "We did not find any advertisement for your search."
+msgstr ""
 
-#: String 471
+#: oc/classes/sitemap.php:135
 msgid "No sitemap generated"
-msgstr "No hay mapa generados"
+msgstr ""
 
-#: String 472
+#: oc/classes/controller.php:132
+msgid "You are in maintenance mode, only you can see the website"
+msgstr ""
+
+#: oc/classes/auth/crud.php:149
 msgid "Success, item created"
-msgstr "Éxito, artículo creado"
+msgstr ""
 
-#: String 473
+#: oc/classes/auth/crud.php:154
+#: oc/classes/auth/crud.php:181
 msgid "Check form for errors"
-msgstr "Compruebe si hay errores de forma"
+msgstr ""
 
-#: String 474
+#: oc/classes/auth/crud.php:176
 msgid "Success, item updated"
-msgstr "Éxito, elemento actualizado"
+msgstr ""
 
-#: String 475
+#: oc/classes/auth/crud.php:231
 msgid "Access not allowed"
-msgstr "El acceso no permitido"
+msgstr ""
 
-#: String 476
+#: oc/classes/form.php:111
 msgid "Some errors in the form"
-msgstr "Algunos errores en el formulario"
-
+msgstr ""

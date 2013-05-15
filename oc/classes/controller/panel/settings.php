@@ -164,7 +164,7 @@ class Controller_Panel_Settings extends Auth_Controller {
 
             
             // Cache::instance()->delete_all();
-            Alert::set(Alert::SUCCESS, __('Success, General Configuration updated'));
+            Alert::set(Alert::SUCCESS, __('General Configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'general')));
         }
 
@@ -215,7 +215,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                 }
             }
             
-            Alert::set(Alert::SUCCESS, __('Success, General Configuration updated'));
+            Alert::set(Alert::SUCCESS, __('General Configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
         }
 

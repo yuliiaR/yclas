@@ -22,11 +22,11 @@
 						'placeholder' => "youremail@mail.com", 
 						'class' => 'tips', 
 						'id' => $forms['notify_email']['key'], 
-						'data-content'=> __("Thumb wid"),
+						'data-content'=> __("Email from where we send the emails, also used for software communications."),
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Thumb wid"),
+						'data-original-title'=>__("Email From"),
 						))?> 
 					</div>
 				</div>
@@ -37,11 +37,11 @@
 						'placeholder' => "TRUE or FALSE", 
 						'class' => 'tips', 
 						'id' => $forms['smtp_active']['key'], 
-						'data-content'=> __("Thumb wid"),
+						'data-content'=> '',
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Thumb wid"),
+						'data-original-title'=>'',
 						))?> 
 					</div>
 				</div>
@@ -52,11 +52,11 @@
                         'placeholder' => "TRUE or FALSE", 
                         'class' => 'tips', 
                         'id' => $forms['smtp_ssl']['key'], 
-						'data-content'=> __("Thumb wid"),
+						'data-content'=> '',
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Thumb wid"),                     
+						'data-original-title'=>'',                     
 						))?> 
                     </div>
                 </div>
@@ -67,11 +67,11 @@
 						'placeholder' => '', 
 						'class' => 'tips', 
 						'id' => $forms['smtp_host']['key'], 
-						'data-content'=> __("Thumb wid"),
+						'data-content'=> '',
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Thumb wid"),				
+						'data-original-title'=>'',				
 						))?> 
 					</div>
 				</div>
@@ -82,11 +82,11 @@
 						'placeholder' => "", 
 						'class' => 'tips', 
 						'id' => $forms['smtp_port']['key'], 
-						'data-content'=> __("Thumb wid"),
+						'data-content'=> '',
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Thumb wid"),			
+						'data-original-title'=>'',			
 						))?> 
 					</div>
 				</div>
@@ -97,11 +97,11 @@
 							'placeholder' => "", 
 							'class' => 'tips', 
 							'id' => $forms['smtp_auth']['key'], 
-							'data-content'=> __("Thumb wid"),
+							'data-content'=> '',
 							'data-trigger'=>"hover",
 							'data-placement'=>"right",
 							'data-toggle'=>"popover",
-							'data-original-title'=>__("Thumb wid"),					
+							'data-original-title'=>'',					
 							))?> 
 						</div>
 				</div>
@@ -112,11 +112,11 @@
 						'placeholder' => "", 
 						'class' => 'tips', 
 						'id' => $forms['smtp_user']['key'], 
-						'data-content'=> __("Thumb wid"),
+						'data-content'=> '',
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Thumb wid"),				
+						'data-original-title'=>'',				
 						))?> 
 					</div>
 				</div>
@@ -128,11 +128,11 @@
 						'type' => "password", 
 						'class' => 'tips', 
 						'id' => $forms['smtp_pass']['key'], 
-						'data-content'=> __("Thumb wid"),
+						'data-content'=> '',
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Thumb wid"),				
+						'data-original-title'=>'',				
 						))?> 
 					</div>
 				</div>
