@@ -6,7 +6,7 @@
 	<h1><?=__('General Configuration')?></h1>
     <p class="">
         <?=__('General site settings.')?>
-        <a class="btn pull-right" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>"><?=__('All configs')?></a>
+        <a class="btn pull-right" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>"><?=__('All configurations')?></a>
 
     </p>
 </div>
@@ -119,11 +119,11 @@
                'placeholder' => "20", 
                'class' => 'tips', 
                'id' => $forms['feed_elements']['key'], 
-               'data-content'=> __("Thumb wid"),
+               'data-content'=> __("Number of Ads"),
                'data-trigger'=>"hover",
                'data-placement'=>"right",
                'data-toggle'=>"popover",
-               'data-original-title'=>__("Thumb wid"),
+               'data-original-title'=>__("How many ads are going to appear in the RSS of your site."),
                ))?> 
            </div>
        </div>
@@ -134,11 +134,11 @@
                'placeholder' => "20", 
                'class' => 'tips', 
                'id' => $forms['map_elements']['key'], 
-               'data-content'=> __("Thumb wid"),
+               'data-content'=> __("Number of Ads"),
                'data-trigger'=>"hover",
                'data-placement'=>"right",
                'data-toggle'=>"popover",
-               'data-original-title'=>__("Thumb wid"),
+               'data-original-title'=>__("How many ads are going to appear in the map of your site."),
                ))?> 
            </div>
        </div>
@@ -299,10 +299,10 @@
             <div class="controls">
                 <div class="input-append">
                     <?= FORM::input($forms_img['quality']['key'], $forms_img['quality']['value'], array(
-                    'placeholder' => "200", 
+                    'placeholder' => "95", 
                     'class' => 'tips', 
                     'id' => $forms_img['quality']['key'],
-                    'data-content'=> __("Choose the quality of images when stored 1-100."),
+                    'data-content'=> __("Choose the quality of the stored images (1-100% of the original)."),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",

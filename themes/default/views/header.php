@@ -25,7 +25,7 @@
 									<ul class="dropdown-menu">							
 								 	<?foreach($cats as $chi):?>
 	                            	<?if($chi['id_category_parent'] == $c['id_category']):?>
-	                           			<li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><span class="header_cat_list"><?=$chi['name']?></span> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
+	                           			<li class="span4"><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><span class="header_cat_list"><?=$chi['name']?></span> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
 	                           		<?endif?>
 	                         		<?endforeach?>
 									</ul>
@@ -35,7 +35,7 @@
 		              </ul>
 		            </li>
                     <?nav_link('','ad', 'icon-search ', 'advanced_search', 'search')?>
-                    <?nav_link('','map', 'icon-globe ')?>
+                    <?nav_link('','map', 'icon-globe ', 'index', 'map')?>
                     <?nav_link('','contact', 'icon-envelope ', 'index', 'contact')?>
                     <?nav_link('','rss', 'icon-signal ', 'index', 'rss')?>
 		        </ul>

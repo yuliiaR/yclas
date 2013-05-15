@@ -334,7 +334,7 @@ class Controller_Ad extends Controller {
 		if(core::config('payment.pay_to_go_on_feature') == FALSE)
 		{
 			$ad->status = 1;
-			$ad->featured = Date::unix2mysql(time() + (core::config('advertisement.featured_timer') * 24 * 60 * 60));
+			$ad->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
 
 			try {
 				$ad->save();
