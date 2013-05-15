@@ -90,7 +90,6 @@ class Controller_New extends Controller
  	{
  		
 		$new_ad = new Model_Ad();
-		
 
 		//$_POST is submitted for a new ad 
 		if($this->request->post()) 
@@ -263,6 +262,7 @@ class Controller_New extends Controller
 				$error_message = NULL;
 	    		$filename = NULL;
 	    		$counter = 0;
+
 	    		for ($i=0; $i < core::config("advertisement.num_images"); $i++) { 
 	    			$counter++;
 

@@ -489,8 +489,8 @@ class Controller_Ad extends Controller {
 
 			$this->template->bind('content', $content);
 			$this->template->content = View::factory('pages/ad/listing', array('ads'		=>$ads, 
-																			   'cat'		=>$cat,
-																			   'loc'		=>$loc, 
+																			   'category'		=>$cat,
+																			   'location'		=>$loc, 
 																			   'pagination'	=>$pagination, 
 																			   'user'		=>$user));
         }
