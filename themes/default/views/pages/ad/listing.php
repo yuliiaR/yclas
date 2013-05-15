@@ -2,9 +2,11 @@
 	 
 
 	<div class="well advise clearfix" id="advise">
+
 		<?if ($category!==NULL):?>
             <p><?=$category->description?></p> 
         <?endif?>
+
 		<i class="icon-pencil"></i> <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>"><?=__('Publish new advertisement')?></a>
 
 	</div><!--end of advise-->

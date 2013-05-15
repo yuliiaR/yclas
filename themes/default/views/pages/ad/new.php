@@ -62,7 +62,7 @@
 					<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?> 
 						<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'.$i))?>
 						<div class="controls">
-							<input class="input-file" type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" />
+							<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" />
 						</div>
 					<?endfor?>
 				</div>
