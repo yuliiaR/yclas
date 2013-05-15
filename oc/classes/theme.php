@@ -36,45 +36,59 @@ class Theme {
     
         if (isset($scripts[$type])===TRUE)
         {
-            $files = array();
 
-            foreach($scripts[$type] as $file)
+            if (Kohana::$environment == Kohana::DEVELOPMENT)
             {
-                //not external file we need the public link
-                if (!Valid::url($file))
+                foreach($scripts[$type] as $file)
                 {
-                    $files[] = $file;
+                    $file = self::public_path($file, $theme);
+                    $ret .= HTML::script($file, NULL, TRUE);
                 }
-                //externals do nothing...
-                else
-                    $ret .= HTML::script($file, NULL, TRUE); 
-                
             }
-
-            //name for the minify js file
-            $js_minified_name = URL::title(str_replace('js', '', implode('-',$files)) ).'.js';
-
-            //check if file exists.
-            $file_name = self::theme_folder($theme).'/js/'.$js_minified_name;
-
-            if (!file_exists($file_name))
+            //only minify in production or stagging
+            else
             {
-                $min = '';
-                require_once Kohana::find_file('vendor', 'minify/jsmin','php');
-                //getting the content form files
-                foreach ($files as $file) 
+                $files = array();
+
+                foreach($scripts[$type] as $file)
                 {
+                    //not external file we need the public link
+                    if (!Valid::url($file))
+                    {
+                        $files[] = $file;
+                    }
+                    //externals do nothing...
+                    else
+                        $ret .= HTML::script($file, NULL, TRUE); 
                     
-                    if ( ($version = strpos($file, '?'))>0 )
-                        $file = substr($file, 0, $version );
-
-                    $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
                 }
 
-                Core::fwrite($file_name,JSMin::minify($min));
-            }
+                //name for the minify js file
+                $js_minified_name = URL::title(str_replace('js', '', implode('-',$files)) ).'.js';
 
-            $ret .= HTML::script(self::public_path('js/'.$js_minified_name,$theme), NULL, TRUE);
+                //check if file exists.
+                $file_name = self::theme_folder($theme).'/js/'.$js_minified_name;
+
+                if (!file_exists($file_name))
+                {
+                    $min = '';
+                    require_once Kohana::find_file('vendor', 'minify/jsmin','php');
+                    //getting the content form files
+                    foreach ($files as $file) 
+                    {
+                        
+                        if ( ($version = strpos($file, '?'))>0 )
+                            $file = substr($file, 0, $version );
+
+                        $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
+                    }
+
+                    Core::fwrite($file_name,JSMin::minify($min));
+                }
+
+                $ret .= HTML::script(self::public_path('js/'.$js_minified_name,$theme), NULL, TRUE);
+
+            }
         }
         return $ret;
     }
@@ -92,47 +106,60 @@ class Theme {
             $theme = self::$theme;
 
         $ret = '';
-        
-        $files = array();
 
-        foreach($styles as $file => $type)
-        {            
-            //not external file we need the public link
-            if (!Valid::url($file))
-            {
-                $files[] = $file;
-            }
-            //externals do nothing...
-            else
-                $ret .= HTML::style($file, array('media' => $type));
-        }
-
-        //name for the minify js file
-        $css_minified_name = URL::title(str_replace('css', '', implode('-',$files)) ).'.css';
-
-        //check if file exists.
-        $file_name = self::theme_folder($theme).'/css/'.$css_minified_name;
-
-        if (!file_exists($file_name))
+        if (Kohana::$environment == Kohana::DEVELOPMENT)
         {
-            $min = '';
-            require_once Kohana::find_file('vendor', 'minify/css','php');
-            //getting the content from files
-            foreach ($files as $file) 
+            foreach($styles as $file => $type)
             {
-                
-                if ( ($version = strpos($file, '?'))>0 )
-                    $file = substr($file, 0, $version );
+                $file = self::public_path($file, $theme);
+                $ret .= HTML::style($file, array('media' => $type));
+            }
+        }
+        //only minify in production or stagging
+        else
+        {
+        
+            $files = array();
 
-                $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
-
+            foreach($styles as $file => $type)
+            {            
+                //not external file we need the public link
+                if (!Valid::url($file))
+                {
+                    $files[] = $file;
+                }
+                //externals do nothing...
+                else
+                    $ret .= HTML::style($file, array('media' => $type));
             }
 
-            Core::fwrite($file_name,Minify_CSS_Compressor::process($min));
+            //name for the minify js file
+            $css_minified_name = URL::title(str_replace('css', '', implode('-',$files)) ).'.css';
+
+            //check if file exists.
+            $file_name = self::theme_folder($theme).'/css/'.$css_minified_name;
+
+            if (!file_exists($file_name))
+            {
+                $min = '';
+                require_once Kohana::find_file('vendor', 'minify/css','php');
+                //getting the content from files
+                foreach ($files as $file) 
+                {
+                    
+                    if ( ($version = strpos($file, '?'))>0 )
+                        $file = substr($file, 0, $version );
+
+                    $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
+
+                }
+
+                Core::fwrite($file_name,Minify_CSS_Compressor::process($min));
+            }
+
+            $ret .= HTML::style(self::public_path('css/'.$css_minified_name,$theme), array('media' => 'screen'));
         }
 
-        $ret .= HTML::style(self::public_path('css/'.$css_minified_name,$theme), array('media' => 'screen'));
-        
         return $ret;
     }
 
