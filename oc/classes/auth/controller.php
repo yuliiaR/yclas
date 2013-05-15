@@ -42,7 +42,8 @@ class Auth_Controller extends Controller
 				$this->request->redirect($url);
 			}
 
-            Theme::initialize(Core::config('appearance.theme'));
+            if (Theme::$theme != Core::config('appearance.theme')) 
+                Theme::initialize(Core::config('appearance.theme'));
 
 		}
 
