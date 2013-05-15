@@ -18,7 +18,7 @@ class Controller_Home extends Controller {
         $ads = new Model_Ad();
         $display_ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
                         ->order_by('published','desc')
-                        ->limit(Theme::get('num_home_latest_ads',4))
+                        ->limit(Theme::get('num_home_latest_ads', 4))
                         ->cached()->find_all();
         
 
