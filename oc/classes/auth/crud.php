@@ -151,7 +151,7 @@ class Auth_Crud extends Auth_Controller
 			}
 			else 
 			{
-				Alert::set(Alert::ERROR, __('Check for form errors'));
+				Alert::set(Alert::ERROR, __('Check form for errors'));
 			}
 		}
 	
@@ -178,7 +178,7 @@ class Auth_Crud extends Auth_Controller
 			}
 			else
 			{
-				Alert::set(Alert::ERROR, __('Check for form errors'));
+				Alert::set(Alert::ERROR, __('Check form for errors'));
 			}
 		}
 	

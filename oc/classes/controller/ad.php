@@ -390,8 +390,8 @@ class Controller_Ad extends Controller {
 	public function action_advanced_search()
 	{
 		//template header
-		$this->template->title           	= __('Advansed Search');
-		$this->template->meta_description	= __('Advansed Search');
+		$this->template->title           	= __('Advanced Search');
+		$this->template->meta_description	= __('Advanced Search');
 
 		//breadcrumbs
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
@@ -400,16 +400,13 @@ class Controller_Ad extends Controller {
 		$cat_obj = new Model_Category();
 		$loc_obj = new Model_Location();
 
-		// filter home categ and location
-		$cat = $cat_obj->where('id_category','!=',1)->order_by('order','asc')->cached()->find_all();
-		$loc = $loc_obj->where('id_location','!=',1)->order_by('order','asc')->cached()->find_all();
 
 		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user();
 
 		if($this->request->query()) // after query has detected
 		{			
         	// variables 
-        	$search_advert 	= $this->request->query('advert');
+        	$search_advert 	= $this->request->query('title');
         	$search_cat 	= $this->request->query('category');
         	$search_loc 	= $this->request->query('location');
         	
@@ -481,16 +478,23 @@ class Controller_Ad extends Controller {
 			}
 			else 
 			{
+                list($categories,$order_categories)  = Model_Category::get_all();
+
+                list($locations,$order_locations)  = Model_Location::get_all();
+
 				$this->template->bind('content', $content);
-				Alert::set(Alert::INFO, __('We did not find any advertisement for a desired search.'));
-				$this->template->content = View::factory('pages/ad/advansed_search', array('cat'=>$cat, 'loc'=>$loc));
+				Alert::set(Alert::INFO, __('We did not find any advertisement for your search.'));
+				$this->template->content = View::factory('pages/ad/advanced_search', array('categories'           => $categories,
+                                                                        'order_categories'  => $order_categories,
+                                                                       'locations'          => $locations,
+                                                                        'order_locations'  => $order_locations,));
 				return;
 			}	
 
 			$this->template->bind('content', $content);
 			$this->template->content = View::factory('pages/ad/listing', array('ads'		=>$ads, 
-																			   'category'		=>$cat,
-																			   'location'		=>$loc, 
+																			   'category'		=>$cat_obj,
+																			   'location'		=>$loc_obj, 
 																			   'pagination'	=>$pagination, 
 																			   'user'		=>$user));
         }
@@ -503,7 +507,16 @@ class Controller_Ad extends Controller {
         	}
         	else $unexisting_ad = NULL;
 
-        	$this->template->content = View::factory('pages/ad/advansed_search', array('unexisting_ad'=>$unexisting_ad, 'cat'=>$cat, 'loc'=>$loc));
+            //find all, for populating from select fields 
+            list($categories,$order_categories)  = Model_Category::get_all();
+
+            list($locations,$order_locations)  = Model_Location::get_all();
+
+        	$this->template->content = View::factory('pages/ad/advanced_search', array('unexisting_ad'=>$unexisting_ad, 
+                                                                        'categories'           => $categories,
+                                                                        'order_categories'  => $order_categories,
+                                                                       'locations'          => $locations,
+                                                                        'order_locations'  => $order_locations,));
         }
 
 	}

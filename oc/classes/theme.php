@@ -17,34 +17,152 @@ class Theme {
     public  static $scripts     = array();
     public  static $styles      = array();
     
-    
-    //@todo merge and minify
+
+
+    /**
+     * returns the JS scripts to include in the view with the tag
+     * @param  array $scripts 
+     * @param  string $type    placeholder
+     * @param  string $theme   
+     * @return string          HTML
+     */
     public static function scripts($scripts, $type = 'header' , $theme = NULL)
     {
-    	$ret = '';
+        
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        $ret = '';
     
-    	if (isset($scripts[$type])===TRUE)
-    	{
-    		foreach($scripts[$type] as $file)
-    		{
-    			$file = self::public_path($file, $theme);
-    			$ret .= HTML::script($file, NULL, TRUE);
-    		}
-    	}
-    	return $ret;
+        if (isset($scripts[$type])===TRUE)
+        {
+
+            if (Kohana::$environment == Kohana::DEVELOPMENT)
+            {
+                foreach($scripts[$type] as $file)
+                {
+                    $file = self::public_path($file, $theme);
+                    $ret .= HTML::script($file, NULL, TRUE);
+                }
+            }
+            //only minify in production or stagging
+            else
+            {
+                $files = array();
+
+                foreach($scripts[$type] as $file)
+                {
+                    //not external file we need the public link
+                    if (!Valid::url($file))
+                    {
+                        $files[] = $file;
+                    }
+                    //externals do nothing...
+                    else
+                        $ret .= HTML::script($file, NULL, TRUE); 
+                    
+                }
+
+                //name for the minify js file
+                $js_minified_name = URL::title(str_replace('js', '', implode('-',$files)) ).'.js';
+
+                //check if file exists.
+                $file_name = self::theme_folder($theme).'/js/'.$js_minified_name;
+
+                if (!file_exists($file_name))
+                {
+                    $min = '';
+                    require_once Kohana::find_file('vendor', 'minify/jsmin','php');
+                    //getting the content form files
+                    foreach ($files as $file) 
+                    {
+                        
+                        if ( ($version = strpos($file, '?'))>0 )
+                            $file = substr($file, 0, $version );
+
+                        $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
+                    }
+
+                    Core::fwrite($file_name,JSMin::minify($min));
+                }
+
+                $ret .= HTML::script(self::public_path('js/'.$js_minified_name,$theme), NULL, TRUE);
+
+            }
+        }
+        return $ret;
     }
+
     
-    //@todo merge and minify, vendor
+    /**
+     * merges and minifies the styles
+     * @param  array $styles 
+     * @param  string $theme  
+     * @return string         HTML
+     */
     public static function styles($styles , $theme = NULL)
     {
-    	$ret = '';
-    	foreach($styles as $file => $type)
-    	{
-    		$file = self::public_path($file, $theme);
-    		$ret .= HTML::style($file, array('media' => $type));
-    	}
-    	return $ret;
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        $ret = '';
+
+        if (Kohana::$environment == Kohana::DEVELOPMENT)
+        {
+            foreach($styles as $file => $type)
+            {
+                $file = self::public_path($file, $theme);
+                $ret .= HTML::style($file, array('media' => $type));
+            }
+        }
+        //only minify in production or stagging
+        else
+        {
+        
+            $files = array();
+
+            foreach($styles as $file => $type)
+            {            
+                //not external file we need the public link
+                if (!Valid::url($file))
+                {
+                    $files[] = $file;
+                }
+                //externals do nothing...
+                else
+                    $ret .= HTML::style($file, array('media' => $type));
+            }
+
+            //name for the minify js file
+            $css_minified_name = URL::title(str_replace('css', '', implode('-',$files)) ).'.css';
+
+            //check if file exists.
+            $file_name = self::theme_folder($theme).'/css/'.$css_minified_name;
+
+            if (!file_exists($file_name))
+            {
+                $min = '';
+                require_once Kohana::find_file('vendor', 'minify/css','php');
+                //getting the content from files
+                foreach ($files as $file) 
+                {
+                    
+                    if ( ($version = strpos($file, '?'))>0 )
+                        $file = substr($file, 0, $version );
+
+                    $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
+
+                }
+
+                Core::fwrite($file_name,Minify_CSS_Compressor::process($min));
+            }
+
+            $ret .= HTML::style(self::public_path('css/'.$css_minified_name,$theme), array('media' => 'screen'));
+        }
+
+        return $ret;
     }
+
     
     /**
      *
@@ -113,14 +231,14 @@ class Theme {
 
     /**
      * detect if visitor browser is mobile
-     * @return boolean
+     * @return boolean/theme name
      */
     public static function is_mobile()
     {
         $is_mobile = FALSE;
 
         //we check if we are forcing not to show mobile
-        if( Core::get('mobile')=='inactive')
+        if( Core::get('theme')!=Core::config('appearance.theme_mobile') AND Core::get('theme')!==NULL)
         {
             $is_mobile = FALSE;
         }
@@ -129,12 +247,8 @@ class Theme {
         {
             
             //they are forcing to show the mobile
-            if (Core::get('mobile')=='active' OR Cookie::get('mobile')=='active')
+            if (Core::get('theme')!=Core::config('appearance.theme_mobile') OR Cookie::get('theme')!=Core::config('appearance.theme_mobile'))
             {
-                //we set the theme cookie to null so this overrides
-                if (Core::get('mobile')=='active')
-                    Cookie::set('theme', NULL, Core::config('auth.lifetime'));
-
                 $is_mobile = TRUE;
             }
             //none of this scenarios try to detect if ismobile
@@ -147,61 +261,56 @@ class Theme {
             }
         }
 
-        if ($is_mobile)
-        {
-            Cookie::set('mobile','active',Core::config('auth.lifetime'));
-            $is_mobile = Core::config('appearance.theme_mobile');
-        }
-        else
-            Cookie::set('mobile','inactive', Core::config('auth.lifetime'));
 
-        return $is_mobile;
+        return ($is_mobile)?Core::config('appearance.theme_mobile'):FALSE;
     }
 
 
     /**
-     * Initialization of the theme that we want to see.
-     *
+     * initialize theme
+     * @param  string $theme forcing theme to load used in the admin
+     * @return void        
      */
-    public static function initialize()
+    public static function initialize($theme = NULL)
     {
-        $theme = NULL;
 
-        //first we check if it's a mobile device
-        if(($mobile_theme = self::is_mobile())!==FALSE)
+        //we are not forcing the view of other theme
+        if ($theme === NULL)
         {
-           $theme = $mobile_theme;
-        }
-
-        
-
-        //if we allow the user to select the theme, perfect for the demo
-        if (Core::config('appearance.allow_query_theme')=='1')
-        {
-            if (Core::get('theme')!==NULL)
+            //first we check if it's a mobile device
+            if(($mobile_theme = self::is_mobile())!==FALSE)
             {
-                $theme = Core::get('theme');
+               $theme = $mobile_theme;
             }
-            elseif (Cookie::get('theme')!==NULL)
-            {
-                $theme = Cookie::get('theme');
-            }
-        }
 
+            //if we allow the user to select the theme, perfect for the demo
+            if (Core::config('appearance.allow_query_theme')=='1')
+            {
+                if (Core::get('theme')!==NULL)
+                {
+                    $theme = Core::get('theme');
+                }
+                elseif (Cookie::get('theme')!=='')
+                {
+                    $theme = Cookie::get('theme');
+                }
+            }
+
+            //we save the cookie for next time
+            Cookie::set('theme', $theme, Core::config('auth.lifetime'));
+        }
 
         //check the theme exists..
         if (!file_exists(self::theme_init_path($theme)))
             $theme = Core::config('appearance.theme');
             
-        //we save the cookie for next time
-        Cookie::set('theme', $theme, Core::config('auth.lifetime'));
 
         //load theme init.php like in module, to load default JS and CSS for example
         self::$theme = $theme;
+
         Kohana::load(self::theme_init_path(self::$theme));
-        
+
         self::load();
-                
     }
 
 
@@ -409,65 +518,70 @@ class Theme {
      */
     public static $data = array();
 
-    /**
-     * to know if we loaded...
-     * @var bool
-     */
-    public static $loaded = FALSE;
+ 
 
     /**
      * loads the theme data from the config
+     * @param  string $theme theme to load from
      * @return void 
      */
-    public static function load()
+    public static function load($theme = NULL)
     {   
-        if (!self::$loaded)
-        {
-            //search for theme config
-            $theme_data = core::config('theme.'.self::$theme);
+        self::$data = array();
 
-            //found and with data!
-            if($theme_data!==NULL AND !empty($theme_data) AND $theme_data !== '[]')
-            { 
-                self::$data = json_decode($theme_data, TRUE);
-            }
-            ///save empty with default values
-            else
-            {
-                //we set the array with empty values or the default in the option attributes
-                foreach (self::$options as $field => $attributes) 
-                {
-                    self::$data[$field] = (isset($attributes['default']))?$attributes['default']:'';
-                }
-                self::save();
-            }
-            self::$loaded = TRUE;
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        //search for theme config
+        $theme_data = core::config('theme.'.$theme);
+
+        //found and with data!
+        if($theme_data!==NULL AND !empty($theme_data) AND $theme_data !== '[]')
+        { 
+            self::$data = json_decode($theme_data, TRUE);
         }
-        
+        ///save empty with default values
+        else
+        {
+            //we set the array with empty values or the default in the option attributes
+            foreach (self::$options as $field => $attributes) 
+            {
+                self::$data[$field] = (isset($attributes['default']))?$attributes['default']:'';
+            }
+            self::save($theme);
+        }
 
     }
 
 
     /**
      * saves thme options as json 'theme.NAMETHEME' = array json
+     * @param  string $theme theme to save at
+     * @param  array $data to save
      * @return void 
      */
-    public static function save()
-    {
+    public static function save($theme = NULL, $data = NULL)
+    {   
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        if ($data === NULL)
+            $data = self::$data;
+
 
         // save theme to DB
         $conf = new Model_Config();
         $conf->where('group_name','=','theme')
-                    ->where('config_key','=',self::$theme)
+                    ->where('config_key','=',$theme)
                     ->limit(1)->find();
 
         if (!$conf->loaded())
         {
             $conf->group_name = 'theme';
-            $conf->config_key = self::$theme;
+            $conf->config_key = $theme;
         }
         
-        $conf->config_value = json_encode(self::$data);
+        $conf->config_value = json_encode($data);
 
         try 
         {
@@ -497,6 +611,23 @@ class Theme {
     public static function get($name, $default = NULL)
     {
         return (array_key_exists($name, self::$data)) ? self::$data[$name] : $default;
+    }
+
+    /**
+     * gets the options array from and external file options.php
+     * @param  string $theme theme to load from
+     * @return array        
+     */
+    public static function get_options($theme = NULL)
+    {
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        $options = self::theme_folder($theme).DIRECTORY_SEPARATOR.'options.php';
+        if (file_exists($options))
+            return Kohana::load($options);
+        else 
+            return array();
     }
 
 

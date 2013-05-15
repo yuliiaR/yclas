@@ -5,7 +5,7 @@
 	<h1><?=__('Newsletter')?></h1>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'email'))?>?force=1">
   <?=__('Email Settings')?></a>
-<p><?=__('You can send a mass email to all your users that are active.')?> <span class="badge badge-info"><?=$count?></span></p>
+<p><?=__('You can send a mass email to all active users.')?> <span class="badge badge-info"><?=$count?></span></p>
     </div>
 
     <form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'newsletter','action'=>'index'))?>">         

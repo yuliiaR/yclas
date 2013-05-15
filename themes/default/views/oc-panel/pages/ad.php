@@ -15,7 +15,7 @@
 
 <div id="advise" class="well advise clearfix">
 	<p class="text-info">
-        <?=__('General coonfigurations are here. Replace input fileds with new desired values')?>.
+        <?=__('General configurations are set. Replace input fields with new desired values.')?>.
     </p>
 </div>
 <table class="table table-bordered">

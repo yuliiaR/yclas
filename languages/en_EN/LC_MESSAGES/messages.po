@@ -1883,8 +1883,8 @@ msgid "Success, item created"
 msgstr "Success, item created"
 
 #: String 472
-msgid "Check for form errors"
-msgstr "Check for form errors"
+msgid "Check form for errors"
+msgstr "Check form for errors"
 
 #: String 473
 msgid "Success, item updated"

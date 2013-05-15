@@ -2,7 +2,7 @@
 
 <div class="page-header">
     <h1><?=__('Locations')?></h1>
-    <p><?=__('Change the order of your locations, we don´t reccommend more than 2 level nested since probably won´t be displayed int he theme')?></p>
+    <p><?=__("Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")?></p>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?>">
   <?=__('New location')?></a>
 </div>

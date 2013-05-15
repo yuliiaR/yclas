@@ -4,7 +4,7 @@
 		<ul class="nav nav-list">
                 <li class="divider"></li>
 				
-                <?Theme::admin_link(__('Advertisement'),'ad','index','oc-panel','icon-th-large')?>
+                <?Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','icon-th-large')?>
 				<?Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','icon-ban-circle')?>
 				<?Theme::admin_link(__('Categories'),'category','index','oc-panel','icon-tags')?>
 				<?Theme::admin_link(__('Locations'),'location','index','oc-panel','icon-map-marker')?>
@@ -18,7 +18,7 @@
 
                 <?Theme::admin_link(__('Themes'), 'theme','index','oc-panel','icon-picture')?>
                 <?if (Theme::has_options()) 
-                        Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel','icon-leaf')?>     
+                        Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel','icon-wrench')?>     
                 <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','icon-move')?>       
                 <?Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift')?>
                 <? if($user->id_role==10):?><li class="divider"></li><?endif?>

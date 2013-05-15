@@ -2,12 +2,24 @@
 
 <?=Form::errors()?>
 <div class="page-header">
-	<h1><?=__('Theme Options')?></h1>
-    <p><?=__('Here are listed specific theme configuration values. Replace input fileds with new desired values for theme')?> <code><?=Theme::$theme?></code></p>
+	<h1><?=__('Theme Options')?> <?=(Request::current()->param('id')!==NULL)?Request::current()->param('id'):Theme::$theme?></h1>
+    <p><?=__('Here are listed specific theme configuration values. Replace input fileds with new desired values for theme.')?></p>
+    <?if(Core::config('appearance.theme_mobile')!=''):?>
+            <p>
+                <?=__('Using mobile theme')?> <code><?=Core::config('appearance.theme_mobile')?></code>
+                <a class="btn btn-mini btn-warning" title="<?=__('Disable')?>" 
+                    href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>'disable'))?>">
+                    <i class="icon-remove icon-white"></i>
+                </a>
+                <a class="btn btn-mini btn-primary" title="<?=__('Options')?>" 
+                    href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options','id'=>Core::config('appearance.theme_mobile')))?>">
+                <i class="icon-wrench icon-white"></i></a>
+            </p>
+        <?endif?>
 </div>
 
 <div class="well">
-<?= FORM::open(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'options')), array('class'=>'form-horizontal'))?>
+<form action="/<?=Request::current()->uri()?>" method="post" class="form-horizontal"> 
     <fieldset>
         <?foreach ($options as $field => $attributes):?>
             <div class="control-group">
@@ -15,9 +27,8 @@
             </div>
         <?endforeach?>
 		<div class="form-actions">
-			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary',
-             'action'=>Route::url('oc-panel',array('controller'=>'theme', 'action'=>'options'))))?>
+			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary'))?>
 		</div>
 	</fieldset>	
-<?=FORM::close()?>
+</form>
 </div><!--end span10-->

@@ -42,6 +42,8 @@ class Auth_Controller extends Controller
 				$this->request->redirect($url);
 			}
 
+            Theme::initialize(Core::config('appearance.theme'));
+
 		}
 
 		//the user was loged in and with the right permissions
@@ -96,13 +98,13 @@ class Auth_Controller extends Controller
                                                     'css/jquery.sceditor.min.css' => 'screen',
                                                       'css/chosen.css'=>'screen');
             }
-			
 
 
             Theme::$scripts['footer']		  = array('http://code.jquery.com/jquery-1.9.1.min.js',	
 													  'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js', 
-												      'js/chosen.jquery.min.js','js/oc-panel/theme.init.js',
-                                                        'js/jquery.sceditor.min.js'
+												      'js/chosen.jquery.min.js',
+                                                      'js/oc-panel/theme.init.js',
+                                                      'js/jquery.sceditor.min.js'
                                                       );
 		}
 		

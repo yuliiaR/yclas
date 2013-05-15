@@ -1807,7 +1807,7 @@ msgid "Success, item created"
 msgstr "Éxito, artículo creado"
 
 #: String 473
-msgid "Check for form errors"
+msgid "Check form for errors"
 msgstr "Compruebe si hay errores de forma"
 
 #: String 474
