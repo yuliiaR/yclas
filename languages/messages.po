@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OfficeGate Language Pack\n"
-"POT-Creation-Date: 2013-05-15 12:25+0200\n"
+"POT-Creation-Date: 2013-05-15 16:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -427,13 +427,11 @@ msgid "Captcha"
 msgstr ""
 
 #: themes/responsive/init.php:30
-#: themes/mobile/options.php:11
 msgid "Number of latest ads to display in the home page"
 msgstr ""
 
 #: themes/responsive/init.php:35
 #: themes/kamaleon/init.php:30
-#: themes/mobile/options.php:16
 msgid "Change the theme color scheme and style"
 msgstr ""
 
@@ -446,7 +444,6 @@ msgid "Click here if you are not redirected"
 msgstr ""
 
 #: themes/default/views/pagination.php:5
-#: themes/mobile/views/pagination.php:5
 #: oc/modules/pagination/views/pagination/basic.php:4
 #: oc/modules/pagination/views/pagination/basic.php:6
 #: oc/modules/pagination/views/pagination/floating.php:61
@@ -456,7 +453,7 @@ msgstr ""
 
 #: themes/default/views/pagination.php:9
 #: themes/default/views/pages/ad/single.php:116
-#: themes/mobile/views/pagination.php:9
+#: themes/mobile/views/pagination.php:3
 #: oc/modules/pagination/views/pagination/basic.php:10
 #: oc/modules/pagination/views/pagination/basic.php:12
 #: oc/modules/pagination/views/pagination/floating.php:67
@@ -466,13 +463,14 @@ msgstr ""
 
 #: themes/default/views/pagination.php:14
 #: themes/default/views/oc-panel/header.php:33
-#: themes/mobile/views/pagination.php:14
+#: themes/mobile/views/pagination.php:6
+#: themes/mobile/views/pagination.php:8
 msgid "Page"
 msgstr ""
 
 #: themes/default/views/pagination.php:19
 #: themes/default/views/pages/ad/single.php:117
-#: themes/mobile/views/pagination.php:19
+#: themes/mobile/views/pagination.php:11
 #: oc/modules/pagination/views/pagination/basic.php:26
 #: oc/modules/pagination/views/pagination/basic.php:28
 #: oc/modules/pagination/views/pagination/floating.php:83
@@ -481,7 +479,6 @@ msgid "Next"
 msgstr ""
 
 #: themes/default/views/pagination.php:23
-#: themes/mobile/views/pagination.php:23
 #: oc/modules/pagination/views/pagination/basic.php:32
 #: oc/modules/pagination/views/pagination/basic.php:34
 #: oc/modules/pagination/views/pagination/floating.php:89
@@ -1384,7 +1381,7 @@ msgstr ""
 
 #: themes/default/views/oc-panel/pages/tools/sitemap.php:38
 #: themes/default/views/oc-panel/pages/translations/edit.php:22
-#: themes/default/views/oc-panel/pages/translations/edit.php:56
+#: themes/default/views/oc-panel/pages/translations/edit.php:55
 msgid "Save"
 msgstr ""
 
@@ -2531,7 +2528,7 @@ msgid "Latest published"
 msgstr ""
 
 #: oc/classes/controller/panel/settings.php:94
-msgid "Success, Email Configuration updated"
+msgid "Email Configuration updated"
 msgstr ""
 
 #: oc/classes/controller/panel/settings.php:167
@@ -2581,12 +2578,12 @@ msgstr ""
 
 #: oc/classes/controller/panel/profile.php:210
 #: oc/classes/controller/panel/ad.php:314
-msgid "Success, advertisemet is deactivated"
+msgid "Advertisemet is deactivated"
 msgstr ""
 
 #: oc/classes/controller/panel/profile.php:272
 #: oc/classes/controller/panel/ad.php:370
-msgid "Success, advertisemet is active and published"
+msgid "Advertisemet is active and published"
 msgstr ""
 
 #: oc/classes/controller/panel/profile.php:284
@@ -2623,7 +2620,7 @@ msgstr ""
 msgid "Edit Translation"
 msgstr ""
 
-#: oc/classes/controller/panel/translations.php:130
+#: oc/classes/controller/panel/translations.php:132
 msgid "Language saved"
 msgstr ""
 
@@ -2640,15 +2637,15 @@ msgid "Mail not sent"
 msgstr ""
 
 #: oc/classes/controller/panel/theme.php:62
-msgid "Success, Theme configuration updated"
+msgid "Theme configuration updated"
 msgstr ""
 
 #: oc/classes/controller/panel/theme.php:102
-msgid "Success, Appearance configuration updated"
+msgid "Appearance configuration updated"
 msgstr ""
 
 #: oc/classes/controller/panel/theme.php:125
-msgid "Success, Mobile Theme updated"
+msgid "Mobile Theme updated"
 msgstr ""
 
 #: oc/classes/controller/panel/tools.php:29
@@ -2674,7 +2671,7 @@ msgid "System logs"
 msgstr ""
 
 #: oc/classes/controller/panel/tools.php:200
-msgid "Success, Sitemap Configuration updated"
+msgid "Sitemap Configuration updated"
 msgstr ""
 
 #: oc/classes/controller/panel/tools.php:224
@@ -2727,7 +2724,7 @@ msgid "Warning, something went wrong while deleting"
 msgstr ""
 
 #: oc/classes/controller/panel/ad.php:211
-msgid "Success, advertisemet is deleted"
+msgid "Advertisemet is deleted"
 msgstr ""
 
 #: oc/classes/controller/panel/ad.php:253
@@ -2735,15 +2732,15 @@ msgid "Warning, advertisemet is already marked as spam"
 msgstr ""
 
 #: oc/classes/controller/panel/ad.php:264
-msgid "Success, advertisemet is marked as spam"
+msgid "Advertisemet is marked as spam"
 msgstr ""
 
 #: oc/classes/controller/panel/ad.php:418
-msgid "Success, advertisemet is featured"
+msgid "Advertisemet is featured"
 msgstr ""
 
 #: oc/classes/controller/panel/location.php:116
-msgid "Success, location deleted"
+msgid "Location deleted"
 msgstr ""
 
 #: oc/classes/controller/panel/location.php:125
@@ -2751,7 +2748,7 @@ msgid "Location not deleted"
 msgstr ""
 
 #: oc/classes/controller/panel/category.php:117
-msgid "Success, category deleted"
+msgid "Category deleted"
 msgstr ""
 
 #: oc/classes/controller/panel/category.php:126
@@ -2760,7 +2757,7 @@ msgstr ""
 
 #: oc/classes/controller/contact.php:29
 #: oc/classes/controller/contact.php:57
-msgid "Success, your message is sent"
+msgid "Your message is sent"
 msgstr ""
 
 #: oc/classes/controller/contact.php:33
@@ -2809,7 +2806,7 @@ msgid "You are in maintenance mode, only you can see the website"
 msgstr ""
 
 #: oc/classes/auth/crud.php:149
-msgid "Success, item created"
+msgid "Item created"
 msgstr ""
 
 #: oc/classes/auth/crud.php:154
@@ -2818,7 +2815,7 @@ msgid "Check form for errors"
 msgstr ""
 
 #: oc/classes/auth/crud.php:176
-msgid "Success, item updated"
+msgid "Item updated"
 msgstr ""
 
 #: oc/classes/auth/crud.php:231

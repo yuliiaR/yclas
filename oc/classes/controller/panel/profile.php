@@ -207,7 +207,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			}
 		}
 		
-		Alert::set(Alert::SUCCESS, __('Success, advertisemet is deactivated'));
+		Alert::set(Alert::SUCCESS, __('Advertisemet is deactivated'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 	}
 
@@ -269,7 +269,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		if (Core::config('sitemap.on_post') == TRUE)
 			Sitemap::generate();
 
-		Alert::set(Alert::SUCCESS, __('Success, advertisemet is active and published'));
+		Alert::set(Alert::SUCCESS, __('Advertisemet is active and published'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 	}
 

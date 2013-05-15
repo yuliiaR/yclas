@@ -59,7 +59,7 @@ class Controller_Panel_Theme extends Auth_Controller {
             
             Theme::save($this->request->param('id'),$data);
             
-            Alert::set(Alert::SUCCESS, __('Success, Theme configuration updated'));
+            Alert::set(Alert::SUCCESS, __('Theme configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'options','id'=>$this->request->param('id'))));
         }
 
@@ -99,7 +99,7 @@ class Controller_Panel_Theme extends Auth_Controller {
         {
             Theme::set_theme($this->request->param('id'));
             
-            Alert::set(Alert::SUCCESS, __('Success, Appearance configuration updated'));
+            Alert::set(Alert::SUCCESS, __('Appearance configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'index')));
         }
 
@@ -122,7 +122,7 @@ class Controller_Panel_Theme extends Auth_Controller {
         {
             Theme::set_mobile_theme($this->request->param('id'));
             
-            Alert::set(Alert::SUCCESS, __('Success, Mobile Theme updated'));
+            Alert::set(Alert::SUCCESS, __('Mobile Theme updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'index')));
         }
 

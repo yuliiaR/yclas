@@ -113,7 +113,7 @@ class Controller_Panel_Location extends Auth_Crud {
             {
                 $location->delete();
                 $this->template->content = 'OK';
-                Alert::set(Alert::SUCCESS, __('Success, location deleted'));
+                Alert::set(Alert::SUCCESS, __('Location deleted'));
                 
             }
             catch (Exception $e)
