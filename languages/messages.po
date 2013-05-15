@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OfficeGate Language Pack\n"
-"POT-Creation-Date: 2013-05-15 16:07+0200\n"
+"POT-Creation-Date: 2013-05-15 22:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,7 @@ msgstr ""
 #: themes/kamaleon/views/header.php:25
 #: themes/kamaleon/views/header.php:62
 #: themes/reclassifieds/views/header.php:38
-#: themes/reclassifieds/views/header.php:48
+#: themes/reclassifieds/views/header.php:50
 #: themes/mobile/views/pages/home.php:4
 #: themes/mobile/views/pages/ad/advansed_search.php:12
 msgid "Search"
@@ -102,7 +102,9 @@ msgstr ""
 #: themes/default/views/pages/auth/register-form.php:37
 #: themes/default/views/pages/auth/register-form.php:39
 #: themes/kamaleon/views/header.php:123
-#: themes/reclassifieds/views/header.php:110
+#: themes/reclassifieds/views/header.php:112
+#: themes/reclassifieds/views/widget_login.php:8
+#: themes/reclassifieds/views/widget_login.php:10
 #: themes/mobile/views/widget_login.php:33
 #: themes/mobile/views/widget_login.php:35
 #: themes/mobile/views/pages/auth/login-form.php:32
@@ -116,7 +118,7 @@ msgstr ""
 #: themes/responsive/views/header.php:118
 #: themes/default/views/header.php:76
 #: themes/kamaleon/views/header.php:134
-#: themes/reclassifieds/views/header.php:121
+#: themes/reclassifieds/views/header.php:123
 msgid "Forgot password"
 msgstr ""
 
@@ -127,7 +129,7 @@ msgstr ""
 #: themes/default/views/pages/auth/login-form.php:28
 #: themes/default/views/pages/auth/register-form.php:41
 #: themes/kamaleon/views/header.php:145
-#: themes/reclassifieds/views/header.php:132
+#: themes/reclassifieds/views/header.php:134
 #: themes/mobile/views/pages/auth/forgot-form.php:13
 #: themes/mobile/views/pages/auth/register.php:5
 #: themes/mobile/views/pages/auth/login-form.php:29
@@ -146,14 +148,14 @@ msgstr ""
 
 #: themes/responsive/views/pages/ad/listing.php:11
 #: themes/default/views/oc-panel/profile/ads.php:7
-#: themes/default/views/pages/ad/listing.php:8
+#: themes/default/views/pages/ad/listing.php:10
 #: themes/kamaleon/views/pages/ad/listing.php:11
 #: themes/reclassifieds/views/pages/ad/listing.php:13
 msgid "New Advertisement"
 msgstr ""
 
 #: themes/responsive/views/pages/ad/listing.php:11
-#: themes/default/views/pages/ad/listing.php:8
+#: themes/default/views/pages/ad/listing.php:10
 #: themes/default/views/pages/ad/new.php:5
 #: themes/kamaleon/views/pages/ad/listing.php:11
 #: themes/reclassifieds/views/pages/ad/listing.php:13
@@ -166,7 +168,7 @@ msgstr ""
 #: themes/responsive/views/pages/ad/listing.php:36
 #: themes/default/views/pages/userprofile.php:27
 #: themes/default/views/pages/userprofile.php:29
-#: themes/default/views/pages/ad/listing.php:31
+#: themes/default/views/pages/ad/listing.php:33
 #: themes/kamaleon/views/pages/ad/listing.php:36
 #: themes/reclassifieds/views/pages/ad/listing.php:38
 #: themes/mobile/views/pages/userprofile.php:27
@@ -177,7 +179,7 @@ msgstr ""
 #: themes/responsive/views/pages/ad/listing.php:39
 #: themes/default/views/oc-panel/profile/edit_ad.php:167
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:113
-#: themes/default/views/pages/ad/listing.php:34
+#: themes/default/views/pages/ad/listing.php:36
 #: themes/default/views/pages/ad/new.php:87
 #: themes/default/views/pages/ad/new.php:91
 #: themes/default/views/pages/ad/single.php:38
@@ -193,7 +195,7 @@ msgid "Price"
 msgstr ""
 
 #: themes/responsive/views/pages/ad/listing.php:45
-#: themes/default/views/pages/ad/listing.php:40
+#: themes/default/views/pages/ad/listing.php:42
 #: themes/kamaleon/views/pages/ad/listing.php:45
 #: themes/reclassifieds/views/pages/ad/listing.php:47
 msgid "Read more"
@@ -209,8 +211,8 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/translations/index.php:25
 #: themes/default/views/pages/userprofile.php:36
 #: themes/default/views/pages/userprofile.php:49
-#: themes/default/views/pages/ad/listing.php:43
-#: themes/default/views/pages/ad/listing.php:56
+#: themes/default/views/pages/ad/listing.php:45
+#: themes/default/views/pages/ad/listing.php:58
 #: themes/kamaleon/views/pages/ad/listing.php:48
 #: themes/kamaleon/views/pages/ad/listing.php:61
 #: themes/reclassifieds/views/pages/ad/listing.php:50
@@ -226,8 +228,8 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/ad.php:45
 #: themes/default/views/oc-panel/pages/ad.php:123
 #: themes/default/views/pages/userprofile.php:38
-#: themes/default/views/pages/ad/listing.php:45
-#: themes/default/views/pages/ad/listing.php:58
+#: themes/default/views/pages/ad/listing.php:47
+#: themes/default/views/pages/ad/listing.php:60
 #: themes/kamaleon/views/pages/ad/listing.php:50
 #: themes/kamaleon/views/pages/ad/listing.php:63
 #: themes/reclassifieds/views/pages/ad/listing.php:52
@@ -242,8 +244,8 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/ad.php:46
 #: themes/default/views/oc-panel/pages/ad.php:124
 #: themes/default/views/pages/userprofile.php:38
-#: themes/default/views/pages/ad/listing.php:45
-#: themes/default/views/pages/ad/listing.php:58
+#: themes/default/views/pages/ad/listing.php:47
+#: themes/default/views/pages/ad/listing.php:60
 #: themes/kamaleon/views/pages/ad/listing.php:50
 #: themes/kamaleon/views/pages/ad/listing.php:63
 #: themes/reclassifieds/views/pages/ad/listing.php:52
@@ -256,7 +258,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/ad.php:39
 #: themes/default/views/oc-panel/pages/ad.php:117
 #: themes/default/views/pages/userprofile.php:41
-#: themes/default/views/pages/ad/listing.php:48
+#: themes/default/views/pages/ad/listing.php:50
 #: themes/kamaleon/views/pages/ad/listing.php:53
 #: themes/reclassifieds/views/pages/ad/listing.php:55
 msgid "Spam?"
@@ -271,7 +273,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/ad.php:103
 #: themes/default/views/oc-panel/pages/ad.php:118
 #: themes/default/views/pages/userprofile.php:41
-#: themes/default/views/pages/ad/listing.php:48
+#: themes/default/views/pages/ad/listing.php:50
 #: themes/kamaleon/views/pages/ad/listing.php:53
 #: themes/reclassifieds/views/pages/ad/listing.php:55
 msgid "Spam"
@@ -282,7 +284,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/moderate.php:106
 #: themes/default/views/oc-panel/pages/ad.php:129
 #: themes/default/views/pages/userprofile.php:44
-#: themes/default/views/pages/ad/listing.php:51
+#: themes/default/views/pages/ad/listing.php:53
 #: themes/kamaleon/views/pages/ad/listing.php:56
 #: themes/reclassifieds/views/pages/ad/listing.php:58
 msgid "Delete?"
@@ -297,7 +299,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/ad.php:52
 #: themes/default/views/oc-panel/pages/ad.php:130
 #: themes/default/views/pages/userprofile.php:44
-#: themes/default/views/pages/ad/listing.php:51
+#: themes/default/views/pages/ad/listing.php:53
 #: themes/kamaleon/views/pages/ad/listing.php:56
 #: themes/reclassifieds/views/pages/ad/listing.php:58
 msgid "Delete"
@@ -847,7 +849,7 @@ msgstr ""
 #: themes/default/views/widget_login.php:13
 #: themes/mobile/views/widget_login.php:13
 #: oc/classes/auth/controller.php:33
-#: oc/classes/auth/controller.php:73
+#: oc/classes/auth/controller.php:74
 msgid "Panel"
 msgstr ""
 
@@ -2042,14 +2044,17 @@ msgid "Display breadcrumb"
 msgstr ""
 
 #: themes/kamaleon/init.php:81
+#: themes/mobile/options.php:72
 msgid "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
 msgstr ""
 
 #: themes/kamaleon/init.php:85
+#: themes/mobile/options.php:76
 msgid "Short description that appears after the site name."
 msgstr ""
 
 #: themes/kamaleon/init.php:90
+#: themes/mobile/options.php:81
 msgid "Numbers of ads to display in home slider"
 msgstr ""
 
@@ -2093,6 +2098,22 @@ msgstr ""
 #: themes/mobile/views/pages/ad/advansed_search.php:4
 #: oc/classes/controller/ad.php:503
 msgid "Advansed Search"
+msgstr ""
+
+#: themes/mobile/options.php:16
+msgid "Change the theme main color scheme and style"
+msgstr ""
+
+#: themes/mobile/options.php:32
+msgid "Change the theme Header color scheme and style"
+msgstr ""
+
+#: themes/mobile/options.php:44
+msgid "Change the theme of List Elements"
+msgstr ""
+
+#: themes/mobile/options.php:56
+msgid "Change the theme of Featured Elements"
 msgstr ""
 
 #: install/index.php:96
@@ -2491,7 +2512,7 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: oc/classes/controller/new.php:168
+#: oc/classes/controller/new.php:167
 msgid "New profile has been created. Welcome "
 msgstr ""
 
@@ -2569,7 +2590,7 @@ msgid "New password is invalid, or they do not match! Please try again."
 msgstr ""
 
 #: oc/classes/controller/panel/profile.php:106
-msgid "You have successfuly chaged your data"
+msgid "You have successfuly changed your data"
 msgstr ""
 
 #: oc/classes/controller/panel/profile.php:144
@@ -2611,16 +2632,16 @@ msgstr ""
 msgid "List"
 msgstr ""
 
-#: oc/classes/controller/panel/translations.php:52
+#: oc/classes/controller/panel/translations.php:61
 msgid "Language changed"
 msgstr ""
 
-#: oc/classes/controller/panel/translations.php:79
-#: oc/classes/controller/panel/translations.php:80
+#: oc/classes/controller/panel/translations.php:88
+#: oc/classes/controller/panel/translations.php:89
 msgid "Edit Translation"
 msgstr ""
 
-#: oc/classes/controller/panel/translations.php:132
+#: oc/classes/controller/panel/translations.php:141
 msgid "Language saved"
 msgstr ""
 

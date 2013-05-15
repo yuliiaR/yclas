@@ -21,7 +21,7 @@
 			<div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery" data-selector="a.gallery-item">
 			<ul class="thumbnails">
 				<?foreach ($images as $path => $value):?>
-				<?if(isset($value['thumb'])):?>
+				<?if( isset($value['thumb']) AND isset($value['image']) ):?>
 				<li>
 					<a data-href="/<?= $value['image']?>" class="thumbnail gallery-item" data-gallery="gallery">
 						<img src="/<?= $value['thumb']?>"  class="img-rounded" alt="">
