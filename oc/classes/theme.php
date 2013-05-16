@@ -107,7 +107,7 @@ class Theme {
 
         $ret = '';
 
-        if (Kohana::$environment == Kohana::DEVELOPMENT)
+        if (TRUE)//(Kohana::$environment == Kohana::DEVELOPMENT)
         {
             foreach($styles as $file => $type)
             {

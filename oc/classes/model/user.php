@@ -318,33 +318,15 @@ class Model_User extends ORM {
 
     /**
      * sends email to the current user replacing tags
-     * @param  string $seotitle
+     * @param  string $seotitle from Model_Content
      * @param  array $replace
      * @return boolean
      */
-    public function email($seotitle, array $replace = NULL)
+    public function email($seotitle, array $replace = NULL, $from = NULL, $from_name =NULL)
     {
         if ($this->loaded())
         {
-            if ($replace===NULL) $replace = array();
-            $email = Model_Content::get($seotitle,'email');
-
-            //content found
-            if ($email->loaded())
-            { 
-                //adding extra replaces
-                $replace+= array('[SITE.NAME]'      =>  core::config('general.site_name'),
-                                 '[SITE.URL]'       =>  core::config('general.base_url'),
-                                 '[USER.NAME]'      =>  $this->name,
-                                 '[USER.EMAIL]'     =>  $this->email);
-
-                $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
-                $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
-
-                return Email::send($this->email,$this->name,$subject,$body,$email->from_email,core::config('general.site_name')); 
-
-            }
-            else return FALSE;
+            return Email::content($this->email,$this->name,$from,$from_name,$seotitle,$replace);  
         }
         return FALSE;
     }

@@ -14,25 +14,26 @@ class Controller_Contact extends Controller {
 
 		if($this->request->post()) //message submition  
 		{
-			$user = new Model_User();
-			$user = $user->where('email', '=', core::post('email'))
-						->limit(1)
-						->find();
-			
-			if($user->loaded())
-			{			
-				if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
-				{ 
-					$ret = $user->email('contact.admin',array('[EMAIL.BODY]'		=>core::post('message'),
-                    									   	  '[EMAIL.SENDER]'		=>core::post('name'),
-                    									      '[EMAIL.FROM]'		=>core::post('email_from')));
-					Alert::set(Alert::SUCCESS, __('Your message has been sent'));
-				}
-				else
-				{
-					Alert::set(Alert::ERROR, __('Check the form for errors'));
-				}
-			}	
+            //captcha check
+            if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
+            {
+                $replace = array('[EMAIL.BODY]'     =>core::post('message'),
+                                  '[EMAIL.SENDER]'      =>core::post('name'),
+                                  '[EMAIL.FROM]'        =>core::post('email'));
+
+                if (Email::content(core::config('email.notify_email'),
+                                    core::config('general.site_name'),
+                                    core::post('email'),
+                                    core::post('name'),'contact.admin',
+                                    $replace))
+                    Alert::set(Alert::SUCCESS, __('Your message has been sent'));
+                else
+                    Alert::set(Alert::ERROR, __('Message not sent'));
+            }
+            else
+                Alert::set(Alert::ERROR, __('Check the form for errors'));
+					
+				
 		}
 
         $this->template->content = View::factory('pages/contact');
@@ -43,37 +44,45 @@ class Controller_Contact extends Controller {
 	public function action_user_contact()
 	{	
 		$ad = new Model_Ad($this->request->param('id'));
-		$user_id = $ad->id_user;
-
-		$user = new Model_User($user_id);
-
-		$email_content = Model_Content::get('user.contact','email');
 
 		//message to user
-		if($user)
+		if($ad->loaded() AND $this->request->post() )
 		{
-			if(captcha::check('contact'))
+
+            $user = new Model_User($ad->id_user);
+
+			if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
 			{ 
-				Alert::set(Alert::SUCCESS, __('Your message has been sent'));
                 $ret = $user->email('user.contact',array('[EMAIL.BODY]'		=>core::post('message'),
                     									 '[EMAIL.SENDER]'	=>core::post('name'),
-                    									 '[EMAIL.FROM]'		=>core::post('email_from')));
+                    									 '[EMAIL.FROM]'		=>core::post('email')),core::post('email'),core::post('name'));
 
-                // we are updating field of visit table (contact)
-                $visit_contact_obj = new Model_Visit();
+                //if succesfully sent
+                if ($ret)
+                {
+                    Alert::set(Alert::SUCCESS, __('Your message has been sent'));
 
-                $visit_contact_obj->where('id_ad', '=', $this->request->param('id'))
-                				  ->order_by('created', 'desc')
-                				  ->limit(1)->find();
-                								  
-                try {
-                	$visit_contact_obj->contacted = 1;
-                	$visit_contact_obj->save();
-                } catch (Exception $e) {
-                	//throw 500
-					throw new HTTP_Exception_500($e->getMessage());
+                    // we are updating field of visit table (contact)
+                    $visit_contact_obj = new Model_Visit();
+
+                    $visit_contact_obj->where('id_ad', '=', $this->request->param('id'))
+                                      ->order_by('created', 'desc')
+                                      ->limit(1)->find();
+                                                      
+                    try {
+                        $visit_contact_obj->contacted = 1;
+                        $visit_contact_obj->save();
+                    } catch (Exception $e) {
+                        //throw 500
+                        throw new HTTP_Exception_500($e->getMessage());
+                    }
+
                 }
-                Request::current()->redirect(Route::url('default'));
+                else
+                    Alert::set(Alert::ERROR, __('Message not sent'));
+
+                
+                Request::current()->redirect(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
 			}
 			else
 			{
@@ -82,24 +91,5 @@ class Controller_Contact extends Controller {
 		}
 	
 	}
-
-	public function action_ad_activated()
-	{
-		$admin = Auth::instance()->get_user()->id_user;
-		$user = new Model_User($admin);
-
-		$category = new Model_Category($active_ad->id_category);
-
-		if($user)
-		{
-			//we get the QL, and force the regen of token for security
-        	$url_ql = $user->ql('ad',array( 'category' => $category->seoname, 
-                                            'seotitle'=> $active_ad->seotitle),TRUE);
-
-        	$ret = $user->email('ads.activated',array('[URL.QL]'=>$url_ql));
-		}
-
-			
-	} 
 
 }

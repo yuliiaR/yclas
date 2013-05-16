@@ -72,7 +72,6 @@ class Email {
 
             $mail->AddReplyTo($reply,$replyName);//they answer here
 
-
             if (is_array($to))
             {
                 foreach ($to as $contact) 
@@ -118,6 +117,50 @@ class Email {
         }
         // Sent at 9:39 AM on Friday
  
+    }
+
+
+    /**
+     * sends an email using content from model_content
+     * @param  string $to        
+     * @param  string $to_name   
+     * @param  string $from      
+     * @param  string $from_name 
+     * @param  string $content   seotitle from Model_Content
+     * @param  array $replace   key value to replace at subject and body
+     * @return boolean            s
+     */
+    public static function content($to,$to_name='',$from = NULL, $from_name =NULL ,$content,$replace)
+    {
+        
+        $email = Model_Content::get($content,'email');
+
+        //content found
+        if ($email->loaded())
+        { 
+            if ($replace===NULL) 
+                $replace = array();
+
+            if ($from === NULL)
+                $from = $email->from_email;
+
+            if ($from_name === NULL )
+                $from_name = core::config('general.site_name');
+
+            //adding extra replaces
+            $replace+= array('[SITE.NAME]'      =>  core::config('general.site_name'),
+                             '[SITE.URL]'       =>  core::config('general.base_url'),
+                             '[USER.NAME]'      =>  $to,
+                             '[USER.EMAIL]'     =>  $to_name);
+
+            $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
+            $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
+
+            return Email::send($to,$to_name,$subject,$body,$from,$from_name); 
+
+        }
+        else return FALSE;
+
     }
 
 
