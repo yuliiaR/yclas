@@ -58,7 +58,7 @@ class Controller_Panel_Translations extends Auth_Controller {
             $locale->config_value = $this->request->param('id');
             try {
                 $locale->save();
-                Alert::set(Alert::SUCCESS, __('Language changed'));
+                Alert::set(Alert::SUCCESS,'');
                 Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'translations')));  
 
 

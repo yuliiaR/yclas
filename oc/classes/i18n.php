@@ -9,25 +9,17 @@
 * @license    GPL v3
 */
 
-//Initialization
-
-/**
- * gettext override
- * v 1.0.11
- * https://launchpad.net/php-gettext/
- * We load php-gettext here since Kohana_I18n tries to create the function __() function when we extend it.
- * PHP-gettext already does this.
- */
-require Kohana::find_file('vendor', 'php-gettext/gettext','inc');
-
 
 class I18n extends Kohana_I18n {
 
     public static $locale;
     public static $charset;
     public static $domain;
+    /**
+     * forces to use the dropin
+     */
+    public static $dropin = FALSE;
     
-
 
     /**
      * 
@@ -57,6 +49,7 @@ class I18n extends Kohana_I18n {
             Cookie::set('user_language',$locale, Core::config('auth.lifetime'));
         }
      
+        self::$lang    = $locale;//used in i18n kohana
         self::$locale  = $locale;
         self::$charset = $charset;
         self::$domain  = $domain;
@@ -70,22 +63,36 @@ class I18n extends Kohana_I18n {
         /**
          * check if gettext exists if not uses gettext dropin
          */
-        if ( !function_exists('_') )
+        $locale_res = setlocale(LC_MESSAGES, self::$locale);
+
+        if ( !function_exists('_') OR $locale_res===FALSE OR empty($locale_res) )
         {
+            /**
+             * gettext override
+             * v 1.0.11
+             * https://launchpad.net/php-gettext/
+             * We load php-gettext here since Kohana_I18n tries to create the function __() function when we extend it.
+             * PHP-gettext already does this.
+             */
+            require Kohana::find_file('vendor', 'php-gettext/gettext','inc'); 
+            
             T_setlocale(LC_MESSAGES, self::$locale);
-            bindtextdomain(self::$domain,DOCROOT.'languages');
-            bind_textdomain_codeset(self::$domain, self::$charset);
-            textdomain(self::$domain);
+            T_bindtextdomain(self::$domain,DOCROOT.'languages');
+            T_bind_textdomain_codeset(self::$domain, self::$charset);
+            T_textdomain(self::$domain);
+
+            //force to use the gettext dropin
+            self::$dropin = TRUE;
+            
         }
         /**
          * gettext exists using fallback in case locale doesn't exists
          */
         else
         {
-            T_setlocale(LC_MESSAGES, self::$locale);
-            T_bindtextdomain(self::$domain,DOCROOT.'languages');
-            T_bind_textdomain_codeset(self::$domain, self::$charset);
-            T_textdomain(self::$domain);
+            bindtextdomain(self::$domain,DOCROOT.'languages');
+            bind_textdomain_codeset(self::$domain, self::$charset);
+            textdomain(self::$domain);
         }
         
     }    
@@ -139,29 +146,12 @@ class I18n extends Kohana_I18n {
      */
     public static function get($string, $lang = NULL)
     {
-        return __($string);
+        //using the gettext dropin forced
+        if (self::$dropin === TRUE)
+            return _gettext($string);
+        else
+            return _($string);
     }
 
-    // public static function get_money_currency()
-    // {
-    //     // $currencies = array('dollar'=>array('locale'=>array('en_US'), 'sign'=>'$'),
-    //     //                     'pound'=>array('locale'=>array('en_GB'), '$pound;'),
-    //     //                     'euro'=>array('locale'=>array('')),'sign'=>'$euro;'),
-    //     //                     ''=>'',
-    //     //                     ''=>'',
-    //     //                     ''=>'',);
-    // }
     
 }//end i18n
-
-
-/**
- *
- * echo for the translation
- * @param string $string
- * @return string
- */
-function _e($string)
-{
-    echo T_($string);
-}

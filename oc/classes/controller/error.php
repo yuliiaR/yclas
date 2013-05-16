@@ -23,7 +23,7 @@ class Controller_Error extends Controller
     /**
      * Pre determine error display logic
      */
-    public function before()
+    public function before($template = NULL)
     {
         parent::before();
  

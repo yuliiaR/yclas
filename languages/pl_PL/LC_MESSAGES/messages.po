@@ -1,0 +1,4 @@
+#: String 0
+msgid "Change the admin color theme"
+msgstr "Zmiana koloru motywu admin"
+

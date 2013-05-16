@@ -1,6 +1,6 @@
 #: String 0
 msgid "Change the admin color theme"
-msgstr "Cambiar el tema de color de administración"
+msgstr "Cambiar el color de administración"
 
 #: String 1
 msgid "Mobile Version"

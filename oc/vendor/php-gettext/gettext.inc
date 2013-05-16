@@ -282,8 +282,11 @@ function _gettext($msgid) {
 /**
  * Alias for gettext.
  */
-function __($msgid) {
-    return _gettext($msgid);
+if ( ! function_exists('__'))
+{
+    function __($msgid) {
+        return _gettext($msgid);
+    }
 }
 
 /**

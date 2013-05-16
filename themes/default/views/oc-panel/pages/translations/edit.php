@@ -9,10 +9,13 @@
     <tr>
         <th>#</th>
         <th><?=__('Original Translation')?></th>
-        <th><button class="btn" id="button-copy-all" ><i class="icon-arrow-right"></i></button>
+        <th><button class="btn" id="button-copy-all" 
+                data-text="<?=__('Copy all?, Be aware this will replace all your texts.')?>" >
+                <i class="icon-arrow-right"></i></button>
             <?if (strlen(Core::config('general.translate'))>0):?>
                 <button id="button-translate-all" class="btn" data-apikey="<?=Core::config('general.translate')?>"
-                             data-langsource="en" data-langtarget="<?=substr($edit_language,0,2)?>" ><i class="icon-globe"></i>
+                    data-text="<?=__('Translate all?, Be aware this will replace all your texts.')?>"
+                    data-langsource="en" data-langtarget="<?=substr($edit_language,0,2)?>" ><i class="icon-globe"></i>
                 </button>
             <?endif?>
         </th>
