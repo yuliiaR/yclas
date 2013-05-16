@@ -208,29 +208,44 @@ function oc_requirements()
  */
 function gettext_init($locale,$domain = 'messages',$charset = 'utf8')
 {
-    include APPPATH.'vendor/php-gettext/gettext.inc';
-
     /**
      * check if gettext exists if not uses gettext dropin
      */
-    if ( !function_exists('_') )
+    $locale_res = setlocale(LC_MESSAGES, $locale);
+    if ( !function_exists('_') OR $locale_res===FALSE OR empty($locale_res) )
     {
+        /**
+         * gettext override
+         * v 1.0.11
+         * https://launchpad.net/php-gettext/
+         * We load php-gettext here since Kohana_I18n tries to create the function __() function when we extend it.
+         * PHP-gettext already does this.
+         */
+        include APPPATH.'vendor/php-gettext/gettext.inc';
+        
         T_setlocale(LC_MESSAGES, $locale);
-        bindtextdomain($domain,DOCROOT.'languages');
-        bind_textdomain_codeset($domain, $charset);
-        textdomain($domain);
+        T_bindtextdomain($domain,DOCROOT.'languages');
+        T_bind_textdomain_codeset($domain, $charset);
+        T_textdomain($domain);
     }
     /**
      * gettext exists using fallback in case locale doesn't exists
      */
     else
     {
-        T_setlocale(LC_MESSAGES, $locale);
-        T_bindtextdomain($domain,DOCROOT.'languages');
-        T_bind_textdomain_codeset($domain, $charset);
-        T_textdomain($domain);
+        bindtextdomain($domain,DOCROOT.'languages');
+        bind_textdomain_codeset($domain, $charset);
+        textdomain($domain);
+
+        function __($msgid)
+        {
+            return _($msgid);
+        }
     }
+
 }
+
+
 
 /**
  * suggested hosting from OC

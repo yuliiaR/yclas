@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OfficeGate Language Pack\n"
-"POT-Creation-Date: 2013-05-16 12:34+0200\n"
+"POT-Creation-Date: 2013-05-16 18:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,12 +53,13 @@ msgstr ""
 #: themes/reclassifieds/views/header.php:50
 #: themes/mobile/views/pages/home.php:4
 #: themes/mobile/views/pages/ad/advansed_search.php:12
+#: themes/mobile/views/pages/ad/advanced_search.php:12
+#: themes/mobile/views/pages/ad/advanced_search.php:53
 msgid "Search"
 msgstr ""
 
 #: themes/responsive/views/header.php:25
 #: themes/reclassifieds/views/header.php:39
-#: themes/mobile/views/header.php:13
 #: oc/modules/widgets/classes/widget/map.php:18
 #: oc/classes/controller/map.php:11
 msgid "Map"
@@ -107,7 +108,7 @@ msgstr ""
 #: themes/reclassifieds/views/widget_login.php:10
 #: themes/mobile/views/widget_login.php:33
 #: themes/mobile/views/widget_login.php:35
-#: themes/mobile/views/pages/auth/login-form.php:32
+#: themes/mobile/views/pages/auth/login-form.php:31
 #: themes/mobile/views/pages/auth/login.php:4
 #: themes/mobile/views/pages/auth/register-form.php:37
 #: themes/mobile/views/pages/auth/register-form.php:39
@@ -132,7 +133,7 @@ msgstr ""
 #: themes/reclassifieds/views/header.php:134
 #: themes/mobile/views/pages/auth/forgot-form.php:13
 #: themes/mobile/views/pages/auth/register.php:5
-#: themes/mobile/views/pages/auth/login-form.php:29
+#: themes/mobile/views/pages/auth/login-form.php:28
 #: themes/mobile/views/pages/auth/register-form.php:41
 msgid "Register"
 msgstr ""
@@ -188,7 +189,7 @@ msgstr ""
 #: themes/mobile/views/pages/ad/listing.php:27
 #: themes/mobile/views/pages/ad/new.php:86
 #: themes/mobile/views/pages/ad/new.php:90
-#: themes/mobile/views/pages/ad/single.php:29
+#: themes/mobile/views/pages/ad/single.php:30
 #: oc/classes/model/ad.php:83
 #: oc/classes/model/category.php:81
 msgid "Price"
@@ -217,7 +218,7 @@ msgstr ""
 #: themes/kamaleon/views/pages/ad/listing.php:61
 #: themes/reclassifieds/views/pages/ad/listing.php:50
 #: themes/reclassifieds/views/pages/ad/listing.php:63
-#: themes/mobile/views/pages/ad/single.php:34
+#: themes/mobile/views/pages/ad/single.php:36
 msgid "Edit"
 msgstr ""
 
@@ -331,8 +332,8 @@ msgstr ""
 #: themes/mobile/views/pages/auth/register-form.php:8
 #: themes/mobile/views/pages/ad/new.php:105
 #: themes/mobile/views/pages/ad/new.php:107
-#: themes/mobile/views/pages/ad/single.php:50
 #: themes/mobile/views/pages/ad/single.php:52
+#: themes/mobile/views/pages/ad/single.php:54
 #: oc/classes/model/user.php:96
 #: oc/classes/model/location.php:56
 #: oc/classes/model/category.php:74
@@ -367,14 +368,14 @@ msgstr ""
 #: themes/mobile/views/pages/userprofile.php:10
 #: themes/mobile/views/pages/auth/forgot-form.php:5
 #: themes/mobile/views/pages/auth/forgot-form.php:7
-#: themes/mobile/views/pages/auth/login-form.php:6
-#: themes/mobile/views/pages/auth/login-form.php:8
+#: themes/mobile/views/pages/auth/login-form.php:5
+#: themes/mobile/views/pages/auth/login-form.php:7
 #: themes/mobile/views/pages/auth/register-form.php:13
 #: themes/mobile/views/pages/auth/register-form.php:15
 #: themes/mobile/views/pages/ad/new.php:111
 #: themes/mobile/views/pages/ad/new.php:113
-#: themes/mobile/views/pages/ad/single.php:57
 #: themes/mobile/views/pages/ad/single.php:59
+#: themes/mobile/views/pages/ad/single.php:61
 #: oc/classes/model/user.php:97
 #: oc/classes/controller/panel/settings.php:69
 #: oc/classes/controller/panel/settings.php:70
@@ -394,8 +395,8 @@ msgstr ""
 #: themes/reclassifieds/views/pages/ad/single.php:67
 #: themes/mobile/views/pages/contact.php:24
 #: themes/mobile/views/pages/contact.php:26
-#: themes/mobile/views/pages/ad/single.php:64
 #: themes/mobile/views/pages/ad/single.php:66
+#: themes/mobile/views/pages/ad/single.php:68
 msgid "Subject"
 msgstr ""
 
@@ -412,8 +413,8 @@ msgstr ""
 #: themes/reclassifieds/views/pages/ad/single.php:73
 #: themes/mobile/views/pages/contact.php:30
 #: themes/mobile/views/pages/contact.php:32
-#: themes/mobile/views/pages/ad/single.php:70
 #: themes/mobile/views/pages/ad/single.php:72
+#: themes/mobile/views/pages/ad/single.php:74
 msgid "Message"
 msgstr ""
 
@@ -424,7 +425,7 @@ msgstr ""
 #: themes/kamaleon/views/pages/ad/single.php:80
 #: themes/reclassifieds/views/pages/ad/single.php:80
 #: themes/mobile/views/pages/contact.php:39
-#: themes/mobile/views/pages/ad/single.php:79
+#: themes/mobile/views/pages/ad/single.php:81
 msgid "Captcha"
 msgstr ""
 
@@ -515,8 +516,8 @@ msgstr ""
 #: themes/default/views/pages/auth/login-form.php:14
 #: themes/default/views/pages/auth/register-form.php:22
 #: themes/default/views/pages/auth/register-form.php:29
-#: themes/mobile/views/pages/auth/login-form.php:13
-#: themes/mobile/views/pages/auth/login-form.php:15
+#: themes/mobile/views/pages/auth/login-form.php:12
+#: themes/mobile/views/pages/auth/login-form.php:14
 #: themes/mobile/views/pages/auth/register-form.php:22
 #: themes/mobile/views/pages/auth/register-form.php:29
 #: install/index.php:282
@@ -576,6 +577,7 @@ msgstr ""
 #: themes/mobile/views/pages/ad/listing.php:10
 #: themes/mobile/views/pages/ad/new.php:19
 #: themes/mobile/views/pages/ad/advansed_search.php:16
+#: themes/mobile/views/pages/ad/advanced_search.php:18
 #: oc/classes/model/ad.php:76
 msgid "Category"
 msgstr ""
@@ -590,6 +592,7 @@ msgstr ""
 #: themes/default/views/pages/ad/advanced_search.php:35
 #: themes/mobile/views/pages/ad/new.php:36
 #: themes/mobile/views/pages/ad/advansed_search.php:27
+#: themes/mobile/views/pages/ad/advanced_search.php:35
 #: oc/classes/model/user.php:101
 #: oc/classes/model/ad.php:77
 msgid "Location"
@@ -765,7 +768,7 @@ msgstr ""
 
 #: themes/default/views/oc-panel/profile/edit_ad.php:40
 #: themes/default/views/oc-panel/sidebar.php:65
-#: themes/mobile/views/header.php:19
+#: themes/mobile/views/header.php:18
 msgid "Profile"
 msgstr ""
 
@@ -799,7 +802,6 @@ msgstr ""
 #: themes/default/views/pages/ad/new.php:55
 #: themes/default/views/pages/ad/single.php:39
 #: themes/mobile/views/pages/ad/new.php:54
-#: themes/mobile/views/pages/ad/single.php:30
 #: oc/classes/model/ad.php:81
 #: oc/classes/model/location.php:60
 #: oc/classes/model/category.php:80
@@ -1086,7 +1088,7 @@ msgstr ""
 
 #: themes/default/views/oc-panel/widget_login.php:26
 #: themes/default/views/widget_login.php:27
-#: themes/mobile/views/header.php:20
+#: themes/mobile/views/header.php:19
 #: themes/mobile/views/widget_login.php:27
 msgid "Logout"
 msgstr ""
@@ -1381,8 +1383,8 @@ msgid "Update on publish"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/tools/sitemap.php:38
-#: themes/default/views/oc-panel/pages/translations/edit.php:22
-#: themes/default/views/oc-panel/pages/translations/edit.php:55
+#: themes/default/views/oc-panel/pages/translations/edit.php:25
+#: themes/default/views/oc-panel/pages/translations/edit.php:58
 msgid "Save"
 msgstr ""
 
@@ -1882,7 +1884,15 @@ msgstr ""
 msgid "Original Translation"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/translations/edit.php:19
+#: themes/default/views/oc-panel/pages/translations/edit.php:13
+msgid "Copy all?, Be aware this will replace all your texts."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/translations/edit.php:17
+msgid "Translate all?, Be aware this will replace all your texts."
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/translations/edit.php:22
 msgid "Translation"
 msgstr ""
 
@@ -1977,12 +1987,12 @@ msgid "Remember password"
 msgstr ""
 
 #: themes/default/views/pages/auth/login-form.php:17
-#: themes/mobile/views/pages/auth/login-form.php:18
+#: themes/mobile/views/pages/auth/login-form.php:17
 msgid "Forgot password?"
 msgstr ""
 
 #: themes/default/views/pages/auth/login-form.php:21
-#: themes/mobile/views/pages/auth/login-form.php:22
+#: themes/mobile/views/pages/auth/login-form.php:21
 msgid "Remember me"
 msgstr ""
 
@@ -2001,18 +2011,20 @@ msgid "User account will be created"
 msgstr ""
 
 #: themes/default/views/pages/ad/advanced_search.php:4
+#: themes/mobile/views/pages/ad/advanced_search.php:4
 #: oc/classes/controller/ad.php:393
 #: oc/classes/controller/ad.php:394
 msgid "Advanced Search"
 msgstr ""
 
 #: themes/default/views/pages/ad/advanced_search.php:10
+#: themes/mobile/views/pages/ad/advanced_search.php:10
 msgid "Advertisement Title"
 msgstr ""
 
 #: themes/default/views/pages/ad/single.php:43
-#: themes/mobile/views/pages/ad/single.php:38
-#: themes/mobile/views/pages/ad/single.php:44
+#: themes/mobile/views/pages/ad/single.php:40
+#: themes/mobile/views/pages/ad/single.php:46
 msgid "Send Message"
 msgstr ""
 
@@ -2043,17 +2055,16 @@ msgid "Display breadcrumb"
 msgstr ""
 
 #: themes/kamaleon/init.php:81
-#: themes/mobile/options.php:72
+#: themes/mobile/options.php:68
 msgid "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
 msgstr ""
 
 #: themes/kamaleon/init.php:85
-#: themes/mobile/options.php:76
 msgid "Short description that appears after the site name."
 msgstr ""
 
 #: themes/kamaleon/init.php:90
-#: themes/mobile/options.php:81
+#: themes/mobile/options.php:74
 msgid "Numbers of ads to display in home slider"
 msgstr ""
 
@@ -2073,20 +2084,19 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: themes/mobile/views/header.php:14
-#: oc/modules/widgets/classes/widget/rss.php:18
-msgid "RSS"
-msgstr ""
-
-#: themes/mobile/views/header.php:15
+#: themes/mobile/views/header.php:13
 msgid "Contact us"
 msgstr ""
 
-#: themes/mobile/views/header.php:16
+#: themes/mobile/views/header.php:14
 msgid "Advanced search"
 msgstr ""
 
-#: themes/mobile/views/header.php:18
+#: themes/mobile/views/header.php:15
+msgid "Desktop Version"
+msgstr ""
+
+#: themes/mobile/views/header.php:17
 msgid "Public Profile"
 msgstr ""
 
@@ -2113,6 +2123,11 @@ msgstr ""
 
 #: themes/mobile/options.php:56
 msgid "Change the theme of Featured Elements"
+msgstr ""
+
+#: install/index.php:24
+#: install/index.php:76
+msgid "Installation"
 msgstr ""
 
 #: install/index.php:96
@@ -2295,8 +2310,12 @@ msgid "maintenance"
 msgstr ""
 
 #: oc/modules/widgets/classes/widget.php:30
-#: oc/classes/theme.php:507
+#: oc/classes/theme.php:510
 msgid "# items to display"
+msgstr ""
+
+#: oc/modules/widgets/classes/widget/rss.php:18
+msgid "RSS"
 msgstr ""
 
 #: oc/modules/widgets/classes/widget/rss.php:19
@@ -2763,7 +2782,7 @@ msgstr ""
 
 #: oc/classes/controller/contact.php:29
 #: oc/classes/controller/contact.php:57
-msgid "Your message is sent"
+msgid "Your message has been sent"
 msgstr ""
 
 #: oc/classes/controller/contact.php:33
