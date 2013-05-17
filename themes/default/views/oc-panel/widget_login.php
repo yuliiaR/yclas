@@ -25,6 +25,9 @@
 		href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'logout'))?>">
 			<i class="icon-off"></i> <?=__('Logout')?>
 	</a>
-    <?nav_link(__('Visit Site'), '', 'icon-home', '')?>
+    <li>
+        <a
+        href="<?=Route::url('default')?>">
+            <i class="icon-home"></i> <?=__('Visit Site')?></a>
 	</li>
 </ul>

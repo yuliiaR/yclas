@@ -471,7 +471,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 }
 
                 $ads_map[$a['idPost']] = $ad->id_ad;
-                }
+            }
             
         }
 
