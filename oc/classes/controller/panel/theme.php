@@ -89,7 +89,7 @@ class Controller_Panel_Theme extends Auth_Controller {
         foreach ($json as $theme) 
         {
 
-            if ($theme['type'] == 'theme' AND !in_array(strtolower($theme['title']), array_keys($themes)) )
+            if (strtolower($theme['type']) == 'theme' AND !in_array(strtolower($theme['title']), array_keys($themes)) )
                 $market[] = $theme;
         }
 

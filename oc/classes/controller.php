@@ -97,7 +97,12 @@ class Controller extends Kohana_Controller
     		$this->template->styles  = array_merge_recursive(Theme::$styles, $this->template->styles);
     		$this->template->scripts = array_reverse(array_merge_recursive(Theme::$scripts,$this->template->scripts));
     		
-    		$this->template->title.=' - '.core::config('general.site_name');
+            if ($this->template->title!='')
+                $concat = ' - ';
+            else
+                $concat = '';
+
+    		$this->template->title.= $concat.core::config('general.site_name');
 
     		 //auto generate keywords and description from content
     		$seo = new seo($this->template->meta_description, Kohana::$charset);

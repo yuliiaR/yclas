@@ -24,7 +24,7 @@
 	<li><a
 		href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'logout'))?>">
 			<i class="icon-off"></i> <?=__('Logout')?>
-	</a>
+	</a></li>
     <li>
         <a
         href="<?=Route::url('default')?>">
