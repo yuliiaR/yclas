@@ -1,6 +1,6 @@
-Open Classifieds 2.0. RC 1
+Open Classifieds 2.0.
 # Installation
-http://open-classifieds.com/2013/04/28/open-classifieds-2-0-beta-1/
+http://open-classifieds.com/install/
 Videos
 
 # Description
