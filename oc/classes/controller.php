@@ -131,10 +131,10 @@ class Controller extends Kohana_Controller
                 if ($user->id_role==10)
                     Alert::set(Alert::INFO, __('You are in maintenance mode, only you can see the website'));
                 else
-                    $this->request->redirect(Route::get('maintenance'));
+                    $this->request->redirect(Route::url('maintenance'));
             }
             else
-                $this->request->redirect(Route::get('maintenance'));
+                $this->request->redirect(Route::url('maintenance'));
         }
     }    
         
