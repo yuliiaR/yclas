@@ -37,7 +37,7 @@ class Theme {
         if (isset($scripts[$type])===TRUE)
         {
 
-            if (Kohana::$environment == Kohana::DEVELOPMENT)
+            if (TRUE)//(Kohana::$environment == Kohana::DEVELOPMENT)//@todo
             {
                 foreach($scripts[$type] as $file)
                 {
