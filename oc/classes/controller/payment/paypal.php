@@ -129,8 +129,8 @@ class Controller_Payment_Paypal extends Controller{
 	                             'site_name'        	=> core::config('general.site_name'),
 	                             'site_url'            	=> URL::base(TRUE),
 	                             'paypal_url'        	=> $paypal_url,
-	                             'paypal_account'    	=> core::config('paypal.paypal_account'),
-	                             'paypal_currency'    	=> core::config('paypal.paypal_currency'),
+	                             'paypal_account'    	=> core::config('payment.paypal_account'),
+	                             'paypal_currency'    	=> core::config('payment.paypal_currency'),
 	                             'item_name'			=> $item_name);
 			
 			$this->template = View::factory('paypal', $paypal_data);
