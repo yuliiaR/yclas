@@ -47,7 +47,7 @@
       <div class="control-group">
         <label class="control-label"><?=__("Table prefix")?>:</label>
         <div class="controls">
-        <input type="text" name="table_prefix" value="_oc" class="span3" />
+        <input type="text" name="table_prefix" value="oc_" class="span3" />
         </div>
       </div>
 

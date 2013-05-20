@@ -176,7 +176,7 @@
 			<?= FORM::label($forms['analytics']['key'], __('Analytics'), array('class'=>'control-label', 'for'=>$forms['analytics']['key']))?>
 			<div class="controls">
 				<?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
-				'placeholder' => 'Open-classifieds', 
+				'placeholder' => 'UA-XXXXX', 
 				'class' => 'tips', 
 				'id' => $forms['analytics']['key'],
 				'data-content'=> __(""),
