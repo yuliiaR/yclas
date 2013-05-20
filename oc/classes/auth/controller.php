@@ -95,14 +95,14 @@ class Auth_Controller extends Controller
             //default theme
             else
             {
-                Theme::$styles                    = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css' => 'screen',
+                Theme::$styles                    = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css' => 'screen',
                                                     'css/jquery.sceditor.min.css' => 'screen',
                                                       'css/chosen.css'=>'screen');
             }
 
 
             Theme::$scripts['footer']		  = array('http://code.jquery.com/jquery-1.9.1.min.js',	
-													  'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js', 
+													  'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js', 
 												      'js/chosen.jquery.min.js',
                                                       'js/oc-panel/theme.init.js',
                                                       'js/jquery.sceditor.min.js'
