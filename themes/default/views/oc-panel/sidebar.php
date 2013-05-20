@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="span3">
+<div class="span3 hidden-phone">
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
                 <li class="divider"></li>
