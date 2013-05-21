@@ -13,7 +13,7 @@
 
     <li data-id="<?=$key?>" id="li_<?=$key?>"><i class="icon-move"></i> <?=$locs[$key]['name']?>
         
-        <a data-text="<?=__('Are you sure you want to delete? We will move the siblings Locations and ads to the parent of this location.')?>" 
+        <a data-text="<?=__('Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location.')?>" 
            data-id="li_<?=$key?>" 
            class="btn btn-mini btn-danger index-delete pull-right" 
            href="<?=Route::url('oc-panel', array('controller'=> 'location', 'action'=>'delete','id'=>$key))?>">

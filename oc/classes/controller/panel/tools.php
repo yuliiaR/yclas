@@ -138,7 +138,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         
             //check if we have latest version of OC
             if (key($versions)!=core::version)
-                Alert::set(Alert::ALERT,__('You are not using OC latest version, please update.'));
+                Alert::set(Alert::ALERT,__('You are not using latest version of OC, please update.'));
             
             //pass to view from local versions.php         
             $this->template->content = View::factory('oc-panel/pages/tools/versions',array('versions'=>$versions,'latest_version'=>key($versions)));
@@ -265,7 +265,7 @@ class Controller_Panel_Tools extends Auth_Controller {
             }
             catch (Exception $e)
             {
-                Alert::set(Alert::ERROR, __('Review Database connection params'));
+                Alert::set(Alert::ERROR, __('Review database connection parameters'));
                 break(1);
             }   
            

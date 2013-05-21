@@ -81,7 +81,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		}
 		else
 		{
-			Alert::set(Alert::INFO, __('You do not have any published advertisemet'));
+			Alert::set(Alert::INFO, __('You do not have any published Advertisement'));
 			$this->template->content = View::factory('oc-panel/pages/ad', array('ads' => NULL));
 		}		
 	}
@@ -208,7 +208,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				}
 				
 			}
-			Alert::set(Alert::SUCCESS, __('Advertisemet is deleted'));
+			Alert::set(Alert::SUCCESS, __('Advertisement is deleted'));
 			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		}
 		else
@@ -250,7 +250,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					}
 					else
 					{				
-						Alert::set(Alert::ALERT, __('Warning, advertisemet is already marked as spam'));
+						Alert::set(Alert::ALERT, __('Warning, Advertisement is already marked as spam'));
 						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 					} 
 				}
@@ -261,7 +261,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				}
 			}
 		}
-		Alert::set(Alert::SUCCESS, __('Advertisemet is marked as spam'));
+		Alert::set(Alert::SUCCESS, __('Advertisement is marked as spam'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 	}
 
@@ -300,7 +300,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					}
 					else
 					{				
-						Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'deactivated'"));
+						Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
 						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 					} 
 				}
@@ -311,7 +311,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				}
 			}
 		}
-		Alert::set(Alert::SUCCESS, __('Advertisemet is deactivated'));
+		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 	}
 
@@ -350,7 +350,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					}
 					else
 					{				
-						Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'active'"));
+						Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'active'"));
 						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 					} 
 				}
@@ -367,7 +367,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		if (Core::config('sitemap.on_post') == TRUE)
 			Sitemap::generate();
 
-		Alert::set(Alert::SUCCESS, __('Advertisemet is active and published'));
+		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 	}
 
@@ -415,7 +415,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			    
 			}
 		}
-		Alert::set(Alert::SUCCESS, __('Advertisemet is featured'));
+		Alert::set(Alert::SUCCESS, __('Advertisement is featured'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 
 	}

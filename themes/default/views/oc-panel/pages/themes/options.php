@@ -3,7 +3,7 @@
 <?=Form::errors()?>
 <div class="page-header">
 	<h1><?=__('Theme Options')?> <?=(Request::current()->param('id')!==NULL)?Request::current()->param('id'):Theme::$theme?></h1>
-    <p><?=__('Here are listed specific theme configuration values. Replace input fileds with new desired values for theme.')?></p>
+    <p><?=__('Here are listed specific theme configuration values. Replace input fields with new desired values for the theme.')?></p>
     <?if(Core::config('appearance.theme_mobile')!=''):?>
             <p>
                 <?=__('Using mobile theme')?> <code><?=Core::config('appearance.theme_mobile')?></code>

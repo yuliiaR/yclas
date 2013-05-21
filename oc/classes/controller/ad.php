@@ -483,7 +483,7 @@ class Controller_Ad extends Controller {
                 list($locations,$order_locations)  = Model_Location::get_all();
 
 				$this->template->bind('content', $content);
-				Alert::set(Alert::INFO, __('We did not find any advertisement for your search.'));
+				Alert::set(Alert::INFO, __('We did not find any advertisements for your search.'));
 				$this->template->content = View::factory('pages/ad/advanced_search', array('categories'           => $categories,
                                                                         'order_categories'  => $order_categories,
                                                                        'locations'          => $locations,
@@ -500,7 +500,7 @@ class Controller_Ad extends Controller {
         }
         else
         {
-        	Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Advansed Search')));
+        	Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Advanced Search')));
         	if($this->request->query('search'))
         	{
         		$unexisting_ad = $this->request->query('search');

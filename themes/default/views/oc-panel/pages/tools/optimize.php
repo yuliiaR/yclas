@@ -2,12 +2,12 @@
 
 
 <div class="page-header">
-	<h1><?=__('Optimize Data Base')?></h1>
+	<h1><?=__('Optimize Database')?></h1>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>?force=1">
   <?=__('Optimize')?></a>
 </div>
 
-<?=__('Data Base space')?> <?=round($total_space,2)?> KB<br>
+<?=__('Database space')?> <?=round($total_space,2)?> KB<br>
 <?=__('Space to optimize')?> <?=round($total_gain,2)?> KB
 
 <table class="table table-striped">

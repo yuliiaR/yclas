@@ -58,7 +58,7 @@
 				<div class="control-group">
 					<?= FORM::label('status', __('Status'), array('class'=>'control-label', 'for'=>'status'))?>
 					<div class="controls">
-						<?php $status = array('0'=>__('notpublished'), '1'=>__('published'),'30'=>__('spam'),'50'=>__('unavailible'));?>
+						<?php $status = array('0'=>__('Unpublished'), '1'=>__('Published'),'30'=>__('spam'),'50'=>__('Unavailable'));?>
 						<?= FORM::select('status', $status, $ad->status, array('id'=>'status','class'=>''));?>
 					</div>
 					<?endif?>

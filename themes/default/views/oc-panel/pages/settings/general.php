@@ -59,7 +59,7 @@
 				'placeholder' => "http://foo.com/", 
 				'class' => 'tips', 
 				'id' => $forms['base_url']['key'],
-				'data-content'=> __("Is a base path of your site (e.g. http://open-classifieds.com/ ). Everything else is built based on this filed."),
+				'data-content'=> __("Is a base path of your site (e.g. http://open-classifieds.com/). Everything else is built based on this field."),
 				'data-trigger'=>"hover",
 				'data-placement'=>"right",
 				'data-toggle'=>"popover",
@@ -164,7 +164,7 @@
 				'placeholder' => "d/m/Y", 
 				'class' => 'tips', 
 				'id' => $forms['date_format']['key'], 
-				'data-content'=> __("Each advertisement have publish date. By selecting format, you can change how is shown on your website."),
+				'data-content'=> __("Each advertisement have a publish date. By selecting format, you can change how it is shown on your website."),
 				'data-trigger'=>"hover",
 				'data-placement'=>"right",
 				'data-toggle'=>"popover",
@@ -306,7 +306,7 @@
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
-                    'data-original-title'=>__("Image Quality)"),
+                    'data-original-title'=>__("Image Quality"),
 
                     ))?>
                     <span class="add-on">%</span>

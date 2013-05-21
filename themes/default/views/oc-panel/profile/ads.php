@@ -95,7 +95,7 @@
 					<a class="btn btn-inverse" 
 						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad))?>" 
 						onclick="return confirm('<?=__('Deactivate featured?')?>');"
-					    rel"tooltip" title="<?=__('Deactivate Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to deactivate featured advertisement?')?>">
+					    rel"tooltip" title="<?=__('Deactivate featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to deactivate featured advertisement?')?>">
 						<i class="icon-bookmark icon-white"></i>
 					</a>
 					<?endif?>

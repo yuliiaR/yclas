@@ -30,7 +30,7 @@ class Widget_Ads extends Widget
 
                                 'ads_limit' => array( 	'type'		=> 'numeric',
 														'display'	=> 'select',
-														'label'		=> __('Number ads to display'),
+														'label'		=> __('Number of ads to display'),
 														'options'   => array_combine(range(1,50),range(1,50)), 
 														'default'	=> 5,
 														'required'	=> TRUE),

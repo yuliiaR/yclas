@@ -202,7 +202,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				}
 				else
 				{				
-					Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'deactivated'"));
+					Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
 					Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 				} 
 			}
@@ -213,7 +213,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			}
 		}
 		
-		Alert::set(Alert::SUCCESS, __('Advertisemet is deactivated'));
+		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 	}
 
@@ -254,7 +254,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				}
 				else
 				{				
-					Alert::set(Alert::ALERT, __("Advertisemet is already marked as 'active'"));
+					Alert::set(Alert::ALERT, __("Advertisement is already marked as 'active'"));
 					Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 				} 
 			}
@@ -281,7 +281,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		if (Core::config('sitemap.on_post') == TRUE)
 			Sitemap::generate();
 
-		Alert::set(Alert::SUCCESS, __('Advertisemet is active and published'));
+		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 	}
 

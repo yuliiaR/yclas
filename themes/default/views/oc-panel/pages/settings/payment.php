@@ -73,13 +73,13 @@
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Featured ads will be highlighted forn an amount of days defined"), 
+						'data-original-title'=>__("Featured ads will be highlighted for a defined number of days."), 
 
 						))?> 
 					</div>
 				</div>
                 <div class="control-group">
-                    <?= FORM::label($forms['pay_to_go_on_feature']['key'], __('Price to Feature Ad'), array('class'=>'control-label', 'for'=>$forms['pay_to_go_on_feature']['key']))?>
+                    <?= FORM::label($forms['pay_to_go_on_feature']['key'], __('Price for featuring the Ad'), array('class'=>'control-label', 'for'=>$forms['pay_to_go_on_feature']['key']))?>
                     <div class="controls">
                         <div class="input-append">
                         

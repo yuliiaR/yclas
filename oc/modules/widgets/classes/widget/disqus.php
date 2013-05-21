@@ -26,7 +26,7 @@ class Widget_Disqus extends Widget
 														'required'	=> FALSE),
 						 		'comments_limit'=>array('type'      => 'numeric',
                                                         'display'   => 'select',
-                                                        'label'     => __('Number comments to display'),
+                                                        'label'     => __('Number of comments to display'),
                                                         'options'   => array_combine(range(1,50),range(1,50)), 
                                                         'default'   => 3,
                                                         'required'  => TRUE),

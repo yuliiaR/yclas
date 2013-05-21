@@ -109,7 +109,7 @@ class Controller_Panel_Widget extends Auth_Controller {
                 Alert::set(Alert::ERROR,__('Widget '.$widget_name.' can not be deleted'));
         }
         else
-            Alert::set(Alert::ERROR,__('Widget param missing'));
+            Alert::set(Alert::ERROR,__('Widget parameter missing'));
 
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index')));
     }

@@ -32,7 +32,7 @@
 			</div>
 			
 			<div class="control-group">
-				<?= FORM::label($forms['expire_date']['key'], __('Ad expiring date'), array('class'=>'control-label', 'for'=>$forms['expire_date']['key']))?>
+				<?= FORM::label($forms['expire_date']['key'], __('Ad expiration date'), array('class'=>'control-label', 'for'=>$forms['expire_date']['key']))?>
 				<div class="controls">
 					<div class="input-append">
 						<?= FORM::input($forms['expire_date']['key'], $forms['expire_date']['value'], array(
@@ -43,7 +43,7 @@
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("How many days an Ad will expire. 0 for never."),
+						'data-original-title'=>__('After how many days an Ad will expire. 0 for never'),
 						));?>
 						<span class="add-on"><?=__("Days")?></span>
 					</div> 
@@ -60,7 +60,7 @@
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Displays the field address in the Ad form."),
+					'data-original-title'=>__("Displays the field Address in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -86,11 +86,11 @@
 					'placeholder' => "", 
 					'class' => 'tips', 
 					'id' => $forms['phone']['key'], 
-					'data-content'=> __("Phone Field"),
+					'data-content'=> __("Phone field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Displays the field phone in the Ad form."),
+					'data-original-title'=>__("Displays the field Phone in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -101,11 +101,11 @@
 					'placeholder' => "http://foo.com/", 
 					'class' => 'tips', 
 					'id' => $forms['website']['key'], 
-					'data-content'=> __("Website Field"),
+					'data-content'=> __("Website field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Displays the field website in the Ad form."),
+					'data-original-title'=>__("Displays the field Website in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -116,11 +116,11 @@
 					'placeholder' => "", 
 					'class' => 'tips', 
 					'id' => $forms['location']['key'], 
-					'data-content'=> __("Location select"),
+					'data-content'=> __("Displays location select"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Displays the select location in the Ad form."),
+					'data-original-title'=>__("Displays the Select Location in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -131,11 +131,11 @@
 					'placeholder' => "", 
 					'class' => 'tips', 
 					'id' => $forms['price']['key'], 
-					'data-content'=> __("Price Field"),
+					'data-content'=> __("Price field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Displays the field price in the Ad form."),
+					'data-original-title'=>__("Displays the field Price in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -194,7 +194,7 @@
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("You need to write you disqus ID to enalbe the service."),
+					'data-original-title'=>__("You need to write your disqus ID to enable the service."),
 					))?> 
 				</div>
 			</div>

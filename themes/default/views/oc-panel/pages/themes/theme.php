@@ -3,7 +3,7 @@
 <?=Form::errors()?>
 <div class="page-header">
 	<h1><?=__('Themes')?></h1>
-    <p><?=__('You can change the look and feel of your web site here.')?></p>
+    <p><?=__('You can change the look and feel of your website here.')?></p>
 </div>
 
 <div class="media">
@@ -108,9 +108,9 @@ foreach ($mobile_themes as $theme=>$info):?>
 <?endif?>
 
 <? if (count($market)>1):?>
-<h2><?=__('Market Themes')?></h2>
-<p><?=__('Here you can find a selection from our premium themes.')?></p>
-<p class="text-success"><?=__('All themes include support, updates and license.')?></p>
+<h2><?=__('Themes Market')?></h2>
+<p><?=__('Here you can find a selection of our premium themes.')?></p>
+<p class="text-success"><?=__('All themes include support, updates and 1 site license.')?></p>
 
 <?=View::factory('oc-panel/pages/market/listing',array('market'=>$market))?>    
 <?endif?>
