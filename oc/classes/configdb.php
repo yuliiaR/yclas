@@ -11,29 +11,14 @@
 
 class ConfigDB extends Config_Database {
  
-    protected $_cache_method;//cache method used
-    protected $_cache = NULL;//cache instance
     private static $data;//here we stored the config
 
     /**
      * construct for oc
      * @param array $config 
      */
-    public function __construct(array $config = NULL)
-    {
-        //most important by construct
-        if (isset($config['cache']))
-        {
-            $this->_cache_method = $config['cache'];
-        }
-        //if not use the default
-        elseif (isset(Kohana::$config->load('cache')->file['driver']))
-        {
-            $this->_cache_method = Kohana::$config->load('cache')->file['driver'];
-        }
-        
-        $this->_cache = Cache::instance( $this->_cache_method );
-        
+    public function __construct()
+    {        
         //loading the configs in the cache
         $this->load_config();
  
@@ -71,7 +56,7 @@ class ConfigDB extends Config_Database {
     private function load_config()
     {
         //we don't read the config cache in development
-        self::$data = (Kohana::$environment===Kohana::DEVELOPMENT)? NULL:$this->_cache->get('config_db');
+        self::$data = (Kohana::$environment===Kohana::DEVELOPMENT)? NULL:Cache::instance()->get('config_db');
         
         //only load if empty
         if(self::$data === NULL)
@@ -91,7 +76,7 @@ class ConfigDB extends Config_Database {
             }
            
             //caching all the results
-            $this->_cache->set('config_db', self::$data, 60*60*24);
+            Cache::instance()->set('config_db', self::$data, 60*60*24);
             
             return TRUE;
         }
@@ -111,7 +96,7 @@ class ConfigDB extends Config_Database {
     public function reload_config()
     {
         // Clears cached data
-        $this->_cache->delete('config_db');  
+        Cache::instance()->delete('config_db');  
         //load config
         return $this->load_config();
     }

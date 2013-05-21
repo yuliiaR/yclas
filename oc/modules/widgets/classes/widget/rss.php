@@ -64,13 +64,13 @@ class Widget_RSS extends Widget
 	public function before()
 	{
 		//try to get the RSS from the cache
-		$rss = Kohana::cache($this->rss_url,NULL,$this->rss_expire);
+		$rss = Core::cache($this->rss_url,NULL,$this->rss_expire);
 
 		//not cached :(
 		if ($rss === NULL)
 		{
 			$rss = Feed::parse($this->rss_url,$this->rss_limit);
-			Kohana::cache($this->rss_url,$rss,$this->rss_expire);
+			Core::cache($this->rss_url,$rss,$this->rss_expire);
 		}
 
 		$this->rss_items = $rss;

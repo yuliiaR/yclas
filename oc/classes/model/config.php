@@ -34,8 +34,8 @@ class Model_Config extends ORM {
      */
     public function create(Validation $validation = NULL)
     {
-        $this->reload_config();
         parent::create($validation);
+        $this->reload_config();
     }
 
     /**
@@ -47,8 +47,8 @@ class Model_Config extends ORM {
      */
     public function update(Validation $validation = NULL)
     {
-        $this->reload_config();
         parent::update($validation);
+        $this->reload_config();
     }
 
     /**
@@ -59,8 +59,8 @@ class Model_Config extends ORM {
      */
     public function delete()
     {
-        $this->reload_config();
         parent::delete();
+        $this->reload_config();
     }
 
 

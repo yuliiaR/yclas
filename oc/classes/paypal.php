@@ -10,7 +10,7 @@
  * @license    GPL v3
  */
 
-Class Paypal {
+class Paypal {
 	
 	/**
      * for form generation

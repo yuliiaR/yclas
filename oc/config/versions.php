@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
-  '2.0.' => 
+  '2.0' => 
   array (
     'codename' => 'Reoc',
     'released' => '2013-05-31',

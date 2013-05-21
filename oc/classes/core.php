@@ -16,15 +16,7 @@ class Core {
 	 * OC version
 	 * @var string
 	 */
-	const version = '2.0.';
-
-    /**
-     * original requested data
-     * @var array
-     */
-    public static $_POST_ORIG;
-    public static $_GET_ORIG;
-    public static $_COOKIE_ORIG;
+	const version = '2.0';
 
 	
 	/**
@@ -33,16 +25,7 @@ class Core {
 	 */
 	public static function initialize()
 	{	
-        //before cleaning getting a copy of the original in case we need it.
-        self::$_POST_ORIG   = $_POST;
-        self::$_GET_ORIG    = $_GET;
-        self::$_COOKIE_ORIG = $_COOKIE;
-      
-		// Strip HTML from all request variables
-		$_GET    = Core::strip_tags($_GET);
-		$_POST   = Core::strip_tags($_POST);
-		$_COOKIE = Core::strip_tags($_COOKIE);
-		
+        		
 		/**
 		 * Load all the configs from DB
 		 */
@@ -75,30 +58,6 @@ class Core {
 
 	}
 	
-	/**
-	 * Recursively strip html tags an input variable:
-	 *
-	 * @param   mixed  any variable
-	 * @param   string  HTML tags
-	 * @return  mixed  sanitized variable
-	 */
-	public static function strip_tags($value,$allowable_tags=NULL)
-	{
-		if (is_array($value) OR is_object($value))
-		{
-			foreach ($value as $key => $val)
-			{
-				// Recursively strip each value
-				$value[$key] = Core::strip_tags($val,$allowable_tags);
-			}
-		}
-		elseif (is_string($value))
-		{
-			$value = strip_tags($value,$allowable_tags);
-		}
-	
-		return $value;
-	}
 
 	/**
      * Shortcut to load a group of configs
@@ -130,6 +89,28 @@ class Core {
     public static function post($key,$default=NULL)
     {
     	return (Request::current()->post($key)!==NULL)?Request::current()->post($key):$default;
+    }
+
+    /**
+     * shortcut for the cache instance
+     * 
+     * @param   string  $name       name of the cache
+     * @param   mixed   $data       data to cache
+     * @param   integer $lifetime   number of seconds the cache is valid for
+     * @return  mixed    for getting
+     * @return  boolean  for setting
+     */
+    public static function cache($name, $data = NULL, $lifetime = NULL)
+    {
+        //in development we do not store or read we always return null
+        if (Kohana::$environment == Kohana::DEVELOPMENT)
+            return NULL;
+
+        //no data provided we read
+        if ($data===NULL)
+            return Cache::instance()->get($name);
+        else
+            return Cache::instance()->set($name,$data, $lifetime);
     }
 
     /**
@@ -254,14 +235,14 @@ class Core {
         $market_url = 'http://open-classifieds.com/files/market.json';
 
         //try to get the json from the cache
-        $market = Kohana::cache($market_url,NULL,strtotime('+1 day'));
+        $market = Core::cache($market_url);
 
         //not cached :(
         if ($market === NULL OR  $reload === TRUE)
         {
             $market = file_get_contents($market_url.'?r='.time());
             //save the json
-            Kohana::cache($market_url,$market,strtotime('+1 day'));
+            Core::cache($market_url,$market,strtotime('+1 day'));
         }
 
         return json_decode($market,TRUE);

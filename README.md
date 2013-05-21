@@ -1,4 +1,4 @@
-Open Classifieds 2.0.
+Open Classifieds 2.0
 # Installation
 http://open-classifieds.com/install/
 Videos

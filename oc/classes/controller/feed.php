@@ -63,7 +63,7 @@ class Controller_Feed extends Controller {
     {
 
         //try to get the info from the cache
-        $info = Kohana::cache('action_info',NULL);
+        $info = Core::cache('action_info',NULL);
 
         //not cached :(
         if ($info === NULL)
@@ -102,7 +102,7 @@ class Controller_Feed extends Controller {
                             'users'         => $total_users,
             );
 
-            Kohana::cache('action_info',$info);
+            Core::cache('action_info',$info);
         }
        
 

@@ -3,7 +3,7 @@
 
 	<div class="page-header">
 		<h1><?=__('Sitemap')?></h1>
-    <p><?=__('Last time generated')?> <?=Date::unix2mysql(Kohana::cache('sitemap_last'))?></p>
+    <p><?=__('Last time generated')?> <?=Date::unix2mysql(Core::cache('sitemap_last'))?></p>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap'))?>?force=1">
       <?=__('Generate')?></a>
 	</div>

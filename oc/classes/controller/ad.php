@@ -139,7 +139,7 @@ class Controller_Ad extends Controller {
 		{
 			$ad = new Model_Ad();
 			$ad->where('seotitle','=', $seotitle)
-				 ->limit(1)->find();
+				 ->limit(1)->cached()->find();
 
 			if ($ad->loaded())
 			{
