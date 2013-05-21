@@ -109,6 +109,7 @@ class Core {
         //no data provided we read
         if ($data===NULL)
             return Cache::instance()->get($name);
+        //saves data
         else
             return Cache::instance()->set($name,$data, $lifetime);
     }

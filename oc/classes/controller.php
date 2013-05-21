@@ -71,16 +71,19 @@ class Controller extends Kohana_Controller
                 $this->template= $template; 
         	$this->template = View::factory($this->template);
         	
-            // Initialize empty values
+            // Initialize template values
             $this->template->title            = core::config('general.site_name');
             $this->template->meta_keywords    = '';
             $this->template->meta_description = '';
             $this->template->meta_copywrite   = 'Open Classifieds '.Core::version;
-            $this->template->header           = View::factory('header');
             $this->template->content          = '';
-            $this->template->footer           = View::factory('footer');
             $this->template->styles           = array();
             $this->template->scripts          = array();
+
+            //setting inner views try to get from fragment
+            $this->template->header           = View::factory('header');
+            $this->template->footer           = View::factory('footer');
+            
 
         }
     }
