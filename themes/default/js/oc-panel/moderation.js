@@ -70,6 +70,5 @@ function check_all(){
 		$('a.delete').attr('href', "/oc-panel/ad/delete");
 		$('a.activate').attr('href', href_active+'/'+selected);
 		$('a.featured').attr('href', "/oc-panel/ad/featured");
-		$('a.featured').attr('href', "/oc-panel/ad/featured");
 	}
 }

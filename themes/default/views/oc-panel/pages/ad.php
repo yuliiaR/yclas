@@ -48,13 +48,13 @@
 			</a>
 			<a class="delete btn btn-danger index-delete" 
 				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
-				onclick="col_selected();"
+				onclick="return confirm('<?=__('Delete?')?>');"
 			    rel"tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
 				<i class="icon-remove icon-white"></i>
 			</a>
 			<a class="featured btn btn-primary" 
 				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured'))?>"
-				onclick="col_selected();"
+				onclick="return confirm('<?=__('Are you sure you want to make it featured?')?>');"
 			    rel"tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
 				<i class="icon-bookmark icon-white"></i>
 			</a>
