@@ -98,7 +98,7 @@
     		</div>
 		</div>
 
-        <?if ($ad->address!==''):?>
+        <?if ($ad->address!=='' AND core::config('advertisement.map')==1):?>
         <iframe frameborder="0" noresize="noresize" 
             height="420px" width="100%" 
             src="<?=Route::url('map')?>?height=400&address=<?=$ad->address?>">

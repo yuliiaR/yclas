@@ -64,6 +64,21 @@
 					))?> 
 				</div>
 			</div>
+            <div class="control-group">
+                <?= FORM::label($forms['map']['key'], __('Google Maps in Ad'), array('class'=>'control-label', 'for'=>$forms['map']['key']))?>
+                <div class="controls">
+                    <?= FORM::select($forms['map']['key'], array(0=>"FALSE",1=>"TRUE"),$forms['map']['value'], array(
+                    'placeholder' => "", 
+                    'class' => 'tips', 
+                    'id' => $forms['map']['key'], 
+                    'data-content'=> '',
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-original-title'=>__("Displays the google maps in the Ad."),
+                    ))?> 
+                </div>
+            </div>
 			<div class="control-group">
 				<?= FORM::label($forms['phone']['key'], __('Phone'), array('class'=>'control-label', 'for'=>$forms['phone']['key']))?>
 				<div class="controls">
