@@ -11,7 +11,27 @@
 
 class View extends Kohana_View{
     
-    
+    /**
+     * gets a cached fragment view
+     * @param  string $name name to use in the cache should be unique
+     * @param  string $file file view
+     * @param  array $data 
+     * @return string       
+     */
+    public static function fragment($name, $file, array $data = NULL)
+    {
+        $name = 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme; 
+
+        if ( ($fragment = Core::cache($name))===NULL ) 
+        {
+            $view = View::factory($file,$data);
+
+            $fragment = $view->render();
+            Core::cache($name,$fragment);
+        }   
+
+        return $fragment;
+    }
     
     /**
      * Sets the view filename. Overriide from origianl to liad from theme folder

@@ -81,8 +81,8 @@ class Controller extends Kohana_Controller
             $this->template->scripts          = array();
 
             //setting inner views try to get from fragment
-            $this->template->header           = View::factory('header');
-            $this->template->footer           = View::factory('footer');
+            $this->template->header           = View::fragment('header_front','header');
+            $this->template->footer           = View::fragment('footer_front','footer');
             
 
         }

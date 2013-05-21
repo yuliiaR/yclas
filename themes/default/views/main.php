@@ -50,7 +50,7 @@
                 <?=$content?>
             </div><!--/span-->
             <div class="span3"> 
-            <?=View::factory('sidebar')?>
+            <?=View::fragment('sidebar_front','sidebar')?>
             </div>
         </div><!--/row-->
         <?=$footer?>
