@@ -181,7 +181,13 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 			if ($deact_ad->loaded())
 			{
-				if ($deact_ad->status != 50)
+				if(Auth::instance()->get_user()->id_user !== $deact_ad->id_user 
+                    || Auth::instance()->get_user()->id_role !== 10)
+                {
+                    Alert::set(Alert::ALERT, __("This is not your advertisement."));
+                    Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
+                }
+                elseif ($deact_ad->status != 50)
 				{
 					$deact_ad->status = 50;
 					
@@ -226,7 +232,13 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 			if ($active_ad->loaded())
 			{
-				if ($active_ad->status != 1)
+                if(Auth::instance()->get_user()->id_user !== $active_ad->id_user 
+                    || Auth::instance()->get_user()->id_role !== 10)
+                {
+                    Alert::set(Alert::ALERT, __("This is not your advertisement."));
+                    Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
+                }
+				elseif ($active_ad->status != 1)
 				{
 					$active_ad->published = Date::unix2mysql(time());
 					$active_ad->status = 1;
@@ -242,7 +254,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				}
 				else
 				{				
-					Alert::set(Alert::ALERT, __("Warning, advertisemet is already marked as 'active'"));
+					Alert::set(Alert::ALERT, __("Advertisemet is already marked as 'active'"));
 					Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 				} 
 			}
@@ -263,7 +275,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
 		 	                                'seotitle'=> $active_ad->seotitle),TRUE);
 
-			$ret = $usr->email('ads.activated',array("[USER.OWNER]"=>$usr->name, "[AD.ID]"=>$active_ad->id_ad));	
+			$ret = $usr->email('ads.activated',array("[USER.OWNER]"=>$usr->name,'[URL.QL]'=>$url_ql));	
 		}	
 
 		if (Core::config('sitemap.on_post') == TRUE)
