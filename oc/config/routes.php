@@ -16,7 +16,7 @@
  * Item / post new
  * URL::title(__('publish new'))
  */
-Route::set('post_new', URL::title(__('publish new')).'.html')
+Route::set('post_new', URL::title(__('publish new'),'-',TRUE).'.html')
 ->defaults(array(
 		'controller' => 'new',    
 		'action'     => 'index',
@@ -25,7 +25,7 @@ Route::set('post_new', URL::title(__('publish new')).'.html')
 /**
  * search
  */
-Route::set('search',URL::title(__('search')).'.html')
+Route::set('search',URL::title(__('search'),'-',TRUE).'.html')
 ->defaults(array(
         'controller' => 'ad',    
         'action'     => 'advanced_search',
@@ -34,7 +34,7 @@ Route::set('search',URL::title(__('search')).'.html')
 /**
  * Captcha / contact
  */
-Route::set('contact', URL::title(__('contact')).'.html')
+Route::set('contact', URL::title(__('contact'),'-',TRUE).'.html')
 ->defaults(array(
 		'controller' => 'contact',
 		'action'	 => 'index',));
@@ -42,14 +42,14 @@ Route::set('contact', URL::title(__('contact')).'.html')
 /**
  * maps
  */
-Route::set('map', URL::title(__('map')).'.html')
+Route::set('map', URL::title(__('map'),'-',TRUE).'.html')
 ->defaults(array(
         'controller' => 'map',
         'action'     => 'index',));
 /**
  * maintenance
  */
-Route::set('maintenance', URL::title(__('maintenance')).'.html')
+Route::set('maintenance', URL::title(__('maintenance'),'-',TRUE).'.html')
 ->defaults(array(
         'controller' => 'maintenance',
         'action'     => 'index',));

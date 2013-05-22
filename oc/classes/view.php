@@ -18,16 +18,20 @@ class View extends Kohana_View{
      * @param  array $data 
      * @return string       
      */
-    public static function fragment($name, $file, array $data = NULL)
+    public static function fragment($name, $file = NULL, array $data = NULL)
     {
         $name = 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme; 
 
         if ( ($fragment = Core::cache($name))===NULL ) 
         {
-            $view = View::factory($file,$data);
-
-            $fragment = $view->render();
-            Core::cache($name,$fragment);
+            //if file is set and we dont have the cache we render.
+            if ($file!==NULL)
+            {
+                $view = View::factory($file,$data);
+                $fragment = $view->render();
+                Core::cache($name,$fragment);
+            }
+            
         }   
 
         return $fragment;
