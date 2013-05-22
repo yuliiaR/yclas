@@ -84,13 +84,16 @@ class Controller_Panel_Tools extends Auth_Controller {
 
         $cache_config = Core::config('cache.'.Core::config('cache.default'));
 
-        //force regenerate sitemap
+        //force clean cache
         if (Core::get('force')==1)
         {
             Cache::instance()->delete_all();
             Alert::set(Alert::SUCCESS,__('Cache deleted'));
 
         }
+        //garbage collector
+        
+        
         $this->template->content = View::factory('oc-panel/pages/tools/cache',array('cache_config'=>$cache_config));
     }
 

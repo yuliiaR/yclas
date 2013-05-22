@@ -697,6 +697,14 @@ class Controller_Panel_Profile extends Auth_Controller {
         
    }
 
+   /**
+    * redirects to public profile, we use it so we can cache the view and redirect them
+    * @return redirect 
+    */ 
+   public function action_public()
+   {
+        $this->request->redirect(Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname)));
+   }
 
 
 }

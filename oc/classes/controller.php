@@ -47,7 +47,7 @@ class Controller extends Kohana_Controller
         if($this->request->param('category',NULL) != 'all' )
         {
             $slug_cat   = new Model_Category();
-            $seo_cat = $slug_cat->where('seoname', '=', $this->request->param('category'))->limit(1)->find();
+            $seo_cat = $slug_cat->where('seoname', '=', $this->request->param('category'))->limit(1)->cached()->find();
             if ($seo_cat->loaded())
                 self::$category = $seo_cat;
         }
@@ -58,7 +58,7 @@ class Controller extends Kohana_Controller
         if($this->request->param('location',NULL) != NULL || $this->request->param('location') != 'all')
         {
             $slug_loc   = new Model_Location();
-            $seo_loc = $slug_loc->where('seoname', '=', $this->request->param('location'))->limit(1)->find();
+            $seo_loc = $slug_loc->where('seoname', '=', $this->request->param('location'))->limit(1)->cached()->find();
             
             if ($seo_loc->loaded())
                 self::$location = $seo_loc;
@@ -81,8 +81,12 @@ class Controller extends Kohana_Controller
             $this->template->scripts          = array();
 
             //setting inner views try to get from fragment
-            $this->template->header           = View::fragment('header_front','header');
-            $this->template->footer           = View::fragment('footer_front','footer');
+            if (Auth::instance()->logged_in())
+                $this->template->header  = View::fragment('header_front_login','header');
+            else
+                $this->template->header  = View::fragment('header_front','header');
+
+            $this->template->footer = View::fragment('footer_front','footer');
             
 
         }

@@ -18,7 +18,7 @@
 	<li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))?>"><i
 		   class="icon-lock"></i> <?=__('Edit profile')?></a></li>
 
-    <li><a href="<?=Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname))?>">
+    <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'public'))?>">
          <i class="icon-eye-open"></i> <?=__('Public profile')?></a></li>
 
 	<li class="divider"></li>
