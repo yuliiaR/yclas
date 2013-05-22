@@ -88,12 +88,18 @@ class Controller_Panel_Tools extends Auth_Controller {
         if (Core::get('force')==1)
         {
             Cache::instance()->delete_all();
-            Alert::set(Alert::SUCCESS,__('Cache deleted'));
+            Alert::set(Alert::SUCCESS,__('All cache deleted'));
 
         }
         //garbage collector
+        elseif (Core::get('force')==2)
+        {
+            Cache::instance()->garbage_collect();
+            Alert::set(Alert::SUCCESS,__('Deleted expired cache'));
+
+        }
         
-        
+
         $this->template->content = View::factory('oc-panel/pages/tools/cache',array('cache_config'=>$cache_config));
     }
 
