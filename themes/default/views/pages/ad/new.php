@@ -21,7 +21,9 @@
                         <select name="category" id="category" class="input-xlarge"   required>
                         <option></option>
                         <?function lili($item, $key,$cats){?>
-                        <option value="<?=$key?>"><?=$cats[$key]['name']?></option>
+                        <option value="<?=$key?>"><?=$cats[$key]['name']?>
+                            <?if ($cats[$key]['price']>0):?> - <?=$cats[$key]['price']?> <?=core::config('general.global_currency')?><?endif?>
+                        </option>
                             <?if (count($item)>0):?>
                             <optgroup label="<?=$cats[$key]['name']?>">    
                                 <? if (is_array($item)) array_walk($item, 'lili', $cats);?>

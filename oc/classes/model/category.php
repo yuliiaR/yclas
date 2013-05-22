@@ -100,6 +100,7 @@ class Model_Category extends ORM {
                                                   'id_category_parent' => $cat->id_category_parent,
                                                   'parent_deep'        => $cat->parent_deep,
                                                   'seoname'            => $cat->seoname,
+                                                  'price'              => $cat->price,
                                                   'id'                 => $cat->id_category,
                                                 );
         }
@@ -251,26 +252,8 @@ class Model_Category extends ORM {
 	 */
 	public function form_setup($form)
 	{	
-		 
 		$form->fields['description']['display_as'] = 'textarea';
-
-        $form->fields['id_category_parent']['display_as'] = 'hidden';
-        $form->fields['id_category_parent']['value'] = 1;
-
-		/*$form->fields['price']['caption'] = 'currency';
-	
-		$form->fields['parent_deep']['display_as'] = 'select';
-		$form->fields['parent_deep']['options'] = range(0,2);
-
-
-        $form->fields['id_category_parent']['dont_reindex_options']  = true;
-		$form->fields['id_category_parent']['display_as']     = 'select';
-		$form->fields['id_category_parent']['options']        = self::category_parent();// range(1,10);
-
-
-		$form->fields['order']['display_as'] = 'select';
-		$form->fields['order']['options'] = range(0,30);*/
-		
+        $form->fields['id_category_parent']['display_as'] = 'hidden';		
 	}
 
 	public function exclude_fields()

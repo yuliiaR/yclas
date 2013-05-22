@@ -131,13 +131,7 @@ class Model_Location extends ORM {
 	public function form_setup($form)
 	{
 		$form->fields['description']['display_as'] = 'textarea';
-	
-
-		$form->fields['seoname']['caption'] = 'seoname';
-
         $form->fields['id_location_parent']['display_as'] = 'hidden';
-        $form->fields['id_location_parent']['value'] = 1;
-				
 	}
 
 	public function exclude_fields()
