@@ -16,6 +16,7 @@
 	   
 	       	<?if($ad->featured >= Date::unix2mysql(time())):?>
 		    	<article class="list well clearfix featured">
+                    <span class="label label-important"><?=__('Featured')?></span>
 		    <?else:?>
 		    	<article class="list well clearfix">
 		    <?endif?>
