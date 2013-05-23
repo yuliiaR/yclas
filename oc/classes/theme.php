@@ -13,6 +13,7 @@ class Theme {
     
     
     public static $theme        = 'default';
+    public static $skin         = ''; //skin that the theme is using, used in premium themes
     private static $views_path  = 'views';
     public  static $scripts     = array();
     public  static $styles      = array();
