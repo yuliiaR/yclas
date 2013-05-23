@@ -33,6 +33,15 @@
         padding: 9px 0;
       }
 
+      .thumb_market{
+        height: 200px; width: 300px;
+        }
+
+        .market_item{
+          height:450px;
+        }
+
+
     @media screen and (max-width: 979px) {
         body { padding-top:0; }
         .navbar .nav { float:none; }

@@ -10,9 +10,9 @@ foreach ($market as $item):?>
     <div class="thumbnail <?if ( $item['price_offer']>0):?>alert-success<?endif?>" >
 
         <?if (empty($item['url_screenshot'])===FALSE):?>
-            <img width="300px" height="200px" src="<?=$item['url_screenshot']?>">
+            <img  class="thumb_market" src="<?=$item['url_screenshot']?>">
         <?else:?>
-             <img src="http://www.placehold.it/300x200&text=<?=$item['title']?>">
+             <img class="thumb_market" src="http://www.placehold.it/300x200&text=<?=$item['title']?>">
         <?endif?>   
         
         <div class="caption">
