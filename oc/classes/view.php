@@ -20,7 +20,7 @@ class View extends Kohana_View{
      */
     public static function fragment($name, $file = NULL, array $data = NULL)
     {
-        $name = 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme; 
+        $name = 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme.Theme::$skin; 
 
         if ( ($fragment = Core::cache($name))===NULL ) 
         {
