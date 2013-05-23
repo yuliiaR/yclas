@@ -131,12 +131,14 @@ class Model_Location extends ORM {
 	public function form_setup($form)
 	{
 		$form->fields['description']['display_as'] = 'textarea';
-        $form->fields['id_location_parent']['display_as'] = 'hidden';
+        // $form->fields['id_location_parent']['display_as'] = 'hidden';
+        // $form->fields['parent_deep']['display_as'] = 'hidden';
+        // $form->fields['order']['display_as'] = 'hidden';
 	}
 
 	public function exclude_fields()
 	{
-	  return array('created','parent_deep','order');
+	  return array('created');
 	}
 
     /**
