@@ -107,7 +107,7 @@ foreach ($mobile_themes as $theme=>$info):?>
 </div><!--/row-->    
 <?endif?>
 
-<? if (count($market)>1):?>
+<? if (count($market)>0):?>
 <h2><?=__('Themes Market')?></h2>
 <p><?=__('Here you can find a selection of our premium themes.')?></p>
 <p class="text-success"><?=__('All themes include support, updates and 1 site license.')?></p>

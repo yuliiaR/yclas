@@ -82,14 +82,16 @@ class Controller_Panel_Theme extends Auth_Controller {
         $themes = Theme::get_installed_themes();
 
         $mobile_themes = Theme::get_installed_themes(TRUE);
-
+  
         //getting themes from market
         $market = array();
         $json = Core::get_market();
         foreach ($json as $theme) 
         {
-
-            if (strtolower($theme['type']) == 'theme' AND !in_array(strtolower($theme['title']), array_keys($themes)) )
+            //we add only those the user doesn't have installed
+            if (strtolower($theme['type']) == 'theme' 
+                AND !in_array(strtolower($theme['seoname']), array_keys($themes))
+                AND !in_array(strtolower($theme['seoname']), array_keys($mobile_themes)) )
                 $market[] = $theme;
         }
 
