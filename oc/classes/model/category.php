@@ -38,10 +38,10 @@ class Model_Category extends ORM {
 		),
 	);
 
-   /* protected $_belongs_to = array(
+    protected $_belongs_to = array(
         'parent'   => array('model'       => 'Category',
                             'foreign_key' => 'id_category_parent'),
-    );*/
+    );
 
 
 	
@@ -253,10 +253,16 @@ class Model_Category extends ORM {
 	public function form_setup($form)
 	{	
 		$form->fields['description']['display_as'] = 'textarea';
-        //$form->fields['id_category_parent']['display_as'] = 'hidden';	
-        // $form->fields['parent_deep']['display_as'] = 'hidden';
-        // $form->fields['order']['display_as'] = 'hidden';	
+
+        $form->fields['id_category_parent']['display_as']   = 'select';
+        $form->fields['id_category_parent']['caption']      = 'name';   
+
+        $form->fields['parent_deep']['display_as']   = 'select';
+        $form->fields['parent_deep']['options']      = range(0, 10);
+        $form->fields['order']['display_as']   = 'select';
+        $form->fields['order']['options']      = range(1, 100);
 	}
+
 
 	public function exclude_fields()
 	{

@@ -27,6 +27,11 @@ class Model_Location extends ORM {
 	protected $_primary_key = 'id_location';
 
 
+    protected $_belongs_to = array(
+        'parent'   => array('model'       => 'Location',
+                            'foreign_key' => 'id_location_parent'),
+    );
+
 	/**
 	 * Rule definitions for validation
 	 *
@@ -131,6 +136,15 @@ class Model_Location extends ORM {
 	public function form_setup($form)
 	{
 		$form->fields['description']['display_as'] = 'textarea';
+
+        $form->fields['id_location_parent']['display_as']   = 'select';
+        $form->fields['id_location_parent']['caption']      = 'name';   
+
+        $form->fields['parent_deep']['display_as']   = 'select';
+        $form->fields['parent_deep']['options']      = range(0, 10);
+        $form->fields['order']['display_as']   = 'select';
+        $form->fields['order']['options']      = range(1, 100);
+
         // $form->fields['id_location_parent']['display_as'] = 'hidden';
         // $form->fields['parent_deep']['display_as'] = 'hidden';
         // $form->fields['order']['display_as'] = 'hidden';

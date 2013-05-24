@@ -87,8 +87,13 @@ class Model_Content extends ORM {
 
     public function form_setup($form)
     {
-        $form->fields['order']['display_as']            = 'select';
-        $form->fields['order']['options']               = range(0, 30);
+        $form->fields['order']['display_as']   = 'select';
+        $form->fields['order']['options']      = range(0, 30);
+
+        $form->fields['locale']['display_as']  = 'select';
+        $form->fields['locale']['options']     = i18n::get_languages();
+
+
     }
 
     public function exclude_fields()
