@@ -80,8 +80,8 @@ class Theme {
                         
                         if ( ($version = strpos($file, '?'))>0 )
                             $file = substr($file, 0, $version );
-
-                        $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
+                        if (file_exists(self::theme_folder($theme).'/'.$file))
+                            $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
                     }
 
                     Core::fwrite($file_name,JSMin::minify($min));
@@ -151,7 +151,8 @@ class Theme {
                     if ( ($version = strpos($file, '?'))>0 )
                         $file = substr($file, 0, $version );
 
-                    $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
+                    if (file_exists(self::theme_folder($theme).'/'.$file))
+                        $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
 
                 }
 
