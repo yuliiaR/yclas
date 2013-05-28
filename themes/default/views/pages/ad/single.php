@@ -1,7 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-	
-
 	<?if ($ad->status != Model_Ad::STATUS_PUBLISHED && $permission === FALSE && ($ad->id_user != $user)):?>
 
 	<div class="page-header">
@@ -35,10 +33,22 @@
 	</div>
 
 	<?endif?>
-    	<p><strong><?=__('Price')?> : </strong> <?= $ad->price?></p>
-	    <p><strong><?=__('Description')?> : </strong><?= Text::bb2html($ad->description,TRUE)?></p>	
-	    <p><strong><?=__('Published')?>: </strong> <?= Date::format($ad->published, core::config('general.date_format'))?></p>
-	    <p><strong><?=__('Hits')?>: </strong><?=$hits?></p>	    
+        <div>
+            <?if ($ad->price>0):?>
+            <span class="label label-important"><?=money_format('%n', $ad->price)?></span>
+            <?endif?>
+            <div class="pull-right">
+            <span class="label label-info"><?= Date::format($ad->published, core::config('general.date_format'))?></span>
+            <span class="label label-info"><?=$hits?> <?=__('Hits')?></span> 
+            </div>    
+        </div>
+
+    	<br>
+
+	    <div>
+            <?= Text::bb2html($ad->description,TRUE)?>
+        </div>	
+	    
 
 		<button class="btn btn-success"type="button" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></button>
 		<div id="contact-modal" class="modal hide fade">

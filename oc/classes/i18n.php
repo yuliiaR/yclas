@@ -65,6 +65,8 @@ class I18n extends Kohana_I18n {
          */
         $locale_res = setlocale(LC_MESSAGES, self::$locale);
 
+        setlocale(LC_MONETARY, self::$locale);
+
         if ( !function_exists('_') OR $locale_res===FALSE OR empty($locale_res) )
         {
             /**
