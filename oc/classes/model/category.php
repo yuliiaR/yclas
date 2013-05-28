@@ -183,6 +183,7 @@ class Model_Category extends ORM {
                         ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
                         ->group_by('id_category'), 'count'))
                 ->from(array('categories', 'c'))
+                ->order_by('order','asc')
                 ->as_object()
                 ->cached()
                 ->execute();
