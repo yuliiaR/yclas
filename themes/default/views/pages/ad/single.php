@@ -35,7 +35,7 @@
 	<?endif?>
         <div>
             <?if ($ad->price>0):?>
-            <span class="label label-important"><?=money_format('%n', $ad->price)?></span>
+            <span class="label label-important"><?=money_format(core::config('general.number_format'), $ad->price)?></span>
             <?endif?>
             <div class="pull-right">
             <span class="label label-info"><?= Date::format($ad->published, core::config('general.date_format'))?></span>
