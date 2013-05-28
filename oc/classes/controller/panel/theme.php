@@ -53,7 +53,11 @@ class Controller_Panel_Theme extends Auth_Controller {
             {
                 if (isset($options[$key]))
                 {
-                    $data[$key] = core::post($key);
+                    //if textarea allow HTML
+                    if ($options[$key]['display'] == 'textarea')
+                        $data[$key] = Kohana::$_POST_ORIG[$key];
+                    else
+                        $data[$key] = core::post($key);
                 }
             }
             
