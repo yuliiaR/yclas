@@ -52,6 +52,18 @@
                 ))?> 
             </div>
         </div>
+
+        <div class="control-group">
+            <?= FORM::label($forms['site_description']['key'], __('Site description'), array('class'=>'control-label', 'for'=>$forms['site_description']['key']))?>
+            <div class="controls">
+                <?= FORM::input($forms['site_description']['key'], $forms['site_description']['value'], array(
+                'placeholder' => '', 
+                'class' => 'tips', 
+                'id' => $forms['site_description']['key'],
+                ))?> 
+            </div>
+        </div>
+
 		<div class="control-group">
 			<?= FORM::label($forms['base_url']['key'], __('Base URL'), array('class'=>'control-label', 'for'=>$forms['base_url']['key']))?>
 			<div class="controls">

@@ -8,7 +8,7 @@ class Controller_Home extends Controller {
 	    //template header
 	    $this->template->title            = '';
 	    // $this->template->meta_keywords    = 'keywords';
-	    // $this->template->meta_description = 'desc';
+	    $this->template->meta_description = Core::config('general.site_description');
 	    
 	    //$this->template->header='';
 
