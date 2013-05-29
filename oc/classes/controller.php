@@ -80,11 +80,15 @@ class Controller extends Kohana_Controller
             $this->template->styles           = array();
             $this->template->scripts          = array();
 
+            //we can not cache this view since theres dynamic parts
+            $this->template->header  = View::factory('header');
+
             //setting inner views try to get from fragment
-            if (Auth::instance()->logged_in())
+            /*if (Auth::instance()->logged_in())
                 $this->template->header  = View::fragment('header_front_login','header');
             else
-                $this->template->header  = View::fragment('header_front','header');
+                $this->template->header  = View::fragment('header_front','header');*/
+
 
             $this->template->footer = View::fragment('footer_front','footer');
             

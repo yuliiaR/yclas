@@ -30,7 +30,7 @@ class Controller_Panel_Translations extends Auth_Controller {
 
             $obj = new POTCreator;
             $obj->set_root(DOCROOT);
-            $obj->set_exts('php|tpl');
+            $obj->set_exts('php');
             $obj->set_regular('/_[_|e]\([\"|\']([^\"|\']+)[\"|\']\)/i');
             $obj->set_base_path('..');
             $obj->set_read_subdir(true);

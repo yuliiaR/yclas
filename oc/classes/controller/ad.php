@@ -110,10 +110,9 @@ class Controller_Ad extends Controller {
 			// array of categories sorted for view
 			return array('ads'			=> NULL,
 						 'pagination'	=> NULL, 
-						 'user'			=> NULL, 
-						 'thumb' 		=> NULL,
-						 'category'		=> NULL,
-						 'location'		=> NULL,);
+						  'user'          => $user, 
+                         'category'     => $category,
+                         'location'     => $location,);
 		}
 		
 		// array of categories sorted for view

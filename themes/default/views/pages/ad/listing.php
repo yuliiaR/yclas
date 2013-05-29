@@ -70,7 +70,7 @@
 	   <?elseif (count($ads) == 0):?>
 	   <!-- Case when we dont have ads for specific category / location -->
 	   	<div class="page-header">
-			<h3><?= __("We don't have any advertisements in this category")?></h3>
+			<h3><?=__('We do not have any advertisements in this category')?></h3>
 		</div>
 	  
 	  <?endif?>
