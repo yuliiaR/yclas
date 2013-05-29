@@ -35,7 +35,9 @@
 		              </ul>
 		            </li>
                     <?nav_link('','ad', 'icon-search ', 'advanced_search', 'search')?>
-                    <?nav_link('','map', 'icon-globe ', 'index', 'map')?>
+                    <?if (core::config('advertisement.map')==1):?>
+                        <?nav_link('','map', 'icon-globe ', 'index', 'map')?>
+                    <?endif?>
                     <?nav_link('','contact', 'icon-envelope ', 'index', 'contact')?>
                     <?nav_link('','rss', 'icon-signal ', 'index', 'rss')?>
 		        </ul>
