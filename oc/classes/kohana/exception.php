@@ -13,33 +13,50 @@
 
 class Kohana_Exception extends Kohana_Kohana_Exception
 {
+ 
     public static function handler(Exception $e)
     {
-        // Throw errors when in development mode
         if (Kohana::$environment === Kohana::DEVELOPMENT)
         {
             parent::handler($e);
         }
         else
         {
-            Kohana::$log->add(Log::ERROR, Kohana_Exception::text($e));
- 
-            $attributes = array(
-                'action'    => 500,
-                'origuri'   => rawurlencode(Arr::get($_SERVER, 'REQUEST_URI')),
-                'message'   => rawurlencode($e->getMessage())
-            );
- 
-            if ($e instanceof Http_Exception)
+            try
             {
-                $attributes['action'] = $e->getCode();
-            }
+                Kohana::$log->add(Log::ERROR, parent::text($e));
  
-            // Error sub request
-            echo Request::factory(Route::get('error')->uri($attributes))
-                ->execute()
-                ->send_headers()
-                ->body();
+                $params = array
+                (
+                    'action'  => 500,
+                    'origuri'   => rawurlencode(Arr::get($_SERVER, 'REQUEST_URI')),
+                    'message' => rawurlencode($e->getMessage())
+                );
+ 
+                if ($e instanceof HTTP_Exception)
+                {
+                    $params['action'] = $e->getCode();
+                }
+
+                //d($params);
+ 
+                // Error sub-request.
+                echo Request::factory(Route::get('error')->uri($params))
+                    ->execute()
+                    ->send_headers()
+                    ->body();
+            }
+            catch (Exception $e)
+            {
+                // Clean the output buffer if one exists
+                ob_get_level() and ob_clean();
+ 
+                // Display the exception text
+                echo parent::text($e);
+ 
+                // Exit with an error status
+                exit(1);
+            }
         }
     }
 }

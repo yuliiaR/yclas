@@ -28,7 +28,7 @@ class Controller_Error extends Controller
         parent::before();
  
         // Sub requests only!
-        if ( ! $this->request->is_initial())
+        if ( ! $this->request->is_initial() )
         {
             if ($message = rawurldecode($this->request->param('message')))
             {
@@ -71,10 +71,12 @@ class Controller_Error extends Controller
      */
     public function action_500()
     {
-        $this->template->meta_description = 'Internal server error occured';
-        $this->template->meta_keywords = 'server error, 500, internal error, error';
-        $this->template->title = 'Internal server error occured';
- 
-        $this->template->content = View::factory('pages/error/500');
+        $this->auto_render = FALSE;
+
+        $this->template = View::factory('pages/error/500');
+        $this->response->body($this->template->render());
     }
+
+
+
 }

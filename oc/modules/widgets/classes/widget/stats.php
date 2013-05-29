@@ -54,7 +54,7 @@ class Widget_Stats extends Widget
         //not cached :(
         if ($info === NULL)
         {
-            $info = json_decode(file_get_contents(Route::url('sitejson')));
+            $info = json_decode(Core::curl_get_contents(Route::url('sitejson')));
             Core::cache(Route::url('sitejson'),$info);
         }
 

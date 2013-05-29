@@ -215,7 +215,7 @@ class Core {
         if ( time() > strtotime('+1 week',filemtime($version_file)) OR $reload === TRUE )
         {
             //read from oc/versions.json on CDN
-            $json = file_get_contents('http://open-classifieds.com/files/versions.json?r='.time());
+            $json = Core::curl_get_contents('http://open-classifieds.com/files/versions.json?r='.time());
             $versions = json_decode($json,TRUE);
             if (is_array($versions))
             {
@@ -245,13 +245,30 @@ class Core {
         //not cached :(
         if ($market === NULL OR  $reload === TRUE)
         {
-            $market = file_get_contents($market_url.'?r='.time());
+            $market = Core::curl_get_contents($market_url.'?r='.time());
             //save the json
             Core::cache($market_url,$market,strtotime('+1 day'));
         }
 
         return json_decode($market,TRUE);
 
+    }
+
+    /**
+     * gets the html content from a URL
+     * @param  string $url 
+     * @return string      
+     */
+    public static function curl_get_contents($url)
+    {
+        $c = curl_init();
+        curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($c, CURLOPT_URL, $url);
+        curl_setopt($c, CURLOPT_TIMEOUT,5); 
+        $contents = curl_exec($c);
+        curl_close($c);
+
+        return ($contents)? $contents : FALSE;
     }
 
 

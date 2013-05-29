@@ -131,7 +131,7 @@ Route::set('profile', 'user/<seoname>/<action>')
 /**
  * Error router
  */
-Route::set('error', 'oc-error/<action>/<origuri>/<message>',
+Route::set('error', 'oc-error/<action>/<origuri>(/<message>)',
 array('action' => '[0-9]++',
                     	  'origuri' => '.+', 
                     	  'message' => '.+'))

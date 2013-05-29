@@ -8,7 +8,8 @@ class Controller_Maintenance extends Kohana_Controller {
         if (core::config('general.maintenance')!=1)
             Request::current()->redirect(Route::url('default'));
 
-        $this->response->body(__('We are working on our site, please visit later. Thanks'));
+        $this->response->status(503);
+        $this->response->body(View::factory('pages/error/503')->render());
 	}
 
 
