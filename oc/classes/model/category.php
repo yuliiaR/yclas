@@ -200,6 +200,7 @@ class Model_Category extends ORM {
                                     'parent_deep'   => $c->parent_deep,
                                     'order'         => $c->order,
                                     'price'         => $c->price,
+                                    'has_siblings'  => FALSE,
                                     'count'         => (is_numeric($c->count))?$c->count:0
                                     );
             //counting the ads the parent have
@@ -213,11 +214,13 @@ class Model_Category extends ORM {
             
         }
 
-        //attaching the count to the parents so we know each parent how many ads have
         foreach ($parent_count as $id_category => $count) 
+        {
+            //attaching the count to the parents so we know each parent how many ads have
             $cats_count[$id_category]['count'] += $count;
-                
-
+            $cats_count[$id_category]['has_siblings'] = TRUE;
+        }
+            
 		
 		return $cats_count;
 	}
