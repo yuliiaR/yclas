@@ -164,6 +164,21 @@
 					))?> 
 				</div>
 			</div>
+            <div class="control-group">
+                <?= FORM::label($forms['contact']['key'], __('Contact form'), array('class'=>'control-label', 'for'=>$forms['contact']['key']))?>
+                <div class="controls">
+                    <?= FORM::select($forms['contact']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['contact']['value'], array(
+                    'placeholder' => "", 
+                    'class' => 'tips', 
+                    'id' => $forms['contact']['key'], 
+                    'data-content'=> __("Enables Contact Form"),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-original-title'=>__("Contact form appears int he ad."),
+                    ))?> 
+                </div>
+            </div>
 			<?$pages = array(''=>__('Deactivated'))?>
 			<?foreach (Model_Content::get_pages() as $key => $value) {
 				$pages[$value->seotitle] = $value->title;

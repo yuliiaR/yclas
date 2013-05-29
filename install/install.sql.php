@@ -253,6 +253,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('advertisement', 'captcha', 1),
 ('advertisement', 'website', 1),
 ('advertisement', 'price', 1),
+('advertisement', 'contact', 1),
 ('advertisement', 'tos', ''),
 ('advertisement', 'disqus', ''),
 ('advertisement', 'map', 0),

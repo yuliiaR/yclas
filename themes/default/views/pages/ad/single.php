@@ -49,7 +49,7 @@
             <?= Text::bb2html($ad->description,TRUE)?>
         </div>	
 	    
-
+        <?if (core::config('advertisement.contact') != FALSE):?>
 		<button class="btn btn-success"type="button" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></button>
 		<div id="contact-modal" class="modal hide fade">
         	<div class="modal-header">
@@ -107,6 +107,7 @@
 					<?= FORM::close()?>
     		</div>
 		</div>
+        <?endif?>
 
         <?if ($ad->address!=='' AND core::config('advertisement.map')==1):?>
         <iframe frameborder="0" noresize="noresize" 
