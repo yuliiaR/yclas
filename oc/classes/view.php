@@ -20,7 +20,7 @@ class View extends Kohana_View{
      */
     public static function fragment($name, $file = NULL, array $data = NULL)
     {
-        $name = 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme.Theme::$skin; 
+        $name = self::fragment_name($name);
 
         if ( ($fragment = Core::cache($name))===NULL ) 
         {
@@ -36,7 +36,29 @@ class View extends Kohana_View{
 
         return $fragment;
     }
+
+    /**
+     * deletes from cache a fragment
+     * @param  string $name 
+     * @return bool       
+     */
+    public static function delete_fragment($name)
+    {
+        return Core::cache(self::fragment_name($name),NULL,0);
+    }
+
     
+    /**
+     * gets the fragment name, unique using i18n theme and skin
+     * @param  string $name 
+     * @return string       
+     */
+    public static function fragment_name($name)
+    {
+        return 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme.Theme::$skin; 
+    }
+
+
     /**
      * Sets the view filename. Overriide from origianl to liad from theme folder
      *

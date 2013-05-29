@@ -96,12 +96,16 @@ class Core {
      * 
      * @param   string  $name       name of the cache
      * @param   mixed   $data       data to cache
-     * @param   integer $lifetime   number of seconds the cache is valid for
+     * @param   integer $lifetime   number of seconds the cache is valid for, if 0 delete cache
      * @return  mixed    for getting
      * @return  boolean  for setting
      */
     public static function cache($name, $data = NULL, $lifetime = NULL)
     {
+        //deletes the cache
+        if ($lifetime===0)
+            return Cache::instance()->delete($name);
+
         //in development we do not store or read we always return null
         if (Kohana::$environment == Kohana::DEVELOPMENT)
             return NULL;

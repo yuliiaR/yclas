@@ -42,7 +42,8 @@ class Auth_Controller extends Controller
 				$this->request->redirect($url);
 			}
 
-            if (Theme::$theme != Core::config('appearance.theme')) 
+            //in case we are loading another theme since we use the allow query we force the configs of the selected theme
+            if (Theme::$theme != Core::config('appearance.theme') AND Core::config('appearance.allow_query_theme')=='1') 
                 Theme::initialize(Core::config('appearance.theme'));
 
 		}

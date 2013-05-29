@@ -117,6 +117,9 @@ class Controller_Panel_Widget extends Auth_Controller {
 
     public function action_saveplaceholders()
     {
+        //deleting the fragment cache...a bit ugly but works.
+        View::delete_fragment('sidebar_front');
+
         $this->auto_render = FALSE;
         $this->template = View::factory('js');
 
