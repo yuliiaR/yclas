@@ -22,7 +22,7 @@
                         <option></option>
                         <?function lili($item, $key,$cats){?>
                         <option value="<?=$key?>"><?=$cats[$key]['name']?>
-                            <?if ($cats[$key]['price']>0):?> - <?=$cats[$key]['price']?> <?=core::config('general.global_currency')?><?endif?>
+                            <?if ($cats[$key]['price']>0):?> - <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?><?endif?>
                         </option>
                             <?if (count($item)>0):?>
                             <optgroup label="<?=$cats[$key]['name']?>">    

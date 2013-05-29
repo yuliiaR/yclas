@@ -103,7 +103,7 @@ function oc_requirements()
                                     'mandatory' => FALSE,
                                     'result'    => is_writable(DOCROOT.'robots.txt')
                                     ),
-                '.htaccess' =>array('message'   => 'The <code>'.DOCROOT.'example.htaccess</code> file is not writable.',
+                '.htaccess' =>array('message'   => 'The <code>'.DOCROOT.'.htaccess</code> file is not writable.',
                                     'mandatory' => TRUE,
                                     'result'    => is_writable(DOCROOT.'.htaccess')
                                     ),
