@@ -5,9 +5,13 @@
 
 		<?if ($category!==NULL):?>
             <p><?=$category->description?></p> 
+            <i class="icon-pencil"></i> 
+                <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>?category=<?=$category->seoname?>">
+                    <?=__('Publish new advertisement')?></a>
+        <?else:?>
+            <i class="icon-pencil"></i> <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>"><?=__('Publish new advertisement')?></a>
         <?endif?>
 
-		<i class="icon-pencil"></i> <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>"><?=__('Publish new advertisement')?></a>
 
 	</div><!--end of advise-->
 

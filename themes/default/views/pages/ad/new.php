@@ -21,7 +21,7 @@
                         <select name="category" id="category" class="input-xlarge"   required>
                         <option></option>
                         <?function lili($item, $key,$cats){?>
-                        <option value="<?=$key?>"><?=$cats[$key]['name']?>
+                        <option value="<?=$key?>" <?=($cats[$key]['seoname']==Core::get('category'))?'selected':''?>><?=$cats[$key]['name']?>
                             <?if ($cats[$key]['price']>0):?> - <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?><?endif?>
                         </option>
                             <?if (count($item)>0):?>
