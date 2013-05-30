@@ -8,6 +8,7 @@
  * @copyright  (c) 2009-2013 Open Classifieds Team
  * @license    GPL v3
  */
+error_reporting(0);
 include 'functions.php';
 include 'install.php';
 ?>
@@ -139,7 +140,7 @@ include 'install.php';
 <?if ($_POST && $succeed):?>
 
 	<?if (!$install && !empty($error_msg)):?>
-		<div class="alert alert-error"><?=$error_msg?></div>
+		 <div class="alert alert-error"><?=$error_msg?></div>
 		<?hostingAd()?>
 	<?elseif($install==TRUE):?>
 		<div class="alert alert-success"><?=__('Congratulations');?></div>
