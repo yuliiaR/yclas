@@ -63,7 +63,7 @@ class I18n extends Kohana_I18n {
         /**
          * check if gettext exists if not uses gettext dropin
          */
-        $locale_res = setlocale(LC_MESSAGES, self::$locale);
+        $locale_res = setlocale(LC_ALL, self::$locale);
 
         setlocale(LC_MONETARY, self::$locale);
 
