@@ -33,21 +33,25 @@
 	</div>
 
 	<?endif?>
-        <div>
+        <div class="well">
             <?if ($ad->price>0):?>
             <span class="label label-important"><?=money_format(core::config('general.number_format'), $ad->price)?></span>
             <?endif?>
+            <a class="label" href="<?=Route::url('profile',  array('seoname'=>$ad->user->seoname))?>"><?=$ad->user->name?></a>
             <div class="pull-right">
-            <span class="label label-info"><?= Date::format($ad->published, core::config('general.date_format'))?></span>
-            <span class="label label-info"><?=$hits?> <?=__('Hits')?></span> 
+                <span class="label label-info"><?= Date::format($ad->published, core::config('general.date_format'))?></span>
+                <span class="label label-info"><?=$hits?> <?=__('Hits')?></span> 
             </div>    
         </div>
 
-    	<br>
+        <br>
 
-	    <div>
+        <div>
             <?= Text::bb2html($ad->description,TRUE)?>
-        </div>	
+            <?if (Valid::url($ad->website)):?>
+            <p><a href="<?=$ad->website?>" rel="nofollow"><?=$ad->website?></a></p>
+            <?endif?>
+        </div>  
 	    
         <?if (core::config('advertisement.contact') != FALSE):?>
 		<button class="btn btn-success"type="button" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></button>

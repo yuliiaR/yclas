@@ -8,11 +8,11 @@
 		<h3><?=$user->name?></h3>
 		<p><b><?=__('Email')?>: </b><?= $user->email?></p>
 		<p><b><?=__('Created')?>: </b><?= Date::format($user->created, core::config('general.date_format')) ?></p>
-		<p><b><?=__('Last Login')?>: </b><?= $user->last_login?></p>
+		<p><b><?=__('Last Login')?>: </b><?= Date::format($user->last_login, core::config('general.date_format'))?></p>
 	</article>
 </div>
 <div class="page-header">
-	<h3><?=$user->name.__(' advertisements')?></h3>
+	<h3><?=$user->name.' '.__(' advertisements')?></h3>
 
 	<?if($profile_ads!==NULL):?>
 		<?foreach($profile_ads as $ads):?>
