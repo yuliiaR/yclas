@@ -83,7 +83,6 @@
 	<?=$header?>
     <div class="container">
 	    <div class="row">
-	    	
 	    	<div class="span12">
 	    		<?=Breadcrumbs::render('oc-panel/breadcrumbs')?>
 	    		<?=Alert::show()?>

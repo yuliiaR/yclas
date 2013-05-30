@@ -35,9 +35,9 @@ class Controller_New extends Controller
 
 		//render view publish new
 		$this->template->content = View::factory('pages/ad/new', array('categories'		    => $categories,
-                                                                        'order_categories'  => $order_categories,
+                                                                       'order_categories'  	=> $order_categories,
 																	   'locations' 			=> $locations,
-                                                                        'order_locations'  => $order_locations,
+                                                                       'order_locations'  	=> $order_locations,
 																	   'form_show'			=> $form_show));
 		
 		// $_POST array with all fields 
@@ -70,9 +70,7 @@ class Controller_New extends Controller
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
 			$this->save_new_ad($data, $status, $published = FALSE, $moderation, $form_show['captcha']);
-		}
-
-			
+		}	
  	}
 
  	/**
