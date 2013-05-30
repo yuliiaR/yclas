@@ -18,7 +18,7 @@
 2009 - <?=date('Y')?>
 
 <?if(Core::config('appearance.theme_mobile')!=''):?>
-- <a href="<?=Route::url('default')?>?mobile=active"><?=__('Mobile Version')?></a>
+- <a href="<?=Route::url('default')?>?theme=<?=Core::config('appearance.theme_mobile')?>"><?=__('Mobile Version')?></a>
 <?endif?>
 </p>
 </footer>

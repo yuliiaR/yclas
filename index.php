@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Where the application for Open Classifieds is installed.
  */

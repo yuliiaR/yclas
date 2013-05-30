@@ -29,6 +29,7 @@ class Model_Content extends ORM {
     {   
         $content = new self();
         $content = $content->where('seotitle','=', $seotitle)
+                 ->where('locale','=', i18n::$locale)
                  ->where('type','=', $type)
                  ->where('status','=', 1)
                  ->limit(1)->cached()->find();
@@ -38,6 +39,7 @@ class Model_Content extends ORM {
         {
 
             $content = $content->where('seotitle','=', $seotitle)
+                 ->where('locale','=', 'en_EN')
                  ->where('type','=', $type)
                  ->where('status','=', 1)
                  ->limit(1)->cached()->find();
@@ -112,6 +114,21 @@ array (
     'key' => 'PRI',
     'privileges' => 'select,insert,update,references',
   ),
+   'locale' => 
+  array (
+    'type' => 'string',
+    'column_name' => 'locale',
+    'column_default' => 'en_EN',
+    'data_type' => 'varchar',
+    'is_nullable' => false,
+    'ordinal_position' => 2,
+    'character_maximum_length' => '8',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
   'order' => 
   array (
     'type' => 'int',
@@ -121,7 +138,7 @@ array (
     'column_default' => '0',
     'data_type' => 'int unsigned',
     'is_nullable' => false,
-    'ordinal_position' => 2,
+    'ordinal_position' => 3,
     'display' => '2',
     'comment' => '',
     'extra' => '',
@@ -135,7 +152,7 @@ array (
     'column_default' => NULL,
     'data_type' => 'varchar',
     'is_nullable' => false,
-    'ordinal_position' => 3,
+    'ordinal_position' => 4,
     'character_maximum_length' => '145',
     'collation_name' => 'utf8_general_ci',
     'comment' => '',
@@ -150,7 +167,7 @@ array (
     'column_default' => NULL,
     'data_type' => 'varchar',
     'is_nullable' => false,
-    'ordinal_position' => 4,
+    'ordinal_position' => 5,
     'character_maximum_length' => '145',
     'collation_name' => 'utf8_general_ci',
     'comment' => '',
@@ -166,7 +183,7 @@ array (
     'column_default' => NULL,
     'data_type' => 'text',
     'is_nullable' => true,
-    'ordinal_position' => 5,
+    'ordinal_position' => 6,
     'collation_name' => 'utf8_general_ci',
     'comment' => '',
     'extra' => '',
@@ -180,7 +197,7 @@ array (
     'column_default' => NULL,
     'data_type' => 'varchar',
     'is_nullable' => true,
-    'ordinal_position' => 6,
+    'ordinal_position' => 7,
     'character_maximum_length' => '145',
     'collation_name' => 'utf8_general_ci',
     'comment' => '',
@@ -195,7 +212,7 @@ array (
     'column_default' => 'CURRENT_TIMESTAMP',
     'data_type' => 'timestamp',
     'is_nullable' => false,
-    'ordinal_position' => 7,
+    'ordinal_position' => 8,
     'comment' => '',
     'extra' => 'on update CURRENT_TIMESTAMP',
     'key' => '',
@@ -208,7 +225,7 @@ array (
     'column_default' => NULL,
     'data_type' => 'enum',
     'is_nullable' => false,
-    'ordinal_position' => 8,
+    'ordinal_position' => 9,
     'collation_name' => 'utf8_general_ci',
     'options' => 
     array (
@@ -230,7 +247,7 @@ array (
     'column_default' => '0',
     'data_type' => 'tinyint',
     'is_nullable' => false,
-    'ordinal_position' => 9,
+    'ordinal_position' => 10,
     'display' => '1',
     'comment' => '',
     'extra' => '',

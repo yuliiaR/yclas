@@ -146,7 +146,7 @@ class Auth_Crud extends Auth_Controller
 			if ( $success = $form->submit() )
 			{
 				$form->save_object();
-				Alert::set(Alert::SUCCESS, __('Success, item created'));
+				Alert::set(Alert::SUCCESS, __('Item created'));
 				$this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
 			}
 			else 
@@ -173,7 +173,7 @@ class Auth_Crud extends Auth_Controller
 			if ( $success = $form->submit() )
 			{
 				$form->save_object();
-				Alert::set(Alert::SUCCESS, __('Success, item updated'));
+				Alert::set(Alert::SUCCESS, __('Item updated'));
 				$this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
 			}
 			else

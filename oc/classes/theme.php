@@ -37,7 +37,7 @@ class Theme {
         if (isset($scripts[$type])===TRUE)
         {
 
-            if (Kohana::$environment == Kohana::DEVELOPMENT)
+            if (TRUE)//(Kohana::$environment == Kohana::DEVELOPMENT)//@todo
             {
                 foreach($scripts[$type] as $file)
                 {
@@ -107,7 +107,7 @@ class Theme {
 
         $ret = '';
 
-        if (Kohana::$environment == Kohana::DEVELOPMENT)
+        if (TRUE)//(Kohana::$environment == Kohana::DEVELOPMENT)
         {
             foreach($styles as $file => $type)
             {
@@ -172,7 +172,7 @@ class Theme {
      */
     public static function default_views_path()
     {
-    	return 'default'.DIRECTORY_SEPARATOR.self::$views_path;
+        return 'default'.DIRECTORY_SEPARATOR.self::$views_path;
     }
     
     /**
@@ -183,7 +183,7 @@ class Theme {
      */
     public static function views_path()
     {
-    	return self::$theme.DIRECTORY_SEPARATOR.self::$views_path;
+        return self::$theme.DIRECTORY_SEPARATOR.self::$views_path;
     }
     
     /**
@@ -198,15 +198,15 @@ class Theme {
         if ($theme === NULL)
             $theme = self::$theme;
 
-    	//not external file we need the public link
-    	if (!Valid::url($file))
-    	{
-    		//@todo add a hook here in case we want to use a CDN
-    		return URL::base('http').'themes'.DIRECTORY_SEPARATOR.$theme.DIRECTORY_SEPARATOR.$file;
-    	}
-    	 
-    	//seems an external url
-    	return $file;
+        //not external file we need the public link
+        if (!Valid::url($file))
+        {
+            //@todo add a hook here in case we want to use a CDN
+            return URL::base('http').'themes'.DIRECTORY_SEPARATOR.$theme.DIRECTORY_SEPARATOR.$file;
+        }
+         
+        //seems an external url
+        return $file;
     }
     
     /**
@@ -247,7 +247,8 @@ class Theme {
         {
             
             //they are forcing to show the mobile
-            if (Core::get('theme')!=Core::config('appearance.theme_mobile') OR Cookie::get('theme')!=Core::config('appearance.theme_mobile'))
+            if ( Core::get('theme')==Core::config('appearance.theme_mobile')
+                OR Cookie::get('theme')==Core::config('appearance.theme_mobile'))
             {
                 $is_mobile = TRUE;
             }
@@ -282,7 +283,9 @@ class Theme {
             {
                $theme = $mobile_theme;
             }
-
+            else 
+                $theme = Core::config('appearance.theme');
+                
             //if we allow the user to select the theme, perfect for the demo
             if (Core::config('appearance.allow_query_theme')=='1')
             {
@@ -629,8 +632,5 @@ class Theme {
         else 
             return array();
     }
-
-
-   
 
 }

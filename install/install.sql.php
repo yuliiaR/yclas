@@ -156,6 +156,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS  `".$_POST['TABLE_PREFIX']."orders` (
 
 mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."content` (
   `id_content` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `locale` varchar(8) NOT NULL DEFAULT 'en_EN',
   `order` int(2) unsigned NOT NULL DEFAULT '0',
   `title` varchar(145) NOT NULL,
   `seotitle` varchar(145) NOT NULL,
@@ -177,17 +178,20 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."content` (`order`, `title`, 
 (0, 'Welcome to [SITE.NAME]!', 'auth.register', 'Welcome [USER.NAME],\n\nWe are really happy that you joined us! [URL.QL]\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Hello [USER.NAME]!', 'user.contact', 'You have been contacted regarding to your advertisement. User [EMAIL.SENDER] [EMAIL.FROM], has a message for you: \n\n[EMAIL.BODY]. \n\n Regards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Hello [USER.NAME]!', 'user.new', 'Welcome to [SITE.NAME]. \n\n We are very happy to see you join us, \n\n you can login with you email : [USER.EMAIL], \n\n with password: [USER.PWD]. Password is generated for you, to change it you can visit this link [URL.PWCH]. \n\n Thank you for trusting us! \n\n Regards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
-(0, 'User [USER.NAME] wants to contact you!', 'contact.admin', 'Hello Admin,\n\n [EMAIL.SENDER]: [EMAIL.FROM], Have a message for you:\n\n [EMAIL.BODY] \n\n Regards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
-(0, 'Your advertisement at [SITE.NAME], has been activated!', 'ads.activated', 'Hello [USER.OWNER],\n\n We want to inform you that your advertisement [URL.QL] has been activated!\n\n Now can be seen buy others. \n\n We hope we didn´t make you waiting for so long. \n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, '[EMAIL.SENDER] wants to contact you!', 'contact.admin', 'Hello Admin,\n\n [EMAIL.SENDER]: [EMAIL.FROM], Have a message for you:\n\n [EMAIL.BODY] \n\n Regards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, 'Your advertisement at [SITE.NAME], has been activated!', 'ads.activated', 'Hello [USER.OWNER],\n\n We want to inform you that your advertisement [URL.QL] has been activated!\n\n Now can be seen buy others. \n\n We hope we didn not make you waiting for so long. \n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Success! Your advertisement is created on [SITE.NAME]!', 'ads.notify', 'Hello [USER.NAME],\n\nWe are really happy that you created advertisement at [SITE.NAME]! \n\nYou can can edit your advertisement here [URL.QL].\n\n But for now its still not published, it needs to be validated by administrator. \n\n We are sorry for inconvenience. But it wont be long until it gets posted. \n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
-(0, 'Advertisement is created on [SITE.NAME]!', 'ads.user_check', 'Hello [USER.NAME],\n\n Advertisement is created under your account [USER.NAME]! You can visit this link to see advertisement [URL.AD]\n\n If you are not responsible for creating this advertisement, please contact us here regarding this inconvenience [URL.CONTACT].\n\n, '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, 'Advertisement is created on [SITE.NAME]!', 'ads.user_check', 'Hello [USER.NAME],\n\n Advertisement is created under your account [USER.NAME]! You can visit this link to see advertisement [URL.AD]\n\n If you are not responsible for creating this advertisement, please contact us here regarding this inconvenience [URL.CONTACT].\n\n', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Success! Your advertisement is created on [SITE.NAME]!', 'ads.confirm', 'Welcome [USER.NAME],\n\nWe are really happy that you created advertisement at [SITE.NAME]! \n\nPlease click on this link [URL.QL] to confirm post.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1);");
 
 /**
  * Access
  */
-mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (10, 'admin', 'Full access');");
-mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."access` (`id_access`, `id_role`, `access`) VALUES (1, 10, '*.*'),(2, 1, 'profile.*'),(3, 1, 'stats.user');");
+mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (5, 'translator', 'User + Translations'), (10, 'admin', 'Full access');");
+mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."access` (`id_access`, `id_role`, `access`) VALUES 
+            (1, 10, '*.*'),
+            (2, 1, 'profile.*'),(3, 1, 'stats.user'),
+            (4, 5, 'translations.*'),(5, 5, 'profile.*'),(6, 5, 'stats.user');");
 
 /**
  * Create user God/Admin 

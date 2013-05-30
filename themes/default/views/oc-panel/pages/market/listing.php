@@ -27,7 +27,7 @@ foreach ($market as $item):?>
                 <span class="badge badge-success"><?=$item['type']?></span>
             </p>
             <p>
-                <?=$item['description']?>
+                <?=Text::bb2html($item['description'])?>
             </p>
             <?if ( $item['price_offer']>0):?>
             <p>

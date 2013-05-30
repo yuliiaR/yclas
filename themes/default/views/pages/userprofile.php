@@ -46,7 +46,7 @@
 
 			<?elseif($visitor != FALSE && $visitor->id_user == $ads->id_user):?>
 			<br/>
-			<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?=_e("Edit");?></a> 
+			<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?=__("Edit");?></a> 
 		<?endif?>
 		</article>
 		<?endforeach?>

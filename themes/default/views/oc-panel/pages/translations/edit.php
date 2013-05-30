@@ -9,10 +9,13 @@
     <tr>
         <th>#</th>
         <th><?=__('Original Translation')?></th>
-        <th><button class="btn" id="button-copy-all" ><i class="icon-arrow-right"></i></button>
+        <th><button class="btn" id="button-copy-all" 
+                data-text="<?=__('Copy all?, Be aware this will replace all your texts.')?>" >
+                <i class="icon-arrow-right"></i></button>
             <?if (strlen(Core::config('general.translate'))>0):?>
                 <button id="button-translate-all" class="btn" data-apikey="<?=Core::config('general.translate')?>"
-                             data-langsource="en" data-langtarget="<?=substr($edit_language,0,2)?>" ><i class="icon-globe"></i>
+                    data-text="<?=__('Translate all?, Be aware this will replace all your texts.')?>"
+                    data-langsource="en" data-langtarget="<?=substr($edit_language,0,2)?>" ><i class="icon-globe"></i>
                 </button>
             <?endif?>
         </th>
@@ -21,9 +24,9 @@
     </tr>
     <button type="submit" class="btn btn-primary pull-right" name="translation[submit]"><i class="icon-hdd icon-white"></i> <?=__('Save')?></button>
 
-    <?$cont = 1; $chars=0;?>
+    <?$cont = 0; $chars=0;?>
     <?foreach($strings_en as $key => $value):?>
-    <?//$chars+=strlen($key)?>
+    <?$chars+=strlen($key)?>
         <? $value = (isset($strings_default[$key])) ? $strings_default[$key] : ''?>
         <tr id="tr_<?=$cont?>" class="<?=($value)? 'success': 'error'?>">
             <td width="5%"><?=$cont?></td>
@@ -47,7 +50,6 @@
             <td width="5%">
                 <button type="submit" class="btn btn-primary" name="translation[submit]"><i class="icon-hdd icon-white"></i></button>
             </td>
-            <input type="hidden" value="<?=$key?>" name="keys[<?=$cont?>]">
         </tr>
         <?$cont++; //if($cont>10) break;?>
     <?endforeach;?>
@@ -55,7 +57,7 @@
     </table>
     <button type="submit" class="btn btn-primary pull-right" name="translation[submit]"><i class="icon-hdd icon-white"></i> <?=__('Save')?></button>
 
-    <?//$chars?>
+    <?=$chars?>
 
     <div id="translate-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-body">

@@ -26,7 +26,7 @@
       <div class="control-group">
         <label class="control-label"><?=__("Password")?>:</label>
         <div class="controls">
-        <input type="text" name="password" value="<?=$db_config['connection']['password']?>" class="span3" />   
+        <input type="text" name="password" value="" class="span3" />   
         </div>
       </div>
 

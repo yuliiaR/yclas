@@ -9,13 +9,16 @@ $(function(){
     });
 
     $('#button-copy-all').click(function(event) {
-        event.preventDefault();      
-        $('.button-copy').each(function() {
-            var orig = $(this).data('orig');
-            var dest = $(this).data('dest');
-            $('#'+dest).val($('#'+orig).val());
-            $('#'+$(this).data('tr')).removeClass('').addClass('warning');
-        });
+        event.preventDefault();   
+        if (confirm($(this).data('text')))
+        {   
+            $('.button-copy').each(function() {
+                var orig = $(this).data('orig');
+                var dest = $(this).data('dest');
+                $('#'+dest).val($('#'+orig).val());
+                $('#'+$(this).data('tr')).removeClass('').addClass('warning');
+            });
+        }
     });
 
     $('.button-translate').click(function(event) {
@@ -30,13 +33,15 @@ $(function(){
     $('#button-translate-all').click(function(event) {
         event.preventDefault();       
         var transData = $('#button-translate-all');
-
-        $('.button-translate').each(function() {
-            var orig = $(this).data('orig');
-            var dest = $(this).data('dest');
-            $('#'+$(this).data('tr')).removeClass('').addClass('warning');
-            translate(transData.data('apikey'),transData.data('langsource'),transData.data('langtarget'),$('#'+orig).val(), dest);
-        });    
+        if (confirm($(this).data('text')))
+        { 
+            $('.button-translate').each(function() {
+                var orig = $(this).data('orig');
+                var dest = $(this).data('dest');
+                $('#'+$(this).data('tr')).removeClass('').addClass('warning');
+                translate(transData.data('apikey'),transData.data('langsource'),transData.data('langtarget'),$('#'+orig).val(), dest);
+            });  
+        }  
     });
 
 });

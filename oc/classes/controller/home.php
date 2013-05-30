@@ -6,9 +6,9 @@ class Controller_Home extends Controller {
 	{
 
 	    //template header
-	    $this->template->title            = 'welcome';
-	    $this->template->meta_keywords    = 'keywords';
-	    $this->template->meta_description = 'desc';
+	    $this->template->title            = '';
+	    // $this->template->meta_keywords    = 'keywords';
+	    // $this->template->meta_description = 'desc';
 	    
 	    //$this->template->header='';
 

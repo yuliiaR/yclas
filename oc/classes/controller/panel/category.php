@@ -114,7 +114,7 @@ class Controller_Panel_Category extends Auth_Crud {
             {
                 $category->delete();
                 $this->template->content = 'OK';
-                Alert::set(Alert::SUCCESS, __('Success, category deleted'));
+                Alert::set(Alert::SUCCESS, __('Category deleted'));
                 
             }
             catch (Exception $e)

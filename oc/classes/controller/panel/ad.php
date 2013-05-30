@@ -208,7 +208,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				}
 				
 			}
-			Alert::set(Alert::SUCCESS, __('Success, advertisemet is deleted'));
+			Alert::set(Alert::SUCCESS, __('Advertisemet is deleted'));
 			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		}
 		else
@@ -261,7 +261,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				}
 			}
 		}
-		Alert::set(Alert::SUCCESS, __('Success, advertisemet is marked as spam'));
+		Alert::set(Alert::SUCCESS, __('Advertisemet is marked as spam'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 	}
 
@@ -311,7 +311,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				}
 			}
 		}
-		Alert::set(Alert::SUCCESS, __('Success, advertisemet is deactivated'));
+		Alert::set(Alert::SUCCESS, __('Advertisemet is deactivated'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 	}
 
@@ -367,7 +367,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		if (Core::config('sitemap.on_post') == TRUE)
 			Sitemap::generate();
 
-		Alert::set(Alert::SUCCESS, __('Success, advertisemet is active and published'));
+		Alert::set(Alert::SUCCESS, __('Advertisemet is active and published'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 	}
 
@@ -415,7 +415,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			    
 			}
 		}
-		Alert::set(Alert::SUCCESS, __('Success, advertisemet is featured'));
+		Alert::set(Alert::SUCCESS, __('Advertisemet is featured'));
 		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 
 	}

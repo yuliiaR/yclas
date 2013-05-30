@@ -44,12 +44,21 @@ class Controller_Panel_Translations extends Auth_Controller {
         {
          //save language
             $locale = new Model_Config();
-            $locale->group_name = 'i18n';
-            $locale->config_key = 'locale';
+
+            $locale->where('group_name','=','i18n')
+                    ->where('config_key','=','locale')
+                    ->limit(1)->find();
+
+            if (!$locale->loaded())
+            {
+                $locale->group_name = 'i18n';
+                $locale->config_key = 'locale';
+            }
+
             $locale->config_value = $this->request->param('id');
             try {
                 $locale->save();
-                Alert::set(Alert::SUCCESS, __('Language changed'));
+                Alert::set(Alert::SUCCESS,'');
                 Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'translations')));  
 
 
@@ -98,10 +107,12 @@ class Controller_Panel_Translations extends Auth_Controller {
         $pocreator_default = new File_Gettext_PO();
         $pocreator_default->load($default);
 
-
+        //watch out there's a limit of 1000 posts....we have 540...
         if($this->request->post())
         {
-            $keys = $this->request->post('keys');
+            foreach ($pocreator_en->strings as $key=>$string) 
+                $keys[] = $key;
+
             $translations = $this->request->post('translations');
 
             $strings = array();
@@ -131,9 +142,9 @@ class Controller_Panel_Translations extends Auth_Controller {
             Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'translations','action'=>'edit','id'=>$this->request->param('id'))));  
         }
 
-        $content->edit_language = $this->request->param('id');
-        $content->strings_en = $pocreator_en->strings;
-        $content->strings_default = $pocreator_default->strings;
+        $content->edit_language     = $this->request->param('id');
+        $content->strings_en        = $pocreator_en->strings;
+        $content->strings_default   = $pocreator_default->strings;
 
     }
 

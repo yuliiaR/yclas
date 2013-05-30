@@ -91,7 +91,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                 }
             }
             // Cache::instance()->delete_all();
-            Alert::set(Alert::SUCCESS, __('Success, Email Configuration updated'));
+            Alert::set(Alert::SUCCESS, __('Email Configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'email')));
         }
 

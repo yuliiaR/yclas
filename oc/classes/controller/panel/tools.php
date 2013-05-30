@@ -197,7 +197,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 }
             }
             // Cache::instance()->delete_all();
-            Alert::set(Alert::SUCCESS, __('Success, Sitemap Configuration updated'));
+            Alert::set(Alert::SUCCESS, __('Sitemap Configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap')));
         }
 
@@ -471,7 +471,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 }
 
                 $ads_map[$a['idPost']] = $ad->id_ad;
-                }
+            }
             
         }
 
