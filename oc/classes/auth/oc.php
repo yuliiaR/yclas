@@ -26,7 +26,7 @@ class Auth_OC extends Kohana_Auth {
 		$this->_session = Session::instance($this->_config['session_type']);
 
 		// Initialize the Encryption helper
-		$this->_encrypt = new Encrypt($this->_config['hash_key'], $this->_config['ql_mode']?:NULL, $this->_config['ql_cipher']?:NULL );
+		$this->_encrypt = new Encrypt($this->_config['hash_key'], $this->_config['ql_mode'], $this->_config['ql_cipher']);
 	}
 
 
