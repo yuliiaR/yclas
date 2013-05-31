@@ -1,7 +1,18 @@
 Open Classifieds 2.0
+
 # Installation
-http://open-classifieds.com/install/
-Videos
+
+* Download
+* Unpack the downloaded file
+* Upload to your public HTML folder
+* Run the installation in http://yourdomain.com/
+* Follow the steps
+* Login in admin, create some categories and locations
+* Working!
+
+More & some videos at:
+http://open-classifieds.com/documentation/install/
+
 
 # Description
 Open Classifieds is a powerful script that can transform any domain into a fully customizable classifieds site within a few seconds. Thousands of web developers trust OC to run their big classifieds website. OC can be used to create car/auto sales, job search board, buying & selling real estate and almost anything you can think of. And when you’re ready for more, there are themes and premium support available to transform your site into anything you can imagine.
