@@ -20,7 +20,11 @@
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <?=Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift icon-white')?>
+                    <? if(core::config('general.moderation') == 1 OR // moderation on  
+                          core::config('general.moderation') == 4 OR // email confiramtion with moderation
+                          core::config('general.moderation') == 5):  // payment with moderation?>
                     <?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','icon-ban-circle icon-white')?>
+                    <? endif?>
                 	<?=Theme::admin_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
                     <?=Theme::admin_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
 
