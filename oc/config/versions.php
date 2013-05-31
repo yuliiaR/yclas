@@ -4,7 +4,7 @@
   array (
     'codename' => 'Reoc',
     'released' => '2013-05-31',
-    'download' => '',
+    'download' => 'http://open-classifieds.com/2013/05/31/open-classifieds-2-0/ ',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.0',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=5&state=closed',
   ),
