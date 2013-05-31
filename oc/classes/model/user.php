@@ -287,7 +287,9 @@ class Model_User extends ORM {
 
             foreach($access as $k=>$v)
             {
-                $granted[] = strstr($v->access, '.', TRUE);
+                //only woks in php 5.3 or higher
+                //$granted[] = strstr($v->access, '.', TRUE);
+                $granted[] = substr($v->access, 0, strpos($v->access, '.'));
             }
 
             Session::instance()->set('granted_controllers', $granted);
