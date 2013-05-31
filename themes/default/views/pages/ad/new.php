@@ -33,7 +33,7 @@
                     </div>
                 </div>
 				
-				<?if(count($locations) !== 0):?>
+				<?if(count($locations) > 1):?>
 					<?if($form_show['location'] != FALSE):?>
                     <div class="control-group">
                         <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
