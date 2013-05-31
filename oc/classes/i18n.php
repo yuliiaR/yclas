@@ -166,3 +166,19 @@ class I18n extends Kohana_I18n {
 
     
 }//end i18n
+
+/* 
+FROM: http://www.php.net/manual/en/function.money-format.php  
+*/ 
+/**
+ *  We use this to avoid errors that Windows produces. 
+ *  money_format function is not supported on Windows OS machines
+ */
+if ( !function_exists('money_format') )
+{
+
+    function money_format($format, $number) 
+    { 
+        return core::config('general.global_currency').' '.number_format($number, 2); 
+    } 
+}
