@@ -180,17 +180,17 @@ class Controller_Ad extends Controller {
 				$parent_categ = new Model_Category($category->id_category_parent);
 
                 if($parent_categ->loaded() AND ($category->id_category_parent != 1))
-                	$parent_categ_concat = '-'.$parent_categ->seoname;
+                	$parent_categ_concat = ' - '.$parent_categ->seoname;
                 else
                 	$parent_categ_concat = NULL;
 
                 if($parent_locat->loaded() AND ($location->id_location_parent != 1))
-                	$parent_locat_concat = '-'.$parent_locat->seoname;
+                	$parent_locat_concat = ' - '.$parent_locat->seoname;
                 else 
                 	$parent_locat_concat = NULL;
 
                 //title description
-           		$this->template->title = $ad->title.$parent_categ_concat.'-'.$category->seoname.$parent_locat_concat.$location_seoname ;
+           		$this->template->title = $ad->title.$parent_categ_concat.' - '.$category->seoname.$parent_locat_concat.$location_seoname ;
                 $this->template->meta_description = text::removebbcode($ad->description);
 
 				$permission = TRUE; //permission to add hit to advert and give access rights. 
