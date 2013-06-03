@@ -2,7 +2,6 @@
 <div class="well">
     <h3><?=__('Latest Ads')?></h3>
     <ul class="thumbnails">
-
         <?foreach($ads as $ad):?>
         <li class="span2">
             <div class="thumbnail latest_ads" >
