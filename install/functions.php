@@ -135,6 +135,10 @@ function oc_requirements()
                                     'mandatory' => TRUE,
                                     'result'    => version_compare(PHP_VERSION, '5.2.4', '>=')
                                     ),
+                'PHP 5.3'   =>array('message'   => 'PHP 5.3 or newer recomended, this version is '. PHP_VERSION,
+                                    'mandatory' => FALSE,
+                                    'result'    => version_compare(PHP_VERSION, '5.3', '>=')
+                                    ),
                 'mod_rewrite'=>array('message'  => $mod_msg,
                                     'mandatory' => $mod_mandatory,
                                     'result'    => $mod_result

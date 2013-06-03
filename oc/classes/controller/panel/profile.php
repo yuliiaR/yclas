@@ -26,7 +26,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		$this->template->content = View::factory('oc-panel/profile/edit',array('user'=>$user));
 		$this->template->content->msg ='';
 
-		if ($this->request->post() AND CSRF::valid())
+		if ($this->request->post())
 		{
 			$user = Auth::instance()->get_user();
 			if(Auth::instance()->hash(core::post('password_old')) == $user->password )

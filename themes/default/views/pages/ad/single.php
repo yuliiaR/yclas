@@ -53,7 +53,7 @@
             <?endif?>
         </div>  
 	    
-        <?if (core::config('advertisement.contact') != FALSE):?>
+        <?if ($ad->can_contact()):?>
 		<button class="btn btn-success"type="button" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></button>
 		<div id="contact-modal" class="modal hide fade">
         	<div class="modal-header">
@@ -113,12 +113,8 @@
 		</div>
         <?endif?>
 
-        <?if ($ad->address!=='' AND core::config('advertisement.map')==1):?>
-        <iframe frameborder="0" noresize="noresize" 
-            height="420px" width="100%" 
-            src="<?=Route::url('map')?>?height=400&address=<?=$ad->address?>">
-        </iframe>
-        <?endif?>
+        <?=$ad->map()?>
+
 	<?endif?>
 	<!-- modal-gallery is the modal dialog used for the image gallery -->
 	<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
@@ -134,23 +130,4 @@
 	        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> <?=__('Download')?></a>
 	    </div>
 	</div>
-    <?if ( strlen(core::config('advertisement.disqus'))>0 ):?>
-    <hr>
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = '<?=core::config('advertisement.disqus')?>'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-   
-    <?endif?>
-
-
+    <?=$ad->disqus()?>

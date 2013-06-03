@@ -19,7 +19,7 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
  * styles and themes, loaded in this order
  */
 
-Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulean/bootstrap.min.css' => 'screen',
+Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.2/cerulean/bootstrap.min.css' => 'screen',
                         'css/styles.css' => 'screen',
                         'css/chosen.css' => 'screen',
                         'css/jquery.sceditor.min.css' => 'screen', 
@@ -28,7 +28,7 @@ Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.1/cerulea
 
 
 Theme::$scripts['footer']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
-                                    'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js',
+                                    'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js',
                                     'js/jquery.sceditor.min.js',
                                     'js/chosen.jquery.min.js',
                                     'js/jqBootstrapValidation.js',

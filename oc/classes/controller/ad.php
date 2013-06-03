@@ -138,7 +138,8 @@ class Controller_Ad extends Controller {
 		{
 			$ad = new Model_Ad();
 			$ad->where('seotitle','=', $seotitle)
-				 ->limit(1)->cached()->find();
+                ->where('status','!=',Model_Ad::STATUS_SPAM)
+				->limit(1)->cached()->find();
 
 			if ($ad->loaded())
 			{
