@@ -426,6 +426,58 @@ class Model_Ad extends ORM {
         rmdir($img_path);
         return TRUE;
     }
+
+    /**
+     * tells us if this ad can be contacted
+     * @return bool 
+     */
+    public function can_contact()
+    {
+        if($this->loaded())
+        {
+            if ($this->status == self::STATUS_PUBLISHED AND core::config('advertisement.contact') != FALSE )
+            {
+                return TRUE;
+            }
+        }
+    
+        return FALSE;
+    }
+
+    /**
+     * prints the map script from the view
+     * @return string HTML or false in case not loaded
+     */
+    public function map()
+    {
+        if($this->loaded())
+        {
+            if (strlen($this->address)>5 AND core::config('advertisement.map')==1 )
+            {
+                return View::factory('pages/ad/map',array('address'=>$this->address))->render();
+            }
+        }
+    
+        return FALSE;
+    }
+
+    /**
+     * prints the disqus script from the view
+     * @return string HTML or false in case not loaded
+     */
+    public function disqus()
+    {
+        if($this->loaded())
+        {
+            if ($this->status == self::STATUS_PUBLISHED AND strlen(core::config('advertisement.disqus'))>0 )
+            {
+                return View::factory('pages/ad/disqus')->render();
+            }
+        }
+    
+        return FALSE;
+    }
+
     
     protected $_table_columns =     
 array (
