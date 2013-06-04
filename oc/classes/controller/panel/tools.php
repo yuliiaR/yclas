@@ -275,7 +275,7 @@ class Controller_Panel_Tools extends Auth_Controller {
             catch (Exception $e)
             {
                 Alert::set(Alert::ERROR, __('Review database connection parameters'));
-                break(1);
+                return;
             }   
            
             //verify tables in DB
@@ -390,7 +390,7 @@ class Controller_Panel_Tools extends Auth_Controller {
             $cat->created   = $category['created'];
             $cat->seoname   = $category['friendlyName'];
             $cat->price     = $category['price'];
-            $cat->description = $category['description'];
+            $cat->description = substr($category['description'],0,250);
             $cat->parent_deep = ($category['idCategoryParent']>0)? 1:0; //there's only 1 deep
             $cat->id_category_parent = (isset($categories_map[$category['idCategoryParent']]))?$categories_map[$category['idCategoryParent']]:1;
             $cat->save();
