@@ -21,7 +21,7 @@
 				
 
 				<div class="form-actions">
-					<?= FORM::button('submit', 'Change', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))))?>
+					<?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))))?>
 				</div>
 		<?= FORM::close()?>
 	</div>
