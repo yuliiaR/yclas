@@ -115,6 +115,10 @@ function oc_requirements()
                                     'mandatory' => TRUE,
                                     'result'    => is_writable(DOCROOT.'images')
                                     ),
+                'themes'    =>array('message'   => 'The <code>'.DOCROOT.'themes/</code> directory is not writable.',
+                                    'mandatory' => TRUE,
+                                    'result'    => is_writable(DOCROOT.'themes')
+                                    ),
                 'cache'     =>array('message'   => 'The <code>'.APPPATH.'cache/</code> directory is not writable.',
                                     'mandatory' => TRUE,
                                     'result'    => (is_dir(APPPATH) AND is_dir(APPPATH.'cache') AND is_writable(APPPATH.'cache'))
