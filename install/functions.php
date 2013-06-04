@@ -195,10 +195,10 @@ function oc_requirements()
                                     'mandatory' => TRUE,
                                     'result'    => (function_exists('mysql_connect'))
                                     ),
-                'PDO'       =>array('message'   => 'OC requires the <a href="http://php.net/pdo">PDO</a> to support additional databases.',
+                /*'PDO'       =>array('message'   => 'OC requires the <a href="http://php.net/pdo">PDO</a> to support additional databases.',
                                     'mandatory' => TRUE,
                                     'result'    =>  (class_exists('PDO'))
-                                    ),
+                                    ),*/
 
                 );
 }
