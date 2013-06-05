@@ -1935,12 +1935,12 @@ msgid "My Advertisement page "
 msgstr "My Advertisement page "
 
 #: String 484
-msgid "Advertisement is deactivated"
-msgstr "Advertisement is deactivated"
+msgid "Advertisemet is deactivated"
+msgstr "Advertisemet is deactivated"
 
 #: String 485
-msgid "Advertisement is active and published"
-msgstr "Advertisement is active and published"
+msgid "Advertisemet is active and published"
+msgstr "Advertisemet is active and published"
 
 #: String 486
 msgid "Edit advertisement"
@@ -2059,8 +2059,8 @@ msgid "Register new user"
 msgstr "Register new user"
 
 #: String 515
-msgid "You do not have any published Advertisement"
-msgstr "You do not have any published Advertisement"
+msgid "You do not have any published advertisemet"
+msgstr "You do not have any published advertisemet"
 
 #: String 516
 msgid "You do not have any advertisements waiting to be published"
@@ -2071,20 +2071,20 @@ msgid "Warning, something went wrong while deleting"
 msgstr "Warning, something went wrong while deleting"
 
 #: String 518
-msgid "Advertisement is deleted"
-msgstr "Advertisement is deleted"
+msgid "Advertisemet is deleted"
+msgstr "Advertisemet is deleted"
 
 #: String 519
-msgid "Warning, Advertisement is already marked as spam"
-msgstr "Warning, Advertisement is already marked as spam"
+msgid "Warning, advertisemet is already marked as spam"
+msgstr "Warning, advertisemet is already marked as spam"
 
 #: String 520
-msgid "Advertisement is marked as spam"
-msgstr "Advertisement is marked as spam"
+msgid "Advertisemet is marked as spam"
+msgstr "Advertisemet is marked as spam"
 
 #: String 521
-msgid "Advertisement is featured"
-msgstr "Advertisement is featured"
+msgid "Advertisemet is featured"
+msgstr "Advertisemet is featured"
 
 #: String 522
 msgid "Location deleted"

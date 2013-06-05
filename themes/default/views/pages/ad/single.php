@@ -21,8 +21,8 @@
 				<?foreach ($images as $path => $value):?>
 				<?if( isset($value['thumb']) AND isset($value['image']) ):?>
 				<li>
-					<a data-href="/<?= $value['image']?>" class="thumbnail gallery-item" data-gallery="gallery">
-						<img src="/<?= $value['thumb']?>"  class="img-rounded" alt="">
+					<a data-href="<?=URL::base('http')?><?= $value['image']?>" class="thumbnail gallery-item" data-gallery="gallery">
+						<img src="<?=URL::base('http')?><?= $value['thumb']?>"  class="img-rounded" alt="">
 					</a>
 				</li>
 				<?endif?>	
@@ -31,8 +31,8 @@
 			</div>
 		</div>	
 	</div>
-
 	<?endif?>
+
         <div class="well">
             <?if ($ad->price>0):?>
             <span class="label label-important"><?=money_format(core::config('general.number_format'), $ad->price)?></span>
