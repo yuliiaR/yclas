@@ -57,7 +57,7 @@ class Controller_New extends Controller
 		$moderation = core::config('general.moderation'); 
 
 
-		if ($moderation == 0) // direct post no moderation
+		if ($moderation == Model_Ad::POST_DIRECTLY) // direct post no moderation
 		{
 			if (Core::config('sitemap.on_post') == TRUE)
 				// Sitemap::generate(); // @TODO CHECK WHY DOESNT WORK
@@ -66,7 +66,11 @@ class Controller_New extends Controller
 			$this->save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
 
 		}
-		else if($moderation == 1 || $moderation == 2 ||  $moderation == 3 || $moderation == 4 || $moderation == 5)
+		else if($moderation == Model_Ad::MODERATION_ON 
+			 || $moderation == Model_Ad::PAYMENT_ON 
+			 || $moderation == Model_Ad::EMAIL_CONFIRAMTION 
+			 || $moderation == Model_Ad::EMAIL_MODERATION 
+			 || $moderation == Model_Ad::PAYMENT_MODERATION)
 		{
 			$status = Model_Ad::STATUS_NOPUBLISHED;
 			$this->save_new_ad($data, $status, $published = FALSE, $moderation, $form_show['captcha']);
@@ -229,7 +233,7 @@ class Controller_New extends Controller
 
 
 					// after successful posting send them email depending on moderation
-					if($moderation == 3)
+					if($moderation == Model_Ad::EMAIL_CONFIRAMTION)
 					{
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
@@ -238,7 +242,7 @@ class Controller_New extends Controller
 
                     	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql));
 					}
-					else if($moderation == 4)
+					else if($moderation == Model_Ad::EMAIL_MODERATION)
 					{
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
@@ -295,24 +299,40 @@ class Controller_New extends Controller
 	    		}
 
 				// PAYMENT METHOD ACTIVE (and other alerts)
-				if($moderation == 2 || $moderation == 5)
+				if($moderation == Model_Ad::PAYMENT_ON || $moderation == Model_Ad::PAYMENT_MODERATION)
 				{
 					$payment_order = new Model_Order();
 					$order_id = $payment_order->make_new_order($data, $usr, $seotitle);
 
 					if($order_id == NULL)
 					{
+						if($moderation == Model_Ad::PAYMENT_ON)
+						{
+
+							$new_ad->status = 1;
+							$new_ad->published = Date::unix2mysql(time());
+							try {
+									$new_ad->save();
+									Alert::set(Alert::SUCCESS, __('Advertisement is published. Congratulations!'));
+								} catch (Exception $e) {
+									throw new HTTP_Exception_500($e->getMessage());
+								}	
+						}
+						if($moderation == Model_Ad::PAYMENT_MODERATION)
+							Alert::set(Alert::SUCCESS, __('Advertisement is created but needs to be validated first before it is published.'));
+
+
 						$this->request->redirect(Route::url('default'));
 					}
 					// redirect to payment
         			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
 				}
-				else if ($moderation == 3)
+				else if ($moderation == Model_Ad::EMAIL_CONFIRAMTION)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
 					$this->request->redirect(Route::url('default'));
 				}
-				else if ($moderation == 4)
+				else if ($moderation == Model_Ad::EMAIL_MODERATION)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
 					$this->request->redirect(Route::url('default'));

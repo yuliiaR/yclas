@@ -413,7 +413,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        		// data['cat'] -> category selected , last_known_ad->id_category -> obj of current ad (before save) 
 	        		$moderation = core::config('general.moderation');
 	        		$last_known_ad = $obj_ad->where('id_ad', '=', $this->request->param('id'))->limit(1)->find();
-	        		if($moderation == 2 || $moderation == 5)
+	        		if($moderation == Model_Ad::PAYMENT_ON || $moderation == Model_Ad::PAYMENT_MODERATION)
 	        		{
 	        			// PAYMENT METHOD ACTIVE
 						$payment_order = new Model_Order();
@@ -435,7 +435,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 								}
 								else // order is payed, update status and publish 
 								{
-									if($moderation == 2)
+									if($moderation == Model_Ad::PAYMENT_ON)
 									{
 										$form->status = 1;
 										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));	
@@ -463,12 +463,12 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        						$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $advert_have_order->id_order))); 	
 								else // order is payed, update status and publish 
 								{
-									if($moderation == 2)
+									if($moderation == Model_Ad::PAYMENT_ON)
 									{
 										$form->status = 1;
 										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));	
 									}
-									else if($moderation == 5)
+									else if($moderation == Model_Ad::PAYMENT_MODERATION)
 										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));
 									
 								}
@@ -479,7 +479,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        					
 	        					if($order_id == NULL) // this is the case when in make_new_order we detect that category OR category_parent doesn't have price
 								{
-									if($moderation == 2) // publish
+									if($moderation == Model_Ad::PAYMENT_ON) // publish
 										$form->status = 1;
 								}
 								else

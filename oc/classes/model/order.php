@@ -83,7 +83,7 @@ class Model_Order extends ORM {
         if($orders->id_product == Paypal::category_product)
         {
 
-            if($moderation == 2)
+            if($moderation == Model_Ad::PAYMENT_ON)
             {
                 $product_find->published = Date::unix2mysql(time());
                 $product_find->status = 1;
@@ -94,7 +94,7 @@ class Model_Order extends ORM {
                     echo $e;
                 }
             }
-            else if($moderation == 5)
+            else if($moderation == Model_Ad::PAYMENT_MODERATION)
             {
                 $product_find->published = Date::unix2mysql(time());
                 
