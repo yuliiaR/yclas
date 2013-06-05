@@ -78,7 +78,7 @@ include 'install.php';
 	<div class="nav-collapse">
 
 	<div class="btn-group pull-right">
-		<a class="btn btn-primary" href="http://open-classifieds.com/download/">
+		<a class="btn btn-primary" href="http://open-classifieds.com/market/">
 			<i class="icon-shopping-cart icon-white"></i> We install it for you, Buy now!
 		</a>
 	</div>
@@ -115,7 +115,7 @@ include 'install.php';
             			<li class="divider"></li>
             			
             			<li class="nav-header">Open Classifieds</li>
-            			<li><a href="http://open-classifieds.com/themes/">Themes</a></li>
+            			<li><a href="http://open-classifieds.com/market/">Market</a></li>
             			<li><a href="http://open-classifieds.com/">Support & More</a></li>
             			<li><a href="http://j.mp/thanksdonate" target="_blank">
             					<img src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="">
