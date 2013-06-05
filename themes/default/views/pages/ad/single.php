@@ -54,7 +54,10 @@
         </div>  
 	    
         <?if ($ad->can_contact()):?>
-		<button class="btn btn-success"type="button" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></button>
+		<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></button>
+            <?if (core::config('advertisement.phone')==1 AND strlen($ad->phone)>1):?>
+                <a class="btn btn-warning" href="tel:<?=$ad->phone?>"><?=$ad->phone?></button>
+            <?endif?>
 		<div id="contact-modal" class="modal hide fade">
         	<div class="modal-header">
          		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
