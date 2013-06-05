@@ -115,6 +115,10 @@ function oc_requirements()
                                     'mandatory' => TRUE,
                                     'result'    => is_writable(DOCROOT.'images')
                                     ),
+                'themes'    =>array('message'   => 'The <code>'.DOCROOT.'themes/</code> directory is not writable.',
+                                    'mandatory' => TRUE,
+                                    'result'    => is_writable(DOCROOT.'themes')
+                                    ),
                 'cache'     =>array('message'   => 'The <code>'.APPPATH.'cache/</code> directory is not writable.',
                                     'mandatory' => TRUE,
                                     'result'    => (is_dir(APPPATH) AND is_dir(APPPATH.'cache') AND is_writable(APPPATH.'cache'))
@@ -195,10 +199,10 @@ function oc_requirements()
                                     'mandatory' => TRUE,
                                     'result'    => (function_exists('mysql_connect'))
                                     ),
-                'PDO'       =>array('message'   => 'OC requires the <a href="http://php.net/pdo">PDO</a> to support additional databases.',
+                /*'PDO'       =>array('message'   => 'OC requires the <a href="http://php.net/pdo">PDO</a> to support additional databases.',
                                     'mandatory' => TRUE,
                                     'result'    =>  (class_exists('PDO'))
-                                    ),
+                                    ),*/
 
                 );
 }
