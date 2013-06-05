@@ -29,40 +29,39 @@ class Controller_Panel_Profile extends Auth_Controller {
 		if ($this->request->post())
 		{
 			$user = Auth::instance()->get_user();
-			if(Auth::instance()->hash(core::post('password_old')) == $user->password )
+			
+			if (core::post('password1')==core::post('password2'))
 			{
-				if (core::post('password1')==core::post('password2'))
-				{
-					$new_pass = core::post('password1');
-					if(!empty($new_pass)){
+				$new_pass = core::post('password1');
+				if(!empty($new_pass)){
 
-						$user->password = core::post('password1');
+					$user->password = core::post('password1');
 
-						try
-						{
-							$user->save();
-						}
-						catch (ORM_Validation_Exception $e)
-						{
-							throw new HTTP_Exception_500($e->getMessage());
-						}
-						catch (Exception $e)
-						{
-							throw new HTTP_Exception_500($e->getMessage());
-						}
-
-						Alert::set(Alert::SUCCESS, __('Password is changed'));
-					}
-					else
+					try
 					{
-						Form::set_errors(array(__('Nothing is provided')));
+						$user->save();
 					}
+					catch (ORM_Validation_Exception $e)
+					{
+						throw new HTTP_Exception_500($e->getMessage());
+					}
+					catch (Exception $e)
+					{
+						throw new HTTP_Exception_500($e->getMessage());
+					}
+
+					Alert::set(Alert::SUCCESS, __('Password is changed'));
 				}
 				else
 				{
-					Form::set_errors(array(__('Passwords do not match')));
+					Form::set_errors(array(__('Nothing is provided')));
 				}
 			}
+			else
+			{
+				Form::set_errors(array(__('Passwords do not match')));
+			}
+			
 		}
 
 	  

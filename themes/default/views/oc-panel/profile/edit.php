@@ -33,14 +33,7 @@
     	</div>
     	
     	<form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'changepass'))?>">         
-              <?=Form::errors()?> 
-
-              <div class="control-group">
-                <label class="control-label"><?=__('Old password')?></label>
-                <div class="controls docs-input-sizes">
-                <input class="input-medium" type="password" name="password_old" placeholder="<?=__('Password')?>">
-                </div>
-              </div>       
+              <?=Form::errors()?>  
               
               <div class="control-group">
                 <label class="control-label"><?=__('New password')?></label>
