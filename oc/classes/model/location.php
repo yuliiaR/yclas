@@ -67,6 +67,24 @@ class Model_Location extends ORM {
 	}
 
     /**
+     * Filters to run when data is set in this model. The password filter
+     * automatically hashes the password when it's set in the model.
+     *
+     * @return array Filters
+     */
+    public function filters()
+    {
+        return array(
+                'seoname' => array(
+                                array(array($this, 'gen_seoname'))
+                              ),
+                'id_location_parent' => array(
+                                array(array($this, 'check_parent'))
+                              )
+        );
+    }
+
+    /**
      * we get the locations in an array and a multidimensional array to know the deep
      * @return array 
      */
@@ -115,21 +133,25 @@ class Model_Location extends ORM {
         $ret = NULL;
         //we take all the siblings and try to set the grandsons...
         //we check that the id_location sibling has other siblings
-        foreach ($locs_s[$id_location] as $id_sibling) 
+        if (isset($locs_s[$id_location]))
         {
-            //we check that the id_location sibling has other siblings
-            if (isset($locs_s[$id_sibling]))
+            foreach ($locs_s[$id_location] as $id_sibling) 
             {
-                if (is_array($locs_s[$id_sibling]))
+                //we check that the id_location sibling has other siblings
+                if (isset($locs_s[$id_sibling]))
                 {
-                    $ret[$id_sibling] = self::multi_locs($locs_s,$id_sibling,$deep+1);
+                    if (is_array($locs_s[$id_sibling]))
+                    {
+                        $ret[$id_sibling] = self::multi_locs($locs_s,$id_sibling,$deep+1);
+                    }
                 }
+                //no siblings we only set the key
+                else 
+                    $ret[$id_sibling] = NULL;
+                
             }
-            //no siblings we only set the key
-            else 
-                $ret[$id_sibling] = NULL;
-            
         }
+        
         return $ret;
     }
 
@@ -178,6 +200,62 @@ class Model_Location extends ORM {
 
         return $locs;
     }
+
+
+    /**
+     * return the title formatted for the URL
+     *
+     * @param  string $title
+     * 
+     */
+    public function gen_seoname($seoname)
+    {
+        //in case seoname is really small or null
+        if (strlen($seoname)<3)
+            $seoname = $this->name;
+
+        $seoname = URL::title($seoname, '-', FALSE);
+
+        $loc = new self;
+        //find a user same seoname
+        $s = $loc->where('seoname', '=', $seoname)->limit(1)->find();
+
+        //found, increment the last digit of the seoname
+        if ($s->loaded())
+        {
+            $cont = 2;
+            $loop = TRUE;
+            while($loop)
+            {
+                $attempt = $seoname.'-'.$cont;
+                $loc = new self;
+                unset($s);
+                $s = $loc->where('seoname', '=', $attempt)->limit(1)->find();
+                if(!$s->loaded())
+                {
+                    $loop = FALSE;
+                    $seoname = $attempt;
+                }
+                else
+              {
+                    $cont++;
+                }
+            }
+        }
+
+        return $seoname;
+    }
+
+    /**
+     * rule to verify that we selected a parent if not put the root location
+     * @param  integer $id_parent 
+     * @return integer                     
+     */
+    public function check_parent($id_parent)
+    {
+        return (is_numeric($id_parent))? $id_parent:1;
+    }
+
 
     protected $_table_columns =  
 array (
