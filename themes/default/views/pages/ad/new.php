@@ -137,7 +137,7 @@
 				</div>
 				<?endif?>
 				<div class="form-actions">
-					<?= FORM::button('submit', 'Publish now', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
+					<?= FORM::button('submit', __('Publish new'), array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 					<p class="help-block"><?=__('User account will be created')?></p>
 				</div>
 			</fieldset>
