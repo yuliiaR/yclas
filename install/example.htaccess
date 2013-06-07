@@ -156,7 +156,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 # Rewrite all other URLs to index.php/URL
-RewriteRule .* index.php/$0 [PT]
+# RewriteRule .* index.php/$0 [PT]
+
+# godaddy hack no input file specified https://github.com/open-classifieds/openclassifieds2/issues/253
+RewriteRule ^(.*)$ index.php?/$1 [PT]
 
 
 # ----------------------------------------------------------------------
