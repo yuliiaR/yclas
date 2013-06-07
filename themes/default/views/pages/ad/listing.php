@@ -30,7 +30,7 @@
 		    	</h2>
 		    	
 		    	<?if($ad->get_first_image() !== NULL):?>
-		    		 <img src="/<?=$ad->get_first_image()?>" class="img-polaroid advert_img" >
+		    		 <img src="<?=URL::base('http')?><?=$ad->get_first_image()?>" class="img-polaroid advert_img" >
 		    	<?endif?>
 		    	
 		    	<ul>

@@ -17,6 +17,9 @@ class Controller_Page extends Controller {
 
             if ($page->loaded())
             {
+                Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+                Breadcrumbs::add(Breadcrumb::factory()->set_title($page->title));
+
                 $this->template->title            = $page->title;
                 $this->template->meta_description = $page->description;
 

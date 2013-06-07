@@ -24,7 +24,9 @@ class Kohana_Exception extends Kohana_Kohana_Exception
         {
             try
             {
-                Kohana::$log->add(Log::ERROR, parent::text($e));
+                //not saving 404 as error
+                if ($e->getCode()!=400)
+                    Kohana::$log->add(Log::ERROR, parent::text($e));
  
                 $params = array
                 (

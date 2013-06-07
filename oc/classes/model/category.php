@@ -81,6 +81,23 @@ class Model_Category extends ORM {
 			        'price'					=> __('Price'));
 	}
 	
+    /**
+     * Filters to run when data is set in this model. The password filter
+     * automatically hashes the password when it's set in the model.
+     *
+     * @return array Filters
+     */
+    public function filters()
+    {
+        return array(
+                'seoname' => array(
+                                array(array($this, 'gen_seoname'))
+                              ),
+                'id_category_parent' => array(
+                                array(array($this, 'check_parent'))
+                              )
+        );
+    }
 
     /**
      * we get the categories in an array and a multidimensional array to know the deep
@@ -132,20 +149,23 @@ class Model_Category extends ORM {
         $ret = NULL;
         //we take all the siblings and try to set the grandsons...
         //we check that the id_category sibling has other siblings
-        foreach ($cats_s[$id_category] as $id_sibling) 
+        if (isset($cats_s[$id_category]))
         {
-            //we check that the id_category sibling has other siblings
-            if (isset($cats_s[$id_sibling]))
+            foreach ($cats_s[$id_category] as $id_sibling) 
             {
-                if (is_array($cats_s[$id_sibling]))
+                //we check that the id_category sibling has other siblings
+                if (isset($cats_s[$id_sibling]))
                 {
-                    $ret[$id_sibling] = self::multi_cats($cats_s,$id_sibling,$deep+1);
+                    if (is_array($cats_s[$id_sibling]))
+                    {
+                        $ret[$id_sibling] = self::multi_cats($cats_s,$id_sibling,$deep+1);
+                    }
                 }
+                //no siblings we only set the key
+                else 
+                    $ret[$id_sibling] = NULL;
+                
             }
-            //no siblings we only set the key
-            else 
-                $ret[$id_sibling] = NULL;
-            
         }
         return $ret;
     }
@@ -273,6 +293,59 @@ class Model_Category extends ORM {
 		return array('created');
 	}
 
+    /**
+     * return the title formatted for the URL
+     *
+     * @param  string $title
+     * 
+     */
+    public function gen_seoname($seoname)
+    {
+        //in case seoname is really small or null
+        if (strlen($seoname)<3)
+            $seoname = $this->name;
+
+        $seoname = URL::title($seoname, '-', FALSE);
+
+        $cat = new self;
+        //find a user same seoname
+        $s = $cat->where('seoname', '=', $seoname)->limit(1)->find();
+
+        //found, increment the last digit of the seoname
+        if ($s->loaded())
+        {
+            $cont = 2;
+            $loop = TRUE;
+            while($loop)
+            {
+                $attempt = $seoname.'-'.$cont;
+                $cat = new self;
+                unset($s);
+                $s = $cat->where('seoname', '=', $attempt)->limit(1)->find();
+                if(!$s->loaded())
+                {
+                    $loop = FALSE;
+                    $seoname = $attempt;
+                }
+                else
+                {
+                    $cont++;
+                }
+            }
+        }
+
+        return $seoname;
+    }
+
+    /**
+     * rule to verify that we selected a parent if not put the root location
+     * @param  integer $id_parent 
+     * @return integer                     
+     */
+    public function check_parent($id_parent)
+    {
+        return (is_numeric($id_parent))? $id_parent:1;
+    }
 
     protected $_table_columns =  
 array (

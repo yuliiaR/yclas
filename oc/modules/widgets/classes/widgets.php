@@ -58,7 +58,8 @@ class Widgets {
 				}
 				else
 				{
-                    $widgets[] = Widget::factory($widget_name);
+                    if (($w = Widget::factory($widget_name))!==NULL)
+                        $widgets[] = $w;
 				}
 				
 				

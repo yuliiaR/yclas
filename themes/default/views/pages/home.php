@@ -7,7 +7,7 @@
             <div class="thumbnail latest_ads" >
                 
                 <?if($ad->get_first_image()!== NULL):?>
-                <img src="/<?=$ad->get_first_image()?>" class="img-polaroid">
+                <img src="<?=URL::base('http')?><?=$ad->get_first_image()?>" class="img-polaroid">
                 <?endif?>
                 <div class="caption">
                     <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h5>
