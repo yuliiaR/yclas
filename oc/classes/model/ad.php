@@ -295,6 +295,7 @@ class Model_Ad extends ORM {
 
             if ($image !== NULL)
             {
+                $root           = core::config('general.base_url');
                 $path           = $this->image_path($id , $created);
                 $directory      = DOCROOT.$path;
                 $image_quality  = core::config('image.quality');
