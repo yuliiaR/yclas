@@ -28,7 +28,7 @@ define('VERSION','2.0.1');
 //Gets language to use
 if      (isset($_POST['LANGUAGE'])) $locale_language=$_POST['LANGUAGE'];
 elseif  (isset($_GET['LANGUAGE'])) $locale_language=$_GET['LANGUAGE'];
-else    $locale_language='en_EN';
+else    $locale_language='en_US';//default
 
 //start translations
 gettext_init($locale_language);

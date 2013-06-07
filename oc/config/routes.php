@@ -13,10 +13,17 @@
  */
 
 /**
+ * this hack is to add tohse languages that are not in ascii, so we add them to the array
+ * @var boolean
+ */
+$ascii_only = ( in_array(i18n::$locale, array('hi_IN')) )? FALSE:TRUE;
+
+
+/**
  * Item / post new
  * URL::title(__('publish new'))
  */
-Route::set('post_new', URL::title(__('publish new'),'-',TRUE).'.html')
+Route::set('post_new', URL::title(__('publish new'),'-',$ascii_only).'.html')
 ->defaults(array(
 		'controller' => 'new',    
 		'action'     => 'index',
@@ -25,7 +32,7 @@ Route::set('post_new', URL::title(__('publish new'),'-',TRUE).'.html')
 /**
  * search
  */
-Route::set('search',URL::title(__('search'),'-',TRUE).'.html')
+Route::set('search',URL::title(__('search'),'-',$ascii_only).'.html')
 ->defaults(array(
         'controller' => 'ad',    
         'action'     => 'advanced_search',
@@ -34,7 +41,7 @@ Route::set('search',URL::title(__('search'),'-',TRUE).'.html')
 /**
  * Captcha / contact
  */
-Route::set('contact', URL::title(__('contact'),'-',TRUE).'.html')
+Route::set('contact', URL::title(__('contact'),'-',$ascii_only).'.html')
 ->defaults(array(
 		'controller' => 'contact',
 		'action'	 => 'index',));
@@ -42,14 +49,14 @@ Route::set('contact', URL::title(__('contact'),'-',TRUE).'.html')
 /**
  * maps
  */
-Route::set('map', URL::title(__('map'),'-',TRUE).'.html')
+Route::set('map', URL::title(__('map'),'-',$ascii_only).'.html')
 ->defaults(array(
         'controller' => 'map',
         'action'     => 'index',));
 /**
  * maintenance
  */
-Route::set('maintenance', URL::title(__('maintenance'),'-',TRUE).'.html')
+Route::set('maintenance', URL::title(__('maintenance'),'-',$ascii_only).'.html')
 ->defaults(array(
         'controller' => 'maintenance',
         'action'     => 'index',));
