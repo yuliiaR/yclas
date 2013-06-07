@@ -298,7 +298,6 @@ class Model_Ad extends ORM {
                 $root           = core::config('general.base_url');
                 $path           = $this->image_path($id , $created);
                 $directory      = DOCROOT.$path;
-                // d(DOCROOT."--app ".APPPATH."--sys ".SYSPATH."--".$root);
                 $image_quality  = core::config('image.quality');
                 $width          = core::config('image.width');
                 $width_thumb    = core::config('image.width_thumb');
