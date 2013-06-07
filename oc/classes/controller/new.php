@@ -266,7 +266,7 @@ class Controller_New extends Controller
 				$error_message = NULL;
 	    		$filename = NULL;
 	    		$counter = 0;
-// <<<<<<<<<<<< SOMETHING IS WRONG HERE WHEN MOBILE ACTIVE
+
 	    		for ($i=0; $i < core::config("advertisement.num_images"); $i++) { 
 	    			$counter++;
 
