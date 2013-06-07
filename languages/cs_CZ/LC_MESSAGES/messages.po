@@ -1,90 +1,90 @@
 #: String 0
 msgid "Listing"
-msgstr "Listeleme"
+msgstr "Výpis"
 
 #: String 1
 msgid "Categories"
-msgstr "Kategoriler"
+msgstr "Kategorie"
 
 #: String 2
 msgid "Search"
-msgstr "Arama"
+msgstr "Vyhledávání"
 
 #: String 3
 msgid "Publish new "
-msgstr "Yeni yayınla"
+msgstr "Publikovat nové"
 
 #: String 4
 msgid "Login"
-msgstr "Giriş"
+msgstr "Přihlášení"
 
 #: String 5
 msgid "Forgot password"
-msgstr "Şifremi unuttum"
+msgstr "Zapomněli jste heslo"
 
 #: String 6
 msgid "Register"
-msgstr "Kaydetmek"
+msgstr "Registrovat"
 
 #: String 7
 msgid "Change the admin color theme"
-msgstr "Admin renk temasını değiştirme"
+msgstr "Změna admin barevný motiv"
 
 #: String 8
 msgid "Mobile Version"
-msgstr "Mobil Sürüm"
+msgstr "Mobilní verze"
 
 #: String 9
 msgid "Publish new"
-msgstr "Yeni yayınla"
+msgstr "Publikovat nové"
 
 #: String 10
 msgid "Map"
-msgstr "Harita"
+msgstr "Mapa"
 
 #: String 11
 msgid "Contact"
-msgstr "İletişim"
+msgstr "Kontakt"
 
 #: String 12
 msgid "Latest Ads"
-msgstr "Son Reklamlar"
+msgstr "Nejnovější inzeráty"
 
 #: String 13
 msgid "New Advertisement"
-msgstr "Yeni Reklam"
+msgstr "Nový Reklama"
 
 #: String 14
 msgid "Publish new advertisement"
-msgstr "Yeni reklam yayınla"
+msgstr "Publikovat nový inzerát"
 
 #: String 15
 msgid "Featured"
-msgstr "Özellikli"
+msgstr "Nejlepší"
 
 #: String 16
 msgid "Publish Date"
-msgstr "Yayın Tarihi"
+msgstr "Datum vydání"
 
 #: String 17
 msgid "Price"
-msgstr "Fiyat"
+msgstr "Cena"
 
 #: String 18
 msgid "Read more"
-msgstr "Devamı"
+msgstr "Přečtěte si více"
 
 #: String 19
 msgid "Edit"
-msgstr "Düzenle"
+msgstr "Upravit"
 
 #: String 20
 msgid "Deactivate?"
-msgstr "Devre dışı bırak?"
+msgstr "Deaktivovat?"
 
 #: String 21
 msgid "Deactivate"
-msgstr "Devre dışı bırakmak"
+msgstr "Deaktivovat"
 
 #: String 22
 msgid "Spam?"
@@ -96,39 +96,39 @@ msgstr "Spam"
 
 #: String 24
 msgid "Delete?"
-msgstr "Sil?"
+msgstr "Delete?"
 
 #: String 25
 msgid "Delete"
-msgstr "Silmek"
+msgstr "Vymazat"
 
 #: String 26
 msgid "We do not have any advertisements in this category"
-msgstr "Biz bu kategoride herhangi bir reklam yok"
+msgstr "Nemáme žádné inzeráty v této kategorii"
 
 #: String 27
 msgid "Hits"
-msgstr "Hitler"
+msgstr "Stáhnuto"
 
 #: String 28
 msgid "Send Message"
-msgstr "Mesaj Gönder"
+msgstr "Odeslat zprávu"
 
 #: String 29
 msgid "Name"
-msgstr "isim"
+msgstr "Název"
 
 #: String 30
 msgid "Email"
-msgstr "E-posta"
+msgstr "E-mail"
 
 #: String 31
 msgid "Subject"
-msgstr "Konu"
+msgstr "Předmět"
 
 #: String 32
 msgid "Message"
-msgstr "Mesaj"
+msgstr "Zpráva"
 
 #: String 33
 msgid "Captcha"
@@ -136,211 +136,211 @@ msgstr "Captcha"
 
 #: String 34
 msgid "Number of latest ads to display in the home page"
-msgstr "Ana sayfada görüntülenen toplam reklam sayısı"
+msgstr "Počet nejnovějších inzerátů se zobrazí na domovské stránce"
 
 #: String 35
 msgid "Change the color scheme and style of the theme"
-msgstr "Temanın renk düzeni ve stilini değiştirme"
+msgstr "Změnit barevné schéma a styl tématu"
 
 #: String 36
 msgid "Header banner, allows HTML"
-msgstr "Başlık, HTML'e izin verir"
+msgstr "Header banner, povoluje HTML"
 
 #: String 37
 msgid "Please wait while we transfer you to Paypal"
-msgstr "Paypal'a aktarırken lütfen bekleyiniz"
+msgstr "Počkejte prosím, transfer do Paypal"
 
 #: String 38
 msgid "Click here if you are not redirected"
-msgstr "Eğer yönlendirilmediyseniz, lütfen buraya tıklayınız"
+msgstr "Klikněte zde, pokud nejste přesměrováni"
 
 #: String 39
 msgid "First"
-msgstr "İlk"
+msgstr "První"
 
 #: String 40
 msgid "Previous"
-msgstr "Önceki"
+msgstr "Předchozí"
 
 #: String 41
 msgid "Page"
-msgstr "Sayfa"
+msgstr "Strana"
 
 #: String 42
 msgid "Next"
-msgstr "Sonraki"
+msgstr "Další"
 
 #: String 43
 msgid "Last"
-msgstr "Son"
+msgstr "Poslední"
 
 #: String 44
 msgid "Edit Profile"
-msgstr "Profili Düzenle"
+msgstr "Upravit profil"
 
 #: String 45
 msgid "Change password"
-msgstr "Şifreyi değiştir"
+msgstr "Změnit heslo"
 
 #: String 46
 msgid "Old password"
-msgstr "Eski şifre"
+msgstr "Staré heslo"
 
 #: String 47
 msgid "Password"
-msgstr "Şifre"
+msgstr "Heslo"
 
 #: String 48
 msgid "New password"
-msgstr "Yeni parola"
+msgstr "Nové heslo"
 
 #: String 49
 msgid "Repeat password"
-msgstr "Şifrenizi tekrar girin"
+msgstr "Zopakujte heslo"
 
 #: String 50
 msgid "Type your password twice to change"
-msgstr "Değiştirmek için şifrenizi iki kez yazınız"
+msgstr "Zadejte heslo dvakrát změnit"
 
 #: String 51
 msgid "Cancel"
-msgstr "Iptal"
+msgstr "Zrušit"
 
 #: String 52
 msgid "Send"
-msgstr "Gönder"
+msgstr "Odeslat"
 
 #: String 53
 msgid "My Advertisements"
-msgstr "Reklamlarım"
+msgstr "Moje Reklamy"
 
 #: String 54
 msgid " New"
-msgstr "Yeni"
+msgstr "Nový"
 
 #: String 55
 msgid "Category"
-msgstr "Kategori"
+msgstr "Kategorie"
 
 #: String 56
 msgid "Location"
-msgstr "Konum"
+msgstr "Umístění"
 
 #: String 57
 msgid "Status"
-msgstr "Durum"
+msgstr "Postavení"
 
 #: String 58
 msgid "Date"
-msgstr "Tarih"
+msgstr "Datum"
 
 #: String 59
 msgid "Not published"
-msgstr "Yayınlanmadı"
+msgstr "Nezveřejněné"
 
 #: String 60
 msgid "Published"
-msgstr "Yayınlandı"
+msgstr "Vydáno"
 
 #: String 61
 msgid "Unavailable"
-msgstr "Yok"
+msgstr "Není k dispozici"
 
 #: String 62
 msgid "Update"
-msgstr "Güncelleme"
+msgstr "Aktualizovat"
 
 #: String 63
 msgid "Activate?"
-msgstr "Etkinleştir?"
+msgstr "Aktivace?"
 
 #: String 64
 msgid "Activate"
-msgstr "Etkinleştirmek"
+msgstr "Aktivovat"
 
 #: String 65
 msgid "Refresh listing, go to top?"
-msgstr "Listeyi yenile, yukarıya git"
+msgstr "Obnovit seznam, přejděte na vrchol?"
 
 #: String 66
 msgid "Go to top"
-msgstr "Yukarı git"
+msgstr "Jdi na začátek"
 
 #: String 67
 msgid "Are you sure you want to refresh listing and go to top?"
-msgstr "Eğer liste yenilemek ve üstüne gitmek istediğinizden emin misiniz?"
+msgstr "Jste si jisti, že chcete obnovit seznam a jít nahoru?"
 
 #: String 68
 msgid "Make featured?"
-msgstr "Özellikli olun?"
+msgstr "Udělat představoval?"
 
 #: String 69
 msgid "Are you sure you want to make it featured?"
-msgstr "Bunu özellikli yapmak istediğinizden emin misiniz?"
+msgstr "Jste si jisti, že chcete, aby to představovalo?"
 
 #: String 70
 msgid "Deactivate featured?"
-msgstr "Özellikli devre dışı bırakmak?"
+msgstr "Deaktivovat představoval?"
 
 #: String 71
 msgid "Deactivate featured"
-msgstr "Özellikli devre dışı bırakın"
+msgstr "Deaktivovat představoval"
 
 #: String 72
 msgid "Are you sure you want to deactivate featured advertisement?"
-msgstr "Eğer özellikli reklam devre dışı bırakmak için istediğinizden emin misiniz?"
+msgstr "Jste si jisti, že chcete deaktivovat představoval reklamu?"
 
 #: String 73
 msgid "Statistics"
-msgstr "Istatistik"
+msgstr "Statistika"
 
 #: String 74
 msgid "Today"
-msgstr "Bugün"
+msgstr "Dnes"
 
 #: String 75
 msgid "Yesterday"
-msgstr "Dün"
+msgstr "Včera"
 
 #: String 76
 msgid "Last 30 days"
-msgstr "Son 30 gün"
+msgstr "Posledních 30 dní"
 
 #: String 77
 msgid "Total"
-msgstr "Toplam"
+msgstr "Celkový"
 
 #: String 78
 msgid "Contacts"
-msgstr "İletişim"
+msgstr "Kontakty"
 
 #: String 79
 msgid "Visits"
-msgstr "Ziyaretler"
+msgstr "Návštěvy"
 
 #: String 80
 msgid "Charts"
-msgstr "Grafikler"
+msgstr "Grafy"
 
 #: String 81
 msgid "From"
-msgstr "Itibaren"
+msgstr "Z"
 
 #: String 82
 msgid "To"
-msgstr "Karşı"
+msgstr "Na"
 
 #: String 83
 msgid "Filter"
-msgstr "Filtre"
+msgstr "Filtr"
 
 #: String 84
 msgid "Views and Contacts statistic"
-msgstr "Görüntüleme ve İletişim istatistik"
+msgstr "Zobrazení a statistické Kontakty"
 
 #: String 85
 msgid "Edit Advertisement"
-msgstr "Reklam Düzenle"
+msgstr "Editovat Reklama"
 
 #: String 86
 msgid "Id_User"
@@ -352,27 +352,27 @@ msgstr "Profil"
 
 #: String 88
 msgid "Unpublished"
-msgstr "Yayınlanmamış"
+msgstr "Nepublikovaný"
 
 #: String 89
 msgid "spam"
-msgstr "Spam"
+msgstr "spam"
 
 #: String 90
 msgid "Title"
-msgstr "Başlık"
+msgstr "Název"
 
 #: String 91
 msgid "Description"
-msgstr "Tanımlama"
+msgstr "Popis"
 
 #: String 92
 msgid "Delete image"
-msgstr "Görüntüyü sil"
+msgstr "Odstranit obraz"
 
 #: String 93
 msgid "Images"
-msgstr "Görüntüler"
+msgstr "Obrázky"
 
 #: String 94
 msgid "Phone"
@@ -380,11 +380,11 @@ msgstr "Telefon"
 
 #: String 95
 msgid "Address"
-msgstr "Adres"
+msgstr "Adresa"
 
 #: String 96
 msgid "Website"
-msgstr "Web sitesi"
+msgstr "Webové stránky"
 
 #: String 97
 msgid "Panel"
@@ -392,595 +392,595 @@ msgstr "Panel"
 
 #: String 98
 msgid "Market"
-msgstr "Pazar"
+msgstr "Trh"
 
 #: String 99
 msgid "Moderation"
-msgstr "Ilımlılık"
+msgstr "Umírněnost"
 
 #: String 100
 msgid "Stats"
-msgstr "İstatistikler"
+msgstr "Statistiky"
 
 #: String 101
 msgid "Widgets"
-msgstr "Widget"
+msgstr "Widgety"
 
 #: String 102
 msgid "New"
-msgstr "Yeni"
+msgstr "Nový"
 
 #: String 103
 msgid "Welcome"
-msgstr "Karşılama"
+msgstr "Vítejte"
 
 #: String 104
 msgid "Thanks for using our website."
-msgstr "Web sitemizi kullandığınız için teşekkür ederiz."
+msgstr "Děkujeme za používání našich webových stránek."
 
 #: String 105
 msgid "Advertisements"
-msgstr "Reklamlar"
+msgstr "Reklamy"
 
 #: String 106
 msgid "Locations"
-msgstr "Mekanlar"
+msgstr "Místa"
 
 #: String 107
 msgid "Orders"
-msgstr "Siparişler"
+msgstr "Objednávky"
 
 #: String 108
 msgid "Content"
-msgstr "Içerik"
+msgstr "Obsah"
 
 #: String 109
 msgid "Translations"
-msgstr "Çeviriler"
+msgstr "Překlady"
 
 #: String 110
 msgid "Newsletters"
-msgstr "Haber Bültenleri"
+msgstr "Zpravodaje"
 
 #: String 111
 msgid "Themes"
-msgstr "Temalar"
+msgstr "Témata"
 
 #: String 112
 msgid "Theme Options"
-msgstr "Tema Seçenekleri"
+msgstr "Téma Možnosti"
 
 #: String 113
 msgid "Settings"
-msgstr "Ayarlar"
+msgstr "Nastavení"
 
 #: String 114
 msgid "General"
-msgstr "Genel"
+msgstr "Obecný"
 
 #: String 115
 msgid "Payment"
-msgstr "Ödeme"
+msgstr "Platba"
 
 #: String 116
 msgid "Advertisement"
-msgstr "Ilan"
+msgstr "Reklama"
 
 #: String 117
 msgid "Users"
-msgstr "Kullanıcılar"
+msgstr "Uživatelé"
 
 #: String 118
 msgid "User Roles"
-msgstr "Kullanıcı Rolleri"
+msgstr "Uživatelské role"
 
 #: String 119
 msgid "Roles access"
-msgstr "Roller erişim"
+msgstr "Role přístup"
 
 #: String 120
 msgid "Tools"
-msgstr "Araçlar"
+msgstr "Nástroje"
 
 #: String 121
 msgid "Updates"
-msgstr "Güncellemeler"
+msgstr "Aktualizace"
 
 #: String 122
 msgid "Sitemap"
-msgstr "Site Haritası"
+msgstr "Mapa stránek"
 
 #: String 123
 msgid "Migration"
-msgstr "Göç"
+msgstr "Stěhování"
 
 #: String 124
 msgid "Optimize"
-msgstr "Optimize"
+msgstr "Optimalizovat"
 
 #: String 125
 msgid "Cache"
-msgstr "Önbellek"
+msgstr "Cache"
 
 #: String 126
 msgid "Logs"
-msgstr "Kayıtlar"
+msgstr "Záznamy"
 
 #: String 127
 msgid "PHP Info"
-msgstr "PHP Bilgisi"
+msgstr "PHP Info"
 
 #: String 128
 msgid "Edit profile"
-msgstr "Profil Düzenle"
+msgstr "Upravit profil"
 
 #: String 129
 msgid "Public profile"
-msgstr "Genel profil"
+msgstr "Veřejný profil"
 
 #: String 130
 msgid "Home"
-msgstr "Ev"
+msgstr "Domácí"
 
 #: String 131
 msgid "Actions"
-msgstr "Eylemleri"
+msgstr "Akce"
 
 #: String 132
 msgid "Are you sure you want to delete?"
-msgstr "Silmek istediğinizden emin misiniz?"
+msgstr "Jste si jisti, že chcete smazat?"
 
 #: String 133
 msgid "Logout"
-msgstr "Çıkış"
+msgstr "Odhlášení"
 
 #: String 134
 msgid "Visit Site"
-msgstr "Siteyi ziyaret edin"
+msgstr "Navštivte stránky"
 
 #: String 135
 msgid "Here are listed specific theme configuration values. Replace input fields with new desired values for the theme."
-msgstr "Burada belirli bir tema yapılandırma değerlerini listelenmiştir. Tema için istediğiniz yeni değerlerle giriş alanları değiştirin."
+msgstr "Zde jsou uvedeny konkrétní hodnoty konfigurace téma. Vyměňte vstupní pole nové požadované hodnoty pro téma."
 
 #: String 136
 msgid "Using mobile theme"
-msgstr "Mobil tema kullanarak"
+msgstr "Používání mobilního téma"
 
 #: String 137
 msgid "Disable"
-msgstr "Devre Dışı Bırak"
+msgstr "Zakázat"
 
 #: String 138
 msgid "Options"
-msgstr "Seçenekleri"
+msgstr "Volby"
 
 #: String 139
 msgid "You can change the look and feel of your website here."
-msgstr "Sen görünümünü değiştirmek ve burada web sitenizin hissedebilirsiniz."
+msgstr "Můžete změnit vzhled a dojem z vaší webové stránky zde."
 
 #: String 140
 msgid "Current Theme"
-msgstr "Geçerli Tema"
+msgstr "Aktuální téma"
 
 #: String 141
 msgid "Available Themes"
-msgstr "Mevcut Temalar"
+msgstr "Dostupné Témata"
 
 #: String 142
 msgid "Preview"
-msgstr "Önizleme"
+msgstr "Náhled"
 
 #: String 143
 msgid "Available Mobile Themes"
-msgstr "Mevcut Mobil Temalar"
+msgstr "Dostupné Mobilní Témata"
 
 #: String 144
 msgid "Themes Market"
-msgstr "Temalar Pazar"
+msgstr "Témata Market"
 
 #: String 145
 msgid "Here you can find a selection of our premium themes."
-msgstr "Burada bizim prim temalar bir seçim bulabilirsiniz."
+msgstr "Zde naleznete výběr našich prémiových témat."
 
 #: String 146
 msgid "All themes include support, updates and 1 site license."
-msgstr "Tüm tema desteği, güncellemeler ve 1 site lisans içerir."
+msgstr "Všechna témata zahrnují podporu, aktualizace a 1 licenci,."
 
 #: String 147
 msgid "Site Usage Statistics"
-msgstr "Site Kullanım İstatistikleri"
+msgstr "Statistiky používání stránek"
 
 #: String 148
 msgid "Ads"
-msgstr "Reklamlar"
+msgstr "Reklamy"
 
 #: String 149
 msgid "Sales"
-msgstr "Satış"
+msgstr "Odbyt"
 
 #: String 150
 msgid "Views and Ads statistics"
-msgstr "Görüntüleme ve Reklam istatistik"
+msgstr "Zobrazení a reklamy statistiky"
 
 #: String 151
 msgid "Sales statistics"
-msgstr "Satış istatistikleri"
+msgstr "Prodejní statistiky"
 
 #: String 152
 msgid "Available widgets"
-msgstr "Mevcut widget"
+msgstr "Dostupné widgety"
 
 #: String 153
 msgid "Create"
-msgstr "Oluşturmak"
+msgstr "Vytvořit"
 
 #: String 154
 msgid "Where do you want the widget displayed?"
-msgstr "Nerede widget görüntülenen istersiniz?"
+msgstr "Kam chceš widget zobrazuje?"
 
 #: String 155
 msgid "Close"
-msgstr "Yakın"
+msgstr "Zavřít"
 
 #: String 156
 msgid "Sure you want to delete the widget? You can move it to the inactive placeholder"
-msgstr "Tabii widget silmek ister misin? Bu etkin tutucu taşıyabilirsiniz"
+msgstr "Jisti, že chcete odstranit widget? Můžete jej přesunout do neaktivního zástupný symbol"
 
 #: String 157
 msgid "Save changes"
-msgstr "Değişiklikleri kaydet"
+msgstr "Uložit změny"
 
 #: String 158
 msgid "Limited Offer!"
-msgstr "Sınırlı Teklif!"
+msgstr "Limitovaná nabídka!"
 
 #: String 159
 msgid "Valid Until"
-msgstr "Kadar geçerli"
+msgstr "Platí do"
 
 #: String 160
 msgid "Buy Now"
-msgstr "Hemen Al"
+msgstr "Koupit"
 
 #: String 161
 msgid "More info"
-msgstr "Daha fazla bilgi"
+msgstr "Více informací"
 
 #: String 162
 msgid "Selection of nice extras for your installation."
-msgstr "Yükleme için güzel ekstra seçimi."
+msgstr "Výběr pěkné doplňky pro vaši instalaci."
 
 #: String 163
 msgid "Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "Sizin kategorilerin sırasını değiştirin. Muhtemelen iç içe fazla 2 seviyeleri (bu tavsiye edilmez) tema gösterilmeyecektir aklınızda tutun."
+msgstr "Změna pořadí svých kategorií. Mějte na paměti, že více než dvě úrovně vnořených pravděpodobně nebude zobrazen v tématu (není doporučeno)."
 
 #: String 164
 msgid "New category"
-msgstr "Yeni kategori"
+msgstr "Nová kategorie"
 
 #: String 165
 msgid "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
-msgstr "Silmek istediğinizden emin misiniz? Bu kategorinin ana için kardeşler kategoriler ve reklamlar hareket edecek."
+msgstr "Jste si jisti, že chcete smazat? Budeme se pohybovat sourozenci kategorie a reklamy na rodiče této kategorie."
 
 #: String 166
 msgid "Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "Yerlerinizi sırasını değiştirme. Muhtemelen iç içe fazla 2 seviyeleri (bu tavsiye edilmez) tema gösterilmeyecektir aklınızda tutun."
+msgstr "Změna pořadí svých místech. Mějte na paměti, že více než dvě úrovně vnořených pravděpodobně nebude zobrazen v tématu (není doporučeno)."
 
 #: String 167
 msgid "New location"
-msgstr "Yeni konumu"
+msgstr "Nové umístění"
 
 #: String 168
 msgid "Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location."
-msgstr "Silmek istediğinizden emin misiniz? Biz bu yerin ana için kardeşler yerleri ve reklamlar hareket edecek."
+msgstr "Jste si jisti, že chcete smazat? Budeme se pohybovat sourozenci umístění a reklamy na rodiče tohoto umístění."
 
 #: String 169
 msgid "Newsletter"
-msgstr "Haber Bülteni"
+msgstr "Newsletter"
 
 #: String 170
 msgid "Email Settings"
-msgstr "E-posta Ayarları"
+msgstr "Nastavení e-mailu"
 
 #: String 171
 msgid "You can send a mass email to all active users."
-msgstr "Tüm aktif kullanıcılar için bir toplu e-posta gönderebilirsiniz."
+msgstr "Můžete poslat hromadný email všem aktivním uživatelům."
 
 #: String 172
 msgid "From Email"
-msgstr "E-posta gelen"
+msgstr "Z e-mailu"
 
 #: String 173
 msgid "Optimize Database"
-msgstr "Veritabanı Optimize"
+msgstr "Optimalizace databáze"
 
 #: String 174
 msgid "Database space"
-msgstr "Veritabanı alanı"
+msgstr "Databáze prostor"
 
 #: String 175
 msgid "Space to optimize"
-msgstr "Optimize etmek için Space"
+msgstr "Prostor pro optimalizaci"
 
 #: String 176
 msgid "Table"
-msgstr "Tablo"
+msgstr "Tabulka"
 
 #: String 177
 msgid "Rows"
-msgstr "Satırlar"
+msgstr "Řádky"
 
 #: String 178
 msgid "Size"
-msgstr "Boyut"
+msgstr "Velikost"
 
 #: String 179
 msgid "Save size"
-msgstr "Boyutu kaydet"
+msgstr "Uložit velikosti"
 
 #: String 180
 msgid "Cache configuration information"
-msgstr "Önbellek yapılandırma bilgileri"
+msgstr "Cache informace o konfiguraci"
 
 #: String 181
 msgid "Delete all"
-msgstr "Tümünü sil"
+msgstr "Smazat vše"
 
 #: String 182
 msgid "Delete expired"
-msgstr "Süresi Sil"
+msgstr "Odstranit vypršela"
 
 #: String 183
 msgid "Config file"
-msgstr "Yapılandırma dosyası"
+msgstr "Konfigurační soubor"
 
 #: String 184
 msgid "System Logs"
-msgstr "Sistem Kayıtlar"
+msgstr "Systémových logů"
 
 #: String 185
 msgid "Reading log file"
-msgstr "Günlük dosyası okuma"
+msgstr "Čtení souboru protokolu"
 
 #: String 186
 msgid "Log"
-msgstr "Log"
+msgstr "Přihlásit"
 
 #: String 187
 msgid "Your PHP time limit is"
-msgstr "Sizin PHP zaman sınırı"
+msgstr "Váš PHP lhůta"
 
 #: String 188
 msgid "seconds"
-msgstr "saniye"
+msgstr "sekundy"
 
 #: String 189
 msgid "Host name"
-msgstr "Ana bilgisayar adı"
+msgstr "Název hostitele"
 
 #: String 190
 msgid "User name"
-msgstr "Kullanıcı adı"
+msgstr "Uživatelské jméno"
 
 #: String 191
 msgid "Database name"
-msgstr "Veritabanı adı"
+msgstr "Název databáze"
 
 #: String 192
 msgid "Database charset"
-msgstr "Veritabanı karakter"
+msgstr "Databáze charset"
 
 #: String 193
 msgid "Table prefix"
-msgstr "Tablo öneki"
+msgstr "Tabulka prefix"
 
 #: String 194
 msgid "Migrate"
-msgstr "Göç"
+msgstr "Migrovat"
 
 #: String 195
 msgid "Last time generated"
-msgstr "Son kez oluşturulan"
+msgstr "Naposledy vytvořené"
 
 #: String 196
 msgid "Generate"
-msgstr "Oluşturmak"
+msgstr "Generovat"
 
 #: String 197
 msgid "Expire time"
-msgstr "Süresi sona"
+msgstr "Expirační doba"
 
 #: String 198
 msgid "Update on publish"
-msgstr "Yayınlamak güncellemesi"
+msgstr "Aktualizace zveřejnit"
 
 #: String 199
 msgid "Save"
-msgstr "Kurtarmak"
+msgstr "Uložit"
 
 #: String 200
 msgid "Versions"
-msgstr "Sürümleri"
+msgstr "Verze"
 
 #: String 201
 msgid "Open Classifieds release history information."
-msgstr "İlan sürüm geçmiş bilgilerini açın."
+msgstr "Otevřete Inzerce uvolnění informací o historii."
 
 #: String 202
 msgid "Your installation version is"
-msgstr "Yükleme versiyonu"
+msgstr "Vaše instalace verze"
 
 #: String 203
 msgid "Your Hash Key for this installation is"
-msgstr "Bu yükleme için Hash anahtarıdır"
+msgstr "Vaše Hash klíč pro tuto instalaci je"
 
 #: String 204
 msgid "Check for updates"
-msgstr "Güncelleştirmeleri denetleyin"
+msgstr "Zkontrolovat aktualizace"
 
 #: String 205
 msgid "Version"
-msgstr "Versiyon"
+msgstr "Verze"
 
 #: String 206
 msgid "Information"
-msgstr "Bilgi"
+msgstr "Informace"
 
 #: String 207
 msgid "Latest"
-msgstr "Son"
+msgstr "Poslední"
 
 #: String 208
 msgid "Current"
-msgstr "Akım"
+msgstr "Proud"
 
 #: String 209
 msgid "Email Configuration"
-msgstr "E-posta Yapılandırma"
+msgstr "E-mail Konfigurace"
 
 #: String 210
 msgid "List of general configuration values. Replace input fields with new desired values"
-msgstr "Genel yapılandırma değerlerini listesi. Istediğiniz yeni değerlerle giriş alanları değiştirin"
+msgstr "Seznam obecných konfiguračních hodnot. Vyměňte vstupní pole s novými požadované hodnoty"
 
 #: String 211
 msgid "If you need to send many emails with a high delivery rate check"
-msgstr "Denetlemek, yüksek doğum oranı ile birçok e-posta göndermeniz gerekiyorsa"
+msgstr "Pokud potřebujete poslat mnoho e-mailů s vysokou schopností sazby zkontrolovat"
 
 #: String 212
 msgid "Notify email"
-msgstr "E-posta bildir"
+msgstr "Upozornit e-mail"
 
 #: String 213
 msgid "Email from where we send the emails, also used for software communications."
-msgstr "Biz de yazılım iletişim için kullanılan e-posta, göndermek yerden e-posta."
+msgstr "E-mail odkud zašleme e-maily, používá se i pro komunikační software."
 
 #: String 214
 msgid "Email From"
-msgstr "Gönderen E-posta"
+msgstr "E-mail od"
 
 #: String 215
 msgid "Smtp active"
-msgstr "Smtp aktif"
+msgstr "SMTP aktivní"
 
 #: String 216
 msgid "Smtp ssl"
-msgstr "Smtp ssl"
+msgstr "SMTP SSL"
 
 #: String 217
 msgid "Smtp host"
-msgstr "Smtp ana"
+msgstr "SMTP hostitele"
 
 #: String 218
 msgid "Smtp port"
-msgstr "Smtp port"
+msgstr "SMTP port"
 
 #: String 219
 msgid "Smtp auth"
-msgstr "SMTP auth"
+msgstr "SMTP AUTH"
 
 #: String 220
 msgid "Smtp user"
-msgstr "SMTP kullanıcı"
+msgstr "SMTP uživatele"
 
 #: String 221
 msgid "Smtp password"
-msgstr "Smtp şifre"
+msgstr "Heslo SMTP"
 
 #: String 222
 msgid "Advertisement Configuration"
-msgstr "Reklam Yapılandırma"
+msgstr "Reklama konfigurace"
 
 #: String 223
 msgid "Number of images"
-msgstr "Görüntü sayısı"
+msgstr "Počet obrázků"
 
 #: String 224
 msgid "Number of images displayed"
-msgstr "Görüntülenen görüntü sayısı"
+msgstr "Počet zobrazených snímků"
 
 #: String 225
 msgid "Ad expiration date"
-msgstr "İlan son kullanma tarihi"
+msgstr "Ad datum vypršení platnosti"
 
 #: String 226
 msgid "Expire days"
-msgstr "Gün Geçerlilik"
+msgstr "Vypršení dní"
 
 #: String 227
 msgid "After how many days an Ad will expire. 0 for never"
-msgstr "Kaç gün sonra bir İlan sona erecek. Hiçbir zaman için 0"
+msgstr "Po kolika dnech Ad vyprší. 0 pro nikdy"
 
 #: String 228
 msgid "Days"
-msgstr "Günler"
+msgstr "Days"
 
 #: String 229
 msgid "Address field"
-msgstr "Adres alanı"
+msgstr "Address"
 
 #: String 230
 msgid "Displays the field Address in the Ad form."
-msgstr "Reklam şeklinde alanı adres gösterir."
+msgstr "Zobrazí pole Adresa ve formě reklamy."
 
 #: String 231
 msgid "Google Maps in Ad"
-msgstr "Reklam Google Maps"
+msgstr "Mapy Google v režimu Ad"
 
 #: String 232
 msgid "Displays the google maps in the Ad."
-msgstr "Ad google maps görüntüler."
+msgstr "Zobrazí Mapy Google v reklamě."
 
 #: String 233
 msgid "Phone field"
-msgstr "Telefon alanı"
+msgstr "Telefon pole"
 
 #: String 234
 msgid "Displays the field Phone in the Ad form."
-msgstr "Reklam şeklinde alanı Telefon görüntüler."
+msgstr "Zobrazí pole Telefon Ad formě."
 
 #: String 235
 msgid "Website field"
-msgstr "Web Sitesi alanı"
+msgstr "Webová stránka pole"
 
 #: String 236
 msgid "Displays the field Website in the Ad form."
-msgstr "Reklam şeklinde alanı Web Sitesi görüntüler."
+msgstr "Zobrazí pole Webová stránka ve formě reklamy."
 
 #: String 237
 msgid "Displays location select"
-msgstr "Yer seçin görüntüler"
+msgstr "Zobrazí umístění vyberte"
 
 #: String 238
 msgid "Displays the Select Location in the Ad form."
-msgstr "Reklam şeklinde Seç Yer görüntüler."
+msgstr "Zobrazí Zvolte Umístění v reklamě formě."
 
 #: String 239
 msgid "Price field"
-msgstr "Fiyat alanı"
+msgstr "Cena terénu"
 
 #: String 240
 msgid "Displays the field Price in the Ad form."
-msgstr "Reklam şeklinde Tarla Fiyat görüntüler."
+msgstr "Zobrazí pole Cena v Ad formě."
 
 #: String 241
 msgid "Upload file"
-msgstr "Dosya yükle"
+msgstr "Nahrát soubor"
 
 #: String 242
 msgid "Enables Captcha"
-msgstr "Captcha sağlar"
+msgstr "Umožňuje Captcha"
 
 #: String 243
 msgid "Captcha appears in the form."
-msgstr "Captcha şeklinde görünür."
+msgstr "Captcha se zobrazí ve formuláři."
 
 #: String 244
 msgid "Deactivated"
-msgstr "Devre dışı"
+msgstr "Neaktivní"
 
 #: String 245
 msgid "Terms of Service"
-msgstr "Hizmet Şartları"
+msgstr "Podmínky služby"
 
 #: String 246
 msgid "Disqus"
@@ -988,647 +988,647 @@ msgstr "Disqus"
 
 #: String 247
 msgid "Disqus Comments"
-msgstr "Disqus Yorumlar"
+msgstr "Komentáře Disqus"
 
 #: String 248
 msgid "You need to write your disqus ID to enable the service."
-msgstr "Bu hizmeti etkinleştirmek için disqus ID yazmak gerekir."
+msgstr "Musíte napsat Disqus ID povolit službu."
 
 #: String 249
 msgid "Payments Configuration"
-msgstr "Ödemeler Yapılandırma"
+msgstr "Platby konfigurace"
 
 #: String 250
 msgid "List of payment configuration values. Replace input fields with new desired values."
-msgstr "Ödeme yapılandırma değerlerini listesi. Istediğiniz yeni değerlerle giriş alanları değiştirin."
+msgstr "Seznam hodnot platebních konfigurace. Vyměňte vstupní pole nové požadované hodnoty."
 
 #: String 251
 msgid "Paypal account"
-msgstr "Paypal hesabı"
+msgstr "Paypal účtu"
 
 #: String 252
 msgid "Paypal mail address"
-msgstr "Paypal posta adresi"
+msgstr "Paypal mail"
 
 #: String 253
 msgid "The paypal email address where the payments will be sent"
-msgstr "Ödemeler gönderilecektir paypal e-posta adresi"
+msgstr "Paypal e-mailová adresa, kde budou platby odeslány"
 
 #: String 254
 msgid "Sandbox"
-msgstr "Kum havuzu"
+msgstr "Sandbox"
 
 #: String 255
 msgid "Paypal currency"
-msgstr "Paypal para"
+msgstr "Paypal měna"
 
 #: String 256
 msgid "Currency"
-msgstr "Para"
+msgstr "Měna"
 
 #: String 257
 msgid "Please be sure you are using a currency that paypal supports."
-msgstr "Eğer paypal destekleyen bir para birimi kullandığınızdan emin olun."
+msgstr "Prosím, ujistěte se, že používáte měnu, která podporuje paypal."
 
 #: String 258
 msgid "Featured Ads"
-msgstr "Özellikli Reklamlar"
+msgstr "Nejlepší reklamy"
 
 #: String 259
 msgid "Featured ads"
-msgstr "Özellikli ilanları"
+msgstr "Doporučené inzeráty"
 
 #: String 260
 msgid "Featured ads will be highlighted for a defined number of days."
-msgstr "Özellikli reklamlar gün belirli bir sayıda vurgulanır."
+msgstr "Nejlepší reklamy bude zvýrazněn po určený počet dní."
 
 #: String 261
 msgid "Price for featuring the Ad"
-msgstr "Reklam sahip fiyat"
+msgstr "Cena za představovat inzerát"
 
 #: String 262
 msgid "Pricing"
-msgstr "Fiyatlandırma"
+msgstr "Ceník"
 
 #: String 263
 msgid "How much the user needs to pay to feature an Ad"
-msgstr "Kullanıcı İlan özelliği ödemek gerekiyor ne kadar"
+msgstr "Kolik musí uživatel zaplatit vybaveny inzerát"
 
 #: String 264
 msgid "Days Featured"
-msgstr "Gün Seçme"
+msgstr "Days Nejlepší"
 
 #: String 265
 msgid "Featured length"
-msgstr "Özellikli uzunluk"
+msgstr "Doporučené délky"
 
 #: String 266
 msgid "How many days an ad will be featured after paying."
-msgstr "Bir reklam ödedikten sonra yer alacak kaç gün."
+msgstr "Kolik dní bude reklama vystupoval po zaplacení."
 
 #: String 267
 msgid "Bring to top Ad"
-msgstr "Üst İlana getirin"
+msgstr "Přineste nahoru Ad"
 
 #: String 268
 msgid "Brings your Ad to the top of the listing."
-msgstr "Listenin en üstüne Reklam getirir."
+msgstr "Přináší Vaše reklama na vrcholu seznamu."
 
 #: String 269
 msgid "To top price"
-msgstr "En iyi fiyat için"
+msgstr "Nahoru ceny"
 
 #: String 270
 msgid "How much the user needs to pay to top up an Ad"
-msgstr "Kullanıcı İlan kontör ödemek gerekiyor ne kadar"
+msgstr "Kolik musí uživatel zaplatit doplnit ad"
 
 #: String 271
 msgid "General Configuration"
-msgstr "Genel Yapılandırma"
+msgstr "Obecná konfigurace"
 
 #: String 272
 msgid "General site settings."
-msgstr "Genel site ayarlarını."
+msgstr "Obecné nastavení webu."
 
 #: String 273
 msgid "All configurations"
-msgstr "Tüm yapılandırmalar"
+msgstr "Všechny konfigurace"
 
 #: String 274
 msgid "Maintenance Mode"
-msgstr "Bakım Modu"
+msgstr "Režim údržby"
 
 #: String 275
 msgid "Enables the site to maintenance"
-msgstr "Bakım için site sağlar"
+msgstr "Umožňuje stránky na údržbu"
 
 #: String 276
 msgid "Site name"
-msgstr "Site adı"
+msgstr "Název webu"
 
 #: String 277
 msgid "Here you can declare your display name. This is seen by everyone!"
-msgstr "Burada görünen adını bildirebilirsiniz. Bu herkes tarafından görülür!"
+msgstr "Zde si můžete deklarovat své zobrazované jméno. To je vidět každý!"
 
 #: String 278
 msgid "Site Name"
-msgstr "Site Adı"
+msgstr "Site Name"
 
 #: String 279
 msgid "Site description"
-msgstr "Site açıklaması"
+msgstr "Popis lokality"
 
 #: String 280
 msgid "Base URL"
-msgstr "Temel URL"
+msgstr "Základní URL"
 
 #: String 281
 msgid "Is a base path of your site (e.g. http://open-classifieds.com/). Everything else is built based on this field."
-msgstr "Sitenizin ana yol (örneğin http://open-classifieds.com/) 'dir. Her şey bu alanda temel inşa edilmiştir."
+msgstr "Je základní cesta vašeho webu (např. http://open-classifieds.com/). Všechno ostatní je postaven na bázi této oblasti."
 
 #: String 282
 msgid "Base URL path"
-msgstr "Temel URL yolu"
+msgstr "Základní URL cesta"
 
 #: String 283
 msgid "Moderation controls"
-msgstr "Moderasyon kontrolleri"
+msgstr "Moderování kontroly"
 
 #: String 284
 msgid "Global currency"
-msgstr "Küresel para birimi"
+msgstr "Globální měna"
 
 #: String 285
 msgid "Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "
-msgstr "Küresel para birimi ülke özgüdür. Herhangi bir kısıtlama yoktur, bu reklamlar için para ilan etmek sadece. Not: Bu ödeme para birimleri farklıdır."
+msgstr "Globální měna je specifické pro danou zemi. Neexistují žádná omezení, je to jen prohlásit měnu reklamy. Poznámka: Toto je odlišné od platebních měn."
 
 #: String 286
 msgid "Country specific currency"
-msgstr "Ülkeye özel para birimi"
+msgstr "Specifické pro danou zemi měna"
 
 #: String 287
 msgid "Advertisements per page"
-msgstr "Sayfa başına reklam"
+msgstr "Reklamy na stránku"
 
 #: String 288
 msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
-msgstr "Bu Sayfa başına görüntülenen kaç reklam kontrol etmektir. Bir dizi limit olarak, bir tamsayı değeri kaydedin."
+msgstr "Toto je kontrola, kolik reklamy se zobrazují na stránce. Vložte celočíselnou hodnotu, jako číslo limit."
 
 #: String 289
 msgid "Number of ads per page"
-msgstr "Sayfa başına reklam sayısı"
+msgstr "Počet inzerátů na stránce"
 
 #: String 290
 msgid "Advertisements in RSS"
-msgstr "RSS reklam"
+msgstr "Inzerce v RSS"
 
 #: String 291
 msgid "Number of Ads"
-msgstr "Reklamlar sayısı"
+msgstr "Počet inzerátů"
 
 #: String 292
 msgid "How many ads are going to appear in the RSS of your site."
-msgstr "Kaç Hakkımızda sitenin RSS görünür olacak."
+msgstr "Kolik reklam se bude zobrazovat v RSS vašeho webu."
 
 #: String 293
 msgid "Advertisements in Map"
-msgstr "Harita Reklamlar"
+msgstr "Inzerce v mapě"
 
 #: String 294
 msgid "How many ads are going to appear in the map of your site."
-msgstr "Nasıl birçok reklam sitenizin haritası görünür olacak."
+msgstr "Kolik reklamy budou zobrazovat na mapě vašeho webu."
 
 #: String 295
 msgid "Number format"
-msgstr "Sayı biçimi"
+msgstr "Formát čísla"
 
 #: String 296
 msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
-msgstr "Sayı biçimi Eğer reklam ile ilgili numaralarını görüntülemek istiyorum nasıl. Daha özel reklam fiyat. Her ülkenin ondalık basamak ile ilgili belirli bir yol var."
+msgstr "Formát čísla je, jak chcete zobrazovat čísla týkající se reklamy. Konkrétnější reklama cena. Každá země má specifický způsob nakládání s číslicemi."
 
 #: String 297
 msgid "Decimal representation"
-msgstr "Ondalık gösterimi"
+msgstr "Desítková reprezentace"
 
 #: String 298
 msgid "Date format"
-msgstr "Tarih biçimi"
+msgstr "Formát data"
 
 #: String 299
 msgid "Each advertisement have a publish date. By selecting format, you can change how it is shown on your website."
-msgstr "Her reklam bir yayınlama tarihi vardır. Biçimi seçerek, bu Web sitesinde gösterilen nasıl değiştirebilirsiniz."
+msgstr "Každá reklama má datum publikování. Výběrem formátu, můžete změnit jak je zobrazeno na vašich webových stránkách."
 
 #: String 300
 msgid "Analytics"
-msgstr "Analytics"
+msgstr "Analytika"
 
 #: String 301
 msgid "Allowed image formats"
-msgstr "İzin resim formatları"
+msgstr "Povolené formáty obrázků"
 
 #: String 302
 msgid "Set this up to restrict image formats that are being uploaded to your server."
-msgstr "Sunucu yüklenen edilmektedir resim formatları kısıtlamak için bu kadar ayarlayın."
+msgstr "Toto nastavení k omezení obrazových formátů, které jsou odeslány na server."
 
 #: String 303
 msgid "Max image size"
-msgstr "Max görüntü boyutu"
+msgstr "Maximální velikost obrazu"
 
 #: String 304
 msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
-msgstr "Yükleniyor görüntülerin boyutunu kontrol edin. Mega sokması (Mb) maksimum görüntü boyutu ayarlamak için bir tamsayı değeri girin."
+msgstr "Ovládejte velikost obrázků jsou nahrané. Zadejte celočíselnou hodnotu pro nastavení maximální velikosti obrazu v mega kousnutí (MB)."
 
 #: String 305
 msgid "Image size in mega bites(Mb)"
-msgstr "Mega sokması Görüntü boyutu (Mb)"
+msgstr "Velikost fotografie mega kousnutí (Mb)"
 
 #: String 306
 msgid "Image height"
-msgstr "Görüntü yüksekliği"
+msgstr "Výška obrázku"
 
 #: String 307
 msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
-msgstr "Yükledi her resim yeniden boyutlandırılır. Bu büyük resmin yüksekliğidir. Not: AUTO yüksekliği yeniden boyutlandırma ayarlamak için bu alanı boş bırakabilirsiniz."
+msgstr "Každý obraz se změní velikost, když nahrál. Toto je výška velkého obrazu. Poznámka: Toto pole můžete nechat prázdné pro nastavení výšky AUTO velikost."
 
 #: String 308
 msgid "Image height in pixels(px)"
-msgstr "Piksel görüntü yüksekliği (px)"
+msgstr "Výška obrázku v pixelech (px)"
 
 #: String 309
 msgid "Image width"
-msgstr "Görüntü genişliği"
+msgstr "Šířka obrázku"
 
 #: String 310
 msgid "Each image is resized when uploaded. This is the width of big image."
-msgstr "Yükledi her resim yeniden boyutlandırılır. Bu büyük resmin genişliği."
+msgstr "Každý obraz se změní velikost, když nahrál. Toto je šířka velkého obrazu."
 
 #: String 311
 msgid "Image width in pixels(px)"
-msgstr "Piksel görüntü genişliği (piksel)"
+msgstr "Šířka obrázku v pixelech (px)"
 
 #: String 312
 msgid "Thumb height"
-msgstr "Thumb yüksekliği"
+msgstr "Palec výška"
 
 #: String 313
 msgid "Thumb is a small image resized to fit certain elements. This is height of this image."
-msgstr "Thumb bazı unsurları uyacak şekilde yeniden küçük bir görüntüdür. Bu, bu resmin yüksekliğidir."
+msgstr "Palec je malý obrázek velikost, aby se vešly určitých konstrukčních prvků. To je výška tento obrázek."
 
 #: String 314
 msgid "Thumb height in pixels(px)"
-msgstr "Piksel Thumb yüksekliği (px)"
+msgstr "Palec výška v pixelech (px)"
 
 #: String 315
 msgid "Thumb width"
-msgstr "Başparmak genişliği"
+msgstr "Palec šířka"
 
 #: String 316
 msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
-msgstr "Thumb bazı unsurları uyacak şekilde yeniden küçük bir görüntüdür. Bu, görüntünün genişliğidir."
+msgstr "Palec je malý obrázek velikost, aby se vešly určitých konstrukčních prvků. To je šířka tohoto obrázku."
 
 #: String 317
 msgid "Thumb width in pixels(px)"
-msgstr "Piksel başparmak genişliği (piksel)"
+msgstr "Palec šířka v pixelech (px)"
 
 #: String 318
 msgid "Image quality"
-msgstr "Görüntü kalitesi"
+msgstr "Kvalita obrazu"
 
 #: String 319
 msgid "Choose the quality of the stored images (1-100% of the original)."
-msgstr "Saklanan görüntüleri (orijinal 1-100%) kalitesini seçin."
+msgstr "Nastavení kvality uložených snímků (1-100% z originálu)."
 
 #: String 320
 msgid "Image Quality"
-msgstr "Görüntü Kalitesi"
+msgstr "Kvalita obrazu"
 
 #: String 321
 msgid "Here you can modify any text you find in your web."
-msgstr "Burada web bulmak herhangi bir metin değiştirebilirsiniz."
+msgstr "Zde si můžete upravit libovolný text najdete na Váš web."
 
 #: String 322
 msgid "Original Translation"
-msgstr "Orijinal Çeviri"
+msgstr "Původní Překlad"
 
 #: String 323
 msgid "Copy all?, Be aware this will replace all your texts."
-msgstr "Tümünü kopyala?, Bu tüm metinleri yerini alacak unutmayın."
+msgstr "Kopírovat vše?, Uvědomte si to nahradí všechny své texty."
 
 #: String 324
 msgid "Translate all?, Be aware this will replace all your texts."
-msgstr "Tüm Çevir?, Bu tüm metinleri yerini alacak unutmayın."
+msgstr "Přeložit vše?, Uvědomte si to nahradí všechny své texty."
 
 #: String 325
 msgid "Translation"
-msgstr "Çeviri"
+msgstr "Překlad"
 
 #: String 326
 msgid "Translations files available in the system."
-msgstr "Sisteminde mevcut çeviriler dosyaları."
+msgstr "Překlady soubory jsou k dispozici v systému."
 
 #: String 327
 msgid "Scan"
-msgstr "Taramak"
+msgstr "Skenovat"
 
 #: String 328
 msgid "New translation"
-msgstr "Yeni çeviri"
+msgstr "Nový překlad"
 
 #: String 329
 msgid "Language"
-msgstr "Dil"
+msgstr "Jazyk"
 
 #: String 330
 msgid "Active"
-msgstr "Aktif"
+msgstr "Aktivní"
 
 #: String 331
 msgid "Spam Sort"
-msgstr "Spam sırala"
+msgstr "Seřadit Spam"
 
 #: String 332
 msgid "Unavailable Sort"
-msgstr "Yok sırala"
+msgstr "Není k dispozici Třídit"
 
 #: String 333
 msgid " Unavailable"
-msgstr "Yok"
+msgstr "Není k dispozici"
 
 #: String 334
 msgid "General configurations are set. Replace input fields with new desired values."
-msgstr "Genel yapılandırmaları ayarlanır. Istediğiniz yeni değerlerle giriş alanları değiştirin."
+msgstr "Obecná konfigurace jsou nastaveny. Vyměňte vstupní pole nové požadované hodnoty."
 
 #: String 335
 msgid "Deactivate Featured"
-msgstr "Seçme devre dışı bırakın"
+msgstr "Deaktivovat Nejlepší"
 
 #: String 336
 msgid "Thanks for using Open Classifieds."
-msgstr "Açık sınıflandırma kullandığınız için teşekkür ederiz."
+msgstr "Děkujeme za použití otevřeného inzeráty."
 
 #: String 337
 msgid "Latest News"
-msgstr "Son Haberler"
+msgstr "Novinky"
 
 #: String 338
 msgid "Contact Us"
-msgstr "İletişim"
+msgstr "Napište nám"
 
 #: String 339
 msgid "User Profile"
-msgstr "Kullanıcı Profili"
+msgstr "Profil uživatele"
 
 #: String 340
 msgid "Created"
-msgstr "Oluşturulma"
+msgstr "Vytvořeno"
 
 #: String 341
 msgid "Last Login"
-msgstr "Son Giriş"
+msgstr "Poslední přihlášení"
 
 #: String 342
 msgid " advertisements"
-msgstr "reklam"
+msgstr "inzeráty"
 
 #: String 343
 msgid "Not yet published"
-msgstr "Henüz yayınlanmamış"
+msgstr "Dosud nezveřejněné"
 
 #: String 344
 msgid "Remember password"
-msgstr "Şifremi hatırla"
+msgstr "Zapamatovat heslo"
 
 #: String 345
 msgid "Forgot password?"
-msgstr "Şifreni mi unuttun?"
+msgstr "Zapomněli jste heslo?"
 
 #: String 346
 msgid "Remember me"
-msgstr "Beni hatırla"
+msgstr "Pamatuj si mě"
 
 #: String 347
 msgid "Type your password twice"
-msgstr "Parolanızı iki kez yazın"
+msgstr "Zadejte heslo dvakrát"
 
 #: String 348
 msgid "Terms of service"
-msgstr "Hizmet Koşulları"
+msgstr "Podmínky použití"
 
 #: String 349
 msgid "User account will be created"
-msgstr "Kullanıcı hesabı oluşturulacak"
+msgstr "Uživatelský účet bude vytvořen"
 
 #: String 350
 msgid "Advanced Search"
-msgstr "Gelişmiş Arama"
+msgstr "Rozšířené hledání"
 
 #: String 351
 msgid "Advertisement Title"
-msgstr "Reklam Başlık"
+msgstr "Reklama Název"
 
 #: String 352
 msgid "Slideshow"
-msgstr "Slayt"
+msgstr "Slideshow"
 
 #: String 353
 msgid "Download"
-msgstr "İndir"
+msgstr "Stáhnout"
 
 #: String 354
 msgid "Header tool bar gets fixed in the top"
-msgstr "Başlık araç çubuğu üst onarılır"
+msgstr "Header Panel nástrojů dostane stanovena horní"
 
 #: String 355
 msgid "Yes"
-msgstr "Evet"
+msgstr "Ano"
 
 #: String 356
 msgid "No"
-msgstr "Yok"
+msgstr "Ne"
 
 #: String 357
 msgid "Display breadcrumb"
-msgstr "Kırıntı Ekran"
+msgstr "Zobrazit strouhanka"
 
 #: String 358
 msgid "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
-msgstr "Sizin Logo URL. 40px Önerilen boyutu 250px x. Hiçbiri için boş bırakın."
+msgstr "URL vašeho loga. Doporučená velikost 250px x 40px. Nechte prázdné."
 
 #: String 359
 msgid "Short description that appears after the site name."
-msgstr "Site adı sonra görünür kısa bir açıklama."
+msgstr "Krátký popis, který se zobrazí po názvu webu."
 
 #: String 360
 msgid "Numbers of ads to display in home slider"
-msgstr "Reklam Numaraları ev kaymak görüntülenecek"
+msgstr "Počty reklamy se zobrazí v domácím jezdcem"
 
 #: String 361
 msgid "Where you want the sidebar to appear"
-msgstr "Eğer kenar çubuğu görünmesini istediğiniz yeri"
+msgstr "Pokud chcete, aby se postranní panel se objeví"
 
 #: String 362
 msgid "Right side"
-msgstr "Sağ taraf"
+msgstr "Pravá strana"
 
 #: String 363
 msgid "Left side"
-msgstr "Sol taraf"
+msgstr "Levá strana"
 
 #: String 364
 msgid "Menu"
-msgstr "Menü"
+msgstr "Menu"
 
 #: String 365
 msgid "Contact us"
-msgstr "Bize ulaşın"
+msgstr "Napište nám"
 
 #: String 366
 msgid "Advanced search"
-msgstr "Gelişmiş arama"
+msgstr "Pokročilé vyhledávání"
 
 #: String 367
 msgid "Desktop Version"
-msgstr "Masaüstü Sürüm"
+msgstr "Desktop verze"
 
 #: String 368
 msgid "Public Profile"
-msgstr "Açık Profil"
+msgstr "Veřejný profil"
 
 #: String 369
 msgid "advertisements"
-msgstr "reklam"
+msgstr "inzeráty"
 
 #: String 370
 msgid "Change the main color scheme and style of the theme"
-msgstr "Tema ana renk düzeni ve stilini değiştirme"
+msgstr "Změna hlavní barevné schéma a styl tématu"
 
 #: String 371
 msgid "Change the header color scheme and style of the theme"
-msgstr "Tema başlığı renk düzeni ve stilini değiştirme"
+msgstr "Změna záhlaví barevné schéma a styl tématu"
 
 #: String 372
 msgid "Change the theme of List Elements"
-msgstr "Listesi Elementlerin temasını değiştirme"
+msgstr "Změna na téma prvky seznamu"
 
 #: String 373
 msgid "Change the theme of Featured Elements"
-msgstr "Seçme Elementlerin temasını değiştirme"
+msgstr "Změna tématu Doporučené Elements"
 
 #: String 374
 msgid "Installation"
-msgstr "Montaj"
+msgstr "Instalace"
 
 #: String 375
 msgid "Requirements"
-msgstr "Gereksinimler"
+msgstr "Požadavky"
 
 #: String 376
 msgid "Congratulations"
-msgstr "Tebrikler"
+msgstr "Gratuluji"
 
 #: String 377
 msgid "Installation done"
-msgstr "Yükleme tamamlandığında"
+msgstr "Montáž provádí"
 
 #: String 378
 msgid "Please now erase the folder"
-msgstr "Şu anda klasörü silmek"
+msgstr "Prosím nyní vymazat složku"
 
 #: String 379
 msgid "Go to Your Website"
-msgstr "Sitenizi git"
+msgstr "Přejít na vaše webové stránky"
 
 #: String 380
 msgid "Make a donation"
-msgstr "Bağış yapmak"
+msgstr "Přispějte"
 
 #: String 381
 msgid "We really appreciate it"
-msgstr "Biz gerçekten takdir"
+msgstr "Opravdu si toho vážím"
 
 #: String 382
 msgid "Welcome to"
-msgstr "Hoşgeldiniz"
+msgstr "Vítejte"
 
 #: String 383
 msgid "installation"
-msgstr "montaj"
+msgstr "instalace"
 
 #: String 384
 msgid "Welcome to the super easy and fast installation"
-msgstr "Süper kolay ve hızlı kurulum Hoşgeldiniz"
+msgstr "Vítejte na super snadnou a rychlou montáž"
 
 #: String 385
 msgid "If you need any help please check our professional services"
-msgstr "Eğer ihtiyacınız varsa herhangi bir yardım bizim profesyonel hizmetler kontrol edin"
+msgstr "Pokud potřebujete pomoci, prosím podívejte se na naše profesionální služby"
 
 #: String 386
 msgid "Site Configuration"
-msgstr "Sitesi yapılandırması"
+msgstr "Site Configuration"
 
 #: String 387
 msgid "Site Language"
-msgstr "Site Dilini"
+msgstr "Jazyk stránek"
 
 #: String 388
 msgid "Site URL"
-msgstr "Sitesi URL"
+msgstr "URL stránek"
 
 #: String 389
 msgid "Time Zone"
-msgstr "Zaman Dilimi"
+msgstr "Časové pásmo"
 
 #: String 390
 msgid "New Install"
-msgstr "Yeni Kurulum"
+msgstr "Nová instalace"
 
 #: String 391
 msgid "Upgrade System"
-msgstr "Sistem yükseltme"
+msgstr "Upgrade systému"
 
 #: String 392
 msgid "Administrator email"
-msgstr "Yönetici e-posta"
+msgstr "Správce e-mail"
 
 #: String 393
 msgid "Admin Password"
-msgstr "Admin Şifre"
+msgstr "Admin Password"
 
 #: String 394
 msgid "Sample data"
-msgstr "Örnek veri"
+msgstr "Ukázková data"
 
 #: String 395
 msgid "Creates few sample categories to start with"
-msgstr "Ile başlamak birkaç örnek kategoriler oluşturur"
+msgstr "Vytvoří několik vzorků kategorií začít"
 
 #: String 396
 msgid "Hash Key"
-msgstr "Hash Anahtar"
+msgstr "Křížkem"
 
 #: String 397
 msgid "You need the Hash Key to re-install. You can find this value if you lost it at"
-msgstr "Yeniden yüklemek için Hash Key gerekir. Eğer o kayıp varsa bu değeri bulabilirsiniz"
+msgstr "Potřebujete křížkem znovu nainstalovat. Najdete tuto hodnotu, pokud jste ztratili na"
 
 #: String 398
 msgid "Database Configuration"
-msgstr "Veritabanı Yapılandırma"
+msgstr "Konfigurace databáze"
 
 #: String 399
 msgid "Allows multiple installations in one database if you give each one a unique prefix"
-msgstr "Her biri benzersiz bir önek verirsen bir veritabanı birden çok yükleme sağlar"
+msgstr "Umožňuje více zařízení v jedné databázi, pokud dáte každý z nich jedinečný prefix"
 
 #: String 400
 msgid "Only numbers, letters, and underscores"
-msgstr "Sadece rakamlar, harfler ve alt çizgi"
+msgstr "Pouze čísla, písmena a podtržítko"
 
 #: String 401
 msgid "Install"
-msgstr "Kurmak"
+msgstr "Instalovat"
 
 #: String 402
 msgid "Ocacu classifieds community registration"
-msgstr "Ocacu ilanlar topluluk kaydı"
+msgstr "Ocacu inzerce komunita registrace"
 
 #: String 403
 msgid "Terms"
-msgstr "Şartlar"
+msgstr "Podmínky"
 
 #: String 404
 msgid "Cannot connect to server"
-msgstr "Sunucuya bağlanamıyor"
+msgstr "Nelze se připojit k serveru"
 
 #: String 405
 msgid "No database name was given"
-msgstr "Hiçbir veritabanı adı verildi"
+msgstr "Žádná databáze jméno bylo dáno"
 
 #: String 406
 msgid "Available databases"
-msgstr "Mevcut veritabanları"
+msgstr "Dostupné databáze"
 
 #: String 407
 msgid "Invalid query"
-msgstr "Geçersiz sorgu"
+msgstr "Neplatný dotaz"
 
 #: String 408
 msgid "Benchmark"
@@ -1636,59 +1636,59 @@ msgstr "Benchmark"
 
 #: String 409
 msgid "Application Execution"
-msgstr "Uygulama Yürütme"
+msgstr "Spuštění aplikace"
 
 #: String 410
 msgid "Hello, world"
-msgstr "Merhaba dünya"
+msgstr "Hello, world"
 
 #: String 411
 msgid "Environment"
-msgstr "Çevre"
+msgstr "Prostředí"
 
 #: String 412
 msgid "Included files"
-msgstr "Dahil dosyalar"
+msgstr "Zahrnuté soubory"
 
 #: String 413
 msgid "Loaded extensions"
-msgstr "Yüklü uzantıları"
+msgstr "Naložené rozšíření"
 
 #: String 414
 msgid "publish new"
-msgstr "Yeni yayınlamak"
+msgstr "publikovat nové"
 
 #: String 415
 msgid "search"
-msgstr "arama"
+msgstr "vyhledat"
 
 #: String 416
 msgid "contact"
-msgstr "temas"
+msgstr "kontakt"
 
 #: String 417
 msgid "map"
-msgstr "harita"
+msgstr "mapa"
 
 #: String 418
 msgid "maintenance"
-msgstr "bakım"
+msgstr "údržba"
 
 #: String 419
 msgid "views"
-msgstr "views"
+msgstr "zobrazení"
 
 #: String 420
 msgid "ads"
-msgstr "Hakkımızda"
+msgstr "Reklamy"
 
 #: String 421
 msgid "users"
-msgstr "kullanıcılar"
+msgstr "Uživatelé"
 
 #: String 422
 msgid "# items to display"
-msgstr "Görüntülemek için # öğeleri"
+msgstr "# Položky k zobrazení"
 
 #: String 423
 msgid "RSS"
@@ -1696,83 +1696,83 @@ msgstr "RSS"
 
 #: String 424
 msgid "RSS reader with cache"
-msgstr "Önbellek RSS okuyucu"
+msgstr "RSS čtečka s vyrovnávací"
 
 #: String 425
 msgid "Number items to display"
-msgstr "Görüntülemek için sayı öğeleri"
+msgstr "Číslo položky k zobrazení"
 
 #: String 426
 msgid "How often we refresh the RSS, in seconds"
-msgstr "Ne kadar sıklıkla saniyede, RSS yenilemek"
+msgstr "Jak často jsme aktualizaci RSS v sekundách"
 
 #: String 427
 msgid "RSS url address"
-msgstr "RSS url adresi"
+msgstr "RSS url adresa"
 
 #: String 428
 msgid "RSS title displayed"
-msgstr "RSS başlığı görüntülenir"
+msgstr "RSS Titul zobrazený"
 
 #: String 429
 msgid "Share"
-msgstr "Pay"
+msgstr "Podíl"
 
 #: String 430
 msgid "Share on social networks."
-msgstr "Sosyal ağlarda paylaşın."
+msgstr "Sdílet na sociálních sítích."
 
 #: String 431
 msgid "Title displayed"
-msgstr "Başlık görüntülenir"
+msgstr "Název zobrazení"
 
 #: String 432
 msgid "Add latest comments"
-msgstr "En son yorum ekle"
+msgstr "Přidat nejnovější komentáře"
 
 #: String 433
 msgid "Comments"
-msgstr "Yorumlar"
+msgstr "Komentáře"
 
 #: String 434
 msgid "Number of comments to display"
-msgstr "Görüntülemek için Yorum Sayısı"
+msgstr "Počet komentářů k zobrazení"
 
 #: String 435
 msgid "Google Maps with ads"
-msgstr "Reklamlarla Google Maps"
+msgstr "Mapy Google s reklamami"
 
 #: String 436
 msgid "Map title displayed"
-msgstr "Harita başlığı görüntülenir"
+msgstr "Mapa zobrazuje název"
 
 #: String 437
 msgid "Map height in pixels"
-msgstr "Piksel Harita yüksekliği"
+msgstr "Mapa výška v pixelech"
 
 #: String 438
 msgid "Zoom in the map"
-msgstr "Haritayı büyüt"
+msgstr "Zvětšit mapu"
 
 #: String 439
 msgid "Display categories"
-msgstr "Kategorileri görüntülemek"
+msgstr "Zobrazení kategorií"
 
 #: String 440
 msgid "Categories title displayed"
-msgstr "Kategoriler başlığı görüntülenir"
+msgstr "Kategorie Titul zobrazený"
 
 #: String 441
 msgid "Display Locations"
-msgstr "Mekanlar Ekran"
+msgstr "Zobrazení umístění"
 
 #: String 442
 msgid "Locations title displayed"
-msgstr "Mekanlar başlığı görüntülenir"
+msgstr "Místa Titul zobrazený"
 
 #: String 443
 msgid "Text"
-msgstr "Metin"
+msgstr "Text"
 
 #: String 444
 msgid "HTML textarea"
@@ -1780,95 +1780,95 @@ msgstr "HTML textarea"
 
 #: String 445
 msgid "Text title displayed"
-msgstr "Yazı başlığı görüntülenir"
+msgstr "Text Titul zobrazený"
 
 #: String 446
 msgid "HTML/text content here"
-msgstr "Burada HTML / metin içeriği"
+msgstr "HTML / textového obsahu zde"
 
 #: String 447
 msgid "Ads reader"
-msgstr "Reklamlar okuyucu"
+msgstr "Reklamy čtenář"
 
 #: String 448
 msgid "Type ads to display"
-msgstr "Görüntülemek için Yazım ilanları"
+msgstr "Typ reklamy k zobrazení"
 
 #: String 449
 msgid "Popular Ads last month"
-msgstr "Popüler Reklamlar Geçen ay"
+msgstr "Populární reklamy za poslední měsíc"
 
 #: String 450
 msgid "Number of ads to display"
-msgstr "Görüntülemek için İlan sayısı"
+msgstr "Počet inzerátů pro zobrazení"
 
 #: String 451
 msgid "Ads title displayed"
-msgstr "Reklamlar başlığı görüntülenir"
+msgstr "Reklamy Titul zobrazený"
 
 #: String 452
 msgid "Pages"
-msgstr "Sayfa"
+msgstr "Stránky"
 
 #: String 453
 msgid "Display CMS pages"
-msgstr "CMS sayfaları görüntülemek"
+msgstr "Zobrazit CMS stránky"
 
 #: String 454
 msgid "Page title displayed"
-msgstr "Sayfa başlığı görüntülenir"
+msgstr "Název stránky zobrazeny"
 
 #: String 455
 msgid "Display site stats"
-msgstr "Site istatistikleri Ekran"
+msgstr "Zobrazení Statistiky stránek"
 
 #: String 456
 msgid "Submit"
-msgstr "Sunmak"
+msgstr "Předložit"
 
 #: String 457
 msgid "Other"
-msgstr "Diğer"
+msgstr "Ostatní"
 
 #: String 458
 msgid "Role"
-msgstr "Rol"
+msgstr "Role"
 
 #: String 459
 msgid "Last modified"
-msgstr "Son değiştirilme"
+msgstr "Poslední úprava"
 
 #: String 460
 msgid "Last login"
-msgstr "Son giriş"
+msgstr "Poslední přihlášení"
 
 #: String 461
 msgid "User"
-msgstr "Kullanıcı"
+msgstr "Uživatel"
 
 #: String 462
 msgid "Type"
-msgstr "Tip"
+msgstr "Typ"
 
 #: String 463
 msgid "SEO title"
-msgstr "SEO başlık"
+msgstr "SEO název"
 
 #: String 464
 msgid "Ip address"
-msgstr "Ip adresi"
+msgstr "IP adresa"
 
 #: String 465
 msgid "Has images"
-msgstr "Görüntüler var"
+msgstr "Má obrázků"
 
 #: String 466
 msgid "Parent"
-msgstr "Ebeveyn"
+msgstr "Rodič"
 
 #: String 467
 msgid "Parent deep"
-msgstr "Derin Veli"
+msgstr "Mateřská hluboko"
 
 #: String 468
 msgid "Seoname"
@@ -1876,353 +1876,353 @@ msgstr "Seoname"
 
 #: String 469
 msgid "Id"
-msgstr "Kimliği"
+msgstr "Id"
 
 #: String 470
 msgid "Order"
-msgstr "Sipariş"
+msgstr "Objednávka"
 
 #: String 471
 msgid "Info"
-msgstr "Bilgi"
+msgstr "Info"
 
 #: String 472
 msgid "Warning"
-msgstr "Uyarı"
+msgstr "Upozornění"
 
 #: String 473
 msgid "Error"
-msgstr "Hata"
+msgstr "Chyba"
 
 #: String 474
 msgid "Success"
-msgstr "Başarı"
+msgstr "Úspěch"
 
 #: String 475
 msgid "New profile has been created. Welcome "
-msgstr "Yeni bir profil oluşturuldu. Karşılama"
+msgstr "Nový profil byl vytvořen. Vítejte"
 
 #: String 476
 msgid "Something went wrong with uploading pictures, please check format"
-msgstr "Bir şey yükleme resimleri ile ters gitti, biçimi kontrol edin"
+msgstr "Něco je špatně s nahráním obrázků, zkontrolujte formát"
 
 #: String 477
 msgid "Something went wrong with uploading pictures"
-msgstr "Bir şey yükleme resimleri ile ters gitti"
+msgstr "Něco je špatně s nahráním obrázků"
 
 #: String 478
 msgid "Advertisement is posted but first you need to activate. Please check your email!"
-msgstr "Reklam yayınlanmıştır ama önce etkinleştirmeniz gerekir edilir. E-postanızı kontrol edin!"
+msgstr "Reklama je vyslán, ale nejprve je třeba aktivovat. Zkontrolujte prosím e-mail!"
 
 #: String 479
 msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
-msgstr "Reklam aldı, ama önce yönetici doğrulamak için ihtiyacı var. Sabrınız için teşekkür ederiz!"
+msgstr "Reklama je přijat, ale nejprve musí správce ověřit. Děkujeme vám za trpělivost!"
 
 #: String 480
 msgid "Advertisement is posted. Congratulations!"
-msgstr "Reklam nakledilir. Tebrikler!"
+msgstr "Reklama je vyslán. Blahopřejeme!"
 
 #: String 481
 msgid "Captcha is not correct"
-msgstr "Captcha doğru değil"
+msgstr "Captcha není správné"
 
 #: String 482
 msgid "We are working on our site, please visit later. Thanks"
-msgstr "Sitemizde üzerinde çalışıyoruz, daha sonra ziyaret edin. Teşekkürler"
+msgstr "Pracujeme na našich stránkách, navštivte prosím později. Díky"
 
 #: String 483
 msgid "Latest published"
-msgstr "Son yayınlanan"
+msgstr "Nejnovější zveřejnění"
 
 #: String 484
 msgid "Email Configuration updated"
-msgstr "E-posta yapılandırma güncel"
+msgstr "E-mail Konfigurace aktualizováno"
 
 #: String 485
 msgid "General Configuration updated"
-msgstr "Genel Yapılandırma güncel"
+msgstr "Obecné Konfigurace aktualizováno"
 
 #: String 486
 msgid "Payments"
-msgstr "Ödemeler"
+msgstr "Platby"
 
 #: String 487
 msgid "Widget parameter missing"
-msgstr "Widget parametresi eksik"
+msgstr "Widget parametr chybí"
 
 #: String 488
 msgid "Saved"
-msgstr "Kaydedilmiş"
+msgstr "Uloženo"
 
 #: String 489
 msgid "Password is changed"
-msgstr "Şifre değiştirilir"
+msgstr "Heslo je změněno"
 
 #: String 490
 msgid "Nothing is provided"
-msgstr "Hiçbir şey sağlanmaktadır"
+msgstr "Nic je k dispozici"
 
 #: String 491
 msgid "Passwords do not match"
-msgstr "Şifreler eşleşmiyor"
+msgstr "Hesla se neshodují"
 
 #: String 492
 msgid "New password is invalid, or they do not match! Please try again."
-msgstr "Yeni parola geçersiz, ya da eşleşmiyor! Lütfen tekrar deneyiniz."
+msgstr "Nové heslo je neplatné nebo se neshodují! Prosím, zkuste to znovu."
 
 #: String 493
 msgid "You have successfuly changed your data"
-msgstr "Sen başarıyla Verilerinizi değişti"
+msgstr "Jste úspěšně změnili své údaje"
 
 #: String 494
 msgid "My Advertisement page "
-msgstr "Benim Reklam sayfa"
+msgstr "Můj Reklama stránka"
 
 #: String 495
 msgid "This is not your advertisement."
-msgstr "Bu reklam değil."
+msgstr "To není vaše reklama."
 
 #: String 496
 msgid "Advertisement is deactivated"
-msgstr "Reklam devre dışı"
+msgstr "Reklama je deaktivován"
 
 #: String 497
 msgid "Advertisement is active and published"
-msgstr "Reklam aktif ve yayınlanmıştır"
+msgstr "Reklama je aktivní a zveřejněn"
 
 #: String 498
 msgid "Edit advertisement"
-msgstr "Reklam Düzenle"
+msgstr "Upravit inzerát"
 
 #: String 499
 msgid "Advertisement is updated!"
-msgstr "Reklam güncellenir!"
+msgstr "Reklama je aktualizován!"
 
 #: String 500
 msgid "Advertisement is updated"
-msgstr "Reklam güncellenir"
+msgstr "Reklama je aktualizován"
 
 #: String 501
 msgid "You dont have permission to access this link"
-msgstr "Bu bağlantıyı erişim izniniz yok"
+msgstr "Nemáte oprávnění pro přístup k tento odkaz"
 
 #: String 502
 msgid "List"
-msgstr "Liste"
+msgstr "Seznam"
 
 #: String 503
 msgid "Edit Translation"
-msgstr "Çeviri Düzenleme"
+msgstr "Upravit Překlad"
 
 #: String 504
 msgid "Language saved"
-msgstr "Dil kaydedilir"
+msgstr "Jazyk uložen"
 
 #: String 505
 msgid "Error on mail delivery, not sent"
-msgstr "Posta teslim hatası, gönderilmez"
+msgstr "Chyba při doručování pošty, neposlal"
 
 #: String 506
 msgid "Email sent to all the users"
-msgstr "E-posta tüm kullanıcılara gönderilir"
+msgstr "E-mailu zaslaného všem uživatelům"
 
 #: String 507
 msgid "Mail not sent"
-msgstr "Posta gönderilmez"
+msgstr "Mail neposlal"
 
 #: String 508
 msgid "Theme configuration updated"
-msgstr "Tema seçenekleri güncellendi"
+msgstr "Téma konfigurace je aktualizována"
 
 #: String 509
 msgid "Appearance configuration updated"
-msgstr "Görünüm seçenekleri güncellendi"
+msgstr "Vzhled konfigurace je aktualizována"
 
 #: String 510
 msgid "Mobile Theme updated"
-msgstr "Mobil Tema güncel"
+msgstr "Mobilní Téma aktualizováno"
 
 #: String 511
 msgid "Optimize DB"
-msgstr "Optimize DB"
+msgstr "Optimalizace DB"
 
 #: String 512
 msgid "Database Optimized"
-msgstr "Veritabanı Optimize"
+msgstr "Databáze Optimalizováno"
 
 #: String 513
 msgid "All cache deleted"
-msgstr "Tüm önbellek silinir"
+msgstr "Všechny mezipaměti odstraněna"
 
 #: String 514
 msgid "Deleted expired cache"
-msgstr "Silinmiş süresi dolmuş önbellek"
+msgstr "Vypouští vypršel mezipaměti"
 
 #: String 515
 msgid "You are not using latest version of OC, please update."
-msgstr "Sen OC en son sürümünü kullanmıyorsanız, güncelleyin."
+msgstr "Nepoužíváte nejnovější verzi OC, aktualizujte prosím."
 
 #: String 516
 msgid "System logs"
-msgstr "Sistem günlükleri"
+msgstr "Systémové protokoly"
 
 #: String 517
 msgid "Sitemap Configuration updated"
-msgstr "Site Haritası Yapılandırma güncel"
+msgstr "Mapa stránek Konfigurace aktualizováno"
 
 #: String 518
 msgid "Open Classifieds migration"
-msgstr "Açık sınıflandırma göç"
+msgstr "Otevřeno Inzerce migrace"
 
 #: String 519
 msgid "Database cleaned"
-msgstr "Veritabanı temizlenir"
+msgstr "Databáze vyčistit"
 
 #: String 520
 msgid "Review database connection parameters"
-msgstr "İnceleme veritabanı bağlantı parametrelerini"
+msgstr "Recenze parametry připojení k databázi"
 
 #: String 521
 msgid "Wrong email or password"
-msgstr "Yanlış e-posta veya şifre"
+msgstr "Chybný e-mail nebo heslo"
 
 #: String 522
 msgid "Email to recover password sent"
-msgstr "Şifrenizi gönderilen kurtarmak için e-posta"
+msgstr "E-mail obnovit heslo odesláno"
 
 #: String 523
 msgid "User not in database"
-msgstr "Değil veritabanında Kullanıcı"
+msgstr "Uživatel není v databázi"
 
 #: String 524
 msgid "Email required"
-msgstr "Gerekli E-posta"
+msgstr "Email vyžadováno"
 
 #: String 525
 msgid "User already exists"
-msgstr "Kullanıcı zaten var"
+msgstr "Uživatel již existuje"
 
 #: String 526
 msgid "Welcome!"
-msgstr "Hoşgeldiniz!"
+msgstr "Vítejte!"
 
 #: String 527
 msgid "Register new user"
-msgstr "Yeni kullanıcı Kayıt"
+msgstr "Registrace nového uživatele"
 
 #: String 528
 msgid "You do not have any published Advertisement"
-msgstr "Herhangi bir yayınlanan Reklam yok"
+msgstr "Nemáte žádné zveřejněné reklamy"
 
 #: String 529
 msgid "You do not have any advertisements waiting to be published"
-msgstr "Sen yayınlanacak bekleyen herhangi bir reklam yok"
+msgstr "Nemáte žádné inzeráty, které čekají na zveřejnění"
 
 #: String 530
 msgid "Warning, something went wrong while deleting"
-msgstr "Silerken uyarı, bir şeyler ters gitti"
+msgstr "Pozor, něco se pokazilo při odstraňování"
 
 #: String 531
 msgid "Advertisement is deleted"
-msgstr "Reklam silinir"
+msgstr "Reklama se zrušuje"
 
 #: String 532
 msgid "Warning, Advertisement is already marked as spam"
-msgstr "Uyarı, Reklam zaten spam olarak işaretlenmiş"
+msgstr "Varování: Reklama je již označena jako spam"
 
 #: String 533
 msgid "Advertisement is marked as spam"
-msgstr "Reklam spam olarak işaretlenmiş"
+msgstr "Reklama je označena jako spam"
 
 #: String 534
 msgid "Advertisement is featured"
-msgstr "Reklam özellikli"
+msgstr "Reklama je uváděn"
 
 #: String 535
 msgid "Location deleted"
-msgstr "Yer silindi"
+msgstr "Místo smazán"
 
 #: String 536
 msgid "Location not deleted"
-msgstr "Yer silinmez"
+msgstr "Místo není odstraněn"
 
 #: String 537
 msgid "Category deleted"
-msgstr "Kategori silindi"
+msgstr "Kategorie smazána"
 
 #: String 538
 msgid "Category not deleted"
-msgstr "Kategori silinmez"
+msgstr "Kategorie není odstraněn"
 
 #: String 539
 msgid "Your message has been sent"
-msgstr "Mesajınız gönderildi"
+msgstr "Vaše zpráva byla odeslána"
 
 #: String 540
 msgid "Message not sent"
-msgstr "Mesaj gönderilmedi"
+msgstr "Zpráva nebyla odeslána"
 
 #: String 541
 msgid "Check the form for errors"
-msgstr "Hatalar için formu kontrol edin"
+msgstr "Zkontrolujte, zda formulář pro chyby"
 
 #: String 542
 msgid "You made some mistake"
-msgstr "Bazı hata yaptı"
+msgstr "Ty udělal nějakou chybu"
 
 #: String 543
 msgid "Advertisement to top"
-msgstr "Üstüne Reklam"
+msgstr "Reklama na začátek"
 
 #: String 544
 msgid "Advertisement to featured"
-msgstr "Özellikli oynandı"
+msgstr "Reklama na funkční"
 
 #: String 545
 msgid " category"
-msgstr "kategori"
+msgstr "kategorie"
 
 #: String 546
 msgid "Order could not be loaded"
-msgstr "Satın yüklenemedi"
+msgstr "Objednat nelze načíst"
 
 #: String 547
 msgid "Page "
-msgstr "Sayfa"
+msgstr "Strana"
 
 #: String 548
 msgid "Your advertisement is successfully activated! Thank you!"
-msgstr "Reklamınız başarıyla devreye girer! Teşekkür ederim!"
+msgstr "Váš inzerát bude úspěšně aktivována! Děkuji vám!"
 
 #: String 549
 msgid "We did not find any advertisements for your search."
-msgstr "Biz Arama için herhangi bir reklam bulamadık."
+msgstr "Nenašli jsme žádné reklamy pro hledání."
 
 #: String 550
 msgid "No sitemap generated"
-msgstr "Oluşturulan yok site haritası"
+msgstr "Žádné vytvořené sitemap"
 
 #: String 551
 msgid "You are in maintenance mode, only you can see the website"
-msgstr "Bakım modunda olan, sadece web sitesi görebilirsiniz"
+msgstr "Nacházíte se v režimu údržby, pouze si můžete prohlédnout na webových stránkách"
 
 #: String 552
 msgid "Item created"
-msgstr "Madde oluşturulan"
+msgstr "Položka vytvořena"
 
 #: String 553
 msgid "Check form for errors"
-msgstr "Hataları formu kontrol edin"
+msgstr "Podívejte se formulář pro chyby"
 
 #: String 554
 msgid "Item updated"
-msgstr "Madde güncel"
+msgstr "Položka aktualizováno"
 
 #: String 555
 msgid "Access not allowed"
-msgstr "Izin Erişimine"
+msgstr "Přístup není dovoleno"
 
 #: String 556
 msgid "Some errors in the form"
-msgstr "Şeklinde bazı hatalar"
+msgstr "Některé chyby v podobě"
 

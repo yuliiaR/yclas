@@ -166,7 +166,7 @@ include 'install.php';
 	<h1><?=__("Welcome to")?> Open Classifieds <?=__("installation")?></h1>
 	<p>
 		<?=__("Welcome to the super easy and fast installation")?>. 
-			<a href="http://open-classifieds.com/download/" target="_blank">
+			<a href="http://open-classifieds.com/market/" target="_blank">
 			<?=__("If you need any help please check our professional services")?></a>.
 	</p>	
 </div>
