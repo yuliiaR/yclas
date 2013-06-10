@@ -95,16 +95,13 @@ $modules = array(
                'widgets'      => MODPATH.'widgets',    // loads default widgets
 );
 
-//modules for development environment, not included in distributed KO with OC
-
-if (Kohana::$environment == Kohana::DEVELOPMENT)
-{
-    //$modules['profilertoolbar'] = MODPATH.'profilertoolbar'; // not using it anymore
-    //$modules['unittest'] =  MODPATH.'unittest';   // Unit testing
-    //$modules['codebench'] = MODPATH.'codebench'; // Benchmarking tool
-    //$modules['userguide'] = MODPATH.'userguide';  // User guide and API documentation
-}
-
+//modules for development environment, not included in distribution KO with OC, so you need to place them in your environment
+//also we did a cleaning in KO removing all the tests and documentation to make it lighter
+// if (Kohana::$environment == Kohana::DEVELOPMENT)
+// {
+//     $modules['unittest'] =  MODPATH.'unittest';   // Unit testing
+//     //$modules['userguide'] = MODPATH.'userguide';  // User guide and API documentation
+// }
 
 Kohana::modules($modules);
 unset($modules);

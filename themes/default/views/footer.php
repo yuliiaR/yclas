@@ -13,7 +13,7 @@
 <!--This is the license for Open Classifieds, do not remove -->
 <p>&copy;
 <?if (Theme::get('premium')!=1):?>
-    <a href="http://open-classifieds.com?utm_source=<?=$_SERVER['SERVER_NAME']?>&utm_medium=oc_footer&utm_campaign=<?=date('Y-m-d')?>" title="Classifieds Software PHP">Open Classifieds</a> 
+    <a href="http://open-classifieds.com?utm_source=<?=URL::base()?>&utm_medium=oc_footer&utm_campaign=<?=date('Y-m-d')?>" title="Classifieds Software PHP">Open Classifieds</a> 
 <?endif?>    
 2009 - <?=date('Y')?>
 
