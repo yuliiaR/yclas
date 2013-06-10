@@ -471,6 +471,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));
 									
 								}
+								$form->save();
 	        				}
 	        				else // user doesn't have order -> create new order and redirect him to payment (do not update status until payment is confirmed)
 	        				{
@@ -485,12 +486,14 @@ class Controller_Panel_Profile extends Auth_Controller {
 								{
 									// redirect to payment
 				        			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route	
-								}								
+								}
+								$form->save();								
 	        				}	
 	        			}
 	        		}
 	        		
-	        		// save ad  
+	        		// save ad
+	        		$form->status = $last_known_ad->status;
 	        		$form->save();
 	        		Alert::set(Alert::SUCCESS, __('Advertisement is updated'));
 
