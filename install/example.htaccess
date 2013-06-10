@@ -148,8 +148,8 @@ RewriteBase [SITE_FOLDER]
 	Deny From All
 </Files>
 
-# Protect application and system files from being viewed
-RewriteRule ^(?:oc|languages|install)\b.* index.php/$0 [L]
+# Protect application and system files from being viewed, commented since problem with godaddy, see below
+# RewriteRule ^(?:oc|languages|install)\b.* index.php/$0 [L]
 
 # Allow any files or directories that exist to be displayed directly
 RewriteCond %{REQUEST_FILENAME} !-f
