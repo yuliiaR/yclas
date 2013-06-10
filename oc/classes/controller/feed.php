@@ -44,10 +44,10 @@ class Controller_Feed extends Controller {
             $url= Route::url('ad',  array('category'=>$a->category,'seotitle'=>$a->seotitle));
 
             $items[] = array(
-			                	'title' 	=> $a->title,
-			                	'link' 	=> $url,
-			                	'pubDate' => Date::mysql2unix($a->published),
-			                	'description' => Text::removebbcode($a->description),
+			                	'title' 	    => preg_replace('/&(?!\w+;)/', '&amp;', $a->title),
+			                	'link' 	        => $url,
+			                	'pubDate'       => Date::mysql2unix($a->published),
+			                	'description'   => Text::removebbcode($a->description),
 			              );
         }
   
