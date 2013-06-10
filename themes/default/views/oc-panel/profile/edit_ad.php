@@ -20,12 +20,12 @@
 				} 
 			}?>
 			<?if(core::config('payment.to_top') != FALSE):?>
-			<p class="text-info"><?=__('Your Advertisement can go on top again! For only '.$to_top.' '.core::config('general.global_currency'));?></p>
-			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>">Go Top!</a>
+			<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').$to_top.' '.core::config('general.global_currency');?></p>
+			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
 			<?endif?>
 			<?if(core::config('payment.to_featured') != FALSE):?>
-			<p class="text-info"><?=__('Your Advertisement can go to featured! For only '.$featured_price.' '.core::config('general.global_currency'));?></p>
-			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>">Go Featured!</a>
+			<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').$featured_price.' '.core::config('general.global_currency');?></p>
+			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
 			<?endif?>
 		</div>
 		<?endif?>
@@ -55,14 +55,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="control-group">
-					<?= FORM::label('status', __('Status'), array('class'=>'control-label', 'for'=>'status'))?>
-					<div class="controls">
-						<?php $status = array('0'=>__('Unpublished'), '1'=>__('Published'),'30'=>__('spam'),'50'=>__('Unavailable'));?>
-						<?= FORM::select('status', $status, $ad->status, array('id'=>'status','class'=>''));?>
-					</div>
-					<?endif?>
-				</div>
+				<?endif?>
 				<div class="control-group">
 					<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
 					<div class="controls">
