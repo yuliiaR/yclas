@@ -1,90 +1,90 @@
 #: String 0
 msgid "Listing"
-msgstr "Listeleme"
+msgstr "Listing"
 
 #: String 1
 msgid "Categories"
-msgstr "Kategoriler"
+msgstr "التصنيفات"
 
 #: String 2
 msgid "Search"
-msgstr "Arama"
+msgstr "Search"
 
 #: String 3
 msgid "Publish new "
-msgstr "Yeni yayınla"
+msgstr "نشر جديدة"
 
 #: String 4
 msgid "Login"
-msgstr "Giriş"
+msgstr "Login"
 
 #: String 5
 msgid "Forgot password"
-msgstr "Şifremi unuttum"
+msgstr "Forgot password"
 
 #: String 6
 msgid "Register"
-msgstr "Kaydetmek"
+msgstr "Register"
 
 #: String 7
 msgid "Change the admin color theme"
-msgstr "Admin renk temasını değiştirme"
+msgstr "Change the admin color theme"
 
 #: String 8
 msgid "Mobile Version"
-msgstr "Mobil Sürüm"
+msgstr "Mobile Version"
 
 #: String 9
 msgid "Publish new"
-msgstr "Yeni yayınla"
+msgstr "نشر جديدة"
 
 #: String 10
 msgid "Map"
-msgstr "Harita"
+msgstr "Map"
 
 #: String 11
 msgid "Contact"
-msgstr "İletişim"
+msgstr "Contact"
 
 #: String 12
 msgid "Latest Ads"
-msgstr "Son Reklamlar"
+msgstr "Latest Ads"
 
 #: String 13
 msgid "New Advertisement"
-msgstr "Yeni Reklam"
+msgstr "New Advertisement"
 
 #: String 14
 msgid "Publish new advertisement"
-msgstr "Yeni reklam yayınla"
+msgstr "Publish new advertisement"
 
 #: String 15
 msgid "Featured"
-msgstr "Özellikli"
+msgstr "Featured"
 
 #: String 16
 msgid "Publish Date"
-msgstr "Yayın Tarihi"
+msgstr "Publish Date"
 
 #: String 17
 msgid "Price"
-msgstr "Fiyat"
+msgstr "Price"
 
 #: String 18
 msgid "Read more"
-msgstr "Devamı"
+msgstr "Read more"
 
 #: String 19
 msgid "Edit"
-msgstr "Düzenle"
+msgstr "Edit"
 
 #: String 20
 msgid "Deactivate?"
-msgstr "Devre dışı bırak?"
+msgstr "Deactivate?"
 
 #: String 21
 msgid "Deactivate"
-msgstr "Devre dışı bırakmak"
+msgstr "Deactivate"
 
 #: String 22
 msgid "Spam?"
@@ -96,39 +96,35 @@ msgstr "Spam"
 
 #: String 24
 msgid "Delete?"
-msgstr "Sil?"
+msgstr "Delete?"
 
 #: String 25
 msgid "Delete"
-msgstr "Silmek"
-
-#: String 26
-msgid "We do not have any advertisements in this category"
-msgstr "Biz bu kategoride herhangi bir reklam yok"
+msgstr "Delete"
 
 #: String 27
 msgid "Hits"
-msgstr "Hitler"
+msgstr "Hits"
 
 #: String 28
 msgid "Send Message"
-msgstr "Mesaj Gönder"
+msgstr "Send Message"
 
 #: String 29
 msgid "Name"
-msgstr "isim"
+msgstr "Name"
 
 #: String 30
 msgid "Email"
-msgstr "E-posta"
+msgstr "Email"
 
 #: String 31
 msgid "Subject"
-msgstr "Konu"
+msgstr "Subject"
 
 #: String 32
 msgid "Message"
-msgstr "Mesaj"
+msgstr "Message"
 
 #: String 33
 msgid "Captcha"
@@ -136,211 +132,207 @@ msgstr "Captcha"
 
 #: String 34
 msgid "Number of latest ads to display in the home page"
-msgstr "Ana sayfada görüntülenen toplam reklam sayısı"
+msgstr "Number of latest ads to display in the home page"
 
 #: String 35
 msgid "Change the color scheme and style of the theme"
-msgstr "Temanın renk düzeni ve stilini değiştirme"
-
-#: String 36
-msgid "Header banner, allows HTML"
-msgstr "Başlık, HTML'e izin verir"
+msgstr "Change the color scheme and style of the theme"
 
 #: String 37
 msgid "Please wait while we transfer you to Paypal"
-msgstr "Paypal'a aktarırken lütfen bekleyiniz"
+msgstr "Please wait while we transfer you to Paypal"
 
 #: String 38
 msgid "Click here if you are not redirected"
-msgstr "Eğer yönlendirilmediyseniz, lütfen buraya tıklayınız"
+msgstr "Click here if you are not redirected"
 
 #: String 39
 msgid "First"
-msgstr "İlk"
+msgstr "First"
 
 #: String 40
 msgid "Previous"
-msgstr "Önceki"
+msgstr "Previous"
 
 #: String 41
 msgid "Page"
-msgstr "Sayfa"
+msgstr "Page"
 
 #: String 42
 msgid "Next"
-msgstr "Sonraki"
+msgstr "Next"
 
 #: String 43
 msgid "Last"
-msgstr "Son"
+msgstr "Last"
 
 #: String 44
 msgid "Edit Profile"
-msgstr "Profili Düzenle"
+msgstr "Edit Profile"
 
 #: String 45
 msgid "Change password"
-msgstr "Şifreyi değiştir"
+msgstr "Change password"
 
 #: String 46
 msgid "Old password"
-msgstr "Eski şifre"
+msgstr "Old password"
 
 #: String 47
 msgid "Password"
-msgstr "Şifre"
+msgstr "Password"
 
 #: String 48
 msgid "New password"
-msgstr "Yeni parola"
+msgstr "New password"
 
 #: String 49
 msgid "Repeat password"
-msgstr "Şifrenizi tekrar girin"
+msgstr "Repeat password"
 
 #: String 50
 msgid "Type your password twice to change"
-msgstr "Değiştirmek için şifrenizi iki kez yazınız"
+msgstr "Type your password twice to change"
 
 #: String 51
 msgid "Cancel"
-msgstr "Iptal"
+msgstr "Cancel"
 
 #: String 52
 msgid "Send"
-msgstr "Gönder"
+msgstr "Send"
 
 #: String 53
 msgid "My Advertisements"
-msgstr "Reklamlarım"
+msgstr "My Advertisements"
 
 #: String 54
 msgid " New"
-msgstr "Yeni"
+msgstr " New"
 
 #: String 55
 msgid "Category"
-msgstr "Kategori"
+msgstr "Category"
 
 #: String 56
 msgid "Location"
-msgstr "Konum"
+msgstr "Location"
 
 #: String 57
 msgid "Status"
-msgstr "Durum"
+msgstr "Status"
 
 #: String 58
 msgid "Date"
-msgstr "Tarih"
+msgstr "Date"
 
 #: String 59
 msgid "Not published"
-msgstr "Yayınlanmadı"
+msgstr "Not published"
 
 #: String 60
 msgid "Published"
-msgstr "Yayınlandı"
+msgstr "Published"
 
 #: String 61
 msgid "Unavailable"
-msgstr "Yok"
+msgstr "Unavailable"
 
 #: String 62
 msgid "Update"
-msgstr "Güncelleme"
+msgstr "Update"
 
 #: String 63
 msgid "Activate?"
-msgstr "Etkinleştir?"
+msgstr "Activate?"
 
 #: String 64
 msgid "Activate"
-msgstr "Etkinleştirmek"
+msgstr "Activate"
 
 #: String 65
 msgid "Refresh listing, go to top?"
-msgstr "Listeyi yenile, yukarıya git"
+msgstr "Refresh listing, go to top?"
 
 #: String 66
 msgid "Go to top"
-msgstr "Yukarı git"
+msgstr "Go to top"
 
 #: String 67
 msgid "Are you sure you want to refresh listing and go to top?"
-msgstr "Eğer liste yenilemek ve üstüne gitmek istediğinizden emin misiniz?"
+msgstr "Are you sure you want to refresh listing and go to top?"
 
 #: String 68
 msgid "Make featured?"
-msgstr "Özellikli olun?"
+msgstr "Make featured?"
 
 #: String 69
 msgid "Are you sure you want to make it featured?"
-msgstr "Bunu özellikli yapmak istediğinizden emin misiniz?"
+msgstr "Are you sure you want to make it featured?"
 
 #: String 70
 msgid "Deactivate featured?"
-msgstr "Özellikli devre dışı bırakmak?"
+msgstr "Deactivate featured?"
 
 #: String 71
 msgid "Deactivate featured"
-msgstr "Özellikli devre dışı bırakın"
+msgstr "Deactivate featured"
 
 #: String 72
 msgid "Are you sure you want to deactivate featured advertisement?"
-msgstr "Eğer özellikli reklam devre dışı bırakmak için istediğinizden emin misiniz?"
+msgstr "Are you sure you want to deactivate featured advertisement?"
 
 #: String 73
 msgid "Statistics"
-msgstr "Istatistik"
+msgstr "Statistics"
 
 #: String 74
 msgid "Today"
-msgstr "Bugün"
+msgstr "Today"
 
 #: String 75
 msgid "Yesterday"
-msgstr "Dün"
+msgstr "Yesterday"
 
 #: String 76
 msgid "Last 30 days"
-msgstr "Son 30 gün"
+msgstr "Last 30 days"
 
 #: String 77
 msgid "Total"
-msgstr "Toplam"
+msgstr "Total"
 
 #: String 78
 msgid "Contacts"
-msgstr "İletişim"
+msgstr "Contacts"
 
 #: String 79
 msgid "Visits"
-msgstr "Ziyaretler"
+msgstr "Visits"
 
 #: String 80
 msgid "Charts"
-msgstr "Grafikler"
+msgstr "Charts"
 
 #: String 81
 msgid "From"
-msgstr "Itibaren"
+msgstr "From"
 
 #: String 82
 msgid "To"
-msgstr "Karşı"
+msgstr "To"
 
 #: String 83
 msgid "Filter"
-msgstr "Filtre"
+msgstr "Filter"
 
 #: String 84
 msgid "Views and Contacts statistic"
-msgstr "Görüntüleme ve İletişim istatistik"
+msgstr "Views and Contacts statistic"
 
 #: String 85
 msgid "Edit Advertisement"
-msgstr "Reklam Düzenle"
+msgstr "Edit Advertisement"
 
 #: String 86
 msgid "Id_User"
@@ -348,43 +340,43 @@ msgstr "Id_User"
 
 #: String 87
 msgid "Profile"
-msgstr "Profil"
+msgstr "Profile"
 
 #: String 88
 msgid "Unpublished"
-msgstr "Yayınlanmamış"
+msgstr "Unpublished"
 
 #: String 89
 msgid "spam"
-msgstr "Spam"
+msgstr "spam"
 
 #: String 90
 msgid "Title"
-msgstr "Başlık"
+msgstr "Title"
 
 #: String 91
 msgid "Description"
-msgstr "Tanımlama"
+msgstr "Description"
 
 #: String 92
 msgid "Delete image"
-msgstr "Görüntüyü sil"
+msgstr "Delete image"
 
 #: String 93
 msgid "Images"
-msgstr "Görüntüler"
+msgstr "Images"
 
 #: String 94
 msgid "Phone"
-msgstr "Telefon"
+msgstr "Phone"
 
 #: String 95
 msgid "Address"
-msgstr "Adres"
+msgstr "Address"
 
 #: String 96
 msgid "Website"
-msgstr "Web sitesi"
+msgstr "Website"
 
 #: String 97
 msgid "Panel"
@@ -392,107 +384,107 @@ msgstr "Panel"
 
 #: String 98
 msgid "Market"
-msgstr "Pazar"
+msgstr "Market"
 
 #: String 99
 msgid "Moderation"
-msgstr "Ilımlılık"
+msgstr "Moderation"
 
 #: String 100
 msgid "Stats"
-msgstr "İstatistikler"
+msgstr "Stats"
 
 #: String 101
 msgid "Widgets"
-msgstr "Widget"
+msgstr "Widgets"
 
 #: String 102
 msgid "New"
-msgstr "Yeni"
+msgstr "New"
 
 #: String 103
 msgid "Welcome"
-msgstr "Karşılama"
+msgstr "Welcome"
 
 #: String 104
 msgid "Thanks for using our website."
-msgstr "Web sitemizi kullandığınız için teşekkür ederiz."
+msgstr "Thanks for using our website."
 
 #: String 105
 msgid "Advertisements"
-msgstr "Reklamlar"
+msgstr "Advertisements"
 
 #: String 106
 msgid "Locations"
-msgstr "Mekanlar"
+msgstr "Locations"
 
 #: String 107
 msgid "Orders"
-msgstr "Siparişler"
+msgstr "Orders"
 
 #: String 108
 msgid "Content"
-msgstr "Içerik"
+msgstr "Content"
 
 #: String 109
 msgid "Translations"
-msgstr "Çeviriler"
+msgstr "Translations"
 
 #: String 110
 msgid "Newsletters"
-msgstr "Haber Bültenleri"
+msgstr "Newsletters"
 
 #: String 111
 msgid "Themes"
-msgstr "Temalar"
+msgstr "Themes"
 
 #: String 112
 msgid "Theme Options"
-msgstr "Tema Seçenekleri"
+msgstr "Theme Options"
 
 #: String 113
 msgid "Settings"
-msgstr "Ayarlar"
+msgstr "Settings"
 
 #: String 114
 msgid "General"
-msgstr "Genel"
+msgstr "General"
 
 #: String 115
 msgid "Payment"
-msgstr "Ödeme"
+msgstr "Payment"
 
 #: String 116
 msgid "Advertisement"
-msgstr "Ilan"
+msgstr "Advertisement"
 
 #: String 117
 msgid "Users"
-msgstr "Kullanıcılar"
+msgstr "Users"
 
 #: String 118
 msgid "User Roles"
-msgstr "Kullanıcı Rolleri"
+msgstr "User Roles"
 
 #: String 119
 msgid "Roles access"
-msgstr "Roller erişim"
+msgstr "Roles access"
 
 #: String 120
 msgid "Tools"
-msgstr "Araçlar"
+msgstr "Tools"
 
 #: String 121
 msgid "Updates"
-msgstr "Güncellemeler"
+msgstr "Updates"
 
 #: String 122
 msgid "Sitemap"
-msgstr "Site Haritası"
+msgstr "Sitemap"
 
 #: String 123
 msgid "Migration"
-msgstr "Göç"
+msgstr "Migration"
 
 #: String 124
 msgid "Optimize"
@@ -500,247 +492,247 @@ msgstr "Optimize"
 
 #: String 125
 msgid "Cache"
-msgstr "Önbellek"
+msgstr "Cache"
 
 #: String 126
 msgid "Logs"
-msgstr "Kayıtlar"
+msgstr "Logs"
 
 #: String 127
 msgid "PHP Info"
-msgstr "PHP Bilgisi"
+msgstr "PHP Info"
 
 #: String 128
 msgid "Edit profile"
-msgstr "Profil Düzenle"
+msgstr "Edit profile"
 
 #: String 129
 msgid "Public profile"
-msgstr "Genel profil"
+msgstr "Public profile"
 
 #: String 130
 msgid "Home"
-msgstr "Ev"
+msgstr "Home"
 
 #: String 131
 msgid "Actions"
-msgstr "Eylemleri"
+msgstr "Actions"
 
 #: String 132
 msgid "Are you sure you want to delete?"
-msgstr "Silmek istediğinizden emin misiniz?"
+msgstr "Are you sure you want to delete?"
 
 #: String 133
 msgid "Logout"
-msgstr "Çıkış"
+msgstr "Logout"
 
 #: String 134
 msgid "Visit Site"
-msgstr "Siteyi ziyaret edin"
+msgstr "Visit Site"
 
 #: String 135
 msgid "Here are listed specific theme configuration values. Replace input fields with new desired values for the theme."
-msgstr "Burada belirli bir tema yapılandırma değerlerini listelenmiştir. Tema için istediğiniz yeni değerlerle giriş alanları değiştirin."
+msgstr "Here are listed specific theme configuration values. Replace input fields with new desired values for the theme."
 
 #: String 136
 msgid "Using mobile theme"
-msgstr "Mobil tema kullanarak"
+msgstr "Using mobile theme"
 
 #: String 137
 msgid "Disable"
-msgstr "Devre Dışı Bırak"
+msgstr "Disable"
 
 #: String 138
 msgid "Options"
-msgstr "Seçenekleri"
+msgstr "Options"
 
 #: String 139
 msgid "You can change the look and feel of your website here."
-msgstr "Sen görünümünü değiştirmek ve burada web sitenizin hissedebilirsiniz."
+msgstr "You can change the look and feel of your website here."
 
 #: String 140
 msgid "Current Theme"
-msgstr "Geçerli Tema"
+msgstr "Current Theme"
 
 #: String 141
 msgid "Available Themes"
-msgstr "Mevcut Temalar"
+msgstr "Available Themes"
 
 #: String 142
 msgid "Preview"
-msgstr "Önizleme"
+msgstr "Preview"
 
 #: String 143
 msgid "Available Mobile Themes"
-msgstr "Mevcut Mobil Temalar"
+msgstr "Available Mobile Themes"
 
 #: String 144
 msgid "Themes Market"
-msgstr "Temalar Pazar"
+msgstr "Themes Market"
 
 #: String 145
 msgid "Here you can find a selection of our premium themes."
-msgstr "Burada bizim prim temalar bir seçim bulabilirsiniz."
+msgstr "Here you can find a selection of our premium themes."
 
 #: String 146
 msgid "All themes include support, updates and 1 site license."
-msgstr "Tüm tema desteği, güncellemeler ve 1 site lisans içerir."
+msgstr "All themes include support, updates and 1 site license."
 
 #: String 147
 msgid "Site Usage Statistics"
-msgstr "Site Kullanım İstatistikleri"
+msgstr "Site Usage Statistics"
 
 #: String 148
 msgid "Ads"
-msgstr "Reklamlar"
+msgstr "Ads"
 
 #: String 149
 msgid "Sales"
-msgstr "Satış"
+msgstr "Sales"
 
 #: String 150
 msgid "Views and Ads statistics"
-msgstr "Görüntüleme ve Reklam istatistik"
+msgstr "Views and Ads statistics"
 
 #: String 151
 msgid "Sales statistics"
-msgstr "Satış istatistikleri"
+msgstr "Sales statistics"
 
 #: String 152
 msgid "Available widgets"
-msgstr "Mevcut widget"
+msgstr "Available widgets"
 
 #: String 153
 msgid "Create"
-msgstr "Oluşturmak"
+msgstr "Create"
 
 #: String 154
 msgid "Where do you want the widget displayed?"
-msgstr "Nerede widget görüntülenen istersiniz?"
+msgstr "Where do you want the widget displayed?"
 
 #: String 155
 msgid "Close"
-msgstr "Yakın"
+msgstr "Close"
 
 #: String 156
 msgid "Sure you want to delete the widget? You can move it to the inactive placeholder"
-msgstr "Tabii widget silmek ister misin? Bu etkin tutucu taşıyabilirsiniz"
+msgstr "Sure you want to delete the widget? You can move it to the inactive placeholder"
 
 #: String 157
 msgid "Save changes"
-msgstr "Değişiklikleri kaydet"
+msgstr "Save changes"
 
 #: String 158
 msgid "Limited Offer!"
-msgstr "Sınırlı Teklif!"
+msgstr "Limited Offer!"
 
 #: String 159
 msgid "Valid Until"
-msgstr "Kadar geçerli"
+msgstr "Valid Until"
 
 #: String 160
 msgid "Buy Now"
-msgstr "Hemen Al"
+msgstr "Buy Now"
 
 #: String 161
 msgid "More info"
-msgstr "Daha fazla bilgi"
+msgstr "More info"
 
 #: String 162
 msgid "Selection of nice extras for your installation."
-msgstr "Yükleme için güzel ekstra seçimi."
+msgstr "Selection of nice extras for your installation."
 
 #: String 163
 msgid "Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "Sizin kategorilerin sırasını değiştirin. Muhtemelen iç içe fazla 2 seviyeleri (bu tavsiye edilmez) tema gösterilmeyecektir aklınızda tutun."
+msgstr "Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
 
 #: String 164
 msgid "New category"
-msgstr "Yeni kategori"
+msgstr "New category"
 
 #: String 165
 msgid "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
-msgstr "Silmek istediğinizden emin misiniz? Bu kategorinin ana için kardeşler kategoriler ve reklamlar hareket edecek."
+msgstr "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
 
 #: String 166
 msgid "Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "Yerlerinizi sırasını değiştirme. Muhtemelen iç içe fazla 2 seviyeleri (bu tavsiye edilmez) tema gösterilmeyecektir aklınızda tutun."
+msgstr "Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
 
 #: String 167
 msgid "New location"
-msgstr "Yeni konumu"
+msgstr "New location"
 
 #: String 168
 msgid "Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location."
-msgstr "Silmek istediğinizden emin misiniz? Biz bu yerin ana için kardeşler yerleri ve reklamlar hareket edecek."
+msgstr "Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location."
 
 #: String 169
 msgid "Newsletter"
-msgstr "Haber Bülteni"
+msgstr "Newsletter"
 
 #: String 170
 msgid "Email Settings"
-msgstr "E-posta Ayarları"
+msgstr "Email Settings"
 
 #: String 171
 msgid "You can send a mass email to all active users."
-msgstr "Tüm aktif kullanıcılar için bir toplu e-posta gönderebilirsiniz."
+msgstr "You can send a mass email to all active users."
 
 #: String 172
 msgid "From Email"
-msgstr "E-posta gelen"
+msgstr "From Email"
 
 #: String 173
 msgid "Optimize Database"
-msgstr "Veritabanı Optimize"
+msgstr "Optimize Database"
 
 #: String 174
 msgid "Database space"
-msgstr "Veritabanı alanı"
+msgstr "Database space"
 
 #: String 175
 msgid "Space to optimize"
-msgstr "Optimize etmek için Space"
+msgstr "Space to optimize"
 
 #: String 176
 msgid "Table"
-msgstr "Tablo"
+msgstr "Table"
 
 #: String 177
 msgid "Rows"
-msgstr "Satırlar"
+msgstr "Rows"
 
 #: String 178
 msgid "Size"
-msgstr "Boyut"
+msgstr "Size"
 
 #: String 179
 msgid "Save size"
-msgstr "Boyutu kaydet"
+msgstr "Save size"
 
 #: String 180
 msgid "Cache configuration information"
-msgstr "Önbellek yapılandırma bilgileri"
+msgstr "Cache configuration information"
 
 #: String 181
 msgid "Delete all"
-msgstr "Tümünü sil"
+msgstr "Delete all"
 
 #: String 182
 msgid "Delete expired"
-msgstr "Süresi Sil"
+msgstr "Delete expired"
 
 #: String 183
 msgid "Config file"
-msgstr "Yapılandırma dosyası"
+msgstr "Config file"
 
 #: String 184
 msgid "System Logs"
-msgstr "Sistem Kayıtlar"
+msgstr "System Logs"
 
 #: String 185
 msgid "Reading log file"
-msgstr "Günlük dosyası okuma"
+msgstr "Reading log file"
 
 #: String 186
 msgid "Log"
@@ -748,119 +740,119 @@ msgstr "Log"
 
 #: String 187
 msgid "Your PHP time limit is"
-msgstr "Sizin PHP zaman sınırı"
+msgstr "Your PHP time limit is"
 
 #: String 188
 msgid "seconds"
-msgstr "saniye"
+msgstr "seconds"
 
 #: String 189
 msgid "Host name"
-msgstr "Ana bilgisayar adı"
+msgstr "Host name"
 
 #: String 190
 msgid "User name"
-msgstr "Kullanıcı adı"
+msgstr "User name"
 
 #: String 191
 msgid "Database name"
-msgstr "Veritabanı adı"
+msgstr "Database name"
 
 #: String 192
 msgid "Database charset"
-msgstr "Veritabanı karakter"
+msgstr "Database charset"
 
 #: String 193
 msgid "Table prefix"
-msgstr "Tablo öneki"
+msgstr "Table prefix"
 
 #: String 194
 msgid "Migrate"
-msgstr "Göç"
+msgstr "Migrate"
 
 #: String 195
 msgid "Last time generated"
-msgstr "Son kez oluşturulan"
+msgstr "Last time generated"
 
 #: String 196
 msgid "Generate"
-msgstr "Oluşturmak"
+msgstr "Generate"
 
 #: String 197
 msgid "Expire time"
-msgstr "Süresi sona"
+msgstr "Expire time"
 
 #: String 198
 msgid "Update on publish"
-msgstr "Yayınlamak güncellemesi"
+msgstr "Update on publish"
 
 #: String 199
 msgid "Save"
-msgstr "Kurtarmak"
+msgstr "Save"
 
 #: String 200
 msgid "Versions"
-msgstr "Sürümleri"
+msgstr "Versions"
 
 #: String 201
 msgid "Open Classifieds release history information."
-msgstr "İlan sürüm geçmiş bilgilerini açın."
+msgstr "Open Classifieds release history information."
 
 #: String 202
 msgid "Your installation version is"
-msgstr "Yükleme versiyonu"
+msgstr "Your installation version is"
 
 #: String 203
 msgid "Your Hash Key for this installation is"
-msgstr "Bu yükleme için Hash anahtarıdır"
+msgstr "Your Hash Key for this installation is"
 
 #: String 204
 msgid "Check for updates"
-msgstr "Güncelleştirmeleri denetleyin"
+msgstr "Check for updates"
 
 #: String 205
 msgid "Version"
-msgstr "Versiyon"
+msgstr "Version"
 
 #: String 206
 msgid "Information"
-msgstr "Bilgi"
+msgstr "Information"
 
 #: String 207
 msgid "Latest"
-msgstr "Son"
+msgstr "Latest"
 
 #: String 208
 msgid "Current"
-msgstr "Akım"
+msgstr "Current"
 
 #: String 209
 msgid "Email Configuration"
-msgstr "E-posta Yapılandırma"
+msgstr "Email Configuration"
 
 #: String 210
 msgid "List of general configuration values. Replace input fields with new desired values"
-msgstr "Genel yapılandırma değerlerini listesi. Istediğiniz yeni değerlerle giriş alanları değiştirin"
+msgstr "List of general configuration values. Replace input fields with new desired values"
 
 #: String 211
 msgid "If you need to send many emails with a high delivery rate check"
-msgstr "Denetlemek, yüksek doğum oranı ile birçok e-posta göndermeniz gerekiyorsa"
+msgstr "If you need to send many emails with a high delivery rate check"
 
 #: String 212
 msgid "Notify email"
-msgstr "E-posta bildir"
+msgstr "Notify email"
 
 #: String 213
 msgid "Email from where we send the emails, also used for software communications."
-msgstr "Biz de yazılım iletişim için kullanılan e-posta, göndermek yerden e-posta."
+msgstr "Email from where we send the emails, also used for software communications."
 
 #: String 214
 msgid "Email From"
-msgstr "Gönderen E-posta"
+msgstr "Email From"
 
 #: String 215
 msgid "Smtp active"
-msgstr "Smtp aktif"
+msgstr "Smtp active"
 
 #: String 216
 msgid "Smtp ssl"
@@ -868,7 +860,7 @@ msgstr "Smtp ssl"
 
 #: String 217
 msgid "Smtp host"
-msgstr "Smtp ana"
+msgstr "Smtp host"
 
 #: String 218
 msgid "Smtp port"
@@ -876,111 +868,111 @@ msgstr "Smtp port"
 
 #: String 219
 msgid "Smtp auth"
-msgstr "SMTP auth"
+msgstr "Smtp auth"
 
 #: String 220
 msgid "Smtp user"
-msgstr "SMTP kullanıcı"
+msgstr "Smtp user"
 
 #: String 221
 msgid "Smtp password"
-msgstr "Smtp şifre"
+msgstr "Smtp password"
 
 #: String 222
 msgid "Advertisement Configuration"
-msgstr "Reklam Yapılandırma"
+msgstr "Advertisement Configuration"
 
 #: String 223
 msgid "Number of images"
-msgstr "Görüntü sayısı"
+msgstr "Number of images"
 
 #: String 224
 msgid "Number of images displayed"
-msgstr "Görüntülenen görüntü sayısı"
+msgstr "Number of images displayed"
 
 #: String 225
 msgid "Ad expiration date"
-msgstr "İlan son kullanma tarihi"
+msgstr "Ad expiration date"
 
 #: String 226
 msgid "Expire days"
-msgstr "Gün Geçerlilik"
+msgstr "Expire days"
 
 #: String 227
 msgid "After how many days an Ad will expire. 0 for never"
-msgstr "Kaç gün sonra bir İlan sona erecek. Hiçbir zaman için 0"
+msgstr "After how many days an Ad will expire. 0 for never"
 
 #: String 228
 msgid "Days"
-msgstr "Günler"
+msgstr "Days"
 
 #: String 229
 msgid "Address field"
-msgstr "Adres alanı"
+msgstr "Address field"
 
 #: String 230
 msgid "Displays the field Address in the Ad form."
-msgstr "Reklam şeklinde alanı adres gösterir."
+msgstr "Displays the field Address in the Ad form."
 
 #: String 231
 msgid "Google Maps in Ad"
-msgstr "Reklam Google Maps"
+msgstr "Google Maps in Ad"
 
 #: String 232
 msgid "Displays the google maps in the Ad."
-msgstr "Ad google maps görüntüler."
+msgstr "Displays the google maps in the Ad."
 
 #: String 233
 msgid "Phone field"
-msgstr "Telefon alanı"
+msgstr "Phone field"
 
 #: String 234
 msgid "Displays the field Phone in the Ad form."
-msgstr "Reklam şeklinde alanı Telefon görüntüler."
+msgstr "Displays the field Phone in the Ad form."
 
 #: String 235
 msgid "Website field"
-msgstr "Web Sitesi alanı"
+msgstr "Website field"
 
 #: String 236
 msgid "Displays the field Website in the Ad form."
-msgstr "Reklam şeklinde alanı Web Sitesi görüntüler."
+msgstr "Displays the field Website in the Ad form."
 
 #: String 237
 msgid "Displays location select"
-msgstr "Yer seçin görüntüler"
+msgstr "Displays location select"
 
 #: String 238
 msgid "Displays the Select Location in the Ad form."
-msgstr "Reklam şeklinde Seç Yer görüntüler."
+msgstr "Displays the Select Location in the Ad form."
 
 #: String 239
 msgid "Price field"
-msgstr "Fiyat alanı"
+msgstr "Price field"
 
 #: String 240
 msgid "Displays the field Price in the Ad form."
-msgstr "Reklam şeklinde Tarla Fiyat görüntüler."
+msgstr "Displays the field Price in the Ad form."
 
 #: String 241
 msgid "Upload file"
-msgstr "Dosya yükle"
+msgstr "Upload file"
 
 #: String 242
 msgid "Enables Captcha"
-msgstr "Captcha sağlar"
+msgstr "Enables Captcha"
 
 #: String 243
 msgid "Captcha appears in the form."
-msgstr "Captcha şeklinde görünür."
+msgstr "Captcha appears in the form."
 
 #: String 244
 msgid "Deactivated"
-msgstr "Devre dışı"
+msgstr "Deactivated"
 
 #: String 245
 msgid "Terms of Service"
-msgstr "Hizmet Şartları"
+msgstr "Terms of Service"
 
 #: String 246
 msgid "Disqus"
@@ -988,215 +980,211 @@ msgstr "Disqus"
 
 #: String 247
 msgid "Disqus Comments"
-msgstr "Disqus Yorumlar"
+msgstr "Disqus Comments"
 
 #: String 248
 msgid "You need to write your disqus ID to enable the service."
-msgstr "Bu hizmeti etkinleştirmek için disqus ID yazmak gerekir."
+msgstr "You need to write your disqus ID to enable the service."
 
 #: String 249
 msgid "Payments Configuration"
-msgstr "Ödemeler Yapılandırma"
+msgstr "Payments Configuration"
 
 #: String 250
 msgid "List of payment configuration values. Replace input fields with new desired values."
-msgstr "Ödeme yapılandırma değerlerini listesi. Istediğiniz yeni değerlerle giriş alanları değiştirin."
+msgstr "List of payment configuration values. Replace input fields with new desired values."
 
 #: String 251
 msgid "Paypal account"
-msgstr "Paypal hesabı"
+msgstr "Paypal account"
 
 #: String 252
 msgid "Paypal mail address"
-msgstr "Paypal posta adresi"
+msgstr "Paypal mail address"
 
 #: String 253
 msgid "The paypal email address where the payments will be sent"
-msgstr "Ödemeler gönderilecektir paypal e-posta adresi"
+msgstr "The paypal email address where the payments will be sent"
 
 #: String 254
 msgid "Sandbox"
-msgstr "Kum havuzu"
+msgstr "Sandbox"
 
 #: String 255
 msgid "Paypal currency"
-msgstr "Paypal para"
+msgstr "Paypal currency"
 
 #: String 256
 msgid "Currency"
-msgstr "Para"
+msgstr "Currency"
 
 #: String 257
 msgid "Please be sure you are using a currency that paypal supports."
-msgstr "Eğer paypal destekleyen bir para birimi kullandığınızdan emin olun."
+msgstr "Please be sure you are using a currency that paypal supports."
 
 #: String 258
 msgid "Featured Ads"
-msgstr "Özellikli Reklamlar"
+msgstr "Featured Ads"
 
 #: String 259
 msgid "Featured ads"
-msgstr "Özellikli ilanları"
+msgstr "Featured ads"
 
 #: String 260
 msgid "Featured ads will be highlighted for a defined number of days."
-msgstr "Özellikli reklamlar gün belirli bir sayıda vurgulanır."
+msgstr "Featured ads will be highlighted for a defined number of days."
 
 #: String 261
 msgid "Price for featuring the Ad"
-msgstr "Reklam sahip fiyat"
+msgstr "Price for featuring the Ad"
 
 #: String 262
 msgid "Pricing"
-msgstr "Fiyatlandırma"
+msgstr "Pricing"
 
 #: String 263
 msgid "How much the user needs to pay to feature an Ad"
-msgstr "Kullanıcı İlan özelliği ödemek gerekiyor ne kadar"
+msgstr "How much the user needs to pay to feature an Ad"
 
 #: String 264
 msgid "Days Featured"
-msgstr "Gün Seçme"
+msgstr "Days Featured"
 
 #: String 265
 msgid "Featured length"
-msgstr "Özellikli uzunluk"
+msgstr "Featured length"
 
 #: String 266
 msgid "How many days an ad will be featured after paying."
-msgstr "Bir reklam ödedikten sonra yer alacak kaç gün."
+msgstr "How many days an ad will be featured after paying."
 
 #: String 267
 msgid "Bring to top Ad"
-msgstr "Üst İlana getirin"
+msgstr "Bring to top Ad"
 
 #: String 268
 msgid "Brings your Ad to the top of the listing."
-msgstr "Listenin en üstüne Reklam getirir."
+msgstr "Brings your Ad to the top of the listing."
 
 #: String 269
 msgid "To top price"
-msgstr "En iyi fiyat için"
+msgstr "To top price"
 
 #: String 270
 msgid "How much the user needs to pay to top up an Ad"
-msgstr "Kullanıcı İlan kontör ödemek gerekiyor ne kadar"
+msgstr "How much the user needs to pay to top up an Ad"
 
 #: String 271
 msgid "General Configuration"
-msgstr "Genel Yapılandırma"
+msgstr "General Configuration"
 
 #: String 272
 msgid "General site settings."
-msgstr "Genel site ayarlarını."
+msgstr "General site settings."
 
 #: String 273
 msgid "All configurations"
-msgstr "Tüm yapılandırmalar"
+msgstr "All configurations"
 
 #: String 274
 msgid "Maintenance Mode"
-msgstr "Bakım Modu"
+msgstr "Maintenance Mode"
 
 #: String 275
 msgid "Enables the site to maintenance"
-msgstr "Bakım için site sağlar"
+msgstr "Enables the site to maintenance"
 
 #: String 276
 msgid "Site name"
-msgstr "Site adı"
+msgstr "Site name"
 
 #: String 277
 msgid "Here you can declare your display name. This is seen by everyone!"
-msgstr "Burada görünen adını bildirebilirsiniz. Bu herkes tarafından görülür!"
+msgstr "Here you can declare your display name. This is seen by everyone!"
 
 #: String 278
 msgid "Site Name"
-msgstr "Site Adı"
-
-#: String 279
-msgid "Site description"
-msgstr "Site açıklaması"
+msgstr "Site Name"
 
 #: String 280
 msgid "Base URL"
-msgstr "Temel URL"
+msgstr "Base URL"
 
 #: String 281
 msgid "Is a base path of your site (e.g. http://open-classifieds.com/). Everything else is built based on this field."
-msgstr "Sitenizin ana yol (örneğin http://open-classifieds.com/) 'dir. Her şey bu alanda temel inşa edilmiştir."
+msgstr "Is a base path of your site (e.g. http://open-classifieds.com/). Everything else is built based on this field."
 
 #: String 282
 msgid "Base URL path"
-msgstr "Temel URL yolu"
+msgstr "Base URL path"
 
 #: String 283
 msgid "Moderation controls"
-msgstr "Moderasyon kontrolleri"
+msgstr "Moderation controls"
 
 #: String 284
 msgid "Global currency"
-msgstr "Küresel para birimi"
+msgstr "Global currency"
 
 #: String 285
 msgid "Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "
-msgstr "Küresel para birimi ülke özgüdür. Herhangi bir kısıtlama yoktur, bu reklamlar için para ilan etmek sadece. Not: Bu ödeme para birimleri farklıdır."
+msgstr "Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "
 
 #: String 286
 msgid "Country specific currency"
-msgstr "Ülkeye özel para birimi"
+msgstr "Country specific currency"
 
 #: String 287
 msgid "Advertisements per page"
-msgstr "Sayfa başına reklam"
+msgstr "Advertisements per page"
 
 #: String 288
 msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
-msgstr "Bu Sayfa başına görüntülenen kaç reklam kontrol etmektir. Bir dizi limit olarak, bir tamsayı değeri kaydedin."
+msgstr "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
 
 #: String 289
 msgid "Number of ads per page"
-msgstr "Sayfa başına reklam sayısı"
+msgstr "Number of ads per page"
 
 #: String 290
 msgid "Advertisements in RSS"
-msgstr "RSS reklam"
+msgstr "Advertisements in RSS"
 
 #: String 291
 msgid "Number of Ads"
-msgstr "Reklamlar sayısı"
+msgstr "Number of Ads"
 
 #: String 292
 msgid "How many ads are going to appear in the RSS of your site."
-msgstr "Kaç Hakkımızda sitenin RSS görünür olacak."
+msgstr "How many ads are going to appear in the RSS of your site."
 
 #: String 293
 msgid "Advertisements in Map"
-msgstr "Harita Reklamlar"
+msgstr "Advertisements in Map"
 
 #: String 294
 msgid "How many ads are going to appear in the map of your site."
-msgstr "Nasıl birçok reklam sitenizin haritası görünür olacak."
+msgstr "How many ads are going to appear in the map of your site."
 
 #: String 295
 msgid "Number format"
-msgstr "Sayı biçimi"
+msgstr "Number format"
 
 #: String 296
 msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
-msgstr "Sayı biçimi Eğer reklam ile ilgili numaralarını görüntülemek istiyorum nasıl. Daha özel reklam fiyat. Her ülkenin ondalık basamak ile ilgili belirli bir yol var."
+msgstr "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
 
 #: String 297
 msgid "Decimal representation"
-msgstr "Ondalık gösterimi"
+msgstr "Decimal representation"
 
 #: String 298
 msgid "Date format"
-msgstr "Tarih biçimi"
+msgstr "Date format"
 
 #: String 299
 msgid "Each advertisement have a publish date. By selecting format, you can change how it is shown on your website."
-msgstr "Her reklam bir yayınlama tarihi vardır. Biçimi seçerek, bu Web sitesinde gösterilen nasıl değiştirebilirsiniz."
+msgstr "Each advertisement have a publish date. By selecting format, you can change how it is shown on your website."
 
 #: String 300
 msgid "Analytics"
@@ -1204,431 +1192,431 @@ msgstr "Analytics"
 
 #: String 301
 msgid "Allowed image formats"
-msgstr "İzin resim formatları"
+msgstr "Allowed image formats"
 
 #: String 302
 msgid "Set this up to restrict image formats that are being uploaded to your server."
-msgstr "Sunucu yüklenen edilmektedir resim formatları kısıtlamak için bu kadar ayarlayın."
+msgstr "Set this up to restrict image formats that are being uploaded to your server."
 
 #: String 303
 msgid "Max image size"
-msgstr "Max görüntü boyutu"
+msgstr "Max image size"
 
 #: String 304
 msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
-msgstr "Yükleniyor görüntülerin boyutunu kontrol edin. Mega sokması (Mb) maksimum görüntü boyutu ayarlamak için bir tamsayı değeri girin."
+msgstr "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
 
 #: String 305
 msgid "Image size in mega bites(Mb)"
-msgstr "Mega sokması Görüntü boyutu (Mb)"
+msgstr "Image size in mega bites(Mb)"
 
 #: String 306
 msgid "Image height"
-msgstr "Görüntü yüksekliği"
+msgstr "Image height"
 
 #: String 307
 msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
-msgstr "Yükledi her resim yeniden boyutlandırılır. Bu büyük resmin yüksekliğidir. Not: AUTO yüksekliği yeniden boyutlandırma ayarlamak için bu alanı boş bırakabilirsiniz."
+msgstr "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
 
 #: String 308
 msgid "Image height in pixels(px)"
-msgstr "Piksel görüntü yüksekliği (px)"
+msgstr "Image height in pixels(px)"
 
 #: String 309
 msgid "Image width"
-msgstr "Görüntü genişliği"
+msgstr "Image width"
 
 #: String 310
 msgid "Each image is resized when uploaded. This is the width of big image."
-msgstr "Yükledi her resim yeniden boyutlandırılır. Bu büyük resmin genişliği."
+msgstr "Each image is resized when uploaded. This is the width of big image."
 
 #: String 311
 msgid "Image width in pixels(px)"
-msgstr "Piksel görüntü genişliği (piksel)"
+msgstr "Image width in pixels(px)"
 
 #: String 312
 msgid "Thumb height"
-msgstr "Thumb yüksekliği"
+msgstr "Thumb height"
 
 #: String 313
 msgid "Thumb is a small image resized to fit certain elements. This is height of this image."
-msgstr "Thumb bazı unsurları uyacak şekilde yeniden küçük bir görüntüdür. Bu, bu resmin yüksekliğidir."
+msgstr "Thumb is a small image resized to fit certain elements. This is height of this image."
 
 #: String 314
 msgid "Thumb height in pixels(px)"
-msgstr "Piksel Thumb yüksekliği (px)"
+msgstr "Thumb height in pixels(px)"
 
 #: String 315
 msgid "Thumb width"
-msgstr "Başparmak genişliği"
+msgstr "Thumb width"
 
 #: String 316
 msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
-msgstr "Thumb bazı unsurları uyacak şekilde yeniden küçük bir görüntüdür. Bu, görüntünün genişliğidir."
+msgstr "Thumb is a small image resized to fit certain elements. This is width of this image."
 
 #: String 317
 msgid "Thumb width in pixels(px)"
-msgstr "Piksel başparmak genişliği (piksel)"
+msgstr "Thumb width in pixels(px)"
 
 #: String 318
 msgid "Image quality"
-msgstr "Görüntü kalitesi"
+msgstr "Image quality"
 
 #: String 319
 msgid "Choose the quality of the stored images (1-100% of the original)."
-msgstr "Saklanan görüntüleri (orijinal 1-100%) kalitesini seçin."
+msgstr "Choose the quality of the stored images (1-100% of the original)."
 
 #: String 320
 msgid "Image Quality"
-msgstr "Görüntü Kalitesi"
+msgstr "Image Quality"
 
 #: String 321
 msgid "Here you can modify any text you find in your web."
-msgstr "Burada web bulmak herhangi bir metin değiştirebilirsiniz."
+msgstr "Here you can modify any text you find in your web."
 
 #: String 322
 msgid "Original Translation"
-msgstr "Orijinal Çeviri"
+msgstr "Original Translation"
 
 #: String 323
 msgid "Copy all?, Be aware this will replace all your texts."
-msgstr "Tümünü kopyala?, Bu tüm metinleri yerini alacak unutmayın."
+msgstr "Copy all?, Be aware this will replace all your texts."
 
 #: String 324
 msgid "Translate all?, Be aware this will replace all your texts."
-msgstr "Tüm Çevir?, Bu tüm metinleri yerini alacak unutmayın."
+msgstr "Translate all?, Be aware this will replace all your texts."
 
 #: String 325
 msgid "Translation"
-msgstr "Çeviri"
+msgstr "Translation"
 
 #: String 326
 msgid "Translations files available in the system."
-msgstr "Sisteminde mevcut çeviriler dosyaları."
+msgstr "Translations files available in the system."
 
 #: String 327
 msgid "Scan"
-msgstr "Taramak"
+msgstr "Scan"
 
 #: String 328
 msgid "New translation"
-msgstr "Yeni çeviri"
+msgstr "New translation"
 
 #: String 329
 msgid "Language"
-msgstr "Dil"
+msgstr "Language"
 
 #: String 330
 msgid "Active"
-msgstr "Aktif"
+msgstr "Active"
 
 #: String 331
 msgid "Spam Sort"
-msgstr "Spam sırala"
+msgstr "Spam Sort"
 
 #: String 332
 msgid "Unavailable Sort"
-msgstr "Yok sırala"
+msgstr "Unavailable Sort"
 
 #: String 333
 msgid " Unavailable"
-msgstr "Yok"
+msgstr " Unavailable"
 
 #: String 334
 msgid "General configurations are set. Replace input fields with new desired values."
-msgstr "Genel yapılandırmaları ayarlanır. Istediğiniz yeni değerlerle giriş alanları değiştirin."
+msgstr "General configurations are set. Replace input fields with new desired values."
 
 #: String 335
 msgid "Deactivate Featured"
-msgstr "Seçme devre dışı bırakın"
+msgstr "Deactivate Featured"
 
 #: String 336
 msgid "Thanks for using Open Classifieds."
-msgstr "Açık sınıflandırma kullandığınız için teşekkür ederiz."
+msgstr "Thanks for using Open Classifieds."
 
 #: String 337
 msgid "Latest News"
-msgstr "Son Haberler"
+msgstr "Latest News"
 
 #: String 338
 msgid "Contact Us"
-msgstr "İletişim"
+msgstr "Contact Us"
 
 #: String 339
 msgid "User Profile"
-msgstr "Kullanıcı Profili"
+msgstr "User Profile"
 
 #: String 340
 msgid "Created"
-msgstr "Oluşturulma"
+msgstr "Created"
 
 #: String 341
 msgid "Last Login"
-msgstr "Son Giriş"
+msgstr "Last Login"
 
 #: String 342
 msgid " advertisements"
-msgstr "reklam"
+msgstr " advertisements"
 
 #: String 343
 msgid "Not yet published"
-msgstr "Henüz yayınlanmamış"
+msgstr "Not yet published"
 
 #: String 344
 msgid "Remember password"
-msgstr "Şifremi hatırla"
+msgstr "Remember password"
 
 #: String 345
 msgid "Forgot password?"
-msgstr "Şifreni mi unuttun?"
+msgstr "Forgot password?"
 
 #: String 346
 msgid "Remember me"
-msgstr "Beni hatırla"
+msgstr "Remember me"
 
 #: String 347
 msgid "Type your password twice"
-msgstr "Parolanızı iki kez yazın"
+msgstr "Type your password twice"
 
 #: String 348
 msgid "Terms of service"
-msgstr "Hizmet Koşulları"
+msgstr "Terms of service"
 
 #: String 349
 msgid "User account will be created"
-msgstr "Kullanıcı hesabı oluşturulacak"
+msgstr "User account will be created"
 
 #: String 350
 msgid "Advanced Search"
-msgstr "Gelişmiş Arama"
+msgstr "Advanced Search"
 
 #: String 351
 msgid "Advertisement Title"
-msgstr "Reklam Başlık"
+msgstr "Advertisement Title"
 
 #: String 352
 msgid "Slideshow"
-msgstr "Slayt"
+msgstr "Slideshow"
 
 #: String 353
 msgid "Download"
-msgstr "İndir"
+msgstr "Download"
 
 #: String 354
 msgid "Header tool bar gets fixed in the top"
-msgstr "Başlık araç çubuğu üst onarılır"
+msgstr "Header tool bar gets fixed in the top"
 
 #: String 355
 msgid "Yes"
-msgstr "Evet"
+msgstr "Yes"
 
 #: String 356
 msgid "No"
-msgstr "Yok"
+msgstr "No"
 
 #: String 357
 msgid "Display breadcrumb"
-msgstr "Kırıntı Ekran"
+msgstr "Display breadcrumb"
 
 #: String 358
 msgid "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
-msgstr "Sizin Logo URL. 40px Önerilen boyutu 250px x. Hiçbiri için boş bırakın."
+msgstr "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
 
 #: String 359
 msgid "Short description that appears after the site name."
-msgstr "Site adı sonra görünür kısa bir açıklama."
+msgstr "Short description that appears after the site name."
 
 #: String 360
 msgid "Numbers of ads to display in home slider"
-msgstr "Reklam Numaraları ev kaymak görüntülenecek"
+msgstr "Numbers of ads to display in home slider"
 
 #: String 361
 msgid "Where you want the sidebar to appear"
-msgstr "Eğer kenar çubuğu görünmesini istediğiniz yeri"
+msgstr "Where you want the sidebar to appear"
 
 #: String 362
 msgid "Right side"
-msgstr "Sağ taraf"
+msgstr "Right side"
 
 #: String 363
 msgid "Left side"
-msgstr "Sol taraf"
+msgstr "Left side"
 
 #: String 364
 msgid "Menu"
-msgstr "Menü"
+msgstr "Menu"
 
 #: String 365
 msgid "Contact us"
-msgstr "Bize ulaşın"
+msgstr "Contact us"
 
 #: String 366
 msgid "Advanced search"
-msgstr "Gelişmiş arama"
+msgstr "Advanced search"
 
 #: String 367
 msgid "Desktop Version"
-msgstr "Masaüstü Sürüm"
+msgstr "Desktop Version"
 
 #: String 368
 msgid "Public Profile"
-msgstr "Açık Profil"
+msgstr "Public Profile"
 
 #: String 369
 msgid "advertisements"
-msgstr "reklam"
+msgstr "advertisements"
 
 #: String 370
 msgid "Change the main color scheme and style of the theme"
-msgstr "Tema ana renk düzeni ve stilini değiştirme"
+msgstr "Change the main color scheme and style of the theme"
 
 #: String 371
 msgid "Change the header color scheme and style of the theme"
-msgstr "Tema başlığı renk düzeni ve stilini değiştirme"
+msgstr "Change the header color scheme and style of the theme"
 
 #: String 372
 msgid "Change the theme of List Elements"
-msgstr "Listesi Elementlerin temasını değiştirme"
+msgstr "Change the theme of List Elements"
 
 #: String 373
 msgid "Change the theme of Featured Elements"
-msgstr "Seçme Elementlerin temasını değiştirme"
+msgstr "Change the theme of Featured Elements"
 
 #: String 374
 msgid "Installation"
-msgstr "Montaj"
+msgstr "Installation"
 
 #: String 375
 msgid "Requirements"
-msgstr "Gereksinimler"
+msgstr "Requirements"
 
 #: String 376
 msgid "Congratulations"
-msgstr "Tebrikler"
+msgstr "Congratulations"
 
 #: String 377
 msgid "Installation done"
-msgstr "Yükleme tamamlandığında"
+msgstr "Installation done"
 
 #: String 378
 msgid "Please now erase the folder"
-msgstr "Şu anda klasörü silmek"
+msgstr "Please now erase the folder"
 
 #: String 379
 msgid "Go to Your Website"
-msgstr "Sitenizi git"
+msgstr "Go to Your Website"
 
 #: String 380
 msgid "Make a donation"
-msgstr "Bağış yapmak"
+msgstr "Make a donation"
 
 #: String 381
 msgid "We really appreciate it"
-msgstr "Biz gerçekten takdir"
+msgstr "We really appreciate it"
 
 #: String 382
 msgid "Welcome to"
-msgstr "Hoşgeldiniz"
+msgstr "Welcome to"
 
 #: String 383
 msgid "installation"
-msgstr "montaj"
+msgstr "installation"
 
 #: String 384
 msgid "Welcome to the super easy and fast installation"
-msgstr "Süper kolay ve hızlı kurulum Hoşgeldiniz"
+msgstr "Welcome to the super easy and fast installation"
 
 #: String 385
 msgid "If you need any help please check our professional services"
-msgstr "Eğer ihtiyacınız varsa herhangi bir yardım bizim profesyonel hizmetler kontrol edin"
+msgstr "If you need any help please check our professional services"
 
 #: String 386
 msgid "Site Configuration"
-msgstr "Sitesi yapılandırması"
+msgstr "Site Configuration"
 
 #: String 387
 msgid "Site Language"
-msgstr "Site Dilini"
+msgstr "Site Language"
 
 #: String 388
 msgid "Site URL"
-msgstr "Sitesi URL"
+msgstr "Site URL"
 
 #: String 389
 msgid "Time Zone"
-msgstr "Zaman Dilimi"
+msgstr "Time Zone"
 
 #: String 390
 msgid "New Install"
-msgstr "Yeni Kurulum"
+msgstr "New Install"
 
 #: String 391
 msgid "Upgrade System"
-msgstr "Sistem yükseltme"
+msgstr "Upgrade System"
 
 #: String 392
 msgid "Administrator email"
-msgstr "Yönetici e-posta"
+msgstr "Administrator email"
 
 #: String 393
 msgid "Admin Password"
-msgstr "Admin Şifre"
+msgstr "Admin Password"
 
 #: String 394
 msgid "Sample data"
-msgstr "Örnek veri"
+msgstr "Sample data"
 
 #: String 395
 msgid "Creates few sample categories to start with"
-msgstr "Ile başlamak birkaç örnek kategoriler oluşturur"
+msgstr "Creates few sample categories to start with"
 
 #: String 396
 msgid "Hash Key"
-msgstr "Hash Anahtar"
+msgstr "Hash Key"
 
 #: String 397
 msgid "You need the Hash Key to re-install. You can find this value if you lost it at"
-msgstr "Yeniden yüklemek için Hash Key gerekir. Eğer o kayıp varsa bu değeri bulabilirsiniz"
+msgstr "You need the Hash Key to re-install. You can find this value if you lost it at"
 
 #: String 398
 msgid "Database Configuration"
-msgstr "Veritabanı Yapılandırma"
+msgstr "Database Configuration"
 
 #: String 399
 msgid "Allows multiple installations in one database if you give each one a unique prefix"
-msgstr "Her biri benzersiz bir önek verirsen bir veritabanı birden çok yükleme sağlar"
+msgstr "Allows multiple installations in one database if you give each one a unique prefix"
 
 #: String 400
 msgid "Only numbers, letters, and underscores"
-msgstr "Sadece rakamlar, harfler ve alt çizgi"
+msgstr "Only numbers, letters, and underscores"
 
 #: String 401
 msgid "Install"
-msgstr "Kurmak"
+msgstr "Install"
 
 #: String 402
 msgid "Ocacu classifieds community registration"
-msgstr "Ocacu ilanlar topluluk kaydı"
+msgstr "Ocacu classifieds community registration"
 
 #: String 403
 msgid "Terms"
-msgstr "Şartlar"
+msgstr "Terms"
 
 #: String 404
 msgid "Cannot connect to server"
-msgstr "Sunucuya bağlanamıyor"
+msgstr "Cannot connect to server"
 
 #: String 405
 msgid "No database name was given"
-msgstr "Hiçbir veritabanı adı verildi"
+msgstr "No database name was given"
 
 #: String 406
 msgid "Available databases"
-msgstr "Mevcut veritabanları"
+msgstr "Available databases"
 
 #: String 407
 msgid "Invalid query"
-msgstr "Geçersiz sorgu"
+msgstr "Invalid query"
 
 #: String 408
 msgid "Benchmark"
@@ -1636,59 +1624,47 @@ msgstr "Benchmark"
 
 #: String 409
 msgid "Application Execution"
-msgstr "Uygulama Yürütme"
+msgstr "Application Execution"
 
 #: String 410
 msgid "Hello, world"
-msgstr "Merhaba dünya"
+msgstr "Hello, world"
 
 #: String 411
 msgid "Environment"
-msgstr "Çevre"
+msgstr "Environment"
 
 #: String 412
 msgid "Included files"
-msgstr "Dahil dosyalar"
+msgstr "Included files"
 
 #: String 413
 msgid "Loaded extensions"
-msgstr "Yüklü uzantıları"
+msgstr "Loaded extensions"
 
 #: String 414
 msgid "publish new"
-msgstr "Yeni yayınlamak"
+msgstr "نشر جديدة"
 
 #: String 415
 msgid "search"
-msgstr "arama"
+msgstr "search"
 
 #: String 416
 msgid "contact"
-msgstr "temas"
+msgstr "contact"
 
 #: String 417
 msgid "map"
-msgstr "harita"
+msgstr "map"
 
 #: String 418
 msgid "maintenance"
-msgstr "bakım"
-
-#: String 419
-msgid "views"
-msgstr "views"
-
-#: String 420
-msgid "ads"
-msgstr "Hakkımızda"
-
-#: String 421
-msgid "users"
-msgstr "kullanıcılar"
+msgstr "maintenance"
 
 #: String 422
 msgid "# items to display"
-msgstr "Görüntülemek için # öğeleri"
+msgstr "# items to display"
 
 #: String 423
 msgid "RSS"
@@ -1696,83 +1672,71 @@ msgstr "RSS"
 
 #: String 424
 msgid "RSS reader with cache"
-msgstr "Önbellek RSS okuyucu"
+msgstr "RSS reader with cache"
 
 #: String 425
 msgid "Number items to display"
-msgstr "Görüntülemek için sayı öğeleri"
+msgstr "Number items to display"
 
 #: String 426
 msgid "How often we refresh the RSS, in seconds"
-msgstr "Ne kadar sıklıkla saniyede, RSS yenilemek"
+msgstr "How often we refresh the RSS, in seconds"
 
 #: String 427
 msgid "RSS url address"
-msgstr "RSS url adresi"
+msgstr "RSS url address"
 
 #: String 428
 msgid "RSS title displayed"
-msgstr "RSS başlığı görüntülenir"
-
-#: String 429
-msgid "Share"
-msgstr "Pay"
-
-#: String 430
-msgid "Share on social networks."
-msgstr "Sosyal ağlarda paylaşın."
+msgstr "RSS title displayed"
 
 #: String 431
 msgid "Title displayed"
-msgstr "Başlık görüntülenir"
+msgstr "Title displayed"
 
 #: String 432
 msgid "Add latest comments"
-msgstr "En son yorum ekle"
+msgstr "Add latest comments"
 
 #: String 433
 msgid "Comments"
-msgstr "Yorumlar"
-
-#: String 434
-msgid "Number of comments to display"
-msgstr "Görüntülemek için Yorum Sayısı"
+msgstr "Comments"
 
 #: String 435
 msgid "Google Maps with ads"
-msgstr "Reklamlarla Google Maps"
+msgstr "Google Maps with ads"
 
 #: String 436
 msgid "Map title displayed"
-msgstr "Harita başlığı görüntülenir"
+msgstr "Map title displayed"
 
 #: String 437
 msgid "Map height in pixels"
-msgstr "Piksel Harita yüksekliği"
+msgstr "Map height in pixels"
 
 #: String 438
 msgid "Zoom in the map"
-msgstr "Haritayı büyüt"
+msgstr "Zoom in the map"
 
 #: String 439
 msgid "Display categories"
-msgstr "Kategorileri görüntülemek"
+msgstr "Display categories"
 
 #: String 440
 msgid "Categories title displayed"
-msgstr "Kategoriler başlığı görüntülenir"
+msgstr "Categories title displayed"
 
 #: String 441
 msgid "Display Locations"
-msgstr "Mekanlar Ekran"
+msgstr "Display Locations"
 
 #: String 442
 msgid "Locations title displayed"
-msgstr "Mekanlar başlığı görüntülenir"
+msgstr "Locations title displayed"
 
 #: String 443
 msgid "Text"
-msgstr "Metin"
+msgstr "Text"
 
 #: String 444
 msgid "HTML textarea"
@@ -1780,95 +1744,87 @@ msgstr "HTML textarea"
 
 #: String 445
 msgid "Text title displayed"
-msgstr "Yazı başlığı görüntülenir"
+msgstr "Text title displayed"
 
 #: String 446
 msgid "HTML/text content here"
-msgstr "Burada HTML / metin içeriği"
+msgstr "HTML/text content here"
 
 #: String 447
 msgid "Ads reader"
-msgstr "Reklamlar okuyucu"
+msgstr "Ads reader"
 
 #: String 448
 msgid "Type ads to display"
-msgstr "Görüntülemek için Yazım ilanları"
+msgstr "Type ads to display"
 
 #: String 449
 msgid "Popular Ads last month"
-msgstr "Popüler Reklamlar Geçen ay"
-
-#: String 450
-msgid "Number of ads to display"
-msgstr "Görüntülemek için İlan sayısı"
+msgstr "Popular Ads last month"
 
 #: String 451
 msgid "Ads title displayed"
-msgstr "Reklamlar başlığı görüntülenir"
+msgstr "Ads title displayed"
 
 #: String 452
 msgid "Pages"
-msgstr "Sayfa"
+msgstr "Pages"
 
 #: String 453
 msgid "Display CMS pages"
-msgstr "CMS sayfaları görüntülemek"
+msgstr "Display CMS pages"
 
 #: String 454
 msgid "Page title displayed"
-msgstr "Sayfa başlığı görüntülenir"
-
-#: String 455
-msgid "Display site stats"
-msgstr "Site istatistikleri Ekran"
+msgstr "Page title displayed"
 
 #: String 456
 msgid "Submit"
-msgstr "Sunmak"
+msgstr "Submit"
 
 #: String 457
 msgid "Other"
-msgstr "Diğer"
+msgstr "Other"
 
 #: String 458
 msgid "Role"
-msgstr "Rol"
+msgstr "Role"
 
 #: String 459
 msgid "Last modified"
-msgstr "Son değiştirilme"
+msgstr "Last modified"
 
 #: String 460
 msgid "Last login"
-msgstr "Son giriş"
+msgstr "Last login"
 
 #: String 461
 msgid "User"
-msgstr "Kullanıcı"
+msgstr "User"
 
 #: String 462
 msgid "Type"
-msgstr "Tip"
+msgstr "Type"
 
 #: String 463
 msgid "SEO title"
-msgstr "SEO başlık"
+msgstr "SEO title"
 
 #: String 464
 msgid "Ip address"
-msgstr "Ip adresi"
+msgstr "Ip address"
 
 #: String 465
 msgid "Has images"
-msgstr "Görüntüler var"
+msgstr "Has images"
 
 #: String 466
 msgid "Parent"
-msgstr "Ebeveyn"
+msgstr "Parent"
 
 #: String 467
 msgid "Parent deep"
-msgstr "Derin Veli"
+msgstr "Parent deep"
 
 #: String 468
 msgid "Seoname"
@@ -1876,171 +1832,171 @@ msgstr "Seoname"
 
 #: String 469
 msgid "Id"
-msgstr "Kimliği"
+msgstr "Id"
 
 #: String 470
 msgid "Order"
-msgstr "Sipariş"
+msgstr "Order"
 
 #: String 471
 msgid "Info"
-msgstr "Bilgi"
+msgstr "Info"
 
 #: String 472
 msgid "Warning"
-msgstr "Uyarı"
+msgstr "Warning"
 
 #: String 473
 msgid "Error"
-msgstr "Hata"
+msgstr "Error"
 
 #: String 474
 msgid "Success"
-msgstr "Başarı"
+msgstr "Success"
 
 #: String 475
 msgid "New profile has been created. Welcome "
-msgstr "Yeni bir profil oluşturuldu. Karşılama"
+msgstr "New profile has been created. Welcome "
 
 #: String 476
 msgid "Something went wrong with uploading pictures, please check format"
-msgstr "Bir şey yükleme resimleri ile ters gitti, biçimi kontrol edin"
+msgstr "Something went wrong with uploading pictures, please check format"
 
 #: String 477
 msgid "Something went wrong with uploading pictures"
-msgstr "Bir şey yükleme resimleri ile ters gitti"
+msgstr "Something went wrong with uploading pictures"
 
 #: String 478
 msgid "Advertisement is posted but first you need to activate. Please check your email!"
-msgstr "Reklam yayınlanmıştır ama önce etkinleştirmeniz gerekir edilir. E-postanızı kontrol edin!"
+msgstr "Advertisement is posted but first you need to activate. Please check your email!"
 
 #: String 479
 msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
-msgstr "Reklam aldı, ama önce yönetici doğrulamak için ihtiyacı var. Sabrınız için teşekkür ederiz!"
+msgstr "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
 
 #: String 480
 msgid "Advertisement is posted. Congratulations!"
-msgstr "Reklam nakledilir. Tebrikler!"
+msgstr "Advertisement is posted. Congratulations!"
 
 #: String 481
 msgid "Captcha is not correct"
-msgstr "Captcha doğru değil"
+msgstr "Captcha is not correct"
 
 #: String 482
 msgid "We are working on our site, please visit later. Thanks"
-msgstr "Sitemizde üzerinde çalışıyoruz, daha sonra ziyaret edin. Teşekkürler"
+msgstr "We are working on our site, please visit later. Thanks"
 
 #: String 483
 msgid "Latest published"
-msgstr "Son yayınlanan"
+msgstr "Latest published"
 
 #: String 484
 msgid "Email Configuration updated"
-msgstr "E-posta yapılandırma güncel"
+msgstr "Email Configuration updated"
 
 #: String 485
 msgid "General Configuration updated"
-msgstr "Genel Yapılandırma güncel"
+msgstr "General Configuration updated"
 
 #: String 486
 msgid "Payments"
-msgstr "Ödemeler"
+msgstr "Payments"
 
 #: String 487
 msgid "Widget parameter missing"
-msgstr "Widget parametresi eksik"
+msgstr "Widget parameter missing"
 
 #: String 488
 msgid "Saved"
-msgstr "Kaydedilmiş"
+msgstr "Saved"
 
 #: String 489
 msgid "Password is changed"
-msgstr "Şifre değiştirilir"
+msgstr "Password is changed"
 
 #: String 490
 msgid "Nothing is provided"
-msgstr "Hiçbir şey sağlanmaktadır"
+msgstr "Nothing is provided"
 
 #: String 491
 msgid "Passwords do not match"
-msgstr "Şifreler eşleşmiyor"
+msgstr "Passwords do not match"
 
 #: String 492
 msgid "New password is invalid, or they do not match! Please try again."
-msgstr "Yeni parola geçersiz, ya da eşleşmiyor! Lütfen tekrar deneyiniz."
+msgstr "New password is invalid, or they do not match! Please try again."
 
 #: String 493
 msgid "You have successfuly changed your data"
-msgstr "Sen başarıyla Verilerinizi değişti"
+msgstr "You have successfuly changed your data"
 
 #: String 494
 msgid "My Advertisement page "
-msgstr "Benim Reklam sayfa"
+msgstr "My Advertisement page "
 
 #: String 495
 msgid "This is not your advertisement."
-msgstr "Bu reklam değil."
+msgstr "This is not your advertisement."
 
 #: String 496
 msgid "Advertisement is deactivated"
-msgstr "Reklam devre dışı"
+msgstr "Advertisement is deactivated"
 
 #: String 497
 msgid "Advertisement is active and published"
-msgstr "Reklam aktif ve yayınlanmıştır"
+msgstr "Advertisement is active and published"
 
 #: String 498
 msgid "Edit advertisement"
-msgstr "Reklam Düzenle"
+msgstr "Edit advertisement"
 
 #: String 499
 msgid "Advertisement is updated!"
-msgstr "Reklam güncellenir!"
+msgstr "Advertisement is updated!"
 
 #: String 500
 msgid "Advertisement is updated"
-msgstr "Reklam güncellenir"
+msgstr "Advertisement is updated"
 
 #: String 501
 msgid "You dont have permission to access this link"
-msgstr "Bu bağlantıyı erişim izniniz yok"
+msgstr "You dont have permission to access this link"
 
 #: String 502
 msgid "List"
-msgstr "Liste"
+msgstr "List"
 
 #: String 503
 msgid "Edit Translation"
-msgstr "Çeviri Düzenleme"
+msgstr "Edit Translation"
 
 #: String 504
 msgid "Language saved"
-msgstr "Dil kaydedilir"
+msgstr "Language saved"
 
 #: String 505
 msgid "Error on mail delivery, not sent"
-msgstr "Posta teslim hatası, gönderilmez"
+msgstr "Error on mail delivery, not sent"
 
 #: String 506
 msgid "Email sent to all the users"
-msgstr "E-posta tüm kullanıcılara gönderilir"
+msgstr "Email sent to all the users"
 
 #: String 507
 msgid "Mail not sent"
-msgstr "Posta gönderilmez"
+msgstr "Mail not sent"
 
 #: String 508
 msgid "Theme configuration updated"
-msgstr "Tema seçenekleri güncellendi"
+msgstr "Theme configuration updated"
 
 #: String 509
 msgid "Appearance configuration updated"
-msgstr "Görünüm seçenekleri güncellendi"
+msgstr "Appearance configuration updated"
 
 #: String 510
 msgid "Mobile Theme updated"
-msgstr "Mobil Tema güncel"
+msgstr "Mobile Theme updated"
 
 #: String 511
 msgid "Optimize DB"
@@ -2048,181 +2004,181 @@ msgstr "Optimize DB"
 
 #: String 512
 msgid "Database Optimized"
-msgstr "Veritabanı Optimize"
+msgstr "Database Optimized"
 
 #: String 513
 msgid "All cache deleted"
-msgstr "Tüm önbellek silinir"
+msgstr "All cache deleted"
 
 #: String 514
 msgid "Deleted expired cache"
-msgstr "Silinmiş süresi dolmuş önbellek"
+msgstr "Deleted expired cache"
 
 #: String 515
 msgid "You are not using latest version of OC, please update."
-msgstr "Sen OC en son sürümünü kullanmıyorsanız, güncelleyin."
+msgstr "You are not using latest version of OC, please update."
 
 #: String 516
 msgid "System logs"
-msgstr "Sistem günlükleri"
+msgstr "System logs"
 
 #: String 517
 msgid "Sitemap Configuration updated"
-msgstr "Site Haritası Yapılandırma güncel"
+msgstr "Sitemap Configuration updated"
 
 #: String 518
 msgid "Open Classifieds migration"
-msgstr "Açık sınıflandırma göç"
+msgstr "Open Classifieds migration"
 
 #: String 519
 msgid "Database cleaned"
-msgstr "Veritabanı temizlenir"
+msgstr "Database cleaned"
 
 #: String 520
 msgid "Review database connection parameters"
-msgstr "İnceleme veritabanı bağlantı parametrelerini"
+msgstr "Review database connection parameters"
 
 #: String 521
 msgid "Wrong email or password"
-msgstr "Yanlış e-posta veya şifre"
+msgstr "Wrong email or password"
 
 #: String 522
 msgid "Email to recover password sent"
-msgstr "Şifrenizi gönderilen kurtarmak için e-posta"
+msgstr "Email to recover password sent"
 
 #: String 523
 msgid "User not in database"
-msgstr "Değil veritabanında Kullanıcı"
+msgstr "User not in database"
 
 #: String 524
 msgid "Email required"
-msgstr "Gerekli E-posta"
+msgstr "Email required"
 
 #: String 525
 msgid "User already exists"
-msgstr "Kullanıcı zaten var"
+msgstr "User already exists"
 
 #: String 526
 msgid "Welcome!"
-msgstr "Hoşgeldiniz!"
+msgstr "Welcome!"
 
 #: String 527
 msgid "Register new user"
-msgstr "Yeni kullanıcı Kayıt"
+msgstr "Register new user"
 
 #: String 528
 msgid "You do not have any published Advertisement"
-msgstr "Herhangi bir yayınlanan Reklam yok"
+msgstr "You do not have any published Advertisement"
 
 #: String 529
 msgid "You do not have any advertisements waiting to be published"
-msgstr "Sen yayınlanacak bekleyen herhangi bir reklam yok"
+msgstr "You do not have any advertisements waiting to be published"
 
 #: String 530
 msgid "Warning, something went wrong while deleting"
-msgstr "Silerken uyarı, bir şeyler ters gitti"
+msgstr "Warning, something went wrong while deleting"
 
 #: String 531
 msgid "Advertisement is deleted"
-msgstr "Reklam silinir"
+msgstr "Advertisement is deleted"
 
 #: String 532
 msgid "Warning, Advertisement is already marked as spam"
-msgstr "Uyarı, Reklam zaten spam olarak işaretlenmiş"
+msgstr "Warning, Advertisement is already marked as spam"
 
 #: String 533
 msgid "Advertisement is marked as spam"
-msgstr "Reklam spam olarak işaretlenmiş"
+msgstr "Advertisement is marked as spam"
 
 #: String 534
 msgid "Advertisement is featured"
-msgstr "Reklam özellikli"
+msgstr "Advertisement is featured"
 
 #: String 535
 msgid "Location deleted"
-msgstr "Yer silindi"
+msgstr "Location deleted"
 
 #: String 536
 msgid "Location not deleted"
-msgstr "Yer silinmez"
+msgstr "Location not deleted"
 
 #: String 537
 msgid "Category deleted"
-msgstr "Kategori silindi"
+msgstr "Category deleted"
 
 #: String 538
 msgid "Category not deleted"
-msgstr "Kategori silinmez"
+msgstr "Category not deleted"
 
 #: String 539
 msgid "Your message has been sent"
-msgstr "Mesajınız gönderildi"
+msgstr "Your message has been sent"
 
 #: String 540
 msgid "Message not sent"
-msgstr "Mesaj gönderilmedi"
+msgstr "Message not sent"
 
 #: String 541
 msgid "Check the form for errors"
-msgstr "Hatalar için formu kontrol edin"
+msgstr "Check the form for errors"
 
 #: String 542
 msgid "You made some mistake"
-msgstr "Bazı hata yaptı"
+msgstr "You made some mistake"
 
 #: String 543
 msgid "Advertisement to top"
-msgstr "Üstüne Reklam"
+msgstr "Advertisement to top"
 
 #: String 544
 msgid "Advertisement to featured"
-msgstr "Özellikli oynandı"
+msgstr "Advertisement to featured"
 
 #: String 545
 msgid " category"
-msgstr "kategori"
+msgstr " category"
 
 #: String 546
 msgid "Order could not be loaded"
-msgstr "Satın yüklenemedi"
+msgstr "Order could not be loaded"
 
 #: String 547
 msgid "Page "
-msgstr "Sayfa"
+msgstr "Page "
 
 #: String 548
 msgid "Your advertisement is successfully activated! Thank you!"
-msgstr "Reklamınız başarıyla devreye girer! Teşekkür ederim!"
+msgstr "Your advertisement is successfully activated! Thank you!"
 
 #: String 549
 msgid "We did not find any advertisements for your search."
-msgstr "Biz Arama için herhangi bir reklam bulamadık."
+msgstr "We did not find any advertisements for your search."
 
 #: String 550
 msgid "No sitemap generated"
-msgstr "Oluşturulan yok site haritası"
+msgstr "No sitemap generated"
 
 #: String 551
 msgid "You are in maintenance mode, only you can see the website"
-msgstr "Bakım modunda olan, sadece web sitesi görebilirsiniz"
+msgstr "You are in maintenance mode, only you can see the website"
 
 #: String 552
 msgid "Item created"
-msgstr "Madde oluşturulan"
+msgstr "Item created"
 
 #: String 553
 msgid "Check form for errors"
-msgstr "Hataları formu kontrol edin"
+msgstr "Check form for errors"
 
 #: String 554
 msgid "Item updated"
-msgstr "Madde güncel"
+msgstr "Item updated"
 
 #: String 555
 msgid "Access not allowed"
-msgstr "Izin Erişimine"
+msgstr "Access not allowed"
 
 #: String 556
 msgid "Some errors in the form"
-msgstr "Şeklinde bazı hatalar"
+msgstr "Some errors in the form"
 
