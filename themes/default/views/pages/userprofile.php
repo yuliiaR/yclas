@@ -6,9 +6,68 @@
 <div class="page-header">
 	<article class="list well clearfix">
 		<h3><?=$user->name?></h3>
-		<p><b><?=__('Email')?>: </b><?= $user->email?></p>
 		<p><b><?=__('Created')?>: </b><?= Date::format($user->created, core::config('general.date_format')) ?></p>
 		<p><b><?=__('Last Login')?>: </b><?= Date::format($user->last_login, core::config('general.date_format'))?></p>
+
+		<!-- Popup contact form -->
+		
+			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></button>
+			<div id="contact-modal" class="modal hide fade">
+	        	<div class="modal-header">
+	         		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+					<h3><?=__('Contact')?></h3>
+	        	</div>
+	        
+	            <div class="modal-body">
+					
+						<?=Form::errors()?>
+						
+						<?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact', 'id'=>$user->id_user)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
+						<fieldset>
+							<div class="control-group">
+								<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
+								<div class="controls ">
+									<?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => '', 'id' => 'name', 'required'))?>
+								</div>
+							</div>
+							<div class="control-group">
+								
+								<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
+								<div class="controls ">
+									<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => '', 'id' => 'email', 'type'=>'email','required'))?>
+								</div>
+							</div>
+							<div class="control-group">
+								
+								<?= FORM::label('subject', __('Subject'), array('class'=>'control-label', 'for'=>'subject'))?>
+								<div class="controls ">
+									<?= FORM::input('subject', "", array('placeholder' => __('Subject'), 'class' => '', 'id' => 'subject'))?>
+								</div>
+							</div>
+							<div class="control-group">
+								<?= FORM::label('message', __('Message'), array('class'=>'control-label', 'for'=>'message'))?>
+								<div class="controls">
+									<?= FORM::textarea('message', "", array('class'=>'', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>	
+									</div>
+							</div>
+							
+							<?if (core::config('advertisement.captcha') != FALSE):?>
+							<div class="control-group">
+								<div class="controls">
+									<?=__('Captcha')?>*:<br />
+									<?=captcha::image_tag('contact')?><br />
+									<?= FORM::input('captcha', "", array('class' => '', 'id' => 'captcha', 'required'))?>
+								</div>
+							</div>
+							<?endif?>
+	  						
+	  						<div class="modal-footer">	
+								<?= FORM::button('submit', 'Contact Us', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
+							</div>
+						</fieldset>
+						<?= FORM::close()?>
+	    		</div>
+			</div>
 	</article>
 </div>
 <div class="page-header">

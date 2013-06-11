@@ -68,7 +68,7 @@
 				
 					<?=Form::errors()?>
 					
-					<?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'user_contact', 'id'=>$ad->id_ad)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
+					<?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact', 'id'=>$ad->id_ad)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
 					<fieldset>
 						<div class="control-group">
 							<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
@@ -108,7 +108,7 @@
 						<?endif?>
   						
   						<div class="modal-footer">	
-							<?= FORM::button('submit', 'Contact Us', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'user_contact' , 'id'=>$ad->id_ad))))?>
+							<?= FORM::button('submit', 'Contact Us', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$ad->id_ad))))?>
 						</div>
 					</fieldset>
 					<?= FORM::close()?>

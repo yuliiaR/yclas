@@ -150,8 +150,8 @@ class Email {
             //adding extra replaces
             $replace+= array('[SITE.NAME]'      =>  core::config('general.site_name'),
                              '[SITE.URL]'       =>  core::config('general.base_url'),
-                             '[USER.NAME]'      =>  $to,
-                             '[USER.EMAIL]'     =>  $to_name);
+                             '[USER.NAME]'      =>  $to_name,
+                             '[USER.EMAIL]'     =>  $to);
 
             $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
             $body    = str_replace(array_keys($replace), array_values($replace), $email->description);

@@ -92,4 +92,39 @@ class Controller_Contact extends Controller {
 	
 	}
 
+    //email message generating, for single ad. Client -> owner  
+    public function action_userprofile_contact()
+    {   
+        $user = new Model_User($this->request->param('id'));
+
+        //message to user
+        if($user->loaded() AND $this->request->post() )
+        {
+
+            if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
+            { 
+                $ret = $user->email('userprofile.contact',array('[EMAIL.BODY]'     =>core::post('message'),
+                                                                '[EMAIL.SENDER]'   =>core::post('name'),
+                                                                '[EMAIL.SUBJECT]'   =>core::post('subject'),
+                                                                '[EMAIL.FROM]'     =>core::post('email')),core::post('email'),core::post('name'));
+
+                //if succesfully sent
+                if ($ret)
+                {
+                    Alert::set(Alert::SUCCESS, __('Your message has been sent'));
+                }
+                else
+                    Alert::set(Alert::ERROR, __('Message not sent'));
+
+                
+                    Request::current()->redirect(Route::url('profile',array('seoname'=>$user->seoname)));
+            }
+            else
+            {
+                Alert::set(Alert::ERROR, __('You made some mistake'));
+            }
+        }
+    
+    }
+
 }
