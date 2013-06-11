@@ -19,7 +19,7 @@
 </div>
 
 <div class="well">
-<form action="/<?=Request::current()->uri()?>" method="post" class="form-horizontal"> 
+<form action="<?=URL::base()?><?=Request::current()->uri()?>" method="post" class="form-horizontal"> 
     <fieldset>
         <?foreach ($options as $field => $attributes):?>
             <div class="control-group">
@@ -27,7 +27,7 @@
             </div>
         <?endforeach?>
 		<div class="form-actions">
-			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary'))?>
+			<?= FORM::button('submit', __('Update'), array('type'=>'submit', 'class'=>'btn-small btn-primary'))?>
 		</div>
 	</fieldset>	
 </form>
