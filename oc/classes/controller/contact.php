@@ -94,7 +94,7 @@ class Controller_Contact extends Controller {
 
     //email message generating, for single ad. Client -> owner  
     public function action_userprofile_contact()
-    {   
+    {
         $user = new Model_User($this->request->param('id'));
 
         //message to user

@@ -112,18 +112,30 @@
 					rel"tooltip" title="<?=__('Update')?>">
 					<i class="icon-edit icon-white"></i>
 				</a>
+				<?if($ad->status != Model_Ad::STATUS_SPAM):?>
 				<a class="btn btn-warning" 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Spam?')?>');"
 					rel"tooltip" title="<?=__('Spam')?>">
 					<i class="icon-fire icon-white"></i>
 				</a>
+				<?endif?>
+				<?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
 				<a class="btn btn-warning" 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Deactivate?')?>');"
 					rel"tooltip" title="<?=__('Deactivate')?>">
 					<i class="icon-remove icon-white"></i>
 				</a>
+				<?endif?>
+				<?if($ad->status != Model_Ad::STATUS_SPAM OR $ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+				<a class="btn btn-success" 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad))?>" 
+					onclick="return confirm('<?=__('Activate?')?>');"
+					rel"tooltip" title="<?=__('Activate')?>">
+					<i class="icon-ok-sign icon-white"></i>
+				</a>
+				<?endif?>
 				<a class="btn btn-danger index-delete" 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Delete?')?>');"

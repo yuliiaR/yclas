@@ -10,7 +10,6 @@
 		<p><b><?=__('Last Login')?>: </b><?= Date::format($user->last_login, core::config('general.date_format'))?></p>
 
 		<!-- Popup contact form -->
-		
 			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></button>
 			<div id="contact-modal" class="modal hide fade">
 	        	<div class="modal-header">
@@ -75,18 +74,20 @@
 
 	<?if($profile_ads!==NULL):?>
 		<?foreach($profile_ads as $ads):?>
+		<?if($ads->status != Model_Ad::STATUS_SPAM AND 
+			 $ads->status != Model_Ad::STATUS_UNAVAILABLE AND 
+			 $ads->status != Model_Ad::STATUS_NOPUBLISHED):?>
+			 
 		<?if($ads->featured >= Date::unix2mysql(time())):?>
 	    	<article class="list well clearfix featured">
 	    <?else:?>
 		<article class="list well clearfix">
 		<?endif?>
+		
 			<h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category,'seotitle'=>$ads->seotitle))?>"><?=$ads->title?></a></h4>
 			<p><strong>Description: </strong><?=Text::removebbcode($ads->description)?><p>
-		<?if($ads->published != NULL):?>
 			<p><b><?=__('Publish Date');?>:</b> <?= Date::format($ads->published, core::config('general.date_format'))?><p>
-		<?else:?>
-			<p><b><?=__('Publish Date');?>:</b> <?=__('Not yet published')?><p>
-		<?endif?>
+		
 
 		<?$visitor = Auth::instance()->get_user()?>
 		
@@ -108,6 +109,7 @@
 			<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?=__("Edit");?></a> 
 		<?endif?>
 		</article>
+		<?endif?>
 		<?endforeach?>
 	<?endif?>
 </div>

@@ -140,22 +140,7 @@ class Controller_New extends Controller
 									->limit(1)
 									->find();
 
-							// if loaded, he exists but he's not logged in
-							// send him email for ad confirmation to ensure he is the one that created this ad
-							if ($user->loaded())
-							{  
-								// Send user email to inform him that new ad has been created,
-								// with a link to deactivate if this ad, if he is not the one that created.
-   
-									//we get the QL, and force the regen of token for security
-			                    	$url_cont = $user->ql('contact', array(),TRUE);
-			                    	$url_ad = $user->ql('ad', array('category'=>$data['cat'],
-			                    									'seotitle'=>$seotitle), TRUE);
-
-			                    	$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
-			                    											   '[URL.AD]'		=>$url_ad));
-							}
-							else
+							if(!$user->loaded())
 							{ 
 								$new_password_hash = Auth::instance()->hash_password('password'); 
 								$user->email 	= $email;
@@ -188,15 +173,6 @@ class Controller_New extends Controller
 								}
 							}
 								$usr = $data['user']->id_user;
-
-								// CONFIRMATION EMAIL SENT UPON CREATING NEW AD (for non recognized user)
-								//we get the QL, and force the regen of token for security
-			                	$url_cont = $user->ql('contact', array(),TRUE);
-			                	$url_ad = $user->ql('ad', array('category'=>$data['cat'],
-			                									'seotitle'=>$seotitle), TRUE);
-
-			                	$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
-			                											   '[URL.AD]'		=>$url_ad)); 
 						}
 					}
 					else
@@ -242,7 +218,7 @@ class Controller_New extends Controller
 
                     	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql));
 					}
-					else if($moderation == Model_Ad::EMAIL_MODERATION)
+					else if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::MODERATION_ON)
 					{
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
@@ -250,7 +226,16 @@ class Controller_New extends Controller
                                                           	  'id'		  => $new_ad->id_ad),TRUE);
 
                     	$ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql));
-					}  
+					}
+					else if($moderation == Model_Ad::POST_DIRECTLY)
+					{
+						$url_cont = $user->ql('contact', array(),TRUE);
+						$url_ad = $user->ql('ad', array('category'=>$data['cat'],
+			                									'seotitle'=>$seotitle), TRUE);
+
+						$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
+			                										'[URL.AD]'		=>$url_ad)); 
+					}	
 				}
 				catch (ORM_Validation_Exception $e)
 				{
@@ -332,7 +317,7 @@ class Controller_New extends Controller
 					Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
 					$this->request->redirect(Route::url('default'));
 				}
-				else if ($moderation == Model_Ad::EMAIL_MODERATION)
+				else if ($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::MODERATION_ON)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
 					$this->request->redirect(Route::url('default'));

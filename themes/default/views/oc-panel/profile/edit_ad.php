@@ -73,7 +73,8 @@
 					<?= FORM::select('category', $_val_category, $ad->id_category, array('id'=>'category','class'=>'', 'required'));?>
 					</div>
 				</div>
-				<?if(core::config('advertisement.location') != FALSE):?>
+				<?if(core::config('advertisement.location') !== FALSE):?>
+				<?if(count($location) > 1):?>
 				<div class="control-group">
 					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
 					<div class="controls">
@@ -84,6 +85,7 @@
 					<?= FORM::select('location', $_val_location, $ad->id_location, array('id'=>'location', 'class'=>'', 'required'));?>
 					</div>
 				</div>
+				<?endif?>
 				<?endif?>
 				<div class="control-group">
 					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>

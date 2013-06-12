@@ -180,8 +180,9 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 			if ($deact_ad->loaded())
 			{
-				if(Auth::instance()->get_user()->id_user !== $deact_ad->id_user 
-                    || Auth::instance()->get_user()->id_role !== 10)
+				if(Auth::instance()->get_user()->id_user !== $deact_ad->id_user OR 
+					(Auth::instance()->get_user()->id_role !== Model_Role::ROLE_ADMIN AND Auth::instance()->get_user()->id_user == 1))
+
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
                     Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
@@ -231,8 +232,8 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 			if ($active_ad->loaded())
 			{
-                if(Auth::instance()->get_user()->id_user !== $active_ad->id_user 
-                    || Auth::instance()->get_user()->id_role !== 10)
+				if(Auth::instance()->get_user()->id_user !== $active_ad->id_user OR 
+					(Auth::instance()->get_user()->id_role !== Model_Role::ROLE_ADMIN AND Auth::instance()->get_user()->id_user == 1))
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
                     Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
