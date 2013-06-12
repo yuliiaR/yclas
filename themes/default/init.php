@@ -3,7 +3,7 @@
   * Theme Name: Ocean Free
   * Description: Clean free theme that includes full admin. It has publicity. Do not delete this theme, all the views depend in this theme.
   * Tags: HTML5, Admin, Free
-  * Version: 1.2
+  * Version: 1.3
   * Author: Chema <chema@garridodiaz.com>
   * License: GPL v3
   */
