@@ -106,9 +106,10 @@ class Controller_Payment_Paypal extends Controller{
 
 		$order_id = $this->request->param('id');
 
+
 		$order = new Model_Order();
+
         $order->where('id_order','=',$order_id)
-            ->where('id_user','=',Auth::instance()->get_user()->id_user)
             ->where('status','=',Model_Order::STATUS_CREATED)
             ->limit(1)->find();
 

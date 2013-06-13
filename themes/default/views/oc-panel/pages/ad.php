@@ -11,13 +11,10 @@
 <a class="btn btn-inverse" type="submit" value="unavailable" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index?define='.Model_Ad::STATUS_UNAVAILABLE))?>" rel"tooltip" title="<?=__('Unavailable Sort')?>">
 	<i class=" icon-exclamation-sign icon-white"></i><?=__(' Unavailable')?>
 </a>
+<a class="btn btn-info" type="submit" value="unconfirmed" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index?define='.Model_Ad::STATUS_UNCONFIRMED))?>" rel"tooltip" title="<?=__('Unconfirmed Sort')?>">
+	<i class=" icon-plane icon-white"></i><?=__(' Unconfirmed')?>
+</a>
 
-
-<div id="advise" class="well advise clearfix">
-	<p class="text-info">
-        <?=__('General configurations are set. Replace input fields with new desired values.')?>.
-    </p>
-</div>
 <table class="table table-bordered">
 	<tr>
 		<th>
@@ -58,7 +55,6 @@
 			    rel"tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
 				<i class="icon-bookmark icon-white"></i>
 			</a>
-			
 		</th>
 		<?endif?>
 	</tr>
@@ -103,6 +99,8 @@
 				<td><?=__('Spam')?></td>
 	    	<? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
 				<td><?=__('Unavailable')?></td>
+			<? elseif($ad->status == Model_Ad::STATUS_UNCONFIRMED):?>
+				<td><?=__('Unconfirmed')?></td>
 			<?endif?>
 	    	
 	    	<td><?= substr($ad->created, 0, 11)?></td>
@@ -128,7 +126,9 @@
 					<i class="icon-remove icon-white"></i>
 				</a>
 				<?endif?>
-				<?if($ad->status != Model_Ad::STATUS_SPAM OR $ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+				<?if(($ad->status != Model_Ad::STATUS_SPAM OR 
+					  $ad->status != Model_Ad::STATUS_UNAVAILABLE OR $ad->status != Model_Ad::STATUS_UNCONFIRMED) 
+					  AND $ad->status != Model_Ad::STATUS_PUBLISHED ):?>
 				<a class="btn btn-success" 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Activate?')?>');"

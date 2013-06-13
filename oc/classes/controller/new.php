@@ -184,7 +184,14 @@ class Controller_New extends Controller
 
 					// SAVE AD
 					$new_ad->id_user 		= $usr; // after handling user
-					$new_ad->save();
+					
+					if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRAMTION)
+					{
+						$new_ad->status = Model_Ad::STATUS_UNCONFIRMED;
+						$new_ad->save();
+					}
+					else
+						$new_ad->save();
 	
 					// if moderation is off update db field with time of creation 
 					if($published)
@@ -209,7 +216,7 @@ class Controller_New extends Controller
 
 
 					// after successful posting send them email depending on moderation
-					if($moderation == Model_Ad::EMAIL_CONFIRAMTION)
+					if($moderation == Model_Ad::EMAIL_CONFIRAMTION OR $moderation == Model_Ad::EMAIL_MODERATION)
 					{
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
@@ -218,7 +225,7 @@ class Controller_New extends Controller
 
                     	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql));
 					}
-					else if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::MODERATION_ON)
+					else if($moderation == Model_Ad::MODERATION_ON)
 					{
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
@@ -231,7 +238,7 @@ class Controller_New extends Controller
 					{
 						$url_cont = $user->ql('contact', array(),TRUE);
 						$url_ad = $user->ql('ad', array('category'=>$data['cat'],
-			                									'seotitle'=>$seotitle), TRUE);
+			                							'seotitle'=>$seotitle), TRUE);
 
 						$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
 			                										'[URL.AD]'		=>$url_ad)); 
@@ -312,12 +319,12 @@ class Controller_New extends Controller
 					// redirect to payment
         			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
 				}
-				else if ($moderation == Model_Ad::EMAIL_CONFIRAMTION)
+				else if ($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRAMTION)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
 					$this->request->redirect(Route::url('default'));
 				}
-				else if ($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::MODERATION_ON)
+				else if ($moderation == Model_Ad::MODERATION_ON)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
 					$this->request->redirect(Route::url('default'));

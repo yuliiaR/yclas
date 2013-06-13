@@ -29,6 +29,10 @@ class Controller_Panel_Ad extends Auth_Controller {
 			{
 				$ads = $ads->where('status', '=', Model_Ad::STATUS_UNAVAILABLE); // display UNAVAILABLE by overwriting query	
 			}
+			elseif($this->request->query('define') == Model_Ad::STATUS_UNCONFIRMED)
+			{
+				$ads = $ads->where('status', '=', Model_Ad::STATUS_UNCONFIRMED); // display UNCONFIRMED (email activated ads) by overwriting query
+			}
 					
 		}
 		else $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
@@ -81,7 +85,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 		}
 		else
 		{
-			Alert::set(Alert::INFO, __('You do not have any published Advertisement'));
 			$this->template->content = View::factory('oc-panel/pages/ad', array('ads' => NULL));
 		}		
 	}
@@ -251,7 +254,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					else
 					{				
 						Alert::set(Alert::ALERT, __('Warning, Advertisement is already marked as spam'));
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.Model_Ad::STATUS_SPAM)));
 					} 
 				}
 				else
@@ -262,7 +265,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is marked as spam'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.Model_Ad::STATUS_SPAM)));
 	}
 
 
@@ -301,7 +304,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					else
 					{				
 						Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.Model_Ad::STATUS_UNAVAILABLE)));
 					} 
 				}
 				else
@@ -312,7 +315,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.Model_Ad::STATUS_UNAVAILABLE)));
 	}
 
 	/**
@@ -351,7 +354,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					else
 					{				
 						Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'active'"));
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 					} 
 				}
 				else
@@ -368,7 +371,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			Sitemap::generate();
 
 		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 	}
 
 	public function action_featured()

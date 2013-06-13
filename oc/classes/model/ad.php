@@ -35,8 +35,9 @@ class Model_Ad extends ORM {
     /**
      * status constants
      */
-    const STATUS_NOPUBLISHED = 0; //first status of the item, not published
+    const STATUS_NOPUBLISHED = 0; //first status of the item, not published. This status send ad to moderation always. Until it gets his status changed 
     const STATUS_PUBLISHED   = 1; // ad it's available and published
+    const STATUS_UNCONFIRMED = 20; // this status is for advertisements that need to be confirmed by email,
     const STATUS_SPAM        = 30; // mark as spam
     const STATUS_UNAVAILABLE = 50; // item unavailable but previously was
     

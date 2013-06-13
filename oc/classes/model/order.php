@@ -52,7 +52,7 @@ class Model_Order extends ORM {
      * @param int       $id_user  [unique indentifier of user] 
      */
     public function confirm_payment($id_order, $moderation)
-    {
+    { 
         $orders = new self;
 
         $orders->where('id_order','=',$id_order)
@@ -65,7 +65,8 @@ class Model_Order extends ORM {
         $product_find = $product_find->where('id_ad', '=', $id_ad)->limit(1)->find();
         $categ = new Model_Category($product_find->id_category);
 
-        
+        $user = new Model_User($orders->id_user);
+
         // update orders
         if($orders->loaded())
         {
@@ -90,6 +91,15 @@ class Model_Order extends ORM {
 
                 try {
                     $product_find->save();
+
+                    //we get the QL, and force the regen of token for security
+                    $url_cont = $user->ql('contact', array(),TRUE);
+                    $url_ad = $user->ql('ad', array('category'=>$product_find->id_category,
+                                                    'seotitle'=>$product_find->seotitle), TRUE);
+
+                    $ret = $user->email('ads.user_check',array('[URL.CONTACT]'  =>$url_cont,
+                                                                '[URL.AD]'      =>$url_ad));
+
                 } catch (Exception $e) {
                     echo $e;
                 }
@@ -100,7 +110,14 @@ class Model_Order extends ORM {
                 
                 try 
                 {
-                    $product_find->save();      
+                    $product_find->save(); 
+
+                    //we get the QL, and force the regen of token for security
+                    $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
+                                                          'action'    => 'update',
+                                                          'id'        => $orders->id_ad),TRUE);
+
+                    $ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql));     
                 } catch (Exception $e) {
                    
                 }   
@@ -111,6 +128,7 @@ class Model_Order extends ORM {
             $product_find->published = Date::unix2mysql(time());
             try {
                 $product_find->save();
+
             } catch (Exception $e) {
                 echo $e;
             }

@@ -384,6 +384,22 @@ class Controller_Ad extends Controller {
 					throw new HTTP_Exception_500($e->getMessage());
 				}
 			}
+			if(core::config('general.moderation') == 4)
+			{
+
+				$advert->status = 0; // status active
+
+				try 
+				{
+					$advert->save();
+					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
+					$this->request->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
+				} 
+				catch (Exception $e) 
+				{
+					throw new HTTP_Exception_500($e->getMessage());
+				}
+			}
 		}
 	}
 
