@@ -43,7 +43,7 @@
 		<?endif?>
 		<div class="control-group">
 			<div class="controls">
-				<?= FORM::button('submit', 'Contact Us', array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?>
+				<?= FORM::button('submit', __('Contact Us'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?>
 			</div>
 			<br class="clear">
 		</div>
