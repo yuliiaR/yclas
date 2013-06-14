@@ -51,6 +51,8 @@
 				<td><?=__('Spam')?></td>
 	    	<? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
 				<td><?=__('Unavailable')?></td>
+			<? elseif($ad->status == Model_Ad::STATUS_UNCONFIRMED):?>
+				<td><?=__('Unconfirmed')?></td>
 			<?endif?>
 	    	
 	    	<td><?= substr($ad->created, 0, 11)?></td>
