@@ -41,6 +41,7 @@ class Controller_Panel_Widget extends Auth_Controller {
         {
             //deleting the fragment cache...a bit ugly but works.
             View::delete_fragment('sidebar_front');
+            View::delete_fragment('footer_front');
 
             //get place holder name
             $placeholder    = core::post('placeholder');
@@ -122,9 +123,11 @@ class Controller_Panel_Widget extends Auth_Controller {
     {
         //deleting the fragment cache...a bit ugly but works.
         View::delete_fragment('sidebar_front');
+        View::delete_fragment('footer_front');
 
         $this->auto_render = FALSE;
         $this->template = View::factory('js');
+
 
         DB::delete('config')->where('group_name','=','placeholder')->execute();
 
