@@ -3,8 +3,8 @@
   '2.0.2' => 
   array (
     'codename' => 'Reoc',
-    'released' => '2013-06-xx',
-    'download' => 'http://open-classifieds.com/2013/06/xx/open-classifieds-2-0-2/ ',
+    'released' => '2013-06-14',
+    'download' => 'http://open-classifieds.com/2013/06/14/open-classifieds-2-0-2/ ',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.0.2',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=7&state=closed',
   ),

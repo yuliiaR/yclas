@@ -39,6 +39,9 @@ class Controller_Panel_Widget extends Auth_Controller {
         // save only changed values
         if($this->request->post())
         {
+            //deleting the fragment cache...a bit ugly but works.
+            View::delete_fragment('sidebar_front');
+
             //get place holder name
             $placeholder    = core::post('placeholder');
             //get widget class
