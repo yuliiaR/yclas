@@ -1,4 +1,4 @@
-Open Classifieds 2.0.2
+#  Open Classifieds 2.0.3
 
 # Installation
 
@@ -21,7 +21,7 @@ Open Classifieds is a powerful script that can transform any domain into a fully
 # How to contribute
 https://github.com/open-classifieds/openclassifieds2
 
-# Open Classifieds works thanks to other GPL software
+# OC works thanks to other GPL software
 
 * Kohana 3.2.2. http://kohanaframework.org/
 * KO Formmanager https://github.com/colinbm/kohana-formmanager
