@@ -8,6 +8,8 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_listing()
 	{ 
+		
+
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		
         /**
@@ -20,9 +22,12 @@ class Controller_Ad extends Controller {
             if (Controller::$category->loaded())
             {
         	    $category = Controller::$category;
+
+        	    $this->template->title = $category->seoname;
             	Breadcrumbs::add(Breadcrumb::factory()->set_title($category->name)->set_url(Route::url('list', array('category'=>$category->seoname))));	
            	}
-        }
+           
+        }else $this->template->title = __("all");
 
         $location = NULL;
         if (Controller::$location!==NULL)
@@ -30,6 +35,8 @@ class Controller_Ad extends Controller {
             if (Controller::$location->loaded())
             {
             	$location = Controller::$location;
+
+            	$this->template->title .= ' - '.$location->seoname;
             	Breadcrumbs::add(Breadcrumb::factory()->set_title($location->name)->set_url(Route::url('list', array('location'=>$location->seoname))));
             }  
         }
@@ -39,8 +46,6 @@ class Controller_Ad extends Controller {
    		
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/ad/listing',$data);
-       
-        
  	}
 
     /**

@@ -8,7 +8,7 @@ class Controller_Map extends Controller {
   		
         $this->before('/pages/maps');
 
-        $this->template->title  = __('Map').' '.Core::config('general.site_name');
+        $this->template->title  = __('Map');
 
         $height = Core::get('height','100%');
         $width  = Core::get('width','100%');

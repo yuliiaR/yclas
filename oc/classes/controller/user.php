@@ -20,7 +20,7 @@ class Controller_User extends Controller {
 			
 			if ($user->loaded())
 			{
-				$this->template->title = $user->name;
+				$this->template->title = __('User Profile').' - '.$user->name;
 				
 				//$this->template->meta_description = $user->name;//@todo phpseo
 				
