@@ -50,10 +50,11 @@ class Controller_Contact extends Controller {
 		{
 
             $user = new Model_User($ad->id_user);
-
+         
 			if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
 			{ 
                 $ret = $user->email('user.contact',array('[EMAIL.BODY]'		=>core::post('message'),
+                                                         '[AD.NAME]'        =>$ad->title,
                     									 '[EMAIL.SENDER]'	=>core::post('name'),
                     									 '[EMAIL.FROM]'		=>core::post('email')),core::post('email'),core::post('name'));
 
