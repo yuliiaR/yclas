@@ -34,10 +34,11 @@ class Email {
 
         if(core::config('email.smtp_active') == TRUE)
         { 
+            $mail->IsSMTP();
+
             //SMTP HOST config
             if (core::config('email.smtp_host')!="")
             {
-                $mail->IsSMTP();
                 $mail->Host       = core::config('email.smtp_host');              // sets custom SMTP server
             }
 
@@ -62,60 +63,37 @@ class Email {
                 }
                     
             }
-
-            $mail->From       = core::config('email.notify_email');
-            $mail->FromName   = "no-reply ".core::config('general.site_name');
-            $mail->Subject    = $subject;
-            $mail->MsgHTML($body);
-
-            if($file !== NULL) $mail->AddAttachment($file['tmp_name'],$file['name']);
-
-            $mail->AddReplyTo($reply,$replyName);//they answer here
-
-            if (is_array($to))
-            {
-                foreach ($to as $contact) 
-                    $mail->AddBCC($contact['email'],$contact['name']);               
-            }
-            else
-                $mail->AddAddress($to,$to_name);
-
-
-            $mail->IsHTML(TRUE); // send as HTML
-
-            if(!$mail->Send()) 
-            {//to see if we return a message or a value bolean
-                Alert::set(Alert::ALERT,"Mailer Error: " . $mail->ErrorInfo);
-                return FALSE;
-            } 
-            else 
-                return TRUE;
-        }    
-        else
-        {
-            $headers = 'MIME-Version: 1.0' . PHP_EOL;
-            $headers.= 'Content-type: text/html; charset=utf8'. PHP_EOL;
-            $headers.= 'From: '.$reply.PHP_EOL;
-            $headers.= 'Reply-To: '.$reply.PHP_EOL;
-            $headers.= 'Return-Path: '.$reply.PHP_EOL;
-            $headers.= 'X-Mailer: PHP/' . phpversion().PHP_EOL;
-
-            if (is_array($to))
-            {
-                $headers.='Bcc: '; 
-                foreach ($to as $contact) 
-                {
-                    $headers.= $contact['name'].' <'.$contact['email'].'>, '; 
-                }
-                $headers.='\r\n'; 
-                $to = '';
-            }
-            else 
-                $to = $to_name.' <'.$to.'>';
-
-            return mail($to,$subject,$body,$headers);
         }
-        // Sent at 9:39 AM on Friday
+
+        $mail->From       = core::config('email.notify_email');
+        $mail->FromName   = "no-reply ".core::config('general.site_name');
+        $mail->Subject    = $subject;
+        $mail->MsgHTML($body);
+
+        if($file !== NULL) 
+            $mail->AddAttachment($file['tmp_name'],$file['name']);
+
+        $mail->AddReplyTo($reply,$replyName);//they answer here
+
+        if (is_array($to))
+        {
+            foreach ($to as $contact) 
+                $mail->AddBCC($contact['email'],$contact['name']);               
+        }
+        else
+            $mail->AddAddress($to,$to_name);
+
+
+        $mail->IsHTML(TRUE); // send as HTML
+
+        if(!$mail->Send()) 
+        {//to see if we return a message or a value bolean
+            Alert::set(Alert::ALERT,"Mailer Error: " . $mail->ErrorInfo);
+            return FALSE;
+        } 
+        else 
+            return TRUE;
+        
  
     }
 

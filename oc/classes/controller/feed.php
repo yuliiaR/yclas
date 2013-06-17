@@ -47,7 +47,7 @@ class Controller_Feed extends Controller {
 			                	'title' 	    => preg_replace('/&(?!\w+;)/', '&amp;', $a->title),
 			                	'link' 	        => $url,
 			                	'pubDate'       => Date::mysql2unix($a->published),
-			                	'description'   => Text::removebbcode($a->description),
+			                	'description'   => Text::removebbcode(preg_replace('/&(?!\w+;)/', '&amp;',$a->description)),
 			              );
         }
   
