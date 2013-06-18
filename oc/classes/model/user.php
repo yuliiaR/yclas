@@ -322,13 +322,14 @@ class Model_User extends ORM {
      * sends email to the current user replacing tags
      * @param  string $seotitle from Model_Content
      * @param  array $replace
+     * @param  array $file  file to be uploaded
      * @return boolean
      */
-    public function email($seotitle, array $replace = NULL, $from = NULL, $from_name =NULL)
+    public function email($seotitle, array $replace = NULL, $from = NULL, $from_name =NULL, $file)
     {
         if ($this->loaded())
         {
-            return Email::content($this->email,$this->name,$from,$from_name,$seotitle,$replace);  
+            return Email::content($this->email,$this->name,$from,$from_name,$seotitle,$replace, $file);  
         }
         return FALSE;
     }

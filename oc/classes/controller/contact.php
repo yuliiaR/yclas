@@ -17,9 +17,10 @@ class Controller_Contact extends Controller {
             //captcha check
             if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
             {
+                
                 $replace = array('[EMAIL.BODY]'     =>core::post('message'),
-                                  '[EMAIL.SENDER]'      =>core::post('name'),
-                                  '[EMAIL.FROM]'        =>core::post('email'));
+                                  '[EMAIL.SENDER]'  =>core::post('name'),
+                                  '[EMAIL.FROM]'    =>core::post('email'));
 
                 if (Email::content(core::config('email.notify_email'),
                                     core::config('general.site_name'),
@@ -53,10 +54,18 @@ class Controller_Contact extends Controller {
          
 			if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
 			{ 
+                if(isset($_FILES['file']))
+                    $file = $_FILES['file'];
+                else 
+                    $file = NULL;
+                
                 $ret = $user->email('user.contact',array('[EMAIL.BODY]'		=>core::post('message'),
                                                          '[AD.NAME]'        =>$ad->title,
                     									 '[EMAIL.SENDER]'	=>core::post('name'),
-                    									 '[EMAIL.FROM]'		=>core::post('email')),core::post('email'),core::post('name'));
+                    									 '[EMAIL.FROM]'		=>core::post('email')),
+                                                    core::post('email'),
+                                                    core::post('name'),
+                                                    $file);
 
                 //if succesfully sent
                 if ($ret)

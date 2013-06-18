@@ -106,13 +106,14 @@ class Email {
      * @param  string $from_name 
      * @param  string $content   seotitle from Model_Content
      * @param  array $replace   key value to replace at subject and body
+     * @param  array $file      file to attach to email
      * @return boolean            s
      */
-    public static function content($to,$to_name='',$from = NULL, $from_name =NULL ,$content,$replace)
+    public static function content($to, $to_name='', $from = NULL, $from_name =NULL, $content, $replace, $file=NULL)
     {
         
         $email = Model_Content::get($content,'email');
-
+        $ad_obj = new Model_Ad();
         //content found
         if ($email->loaded())
         { 
@@ -125,6 +126,11 @@ class Email {
             if ($from_name === NULL )
                 $from_name = core::config('general.site_name');
 
+            if (isset($file) AND $ad_obj->is_valid_file($file))
+                $file_upload = $file;
+            else
+                $file_upload = NULL;
+
             //adding extra replaces
             $replace+= array('[SITE.NAME]'      =>  core::config('general.site_name'),
                              '[SITE.URL]'       =>  core::config('general.base_url'),
@@ -134,7 +140,7 @@ class Email {
             $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
             $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
 
-            return Email::send($to,$to_name,$subject,$body,$from,$from_name); 
+            return Email::send($to,$to_name,$subject,$body,$from,$from_name, $file_upload); 
 
         }
         else return FALSE;

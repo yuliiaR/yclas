@@ -458,6 +458,30 @@ class Model_Ad extends ORM {
     }
 
     /**
+     * returns true if file is of valid type.
+     * Its used to check file sent to user from advert usercontact
+     * @return BOOL 
+     */
+    public function is_valid_file($file)
+    {
+        //catch file
+        $file = $_FILES['file'];
+        //validate file
+        if( $file !== NULL)
+        {     
+            if ( 
+                ! Upload::valid($file) OR
+                ! Upload::not_empty($file) OR
+                ! Upload::type($file, array('jpg', 'jpeg', 'png', 'pdf','doc','docx')) OR
+                ! Upload::size($file, core::config('image.max_image_size').'M'))
+                {
+                    return FALSE;
+                }
+            return TRUE;
+        }
+    }
+
+    /**
      * prints the map script from the view
      * @return string HTML or false in case not loaded
      */

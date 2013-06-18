@@ -96,6 +96,17 @@
 								<?= FORM::textarea('message', "", array('class'=>'', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>	
 								</div>
 						</div>
+
+						<!-- file to be sent-->
+						<?if(core::config('advertisement.upload_file')):?>
+						<div class="control-group">
+							<?= FORM::label('file', __('File'), array('class'=>'control-label', 'for'=>'file'))?>
+							<div class="controls">
+								<!-- <input type="file" name="file" id="file" /> -->
+								<?= FORM::file('file', array('placeholder' => __('File'), 'class' => 'input-xlarge', 'id' => 'file'))?>
+							</div>
+						</div>
+						<?endif?>
 						
 						<?if (core::config('advertisement.captcha') != FALSE):?>
 						<div class="control-group">
