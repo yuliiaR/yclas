@@ -325,7 +325,7 @@ class Model_User extends ORM {
      * @param  array $file  file to be uploaded
      * @return boolean
      */
-    public function email($seotitle, array $replace = NULL, $from = NULL, $from_name =NULL, $file)
+    public function email($seotitle, array $replace = NULL, $from = NULL, $from_name =NULL, $file=NULL)
     {
         if ($this->loaded())
         {
