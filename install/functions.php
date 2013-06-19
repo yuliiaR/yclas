@@ -147,6 +147,10 @@ function oc_requirements()
                                     'mandatory' => $mod_mandatory,
                                     'result'    => $mod_result
                                     ),
+                'Short Tag'   =>array('message'   => '<a href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag">short_open_tag</a> must be enabled in your php.ini.',
+                                    'mandatory' => TRUE,
+                                    'result'    => (bool) ini_get('short_open_tag')
+                                    ),
                 'PCRE UTF8' =>array('message'   => '<a href="http://php.net/pcre">PCRE</a> has not been compiled with UTF-8 support.',
                                     'mandatory' => TRUE,
                                     'result'    => (bool) (@preg_match('/^.$/u', 'ñ'))
