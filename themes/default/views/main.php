@@ -49,9 +49,7 @@
                 <?=Alert::show()?>
                 <?=$content?>
             </div><!--/span-->
-            <div class="span3"> 
             <?=View::fragment('sidebar_front','sidebar')?>
-            </div>
         </div><!--/row-->
         <?=$footer?>
     </div><!--/.fluid-container-->
