@@ -56,8 +56,14 @@ class Widget_Locations extends Widget
         	    $location = Controller::$location->id_location; // id_location
         	    
         	    //list of children of current location
+                // if list_loc dosent have siblings take brothers //
         	    $list_loc = $loc->where('id_location_parent','=',$location)->order_by('order','asc')->cached()->find_all();
-        	    //parent of current location
+        	    if(count($list_loc) == 0)
+                {
+                    $list_loc = $loc->where('id_location_parent','=',Controller::$location->id_location_parent)->order_by('order','asc')->cached()->find_all();
+                }
+
+                //parent of current location
         	   	$loc_parent_deep = $loc->where('id_location','=',Controller::$location->id_location_parent)->limit(1)->find();
 
                 // array with name and seoname of a location and his parent. Is to build breadcrumb in widget
