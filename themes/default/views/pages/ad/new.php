@@ -90,7 +90,7 @@
 					<div class="controls">
 						<div class="input-prepend">
 						<span class="add-on"><?=core::config('general.global_currency')?></span>
-						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => __('Price'), 'class' => 'input-large', 'id' => 'price', 'type'=>'number'))?>
+						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => __('Price'), 'class' => 'input-large', 'id' => 'price', 'type'=>'number', 'step'=>'0.001', 'min'=>0))?>
 						</div>
 					</div>
 				</div>
