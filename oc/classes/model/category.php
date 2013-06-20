@@ -185,7 +185,6 @@ class Model_Category extends ORM {
 		{
 			$list_parent[$l->id_category] = $l->name;	
 		}
-    //d($list_parent);
 		return $list_parent;
 	}
 

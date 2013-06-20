@@ -47,9 +47,35 @@ class Widget_Categories extends Widget
 	public function before()
 	{
 		$cat = new Model_Category();
-        $cat = $cat->where('id_category','!=',1)->order_by('order','asc')->cached()->find_all();
-		$this->cat_items = $cat;
 
+		// loaded category
+		if (Controller::$category!==NULL)
+        {
+            if (Controller::$category->loaded())
+            {
+        	    $category = Controller::$category->id_category; // id_category
+        	    
+        	    //list of children of current category
+        	    $list_cat = $cat->where('id_category_parent','=',$category)->order_by('order','asc')->cached()->find_all();
+        	    //parent of current category
+        	   	$cat_parent_deep = $cat->where('id_category','=',Controller::$category->id_category_parent)->limit(1)->find();
+
+                // array with name and seoname of a category and his parent. Is to build breadcrumb in widget
+        	   	$current_and_parent = array('name'			=> Controller::$category->name,
+        	    					        'seoname'		=> Controller::$category->seoname,
+        	    					        'parent_name'	=> $cat_parent_deep->name,
+        	    					        'parent_seoname'=> $cat_parent_deep->seoname);
+           	}
+        }
+        else
+        {
+			$list_cat = $cat->where('id_category_parent','=',1)->order_by('order','asc')->cached()->find_all();
+			$current_and_parent = NULL;
+        }
+        
+
+		$this->cat_items = $list_cat;
+		$this->cat_breadcrumb = $current_and_parent;
         $this->loc_seoname = NULL;
         if (Controller::$location!==NULL)
         {
