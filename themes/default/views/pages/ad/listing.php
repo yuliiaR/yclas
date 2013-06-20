@@ -67,7 +67,6 @@
 				<?endif?>
 		    </article>
 		
-		    <?=Alert::show()?>
 	    <?endforeach?>
 
 	    <?=$pagination?>
