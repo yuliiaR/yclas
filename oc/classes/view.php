@@ -49,13 +49,27 @@ class View extends Kohana_View{
 
     
     /**
-     * gets the fragment name, unique using i18n theme and skin
+     * gets the fragment name, unique using i18n theme and skin and cat and loc
      * @param  string $name 
      * @return string       
      */
     public static function fragment_name($name)
     {
-        return 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme.Theme::$skin; 
+        $cat_seoname = '';
+        if (Controller::$category!==NULL)
+        {
+            if (Controller::$category->loaded())
+                $cat_seoname = '_category_'.Controller::$category->seoname;
+        }
+
+        $loc_seoname = '';
+        if (Controller::$location!==NULL)
+        {
+            if (Controller::$location->loaded())
+                $loc_seoname = '_location_'.Controller::$location->seoname;
+        }
+
+        return 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme.Theme::$skin.$cat_seoname.$loc_seoname; 
     }
 
 
