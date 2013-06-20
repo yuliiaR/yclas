@@ -9,7 +9,15 @@
 			</a>
 			<a class="brand" href="<?=Route::url('default')?>"><?=core::config('general.site_name')?></a>
 			
-			<?$cats = Model_Category::get_category_count();?>
+			<?
+            $cats = Model_Category::get_category_count();
+            $loc_seoname = NULL;
+            if (Controller::$location!==NULL)
+            {
+                if (Controller::$location->loaded())
+                    $loc_seoname = Controller::$location->seoname;
+            }
+            ?>
 			
 			<div class="nav-collapse main_nav">
 				<ul class="nav">
@@ -20,12 +28,19 @@
 
 		              	<?foreach($cats as $c ):?>
 		              		<?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
-								<li class="nav-header dropdown-submenu"><p><a tabindex="-1" title="<?=$c['seoname']?>" href="<?=Route::url('list', array('category'=>$c['seoname']))?>">
-                                    <?=$c['name']?></p></a>
+								<li class="nav-header dropdown-submenu">
+                                    <p><a tabindex="-1" title="<?=$c['seoname']?>" href="<?=Route::url('list', array('category'=>$c['seoname'],'location'=>$loc_seoname))?>">
+                                        <?=$c['name']?></a>
+                                    </p>
 									<ul class="dropdown-menu">							
 								 	<?foreach($cats as $chi):?>
 	                            	<?if($chi['id_category_parent'] == $c['id_category']):?>
-	                           			<li class="span4"><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><span class="header_cat_list"><?=$chi['name']?></span> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
+	                           			<li class="span4">
+                                            <a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['seoname'],'location'=>$loc_seoname))?>">
+                                                <span class="header_cat_list"><?=$chi['name']?></span> 
+                                                <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span>
+                                            </a>
+                                        </li>
 	                           		<?endif?>
 	                         		<?endforeach?>
 									</ul>
