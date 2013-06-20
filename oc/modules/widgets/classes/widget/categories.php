@@ -62,8 +62,10 @@ class Widget_Categories extends Widget
 
                 // array with name and seoname of a category and his parent. Is to build breadcrumb in widget
         	   	$current_and_parent = array('name'			=> Controller::$category->name,
+                                            'id'            => Controller::$category->id_category,
         	    					        'seoname'		=> Controller::$category->seoname,
         	    					        'parent_name'	=> $cat_parent_deep->name,
+                                            'id_parent'     => $cat_parent_deep->id_category_parent,
         	    					        'parent_seoname'=> $cat_parent_deep->seoname);
            	}
         }
