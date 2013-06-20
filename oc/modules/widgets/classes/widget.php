@@ -185,7 +185,7 @@ abstract class Widget{
    			$confw->save();
 
    			//remove from previous placeholder, only if they are different
-        	if ($this->placeholder !== $old_placeholder AND $old_placeholder!=NULL)
+        	if ($this->placeholder !== $old_placeholder AND $old_placeholder!==NULL)
         	{
         		$confp = new Model_Config();
 
