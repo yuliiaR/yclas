@@ -325,6 +325,51 @@
                 </div> 
             </div>
         </div>
+        <div class="control-group">
+            <?= FORM::label($forms_img['watermark']['key'], __('Watermark'), array('class'=>'control-label', 'for'=>$forms_img['watermark']['key']))?>
+            <div class="controls">
+                <?= FORM::select($forms_img['watermark']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms_img['watermark']['value'], array(
+                'placeholder' => "TRUE or FALSE", 
+                'class' => 'tips', 
+                'id' => $forms_img['watermark']['key'], 
+                'data-content'=> __("Appends watermark to images"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Watermark"),
+                ))?> 
+            </div>
+        </div>
+        <div class="control-group">
+			<?= FORM::label($forms_img['watermark_url']['key'], __('Watermark URL'), array('class'=>'control-label', 'for'=>$forms_img['watermark_url']['key']))?>
+			<div class="controls">
+				<?= FORM::input($forms_img['watermark_url']['key'], $forms_img['watermark_url']['value'], array(
+				'placeholder' => "http://foo/images/watermark.png", 
+				'class' => 'tips', 
+				'id' => $forms_img['watermark_url']['key'],
+				'data-content'=> __(""),
+				'data-trigger'=>"hover",
+				'data-placement'=>"right",
+				'data-toggle'=>"popover",
+				'data-original-title'=>__("Watermark URL"), 
+				))?> 
+			</div>
+		</div>
+		<div class="control-group">
+			<?= FORM::label($forms_img['watermark_position']['key'], __('Watermark position'), array('class'=>'control-label', 'for'=>$forms_img['watermark_position']['key']))?>
+			<div class="controls">
+				<?= FORM::select($forms_img['watermark_position']['key'], array(0=>"Center",1=>"Bottom",2=>"Top"), $forms_img['watermark_position']['value'], array(
+				'placeholder' => $forms_img['watermark_position']['value'], 
+				'class' => 'tips ', 
+				'id' => $forms_img['watermark_position']['key'],
+				'data-content'=> __(""),
+				'data-trigger'=>"hover",
+				'data-placement'=>"right",
+				'data-toggle'=>"popover",
+				'data-original-title'=>__("Watermark possition"), 
+				))?> 
+			</div>
+		</div>
 		<div class="form-actions">
 			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
 		</div>

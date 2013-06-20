@@ -340,18 +340,60 @@ class Model_Ad extends ORM {
                     $filename_thumb     = 'thumb_'.$seotitle.'_'.$counter.'.jpg';
                     $filename_original  = $seotitle.'_'.$counter.'.jpg';
                     
+                   
+                    /*WATERMARK*/
+                    if(core::config('image.watermark'))
+                    {
+                        $mark = Image::factory(core::config('image.watermark_url')); // watermark image object
+                        $size_watermark = getimagesize(core::config('image.watermark_url')); // size of watermark
+                        
+                        if(core::config('image.watermark_position') == 0) // position center
+                        {
+
+                            $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
+                            $wm_top_y = $height/2-$size_watermark[1]/2; // y axis , from top
+                            
+                        }
+                        elseif (core::config('image.watermark_position') == 1) // position bottom
+                        {
+                            $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
+                            $wm_top_y = $height-10; // y axis , from top
+                        }
+                        elseif(core::config('image.watermark_position') == 2) // position top
+                        {
+                            $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
+                            $wm_top_y = 10; // y axis , from top
+                        }
+                    }   
+                    /*end WATERMARK variables*/
+
                     //if original image is bigger that our constants we resize
                     $image_size_orig    = getimagesize($file);
-                    if($image_size_orig[0] > $width || $image_size_orig[1] > $height)
-                    {
-                        Image::factory($file)
-                            ->resize($width, $height, Image::AUTO)
-                            ->save($directory.$filename_original,$image_quality);    
-                    }
-                    //we just save the image changing the quality and different name
-                    else
-                        Image::factory($file)
-                            ->save($directory.$filename_original,$image_quality); 
+                    
+                    
+                        if($image_size_orig[0] > $width || $image_size_orig[1] > $height)
+                        {
+                            if(core::config('image.watermark')) // watermark ON
+                                Image::factory($file)
+                                    ->resize($width, $height, Image::AUTO)
+                                    ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
+                                    ->save($directory.$filename_original,$image_quality); 
+                            else 
+                                Image::factory($file)
+                                    ->resize($width, $height, Image::AUTO)
+                                    ->save($directory.$filename_original,$image_quality);    
+                        }
+                        //we just save the image changing the quality and different name
+                        else
+                        {
+                            if(core::config('image.watermark'))
+                                Image::factory($file)
+                                    ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
+                                    ->save($directory.$filename_original,$image_quality);
+                            else
+                                Image::factory($file)
+                                    ->save($directory.$filename_original,$image_quality); 
+                        }
                     
 
                     //creating the thumb and resizing using the the biggest side INVERSE
