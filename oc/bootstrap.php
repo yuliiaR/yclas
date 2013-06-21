@@ -23,20 +23,14 @@ spl_autoload_register(array('Kohana', 'auto_load'));
 ini_set('unserialize_callback_func', 'spl_autoload_call');
 
 // -- To debug enable DEVELOPMENT environment by changing your localhost
-Kohana::$environment = ($_SERVER['SERVER_NAME'] !== 'reoc.lo') ? Kohana::PRODUCTION : Kohana::DEVELOPMENT;
+if (!isset($_SERVER['SERVER_NAME']))
+    Kohana::$environment = Kohana::STAGING;
+elseif ($_SERVER['SERVER_NAME'] !== 'reoc.lo')
+    Kohana::$environment = Kohana::PRODUCTION;
+else
+    Kohana::$environment =  Kohana::DEVELOPMENT;
 
-// -- Configuration and initialization -----------------------------------------
-
-/**
- * Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.
- *
- * Note: If you supply an invalid environment name, a PHP warning will be thrown
- * saying "Couldn't find constant Kohana::<INVALID_ENV_NAME>"
- */
-if (isset($_SERVER['KOHANA_ENV']))
-{
-    Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
-}
+//Kohana::$environment = ($_SERVER['SERVER_NAME'] !== 'reoc.lo') ? Kohana::PRODUCTION : Kohana::DEVELOPMENT;
 
 /**
  * Initialize Kohana, setting the default options.
@@ -71,7 +65,6 @@ else
     Kohana::$log->attach(new Log_File(APPPATH.'logs'), array(LOG_INFO,LOG_ERR,LOG_DEBUG));
 }
 
-
 /**
  * Attach a file reader to config. Multiple readers are supported.
  */
@@ -105,7 +98,6 @@ $modules = array(
 
 Kohana::modules($modules);
 unset($modules);
-
 
 // initializing the OC APP, and routes
 Core::initialize();

@@ -43,15 +43,14 @@ class Core {
 		//cookie salt for the app
 		Cookie::$salt = Core::config('auth.cookie_salt');
 		
-
 		// -- i18n Configuration and initialization -----------------------------------------
 		I18n::initialize(Core::config('i18n.locale'),Core::config('i18n.charset'));
-				
+
 		//Loading the OC Routes
-		if (($init_routes = Kohana::find_file('config','routes')))
-		{
-			require_once $init_routes[0];//returns array of files but we need only 1 file
-		}
+		// if (($init_routes = Kohana::find_file('config','routes')))
+		// 	require_once $init_routes[0];//returns array of files but we need only 1 file
+        //faster loading
+        require_once APPPATH.'config/routes.php';
 
         //getting the selected theme, and loading options
         Theme::initialize();
