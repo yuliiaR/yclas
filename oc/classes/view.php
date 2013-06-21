@@ -69,7 +69,7 @@ class View extends Kohana_View{
                 $loc_seoname = '_location_'.Controller::$location->seoname;
         }
 
-        return 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme.Theme::$skin.$cat_seoname.$loc_seoname; 
+        return 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme.$cat_seoname.$loc_seoname; //.Theme::$skin
     }
 
 
