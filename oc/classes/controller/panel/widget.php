@@ -137,15 +137,20 @@ class Controller_Panel_Widget extends Auth_Controller {
             if (!is_array($widgets))
             {
                 $widgets = array($widgets);
-                //d($widgets);
             }
-                
 
-            //insert in DB palceholders
+            // save palceholder to DB
             $confp = new Model_Config();
-            $confp->group_name = 'placeholder';
-            $confp->config_key = $placeholder;
-            $confp->config_value = json_encode($widgets); 
+            $confp->where('group_name','=','placeholder')
+                ->where('config_key','=',$placeholder)
+                ->limit(1)->find();
+            if (!$confp->loaded())
+            {
+                $confp->group_name = 'placeholder';
+                $confp->config_key = $placeholder;
+            }
+            
+            $confp->config_value = json_encode($widgets);
             $confp->save();
 
             //edit each widget change placeholder
@@ -154,7 +159,7 @@ class Controller_Panel_Widget extends Auth_Controller {
                 $w = Widget::factory($wname);
                 if ($w!==NULL)
                 {
-                    if ($w->loaded)
+                    if ($w->loaded AND $w->placeholder != $placeholder)
                     {
                         $w->placeholder = $placeholder;
                         $w->save();
@@ -162,7 +167,6 @@ class Controller_Panel_Widget extends Auth_Controller {
                 }
                
             }
-            
             
         }
 
