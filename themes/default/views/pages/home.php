@@ -1,6 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="well">
+    <?if(core::config('advertisement.ads_in_home') == 0):?>
     <h3><?=__('Latest Ads')?></h3>
+    <?elseif(core::config('advertisement.ads_in_home') == 1):?>
+    <h3><?=__('Featured Ads')?></h3>
+    <?elseif(core::config('advertisement.ads_in_home') == 2):?>
+    <h3><?=__('Popular Ads last month')?></h3>
+    <?endif?>
     <ul class="thumbnails">
         <?foreach($ads as $ad):?>
         <li class="span2">
