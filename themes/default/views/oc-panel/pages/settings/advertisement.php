@@ -50,6 +50,21 @@
 				</div>
 			</div>
 			<div class="control-group">
+				<?= FORM::label($forms['ads_in_home']['key'], __('Advertisements in home'), array('class'=>'control-label', 'for'=>$forms['ads_in_home']['key']))?>
+				<div class="controls">
+					<?= FORM::select($forms['ads_in_home']['key'], array(0=>__('Latest Ads'),1=>__('Featured Ads'),2=>__('Popular Ads last month')), $forms['ads_in_home']['value'], array(
+					'placeholder' => $forms['ads_in_home']['value'], 
+					'class' => 'tips ', 
+					'id' => $forms['ads_in_home']['key'],
+					'data-content'=> __("You can choose what ads you want to display in home."),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Advertisements in home"), 
+					))?> 
+				</div>
+			</div>
+			<div class="control-group">
 				<?= FORM::label($forms['address']['key'], __('Address'), array('class'=>'control-label', 'for'=>$forms['address']['key']))?>
 				<div class="controls">
 					<?= FORM::select($forms['address']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['address']['value'], array(

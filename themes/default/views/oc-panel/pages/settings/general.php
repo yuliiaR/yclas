@@ -341,17 +341,17 @@
             </div>
         </div>
         <div class="control-group">
-			<?= FORM::label($forms_img['watermark_url']['key'], __('Watermark URL'), array('class'=>'control-label', 'for'=>$forms_img['watermark_url']['key']))?>
+			<?= FORM::label($forms_img['watermark_path']['key'], __('Watermark path'), array('class'=>'control-label', 'for'=>$forms_img['watermark_path']['key']))?>
 			<div class="controls">
-				<?= FORM::input($forms_img['watermark_url']['key'], $forms_img['watermark_url']['value'], array(
-				'placeholder' => "http://foo/images/watermark.png", 
+				<?= FORM::input($forms_img['watermark_path']['key'], $forms_img['watermark_path']['value'], array(
+				'placeholder' => "images/watermark.png", 
 				'class' => 'tips', 
-				'id' => $forms_img['watermark_url']['key'],
+				'id' => $forms_img['watermark_path']['key'],
 				'data-content'=> __(""),
 				'data-trigger'=>"hover",
 				'data-placement'=>"right",
 				'data-toggle'=>"popover",
-				'data-original-title'=>__("Watermark URL"), 
+				'data-original-title'=>__("Watermark path"), 
 				))?> 
 			</div>
 		</div>
