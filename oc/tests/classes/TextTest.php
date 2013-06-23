@@ -4,7 +4,7 @@ class TextTest extends Kohana_UnitTest_TestCase
 { 
 
 
-    function provider_bb2html()
+    public function provider_bb2html()
     {
         return array(
             array('[b]bold[/b]', '<b>bold</b>'),
@@ -19,7 +19,7 @@ class TextTest extends Kohana_UnitTest_TestCase
         );
     }
 
-    function provider_bb2html_advanced()
+    public function provider_bb2html_advanced()
     {
         $adv = array(
                 array('[color=red]color red[/color]', '<span style="color: red">color red</span>'),

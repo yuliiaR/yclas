@@ -74,7 +74,7 @@ class View extends Kohana_View{
 
 
     /**
-     * Sets the view filename. Overriide from origianl to liad from theme folder
+     * Sets the view filename. Override from origianl to use from theme folder
      *
      *     $view->set_filename($file);
      *
