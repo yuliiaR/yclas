@@ -306,32 +306,36 @@ class Model_Category extends ORM {
 
         $seoname = URL::title($seoname, '-', FALSE);
 
-        $cat = new self;
-        //find a user same seoname
-        $s = $cat->where('seoname', '=', $seoname)->limit(1)->find();
-
-        //found, increment the last digit of the seoname
-        if ($s->loaded())
+        if ($seoname != $this->seoname)
         {
-            $cont = 2;
-            $loop = TRUE;
-            while($loop)
+            $cat = new self;
+            //find a user same seoname
+            $s = $cat->where('seoname', '=', $seoname)->limit(1)->find();
+
+            //found, increment the last digit of the seoname
+            if ($s->loaded())
             {
-                $attempt = $seoname.'-'.$cont;
-                $cat = new self;
-                unset($s);
-                $s = $cat->where('seoname', '=', $attempt)->limit(1)->find();
-                if(!$s->loaded())
+                $cont = 2;
+                $loop = TRUE;
+                while($loop)
                 {
-                    $loop = FALSE;
-                    $seoname = $attempt;
-                }
-                else
-                {
-                    $cont++;
+                    $attempt = $seoname.'-'.$cont;
+                    $cat = new self;
+                    unset($s);
+                    $s = $cat->where('seoname', '=', $attempt)->limit(1)->find();
+                    if(!$s->loaded())
+                    {
+                        $loop = FALSE;
+                        $seoname = $attempt;
+                    }
+                    else
+                    {
+                        $cont++;
+                    }
                 }
             }
         }
+        
 
         return $seoname;
     }

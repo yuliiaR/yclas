@@ -215,30 +215,32 @@ class Model_Location extends ORM {
             $seoname = $this->name;
 
         $seoname = URL::title($seoname, '-', FALSE);
-
-        $loc = new self;
-        //find a user same seoname
-        $s = $loc->where('seoname', '=', $seoname)->limit(1)->find();
-
-        //found, increment the last digit of the seoname
-        if ($s->loaded())
+        if ($seoname != $this->seoname)
         {
-            $cont = 2;
-            $loop = TRUE;
-            while($loop)
+            $loc = new self;
+            //find a user same seoname
+            $s = $loc->where('seoname', '=', $seoname)->limit(1)->find();
+
+            //found, increment the last digit of the seoname
+            if ($s->loaded())
             {
-                $attempt = $seoname.'-'.$cont;
-                $loc = new self;
-                unset($s);
-                $s = $loc->where('seoname', '=', $attempt)->limit(1)->find();
-                if(!$s->loaded())
+                $cont = 2;
+                $loop = TRUE;
+                while($loop)
                 {
-                    $loop = FALSE;
-                    $seoname = $attempt;
-                }
-                else
-              {
-                    $cont++;
+                    $attempt = $seoname.'-'.$cont;
+                    $loc = new self;
+                    unset($s);
+                    $s = $loc->where('seoname', '=', $attempt)->limit(1)->find();
+                    if(!$s->loaded())
+                    {
+                        $loop = FALSE;
+                        $seoname = $attempt;
+                    }
+                    else
+                  {
+                        $cont++;
+                    }
                 }
             }
         }
