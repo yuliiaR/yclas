@@ -3,5 +3,3 @@ oc/logs/*
 images/*
 themes/*
 !themes/default/
-oc/modules/unittest/*
-oc/tests/*

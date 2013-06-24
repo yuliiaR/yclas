@@ -13,33 +13,80 @@ class Controller_Ad extends Controller {
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		
         /**
-         * we get the model of category and location from controller 
+         * we get the model of category and location from controller to filter and generate urls titles etc...
          */
         
-        $category = NULL;
-        if (Controller::$category!==NULL)
-        {
-            if (Controller::$category->loaded())
-            {
-        	    $category = Controller::$category;
-
-        	    $this->template->title = $category->seoname;
-            	Breadcrumbs::add(Breadcrumb::factory()->set_title($category->name)->set_url(Route::url('list', array('category'=>$category->seoname))));	
-           	}
-           
-        }else $this->template->title = __("all");
-
         $location = NULL;
+        $location_parent = NULL;
         if (Controller::$location!==NULL)
         {
             if (Controller::$location->loaded())
             {
             	$location = Controller::$location;
-
-            	$this->template->title .= ' - '.$location->seoname;
-            	Breadcrumbs::add(Breadcrumb::factory()->set_title($location->name)->set_url(Route::url('list', array('location'=>$location->seoname))));
+                //adding the location parent
+                if ($location->id_location_parent!=1 AND $location->parent->loaded())
+                    $location_parent = $location->parent;
             }  
         }
+
+        $category = NULL;
+        $category_parent = NULL;
+        if (Controller::$category!==NULL)
+        {
+            if (Controller::$category->loaded())
+            {
+                $category = Controller::$category;
+                //adding the category parent
+                if ($category->id_category_parent!=1 AND $category->parent->loaded())
+                    $category_parent = $category->parent;
+
+            }
+           
+        }
+
+        //base title
+        if ($category!==NULL)
+            $this->template->title = $category->name;
+        else
+            $this->template->title = __('all');
+
+        //adding location titles and breadcrumbs
+        if ($location!==NULL)
+        {
+            $this->template->title .= ' - '.$location->name;
+
+            if ($location_parent!==NULL)
+            {
+                $this->template->title .=' ('.$location_parent->name.')';
+                Breadcrumbs::add(Breadcrumb::factory()->set_title($location_parent->name)->set_url(Route::url('list', array('location'=>$location_parent->seoname))));
+            }
+
+            Breadcrumbs::add(Breadcrumb::factory()->set_title($location->name)->set_url(Route::url('list', array('location'=>$location->seoname))));
+                
+            if ($category_parent!==NULL)
+                Breadcrumbs::add(Breadcrumb::factory()->set_title($category_parent->name)
+                    ->set_url(Route::url('list', array('category'=>$category_parent->seoname,'location'=>$location->seoname))));
+            
+            if ($category!==NULL)
+                Breadcrumbs::add(Breadcrumb::factory()->set_title($category->name)
+                    ->set_url(Route::url('list', array('category'=>$category->seoname,'location'=>$location->seoname))));
+        }
+        else
+        {
+            if ($category_parent!==NULL)
+            {
+                $this->template->title .=' ('.$category_parent->name.')';
+                Breadcrumbs::add(Breadcrumb::factory()->set_title($category_parent->name)
+                    ->set_url(Route::url('list', array('category'=>$category_parent->seoname))));
+            }
+                
+            
+            if ($category!==NULL)
+                Breadcrumbs::add(Breadcrumb::factory()->set_title($category->name)
+                    ->set_url(Route::url('list', array('category'=>$category->seoname))));
+        }
+
+
     
 
         $data = $this->list_logic($category, $location);
@@ -150,53 +197,79 @@ class Controller_Ad extends Controller {
 			{
                 Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 
-                //Category
-                $category = NULL;
-                if (Controller::$category!==NULL)
+                $location = NULL;
+                $location_parent = NULL;
+                if ($ad->location->loaded() AND $ad->id_location!=1)
                 {
-                    if (Controller::$category->loaded())
+                    $location = $ad->location;
+                    //adding the location parent
+                    if ($location->id_location_parent!=1 AND $location->parent->loaded())
+                        $location_parent = $location->parent;
+                }  
+                
+
+                $category = NULL;
+                $category_parent = NULL;
+                if ($ad->category->loaded())
+                {
+                    $category = $ad->category;
+                    //adding the category parent
+                    if ($category->id_category_parent!=1 AND $category->parent->loaded())
+                        $category_parent = $category->parent;
+
+                }
+                   
+                
+
+                //base category  title
+                if ($category!==NULL)
+                    $this->template->title = $category->name;
+                else
+                    $this->template->title = '';
+
+                //adding location titles and breadcrumbs
+                if ($location!==NULL)
+                {
+                    $this->template->title .= ' - '.$location->name;
+
+                    if ($location_parent!==NULL)
                     {
-                        $category = Controller::$category;
+                        $this->template->title .=' ('.$location_parent->name.')';
+                        Breadcrumbs::add(Breadcrumb::factory()->set_title($location_parent->name)->set_url(Route::url('list', array('location'=>$location_parent->seoname))));
                     }
-                    else
-                        $category = new Model_Category($ad->id_category);
+
+                    Breadcrumbs::add(Breadcrumb::factory()->set_title($location->name)->set_url(Route::url('list', array('location'=>$location->seoname))));
+                        
+                    if ($category_parent!==NULL)
+                        Breadcrumbs::add(Breadcrumb::factory()->set_title($category_parent->name)
+                            ->set_url(Route::url('list', array('category'=>$category_parent->seoname,'location'=>$location->seoname))));
+                    
+                    if ($category!==NULL)
+                        Breadcrumbs::add(Breadcrumb::factory()->set_title($category->name)
+                            ->set_url(Route::url('list', array('category'=>$category->seoname,'location'=>$location->seoname))));
                 }
                 else
-                    $category = new Model_Category($ad->id_category);
-
-                Breadcrumbs::add(Breadcrumb::factory()->set_title($category->name)->set_url(Route::url('list', array('category'=>$category->seoname))));    
-
-                //Location setup
-                $location_seoname = NULL;
-                $parent_locat = new Model_Location();
-                if ($ad->id_location!=1)
                 {
-                    $location = new Model_Location($ad->id_location);
-                    if ($location->loaded())
-                    {   
-                        $location_seoname.' - '.$location->seoname;
-                        $parent_locat = new Model_Location($location->id_location_parent);
-                        Breadcrumbs::add(Breadcrumb::factory()->set_title($location->name)->set_url(Route::url('list', array('location'=>$location->seoname))));    
+                    if ($category_parent!==NULL)
+                    {
+                        $this->template->title .=' ('.$category_parent->name.')';
+                        Breadcrumbs::add(Breadcrumb::factory()->set_title($category_parent->name)
+                            ->set_url(Route::url('list', array('category'=>$category_parent->seoname))));
                     }
+                        
+                    
+                    if ($category!==NULL)
+                        Breadcrumbs::add(Breadcrumb::factory()->set_title($category->name)
+                            ->set_url(Route::url('list', array('category'=>$category->seoname))));
                 }
+
+
+
+                $this->template->title = $ad->title.' - '. $this->template->title;
 				
 				Breadcrumbs::add(Breadcrumb::factory()->set_title($ad->title));   	
 
-				// seo title and descr dynamic generated
-				$parent_categ = new Model_Category($category->id_category_parent);
-
-                if($parent_categ->loaded() AND ($category->id_category_parent != 1))
-                	$parent_categ_concat = ' - '.$parent_categ->seoname;
-                else
-                	$parent_categ_concat = NULL;
-
-                if($parent_locat->loaded() AND ($location->id_location_parent != 1))
-                	$parent_locat_concat = ' - '.$parent_locat->seoname;
-                else 
-                	$parent_locat_concat = NULL;
-
-                //title description
-           		$this->template->title = $ad->title.$parent_categ_concat.' - '.$category->seoname.$parent_locat_concat.$location_seoname ;
+				
                 $this->template->meta_description = text::removebbcode($ad->description);
 
 				$permission = TRUE; //permission to add hit to advert and give access rights. 

@@ -87,7 +87,8 @@ class Widget_Categories extends Widget
         if (Controller::$location!==NULL)
         {
             if (Controller::$location->loaded())
-                $this->loc_seoname = Controller::$location->seoname;
+                if(Controller::$location->id_location!=1)
+                    $this->loc_seoname = Controller::$location->seoname;
         }
 
 	}
