@@ -15,8 +15,8 @@ msgid "Installation done"
 msgstr "Installation done"
 
 #: String 4
-msgid "Please now erase the folder"
-msgstr "Please now erase the folder"
+msgid "Please erase the folder now"
+msgstr "Please erase the folder now"
 
 #: String 5
 msgid "Go to Your Website"
@@ -87,8 +87,8 @@ msgid "Sample data"
 msgstr "Sample data"
 
 #: String 22
-msgid "Creates few sample categories to start with"
-msgstr "Creates few sample categories to start with"
+msgid "Creates a few sample categories to start with"
+msgstr "Creates a few sample categories to start with"
 
 #: String 23
 msgid "Hash Key"
@@ -227,8 +227,8 @@ msgid "RSS title displayed"
 msgstr "RSS title displayed"
 
 #: String 57
-msgid "Disqus"
-msgstr "Disqus"
+msgid "Forums"
+msgstr "Forums"
 
 #: String 58
 msgid "Add latest comments"
@@ -243,8 +243,8 @@ msgid "Title displayed"
 msgstr "Title displayed"
 
 #: String 61
-msgid "Number comments to display"
-msgstr "Number comments to display"
+msgid "Number of comments to display"
+msgstr "Number of comments to display"
 
 #: String 62
 msgid "Map"
@@ -263,8 +263,8 @@ msgid "Map height in pixels"
 msgstr "Map height in pixels"
 
 #: String 66
-msgid "Zoom in the map"
-msgstr "Zoom in the map"
+msgid "Zoom in on the map"
+msgstr "Zoom in on the map"
 
 #: String 67
 msgid "Ads"
@@ -291,8 +291,8 @@ msgid "Featured Ads"
 msgstr "Featured Ads"
 
 #: String 73
-msgid "Number ads to display"
-msgstr "Number ads to display"
+msgid "Number of ads to display"
+msgstr "Number of ads to display"
 
 #: String 74
 msgid "Ads title displayed"
@@ -547,16 +547,16 @@ msgid "Page "
 msgstr "Page "
 
 #: String 137
-msgid "Your advertisement is successfully activated! Thank you!"
-msgstr "Your advertisement is successfully activated! Thank you!"
+msgid "Your Classified Ad has been successfully activated! Thank you!"
+msgstr "Your Classified Ad has been successfully activated! Thank you!"
 
 #: String 138
 msgid "Advanced Search"
 msgstr "Advanced Search"
 
 #: String 139
-msgid "We did not find any advertisements for your search."
-msgstr "We did not find any advertisements for your search."
+msgid "We did not find any Classified Ads that matched your search."
+msgstr "We did not find any Classified Ads that matched your search."
 
 #: String 140
 msgid "Translations"
@@ -607,48 +607,48 @@ msgid "Advertisements"
 msgstr "Advertisements"
 
 #: String 152
-msgid "You do not have any published Advertisement"
-msgstr "You do not have any published Advertisement"
+msgid "You do not have any published Classified Ads"
+msgstr "You do not have any published Classified Ads"
 
 #: String 153
 msgid "Moderation"
 msgstr "Moderation"
 
 #: String 154
-msgid "You do not have any advertisements waiting to be published"
-msgstr "You do not have any advertisements waiting to be published"
+msgid "You do not have any Classified Ads waiting to be published"
+msgstr "You do not have any Classified Ads waiting to be published"
 
 #: String 155
 msgid "Warning, something went wrong while deleting"
 msgstr "Warning, something went wrong while deleting"
 
 #: String 156
-msgid "Advertisement is deleted"
-msgstr "Advertisement is deleted"
+msgid "The Classified Ad is deleted"
+msgstr "The Classified Ad is deleted"
 
 #: String 157
 msgid "You dont have permission to access this link"
 msgstr "You dont have permission to access this link"
 
 #: String 158
-msgid "Warning, Advertisement is already marked as spam"
-msgstr "Warning, Advertisement is already marked as spam"
+msgid "Warning, Classified Ad is already marked as spam"
+msgstr "Warning, Classified Ad is already marked as spam"
 
 #: String 159
-msgid "Advertisement is marked as spam"
-msgstr "Advertisement is marked as spam"
+msgid "Classified Ad is marked as spam"
+msgstr "Classified Ad is marked as spam"
 
 #: String 160
-msgid "Advertisement is deactivated"
-msgstr "Advertisement is deactivated"
+msgid "Classified Ad is deactivated"
+msgstr "Classified Ad is deactivated"
 
 #: String 161
-msgid "Advertisement is active and published"
-msgstr "Advertisement is active and published"
+msgid "Classified Ad is active and published"
+msgstr "Classified Ad is active and published"
 
 #: String 162
-msgid "Advertisement is featured"
-msgstr "Advertisement is featured"
+msgid "Classified Ad is featured"
+msgstr "Classified Ad is featured"
 
 #: String 163
 msgid "Wrong email or password"
@@ -827,32 +827,32 @@ msgid "You have successfuly changed your data"
 msgstr "You have successfuly changed your data"
 
 #: String 207
-msgid "My Advertisement page "
-msgstr "My Advertisement page "
+msgid "My Classified Ad page "
+msgstr "My Classified Ad page "
 
 #: String 208
-msgid "This is not your advertisement."
-msgstr "This is not your advertisement."
+msgid "This is not your Classified Ad."
+msgstr "This is not your Classified Ad."
 
 #: String 209
-msgid "Edit advertisement"
-msgstr "Edit advertisement"
+msgid "Edit Classified Ad"
+msgstr "Edit Classified Ad"
 
 #: String 210
-msgid "Advertisement is updated!"
-msgstr "Advertisement is updated!"
+msgid "Classified Ad is updated!"
+msgstr "Classified Ad is updated!"
 
 #: String 211
-msgid "Advertisement is updated"
-msgstr "Advertisement is updated"
+msgid "Classified Ad is updated"
+msgstr "Classified Ad is updated"
 
 #: String 212
 msgid "Settings"
 msgstr "Settings"
 
 #: String 213
-msgid "Advertisement"
-msgstr "Advertisement"
+msgid "Classified Ad"
+msgstr "Classified Ad"
 
 #: String 214
 msgid "Email Configuration updated"
@@ -883,8 +883,8 @@ msgid "User Profile"
 msgstr "User Profile"
 
 #: String 221
-msgid "Publish new advertisement"
-msgstr "Publish new advertisement"
+msgid "Publish new Classified Ad"
+msgstr "Publish new Classified Ad"
 
 #: String 222
 msgid "New profile has been created. Welcome "
@@ -899,28 +899,28 @@ msgid "Something went wrong with uploading pictures"
 msgstr "Something went wrong with uploading pictures"
 
 #: String 225
-msgid "Advertisement is posted but first you need to activate. Please check your email!"
-msgstr "Advertisement is posted but first you need to activate. Please check your email!"
+msgid "Your Classified Ad is posted. Please activate using the link in another email being sent to you. Please check your email!"
+msgstr "Your Classified Ad is posted. Please activate using the link in another email being sent to you. Please check your email!"
 
 #: String 226
-msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
-msgstr "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
+msgid "Your Classified Ad has been received. An administrator needs to validate it. Thank you for being patient!"
+msgstr "Your Classified Ad has been received. An administrator needs to validate it. Thank you for being patient!"
 
 #: String 227
-msgid "Advertisement is posted. Congratulations!"
-msgstr "Advertisement is posted. Congratulations!"
+msgid "Your Classified Ad is posted. Congratulations!"
+msgstr "Your Classified Ad is posted. Congratulations!"
 
 #: String 228
 msgid "Captcha is not correct"
 msgstr "Captcha is not correct"
 
 #: String 229
-msgid "Advertisement to top"
-msgstr "Advertisement to top"
+msgid "Classified Ad to top"
+msgstr "Classified Ad to top"
 
 #: String 230
-msgid "Advertisement to featured"
-msgstr "Advertisement to featured"
+msgid "Classified Ad to featured"
+msgstr "Classified Ad to featured"
 
 #: String 231
 msgid " category"
@@ -979,8 +979,8 @@ msgid "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
 msgstr "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
 
 #: String 245
-msgid "Numbers of ads to display in home slider"
-msgstr "Numbers of ads to display in home slider"
+msgid "Number of ads to display in home slider"
+msgstr "Number of ads to display in home slider"
 
 #: String 246
 msgid "Subject"
@@ -1031,8 +1031,8 @@ msgid "Last Login"
 msgstr "Last Login"
 
 #: String 258
-msgid "advertisements"
-msgstr "advertisements"
+msgid "Classified Ad"
+msgstr "Classified Ad"
 
 #: String 259
 msgid "Publish Date"
@@ -1043,8 +1043,8 @@ msgid "Not yet published"
 msgstr "Not yet published"
 
 #: String 261
-msgid "Advertisement Title"
-msgstr "Advertisement Title"
+msgid "Classified Ad Title"
+msgstr "Classified Ad Title"
 
 #: String 262
 msgid "Hits"
@@ -1103,8 +1103,8 @@ msgid "Logout"
 msgstr "Logout"
 
 #: String 276
-msgid "My Advertisements"
-msgstr "My Advertisements"
+msgid "My Classified Ads"
+msgstr "My Classified Ads"
 
 #: String 277
 msgid "Public profile"
@@ -1123,8 +1123,8 @@ msgid "Page"
 msgstr "Page"
 
 #: String 281
-msgid " advertisements"
-msgstr " advertisements"
+msgid " classifieds"
+msgstr " classifieds"
 
 #: String 282
 msgid "Deactivate?"
@@ -1151,8 +1151,8 @@ msgid "Delete"
 msgstr "Delete"
 
 #: String 288
-msgid "New Advertisement"
-msgstr "New Advertisement"
+msgid "New Classified Ad"
+msgstr "New Classified Ad"
 
 #: String 289
 msgid "Featured"
@@ -1479,8 +1479,8 @@ msgid "Deactivate Featured"
 msgstr "Deactivate Featured"
 
 #: String 370
-msgid "Are you sure you want to deactivate featured advertisement?"
-msgstr "Are you sure you want to deactivate featured advertisement?"
+msgid "Are you sure you want to deactivate the featured Classified Ad?"
+msgstr "Are you sure you want to deactivate the featured Classified Ad?"
 
 #: String 371
 msgid "Activate?"
@@ -1635,8 +1635,8 @@ msgid "Number of ads per page"
 msgstr "Number of ads per page"
 
 #: String 409
-msgid "Advertisements in RSS"
-msgstr "Advertisements in RSS"
+msgid "Classified Ads in RSS"
+msgstr "Classified Ads in RSS"
 
 #: String 410
 msgid "Number of Ads"
@@ -1647,8 +1647,8 @@ msgid "How many ads are going to appear in the RSS of your site."
 msgstr "How many ads are going to appear in the RSS of your site."
 
 #: String 412
-msgid "Advertisements in Map"
-msgstr "Advertisements in Map"
+msgid "Classified Ads in the Map"
+msgstr "Classified Ads in the Map"
 
 #: String 413
 msgid "How many ads are going to appear in the map of your site."
@@ -2067,8 +2067,8 @@ msgid "Views and Contacts statistic"
 msgstr "Views and Contacts statistic"
 
 #: String 517
-msgid "Edit Advertisement"
-msgstr "Edit Advertisement"
+msgid "Edit Classified Ad"
+msgstr "Edit Classified Ad"
 
 #: String 518
 msgid "Id_User"
