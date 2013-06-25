@@ -98,7 +98,6 @@ class Controller_New extends Controller
 		//$_POST is submitted for a new ad 
 		if($this->request->post()) 
 		{
-			
 			if($captcha_show == FALSE || captcha::check('contact') ) 
 			{		
 				
@@ -112,7 +111,7 @@ class Controller_New extends Controller
 				$new_ad->type 	 		= '0';
 				$new_ad->seotitle 		= $seotitle;	 
 				$new_ad->status 		= $status; 
-				$new_ad->price 			= $data['price']; 								
+				$new_ad->price 			= floatval(str_replace(',', '.', $data['price'])); 								
 				$new_ad->address 		= $data['address'];
 				$new_ad->phone			= $data['phone'];
 				$new_ad->website		= $data['website']; 
