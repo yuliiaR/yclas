@@ -73,18 +73,14 @@
 	<h3><?=$user->name.' '.__(' advertisements')?></h3>
 
 	<?if($profile_ads!==NULL):?>
-		<?foreach($profile_ads as $ads):?>
-		<?if($ads->status != Model_Ad::STATUS_SPAM AND 
-			 $ads->status != Model_Ad::STATUS_UNAVAILABLE AND 
-			 $ads->status != Model_Ad::STATUS_NOPUBLISHED):?>
-			 
+		<?foreach($profile_ads as $ads):?>			 
 		<?if($ads->featured >= Date::unix2mysql(time())):?>
 	    	<article class="list well clearfix featured">
 	    <?else:?>
 		<article class="list well clearfix">
 		<?endif?>
 		
-			<h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category,'seotitle'=>$ads->seotitle))?>"><?=$ads->title?></a></h4>
+			<h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>"><?=$ads->title?></a></h4>
 			<p><strong>Description: </strong><?=Text::removebbcode($ads->description)?><p>
 			<p><b><?=__('Publish Date');?>:</b> <?= Date::format($ads->published, core::config('general.date_format'))?><p>
 		
@@ -109,7 +105,6 @@
 			<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?=__("Edit");?></a> 
 		<?endif?>
 		</article>
-		<?endif?>
 		<?endforeach?>
 	<?endif?>
 </div>

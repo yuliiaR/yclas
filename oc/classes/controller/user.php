@@ -27,10 +27,10 @@ class Controller_User extends Controller {
 				$this->template->bind('content', $content);
 
 				$ads = new Model_Ad();
-				$ads = $ads->where('id_user', '=', $user->id_user)->order_by('created','desc')->cached()->find_all();
+				$ads = $ads->where('id_user', '=', $user->id_user)
+                            ->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+                            ->order_by('created','desc')->cached()->find_all();
 				
-				$category = new Model_Category();
-				$category = $category->find_all();
 				
 				// case when user dont have any ads
 				if($ads->count() == 0) $profile_ads = NULL;
