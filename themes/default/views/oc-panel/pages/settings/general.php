@@ -320,7 +320,7 @@
                 </div> 
             </div>
         </div>
-        <?if(isset($forms_img['watermark']['key'])):?>
+        
         <div class="control-group">
             <?= FORM::label($forms_img['watermark']['key'], __('Watermark'), array('class'=>'control-label', 'for'=>$forms_img['watermark']['key']))?>
             <div class="controls">
@@ -336,7 +336,7 @@
                 ))?> 
             </div>
         </div>
-        <?endif?>
+        
         <div class="control-group">
 			<?= FORM::label($forms_img['watermark_path']['key'], __('Watermark path'), array('class'=>'control-label', 'for'=>$forms_img['watermark_path']['key']))?>
 			<div class="controls">
