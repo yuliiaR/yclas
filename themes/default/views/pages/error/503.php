@@ -27,7 +27,10 @@
             <h2><?=__('We are working on our site, please visit later. Thanks')?></h2>
      		
         </div>
-
+        <a class="btn btn-mini" title="<?=__('Login')?>" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>">
+                <i class="icon-user"></i> 
+                <?=__('Login')?>
+            </a>    
     </div>
     
   </body>

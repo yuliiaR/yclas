@@ -201,7 +201,7 @@ class Core {
 
 
     /**
-     * get updates from json hosted currently at google code
+     * get updates from json hosted at our site
      * @param  boolean $reload  
      * @return void
      */
@@ -230,7 +230,7 @@ class Core {
 
 
     /**
-     * get market from json hosted currently at google code
+     * get market from json hosted currently at our site
      * @param  boolean $reload  
      * @return void
      */

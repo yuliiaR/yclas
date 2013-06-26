@@ -138,7 +138,7 @@ class Controller extends Kohana_Controller
     public function maintenance()
     {
         //maintenance mode
-        if (core::config('general.maintenance')==1)
+        if (core::config('general.maintenance')==1 AND $this->request->controller()!='auth')
         {
             $user = Auth::instance()->get_user();
 
