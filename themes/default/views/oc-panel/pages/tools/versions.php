@@ -8,7 +8,7 @@
     <p><?=__('Your Hash Key for this installation is')?> 
          <span class="label label-info"><?=core::config('auth.hash_key')?></span>
     </p>
-        <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'updates'))?>?reload=1">
+        <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>'index'))?>?reload=1">
             <?=__('Check for updates')?></a>
 
 </div>
@@ -21,10 +21,17 @@
 <?foreach ($versions as $version=>$values):?> 
 <tr>
         <td>
+            
             <?=$version?>
             <?=($version==$latest_version)? '<span class="label label-success">'.__('Latest').'</span>':''?>
             <?=($version==core::version)? '<span class="label label-info">'.__('Current').'</span>':''?>
+            <br /><br />
+            <?if(method_exists('Controller_Panel_Update','action_'.str_replace('.', '', $version))):?>
+                <a class="btn btn-primary update_btn" href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>str_replace('.', '', $version)))?>">
+                <?=__('Update')?></a>
+            <?endif?>
         </td>
+        
     <td>
         <table class="table">
             <?foreach ($values as $key => $value):?>

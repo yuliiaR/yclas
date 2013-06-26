@@ -85,6 +85,33 @@ class Model_Config extends ORM {
         return $c->reload_config();
     }
 
+    /**
+     * is used to create configs if they dont exist
+     * @param array
+     * @return boolean 
+     */
+    public static function config_array($configs)
+    {
+        
+        foreach ($configs as $c => $value) 
+        {
+            // get config from DB
+            $confp = new self();
+            $confp->where('config_key','=',$value['config_key'])
+                  ->where('group_name','=',$value['group_name'])
+                  ->limit(1)->find();
+
+            // if do not exist (not loaded) create them, else do nothing
+            if (!$confp->loaded())
+            {
+                $confp->config_key = $value['config_key'];
+                $confp->group_name = $value['group_name'];
+                $confp->config_value = $value['config_value'];
+                $confp->save();
+            }
+        }   
+    }
+
     protected $_table_columns =    
 array (
   'group_name' => 

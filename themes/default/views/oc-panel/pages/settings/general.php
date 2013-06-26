@@ -14,13 +14,8 @@
 <div class="well">
 <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 	<fieldset>
-		<?foreach ($config as $c):?>
-			<?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
-		<?endforeach?>
-		<?foreach ($config_img as $c):?>
-			<?$forms_img[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
-		<?endforeach?>
-
+		
+		
         <div class="control-group">
             <?= FORM::label($forms['maintenance']['key'], __('Maintenance Mode'), array('class'=>'control-label', 'for'=>$forms['maintenance']['key']))?>
             <div class="controls">
@@ -325,6 +320,7 @@
                 </div> 
             </div>
         </div>
+        <?if(isset($forms_img['watermark']['key'])):?>
         <div class="control-group">
             <?= FORM::label($forms_img['watermark']['key'], __('Watermark'), array('class'=>'control-label', 'for'=>$forms_img['watermark']['key']))?>
             <div class="controls">
@@ -340,6 +336,7 @@
                 ))?> 
             </div>
         </div>
+        <?endif?>
         <div class="control-group">
 			<?= FORM::label($forms_img['watermark_path']['key'], __('Watermark path'), array('class'=>'control-label', 'for'=>$forms_img['watermark_path']['key']))?>
 			<div class="controls">

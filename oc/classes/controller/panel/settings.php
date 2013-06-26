@@ -116,6 +116,16 @@ class Controller_Panel_Settings extends Auth_Controller {
         $config = $generalconfig->where('group_name', '=', 'general')->find_all();
         $config_img = $generalconfig->where('group_name', '=', 'image')->find_all();
 
+        foreach ($config as $c) 
+        {
+            $forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
+        }
+        
+        foreach ($config_img as $c)
+        {
+            $forms_img[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
+        }
+        
         // save only changed values
         if($this->request->post())
         {
@@ -163,12 +173,11 @@ class Controller_Panel_Settings extends Auth_Controller {
             }
 
             
-            // Cache::instance()->delete_all();
             Alert::set(Alert::SUCCESS, __('General Configuration updated'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'general')));
         }
 
-        $this->template->content = View::factory('oc-panel/pages/settings/general', array('config'=>$config, 'config_img'=>$config_img));
+        $this->template->content = View::factory('oc-panel/pages/settings/general', array('forms'=>$forms, 'forms_img'=>$forms_img));
     }
 
     /**

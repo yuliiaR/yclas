@@ -20,7 +20,7 @@ class Controller_Panel_Tools extends Auth_Controller {
     public function action_index()
     {
         //@todo just a view with links?
-        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'tools','action'=>'updates')));  
+        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'update','action'=>'index')));  
     }
 
 
@@ -121,37 +121,6 @@ class Controller_Panel_Tools extends Auth_Controller {
         $phpinfo = str_replace('<table', '<table class="table table-striped  table-bordered"', $phpinfo);
 
         $this->template->content = View::factory('oc-panel/pages/tools/phpinfo',array('phpinfo'=>$phpinfo));
-
-    }
-
-    public function action_updates()
-    {
-        
-        //force update check reload
-        if (Core::get('reload')==1 )
-            Core::get_updates(TRUE);
-            
-        
-        $versions = core::config('versions');
-
-        if (Core::get('json')==1)
-        {
-            $this->auto_render = FALSE;
-            $this->template = View::factory('js');
-            $this->template->content = json_encode($versions);  
-        }
-        else
-        {
-            Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Updates')));
-            $this->template->title = __('Updates');
-        
-            //check if we have latest version of OC
-            if (key($versions)!=core::version)
-                Alert::set(Alert::ALERT,__('You are not using latest version of OC, please update.'));
-            
-            //pass to view from local versions.php         
-            $this->template->content = View::factory('oc-panel/pages/tools/versions',array('versions'=>$versions,'latest_version'=>key($versions)));
-        }        
 
     }
 

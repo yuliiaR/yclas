@@ -54,7 +54,7 @@
 				<li class="nav-header dropdown-submenu <?=(Request::current()->controller()=='tools') ?'active':''?>">
                 <a tabindex="-1" href="#"><i class="icon-wrench"></i><?=__('Tools')?></a>
                     <ul class="dropdown-menu">
-                        <?Theme::admin_link(__('Updates'), 'tools','updates')?>
+                        <?Theme::admin_link(__('Updates'), 'update','index')?>
                         <?Theme::admin_link(__('Sitemap'), 'tools','sitemap')?>
                         <?Theme::admin_link(__('Migration'), 'tools','migration')?>
                         <?Theme::admin_link(__('Optimize'), 'tools','optimize')?>
