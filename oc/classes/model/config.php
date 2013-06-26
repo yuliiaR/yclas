@@ -92,7 +92,7 @@ class Model_Config extends ORM {
      */
     public static function config_array($configs)
     {
-        
+        $return = FALSE;
         foreach ($configs as $c => $value) 
         {
             // get config from DB
@@ -108,8 +108,12 @@ class Model_Config extends ORM {
                 $confp->group_name = $value['group_name'];
                 $confp->config_value = $value['config_value'];
                 $confp->save();
+
+                $return = TRUE;
             }
         }   
+
+        return $return;
     }
 
     protected $_table_columns =    

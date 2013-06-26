@@ -62,8 +62,15 @@ class Controller_Panel_Update extends Auth_Controller {
                                'group_name'     =>'advertisement',
                                'config_value'   =>'0'));
         
-        Model_Config::config_array($configs);
-        
+        // returns TRUE if some config is saved 
+        $return = Model_Config::config_array($configs);
+
+        // message
+        if($return)
+            Alert::set(Alert::SUCCESS,__('Updated'));
+        else
+            Alert::set(Alert::INFO,__('Nothing to Update'));
+
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
     }
 
