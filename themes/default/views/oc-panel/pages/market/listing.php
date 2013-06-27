@@ -28,6 +28,9 @@ foreach ($market as $item):?>
             </p>
             <p>
                 <?=Text::bb2html($item['description'])?>
+                <?if (strlen($item['url_more'])>0):?>
+                    <a href="<?=$item['url_more']?>"><?=__('More info')?></a>
+                <?endif?>
             </p>
             <?if ( $item['price_offer']>0):?>
             <p>
@@ -42,11 +45,7 @@ foreach ($market as $item):?>
                 <?if (empty($item['url_demo'])===FALSE):?>
                     <a class="btn" target="_blank" href="<?=$item['url_demo']?>">
                         <i class="icon-eye-open"></i>
-                        <? if ($item['type']!='theme'):?>
-                            <?=__('More info')?>
-                        <?else:?>
                             <?=__('Preview')?>
-                        <?endif?>
                     </a>    
                 <?endif?>
                 
