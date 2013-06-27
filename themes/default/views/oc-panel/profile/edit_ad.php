@@ -163,7 +163,7 @@
 					<div class="controls">
 						<div class="input-prepend">
 							<span class="add-on"><?=core::config('general.global_currency')?></span>
-							<?= FORM::input('price', number_format($ad->price, 2), array('class' => '', 'id' => 'price', 'type'=>'number'))?>
+							<?= FORM::input('price', number_format($ad->price, 2), array('class' => '', 'id' => 'price', 'data-validation-regex-regex'=>"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$", "data-validation-regex-message"=>__('Incorect price, not more than 3 decimals')))?>
 						</div>
 					</div>
 				</div>

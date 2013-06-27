@@ -16,8 +16,17 @@
 	</div><!--end of advise-->
 
 	<?if(count($ads)):?>
+
 	    <?foreach($ads as $ad ):?>
-	   
+	    <?
+	    	if (Controller::$location!==NULL)
+            {
+                if (Controller::$location->loaded())
+                    $location = Controller::$location->name;
+            }
+            else
+            	$location = Model_Location::get_location($ad->id_location, 'name');
+	    ?>
 	       	<?if($ad->featured >= Date::unix2mysql(time())):?>
 		    	<article class="list well clearfix featured">
                     <span class="label label-important"><?=__('Featured')?></span>
@@ -27,6 +36,7 @@
 		    	<h2>
 		    	    <? $cat_name = $ad->category->seoname; ?>
 		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
+		    		<span class="label"><?=$location?></span>
 		    	</h2>
 		    	
 		    	<?if($ad->get_first_image() !== NULL):?>
