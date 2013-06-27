@@ -15,18 +15,19 @@
 
 	</div><!--end of advise-->
 
-	<?if(count($ads)):?>
+	<?
+	    $cat_seoname = NULL;
+	    if (Controller::$category!==NULL)
+	    {
+	        if (Controller::$category->loaded())
+	            $cat_seoname = Controller::$category->seoname;
+	    }
+    ?>
 
+
+	<?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
-	    <?
-	    	if (Controller::$location!==NULL)
-            {
-                if (Controller::$location->loaded())
-                    $location = Controller::$location->name;
-            }
-            else
-            	$location = Model_Location::get_location($ad->id_location, 'name');
-	    ?>
+	   
 	       	<?if($ad->featured >= Date::unix2mysql(time())):?>
 		    	<article class="list well clearfix featured">
                     <span class="label label-important"><?=__('Featured')?></span>
@@ -34,9 +35,11 @@
 		    	<article class="list well clearfix">
 		    <?endif?>
 		    	<h2>
-		    	    <? $cat_name = $ad->category->seoname; ?>
-		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
-		    		<span class="label"><?=$location?></span>
+		    	    
+		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
+		    		<a href="<?=Route::url('list',array('location'=>$ad->location->seoname,'category'=>$cat_seoname))?>" title="<?=$ad->location->name?>">
+		    			<span class="label"><?=$ad->location->name?></span>
+		    		</a>
 		    	</h2>
 		    	
 		    	<?if($ad->get_first_image() !== NULL):?>
@@ -54,7 +57,7 @@
 			 
 			    <p><?=substr(Text::removebbcode($ad->description),0, 255);?></p>
 			    
-			    <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?=__('Read more')?></a>
+			    <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?=__('Read more')?></a>
 		    	<?if ($user !== NULL && $user->id_role == 10):?>
 		    		<br />
 				<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><?=__("Edit");?></a> |
