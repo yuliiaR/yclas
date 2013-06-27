@@ -1,6 +1,4 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-	
-		
 	<div class="page-header">
 		<h1><?=__('Publish new advertisement')?></h1>
 	</div>
@@ -14,6 +12,112 @@
 						<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'input-xlarge', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
+
+                 <?
+                    $selected_cat = NULL;
+                    foreach ($categories as $c) {
+                        if ($c['seoname']==Core::get('category'))
+                        {
+                            $selected_cat = $c;
+                            break;
+                        }
+                    }
+                    //data-parent="#acc_<?=$cats[$cats[$key]['id_category_parent']]['seoname']
+                   // d($selected_cat);
+                ?>
+
+                <div class="control-group">
+                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
+                    <div class="controls"> 
+                    
+                    <span class="label label-info"  ><?=($selected_cat!==NULL)?$selected_cat['name']:''?></span>
+                    <button data-target="#myCat" role="button" class="btn btn-primary btn-mini" data-toggle="modal">
+                        <i class=" icon-plus icon-white"></i></button>
+ 
+                    <!-- Modal -->
+                    <div id="myCat" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel"><?=__('Categories')?></h3>
+                      </div>
+                      <div class="modal-body">
+
+                        <ul>
+                        <?function lili4($item, $key,$cats){?>
+                            <li>
+                          
+                                <label class="radio">
+                                <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" required > 
+                                <?=$cats[$key]['name']?>
+                                 <?if ($cats[$key]['price']>0):?>
+                                    <span class="label label-info">
+                                    <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?>
+                                    </span>
+                                <?endif?>
+                                </label>
+
+                                <?if (count($item)>0):?>
+                                <ul>
+                                    <? if (is_array($item)) array_walk($item, 'lili4', $cats);?>
+                                </ul>
+                                <?endif?>
+
+                            </li>
+                        <?}array_walk($order_categories, 'lili4',$categories);?>
+                        </ul>
+
+                      </div>
+                    </div>
+
+                </div>
+                </div>
+
+               
+                <div class="control-group">
+                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
+                    <div class="controls"> 
+                    <div class="accordion">
+
+                    <?function lili3($item, $key,$cats){?>
+                        <div class="accordion-group">
+                            <div class="accordion-heading"> 
+
+                                <?if (count($item)>0):?>
+                                    <button class="btn btn-primary btn-mini" data-toggle="collapse" 
+                                        data-target="#acc_<?=$cats[$key]['seoname']?>" 
+                                        >                    
+                                        <i class=" icon-plus icon-white"></i> 
+                                    </button>
+                                    <?=$cats[$key]['name']?>
+                                <?else:?>
+                                    <label class="radio">
+                                    <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" required > 
+                                    <?=$cats[$key]['name']?>
+                                     <?if ($cats[$key]['price']>0):?>
+                                        <span class="label label-info pull-right">
+                                        <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?>
+                                        </span>
+                                    <?endif?>
+                                    </label>
+                                <?endif?>
+
+                            </div>
+
+                            <?if (count($item)>0):?>
+                                <div id="acc_<?=$cats[$key]['seoname']?>" 
+                                    class="accordion-body collapse <?=($cats[$key]['seoname']==Core::get('category'))?'in':''?>">
+                                    <div class="accordion-inner">
+                                        <? if (is_array($item)) array_walk($item, 'lili3', $cats);?>
+                                    </div>
+                                </div>
+                            <?endif?>
+
+                        </div>
+                    <?}array_walk($order_categories, 'lili3',$categories);?>
+
+                    </div>
+                    </div>
+                </div>
 
                 <div class="control-group">
                     <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
