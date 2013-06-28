@@ -11,4 +11,9 @@ $(function(){
     $('.btn').tooltip();
 
     $("select").chosen();
+
+    $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
+
 });
+
+

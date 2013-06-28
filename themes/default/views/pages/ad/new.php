@@ -26,73 +26,41 @@
                    // d($selected_cat);
                 ?>
 
+               <!-- drop down selector -->
                 <div class="control-group">
                     <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
                     <div class="controls"> 
-                    
-                    <span class="label label-info"  ><?=($selected_cat!==NULL)?$selected_cat['name']:''?></span>
-                    <button data-target="#myCat" role="button" class="btn btn-primary btn-mini" data-toggle="modal">
-                        <i class=" icon-plus icon-white"></i></button>
- 
-                    <!-- Modal -->
-                    <div id="myCat" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel"><?=__('Categories')?></h3>
-                      </div>
-                      <div class="modal-body">
-
-                        <ul>
-                        <?function lili4($item, $key,$cats){?>
-                            <li>
-                          
-                                <label class="radio">
-                                <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" required > 
-                                <?=$cats[$key]['name']?>
-                                 <?if ($cats[$key]['price']>0):?>
-                                    <span class="label label-info">
-                                    <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?>
-                                    </span>
-                                <?endif?>
-                                </label>
-
-                                <?if (count($item)>0):?>
-                                <ul>
-                                    <? if (is_array($item)) array_walk($item, 'lili4', $cats);?>
-                                </ul>
-                                <?endif?>
-
-                            </li>
-                        <?}array_walk($order_categories, 'lili4',$categories);?>
-                        </ul>
-
-                      </div>
-                    </div>
-
-                </div>
-                </div>
-
-               
-                <div class="control-group">
-                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
-                    <div class="controls"> 
-                    <div class="accordion">
+                    <div class="accordion" >
 
                     <?function lili3($item, $key,$cats){?>
                         <div class="accordion-group">
                             <div class="accordion-heading"> 
 
                                 <?if (count($item)>0):?>
-                                    <button class="btn btn-primary btn-mini" data-toggle="collapse" 
-                                        data-target="#acc_<?=$cats[$key]['seoname']?>" 
-                                        >                    
-                                        <i class=" icon-plus icon-white"></i> 
-                                    </button>
-                                    <?=$cats[$key]['name']?>
+                                    <label class="radio">
+                                    	<a class="btn btn-primary btn-mini" data-toggle="collapse" type="button"  
+                                       	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
+                                        	<i class=" icon-plus icon-white"></i> <?=$cats[$key]['name']?>
+                                    	</a>
+                                    <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" required > 
+                                    
+                                     <?if ($cats[$key]['price']>0):?>
+                                        <span class="label label-info pull-right">
+                                        <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?>
+                                        </span>
+                                    <?endif?>
+                                    
+                                    </label>
+                                    
                                 <?else:?>
                                     <label class="radio">
                                     <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" required > 
-                                    <?=$cats[$key]['name']?>
+                                    
+                                   		<a class="btn btn-mini disabled" data-toggle="collapse" type="button"  
+                                       	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
+                                        	<?=$cats[$key]['name']?>
+                                    	</a>
+
                                      <?if ($cats[$key]['price']>0):?>
                                         <span class="label label-info pull-right">
                                         <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?>
@@ -100,7 +68,6 @@
                                     <?endif?>
                                     </label>
                                 <?endif?>
-
                             </div>
 
                             <?if (count($item)>0):?>
@@ -116,24 +83,6 @@
                     <?}array_walk($order_categories, 'lili3',$categories);?>
 
                     </div>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
-                    <div class="controls">          
-                        <select name="category" id="category" class="input-xlarge"   required>
-                        <option></option>
-                        <?function lili($item, $key,$cats){?>
-                        <option value="<?=$key?>" <?=($cats[$key]['seoname']==Core::get('category'))?'selected':''?>><?=$cats[$key]['name']?>
-                            <?if ($cats[$key]['price']>0):?> - <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?><?endif?>
-                        </option>
-                            <?if (count($item)>0):?>
-                            <optgroup label="<?=$cats[$key]['name']?>">    
-                                <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
-                            <?endif?>
-                        <?}array_walk($order_categories, 'lili',$categories);?>
-                        </select>
                     </div>
                 </div>
 				
