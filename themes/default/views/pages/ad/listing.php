@@ -15,16 +15,6 @@
 
 	</div><!--end of advise-->
 
-	<?
-	    $cat_seoname = NULL;
-	    if (Controller::$category!==NULL)
-	    {
-	        if (Controller::$category->loaded())
-	            $cat_seoname = Controller::$category->seoname;
-	    }
-    ?>
-
-
 	<?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
 	   
@@ -38,7 +28,7 @@
 		    	    
 		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 		    		<?if($ad->id_location != 1):?>
-		    		<a href="<?=Route::url('list',array('location'=>$ad->location->seoname,'category'=>$cat_seoname))?>" title="<?=$ad->location->name?>">
+		    		<a href="<?=Route::url('list',array('location'=>$ad->location->seoname))?>" title="<?=$ad->location->name?>">
 		    			<span class="label"><?=$ad->location->name?></span>
 		    		</a>
 		    		<?endif?>

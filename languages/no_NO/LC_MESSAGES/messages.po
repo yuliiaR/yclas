@@ -1,6 +1,6 @@
 #: String 0
 msgid "Listing"
-msgstr "Liste"
+msgstr "Oppføring"
 
 #: String 1
 msgid "Categories"
@@ -8,19 +8,19 @@ msgstr "Kategorier"
 
 #: String 2
 msgid "Search"
-msgstr "Søg"
+msgstr "Søk"
 
 #: String 3
 msgid "Publish new "
-msgstr "Opret ny"
+msgstr "Publisere nye"
 
 #: String 4
 msgid "Login"
-msgstr "Log ind"
+msgstr "Innlogging"
 
 #: String 5
 msgid "Forgot password"
-msgstr "Glemt adgangskode"
+msgstr "Glemt passord"
 
 #: String 6
 msgid "Register"
@@ -28,19 +28,19 @@ msgstr "Registrer"
 
 #: String 7
 msgid "Change the admin color theme"
-msgstr "Ændre admin farvetema"
+msgstr "Endre admin fargetema"
 
 #: String 8
 msgid "Mobile Version"
-msgstr "Mobilversion"
+msgstr "Mobil versjon"
 
 #: String 9
 msgid "Publish new"
-msgstr "Opret ny"
+msgstr "Publisere nye"
 
 #: String 10
 msgid "Map"
-msgstr "Kort"
+msgstr "Kart"
 
 #: String 11
 msgid "Contact"
@@ -48,23 +48,23 @@ msgstr "Kontakt"
 
 #: String 12
 msgid "Latest Ads"
-msgstr "Nyeste annoncer"
+msgstr "Siste annonser"
 
 #: String 13
 msgid "New Advertisement"
-msgstr "Ny Annonce"
+msgstr "Ny annonse"
 
 #: String 14
 msgid "Publish new advertisement"
-msgstr "Opret ny annonce"
+msgstr "Publiser ny annonse"
 
 #: String 15
 msgid "Featured"
-msgstr "Udvalgte"
+msgstr "Profilert"
 
 #: String 16
 msgid "Publish Date"
-msgstr "Oprettet den"
+msgstr "UPubliseringsdato"
 
 #: String 17
 msgid "Price"
@@ -72,7 +72,7 @@ msgstr "Pris"
 
 #: String 18
 msgid "Read more"
-msgstr "Læs mere"
+msgstr "Les mer"
 
 #: String 19
 msgid "Edit"
@@ -96,23 +96,23 @@ msgstr "Spam"
 
 #: String 24
 msgid "Delete?"
-msgstr "Slet?"
+msgstr "Slette?"
 
 #: String 25
 msgid "Delete"
-msgstr "Slet"
+msgstr "Slett"
 
 #: String 26
 msgid "We do not have any advertisements in this category"
-msgstr "Der er ingen annoncer i denne kategori"
+msgstr "Vi har ikke noen annonser i denne kategorien"
 
 #: String 27
 msgid "Hits"
-msgstr "Hits"
+msgstr "Treff"
 
 #: String 28
 msgid "Send Message"
-msgstr "Send besked"
+msgstr "Send melding"
 
 #: String 29
 msgid "Name"
@@ -120,7 +120,7 @@ msgstr "Navn"
 
 #: String 30
 msgid "Email"
-msgstr "Email"
+msgstr "E-post"
 
 #: String 31
 msgid "Subject"
@@ -128,7 +128,7 @@ msgstr "Emne"
 
 #: String 32
 msgid "Message"
-msgstr "Besked"
+msgstr "Melding"
 
 #: String 33
 msgid "Captcha"
@@ -136,23 +136,23 @@ msgstr "Captcha"
 
 #: String 34
 msgid "Number of latest ads to display in the home page"
-msgstr "Antal nyeste annoncer der skal vises på startsiden"
+msgstr "Antall nye annonser som skal vises på hjemmesiden"
 
 #: String 35
 msgid "Change the color scheme and style of the theme"
-msgstr "Ændre farver og stil af temaet"
+msgstr "Endre fargevalg og stil på temaet"
 
 #: String 36
 msgid "Header banner, allows HTML"
-msgstr "Header banner, HTML tilladt"
+msgstr "Header banner, tillater bruk av HTML"
 
 #: String 37
 msgid "Please wait while we transfer you to Paypal"
-msgstr "Vent venligst mens vi viderestiller dig til Paypal"
+msgstr "Vennligst vent mens vi overføre deg til Paypal"
 
 #: String 38
 msgid "Click here if you are not redirected"
-msgstr "Klik her, hvis du ikke bliver viderestillet"
+msgstr "Klikk her hvis du ikke blir omdirigert"
 
 #: String 39
 msgid "First"
@@ -168,11 +168,11 @@ msgstr "Side"
 
 #: String 42
 msgid "Next"
-msgstr "Næste"
+msgstr "Neste"
 
 #: String 43
 msgid "Last"
-msgstr "Sidste"
+msgstr "Siste"
 
 #: String 44
 msgid "Edit Profile"
@@ -180,31 +180,31 @@ msgstr "Rediger profil"
 
 #: String 45
 msgid "Change password"
-msgstr "Skift adgangskode"
+msgstr "Bytt passord"
 
 #: String 46
 msgid "Old password"
-msgstr "Gammel adgangskode"
+msgstr "Gammelt passord"
 
 #: String 47
 msgid "Password"
-msgstr "Adgangskode"
+msgstr "Passord"
 
 #: String 48
 msgid "New password"
-msgstr "Ny adgangskode"
+msgstr "Nytt passord"
 
 #: String 49
 msgid "Repeat password"
-msgstr "Gentag adgangskode"
+msgstr "Gjenta passord"
 
 #: String 50
 msgid "Type your password twice to change"
-msgstr "Skriv din adgangskode to gange for at ændre"
+msgstr "Skriv inn passordet to ganger for å endre"
 
 #: String 51
 msgid "Cancel"
-msgstr "Annuller"
+msgstr "Avbryt"
 
 #: String 52
 msgid "Send"
@@ -212,11 +212,11 @@ msgstr "Send"
 
 #: String 53
 msgid "My Advertisements"
-msgstr "Mine Annoncer"
+msgstr "Mine annonser"
 
 #: String 54
 msgid " New"
-msgstr "Opret"
+msgstr "Ny"
 
 #: String 55
 msgid "Category"
@@ -224,7 +224,7 @@ msgstr "Kategori"
 
 #: String 56
 msgid "Location"
-msgstr "Lokation"
+msgstr "Sted"
 
 #: String 57
 msgid "Status"
@@ -236,23 +236,23 @@ msgstr "Dato"
 
 #: String 59
 msgid "Not published"
-msgstr "Ikke udgivet"
+msgstr "Ikke publisert"
 
 #: String 60
 msgid "Published"
-msgstr "Udgivet"
+msgstr "Publisert"
 
 #: String 61
 msgid "Unavailable"
-msgstr "Ikke tilgængelig"
+msgstr "Utilgjengelig"
 
 #: String 62
 msgid "Update"
-msgstr "Opdater"
+msgstr "Oppdater"
 
 #: String 63
 msgid "Activate?"
-msgstr "Aktiver?"
+msgstr "Aktivere?"
 
 #: String 64
 msgid "Activate"
@@ -260,7 +260,7 @@ msgstr "Aktiver"
 
 #: String 65
 msgid "Refresh listing, go to top?"
-msgstr "Genopfrisk liste, gå til toppen?"
+msgstr "Oppdater listen, gå til topps?"
 
 #: String 66
 msgid "Go to top"
@@ -268,31 +268,31 @@ msgstr "Gå til toppen"
 
 #: String 67
 msgid "Are you sure you want to refresh listing and go to top?"
-msgstr "Er du sikker på du vil genopfriske listen og gå til toppen?"
+msgstr "Er du sikker på at du vil oppdatere listen og gå til toppen?"
 
 #: String 68
 msgid "Make featured?"
-msgstr "Fremhæv?"
+msgstr "Gjør profilert?"
 
 #: String 69
 msgid "Are you sure you want to make it featured?"
-msgstr "Er du sikker på, at du ønsker at fremhæve denne annonce?"
+msgstr "Er du sikker på at du ønsker å gjøre det til profilert?"
 
 #: String 70
 msgid "Deactivate featured?"
-msgstr "Fjern som fremhævet?"
+msgstr "Deaktiver profilert?"
 
 #: String 71
 msgid "Deactivate featured"
-msgstr "Fjern som fremhævet"
+msgstr "Deaktivere profilert"
 
 #: String 72
 msgid "Are you sure you want to deactivate featured advertisement?"
-msgstr "Er du sikker på, at du vil fjerne fremhævning af denne annonce?"
+msgstr "Er du sikker på at du ønsker å deaktivere profilert i annonsen?"
 
 #: String 73
 msgid "Statistics"
-msgstr "Statistik"
+msgstr "Statistikk"
 
 #: String 74
 msgid "Today"
@@ -304,7 +304,7 @@ msgstr "I går"
 
 #: String 76
 msgid "Last 30 days"
-msgstr "Sidste 30 dage"
+msgstr "Siste 30 dager"
 
 #: String 77
 msgid "Total"
@@ -316,7 +316,7 @@ msgstr "Kontakter"
 
 #: String 79
 msgid "Visits"
-msgstr "Besøg"
+msgstr "Besøk"
 
 #: String 80
 msgid "Charts"
@@ -336,15 +336,15 @@ msgstr "Filter"
 
 #: String 84
 msgid "Views and Contacts statistic"
-msgstr "Visnings-  og kontakt-statistik"
+msgstr "Visning- og kontakstatistikk"
 
 #: String 85
 msgid "Edit Advertisement"
-msgstr "Rediger Annonce"
+msgstr "Redigere annonse"
 
 #: String 86
 msgid "Id_User"
-msgstr "Id_Bruger"
+msgstr "Id_User"
 
 #: String 87
 msgid "Profile"
@@ -352,7 +352,7 @@ msgstr "Profil"
 
 #: String 88
 msgid "Unpublished"
-msgstr "Ikke udgivet"
+msgstr "Upublisert"
 
 #: String 89
 msgid "spam"
@@ -360,7 +360,7 @@ msgstr "spam"
 
 #: String 90
 msgid "Title"
-msgstr "Titel"
+msgstr "Tittel"
 
 #: String 91
 msgid "Description"
@@ -368,11 +368,11 @@ msgstr "Beskrivelse"
 
 #: String 92
 msgid "Delete image"
-msgstr "Slet billede"
+msgstr "Slett bilde"
 
 #: String 93
 msgid "Images"
-msgstr "Billeder"
+msgstr "Bilde"
 
 #: String 94
 msgid "Phone"
@@ -384,7 +384,7 @@ msgstr "Adresse"
 
 #: String 96
 msgid "Website"
-msgstr "Websted"
+msgstr "Nettsted"
 
 #: String 97
 msgid "Panel"
@@ -400,7 +400,7 @@ msgstr "Moderering"
 
 #: String 100
 msgid "Stats"
-msgstr "Statistik"
+msgstr "Stats"
 
 #: String 101
 msgid "Widgets"
@@ -408,7 +408,7 @@ msgstr "Widgets"
 
 #: String 102
 msgid "New"
-msgstr "Opret"
+msgstr "Ny"
 
 #: String 103
 msgid "Welcome"
@@ -416,31 +416,31 @@ msgstr "Velkommen"
 
 #: String 104
 msgid "Thanks for using our website."
-msgstr "Tak fordi du brugter vores hjemmeside."
+msgstr "Takk for at du bruker vår nettside."
 
 #: String 105
 msgid "Advertisements"
-msgstr "Annoncer"
+msgstr "Annonser"
 
 #: String 106
 msgid "Locations"
-msgstr "Lokationer"
+msgstr "Steder"
 
 #: String 107
 msgid "Orders"
-msgstr "Ordrer"
+msgstr "Bestillinger"
 
 #: String 108
 msgid "Content"
-msgstr "Indhold"
+msgstr "Innhold"
 
 #: String 109
 msgid "Translations"
-msgstr "Oversættelser"
+msgstr "Oversettelser"
 
 #: String 110
 msgid "Newsletters"
-msgstr "Nyhedsbreve"
+msgstr "Nyhetsbrev"
 
 #: String 111
 msgid "Themes"
@@ -448,11 +448,11 @@ msgstr "Temaer"
 
 #: String 112
 msgid "Theme Options"
-msgstr "Indstillinger for tema"
+msgstr "Temaalternativer"
 
 #: String 113
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr "Innstillinger"
 
 #: String 114
 msgid "General"
@@ -464,39 +464,39 @@ msgstr "Betaling"
 
 #: String 116
 msgid "Advertisement"
-msgstr "Annoncering"
+msgstr "Annonse"
 
 #: String 117
 msgid "Users"
-msgstr "Brugere"
+msgstr "Brukere"
 
 #: String 118
 msgid "User Roles"
-msgstr "Brugerroller"
+msgstr "Brukerroller"
 
 #: String 119
 msgid "Roles access"
-msgstr "Rolle adgang"
+msgstr "Roller tilgang"
 
 #: String 120
 msgid "Tools"
-msgstr "Værktøj"
+msgstr "Verktøy"
 
 #: String 121
 msgid "Updates"
-msgstr "Opdateringer"
+msgstr "Oppdateringer"
 
 #: String 122
 msgid "Sitemap"
-msgstr "Sitemap"
+msgstr "Nettstedskart"
 
 #: String 123
 msgid "Migration"
-msgstr "Migrering"
+msgstr "Migrasjon"
 
 #: String 124
 msgid "Optimize"
-msgstr "Optimer"
+msgstr "Optimalisere"
 
 #: String 125
 msgid "Cache"
@@ -504,7 +504,7 @@ msgstr "Cache"
 
 #: String 126
 msgid "Logs"
-msgstr "Logs"
+msgstr "Logger"
 
 #: String 127
 msgid "PHP Info"
@@ -512,7 +512,7 @@ msgstr "PHP Info"
 
 #: String 128
 msgid "Edit profile"
-msgstr "Rediger profil"
+msgstr "Endre profil"
 
 #: String 129
 msgid "Public profile"
@@ -528,23 +528,23 @@ msgstr "Handlinger"
 
 #: String 132
 msgid "Are you sure you want to delete?"
-msgstr "Er du sikker?"
+msgstr "Er du sikker på at du vil slette?"
 
 #: String 133
 msgid "Logout"
-msgstr "Log ud"
+msgstr "Utlogging"
 
 #: String 134
 msgid "Visit Site"
-msgstr "Besøg sitet"
+msgstr "Besøk nettsted"
 
 #: String 135
 msgid "Here are listed specific theme configuration values. Replace input fields with new desired values for the theme."
-msgstr "Her er opført konfigurations værdier til temaet. Erstat med nye værdier for temaet."
+msgstr "Her er listet type konfigurasjonsverdier. Bytt felter med nye ønskede verdier for temaet."
 
 #: String 136
 msgid "Using mobile theme"
-msgstr "Brug mobiltema"
+msgstr "Bruk mobiltema"
 
 #: String 137
 msgid "Disable"
@@ -552,47 +552,47 @@ msgstr "Deaktiver"
 
 #: String 138
 msgid "Options"
-msgstr "Muligheder"
+msgstr "Alternativer"
 
 #: String 139
 msgid "You can change the look and feel of your website here."
-msgstr "Du kan ændre udseendet og funktionaliteten af ​​din hjemmeside her."
+msgstr "Du kan endre utseendet på nettstedet ditt her."
 
 #: String 140
 msgid "Current Theme"
-msgstr "Aktuelt tema"
+msgstr "Gjeldende tema"
 
 #: String 141
 msgid "Available Themes"
-msgstr "Tilgængelige temaer"
+msgstr "Tilgjengelige temaer"
 
 #: String 142
 msgid "Preview"
-msgstr "Eksempel"
+msgstr "Forhåndsvisning"
 
 #: String 143
 msgid "Available Mobile Themes"
-msgstr "Tilgængelige mobiltemaer"
+msgstr "Tilgjengelige mobile temaer"
 
 #: String 144
 msgid "Themes Market"
-msgstr "Temaer i Market"
+msgstr "Temaer marked"
 
 #: String 145
 msgid "Here you can find a selection of our premium themes."
-msgstr "Her kan du finde et udvalg af vores premium temaer."
+msgstr "Her kan du finne et utvalg av våre premium temaer."
 
 #: String 146
 msgid "All themes include support, updates and 1 site license."
-msgstr "Alle temaer omfatter support, opdateringer og 1 site-licens."
+msgstr "Alle temaer inkluderer support, oppdateringer og en site-lisens."
 
 #: String 147
 msgid "Site Usage Statistics"
-msgstr "Side Usage Statistics"
+msgstr "Site statistikk over bruk"
 
 #: String 148
 msgid "Ads"
-msgstr "Annoncer"
+msgstr "Annonser"
 
 #: String 149
 msgid "Sales"
@@ -600,59 +600,59 @@ msgstr "Salg"
 
 #: String 150
 msgid "Views and Ads statistics"
-msgstr "Visnings- og annonce-statistik"
+msgstr "Visning- og annonsestatistikk"
 
 #: String 151
 msgid "Sales statistics"
-msgstr "Salgsstatistikker"
+msgstr "Salgsstatistikk"
 
 #: String 152
 msgid "Available widgets"
-msgstr "Tilgængelige widgets"
+msgstr "Tilgjengelige widgets"
 
 #: String 153
 msgid "Create"
-msgstr "Opret"
+msgstr "Opprett"
 
 #: String 154
 msgid "Where do you want the widget displayed?"
-msgstr "Hvor vil du vise denne widget?"
+msgstr "Hvor vil du at widget skal vises?"
 
 #: String 155
 msgid "Close"
-msgstr "Luk"
+msgstr "Lukk"
 
 #: String 156
 msgid "Sure you want to delete the widget? You can move it to the inactive placeholder"
-msgstr "Er du sikker på at du vil slette denne widget? Du kan flytte den til listen over inaktive widgets."
+msgstr "Sikker på at du vil slette widget? Du kan flytte den til inaktive plassering"
 
 #: String 157
 msgid "Save changes"
-msgstr "Gem ændringer"
+msgstr "Lagre endringer"
 
 #: String 158
 msgid "Limited Offer!"
-msgstr "Tilbud!"
+msgstr "Tidsegrenset tilbud!"
 
 #: String 159
 msgid "Valid Until"
-msgstr "Gyldig indtil"
+msgstr "Gyldig til"
 
 #: String 160
 msgid "Buy Now"
-msgstr "Køb nu"
+msgstr "Kjøp nå"
 
 #: String 161
 msgid "More info"
-msgstr "Mere info"
+msgstr "Mer info"
 
 #: String 162
 msgid "Selection of nice extras for your installation."
-msgstr "Udvælgelse af ekstramateriale til din installation."
+msgstr "Utvalg av tillegg for din installasjon."
 
 #: String 163
 msgid "Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "Ændre rækkefølgen af ​​dine kategorier. Husk, at mere end 2 niveauer indlejret sandsynligvis ikke vil blive vist i det tema (anbefales ikke)."
+msgstr "Endre rekkefølgen på kategoriene. Husk at mer enn to nivåer nestet sannsynligvis ikke vil bli vist i temaet (det anbefales ikke)."
 
 #: String 164
 msgid "New category"
@@ -660,55 +660,55 @@ msgstr "Ny kategori"
 
 #: String 165
 msgid "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
-msgstr "Er du sikker på, at du vil slette? Søskende kategorier og annoncer flyttes til forælder i denne kategori."
+msgstr "Er du sikker på at du vil slette? Vi vil flytte søskenkategorier og annonser til den overordnede kategorien."
 
 #: String 166
 msgid "Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "Ændre rækkefølgen af ​​dine placeringer. Husk, at mere end 2 niveauer indlejret sandsynligvis ikke vil blive vist i det tema (anbefales ikke)."
+msgstr "Endre rekkefølgen på dine steder. Husk at mer enn to nivåer nestet sannsynligvis ikke vil bli vist i temaet (det anbefales ikke)."
 
 #: String 167
 msgid "New location"
-msgstr "Ny placering"
+msgstr "Ny plassering"
 
 #: String 168
 msgid "Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location."
-msgstr "Er du sikker på, at du vil slette? Søskende kategorier og annoncer flyttes til forælder af denne lokation."
+msgstr "Er du sikker på at du vil slette? Vi vil flytte søsken steder og -annonser til det overordnede stedet."
 
 #: String 169
 msgid "Newsletter"
-msgstr "Nyhedsbrev"
+msgstr "Nyhetsbrev"
 
 #: String 170
 msgid "Email Settings"
-msgstr "Email indstillinger"
+msgstr "E-post innstillinger"
 
 #: String 171
 msgid "You can send a mass email to all active users."
-msgstr "Du kan sende emails til alle aktive brugere."
+msgstr "Du kan sende en masse e-post til alle aktive brukere."
 
 #: String 172
 msgid "From Email"
-msgstr "Fra email"
+msgstr "Fra e-post"
 
 #: String 173
 msgid "Optimize Database"
-msgstr "Optimer database"
+msgstr "Optimalisere database"
 
 #: String 174
 msgid "Database space"
-msgstr "Database plads"
+msgstr "Databaseplass"
 
 #: String 175
 msgid "Space to optimize"
-msgstr "Plads til at optimere"
+msgstr "Diskplass for å optimalisere"
 
 #: String 176
 msgid "Table"
-msgstr "Tabel"
+msgstr "Tabell"
 
 #: String 177
 msgid "Rows"
-msgstr "Rækker"
+msgstr "Rader"
 
 #: String 178
 msgid "Size"
@@ -716,39 +716,39 @@ msgstr "Størrelse"
 
 #: String 179
 msgid "Save size"
-msgstr "Spar størrelse"
+msgstr "Lagre størrelse"
 
 #: String 180
 msgid "Cache configuration information"
-msgstr "Cache konfiguration"
+msgstr "Cache konfigurasjonsinformasjon"
 
 #: String 181
 msgid "Delete all"
-msgstr "Slet alle"
+msgstr "Slett alle"
 
 #: String 182
 msgid "Delete expired"
-msgstr "Slet udløbet"
+msgstr "Slett utløpt"
 
 #: String 183
 msgid "Config file"
-msgstr "Konfigurationsfil"
+msgstr "Config filen"
 
 #: String 184
 msgid "System Logs"
-msgstr "System logs"
+msgstr "Systemlogger"
 
 #: String 185
 msgid "Reading log file"
-msgstr "Læser logfil"
+msgstr "Lese loggfilen"
 
 #: String 186
 msgid "Log"
-msgstr "Log"
+msgstr "Logg"
 
 #: String 187
 msgid "Your PHP time limit is"
-msgstr "Din PHP tidsbegrænsning er"
+msgstr "Din PHP tidsbegrensning er"
 
 #: String 188
 msgid "seconds"
@@ -756,107 +756,107 @@ msgstr "sekunder"
 
 #: String 189
 msgid "Host name"
-msgstr "Værtsnavn"
+msgstr "Vertsnavn"
 
 #: String 190
 msgid "User name"
-msgstr "Brugernavn"
+msgstr "Brukernavn"
 
 #: String 191
 msgid "Database name"
-msgstr "Database navn"
+msgstr "Databasenavn"
 
 #: String 192
 msgid "Database charset"
-msgstr "Database tegnsæt"
+msgstr "Database karaktersett"
 
 #: String 193
 msgid "Table prefix"
-msgstr "Tabel præfiks"
+msgstr "Tabellprefiks"
 
 #: String 194
 msgid "Migrate"
-msgstr "Migrer"
+msgstr "Migrere"
 
 #: String 195
 msgid "Last time generated"
-msgstr "Sidst genereret"
+msgstr "Sist gang generert"
 
 #: String 196
 msgid "Generate"
-msgstr "Generer"
+msgstr "Generere"
 
 #: String 197
 msgid "Expire time"
-msgstr "Udløbstid"
+msgstr "Utløpstid"
 
 #: String 198
 msgid "Update on publish"
-msgstr "Opdater på offentliggørelse"
+msgstr "Oppdater ved publisering"
 
 #: String 199
 msgid "Save"
-msgstr "Gem"
+msgstr "Lagre"
 
 #: String 200
 msgid "Versions"
-msgstr "Versioner"
+msgstr "Versjoner"
 
 #: String 201
 msgid "Open Classifieds release history information."
-msgstr "Åbn Classifieds release historik."
+msgstr "Open Classifieds utgivelsedshistorie."
 
 #: String 202
 msgid "Your installation version is"
-msgstr "Din installation kører version"
+msgstr "Din installasjonsversjon er"
 
 #: String 203
 msgid "Your Hash Key for this installation is"
-msgstr "Din Hash nøgle til denne installation er"
+msgstr "Din hash-nøkkel for denne installasjonen er"
 
 #: String 204
 msgid "Check for updates"
-msgstr "Søg efter opdateringer"
+msgstr "Sjekk for oppdateringer"
 
 #: String 205
 msgid "Version"
-msgstr "Version"
+msgstr "Versjon"
 
 #: String 206
 msgid "Information"
-msgstr "Information"
+msgstr "Informasjon"
 
 #: String 207
 msgid "Latest"
-msgstr "Seneste"
+msgstr "Siste"
 
 #: String 208
 msgid "Current"
-msgstr "Nuværende"
+msgstr "Gjeldende"
 
 #: String 209
 msgid "Email Configuration"
-msgstr "Email konfiguration"
+msgstr "E-post konfigurasjon"
 
 #: String 210
 msgid "List of general configuration values. Replace input fields with new desired values"
-msgstr "Liste over generelle konfigurations værdier. Indsæt med nye ønskede værdier"
+msgstr "Liste over generelle konfigurasjonsverdier. Bytt felter med nye ønskede verdier"
 
 #: String 211
 msgid "If you need to send many emails with a high delivery rate check"
-msgstr "Hvis du har brug for at sende mange e-mails med en høj leveringsrate marker denne"
+msgstr "Hvis du trenger å sende mange e-poster med en høy leveringsrate sjekk"
 
 #: String 212
 msgid "Notify email"
-msgstr "Underret email"
+msgstr "Varsle e-post"
 
 #: String 213
 msgid "Email from where we send the emails, also used for software communications."
-msgstr "E-mail fra hvor vi sender e-mails, som også anvendes for software kommunikation."
+msgstr "E-post fra hvor vi sender e-post-en, også brukt for programvarekommunikasjon."
 
 #: String 214
 msgid "Email From"
-msgstr "E-mail fra"
+msgstr "E-post fra"
 
 #: String 215
 msgid "Smtp active"
@@ -872,7 +872,7 @@ msgstr "Smtp host"
 
 #: String 218
 msgid "Smtp port"
-msgstr "SMTP port"
+msgstr "Smtp port"
 
 #: String 219
 msgid "Smtp auth"
@@ -880,39 +880,39 @@ msgstr "Smtp auth"
 
 #: String 220
 msgid "Smtp user"
-msgstr "SMTP brugernavn"
+msgstr "Smtp bruker"
 
 #: String 221
 msgid "Smtp password"
-msgstr "SMTP adgangskode"
+msgstr "Smtp passord"
 
 #: String 222
 msgid "Advertisement Configuration"
-msgstr "Annonce konfiguration"
+msgstr "Annonsekonfigurasjon"
 
 #: String 223
 msgid "Number of images"
-msgstr "Antal billeder"
+msgstr "Antall bilder"
 
 #: String 224
 msgid "Number of images displayed"
-msgstr "Antal billeder der vises"
+msgstr "Antall bilder som skal vises"
 
 #: String 225
 msgid "Ad expiration date"
-msgstr "Annonce udløbsdato"
+msgstr "Annonse utløpsdato"
 
 #: String 226
 msgid "Expire days"
-msgstr "Udløb dage"
+msgstr "Utløper etter antall dager"
 
 #: String 227
 msgid "After how many days an Ad will expire. 0 for never"
-msgstr "Efter hvor mange dage udløber en annonce. 0 for aldrig"
+msgstr "Etter hvor mange dager en annonse vil utløpe. 0 for aldri"
 
 #: String 228
 msgid "Days"
-msgstr "Dage"
+msgstr "Dager"
 
 #: String 229
 msgid "Address field"
@@ -920,51 +920,51 @@ msgstr "Adressefeltet"
 
 #: String 230
 msgid "Displays the field Address in the Ad form."
-msgstr "Viser feltet Adresse i annonce formularen."
+msgstr "Viser feltet adresse i annonseskjemaet."
 
 #: String 231
 msgid "Google Maps in Ad"
-msgstr "Google Maps i annonce"
+msgstr "Google Maps i annonse"
 
 #: String 232
 msgid "Displays the google maps in the Ad."
-msgstr "Viser google maps i annoncen."
+msgstr "Viser google maps i annonsen."
 
 #: String 233
 msgid "Phone field"
-msgstr "Telefon felt"
+msgstr "Telefonfeltet"
 
 #: String 234
 msgid "Displays the field Phone in the Ad form."
-msgstr "Viser feltet telefon i annonce formularen."
+msgstr "Viser feltet telefon i annonseskjemaet."
 
 #: String 235
 msgid "Website field"
-msgstr "Website felt"
+msgstr "Nettstedfeltet"
 
 #: String 236
 msgid "Displays the field Website in the Ad form."
-msgstr "Viser feltet Website i annonce formularen."
+msgstr "Viser feltet web-område i annonseskjemaet."
 
 #: String 237
 msgid "Displays location select"
-msgstr "Viser lokationsvælger"
+msgstr "Viser valg av sted"
 
 #: String 238
 msgid "Displays the Select Location in the Ad form."
-msgstr "Viser Vælg lokation i annonce formularen."
+msgstr "Viser velg sted i annonseskjemaet."
 
 #: String 239
 msgid "Price field"
-msgstr "Pris felt"
+msgstr "Prisfeltet"
 
 #: String 240
 msgid "Displays the field Price in the Ad form."
-msgstr "Viser feltet Pris i annonce formularen."
+msgstr "Viser feltet pris i annonseskjemaet."
 
 #: String 241
 msgid "Upload file"
-msgstr "Upload fil"
+msgstr "Last opp fil"
 
 #: String 242
 msgid "Enables Captcha"
@@ -972,15 +972,15 @@ msgstr "Aktiverer Captcha"
 
 #: String 243
 msgid "Captcha appears in the form."
-msgstr "Captcha vises i formularen."
+msgstr "Captcha vises i skjemaet."
 
 #: String 244
 msgid "Deactivated"
-msgstr "Deaktiveret"
+msgstr "Deaktivert"
 
 #: String 245
 msgid "Terms of Service"
-msgstr "Servicevilkår"
+msgstr "Vilkår for bruk"
 
 #: String 246
 msgid "Disqus"
@@ -988,35 +988,35 @@ msgstr "Disqus"
 
 #: String 247
 msgid "Disqus Comments"
-msgstr "DISQUS Kommentarer"
+msgstr "Disqus kommentarer"
 
 #: String 248
 msgid "You need to write your disqus ID to enable the service."
-msgstr "Du skal skrive dit Disqus id for at aktivere tjenesten."
+msgstr "Du må skrive en Disqus-ID for å aktivere tjenesten."
 
 #: String 249
 msgid "Payments Configuration"
-msgstr "Betalings konfiguration"
+msgstr "Betalingskonfigurasjon"
 
 #: String 250
 msgid "List of payment configuration values. Replace input fields with new desired values."
-msgstr "Liste med betalings konfigurationsværdier. Erstat indtastningsfelter med nye ønskede værdier."
+msgstr "Liste over betalingskonfigurasjonsverdier. Bytt felter med nye ønskede verdier."
 
 #: String 251
 msgid "Paypal account"
-msgstr "Paypal konto"
+msgstr "Paypal-konto"
 
 #: String 252
 msgid "Paypal mail address"
-msgstr "Paypal email adresse"
+msgstr "Paypal postadresse"
 
 #: String 253
 msgid "The paypal email address where the payments will be sent"
-msgstr "Den paypal email adresse hvor betalingerne vil blive sendt"
+msgstr "Paypal e-postadresse der utbetalingene vil bli sendt"
 
 #: String 254
 msgid "Sandbox"
-msgstr "Sandbox"
+msgstr "Sandkasse"
 
 #: String 255
 msgid "Paypal currency"
@@ -1028,111 +1028,111 @@ msgstr "Valuta"
 
 #: String 257
 msgid "Please be sure you are using a currency that paypal supports."
-msgstr "Vær sikker på at du bruger en valuta, paypal understøtter."
+msgstr "Vær sikker på at du bruker en valuta som paypal støtter."
 
 #: String 258
 msgid "Featured Ads"
-msgstr "Fremhævede annoncer"
+msgstr "Profilerte annonser"
 
 #: String 259
 msgid "Featured ads"
-msgstr "Fremhævede annoncer"
+msgstr "Profilerte annonser"
 
 #: String 260
 msgid "Featured ads will be highlighted for a defined number of days."
-msgstr "Fremhævede annoncer vil blive fremhævet i et defineret antal dage."
+msgstr "Profilerte annonser vil bli markert for et gitt antall dager."
 
 #: String 261
 msgid "Price for featuring the Ad"
-msgstr "Prisen for fremhævet annonce"
+msgstr "Pris for å profilerer annonsen"
 
 #: String 262
 msgid "Pricing"
-msgstr "Priser"
+msgstr "Prising"
 
 #: String 263
 msgid "How much the user needs to pay to feature an Ad"
-msgstr "Hvor meget skal brugeren betale for at fremhæve en annonce"
+msgstr "Hvor mye brukeren må betale for å profilere en annonse"
 
 #: String 264
 msgid "Days Featured"
-msgstr "Dage fremhævet"
+msgstr "Dager profilert"
 
 #: String 265
 msgid "Featured length"
-msgstr "Fremhævet varighed"
+msgstr "Profilert lengde"
 
 #: String 266
 msgid "How many days an ad will be featured after paying."
-msgstr "Hvor mange dage en annonce vil blive fremhævet efter betaling."
+msgstr "Hvor mange dager en annonse vil bli profilert etter betaling."
 
 #: String 267
 msgid "Bring to top Ad"
-msgstr "Gør til top annonce"
+msgstr "Gå til øverste annonse"
 
 #: String 268
 msgid "Brings your Ad to the top of the listing."
-msgstr "Flytter din annonce til toppen af ​​listen."
+msgstr "Flytter din annonse til toppen av listen."
 
 #: String 269
 msgid "To top price"
-msgstr "Pris for top annonce"
+msgstr "Til øverste pris"
 
 #: String 270
 msgid "How much the user needs to pay to top up an Ad"
-msgstr "Hvor meget skal brugeren betale for at supplere en annonce"
+msgstr "Hvor mye brukeren må betale for å flytte opp en annonse"
 
 #: String 271
 msgid "General Configuration"
-msgstr "Generel konfiguration"
+msgstr "Generell konfigurasjon"
 
 #: String 272
 msgid "General site settings."
-msgstr "Generelle indstillinger for websted."
+msgstr "Generelle innstillinger for webområdet."
 
 #: String 273
 msgid "All configurations"
-msgstr "Alle konfigurationer"
+msgstr "Alle konfigurasjoner"
 
 #: String 274
 msgid "Maintenance Mode"
-msgstr "Vedligeholdelse"
+msgstr "Vedlikeholdsmodus"
 
 #: String 275
 msgid "Enables the site to maintenance"
-msgstr "Aktiverer site til vedligeholdelse"
+msgstr "Aktiverer området for vedlikehold"
 
 #: String 276
 msgid "Site name"
-msgstr "Navn på websted"
+msgstr "Navn på web-området"
 
 #: String 277
 msgid "Here you can declare your display name. This is seen by everyone!"
-msgstr "Her kan du erklære dit skærm navn. Dette ses af alle!"
+msgstr "Her kan du angi visningsnavnet. Dette kan ses av alle!"
 
 #: String 278
 msgid "Site Name"
-msgstr "Navn på websted"
+msgstr "Navn web-område"
 
 #: String 279
 msgid "Site description"
-msgstr "Webstedets beskrivelse"
+msgstr "Webområdebeskrivelse"
 
 #: String 280
 msgid "Base URL"
-msgstr "Base URL"
+msgstr "Hoved-webadresse"
 
 #: String 281
 msgid "Is a base path of your site (e.g. http://open-classifieds.com/). Everything else is built based on this field."
-msgstr "Er en base sti på dit websted (f.eks http://open-classifieds.com/). Alt andet er baseret på denne værdi."
+msgstr "Er hovedsti til nettstedet ditt (f.eks http://open-classifieds.com/). Alt annet er laget basert på dette feltet."
 
 #: String 282
 msgid "Base URL path"
-msgstr "Base URL sti"
+msgstr "Hoved URL-sti"
 
 #: String 283
 msgid "Moderation controls"
-msgstr "Moderations kontrol"
+msgstr "Moderasjonkontroller"
 
 #: String 284
 msgid "Global currency"
@@ -1140,55 +1140,55 @@ msgstr "Global valuta"
 
 #: String 285
 msgid "Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "
-msgstr "Global valuta er landespecifik. Der er ingen begrænsninger, dette er kun til at erklære valuta til reklamer. Bemærk: Dette er forskelligt fra betalingsvalutaer."
+msgstr "Global valuta er landsspesifikke. Det er ingen restriksjoner, dette er bare for å erklære valuta for annonsen. Merk: Dette er forskjellig fra betalingsvaluta."
 
 #: String 286
 msgid "Country specific currency"
-msgstr "Lande bestemt valuta"
+msgstr "Landsspesifikk valuta"
 
 #: String 287
 msgid "Advertisements per page"
-msgstr "Annoncer per side"
+msgstr "Annonser per side"
 
 #: String 288
 msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
-msgstr "Dette er for at styre, hvor mange reklamer der vises per side. Indsæt en heltals værdi."
+msgstr "Dette er for å kontrollere hvor mange annonser som blir vist per side. Sett inn et heltall som en grenseverdi."
 
 #: String 289
 msgid "Number of ads per page"
-msgstr "Antal annoncer per side"
+msgstr "Antall annonser per side"
 
 #: String 290
 msgid "Advertisements in RSS"
-msgstr "Annoncer i RSS"
+msgstr "Annonser i RSS"
 
 #: String 291
 msgid "Number of Ads"
-msgstr "Antallet af annoncer"
+msgstr "Antall annonser"
 
 #: String 292
 msgid "How many ads are going to appear in the RSS of your site."
-msgstr "Hvor mange annoncer kommer til at blive vist i RSS på dit websted."
+msgstr "Hvor mange annonser skal vises i RSS av nettstedet."
 
 #: String 293
 msgid "Advertisements in Map"
-msgstr "Annoncer på kort"
+msgstr "Annonser i kart"
 
 #: String 294
 msgid "How many ads are going to appear in the map of your site."
-msgstr "Hvor mange annoncer kommer til at blive vist på kortet på dit websted."
+msgstr "Hvor mange annonser skal vises i kart over ditt nettsted."
 
 #: String 295
 msgid "Number format"
-msgstr "Talformat"
+msgstr "Nummerformat"
 
 #: String 296
 msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
-msgstr "Talformat er, hvordan du vil vise tal relateret til reklamer. Mere specifikt annoncens pris. Hvert land har en bestemt måde at håndtere decimaler på."
+msgstr "Tallformat er hvordan du vil vise tall relatert til annonse. Mer spesifikk annonsepris. Hvert land har en bestemt måte å håndtere desimaler."
 
 #: String 297
 msgid "Decimal representation"
-msgstr "Decimal placering"
+msgstr "Desimalrepresentasjon"
 
 #: String 298
 msgid "Date format"
@@ -1196,127 +1196,127 @@ msgstr "Datoformat"
 
 #: String 299
 msgid "Each advertisement have a publish date. By selecting format, you can change how it is shown on your website."
-msgstr "Hver annonce har en udgivelsesdato. Ved at vælge format, kan du ændre, hvordan det er vist på din hjemmeside."
+msgstr "Hver annonse har en publiseringsdato. Ved å velge format, kan du endre hvordan det vises på nettstedet ditt."
 
 #: String 300
 msgid "Analytics"
-msgstr "Analytise"
+msgstr "Analytisk"
 
 #: String 301
 msgid "Allowed image formats"
-msgstr "Tilladte billedformater"
+msgstr "Tillatt bildeformater"
 
 #: String 302
 msgid "Set this up to restrict image formats that are being uploaded to your server."
-msgstr "Indstil dette op for at begrænse billedformater, der kan uploades til din server."
+msgstr "Definer dette for å begrense bildeformater som blir lastet opp til serveren din."
 
 #: String 303
 msgid "Max image size"
-msgstr "Maks. billedstørrelse"
+msgstr "Max bildestørrelse"
 
 #: String 304
 msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
-msgstr "Bestem størrelsen på billeder der kan uploades. Indtast et heltal værdi at indstille den maksimale billedstørrelse i mega bit (Mb)."
+msgstr "Kontrollere størrelsen på bildene som er lastet opp. Skriv inn et heltall for å angi maksimal bildestørrelse i megabit (Mb)."
 
 #: String 305
 msgid "Image size in mega bites(Mb)"
-msgstr "Billedstørrelse i mega bit (Mb)"
+msgstr "Bildestørrelse i megabit (Mb)"
 
 #: String 306
 msgid "Image height"
-msgstr "Billedhøjde"
+msgstr "Bildehøyde"
 
 #: String 307
 msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
-msgstr "Alle billeder får ændret størrelse når de uploades. Dette er højden af ​​det store billede. Bemærk: du kan lade dette felt være tomt for at indstille AUTO højde resize."
+msgstr "Hvert bilde blir endret når det lastes opp. Dette er høyden av et stort bilde. Merk: Du kan la dette feltet stå tomt for å sette AUTO høydejustering."
 
 #: String 308
 msgid "Image height in pixels(px)"
-msgstr "Billedhøjde i pixel (px)"
+msgstr "Bildehøyde i piksler (px)"
 
 #: String 309
 msgid "Image width"
-msgstr "Billedbredde"
+msgstr "Bildebredde"
 
 #: String 310
 msgid "Each image is resized when uploaded. This is the width of big image."
-msgstr "Alle billeder får ændret størrelse når de uploades. Dette er bredden af ​​det store billede."
+msgstr "Hvert bilde blir endret når det lastes opp. Dette er bredden på et stort bilde."
 
 #: String 311
 msgid "Image width in pixels(px)"
-msgstr "Billedbredde i pixels (px)"
+msgstr "Bildebredde i piksler (px)"
 
 #: String 312
 msgid "Thumb height"
-msgstr "Thumb højde"
+msgstr "Miniatyrbildehøyde"
 
 #: String 313
 msgid "Thumb is a small image resized to fit certain elements. This is height of this image."
-msgstr "Thumb er et lille billede, der skaleres til at passe ind  i visse elementer. Dette er højden af ​​dette billede."
+msgstr "Miniatyrbilde er et lite bilde endret for å passe visse elementer. Dette er høyden på dette bildet."
 
 #: String 314
 msgid "Thumb height in pixels(px)"
-msgstr "Thumb højde i pixel (px)"
+msgstr "Miniatyrbildehøyde i piksler (px)"
 
 #: String 315
 msgid "Thumb width"
-msgstr "Thumb bredde"
+msgstr "Miniatyrbildebredde"
 
 #: String 316
 msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
-msgstr "Thumb er et lille billede skaleres til at passe visse elementer. Dette er bredden af ​​dette billede."
+msgstr "Miniatyrbilde er et lite bilde endret for å passe visse elementer. Dette er bredden på dette bildet."
 
 #: String 317
 msgid "Thumb width in pixels(px)"
-msgstr "Thumb bredde i pixels (px)"
+msgstr "Miniayrbildebredde i piksler (px)"
 
 #: String 318
 msgid "Image quality"
-msgstr "Billedkvalitet"
+msgstr "Bildekvalitet"
 
 #: String 319
 msgid "Choose the quality of the stored images (1-100% of the original)."
-msgstr "Vælg kvaliteten af ​​de lagrede billeder (1-100% af den oprindelige)."
+msgstr "Velg kvaliteten på de lagrede bildene (1-100% av den opprinnelige)."
 
 #: String 320
 msgid "Image Quality"
-msgstr "Billedkvalitet"
+msgstr "Bildekvalitet"
 
 #: String 321
 msgid "Here you can modify any text you find in your web."
-msgstr "Her kan du ændre enhver tekst, du finder i din web."
+msgstr "Her kan du endre all tekst du finner på ditt nettsted."
 
 #: String 322
 msgid "Original Translation"
-msgstr "Original oversættelse"
+msgstr "Original oversettelse"
 
 #: String 323
 msgid "Copy all?, Be aware this will replace all your texts."
-msgstr "Kopier alle? Vær opmærksom på at dette vil erstatte alle dine tekster."
+msgstr "Kopier alle?, Vær oppmerksom på dette vil erstatte alle tekstene."
 
 #: String 324
 msgid "Translate all?, Be aware this will replace all your texts."
-msgstr "Oversætte alle? Vær opmærksom på at dette vil erstatte alle dine tekster."
+msgstr "Oversette alt?, Vær oppmerksom på dette vil erstatte alle tekstene."
 
 #: String 325
 msgid "Translation"
-msgstr "Oversættelse"
+msgstr "Oversettelse"
 
 #: String 326
 msgid "Translations files available in the system."
-msgstr "Oversættelsesfiler tilgængelige i systemet."
+msgstr "Oversettelsesfiler som ligger i systemet."
 
 #: String 327
 msgid "Scan"
-msgstr "Scan"
+msgstr "Skann"
 
 #: String 328
 msgid "New translation"
-msgstr "Ny oversættelse"
+msgstr "Ny oversettelse"
 
 #: String 329
 msgid "Language"
-msgstr "Sprog"
+msgstr "Språk"
 
 #: String 330
 msgid "Active"
@@ -1324,99 +1324,99 @@ msgstr "Aktiv"
 
 #: String 331
 msgid "Spam Sort"
-msgstr "Spam sorterering"
+msgstr "Spam sorter"
 
 #: String 332
 msgid "Unavailable Sort"
-msgstr "Utilgængelig sortering"
+msgstr "Utilgjengelig sorter"
 
 #: String 333
 msgid " Unavailable"
-msgstr "Utilgængelig"
+msgstr "Utilgjengelig"
 
 #: String 334
 msgid "General configurations are set. Replace input fields with new desired values."
-msgstr "Generelle opsætninger er gemt. Erstat med nye ønskede værdier."
+msgstr "Generelle konfigurasjoner er satt. Bytt felter med nye ønskede verdier."
 
 #: String 335
 msgid "Deactivate Featured"
-msgstr "Deaktiver fremhævet"
+msgstr "Deaktiver profilerte"
 
 #: String 336
 msgid "Thanks for using Open Classifieds."
-msgstr "Tak fordi du bruger Open Classifieds."
+msgstr "Takk at du bruker Open Classifieds."
 
 #: String 337
 msgid "Latest News"
-msgstr "Seneste Nyheder"
+msgstr "Siste nytt"
 
 #: String 338
 msgid "Contact Us"
-msgstr "Kontakt os"
+msgstr "Kontakt oss"
 
 #: String 339
 msgid "User Profile"
-msgstr "Bruger profil"
+msgstr "Brukerprofil"
 
 #: String 340
 msgid "Created"
-msgstr "Oprettet"
+msgstr "Opprettet"
 
 #: String 341
 msgid "Last Login"
-msgstr "Sidste login"
+msgstr "Sist logget inn"
 
 #: String 342
 msgid " advertisements"
-msgstr "reklamer"
+msgstr "annonser"
 
 #: String 343
 msgid "Not yet published"
-msgstr "Endnu ikke offentliggjort"
+msgstr "Ennå ikke publisert"
 
 #: String 344
 msgid "Remember password"
-msgstr "Husk adgangskode"
+msgstr "Husk passord"
 
 #: String 345
 msgid "Forgot password?"
-msgstr "Glemt adgangskode?"
+msgstr "Glemt passord?"
 
 #: String 346
 msgid "Remember me"
-msgstr "Husk mig"
+msgstr "Husk meg"
 
 #: String 347
 msgid "Type your password twice"
-msgstr "Skriv din adgangskode to gange"
+msgstr "Skriv inn passordet to ganger"
 
 #: String 348
 msgid "Terms of service"
-msgstr "Betingelser for websted"
+msgstr "Vilkår for bruk"
 
 #: String 349
 msgid "User account will be created"
-msgstr "Bruger konto vil blive oprettet"
+msgstr "Brukerkonto vil bli opprettet"
 
 #: String 350
 msgid "Advanced Search"
-msgstr "Avanceret søgning"
+msgstr "Avansert søk"
 
 #: String 351
 msgid "Advertisement Title"
-msgstr "Annonce titel"
+msgstr "Annonsetittel"
 
 #: String 352
 msgid "Slideshow"
-msgstr "Slideshow"
+msgstr "Lysbildefremvisning"
 
 #: String 353
 msgid "Download"
-msgstr "Hent"
+msgstr "Last ned"
 
 #: String 354
 msgid "Header tool bar gets fixed in the top"
-msgstr "Header værktøjsbar fastlåst til toppen"
+msgstr "Header verktøylinjen blir fikset i toppen"
 
 #: String 355
 msgid "Yes"
@@ -1424,31 +1424,31 @@ msgstr "Ja"
 
 #: String 356
 msgid "No"
-msgstr "Nej"
+msgstr "Nei"
 
 #: String 357
 msgid "Display breadcrumb"
-msgstr "Vis brødkrummer"
+msgstr "Vise navigasjonssti"
 
 #: String 358
 msgid "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
-msgstr "URL til dit logo. Anbefalet størrelse 250px x 40px. Efterlad blank for intet."
+msgstr "URL til din logo. Anbefalt størrelse 250px x 40px. La stå tom for ingen."
 
 #: String 359
 msgid "Short description that appears after the site name."
-msgstr "Kort beskrivelse, der vises efter navnet på hjemmesiden."
+msgstr "Kort beskrivelse som vises etter navnet på nettstedet."
 
 #: String 360
 msgid "Numbers of ads to display in home slider"
-msgstr "Antallet af annoncer, der skal vises i forside slideshow"
+msgstr "Antall annonser som skal vises i slider"
 
 #: String 361
 msgid "Where you want the sidebar to appear"
-msgstr "Hvor ønsker du sidebar vist henne"
+msgstr "Hvor du vil sidepanelet skal vises"
 
 #: String 362
 msgid "Right side"
-msgstr "Højre side"
+msgstr "Høyre side"
 
 #: String 363
 msgid "Left side"
@@ -1456,19 +1456,19 @@ msgstr "Venstre side"
 
 #: String 364
 msgid "Menu"
-msgstr "Menu"
+msgstr "Meny"
 
 #: String 365
 msgid "Contact us"
-msgstr "Kontakt os"
+msgstr "Kontakt oss"
 
 #: String 366
 msgid "Advanced search"
-msgstr "Avanceret søgning"
+msgstr "Avansert søk"
 
 #: String 367
 msgid "Desktop Version"
-msgstr "Desktop version"
+msgstr "Desktop versjon"
 
 #: String 368
 msgid "Public Profile"
@@ -1476,27 +1476,27 @@ msgstr "Offentlig profil"
 
 #: String 369
 msgid "advertisements"
-msgstr "reklamer"
+msgstr "annonser"
 
 #: String 370
 msgid "Change the main color scheme and style of the theme"
-msgstr "Ændre den primære farver og stil på temaet"
+msgstr "Endre hovedfargevalg og stil av temaet"
 
 #: String 371
 msgid "Change the header color scheme and style of the theme"
-msgstr "Ændre header farveskema og stil på temaet"
+msgstr "Endre header fargevalg og stil av temaet"
 
 #: String 372
 msgid "Change the theme of List Elements"
-msgstr "Ændre udseendet på listeelementer"
+msgstr "Endre temaet for list elementer"
 
 #: String 373
 msgid "Change the theme of Featured Elements"
-msgstr "Ændre temaet på fremhævede elementer"
+msgstr "Endre temaet for profilerte elementer"
 
 #: String 374
 msgid "Installation"
-msgstr "Installation"
+msgstr "Installasjon"
 
 #: String 375
 msgid "Requirements"
@@ -1504,27 +1504,27 @@ msgstr "Krav"
 
 #: String 376
 msgid "Congratulations"
-msgstr "Tillykke"
+msgstr "Gratulerer"
 
 #: String 377
 msgid "Installation done"
-msgstr "Installationen er udført"
+msgstr "Installasjon utført"
 
 #: String 378
 msgid "Please now erase the folder"
-msgstr "Slet mappen"
+msgstr "Vennligst slett mappen nå"
 
 #: String 379
 msgid "Go to Your Website"
-msgstr "Gå til din hjemmeside"
+msgstr "Gå til nettstedet ditt"
 
 #: String 380
 msgid "Make a donation"
-msgstr "Lav en donation"
+msgstr "Gi en donasjon"
 
 #: String 381
 msgid "We really appreciate it"
-msgstr "Vi sætter virkelig pris på det"
+msgstr "Vi setter stor  pris på det"
 
 #: String 382
 msgid "Welcome to"
@@ -1532,75 +1532,75 @@ msgstr "Velkommen til"
 
 #: String 383
 msgid "installation"
-msgstr "installation"
+msgstr "installasjon"
 
 #: String 384
 msgid "Welcome to the super easy and fast installation"
-msgstr "Velkommen til super nem, og hurtig, installation"
+msgstr "Velkommen til super enkel og rask installasjon"
 
 #: String 385
 msgid "If you need any help please check our professional services"
-msgstr "Hvis du har brug for hjælp kan du tjekke vores professionelle ydelser"
+msgstr "Hvis du trenger hjelp kan du sjekke våre profesjonelle tjenester"
 
 #: String 386
 msgid "Site Configuration"
-msgstr "Webstedskonfiguration"
+msgstr "Nettstedets konfigurasjon"
 
 #: String 387
 msgid "Site Language"
-msgstr "Webstedets sprog"
+msgstr "Nettstedets språk"
 
 #: String 388
 msgid "Site URL"
-msgstr "Web URL"
+msgstr "Nettsteds URL"
 
 #: String 389
 msgid "Time Zone"
-msgstr "Tidszone"
+msgstr "Tidssone"
 
 #: String 390
 msgid "New Install"
-msgstr "Ny Installation"
+msgstr "Ny installering"
 
 #: String 391
 msgid "Upgrade System"
-msgstr "Opgrader system"
+msgstr "Oppgrader systemet"
 
 #: String 392
 msgid "Administrator email"
-msgstr "Administrator email"
+msgstr "Administrator e-post"
 
 #: String 393
 msgid "Admin Password"
-msgstr "Admin adgangskode"
+msgstr "Admin passord"
 
 #: String 394
 msgid "Sample data"
-msgstr "Eksempel data"
+msgstr "Eksempel på data"
 
 #: String 395
 msgid "Creates few sample categories to start with"
-msgstr "Opretter et par prøve kategorier til at starte med"
+msgstr "Lager noen eksempler på kategorier til å starte med"
 
 #: String 396
 msgid "Hash Key"
-msgstr "Hash nøgle"
+msgstr "Hash-nøkkel"
 
 #: String 397
 msgid "You need the Hash Key to re-install. You can find this value if you lost it at"
-msgstr "Du har brug for Hash nøgle til at geninstallere. Du kan finde denne værdi, hvis du har mistet det på"
+msgstr "Du trenger hash-nøkkel for å re-installere. Du kan finne denne verdien hvis du har glemt den den på"
 
 #: String 398
 msgid "Database Configuration"
-msgstr "Database konfiguration"
+msgstr "Databasekonfigurasjon"
 
 #: String 399
 msgid "Allows multiple installations in one database if you give each one a unique prefix"
-msgstr "Tillader flere installationer i én database, hvis du giver hver enkelt installation et unikt præfiks"
+msgstr "Tillater flere installasjoner i en database hvis du gir hver enkelt et unikt prefiks"
 
 #: String 400
 msgid "Only numbers, letters, and underscores"
-msgstr "Kun tal, bogstaver og understregninger"
+msgstr "Bare tall, bokstaver og understrek"
 
 #: String 401
 msgid "Install"
@@ -1608,27 +1608,27 @@ msgstr "Installer"
 
 #: String 402
 msgid "Ocacu classifieds community registration"
-msgstr "Ocacu annonce registrering"
+msgstr "Ocacu annonsenettsamfunnregistrering"
 
 #: String 403
 msgid "Terms"
-msgstr "Betingelser"
+msgstr "Vilkår"
 
 #: String 404
 msgid "Cannot connect to server"
-msgstr "Kan ikke forbinde til server"
+msgstr "Kan ikke koble til serveren"
 
 #: String 405
 msgid "No database name was given"
-msgstr "Intet database navn blev givet"
+msgstr "Ingen databasenavn ble gitt"
 
 #: String 406
 msgid "Available databases"
-msgstr "Tilgængelige databaser"
+msgstr "Tilgjengelige databaser"
 
 #: String 407
 msgid "Invalid query"
-msgstr "Ugyldig forespørgsel"
+msgstr "Ugyldig søk"
 
 #: String 408
 msgid "Benchmark"
@@ -1636,31 +1636,31 @@ msgstr "Benchmark"
 
 #: String 409
 msgid "Application Execution"
-msgstr "Programudførelse"
+msgstr "Søknadsutførelse"
 
 #: String 410
 msgid "Hello, world"
-msgstr "Hej, verden"
+msgstr "Hallo, verden"
 
 #: String 411
 msgid "Environment"
-msgstr "Miljø"
+msgstr "Omgivelse"
 
 #: String 412
 msgid "Included files"
-msgstr "Inkluderede filer"
+msgstr "Inkluderte filer"
 
 #: String 413
 msgid "Loaded extensions"
-msgstr "Indlæste udvidelser"
+msgstr "Opplastede utvidelser"
 
 #: String 414
 msgid "publish new"
-msgstr "Opret ny"
+msgstr "publiser ny"
 
 #: String 415
 msgid "search"
-msgstr "søg"
+msgstr "søke"
 
 #: String 416
 msgid "contact"
@@ -1668,11 +1668,11 @@ msgstr "kontakt"
 
 #: String 417
 msgid "map"
-msgstr "kort"
+msgstr "kart"
 
 #: String 418
 msgid "maintenance"
-msgstr "vedligeholdelse"
+msgstr "vedlikehold"
 
 #: String 419
 msgid "views"
@@ -1680,15 +1680,15 @@ msgstr "visninger"
 
 #: String 420
 msgid "ads"
-msgstr "annoncer"
+msgstr "annonser"
 
 #: String 421
 msgid "users"
-msgstr "brugere"
+msgstr "brukere"
 
 #: String 422
 msgid "# items to display"
-msgstr "# Emner der skal vises"
+msgstr "# elementer som skal vises"
 
 #: String 423
 msgid "RSS"
@@ -1696,23 +1696,23 @@ msgstr "RSS"
 
 #: String 424
 msgid "RSS reader with cache"
-msgstr "RSS-læser med cache"
+msgstr "RSS-leser med cache"
 
 #: String 425
 msgid "Number items to display"
-msgstr "Antal emner der skal vises"
+msgstr "Antall elementer som skal vises"
 
 #: String 426
 msgid "How often we refresh the RSS, in seconds"
-msgstr "Hvor ofte vi opdaterer RSS, i sekunder"
+msgstr "Hvor ofte vi oppdatere RSS, i løpet av antall sekunder"
 
 #: String 427
 msgid "RSS url address"
-msgstr "RSS url adresse"
+msgstr "RSS url-adresse"
 
 #: String 428
 msgid "RSS title displayed"
-msgstr "RSS titel der vises"
+msgstr "RSS tittelen vises"
 
 #: String 429
 msgid "Share"
@@ -1720,15 +1720,15 @@ msgstr "Del"
 
 #: String 430
 msgid "Share on social networks."
-msgstr "Del på sociale netværk"
+msgstr "Del på sosiale nettverk."
 
 #: String 431
 msgid "Title displayed"
-msgstr "Titel der vises"
+msgstr "Tittelen vises"
 
 #: String 432
 msgid "Add latest comments"
-msgstr "Seneste kommentarer"
+msgstr "Legg til siste kommentarer"
 
 #: String 433
 msgid "Comments"
@@ -1736,23 +1736,23 @@ msgstr "Kommentarer"
 
 #: String 434
 msgid "Number of comments to display"
-msgstr "Antallet af kommentarer der skal vises"
+msgstr "Antall kommentarer som skal vises"
 
 #: String 435
 msgid "Google Maps with ads"
-msgstr "Google Maps med annoncer"
+msgstr "Google Maps med annonser"
 
 #: String 436
 msgid "Map title displayed"
-msgstr "Kort titel der vises"
+msgstr "Karttittel vises"
 
 #: String 437
 msgid "Map height in pixels"
-msgstr "Kort højde i pixels"
+msgstr "Karthøyde i piksler"
 
 #: String 438
 msgid "Zoom in the map"
-msgstr "Zoom ind på kortet"
+msgstr "Zoom inn på kartet"
 
 #: String 439
 msgid "Display categories"
@@ -1760,15 +1760,15 @@ msgstr "Vis kategorier"
 
 #: String 440
 msgid "Categories title displayed"
-msgstr "Kategorititel der vises"
+msgstr "Kategoritittelen vises"
 
 #: String 441
 msgid "Display Locations"
-msgstr "Display Locations"
+msgstr "Vis steder"
 
 #: String 442
 msgid "Locations title displayed"
-msgstr "Steder titel, der vises"
+msgstr "Tittelen på steder vises"
 
 #: String 443
 msgid "Text"
@@ -1780,31 +1780,31 @@ msgstr "HTML tekstområde"
 
 #: String 445
 msgid "Text title displayed"
-msgstr "Tekst titel der vises"
+msgstr "Teksttittelen vises"
 
 #: String 446
 msgid "HTML/text content here"
-msgstr "HTML/tekst indhold her"
+msgstr "HTML / tekstinnhold her"
 
 #: String 447
 msgid "Ads reader"
-msgstr "Annoncelæser"
+msgstr "Annonseleser"
 
 #: String 448
 msgid "Type ads to display"
-msgstr "Type annoncer der skal vises"
+msgstr "Type annonser som skal vises"
 
 #: String 449
 msgid "Popular Ads last month"
-msgstr "Populære annoncer i sidste måned"
+msgstr "Populære annonser siste måned"
 
 #: String 450
 msgid "Number of ads to display"
-msgstr "Antal annoncer der skal vises"
+msgstr "Antall annonser som skal vises"
 
 #: String 451
 msgid "Ads title displayed"
-msgstr "Annoncer titel der vises"
+msgstr "Annonsertittel vises"
 
 #: String 452
 msgid "Pages"
@@ -1812,23 +1812,23 @@ msgstr "Sider"
 
 #: String 453
 msgid "Display CMS pages"
-msgstr "Vis CMS sider"
+msgstr "Vise CMS sider"
 
 #: String 454
 msgid "Page title displayed"
-msgstr "Sidetitel der vises"
+msgstr "Sidetittel vises"
 
 #: String 455
 msgid "Display site stats"
-msgstr "Vis side statistik"
+msgstr "Vis statestikk fro webområdet"
 
 #: String 456
 msgid "Submit"
-msgstr "Indsend"
+msgstr "Send "
 
 #: String 457
 msgid "Other"
-msgstr "Andet"
+msgstr "Annet"
 
 #: String 458
 msgid "Role"
@@ -1836,15 +1836,15 @@ msgstr "Rolle"
 
 #: String 459
 msgid "Last modified"
-msgstr "Sidst ændret"
+msgstr "Sist endret"
 
 #: String 460
 msgid "Last login"
-msgstr "Sidste log ind"
+msgstr "Siste innlogging"
 
 #: String 461
 msgid "User"
-msgstr "Bruger"
+msgstr "Bruker"
 
 #: String 462
 msgid "Type"
@@ -1852,27 +1852,27 @@ msgstr "Type"
 
 #: String 463
 msgid "SEO title"
-msgstr "SEO titel"
+msgstr "SEO tittelen"
 
 #: String 464
 msgid "Ip address"
-msgstr "IP-adresse"
+msgstr "Ip-adresse"
 
 #: String 465
 msgid "Has images"
-msgstr "Har billeder"
+msgstr "Har bilder"
 
 #: String 466
 msgid "Parent"
-msgstr "Forælder"
+msgstr "Foreldre"
 
 #: String 467
 msgid "Parent deep"
-msgstr "Forælder dybde"
+msgstr "Foreldre dyp"
 
 #: String 468
 msgid "Seoname"
-msgstr "Seo-navn"
+msgstr "Seoname"
 
 #: String 469
 msgid "Id"
@@ -1880,7 +1880,7 @@ msgstr "Id"
 
 #: String 470
 msgid "Order"
-msgstr "Bestil"
+msgstr "Bestilling"
 
 #: String 471
 msgid "Info"
@@ -1892,55 +1892,55 @@ msgstr "Advarsel"
 
 #: String 473
 msgid "Error"
-msgstr "Fejl"
+msgstr "Feil"
 
 #: String 474
 msgid "Success"
-msgstr "Succes"
+msgstr "Suksess"
 
 #: String 475
 msgid "New profile has been created. Welcome "
-msgstr "Ny profil er blevet oprettet. Velkommen"
+msgstr "Ny profil er opprettet. Velkommen"
 
 #: String 476
 msgid "Something went wrong with uploading pictures, please check format"
-msgstr "Noget gik galt under upload af billeder. kontroller formatet"
+msgstr "Noe gikk galt med opplasting av bilder, vennligst sjekk format"
 
 #: String 477
 msgid "Something went wrong with uploading pictures"
-msgstr "Noget gik galt under upload af billeder"
+msgstr "Noe gikk galt med opplasting av bilder"
 
 #: String 478
 msgid "Advertisement is posted but first you need to activate. Please check your email!"
-msgstr "Annonce er oprettet, men skal aktiveres. Tjek venligst din email!"
+msgstr "Annonse er lagt ut, men først må du aktivere. Vennligst sjekk e-posten!"
 
 #: String 479
 msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
-msgstr "Annoncen er modtaget, afvent validering af Administrator. Tak for tålmodigheden!"
+msgstr "Reklame er mottatt, men først må administrator godkjenne. Takk for at du tålmodig!"
 
 #: String 480
 msgid "Advertisement is posted. Congratulations!"
-msgstr "Annoncen er udgivet. Tillykke!"
+msgstr "Annonse er lagt ut. Gratulerer!"
 
 #: String 481
 msgid "Captcha is not correct"
-msgstr "Captcha er ikke korrekt"
+msgstr "Captcha er ikke riktig"
 
 #: String 482
 msgid "We are working on our site, please visit later. Thanks"
-msgstr "Vi arbejder på vores hjemmeside, kom igen senere. Tak"
+msgstr "Vi jobber med nettstedet, vennligst besøk senere. Takk"
 
 #: String 483
 msgid "Latest published"
-msgstr "Senest udgivet"
+msgstr "Siste publiserte"
 
 #: String 484
 msgid "Email Configuration updated"
-msgstr "Email konfiguration opdateret"
+msgstr "E-post konfigurasjon oppdatert"
 
 #: String 485
 msgid "General Configuration updated"
-msgstr "Generel konfiguration opdateret"
+msgstr "Generell Konfigurasjon oppdatert"
 
 #: String 486
 msgid "Payments"
@@ -1952,59 +1952,59 @@ msgstr "Widget parameter mangler"
 
 #: String 488
 msgid "Saved"
-msgstr "Gemt"
+msgstr "Lagret"
 
 #: String 489
 msgid "Password is changed"
-msgstr "Adgangskoden er ændret"
+msgstr "Passord er endret"
 
 #: String 490
 msgid "Nothing is provided"
-msgstr "Intet angivet"
+msgstr "Ingenting er oppgitt"
 
 #: String 491
 msgid "Passwords do not match"
-msgstr "Adgangskoderne stemmer ikke overens"
+msgstr "Passordene stemmer ikke overens"
 
 #: String 492
 msgid "New password is invalid, or they do not match! Please try again."
-msgstr "Ny adgangskode er ugyldigt, eller de passer ikke overens! Prøv igen."
+msgstr "Nytt passord er ugyldig, eller de stemmer ikke overens! Vennligst prøv igjen."
 
 #: String 493
 msgid "You have successfuly changed your data"
-msgstr "Du har ændret dine data"
+msgstr "Endring av dine data var vellykket"
 
 #: String 494
 msgid "My Advertisement page "
-msgstr "Min annoncer"
+msgstr "Min annonseside"
 
 #: String 495
 msgid "This is not your advertisement."
-msgstr "Dette er ikke din annonce."
+msgstr "Dette er ikke din annonse."
 
 #: String 496
 msgid "Advertisement is deactivated"
-msgstr "Annonce er deaktiveret"
+msgstr "Reklame er deaktivert"
 
 #: String 497
 msgid "Advertisement is active and published"
-msgstr "Annonce er aktiv og udgivet"
+msgstr "Reklame er aktiv og publisert"
 
 #: String 498
 msgid "Edit advertisement"
-msgstr "Rediger annoncen"
+msgstr "Redigere annonse"
 
 #: String 499
 msgid "Advertisement is updated!"
-msgstr "Annoncen er opdateret!"
+msgstr "Annonse er oppdatert!"
 
 #: String 500
 msgid "Advertisement is updated"
-msgstr "Annoncen er opdateret"
+msgstr "Annonse er oppdatert"
 
 #: String 501
 msgid "You dont have permission to access this link"
-msgstr "Du har ikke tilladelse til dette link"
+msgstr "Du har ikke tilgang til denne koblingen"
 
 #: String 502
 msgid "List"
@@ -2012,95 +2012,95 @@ msgstr "Liste"
 
 #: String 503
 msgid "Edit Translation"
-msgstr "Rediger oversættelse"
+msgstr "Rediger oversettelse"
 
 #: String 504
 msgid "Language saved"
-msgstr "Sprog gemt"
+msgstr "Språk lagret"
 
 #: String 505
 msgid "Error on mail delivery, not sent"
-msgstr "Fejl i email levering, ikke sendt"
+msgstr "Feil på e-postlevering, ikke sendt"
 
 #: String 506
 msgid "Email sent to all the users"
-msgstr "Email sendt til alle brugere"
+msgstr "E-post sendt til alle brukere"
 
 #: String 507
 msgid "Mail not sent"
-msgstr "Email ikke sendt"
+msgstr "E-post er ikke sendt"
 
 #: String 508
 msgid "Theme configuration updated"
-msgstr "Tema konfiguration opdateret"
+msgstr "Temakonfigurasjon oppdatert"
 
 #: String 509
 msgid "Appearance configuration updated"
-msgstr "Udseende opdateret"
+msgstr "Utseendekonfigurasjon oppdatert"
 
 #: String 510
 msgid "Mobile Theme updated"
-msgstr "Mobiltema opdateret"
+msgstr "Mobilt tema oppdatert"
 
 #: String 511
 msgid "Optimize DB"
-msgstr "Optimer DB"
+msgstr "Optimalisere DB"
 
 #: String 512
 msgid "Database Optimized"
-msgstr "Database optimeret"
+msgstr "Database optimalisert"
 
 #: String 513
 msgid "All cache deleted"
-msgstr "Al cache slettet"
+msgstr "All cache slettet"
 
 #: String 514
 msgid "Deleted expired cache"
-msgstr "Slet udløbet cache"
+msgstr "Slettet utløpt cache"
 
 #: String 515
 msgid "You are not using latest version of OC, please update."
-msgstr "Du bruger ikke nyeste version af OC, opdater nu."
+msgstr "Du bruker ikke siste versjon av OC, vennligst oppdater."
 
 #: String 516
 msgid "System logs"
-msgstr "System logfiler"
+msgstr "Systemloggene"
 
 #: String 517
 msgid "Sitemap Configuration updated"
-msgstr "Sitemap konfiguration opdateret"
+msgstr "Nettstedskartskonfigurasjon oppdatert"
 
 #: String 518
 msgid "Open Classifieds migration"
-msgstr "Open Classifieds migrering"
+msgstr "Open Classifieds migrasjon"
 
 #: String 519
 msgid "Database cleaned"
-msgstr "Database rengøres"
+msgstr "Database rensket"
 
 #: String 520
 msgid "Review database connection parameters"
-msgstr "Gennemse database forbindelse parametre"
+msgstr "Gjennomgå databasens tilkoblingsparametre"
 
 #: String 521
 msgid "Wrong email or password"
-msgstr "Forkert email eller adgangskode"
+msgstr "Feil e-post eller passord"
 
 #: String 522
 msgid "Email to recover password sent"
-msgstr "Email til ændring af adgangskoden er afsendt"
+msgstr "E-post for å gjenopprette passordet sendt"
 
 #: String 523
 msgid "User not in database"
-msgstr "Bruger findes ikke i databasen"
+msgstr "Bruker ikke i databasen"
 
 #: String 524
 msgid "Email required"
-msgstr "Email påkrævet"
+msgstr "E-mail påkrevd"
 
 #: String 525
 msgid "User already exists"
-msgstr "Brugeren eksisterer allerede"
+msgstr "Brukeren finnes allerede"
 
 #: String 526
 msgid "Welcome!"
@@ -2108,43 +2108,43 @@ msgstr "Velkommen!"
 
 #: String 527
 msgid "Register new user"
-msgstr "Opret ny bruger"
+msgstr "Registrer ny bruker"
 
 #: String 528
 msgid "You do not have any published Advertisement"
-msgstr "Du har ikke nogen udgivne annoncer"
+msgstr "Du har ingen publiserte annonser"
 
 #: String 529
 msgid "You do not have any advertisements waiting to be published"
-msgstr "Du har ikke nogen annoncer der venter på udgivelse"
+msgstr "Du har ikke noen annonser som venter på å bli publisert"
 
 #: String 530
 msgid "Warning, something went wrong while deleting"
-msgstr "Advarsel, noget gik galt under sletning"
+msgstr "Advarsel, noe gikk galt under sletting"
 
 #: String 531
 msgid "Advertisement is deleted"
-msgstr "Annoncen er slettet"
+msgstr "Annonse er slettet"
 
 #: String 532
 msgid "Warning, Advertisement is already marked as spam"
-msgstr "Advarsel. Annonce er allerede er markeret som spam"
+msgstr "Advarsel, annonse allerede er merket som spam"
 
 #: String 533
 msgid "Advertisement is marked as spam"
-msgstr "Annonce er markeret som spam"
+msgstr "Annonse er merket som spam"
 
 #: String 534
 msgid "Advertisement is featured"
-msgstr "Reklame er fremhævet"
+msgstr "Annonsen er profilert"
 
 #: String 535
 msgid "Location deleted"
-msgstr "Lokation slettet"
+msgstr "Sted slettet"
 
 #: String 536
 msgid "Location not deleted"
-msgstr "Lokation ikke slettet"
+msgstr "Sted ikke slettet"
 
 #: String 537
 msgid "Category deleted"
@@ -2156,27 +2156,27 @@ msgstr "Kategori ikke slettet"
 
 #: String 539
 msgid "Your message has been sent"
-msgstr "Din besked er blevet sendt"
+msgstr "Din melding er sendt"
 
 #: String 540
 msgid "Message not sent"
-msgstr "Besked ikke sendt"
+msgstr "Melding ikke sendt"
 
 #: String 541
 msgid "Check the form for errors"
-msgstr "Kontroller formularen for fejl"
+msgstr "Sjekk skjema for feil"
 
 #: String 542
 msgid "You made some mistake"
-msgstr "Du har lavet nogle fejl"
+msgstr "Du har gjort noen feil"
 
 #: String 543
 msgid "Advertisement to top"
-msgstr "Flyt annonce til top"
+msgstr "Annonse til toppen"
 
 #: String 544
 msgid "Advertisement to featured"
-msgstr "Fremhæv annonce"
+msgstr "Annonse til profilert"
 
 #: String 545
 msgid " category"
@@ -2184,7 +2184,7 @@ msgstr "kategori"
 
 #: String 546
 msgid "Order could not be loaded"
-msgstr "Ordre kunne ikke indlæses"
+msgstr "Rekkefølge kunne ikke lastes"
 
 #: String 547
 msgid "Page "
@@ -2192,37 +2192,37 @@ msgstr "Side"
 
 #: String 548
 msgid "Your advertisement is successfully activated! Thank you!"
-msgstr "Din annonce blev aktiveret! Tak!"
+msgstr "Din annonse er vellykket aktivert! Takk!"
 
 #: String 549
 msgid "We did not find any advertisements for your search."
-msgstr "Vi kunne ikke finde nogen annoncer."
+msgstr "Vi fant ikke noen annonse for ditt søk."
 
 #: String 550
 msgid "No sitemap generated"
-msgstr "Intet sitemap oprettet"
+msgstr "Intet nettstedskart generert"
 
 #: String 551
 msgid "You are in maintenance mode, only you can see the website"
-msgstr "Du er i vedligeholdelsestilstand, kun du kan se hjemmesiden"
+msgstr "Du er i vedlikeholdsmodus, bare du kan se nettsiden"
 
 #: String 552
 msgid "Item created"
-msgstr "Emne oprettet"
+msgstr "Element opprettet"
 
 #: String 553
 msgid "Check form for errors"
-msgstr "Kontroller formular for fejl"
+msgstr "Sjekk skjema for feil"
 
 #: String 554
 msgid "Item updated"
-msgstr "Emne opdateret"
+msgstr "Element oppdatert"
 
 #: String 555
 msgid "Access not allowed"
-msgstr "Adgang ikke tilladt"
+msgstr "Ingen tilgang"
 
 #: String 556
 msgid "Some errors in the form"
-msgstr "Formularen er ikke udfyldt korrekt"
+msgstr "Noen feil i skjemaet"
 
