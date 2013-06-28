@@ -35,7 +35,9 @@
 		    	</h2>
 		    	
 		    	<?if($ad->get_first_image() !== NULL):?>
-		    		 <img src="<?=URL::base('http')?><?=$ad->get_first_image()?>" class="img-polaroid advert_img" >
+		    		 <a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>">
+		    		 	<img src="<?=URL::base('http')?><?=$ad->get_first_image()?>" class="img-polaroid advert_img" >
+		    		 </a>
 		    	<?endif?>
 		    	
 		    	<ul>
