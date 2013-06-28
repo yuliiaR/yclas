@@ -353,7 +353,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 								'cat'			=> $category 	= 	core::post('category'),
 								'loc'			=> $loc 		= 	core::post('location'),
 								'description'	=> $description = 	core::post('description'),
-								'price'			=> $price 		= 	core::post('price'),
+								'price'			=> $price 		= 	floatval(str_replace(',', '.', core::post('price'))),
 								'status'		=> $status		= 	core::post('status'),
 								'address'		=> $address 	= 	core::post('address'),
 								'website'		=> $website 	= 	core::post('website'),

@@ -122,6 +122,19 @@ class Model_Location extends ORM {
     }
 
     /**
+     * we get the locations in an array and a multidimensional array to know the deep
+     * @param  int ID of location 
+     * @param  string needed attribute to be returned
+     * @return string   
+     */
+    
+    public static function get_location($id, $attr)
+    {
+      $location = new self($id);
+      return $location->$attr;
+    }
+
+    /**
      * gets a multidimensional array wit the locations
      * @param  array  $locs_s      id_location->array(id_siblings)
      * @param  integer $id_location 
