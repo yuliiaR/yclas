@@ -15,5 +15,3 @@ $(function(){
     $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
 
 });
-
-

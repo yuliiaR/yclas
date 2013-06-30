@@ -13,19 +13,6 @@
 					</div>
 				</div>
 
-                 <?
-                    $selected_cat = NULL;
-                    foreach ($categories as $c) {
-                        if ($c['seoname']==Core::get('category'))
-                        {
-                            $selected_cat = $c;
-                            break;
-                        }
-                    }
-                    //data-parent="#acc_<?=$cats[$cats[$key]['id_category_parent']]['seoname']
-                   // d($selected_cat);
-                ?>
-
                <!-- drop down selector -->
                 <div class="control-group">
                     <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
@@ -45,7 +32,7 @@
                                     <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
                                     
                                      <?if ($cats[$key]['price']>0):?>
-                                        <span class="label label-info pull-right">
+                                        <span class="label label-success">
                                         <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?>
                                         </span>
                                     <?endif?>
@@ -56,13 +43,13 @@
                                     <label class="radio">
                                     <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
                                     
-                                   		<a class="btn btn-mini disabled" data-toggle="collapse" type="button"  
+                                   		<a class="btn btn-mini btn-primary" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
                                         	<?=$cats[$key]['name']?>
                                     	</a>
 
                                      <?if ($cats[$key]['price']>0):?>
-                                        <span class="label label-info pull-right">
+                                        <span class="label label-success">
                                         <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?>
                                         </span>
                                     <?endif?>
@@ -86,12 +73,26 @@
                     </div>
                 </div>
 				
-				<?if(count($locations) > 1):?>
-					<?if($form_show['location'] != FALSE):?>
-                    <div class="control-group">
+				<?if(count($locations) > 1 AND $form_show['location'] != FALSE):?>
+
+                     <div class="control-group">
                         <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
                         <div class="controls">          
                             <select name="location" id="location" class="input-xlarge"   required>
+                            <option></option>
+                            <?foreach ($locations as $key => $value):?>
+                                <?if ($key!=1):?>
+                                <option value="<?=$key?>"><?=$value['name']?></option>
+                                <?endif?>
+                            <?endforeach?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
+                        <div class="controls">          
+                            <select name="location2" id="location2" class="input-xlarge"   required>
                             <option></option>
                             <?function lolo($item, $key,$locs){?>
                             <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
@@ -103,7 +104,6 @@
                             </select>
                         </div>
                     </div>
-					<?endif?>
 				<?endif?>
 
 				<div class="control-group">
