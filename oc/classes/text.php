@@ -70,7 +70,7 @@ class Text extends Kohana_Text {
                                  '#\[img=(.+)](.+)\[/img]#Usi',
                                  '#\[code](\r\n)?(.+?)(\r\n)?\[/code]#si',
                                  '#\[youtube]http://www.youtube.com/watch\?v=(.+)\[/youtube]#Usi',
-                                 '#\[youtube](.+)\[/youtube]#Usi'
+                                 '#\[youtube](.+)\[/youtube]#Usi',
                                  '#\[font=(.+)](.+)\[/font\]#Usi',
         );
 
