@@ -74,21 +74,6 @@
                 </div>
 				
 				<?if(count($locations) > 1 AND $form_show['location'] != FALSE):?>
-
-                     <div class="control-group">
-                        <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
-                        <div class="controls">          
-                            <select name="location" id="location" class="input-xlarge"   required>
-                            <option></option>
-                            <?foreach ($locations as $key => $value):?>
-                                <?if ($key!=1):?>
-                                <option value="<?=$key?>"><?=$value['name']?></option>
-                                <?endif?>
-                            <?endforeach?>
-                            </select>
-                        </div>
-                    </div>
-
                     <div class="control-group">
                         <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
                         <div class="controls">          
