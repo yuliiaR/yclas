@@ -23,10 +23,10 @@ class Text extends Kohana_Text {
                                 '[ul]','[/ul]',
                                 '[li]', '[/li]',
                                 '[ol]', '[/ol]',
-                                '[justify]','[/justify]',
                                 '[table]','[/table]',
                                 '[tr]','[/tr]',
                                 '[td]','[/td]',
+                                '[justify]','[/justify]',
                                 '[center]', '[/center]',
                                 '[left]', '[/left]',
                                 '[right]', '[/right]',
@@ -47,7 +47,7 @@ class Text extends Kohana_Text {
                                 '<table>','</table>',
                                 '<tr>','</tr>',
                                 '<td>','</td>',
-                                '<justify>','</justify>',
+                                '<div align="justify">','</div>',
                                 '<div style="text-align: center;">', '</div>',
                                 '<div style="text-align: left;">',   '</div>',
                                 '<div style="text-align: right;">',  '</div>',
@@ -71,7 +71,7 @@ class Text extends Kohana_Text {
                                  '#\[code](\r\n)?(.+?)(\r\n)?\[/code]#si',
                                  '#\[youtube]http://www.youtube.com/watch\?v=(.+)\[/youtube]#Usi',
                                  '#\[youtube](.+)\[/youtube]#Usi'
-                                 '#\[font=([a-zA-Z]*|\,]*(.+)\[/font\]#Usi'
+                                 '#\[font=(.+)](.+)\[/font\]#Usi',
         );
 
         /**
@@ -92,6 +92,7 @@ class Text extends Kohana_Text {
                                  '<code>$2</code>',
                                  '<iframe width="560" height="315" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
                                  '<iframe width="560" height="315" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
+                                 '<font face="$1">$2</font>'
         );
 
 	/**

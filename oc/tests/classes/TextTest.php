@@ -13,8 +13,8 @@ class TextTest extends Kohana_UnitTest_TestCase
             array('[s]strike[/s]', '<s>strike</s>'),
             array('[ul][li]item1[/li][li]item2[/li][/ul]', '<ul><li>item1</li><li>item2</li></ul>'),
             array('[ol][li]item1[/li][li]item2[/li][/ol]', '<ol><li>item1</li><li>item2</li></ol>'),
-            array('[justify]justify[/justify]', '<justify>justify</justify>'),
-            array('[table][tr][td]row 1, cell 1[/td][td]row 1, cell 2[/td][/tr][/table]', '<table><tr><td>item1</td><td>item2</td></tr></table>'),
+            array('[justify]justify[/justify]', '<div align="justify">justify</div>'),
+            array('[table][tr][td]row 1, cell 1[/td][td]row 1, cell 2[/td][/tr][/table]', '<table><tr><td>row 1, cell 1</td><td>row 1, cell 2</td></tr></table>'),
             array('[center]center[/center]', '<div style="text-align: center;">center</div>'),
             array('[left]left[/left]', '<div style="text-align: left;">left</div>'),
             array('[right]right[/right]', '<div style="text-align: right;">right</div>'),
@@ -25,7 +25,7 @@ class TextTest extends Kohana_UnitTest_TestCase
     {
         $adv = array(
                 array('[color=red]color red[/color]', '<span style="color: red">color red</span>'),
-                array('[font=Arial, Helvetica, sans]font Arial, Helvetica, sans[/font]', '<font face="arial">font family Arial ,color blue </font>'),
+                array('[font=Arial, Helvetica, sans]font family Arial ,color blue [/font]', '<font face="Arial, Helvetica, sans">font family Arial ,color blue </font>'),
                 array('[size=9]size 9[/size]', '<span style="font-size: 9px">size 9</span>'),
                 array('[quote]some quote[/quote]', '<blockquote>some quote</blockquote>'),
                 array('[quote=some quote]some quote[/quote]', '<blockquote>some quote</blockquote>'),
