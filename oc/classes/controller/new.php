@@ -100,7 +100,6 @@ class Controller_New extends Controller
 		{
 			if($captcha_show == FALSE || captcha::check('contact') ) 
 			{		
-				
 				//FORM DATA 
 				$seotitle = $new_ad->gen_seo_title($data['title']); 
 				
