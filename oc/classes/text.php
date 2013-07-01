@@ -23,6 +23,10 @@ class Text extends Kohana_Text {
                                 '[ul]','[/ul]',
                                 '[li]', '[/li]',
                                 '[ol]', '[/ol]',
+                                '[justify]','[/justify]',
+                                '[table]','[/table]',
+                                '[tr]','[/tr]',
+                                '[td]','[/td]',
                                 '[center]', '[/center]',
                                 '[left]', '[/left]',
                                 '[right]', '[/right]',
@@ -40,6 +44,10 @@ class Text extends Kohana_Text {
                                 '<ul>','</ul>',
                                 '<li>','</li>',
                                 '<ol>','</ol>',
+                                '<table>','</table>',
+                                '<tr>','</tr>',
+                                '<td>','</td>',
+                                '<justify>','</justify>',
                                 '<div style="text-align: center;">', '</div>',
                                 '<div style="text-align: left;">',   '</div>',
                                 '<div style="text-align: right;">',  '</div>',
@@ -63,6 +71,7 @@ class Text extends Kohana_Text {
                                  '#\[code](\r\n)?(.+?)(\r\n)?\[/code]#si',
                                  '#\[youtube]http://www.youtube.com/watch\?v=(.+)\[/youtube]#Usi',
                                  '#\[youtube](.+)\[/youtube]#Usi'
+                                 '#\[font=([a-zA-Z]*|\,]*(.+)\[/font\]#Usi'
         );
 
         /**
