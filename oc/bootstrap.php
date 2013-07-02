@@ -33,6 +33,15 @@ else
 //Kohana::$environment = ($_SERVER['SERVER_NAME'] !== 'reoc.lo') ? Kohana::PRODUCTION : Kohana::DEVELOPMENT;
 
 /**
+ * Magic quotes enabled?
+ */
+if (function_exists('get_magic_quotes_gpc'))
+{
+    if (get_magic_quotes_gpc())
+        Kohana::$magic_quotes = TRUE;
+}
+
+/**
  * Initialize Kohana, setting the default options.
  *
  * The following options are available:
