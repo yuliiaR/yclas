@@ -62,11 +62,20 @@ class Controller_Panel_Update extends Auth_Controller {
                                'group_name'     =>'advertisement',
                                'config_value'   =>'0'));
         
+        $contents = array(array('order'=>'0',
+                               'title'=>'Hello [USER.NAME]!',
+                               'seotitle'=>'userprofile.contact',
+                               'description'=>"User [EMAIL.SENDER] [EMAIL.FROM], have a message for you: \n\n [EMAIL.SUBJECT] \n\n[EMAIL.BODY]. \n\n Regards!",
+                               'from_email'=>core::config('email.notify_email'),
+                               'type'=>'email',
+                               'status'=>'1'));
+        
         // returns TRUE if some config is saved 
-        $return = Model_Config::config_array($configs);
+        $return_conf = Model_Config::config_array($configs);
+        $return_cont = Model_Content::content_array($contents);
 
         // message
-        if($return)
+        if($return_conf OR $return_cont)
             Alert::set(Alert::SUCCESS,__('Updated'));
         else
             Alert::set(Alert::INFO,__('Nothing to Update'));

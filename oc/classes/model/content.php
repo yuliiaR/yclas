@@ -101,6 +101,40 @@ class Model_Content extends ORM {
         return array('created');
     }
 
+    /**
+     * is used to create contets if they dont exist
+     * @param array
+     * @return boolean 
+     */
+    public static function content_array($contents)
+    {
+        $return = FALSE;
+        foreach ($contents as $c => $value) 
+        {
+            // get config from DB
+            $cont = new self();
+            $cont->where('seotitle','=',$value['seotitle'])
+                  ->limit(1)->find();
+
+            // if do not exist (not loaded) create them, else do nothing
+            if (!$cont->loaded())
+            {
+                $cont->order = $value['order'];
+                $cont->title = $value['title'];
+                $cont->seotitle = $value['seotitle'];
+                $cont->description = $value['description'];
+                $cont->from_email = $value['from_email'];
+                $cont->type = $value['type'];
+                $cont->status = $value['status'];
+                $cont->save();
+
+                $return = TRUE;
+            }
+        }   
+
+        return $return;
+    }
+
     protected $_table_columns =  
 array (
   'id_content' => 
