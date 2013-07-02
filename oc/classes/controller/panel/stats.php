@@ -138,7 +138,7 @@ class Controller_Panel_Stats extends Auth_Controller {
                         ->execute();
 
         $ads = $query->as_array();
-        $content->visits_yesterday     = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        $content->visits_today     = (isset($ads[0]['count']))?$ads[0]['count']:0;
 
         //Yesterday
         $query = DB::select(DB::expr('COUNT(id_visit) count'))
@@ -149,7 +149,7 @@ class Controller_Panel_Stats extends Auth_Controller {
                         ->execute();
 
         $ads = $query->as_array();
-        $content->visits_today = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        $content->visits_yesterday= (isset($ads[0]['count']))?$ads[0]['count']:0;
 
 
         //Last 30 days visits
