@@ -18,9 +18,12 @@ class Kohana extends Kohana_Core {
     public static function init(array $settings = NULL)
     {
         //before cleaning getting a copy of the original in case we need it.
-        self::$_POST_ORIG   = $_POST;
         self::$_GET_ORIG    = $_GET;
         self::$_COOKIE_ORIG = $_COOKIE;
+
+        //we remove slashes if needed
+        self::$_POST_ORIG = Kohana::stripslashes($_POST);
+        
 
         parent::init($settings);
 
@@ -62,6 +65,38 @@ class Kohana extends Kohana_Core {
 
             //Added strip tags
             $value = strip_tags($value);
+        }
+
+        return $value;
+    }
+
+
+    /**
+     * Override
+     * Recursively stripslashes an input variable:
+     *
+     * - Strips slashes if magic quotes are enabled
+     *
+     * @param   mixed   $value  any variable
+     * @return  mixed   stripslashes variable
+     */
+    public static function stripslashes($value)
+    {
+        if (Kohana::$magic_quotes === TRUE)
+        {
+            if (is_array($value) OR is_object($value))
+            {
+                foreach ($value as $key => $val)
+                {
+                    // Recursively clean each value
+                    $value[$key] = Kohana::stripslashes($val);
+                }
+            }
+            elseif (is_string($value))
+            {
+                // Remove slashes added by magic quotes
+                $value = stripslashes($value);
+            }
         }
 
         return $value;
