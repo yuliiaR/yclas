@@ -41,6 +41,18 @@
           height:450px;
         }
 
+        /* collapsable categories selector*/
+        .btn.btn-primary.btn-mini.collapsed {
+          display: inline-block !important;
+        }
+        .accordion-group {
+          border: none;
+          -webkit-border-radius: none;
+          -moz-border-radius: none;
+          border-radius: none;
+        }
+        .accordion-inner { border-top: none;}
+
 
     @media screen and (max-width: 979px) {
         body { padding-top:0; }

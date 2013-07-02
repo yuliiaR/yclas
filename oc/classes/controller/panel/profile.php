@@ -300,11 +300,10 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 		$form = new Model_Ad($this->request->param('id'));
 		
-		$cat = new Model_Category();
-		$cat_list = $cat->find_all();
-		
-		$loc = $location = new Model_Location();
-		$loc = $loc->find_all();
+		//find all, for populating form select fields 
+		list($categories,$order_categories)  = Model_Category::get_all();
+
+		list($locations,$order_locations)  = Model_Location::get_all();
 
 	
 		if(Auth::instance()->logged_in() && Auth::instance()->get_user()->id_user == $form->id_user 
@@ -313,10 +312,12 @@ class Controller_Panel_Profile extends Auth_Controller {
 			$extra_payment = core::config('payment');
 			
 			Breadcrumbs::add(Breadcrumb::factory()->set_title("Update"));
-			$this->template->content = View::factory('oc-panel/profile/edit_ad', array('ad'				=>$form, 
-																					   'location'		=>$loc, 
-																					   'category'		=>$cat_list,
-																					   'extra_payment'	=>$extra_payment));
+			$this->template->content = View::factory('oc-panel/profile/edit_ad', array('ad'					=>$form, 
+																					   'locations'			=>$locations,
+																					   'order_locations'  	=> $order_locations, 
+																					   'categories'			=>$categories,
+																					   'order_categories'	=>$order_categories,
+																					   'extra_payment'		=>$extra_payment));
 		
 			if ($this->request->post())
 			{

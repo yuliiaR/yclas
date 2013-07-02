@@ -62,33 +62,91 @@
 						<?= FORM::input('title', $ad->title, array('placeholder' => __('Title'), 'class' => '', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
-				<div class="control-group">
-					<?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category'))?>
-					<div class="controls">
-					<?$_val_category = array();?>	
-					<?php foreach($category as $cat): ?>
-						<? $id = $cat->id_category; ?>
-							<? $_val_category[$cat->id_category] = $cat->seoname; ?>
-						<?endforeach?>
-					<?= FORM::select('category', $_val_category, $ad->id_category, array('id'=>'category','class'=>'', 'required'));?>
-					</div>
-				</div>
+
+				<!-- drop down selector  CATEGORIES-->
+                <div class="control-group">
+                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
+                    <div class="controls"> 
+                    <div class="accordion" >
+
+                    <?function lili3($item, $key, $cats){?>
+
+                        <div class="accordion-group">
+                            <div class="accordion-heading"> 
+
+                                <?if (count($item)>0):?>
+                                    <label class="radio">
+                                    	<a class="btn btn-primary btn-mini" data-toggle="collapse" type="button"  
+                                       	 	data-target="#acc_<?=$cats['categories'][$key]['seoname']?>">                    
+                                        	<i class=" icon-plus icon-white"></i> <?=$cats['categories'][$key]['name']?>
+                                    	</a>
+                                    <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':''?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required > 
+                                    
+                                     <?if ($cats['categories'][$key]['price']>0):?>
+                                        <span class="label label-success">
+                                        <?=money_format(core::config('general.number_format'), $cats['categories'][$key]['price'])?>
+                                        </span>
+                                    <?endif?>
+                                    
+                                    </label>
+                                    
+                                <?else:?>
+                                    <label class="radio">
+                                    <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':''?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required > 
+                                    
+                                   		<a class="btn btn-mini btn-primary" data-toggle="collapse" type="button"  
+                                       	 	data-target="#acc_<?=$cats['categories'][$key]['seoname']?>">                    
+                                        	<?=$cats['categories'][$key]['name']?>
+                                    	</a>
+
+                                     <?if ($cats['categories'][$key]['price']>0):?>
+                                        <span class="label label-success">
+                                        <?=money_format(core::config('general.number_format'), $cats['categories'][$key]['price'])?>
+                                        </span>
+                                    <?endif?>
+                                    </label>
+                                <?endif?>
+                            </div>
+
+                            <?if (count($item)>0):?>
+                                <div id="acc_<?=$cats['categories'][$key]['seoname']?>" 
+                                    class="accordion-body collapse <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'in':''?>">
+                                    <div class="accordion-inner">
+                                        <? if (is_array($item)) array_walk($item, 'lili3', $cats);?>
+                                    </div>
+                                </div>
+                            <?endif?>
+
+                        </div>
+                    <?}array_walk($order_categories, 'lili3', array('categories'=>$categories, 'cat_selected'=>$ad->category->seoname) );?>
+
+                    </div>
+                    </div>
+                </div>
+                <!-- /categories -->
+                <!-- LOCATIONS -->
 				<?if(core::config('advertisement.location') !== FALSE):?>
-				<?if(count($location) > 1):?>
-				<div class="control-group">
-					<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
-					<div class="controls">
-						<?$_val_location = array();?>
-						<?php foreach ($location as $loc):?>
-							<? $_val_location[$loc->id_location] = $loc->seoname; ?>
-						<?endforeach?>
-					<?= FORM::select('location', $_val_location, $ad->id_location, array('id'=>'location', 'class'=>'', 'required'));?>
-					</div>
-				</div>
+				<?if(count($locations) > 1):?>
+                    <div class="control-group">
+                        <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
+                        <div class="controls">          
+                            <select name="location2" id="location2" class="input-xlarge"  required>
+                            <option></option>
+                            <?function lolo($item, $key,$locs){?>
+                            <option value="<?=$key?>"><?=$locs['locations'][$key]['name']?></option>
+                                <?if (count($item)>0):?>
+                                <optgroup label="<?=$locs['locations'][$key]['name']?>">    
+                                    <? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
+                                <?endif?>
+                            <?}array_walk($order_locations, 'lolo',array('locations'=>$locations, 'loc_selected'=>$ad->location->seoname));?>
+                            </select>
+                        </div>
+                    </div>
 				<?endif?>
 				<?endif?>
+				<!-- /locations -->
 				<div class="control-group">
-					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>
+					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
 					<div class="controls">
 						<?= FORM::textarea('description', $ad->description, array('class'=>'span6', 'name'=>'description', 'id'=>'description', 'rows'=>8, 'required'))?>
 					</div>
