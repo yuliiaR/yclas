@@ -304,7 +304,7 @@ class Model_Category extends ORM {
         if (strlen($seoname)<3)
             $seoname = $this->name;
 
-        $seoname = URL::title($seoname, '-', FALSE);
+        $seoname = URL::title($seoname);
 
         if ($seoname != $this->seoname)
         {

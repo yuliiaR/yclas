@@ -83,7 +83,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			
 			$user->name = core::post('name');
 			$user->email = core::post('email');
-			$user->seoname = URL::title(core::post('name'), '-', FALSE);
+			$user->seoname = URL::title(core::post('name'));
 			// $user->password2 = core::post('password2');
 			
 			$password1 = core::post('password1');
