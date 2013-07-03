@@ -16,8 +16,7 @@
  * this hack is to add tohse languages that are not in ascii, so we add them to the array
  * @var boolean
  */
-$ascii_only = ( in_array(i18n::$locale, array('hi_IN','ar','ur_PK')) )? FALSE:TRUE;
-
+$ascii_only = ( in_array(i18n::$locale, array('hi_IN','ar','ur_PK','ru_RU','bn_BD')) )? FALSE:TRUE;
 
 /**
  * Item / post new
