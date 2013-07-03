@@ -65,12 +65,13 @@ class Theme {
                 }
 
                 //name for the minify js file
-                $js_minified_name = URL::title(str_replace('js', '', implode('-',$files)) ).'.js';
+                $js_minified_name = URL::title('minified-'.str_replace('js', '', implode('-',$files)) ).'.js';
 
                 //check if file exists.
                 $file_name = self::theme_folder($theme).'/js/'.$js_minified_name;
 
-                if (!file_exists($file_name))
+                //only generate if file doesnt exists or older than 1 week
+                if (!file_exists($file_name) OR (time() > strtotime('+1 week',filemtime($file_name))) )
                 {
                     $min = '';
                     require_once Kohana::find_file('vendor', 'minify/jsmin','php');
@@ -135,12 +136,13 @@ class Theme {
             }
 
             //name for the minify js file
-            $css_minified_name = URL::title(str_replace('css', '', implode('-',$files)) ).'.css';
+            $css_minified_name = URL::title('minified-'.str_replace('css', '', implode('-',$files)) ).'.css';
 
             //check if file exists.
             $file_name = self::theme_folder($theme).'/css/'.$css_minified_name;
 
-            if (!file_exists($file_name))
+            //only generate if file doesnt exists or older than 1 week
+            if (!file_exists($file_name) OR (time() > strtotime('+1 week',filemtime($file_name))) )
             {
                 $min = '';
                 require_once Kohana::find_file('vendor', 'minify/css','php');
