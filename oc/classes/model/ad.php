@@ -344,8 +344,8 @@ class Model_Ad extends ORM {
                     /*WATERMARK*/
                     if(core::config('image.watermark'))
                     {
-                        $mark = Image::factory(core::config('image.watermark_url')); // watermark image object
-                        $size_watermark = getimagesize(core::config('image.watermark_url')); // size of watermark
+                        $mark = Image::factory(core::config('image.watermark_path')); // watermark image object
+                        $size_watermark = getimagesize(core::config('image.watermark_path')); // size of watermark
                         
                         if(core::config('image.watermark_position') == 0) // position center
                         {
