@@ -128,7 +128,7 @@ class Controller_New extends Controller
 						$name 		= $this->request->post('name');
 						$email		= $this->request->post('email');
 						$password	= $this->request->post('password');
-						$seoname	= URL::title($this->request->post('name'), '-', FALSE);
+						$seoname	= URL::title($this->request->post('name'));
 						
 						// check validity of email
 						if (Valid::email($email,TRUE))

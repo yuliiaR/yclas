@@ -377,7 +377,7 @@ class Model_User extends ORM {
      */
     public function gen_seo_title($title)
     {
-        $seotitle = URL::title($title, '-', FALSE);
+        $seotitle = URL::title($title);
         
         $user = new self;
         //find a user same seotitle

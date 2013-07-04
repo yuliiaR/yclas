@@ -129,7 +129,7 @@ class Model_Ad extends ORM {
 
         $ad = new self;
 
-        $title = URL::title($title, '-', FALSE);
+        $title = URL::title($title);
         $seotitle = $title;
 
         //find a ad same seotitle
