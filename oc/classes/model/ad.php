@@ -292,7 +292,7 @@ class Model_Ad extends ORM {
                 }
                 return array("error"=>FALSE, "error_name"=>"no_image");
             }
-            
+              
 
             if ($image !== NULL)
             {
@@ -333,7 +333,7 @@ class Model_Ad extends ORM {
                 }
                 else
                     $counter = 1;
-                
+           
                 
                 if ($file = Upload::save($image, NULL, $directory))
                 {
@@ -344,9 +344,9 @@ class Model_Ad extends ORM {
                     /*WATERMARK*/
                     if(core::config('image.watermark'))
                     {
-                        $mark = Image::factory(core::config('image.watermark_url')); // watermark image object
-                        $size_watermark = getimagesize(core::config('image.watermark_url')); // size of watermark
-                        
+                        $mark = Image::factory(core::config('image.watermark_path')); // watermark image object
+                        $size_watermark = getimagesize(core::config('image.watermark_path')); // size of watermark
+                      
                         if(core::config('image.watermark_position') == 0) // position center
                         {
 
