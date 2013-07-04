@@ -130,15 +130,17 @@
                     <div class="control-group">
                         <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
                         <div class="controls">          
-                            <select name="location2" id="location2" class="input-xlarge"  required>
+                            <select name="location" id="location" class="input-xlarge" required>
                             <option></option>
                             <?function lolo($item, $key,$locs){?>
-                            <option value="<?=$key?>"><?=$locs['locations'][$key]['name']?></option>
+
+                            <option value="<?=$key?>" class="<?=($key==$locs['loc_selected'])?'result-selected':''?>" <?=($key==$locs['loc_selected'])?'selected':''?>><?=$locs['locations'][$key]['name']?></option>
                                 <?if (count($item)>0):?>
-                                <optgroup label="<?=$locs['locations'][$key]['name']?>">    
+                                <optgroup label="<?=$locs['locations'][$key]['name']?>" >    
                                     <? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
+                                    </optgroup>
                                 <?endif?>
-                            <?}array_walk($order_locations, 'lolo',array('locations'=>$locations, 'loc_selected'=>$ad->location->seoname));?>
+                            <?}array_walk($order_locations, 'lolo',array('locations'=>$locations, 'loc_selected'=>$ad->id_location));?>
                             </select>
                         </div>
                     </div>

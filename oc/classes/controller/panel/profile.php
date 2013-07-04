@@ -314,13 +314,15 @@ class Controller_Panel_Profile extends Auth_Controller {
 			Breadcrumbs::add(Breadcrumb::factory()->set_title("Update"));
 			$this->template->content = View::factory('oc-panel/profile/edit_ad', array('ad'					=>$form, 
 																					   'locations'			=>$locations,
-																					   'order_locations'  	=> $order_locations, 
+																					   'order_locations'  	=>$order_locations, 
 																					   'categories'			=>$categories,
 																					   'order_categories'	=>$order_categories,
 																					   'extra_payment'		=>$extra_payment));
 		
 			if ($this->request->post())
 			{
+				$cat = new Model_Category();
+				$loc = new Model_Location();
 
 				// deleting single image by path 
 				$deleted_image = core::post('img_delete');
@@ -363,6 +365,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 								'user'			=> $user 		= new Model_User()
 								); 
 
+				
 				//insert data
 				if (core::post('title') != $form->title)
 				{
