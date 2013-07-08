@@ -2,7 +2,15 @@
 
 <?=Alert::show()?>
 <div class="page-header">
-	<h1><?=__('Advertisements')?></h1>
+	<?if(Request::current()->query('define') == Model_Ad::STATUS_UNAVAILABLE):?>
+		<h1><?=__('Unavailable')?></h1>
+	<?elseif (Request::current()->query('define') == Model_Ad::STATUS_UNCONFIRMED):?>
+		<h1><?=__('Unconfirmed')?></h1>
+	<?elseif (Request::current()->query('define') == Model_Ad::STATUS_SPAM):?>
+		<h1><?=__('Spam')?></h1>
+	<?else:?>
+		<h1><?=__('Advertisements')?></h1>
+	<?endif?>
 </div>
 
 <a class="btn btn-warning" type="submit" value="spam" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index?define='.Model_Ad::STATUS_SPAM))?>" rel"tooltip" title="<?=__('Spam Sort')?>">

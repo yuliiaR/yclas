@@ -212,7 +212,14 @@ class Controller_Panel_Ad extends Auth_Controller {
 				
 			}
 			Alert::set(Alert::SUCCESS, __('Advertisement is deleted'));
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+			if(core::config('general.moderation') == Model_Ad::MODERATION_ON OR 
+			   core::config('general.moderation') == Model_Ad::EMAIL_MODERATION OR
+			   core::config('general.moderation') == Model_Ad::PAYMENT_MODERATION) 
+
+				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+
+			else
+				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		}
 		else
 		{
@@ -276,7 +283,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 	{
 
 		$id = $this->request->param('id');
-		
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
