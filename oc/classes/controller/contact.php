@@ -66,7 +66,7 @@ class Controller_Contact extends Controller {
                                                     core::post('email'),
                                                     core::post('name'),
                                                     $file);
-                d($ret);
+                //d($ret);
                 //if succesfully sent
                 if ($ret)
                 {
