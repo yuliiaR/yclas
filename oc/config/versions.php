@@ -1,16 +1,24 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
 
-'2.0.4' => 
+  '2.0.5' => 
   array (
     'codename' => 'Reoc',
     'released' => '2013-07-xx',
-    'download' => 'http://open-classifieds.com/2013/07/02/open-classifieds-2-0-4/',
+    'download' => 'http://open-classifieds.com/2013/07/xx/open-classifieds-2-0-5/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.0.5',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=10&state=closed',
+  ),
+
+  '2.0.4' => 
+  array (
+    'codename' => 'Reoc',
+    'released' => '2013-07-09',
+    'download' => 'http://open-classifieds.com/2013/07/09/open-classifieds-2-0-4/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.0.4',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=9&state=closed',
   ),
-
- '2.0.3' => 
+  '2.0.3' => 
   array (
     'codename' => 'Reoc',
     'released' => '2013-07-02',
