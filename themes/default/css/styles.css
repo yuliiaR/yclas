@@ -94,3 +94,6 @@ li{
 	border-radius: none;
 }
 .accordion-inner { border-top: none;}
+
+.clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
+.resized {width: 205px;}
