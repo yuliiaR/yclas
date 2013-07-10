@@ -8,7 +8,8 @@
     <h3><?=__('Popular Ads last month')?></h3>
     <?endif?>
     <ul class="thumbnails">
-        <?foreach($ads as $ad):?>
+        <?$i=0;
+        foreach($ads as $ad):?>
         <li class="span2">
             <div class="thumbnail latest_ads" >
                 
@@ -34,7 +35,7 @@
     <ul class="thumbnails">
         <?foreach($categs as $c):?>
         <?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
-        <div class="span4">
+        <li class="span2 resized">
             <div class="category_box_title">
                 <p><a title="<?=$c['name']?>" href="<?=Route::url('list', array('category'=>$c['seoname']))?>"><?=strtoupper($c['name']);?></a></p>
             </div>  
@@ -47,7 +48,11 @@
                      <?endforeach?>
                 </ul>
             </div>
-        </div>
+        </li>
+        <?
+        $i++;
+            if ($i%3 == 0) echo '<div class="clear"></div>';
+            ?>
         <?endif?>
         <?endforeach?>
     </ul>
