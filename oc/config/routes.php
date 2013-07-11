@@ -92,7 +92,7 @@ Route::set('sitejson','info.json')
 /**
  * user admin/panel route
  */
-Route::set('oc-panel', 'oc-panel(/<controller>(/<action>(/<id>)))')
+Route::set('oc-panel', 'oc-panel(/<controller>(/<action>(/<id>(/<current_url>))))')
 ->defaults(array(
 		'directory'  => 'panel',
 		'controller' => 'home',

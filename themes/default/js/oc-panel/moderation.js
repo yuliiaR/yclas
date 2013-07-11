@@ -2,12 +2,15 @@
  * [MODERATION / ADVERT. selectbox script]
  * 
  */
-var href_del = $('a.delete').attr('href');
-var href_spam = $('a.spam').attr('href');
-var href_deact = $('a.deactivate').attr('href');
-var href_active = $('a.activate').attr('href');
-var href_feature = $('a.featured').attr('href');
-var href_deact_feature = $('a.featured').attr('href');
+var href = $('a.delete,a.spam, a.deactivate,a.activate,a.featured,a.featured').attr('href');
+
+var last_str = href.substr(href.lastIndexOf('/') );
+var url_array = {"del"			:{'href':$("a.delete").attr("href")},
+				 "spam"			:{'href':$("a.spam").attr("href")},
+				 "deactivate"	:{'href':$("a.deactivate").attr("href")},
+				 "activate"		:{'href':$("a.activate").attr("href")},
+				 "featured"		:{'href':$("a.featured").attr("href")},
+				 "deact_feature":{'href':$("a.featured").attr("href")}};
 
 // selected checkboxes get new class
 var selected = '';
@@ -20,14 +23,15 @@ $('input.checkbox').click(function(){
 		$('input.selected').each(function(){
 			selected += ($(this).attr('id'));
 		});
+		
 
-		//append new href with id-s
-		$('a.delete').attr('href', href_del+'/'+selected);
-		$('a.spam').attr('href', href_spam+'/'+selected);
-		$('a.deactivate').attr('href', href_deact+'/'+selected);
-		$('a.activate').attr('href', href_active+'/'+selected);
-		$('a.featured').attr('href', href_feature+'/'+selected);
-		$('a.featured').attr('href', href_deact_feature+'/'+selected);
+		//append new href with id-s, and check if it exists (.length ?)
+		$('a.delete').length ? $('a.delete').attr('href', url_array['del']['href'].substr(0, url_array['del']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
+		$('a.spam').length ? $('a.spam').attr('href', url_array['spam']['href'].substr(0, url_array['spam']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
+		$('a.deactivate').length ? $('a.deactivate').attr('href', url_array['deactivate']['href'].substr(0, url_array['deactivate']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
+		$('a.activate').length ? $('a.activate').attr('href', url_array['activate']['href'].substr(0, url_array['activate']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
+		$('a.featured').length ? $('a.featured').attr('href', url_array['featured']['href'].substr(0, url_array['featured']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
+		$('a.featured').length ? $('a.featured').attr('href', url_array['deact_feature']['href'].substr(0, url_array['deact_feature']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
 	}else{
 
 		$(this).removeClass("selected");
@@ -41,7 +45,7 @@ $('input.checkbox').click(function(){
 		$('a.spam').attr('href', "/oc-panel/ad/spam");
 		$('a.deactivate').attr('href', "/oc-panel/ad/deactivate");
 		$('a.delete').attr('href', "/oc-panel/ad/delete");
-		$('a.activate').attr('href', href_active+'/'+selected);
+		$('a.activate').attr('href', url_array['activate']['href']+'/'+selected);
 		$('a.featured').attr('href', "/oc-panel/ad/featured");
 	}
 });
@@ -52,23 +56,25 @@ function check_all(){
 	var selected = '';
 
 	if($('#select-all').is(':checked')){
-		$('input.checkbox').addClass('selected').attr('checked', true);
+
+		$('input.checkbox').addClass('selected').prop('checked', true);
 		$('input.selected').each(function(){
+
 			selected += ($(this).attr('id'));
 		});
-		$('a.delete').attr('href', href_del+'/'+selected);
-		$('a.spam').attr('href', href_spam+'/'+selected);
-		$('a.deactivate').attr('href', href_deact+'/'+selected);
-		$('a.activate').attr('href', href_active+'/'+selected);
-		$('a.featured').attr('href', href_feature+'/'+selected);
-		$('a.featured').attr('href', href_deact_feature+'/'+selected);
+		$('a.delete').length ? $('a.delete').attr('href', url_array['del']['href'].substr(0, url_array['del']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
+		$('a.spam').length ? $('a.spam').attr('href', url_array['spam']['href'].substr(0, url_array['spam']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
+		$('a.deactivate').length ? $('a.deactivate').attr('href', url_array['deactivate']['href'].substr(0, url_array['deactivate']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
+		$('a.activate').length ? $('a.activate').attr('href', url_array['activate']['href'].substr(0, url_array['activate']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
+		$('a.featured').length ? $('a.featured').attr('href', url_array['featured']['href'].substr(0, url_array['featured']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
+		$('a.featured').length ? $('a.featured').attr('href', url_array['deact_feature']['href'].substr(0, url_array['deact_feature']['href'].lastIndexOf('/'))+'/'+selected+last_str) : '';
 	}else{
 		selected = '';
 		$('input.checkbox').removeClass('selected').attr('checked', false);
-		$('a.spam').attr('href', "/oc-panel/ad/spam");
-		$('a.deactivate').attr('href', "/oc-panel/ad/deactivate");
-		$('a.delete').attr('href', "/oc-panel/ad/delete");
-		$('a.activate').attr('href', href_active+'/'+selected);
-		$('a.featured').attr('href', "/oc-panel/ad/featured");
+		$('a.spam').attr('href', url_array['spam']['href']+'/'+selected);
+		$('a.deactivate').attr('href', url_array['deactivate']['href']+'/'+selected);
+		$('a.delete').attr('href', url_array['del']['href']+'/'+selected);
+		$('a.activate').attr('href', url_array['activate']['href']+'/'+selected);
+		$('a.featured').attr('href', url_array['featured']['href']+'/'+selected);
 	}
 }

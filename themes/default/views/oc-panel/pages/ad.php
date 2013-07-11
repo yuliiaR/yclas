@@ -3,12 +3,16 @@
 <?=Alert::show()?>
 <div class="page-header">
 	<?if(Request::current()->query('define') == Model_Ad::STATUS_UNAVAILABLE):?>
+		<? $current_url = Model_Ad::STATUS_UNAVAILABLE?>
 		<h1><?=__('Unavailable')?></h1>
 	<?elseif (Request::current()->query('define') == Model_Ad::STATUS_UNCONFIRMED):?>
+		<? $current_url = Model_Ad::STATUS_UNCONFIRMED?>
 		<h1><?=__('Unconfirmed')?></h1>
 	<?elseif (Request::current()->query('define') == Model_Ad::STATUS_SPAM):?>
+		<? $current_url = Model_Ad::STATUS_SPAM?>
 		<h1><?=__('Spam')?></h1>
 	<?else:?>
+		<? $current_url = Model_Ad::STATUS_PUBLISHED?>
 		<h1><?=__('Advertisements')?></h1>
 	<?endif?>
 </div>
@@ -39,30 +43,44 @@
 		<!-- in case there are no ads we dont show buttons -->
 		<?if(isset($res)):?>
 		<th>
-			<a class="spam btn btn-warning" 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
+			<?if(Request::current()->query('define') != Model_Ad::STATUS_SPAM):?>
+			<a class="spam btn btn-warning  " 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam', 'id'=>'','current_url'=>$current_url))?>" 
 				onclick="return confirm('<?=__('Spam?')?>');"
 				rel"tooltip" title="<?=__('Spam')?>">
 				<i class="icon-fire icon-white"></i>
 			</a>
-			<a class="deactivate btn btn-warning" 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate'))?>" 
+			<?endif?>
+			<?if(Request::current()->query('define') != Model_Ad::STATUS_UNAVAILABLE):?>
+			<a class="deactivate btn btn-warning " 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate', 'id'=>'','current_url'=>$current_url))?>" 
 				onclick="return confirm('<?=__('Deactivate?')?>');"
 				rel"tooltip" title="<?=__('Deactivate')?>">
 				<i class="icon-remove icon-white"></i>
 			</a>
-			<a class="delete btn btn-danger index-delete" 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
+			<?endif?>
+			<?if($current_url != Model_Ad::STATUS_PUBLISHED):?>
+			<a class="activate btn btn-success " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>'','current_url'=>$current_url))?>" 
+					onclick="return confirm('<?=__('Activate?')?>');"
+					rel"tooltip" title="<?=__('Activate')?>">
+					<i class="icon-ok-sign icon-white"></i>
+			</a>
+			<?endif?>
+			<a class="delete btn btn-danger index-delete " 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete', 'id'=>'','current_url'=>$current_url))?>"
 				onclick="return confirm('<?=__('Delete?')?>');"
 			    rel"tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
 				<i class="icon-remove icon-white"></i>
 			</a>
-			<a class="featured btn btn-primary" 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured'))?>"
+			<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
+			<a class="featured btn btn-primary " 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured', 'id'=>'','current_url'=>$current_url))?>"
 				onclick="return confirm('<?=__('Are you sure you want to make it featured?')?>');"
 			    rel"tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
 				<i class="icon-bookmark icon-white"></i>
 			</a>
+			<?endif?>
 		</th>
 		<?endif?>
 	</tr>
@@ -77,12 +95,12 @@
 			</td>
 			
 			<?foreach($category[0] as $cat => $c){ if ($c['id'] == $ad->id_category) $cat_name = $c['seoname']; }?>
-			<td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?= $ad->title; ?></a>
+			<td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?=wordwrap($ad->title, 15, "<br />\n"); ?></a>
 			</td>
 
 			<? foreach($category[0] as $cat => $c ):?>
 				<? if ($c['id'] == $ad->id_category): ?>
-					<td><?= $c['name'] ?>
+					<td><?= wordwrap($c['name'], 15, "<br />\n"); ?>
 				<?endif?>
 	    	<?endforeach?>
 			
@@ -90,7 +108,7 @@
 			<?foreach($location[0] as $loc => $l):?>
 				<? if ($l['id'] == $ad->id_location): 
                     $locat_name=$l['name'];?>
-					<td><?=$locat_name?></td>
+					<td><?=wordwrap($locat_name, 15, "<br />\n");?></td>
 				<?endif?>
 	    	<?endforeach?>
             <?if($locat_name == NULL):?>
@@ -113,58 +131,57 @@
 	    	
 	    	<td><?= substr($ad->created, 0, 11)?></td>
 			<td>
-				<a class="btn btn-primary" 
-					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
+				<a class="btn btn-primary " 
+					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					rel"tooltip" title="<?=__('Update')?>">
 					<i class="icon-edit icon-white"></i>
 				</a>
 				<?if($ad->status != Model_Ad::STATUS_SPAM):?>
-				<a class="btn btn-warning" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" 
+				<a class="btn btn-warning " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					onclick="return confirm('<?=__('Spam?')?>');"
 					rel"tooltip" title="<?=__('Spam')?>">
 					<i class="icon-fire icon-white"></i>
 				</a>
 				<?endif?>
 				<?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
-				<a class="btn btn-warning" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
+				<a class="btn btn-warning " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					onclick="return confirm('<?=__('Deactivate?')?>');"
 					rel"tooltip" title="<?=__('Deactivate')?>">
 					<i class="icon-remove icon-white"></i>
 				</a>
 				<?endif?>
-				<?if(($ad->status != Model_Ad::STATUS_SPAM OR 
-					  $ad->status != Model_Ad::STATUS_UNAVAILABLE OR $ad->status != Model_Ad::STATUS_UNCONFIRMED) 
-					  AND $ad->status != Model_Ad::STATUS_PUBLISHED ):?>
-				<a class="btn btn-success" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad))?>" 
+				<?if( $ad->status != Model_Ad::STATUS_PUBLISHED ):?>
+				<a class="btn btn-success " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					onclick="return confirm('<?=__('Activate?')?>');"
 					rel"tooltip" title="<?=__('Activate')?>">
 					<i class="icon-ok-sign icon-white"></i>
 				</a>
 				<?endif?>
-				<a class="btn btn-danger index-delete" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" 
+				<a class="btn btn-danger index-delete " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					onclick="return confirm('<?=__('Delete?')?>');"
 				    rel"tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
 					<i class="icon-remove icon-white"></i>
 				</a>
-				
+				<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
 				<?if($ad->featured == NULL):?>
-				<a class="btn btn-primary" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad))?>" 
+				<a class="btn btn-primary " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					onclick="return confirm('<?=__('Make featured?')?>');"
 				    rel"tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
 					<i class="icon-bookmark icon-white"></i>
 				</a>
 				<?else:?>
-				<a class="btn btn-inverse" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad))?>" 
+				<a class="btn btn-inverse " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					onclick="return confirm('<?=__('Deactivate featured?')?>');"
 				    rel"tooltip" title="<?=__('Deactivate Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to deactivate featured advertisement?')?>">
 					<i class="icon-bookmark icon-white"></i>
 				</a>
+				<?endif?>
 				<?endif?>
 			</td>
 		</tr>

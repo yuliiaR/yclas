@@ -179,7 +179,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			foreach ($format_id as $id) 
 			{
 				
-				if (isset($id))
+				if (isset($id) AND $id !== '')
 				{
 					$this->auto_render = FALSE;
 					$this->template = View::factory('js');
@@ -212,14 +212,15 @@ class Controller_Panel_Ad extends Auth_Controller {
 				
 			}
 			Alert::set(Alert::SUCCESS, __('Advertisement is deleted'));
-			if(core::config('general.moderation') == Model_Ad::MODERATION_ON OR 
-			   core::config('general.moderation') == Model_Ad::EMAIL_MODERATION OR
-			   core::config('general.moderation') == Model_Ad::PAYMENT_MODERATION) 
-
+			$param_current_url = $this->request->param('current_url');
+		
+			
+			if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
 				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
-
-			else
+			elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			else
+				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
 		}
 		else
 		{
@@ -234,12 +235,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 	public function action_spam()
 	{
 		$id = $this->request->param('id');
-		
+		$param_current_url = $this->request->param('current_url');
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
 		{ 
-			if ($id !== '')
+			if (isset($id) AND $id !== '')
 			{ 
 				$spam_ad = ORM::factory('ad', $id);
 
@@ -261,7 +262,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 					else
 					{				
 						Alert::set(Alert::ALERT, __('Warning, Advertisement is already marked as spam'));
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.Model_Ad::STATUS_SPAM)));
+						if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+						else
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
 					} 
 				}
 				else
@@ -272,7 +278,13 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is marked as spam'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.Model_Ad::STATUS_SPAM)));
+		
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		else
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
 	}
 
 
@@ -283,11 +295,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 	{
 
 		$id = $this->request->param('id');
+		$param_current_url = $this->request->param('current_url');
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
 		{
-			if (isset($id))
+			if (isset($id) AND $id !== '')
 			{
 
 				$deact_ad = ORM::factory('ad', $id);
@@ -310,7 +323,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 					else
 					{				
 						Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.Model_Ad::STATUS_UNAVAILABLE)));
+						if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+						else
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
 					} 
 				}
 				else
@@ -321,7 +339,14 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.Model_Ad::STATUS_UNAVAILABLE)));
+		
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		else
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
+
 	}
 
 	/**
@@ -332,12 +357,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 	{
 
 		$id = $this->request->param('id');
-		
+		$param_current_url = $this->request->param('current_url');
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
 		{
-			if ($id !== '')
+			if (isset($id) AND $id !== '')
 			{
 				$active_ad = new Model_Ad($id);
 
@@ -360,7 +385,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 					else
 					{				
 						Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'active'"));
-						Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+						if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+						else
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
 					} 
 				}
 				else
@@ -377,19 +407,25 @@ class Controller_Panel_Ad extends Auth_Controller {
 			Sitemap::generate();
 
 		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		else
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
 	}
 
 	public function action_featured()
 	{
 
 		$id = $this->request->param('id');
-	
+		$param_current_url = $this->request->param('current_url');
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
 		{
-			if ($id !== '')
+			if (isset($id) AND $id !== '')
 			{
 				$featured_ad = ORM::factory('ad', $id);
 
@@ -425,7 +461,13 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is featured'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		else
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
 
 	}
 
@@ -433,7 +475,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 	public function multiple_mails($receivers)
 	{
 	
-
 		foreach ($receivers as $num => $receiver_id) {
 			if(is_numeric($receiver_id))
 			{
