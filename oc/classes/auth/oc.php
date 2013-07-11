@@ -153,9 +153,6 @@ class Auth_OC extends Kohana_Auth {
 					return $user;
 				}
 
-				// Token is invalid, somebody tried to steal it...so we change it and they need to relogin
-				$user->delete_token();
-
 			}
 		}
 
