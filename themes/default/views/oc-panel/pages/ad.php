@@ -17,13 +17,13 @@
 	<?endif?>
 </div>
 
-<a class="btn btn-warning" type="submit" value="spam" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index?define='.Model_Ad::STATUS_SPAM))?>" rel"tooltip" title="<?=__('Spam Sort')?>">
+<a class="btn btn-warning" type="submit" value="spam" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?define='.Model_Ad::STATUS_SPAM?>" rel"tooltip" title="<?=__('Spam Sort')?>">
 	<i class="icon-fire icon-white"></i><?=__('Spam')?>
 </a>
-<a class="btn btn-inverse" type="submit" value="unavailable" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index?define='.Model_Ad::STATUS_UNAVAILABLE))?>" rel"tooltip" title="<?=__('Unavailable Sort')?>">
+<a class="btn btn-inverse" type="submit" value="unavailable" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?define='.Model_Ad::STATUS_UNAVAILABLE?>" rel"tooltip" title="<?=__('Unavailable Sort')?>">
 	<i class=" icon-exclamation-sign icon-white"></i><?=__(' Unavailable')?>
 </a>
-<a class="btn btn-info" type="submit" value="unconfirmed" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index?define='.Model_Ad::STATUS_UNCONFIRMED))?>" rel"tooltip" title="<?=__('Unconfirmed Sort')?>">
+<a class="btn btn-info" type="submit" value="unconfirmed" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?define='.Model_Ad::STATUS_UNCONFIRMED?>" rel"tooltip" title="<?=__('Unconfirmed Sort')?>">
 	<i class=" icon-plane icon-white"></i><?=__(' Unconfirmed')?>
 </a>
 
@@ -45,7 +45,7 @@
 		<th>
 			<?if(Request::current()->query('define') != Model_Ad::STATUS_SPAM):?>
 			<a class="spam btn btn-warning  " 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam', 'id'=>'','current_url'=>$current_url))?>" 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
 				onclick="return confirm('<?=__('Spam?')?>');"
 				rel"tooltip" title="<?=__('Spam')?>">
 				<i class="icon-fire icon-white"></i>
@@ -53,7 +53,7 @@
 			<?endif?>
 			<?if(Request::current()->query('define') != Model_Ad::STATUS_UNAVAILABLE):?>
 			<a class="deactivate btn btn-warning " 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate', 'id'=>'','current_url'=>$current_url))?>" 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate'))?>" 
 				onclick="return confirm('<?=__('Deactivate?')?>');"
 				rel"tooltip" title="<?=__('Deactivate')?>">
 				<i class="icon-remove icon-white"></i>
@@ -61,14 +61,14 @@
 			<?endif?>
 			<?if($current_url != Model_Ad::STATUS_PUBLISHED):?>
 			<a class="activate btn btn-success " 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>'','current_url'=>$current_url))?>" 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
 					onclick="return confirm('<?=__('Activate?')?>');"
 					rel"tooltip" title="<?=__('Activate')?>">
 					<i class="icon-ok-sign icon-white"></i>
 			</a>
 			<?endif?>
 			<a class="delete btn btn-danger index-delete " 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete', 'id'=>'','current_url'=>$current_url))?>"
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
 				onclick="return confirm('<?=__('Delete?')?>');"
 			    rel"tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
 				<i class="icon-remove icon-white"></i>
@@ -137,7 +137,8 @@
 					<i class="icon-edit icon-white"></i>
 				</a>
 				<?if($ad->status != Model_Ad::STATUS_SPAM):?>
-				<a class="btn btn-warning " 
+				<!-- sel_url_to_redirect is important because is quick selector. This works with dynamic check boxes, where we select href to build new url -->
+				<a class="btn btn-warning sel_url_to_redirect" 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					onclick="return confirm('<?=__('Spam?')?>');"
 					rel"tooltip" title="<?=__('Spam')?>">

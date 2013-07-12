@@ -22,25 +22,25 @@
 		<?if(isset($ads)):?>
 		<th>
 			<a class="spam btn btn-warning" 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>'','current_url'=>$current_url))?>" 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
 				onclick="return confirm('<?=__('Spam?')?>');"
 				rel"tooltip" title="<?=__('Spam')?>">
 				<i class="icon-fire icon-white"></i>
 			</a>
 			<a class="deactivate btn btn-warning" 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>'','current_url'=>$current_url))?>" 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate'))?>" 
 				onclick="return confirm('<?=__('Deactivate?')?>'));"
 				rel"tooltip" title="<?=__('Deactivate')?>">
 				<i class="icon-remove icon-white"></i>
 			</a>
 			<a class="activate btn btn-success" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>'','current_url'=>$current_url))?>" 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
 					onclick="return confirm('<?=__('Activate?')?>');"
 					rel"tooltip" title="<?=__('Activate')?>">
 					<i class="icon-ok-sign icon-white"></i>
 			</a>
 			<a class="delete btn btn-danger index-delete" 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>'','current_url'=>$current_url))?>"
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
 				onclick="return confirm('<?=__('Delete?')?>');"
 			    rel"tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
 				<i class="icon-remove icon-white"></i>
@@ -95,7 +95,9 @@
 					rel"tooltip" title="<?=__('Update')?>">
 					<i class="icon-edit icon-white"></i>
 				</a>
-				<a class="btn btn-warning " 
+				<!-- sel_url_to_redirect is important because is quick selector or $current_url. 
+					This works with dynamic check boxes, where we select href to build new url -->
+				<a class="btn btn-warning sel_url_to_redirect" 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					onclick="return confirm('<?=__('Deactivate?')?>');"
 					rel"tooltip" title="<?=__('Deactivate')?>">
