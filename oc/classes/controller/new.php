@@ -66,7 +66,7 @@ class Controller_New extends Controller
 			$this->save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
 
 		}
-		else if($moderation == Model_Ad::MODERATION_ON 
+		elseif($moderation == Model_Ad::MODERATION_ON 
 			 || $moderation == Model_Ad::PAYMENT_ON 
 			 || $moderation == Model_Ad::EMAIL_CONFIRAMTION 
 			 || $moderation == Model_Ad::EMAIL_MODERATION 
@@ -124,7 +124,7 @@ class Controller_New extends Controller
 	        		// and send him mail for ad created + new profile created
 			 		if (!$data['auth']->logged_in()) 
 					{
-						
+				
 						$name 		= $this->request->post('name');
 						$email		= $this->request->post('email');
 						$password	= $this->request->post('password');
@@ -150,9 +150,11 @@ class Controller_New extends Controller
 								
 								try
 								{
-									$user->save();
-									Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
 									
+									$user->save();
+
+									Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
+								
 									//we get the QL, and force the regen of token for security
 			                    	$url_pwch = $user->ql('oc-panel',array('controller' => 'profile', 
 			                    										   'action'		=> 'edit'),TRUE);
@@ -170,8 +172,12 @@ class Controller_New extends Controller
 									throw new HTTP_Exception_500($e->getMessage());
 								}
 							}
+
 								$usr = $data['user']->id_user;
 						}
+						
+
+					
 					}
 					else
 					{

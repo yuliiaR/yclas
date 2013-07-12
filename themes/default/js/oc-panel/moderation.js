@@ -11,7 +11,7 @@ var url_array = {"del"			:{'href':$("a.delete").attr("href")},
 				 "activate"		:{'href':$("a.activate").attr("href")},
 				 "featured"		:{'href':$("a.featured").attr("href")},
 				 "deact_feature":{'href':$("a.featured").attr("href")}};
-
+href.remove()
 // selected checkboxes get new class
 var selected = '';
 $('input.checkbox').click(function(){
