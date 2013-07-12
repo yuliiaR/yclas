@@ -132,7 +132,7 @@
 	    	<td><?= substr($ad->created, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary " 
-					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
 					rel"tooltip" title="<?=__('Update')?>">
 					<i class="icon-edit icon-white"></i>
 				</a>

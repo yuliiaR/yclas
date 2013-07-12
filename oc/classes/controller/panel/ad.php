@@ -220,7 +220,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 			else
-				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
+				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 		}
 		else
 		{
@@ -267,7 +267,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 						else
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 					} 
 				}
 				else
@@ -284,7 +284,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 	}
 
 
@@ -328,7 +328,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 						else
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 					} 
 				}
 				else
@@ -345,7 +345,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 
 	}
 
@@ -371,11 +371,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 					if ($active_ad->status != 1)
 					{
 						$active_ad->published = Date::unix2mysql(time());
-						$active_ad->status = 1;
+						$active_ad->status = Model_Ad::STATUS_PUBLISHED;
 						
 						try
 						{
 							$active_ad->save();
+
 						}
 							catch (Exception $e)
 						{
@@ -390,7 +391,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 						else
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
+							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 					} 
 				}
 				else
@@ -413,7 +414,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 	}
 
 	public function action_featured()
@@ -467,7 +468,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index?define='.$param_current_url)));
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 
 	}
 
