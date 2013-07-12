@@ -116,7 +116,10 @@ class Model_User extends ORM {
         return array(
     			'password' => array(
                                 array(array(Auth::instance(), 'hash'))
-                              )
+                              ),
+                'seoname' => array(
+                                array(array($this, 'gen_seo_title'))
+                              ),
         );
     }
 
@@ -377,35 +380,43 @@ class Model_User extends ORM {
      */
     public function gen_seo_title($title)
     {
+        //in case seoname is really small or null
+        if (strlen($title)<3)
+            $title = $this->name;
+
         $seotitle = URL::title($title);
         
-        $user = new self;
-        //find a user same seotitle
-        $s = $user->where('seoname', '=', $seotitle)->where('id_user', '!=', $this->id_user)->limit(1)->find();
 
-        //found, increment the last digit of the seotitle
-        if ($s->loaded())
+        if ($seotitle != $this->seoname)
         {
-            $cont = 2;
-            $loop = TRUE;
-            while($loop)
+            $user = new self;
+            //find a user same seotitle
+            $s = $user->where('seoname', '=', $seotitle)->where('id_user', '!=', $this->id_user)->limit(1)->find();
+
+            //found, increment the last digit of the seotitle
+            if ($s->loaded())
             {
-                $attempt = $seotitle.'-'.$cont;
-                $user = new self;
-                unset($s);
-                $s = $user->where('seoname', '=', $attempt)->where('id_user', '!=', $this->id_user)->limit(1)->find();
-                if(!$s->loaded())
+                $cont = 2;
+                $loop = TRUE;
+                while($loop)
                 {
-                    $loop = FALSE;
-                    $seotitle = $attempt;
-                }
-                else
-              {
-                    $cont++;
+                    $attempt = $seotitle.'-'.$cont;
+                    $user = new self;
+                    unset($s);
+                    $s = $user->where('seoname', '=', $attempt)->where('id_user', '!=', $this->id_user)->limit(1)->find();
+                    if(!$s->loaded())
+                    {
+                        $loop = FALSE;
+                        $seotitle = $attempt;
+                    }
+                    else
+                  {
+                        $cont++;
+                    }
                 }
             }
         }
-
+        
         return $seotitle;
     }
 
@@ -426,7 +437,7 @@ class Model_User extends ORM {
             $user->name         = $name;
             $user->status       = self::STATUS_ACTIVE;
             $user->id_role      = 1;
-            $user->seoname      = $user->gen_seo_title($user->name);
+            //$user->seoname      = $user->gen_seo_title($user->name);
             $user->password     = Text::random('alnum', 8);
             try
             {
