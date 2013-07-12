@@ -128,7 +128,7 @@ class Controller_New extends Controller
 						$name 		= $this->request->post('name');
 						$email		= $this->request->post('email');
 						$password	= $this->request->post('password');
-						//$seoname	= URL::title($this->request->post('name'));
+						// $seoname	= URL::title($this->request->post('name'));
 						
 						// check validity of email
 						if (Valid::email($email,TRUE))
@@ -146,7 +146,7 @@ class Controller_New extends Controller
 								$user->status 	= Model_User::STATUS_ACTIVE;
 								$user->id_role	= Model_Role::ROLE_USER;//normal user
 								$user->password = $new_password_hash;	// @TODO generate new user password, bad solution find better !!!
-								//$user->seoname 	= $seoname;
+								$user->seoname 	= $name;
 								
 								try
 								{
@@ -175,9 +175,11 @@ class Controller_New extends Controller
 
 								$usr = $data['user']->id_user;
 						}
-						
-
-					
+						else
+						{
+							Alert::set(Alert::ALERT, __('Some errors in the form'));
+							$this->request->redirect(Route::url('post_new'));
+						}
 					}
 					else
 					{
