@@ -35,7 +35,7 @@ class Widget_Locations extends Widget
      */
     public function title($title = NULL)
     {
-        return parent::title($this->Locations_title);
+        return parent::title($this->locations_title);
     }
 	
 	/**
