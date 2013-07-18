@@ -83,5 +83,14 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
     }
 
+    /**
+     * This function will upgrate DB that didn't existed in verisons below 2.0.5 
+     * changes added: subscription widget, new email content   
+     */
+    public function action_205()
+    {
+
+    }
+
     
 }

@@ -168,6 +168,18 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."content` (
   PRIMARY KEY (`id_content`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
+
+mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."subscribers` (
+  `id_subscribe` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_user` int(10) unsigned NOT NULL,
+  `id_category` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_location` int(10) unsigned NOT NULL DEFAULT '0',
+  `min_price` decimal(14,3) NOT NULL DEFAULT '0',
+  `max_price` decimal(14,3) NOT NULL DEFAULT '0',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_subscribe`)
+) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
+
 /**
  * add basic content like emails
  */
