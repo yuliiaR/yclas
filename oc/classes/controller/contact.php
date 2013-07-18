@@ -113,7 +113,7 @@ class Controller_Contact extends Controller {
         {
 
             if(core::config('advertisement.captcha') == FALSE || captcha::check('contact'))
-            {d(); 
+            {
                 $ret = $user->email('userprofile.contact',array('[EMAIL.BODY]'     =>core::post('message'),
                                                                 '[EMAIL.SENDER]'   =>core::post('name'),
                                                                 '[EMAIL.SUBJECT]'   =>core::post('subject'),
