@@ -705,6 +705,73 @@ class Controller_Panel_Profile extends Auth_Controller {
    }
 
    /**
+    * list all subscription for a given user
+    * @return view 
+    */ 
+   public function action_subscriptions()
+   {
+   		$subscriptions = new Model_Subscribe();
+
+   		$user = Auth::instance()->get_user()->id_user;
+
+		//get all for this user
+		$query = $subscriptions->where('id_user','=',$user)
+							   ->find_all();
+
+   		if(count($query) != 0)
+   		{
+   			// get categories, location, date, and price range to show in view 					   
+   			
+
+			$subs = $query->as_array();
+			foreach ($subs as $s) 
+			{
+
+				$min_price = $s->min_price;
+				$max_price = $s->max_price;
+				$created   = $s->created;
+
+				$category = new Model_Category($s->id_category);
+				$location = new Model_Location($s->id_location);
+
+				$list[] = array('min_price'=>$min_price,
+								'max_price'=>$max_price,
+								'created'=>$created,
+								'category'=>$category->name,
+								'location'=>$location->name,
+								'id'=>$s->id_subscribe);
+			}
+			
+			$this->template->content = View::factory('oc-panel/profile/subscriptions', array('list'=>$list));
+   		}
+   		else
+   		{
+   			Alert::set(Alert::INFO, __('No Subscriptions'));
+   		}
+    }
+
+	public function action_unsubscribe()
+	{
+		$id_subscribe = $this->request->param('id');
+
+		$subscription = new Model_Subscribe($id_subscribe);
+
+		if($subscription->loaded())
+		{
+			try 
+			{
+				$subscription->delete();
+				Alert::set(Alert::SUCCESS, __('You are unsubscribed'));
+				$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'subscriptions')));
+			} 
+			catch (Exception $e) 
+			{
+				throw new HTTP_Exception_500($e->getMessage());
+			}
+		}
+	}
+
+   /**
     * redirects to public profile, we use it so we can cache the view and redirect them
     * @return redirect 
     */ 

@@ -6,12 +6,18 @@ $(function(){
         resizeEnabled: "true"
     });
 
-    $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); 
+    $("input,textarea").not("[type=submit]").jqBootstrapValidation(); 
  
     $('.btn').tooltip();
+
+	$('.tips').popover();
+
+	$('.slider_subscribe').slider();
 
     $("select").chosen();
 
     $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
+
+
 
 });

@@ -99,7 +99,6 @@ Route::set('oc-panel', 'oc-panel(/<controller>(/<action>(/<id>(/<current_url>)))
 		'action'     => 'index',
 ));
 
-
 /**
  * Item / ad view (public)
  */

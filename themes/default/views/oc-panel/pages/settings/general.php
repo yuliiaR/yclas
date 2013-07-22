@@ -195,6 +195,21 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<?= FORM::label($forms['subscriber_mode']['key'], __('Subscriber Mode'), array('class'=>'control-label', 'for'=>$forms['subscriber_mode']['key']))?>
+			<div class="controls">
+				<?= FORM::select($forms['subscriber_mode']['key'], array(Model_Subscribe::SUBSCRIBER_OFF=>'Off', Model_Subscribe::SUBSCRIBER_DEFAULT=>'Default theme',Model_Subscribe::SUBSCRIBER_MOBILE=>'Mobile theme',Model_Subscribe::SUBSCRIBER_DEFAULT_MOBILE=>'Default and Mobile theme'), $forms['subscriber_mode']['value'], array(
+				'placeholder' => $forms['subscriber_mode']['value'], 
+				'class' => 'tips ', 
+				'id' => $forms['subscriber_mode']['key'],
+				'data-content'=> __("Subscriber Mode when set to 'Default theme','Default and Mobile theme' or 'Mobile theme', will activate subscribers mode. When active is redirecting users to subscription page instead to post-new"),
+				'data-trigger'=>"hover",
+				'data-placement'=>"right",
+				'data-toggle'=>"popover",
+				'data-original-title'=>__("Subscriber Mode"), 
+				))?> 
+			</div>
+		</div>
+		<div class="control-group">
 			<?= FORM::label($forms_img['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label', 'for'=>$forms_img['allowed_formats']['key']))?>
 			<div class="controls">
 				<?= FORM::select("allowed_formats[]", array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), explode(',', $forms_img['allowed_formats']['value']), array(
