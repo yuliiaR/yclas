@@ -109,6 +109,17 @@ class Controller_Panel_Update extends Auth_Controller {
         $return_conf = Model_Config::config_array($configs);
         $return_cont = Model_Content::content_array($contents);
 
+        mysql_query("CREATE TABLE IF NOT EXISTS `oc_subscribers` (
+                    `id_subscribe` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                    `id_user` int(10) unsigned NOT NULL,
+                    `id_category` int(10) unsigned NOT NULL DEFAULT '0',
+                    `id_location` int(10) unsigned NOT NULL DEFAULT '0',
+                    `min_price` decimal(14,3) NOT NULL DEFAULT '0',
+                    `max_price` decimal(14,3) NOT NULL DEFAULT '0',
+                    `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    PRIMARY KEY (`id_subscribe`)
+                  ) ");
+
         // message
         if($return_conf OR $return_cont)
             Alert::set(Alert::SUCCESS,__('Updated'));
