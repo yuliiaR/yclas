@@ -68,7 +68,9 @@ class Widget_Ads extends Widget
         {
             case 'popular':
                 $id_ads = array_keys(Model_Visit::popular_ads());
-                $ads->where('id_ad','IN', $id_ads);
+                if (count($id_ads)>0)
+                    $ads->where('id_ad','IN', $id_ads);
+         
                 break;
             case 'featured':
                 $ads->where('featured','IS NOT', NULL)
