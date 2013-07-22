@@ -148,7 +148,21 @@
 						</div>
 					</div>
 				</div>
-								
+				<div class="control-group">
+					<?= FORM::label($forms['paypal_seller']['key'], __('User paypal link'), array('class'=>'control-label', 'for'=>$forms['paypal_seller']['key']))?>
+					<div class="controls">
+						<?= FORM::select($forms['paypal_seller']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['paypal_seller']['value'], array(
+						'placeholder' => "TRUE or FALSE", 
+						'class' => 'tipsti', 
+						'id' => $forms['paypal_seller']['key'],
+						'data-content'=> '',
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-original-title'=>'', 
+						))?> 
+					</div>
+				</div>		
 
 				<div class="form-actions">
 					<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>

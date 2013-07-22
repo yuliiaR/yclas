@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<h3><?=$widget->categories_title?></h3>
+<h3><?=$widget->subscribe_title?></h3>
 
 <?= FORM::open(Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id)), array( 'enctype'=>'multipart/form-data'))?>
 <!-- if categories on show selector of categories -->
@@ -9,15 +9,15 @@
 			<div class="controls">
 				<select name="category_subscribe[]" id="category_subscribe" class="span2" multiple="true" required>
 	            <option></option>
-	            <?function lili5($item, $key,$cats){?>
+	            <?function lili15($item, $key,$cats){?>
 	            <option value="<?=$key?>"><?=$cats[$key]['name']?></option>
 	                <?if (count($item)>0):?>
 	                <optgroup label="<?=$cats[$key]['name']?>_subscribe">    
-	                    <? if (is_array($item)) array_walk($item, 'lili5', $cats);?>
+	                    <? if (is_array($item)) array_walk($item, 'lili15', $cats);?>
 	                <?endif?>
 	            <?}
 	            $cat_order = $widget->cat_order_items; 
-	        	array_walk($cat_order , 'lili5', $widget->cat_items);?>
+	        	array_walk($cat_order , 'lili15', $widget->cat_items);?>
 	            </select> 
 			</div>
 		</div>
@@ -31,15 +31,15 @@
 	        <div class="controls">          
 	            <select name="location_subscribe" id="location_subscribe" class="span2" required>
 	            <option></option>
-	            <?function lolo1($item, $key,$locs){?>
+	            <?function lolo10($item, $key,$locs){?>
 	            <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
 	                <?if (count($item)>0):?>
 	                <optgroup label="<?=$locs[$key]['name']?>_subscribe">    
-	                    <? if (is_array($item)) array_walk($item, 'lolo1', $locs);?>
+	                    <? if (is_array($item)) array_walk($item, 'lolo10', $locs);?>
 	                <?endif?>
 	            <?}
 	            $loc_order = $widget->loc_order_items; 
-	        	array_walk($loc_order , 'lolo1',$widget->loc_items);?>
+	        	array_walk($loc_order , 'lolo10',$widget->loc_items);?>
 	            </select>
 	        </div>
 	    </div>

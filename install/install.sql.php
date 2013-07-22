@@ -194,6 +194,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."content` (`order`, `title`, 
 (0, 'Your advertisement at [SITE.NAME], has been activated!', 'ads.activated', 'Hello [USER.OWNER],\n\n We want to inform you that your advertisement [URL.QL] has been activated!\n\n Now it can be seen by others. \n\n We hope we did not make you wait for long. \n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Success! Your advertisement is created on [SITE.NAME]!', 'ads.notify', 'Hello [USER.NAME],\n\nThank you for creating an advertisement at [SITE.NAME]! \n\nYou can edit your advertisement here [URL.QL].\n\n Your ad is still not published, it needs to be validated by an administrator. \n\n We are sorry for any inconvenience. We will review it as soon as possible. \n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Advertisement is created on [SITE.NAME]!', 'ads.user_check', 'Hello [USER.NAME],\n\n Advertisement is created under your account [USER.NAME]! You can visit this link to see advertisement [URL.AD]\n\n If you are not responsible for creating this advertisement, click a link to contact us [URL.CONTACT].\n\n', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, 'Advertisement is created on [SITE.NAME]!', 'ads.subscribers', 'Hello [USER.NAME],\n\n You may be interested in this one \n\n [AD.TITLE]! \n\nYou can visit this link to see advertisement [URL.AD]\n\n', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Success! Your advertisement is created on [SITE.NAME]!', 'ads.confirm', 'Welcome [USER.NAME],\n\nThank you for creating an advertisement at [SITE.NAME]! \n\nPlease click on this link [URL.QL] to confirm it.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1);");
 
 /**
@@ -236,6 +237,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('payment', 'pay_to_go_on_feature', '10'),
 ('payment', 'pay_to_go_on_top', '5'),
 ('payment', 'paypal_account', ''),
+('payment', 'paypal_seller', '0'),
 ('general', 'number_format', '%n'),
 ('general', 'date_format', 'd-m-y'),
 ('general', 'base_url', '".$_POST['SITE_URL']."'),
@@ -249,6 +251,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'site_description', ''),
 ('general', 'global_currency', 'USD'),
 ('general', 'advertisements_per_page', '10'),
+('general', 'subscriber_mode', '0'),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),

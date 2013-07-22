@@ -338,7 +338,7 @@ class Controller_New extends Controller
 				}
 				else
 				{
-					// Model_Subscribe::subscribers_email($data['cat'], floatval(str_replace(',', '.', $data['price'])));
+					Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $data['price'])), $seotitle, $email);
 					Alert::set(Alert::SUCCESS, __('Advertisement is posted. Congratulations!'));
 					$this->request->redirect(Route::url('default'));
 				}

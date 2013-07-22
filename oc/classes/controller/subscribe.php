@@ -59,8 +59,20 @@ class Controller_Subscribe extends Controller {
 			
 			// string in this case is returned as "int,int" so we need to format min/max price
 			$price = $this->request->post('price_subscribe');
-			$min_price = substr($price, '0', stripos($price, ',')); 
-			$max_price = substr($price, strrpos($price, ',')+1);
+			
+			if($price = $this->request->post('price_subscribe'))
+			{
+				$min_price = substr($price, '0', stripos($price, ',')); 
+				$max_price = substr($price, strrpos($price, ',')+1);
+			}
+			else
+			{
+				//in case of mobile version
+				// jquery mobile have different slider, so we need to get data differently
+				$min_price = $this->request->post('price_subscribe-1');
+				$max_price = $this->request->post('price_subscribe-2');
+			}
+			
 
 			// create entry table subscriber for each category selected  
 			foreach ($arr_cat as $c => $id_value) 
@@ -109,5 +121,10 @@ class Controller_Subscribe extends Controller {
 		Alert::set(Alert::SUCCESS, __('You are unsubscribed'));
 		$this->request->redirect(Route::url('default'));
 		
+	}
+
+	public function action_subscribe()
+	{
+		$this->template->content = View::factory('pages/ad/subscribe');
 	}
 }

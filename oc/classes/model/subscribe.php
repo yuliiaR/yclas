@@ -32,30 +32,71 @@ class Model_Subscribe extends ORM {
     }
 
     /**
+     * subscriber mode
+     * if subscriber mode is on, publish new renders subscribe.html instead of publish-new.html
+     */
+    const SUBSCRIBER_OFF  = 0; // subscriber mode of
+    const SUBSCRIBER_DEFAULT = 1; // subscriber mode for default template on
+    const SUBSCRIBER_MOBILE = 2; // subscriber mode for mobile template on
+    const SUBSCRIBER_DEFAULT_MOBILE = 3; // subscriber mode for default template and mobile template on
+
+    /**
      * Function for saving emails to subscribers
      */
-    public static function subscribers_email($id_category, $price)
+    public static function find_subscribers($data, $price, $seotitle, $email)
     {
-      $subscribers = new self;
+      $subscribers = new Model_Subscribe();
       
-      $subscribers->where('id_category', '=', $id_category)
+      $subscribers->where('id_category', '=', $data['cat'])
                   ->where('min_price', '<=', $price)
-                  ->where('max_price', '>=', $price)
-                  ->find_all();
+                  ->where('max_price', '>=', $price);
 
+      //in case location is set     
+      if($data['cat'] != NULL)
+       $subscribers =  $subscribers->where('id_location', '=', $data['loc']);
 
-      $subscribers_id = array(); 
+      $subscribers = $subscribers->find_all();
+
+      $subscribers_id = array(); // array to be filled with user emails
       foreach ($subscribers as $subs) 
       {
-        d('123');
+        // do not repeat same users.
         if(!in_array($subs->id_user, $subscribers_id))
-          $subscribers_email[] = $subs->id_user;
+          $subscribers_id[] = $subs->id_user;
+      }
+      
+      // query for getting users, transform it to array and pass to email function 
+      if(count($subscribers_id) > 0)
+      {  
+
+        $query = DB::select('email')->select('name')
+                    ->from('users')
+                    ->where('id_user', 'IN', $subscribers_id)
+                    ->where('status','=',Model_User::STATUS_ACTIVE)
+                    ->execute();
+
+        $users = $query->as_array();
+
+        $user = new Model_User();
+        $user = $user->where('email', '=', $email)
+                     ->where('status','=',Model_User::STATUS_ACTIVE)->limit(1)->find();
+
+        // Send mails like in newsletter, to multiple users simultaneously @TODO NOT YET READY 
+        if (count($users)>0)
+        {
+            $url_ad = $user->ql('ad', array('category'=>$data['cat'],
+                                            'seotitle'=>$seotitle), TRUE); 
+
+            if ( !Email::send($users,'',"Advertisement is created on ".core::config('general.site_name')."!",
+                                        "Hello, You may be interested in this one: \n\n ".$data['title']."! \n\n
+                                        You can visit this link to see advertisement ".$url_ad,
+                                        "no-reply ".core::config('general.site_name'), 
+                                        core::config('email.notify_email') ) )
+                Alert::set(Alert::ERROR,__('Error on mail delivery, not sent'));
+        }
       }
 
-      d($subscribers_email);
     }
-
-
 
 
  protected $_table_columns =     

@@ -70,6 +70,7 @@
 				<?Theme::admin_link(__('Edit profile'), 'profile','edit')?>
                 <?Theme::admin_link(__('My Advertisements'), 'profile','ads')?>
                 <?Theme::admin_link(__('Stats'),'profile','stats')?>
+                <?Theme::admin_link(__('Subscriptions'),'profile','subscriptions')?>
 				<li><a
 					href="<?=Route::url('profile',array('seoname'=>$user->seoname))?>">
 					<?=__('Public profile')?>
