@@ -151,12 +151,11 @@ class Controller_New extends Controller
 							if(!$user->loaded())
 							{ 
 								$new_password_plain = self::randString(8);
-								$new_password_hash = Auth::instance()->hash_password($new_password_plain); 
 								$user->email 	= $email;
 								$user->name 	= $name;
 								$user->status 	= Model_User::STATUS_ACTIVE;
 								$user->id_role	= Model_Role::ROLE_USER;//normal user
-								$user->password = $new_password_hash;
+								$user->password = $new_password_plain;
 								$user->seoname 	= $name;
 								
 								try
