@@ -177,7 +177,7 @@ class Controller_New extends Controller
 						}
 						else
 						{
-							Alert::set(Alert::ALERT, __('Some errors in the form'));
+							Alert::set(Alert::ALERT, __('Invalid Email'));
 							$this->request->redirect(Route::url('post_new'));
 						}
 					}
