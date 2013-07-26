@@ -1,4 +1,5 @@
-<? defined('SYSPATH') or exit('Install must be loaded from within index.php!');
+
+<?php defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 /*
  * Name:    ocaku API
  * URL:     http://ocacu.com

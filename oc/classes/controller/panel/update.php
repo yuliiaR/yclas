@@ -90,10 +90,7 @@ class Controller_Panel_Update extends Auth_Controller {
     public function action_205()
     {
         // build array with new (missing) configs
-        $configs = array(array('config_key'     =>'subscriber_mode',
-                               'group_name'     =>'general', 
-                               'config_value'   =>'0'),
-                         array('config_key'     =>'paypal_seller',
+        $configs = array(array('config_key'     =>'paypal_seller',
                                'group_name'     =>'payment', 
                                'config_value'   =>'0'));
 
@@ -109,7 +106,12 @@ class Controller_Panel_Update extends Auth_Controller {
         $return_conf = Model_Config::config_array($configs);
         $return_cont = Model_Content::content_array($contents);
 
-        mysql_query("CREATE TABLE IF NOT EXISTS `oc2_subscribers` (
+        $prefix = Database::instance()->table_prefix());
+
+        /*
+          @todo NOT DINAMIC, get charset
+        */
+        mysql_query("CREATE TABLE IF NOT EXISTS `".$prefix."_subscribers` (
                     `id_subscribe` int(10) unsigned NOT NULL AUTO_INCREMENT,
                     `id_user` int(10) unsigned NOT NULL,
                     `id_category` int(10) unsigned NOT NULL DEFAULT '0',

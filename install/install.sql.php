@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * SQL installation import
  *
@@ -251,7 +251,6 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'site_description', ''),
 ('general', 'global_currency', 'USD'),
 ('general', 'advertisements_per_page', '10'),
-('general', 'subscriber_mode', '0'),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),

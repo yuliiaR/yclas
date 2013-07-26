@@ -279,7 +279,7 @@ function hostingAd()
                 <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $5 Month</a>
         </p>
     </div>
-    <?
+    <?php
 }
 
 
