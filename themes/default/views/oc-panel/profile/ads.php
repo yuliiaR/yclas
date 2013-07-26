@@ -62,14 +62,14 @@
 					rel"tooltip" title="<?=__('Update')?>">
 					<i class="icon-edit icon-white"></i>
 				</a>
-				<? if($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
+				<? if(($user->id_role == 10) AND $ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
 				<a class="btn btn-success" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Activate?')?>');"
 					rel"tooltip" title="<?=__('Activate')?>">
 					<i class="icon-ok icon-white"></i>
 				</a>
-				<?else:?>
+				<?elseif($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
 				<a class="btn btn-warning" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Deactivate?')?>');"

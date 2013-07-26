@@ -45,15 +45,22 @@ class Model_Subscribe extends ORM {
      */
     public static function find_subscribers($data, $price, $seotitle, $email)
     {
+      // locations are optional , get wiget settings for locations and categories 
+      $jsonObj = json_decode(core::config('widget.Widget_Subscribers_1373877069'), true);
+      
       $subscribers = new Model_Subscribe();
       
-      $subscribers->where('id_category', '=', $data['cat'])
-                  ->where('min_price', '<=', $price)
+      //only min/max price is required in widget settings
+      $subscribers->where('min_price', '<=', $price)
                   ->where('max_price', '>=', $price);
 
-      //in case location is set     
-      if($data['cat'] != NULL)
+      //location is set     
+      if($data['loc'] != NULL AND $jsonObj['data']['locations'] !== '0')
        $subscribers =  $subscribers->where('id_location', '=', $data['loc']);
+
+      //category is set
+      if($jsonObj['data']['categories'] !== '0')
+        $subscribers =  $subscribers->where('id_category', '=', $data['cat']);
 
       $subscribers = $subscribers->find_all();
 

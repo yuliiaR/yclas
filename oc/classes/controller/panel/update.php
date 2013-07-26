@@ -109,7 +109,7 @@ class Controller_Panel_Update extends Auth_Controller {
         $return_conf = Model_Config::config_array($configs);
         $return_cont = Model_Content::content_array($contents);
 
-        mysql_query("CREATE TABLE IF NOT EXISTS `oc_subscribers` (
+        mysql_query("CREATE TABLE IF NOT EXISTS `oc2_subscribers` (
                     `id_subscribe` int(10) unsigned NOT NULL AUTO_INCREMENT,
                     `id_user` int(10) unsigned NOT NULL,
                     `id_category` int(10) unsigned NOT NULL DEFAULT '0',

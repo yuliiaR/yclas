@@ -454,6 +454,15 @@ class Controller_Ad extends Controller {
 				try 
 				{
 					$advert->save();
+
+					//subscription is on
+					$data = array(	'title' 		=> $title 		= 	$advert->title,
+									'cat'			=> $cat 		= 	$advert->category,
+									'loc'			=> $loc 		= 	$advert->location,	
+								 );
+
+					Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $advert->price)), $advert->seotitle, Auth::instance()->get_user()->email); // if subscription is on
+					
 					Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
 					$this->request->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
 				} 

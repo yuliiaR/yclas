@@ -377,6 +377,14 @@ class Controller_Panel_Ad extends Auth_Controller {
 						{
 							$active_ad->save();
 
+							//subscription is on
+							$data = array(	'title' 		=> $title 		= 	$active_ad->title,
+											'cat'			=> $cat 		= 	$active_ad->category,
+											'loc'			=> $loc 		= 	$active_ad->location,	
+										 );
+
+							Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $active_ad->price)), $active_ad->seotitle, Auth::instance()->get_user()->email); // if subscription is on
+
 						}
 							catch (Exception $e)
 						{
