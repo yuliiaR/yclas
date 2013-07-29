@@ -195,6 +195,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."content` (`order`, `title`, 
 (0, 'Success! Your advertisement `[AD.NAME]` is created on [SITE.NAME]!', 'ads.notify', 'Hello [USER.NAME],\n\nThank you for creating an advertisement at [SITE.NAME]! \n\nYou can edit your advertisement here [URL.QL].\n\n Your ad is still not published, it needs to be validated by an administrator. \n\n We are sorry for any inconvenience. We will review it as soon as possible. \n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Advertisement `[AD.NAME]` is created on [SITE.NAME]!', 'ads.user_check', 'Hello [USER.NAME],\n\n Advertisement is created under your account [USER.NAME]! You can visit this link to see advertisement [URL.AD]\n\n If you are not responsible for creating this advertisement, click a link to contact us [URL.CONTACT].\n\n', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!', 'ads.subscribers', 'Hello [USER.NAME],\n\n You may be interested in this one!\n\nYou can visit this link to see advertisement [URL.AD]\n\n', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
+(0, 'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!', 'ads.to_admin', 'Click here to visit [URL.AD]', '".$_POST['ADMIN_EMAIL']."', 'email', 1),
 (0, 'Success! Your advertisement `[AD.NAME]` is created on [SITE.NAME]!', 'ads.confirm', 'Welcome [USER.NAME],\n\nThank you for creating an advertisement at [SITE.NAME]! \n\nPlease click on this link [URL.QL] to confirm it.\n\nRegards!', '".$_POST['ADMIN_EMAIL']."', 'email', 1);");
 
 /**
@@ -277,6 +278,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('advertisement', 'ads_in_home', '0'),
 ('email', 'notify_email', '".$_POST['ADMIN_EMAIL']."'),
 ('email', 'smtp_active', 0),
+('email', 'new_ad_notify', 0),
 ('email', 'smtp_host', ''),
 ('email', 'smtp_port', ''),
 ('email', 'smtp_auth', 0),

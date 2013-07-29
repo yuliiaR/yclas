@@ -136,6 +136,21 @@
 						))?> 
 					</div>
 				</div>
+				<div class="control-group">
+					<?= FORM::label($forms['new_ad_notify']['key'], __('Notify me on new ad'), array('class'=>'control-label', 'for'=>$forms['new_ad_notify']['key']))?>
+					<div class="controls">
+						<?= FORM::select($forms['new_ad_notify']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['new_ad_notify']['value'], array(
+						'placeholder' => "TRUE or FALSE",
+						'class' => 'tips', 
+						'id' => $forms['new_ad_notify']['key'], 
+						'data-content'=> '',
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-original-title'=>'',
+						))?> 
+					</div>
+				</div>
 				<div class="form-actions">
 					<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))))?>
 				</div>
