@@ -98,7 +98,8 @@ class Model_Order extends ORM {
                                                     'seotitle'=>$product_find->seotitle), TRUE);
 
                     $ret = $user->email('ads.user_check',array('[URL.CONTACT]'  =>$url_cont,
-                                                                '[URL.AD]'      =>$url_ad));
+                                                                '[URL.AD]'      =>$url_ad,
+                                                                '[AD.NAME]'     =>$product_find->title));
 
                 } catch (Exception $e) {
                     echo $e;
@@ -117,7 +118,8 @@ class Model_Order extends ORM {
                                                           'action'    => 'update',
                                                           'id'        => $orders->id_ad),TRUE);
 
-                    $ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql));     
+                    $ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql,
+                                                           '[AD.NAME]'=>$product_find->title));     
                 } catch (Exception $e) {
                    
                 }   

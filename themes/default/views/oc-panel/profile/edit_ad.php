@@ -130,7 +130,7 @@
                     <div class="control-group">
                         <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
                         <div class="controls">          
-                            <select name="location" id="location" class="input-xlarge" required>
+                            <select name="location" id="location" class="input-xlarge" >
                             <option></option>
                             <?function lolo($item, $key,$locs){?>
 

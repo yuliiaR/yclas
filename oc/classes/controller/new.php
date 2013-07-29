@@ -239,7 +239,8 @@ class Controller_New extends Controller
                                                           	 'action'     => 'confirm_post',
                                                           	 'id'		  => $new_ad->id_ad),TRUE);
 
-                    	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql));
+                    	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql,
+                    											'[AD.NAME]'=>$new_ad->title));
 					}
 					else if($moderation == Model_Ad::MODERATION_ON)
 					{
@@ -248,7 +249,8 @@ class Controller_New extends Controller
                                                           	  'action'    => 'update',
                                                           	  'id'		  => $new_ad->id_ad),TRUE);
 
-                    	$ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql));
+                    	$ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql,
+                    										   '[AD.NAME]'=>$new_ad->title)); // email to notify user of creating, but it is in moderation currently 
 					}
 					else if($moderation == Model_Ad::POST_DIRECTLY)
 					{
@@ -257,7 +259,8 @@ class Controller_New extends Controller
 			                							'seotitle'=>$seotitle), TRUE);
 
 						$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
-			                										'[URL.AD]'		=>$url_ad)); 
+			                										'[URL.AD]'		=>$url_ad,
+			                										'[AD.NAME]'		=>$new_ad->title));
 					}	
 				}
 				catch (ORM_Validation_Exception $e)
