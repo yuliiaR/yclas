@@ -92,12 +92,22 @@ class Controller_Panel_Update extends Auth_Controller {
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'paypal_seller',
                                'group_name'     =>'payment', 
+                               'config_value'   =>'0'),
+                         array('config_key'     =>'new_ad_notify',
+                               'group_name'     =>'email', 
                                'config_value'   =>'0'));
 
         $contents = array(array('order'=>'0',
-                               'title'=>'Advertisement is created on [SITE.NAME]!',
+                               'title'=>'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!',
                                'seotitle'=>'ads.subscribers',
                                'description'=>"Hello [USER.NAME],\n\nYou may be interested in this one [AD.TITLE]!\n\nYou can visit this link to see advertisement [URL.AD]",
+                               'from_email'=>core::config('email.notify_email'),
+                               'type'=>'email',
+                               'status'=>'1'),
+                          array('order'=>'0',
+                               'title'=>'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!',
+                               'seotitle'=>'ads.to_admin',
+                               'description'=>"Click here to visit [URL.AD]",
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'));

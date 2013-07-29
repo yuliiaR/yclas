@@ -261,7 +261,26 @@ class Controller_New extends Controller
 						$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
 			                										'[URL.AD]'		=>$url_ad,
 			                										'[AD.NAME]'		=>$new_ad->title));
-					}	
+					}
+
+
+					// new ad notification email to admin (notify_email), if set to TRUE 
+					if(core::config('email.new_ad_notify'))
+					{
+						 
+						$url_ad = $user->ql('ad', array('category'=>$data['cat'],
+				                						'seotitle'=>$seotitle), TRUE);
+						
+						$replace = array('[URL.AD]'    	   =>$url_ad,
+	                                  	 '[AD.TITLE]'  	   =>$new_ad->title);
+
+		                Email::content(core::config('email.notify_email'),
+		                                    core::config('general.site_name'),
+		                                    core::config('email.notify_email'),
+		                                    core::config('general.site_name'),'ads.to_admin',
+		                                    $replace);
+
+		            }
 				}
 				catch (ORM_Validation_Exception $e)
 				{
@@ -355,6 +374,8 @@ class Controller_New extends Controller
 					Alert::set(Alert::SUCCESS, __('Advertisement is posted. Congratulations!'));
 					$this->request->redirect(Route::url('default'));
 				}
+
+
 
 			}
 			else
