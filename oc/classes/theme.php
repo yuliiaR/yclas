@@ -167,6 +167,38 @@ class Theme {
         return $ret;
     }
 
+    /**
+     * deletes minified files for theme, for JS and CSS
+     * @param  string $theme  
+     * @return void 
+     */
+    public static function delete_minified($theme = NULL)
+    {
+        if ($theme === NULL)
+            $theme = self::$theme;
+
+        $css_folder  = self::theme_folder($theme).'/css/';
+        $js_folder   = self::theme_folder($theme).'/js/';
+        $match       = 'minified-';
+
+        //check directory for files
+        foreach (new DirectoryIterator($css_folder) as $file) 
+        {
+            if($file->isFile() AND !$file->isDot() AND  strpos($file->getFilename(), $match) === 0 )
+            {
+                unlink($css_folder.$file->getFilename());
+            }
+        }
+
+        foreach (new DirectoryIterator($js_folder) as $file) 
+        {
+            if($file->isFile() AND !$file->isDot() AND  strpos($file->getFilename(), $match) === 0 )
+            {
+                unlink($js_folder.$file->getFilename());
+            }
+        }
+    }
+
     
     /**
      *
