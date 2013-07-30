@@ -47,8 +47,9 @@
 # HTML, TXT, CSS, JavaScript, JSON, XML, HTC:
 <IfModule filter_module>
   FilterDeclare   COMPRESS
-  FilterProvider  COMPRESS  DEFLATE resp=Content-Type /text/(html|css|javascript|plain|x(ml|-component))/
-  FilterProvider  COMPRESS  DEFLATE resp=Content-Type /application/(javascript|json|xml|x-javascript)/
+  #commented also for godaddy :( http://forums.open-classifieds.com/support/how-to-make-modrewrite-load-using-htaccess-file-on-open-classifieds-202.html#comment-981112189
+  #FilterProvider  COMPRESS  DEFLATE resp=Content-Type /text/(html|css|javascript|plain|x(ml|-component))/
+  #FilterProvider  COMPRESS  DEFLATE resp=Content-Type /application/(javascript|json|xml|x-javascript)/
   FilterChain     COMPRESS
   FilterProtocol  COMPRESS  change=yes;byteranges=no
 </IfModule>
