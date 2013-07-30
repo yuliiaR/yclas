@@ -131,7 +131,7 @@ class Controller_Panel_Update extends Auth_Controller {
         //             `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         //             PRIMARY KEY (`id_subscribe`)
         //           ) ");
-
+          //@todo ALTER TABLE ".$prefix."_content DROP INDEX ".$prefix."_content_UK_seotitle
         // message
         if($return_conf OR $return_cont)
             Alert::set(Alert::SUCCESS,__('Updated'));

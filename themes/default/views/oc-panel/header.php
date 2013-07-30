@@ -27,7 +27,7 @@
                     <? endif?>
                 	<?=Theme::admin_link(__('Stats'),'stats','index','oc-panel','icon-align-left icon-white')?>
                     <?=Theme::admin_link(__('Widgets'),'widget','index','oc-panel','icon-move icon-white')?>
-
+                    <?=Theme::admin_link(__('Cache'),'tools','cache','oc-panel','icon-cog icon-white')?>
                     <? if(Auth::instance()->get_user()->id_role==10):?>
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"
             		      data-toggle="dropdown"><i class="icon-plus icon-white"></i> <?=__('New')?> <b class="caret"></b></a>

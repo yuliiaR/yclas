@@ -146,7 +146,10 @@ class Auth_Crud extends Auth_Controller
 			if ( $success = $form->submit() )
 			{
 				$form->save_object();
-				Alert::set(Alert::SUCCESS, __('Item created'));
+				Alert::set(Alert::SUCCESS, __('Item created').'. '.__('Please to see the changes delete the cache')
+                    .'<br><a class="btn btn-primary btn-mini" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
+                    .__('Delete All').'</a>');
+            
 				$this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
 			}
 			else 
@@ -173,7 +176,9 @@ class Auth_Crud extends Auth_Controller
 			if ( $success = $form->submit() )
 			{
 				$form->save_object();
-				Alert::set(Alert::SUCCESS, __('Item updated'));
+				Alert::set(Alert::SUCCESS, __('Item updated').'. '.__('Please to see the changes delete the cache')
+                    .'<br><a class="btn btn-primary btn-mini" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
+                    .__('Delete All').'</a>');
 				$this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
 			}
 			else

@@ -88,6 +88,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         if (Core::get('force')==1)
         {
             Cache::instance()->delete_all();
+            Theme::delete_minified();
             Alert::set(Alert::SUCCESS,__('All cache deleted'));
 
         }
@@ -95,6 +96,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         elseif (Core::get('force')==2)
         {
             Cache::instance()->garbage_collect();
+            Theme::delete_minified();
             Alert::set(Alert::SUCCESS,__('Deleted expired cache'));
 
         }
