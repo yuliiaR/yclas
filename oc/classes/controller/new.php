@@ -79,15 +79,6 @@ class Controller_New extends Controller
 			
  	}
 
-	public function randString($length = 8) {
-		$chars = "abcdefghjklmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";	
-		$str = "";
-		$size = strlen($chars);
-		for($i = 0; $i < $length; $i++) {
-			$str .= $chars[rand(0, $size - 1)];
-		}
-		return $str;
-	}
 
  	/**
  	 * [save_new_ad Save new advertisement if validated, with a given parameters 
@@ -150,7 +141,7 @@ class Controller_New extends Controller
 
 							if(!$user->loaded())
 							{ 
-								$new_password_plain = self::randString(8);
+								$new_password_plain = Text::random();
 								$user->email 	= $email;
 								$user->name 	= $name;
 								$user->status 	= Model_User::STATUS_ACTIVE;

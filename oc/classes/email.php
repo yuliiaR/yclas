@@ -27,7 +27,7 @@ class Email {
     {
         require_once Kohana::find_file('vendor', 'php-mailer/phpmailer','php');
 
-        $body = Text::bb2html($body);
+        $body = Text::bb2html($body,TRUE);
         //get the template from the html email boilerplate
         $body = View::factory('email',array('title'=>$subject,'content'=>nl2br($body)))->render();
 
