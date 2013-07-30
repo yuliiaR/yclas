@@ -49,7 +49,14 @@ class Model_Subscribe extends ORM {
       $jsonObj = json_decode(core::config('widget.Widget_Subscribers_1373877069'), true);
       
       $subscribers = new Model_Subscribe();
-      
+      $category = new Model_Category($data['cat']);
+
+      if($category->loaded())
+      {
+        if($category->id_category_parent !== 1)
+          $cat_parent = $category->id_category_parent;
+      }
+
       //only min/max price is required in widget settings
       $subscribers->where('min_price', '<=', $price)
                   ->where('max_price', '>=', $price);
@@ -60,7 +67,7 @@ class Model_Subscribe extends ORM {
 
       //category is set
       if($jsonObj['data']['categories'] !== '0')
-        $subscribers =  $subscribers->where('id_category', '=', $data['cat']);
+        $subscribers =  $subscribers->where('id_category', 'IN', array($data['cat'], $cat_parent));
 
       $subscribers = $subscribers->find_all();
 
