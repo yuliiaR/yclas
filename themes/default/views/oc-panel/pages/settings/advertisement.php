@@ -94,6 +94,51 @@
                     ))?> 
                 </div>
             </div>
+            <div class="control-group">
+				<?= FORM::label($forms['map_zoom']['key'], __('Google map zoom level'), array('class'=>'control-label', 'for'=>$forms['map_zoom']['key']))?>
+				<div class="controls">
+					<?= FORM::input($forms['map_zoom']['key'], $forms['map_zoom']['value'], array(
+					'placeholder' => "16", 
+					'class' => 'tips', 
+					'id' => $forms['map_zoom']['key'], 
+					'data-content'=> __("Zoom level"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Google map default zoom level "),
+					))?> 
+				</div>
+			</div>
+			<div class="control-group">
+				<?= FORM::label($forms['center_lon']['key'], __('Map longitude coordinates'), array('class'=>'control-label', 'for'=>$forms['center_lon']['key']))?>
+				<div class="controls">
+					<?= FORM::input($forms['center_lon']['key'], $forms['center_lon']['value'], array(
+					'placeholder' => "3", 
+					'class' => 'tips', 
+					'id' => $forms['center_lon']['key'], 
+					'data-content'=> __("Longitude coordinates"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Google map default longitude coordinates"),
+					))?> 
+				</div>
+			</div>
+			<div class="control-group">
+				<?= FORM::label($forms['center_lat']['key'], __('Map latitude coordinates'), array('class'=>'control-label', 'for'=>$forms['center_lat']['key']))?>
+				<div class="controls">
+					<?= FORM::input($forms['center_lat']['key'], $forms['center_lat']['value'], array(
+					'placeholder' => "40", 
+					'class' => 'tips', 
+					'id' => $forms['center_lat']['key'], 
+					'data-content'=> __("Latitude coordinates"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Google map default latitude coordinates"),
+					))?> 
+				</div>
+			</div>
 			<div class="control-group">
 				<?= FORM::label($forms['phone']['key'], __('Phone'), array('class'=>'control-label', 'for'=>$forms['phone']['key']))?>
 				<div class="controls">

@@ -7,7 +7,7 @@
 		
 		<?if((core::config('payment.pay_to_go_on_top') >= 0  
 			&& core::config('payment.to_top') != FALSE )
-			&& (core::config('payment.pay_to_go_on_feature') > 0 
+			OR (core::config('payment.pay_to_go_on_feature') > 0 
 			&& core::config('payment.to_featured') != FALSE)):?>
 		<div id="advise" class="well advise clearfix">
 			<?foreach ($extra_payment as $ex => $value) {
@@ -20,11 +20,11 @@
 				} 
 			}?>
 			<?if(core::config('payment.to_top') != FALSE):?>
-			<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').$to_top.' '.core::config('general.global_currency');?></p>
+			<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').$to_top.' '.core::config('payment.paypal_currency');?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
 			<?endif?>
 			<?if(core::config('payment.to_featured') != FALSE):?>
-			<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').$featured_price.' '.core::config('general.global_currency');?></p>
+			<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').$featured_price.' '.core::config('payment.paypal_currency');?></p>
 			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
 			<?endif?>
 		</div>

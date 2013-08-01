@@ -18,7 +18,8 @@ class Controller_Map extends Controller {
         $map->setHeight($height);
         $map->disableSidebar();
         $map->setMapType('map');
-        $map->setZoomLevel(Core::get('zoom',16));
+        $map->setZoomLevel(Core::get('zoom',core::config('advertisement.map_zoom')));
+        $map->setCenterCoords(core::config('advertisement.center_lon'),core::config('advertisement.center_lat'));
         //$map->mobile = TRUE;
         
         if ( core::get('controls')==0 )

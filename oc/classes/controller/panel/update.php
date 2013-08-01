@@ -93,6 +93,15 @@ class Controller_Panel_Update extends Auth_Controller {
         $configs = array(array('config_key'     =>'paypal_seller',
                                'group_name'     =>'payment', 
                                'config_value'   =>'0'),
+                         array('config_key'     =>'map_zoom',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>'16'),
+                         array('config_key'     =>'center_lon',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>'3'),
+                         array('config_key'     =>'center_lat',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>'40'),
                          array('config_key'     =>'new_ad_notify',
                                'group_name'     =>'email', 
                                'config_value'   =>'0'));
@@ -117,21 +126,27 @@ class Controller_Panel_Update extends Auth_Controller {
         $return_cont = Model_Content::content_array($contents);
 
         $prefix = Database::instance()->table_prefix();
-    
+        $config_db = Kohana::$config->load('database');
+        $charset = $config_db['default']['charset'];
+        
         /*
           @todo NOT DINAMIC, get charset
         */
-        // mysql_query("CREATE TABLE IF NOT EXISTS `".$prefix."_subscribers` (
-        //             `id_subscribe` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //             `id_user` int(10) unsigned NOT NULL,
-        //             `id_category` int(10) unsigned NOT NULL DEFAULT '0',
-        //             `id_location` int(10) unsigned NOT NULL DEFAULT '0',
-        //             `min_price` decimal(14,3) NOT NULL DEFAULT '0',
-        //             `max_price` decimal(14,3) NOT NULL DEFAULT '0',
-        //             `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        //             PRIMARY KEY (`id_subscribe`)
-        //           ) ");
-          //@todo ALTER TABLE ".$prefix."_content DROP INDEX ".$prefix."_content_UK_seotitle
+        mysql_query("CREATE TABLE IF NOT EXISTS `".$prefix."subscribers` (
+                    `id_subscribe` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                    `id_user` int(10) unsigned NOT NULL,
+                    `id_category` int(10) unsigned NOT NULL DEFAULT '0',
+                    `id_location` int(10) unsigned NOT NULL DEFAULT '0',
+                    `min_price` decimal(14,3) NOT NULL DEFAULT '0',
+                    `max_price` decimal(14,3) NOT NULL DEFAULT '0',
+                    `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    PRIMARY KEY (`id_subscribe`)
+                  ) ENGINE=MyISAM DEFAULT CHARSET=".$charset.";");
+        
+        // remove INDEX from content table
+        if(mysql_query("SHOW INDEX FROM `".$prefix."content` WHERE KEY_NAME = `".$prefix."content_UK_seotitle`"))
+          mysql_query("ALTER TABLE `".$prefix."content` DROP INDEX `".$prefix."content_UK_seotitle`");
+        
         // message
         if($return_conf OR $return_cont)
             Alert::set(Alert::SUCCESS,__('Updated'));
