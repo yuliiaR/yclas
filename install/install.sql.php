@@ -156,7 +156,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS  `".$_POST['TABLE_PREFIX']."orders` (
 
 mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."content` (
   `id_content` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `locale` varchar(8) NOT NULL DEFAULT 'en_EN',
+  `locale` varchar(8) NOT NULL DEFAULT 'en_UK',
   `order` int(2) unsigned NOT NULL DEFAULT '0',
   `title` varchar(145) NOT NULL,
   `seotitle` varchar(145) NOT NULL,
