@@ -277,11 +277,15 @@ abstract class Widget{
                     {
                         //remove the key
                         $wid = json_decode($confp->config_value);
-                        $key = array_search($this->widget_name, $wid);
-                        if ($key!==FALSE)
-                            unset($wid[$key]);
-                        $confp->config_value = json_encode($wid);
-                        $confp->save();
+                        if (is_array($wid))
+                        {
+                            $key = array_search($this->widget_name, $wid);
+                            if ($key!==FALSE)
+                                unset($wid[$key]);
+                            $confp->config_value = json_encode($wid);
+                            $confp->save();
+                        }
+                        
                     }
                     
                     $this->data = array();
@@ -289,7 +293,7 @@ abstract class Widget{
                     return TRUE;
                 } 
                 catch (Exception $e) {
-                    throw new HTTP_Exception_500();     
+                    throw new HTTP_Exception_500($e);     
                 }
             }
         }
