@@ -19,7 +19,8 @@ Open Classifieds is a powerful script that can transform any domain into a fully
 
 
 # How to contribute
-https://github.com/open-classifieds/openclassifieds2
+https://github.com/open-classifieds/openclassifieds2/issues
+
 
 # OC works thanks to other GPL software
 
@@ -43,3 +44,5 @@ https://github.com/open-classifieds/openclassifieds2
 * jQuery http://jquery.com/
 * jQuery Sortable http://johnny.github.io/jquery-sortable/
 * Bootstrap Image Gallery https://github.com/blueimp/Bootstrap-Image-Gallery
+
+# License GPL v3

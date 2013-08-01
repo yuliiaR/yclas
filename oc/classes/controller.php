@@ -87,8 +87,8 @@ class Controller extends Kohana_Controller
             if (Auth::instance()->logged_in())
                 $this->template->header  = View::fragment('header_front_login','header');
             else
-                $this->template->header  = View::fragment('header_front','header');
-
+                $this->template->header  = View::factory('header');//             $this->template->header  = View::fragment('header_front','header');
+                //no fragment since CSRF gets cached :(
 
             $this->template->footer = View::fragment('footer_front','footer');
             

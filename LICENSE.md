@@ -1,6 +1,6 @@
-# Open Classifieds License Agreement
+# Open Classifieds License GPL v3 Agreement
 
-This license is a legal agreement between you and the Open Classifieds Team for the use of Open Classifieds (the "Software"). By obtaining the Software you agree to comply with the terms and conditions of this license.
+This license GPL v3 is a legal agreement between you and the Open Classifieds Team for the use of Open Classifieds (the "Software"). By obtaining the Software you agree to comply with the terms and conditions of this license.
 
 Copyright (c) 2009-2013 OpenClassifieds LTD 
 All rights reserved.
