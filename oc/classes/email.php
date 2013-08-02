@@ -138,6 +138,13 @@ class Email {
                              '[USER.NAME]'      =>  $to_name,
                              '[USER.EMAIL]'     =>  $to);
 
+            //adding anchor tags to any [URL.* match
+            foreach ($replace as $key => $value) 
+            {
+                if(strpos($key, '[URL.')===0 OR $key == '[SITE.URL]')
+                    $replace[$key] = '[url='.$value.']'.$value.'[/url]';
+            }
+
             $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
             $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
 
