@@ -21,8 +21,9 @@ class View extends Kohana_View{
      */
 	public static function fragment($name, $file = NULL, array $data = NULL)
 	{
+		$name = self::fragment_name($name);
 		// If sending new data in View need recache View
-		$name = self::fragment_name($name).sha1(var_export($data, TRUE));
+		$data_hash = sha1(var_export($data, TRUE));
 		
 		if ( ! empty($file))
 		{
@@ -31,9 +32,8 @@ class View extends Kohana_View{
 				$fragment = View::capture($file, $data);
 				Core::cache($name, $fragment);
 			}
+			return $fragment;
 		}
-		
-		return $fragment;
 	}
 
     /**
