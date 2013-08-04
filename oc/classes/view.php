@@ -11,6 +11,7 @@
 
 class View extends Kohana_View{
     
+	// TODO: Delete this method and move his code into View::capture
     /**
      * gets a cached fragment view
      * @param  string $name name to use in the cache should be unique
@@ -18,24 +19,22 @@ class View extends Kohana_View{
      * @param  array $data 
      * @return string       
      */
-    public static function fragment($name, $file = NULL, array $data = NULL)
-    {
-        $name = self::fragment_name($name);
-
-        if ( ($fragment = Core::cache($name))===NULL ) 
-        {
-            //if file is set and we dont have the cache we render.
-            if ($file!==NULL)
-            {
-                $view = View::factory($file,$data);
-                $fragment = $view->render();
-                Core::cache($name,$fragment);
-            }
-            
-        }   
-
-        return $fragment;
-    }
+	public static function fragment($name, $file = NULL, array $data = NULL)
+	{
+		// If sending new data in View need recache View
+		$name = self::fragment_name($name).sha1(var_export($data, TRUE));
+		
+		if ( ! empty($file))
+		{
+			if ( ! $fragment = Core::cache($name)) 
+			{
+				$fragment = View::capture($file, $data);
+				Core::cache($name, $fragment);
+			}
+		}
+		
+		return $fragment;
+	}
 
     /**
      * deletes from cache a fragment
