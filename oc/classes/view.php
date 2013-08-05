@@ -50,28 +50,24 @@ class View extends Kohana_View{
      * @param  string $name 
      * @return string       
      */
-	public static function fragment_name($name)
-	{
-		if ( ! is_null(Controller::$category) AND Controller::$category->loaded())
-		{
-			$cat_seoname = '_category_'.Controller::$category->seoname;
-		}
-		else
-		{
-			$cat_seoname = '';
-		}
+    public static function fragment_name($name)
+    {
+        $cat_seoname = '';
+        if (Controller::$category!==NULL)
+        {
+            if (Controller::$category->loaded())
+                $cat_seoname = '_category_'.Controller::$category->seoname;
+        }
 
-		if ( ! is_null(Controller::$location) AND Controller::$location->loaded())
-		{
-			$loc_seoname = '_location_'.Controller::$location->seoname;
-		}
-		else
-		{
-			$loc_seoname = '';
-		}
-		
-		return 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme.$cat_seoname.$loc_seoname; //.Theme::$skin
-	}
+        $loc_seoname = '';
+        if (Controller::$location!==NULL)
+        {
+            if (Controller::$location->loaded())
+                $loc_seoname = '_location_'.Controller::$location->seoname;
+        }
+
+        return 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme.$cat_seoname.$loc_seoname; //.Theme::$skin
+    }
 
 
     /**
