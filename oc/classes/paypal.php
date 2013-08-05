@@ -39,7 +39,7 @@ class Paypal {
      */
     public static function validate_ipn()
     {
-        if (core::config('paypal.sandbox'))
+        if (core::config('payment.sandbox'))
             $ipn_url  = self::ipn_sandbox_url;
         else
             $ipn_url  = self::ipn_url;

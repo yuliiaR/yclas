@@ -21,7 +21,7 @@ class Controller_Payment_Paypal extends Controller{
 	public function action_ipn()
 	{
         //todo delete
-        paypal::validate_ipn();
+        //paypal::validate_ipn();
 
 		$this->auto_render = FALSE;
 
@@ -32,7 +32,7 @@ class Controller_Payment_Paypal extends Controller{
 		$payer_id         = Core::post('payer_id');
 
 		//retrieve info for the item in DB
-		$order = new Model_Order();
+		$order = new Model_Order($id_order);
 		$order = $order->where('id_order', '=', $id_order)
 					   ->where('status', '=', Model_Order::STATUS_CREATED)
 					   ->limit(1)->find();
@@ -52,9 +52,9 @@ class Controller_Payment_Paypal extends Controller{
 			} 
 
 			if (	Core::post('mc_gross')          == number_format($order->amount, 2, '.', '')
-				&&  Core::post('mc_currency')       == core::config('paypal.paypal_currency') 
-				&& (Core::post('receiver_email')    == core::config('paypal.paypal_account') 
-					|| Core::post('business')       == core::config('paypal.paypal_account')))
+				&&  Core::post('mc_currency')       == core::config('payment.paypal_currency') 
+				&& (Core::post('receiver_email')    == core::config('payment.paypal_account') 
+					|| Core::post('business')       == core::config('payment.paypal_account')))
 			{//same price , currency and email no cheating ;)
 				if (paypal::validate_ipn()) 
 				{
@@ -66,32 +66,32 @@ class Controller_Payment_Paypal extends Controller{
 					// Email::send("slobodan.josifovic@gmail.com",'qwe','xxxxxxx',"reply",'replyName', NULL); // @TODO EMAIL
 					// Log an invalid request to look into
 					// PAYMENT INVALID & INVESTIGATE MANUALY!
-					$subject = 'Invalid Payment';
-					$message = 'Dear Administrator,<br />
-								A payment has been made but is flagged as INVALID.<br />
-								Please verify the payment manualy and contact the buyer. <br /><br />Here is all the posted info:';
-					email::send(core::config('general.notify_email'),'',$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
+					// $subject = 'Invalid Payment';
+					// $message = 'Dear Administrator,<br />
+					// 			A payment has been made but is flagged as INVALID.<br />
+					// 			Please verify the payment manualy and contact the buyer. <br /><br />Here is all the posted info:';
+					// email::send(core::config('general.notify_email'),'',$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
 				}	
 
 			} 
 			else //trying to cheat....
 			{
-				$subject = 'Cheat Payment !?';
-				$message = 'Dear Administrator,<br />
-							A payment has been made but is flagged as Cheat.<br />
-							We suspect some forbiden or illegal actions have been made with this transaction.<br />
-							Please verify the payment manualy and contact the buyer. <br /><br />Here is all posted info:';
-				email::send(core::config('general.notify_email'),$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
+				// $subject = 'Cheat Payment !?';
+				// $message = 'Dear Administrator,<br />
+				// 			A payment has been made but is flagged as Cheat.<br />
+				// 			We suspect some forbiden or illegal actions have been made with this transaction.<br />
+				// 			Please verify the payment manualy and contact the buyer. <br /><br />Here is all posted info:';
+				// email::send(core::config('general.notify_email'),$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
 			}
 		}// END order loaded
 		else
 		{
 			//order not loaded
-            $subject = 'Order not loaded';
-            $message = 'Dear Administrator,<br />
-                        Someone is trying to pay an inexistent Order...
-                        Please verify the payment manually and contact the buyer. <br /><br />Here is all posted info:';
-            // email::send(Core::config('common.email'),Core::config('common.email'),$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
+            // $subject = 'Order not loaded';
+            // $message = 'Dear Administrator,<br />
+            //             Someone is trying to pay an inexistent Order...
+            //             Please verify the payment manually and contact the buyer. <br /><br />Here is all posted info:';
+            // // email::send(Core::config('common.email'),Core::config('common.email'),$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
 		}
 
 		$this->response->body('OK');
@@ -123,7 +123,7 @@ class Controller_Payment_Paypal extends Controller{
         	else
         		$item_name = $order->description.__(' category');
 
-			$paypal_url = (Core::config('paypal.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
+			$paypal_url = (Core::config('payment.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
 
 		 	$paypal_data = array('order_id'            	=> $order_id,
 	                             'amount'            	=> number_format($order->amount, 2, '.', ''),

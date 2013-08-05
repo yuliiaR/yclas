@@ -231,7 +231,7 @@ class Model_Order extends ORM {
                           'id_ad'       => $ad->id_ad,
                           'id_product'  => $id_product,
                           'paymethod'   => 'paypal', // @TODO - to strict
-                          'currency'    => core::config('paypal.paypal_currency'),
+                          'currency'    => core::config('payment.paypal_currency'),
                           'amount'      => $amount,
                           'description' => $cat->seoname);
 
