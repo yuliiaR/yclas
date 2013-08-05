@@ -39,7 +39,7 @@ class Model_Content extends ORM {
         {
 
             $content = $content->where('seotitle','=', $seotitle)
-                 ->where('locale','=', 'en_EN')
+                 ->where('locale','=', 'en_UK')
                  ->where('type','=', $type)
                  ->where('status','=', 1)
                  ->limit(1)->cached()->find();
@@ -157,7 +157,7 @@ array (
   array (
     'type' => 'string',
     'column_name' => 'locale',
-    'column_default' => 'en_EN',
+    'column_default' => 'en_UK',
     'data_type' => 'varchar',
     'is_nullable' => false,
     'ordinal_position' => 2,

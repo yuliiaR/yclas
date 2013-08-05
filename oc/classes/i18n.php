@@ -29,7 +29,7 @@ class I18n extends Kohana_I18n {
      * @param string $charset
      * @param string $domain
      */
-    public static function initialize($locale = 'en_EN', $charset = 'utf-8', $domain = 'messages')
+    public static function initialize($locale = 'en_UK', $charset = 'utf-8', $domain = 'messages')
     {        	
         /**
          * setting the statics so later we can access them from anywhere

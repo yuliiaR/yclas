@@ -150,7 +150,7 @@
            </div>
        </div>
 		<div class="control-group">
-			<?= FORM::label($forms['number_format']['key'], __('Number format'), array('class'=>'control-label', 'for'=>$forms['number_format']['key']))?>
+			<?= FORM::label($forms['number_format']['key'], __('Money format'), array('class'=>'control-label', 'for'=>$forms['number_format']['key']))?>
 			<div class="controls">
 				<?= FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
 				'placeholder' => "20", 
