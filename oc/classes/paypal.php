@@ -98,13 +98,13 @@ class Paypal {
         // Verfication result was invalid.  Log it.
         elseif(strcmp ($res, "INVALID") == 0)
         {
-            Kohana::$log->add(Log::ERROR, 'Paypal invalid payment error. Result: '.$result.' Data: '. json_encode($_POST));
+            Kohana::$log->add(Log::ERROR, 'Paypal invalid payment error. Result: '.$res.' Data: '. json_encode($_POST));
             return FALSE;
         }
         // Unknown result. Log it.
         else
         {
-            Kohana::$log->add(Log::ERROR, 'Unknown result from IPN verification. Result: '.$result.' Data: '. json_encode($_POST));
+            Kohana::$log->add(Log::ERROR, 'Unknown result from IPN verification. Result: '.$res.' Data: '. json_encode($_POST));
             return FALSE;
         }
 

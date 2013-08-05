@@ -32,7 +32,7 @@ class Controller_Payment_Paypal extends Controller{
 		$payer_id         = Core::post('payer_id');
 
 		//retrieve info for the item in DB
-		$order = new Model_Order($id_order);
+		$order = new Model_Order();
 		$order = $order->where('id_order', '=', $id_order)
 					   ->where('status', '=', Model_Order::STATUS_CREATED)
 					   ->limit(1)->find();
@@ -63,35 +63,21 @@ class Controller_Payment_Paypal extends Controller{
 
 				else
 				{
-					// Email::send("slobodan.josifovic@gmail.com",'qwe','xxxxxxx',"reply",'replyName', NULL); // @TODO EMAIL
-					// Log an invalid request to look into
-					// PAYMENT INVALID & INVESTIGATE MANUALY!
-					// $subject = 'Invalid Payment';
-					// $message = 'Dear Administrator,<br />
-					// 			A payment has been made but is flagged as INVALID.<br />
-					// 			Please verify the payment manualy and contact the buyer. <br /><br />Here is all the posted info:';
-					// email::send(core::config('general.notify_email'),'',$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
+					Kohana::$log->add(Log::ERROR, 'A payment has been made but is flagged as INVALID');
+					$this->response->body('KO');
 				}	
 
 			} 
 			else //trying to cheat....
 			{
-				// $subject = 'Cheat Payment !?';
-				// $message = 'Dear Administrator,<br />
-				// 			A payment has been made but is flagged as Cheat.<br />
-				// 			We suspect some forbiden or illegal actions have been made with this transaction.<br />
-				// 			Please verify the payment manualy and contact the buyer. <br /><br />Here is all posted info:';
-				// email::send(core::config('general.notify_email'),$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
+				Kohana::$log->add(Log::ERROR, 'Attempt illegal actions with transaction');
+				$this->response->body('KO');
 			}
 		}// END order loaded
 		else
 		{
-			//order not loaded
-            // $subject = 'Order not loaded';
-            // $message = 'Dear Administrator,<br />
-            //             Someone is trying to pay an inexistent Order...
-            //             Please verify the payment manually and contact the buyer. <br /><br />Here is all posted info:';
-            // // email::send(Core::config('common.email'),Core::config('common.email'),$subject,$message.'<br />'.print_r($_POST,true)); // @TODO EMAIL
+            Kohana::$log->add(Log::ERROR, 'Order not loaded');
+            $this->response->body('KO');
 		}
 
 		$this->response->body('OK');
@@ -131,7 +117,7 @@ class Controller_Payment_Paypal extends Controller{
 	                             'site_url'            	=> URL::base(TRUE),
 	                             'paypal_url'        	=> $paypal_url,
 	                             'paypal_account'    	=> core::config('payment.paypal_account'),
-	                             'paypal_currency'    	=> core::config('payment.paypal_currency'),
+	                             'paypal_currency'    	=> core::config('payment.paypal_currenc'),
 	                             'item_name'			=> $item_name);
 			
 			$this->template = View::factory('paypal', $paypal_data);
