@@ -1,4 +1,4 @@
-#  Open Classifieds 2.0.5
+#  Open Classifieds 2.0.6
 
 # Installation
 
