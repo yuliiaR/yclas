@@ -164,6 +164,15 @@ class I18n extends Kohana_I18n {
             return _($string);
     }
 
+    /**
+     * returns the number in the locale format
+     * @param  float $number 
+     * @return string
+     */
+    public static function money_format($number)
+    {
+        return money_format(core::config('general.number_format'), $number);
+    }
     
 }//end i18n
 
@@ -177,6 +186,6 @@ if ( !function_exists('money_format') )
 {
     function money_format($format, $number) 
     { 
-        return core::config('general.global_currency').' '.number_format($number, 2); 
+        return number_format($number, 2); 
     } 
 }

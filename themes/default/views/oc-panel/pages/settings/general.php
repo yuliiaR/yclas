@@ -89,21 +89,7 @@
 				))?> 
 			</div>
 		</div>
-		<div class="control-group">
-			<?= FORM::label($forms['global_currency']['key'], __('Global currency'), array('class'=>'control-label', 'for'=>$forms['global_currency']['key']))?>
-			<div class="controls">
-				<?= FORM::input($forms['global_currency']['key'], $forms['global_currency']['value'], array(
-				'placeholder' => "USD", 
-				'class' => 'tips', 
-				'id' => $forms['global_currency']['key'],
-				'data-content'=> __("Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "),
-				'data-trigger'=>"hover",
-				'data-placement'=>"right",
-				'data-toggle'=>"popover",
-				'data-original-title'=>__("Country specific currency"),
-				))?> 
-			</div>
-		</div>
+		
 		<div class="control-group">
 			<?= FORM::label($forms['advertisements_per_page']['key'], __('Advertisements per page'), array('class'=>'control-label', 'for'=>$forms['advertisements_per_page']['key']))?>
 			<div class="controls">
@@ -150,7 +136,9 @@
            </div>
        </div>
 		<div class="control-group">
-			<?= FORM::label($forms['number_format']['key'], __('Money format'), array('class'=>'control-label', 'for'=>$forms['number_format']['key']))?>
+			<a href="http://open-classifieds.com/2013/08/06/how-to-currency-format/" target="_blank">
+                <?= FORM::label($forms['number_format']['key'], __('Money format'), array('class'=>'control-label', 'for'=>$forms['number_format']['key']))?>
+            </a>
 			<div class="controls">
 				<?= FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
 				'placeholder' => "20", 

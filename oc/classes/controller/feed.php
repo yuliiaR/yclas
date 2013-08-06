@@ -96,7 +96,7 @@ class Controller_Feed extends Controller {
                             'charset'       => Core::config('i18n.charset'),
                             'timezone'      => Core::config('i18n.timezone'),
                             'locale'        => Core::config('i18n.locale'),
-                            'currency'      => Core::config('general.global_currency'),
+                            'currency'      => '',
                             'ads'           => $total_ads,
                             'views'         => $total_views,
                             'users'         => $total_users,

@@ -35,7 +35,7 @@
 
         <div class="well">
             <?if ($ad->price>0):?>
-            <span class="label label-important"><?=money_format(core::config('general.number_format'), $ad->price)?></span>
+            <span class="label label-important"><?=i18n::money_format( $ad->price)?></span>
             <?endif?>
             <a class="label" href="<?=Route::url('profile',  array('seoname'=>$ad->user->seoname))?>"><?=$ad->user->name?></a>
             <div class="pull-right">

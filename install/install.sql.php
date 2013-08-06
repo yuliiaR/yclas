@@ -250,7 +250,6 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'map_elements', '100'),
 ('general', 'site_name', '".$_POST['SITE_NAME']."'),
 ('general', 'site_description', ''),
-('general', 'global_currency', 'USD'),
 ('general', 'advertisements_per_page', '10'),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),

@@ -15,8 +15,6 @@
 					$to_top = $value;
 				} elseif ($ex == 'pay_to_go_on_feature'){
 					$featured_price = $value; 
-				} elseif ($ex == 'global_currency'){
-					$global_currency = $value;
 				} 
 			}?>
 			<?if(core::config('payment.to_top') != FALSE):?>
@@ -84,7 +82,7 @@
                                     
                                      <?if ($cats['categories'][$key]['price']>0):?>
                                         <span class="label label-success">
-                                        <?=money_format(core::config('general.number_format'), $cats['categories'][$key]['price'])?>
+                                        <?=i18n::money_format( $cats['categories'][$key]['price'])?>
                                         </span>
                                     <?endif?>
                                     
@@ -101,7 +99,7 @@
 
                                      <?if ($cats['categories'][$key]['price']>0):?>
                                         <span class="label label-success">
-                                        <?=money_format(core::config('general.number_format'), $cats['categories'][$key]['price'])?>
+                                        <?=i18n::money_format( $cats['categories'][$key]['price'])?>
                                         </span>
                                     <?endif?>
                                     </label>
@@ -222,8 +220,7 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<div class="input-prepend">
-							<span class="add-on"><?=core::config('general.global_currency')?></span>
-							<?= FORM::input('price', number_format($ad->price, 2), array('class' => '', 'id' => 'price', 'data-validation-regex-regex'=>"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$", "data-validation-regex-message"=>__('Incorect price, not more than 3 decimals')))?>
+							<?= FORM::input('price', number_format($ad->price, 2), array('placeholder'=>i18n::money_format(1),'class' => '', 'id' => 'price', 'data-validation-regex-regex'=>"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$", "data-validation-regex-message"=>__('Incorect price, not more than 3 decimals')))?>
 						</div>
 					</div>
 				</div>

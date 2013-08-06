@@ -33,7 +33,7 @@
                                     
                                      <?if ($cats[$key]['price']>0):?>
                                         <span class="label label-success">
-                                        <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?>
+                                        <?=i18n::money_format( $cats[$key]['price'])?>
                                         </span>
                                     <?endif?>
                                     
@@ -50,7 +50,7 @@
 
                                      <?if ($cats[$key]['price']>0):?>
                                         <span class="label label-success">
-                                        <?=money_format(core::config('general.number_format'), $cats[$key]['price'])?>
+                                        <?=i18n::money_format( $cats[$key]['price'])?>
                                         </span>
                                     <?endif?>
                                     </label>
@@ -126,8 +126,7 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<div class="input-prepend">
-						<span class="add-on"><?=core::config('general.global_currency')?></span>
-						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => __('Price'), 'class' => 'input-large', 'id' => 'price', 'type'=>'text', 'data-validation-regex-regex'=>"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$", "data-validation-regex-message"=>__('Incorect price, not more than 3 decimals')))?>
+						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => i18n::money_format(1), 'class' => 'input-large', 'id' => 'price', 'type'=>'text', 'data-validation-regex-regex'=>"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$", "data-validation-regex-message"=>__('Incorect price, not more than 3 decimals')))?>
 						</div>
 					</div>
 				</div>
