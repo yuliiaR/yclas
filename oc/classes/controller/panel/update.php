@@ -144,8 +144,7 @@ class Controller_Panel_Update extends Auth_Controller {
                   ) ENGINE=MyISAM DEFAULT CHARSET=".$charset.";");
         
         // remove INDEX from content table
-        if(mysql_query("SHOW INDEX FROM `".$prefix."content` WHERE KEY_NAME = `".$prefix."content_UK_seotitle`"))
-          mysql_query("ALTER TABLE `".$prefix."content` DROP INDEX `".$prefix."content_UK_seotitle`");
+        mysql_query("ALTER TABLE `".$prefix."content` DROP INDEX `".$prefix."content_UK_seotitle`");
         
         // message
         if($return_conf OR $return_cont)
