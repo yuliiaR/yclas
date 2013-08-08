@@ -69,10 +69,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 	        foreach ($ads as $key_ads) {
 	        	
 	        	// match hits with ad
-	        	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
+	        	$hits->where('id_ad','=', $key_ads->id_ad);
 	        	$count = $hits->count_all(); // count individual hits 
 
 	        	array_push($arr_hits, $count);
+	
 	        }
 
 
@@ -141,7 +142,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 	        foreach ($ads as $key_ads) {
 	        	
 	        	// match hits with ad
-	        	$hits->where('id_ad','=', $key_ads->id_ad)->and_where('id_user', '=', $key_ads->id_user);
+	        	$hits->where('id_ad','=', $key_ads->id_ad);
 	        	$count = $hits->count_all(); // count individual hits 
 
 	        	array_push($arr_hits, $count);

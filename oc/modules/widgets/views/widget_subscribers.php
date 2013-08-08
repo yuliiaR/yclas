@@ -12,7 +12,7 @@
 	            <?function lili15($item, $key,$cats){?>
 	            <option value="<?=$key?>"><?=$cats[$key]['name']?></option>
 	                <?if (count($item)>0):?>
-	                <optgroup label="<?=$cats[$key]['name']?>_subscribe">    
+	                <optgroup label="<?=$cats[$key]['name']?>">    
 	                    <? if (is_array($item)) array_walk($item, 'lili15', $cats);?>
 	                <?endif?>
 	            <?}
