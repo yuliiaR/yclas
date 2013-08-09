@@ -41,6 +41,7 @@
                         <?if (count($item)>0):?>
                         <optgroup label="<?=$locs[$key]['name']?>">    
                             <? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
+                            </optgroup>
                         <?endif?>
                     <?}array_walk($order_locations, 'lolo',$locations);?>
                     </select>
