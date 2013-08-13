@@ -229,9 +229,14 @@ class Controller_New extends Controller
                     	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
                                                           	 'action'     => 'confirm_post',
                                                           	 'id'		  => $new_ad->id_ad),TRUE);
-
+                    	
+                    	$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
+                    	$delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$new_ad->id_ad;
                     	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql,
-                    											'[AD.NAME]'=>$new_ad->title));
+                    											'[AD.NAME]'=>$new_ad->title,
+                    											'[EDIT.AD]'=>$edit_url,
+                    											'[DELETE.AD]'=>$delete_url));
+                    	
 					}
 					else if($moderation == Model_Ad::MODERATION_ON)
 					{

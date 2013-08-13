@@ -24,6 +24,15 @@ class Widget_Locations extends Widget
 						 		  						'label'		=> __('Locations title displayed'),
 						 		  						'default'   => __('Locations'),
 														'required'	=> FALSE),
+                                'locations' => array(  'type'      => 'text',
+                                                        'display'   => 'select',
+                                                        'label'     => __('Locations'),
+                                                        'options'   => array('0'    => __('FALSE'),
+                                                                             'popular'   => __('TRUE'),
+                                                                            ), 
+                                                        'default'   => 0,
+                                                        'required'  => TRUE),
+
 						 		);
 	}
 
@@ -80,7 +89,7 @@ class Widget_Locations extends Widget
 			$list_loc = $loc->where('id_location_parent','=',1)->order_by('order','asc')->cached()->find_all();
 			$current_and_parent = NULL;
         }
-
+        $this->locations = $this->locations;
 		$this->loc_items = $list_loc;
 		$this->loc_breadcrumb = $current_and_parent;
         $this->cat_seoname = NULL;
