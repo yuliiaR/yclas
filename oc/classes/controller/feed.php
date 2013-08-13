@@ -22,6 +22,7 @@ class Controller_Feed extends Controller {
                 ->join(array('categories', 'c'),'INNER')
                 ->on('a.id_category','=','c.id_category')
                 ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
+                ->order_by('published','desc')
                 ->limit(Core::config('general.feed_elements'));
 
         //filter by category aor location
