@@ -74,11 +74,11 @@ class Sitemap {
 
             //locations
             $locs = new Model_Location();
-            $locs = $locs->select('seoname')->find_all();
+            $locs = $locs->select('seoname')->where('id_location','!=',1)->find_all();
 
             //categories
             $cats =  new Model_Category();
-            $cats = $cats->select('seoname')->find_all();
+            $cats = $cats->select('seoname')->where('id_category','!=',1)->find_all();
             foreach($cats as $cat)
             {
 
