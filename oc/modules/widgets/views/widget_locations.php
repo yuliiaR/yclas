@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <h3><?=$widget->locations_title?></h3>
-<?if($widget->locations != FALSE):?>
+
 	<?if($widget->loc_breadcrumb !== NULL):?>
 	<h5>
 		<p>
@@ -24,6 +24,3 @@
 	    </li>
 	<?endforeach?>
 	</ul>
-<?else:?>
-<?=($widget->locations)?>
-<?endif?>

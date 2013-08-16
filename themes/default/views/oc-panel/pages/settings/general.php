@@ -136,9 +136,8 @@
            </div>
        </div>
 		<div class="control-group">
-			<a href="http://open-classifieds.com/2013/08/06/how-to-currency-format/" target="_blank">
-                <?= FORM::label($forms['number_format']['key'], __('Money format'), array('class'=>'control-label', 'for'=>$forms['number_format']['key']))?>
-            </a>
+			
+                <?= FORM::label($forms['number_format']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/06/how-to-currency-format/'>".__('Money format')."</a>", array('class'=>'control-label','for'=>$forms['number_format']['key']))?>
 			<div class="controls">
 				<?= FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
 				'placeholder' => "20", 

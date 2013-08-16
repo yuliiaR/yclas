@@ -31,8 +31,9 @@ Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.2/cerulea
 
 Theme::$scripts['footer']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
                                     'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js',
-                                    'js/chosen.jquery.min.js',
                                     'js/bootstrap-slider.js',
+                                    'js/chosen.jquery.min.js',
+                                   
                                     'js/jquery.sceditor.min.js',
                                     'js/bootstrap-slider.js',
                                     'js/jqBootstrapValidation.js',

@@ -1,12 +1,14 @@
 $(function (){
-    $('.tips').popover();
-    $("select").chosen();
+    
 
     $('#formorm_description, textarea[name=description]').addClass('span6').sceditorBBCodePlugin({
         toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
         "bulletlist,orderedlist|link,unlink|source",
         resizeEnabled: "true"});
-
+    
+    $('.tips').popover();
+    $("select").chosen();
+    
     $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
 });
 
