@@ -85,9 +85,9 @@ function nav_link($name, $controller, $icon=NULL, $action='index', $route='defau
 {	
 	
  	?>
-		<li class="<?=(Request::current()->controller()==$controller 
+		<li alt="<?=$route?>" title="<?=$route?>" class="<?=(Request::current()->controller()==$controller 
 				&& Request::current()->action()==$action)?'active':''?> <?=$style?>" >
-			<a href="<?=Route::url($route,array('controller'=>$controller,
+			<a  href="<?=Route::url($route,array('controller'=>$controller,
 												'action'=>$action))?>">
 				<?if($icon!==NULL)?>
                     <i class="<?=$icon?>"></i>
