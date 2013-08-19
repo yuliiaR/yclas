@@ -494,13 +494,18 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 				if($usr->loaded())
 				{
+
+					$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$ad->id_ad;
+                    $delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$ad->id_ad;
 					//we get the QL, and force the regen of token for security
 					$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
 				 	                                'seotitle'=> $ad->seotitle),TRUE);
 
 					$ret = $usr->email('ads.activated',array('[USER.OWNER]'=>$usr->name,
 															 '[URL.QL]'=>$url_ql,
-															 '[AD.NAME]'=>$ad->title));
+															 '[AD.NAME]'=>$ad->title,
+															 '[URL.EDITAD]'=>$edit_url,
+                    										 '[URL.DELETEAD]'=>$delete_url));
 					
 				}	
 			}

@@ -85,7 +85,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
     /**
      * This function will upgrate DB that didn't existed in verisons below 2.0.5 
-     * changes added: subscription widget, new email content   
+     * changes added: subscription widget, new email content, map zoom, paypal seller etc..  
      */
     public function action_205()
     {
@@ -146,6 +146,29 @@ class Controller_Panel_Update extends Auth_Controller {
         // remove INDEX from content table
         mysql_query("ALTER TABLE `".$prefix."content` DROP INDEX `".$prefix."content_UK_seotitle`");
         
+        // message
+        if($return_conf OR $return_cont)
+            Alert::set(Alert::SUCCESS,__('Updated'));
+        else
+            Alert::set(Alert::INFO,__('Nothing to Update'));
+
+        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
+    }
+
+    /**
+     * This function will upgrate DB that didn't existed in verisons below 2.0.5 
+     * changes added: subscription widget, new email content, map zoom, paypal seller etc..  
+     */
+    public function action_206()
+    {
+      // build array with new (missing) configs
+        $configs = array(array('config_key'     =>'landing_page',
+                               'group_name'     =>'general', 
+                               'config_value'   =>'{"controller":"home","action":"index"}'));
+
+        // returns TRUE if some config is saved 
+        $return_conf = Model_Config::config_array($configs);
+
         // message
         if($return_conf OR $return_cont)
             Alert::set(Alert::SUCCESS,__('Updated'));

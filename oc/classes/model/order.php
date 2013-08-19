@@ -113,13 +113,18 @@ class Model_Order extends ORM {
                 {
                     $product_find->save(); 
 
+                    $edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$product_find->id_ad;
+                    $delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$product_find->id_ad;
+
                     //we get the QL, and force the regen of token for security
                     $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
                                                           'action'    => 'update',
                                                           'id'        => $orders->id_ad),TRUE);
 
                     $ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql,
-                                                           '[AD.NAME]'=>$product_find->title));     
+                                                           '[AD.NAME]'=>$product_find->title,
+                                                           '[URL.EDITAD]'=>$edit_url,
+                                                           '[URL.DELETEAD]'=>$delete_url));     
                 } catch (Exception $e) {
                    
                 }   

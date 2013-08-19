@@ -271,13 +271,18 @@ class Controller_Panel_Profile extends Auth_Controller {
 		$usr = new Model_User($active_ad->id_user);
 		if($usr->loaded())
 		{
+			$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$active_ad->id_ad;
+            $delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$active_ad->id_ad;
+
 			//we get the QL, and force the regen of token for security
 			$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
 		 	                                'seotitle'=> $active_ad->seotitle),TRUE);
 
 			$ret = $usr->email('ads.activated',array('[USER.OWNER]'=>$usr->name,
 													 '[URL.QL]'=>$url_ql,
-													 '[AD.NAME]'=>$active_ad->title));	
+													 '[AD.NAME]'=>$active_ad->title,
+													 '[URL.EDITAD]'=>$edit_url,
+                    								 '[URL.DELETEAD]'=>$delete_url));	
 		}	
 
 		if (Core::config('sitemap.on_post') == TRUE)

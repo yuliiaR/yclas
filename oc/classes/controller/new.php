@@ -225,38 +225,51 @@ class Controller_New extends Controller
 					// after successful posting send them email depending on moderation
 					if($moderation == Model_Ad::EMAIL_CONFIRAMTION OR $moderation == Model_Ad::EMAIL_MODERATION)
 					{
+						$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
+                    	$delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$new_ad->id_ad;
+
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
                                                           	 'action'     => 'confirm_post',
                                                           	 'id'		  => $new_ad->id_ad),TRUE);
                     	
-                    	$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
-                    	$delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$new_ad->id_ad;
+                    	
                     	$ret = $user->email('ads.confirm',array('[URL.QL]'=>$url_ql,
                     											'[AD.NAME]'=>$new_ad->title,
-                    											'[EDIT.AD]'=>$edit_url,
-                    											'[DELETE.AD]'=>$delete_url));
+                    											'[URL.EDITAD]'=>$edit_url,
+                    											'[URL.DELETEAD]'=>$delete_url));
                     	
 					}
 					else if($moderation == Model_Ad::MODERATION_ON)
 					{
+
+                    	$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
+                    	$delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$new_ad->id_ad;
+
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
                                                           	  'action'    => 'update',
                                                           	  'id'		  => $new_ad->id_ad),TRUE);
 
-                    	$ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql,
-                    										   '[AD.NAME]'=>$new_ad->title)); // email to notify user of creating, but it is in moderation currently 
+                    	$ret = $user->email('ads.notify',array('[URL.QL]'		=>$url_ql,
+                    										   '[AD.NAME]'		=>$new_ad->title,
+                    										   '[URL.EDITAD]'	=>$edit_url,
+                    										   '[URL.DELETEAD]'	=>$delete_url)); // email to notify user of creating, but it is in moderation currently 
 					}
 					else if($moderation == Model_Ad::POST_DIRECTLY)
 					{
+						$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
+                    	$delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$new_ad->id_ad;
+
 						$url_cont = $user->ql('contact', array(),TRUE);
 						$url_ad = $user->ql('ad', array('category'=>$data['cat'],
 			                							'seotitle'=>$seotitle), TRUE);
 
 						$ret = $user->email('ads.user_check',array('[URL.CONTACT]'	=>$url_cont,
 			                										'[URL.AD]'		=>$url_ad,
-			                										'[AD.NAME]'		=>$new_ad->title));
+			                										'[AD.NAME]'		=>$new_ad->title,
+			                										'[URL.EDITAD]'	=>$edit_url,
+                    										   		'[URL.DELETEAD]'=>$delete_url));
 					}
 
 
