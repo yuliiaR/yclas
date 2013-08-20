@@ -500,6 +500,29 @@ class Model_Ad extends ORM {
     }
 
     /**
+     * Receives a description as a string to replace all baned word
+     * with replacement provided.
+     * array of baned words and replacement is get fromconfig
+     * @param $decription string
+     * @return string 
+     */
+    public static function banned_words($text)
+    {
+
+        if (core::config('advertisement.banned_words') != NULL AND core::config('advertisement.banned_words') != '')
+        {
+            $banned_words = explode(',',core::config('advertisement.banned_words'));
+            $banned_words = array_map('trim', $banned_words);
+            
+            // with provided array of baned words, replacement and string to be replaced
+            // returns string with replaced words
+            return str_replace($banned_words, core::config('advertisement.banned_words_replacement'), $text);
+        }
+        else
+            return $text;
+    }
+
+    /**
      * returns true if file is of valid type.
      * Its used to check file sent to user from advert usercontact
      * @return BOOL 

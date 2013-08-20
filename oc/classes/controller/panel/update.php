@@ -164,7 +164,13 @@ class Controller_Panel_Update extends Auth_Controller {
       // build array with new (missing) configs
         $configs = array(array('config_key'     =>'landing_page',
                                'group_name'     =>'general', 
-                               'config_value'   =>'{"controller":"home","action":"index"}'));
+                               'config_value'   =>'{"controller":"home","action":"index"}'),
+                         array('config_key'     =>'banned_words',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>''),
+                         array('config_key'     =>'banned_words_replacement',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>''));
 
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);

@@ -104,10 +104,10 @@ class Controller_New extends Controller
 				//FORM DATA 
 				$seotitle = $new_ad->gen_seo_title($data['title']); 
 				
-				$new_ad->title 			= $data['title'];
+				$new_ad->title 			= Model_Ad::banned_words($data['title']);
 				$new_ad->id_location 	= $data['loc'];
 				$new_ad->id_category 	= $data['cat'];
-				$new_ad->description 	= $data['description'];
+				$new_ad->description 	= Model_Ad::banned_words($data['description']);
 				$new_ad->type 	 		= '0';
 				$new_ad->seotitle 		= $seotitle;	 
 				$new_ad->status 		= $status; 

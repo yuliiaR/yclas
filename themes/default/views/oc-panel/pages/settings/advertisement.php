@@ -273,6 +273,36 @@
 					))?> 
 				</div>
 			</div>
+			<div class="control-group">
+				<?= FORM::label($forms['banned_words']['key'], __('Baned Words'), array('class'=>'control-label', 'for'=>$forms['banned_words']['key']))?>
+				<div class="controls">
+					<?= FORM::input($forms['banned_words']['key'], $forms['banned_words']['value'], array(
+					'placeholder' => "word1,word2,word3", 
+					'class' => 'tips', 
+					'id' => $forms['banned_words']['key'], 
+					'data-content'=> __("Baned words are separated with coma (,)"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("You need to write your baned words enable the service."),
+					))?> 
+				</div>
+			</div>
+			<div class="control-group">
+				<?= FORM::label($forms['banned_words_replacement']['key'], __('Baned Words Replacement'), array('class'=>'control-label', 'for'=>$forms['banned_words_replacement']['key']))?>
+				<div class="controls">
+					<?= FORM::input($forms['banned_words_replacement']['key'], $forms['banned_words_replacement']['value'], array(
+					'placeholder' => "xxx", 
+					'class' => 'tips', 
+					'id' => $forms['banned_words_replacement']['key'], 
+					'data-content'=> __("Replacement of a banedword"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Baned word replacement replaces selected array with string that you provided."),
+					))?> 
+				</div>
+			</div>
 			<div class="form-actions">
 				<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
 			</div>
