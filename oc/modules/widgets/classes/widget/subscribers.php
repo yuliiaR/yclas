@@ -18,7 +18,7 @@ class Widget_Subscribers extends Widget
 		$this->title 		= __('Subscribe');
 		$this->description 	= __('Subscribe for categories');
 
-		$this->fields = array(	'categories' => array(  'type'      => 'text',
+        $this->fields = array(	'categories' => array(  'type'      => 'text',
                                                         'display'   => 'select',
                                                         'label'     => __('Categories'),
                                                         'options'   => array('0'    => __('FALSE'),
@@ -31,7 +31,16 @@ class Widget_Subscribers extends Widget
                                                         'display'   => 'select',
                                                         'label'     => __('Locations'),
                                                         'options'   => array('0'    => __('FALSE'),
-                                                                             'popular'   => __('TRUE'),
+                                                                             '1'   => __('TRUE'),
+                                                                            ), 
+                                                        'default'   => 0,
+                                                        'required'  => TRUE),
+
+                                'price' => array(  'type'      => 'text',
+                                                        'display'   => 'select',
+                                                        'label'     => __('Price'),
+                                                        'options'   => array('0'    => __('FALSE'),
+                                                                             '1'   => __('TRUE'),
                                                                             ), 
                                                         'default'   => 0,
                                                         'required'  => TRUE),
@@ -47,6 +56,7 @@ class Widget_Subscribers extends Widget
                                                         'label'     => __('Minimum Price'),
                                                         'default'   => __('0'),
                                                         'required'  => TRUE),
+
                                 'max_price'  => array(  'type'      => 'text',
                                                         'display'   => 'text',
                                                         'label'     => __('Maximum Price'),
@@ -105,6 +115,11 @@ class Widget_Subscribers extends Widget
 
             $this->loc_items = $locations;
             $this->loc_order_items = $order_locations;
+        }
+
+        if($this->price != FALSE)
+        {
+            $this->price = TRUE;
         }
 
         // user 

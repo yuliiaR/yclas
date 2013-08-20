@@ -61,6 +61,7 @@
 		</div>
 	</div>
 <?endif?>
+<?if($widget->price != FALSE):?>
 	<!-- slider -->
 	<div class="control-group">
 		<div class="controls">
@@ -71,7 +72,9 @@
 					data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" name='price_subscribe' >
 		</div>
 	</div>
-
+<?else:?>
+	<input type="hidden" value='0,0'>
+<?endif?>
 	<div class="form-actions">
 		<?= FORM::button('submit', __('Subscribe'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id))))?>
 		

@@ -58,8 +58,12 @@ class Model_Subscribe extends ORM {
       }
 
       //only min/max price is required in widget settings
-      $subscribers->where('min_price', '<=', $price)
-                  ->where('max_price', '>=', $price);
+      if($price !== '0')
+        $subscribers->where('min_price', '<=', $price)
+                    ->where('max_price', '>=', $price);
+      else
+        $subscribers->where('min_price', '<=', 0)
+                    ->where('max_price', '>=', 0);
 
       //location is set     
       if($data['loc'] != NULL AND $jsonObj['data']['locations'] !== '0')
