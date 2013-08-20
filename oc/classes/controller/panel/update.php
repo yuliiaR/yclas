@@ -157,7 +157,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
     /**
      * This function will upgrate DB that didn't existed in verisons below 2.0.5 
-     * changes added: subscription widget, new email content, map zoom, paypal seller etc..  
+     * changes added: config for landing page, etc..  
      */
     public function action_206()
     {

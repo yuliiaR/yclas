@@ -33,6 +33,21 @@
         </div>
 
         <div class="control-group">
+            <?= FORM::label($forms['landing_page']['key'], __('Landing page'), array('class'=>'control-label', 'for'=>$forms['landing_page']['key']))?>
+            <div class="controls">
+                <?= FORM::select($forms['landing_page']['key'], array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING'), $forms['landing_page']['value'], array(
+                'class' => 'tips', 
+                'id' => $forms['landing_page']['key'], 
+                'data-content'=> __("It changes landing page of website"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Landing page"),
+                ))?> 
+            </div>
+        </div>
+
+        <div class="control-group">
             <?= FORM::label($forms['site_name']['key'], __('Site name'), array('class'=>'control-label', 'for'=>$forms['site_name']['key']))?>
             <div class="controls">
                 <?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
