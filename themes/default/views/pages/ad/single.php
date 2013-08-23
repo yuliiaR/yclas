@@ -5,7 +5,7 @@
 	<div class="page-header">
 		<h1><?= __("This advertisement doesn't exist, or is not yet published!")?></h1>
 	</div>
-
+		
 	<?else:?>
 	<?=Form::errors()?>
 	<div class="page-header">

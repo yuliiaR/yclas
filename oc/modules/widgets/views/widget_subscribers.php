@@ -10,9 +10,11 @@
 				<select name="category_subscribe[]" id="category_subscribe" class="span2" multiple="true" required>
 	            <option></option>
 	            <?function lili15($item, $key,$cats){?>
-	            <option value="<?=$key?>"><?=$cats[$key]['name']?></option>
-	                <?if (count($item)>0):?>
-	                <optgroup label="<?=$cats[$key]['name']?>">    
+	            <?if ( count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
+	            <option value="<?=$key?>" style="margin-left:10px;"><?=$cats[$key]['name']?></option>
+	            <?endif?>
+	                <?if ($cats[$key]['id_category_parent'] == 1 OR count($item)>0):?>
+	                <option value="<?=$key?>" style="font-weight:bold;"> <?=$cats[$key]['name']?> </option>  
 	                    <? if (is_array($item)) array_walk($item, 'lili15', $cats);?>
 	                <?endif?>
 	            <?}
@@ -36,6 +38,7 @@
 	                <?if (count($item)>0):?>
 	                <optgroup label="<?=$locs[$key]['name']?>_subscribe">    
 	                    <? if (is_array($item)) array_walk($item, 'lolo10', $locs);?>
+	                    </optgroup>
 	                <?endif?>
 	            <?}
 	            $loc_order = $widget->loc_order_items; 
