@@ -4,7 +4,7 @@
 	<div class="well advise clearfix" id="advise">
 
 		<?if ($category!==NULL):?>
-            <p><?=$category->description?></p> 
+            <p><?=Text::bb2html($category->description,TRUE)?></p> 
             <i class="icon-pencil"></i> 
                 <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>?category=<?=$category->seoname?>">
                     <?=__('Publish new advertisement')?></a>

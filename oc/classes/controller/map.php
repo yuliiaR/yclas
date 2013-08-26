@@ -19,7 +19,7 @@ class Controller_Map extends Controller {
         $map->disableSidebar();
         $map->setMapType('map');
         $map->setZoomLevel(Core::get('zoom',core::config('advertisement.map_zoom')));
-        $map->setCenterCoords(core::config('advertisement.center_lon'),core::config('advertisement.center_lat'));
+        $map->setCenterCoords(Core::get('lon',core::config('advertisement.center_lon')),Core::get('lat',core::config('advertisement.center_lat')));
         //$map->mobile = TRUE;
         $atributes = array("target='_parent'");
         if ( core::get('controls')==0 )
