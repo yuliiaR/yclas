@@ -75,7 +75,7 @@
 			</a>
 			<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
 			<a class="featured btn btn-primary " 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured', 'id'=>'','current_url'=>$current_url))?>"
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured', 'current_url'=>$current_url))?>"
 				onclick="return confirm('<?=__('Are you sure you want to make it featured?')?>');"
 			    rel"tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
 				<i class="icon-bookmark icon-white"></i>
@@ -137,8 +137,8 @@
 					<i class="icon-edit icon-white"></i>
 				</a>
 				<?if($ad->status != Model_Ad::STATUS_SPAM):?>
-				<!-- sel_url_to_redirect is important because is quick selector. This works with dynamic check boxes, where we select href to build new url -->
-				<a class="btn btn-warning sel_url_to_redirect" 
+				
+				<a class="btn btn-warning " 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					onclick="return confirm('<?=__('Spam?')?>');"
 					rel"tooltip" title="<?=__('Spam')?>">
@@ -161,7 +161,8 @@
 					<i class="icon-ok-sign icon-white"></i>
 				</a>
 				<?endif?>
-				<a class="btn btn-danger index-delete " 
+				<!-- sel_url_to_redirect is important because is quick selector. This works with dynamic check boxes, where we select href to build new url -->
+				<a class="btn btn-danger index-delete sel_url_to_redirect" 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 					onclick="return confirm('<?=__('Delete?')?>');"
 				    rel"tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">

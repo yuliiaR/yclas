@@ -21,7 +21,7 @@ class Controller_Map extends Controller {
         $map->setZoomLevel(Core::get('zoom',core::config('advertisement.map_zoom')));
         $map->setCenterCoords(core::config('advertisement.center_lon'),core::config('advertisement.center_lat'));
         //$map->mobile = TRUE;
-        $atributes = array("target='_blank'");
+        $atributes = array("target='_parent'");
         if ( core::get('controls')==0 )
         {
             $map->disableMapControls();

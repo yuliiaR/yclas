@@ -52,17 +52,22 @@ $('input.checkbox').click(function(){
 });
 
 
-//select all checkboxes and append class to all
+//select all check boxes and append class to all
 function check_all(){
 	var selected = '';
 
 	if($('#select-all').is(':checked')){
 
 		$('input.checkbox').addClass('selected').prop('checked', true);
-		$('input.selected').each(function(){
 
+		// get all selected and build string with id-s
+		$('input.selected').each(function(){
 			selected += ($(this).attr('id'));
 		});
+		
+		selected = selected.replace(/_([^_]*)$/,'$1'); // reqex to remove last underscore 
+		
+		// for each button we generate route (url), that is later parsed and dealt accordingly 
 		$('a.delete').length ? $('a.delete').attr('href', url_array['del']['href']+"/"+selected+last_str) : '';
 		$('a.spam').length ? $('a.spam').attr('href', url_array['spam']['href']+"/"+selected+last_str) : '';
 		$('a.deactivate').length ? $('a.deactivate').attr('href', url_array['deactivate']['href']+"/"+selected+last_str) : '';
@@ -78,4 +83,6 @@ function check_all(){
 		$('a.activate').attr('href', url_array['activate']['href']+'/'+selected);
 		$('a.featured').attr('href', url_array['featured']['href']+'/'+selected);
 	}
+
+	
 }
