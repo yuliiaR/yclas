@@ -3,7 +3,7 @@
 <?=Form::errors()?>
 <div class="page-header">
 	<h1><?=__('Themes')?></h1>
-    <p><?=__('You can change the look and feel of your website here.')?></p>
+    <p><?=__('You can change the look and feel of your website here.')?><a href="http://open-classifieds.com/2013/08/21/how-to-change-theme/" target="_blank"><?=__('Read more')?></a></p>
 </div>
 
 <div class="media">

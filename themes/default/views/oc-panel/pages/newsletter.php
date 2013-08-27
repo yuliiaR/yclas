@@ -3,6 +3,7 @@
 
 <div class="page-header">
 	<h1><?=__('Newsletter')?></h1>
+  <a href="http://open-classifieds.com/2013/08/23/how-to-send-the-newsletter/" target="_blank"><?=__('Read more')?></a>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'email'))?>?force=1">
   <?=__('Email Settings')?></a>
 <p><?=__('You can send a mass email to all active users.')?> <span class="badge badge-info"><?=$count?></span></p>

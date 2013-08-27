@@ -2,8 +2,7 @@
 
 <div class="page-header">
 	<h1><?=__('Translations')?></h1>
-    <p><?=__('Translations files available in the system.')?>
-        </p>
+    <p><?=__('Translations files available in the system.')?><a href="http://open-classifieds.com/2013/08/20/how-to-change-language/" target="_blank"><?=__('Read more')?></a></p>
 
     <a class="btn btn-warnind pull-right" href="<?=Route::url('oc-panel',array('controller'=>'translations','action'=>'index'))?>?parse=1" >
         <?=__('Scan')?></a>

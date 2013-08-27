@@ -91,6 +91,7 @@
 
 	    	<div class="span8">
                 <h2><?=__('Available widgets')?></h2>
+                <a href="http://open-classifieds.com/2013/08/26/overview-of-widgets/" target="_blank"><?=__('Read more')?></a></a>
 
 				<ul class="inline">
 					<?foreach ($widgets as $widget):?>
