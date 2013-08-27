@@ -57,7 +57,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		
 	        //find all tables 
 	        $hits = new Model_Visit();
-	        $hits->find_all();
+	        // $hits->find_all();
 
 			$list_cat = Model_Category::get_all();
 			$list_loc = Model_Location::get_all();
@@ -69,9 +69,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 	        foreach ($ads as $key_ads) {
 	        	
 	        	// match hits with ad
-	        	$h = $hits->where('id_ad','=', $key_ads->id_ad)->find_all();
-	        	$count = count($h); // count individual hits 
-
+	        	$h = $hits->where('id_ad','=', $key_ads->id_ad);
+	        	$count = count($h->find_all()); // count individual hits 
 	        	array_push($arr_hits, $count);
 	
 	        }
@@ -142,10 +141,10 @@ class Controller_Panel_Ad extends Auth_Controller {
 	        foreach ($ads as $key_ads) {
 	        	
 	        	// match hits with ad
-	        	$h = $hits->where('id_ad','=', $key_ads->id_ad)->find_all();
-	        	$count = count($h); // count individual hits 
-
+	        	$h = $hits->where('id_ad','=', $key_ads->id_ad);
+	        	$count = count($h->find_all()); // count individual hits 
 	        	array_push($arr_hits, $count);
+	
 	        }
 
 			$this->template->content = View::factory('oc-panel/pages/moderate',array('ads'			=> $ads,

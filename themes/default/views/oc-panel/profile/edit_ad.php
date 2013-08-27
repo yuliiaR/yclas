@@ -5,28 +5,24 @@
 			<h1><?=__('Edit Advertisement')?></h1>
 		</div>
 		
-		<?if((core::config('payment.pay_to_go_on_top') >= 0  
-			&& core::config('payment.to_top') != FALSE )
-			OR (core::config('payment.pay_to_go_on_feature') > 0 
-			&& core::config('payment.to_featured') != FALSE)):?>
-		<div id="advise" class="well advise clearfix">
-			<?foreach ($extra_payment as $ex => $value) {
-				if ($ex == 'pay_to_go_on_top') {
-					$to_top = $value;
-				} elseif ($ex == 'pay_to_go_on_feature'){
-					$featured_price = $value; 
-				} 
-			}?>
-			<?if(core::config('payment.to_top') != FALSE):?>
-			<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').$to_top.' '.core::config('payment.paypal_currency');?></p>
-			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
-			<?endif?>
-			<?if(core::config('payment.to_featured') != FALSE):?>
-			<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').$featured_price.' '.core::config('payment.paypal_currency');?></p>
-			<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
-			<?endif?>
-		</div>
+		<!-- PAYPAL buttons to featured and to top -->
+		<?if((core::config('payment.pay_to_go_on_top') > 0  
+				&& core::config('payment.to_top') != FALSE )
+				OR (core::config('payment.pay_to_go_on_feature') > 0 
+				&& core::config('payment.to_featured') != FALSE)):?>
+			<div id="advise" class="well advise clearfix">
+				<?if(core::config('payment.pay_to_go_on_top') > 0 && core::config('payment.to_top') != FALSE):?>
+					<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').core::config('payment.pay_to_go_on_top').' '.core::config('payment.paypal_currency');?></p>
+					<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
+				<?endif?>
+				<?if(core::config('payment.pay_to_go_on_feature') > 0 && core::config('payment.to_featured') != FALSE):?>
+					<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').core::config('payment.pay_to_go_on_feature').' '.core::config('payment.paypal_currency');?></p>
+					<a class="btn btn-mini btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
+				<?endif?>
+			</div>
 		<?endif?>
+		<!-- end paypal button -->
+		
 		<?= FORM::open(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control input-xxlarge">
