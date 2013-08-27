@@ -425,6 +425,39 @@ class Controller_Panel_Ad extends Auth_Controller {
 			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 	}
 
+	/**
+	 * Delete all ads in that category
+	 *
+	 * Depending on what status they have, it delets all of them
+	 */
+	public function action_delete_all()
+	{
+		$query = $this->request->query();
+
+		$ads = new Model_Ad();
+		$ads = $ads->where('status', '=', $query)->find_all();
+	
+		if (isset($ads))
+		{
+			try 
+			{
+				DB::delete('ads')->where('status', '=', $query)->execute();	
+			} 
+			catch (Exception $e) 
+			{
+				Alert::set(Alert::ALERT, __('Warning, something went wrong while deleting'));
+				throw new HTTP_Exception_500($e->getMessage());
+			}
+		}
+
+		if ($query['define'] == Model_Ad::STATUS_NOPUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		elseif ($query['define'] == Model_Ad::STATUS_PUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		else
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$query['define']);
+	}
+
 	public function action_featured()
 	{
 

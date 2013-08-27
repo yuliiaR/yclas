@@ -27,6 +27,21 @@
 	<i class=" icon-plane icon-white"></i><?=__(' Unconfirmed')?>
 </a>
 
+<?if(Request::current()->query('define') == Model_Ad::STATUS_UNAVAILABLE):?>
+<a class="btn btn-danger pull-right" type="submit" value="unavailable" onclick="return confirm('<?=__('Delete All Unavailable?')?>');" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?define='.Model_Ad::STATUS_UNAVAILABLE?>" rel"tooltip" title="<?=__('Delete All Unavailable')?>">
+	<?=__('Delete All')?>
+</a>
+<?elseif (Request::current()->query('define') == Model_Ad::STATUS_UNCONFIRMED):?>
+<a class="btn btn-danger pull-right" type="submit" value="unconfirmed" onclick="return confirm('<?=__('Delete All Unconfirmed?')?>');" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?define='.Model_Ad::STATUS_UNCONFIRMED?>" rel"tooltip" title="<?=__('Delete All Unconfirmed')?>">
+	<?=__('Delete All')?>
+</a>
+<?elseif (Request::current()->query('define') == Model_Ad::STATUS_SPAM):?>
+<a class="btn btn-danger pull-right" type="submit" value="spam" onclick="return confirm('<?=__('Delete All Spam?')?>');" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?define='.Model_Ad::STATUS_SPAM?>" rel"tooltip" title="<?=__('Delete All Spam')?>">
+	<?=__('Delete All')?>
+</a>
+<?endif?>
+
+
 <table class="table table-bordered">
 	<tr>
 		<th>
