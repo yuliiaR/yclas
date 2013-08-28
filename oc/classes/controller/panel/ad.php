@@ -11,7 +11,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->title           	= __('Advertisements');
 		$this->template->meta_description	= __('Advertisements');
 				
-		$this->template->styles 			= array('/css/jquery.sceditor.min.css' => 'screen');
+		$this->template->styles 			= array('/http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen');
 		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js'; 
 
 
@@ -99,7 +99,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->title           	= __('Moderation');
 		$this->template->meta_description	= __('Moderation');
 				
-		$this->template->styles 			= array('/css/jquery.sceditor.min.css' => 'screen');
+		$this->template->styles 			= array('/http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen');
 		//$this->template->scripts['footer'][]= 'js/jquery.sceditor.min.js';
 		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js'; 
 

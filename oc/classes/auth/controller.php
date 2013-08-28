@@ -89,22 +89,22 @@ class Auth_Controller extends Controller
                 Theme::$styles               = array(                                  
                                                 'http://netdna.bootstrapcdn.com/bootswatch/2.3.2/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',
                                                 'http://cdn.jsdelivr.net/bootstrap/2.3.2/css/bootstrap-responsive.min.css' => 'screen',
-                                                'css/chosen.css' => 'screen', 
-                                                'css/jquery.sceditor.min.css' => 'screen',
+                                                'http://cdn.jsdelivr.net/chosen/0.9.12/chosen.css' => 'screen', 
+                                                'http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
                                                 );
             }
             //default theme
             else
             {
                 Theme::$styles                    = array('http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css' => 'screen',
-                                                    'css/jquery.sceditor.min.css' => 'screen',
-                                                      'css/chosen.css'=>'screen');
+                                                    'http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
+                                                      'http://cdn.jsdelivr.net/chosen/0.9.12/chosen.css'=>'screen');
             }
 
 
             Theme::$scripts['footer']		  = array('http://code.jquery.com/jquery-1.9.1.min.js',	
 													  'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js', 
-												      'js/chosen.jquery.min.js',
+												      'http://cdn.jsdelivr.net/chosen/0.9.12/chosen.jquery.min.js',
                                                       'js/oc-panel/theme.init.js?v=204',
                                                       'js/jquery.sceditor.min.js'
                                                       );

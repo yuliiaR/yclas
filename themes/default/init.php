@@ -22,7 +22,7 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
 Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.2/cerulean/bootstrap.min.css' => 'screen',
                         'css/styles.css?v=1.6' => 'screen',
                         'css/slider.css' => 'screen',
-                        'css/chosen.css' => 'screen',
+                        'http://cdn.jsdelivr.net/chosen/0.9.12/chosen.css' => 'screen',
                         'css/jquery.sceditor.min.css' => 'screen', 
                         'css/bootstrap-image-gallery.css' => 'screen',
                         
@@ -32,11 +32,11 @@ Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.2/cerulea
 Theme::$scripts['footer']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
                                     'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js',
                                     'js/bootstrap-slider.js',
-                                    'js/chosen.jquery.min.js',
+                                    'http://cdn.jsdelivr.net/chosen/0.9.12/chosen.jquery.min.js',
                                    
                                     'js/jquery.sceditor.min.js',
                                     'js/bootstrap-slider.js',
-                                    'js/jqBootstrapValidation.js',
+                                    'http://cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.6/jqBootstrapValidation.min.js',
                                     'js/load-image.min.js',
                                     'js/bootstrap-image-gallery.min.js',
                                     'js/theme.init.js?v=1.6',
