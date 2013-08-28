@@ -58,12 +58,14 @@ class Widget_Links extends Widget
     public function before()
     {
         
-        $urls = explode(';', $this->url);
+        $urls = explode("\n", $this->url);
+        
         $url_name = array();
         foreach ($urls as $key ) {
-            $url_name[] = explode(',', $key);
+            if($key != '')
+                $url_name[] = explode('|', $key);
         }
-        
+        // d(print_r($url_name));
         $this->url = $url_name;  
         $this->target = $this->target;
     }

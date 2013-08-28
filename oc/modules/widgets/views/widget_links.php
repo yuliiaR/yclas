@@ -3,7 +3,13 @@
 <ul>
 	<?foreach($widget->url as $url):?>
 	<li style="margin-left:-20px;">
-		<a target="<?=$widget->target?>" href="<?=$url[0]?>"><?=$url[1]?></a>
+		<a target="<?=$widget->target?>" href="<?=$url[0]?>">
+			<?if(isset($url[1])):?>
+				<?=$url[1];?>
+			<?else:?>
+				<?=$url[0];?>
+			<?endif?>
+		</a>
 	</li>
 	<?endforeach?>
 </ul>
