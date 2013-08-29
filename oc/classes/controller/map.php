@@ -19,7 +19,7 @@ class Controller_Map extends Controller {
         $map->disableSidebar();
         $map->setMapType('map');
         $map->setZoomLevel(Core::get('zoom',core::config('advertisement.map_zoom')));
-        $map->setCenterCoords(Core::get('lon',core::config('advertisement.center_lon')),Core::get('lat',core::config('advertisement.center_lat')));
+        
         //$map->mobile = TRUE;
         $atributes = array("target='_blank'");
         if ( core::get('controls')==0 )
@@ -39,6 +39,9 @@ class Controller_Map extends Controller {
         }
         else
         {
+            //only center if not a single ad
+            $map->setCenterCoords(Core::get('lon',core::config('advertisement.center_lon')),Core::get('lat',core::config('advertisement.center_lat')));
+
             //last ads, you can modify this value at: general.feed_elements
             $ads = DB::select('a.seotitle')
                     ->select(array('c.seoname','category'),'a.title','a.published','a.address')
