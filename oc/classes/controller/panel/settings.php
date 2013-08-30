@@ -105,7 +105,7 @@ class Controller_Panel_Settings extends Auth_Controller {
     public function action_general()
     {
         // validation active 
-        $this->template->scripts['footer'][]= '/http://cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.6/jqBootstrapValidation.min.js';
+        $this->template->scripts['footer'][]= 'http://cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.6/jqBootstrapValidation.min.js';
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('General')));
@@ -187,7 +187,7 @@ class Controller_Panel_Settings extends Auth_Controller {
     public function action_payment()
     {
         // validation active 
-        $this->template->scripts['footer'][]= '/http://cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.6/jqBootstrapValidation.min.js';
+        $this->template->scripts['footer'][]= 'http://cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.6/jqBootstrapValidation.min.js';
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Payments')));

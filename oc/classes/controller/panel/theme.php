@@ -39,7 +39,7 @@ class Controller_Panel_Theme extends Auth_Controller {
 
 
         // validation active 
-        $this->template->scripts['footer'][]= '/http://cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.6/jqBootstrapValidation.min.js';
+        $this->template->scripts['footer'][]= 'http://cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.6/jqBootstrapValidation.min.js';
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Theme Options')));     
         $this->template->title = __('Theme Options');  
@@ -77,7 +77,7 @@ class Controller_Panel_Theme extends Auth_Controller {
     public function action_index()
     {
         // validation active 
-        $this->template->scripts['footer'][]= '/http://cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.6/jqBootstrapValidation.min.js';
+        $this->template->scripts['footer'][]= 'http://cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.6/jqBootstrapValidation.min.js';
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Themes')));  
         $this->template->title = __('Themes');     
