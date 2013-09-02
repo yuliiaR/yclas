@@ -170,6 +170,9 @@ class Controller_Panel_Update extends Auth_Controller {
                                'config_value'   =>''),
                          array('config_key'     =>'banned_words_replacement',
                                'group_name'     =>'advertisement', 
+                               'config_value'   =>''),
+                         array('config_key'     =>'akismet_key',
+                               'group_name'     =>'general', 
                                'config_value'   =>''));
 
         // returns TRUE if some config is saved 

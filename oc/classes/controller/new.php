@@ -192,14 +192,25 @@ class Controller_New extends Controller
 					// SAVE AD
 					$new_ad->id_user 		= $usr; // after handling user
 					
-					if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRAMTION)
+					//akismet spam filter
+					if(!core::akismet(Model_Ad::banned_words($data['title']), 
+								 	$email,
+								 	Model_Ad::banned_words($data['description'])))
 					{
-						$new_ad->status = Model_Ad::STATUS_UNCONFIRMED;
-						$new_ad->save();
+						if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRAMTION)
+						{
+							$new_ad->status = Model_Ad::STATUS_UNCONFIRMED;
+							$new_ad->save();
+						}
+						else
+							$new_ad->save();
 					}
 					else
-						$new_ad->save();
-	
+					{
+						Alert::set(Alert::SUCCESS, __('This post has been considered as spam! We are sorry but we cant publish this advertisement.'));
+						$this->request->redirect('default');
+					}//akismet
+
 					// if moderation is off update db field with time of creation 
 					if($published)
 					{	
@@ -386,12 +397,12 @@ class Controller_New extends Controller
 
 
 
-			}
+			}//captcha
 			else
 			{ 
 				Alert::set(Alert::ALERT, __('Captcha is not correct'));
 			}
-		}
- 	}
+		}//is post
+ 	}// save new ad
 
 }

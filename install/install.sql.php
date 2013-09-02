@@ -365,6 +365,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'site_name', '".$_POST['SITE_NAME']."'),
 ('general', 'site_description', ''),
 ('general', 'advertisements_per_page', '10'),
+('general', 'akismet_key', ''),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),

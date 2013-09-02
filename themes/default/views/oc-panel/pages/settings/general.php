@@ -369,6 +369,22 @@
 				))?> 
 			</div>
 		</div>
+
+		<div class="control-group">
+			<?= FORM::label($forms['akismet_key']['key'], __('Akismet Key'), array('class'=>'control-label', 'for'=>$forms['akismet_key']['key']))?>
+			<div class="controls">
+				<?= FORM::input($forms['akismet_key']['key'], $forms['akismet_key']['value'], array(
+				'placeholder' => "", 
+				'class' => 'tips', 
+				'id' => $forms['akismet_key']['key'],
+				'data-content'=> __("Providing akismet key will activate this feature. This feature deals with spam posts and emails."),
+				'data-trigger'=>"hover",
+				'data-placement'=>"right",
+				'data-toggle'=>"popover",
+				'data-original-title'=>__("Akismet Key"), 
+				))?> 
+			</div>
+		</div>
 		<div class="form-actions">
 			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
 		</div>
