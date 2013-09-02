@@ -6,7 +6,7 @@
     <p><?=__('You can change the look and feel of your website here.')?><a href="http://open-classifieds.com/2013/08/21/how-to-change-theme/" target="_blank"><?=__('Read more')?></a></p>
 </div>
 <!-- install theme form -->
-<?= FORM::open(Route::url('oc-panel',array('controller'=>'profile','action'=>'install_theme')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+<?= FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 <div class="well pull-right">
     <span class="badge badge-info"><?=__('Install theme')?></span><p><?=__('To install new theme choose zip file.')?></p>
     
@@ -14,7 +14,7 @@
         <input type="file" name="theme_file" id="theme_file" />
     </div>
     <div class="controll-group">
-        <?= FORM::button('submit', __('Submit'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'profile','action'=>'install_theme'))))?>
+        <?= FORM::button('submit', __('Submit'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme'))))?>
     </div>
 </div>
 <?= FORM::close()?>

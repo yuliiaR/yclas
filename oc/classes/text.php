@@ -80,7 +80,8 @@ class Text extends Kohana_Text {
          */
         static $advanced_html = array(
                                  '<span style="color: $1">$2</span>',
-                                 '<span style="font-size: $1px">$2</span>',
+                                 // '<span style="font-size: $1px">$2</span>',
+                                 '$2',
                                  "<blockquote>$2</blockquote>",
                                  "<blockquote>$3</blockquote>",
                                  '<a rel="nofollow" target="_blank" href="$1">$1</a>',

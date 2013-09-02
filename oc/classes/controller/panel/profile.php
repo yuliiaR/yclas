@@ -787,49 +787,5 @@ class Controller_Panel_Profile extends Auth_Controller {
         $this->request->redirect(Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname)));
    }
 
-   /**
-    * install theme from selected zip file
-    * @return redirect 
-    */
-   public function action_install_theme()
-   {
-   		$zip_theme = $_FILES['theme_file']; //file post
-   		
-   		if (!Upload::type($zip_theme, array('zip'))) //check if it si of a right type
-        {
-        	Alert::set(Alert::ALERT, $zip_theme['name'].' '.__('Is not valid format, please use ZIP format'));
-        	$this->request->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'index')));
-        }
-        else
-        {
-        	if($zip_theme != NULL) // sanity check 
-        	{	
-        		// saving/uploadng zip file to dir.
-        		$root = DOCROOT.'themes/'; //root folder
-        	
-        		 // save file to root folder, file, name, dir
-        		$file = Upload::save($zip_theme, $zip_theme['name'], $root);
-
-        		$zip = new ZipArchive;
-
-        		// open zip file, and extract to root dir
-        		if ($zip_open = $zip->open($root.$zip_theme['name'])) 
-        		{
-				    $zip->extractTo($root);
-				    $zip->close();
-				} 
-				else 
-				{
-				    Alert::set(Alert::ALERT, $zip_theme['name'].' '.__('Zip file faild to extract, please try again.'));
-				    $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'index')));
-				}
-
-        		Alert::set(Alert::SUCCESS, $zip_theme['name'].' '.__('You have succesfully installed the theme!'));
-        		$this->request->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'index')));
-        	}
-        	
-        }
-   }
-
 
 }
