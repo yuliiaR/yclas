@@ -90,7 +90,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<?= FORM::label($forms['moderation']['key'], __('Moderation'), array('class'=>'control-label', 'for'=>$forms['moderation']['key']))?>
+			<?= FORM::label($forms['moderation']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/30/how-to-earn-money/'>".__('Moderation')."</a>", array('class'=>'control-label', 'for'=>$forms['moderation']['key']))?>
 			<div class="controls">
 				<?= FORM::select($forms['moderation']['key'], array(0=>"Post directly",1=>"Moderation on",2=>"Payment on",3=>"Email confirmation on", 4=>"Email confirmation with Moderation", 5=>"Payment with Moderation"), $forms['moderation']['value'], array(
 				'placeholder' => $forms['moderation']['value'], 

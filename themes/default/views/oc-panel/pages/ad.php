@@ -14,6 +14,7 @@
 	<?else:?>
 		<? $current_url = Model_Ad::STATUS_PUBLISHED?>
 		<h1><?=__('Advertisements')?></h1>
+		<a target='_blank' href='http://open-classifieds.com/2013/08/29/how-to-manage-advertisements/'><?=__('Read more')?></a>
 	<?endif?>
 </div>
 
