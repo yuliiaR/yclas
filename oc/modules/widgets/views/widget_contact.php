@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-
+<h3><?=$widget->text_title?></h3>
 <?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'user_contact', 'id'=>$widget->id_ad)), array('class'=>'form-horizontal ', 'enctype'=>'multipart/form-data'))?>
 	<fieldset>
 		<div class="">
