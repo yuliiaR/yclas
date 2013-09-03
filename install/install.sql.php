@@ -389,7 +389,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('advertisement', 'tos', ''),
 ('advertisement', 'disqus', ''),
 ('advertisement', 'map', 0),
-('advertisement', 'map_zoom', 16),
+('advertisement', 'map_zoom', 14),
 ('advertisement', 'center_lon', ''),
 ('advertisement', 'center_lat', ''),
 ('advertisement', 'ads_in_home', '0'),
