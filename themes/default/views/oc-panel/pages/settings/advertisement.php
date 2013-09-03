@@ -109,6 +109,23 @@
 					))?> 
 				</div>
 			</div>
+            
+            <div class="control-group">
+                <?= FORM::label($forms['center_lat']['key'], __('Map latitude coordinates'), array('class'=>'control-label', 'for'=>$forms['center_lat']['key']))?>
+                <div class="controls">
+                    <?= FORM::input($forms['center_lat']['key'], $forms['center_lat']['value'], array(
+                    'placeholder' => "40", 
+                    'class' => 'tips', 
+                    'id' => $forms['center_lat']['key'], 
+                    'data-content'=> __("Latitude coordinates"),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-original-title'=>__("Google map default latitude coordinates"),
+                    ))?> 
+                </div>
+            </div>
+
 			<div class="control-group">
 				<?= FORM::label($forms['center_lon']['key'], __('Map longitude coordinates'), array('class'=>'control-label', 'for'=>$forms['center_lon']['key']))?>
 				<div class="controls">
@@ -124,21 +141,7 @@
 					))?> 
 				</div>
 			</div>
-			<div class="control-group">
-				<?= FORM::label($forms['center_lat']['key'], __('Map latitude coordinates'), array('class'=>'control-label', 'for'=>$forms['center_lat']['key']))?>
-				<div class="controls">
-					<?= FORM::input($forms['center_lat']['key'], $forms['center_lat']['value'], array(
-					'placeholder' => "40", 
-					'class' => 'tips', 
-					'id' => $forms['center_lat']['key'], 
-					'data-content'=> __("Latitude coordinates"),
-					'data-trigger'=>"hover",
-					'data-placement'=>"right",
-					'data-toggle'=>"popover",
-					'data-original-title'=>__("Google map default latitude coordinates"),
-					))?> 
-				</div>
-			</div>
+			
 			<div class="control-group">
 				<?= FORM::label($forms['phone']['key'], __('Phone'), array('class'=>'control-label', 'for'=>$forms['phone']['key']))?>
 				<div class="controls">
