@@ -371,7 +371,7 @@
 		</div>
 
 		<div class="control-group">
-			<?= FORM::label($forms['akismet_key']['key'], __('Akismet Key'), array('class'=>'control-label', 'for'=>$forms['akismet_key']['key']))?>
+			<?= FORM::label($forms['akismet_key']['key'], "<a target='_blank' href='http://akismet.com/'>".__('Akismet Key')."</a>", array('class'=>'control-label', 'for'=>$forms['akismet_key']['key']))?>
 			<div class="controls">
 				<?= FORM::input($forms['akismet_key']['key'], $forms['akismet_key']['value'], array(
 				'placeholder' => "", 
