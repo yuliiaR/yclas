@@ -18,6 +18,8 @@ $(function(){
 
     $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
 
-
+    $('input[required], input[type=text]').unbind('keydown');
+    $('input[required], input[type=text]').unbind('keypress');
+    $('input[required], input[type=text]').unbind('keyup');
 
 });
