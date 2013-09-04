@@ -1,25 +1,17 @@
 #  Open Classifieds 2.0.6
 
-# Installation
-
-* Download
-* Unpack the downloaded file
-* Upload to your public HTML folder
-* Run the installation in http://yourdomain.com/
-* Follow the steps
-* Login in admin, create some categories and locations
-* Working!
-
-More & some videos at:
-http://open-classifieds.com/documentation/install/
-
 
 # Description
 Open Classifieds is a powerful script that can transform any domain into a fully customizable classifieds site within a few seconds. Thousands of web developers trust OC to run their big classifieds website. OC can be used to create car/auto sales, job search board, buying & selling real estate and almost anything you can think of. And when you’re ready for more, there are themes and premium support available to transform your site into anything you can imagine.
 
+# License GPL v3
+Please read LICENSE.md
 
-# How to contribute
-https://github.com/open-classifieds/openclassifieds2/issues
+# How to Install
+Please read INSTALL.md
+
+# How to Contribute
+Please read CONTRIBUTING.md
 
 
 # OC works thanks to other GPL software
@@ -45,4 +37,3 @@ https://github.com/open-classifieds/openclassifieds2/issues
 * jQuery Sortable http://johnny.github.io/jquery-sortable/
 * Bootstrap Image Gallery https://github.com/blueimp/Bootstrap-Image-Gallery
 
-# License GPL v3
