@@ -103,9 +103,9 @@ class Controller_Payment_Paypal extends Controller{
         {
         	// dependant on product we have different names
         	if($order->id_product == Paypal::to_featured)
-        		$item_name = __('Advertisement to top');
-        	else if ($order->id_product == Paypal::to_top)
         		$item_name = __('Advertisement to featured');
+        	else if ($order->id_product == Paypal::to_top)
+        		$item_name = __('Advertisement to top');
         	else
         		$item_name = $order->description.__(' category');
 
