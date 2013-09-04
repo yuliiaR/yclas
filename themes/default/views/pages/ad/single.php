@@ -16,7 +16,8 @@
 	</div>
 
 	<!-- PAYPAL buttons to featured and to top -->
-	<?if ($ad->user->id_role == 10 OR (  Auth::instance()->logged_in() AND $ad->user->id_user == Auth::instance()->get_user()->id_user)):?>
+	<?if ((Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == 10 ) OR 
+		(Auth::instance()->logged_in() AND $ad->user->id_user == Auth::instance()->get_user()->id_user)):?>
 	<?if((core::config('payment.pay_to_go_on_top') > 0  
 			&& core::config('payment.to_top') != FALSE )
 			OR (core::config('payment.pay_to_go_on_feature') > 0 
