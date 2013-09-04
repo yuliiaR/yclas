@@ -28,7 +28,7 @@ class Sitemap {
         if ( time()>= Core::cache('sitemap_next') OR $force == TRUE)
         {
 
-            $site_url = Core::config('general.base_url');//'http://ocacu.com';
+            $site_url = Core::config('general.base_url');
 
             // include class
             require Kohana::find_file('vendor/sitemap', 'SitemapGenerator');
@@ -135,9 +135,9 @@ class Sitemap {
             $ret = __('No sitemap generated');
         }
 
-        //setting the new cache to know when would be next generated @todo from config
+        //setting the new cache to know when would be next generated
         Core::cache('sitemap_last',time());
-        Core::cache('sitemap_next',time()*12*60*60);
+        Core::cache('sitemap_next',time() + (24*60*60)); //24 hours
 
         return $ret.' Time: '.round( microtime(TRUE) - $start_time,2 ).'s';
     }//end sitemap generation

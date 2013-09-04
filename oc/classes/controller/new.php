@@ -39,42 +39,45 @@ class Controller_New extends Controller
 																	   'locations' 			=> $locations,
                                                                         'order_locations'  => $order_locations,
 																	   'form_show'			=> $form_show));
+		if ($_POST) 
+        {
+            // $_POST array with all fields 
+            $data = array(  'auth'          => $auth        =   Auth::instance(),
+                            'title'         => $title       =   $this->request->post('title'),
+                            'cat'           => $cat         =   $this->request->post('category'),
+                            'loc'           => $loc         =   $this->request->post('location'),
+                            'description'   => $description =   $this->request->post('description'),
+                            'price'         => $price       =   $this->request->post('price'),
+                            'address'       => $address     =   $this->request->post('address'),
+                            'phone'         => $phone       =   $this->request->post('phone'),
+                            'website'       => $website     =   $this->request->post('website'),
+                            'user'          => $user
+                            ); 
+            
+            // depending on user flow (moderation mode), change usecase
+            $moderation = core::config('general.moderation'); 
+
+
+            if ($moderation == Model_Ad::POST_DIRECTLY) // direct post no moderation
+            {
+                if (Core::config('sitemap.on_post') == TRUE)
+                    Sitemap::generate(); 
+
+                $status = Model_Ad::STATUS_PUBLISHED;
+                $this->save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
+
+            }
+            elseif($moderation == Model_Ad::MODERATION_ON 
+                 || $moderation == Model_Ad::PAYMENT_ON 
+                 || $moderation == Model_Ad::EMAIL_CONFIRAMTION 
+                 || $moderation == Model_Ad::EMAIL_MODERATION 
+                 || $moderation == Model_Ad::PAYMENT_MODERATION)
+            {
+                $status = Model_Ad::STATUS_NOPUBLISHED;
+                $this->save_new_ad($data, $status, $published = FALSE, $moderation, $form_show['captcha']);
+            }
+        }
 		
-		// $_POST array with all fields 
-		$data = array(	'auth' 			=> $auth 		= 	Auth::instance(),
-						'title' 		=> $title 		= 	$this->request->post('title'),
-						'cat'			=> $cat 		= 	$this->request->post('category'),
-						'loc'			=> $loc 		= 	$this->request->post('location'),
-						'description'	=> $description = 	$this->request->post('description'),
-						'price'			=> $price 		= 	$this->request->post('price'),
-						'address'		=> $address 	= 	$this->request->post('address'),
-						'phone'			=> $phone 		= 	$this->request->post('phone'),
-						'website'		=> $website 	= 	$this->request->post('website'),
-						'user'			=> $user
-						); 
-		
-		// depending on user flow (moderation mode), change usecase
-		$moderation = core::config('general.moderation'); 
-
-
-		if ($moderation == Model_Ad::POST_DIRECTLY) // direct post no moderation
-		{
-			if (Core::config('sitemap.on_post') == TRUE)
-				Sitemap::generate(); 
-
-			$status = Model_Ad::STATUS_PUBLISHED;
-			$this->save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
-
-		}
-		elseif($moderation == Model_Ad::MODERATION_ON 
-			 || $moderation == Model_Ad::PAYMENT_ON 
-			 || $moderation == Model_Ad::EMAIL_CONFIRAMTION 
-			 || $moderation == Model_Ad::EMAIL_MODERATION 
-			 || $moderation == Model_Ad::PAYMENT_MODERATION)
-		{
-			$status = Model_Ad::STATUS_NOPUBLISHED;
-			$this->save_new_ad($data, $status, $published = FALSE, $moderation, $form_show['captcha']);
-		}
 
 			
  	}

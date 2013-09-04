@@ -106,7 +106,7 @@ class Model_Category extends ORM {
     public static function get_all()
     {
         $cats = new self;
-        $cats = $cats->order_by('order','asc')->find_all()->as_array('id_category');
+        $cats = $cats->order_by('order','asc')->find_all()->cached()->as_array('id_category');
 
         //transform the cats to an array
         $cats_arr = array();
@@ -130,7 +130,9 @@ class Model_Category extends ORM {
 
         //last build multidimensional array
         if (count($cats_s)>1)
-            $cats_m = self::multi_cats($cats_s);
+            if ( ($cats_m  = Core::cache('category_multi_cats'))===NULL ) 
+                $cats_m = self::multi_cats($cats_s);
+            
         else
             $cats_m = array();
         
