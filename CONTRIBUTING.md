@@ -70,4 +70,4 @@ SQL https://github.com/open-classifieds/openclassifieds2/wiki/SQL-Coding-Standar
 
 ## License
 
-By contributing your code, you agree to license your contribution under the terms of the GPLv3: https://github.com/open-classifieds/openclassifieds2/blob/2.0.6/LICENSE.md
+By contributing your code, you agree to license your contribution under the terms of the GPLv3: Read LICENSE.md

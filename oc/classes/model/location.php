@@ -91,7 +91,7 @@ class Model_Location extends ORM {
     public static function get_all()
     {
         $locs = new self;
-        $locs = $locs->order_by('order','asc')->find_all()->as_array('id_location');
+        $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
 
         //transform the locs to an array
         $locs_arr = array();
@@ -114,7 +114,8 @@ class Model_Location extends ORM {
 
         //last build multidimensional array
         if (count($locs_s)>1)
-            $locs_m = self::multi_locs($locs_s);
+            if ( ($locs_m  = Core::cache('locations_multi_locs'))===NULL ) 
+                $locs_m = self::multi_locs($locs_s);
         else
             $locs_m = array();
 

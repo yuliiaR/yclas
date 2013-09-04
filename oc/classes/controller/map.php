@@ -39,8 +39,6 @@ class Controller_Map extends Controller {
         }
         else
         {
-            //only center if not a single ad
-            $map->setCenterCoords(Core::get('lon',core::config('advertisement.center_lon')),Core::get('lat',core::config('advertisement.center_lat')));
 
             //last ads, you can modify this value at: general.feed_elements
             $ads = DB::select('a.seotitle')
@@ -50,7 +48,8 @@ class Controller_Map extends Controller {
                     ->on('a.id_category','=','c.id_category')
                     ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
                     ->where('a.address','IS NOT',NULL)
-                    ->limit(Core::config('general.feed_elements'))
+                    ->order_by('published','desc')
+                    ->limit(Core::config('general.map_elements'))
                     ->as_object()
                     ->cached()
                     ->execute();
@@ -59,9 +58,15 @@ class Controller_Map extends Controller {
             foreach($ads as $a)
             {
                 //d($a);
-                $url= Route::url('ad',  array('category'=>$a->category,'seotitle'=>$a->seotitle));
-                $map->addMarkerByAddress($a->address, $a->title, HTML::anchor($url, $a->title, $atributes) );
+                if (strlen($a->address)>3)
+                {
+                    $url= Route::url('ad',  array('category'=>$a->category,'seotitle'=>$a->seotitle));
+                    $map->addMarkerByAddress($a->address, $a->title, HTML::anchor($url, $a->title, $atributes) );
+                }
             }
+
+            //only center if not a single ad
+            $map->setCenterCoords(Core::get('lon',core::config('advertisement.center_lon')),Core::get('lat',core::config('advertisement.center_lat')));
         }
 
         $this->template->map = $map;
