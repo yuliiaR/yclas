@@ -25,6 +25,7 @@ $('input.checkbox').click(function(){
 			selected += ($(this).attr('id'));
 		});
 		
+		selected = selected.replace(/_([^_]*)$/,'$1'); // reqex to remove last underscore
 
 		//append new href with id-s, and check if it exists (.length ?)
 		$('a.delete').length ? $('a.delete').attr('href', url_array['del']['href']+"/"+selected+last_str) : '';
