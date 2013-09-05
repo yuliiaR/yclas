@@ -114,8 +114,7 @@ class Model_Location extends ORM {
 
         //last build multidimensional array
         if (count($locs_s)>1)
-            if ( ($locs_m  = Core::cache('locations_multi_locs'))===NULL ) 
-                $locs_m = self::multi_locs($locs_s);
+            $locs_m = self::multi_locs($locs_s);
         else
             $locs_m = array();
 

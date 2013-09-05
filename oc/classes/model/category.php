@@ -130,9 +130,7 @@ class Model_Category extends ORM {
 
         //last build multidimensional array
         if (count($cats_s)>1)
-            if ( ($cats_m  = Core::cache('category_multi_cats'))===NULL ) 
-                $cats_m = self::multi_cats($cats_s);
-            
+            $cats_m = self::multi_cats($cats_s);
         else
             $cats_m = array();
         
