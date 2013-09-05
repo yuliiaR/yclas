@@ -361,7 +361,7 @@ class Model_User extends ORM {
 
     public function form_setup($form)
     {
-        $form->fields['password']['display_as'] = 'password';
+        //$form->fields['password']['display_as'] = 'password';
         $form->fields['email']['caption'] = 'email';
         $form->fields['status']['display_as'] = 'select';
         $form->fields['status']['options'] = array('0','1','5');
@@ -369,7 +369,7 @@ class Model_User extends ORM {
 
     public function exclude_fields()
     {
-       return array('created');
+       return array('password','created','salt', 'ip_created', 'last_ip','token','token_created','token_expires','user_agent','id_location','seoname');
     }
 
     /**
