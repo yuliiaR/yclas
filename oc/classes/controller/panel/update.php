@@ -179,7 +179,7 @@ class Controller_Panel_Update extends Auth_Controller {
         $return_conf = Model_Config::config_array($configs);
 
         // message
-        if($return_conf OR $return_cont)
+        if($return_conf)
             Alert::set(Alert::SUCCESS,__('Updated'));
         else
             Alert::set(Alert::INFO,__('Nothing to Update'));
