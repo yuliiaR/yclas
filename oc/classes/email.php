@@ -32,6 +32,7 @@ class Email {
         $body = View::factory('email',array('title'=>$subject,'content'=>nl2br($body)))->render();
 
         $mail= new PHPMailer();
+        $mail->CharSet = Kohana::$charset;
 
         if(core::config('email.smtp_active') == TRUE)
         { 
