@@ -277,18 +277,20 @@ class Core {
      * @param comment
      * @return bool
      */
-    public static function akismet($name,$email,$comment){//return if something is spam or not using akismet, and checking the spam list
-        
+    public static function akismet($name,$email,$comment)
+    {
         require_once Kohana::find_file('vendor', 'akismet/akismet','php');
 
-        if (core::config('general.akismet_key')!=""){
-            $akismet = new Akismet(core::config('general.base_url') ,core::config('general.akismet_key'));//change this! or use defines with that name!
+        if (core::config('general.akismet_key')!='')
+        {
+            $akismet = new Akismet(core::config('general.base_url') ,core::config('general.akismet_key'));
             $akismet->setCommentAuthor($name);
             $akismet->setCommentAuthorEmail($email);
             $akismet->setCommentContent($comment);
             return $akismet->isCommentSpam();
         }
-        else return FALSE;//we return is not spam since we do not have the api :(
+        else //we return is not spam since we do not have the api :(
+            return FALSE;
     }
 
 
