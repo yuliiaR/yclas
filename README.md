@@ -36,4 +36,5 @@ Please read CONTRIBUTING.md
 * jQuery http://jquery.com/
 * jQuery Sortable http://johnny.github.io/jquery-sortable/
 * Bootstrap Image Gallery https://github.com/blueimp/Bootstrap-Image-Gallery
+* Blacksmith https://github.com/themusicman/Blacksmith
 
