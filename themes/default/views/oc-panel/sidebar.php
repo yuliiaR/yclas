@@ -23,7 +23,8 @@
                 <?Theme::admin_link(__('Themes'), 'theme','index','oc-panel','icon-picture')?>
                 <?if (Theme::has_options()) 
                         Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel','icon-wrench')?>     
-                <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','icon-move')?>       
+                <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','icon-move')?>    
+                <?Theme::admin_link(__('Custom Fields'), 'custom_fields','index','oc-panel','icon-move')?>   
                 <?Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift')?>
                 <? if($user->id_role==10):?><li class="divider"></li><?endif?>
 
