@@ -24,11 +24,6 @@ class Model_Field {
     }
 
 
-    public function get_all()
-    {
-
-    }
-
     public function create($name, $type = 'string', $length = NULL, $default = NULL)
     {
         if (!$this->field_exists($name))
@@ -53,32 +48,24 @@ class Model_Field {
             $this->_bs->forge($this->_db);
 
 
-            Cache::instance()->delete_all();
-            Theme::delete_minified();
-
-            Alert::set(Alert::SUCCESS,__('Field created '.$name));
+            return TRUE;
         }
         else
-            Alert::set(Alert::ERROR,__('Field already exists '.$name));
+            return FALSE;
 
     }
 
     public function delete($name)
-    {
-        
+    {        
         if ($this->field_exists($name))
         {
             $table = $this->_bs->table($this->_db_prefix.'ads');
             $table->drop_column($this->_name_prefix.$name);
             $this->_bs->forge($this->_db);
-
-
-            Cache::instance()->delete_all();
-            Theme::delete_minified();
-            Alert::set(Alert::SUCCESS,__('Field deleted '.$name));
+            return TRUE;
         }
         else
-            Alert::set(Alert::ERROR,__('Field does not exists '.$name));
+            return FALSE;
 
         
     }
@@ -87,7 +74,7 @@ class Model_Field {
      * get the custom fields for an ad
      * @return array
      */
-    public static function get_ad_fields($id_ad)
+    public static function get_all($id_ad = NULL)
     {
         
     }
@@ -99,6 +86,7 @@ class Model_Field {
      */
     private function field_exists($name)
     {
+        //@todo read from config file?
         $columns = Database::instance()->list_columns('ads');
         return (array_key_exists($this->_name_prefix.$name, $columns));
     }
