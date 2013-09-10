@@ -24,7 +24,7 @@ class Model_Field {
     }
 
 
-    public function create($name, $type = 'string', $length = NULL, $default = NULL)
+    public function create($name, $type = 'string', $values = NULL)
     {
         if (!$this->field_exists($name))
         {
@@ -33,14 +33,46 @@ class Model_Field {
 
             switch ($type) 
             {
-                case 'int':
-                    # code...
+                case 'text':
+                    $table->add_column()
+                        ->text($this->_name_prefix.$name);
                     break;
+
+                case 'integer':
+                    $table->add_column()
+                        ->int($this->_name_prefix.$name)
+                        ->default_value($values);
+                    break;
+
+                case 'checkbox':
+                    $table->add_column()
+                        ->tiny_int($this->_name_prefix.$name,1)
+                        ->default_value($values);
+                    break;
+
+                case 'decimal':
+                    $table->add_column()
+                        ->float($this->_name_prefix.$name)
+                        ->default_value($values);
+                    break;
+
+                case 'date':
+                    $table->add_column()
+                        ->date($this->_name_prefix.$name);
+                    break;
+                
+                case 'select':     
+                    $values = explode(',', $values); 
+
+                    $table->add_column()
+                        ->string($this->_name_prefix.$name, 256);
+                    break;
+
                 case 'string':            
                 default:
                     $table->add_column()
-                        ->string($this->_name_prefix.$name, $length)
-                        ->default_value($default);
+                        ->string($this->_name_prefix.$name, 256)
+                        ->default_value($values);
                     break;
             }
             
