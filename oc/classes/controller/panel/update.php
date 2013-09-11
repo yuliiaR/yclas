@@ -187,5 +187,28 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
     }
 
+    /**
+     * This function will upgrate DB that didn't existed in verisons below 2.0.6
+     * changes added: config for custom field
+     */
+    public function action_207()
+    {
+      // build array with new (missing) configs
+        $configs = array(array('config_key'     =>'fields',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>''),
+                         );
+
+        // returns TRUE if some config is saved 
+        $return_conf = Model_Config::config_array($configs);
+
+        // message
+        if($return_conf)
+            Alert::set(Alert::SUCCESS,__('Updated'));
+        else
+            Alert::set(Alert::INFO,__('Nothing to Update'));
+
+        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
+    }
     
 }

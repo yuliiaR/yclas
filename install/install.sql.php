@@ -396,6 +396,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('advertisement', 'ads_in_home', '0'),
 ('advertisement', 'banned_words_replacement', 'xxx'),
 ('advertisement', 'banned_words', ''),
+('advertisement', 'fields', ''),
 ('email', 'notify_email', '".$_POST['ADMIN_EMAIL']."'),
 ('email', 'smtp_active', 0),
 ('email', 'new_ad_notify', 0),

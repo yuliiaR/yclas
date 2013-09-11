@@ -3,8 +3,6 @@
 <div class="page-header">
 	<h1><?=__('New Custom Field')?></h1>
 </div>
-
-
         
 <form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">         
       <?=Form::errors()?>  
@@ -12,21 +10,14 @@
         <div class="control-group">
             <label class="control-label"><?=__('Name')?></label>
                 <div class="controls docs-input-sizes">
-                <input class="input-medium" type="text" name="name" placeholder="<?=__('Name')?>" required>
+                <input class="input-xlarge" type="text" name="name" placeholder="<?=__('Name')?>" required>
             </div>
         </div>
         
         <div class="control-group">
-            <label class="control-label"><?=__('Title')?></label>
+            <label class="control-label"><?=__('Label')?></label>
                 <div class="controls docs-input-sizes">
-                <input class="input-medium" type="text" name="title" placeholder="<?=__('Title')?>" required>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label"><?=__('Values')?></label>
-                <div class="controls docs-input-sizes">
-                <input class="input-medium" type="text" name="values" placeholder="<?=__('Comma separated for select')?>">
+                <input class="input-xlarge" type="text" name="label" placeholder="<?=__('Label')?>" required>
             </div>
         </div>
 
@@ -46,6 +37,13 @@
         </div>
 
         <div class="control-group">
+            <label class="control-label"><?=__('Values')?></label>
+                <div class="controls docs-input-sizes">
+                <input class="input-xlarge" type="text" name="values" placeholder="<?=__('Comma separated for select')?>">
+            </div>
+        </div>
+
+        <div class="control-group">
             <div class="controls">
                 <label class="checkbox">
                   <input type="checkbox" name="required"> 
@@ -57,7 +55,7 @@
         <div class="control-group">
             <div class="controls">
                 <label class="checkbox">
-                  <input type="checkbox" name="search"> 
+                  <input type="checkbox" name="searchable"> 
                    <?=__('Searchable')?>
                 </label>
             <div class="help-block"></div></div>
