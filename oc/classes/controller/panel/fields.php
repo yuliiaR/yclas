@@ -140,7 +140,10 @@ class Controller_Panel_Fields extends Auth_Controller {
         
     }
 
-
+    /**
+     * used for the ajax request to reorder the fields
+     * @return string 
+     */
     public function action_saveorder()
     {
         $field  = new Model_Field();

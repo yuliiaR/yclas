@@ -23,7 +23,14 @@ class Model_Field {
 
     }
 
-
+    /**
+     * creates a new custom field on DB and config
+     * @param  string $name    
+     * @param  string $type    
+     * @param  string $values  
+     * @param  array  $options 
+     * @return bool          
+     */
     public function create($name, $type = 'string', $values = NULL, array $options)
     {
         if (!$this->field_exists($name))
@@ -114,7 +121,13 @@ class Model_Field {
 
     }
 
-
+    /**
+     * updates custom field option, not the name or the type
+     * @param  string $name    
+     * @param  string $values  
+     * @param  array  $options 
+     * @return bool          
+     */
     public function update($name, $values = NULL, array $options)
     {
         if ($this->field_exists($name))
