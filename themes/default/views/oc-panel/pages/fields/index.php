@@ -12,6 +12,8 @@
 <?foreach($fields as $name=>$field):?>
     <li data-id="<?=$name?>" id="<?=$name?>"><i class="icon-move"></i> <?=$name?> - <?=$field['label']?> 
         
+        <span class="label label-info"><?=$field['type']?></span>
+
         <a data-text="<?=__('Are you sure you want to delete? All data contained in this field will be deleted.')?>" 
            data-id="li_<?=$name?>" 
            class="btn btn-mini btn-danger index-delete pull-right"  
@@ -23,6 +25,8 @@
             href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'update','id'=>$name))?>">
             <?=__('Edit')?>
         </a>
+
+
 
     </li>
 <?endforeach?>
