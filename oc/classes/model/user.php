@@ -452,7 +452,7 @@ class Model_User extends ORM {
         return $user->id_user;
     }
 
-
+/* commented since now we use custom fields so this needs to be generated.
     protected $_table_columns =  
 array (
   'id_user' => 
@@ -703,5 +703,5 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-);
+);*/
 } // END Model_User

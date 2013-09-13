@@ -9,6 +9,7 @@
 
 
 <ol class='plholder span6' id="ol_1" data-id="1">
+<?if (is_array($fields)):?>
 <?foreach($fields as $name=>$field):?>
     <li data-id="<?=$name?>" id="<?=$name?>"><i class="icon-move"></i> 
         <?=$name?>        
@@ -25,11 +26,9 @@
             href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'update','id'=>$name))?>">
             <?=__('Edit')?>
         </a>
-
-
-
     </li>
 <?endforeach?>
+<?endif?>
 </ol><!--ol_1-->
 
 <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'saveorder'))?>'></span>
