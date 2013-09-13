@@ -187,5 +187,24 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
     }
 
+    public function action_seoname_user()
+    {
+      $user = new Model_User();
+      $users = $user->find_all();
+
+      foreach ($users as $user) {
+        if($user->seoname == NULL)
+        {
+          
+          try {
+            $user->seoname = $user->gen_seo_title($user->name);
+            $user->save();
+          } catch (Exception $e) {
+            
+          }
+        }
+      }
+    }
+
     
 }

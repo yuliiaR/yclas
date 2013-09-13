@@ -5,7 +5,7 @@
 			<h1><?=__('Edit Profile')?></h1>
 		</div>
 
-		<?= FORM::open(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')), array('class'=>'well form-horizontal', 'enctype'=>'multipart/form-data'))?>
 				<div class="control-group">
 					<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
 					<div class="controls">
@@ -58,6 +58,25 @@
               </div>
               <?=Form::CSRF()?>
     	</form>
+    </div><!--end span10-->
+
+    <div class="span10">
+      <div class="page-header">
+        <h1><?=__('Profile picture')?></h1>
+      </div>
+      
+      <form class="well form-horizontal" enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">         
+              <?=Form::errors()?>  
+              
+            <?= FORM::label('profile_img', __('Profile picture'), array('class'=>'control-label', 'for'=>'profile_img'))?>
+            <div class="control-group">
+              <input type="file" name="profile_image" id="profile_img" />
+            </div>
+            <div class="form-actions">
+                <a href="<?=Route::url('oc-panel')?>" class="btn"><?=__('Cancel')?></a>
+                <button type="submit" class="btn btn-primary"><?=__('Send')?></button>
+              </div>
+      </form>
     </div><!--end span10-->
 </div>
 <!--/row-->

@@ -67,6 +67,63 @@ class Controller_Panel_Profile extends Auth_Controller {
 	  
 	}
 
+	public function action_image()
+	{
+		//get image
+		$image = $_FILES['profile_image']; //file post
+        
+        if ( 
+            ! Upload::valid($image) OR
+            ! Upload::not_empty($image) OR
+            ! Upload::type($image, explode(',',core::config('image.allowed_formats'))) OR
+            ! Upload::size($image, core::config('image.max_image_size').'M'))
+        {
+        	if ( Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats'))))
+            {
+                Alert::set(Alert::ALERT, $image['name'].' '.__('Is not valid format, please use one of this formats "jpg, jpeg, png"'));
+                $this->request->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
+            } 
+            if(!Upload::size($image, core::config('image.max_image_size').'M'))
+            {
+                Alert::set(Alert::ALERT, $image['name'].' '.__('Is not of valid size. Size is limited on '.core::config('general.max_image_size').'MB per image'));
+                $this->request->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
+            }
+            Alert::set(Alert::ALERT, $image['name'].' '.__('Image is not valid. Please try again.'));
+            $this->request->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
+        }
+        else
+        {
+            if($image != NULL) // sanity check 
+            {   
+            	$user_id = Auth::instance()->get_user()->id_user;
+                // saving/uploadng zip file to dir.
+                $root = DOCROOT.'images/users/'; //root folder
+            	$image_name = $user_id.'.png';
+            	$width = core::config('image.width'); // @TODO dynamic !?
+            	$height = core::config('image.height');// @TODO dynamic !?
+            	$image_quality = core::config('image.quality');
+                
+                // if folder doesnt exists
+               	if(!file_exists($root))
+               		mkdir($root, 775, true);
+
+                // save file to root folder, file, name, dir
+                if($file = Upload::save($image, $image_name, $root))
+                {
+	                // resize uploaded image 
+	                Image::factory($file)
+                        ->resize($width, $height, Image::AUTO)
+                        ->save($root.$image_name,$image_quality);
+
+                }
+                
+                Alert::set(Alert::SUCCESS, $image['name'].' '.__('Image is uploaded.'));
+                $this->request->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
+            }
+            
+        }
+	}
+
 	public function action_edit()
 	{
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit profile')));

@@ -277,17 +277,17 @@ class Model_Ad extends ORM {
             if ( 
             ! Upload::valid($image) OR
             ! Upload::not_empty($image) OR
-            ! Upload::type($image, array('jpg', 'jpeg', 'png')) OR
+            ! Upload::type($image, explode(',',core::config('image.allowed_formats'))) OR
             ! Upload::size($image, core::config('image.max_image_size').'M'))
-            {
-                if ( Upload::not_empty($image) && ! Upload::type($image, array(core::config('image.allowed_formats'))))
+        {
+                if ( Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats'))))
                 {
                     Alert::set(Alert::ALERT, $image['name'].' '.__('Is not valid format, please use one of this formats "jpg, jpeg, png"'));
                     return array("error"=>FALSE, "error_name"=>"wrong_format");
                 } 
-                if(!Upload::size($image, core::config('general.max_image_size').'M'))
+                if(!Upload::size($image, core::config('image.max_image_size').'M'))
                 {
-                    Alert::set(Alert::ALERT, $image['name'].' '.__('Is not of valid size. Size is limited on '.core::config('general.max_image_size').'MB per image'));
+                    Alert::set(Alert::ALERT, $image['name'].' '.__('Is not of valid size. Size is limited on '.core::config('image.max_image_size').'MB per image'));
                     return array("error"=>FALSE, "error_name"=>"wrong_format");
                 }
                 return array("error"=>FALSE, "error_name"=>"no_image");
@@ -311,7 +311,7 @@ class Model_Ad extends ORM {
                     $height_thumb   = NULL;    
                 
                 // d($height_thumb);
-                // count howmany files are saved 
+                // count how many files are saved 
                 if (glob($directory . "*.jpg") != false)
                 {
                     $filecount = count(glob($directory . "*.jpg"));
