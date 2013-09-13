@@ -47,20 +47,17 @@ class Model_Field {
 
                 case 'integer':
                     $table->add_column()
-                        ->int($this->_name_prefix.$name)
-                        ->default_value($values);
+                        ->int($this->_name_prefix.$name);
                     break;
 
                 case 'checkbox':
                     $table->add_column()
-                        ->tiny_int($this->_name_prefix.$name,1)
-                        ->default_value($values);
+                        ->tiny_int($this->_name_prefix.$name,1);
                     break;
 
                 case 'decimal':
                     $table->add_column()
-                        ->float($this->_name_prefix.$name)
-                        ->default_value($values);
+                        ->float($this->_name_prefix.$name);
                     break;
 
                 case 'date':
@@ -79,8 +76,7 @@ class Model_Field {
                 case 'string':            
                 default:
                     $table->add_column()
-                        ->string($this->_name_prefix.$name, 256)
-                        ->default_value($values);
+                        ->string($this->_name_prefix.$name, 256);
                     break;
             }
             
@@ -88,7 +84,6 @@ class Model_Field {
             $this->_bs->forge($this->_db);
 
             //save configs
-
             $conf = new Model_Config();
             $conf->where('group_name','=','advertisement')
                  ->where('config_key','=','fields')
