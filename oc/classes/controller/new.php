@@ -37,9 +37,9 @@ class Controller_New extends Controller
 		$this->template->content = View::factory('pages/ad/new', array('categories'		    => $categories,
                                                                         'order_categories'  => $order_categories,
 																	   'locations' 			=> $locations,
-                                                                        'order_locations'  => $order_locations,
+                                                                        'order_locations'   => $order_locations,
 																	   'form_show'			=> $form_show,
-                                                                       'fields'             =>Model_Field::get_all()));
+                                                                       'fields'             => Model_Field::get_all()));
 		if ($_POST) 
         {
             // $_POST array with all fields 

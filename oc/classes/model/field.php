@@ -68,7 +68,8 @@ class Model_Field {
                         ->date($this->_name_prefix.$name);
                     break;
                 
-                case 'select':     
+                case 'select': 
+                case 'radio':    
                     $values = explode(',', $values); 
 
                     $table->add_column()

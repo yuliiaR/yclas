@@ -31,6 +31,7 @@
                     <option value="decimal"><?=__('Number Decimal')?></option>
                     <option value="date"><?=__('Date')?></option>
                     <option value="select"><?=__('Select')?></option>
+                    <option value="radio"><?=__('Radio')?></option>
                     <option value="checkbox"><?=__('Checkbox')?></option>
                 </select>
             </div>
