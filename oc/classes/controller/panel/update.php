@@ -187,23 +187,48 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
     }
 
-    public function action_seoname_user()
-    {
-      $user = new Model_User();
-      $users = $user->find_all();
+    // public function action_seoname_user()
+    // {
+    //   $user = new Model_User();
+    //   $users = $user->find_all();
 
-      foreach ($users as $user) {
-        if($user->seoname == NULL)
-        {
+    //   foreach ($users as $user) {
+    //     if($user->seoname == NULL)
+    //     {
           
-          try {
-            $user->seoname = $user->gen_seo_title($user->name);
-            $user->save();
-          } catch (Exception $e) {
+    //       try {
+    //         $user->seoname = $user->gen_seo_title($user->name);
+    //         $user->save();
+    //       } catch (Exception $e) {
             
-          }
-        }
-      }
+    //       }
+    //     }
+    //   }
+    // }
+
+
+    /**
+     * This function will upgrate DB that didn't existed in verisons below 2.0.6
+     * changes added: config for custom field
+     */
+    public function action_207()
+    {
+      // build array with new (missing) configs
+        $configs = array(array('config_key'     =>'fields',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>''),
+                         );
+
+        // returns TRUE if some config is saved 
+        $return_conf = Model_Config::config_array($configs);
+
+        // message
+        if($return_conf)
+            Alert::set(Alert::SUCCESS,__('Updated'));
+        else
+            Alert::set(Alert::INFO,__('Nothing to Update'));
+
+        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
     }
 
     

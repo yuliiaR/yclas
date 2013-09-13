@@ -23,13 +23,15 @@ class Model_Field {
 
     }
 
-
-    public function get_all()
-    {
-
-    }
-
-    public function create($name, $type = 'string', $length = NULL, $default = NULL)
+    /**
+     * creates a new custom field on DB and config
+     * @param  string $name    
+     * @param  string $type    
+     * @param  string $values  
+     * @param  array  $options 
+     * @return bool          
+     */
+    public function create($name, $type = 'string', $values = NULL, array $options)
     {
         if (!$this->field_exists($name))
         {
@@ -38,34 +40,135 @@ class Model_Field {
 
             switch ($type) 
             {
-                case 'int':
-                    # code...
+                case 'text':
+                    $table->add_column()
+                        ->text($this->_name_prefix.$name);
                     break;
+
+                case 'integer':
+                    $table->add_column()
+                        ->int($this->_name_prefix.$name)
+                        ->default_value($values);
+                    break;
+
+                case 'checkbox':
+                    $table->add_column()
+                        ->tiny_int($this->_name_prefix.$name,1)
+                        ->default_value($values);
+                    break;
+
+                case 'decimal':
+                    $table->add_column()
+                        ->float($this->_name_prefix.$name)
+                        ->default_value($values);
+                    break;
+
+                case 'date':
+                    $table->add_column()
+                        ->date($this->_name_prefix.$name);
+                    break;
+                
+                case 'select':     
+                    $values = explode(',', $values); 
+
+                    $table->add_column()
+                        ->string($this->_name_prefix.$name, 256);
+                    break;
+
                 case 'string':            
                 default:
                     $table->add_column()
-                        ->string($this->_name_prefix.$name, $length)
-                        ->default_value($default);
+                        ->string($this->_name_prefix.$name, 256)
+                        ->default_value($values);
                     break;
             }
             
 
             $this->_bs->forge($this->_db);
 
+            //save configs
 
-            Cache::instance()->delete_all();
-            Theme::delete_minified();
+            $conf = new Model_Config();
+            $conf->where('group_name','=','advertisement')
+                 ->where('config_key','=','fields')
+                 ->limit(1)->find();
+                        
+            if ($conf->loaded())
+            {
+                //remove the key
+                $fields = json_decode($conf->config_value,TRUE);
 
-            Alert::set(Alert::SUCCESS,__('Field created '.$name));
+                if (!is_array($fields))
+                    $fields = array();
+                
+                //save at config
+                $fields[$name] = array(
+                                'type'      => $type, 
+                                'label'     => $options['label'],
+                                'values'    => $values,
+                                'required'  => $options['required'],
+                                'searchable'=> $options['searchable']
+                                );
+
+                $conf->config_value = json_encode($fields);
+                $conf->save();
+            }
+
+            return TRUE;
         }
         else
-            Alert::set(Alert::ERROR,__('Field already exists '.$name));
+            return FALSE;
 
     }
 
-    public function delete($name)
+    /**
+     * updates custom field option, not the name or the type
+     * @param  string $name    
+     * @param  string $values  
+     * @param  array  $options 
+     * @return bool          
+     */
+    public function update($name, $values = NULL, array $options)
     {
-        
+        if ($this->field_exists($name))
+        {
+            //save configs
+            $conf = new Model_Config();
+            $conf->where('group_name','=','advertisement')
+                 ->where('config_key','=','fields')
+                 ->limit(1)->find();
+                        
+            if ($conf->loaded())
+            {
+                $fields = json_decode($conf->config_value,TRUE);
+                
+                //save at config
+                $fields[$name] = array(
+                                'type'      => $fields[$name]['type'], 
+                                'label'     => $options['label'],
+                                'values'    => $values,
+                                'required'  => $options['required'],
+                                'searchable'=> $options['searchable']
+                                );
+
+                $conf->config_value = json_encode($fields);
+                $conf->save();
+            }
+
+            return TRUE;
+        }
+        else
+            return FALSE;
+
+    }
+
+    /**
+     * deletes a fields from DB and config
+     * @param  string $name 
+     * @return bool       
+     */
+    public function delete($name)
+    {        
         if ($this->field_exists($name))
         {
             $table = $this->_bs->table($this->_db_prefix.'ads');
@@ -73,23 +176,90 @@ class Model_Field {
             $this->_bs->forge($this->_db);
 
 
-            Cache::instance()->delete_all();
-            Theme::delete_minified();
-            Alert::set(Alert::SUCCESS,__('Field deleted '.$name));
+            //save configs
+            $conf = new Model_Config();
+            $conf->where('group_name','=','advertisement')
+                 ->where('config_key','=','fields')
+                 ->limit(1)->find();
+                        
+            if ($conf->loaded())
+            {
+                //remove the key
+                $fields = json_decode($conf->config_value, TRUE);
+                unset($fields[$name]);
+
+                $conf->config_value = json_encode($fields);
+                $conf->save();
+            }
+
+            return TRUE;
         }
         else
-            Alert::set(Alert::ERROR,__('Field does not exists '.$name));
+            return FALSE;
 
         
+    }
+
+    /**
+     * changes the order to display fields
+     * @param  array  $order 
+     * @return bool
+     */
+    public function change_order(array $order)
+    {        
+        $fields = self::get_all();
+
+        $new_fields =  array();
+
+        //using order they send us
+        foreach ($order as $name) 
+            $new_fields[$name] = $fields[$name];
+       
+        //save configs
+        $conf = new Model_Config();
+        $conf->where('group_name','=','advertisement')
+             ->where('config_key','=','fields')
+             ->limit(1)->find();
+                    
+        if ($conf->loaded())
+        {
+            try
+            {
+                $conf->config_value = json_encode($new_fields);
+                $conf->save();
+                return TRUE;
+            }
+            catch (Exception $e)
+            {
+                throw new HTTP_Exception_500();     
+            }
+        }
+        return FALSE;
+    }
+
+    /**
+     * get values for a field
+     * @param  string $name 
+     * @return array/bool    
+     */
+    public function get($name)
+    {
+        if ($this->field_exists($name))
+        {
+            $fields = self::get_all();
+            return $fields[$name];
+        }
+        else
+            return FALSE;
     }
 
     /**
      * get the custom fields for an ad
      * @return array
      */
-    public static function get_ad_fields($id_ad)
+    public static function get_all($id_ad = NULL)
     {
-        
+        return json_decode(core::config('advertisement.fields'),TRUE);
     }
 
     /**
@@ -99,6 +269,7 @@ class Model_Field {
      */
     private function field_exists($name)
     {
+        //@todo read from config file?
         $columns = Database::instance()->list_columns('ads');
         return (array_key_exists($this->_name_prefix.$name, $columns));
     }

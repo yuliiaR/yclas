@@ -437,7 +437,7 @@ class Model_User extends ORM {
             $user->name         = $name;
             $user->status       = self::STATUS_ACTIVE;
             $user->id_role      = 1;
-            //$user->seoname      = $user->gen_seo_title($user->name);
+            $user->seoname      = $user->gen_seo_title($user->name);
             $user->password     = Text::random('alnum', 8);
             try
             {
