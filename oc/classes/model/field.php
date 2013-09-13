@@ -70,7 +70,7 @@ class Model_Field {
                 
                 case 'select': 
                 case 'radio':    
-                    $values = explode(',', $values); 
+                    $values = array_map('trim', explode(',', $values)); 
 
                     $table->add_column()
                         ->string($this->_name_prefix.$name, 256);

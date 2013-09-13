@@ -159,10 +159,10 @@
 <h2><?=__('Extra information')?></h2>
 <?foreach($fields as $name=>$field):?>
     <?=Form::form_tag($name, array(    
-                                'display'   => $field['type'],
-                                'label'     => $field['label'],
-                                'default'   => $field['values'],
-                                'required'  => $field['required']))?>      
+                            'display'   => $field['type'],
+                            'label'     => $field['label'],
+                            'default'   => $field['values'],
+                            'required'  => $field['required']))?>      
 <?endforeach?>
 <?endif?>
 
