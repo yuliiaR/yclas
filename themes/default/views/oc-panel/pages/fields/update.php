@@ -17,7 +17,7 @@
         <div class="control-group">
             <label class="control-label"><?=__('Type')?></label>
                 <div class="controls docs-input-sizes">
-                <input  DISABLED class="input-xlarge" type="text" name="type" value="<?=$field_data['type']?>" placeholder="<?=__('Type')?>" required>
+                <input  DISABLED class="input-xlarge" type="text" id="cf_type_field_input" name="type" value="<?=$field_data['type']?>" placeholder="<?=__('Type')?>" required>
             </div>
         </div>
         
@@ -31,7 +31,7 @@
         <div class="control-group">
             <label class="control-label"><?=__('Values')?></label>
                 <div class="controls docs-input-sizes">
-                <input class="input-xlarge" type="text" name="values" value="<?=$field_data['values']?>" placeholder="<?=__('Comma separated for select')?>">
+                <input class="input-xlarge" type="text" id="cf_values_input" name="values" value="<?=$field_data['values']?>" placeholder="<?=__('Comma separated for select')?>">
             </div>
         </div>
 

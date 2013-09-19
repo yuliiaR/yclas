@@ -145,7 +145,7 @@ class Form extends Kohana_Form {
      * @param  mixed $value value of the field, optional.
      * @return string        HTML
      */
-    public static function form_tag($name, array $options, $value = NULL)
+    public static function form_tag($name, $options, $value = NULL)
     {
         if ($options['display'] != 'hidden')
             $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label', 'for'=>$name));
@@ -153,30 +153,63 @@ class Form extends Kohana_Form {
             $label = '';
 
         //$out = '';
-        if ($value === NULL)
+        
             $value = (isset($options['default'])) ? $options['default']:NULL;
+            $selected = (isset($options['selected'])) ? $options['selected']:NULL;
+            $value_select = (isset($options['def_select'])) ? $options['def_select']:NULL;
+        
+        // dependent classes on type
+        if($options['display']=='date')
+        	$class = 'cf_date_fields';
+        elseif($options['display']=='text')
+        	$class = 'cf_text_fields';
+        elseif($options['display']=='checkbox')
+        	$class = 'cf_checkbox_fields';
+        elseif($options['display']=='radio')
+        	$class = 'cf_radio_fields';
+        elseif($options['display']=='select')
+        	$class = 'cf_select_fields';
+        else
+        	$class = '';
 
-
-        $attributes = array('placeholder' => (isset($options['label'])) ? $options['label']:$name, 
-                            'class'       => 'input-large', 
-                            'id'          => $name, 
-                            (isset($options['required']))?'required':''
+        $attributes = array('placeholder' 		=> (isset($options['label'])) ? $options['label']:$name, 
+                            'class'       		=> 'input-large'.' '.$class, 
+                            'id'          		=> $name, 
+                            'data-date'       	=> ($options['display']=='date') ? $value : '', // optional attr for datapicker.js
+                            'data-date-format'  => ($options['display']=='date') ? 'yyyy-mm-dd' : '', // optional attr for datapicker.js
+                            ($options['required'] == TRUE)?'required':''
                     );
 
         switch ($options['display']) 
         {
+
             case 'select':
-                $input = FORM::select($name, $options['options'], $value);
-                break;
-            case 'textarea':
-                $input = FORM::textarea($name, $value, $attributes);
-                break;
-            case 'hidden':
-                $input = FORM::hidden($name, $value, $attributes);
+                $input = FORM::select('cf_'.$name, $value_select, $selected, $attributes);
                 break;
             case 'text':
+            
+                $input = FORM::textarea('cf_'.$name, $value, $attributes);
+                break;
+            case 'hidden':
+                $input = FORM::hidden('cf_'.$name, $value, $attributes);
+                break;
+            case 'date':
+                $input = FORM::input('cf_'.$name, $value, $attributes);
+                break;
+			case 'checkbox':
+				$checked = ($value == 1) ? TRUE : FALSE ;  
+				// hidden input + checkbox is a trick to get value of a non selected checkbox.
+                $input = FORM::hidden('cf_'.$name, 0).FORM::checkbox('cf_'.$name, NULL, $checked, $attributes);
+                break;
+            case 'radio':
+			
+				$checked = ($value == 1) ? TRUE : FALSE ;
+				// hidden input + checkbox is a trick to get value of a non selected radio.
+                $input = FORM::hidden('cf_'.$name, 0).FORM::radio('cf_'.$name, NULL, $checked, $attributes);
+                break;
+            case 'string':
             default:
-                $input = FORM::input($name, $value, $attributes);
+                $input = FORM::input('cf_'.$name, $value, $attributes);
                 break;
         }
 

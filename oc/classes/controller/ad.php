@@ -496,6 +496,10 @@ class Controller_Ad extends Controller {
 		$this->template->title           	= __('Advanced Search');
 		$this->template->meta_description	= __('Advanced Search');
 
+		$this->template->styles = array('css/datepicker.css' => 'screen');
+        $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
+                                                   'js/oc-panel/stats/dashboard.js');
+
 		//breadcrumbs
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		
@@ -513,6 +517,19 @@ class Controller_Ad extends Controller {
         	$search_cat 	= $this->request->query('category');
         	$search_loc 	= $this->request->query('location');
         	
+        	// append to $data new custom values
+        	$cf_fields = array();
+            foreach ($this->request->query() as $name => $field) 
+            {
+
+            	// get by prefix
+				if (strpos($name,'cf_') !== false) 
+				{
+					$cf_fields[$name] = $field;
+				}
+        	}
+        	// d($cf_fields);
+
         	// filter by each variable
         	$adverts = new Model_Ad();
         	$ads = $adverts->where('status', '=', Model_Ad::STATUS_PUBLISHED);
@@ -550,6 +567,11 @@ class Controller_Ad extends Controller {
 	                                 ->find();
 	           
 	            $ads = $ads->where('id_location', '=', $loc_obj->id_location);
+	        }
+
+	        foreach ($cf_fields as $key => $value) 
+	        {
+	        	$ads = $ads->where($key, 'like', '%'.$value.'%');
 	        }
 	        // count them for pagination
 			$res_count = $adverts->count_all();
@@ -590,14 +612,15 @@ class Controller_Ad extends Controller {
 				$this->template->content = View::factory('pages/ad/advanced_search', array('categories'           => $categories,
                                                                         'order_categories'  => $order_categories,
                                                                        'locations'          => $locations,
-                                                                        'order_locations'  => $order_locations,));
+                                                                        'order_locations'  => $order_locations,
+                                                                        'fields'             => Model_Field::get_all()));
 				return;
 			}	
 
 			$this->template->bind('content', $content);
 			$this->template->content = View::factory('pages/ad/listing', array('ads'		=>$ads, 
-																			   'category'		=>$cat_obj,
-																			   'location'		=>$loc_obj, 
+																			   'category'	=>$cat_obj,
+																			   'location'	=>$loc_obj, 
 																			   'pagination'	=>$pagination, 
 																			   'user'		=>$user));
         }
@@ -619,7 +642,8 @@ class Controller_Ad extends Controller {
                                                                         'categories'           => $categories,
                                                                         'order_categories'  => $order_categories,
                                                                        'locations'          => $locations,
-                                                                        'order_locations'  => $order_locations,));
+                                                                        'order_locations'  => $order_locations,
+                                                                        'fields'             => Model_Field::get_all()));
         }
 
 	}

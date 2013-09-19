@@ -24,7 +24,7 @@
         <div class="control-group">
             <label class="control-label" for="date"><?=__('Type')?></label>            
             <div class="controls">          
-                <select name="type"  class="input-xlarge" required>
+                <select name="type"  class="input-xlarge" id="cf_type_fileds" required>
                     <option value="string"><?=__('Text 256 Chars')?></option>
                     <option value="text"><?=__('Text Long')?></option>
                     <option value="integer"><?=__('Number')?></option>  
@@ -40,7 +40,7 @@
         <div class="control-group">
             <label class="control-label"><?=__('Values')?></label>
                 <div class="controls docs-input-sizes">
-                <input class="input-xlarge" type="text" name="values" placeholder="<?=__('Comma separated for select')?>">
+                <input class="input-xlarge" id="cf_values_input" type="text" name="values" placeholder="<?=__('Comma separated for select')?>">
             </div>
         </div>
 

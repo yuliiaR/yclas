@@ -154,18 +154,23 @@
 					</div>
 				</div>
 				<?endif?>
+				<!-- Fields coming from custom fields feature -->
+				<?if (is_array($fields)):?>
+				<h2><?=__('Extra information')?></h2>
 
-<?if (is_array($fields)):?>
-<h2><?=__('Extra information')?></h2>
-<?foreach($fields as $name=>$field):?>
-    <?=Form::form_tag($name, array(    
+					<?foreach($fields as $name=>$field):?>
+					<div class="control-group">
+    					<?=Form::form_tag($name, array(    
                             'display'   => $field['type'],
                             'label'     => $field['label'],
+                            'selected'	=> '',
                             'default'   => $field['values'],
-                            'required'  => $field['required']))?>      
-<?endforeach?>
-<?endif?>
-
+                            'def_select'=> $field['values'],
+                            'required'  => $field['required']))?> 
+                    </div>     
+					<?endforeach?>
+				<?endif?>
+				<!-- /endcustom fields -->
 
 				<?if(core::config('advertisement.tos') != ''):?>
 				<div class="control-group">

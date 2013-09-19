@@ -17,6 +17,9 @@ class Controller_New extends Controller
 		$this->template->title           	= __('Publish new advertisement');
 		$this->template->meta_description	= __('Publish new advertisement');
 		
+		$this->template->styles = array('css/datepicker.css' => 'screen');
+        $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
+                                                   'js/oc-panel/stats/dashboard.js');
 		
 		$user 		= new Model_User();
 		
@@ -42,6 +45,7 @@ class Controller_New extends Controller
                                                                        'fields'             => Model_Field::get_all()));
 		if ($_POST) 
         {
+        	
             // $_POST array with all fields 
             $data = array(  'auth'          => $auth        =   Auth::instance(),
                             'title'         => $title       =   $this->request->post('title'),
@@ -55,6 +59,20 @@ class Controller_New extends Controller
                             'user'          => $user
                             ); 
             
+            // append to $data new custom values
+            foreach ($_POST as $name => $field) 
+            {
+            	// get by prefix
+				if (strpos($name,'cf_') !== false) 
+				{
+					$data[$name] = $field;
+					//checkbox and radio when selected return string 'on' as a value
+					if($field == 'on')
+						$data[$name] = 1;
+				}
+        	}
+
+		        	
             // depending on user flow (moderation mode), change usecase
             $moderation = core::config('general.moderation'); 
 
@@ -79,8 +97,6 @@ class Controller_New extends Controller
             }
         }
 		
-
-			
  	}
 
 
@@ -119,7 +135,17 @@ class Controller_New extends Controller
 				$new_ad->address 		= $data['address'];
 				$new_ad->phone			= $data['phone'];
 				$new_ad->website		= $data['website']; 
-
+				
+				// set custom values
+				foreach ($data as $name => $field) 
+	            {
+	            	// get only custom values with prefix
+					if (strpos($name,'cf_') !== false) 
+					{
+						$new_ad->$name = $field;
+					}
+	        	}
+	        	
 				try
 				{
 

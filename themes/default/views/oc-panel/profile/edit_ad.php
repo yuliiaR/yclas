@@ -221,6 +221,26 @@
 					</div>
 				</div>
 				<?endif?>
+				
+				<!-- Fields coming from custom fields feature -->
+				<?if (is_array($fields)):?>
+				<h2><?=__('Extra information')?></h2>
+				
+					<?foreach($fields as $name=>$field):?>
+					<div class="control-group">
+					<?$cf_name = 'cf_'.$name?>
+					
+    					<?=Form::form_tag($name, array(    
+                            'display'   => $field['type'],
+                            'label'     => $field['label'],
+                            'selected'  => $ad->$cf_name,
+                            'default'	=> $ad->$cf_name,
+                            'def_select'=> $field['values'],
+                            'required'  => $field['required']))?> 
+                    </div>     
+					<?endforeach?>
+				<?endif?>
+				<!-- /endcustom fields -->
 				<div class="form-actions">
 					<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))))?>
 				</div>

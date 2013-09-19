@@ -359,6 +359,11 @@ class Controller_Panel_Profile extends Auth_Controller {
 		//template header
 		$this->template->title           	= __('Edit advertisement');
 		$this->template->meta_description	= __('Edit advertisement');
+		
+		$this->template->styles = array('css/datepicker.css' => 'screen');
+        $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
+                                                   'js/oc-panel/stats/dashboard.js');
+
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		 	
 
@@ -381,7 +386,8 @@ class Controller_Panel_Profile extends Auth_Controller {
 																					   'order_locations'  	=>$order_locations, 
 																					   'categories'			=>$categories,
 																					   'order_categories'	=>$order_categories,
-																					   'extra_payment'		=>$extra_payment));
+																					   'extra_payment'		=>$extra_payment,
+																					   'fields'             => Model_Field::get_all()));
 		
 			if ($this->request->post())
 			{
@@ -429,7 +435,19 @@ class Controller_Panel_Profile extends Auth_Controller {
 								'user'			=> $user 		= new Model_User()
 								); 
 
-				
+				// append to $data new custom values
+	            foreach ($_POST as $name => $field) 
+	            {
+	            	// get by prefix
+					if (strpos($name,'cf_') !== false) 
+					{
+						$data[$name] = $field;
+						//checkbox and radio when selected return string 'on' as a value
+						if($field == 'on')
+							$data[$name] = 1;
+					}
+	        	}
+
 				//insert data
 				if (core::post('title') != $form->title)
 				{
@@ -456,6 +474,16 @@ class Controller_Panel_Profile extends Auth_Controller {
 				$form->address 			= $data['address'];
 				$form->website 			= $data['website'];
 				$form->phone			= $data['phone']; 
+
+				// set custom values
+				foreach ($data as $key => $value) 
+	            {
+	            	// get only custom values with prefix
+					if (strpos($key,'cf_') !== false) 
+					{
+						$form->$key = $value;
+					}
+	        	}
 
 				$obj_ad = new Model_Ad();
 
