@@ -20,12 +20,12 @@ $(function (){
         else{
             $('#cf_values_input').attr('type','hidden');
             $('#cf_values_input').parent().parent().css('display','none'); // parent of a parent. dont show whole block
-        }
-        
+        }    
     }).change();
-    // alert($('#cf_type_field_input').val());
-    if($('#cf_type_field_input').val() !== 'radio' ||
-        $('#cf_type_field_input').val() !== 'select') 
+    
+    // custom field edit, show/hide values field
+    if( $('#cf_type_field_input').attr('value') != 'select' 
+        || $('#cf_type_field_input').attr('value') != 'radio') 
             $('#cf_values_input').parent().parent().css('display','none'); 
 });
 
