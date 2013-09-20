@@ -24,9 +24,10 @@ $(function (){
     }).change();
     
     // custom field edit, show/hide values field
-    if( $('#cf_type_field_input').attr('value') != 'select' 
-        || $('#cf_type_field_input').attr('value') != 'radio') 
-            $('#cf_values_input').parent().parent().css('display','none'); 
+    $('#cf_values_input').parent().parent().css('display','none');
+    if( $('#cf_type_field_input').attr('value') == 'select' 
+        || $('#cf_type_field_input').attr('value') == 'radio') 
+            $('#cf_values_input').parent().parent().css('display','block'); 
 });
 
 _debounce = function(func, wait, immediate) {

@@ -31,7 +31,7 @@
         <div class="control-group">
             <label class="control-label"><?=__('Values')?></label>
                 <div class="controls docs-input-sizes">
-                <input class="input-xlarge" type="text" id="cf_values_input" name="values" value="<?=$field_data['values']?>" placeholder="<?=__('Comma separated for select')?>">
+                <input class="input-xlarge" type="text" id="cf_values_input" name="values" value="<?=(is_array($field_data['values']))? implode(",", $field_data['values']): $field_data['values']?>" placeholder="<?=__('Comma separated for select')?>">
             </div>
         </div>
 
