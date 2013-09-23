@@ -162,7 +162,7 @@ class Form extends Kohana_Form {
         if($options['display']=='date')
         	$class = 'cf_date_fields';
         elseif($options['display']=='text')
-        	$class = 'cf_text_fields';
+        	$class = 'cf_text_fields span6';
         elseif($options['display']=='checkbox')
         	$class = 'cf_checkbox_fields';
         elseif($options['display']=='radio')
@@ -177,12 +177,11 @@ class Form extends Kohana_Form {
                             'id'          		=> $name, 
                             'data-date'       	=> ($options['display']=='date') ? $value : '', // optional attr for datapicker.js
                             'data-date-format'  => ($options['display']=='date') ? 'yyyy-mm-dd' : '', // optional attr for datapicker.js
-                            ($options['required'] == TRUE)?'required':''
+                            (isset($options['required']) AND $options['required']== TRUE)?'required':''
                     );
 
         switch ($options['display']) 
         {
-
             case 'select':
                 $input = FORM::select('cf_'.$name, $value_select, $selected, $attributes);
                 break;

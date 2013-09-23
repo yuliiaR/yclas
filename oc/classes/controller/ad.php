@@ -528,7 +528,6 @@ class Controller_Ad extends Controller {
 					$cf_fields[$name] = $field;
 				}
         	}
-        	// d($cf_fields);
 
         	// filter by each variable
         	$adverts = new Model_Ad();
@@ -573,6 +572,7 @@ class Controller_Ad extends Controller {
 	        {
 	        	$ads = $ads->where($key, 'like', '%'.$value.'%');
 	        }
+
 	        // count them for pagination
 			$res_count = $adverts->count_all();
 

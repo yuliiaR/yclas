@@ -74,6 +74,9 @@ class Model_Field {
                     break;
                     
                 case 'radio':    
+
+                    $values = array_map('trim', explode(',', $values));
+                    
                     $table->add_column()
                         ->tiny_int($this->_name_prefix.$name,1);
                     break;
