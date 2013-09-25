@@ -50,7 +50,7 @@
         <?endif?>
         <!-- Fields coming from custom fields feature -->
         <?if (is_array($fields)):?>
-        <h2><?=__('Extra information')?></h2>
+        
 
             <?foreach($fields as $name=>$field):?>
             <?if($field['searchable']):?>

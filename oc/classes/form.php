@@ -153,62 +153,65 @@ class Form extends Kohana_Form {
             $label = '';
 
         //$out = '';
-        
+        if ($value === NULL)
             $value = (isset($options['default'])) ? $options['default']:NULL;
-            $selected = (isset($options['selected'])) ? $options['selected']:NULL;
-            $value_select = (isset($options['def_select'])) ? $options['def_select']:NULL;
         
         // dependent classes on type
-        if($options['display']=='date')
+        if($options['display']=='date' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_date_fields';
-        elseif($options['display']=='text')
-        	$class = 'cf_text_fields span6';
-        elseif($options['display']=='checkbox')
+        elseif($options['display']=='string' AND (strpos($name,'cf_') !== FALSE))
+        	$class = 'cf_text_fields';
+        elseif($options['display']=='text' AND (strpos($name,'cf_') !== FALSE))
+        	$class = 'cf_textarea_fields';
+        elseif($options['display']=='checkbox' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_checkbox_fields';
-        elseif($options['display']=='radio')
+        elseif($options['display']=='radio' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_radio_fields';
-        elseif($options['display']=='select')
+        elseif($options['display']=='select' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_select_fields';
         else
         	$class = '';
-
+        
         $attributes = array('placeholder' 		=> (isset($options['label'])) ? $options['label']:$name, 
                             'class'       		=> 'input-large'.' '.$class, 
                             'id'          		=> $name, 
-                            'data-date'       	=> ($options['display']=='date') ? $value : '', // optional attr for datapicker.js
-                            'data-date-format'  => ($options['display']=='date') ? 'yyyy-mm-dd' : '', // optional attr for datapicker.js
+                            ($options['display']=='date')?'data-date':'' =>  $value, // optional attr for datapicker.js
+                            ($options['display']=='date')?'data-date-format="yyyy-mm-dd"':''=>'', // optional attr for datapicker.js
+                           	($options['display']=='decimal' OR $options['display']=='integer')?'data-validation-regex-regex="^[0-9]{1,18}([.]{1}[0-9]{1,10})?$"':'',
+                            ($options['display']=='decimal' OR $options['display']=='integer')?'data-validation-regex-message="'.__("Incorect, bad number format").'"':'',
                             (isset($options['required']) AND $options['required']== TRUE)?'required':''
                     );
 
         switch ($options['display']) 
         {
             case 'select':
-                $input = FORM::select('cf_'.$name, $value_select, $selected, $attributes);
+                $input = FORM::select($name, $options['options'], $value);
+                break;
+            case 'string':
+                $input = FORM::input($name, $value, $attributes);
                 break;
             case 'text':
-            
-                $input = FORM::textarea('cf_'.$name, $value, $attributes);
+                $input = FORM::textarea($name, $value, $attributes);
                 break;
             case 'hidden':
-                $input = FORM::hidden('cf_'.$name, $value, $attributes);
+                $input = FORM::hidden($name, $value, $attributes);
                 break;
             case 'date':
-                $input = FORM::input('cf_'.$name, $value, $attributes);
+                $input = FORM::input($name, $value, $attributes);
                 break;
 			case 'checkbox':
 				$checked = ($value == 1) ? TRUE : FALSE ;  
 				// hidden input + checkbox is a trick to get value of a non selected checkbox.
-                $input = FORM::hidden('cf_'.$name, 0).FORM::checkbox('cf_'.$name, NULL, $checked, $attributes);
+                $input = FORM::hidden($name, 0).FORM::checkbox($name, NULL, $checked, $attributes);
                 break;
             case 'radio':
-			
 				$checked = ($value == 1) ? TRUE : FALSE ;
 				// hidden input + checkbox is a trick to get value of a non selected radio.
-                $input = FORM::hidden('cf_'.$name, 0).FORM::radio('cf_'.$name, NULL, $checked, $attributes);
+                $input = FORM::hidden($name, 0).FORM::radio($name, NULL, $checked, $attributes);
                 break;
             case 'string':
             default:
-                $input = FORM::input('cf_'.$name, $value, $attributes);
+                $input = FORM::input($name, $value, $attributes);
                 break;
         }
 

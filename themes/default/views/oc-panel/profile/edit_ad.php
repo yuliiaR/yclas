@@ -221,24 +221,20 @@
 					</div>
 				</div>
 				<?endif?>
-				
 				<!-- Fields coming from custom fields feature -->
+				<?if(isset($fields)):?>
 				<?if (is_array($fields)):?>
-				<h2><?=__('Extra information')?></h2>
-				
 					<?foreach($fields as $name=>$field):?>
 					<div class="control-group">
 					<?$cf_name = 'cf_'.$name?>
-					
-    					<?=Form::form_tag($name, array(    
+    					<?=Form::form_tag('cf_'.$name, array(    
                             'display'   => $field['type'],
                             'label'     => $field['label'],
-                            'selected'  => $ad->$cf_name,
                             'default'	=> $ad->$cf_name,
-                            'def_select'=> $field['values'],
-                            'required'  => $field['required']))?> 
+                            'options'	=> (!is_array($field['values']))? explode(',', $field['values']) : $field['values']))?> 
                     </div>     
 					<?endforeach?>
+				<?endif?>
 				<?endif?>
 				<!-- /endcustom fields -->
 				<div class="form-actions">
