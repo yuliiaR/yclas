@@ -216,7 +216,7 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<div class="input-prepend">
-							<?= FORM::input('price', number_format($ad->price, 2), array('placeholder'=>i18n::money_format(1),'class' => '', 'id' => 'price', 'data-validation-regex-regex'=>"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$", "data-validation-regex-message"=>__('Incorect price, not more than 3 decimals')))?>
+							<?= FORM::input('price', $ad->price, array('placeholder'=>i18n::money_format(1),'class' => '', 'id' => 'price', 'data-validation-regex-regex'=>"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$", "data-validation-regex-message"=>__('Incorect price, not more than 3 decimals')))?>
 						</div>
 					</div>
 				</div>
