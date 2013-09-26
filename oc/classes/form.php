@@ -158,7 +158,10 @@ class Form extends Kohana_Form {
         
         // dependent classes on type
         if($options['display']=='date' AND (strpos($name,'cf_') !== FALSE))
+        {
         	$class = 'cf_date_fields';
+        	$data_date = $value;
+        }
         elseif($options['display']=='string' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_text_fields';
         elseif($options['display']=='text' AND (strpos($name,'cf_') !== FALSE))
@@ -187,7 +190,7 @@ class Form extends Kohana_Form {
             case 'select':
                 $input = FORM::select($name, $options['options'], $value);
                 break;
-            case 'string':
+            case 'text':
                 $input = FORM::input($name, $value, $attributes);
                 break;
             case 'text':
