@@ -165,6 +165,8 @@ class Form extends Kohana_Form {
         elseif($options['display']=='text' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_text_fields';
         elseif($options['display']=='string' AND (strpos($name,'cf_') !== FALSE))
+        	$class = 'cf_text_fields';
+        elseif($options['display']=='textarea' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_textarea_fields';
         elseif($options['display']=='checkbox' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_checkbox_fields';
@@ -189,6 +191,9 @@ class Form extends Kohana_Form {
                 $input = FORM::select($name, $options['options'], $value);
                 break;
             case 'string':
+                $input = FORM::input($name, $value, $attributes);
+                break;
+			case 'textarea':
                 $input = FORM::textarea($name, $value, $attributes);
                 break;
             case 'hidden':
