@@ -39,7 +39,7 @@ Theme::$scripts['footer']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
                                     'js/jquery.validate.min.js',
                                     'js/load-image.min.js',
                                     'js/bootstrap-image-gallery.min.js',
-                                    'js/theme.init.js?v=1.6',
+                                    'js/theme.init.js?v=1.7',
                                     );
 
 
