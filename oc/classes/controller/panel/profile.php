@@ -362,7 +362,8 @@ class Controller_Panel_Profile extends Auth_Controller {
 		
 		$this->template->styles = array('css/datepicker.css' => 'screen');
         $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
-                                                   'js/oc-panel/stats/dashboard.js');
+                                                   'js/oc-panel/stats/dashboard.js',
+                                                   'js/jquery.validate.min.js');
 
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		 	
@@ -427,7 +428,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 								'loc'			=> $loc 		= 	core::post('location'),
 								'description'	=> $description = 	Model_Ad::banned_words(core::post('description')),
 								'price'			=> $price 		= 	floatval(str_replace(',', '.', core::post('price'))),
-								'status'		=> $status		= 	core::post('status'),
+								// 'status'		=> $status		= 	core::post('status'),
 								'address'		=> $address 	= 	core::post('address'),
 								'website'		=> $website 	= 	core::post('website'),
 								'phone'			=> $phone 		= 	core::post('phone'),
@@ -469,7 +470,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				$form->id_location 		= $data['loc'];
 				$form->id_category 		= $data['cat'];
 				$form->description 		= $data['description'];
-				$form->status 			= $data['status'];	
+				// $form->status 			= $data['status'];	
 				$form->price 			= $data['price']; 								
 				$form->address 			= $data['address'];
 				$form->website 			= $data['website'];

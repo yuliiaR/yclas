@@ -23,7 +23,7 @@
 		<?endif?>
 		<!-- end paypal button -->
 		
-		<?= FORM::open(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal edit_ad_form', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<div class="control input-xxlarge">
 					<?if(Auth::instance()->get_user()->id_role == 10):?>

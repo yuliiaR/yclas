@@ -13,7 +13,6 @@
 			</div>
 		</div>
 
-
         <div class="control-group">
             <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
             <div class="controls">          

@@ -32,6 +32,7 @@
       .sidebar-nav {
         padding: 9px 0;
       }
+      .error{color:#ff1a1a;}
 
       .thumb_market{
         height: 200px; width: 300px;

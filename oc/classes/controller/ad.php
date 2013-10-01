@@ -521,11 +521,13 @@ class Controller_Ad extends Controller {
         	$cf_fields = array();
             foreach ($this->request->query() as $name => $field) 
             {
-
             	// get by prefix
 				if (strpos($name,'cf_') !== false) 
 				{
 					$cf_fields[$name] = $field;
+					//checkbox and radio when selected return string 'on' as a value
+						if($field == 'on')
+							$cf_fields[$name] = 1;
 				}
         	}
 
@@ -569,20 +571,26 @@ class Controller_Ad extends Controller {
 	        }
 
 	        foreach ($cf_fields as $key => $value) 
-	        {
-	        	$ads = $ads->where($key, 'like', '%'.$value.'%');
+	        {	
+	        	if(!empty($value))
+	        	{
+		        	if(is_numeric($value))
+		        		$ads = $ads->where($key, '=', $value);
+		        	elseif(is_string($value))
+		        		$ads = $ads->where($key, 'like', '%'.$value.'%');
+		        }
 	        }
 
 	        // count them for pagination
-			$res_count = $adverts->count_all();
+			$res_count = $ads->count_all();
 
 			if($res_count>0)
 			{
-				
-	           		if ($cat_obj->loaded())
-	               		Breadcrumbs::add(Breadcrumb::factory()->set_title($cat_obj->name)->set_url(Route::url('list', array('category'=>$cat_obj->seoname))));
-	               	if ($loc_obj->loaded())
-	               		Breadcrumbs::add(Breadcrumb::factory()->set_title($loc_obj->name)->set_url(Route::url('list', array('location'=>$loc_obj->seoname))));
+			
+           		if ($cat_obj->loaded())
+               		Breadcrumbs::add(Breadcrumb::factory()->set_title($cat_obj->name)->set_url(Route::url('list', array('category'=>$cat_obj->seoname))));
+               	if ($loc_obj->loaded())
+               		Breadcrumbs::add(Breadcrumb::factory()->set_title($loc_obj->name)->set_url(Route::url('list', array('location'=>$loc_obj->seoname))));
 	        
 				$pagination = Pagination::factory(array(
 		                    'view'           	=> 'pagination',
@@ -611,7 +619,7 @@ class Controller_Ad extends Controller {
 				Alert::set(Alert::INFO, __('We did not find any advertisements for your search.'));
 				$this->template->content = View::factory('pages/ad/advanced_search', array('categories'           => $categories,
                                                                         'order_categories'  => $order_categories,
-                                                                       'locations'          => $locations,
+                                                                       	'locations'          => $locations,
                                                                         'order_locations'  => $order_locations,
                                                                         'fields'             => Model_Field::get_all()));
 				return;

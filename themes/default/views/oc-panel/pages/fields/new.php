@@ -26,7 +26,6 @@
             <div class="controls">          
                 <select name="type"  class="input-xlarge" id="cf_type_fileds" required>
                     <option value="string"><?=__('Text 256 Chars')?></option>
-                    <option value="text"><?=__('Text')?></option>
                     <option value="textarea"><?=__('Text Long')?></option>
                     <option value="integer"><?=__('Number')?></option>  
                     <option value="decimal"><?=__('Number Decimal')?></option>
