@@ -45,6 +45,11 @@ class Model_Field {
                         ->text($this->_name_prefix.$name);
                     break;
 
+                case 'textarea':
+                    $table->add_column()
+                        ->text($this->_name_prefix.$name);
+                    break;
+
                 case 'integer':
                     $table->add_column()
                         ->int($this->_name_prefix.$name);

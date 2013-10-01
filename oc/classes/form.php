@@ -190,7 +190,7 @@ class Form extends Kohana_Form {
             case 'select':
                 $input = FORM::select($name, $options['options'], $value);
                 break;
-            case 'string':
+            case 'text':
                 $input = FORM::input($name, $value, $attributes);
                 break;
 			case 'textarea':
@@ -212,7 +212,7 @@ class Form extends Kohana_Form {
 				// hidden input + checkbox is a trick to get value of a non selected radio.
                 $input = FORM::hidden($name, 0).FORM::radio($name, NULL, $checked, $attributes);
                 break;
-            case 'text':
+            case 'string':
             default:
                 $input = FORM::input($name, $value, $attributes);
                 break;
