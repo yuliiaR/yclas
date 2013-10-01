@@ -49,24 +49,23 @@
             </div>
         <?endif?>
         <!-- Fields coming from custom fields feature -->
-        <?if (is_array($fields)):?>
-        
-
-            <?foreach($fields as $name=>$field):?>
-            <?if($field['searchable']):?>
-            <div class="control-group">
-                <?=Form::form_tag($name, array(    
-                    'display'   => $field['type'],
-                    'label'     => $field['label'],
-                    'selected'  => '',
-                    'default'   => $field['values'],
-                    'def_select'=> $field['values'],
-                    'required'  => FALSE))?> 
-            </div>     
-            <?endif?>
-            <?endforeach?>
-        <?endif?>
-        <!-- /endcustom fields -->
+                <?if(isset($fields)):?>
+                <?if (is_array($fields)):?>
+                    <?foreach($fields as $name=>$field):?>
+                    <?if($field['searchable']):?>
+                    <div class="control-group">
+                        <?=Form::form_tag('cf_'.$name, array(    
+                            'display'   => $field['type'],
+                            'label'     => $field['label'],
+                            'default'   => $field['values'],
+                            'options'   => (!is_array($field['values']))? explode(',', $field['values']) : $field['values'],
+                            'required'  => FALSE))?> 
+                    </div>
+                    <?endif?>     
+                    <?endforeach?>
+                <?endif?>
+                <?endif?>
+                <!-- /endcustom fields -->
 
 		<div class="form-actions">
 			<?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('search')))?> 

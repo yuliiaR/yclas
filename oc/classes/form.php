@@ -162,9 +162,9 @@ class Form extends Kohana_Form {
         	$class = 'cf_date_fields';
         	$data_date = $value;
         }
-        elseif($options['display']=='string' AND (strpos($name,'cf_') !== FALSE))
-        	$class = 'cf_text_fields';
         elseif($options['display']=='text' AND (strpos($name,'cf_') !== FALSE))
+        	$class = 'cf_text_fields';
+        elseif($options['display']=='string' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_textarea_fields';
         elseif($options['display']=='checkbox' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_checkbox_fields';
@@ -180,8 +180,6 @@ class Form extends Kohana_Form {
                             'id'          		=> $name, 
                             ($options['display']=='date')?'data-date':'' =>  $value, // optional attr for datapicker.js
                             ($options['display']=='date')?'data-date-format="yyyy-mm-dd"':''=>'', // optional attr for datapicker.js
-                           	($options['display']=='decimal' OR $options['display']=='integer')?'data-validation-regex-regex="^[0-9]{1,18}([.]{1}[0-9]{1,10})?$"':'',
-                            ($options['display']=='decimal' OR $options['display']=='integer')?'data-validation-regex-message="'.__("Incorect, bad number format").'"':'',
                             (isset($options['required']) AND $options['required']== TRUE)?'required':''
                     );
 
@@ -190,10 +188,7 @@ class Form extends Kohana_Form {
             case 'select':
                 $input = FORM::select($name, $options['options'], $value);
                 break;
-            case 'text':
-                $input = FORM::input($name, $value, $attributes);
-                break;
-            case 'text':
+            case 'string':
                 $input = FORM::textarea($name, $value, $attributes);
                 break;
             case 'hidden':
@@ -212,7 +207,7 @@ class Form extends Kohana_Form {
 				// hidden input + checkbox is a trick to get value of a non selected radio.
                 $input = FORM::hidden($name, 0).FORM::radio($name, NULL, $checked, $attributes);
                 break;
-            case 'string':
+            case 'text':
             default:
                 $input = FORM::input($name, $value, $attributes);
                 break;

@@ -3,7 +3,7 @@
 		<h1><?=__('Publish new advertisement')?></h1>
 	</div>
 	<div class=" well">
-		<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal post_new', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 
 				<div class="control-group">
@@ -77,7 +77,7 @@
                     <div class="control-group">
                         <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
                         <div class="controls">          
-                            <select name="location" id="location" class="input-xlarge"  required>
+                            <select name="location" id="location" class="input-xlarge" required>
                             <option></option>
                             <?function lolo($item, $key,$locs){?>
                             <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
@@ -127,7 +127,7 @@
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 					<div class="controls">
 						<div class="input-prepend">
-						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => i18n::money_format(1), 'class' => 'input-large', 'id' => 'price', 'type'=>'text', 'data-validation-regex-regex'=>"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$", "data-validation-regex-message"=>__('Incorect price, not more than 3 decimals')))?>
+						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => i18n::money_format(1), 'class' => 'input-large', 'id' => 'price', 'type'=>'text'))?>
 						</div>
 					</div>
 				</div>
@@ -157,14 +157,14 @@
 				<!-- Fields coming from custom fields feature -->
 				<?if(isset($fields)):?>
 				<?if (is_array($fields)):?>
-				
 					<?foreach($fields as $name=>$field):?>
 					<div class="control-group">
     					<?=Form::form_tag('cf_'.$name, array(    
                             'display'   => $field['type'],
                             'label'     => $field['label'],
                             'default'   => $field['values'],
-                            'options'	=> (!is_array($field['values']))? explode(',', $field['values']) : $field['values']))?> 
+                            'options'	=> (!is_array($field['values']))? explode(',', $field['values']) : $field['values'],
+                            'required'	=> $field['required']))?> 
                     </div>     
 					<?endforeach?>
 				<?endif?>
