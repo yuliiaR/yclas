@@ -498,7 +498,7 @@ class Controller_Ad extends Controller {
 
 		$this->template->styles = array('css/datepicker.css' => 'screen');
         $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
-                                                   'js/oc-panel/stats/dashboard.js');
+                                                   'js/new.js');
 
 		//breadcrumbs
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
@@ -510,16 +510,16 @@ class Controller_Ad extends Controller {
 
 		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user();
 
-		if($this->request->post()) // after post has detected
+		if($this->request->query()) // after query has detected
 		{			
         	// variables 
-        	$search_advert 	= $this->request->post('title');
-        	$search_cat 	= $this->request->post('category');
-        	$search_loc 	= $this->request->post('location');
+        	$search_advert 	= $this->request->query('title');
+        	$search_cat 	= $this->request->query('category');
+        	$search_loc 	= $this->request->query('location');
         	
         	// append to $data new custom values
         	$cf_fields = array();
-            foreach ($this->request->post() as $name => $field) 
+            foreach ($this->request->query() as $name => $field) 
             {
             	// get by prefix
 				if (strpos($name,'cf_') !== false) 
@@ -541,11 +541,11 @@ class Controller_Ad extends Controller {
 	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
 	        }
 
-	        if(!empty($search_advert) OR $this->request->post('search'))
+	        if(!empty($search_advert) OR $this->request->query('search'))
 	        {	
 	        	// if user is using search from header
-	        	if($this->request->post('search'))
-	        		$search_advert = $this->request->post('search');
+	        	if($this->request->query('search'))
+	        		$search_advert = $this->request->query('search');
 
 	        	$ads = $ads->where('title', 'like', '%'.$search_advert.'%');
 	        }
@@ -635,9 +635,9 @@ class Controller_Ad extends Controller {
         else
         {
         	Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Advanced Search')));
-        	if($this->request->post('search'))
+        	if($this->request->query('search'))
         	{
-        		$unexisting_ad = $this->request->post('search');
+        		$unexisting_ad = $this->request->query('search');
         	}
         	else $unexisting_ad = NULL;
 

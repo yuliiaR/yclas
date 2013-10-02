@@ -4,7 +4,7 @@
 	<h1><?=__('Advanced Search')?></h1>
 </div>
 <div class="well advise clearfix">
-	<?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'POST', 'action'=>''))?>
+	<?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>''))?>
 	<fieldset>
 	    <div class="control-group">
 		    <?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'control-label', 'for'=>'advertisement'))?>
