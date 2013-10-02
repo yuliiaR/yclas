@@ -34,11 +34,9 @@ Theme::$scripts['footer']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
                                     'js/bootstrap-slider.js',
                                     'http://cdn.jsdelivr.net/chosen/0.9.12/chosen.jquery.min.js',
                                     'js/jquery.sceditor.min.js',
-                                    'js/bootstrap-slider.js',
-                                    // 'http://cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.6/jqBootstrapValidation.min.js',
-                                    'js/jquery.validate.min.js',
                                     'js/load-image.min.js',
                                     'js/bootstrap-image-gallery.min.js',
+                                    'js/jquery.validate.min.js',
                                     'js/theme.init.js?v=1.7',
                                     );
 

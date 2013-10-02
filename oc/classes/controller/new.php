@@ -19,7 +19,7 @@ class Controller_New extends Controller
 		
 		$this->template->styles = array('css/datepicker.css' => 'screen');
         $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
-                                                   'js/oc-panel/stats/dashboard.js');
+        										   'js/new.js');
 		
 		$user 		= new Model_User();
 		

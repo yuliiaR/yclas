@@ -362,8 +362,8 @@ class Controller_Panel_Profile extends Auth_Controller {
 		
 		$this->template->styles = array('css/datepicker.css' => 'screen');
         $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
-                                                   'js/oc-panel/stats/dashboard.js',
-                                                   'js/jquery.validate.min.js');
+                                                   'js/jquery.validate.min.js',
+                                                   'js/oc-panel/edit_ad.js');
 
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		 	

@@ -40,11 +40,6 @@ class Model_Field {
 
             switch ($type) 
             {
-                case 'text':
-                    $table->add_column()
-                        ->text($this->_name_prefix.$name);
-                    break;
-
                 case 'textarea':
                     $table->add_column()
                         ->text($this->_name_prefix.$name);
