@@ -42,13 +42,16 @@ class Controller_Panel_Settings extends Auth_Controller {
             {
                 $config_res = $this->request->post($c->config_key); 
 
-                if($config_res !== $c->config_value)
+                if(isset($config_res))
                 {
-                    $c->config_value = $config_res;
-                    try {
-                        $c->save();
-                    } catch (Exception $e) {
-                        echo $e;
+                    if($config_res !== $c->config_value)
+                    {
+                        $c->config_value = $config_res;
+                        try {
+                            $c->save();
+                        } catch (Exception $e) {
+                            echo $e;
+                        }
                     }
                 }
             }

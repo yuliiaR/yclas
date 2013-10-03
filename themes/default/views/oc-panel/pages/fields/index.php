@@ -32,3 +32,116 @@
 </ol><!--ol_1-->
 
 <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'saveorder'))?>'></span>
+
+<div class="page-header pull-left">
+  <h1><?=__('Optional Fields')?></h1>
+    <p><?=__('Optional Advertisement Fields')?></a></p>
+
+    <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')).'?define=cf', array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+      <fieldset>
+        <div class="control-group">
+          <?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
+          <div class="controls">
+            <?= FORM::select('phone', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.phone'), array(
+            'placeholder' => "", 
+            'class' => 'tips', 
+            'id' => 'phone', 
+            'data-content'=> __("Phone field"),
+            'data-trigger'=>"hover",
+            'data-placement'=>"right",
+            'data-toggle'=>"popover",
+            'data-original-title'=>__("Displays the field Phone in the Ad form."),
+            ))?> 
+          </div>
+        </div>
+        <div class="control-group">
+        <?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
+        <div class="controls">
+            <?= FORM::select('website', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.website'), array(
+            'placeholder' => "http://foo.com/", 
+            'class' => 'tips', 
+            'id' => 'website', 
+            'data-content'=> __("Website field"),
+            'data-trigger'=>"hover",
+            'data-placement'=>"right",
+            'data-toggle'=>"popover",
+            'data-original-title'=>__("Displays the field Website in the Ad form."),
+            ))?> 
+          </div>
+        </div>
+        <div class="control-group">
+          <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
+          <div class="controls">
+            <?= FORM::select('location',array(FALSE=>"FALSE",TRUE=>"TRUE"), core::config('advertisement.location'), array(
+            'placeholder' => "", 
+            'class' => 'tips', 
+            'id' => 'location', 
+            'data-content'=> __("Displays location select"),
+            'data-trigger'=>"hover",
+            'data-placement'=>"right",
+            'data-toggle'=>"popover",
+            'data-original-title'=>__("Displays the Select Location in the Ad form."),
+            ))?> 
+          </div>
+        </div>
+        <div class="control-group">
+          <?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
+          <div class="controls">
+            <?= FORM::select('price', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.price'), array(
+            'placeholder' => "", 
+            'class' => 'tips', 
+            'id' => 'price', 
+            'data-content'=> __("Price field"),
+            'data-trigger'=>"hover",
+            'data-placement'=>"right",
+            'data-toggle'=>"popover",
+            'data-original-title'=>__("Displays the field Price in the Ad form."),
+            ))?> 
+          </div>
+        </div>
+        <div class="control-group">
+          <?= FORM::label('upload_file', __('Upload file'), array('class'=>'control-label', 'for'=>'upload_file'))?>
+          <div class="controls">
+            <?= FORM::select('upload_file',array(FALSE=>"FALSE",TRUE=>"TRUE"), core::config('advertisement.upload_file'), array(
+            'placeholder' => "", 
+            'class' => 'tips', 
+            'id' => 'upload_file', 
+            ))?>
+          </div>
+        </div>
+        <div class="control-group">
+          <?= FORM::label('captcha', __('Captcha'), array('class'=>'control-label', 'for'=>'captcha'))?>
+          <div class="controls">
+            <?= FORM::select('captcha', array(FALSE=>"FALSE",TRUE=>"TRUE"), core::config('advertisement.captcha'), array(
+            'placeholder' => "http://foo.com/", 
+            'class' => 'tips', 
+            'id' => 'captcha', 
+            'data-content'=> __("Enables Captcha"),
+            'data-trigger'=>"hover",
+            'data-placement'=>"right",
+            'data-toggle'=>"popover",
+            'data-original-title'=>__("Captcha appears in the form."),
+            ))?> 
+          </div>
+        </div>
+        <div class="control-group">
+          <?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
+          <div class="controls">
+            <?= FORM::select('address', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.address'), array(
+            'placeholder' => "", 
+            'class' => 'tips', 
+            'id' => 'address', 
+            'data-content'=> __("Address field"),
+            'data-trigger'=>"hover",
+            'data-placement'=>"right",
+            'data-toggle'=>"popover",
+            'data-original-title'=>__("Displays the field Address in the Ad form."),
+            ))?> 
+          </div>
+        </div>
+        <div class="form-actions">
+          <?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')).'?define=cf'))?>
+        </div>
+      </fieldset>
+    <?FORM::close()?>
+</div>
