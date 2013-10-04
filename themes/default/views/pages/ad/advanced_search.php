@@ -3,6 +3,13 @@
 <div class="page-header">
 	<h1><?=__('Advanced Search')?></h1>
 </div>
+<!-- Fields coming from custom fields feature -->
+<?if(isset($fields)):?>
+    <?if (Theme::get('premium')!=1):?>
+        <pre><span class="label label-info"><?=__('Heads Up!')?></span><?=__('Custom fields feature is premium only!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?></pre>
+    <?endif?>
+<?endif?>
+<!-- /endcustom fields -->
 <div class="well advise clearfix">
 	<?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>''))?>
 	<fieldset>
@@ -47,24 +54,6 @@
                 </div>
             </div>
         <?endif?>
-        <!-- Fields coming from custom fields feature -->
-                <?if(isset($fields)):?>
-                <?if (is_array($fields)):?>
-                    <?foreach($fields as $name=>$field):?>
-                    <?if($field['searchable']):?>
-                    <div class="control-group">
-                        <?=Form::form_tag('cf_'.$name, array(    
-                            'display'   => $field['type'],
-                            'label'     => $field['label'],
-                            'default'   => $field['values'],
-                            'options'   => (!is_array($field['values']))? explode(',', $field['values']) : $field['values'],
-                            'required'  => FALSE))?> 
-                    </div>
-                    <?endif?>     
-                    <?endforeach?>
-                <?endif?>
-                <?endif?>
-                <!-- /endcustom fields -->
 
 		<div class="form-actions">
 			<?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('search')))?> 
@@ -73,4 +62,5 @@
 	</fieldset>
 	<?= FORM::close()?>
 </div>
+
 

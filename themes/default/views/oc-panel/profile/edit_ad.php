@@ -4,7 +4,13 @@
 		<div class="page-header">
 			<h1><?=__('Edit Advertisement')?></h1>
 		</div>
-		
+		<!-- Fields coming from custom fields feature -->
+		<?if(isset($fields)):?>
+			<?if (Theme::get('premium')!=1):?>
+				<pre><span class="label label-info"><?=__('Heads Up!')?></span><?=__('Custom fields feature is premium only!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?></pre>
+			<?endif?>
+		<?endif?>
+		<!-- /endcustom fields -->
 		<!-- PAYPAL buttons to featured and to top -->
 		<?if((core::config('payment.pay_to_go_on_top') > 0  
 				&& core::config('payment.to_top') != FALSE )
@@ -222,20 +228,28 @@
 				</div>
 				<?endif?>
 				<!-- Fields coming from custom fields feature -->
-				<?if(isset($fields)):?>
-				<?if (is_array($fields)):?>
-					<?foreach($fields as $name=>$field):?>
-					<div class="control-group">
-					<?$cf_name = 'cf_'.$name?>
-    					<?=Form::form_tag('cf_'.$name, array(    
-                            'display'   => $field['type'],
-                            'label'     => $field['label'],
-                            'default'	=> $ad->$cf_name,
-                            'options'	=> (!is_array($field['values']))? explode(',', $field['values']) : $field['values'],
-                            'required'	=> $field['required']))?> 
-                    </div>     
-					<?endforeach?>
-				<?endif?>
+				<?if (Theme::get('premium')==1):?>
+					<?if(isset($fields)):?>
+					<?if (is_array($fields)):?>
+						<?foreach($fields as $name=>$field):?>
+						<div class="control-group">
+						<?$cf_name = 'cf_'.$name?>
+						<?if($field['type'] == 'select') {
+							$select = array();
+							foreach ($field['values'] as $select_name) {
+								$select[$select_name] = $select_name;
+							}
+						}?>
+	    					<?=Form::form_tag('cf_'.$name, array(    
+	                            'display'   => $field['type'],
+	                            'label'     => $field['label'],
+	                            'default'	=> $ad->$cf_name,
+	                            'options'	=> (!is_array($field['values']))? $field['values'] : $select,
+	                            'required'	=> $field['required']))?> 
+	                    </div>     
+						<?endforeach?>
+					<?endif?>
+					<?endif?>
 				<?endif?>
 				<!-- /endcustom fields -->
 				<div class="form-actions">
@@ -245,4 +259,4 @@
 		<?= FORM::close()?>
 	</div>
 	<!--/well-->
-
+		

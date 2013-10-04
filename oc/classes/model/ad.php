@@ -580,6 +580,24 @@ class Model_Ad extends ORM {
         return FALSE;
     }
     
+    /**
+    * returns a list with custom field values
+    * @return array else false 
+    */
+    public function custom_columns()
+    {
+        if($this->loaded())
+        {
+            $custom_columns = array();
+            foreach($this->_table_columns as $value)
+            {   
+                if(strpos($value['column_name'],'cf_') !== false) // take only custom columns
+                    $custom_columns[$value['column_name']] = array('value'=>$this->$value['column_name'], 'parameters' => $value);
+            }
+            return $custom_columns;
+        }
+        return FALSE;
+    }
 //     protected $_table_columns =     
 // array (
 //   'id_ad' => 

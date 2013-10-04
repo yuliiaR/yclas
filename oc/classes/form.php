@@ -188,15 +188,7 @@ class Form extends Kohana_Form {
         switch ($options['display']) 
         {
             case 'select':
-
-            	$array_val = array(''=>'');
-            	foreach($options['options'] as $id => $val)
-            	{
-            		$seo_val = str_replace(' ', '_', strtolower($val));
-            		$array_val[$seo_val] = $val;
-            	}
-
-                $input = FORM::select($name, (!is_array($value))?$options['options']:$array_val, (!is_array($value))?$value:NULL, $attributes);
+                $input = FORM::select($name, $options['options'], (!is_array($value))?$value:NULL, $attributes);
                 break;
             case 'text':
                 $input = FORM::input($name, $value, $attributes);

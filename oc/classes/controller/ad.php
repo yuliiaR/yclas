@@ -301,7 +301,8 @@ class Controller_Ad extends Controller {
 																				   'permission'		=>$permission, 
 																				   'hits'			=>$hits, 
 																				   'captcha_show'	=>$captcha_show,
-																				   'user'			=>$user));
+																				   'user'			=>$user,
+																				   'custom_fields'	=>$ad->custom_columns()));
 
 			}
 			//not found in DB
