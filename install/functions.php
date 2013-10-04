@@ -139,7 +139,7 @@ function oc_requirements()
                                     'mandatory' => TRUE,
                                     'result'    => version_compare(PHP_VERSION, '5.2.4', '>=')
                                     ),
-                'PHP 5.3'   =>array('message'   => 'PHP 5.3 or newer recomended, this version is '. PHP_VERSION,
+                'PHP 5.3'   =>array('message'   => 'PHP 5.3 or newer recommended, this version is '. PHP_VERSION,
                                     'mandatory' => FALSE,
                                     'result'    => version_compare(PHP_VERSION, '5.3', '>=')
                                     ),
