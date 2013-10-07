@@ -6,6 +6,7 @@
 <div class="row">
 	<div class="span3">
 		<a class="thumbnail">
+		
 			<img src="<?=URL::base('http')?>images/users/<?=$user->id_user?>.png" class="img-rounded" alt="" width='200px' height='200px'>
 		</a>
 	</div>

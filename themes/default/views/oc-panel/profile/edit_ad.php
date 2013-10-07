@@ -235,16 +235,17 @@
 						<div class="control-group">
 						<?$cf_name = 'cf_'.$name?>
 						<?if($field['type'] == 'select') {
-							$select = array();
+							$select = array(''=>'');
 							foreach ($field['values'] as $select_name) {
 								$select[$select_name] = $select_name;
 							}
-						}?>
+						}
+						else $select = $field['values']?>
 	    					<?=Form::form_tag('cf_'.$name, array(    
 	                            'display'   => $field['type'],
 	                            'label'     => $field['label'],
 	                            'default'	=> $ad->$cf_name,
-	                            'options'	=> (!is_array($field['values']))? $field['values'] : $select,
+	                            'options'	=> $select,
 	                            'required'	=> $field['required']))?> 
 	                    </div>     
 						<?endforeach?>

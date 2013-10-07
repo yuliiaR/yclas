@@ -64,6 +64,6 @@
       
       <div class="form-actions">
         <a href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'index'))?>" class="btn"><?=__('Cancel')?></a>
-        <button type="submit" class="btn btn-primary"><?=__('Send')?></button>
+        <button type="submit" class="btn btn-primary"><?=__('Create')?></button>
       </div>
 </form>

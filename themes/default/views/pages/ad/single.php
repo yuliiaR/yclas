@@ -11,6 +11,7 @@
 	<div class="page-header">
 		<h1><?= $ad->title;?></h1>
 	</div>
+	
 	<!-- Fields coming from custom fields feature -->
 	<?if($custom_fields != FALSE):?>
 		<?if (Theme::get('premium')!=1):?>
@@ -18,6 +19,7 @@
 		<?endif?>
 	<?endif?>
 	<!-- /endcustom fields -->
+
 	<!-- PAYPAL buttons to featured and to top -->
 	<?if ((Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == 10 ) OR 
 		(Auth::instance()->logged_in() AND $ad->user->id_user == Auth::instance()->get_user()->id_user)):?>

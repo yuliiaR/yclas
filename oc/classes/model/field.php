@@ -146,6 +146,17 @@ class Model_Field {
             {
                 $fields = json_decode($conf->config_value,TRUE);
                 
+                switch ($fields[$name]['type']) {
+                    case 'select':
+                        $values = array_map('trim', explode(',', $values));
+                        break;
+                    case 'radio':
+                        $values = array_map('trim', explode(',', $values));
+                        break;
+                    default:
+                        $values;
+                        break;
+                }
                 //save at config
                 $fields[$name] = array(
                                 'type'      => $fields[$name]['type'], 

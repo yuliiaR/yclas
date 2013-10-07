@@ -208,9 +208,16 @@ class Form extends Kohana_Form {
                 $input = FORM::hidden($name, 0).FORM::checkbox($name, NULL, $checked, $attributes);
                 break;
             case 'radio':
-				$checked = ($value == 1) ? TRUE : FALSE ;
-				// hidden input + checkbox is a trick to get value of a non selected radio.
-                $input = FORM::hidden($name, 0).FORM::radio($name, NULL, $checked, $attributes);
+         		$input = FORM::hidden($name, 0);
+         		
+	            foreach($options['options'] as $id => $value)
+				{
+					$checked = ($id == $options['default']) ? TRUE : FALSE ;
+					
+					// hidden input + checkbox is a trick to get value of a non selected radio.
+					$input .= '<div class="">'.FORM::label($name, $value, array('class'=>'', 'for'=>$name));
+	                $input .= FORM::radio($name, $id, $checked, $attributes).'</div>';
+			    }
                 break;
             case 'string':
             default:
