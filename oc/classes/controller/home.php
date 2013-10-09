@@ -38,6 +38,12 @@ class Controller_Home extends Controller {
                 break;
         }
 
+        //if ad have passed expiration time dont show 
+        if(core::config('advertisement.expire_date') > 0)
+        {
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
+        }
+
         $ads = $ads->limit(Theme::get('num_home_latest_ads', 4))->cached()->find_all();
         //die(print_r($ads));
 		$this->ads = $ads;
