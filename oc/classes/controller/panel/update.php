@@ -241,109 +241,83 @@ class Controller_Panel_Update extends Auth_Controller {
     public function action_latest()
     {
       
-        $versions = core::config('versions');
-        $download_link = $versions[0]['download'];
-        $version = key($versions);
+        $versions = core::config('versions'); //loads OC software version array 
+        $download_link = $versions[key($versions)]['download']; //get latest download link
+        $version = key($versions); //get latest version
 
-      //@todo do a walidation of downloaded file and if its downloaded, trow error if something is worong
-      // review all to be automatic
+//@todo do a walidation of downloaded file and if its downloaded, trow error if something is worong
+// review all to be automatic
 
-        $zip_file = "https://github.com/open-classifieds/openclassifieds2/archive/2.0.7.zip"; // URL of download zip file
-      $dir_local = DOCROOT."update"; // update dir 
-      $fname = $dir_local."/2.0.7.zip";
-      
-      //check if exists file name
-      if (file_exists($fname)) 
-      { 
-        unlink($fname); 
-      }
-      //create dir if doesnt exists
-      if (!is_dir($dir_local)) 
-      { 
-        mkdir($dir_local, 0775);
-      }
-      
-      //download file
-      $download = file_put_contents($fname, fopen($zip_file, 'r'));
-
-      //unpack zip
-      $zip = new ZipArchive;
-
-      // open zip file, and extract to dir
-      if ($zip_open = $zip->open($fname)) 
-      {
-          $zip->extractTo($dir_local);
-          $zip->close();
-      } 
-      else 
-      {
-          Alert::set(Alert::ALERT, $fname.' '.__('Zip file faild to extract, please try again.'));
-          $this->request->redirect(Route::url('oc-panel',array('controller'=>'update', 'action'=>'index')));
-      }
-
-      //file list to be replaced
-      //move specific files
-      $list = array('/oc/config/routes.php','/oc/classes/','/oc/modules/','/oc/vendor/','/themes/','/languages/');
-
-      // function that copies files/folders recursively 
-      // copy a directory and all subdirectories and files (recursive) 
-      // void recurse_copy( str 'source directory', str 'destination directory' [, bool 'overwrite existing files'] ) 
-      function recurse_copy($basePath, $source, $dest, $overwrite = false){ 
-          if(!is_dir($basePath . $dest)) //Lets just make sure our new folder is already created. Alright so its not efficient to check each time... bite me 
-          mkdir($basePath . $dest); 
-          if($handle = opendir($basePath . $source)){        // if the folder exploration is sucsessful, continue 
-              while(false !== ($file = readdir($handle))){ // as long as storing the next file to $file is successful, continue 
-                  if($file != '.' && $file != '..'){ 
-                      $path = $source . '/' . $file; 
-                      if(is_file($basePath . $path)){ 
-                          if(!is_file($basePath . $dest . '/' . $file) || $overwrite) 
-                          if(!@copy($basePath . $path, $basePath . $dest . '/' . $file)){ 
-                              echo '<font color="red">File ('.$path.') could not be copied, likely a permissions problem.</font>'; 
-                          } 
-                      } elseif(is_dir($basePath . $path)){ 
-                          if(!is_dir($basePath . $dest . '/' . $file)) 
-                          mkdir($basePath . $dest . '/' . $file); // make subdirectory before subdirectory is copied 
-                          recurse_copy($basePath, $path, $dest . '/' . $file, $overwrite); //recurse! 
-                      } 
-                  } 
-              } 
-              closedir($handle); 
-          } 
-      }
-      
-      
-      foreach ($list as $root) {
+        $update_src_dir = DOCROOT."update"; // update dir 
+        $fname = $update_src_dir."/".$version.".zip"; //full file name
+        $folder_prefix = 'openclassifieds2-';
+        $dest_dir = DOCROOT; //destination directory
         
-        if(is_file($dir_local.'/openclassifieds2-2.0.7'.$root))
-          copy($dir_local.'/openclassifieds2-2.0.7'.$root, DOCROOT.$root);
-        elseif(is_dir($dir_local.'/openclassifieds2-2.0.7'.$root))
-          recurse_copy(DOCROOT, 'update/openclassifieds2-2.0.7'.$list[4], $list[4], TRUE);   
-      }
-      
-      //call update actions 203,205,206,207 
-      $this->action_203();
-      $this->action_205();
-      $this->action_206();
-      $this->action_207();
-      
-      //delete file when all finished
-      function rrmdir($dir_delete) {
-        if (is_dir($dir_delete)) 
+        //check if exists file name
+        if (file_exists($fname))  
+            unlink($fname); 
+
+        //create dir if doesnt exists
+        if (!is_dir($update_src_dir))  
+            mkdir($update_src_dir, 0775); 
+          
+        //download file
+        $download = file_put_contents($fname, fopen($download_link, 'r'));
+
+        //unpack zip
+        $zip = new ZipArchive;
+        // open zip file, and extract to dir
+        if ($zip_open = $zip->open($fname)) 
         {
-           $objects = scandir($dir_delete);
-           foreach ($objects as $object) 
-           {
-             if ($object != "." && $object != "..") 
-             {
-               if (filetype($dir_delete."/".$object) == "dir") rrmdir($dir_delete."/".$object); else unlink($dir_delete."/".$object);
+            $zip->extractTo($update_src_dir);
+            $zip->close();  
+        }   
+        else 
+        {
+            Alert::set(Alert::ALERT, $fname.' '.__('Zip file faild to extract, please try again.'));
+            $this->request->redirect(Route::url('oc-panel',array('controller'=>'update', 'action'=>'index')));
+        }
+
+        //files to be replaced / move specific files
+        $list = array('/oc/config/routes.php','/oc/classes/','/oc/modules/','/oc/vendor/','/themes/','/languages/');
+
+
+//TESTED UNTIL HERE!!!
+        File::copy($update_src_dir.'/'.$folder_prefix.$version.$list[4], $dest_dir.$list[4], TRUE);
+          
+        d($fname.' '.$update_src_dir);
+          foreach ($list as $root) {
+            
+            if(is_file($update_src_dir.'/openclassifieds2-2.0.7'.$root))
+              copy($update_src_dir.'/openclassifieds2-2.0.7'.$root, DOCROOT.$root);
+            elseif(is_dir($update_src_dir.'/openclassifieds2-2.0.7'.$root))
+              recurse_copy(DOCROOT, 'update/openclassifieds2-2.0.7'.$list[4], $list[4], TRUE);   
+          }
+          
+          //call update actions 203,205,206,207 
+          $this->action_203();
+          $this->action_205();
+          $this->action_206();
+          $this->action_207();
+          
+          //delete file when all finished
+          function rrmdir($dir_delete) {
+            if (is_dir($dir_delete)) 
+            {
+               $objects = scandir($dir_delete);
+               foreach ($objects as $object) 
+               {
+                 if ($object != "." && $object != "..") 
+                 {
+                   if (filetype($dir_delete."/".$object) == "dir") rrmdir($dir_delete."/".$object); else unlink($dir_delete."/".$object);
+                 }
+               }
+               reset($objects);
+               rmdir($dir_delete);
              }
-           }
-           reset($objects);
-           rmdir($dir_delete);
-         }
-      }
-      rrmdir($dir_local);
-// d($download);
+          }
+          rrmdir($update_src_dir);
+    // d($download);
      
     }
 
