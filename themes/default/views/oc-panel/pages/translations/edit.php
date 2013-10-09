@@ -1,6 +1,6 @@
 <div class="page-header">
     <h1><?=__('Translations')?> <?=$edit_language?></h1>
-    <p><?=__('Here you can modify any text you find in your web.')?><a href="http://open-classifieds.com/2013/08/16/how-to-change-texts/" target="_blank"><?=__('Read more')?></p>
+    <p><?=__('Here you can modify any text you find in your web.')?><a href="http://open-classifieds.com/2013/08/16/how-to-change-texts/" target="_blank"><?=__('Read more')?></a></p>
 </div>
 
 <form enctype="multipart/form-data" class="form form-horizontal" accept-charset="utf-8" method="post" action="<?=Request::current()->url()?>">
