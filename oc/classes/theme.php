@@ -85,7 +85,7 @@ class Theme {
                             $min.=file_get_contents(self::theme_folder($theme).'/'.$file);
                     }
 
-                    Core::fwrite($file_name,JSMin::minify($min));
+                    File::write($file_name,JSMin::minify($min));
                 }
 
                 $ret .= HTML::script(self::public_path('js/'.$js_minified_name,$theme), NULL, TRUE);
@@ -158,7 +158,7 @@ class Theme {
 
                 }
 
-                Core::fwrite($file_name,Minify_CSS_Compressor::process($min));
+                File::write($file_name,Minify_CSS_Compressor::process($min));
             }
 
             $ret .= HTML::style(self::public_path('css/'.$css_minified_name,$theme), array('media' => 'screen'));
