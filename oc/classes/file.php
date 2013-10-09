@@ -11,10 +11,6 @@
 
 class File extends Kohana_File{
     
-    
-	// function that copies files/folders recursively 
-      // copy a directory and all subdirectories and files (recursive) 
-      // void recurse_copy( str 'source directory', str 'destination directory' [, bool 'overwrite existing files'] ) 
     /**
      * copies files/directories recursively
      * @param  string  $source    from
