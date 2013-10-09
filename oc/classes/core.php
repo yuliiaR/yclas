@@ -117,43 +117,7 @@ class Core {
             return Cache::instance()->set($name,$data, $lifetime);
     }
 
-    /**
-     * write to file
-     * @param $filename fullpath file name
-     * @param $content
-     * @return boolean
-     */
-    public static function fwrite($filename,$content)
-    {
-        $file = fopen($filename, 'w');
-        if ($file)
-        {//able to create the file
-            fwrite($file, $content);
-            fclose($file);
-            return TRUE;
-        }
-        return FALSE;   
-    }
     
-    /**
-     * read file content
-     * @param $filename fullpath file name
-     * @return $string or false if not found
-     */
-    public static function fread($filename)
-    {
-        if (is_readable($filename))
-        {
-            $file = fopen($filename, 'r');
-            if ($file)
-            {//able to read the file
-                $data = fread($file, filesize($filename));
-                fclose($file);
-                return $data;
-            }
-        }
-        return FALSE;   
-    }
 
 
     /**
@@ -222,7 +186,7 @@ class Core {
                 $content = "<?php defined('SYSPATH') or die('No direct script access.');
                 return ".var_export($versions,TRUE).";";// die($content);
                 //@todo check file permissions?
-                core::fwrite($version_file, $content);
+                File::write($version_file, $content);
             }
             
         }
