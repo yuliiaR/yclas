@@ -17,7 +17,6 @@ class Controller_Panel_Update extends Auth_Controller {
         //force update check reload
         if (Core::get('reload')==1 )
             Core::get_updates(TRUE);
-            
         
         $versions = core::config('versions');
 
@@ -36,6 +35,7 @@ class Controller_Panel_Update extends Auth_Controller {
             if (key($versions)!=core::version)
                 Alert::set(Alert::ALERT,__('You are not using latest version of OC, please update.'));
             
+
             //pass to view from local versions.php         
             $this->template->content = View::factory('oc-panel/pages/tools/versions',array('versions'       =>$versions,
                                                                                            'latest_version' =>key($versions)));
@@ -238,13 +238,17 @@ class Controller_Panel_Update extends Auth_Controller {
      * This function will upgrate DB that didn't existed in verisons below 2.0.6
      * changes added: config for custom field
      */
-    public function action_208()
+    public function action_latest()
     {
       
+        $versions = core::config('versions');
+        $download_link = $versions[0]['download'];
+        $version = key($versions);
+
       //@todo do a walidation of downloaded file and if its downloaded, trow error if something is worong
       // review all to be automatic
 
-      $zip_file = "https://github.com/open-classifieds/openclassifieds2/archive/2.0.7.zip"; // URL of download zip file
+        $zip_file = "https://github.com/open-classifieds/openclassifieds2/archive/2.0.7.zip"; // URL of download zip file
       $dir_local = DOCROOT."update"; // update dir 
       $fname = $dir_local."/2.0.7.zip";
       
