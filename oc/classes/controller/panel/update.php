@@ -217,6 +217,9 @@ class Controller_Panel_Update extends Auth_Controller {
         $configs = array(array('config_key'     =>'fields',
                                'group_name'     =>'advertisement', 
                                'config_value'   =>''),
+                         array('config_key'     =>'alert_terms',
+                               'group_name'     =>'general', 
+                               'config_value'   =>''),
                          );
 
         // returns TRUE if some config is saved 

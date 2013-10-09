@@ -4,13 +4,7 @@
 		<div class="page-header">
 			<h1><?=__('Edit Advertisement')?></h1>
 		</div>
-		<!-- Fields coming from custom fields feature -->
-		<?if(isset($fields)):?>
-			<?if (Theme::get('premium')!=1):?>
-				<pre><span class="label label-info"><?=__('Heads Up!')?></span><?=__('Custom fields feature is premium only!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?></pre>
-			<?endif?>
-		<?endif?>
-		<!-- /endcustom fields -->
+		
 		<!-- PAYPAL buttons to featured and to top -->
 		<?if((core::config('payment.pay_to_go_on_top') > 0  
 				&& core::config('payment.to_top') != FALSE )

@@ -385,6 +385,24 @@
 				))?> 
 			</div>
 		</div>
+		<?$pages = array(''=>__('Deactivated'))?>
+		<?foreach (Model_Content::get_pages() as $key => $value) {
+			$pages[$value->seotitle] = $value->title;
+		}?>
+		<div class="control-group">
+			<?= FORM::label($forms['alert_terms']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/13/how_to_add_pages/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label', 'for'=>$forms['alert_terms']['key']))?>
+			<div class="controls">
+				<?= FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array( 
+				'class' => 'tips', 
+				'id' => $forms['alert_terms']['key'], 
+				'data-content'=> __("If you choose to use alert terms, you can select page you want to render. And to edit content, select link 'Content' on your admin panel sidebar. Find page named <name_you_specified> click 'Edit'. In section 'Description' add content that suits you."),
+				'data-trigger'=>"hover",
+				'data-placement'=>"right",
+				'data-toggle'=>"popover",
+				'data-original-title'=>__("Accept Terms Alert"),
+				))?> 
+			</div>
+		</div>
 		<div class="form-actions">
 			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
 		</div>

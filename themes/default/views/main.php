@@ -39,7 +39,11 @@
   </head>
 
   <body data-spy="scroll" data-target=".subnav" data-offset="50">
-  
+
+    <?if(!isset($_COOKIE['accept_terms']) AND core::config('general.alert_terms') != ''):?>
+        <?=View::factory('alert_terms')?>
+    <?endif?>
+
 	<?=$header?>
     <div class="container">
         <div class="row">

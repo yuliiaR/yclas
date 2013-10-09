@@ -3,13 +3,7 @@
 <div class="page-header">
 	<h1><?=__('Advanced Search')?></h1>
 </div>
-<!-- Fields coming from custom fields feature -->
-<?if(isset($fields)):?>
-    <?if (Theme::get('premium')!=1):?>
-        <pre><span class="label label-info"><?=__('Heads Up!')?></span><?=__('Custom fields feature is premium only!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?></pre>
-    <?endif?>
-<?endif?>
-<!-- /endcustom fields -->
+
 <div class="well advise clearfix">
 	<?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>''))?>
 	<fieldset>

@@ -11,14 +11,6 @@
 	<div class="page-header">
 		<h1><?= $ad->title;?></h1>
 	</div>
-	
-	<!-- Fields coming from custom fields feature -->
-	<?if($custom_fields != FALSE):?>
-		<?if (Theme::get('premium')!=1):?>
-			<pre><span class="label label-info"><?=__('Heads Up!')?></span><?=__('Custom fields feature is premium only!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?></pre>
-		<?endif?>
-	<?endif?>
-	<!-- /endcustom fields -->
 
 	<!-- PAYPAL buttons to featured and to top -->
 	<?if ((Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == 10 ) OR 
