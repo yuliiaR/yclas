@@ -33,7 +33,9 @@ class Controller_Panel_Update extends Auth_Controller {
         
             //check if we have latest version of OC
             if (key($versions)!=core::version)
-                Alert::set(Alert::ALERT,__('You are not using latest version of OC, please update.'));
+                Alert::set(Alert::ALERT,__('You are not using latest version of OC, please update.').
+                    '<br/><br/><a class="btn btn-primary update_btn" href="'.Route::url('oc-panel',array('controller'=>'update','action'=>'latest')).'">
+                '.__('Update').'</a>');
             
 
             //pass to view from local versions.php         
@@ -74,13 +76,6 @@ class Controller_Panel_Update extends Auth_Controller {
         $return_conf = Model_Config::config_array($configs);
         $return_cont = Model_Content::content_array($contents);
 
-        // message
-        if($return_conf OR $return_cont)
-            Alert::set(Alert::SUCCESS,__('Updated'));
-        else
-            Alert::set(Alert::INFO,__('Nothing to Update'));
-
-        //$this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
     }
 
     /**
@@ -145,14 +140,6 @@ class Controller_Panel_Update extends Auth_Controller {
         
         // remove INDEX from content table
         mysql_query("ALTER TABLE `".$prefix."content` DROP INDEX `".$prefix."content_UK_seotitle`");
-        
-        // message
-        if($return_conf OR $return_cont)
-            Alert::set(Alert::SUCCESS,__('Updated'));
-        else
-            Alert::set(Alert::INFO,__('Nothing to Update'));
-
-        //$this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
     }
 
     /**
@@ -178,13 +165,7 @@ class Controller_Panel_Update extends Auth_Controller {
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
 
-        // message
-        if($return_conf)
-            Alert::set(Alert::SUCCESS,__('Updated'));
-        else
-            Alert::set(Alert::INFO,__('Nothing to Update'));
-
-        //$this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
+        
     }
 
     // public function action_seoname_user()
@@ -225,13 +206,20 @@ class Controller_Panel_Update extends Auth_Controller {
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
 
-        // message
-        if($return_conf)
-            Alert::set(Alert::SUCCESS,__('Updated'));
-        else
-            Alert::set(Alert::INFO,__('Nothing to Update'));
-
-        // $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
+        //call update actions 203,205,206,207 
+        try {
+        
+            $this->action_203();
+            $this->action_205();
+            $this->action_206();
+            
+            Alert::set(Alert::SUCCESS, __('Updated'));
+            $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
+        
+        } catch (Exception $e) {
+            Alert::set(Alert::INFO, __('Something went wrong updating your databases. '));
+            $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
+        }
     }
 
     /**
@@ -245,8 +233,8 @@ class Controller_Panel_Update extends Auth_Controller {
         $download_link = $versions[key($versions)]['download']; //get latest download link
         $version = key($versions); //get latest version
 
-//@todo do a walidation of downloaded file and if its downloaded, trow error if something is worong
-// review all to be automatic
+    //@todo do a walidation of downloaded file and if its downloaded, trow error if something is worong
+    // review all to be automatic
 
         $update_src_dir = DOCROOT."update"; // update dir 
         $fname = $update_src_dir."/".$version.".zip"; //full file name
@@ -279,46 +267,35 @@ class Controller_Panel_Update extends Auth_Controller {
         }
 
         //files to be replaced / move specific files
-        $list = array('/oc/config/routes.php','/oc/classes/','/oc/modules/','/oc/vendor/','/themes/','/languages/');
-
-
-//TESTED UNTIL HERE!!!
-        File::copy($update_src_dir.'/'.$folder_prefix.$version.$list[4], $dest_dir.$list[4], TRUE);
-          
-        d($fname.' '.$update_src_dir);
-          foreach ($list as $root) {
+        $copy_list = array('oc/config/routes.php',
+                          'oc/classes/',
+                          'oc/modules/',
+                          'oc/vendor/',
+                          'themes/',
+                          'languages/');
+        try 
+        {
             
-            if(is_file($update_src_dir.'/openclassifieds2-2.0.7'.$root))
-              copy($update_src_dir.'/openclassifieds2-2.0.7'.$root, DOCROOT.$root);
-            elseif(is_dir($update_src_dir.'/openclassifieds2-2.0.7'.$root))
-              recurse_copy(DOCROOT, 'update/openclassifieds2-2.0.7'.$list[4], $list[4], TRUE);   
-          }
-          
-          //call update actions 203,205,206,207 
-          $this->action_203();
-          $this->action_205();
-          $this->action_206();
-          $this->action_207();
-          
-          //delete file when all finished
-          function rrmdir($dir_delete) {
-            if (is_dir($dir_delete)) 
-            {
-               $objects = scandir($dir_delete);
-               foreach ($objects as $object) 
-               {
-                 if ($object != "." && $object != "..") 
-                 {
-                   if (filetype($dir_delete."/".$object) == "dir") rrmdir($dir_delete."/".$object); else unlink($dir_delete."/".$object);
-                 }
-               }
-               reset($objects);
-               rmdir($dir_delete);
-             }
-          }
-          rrmdir($update_src_dir);
-    // d($download);
-     
+            foreach ($copy_list as $dest_path) 
+            { 
+                $source = $update_src_dir.'/'.$folder_prefix.$version.'/'.$dest_path;
+                $dest = $dest_dir.$dest_path;
+                
+                File::copy($source, $dest, TRUE);
+            }
+              
+            //delete file when all finished
+            File::delete($update_src_dir);
+            $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>str_replace('.', '', $version))));
+
+        } 
+        catch (Exception $e) 
+        {
+            Alert::set(Alert::ERROR, __('Something went wrong, try running update again.'));
+            $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
+    
+        }
+        
     }
 
     

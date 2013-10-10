@@ -21,8 +21,16 @@ class File extends Kohana_File{
     public static function copy($source, $dest, $overwrite = false)
     { 
         //Lets just make sure our new folder is already created. Alright so its not efficient to check each time... bite me
-        if(!is_dir($dest))  
-            mkdir($dest); 
+        if(is_file($dest))
+        {
+            copy($source, $dest);
+            return;
+        }
+        
+        if(!is_dir($dest))
+            mkdir($dest);
+
+             
 
         $objects = scandir($source);
         foreach ($objects as $object) 

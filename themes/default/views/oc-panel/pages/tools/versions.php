@@ -21,15 +21,10 @@
 <?foreach ($versions as $version=>$values):?> 
 <tr>
         <td>
-            
             <?=$version?>
             <?=($version==$latest_version)? '<span class="label label-success">'.__('Latest').'</span>':''?>
             <?=($version==core::version)? '<span class="label label-info">'.__('Current').'</span>':''?>
             <br /><br />
-            <?if(method_exists('Controller_Panel_Update','action_'.str_replace('.', '', $version))):?>
-                <a class="btn btn-primary update_btn" href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>str_replace('.', '', $version)))?>">
-                <?=__('Update')?></a>
-            <?endif?>
         </td>
         
     <td>
