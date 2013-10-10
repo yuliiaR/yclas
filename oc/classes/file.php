@@ -79,7 +79,8 @@ class File extends Kohana_File{
                         unlink($file.'/'.$object);
                 }
             }
-            rmdir($file);
+            reset($objects);
+            @rmdir($file);
         }
         elseif(is_file($file))
             unlink($file);

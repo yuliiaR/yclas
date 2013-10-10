@@ -222,7 +222,7 @@ class Controller_Panel_Update extends Auth_Controller {
      */
     public function action_latest()
     {
-      
+        
         $versions = core::config('versions'); //loads OC software version array 
         $download_link = $versions[key($versions)]['download']; //get latest download link
         $version = key($versions); //get latest version
