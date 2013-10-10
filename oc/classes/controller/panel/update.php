@@ -207,19 +207,13 @@ class Controller_Panel_Update extends Auth_Controller {
         $return_conf = Model_Config::config_array($configs);
 
         //call update actions 203,205,206,207 
-        try {
-        
-            $this->action_203();
-            $this->action_205();
-            $this->action_206();
+
+        $this->action_203();
+        $this->action_205();
+        $this->action_206();
             
-            Alert::set(Alert::SUCCESS, __('Updated'));
-            $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
-        
-        } catch (Exception $e) {
-            Alert::set(Alert::INFO, __('Something went wrong updating your databases. '));
-            $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
-        }
+        Alert::set(Alert::SUCCESS, __('Updated'));
+        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
     }
 
     /**
@@ -273,29 +267,19 @@ class Controller_Panel_Update extends Auth_Controller {
                           'oc/vendor/',
                           'themes/',
                           'languages/');
-        try 
-        {
+      
+        foreach ($copy_list as $dest_path) 
+        { 
+            $source = $update_src_dir.'/'.$folder_prefix.$version.'/'.$dest_path;
+            $dest = $dest_dir.$dest_path;
             
-            foreach ($copy_list as $dest_path) 
-            { 
-                $source = $update_src_dir.'/'.$folder_prefix.$version.'/'.$dest_path;
-                $dest = $dest_dir.$dest_path;
-                
-                File::copy($source, $dest, TRUE);
-            }
-              
-            //delete file when all finished
-            File::delete($update_src_dir);
-            $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>str_replace('.', '', $version))));
-
-        } 
-        catch (Exception $e) 
-        {
-            Alert::set(Alert::ERROR, __('Something went wrong, try running update again.'));
-            $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
-    
+            File::copy($source, $dest, TRUE);
         }
-        
+          
+        //delete file when all finished
+        File::delete($update_src_dir);
+        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>str_replace('.', '', $version))));
+
     }
 
     
