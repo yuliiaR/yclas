@@ -77,9 +77,13 @@
 	    <?if(core::config('payment.paypal_seller') AND $ad->price != NULL AND $ad->price != 0):?>
 	    	<a class="btn btn-primary" type="button" type="post" href="https://www.paypal.com/cgi-bin/webscr?business=<?=$ad->user->email?>&cmd=_xclick&currency_code=<?=core::config("payment.paypal_currency")?>&amount=<?=number_format($ad->price, 2, ".",'')?>&item_name=<?=$ad->title?>"><?=__('Buy Now')?></a>
 	    <?endif?>
+
+        <a class="btn btn-primary" target="_blank" 
+        href="http://panel.adserum.com/new-advertisement.html?name=<?=$ad->user->name?>&title=<?=$ad->title?>&desc=<?=$ad->description?>&url=<?=core::config('general.base_url')?><?=substr($_SERVER['REQUEST_URI'],1)?>&durl=<?=core::config('general.base_url')?>">
+        <i class="icon-globe"></i> <?=__('Promote at Adserum')?></a>
         
         <?if ($ad->can_contact()):?>
-		<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></button>
+		<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="icon-envelope"></i> <?=__('Send Message')?></button>
 
             <?if (core::config('advertisement.phone')==1 AND strlen($ad->phone)>1):?>
                 <a class="btn btn-warning" href="tel:<?=$ad->phone?>"><?=$ad->phone?></a>

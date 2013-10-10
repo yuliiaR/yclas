@@ -2,16 +2,19 @@
 
 <div class="page-header">
 	<h1><?=__('Custom Fields')?></h1>
+
+    <?if (Theme::get('premium')!=1):?>
+        <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
+            <?=__('Custom fields are only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
+            <a class="btn btn-success pull-right" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>"><?=__('Browse Themes')?></a>
+        </p>
+    <?endif?>
+
     <p><?=__('Advertisements Custom Fields')?></a></p>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">
   <?=__('New field')?></a>
 </div>
 
-<!-- Fields coming from custom fields feature -->
-    <?if (Theme::get('premium')!=1):?>
-      <pre><span class="label label-info"><?=__('Heads Up!')?></span><?=__('Custom fields feature is premium only!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?></pre>
-    <?endif?>
-<!-- /endcustom fields -->
 
 <ol class='plholder span6' id="ol_1" data-id="1">
 <?if (is_array($fields)):?>
@@ -38,7 +41,9 @@
 
 <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'saveorder'))?>'></span>
 
+
 <div class="page-header pull-left">
+    <hr>
   <h1><?=__('Optional Fields')?></h1>
     <p><?=__('Optional Advertisement Fields')?></a></p>
 
