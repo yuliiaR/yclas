@@ -31,7 +31,7 @@
 	    <div class="control-group">
 	        <?= FORM::label('location_subscribe', __('Location'), array('class'=>'control-label', 'for'=>'location_subscribe' ))?>
 	        <div class="controls">          
-	            <select name="location_subscribe" id="location_subscribe" class="span2" required>
+	            <select name="location_subscribe[]" id="location_subscribe" class="span2" required>
 	            <option></option>
 	            <?function lolo10($item, $key,$locs){?>
 	            <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
@@ -41,7 +41,7 @@
 	                    </optgroup>
 	                <?endif?>
 	            <?}
-	            $loc_order = $widget->loc_order_items; 
+	            $loc_order = $widget->loc_order_Witems; 
 	        	array_walk($loc_order , 'lolo10',$widget->loc_items);?>
 	            </select>
 	        </div>
