@@ -24,8 +24,7 @@
     //chosen fix
     var settings = $.data($form[0], 'validator').settings;
     settings.ignore += ':not(.chzn-done)'; // post_new location(any chosen) texarea
-    settings.ignore += ':not(#description)'; // post_new description texarea
-    settings.ignore += ':not(.cf_textarea_fields)';//post_new texarea custom fields
+    settings.ignore += ':not(.sceditor-container)'; // post_new description texarea
     // end VALIDATION
 
     //datepicker in case date field exists
