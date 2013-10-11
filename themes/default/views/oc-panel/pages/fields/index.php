@@ -3,6 +3,7 @@
 <div class="page-header">
 	<h1><?=__('Custom Fields')?></h1>
 
+
     <?if (Theme::get('premium')!=1):?>
         <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
             <?=__('Custom fields are only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
@@ -10,7 +11,7 @@
         </p>
     <?endif?>
 
-    <p><?=__('Advertisements Custom Fields')?></a></p>
+    <a target='_blank' href='http://open-classifieds.com/2013/10/11/how-to-create-custom-fields/'><p><?=__('AdvertisementS Custom Fields')?></p></a>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">
   <?=__('New field')?></a>
 </div>

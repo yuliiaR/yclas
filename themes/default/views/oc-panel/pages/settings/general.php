@@ -17,7 +17,7 @@
 		
 		
         <div class="control-group">
-            <?= FORM::label($forms['maintenance']['key'], __('Maintenance Mode'), array('class'=>'control-label', 'for'=>$forms['maintenance']['key']))?>
+            <?= FORM::label($forms['maintenance']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/11/activate-access-terms-alert/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label', 'for'=>$forms['maintenance']['key']))?>
             <div class="controls">
                 <?= FORM::select($forms['maintenance']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['maintenance']['value'], array(
                 'placeholder' => "TRUE or FALSE", 
@@ -390,7 +390,7 @@
 			$pages[$value->seotitle] = $value->title;
 		}?>
 		<div class="control-group">
-			<?= FORM::label($forms['alert_terms']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/13/how_to_add_pages/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label', 'for'=>$forms['alert_terms']['key']))?>
+			<?= FORM::label($forms['alert_terms']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/11/activate-access-terms-alert/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label', 'for'=>$forms['alert_terms']['key']))?>
 			<div class="controls">
 				<?= FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array( 
 				'class' => 'tips', 
