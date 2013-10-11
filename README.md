@@ -31,10 +31,8 @@ Please read CONTRIBUTING.md
 * Twitter Bootstrap http://twitter.github.com/bootstrap/
 * Bootswatch http://bootswatch.com/
 * Chosen https://github.com/harvesthq/chosen
-* jqBootstrapValidation http://ReactiveRaven.github.com/jqBootstrapValidation/
 * SCEditor https://github.com/samclarke/SCEditor
 * jQuery http://jquery.com/
 * jQuery Sortable http://johnny.github.io/jquery-sortable/
 * Bootstrap Image Gallery https://github.com/blueimp/Bootstrap-Image-Gallery
 * Blacksmith https://github.com/themusicman/Blacksmith
-

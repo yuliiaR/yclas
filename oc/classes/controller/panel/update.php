@@ -168,25 +168,6 @@ class Controller_Panel_Update extends Auth_Controller {
         
     }
 
-    // public function action_seoname_user()
-    // {
-    //   $user = new Model_User();
-    //   $users = $user->find_all();
-
-    //   foreach ($users as $user) {
-    //     if($user->seoname == NULL)
-    //     {
-          
-    //       try {
-    //         $user->seoname = $user->gen_seo_title($user->name);
-    //         $user->save();
-    //       } catch (Exception $e) {
-            
-    //       }
-    //     }
-    //   }
-    // }
-
 
     /**
      * This function will upgrate DB that didn't existed in verisons below 2.0.6
@@ -211,6 +192,10 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->action_203();
         $this->action_205();
         $this->action_206();
+
+        //clean cache
+        Cache::instance()->delete_all();
+        Theme::delete_minified();
             
         Alert::set(Alert::SUCCESS, __('Updated'));
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
@@ -265,8 +250,11 @@ class Controller_Panel_Update extends Auth_Controller {
                           'oc/classes/',
                           'oc/modules/',
                           'oc/vendor/',
+                          'oc/bootstrap.php',
                           'themes/',
-                          'languages/');
+                          'languages/',
+                          'index.php',
+                          'README.md',);
       
         foreach ($copy_list as $dest_path) 
         { 

@@ -18,7 +18,7 @@
 		<p><b><?=__('Last Login')?>: </b><?= Date::format($user->last_login, core::config('general.date_format'))?></p>
 
 		<!-- Popup contact form -->
-			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="icon-envelope"></i> <?=__('Send Message')?></button>
+			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="icon-envelope"></i> <i class="icon-envelope"></i> <?=__('Send Message')?></button>
 			<div id="contact-modal" class="modal hide fade">
 	        	<div class="modal-header">
 	         		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>

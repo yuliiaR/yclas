@@ -3,11 +3,11 @@
   '2.0.7' => 
   array (
     'codename' => 'Reoc',
-    'released' => '2013-10-xx',
-    'blog' => 'http://open-classifieds.com/2013/xxxx/open-classifieds-2-0-7/',
+    'released' => '2013-10-11',
+    'blog' => 'http://open-classifieds.com/2013/10/11/open-classifieds-2-0-7/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.0.7',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=12&state=closed',
-    'download' => 'https://github.com/open-classifieds/openclassifieds2/archive/2.0.7.zip',
+    'download' => 'http://j.mp/oc_207',
   ),
     
   '2.0.6' => 
@@ -17,7 +17,7 @@
     'blog' => 'http://open-classifieds.com/2013/09/05/open-classifieds-2-0-6/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.0.6',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=11&state=closed',
-    'download' => 'https://github.com/open-classifieds/openclassifieds2/archive/2.0.6.zip',
+    'download' => 'http://j.mp/oc_206',
   ),
   '2.0.5' => 
   array (
