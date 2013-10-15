@@ -3,14 +3,16 @@
 <div class="page-header">
 	<h3><?= __('User Profile')?></h3>
 </div>
+<?if(is_file(DOCROOT."images/users/".$user->id_user.".png")):?>
 <div class="row">
 	<div class="span3">
 		<a class="thumbnail">
-		
-			<img src="<?=URL::base('http')?>images/users/<?=$user->id_user?>.png" class="img-rounded" alt="" width='200px' height='200px'>
+			<img src="<?=URL::base('http')?>images/users/<?=$user->id_user?>.png" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
 		</a>
 	</div>
 </div>
+
+	<?endif?>
 <div class="page-header">
 	<article class="list well clearfix">
 		<h3><?=$user->name?></h3>
@@ -18,7 +20,7 @@
 		<p><b><?=__('Last Login')?>: </b><?= Date::format($user->last_login, core::config('general.date_format'))?></p>
 
 		<!-- Popup contact form -->
-			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="icon-envelope"></i> <i class="icon-envelope"></i> <?=__('Send Message')?></button>
+			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="icon-envelope"></i> <?=__('Send Message')?></button>
 			<div id="contact-modal" class="modal hide fade">
 	        	<div class="modal-header">
 	         		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
