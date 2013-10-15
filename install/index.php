@@ -94,7 +94,7 @@ include 'install.php';
             	<div class="well sidebar-nav">
             	
             		<ul class="nav nav-list">
-            			<li class="nav-header"><?php echo __("Requirements")?></li>
+            			<li class="nav-header"><?php echo __("Requirements")?> <?php echo VERSION?></li>
             			<li class="divider"></li>
             			
             			<?php foreach ($checks as $name => $values):

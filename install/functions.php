@@ -135,12 +135,8 @@ function oc_requirements()
                                     'mandatory' => TRUE,
                                     'result'    => (is_dir(APPPATH) AND is_file(APPPATH.'bootstrap'.EXT))
                                     ),
-                'PHP'       =>array('message'   => 'PHP 5.2.4 or newer required, this version is '. PHP_VERSION,
+                'PHP'   =>array('message'   => 'PHP 5.3 or newer required, this version is '. PHP_VERSION,
                                     'mandatory' => TRUE,
-                                    'result'    => version_compare(PHP_VERSION, '5.2.4', '>=')
-                                    ),
-                'PHP 5.3'   =>array('message'   => 'PHP 5.3 or newer recommended, this version is '. PHP_VERSION,
-                                    'mandatory' => FALSE,
                                     'result'    => version_compare(PHP_VERSION, '5.3', '>=')
                                     ),
                 'mod_rewrite'=>array('message'  => $mod_msg,
@@ -203,11 +199,10 @@ function oc_requirements()
                                     'mandatory' => TRUE,
                                     'result'    => (function_exists('mysql_connect'))
                                     ),
-                /*'PDO'       =>array('message'   => 'OC requires the <a href="http://php.net/pdo">PDO</a> to support additional databases.',
-                                    'mandatory' => TRUE,
-                                    'result'    =>  (class_exists('PDO'))
-                                    ),*/
-
+                'ZipArchive'   =>array('message'   => 'PHP module zip not installed. You will need this to auto update the software.',
+                                    'mandatory' => FALSE,
+                                    'result'    => class_exists('ZipArchive')
+                                    ),
                 );
 }
 
