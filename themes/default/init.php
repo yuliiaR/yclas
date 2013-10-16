@@ -20,7 +20,7 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
  */
 
 Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.2/cerulean/bootstrap.min.css' => 'screen',
-                        'css/styles.css?v=1.6' => 'screen',
+                        'css/styles.css?v=1.8' => 'screen',
                         'css/slider.css' => 'screen',
                         'http://cdn.jsdelivr.net/chosen/0.9.12/chosen.css' => 'screen',
                         'css/jquery.sceditor.min.css' => 'screen', 
@@ -37,7 +37,7 @@ Theme::$scripts['footer']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
                                     'js/load-image.min.js',
                                     'js/bootstrap-image-gallery.min.js',
                                     'js/jquery.validate.min.js',
-                                    'js/theme.init.js?v=1.7',
+                                    'js/theme.init.js?v=1.8',
                                     );
 
 
