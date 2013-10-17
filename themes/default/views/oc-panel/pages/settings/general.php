@@ -403,6 +403,21 @@
 				))?> 
 			</div>
 		</div>
+		<div class="control-group">
+            <?= FORM::label($forms['search_by_description']['key'], __("Include search by description"), array('class'=>'control-label', 'for'=>$forms['search_by_description']['key']))?>
+            <div class="controls">
+                <?= FORM::select($forms['search_by_description']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['search_by_description']['value'], array(
+                'placeholder' => "TRUE or FALSE", 
+                'class' => 'tips', 
+                'id' => $forms['search_by_description']['key'], 
+                'data-content'=> __("Once set to TRUE, enables search to look for key words in description"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Include search by description"),
+                ))?> 
+            </div>
+        </div>
 		<div class="form-actions">
 			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn-small btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
 		</div>
