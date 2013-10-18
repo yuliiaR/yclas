@@ -520,6 +520,48 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	}
 
+	public function action_to_top()
+	{
+
+		$id = $this->request->param('id');
+		$param_current_url = $this->request->param('current_url');
+		$format_id = explode('_', $id);
+
+		foreach ($format_id as $id) 
+		{
+			if (isset($id) AND $id !== '')
+			{
+				$element = ORM::factory('ad', $id);
+
+				if ($element->loaded())
+				{
+					$element->published = Date::unix2mysql(time());
+        
+			        try {
+			            $element->save();
+			        } catch (Exception $e) {
+			 	        echo $e;
+			        }
+			    }
+			    else
+				{
+					//throw 404
+					throw new HTTP_Exception_404();
+				}
+			    
+			}
+		}
+		Alert::set(Alert::SUCCESS, __('Advertisement is to top'));
+		
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		else
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+
+	}
+
 	//temporary function until i figure out how to deal with mass mails @TODO EMAIL
 	public function multiple_mails($receivers)
 	{
