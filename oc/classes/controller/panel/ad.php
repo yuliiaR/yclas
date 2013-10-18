@@ -14,7 +14,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->styles 			= array('/http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen');
 		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js'; 
 
-
 		//find all tables 
 		
 		$ads = new Model_Ad();
@@ -36,6 +35,14 @@ class Controller_Panel_Ad extends Auth_Controller {
 					
 		}
 		else $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+		
+		// sort ads by search value
+		if($q = $this->request->query('search'))
+		{
+			$ads = $ads->where('title', 'like', '%'.$q.'%');
+			if(core::config('general.search_by_description') == TRUE)
+	        	$ads = $ads->or_where('description', 'like', '%'.$q.'%');
+		}
 		
 		$res_count = $ads->count_all();
 		if ($res_count > 0)

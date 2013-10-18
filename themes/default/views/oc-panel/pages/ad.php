@@ -15,6 +15,9 @@
 		<? $current_url = Model_Ad::STATUS_PUBLISHED?>
 		<h1><?=__('Advertisements')?></h1>
 		<a target='_blank' href='http://open-classifieds.com/2013/08/29/how-to-manage-advertisements/'><?=__('Read more')?></a>
+		<form id="advert_search" method="GET" class="pull-right" enctype="multipart/form-data">
+		  	<input type="text" name="search" id="search" placeholder="<?=__('Search')?>">
+		</form>
 	<?endif?>
 </div>
 
