@@ -140,7 +140,8 @@ class Paypal {
 						'Malaysian Ringgits (only for Malaysian users)'		=>	'MYR',
 						'Philippine Pesos' 									=>	'PHP',
 						'Taiwan New Dollars' 								=>	'TWD',
-						'Thai Baht' 										=>	'THB'
+						'Thai Baht' 										=>	'THB',
+                        'Russian Ruble'                                     =>  'RUB',
 		);
 
 	}
