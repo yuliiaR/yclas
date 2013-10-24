@@ -13,12 +13,12 @@
 				<?Theme::admin_link(__('Categories'),'category','index','oc-panel','icon-tags')?>
 				<?Theme::admin_link(__('Locations'),'location','index','oc-panel','icon-map-marker')?>
 				<?Theme::admin_link(__('Orders'), 'order','index','oc-panel','icon-shopping-cart')?>
-                <? if($user->id_role==10):?><li class="divider"></li><?endif?>
+                <? if($user->id_role==Model_Role::ROLE_ADMIN):?><li class="divider"></li><?endif?>
 
 				<?Theme::admin_link(__('Content'), 'content','index','oc-panel','icon-file')?>
                 <?Theme::admin_link(__('Translations'), 'translations','index','oc-panel','icon-globe')?>
                 <?Theme::admin_link(__('Newsletters'), 'newsletter','index','oc-panel','icon-envelope')?>
-                <? if($user->id_role==10):?><li class="divider"></li><?endif?>
+                <? if($user->id_role==Model_Role::ROLE_ADMIN):?><li class="divider"></li><?endif?>
 
                 <?Theme::admin_link(__('Themes'), 'theme','index','oc-panel','icon-picture')?>
                 <?if (Theme::has_options()) 
@@ -26,7 +26,7 @@
                 <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','icon-move')?>   
                 <?Theme::admin_link(__('Custom Fields'), 'fields','index','oc-panel','icon-plus-sign')?>       
                 <?Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift')?>
-                <? if($user->id_role==10):?><li class="divider"></li><?endif?>
+                <? if($user->id_role==Model_Role::ROLE_ADMIN):?><li class="divider"></li><?endif?>
 
 			<?if ($user->has_access_to_any('settings,config')):?>
 				<li class="nav-header dropdown-submenu <?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">
@@ -66,7 +66,7 @@
                 </li>
 			<?endif?>
 
-			<? if($user->has_access_to_any('profile') AND $user->id_role!=10):?>
+			<? if($user->has_access_to_any('profile') AND $user->id_role!=Model_Role::ROLE_ADMIN):?>
 				<li class="nav-header"><i class="icon-user"></i><?=__('Profile')?></li>
 				<?Theme::admin_link(__('Edit profile'), 'profile','edit')?>
                 <?Theme::admin_link(__('My Advertisements'), 'profile','ads')?>
