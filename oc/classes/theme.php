@@ -580,6 +580,7 @@ class Theme {
             self::$data = json_decode($theme_data, TRUE);
         }
         ///save empty with default values
+        //first time installed
         else
         {
             //we set the array with empty values or the default in the option attributes
@@ -588,6 +589,8 @@ class Theme {
                 self::$data[$field] = (isset($attributes['default']))?$attributes['default']:'';
             }
             self::save($theme);
+
+            //since its the first time we activate this theme
         }
 
     }
