@@ -79,7 +79,7 @@ class Controller_Panel_Theme extends Auth_Controller {
         //$this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Themes')));  
         $this->template->title = __('Themes');     
-        $this->template->scripts['footer'][] = 'https://trychec.com/js/embed.js';
+        //$this->template->scripts['footer'][] = 'https://trychec.com/js/embed.js';
 
         //getting the themes
         $themes = Theme::get_installed_themes();
