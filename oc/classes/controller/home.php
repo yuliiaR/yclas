@@ -9,11 +9,8 @@ class Controller_Home extends Controller {
 	    $this->template->title            = '';
 	    // $this->template->meta_keywords    = 'keywords';
 	    $this->template->meta_description = Core::config('general.site_description');
-	    
-	    //$this->template->header='';
 
-	    //setting main view/template and render pages
-	   
+	    //setting main view/template and render pages  
 
 	    // swith to decide on ads_in_home
 	    $ads = new Model_Ad();
@@ -45,18 +42,8 @@ class Controller_Home extends Controller {
         }
 
         $ads = $ads->limit(Theme::get('num_home_latest_ads', 4))->cached()->find_all();
-        //die(print_r($ads));
+
 		$this->ads = $ads;
-
-
-
-
-        // $ads = new Model_Ad();
-        // $display_ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED)
-        //                 ->order_by('published','desc')
-        //                 ->limit(Theme::get('num_home_latest_ads', 4))
-        //                 ->cached()->find_all();
-        
 
 		$categs = Model_Category::get_category_count();
 	
@@ -67,7 +54,5 @@ class Controller_Home extends Controller {
         															));
 		
 	}
-
-	// public function action_parent_cat() 
 
 } // End Welcome

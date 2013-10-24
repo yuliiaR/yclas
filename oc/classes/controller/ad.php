@@ -548,8 +548,9 @@ class Controller_Ad extends Controller {
 	        	if($this->request->query('search'))
 	        		$search_advert = $this->request->query('search');
 
-	        	$ads = $ads->where('title', 'like', '%'.$search_advert.'%')
-	        			   ->or_where('description', 'like', '%'.$search_advert.'%');;
+	        	$ads = $ads->where('title', 'like', '%'.$search_advert.'%');
+	        		if(core::config('general.search_by_description') == TRUE)
+	        			   $ads = $ads->or_where('description', 'like', '%'.$search_advert.'%');
 	        }
 	        	
 	          	

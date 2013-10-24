@@ -15,6 +15,9 @@
 		<? $current_url = Model_Ad::STATUS_PUBLISHED?>
 		<h1><?=__('Advertisements')?></h1>
 		<a target='_blank' href='http://open-classifieds.com/2013/08/29/how-to-manage-advertisements/'><?=__('Read more')?></a>
+		<form id="advert_search" method="GET" class="pull-right" enctype="multipart/form-data">
+		  	<input type="text" name="search" id="search" placeholder="<?=__('Search')?>">
+		</form>
 	<?endif?>
 </div>
 
@@ -96,7 +99,14 @@
 			    rel"tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
 				<i class="icon-bookmark icon-white"></i>
 			</a>
+			<a class="to_top btn btn-info" 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'to_top', 'current_url'=>$current_url))?>"
+				onclick="return confirm('<?=__('Are you sure you want to make it to_top?')?>');"
+			    rel"tooltip" title="<?=__('to_top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it to top?')?>">
+				<i class="icon-circle-arrow-up icon-white"></i>
+			</a>
 			<?endif?>
+
 		</th>
 		<?endif?>
 	</tr>
@@ -145,7 +155,7 @@
 				<td><?=__('Unconfirmed')?></td>
 			<?endif?>
 	    	
-	    	<td><?= substr($ad->created, 0, 11)?></td>
+	    	<td><?= substr($ad->published, 0, 11)?></td>
 			<td>
 				<a class="btn btn-primary " 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
@@ -200,6 +210,12 @@
 					<i class="icon-bookmark icon-white"></i>
 				</a>
 				<?endif?>
+				<a class="btn btn-info" 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+					onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
+				    rel"tooltip" title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
+					<i class="icon-circle-arrow-up icon-white"></i>
+				</a>
 				<?endif?>
 			</td>
 		</tr>

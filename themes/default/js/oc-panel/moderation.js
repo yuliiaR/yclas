@@ -11,7 +11,8 @@ var url_array = {"del"			:{'href':$("a.delete").attr("href")},
 				 "deactivate"	:{'href':$("a.deactivate").attr("href")},
 				 "activate"		:{'href':$("a.activate").attr("href")},
 				 "featured"		:{'href':$("a.featured").attr("href")},
-				 "deact_feature":{'href':$("a.featured").attr("href")}};
+				 "deact_feature":{'href':$("a.featured").attr("href")},
+				 "to_top"		:{'href':$("a.to_top").attr("href")},};
 
 // selected checkboxes get new class
 var selected = '';
@@ -33,6 +34,7 @@ $('input.checkbox').click(function(){
 		$('a.deactivate').length ? $('a.deactivate').attr('href', url_array['deactivate']['href']+"/"+selected+last_str) : '';
 		$('a.activate').length ? $('a.activate').attr('href', url_array['activate']['href']+"/"+selected+last_str) : '';
 		$('a.featured').length ? $('a.featured').attr('href', url_array['featured']['href']+"/"+selected+last_str) : '';
+		$('a.to_top').length ? $('a.to_top').attr('href', url_array['to_top']['href']+"/"+selected+last_str) : '';
 		$('a.featured').length ? $('a.featured').attr('href', url_array['deact_feature']['href']+"/"+selected+last_str) : '';
 	}else{
 
@@ -49,6 +51,7 @@ $('input.checkbox').click(function(){
 		$('a.delete').attr('href', "/oc-panel/ad/delete");
 		$('a.activate').attr('href', url_array['activate']['href']+'/'+selected);
 		$('a.featured').attr('href', "/oc-panel/ad/featured");
+		$('a.to_top').attr('href', "/oc-panel/ad/to_top");
 	}
 });
 
@@ -74,6 +77,7 @@ function check_all(){
 		$('a.deactivate').length ? $('a.deactivate').attr('href', url_array['deactivate']['href']+"/"+selected+last_str) : '';
 		$('a.activate').length ? $('a.activate').attr('href', url_array['activate']['href']+"/"+selected+last_str) : '';
 		$('a.featured').length ? $('a.featured').attr('href', url_array['featured']['href']+"/"+selected+last_str) : '';
+		$('a.to_top').length ? $('a.to_top').attr('href', url_array['to_top']['href']+"/"+selected+last_str) : '';
 		$('a.featured').length ? $('a.featured').attr('href', url_array['deact_feature']['href']+"/"+selected+last_str) : '';
 	}else{
 		selected = '';
@@ -83,6 +87,7 @@ function check_all(){
 		$('a.delete').attr('href', url_array['del']['href']+'/'+selected);
 		$('a.activate').attr('href', url_array['activate']['href']+'/'+selected);
 		$('a.featured').attr('href', url_array['featured']['href']+'/'+selected);
+		$('a.to_top').attr('href', url_array['to_top']['href']+'/'+selected);
 	}
 
 	

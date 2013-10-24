@@ -14,7 +14,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->styles 			= array('/http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen');
 		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js'; 
 
-
 		//find all tables 
 		
 		$ads = new Model_Ad();
@@ -36,6 +35,14 @@ class Controller_Panel_Ad extends Auth_Controller {
 					
 		}
 		else $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+		
+		// sort ads by search value
+		if($q = $this->request->query('search'))
+		{
+			$ads = $ads->where('title', 'like', '%'.$q.'%');
+			if(core::config('general.search_by_description') == TRUE)
+	        	$ads = $ads->or_where('description', 'like', '%'.$q.'%');
+		}
 		
 		$res_count = $ads->count_all();
 		if ($res_count > 0)
@@ -503,6 +510,48 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is featured'));
+		
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		else
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+
+	}
+
+	public function action_to_top()
+	{
+
+		$id = $this->request->param('id');
+		$param_current_url = $this->request->param('current_url');
+		$format_id = explode('_', $id);
+
+		foreach ($format_id as $id) 
+		{
+			if (isset($id) AND $id !== '')
+			{
+				$element = ORM::factory('ad', $id);
+
+				if ($element->loaded())
+				{
+					$element->published = Date::unix2mysql(time());
+        
+			        try {
+			            $element->save();
+			        } catch (Exception $e) {
+			 	        echo $e;
+			        }
+			    }
+			    else
+				{
+					//throw 404
+					throw new HTTP_Exception_404();
+				}
+			    
+			}
+		}
+		Alert::set(Alert::SUCCESS, __('Advertisement is to top'));
 		
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
 			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
