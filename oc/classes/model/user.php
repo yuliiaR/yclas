@@ -369,7 +369,7 @@ class Model_User extends ORM {
 
     public function exclude_fields()
     {
-       return array('password','created','salt', 'ip_created', 'last_ip','token','token_created','token_expires','user_agent','id_location','seoname');
+       return array('last_modified','logins','last_login','created','salt', 'ip_created', 'last_ip','token','token_created','token_expires','user_agent','id_location');
     }
 
     /**

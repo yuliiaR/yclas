@@ -194,12 +194,12 @@ class Model_Category extends ORM {
 	 */
 	public static function get_category_count()
 	{
-
+        $expr_date = core::config('advertisement.expire_date');
         $cats = DB::select('c.*')
                 ->select(array(DB::select('COUNT("id_ad")')
                         ->from(array('ads','a'))
                         ->where('a.id_category','=',DB::expr(core::config('database.default.table_prefix').'c.id_category'))
-                        // ->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'))
+                        ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', DB::expr('NOW()'))
                         ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
                         ->group_by('id_category'), 'count'))
                 ->from(array('categories', 'c'))
