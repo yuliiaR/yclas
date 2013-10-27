@@ -59,7 +59,7 @@ Route::set('maintenance', URL::title(__('maintenance')).'.html')
 /**
  * page view public
  */
-Route::set('page','p/<seotitle>.html')
+Route::set('page','<seotitle>.html')
 ->defaults(array(
         'controller' => 'page',    
         'action'     => 'view',
