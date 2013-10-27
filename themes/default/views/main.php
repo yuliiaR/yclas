@@ -33,9 +33,6 @@
     
     <?=Theme::styles($styles)?>	
 	<?=Theme::scripts($scripts)?>
-
-    <link rel="shortcut icon" href="<?=Theme::public_path('img/favicon.ico')?>">
-
     <?if ( core::config('general.analytics')!='' AND Kohana::$environment === Kohana::PRODUCTION ): ?>
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -50,6 +47,9 @@
       })();
     </script> 
     <?endif?>
+    <link rel="shortcut icon" href="<?=Theme::public_path('img/favicon.ico')?>">
+
+    
   </head>
 
   <body data-spy="scroll" data-target=".subnav" data-offset="50">
