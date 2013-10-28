@@ -84,11 +84,15 @@ class Model_Content extends ORM {
 
     }
 
-    public static function get_pages()
+    public static function get_contents($type, $locale = NULL)
     {
+      if($locale == NULL)
+        $locale = core::config('i18n.locale');
+
       $pages = new self;
       $pages = $pages ->select('seotitle','title')
-                        ->where('type','=', 'page')
+                        ->where('type','=', $type)
+                        ->where('locale','=', $locale)
                         ->where('status','=', 1)
                         ->order_by('order','asc')
                         ->cached()

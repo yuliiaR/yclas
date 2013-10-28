@@ -29,6 +29,12 @@ $(function (){
     if( $('#cf_type_field_input').attr('value') == 'select' 
         || $('#cf_type_field_input').attr('value') == 'radio') 
             $('#cf_values_input').parent().parent().css('display','block'); 
+
+    
+    $('select[name="locale_select"]').change(function()
+    {
+         $('#locale_form').submit();
+    });
 });
 
 _debounce = function(func, wait, immediate) {
