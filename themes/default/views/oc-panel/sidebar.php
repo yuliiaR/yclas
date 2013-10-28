@@ -25,7 +25,7 @@
                         Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel','icon-wrench')?>     
                 <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','icon-move')?>   
                 <?Theme::admin_link(__('Custom Fields'), 'fields','index','oc-panel','icon-plus-sign')?>
-                <?Theme::admin_link(__('Social Auth'), 'social','index','oc-panel','icon-plus-sign')?>       
+                <?Theme::admin_link(__('Social Auth'), 'social','index','oc-panel','icon-thumbs-up')?>       
                 <?Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift')?>
                 <? if($user->id_role==Model_Role::ROLE_ADMIN):?><li class="divider"></li><?endif?>
 

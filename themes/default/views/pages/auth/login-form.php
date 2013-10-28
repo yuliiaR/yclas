@@ -32,4 +32,13 @@
             </button>
           </div>
           <?=Form::CSRF('login')?>
+          <fieldset>
+    <legend>Or use anohter service</legend>
+    <?$providers = json_decode( core::config('social.config'),TRUE)?>
+    <?foreach ($providers['providers'] as $key => $value):?>
+      <?if($value['enabled']):?>
+        <a  class=" oc_social icon <?=$key?>" href="<?=Route::url('default',array('controller'=>'social','action'=>'loggin','id'=>$key))?>"><?=$key?></a>
+      <?endif?>
+    <?endforeach?>
+</fieldset>
 </form>      	

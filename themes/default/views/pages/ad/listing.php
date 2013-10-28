@@ -82,5 +82,4 @@
 	   	<div class="page-header">
 			<h3><?=__('We do not have any advertisements in this category')?></h3>
 		</div>
-	  <?$social = Social::init()?>
 	  <?endif?>

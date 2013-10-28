@@ -46,7 +46,7 @@ class Controller_Panel_Social extends Auth_Controller {
 				}
 			}
 			// two fields not inclooded
-			$config_new['base_url'] = DOCROOT."oc/vendor/hybridauth/hybridauth/";
+			$config_new['base_url'] = core::config('general.base_url').'social/loggin/1';
 			$config_new['debug_file'] = DOCROOT."oc/vendor/hybridauth/logs.txt";
 			
 			$obj_social_config = new Model_Config();

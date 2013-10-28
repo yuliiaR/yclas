@@ -32,7 +32,7 @@
               </p>
             </div>
           </div>
-          
+         
           <div class="form-actions">
           	<a class="btn"  data-dismiss="modal" data-toggle="modal" title="<?=__('Login')?>" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
 				<i class="icon-user"></i> 

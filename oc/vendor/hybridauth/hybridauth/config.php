@@ -8,6 +8,23 @@
 // ----------------------------------------------------------------------------------------
 //	HybridAuth Config file: http://hybridauth.sourceforge.net/userguide/Configuration.html
 // ----------------------------------------------------------------------------------------
-// d(json_decode(core::config('social.config'), true));
-return $config = json_decode(core::config('social.config'), true);
 
+return 
+   array( 
+      // "base_url" the url that point to HybridAuth Endpoint (where index.php and config.php are found) 
+      "base_url" => core::config('general.base_url').'social/loggin/', 
+ 
+      "providers" => array ( 
+      
+         // twitter
+            "Twitter" => array ( // 'key' is your twitter application consumer key
+               "enabled" => true,
+               "keys" => array ( "key" => "H7SfbyEBnHoDuB320olgvQ", "secret" => "cS57GpOZMI1jpiQ4DOnajerOzcLPTZhhzEfROY9OHss" )
+            )
+      ),
+      
+      "debug_mode" => TRUE , 
+      
+      // to enable logging, set 'debug_mode' to true, then provide here a path of a writable file 
+      "debug_file" => Kohana::find_file('vendor', 'hybridauth/logs','txt'), 
+    ); 
