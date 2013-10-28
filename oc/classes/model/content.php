@@ -84,6 +84,18 @@ class Model_Content extends ORM {
 
     }
 
+    public static function get_pages()
+    {
+      $pages = new self;
+      $pages = $pages ->select('seotitle','title')
+                        ->where('type','=', 'page')
+                        ->where('status','=', 1)
+                        ->order_by('order','asc')
+                        ->cached()
+                        ->find_all();
+      return $pages;
+    }
+    
     public static function get_contents($type, $locale = NULL)
     {
       if($locale == NULL)

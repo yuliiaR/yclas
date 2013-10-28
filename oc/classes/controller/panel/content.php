@@ -28,6 +28,7 @@ class Controller_Panel_Content extends Auth_Controller {
                 	->cached()
                 	->execute();
 
+        $l_locale = array();
 		foreach ($ll as $key => $l) 
 		{
 
