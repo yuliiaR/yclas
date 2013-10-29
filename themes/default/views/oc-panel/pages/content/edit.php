@@ -6,37 +6,27 @@
     <a class="btn btn-primary pull-right" href="http://open-classifieds.com/documentation/translate/"><?=__('New email')?></a>
 
 </div>
+ <?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal post_new', 'enctype'=>'multipart/form-data'))?>
+<fieldset>
+    <div class="control-group">
+        <?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
+        <div class="controls">
+            <?= FORM::input('title', $cont->title, array('placeholder' => __('title'), 'class' => '', 'id' => 'title', 'required'))?>
+        </div>
+    </div>
+    <div class="control-group">
+        <?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
+        <div class="controls">
+            <?= FORM::input('locale', $cont->locale, array('placeholder' => __('locale'), 'class' => '', 'id' => 'locale', 'required'))?>
+        </div>
+    </div>
+    <div class="control-group">
+        <?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>
+        <div class="controls">
+            <?= FORM::textarea('description', $cont->description, array('placeholder' => __('description'), 'class' => '', 'id' => 'description', 'required'))?>
+        </div>
+    </div>
+</fieldset>
+<?= FORM::close()?>
+   
 
-<table class="table table-bordered">
-    <tr>
-        <th><?=__('email')?></th>
-        <th><?=__('locale')?></th>
-        <th><?=__('created')?></th>
-        <th><?=__('status')?></th>
-        <th></th>
-    </tr>
-<?foreach ($emails as $email):?>
- 
-    <tr>
-        <td><?=$email->title?></td>
-        <td><?=$email->locale?></td>
-        <td><?=$email->created?></td>
-        <td><?=$email->status?></td>
-        <td width="5%">
-            
-            <a class="btn btn-primary" 
-                href="<?=Route::url('oc-panel', array('controller'=>'content','action'=>'edit','id'=>$email))?>" 
-                rel"tooltip" title="<?=__('Edit')?>">
-                <i class="icon-edit icon-white"></i>
-            </a>
-            <a class="btn btn-danger" 
-                href="<?=Route::url('oc-panel', array('controller'=>'content','action'=>'delete','id'=>$email))?>" 
-                rel"tooltip" title="<?=__('Delete')?>">
-                <i class="icon-trash icon-white"></i>
-            </a>
-
-        </td>
-    </tr>
-    
-<?endforeach?>
-</table>

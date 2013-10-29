@@ -192,12 +192,27 @@ class Controller_Panel_Update extends Auth_Controller {
      * This function will upgrate DB that didn't existed in verisons below 2.0.7
      * changes added: config for advanced search by description
      */
-    public function action_208()
+    public function action_21()
     {
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'search_by_description',
                                'group_name'     =>'general', 
-                               'config_value'   => 0),
+                               'config_value'   => 0,
+                         array('config_key'     =>'social',
+                               'group_name'     =>'config', 
+                               'config_value'   =>'{"debug_mode":"1","providers":{
+                                                                          "OpenID":{"enabled":"1"},
+                                                                          "Yahoo":{"enabled":"1","keys":{"id":"","secret":""}},
+                                                                          "AOL":{"enabled":"1"}
+                                                                          ,"Google":{"enabled":"1","keys":{"id":"","secret":""}},
+                                                                          "Facebook":{"enabled":"1","keys":{"id":"","secret":""}},
+                                                                          "Twitter":{"enabled":"1","keys":{"key":"","secret":""}},
+                                                                          "Live":{"enabled":"1","keys":{"id":"","secret":""}},
+                                                                          "MySpace":{"enabled":"1","keys":{"key":"","secret":""}},
+                                                                          "LinkedIn":{"enabled":"1","keys":{"key":"","secret":""}},
+                                                                          "Foursquare":{"enabled":"1","keys":{"id":"","secret":""}}},
+                                                      "base_url":"",
+                                                      "debug_file":""}'),
                          );
 
         // returns TRUE if some config is saved 

@@ -407,7 +407,20 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('email', 'smtp_auth', 0),
 ('email', 'smtp_ssl', 0),
 ('email', 'smtp_user', ''),
-('email', 'smtp_pass', '');");
+('email', 'smtp_pass', ''),
+('social', 'config', '{'debug_mode':'1','providers':{
+                                                    'OpenID':{'enabled':'1'},
+                                                    'Yahoo':{'enabled':'1','keys':{'id':','secret':'}},
+                                                    'AOL':{'enabled':'1'}
+                                                    ,'Google':{'enabled':'1','keys':{'id':','secret':'}},
+                                                    'Facebook':{'enabled':'1','keys':{'id':','secret':'}},
+                                                    'Twitter':{'enabled':'1','keys':{'key':','secret':'}},
+                                                    'Live':{'enabled':'1','keys':{'id':','secret':'}},
+                                                    'MySpace':{'enabled':'1','keys':{'key':','secret':'}},
+                                                    'LinkedIn':{'enabled':'1','keys':{'key':','secret':'}},
+                                                    'Foursquare':{'enabled':'1','keys':{'id':','secret':'}}},
+                      'base_url':',
+                      'debug_file':'}');");
 
 
 //base category

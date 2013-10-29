@@ -40,4 +40,12 @@ class Controller_Panel_Content extends Auth_Controller {
         																				'locale_list'=>$l_locale));
     }
 
+    public function action_edit()
+    {
+    	$id = $this->request->param('id');
+    	$content = new Model_Content($id);
+
+    	$this->template->content = View::factory('oc-panel/pages/content/edit',array('cont'=>$content));
+    }
+
 }
