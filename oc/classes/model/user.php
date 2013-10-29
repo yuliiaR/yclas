@@ -452,6 +452,44 @@ class Model_User extends ORM {
         return $user->id_user;
     }
 
+    /**
+     * creates a User from social data
+     * @param  string $email      
+     * @param  string $name       
+     * @param  string $provider   
+     * @param  mixed $identifier 
+     * @return Model_User             
+     */
+    public static function create_social($email,$name=NULL,$provider, $identifier)
+    {
+        $user = new self();
+        $user->where('email','=',$email)->limit(1)->find();
+
+        //doesnt exists
+        if (!$user->loaded())
+        {
+            $user->email        = $email;
+            $user->name         = $name;
+            $user->status       = self::STATUS_ACTIVE;
+            $user->id_role      = 1;
+            $user->seoname      = $user->gen_seo_title($user->name);
+            $user->password     = Text::random('alnum', 8);
+        }
+        //always we set this values even if user existed
+        $user->hybridauth_provider_name = $provider;
+        $user->hybridauth_provider_uid  = $identifier;
+        try
+        {
+            $user->save();
+        }
+        catch (ORM_Validation_Exception $e)
+        {
+            d($e->errors(''));
+        }
+
+        return $user;
+    }
+
     protected $_table_columns =  
 array (
   'id_user' => 
@@ -700,6 +738,36 @@ array (
     'comment' => '',
     'extra' => '',
     'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'hybridauth_provider_name' => 
+  array (
+    'type' => 'string',
+    'column_name' => 'hybridauth_provider_name',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => true,
+    'ordinal_position' => 18,
+    'character_maximum_length' => '40',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => 'UNI',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'hybridauth_provider_uid' => 
+  array (
+    'type' => 'string',
+    'column_name' => 'hybridauth_provider_uid',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => true,
+    'ordinal_position' => 19,
+    'character_maximum_length' => '245',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => 'UNI',
     'privileges' => 'select,insert,update,references',
   ),
 );

@@ -2,12 +2,11 @@
 
 class Controller_Social extends Controller {
 	
-	public function action_loggin()
+	public function action_login()
 	{
-		require_once Kohana::find_file('vendor', 'hybridauth/hybridauth/Hybrid/Auth','php');
-		require_once Kohana::find_file('vendor', 'hybridauth/hybridauth/Hybrid/Endpoint','php');
+		Social::include_vendor();
 			
-		$config = json_decode(core::config('social.config'),TRUE);
+		$config = Social::get();
 		
 		if ($this->request->query('hauth_start') OR $this->request->query('hauth_done'))
 		{
@@ -18,7 +17,7 @@ class Controller_Social extends Controller {
 			catch (Exception $e) 
 			{
 				Alert::set(Alert::ERROR, $e->getMessage());
-				$this->request->redirect(Route::url('oc-panel', array('controller'=>'home','action'=>'index')));
+				$this->request->redirect(Route::url('default'));
 			}
 				
 		}
@@ -32,18 +31,93 @@ class Controller_Social extends Controller {
 				$hybridauth = new Hybrid_Auth( $config );
 	 
 				// try to authenticate with the selected provider
-				$adapter = $hybridauth->authenticate( $provider_name );
+                if ($provider_name == 'openid')
+                    $params = array( 'openid_identifier' => 'https://me.yahoo.com/');
+                else
+                    $params = NULL;
+
+				$adapter = $hybridauth->authenticate( $provider_name , $params);
+
 
 				if ($hybridauth->isConnectedWith($provider_name)) 
 				{
-					var_dump($adapter->getUserProfile());
+					//var_dump($adapter->getUserProfile());
+                    $user_profile = $adapter->getUserProfile();
+
+
+                    //try to login the user with same provider and identifier
+                    $user = Auth::instance()->social_login($provider_name, $user_profile->identifier);
+                    
+                    if ($user == FALSE)
+                    {
+                        $email = ($user_profile->emailVerified!=NULL)? $user_profile->emailVerified: $user_profile->email;
+                        $name  = ($user_profile->firstName!=NULL)? $user_profile->firstName.' '.$user_profile->lastName: $user_profile->displayName;
+                        //if not email provided 
+                        if (!Valid::email($email))
+                        {
+                            Alert::set(Alert::INFO, __('We need your email address to complete'));
+                            //redirect him to select the email to register
+                            $this->request->redirect(Route::url('default',array('controller'=>'social',
+                                                                                'action'=>'register',
+                                                                                'id'    =>$provider_name)).'?uid='.$user_profile->identifier.'&name='.$name);
+                        }
+                        else
+                        {
+                            //register the user in DB
+                            Model_User::create_social($email,$name,$provider_name,$user_profile->identifier);
+                            //log him in
+                            Auth::instance()->social_login($provider_name, $user_profile->identifier);
+                        }
+                    }
+
+                    Alert::set(Alert::SUCCESS, __('Welcome!'));
+                    $this->request->redirect(Route::url('default'));
+                    
 				}
 			}
 			catch( Exception $e )
 			{
 				Alert::set(Alert::ERROR, __('Error: please try again!')." ".$e->getMessage());
-				$this->request->redirect(Route::url('oc-panel', array('controller'=>'home','action'=>'index')));
+				$this->request->redirect(Route::url('default'));
 			}
 		} 
 	}
+
+    /**
+     * simple registration without password
+     * @return [type] [description]
+     */
+    public function action_register()
+    {
+        $provider_name = $this->request->param('id');
+
+        $this->template->content = View::factory('pages/auth/register-social', array('provider'=>$provider_name,
+                                                                                'uid'=>core::get('uid'),
+                                                                                'name'=>core::get('name')));
+
+        if (core::post('email') AND CSRF::valid('register_social'))
+        {
+            $email = core::post('email');
+                
+            if (Valid::email($email,TRUE))
+            {
+                //register the user in DB
+                Model_User::create_social($email,core::post('name'),$provider_name,core::get('uid'));
+                //log him in
+                Auth::instance()->social_login($provider_name,core::get('uid'));
+
+                Alert::set(Alert::SUCCESS, __('Welcome!'));
+                $this->request->redirect(Route::url('default'));
+            }
+            else
+            {
+                Form::set_errors(array(__('Invalid Email')));
+            }
+                
+        }
+    
+        //template header
+        $this->template->title            = __('Register new user');
+            
+    }
 }	

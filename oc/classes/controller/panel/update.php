@@ -194,23 +194,28 @@ class Controller_Panel_Update extends Auth_Controller {
      */
     public function action_21()
     {
+        $prefix = Database::instance()->table_prefix();
+
+        mysql_query("ALTER TABLE  `".$prefix."users` ADD  `hybridauth_provider_name` VARCHAR( 40 ) NULL DEFAULT NULL ,ADD  `hybridauth_provider_uid` VARCHAR( 245 ) NULL DEFAULT NULL");
+        mysql_query("create unique index ".$prefix."users_UK_provider_AND_uid on ".$prefix."users (hybridauth_provider_name, hybridauth_provider_uid)");
+        
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'search_by_description',
                                'group_name'     =>'general', 
                                'config_value'   => 0),
                          array('config_key'     =>'config',
                                'group_name'     =>'social', 
-                               'config_value'   =>'{"debug_mode":"1","providers":{
+                               'config_value'   =>'{"debug_mode":"0","providers":{
                                                                           "OpenID":{"enabled":"1"},
-                                                                          "Yahoo":{"enabled":"1","keys":{"id":"","secret":""}},
+                                                                          "Yahoo":{"enabled":"0","keys":{"id":"","secret":""}},
                                                                           "AOL":{"enabled":"1"}
-                                                                          ,"Google":{"enabled":"1","keys":{"id":"","secret":""}},
-                                                                          "Facebook":{"enabled":"1","keys":{"id":"","secret":""}},
-                                                                          "Twitter":{"enabled":"1","keys":{"key":"","secret":""}},
-                                                                          "Live":{"enabled":"1","keys":{"id":"","secret":""}},
-                                                                          "MySpace":{"enabled":"1","keys":{"key":"","secret":""}},
-                                                                          "LinkedIn":{"enabled":"1","keys":{"key":"","secret":""}},
-                                                                          "Foursquare":{"enabled":"1","keys":{"id":"","secret":""}}},
+                                                                          ,"Google":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                                          "Facebook":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                                          "Twitter":{"enabled":"0","keys":{"key":"","secret":""}},
+                                                                          "Live":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                                          "MySpace":{"enabled":"0","keys":{"key":"","secret":""}},
+                                                                          "LinkedIn":{"enabled":"0","keys":{"key":"","secret":""}},
+                                                                          "Foursquare":{"enabled":"0","keys":{"id":"","secret":""}}},
                                                       "base_url":"",
                                                       "debug_file":""}'));
 

@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Simple email class
+ * Sociual auth class
  *
  * @package    OC
  * @category   Core
@@ -11,5 +11,25 @@
 
 
 class Social {
+
+    public static function get()
+    {
+        $config = json_decode(core::config('social.config'),TRUE);
+        return (!is_array($config))? array():$config;
+    }
+
+    public static function get_providers()
+    {
+        $providers = self::get();
+
+        return (isset($providers['providers']))?$providers['providers']:array();
+    }
+
+    public static function include_vendor()
+    {
+        require_once Kohana::find_file('vendor', 'hybridauth/hybridauth/Hybrid/Auth','php');
+        require_once Kohana::find_file('vendor', 'hybridauth/hybridauth/Hybrid/Endpoint','php');
+    }
+
 
 }

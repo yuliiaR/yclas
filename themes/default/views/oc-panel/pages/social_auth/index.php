@@ -6,7 +6,7 @@
     <?= FORM::open(Route::url('oc-panel',array('controller'=>'social', 'action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
         <fieldset>
             <div class="control-group">
-            <?= FORM::label('debug_mode', __('Activate Social Auth'), array('class'=>'control-label', 'for'=>'debug_mode'))?>
+            <?= FORM::label('debug_mode', __('Debug Mode'), array('class'=>'control-label', 'for'=>'debug_mode'))?>
                 <div class="controls">
                     <?=FORM::select('debug_mode', array(FALSE=>"FALSE",TRUE=>"TRUE"), $config['debug_mode']);?>
                 </div>
