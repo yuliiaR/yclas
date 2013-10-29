@@ -321,13 +321,13 @@ class Auth_OC extends Kohana_Auth {
 	}
 	
 	/**
-	 * 
-	 * Redirects the user to the home or to the admin, used in the controller for login
-	 */
-	public function login_redirect()
-	{
-		Request::current()->redirect(Route::url('oc-panel'));
-	}
+     * 
+     * Redirects the user to the home or to the admin, used in the controller for login
+     */
+    public function login_redirect()
+    {
+        Request::current()->redirect(Core::post('auth_redirect',Route::url('oc-panel')));
+    }
 
 
 

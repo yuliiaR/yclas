@@ -31,6 +31,7 @@
             	<i class="icon-user icon-white"></i><?=__('Login')?>
             </button>
           </div>
+          <?=Form::redirect()?>
           <?=Form::CSRF('login')?>
           <fieldset>
     <legend>Or use anohter service</legend>
