@@ -68,7 +68,7 @@ class Controller_Panel_Content extends Auth_Controller {
     	$this->template->content = View::factory('oc-panel/pages/content/create', array('locale'=>$l_locale, 
     																					'type'=>$type));
 
-    	if($this->request->post())
+    	if($p = $this->request->post())
     	{
     		foreach ($p as $name => $value) 
     		{
@@ -83,19 +83,15 @@ class Controller_Panel_Content extends Auth_Controller {
     		try 
 			{
 				$content->save();
-				Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'content','action'=>'list')));
+				Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'content','action'=>'list')).'?type='.$p['type'].'&locale_select='.$p['locale'].'!');
 			} 
 			catch (Exception $e) 
 			{
 				Alert::set(Alert::ERROR, $e->getMessage());
+                Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'content','action'=>'list')).'?type='.$p['type'].'&locale_select='.$p['locale'].'!');
 			}
     	}
-	    // }
-     //    else
-     //    {
-     //        Alert::set(Alert::INFO, __('Faild to load content'));
-     //    	Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'content','action'=>'list'))); 
-    	// }
+
     }
 
     /**
