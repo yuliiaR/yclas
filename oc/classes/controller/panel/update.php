@@ -197,7 +197,7 @@ class Controller_Panel_Update extends Auth_Controller {
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'search_by_description',
                                'group_name'     =>'general', 
-                               'config_value'   => 0,
+                               'config_value'   => 0),
                          array('config_key'     =>'social',
                                'group_name'     =>'config', 
                                'config_value'   =>'{"debug_mode":"1","providers":{
@@ -212,18 +212,17 @@ class Controller_Panel_Update extends Auth_Controller {
                                                                           "LinkedIn":{"enabled":"1","keys":{"key":"","secret":""}},
                                                                           "Foursquare":{"enabled":"1","keys":{"id":"","secret":""}}},
                                                       "base_url":"",
-                                                      "debug_file":""}'),
-                         );
+                                                      "debug_file":""}'));
 
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
 
         //call update actions 203,205,206,207 
 
-        $this->action_203();
-        $this->action_205();
-        $this->action_206();
-        $this->action_207();
+        // $this->action_203();
+        // $this->action_205();
+        // $this->action_206();
+        // $this->action_207();
 
         //clean cache
         Cache::instance()->delete_all();
