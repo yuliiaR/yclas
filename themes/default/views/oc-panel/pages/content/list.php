@@ -1,16 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="page-header">
-	<h1><?=__('Pages')?></h1>
-    
-    <a class="btn btn-primary pull-right" href="http://open-classifieds.com/documentation/translate/"><?=__('New Page')?></a>
-
+	<h1><?=__($type)?></h1>
 </div>
-<?= FORM::open(Route::url('oc-panel',array('controller'=>'content','action'=>'content')), array('method'=>'GET','class'=>'form-horizontal', 'id'=>'locale_form','enctype'=>'multipart/form-data'))?>
+<?= FORM::open(Route::url('oc-panel',array('controller'=>'content','action'=>'list')), array('method'=>'GET','class'=>'form-horizontal', 'id'=>'locale_form','enctype'=>'multipart/form-data'))?>
     <div class="control-group">
         <?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
         <div class="controls">
-            <?= FORM::select('locale_select', $locale_list, $_REQUEST['locale_select'] )?> 
+            <?$ls = (isset($_REQUEST['locale_select']))?$_REQUEST['locale_select']:'';?>
+            <?= FORM::select('locale_select', $locale_list, $ls )?> 
         </div>
         <div class="controls">
             <?= FORM::hidden('type', $type )?> 

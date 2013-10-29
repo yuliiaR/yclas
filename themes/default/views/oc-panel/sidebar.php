@@ -15,8 +15,8 @@
 				<?Theme::admin_link(__('Orders'), 'order','index','oc-panel','icon-shopping-cart')?>
                 <? if($user->id_role==Model_Role::ROLE_ADMIN):?><li class="divider"></li><?endif?>
 
-                <?Theme::admin_link(__('Page'), 'content','content?type=page&locale_select='.core::config('i18n.locale'),'oc-panel','icon-file')?>
-                <?Theme::admin_link(__('Email'), 'content','content?type=email&locale_select='.core::config('i18n.locale'),'oc-panel','icon-file')?>
+                <?Theme::admin_link(__('Page'), 'content','list?type=page&locale_select='.core::config('i18n.locale'),'oc-panel','icon-file')?>
+                <?Theme::admin_link(__('Email'), 'content','list?type=email&locale_select='.core::config('i18n.locale'),'oc-panel','icon-envelope')?>
                 <?Theme::admin_link(__('Translations'), 'translations','index','oc-panel','icon-globe')?>
                 <?Theme::admin_link(__('Newsletters'), 'newsletter','index','oc-panel','icon-envelope')?>
                 <? if($user->id_role==Model_Role::ROLE_ADMIN):?><li class="divider"></li><?endif?>

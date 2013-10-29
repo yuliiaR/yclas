@@ -105,7 +105,6 @@ class Model_Content extends ORM {
       $pages = $pages ->select('seotitle','title')
                         ->where('type','=', $type)
                         ->where('locale','=', $locale)
-                        ->where('status','=', 1)
                         ->order_by('order','asc')
                         ->cached()
                         ->find_all();
