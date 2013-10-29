@@ -20,6 +20,7 @@ class Controller_Panel_Social extends Auth_Controller {
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
 
         $config = json_decode(core::config('social.config'), true);
+        d($config);
         //retrieve social_auth
 
 		$this->template->content = View::factory('oc-panel/pages/social_auth/index',array('config'=>$config));

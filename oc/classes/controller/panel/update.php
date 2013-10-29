@@ -198,8 +198,8 @@ class Controller_Panel_Update extends Auth_Controller {
         $configs = array(array('config_key'     =>'search_by_description',
                                'group_name'     =>'general', 
                                'config_value'   => 0),
-                         array('config_key'     =>'social',
-                               'group_name'     =>'config', 
+                         array('config_key'     =>'config',
+                               'group_name'     =>'social', 
                                'config_value'   =>'{"debug_mode":"1","providers":{
                                                                           "OpenID":{"enabled":"1"},
                                                                           "Yahoo":{"enabled":"1","keys":{"id":"","secret":""}},
