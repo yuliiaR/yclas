@@ -36,3 +36,4 @@ Please read CONTRIBUTING.md
 * jQuery Sortable http://johnny.github.io/jquery-sortable/
 * Bootstrap Image Gallery https://github.com/blueimp/Bootstrap-Image-Gallery
 * Blacksmith https://github.com/themusicman/Blacksmith
+* Hybrid Auth http://hybridauth.sourceforge.net/

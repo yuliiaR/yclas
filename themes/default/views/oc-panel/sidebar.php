@@ -3,7 +3,7 @@
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
                 <li class="divider"></li>
-				
+				<?//Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift')?>
                 <?Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','icon-th-large')?>
                 <? if(core::config('general.moderation') == 1 OR // moderation on  
                       core::config('general.moderation') == 4 OR // email confiramtion with moderation
@@ -16,9 +16,10 @@
                 <? if($user->id_role==Model_Role::ROLE_ADMIN):?><li class="divider"></li><?endif?>
 
                 <?Theme::admin_link(__('Page'), 'content','content?type=page&locale_select='.core::config('i18n.locale'),'oc-panel','icon-file')?>
-                <?Theme::admin_link(__('Email'), 'content','content?type=email&locale_select='.core::config('i18n.locale'),'oc-panel','icon-file')?>
+                <?Theme::admin_link(__('Email'), 'content','content?type=email&locale_select='.core::config('i18n.locale'),'oc-panel','icon-envelope')?>
                 <?Theme::admin_link(__('Translations'), 'translations','index','oc-panel','icon-globe')?>
                 <?Theme::admin_link(__('Newsletters'), 'newsletter','index','oc-panel','icon-envelope')?>
+
                 <? if($user->id_role==Model_Role::ROLE_ADMIN):?><li class="divider"></li><?endif?>
 
                 <?Theme::admin_link(__('Themes'), 'theme','index','oc-panel','icon-picture')?>
@@ -26,8 +27,7 @@
                         Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel','icon-wrench')?>     
                 <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','icon-move')?>   
                 <?Theme::admin_link(__('Custom Fields'), 'fields','index','oc-panel','icon-plus-sign')?>
-                <?Theme::admin_link(__('Social Auth'), 'social','index','oc-panel','icon-thumbs-up')?>       
-                <?Theme::admin_link(__('Market'), 'market','index','oc-panel','icon-gift')?>
+                <?Theme::admin_link(__('Social Auth'), 'social','index','oc-panel','icon-thumbs-up')?>
                 <? if($user->id_role==Model_Role::ROLE_ADMIN):?><li class="divider"></li><?endif?>
 
 			<?if ($user->has_access_to_any('settings,config')):?>
