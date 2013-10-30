@@ -63,6 +63,8 @@ class Auth_Controller extends Controller
 	 */
 	public function before($template = NULL)
 	{
+        Theme::checker();
+        
         $this->maintenance();
 	
 		if($this->auto_render===TRUE)
