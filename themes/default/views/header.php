@@ -21,6 +21,15 @@
 			
 			<div class="nav-collapse main_nav">
 				<ul class="nav">
+				<?if ( count( $menus = Menu::get() )>0 ):?>
+                    <?foreach ($menus as $menu => $data):?>
+                        <li class="<?=(Request::current()->uri()==$data['url'])?'active':''?>" >
+                        <a href="<?=$data['url']?>" target="<?=$data['target']?>">
+                            <?if($data['icon']!=''):?><i class="<?=$data['icon']?>"></i> <?endif?>
+                            <?=$data['title']?></a> 
+                        </li>
+                    <?endforeach?>
+                <?else:?>
 					<?nav_link(__('Listing'),'ad', 'icon-list' ,'listing', 'list')?>
 					<li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Categories')?> <b class="caret"></b></a>
@@ -55,6 +64,7 @@
                     <?endif?>
                     <?nav_link('','contact', 'icon-envelope ', 'index', 'contact')?>
                     <?nav_link('','rss', 'icon-signal ', 'index', 'rss')?>
+                <?endif?>
 		        </ul>
 		        <?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>''))?>
 		            <input type="text" name="search" class="search-query span2" placeholder="<?=__('Search')?>">
