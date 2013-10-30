@@ -636,7 +636,7 @@ class Theme {
             }
             return FALSE;
         //}
-        return TRUE;
+        //return TRUE;
     }
 
     /**
