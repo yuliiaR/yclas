@@ -617,8 +617,8 @@ class Theme {
 
     public static function license($l)
     {  
-        //if (Kohana::$environment!== Kohana::DEVELOPMENT)
-        //{
+        if (Kohana::$environment!== Kohana::DEVELOPMENT)
+        {
             //@todo review URL
             $api_url = (Kohana::$environment!== Kohana::DEVELOPMENT)? 'open-eshop.com':'eshop.lo';
             $api_url = 'http://'.$api_url.'/api/license/';
@@ -635,8 +635,8 @@ class Theme {
                 return json_decode($out);
             }
             return FALSE;
-        //}
-        //return TRUE;
+        }
+        return TRUE;
     }
 
     /**
