@@ -228,7 +228,7 @@
 						<?foreach($fields as $name=>$field):?>
 						<div class="control-group">
 						<?$cf_name = 'cf_'.$name?>
-						<?if($field['type'] == 'select') {
+						<?if($field['type'] == 'select' OR $field['type'] == 'radio') {
 							$select = array(''=>'');
 							foreach ($field['values'] as $select_name) {
 								$select[$select_name] = $select_name;

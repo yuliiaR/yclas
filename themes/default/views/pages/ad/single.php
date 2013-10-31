@@ -56,7 +56,7 @@
 
         <div class="well">
             <?if ($ad->price>0):?>
-            <span class="label label-important"><?=i18n::money_format( $ad->price)?></span>
+            <span class="label label-important"><?= __('Price');?> : <?=i18n::money_format( $ad->price)?></span>
             <?endif?>
             <a class="label" href="<?=Route::url('profile',  array('seoname'=>$ad->user->seoname))?>"><?=$ad->user->name?></a>
             <div class="pull-right">
@@ -82,7 +82,7 @@
         href="http://panel.adserum.com/new-advertisement.html?name=<?=$ad->user->name?>&title=<?=$ad->title?>&desc=<?=$ad->description?>&url=<?=core::config('general.base_url')?><?=substr($_SERVER['REQUEST_URI'],1)?>&durl=<?=core::config('general.base_url')?>">
         <i class="icon-globe"></i> <?=__('Promote at Adserum')?></a>
         
-        <?if ($ad->can_contact()):?>
+        <hr /><?if ($ad->can_contact()):?>
 		<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="icon-envelope"></i> <?=__('Send Message')?></button>
 
             <?if (core::config('advertisement.phone')==1 AND strlen($ad->phone)>1):?>
