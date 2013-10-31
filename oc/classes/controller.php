@@ -39,6 +39,8 @@ class Controller extends Kohana_Controller
     {
         parent::before();
 
+        Theme::checker();
+        
         $this->maintenance();
 
         /**
