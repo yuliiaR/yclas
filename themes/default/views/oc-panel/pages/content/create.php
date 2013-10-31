@@ -31,7 +31,7 @@
         </div>
     </div>
     <?if($_REQUEST['type'] == 'email'):?>
-    <div class="control-group" style="display:none;">
+    <div class="control-group">
         <?= FORM::label('from_email', __('From email'), array('class'=>'control-label', 'for'=>'from_email'))?>
         <div class="controls">
             <?= FORM::input('from_email', '', array('placeholder' => __('from_email'), 'class' => '', 'id' => 'from_email'))?>
