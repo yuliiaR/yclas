@@ -218,6 +218,9 @@ class Controller_Panel_Update extends Auth_Controller {
         $configs = array(array('config_key'     =>'search_by_description',
                                'group_name'     =>'general', 
                                'config_value'   => 0),
+                        array('config_key'     =>'blog',
+                               'group_name'     =>'general', 
+                               'config_value'   => 0),
                          array('config_key'     =>'config',
                                'group_name'     =>'social', 
                                'config_value'   =>'{"debug_mode":"0","providers":{

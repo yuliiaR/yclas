@@ -15,10 +15,17 @@
 
 <div>
     <?=Text::bb2html($post->description,TRUE)?>
-    <div class="pull-right">
-        <a class="btn btn-success" href="<?=Route::url('blog',  array('seotitle'=>$next->seotitle))?>"><i class="icon-step-backward"></i><?=$next->title?></a>
-        <a class="btn btn-success" href="<?=Route::url('blog',  array('seotitle'=>$previous->seotitle))?>"><?=$previous->title?> <i class="icon-step-forward"></i></a>
-    </div>  
+</div>  
+
+<div class="pull-right">
+    <?if($previous->loaded()):?>
+        <a class="btn btn-success" href="<?=Route::url('blog',  array('seotitle'=>$previous->seotitle))?>" title="<?=$previous->title?>">
+        <i class="icon-backward icon-white"></i> <?=$previous->title?></i></a>
+    <?endif?>
+    <?if($next->loaded()):?>
+        <a class="btn btn-success" href="<?=Route::url('blog',  array('seotitle'=>$next->seotitle))?>" title="<?=$next->title?>">
+        <?=$next->title?> <i class="icon-forward icon-white"></i></a>
+    <?endif?>
 </div>  
     
 <?=$post->disqus()?>

@@ -66,6 +66,15 @@ Route::set('page','<seotitle>.html')
 
 
 /**
+ * rss for blog
+ */
+Route::set('rss-blog','rss/blog.xml')
+->defaults(array(
+        'controller' => 'feed',    
+        'action'     => 'blog',
+));
+
+/**
  * rss
  */
 Route::set('rss','rss(/<category>(/<location>)).xml')

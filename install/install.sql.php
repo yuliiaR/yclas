@@ -384,6 +384,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'akismet_key', ''),
 ('general', 'alert_terms', ''),
 ('general', 'search_by_description', 0),
+('general', 'blog', 0),
 ('general', 'landing_page', '{\"controller\":\"home\",\"action\":\"index\"}'),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),

@@ -1,4 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+<div class="page-header">
+    <h1><?=Core::config('general.site_name')?> <?=__('Blog')?></h1>
+</div>
 
 <?if(count($posts)):?>
     <?foreach($posts as $post ):?>
