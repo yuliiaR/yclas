@@ -21,6 +21,9 @@ class Model_Post extends ORM {
     protected $_primary_key = 'id_post';
 
 
+    protected $_belongs_to = array(
+        'user'       => array('foreign_key' => 'id_user'),
+    );
 
     public function filters()
     {
@@ -102,5 +105,24 @@ class Model_Post extends ORM {
         
 
         return $seotitle;
+    }
+
+
+
+    /**
+     * prints the disqus script from the view
+     * @return string HTML or false in case not loaded
+     */
+    public function disqus()
+    {
+        if($this->loaded())
+        {
+            if ($this->status == 1 AND strlen(core::config('advertisement.disqus'))>0 )
+            {
+                return View::factory('pages/ad/disqus')->render();
+            }
+        }
+    
+        return FALSE;
     }
 }

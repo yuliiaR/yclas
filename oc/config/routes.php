@@ -85,7 +85,7 @@ Route::set('sitejson','info.json')
 
 
 
-//-------END reserved pagesd
+//-------END reserved pages
 
 /**
  * user admin/panel route
@@ -95,6 +95,15 @@ Route::set('oc-panel', 'oc-panel(/<controller>(/<action>(/<id>(/<current_url>)))
 		'directory'  => 'panel',
 		'controller' => 'home',
 		'action'     => 'index',
+));
+
+/**
+ * blog
+ */
+Route::set('blog', 'blog(/<seotitle>.html)')
+->defaults(array(
+        'controller' => 'blog',    
+        'action'     => 'index',
 ));
 
 /**
