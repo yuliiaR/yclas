@@ -98,3 +98,7 @@ li{
 .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
 .resized {width: 205px;}
 .error{color:#ff1a1a;}
+
+.social-btn{
+	margin-bottom: 10px !important;
+}

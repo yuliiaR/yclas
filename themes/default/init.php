@@ -25,7 +25,6 @@ Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.2/cerulea
                         'http://cdn.jsdelivr.net/chosen/0.9.12/chosen.css' => 'screen',
                         'css/jquery.sceditor.min.css' => 'screen', 
                         'css/bootstrap-image-gallery.css' => 'screen',
-                        
         				);
 
 
