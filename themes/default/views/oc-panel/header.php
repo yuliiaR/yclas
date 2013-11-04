@@ -32,6 +32,7 @@
             	    <li  class="dropdown "><a href="#" class="dropdown-toggle"
             		      data-toggle="dropdown"><i class="icon-plus icon-white"></i> <?=__('New')?> <b class="caret"></b></a>
                     	<ul class="dropdown-menu">
+                            <?=Theme::admin_link(__('Bog post'),'blog','create')?>
                             <?=Theme::admin_link(__('Category'),'category','create')?>
                             <?=Theme::admin_link(__('Location'),'location','create')?>
                             <?=Theme::admin_link(__('Page'),'content','create')?>

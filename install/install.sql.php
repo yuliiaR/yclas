@@ -183,6 +183,19 @@ mysql_query("CREATE TABLE IF NOT EXISTS `".$_POST['TABLE_PREFIX']."subscribers` 
   PRIMARY KEY (`id_subscribe`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
 
+
+mysql_query("CREATE TABLE IF NOT EXISTS  `".$_POST['TABLE_PREFIX']."posts` (
+  `id_post` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_user` int(10) unsigned NOT NULL,
+  `title` varchar(245) NOT NULL,
+  `seotitle` varchar(245) NOT NULL,
+  `description` text NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_post`) USING BTREE,
+  UNIQUE KEY `".$_POST['TABLE_PREFIX']."posts_UK_seotitle` (`seotitle`)
+) ENGINE=InnoDB DEFAULT CHARSET=".$_POST['DB_CHARSET'].";");
+
 /**
  * add basic content like emails
  */
@@ -371,6 +384,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'akismet_key', ''),
 ('general', 'alert_terms', ''),
 ('general', 'search_by_description', 0),
+('general', 'blog', 0),
 ('general', 'landing_page', '{\"controller\":\"home\",\"action\":\"index\"}'),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),

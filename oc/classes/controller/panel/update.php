@@ -195,12 +195,30 @@ class Controller_Panel_Update extends Auth_Controller {
     public function action_21()
     {
         $prefix = Database::instance()->table_prefix();
+        $config_db = Kohana::$config->load('database');
+        $charset = $config_db['default']['charset'];
 
         mysql_query("ALTER TABLE  `".$prefix."users` ADD  `hybridauth_provider_name` VARCHAR( 40 ) NULL DEFAULT NULL ,ADD  `hybridauth_provider_uid` VARCHAR( 245 ) NULL DEFAULT NULL");
         mysql_query("create unique index ".$prefix."users_UK_provider_AND_uid on ".$prefix."users (hybridauth_provider_name, hybridauth_provider_uid)");
         
+        mysql_query("CREATE TABLE IF NOT EXISTS  `".$prefix."posts` (
+                  `id_post` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                  `id_user` int(10) unsigned NOT NULL,
+                  `title` varchar(245) NOT NULL,
+                  `seotitle` varchar(245) NOT NULL,
+                  `description` text NOT NULL,
+                  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `status` tinyint(1) NOT NULL DEFAULT '0',
+                  PRIMARY KEY (`id_post`) USING BTREE,
+                  UNIQUE KEY `".$prefix."posts_UK_seotitle` (`seotitle`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=".$charset.";");
+
+
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'search_by_description',
+                               'group_name'     =>'general', 
+                               'config_value'   => 0),
+                        array('config_key'     =>'blog',
                                'group_name'     =>'general', 
                                'config_value'   => 0),
                          array('config_key'     =>'config',

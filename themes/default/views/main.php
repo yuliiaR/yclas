@@ -15,6 +15,7 @@
 	<meta name="author" content="open-classifieds.com">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
+    <link rel="alternate" type="application/atom+xml" title="RSS Blog <?=Core::config('general.site_name')?>" href="<?=Route::url('rss-blog')?>" />
     <link rel="alternate" type="application/atom+xml" title="RSS <?=Core::config('general.site_name')?>" href="<?=Route::url('rss')?>" />
 
     <?if (Controller::$category!==NULL AND Controller::$location!==NULL):?>

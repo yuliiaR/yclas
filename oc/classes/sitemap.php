@@ -109,6 +109,19 @@ class Sitemap {
                 $url= Route::url('ad',  array('category'=>$a->category,'seotitle'=>$a->seotitle));
                 $sitemap->addUrl($url, date('c'),  'monthly',    '0.5');
             }
+
+            //all the blog posts
+            $sitemap->addUrl(Route::url('blog'), date('c'), 'daily',    '0.7');
+            $posts = new Model_Post();
+            $posts = $posts->where('status','=', 1)
+                    ->order_by('created','desc')
+                    ->find_all();
+            foreach ($posts as $post) 
+            {
+                $url= Route::url('blog',  array('seotitle'=>$post->seotitle));
+                $sitemap->addUrl($url, date('c'),  'monthly',    '0.5');
+            }
+
             
             try
             {
