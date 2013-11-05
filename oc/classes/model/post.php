@@ -43,8 +43,6 @@ class Model_Post extends ORM {
      */
     public function form_setup($form)
     {   
-        $form->fields['description']['display_as'] = 'textarea';
-
         $form->fields['id_user']['value']       =  auth::instance()->get_user()->id_user;
         $form->fields['id_user']['display_as']  = 'hidden';
 
@@ -117,9 +115,11 @@ class Model_Post extends ORM {
     {
         if($this->loaded())
         {
-            if ($this->status == 1 AND strlen(core::config('advertisement.disqus'))>0 )
+            if ($this->status == 1 AND strlen(core::config('general.blog_disqus'))>0 )
             {
-                return View::factory('pages/ad/disqus')->render();
+                return View::factory('pages/ad/disqus',
+                                array('disqus'=>core::config('general.blog_disqus')))
+                        ->render();
             }
         }
     

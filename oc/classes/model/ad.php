@@ -573,7 +573,9 @@ class Model_Ad extends ORM {
         {
             if ($this->status == self::STATUS_PUBLISHED AND strlen(core::config('advertisement.disqus'))>0 )
             {
-                return View::factory('pages/ad/disqus')->render();
+                return View::factory('pages/ad/disqus',
+                                array('disqus'=>core::config('product.disqus')))
+                        ->render();
             }
         }
     
