@@ -18,12 +18,6 @@
     <?if (core::config('general.blog')==1):?>
     <link rel="alternate" type="application/atom+xml" title="RSS Blog <?=Core::config('general.site_name')?>" href="<?=Route::url('rss-blog')?>" />
     <?endif?>
-<<<<<<< HEAD
-    <?if (core::config('general.blog')==1):?>
-    <link rel="alternate" type="application/atom+xml" title="RSS Blog <?=Core::config('general.site_name')?>" href="<?=Route::url('rss-blog')?>" />
-    <?endif?>
-=======
->>>>>>> 35df56daccf2101856205fa0265b71df37483385
     <link rel="alternate" type="application/atom+xml" title="RSS <?=Core::config('general.site_name')?>" href="<?=Route::url('rss')?>" />
 
 
