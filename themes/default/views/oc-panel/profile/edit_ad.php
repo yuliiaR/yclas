@@ -74,8 +74,9 @@
                                        	 	data-target="#acc_<?=$cats['categories'][$key]['seoname']?>">                    
                                         	<i class=" icon-plus icon-white"></i> <?=$cats['categories'][$key]['name']?>
                                     	</a>
+									<?if(core::config('advertisement.parent_category')):?>
                                     <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':''?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required > 
-                                    
+                                    <?endif?>
                                      <?if ($cats['categories'][$key]['price']>0):?>
                                         <span class="label label-success">
                                         <?=i18n::money_format( $cats['categories'][$key]['price'])?>

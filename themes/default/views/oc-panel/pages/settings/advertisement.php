@@ -30,6 +30,21 @@
 					))?> 
 				</div>
 			</div>
+			<div class="control-group">
+				<?= FORM::label($forms['parent_category']['key'], __('Parent category'), array('class'=>'control-label', 'for'=>$forms['parent_category']['key']))?>
+				<div class="controls">
+					<?= FORM::select($forms['parent_category']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['parent_category']['value'], array(
+					'placeholder' => "", 
+					'class' => 'tips', 
+					'id' => $forms['parent_category']['key'], 
+					'data-content'=> __("parent_category field"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Use parent categories"),
+					))?>  
+				</div>
+			</div>
 			
 			<div class="control-group">
 				<?= FORM::label($forms['expire_date']['key'], __('Ad expiration date'), array('class'=>'control-label', 'for'=>$forms['expire_date']['key']))?>

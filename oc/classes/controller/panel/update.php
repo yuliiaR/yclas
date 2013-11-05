@@ -221,7 +221,10 @@ class Controller_Panel_Update extends Auth_Controller {
                         array('config_key'     =>'blog',
                                'group_name'     =>'general', 
                                'config_value'   => 0),
-                         array('config_key'     =>'config',
+                        array('config_key'     =>'parent_category',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   => 1),
+                        array('config_key'     =>'config',
                                'group_name'     =>'social', 
                                'config_value'   =>'{"debug_mode":"0","providers":{
                                                                           "OpenID":{"enabled":"1"},
