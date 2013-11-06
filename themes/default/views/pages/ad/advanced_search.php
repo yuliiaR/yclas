@@ -20,10 +20,29 @@
                 <select name="category" id="category" class="input-xlarge" >
                 <option></option>
                 <?function lili($item, $key,$cats){?>
-                <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
+                <?if(!core::config('advertisement.parent_category')):?>
+                    <?if($cats[$key]['id_category_parent'] != 1):?>
+                        <?if(!core::config('advertisement.parent_category')):?>
+                    <?if($cats[$key]['id_category_parent'] != 1):?>
+                        <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
+                    <?endif?>
+                <?else:?>
+                    <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
+                <?endif?>
+                    <?endif?>
+                <?else:?>
+                    <?if(!core::config('advertisement.parent_category')):?>
+                    <?if($cats[$key]['id_category_parent'] != 1):?>
+                        <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
+                    <?endif?>
+                <?else:?>
+                    <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
+                <?endif?>
+                <?endif?>
                     <?if (count($item)>0):?>
                     <optgroup label="<?=$cats[$key]['name']?>">    
                         <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
+                        </optgroup>
                     <?endif?>
                 <?}array_walk($order_categories, 'lili',$categories);?>
                 </select>

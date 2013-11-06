@@ -38,7 +38,7 @@
 		              	<?foreach($cats as $c ):?>
 		              		<?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
 								<li class="nav-header dropdown-submenu">
-                                    <p><a tabindex="-1" title="<?=$c['seoname']?>" href="<?=Route::url('list', array('category'=>$c['seoname'],'location'=>$loc_seoname))?>">
+                                    <p><a tabindex="-1" title="<?=$c['seoname']?>" <?=(core::config('advertisement.parent_category'))?'href="'.Route::url('list', array('category'=>$c['seoname'],'location'=>$loc_seoname)).'"':""?>>
                                         <?=$c['name']?></a>
                                     </p>
 									<ul class="dropdown-menu">							

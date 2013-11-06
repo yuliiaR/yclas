@@ -37,7 +37,7 @@
         <?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
         <li class="span2 resized">
             <div class="category_box_title">
-                <p><a title="<?=$c['name']?>" href="<?=Route::url('list', array('category'=>$c['seoname']))?>"><?=strtoupper($c['name']);?></a></p>
+                <p><a title="<?=$c['name']?>" <?=(core::config('advertisement.parent_category'))?'href="'.Route::url('list', array('category'=>$c['seoname'])).'"':""?>><?=strtoupper($c['name']);?></a></p>
             </div>  
             <div class="well custom_box_content" style="padding: 8px 0;">
                 <ul class="nav nav-list">
