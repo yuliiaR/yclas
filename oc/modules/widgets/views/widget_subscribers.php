@@ -41,7 +41,7 @@
 	                    </optgroup>
 	                <?endif?>
 	            <?}
-	            $loc_order = $widget->loc_order_Witems; 
+	            $loc_order = $widget->loc_order_items; 
 	        	array_walk($loc_order , 'lolo10',$widget->loc_items);?>
 	            </select>
 	        </div>

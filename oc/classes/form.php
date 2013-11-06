@@ -201,7 +201,7 @@ class Form extends Kohana_Form {
         switch ($options['display']) 
         {
             case 'select':
-                $input = FORM::select($name, $options['options'], (!is_array($value))?$value:NULL, $attributes);
+                $input = FORM::select($name, $options['options'], (!is_array($value))?$value:NULL);
                 break;
             case 'text':
                 $input = FORM::input($name, $value, $attributes);
