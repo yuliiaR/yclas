@@ -216,31 +216,39 @@ class Auth_Crud extends Auth_Controller
 	
 	
 	/**
- 	 *
+     *
      * tells you if the crud action it's allowed in the controller
-	 * @param array $action
-	 * @return boolean
-	 */
-	public function allowed_crud_action($action = NULL)
-	{
-		if ($action === NULL)
-		$action = $this->request->action();
-	
-		//its a crud request? check whitelist
-		if (in_array($action, $this->_crud_actions) )
-		{
-			//its not in the whitelist?
-			if (!in_array($action, $this->crud_actions) )
-			{
-				//access not allowed
-				Alert::set(Alert::ERROR, __('Access not allowed'));
-				return FALSE;
-			}
-		}
-	
-		return TRUE;
-	
-	}
+     * @param array $action
+     * @return boolean
+     */
+    public function allowed_crud_action($action = NULL)
+    {
+        $notify = FALSE;
+
+        if ($action === NULL)
+        {
+            $action = $this->request->action();
+            $notify = TRUE;
+        }
+            
+    
+        //its a crud request? check whitelist
+        if (in_array($action, $this->_crud_actions) )
+        {
+            //its not in the whitelist?
+            if (!in_array($action, $this->crud_actions) )
+            {
+                //access not allowed
+                if ($notify==TRUE)
+                    Alert::set(Alert::ERROR, __('Access not allowed'));
+
+                return FALSE;
+            }
+        }
+    
+        return TRUE;
+    
+    }
 
 
 }

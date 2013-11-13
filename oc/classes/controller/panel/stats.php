@@ -188,8 +188,8 @@ class Controller_Panel_Stats extends Auth_Controller {
         $stats_orders = array();
         foreach ($dates as $date) 
         {
-            $count_orders = (isset($ads_dates[$date['date']]['count']))?$ads_dates[$date['date']]['count']:0;
-            $count_sum = (isset($ads_dates[$date['date']]['total']))?$ads_dates[$date['date']]['total']:0;
+            $count_orders = (isset($orders[$date['date']]['count']))?$orders[$date['date']]['count']:0;
+            $count_sum = (isset($orders[$date['date']]['total']))?$orders[$date['date']]['total']:0;
             
             $stats_orders[] = array('date'=>$date['date'],'#orders'=> $count_orders,'$'=>$count_sum);
         } 
