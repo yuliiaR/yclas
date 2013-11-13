@@ -27,22 +27,22 @@
         <p>
             <span class="badge badge-info"><?=__('Current Theme')?></span>
             <?if (Theme::has_options()):?>
-            <a class="btn btn-mini btn-primary" title="<?=__('Theme Options')?>" 
+            <a class="btn btn-xs btn-primary" title="<?=__('Theme Options')?>" 
                 href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>">
-                <i class="icon-wrench icon-white"></i> </a>
+                <i class="glyphicon glyphicon-wrench glyphicon"></i> </a>
             <?endif?>
         </p>
         <p><?=$selected['Description']?></p>
         <?if(Core::config('appearance.theme_mobile')!=''):?>
             <p>
                 <?=__('Using mobile theme')?> <code><?=Core::config('appearance.theme_mobile')?></code>
-                <a class="btn btn-mini btn-warning" title="<?=__('Disable')?>" 
+                <a class="btn btn-xs btn-warning" title="<?=__('Disable')?>" 
                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>'disable'))?>">
-                    <i class="icon-remove icon-white"></i>
+                    <i class="glyphicon  glyphicon-remove"></i>
                 </a>
-                <a class="btn btn-mini btn-primary" title="<?=__('Options')?>" 
+                <a class="btn btn-xs btn-primary" title="<?=__('Options')?>" 
                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options','id'=>Core::config('appearance.theme_mobile')))?>">
-                <i class="icon-wrench icon-white"></i></a>
+                <i class="glyphicon glyphicon-wrench glyphicon"></i></a>
             </p>
         <?endif?>
     </div>
@@ -50,18 +50,19 @@
 
 <? if (count($themes)>1):?>
 <h2><?=__('Available Themes')?></h2>
-<div class="row-fluid">
-<ul class="thumbnails">
+
+<div class="row">
+<div class="col-sm-12">
 <?$i=0;
 foreach ($themes as $theme=>$info):?>
     <?if(Theme::$theme!==$theme):?>
-    <?if ($i%3==0):?></ul></div><div class="row-fluid"><ul class="thumbnails"><?endif?>
-    <li class="span4">
-    <div class="thumbnail">
-
+    <?if ($i%3==0):?></div></div><div class="row"><div class="col-sm-12"><?endif?>
+    
+    <div class="thumbnail col-md-3">
         <?if ($scr = Theme::get_theme_screenshot($theme)):?>
             <img width="300px" height="200px" src="<?=$scr?>">
         <?endif?>
+        
 
         <div class="caption">
             <h3><?=$info['Name']?></h3>
@@ -75,12 +76,14 @@ foreach ($themes as $theme=>$info):?>
             </p>
         </div>
     </div>
-    </li>
+    
     <?$i++;
     endif?>
 <?endforeach?>
-</ul>
+
+</div>
 </div><!--/row-->
+
 <?endif?>
 
 
@@ -91,13 +94,13 @@ if(Core::config('appearance.theme_mobile')!='')
 
 if ($a_m_themes>0):?>
 <h2><?=__('Available Mobile Themes')?></h2>
-<div class="row-fluid">
+<div class="row">
 <ul class="thumbnails">
 <?$i=0;
 foreach ($mobile_themes as $theme=>$info):?>
     <?if(Core::config('appearance.theme_mobile')!==$theme):?>
-    <?if ($i%3==0):?></ul></div><div class="row-fluid"><ul class="thumbnails"><?endif?>
-    <li class="span4">
+    <?if ($i%3==0):?></ul></div><div class="row"><ul class="thumbnails"><?endif?>
+    <li class="col-md-4">
     <div class="thumbnail">
 
         <?if ($scr = Theme::get_theme_screenshot($theme)):?>

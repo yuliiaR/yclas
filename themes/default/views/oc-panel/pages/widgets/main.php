@@ -32,7 +32,10 @@
             padding: 9px 0;
         }
 
-
+        li{
+            /*margin-right: 10px;*/
+            list-style: none;
+        }
         body.dragging, body.dragging * {
           cursor: move !important;
         }
@@ -74,6 +77,7 @@
             border-right: none;
             color: red;
         }
+        .nav-header{margin-left: 10px;}
 
     </style>
 
@@ -84,16 +88,16 @@
     <div class="container">
 	    <div class="row">
 	    	
-	    	<div class="span12">
+	    	<div class="col-md-12">
 	    		<?=Breadcrumbs::render('oc-panel/breadcrumbs')?>
 	    		<?=Alert::show()?>
 	    	</div><!--/span--> 
 
-	    	<div class="span8">
+	    	<div class="col-md-9">
                 <h2><?=__('Available widgets')?></h2>
                 <a href="http://open-classifieds.com/2013/08/26/overview-of-widgets/" target="_blank"><?=__('Read more')?></a></a>
 
-				<ul class="inline">
+				<ul class="">
 					<?foreach ($widgets as $widget):?>
 						<?=$widget->form()?>
 					<?endforeach?>
@@ -103,7 +107,7 @@
 	    	</div><!--/span--> 
 	    	
 	    	<!--placeholders-->
-	    	<div class="span4">
+	    	<div class="col-md-3">
 				<?foreach ($placeholders as $placeholder=>$widgets):?>
 				<div class="well sidebar-nav">
                 <p class="nav-header"><?=$placeholder?></p>

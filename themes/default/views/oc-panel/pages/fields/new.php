@@ -7,24 +7,24 @@
 <form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">         
       <?=Form::errors()?>  
       
-        <div class="control-group">
+        <div class="form-group">
             <label class="control-label"><?=__('Name')?></label>
-                <div class="controls docs-input-sizes">
-                <input class="input-xlarge" type="text" name="name" placeholder="<?=__('Name')?>" required>
+                <div class="col-sm-6 docs-input-sizes">
+                <input class="form-control" type="text" name="name" placeholder="<?=__('Name')?>" required>
             </div>
         </div>
         
-        <div class="control-group">
+        <div class="form-group">
             <label class="control-label"><?=__('Label')?></label>
-                <div class="controls docs-input-sizes">
-                <input class="input-xlarge" type="text" name="label" placeholder="<?=__('Label')?>" required>
+                <div class="col-sm-6 docs-input-sizes">
+                <input class="form-control" type="text" name="label" placeholder="<?=__('Label')?>" required>
             </div>
         </div>
 
-        <div class="control-group">
+        <div class="form-group">
             <label class="control-label" for="date"><?=__('Type')?></label>            
-            <div class="controls">          
-                <select name="type"  class="input-xlarge" id="cf_type_fileds" required>
+            <div class="col-sm-6">          
+                <select name="type"  class="form-control" id="cf_type_fileds" required>
                     <option value="string"><?=__('Text 256 Chars')?></option>
                     <option value="textarea"><?=__('Text Long')?></option>
                     <option value="integer"><?=__('Number')?></option>  
@@ -37,15 +37,15 @@
             </div>
         </div>
 
-        <div class="control-group">
+        <div class="form-group">
             <label class="control-label"><?=__('Values')?></label>
-                <div class="controls docs-input-sizes">
-                <input class="input-xlarge" id="cf_values_input" type="text" name="values" placeholder="<?=__('Comma separated for select')?>">
+                <div class="col-sm-6 docs-input-sizes">
+                <input class="form-control" id="cf_values_input" type="text" name="values" placeholder="<?=__('Comma separated for select')?>">
             </div>
         </div>
 
-        <div class="control-group">
-            <div class="controls">
+        <div class="form-group">
+            <div class="col-sm-6">
                 <label class="checkbox">
                   <input type="checkbox" name="required"> 
                    <?=__('Required')?>
@@ -53,8 +53,8 @@
             <div class="help-block"></div></div>
         </div>
 
-        <div class="control-group">
-            <div class="controls">
+        <div class="form-group">
+            <div class="col-sm-6">
                 <label class="checkbox">
                   <input type="checkbox" name="searchable"> 
                    <?=__('Searchable')?>

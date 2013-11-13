@@ -1,12 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <? if (count($market)>=1):?>
-<div class="row-fluid">
+<div class="row">
 <ul class="thumbnails">
 <?$i=0;
 foreach ($market as $item):?>
-    <?if ($i%3==0):?></ul></div><div class="row-fluid"><ul class="thumbnails"><?endif?>
-    <li class="span4">
+    <?if ($i%3==0):?></ul></div><div class="row"><ul class="thumbnails"><?endif?>
+    <li class="col-md-4">
     <div class="thumbnail <?if ( $item['price_offer']>0):?>alert-success<?endif?>" >
 
         <?if (empty($item['url_screenshot'])===FALSE):?>
@@ -35,16 +35,16 @@ foreach ($market as $item):?>
             <?if ( $item['price_offer']>0):?>
             <p>
                 <a href="<?=$item['url_buy']?>" class="btn btn-block btn-danger"><?=__('Limited Offer!')?> $<?=$item['price_offer']?></a>
-                <a href="<?=$item['url_buy']?>" class="btn btn-block btn-info"><i class="icon-time icon-white"></i> <?=__('Valid Until')?>  <?= Date::format($item['offer_valid'], core::config('general.date_format'))?></a>
+                <a href="<?=$item['url_buy']?>" class="btn btn-block btn-info"><i class="glyphicon glyphicon-time glyphicon"></i> <?=__('Valid Until')?>  <?= Date::format($item['offer_valid'], core::config('general.date_format'))?></a>
             </p>
             <?endif?>
             <p>
-                <a class="btn btn-primary btn-large" href="<?=$item['url_buy']?>">
-                    <i class="icon-shopping-cart icon-white"></i>  <?=__('Buy Now')?>
+                <a class="btn btn-primary btn-lg" href="<?=$item['url_buy']?>">
+                    <i class="glyphicon glyphicon-shopping-cart glyphicon"></i>  <?=__('Buy Now')?>
                 </a>
                 <?if (empty($item['url_demo'])===FALSE):?>
                     <a class="btn" target="_blank" href="<?=$item['url_demo']?>">
-                        <i class="icon-eye-open"></i>
+                        <i class=" glyphicon-eye-open"></i>
                             <?=__('Preview')?>
                     </a>    
                 <?endif?>

@@ -1,14 +1,15 @@
 $(function (){
-    
 
-    $('#formorm_description, textarea[name=description], .cf_textarea_fields').addClass('span6').sceditorBBCodePlugin({
+
+    
+    $('#formorm_description, textarea[name=description], .cf_textarea_fields').sceditorBBCodePlugin({
         toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
         "bulletlist,orderedlist|link,unlink|source",
         resizeEnabled: "true"});
     
     $('.tips').popover();
 
-    $("select").chosen();
+    $("select").chosen({width: "100%"});
     
     $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
     
@@ -61,5 +62,12 @@ _debounce = function(func, wait, immediate) {
     };
 };
 
-    
+$(window).load(function(){
+    $('input,select,textarea').addClass('form-control');
+    $('label').next().addClass('col-sm-4');
+    $('textarea').parent().removeClass('col-sm-4').addClass('col-sm-6');
+    $('.control-label').addClass('col-sm-3');
+    $('.control-group').removeClass('control-group').addClass('form-group');
+    $('input[type=checkbox],input[type=radio]').removeClass('form-control').removeClass('input-large');
 
+});

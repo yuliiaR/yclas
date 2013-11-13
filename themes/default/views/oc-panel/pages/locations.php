@@ -7,20 +7,20 @@
   <?=__('New location')?></a>
 </div>
 
-<ol class='plholder span8' id="ol_1" data-id="1">
+<ol class='plholder col-md-8' id="ol_1" data-id="1">
 <?=_('Home')?>
 <?function lili($item, $key,$locs){?>
 
-    <li data-id="<?=$key?>" id="li_<?=$key?>"><i class="icon-move"></i> <?=$locs[$key]['name']?>
+    <li data-id="<?=$key?>" id="li_<?=$key?>"><i class="glyphicon  glyphicon-move"></i> <?=$locs[$key]['name']?>
         
         <a data-text="<?=__('Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location.')?>" 
            data-id="li_<?=$key?>" 
-           class="btn btn-mini btn-danger index-delete pull-right" 
+           class="btn btn-xs btn-danger  pull-right" 
            href="<?=Route::url('oc-panel', array('controller'=> 'location', 'action'=>'delete','id'=>$key))?>">
-                    <i class="icon-trash icon-white"></i>
+                    <i class="glyphicon  glyphicon-trash"></i>
         </a>
 
-        <a class="btn btn-mini btn-primary pull-right" 
+        <a class="btn btn-xs btn-primary pull-right" 
             href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'update','id'=>$key))?>">
             <?=__('Edit')?>
         </a>

@@ -9,52 +9,52 @@
           <?=Form::errors()?>        
     
 
-      <div class="control-group">
+      <div class="form-group">
         <label class="control-label"><?=__("Host name")?>:</label>
-        <div class="controls">
-        <input  type="text" name="hostname" value="<?=$db_config['connection']['hostname']?>" class="span3"  />
+        <div class="col-sm-6">
+        <input  type="text" name="hostname" value="<?=$db_config['connection']['hostname']?>" class="col-md-3"  />
         </div>
       </div>
 
-      <div class="control-group">
+      <div class="form-group">
         <label class="control-label"><?=__("User name")?>:</label>
-        <div class="controls">
-        <input  type="text" name="username"  value="<?=$db_config['connection']['username']?>" class="span3"   />
+        <div class="col-sm-6">
+        <input  type="text" name="username"  value="<?=$db_config['connection']['username']?>" class="col-md-3"   />
         </div>
       </div>
 
-      <div class="control-group">
+      <div class="form-group">
         <label class="control-label"><?=__("Password")?>:</label>
-        <div class="controls">
-        <input type="text" name="password" value="" class="span3" />   
+        <div class="col-sm-6">
+        <input type="text" name="password" value="" class="col-md-3" />   
         </div>
       </div>
 
-      <div class="control-group">
+      <div class="form-group">
         <label class="control-label"><?=__("Database name")?>:</label>
-        <div class="controls">
-        <input type="text" name="database" value="<?=$db_config['connection']['database']?>"  class="span3"  />
+        <div class="col-sm-6">
+        <input type="text" name="database" value="<?=$db_config['connection']['database']?>"  class="col-md-3"  />
         </div>
       </div>
 
-      <div class="control-group">
+      <div class="form-group">
         <label class="control-label"><?=__("Database charset")?>:</label>
-        <div class="controls">
-        <input type="text" name="charset" value="<?=$db_config['charset']?>"  class="span3"   />
+        <div class="col-sm-6">
+        <input type="text" name="charset" value="<?=$db_config['charset']?>"  class="col-md-3"   />
         </div>
       </div>
 
-      <div class="control-group">
+      <div class="form-group">
         <label class="control-label"><?=__("Table prefix")?>:</label>
-        <div class="controls">
-        <input type="text" name="table_prefix" value="oc_" class="span3" />
+        <div class="col-sm-6">
+        <input type="text" name="table_prefix" value="oc_" class="col-md-3" />
         </div>
       </div>
 
           
           
       <div class="form-actions">
-      	<a href="<?=Route::url('oc-panel')?>" class="btn"><?=__('Cancel')?></a>
+      	<a href="<?=Route::url('oc-panel')?>" class="btn btn-default"><?=__('Cancel')?></a>
         <button type="submit" class="btn btn-primary"><?=__('Migrate')?></button>
       </div>
 	</form>    

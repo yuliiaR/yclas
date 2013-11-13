@@ -13,13 +13,13 @@
     <?=__('New')?>
 </a>
 <?= FORM::open(Route::url('oc-panel',array('controller'=>'content','action'=>'list')), array('method'=>'GET','class'=>'form-horizontal', 'id'=>'locale_form','enctype'=>'multipart/form-data'))?>
-    <div class="control-group">
+    <div class="form-group">
         <?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
-        <div class="controls">
+        <div class="col-sm-6">
             <?$ls = (isset($_REQUEST['locale_select']))?$_REQUEST['locale_select']:'';?>
             <?= FORM::select('locale_select', $locale_list, $ls )?> 
         </div>
-        <div class="controls">
+        <div class="col-sm-6">
             <?= FORM::hidden('type', $type )?> 
         </div>
     </div>
@@ -46,12 +46,12 @@
             <a class="btn btn-primary" 
                 href="<?=Route::url('oc-panel', array('controller'=>'content','action'=>'edit','id'=>$content))?>" 
                 rel"tooltip" title="<?=__('Edit')?>">
-                <i class="icon-edit icon-white"></i>
+                <i class="glyphicon  glyphicon-edit"></i>
             </a>
             <a class="btn btn-danger" 
                 href="<?=Route::url('oc-panel', array('controller'=>'content','action'=>'delete','id'=>$content))?>" 
                 rel"tooltip" title="<?=__('Delete')?>">
-                <i class="icon-trash icon-white"></i>
+                <i class="glyphicon  glyphicon-trash"></i>
             </a>
 
         </td>

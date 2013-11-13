@@ -7,13 +7,13 @@
     <?if(Core::config('appearance.theme_mobile')!=''):?>
             <p>
                 <?=__('Using mobile theme')?> <code><?=Core::config('appearance.theme_mobile')?></code>
-                <a class="btn btn-mini btn-warning" title="<?=__('Disable')?>" 
+                <a class="btn btn-xs btn-warning" title="<?=__('Disable')?>" 
                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>'disable'))?>">
-                    <i class="icon-remove icon-white"></i>
+                    <i class="glyphicon  glyphicon-remove"></i>
                 </a>
-                <a class="btn btn-mini btn-primary" title="<?=__('Options')?>" 
+                <a class="btn btn-xs btn-primary" title="<?=__('Options')?>" 
                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options','id'=>Core::config('appearance.theme_mobile')))?>">
-                <i class="icon-wrench icon-white"></i></a>
+                <i class="glyphicon glyphicon-wrench glyphicon"></i></a>
             </p>
         <?endif?>
 </div>
@@ -22,13 +22,13 @@
 <form action="<?=URL::base()?><?=Request::current()->uri()?>" method="post" class="form-horizontal"> 
     <fieldset>
         <?foreach ($options as $field => $attributes):?>
-            <div class="control-group">
+            <div class="form-group">
                 <?=FORM::form_tag($field, $attributes, (isset($data[$field]))?$data[$field]:NULL)?>
             </div>
         <?endforeach?>
-		<div class="form-actions">
-			<?= FORM::button('submit', __('Update'), array('type'=>'submit', 'class'=>'btn-small btn-primary'))?>
-		</div>
+		
+			<?= FORM::button('submit', __('Update'), array('type'=>'submit', 'class'=>'btn btn-primary'))?>
+		
 	</fieldset>	
 </form>
-</div><!--end span10-->
+</div><!--end col-md-10-->

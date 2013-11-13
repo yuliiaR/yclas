@@ -15,7 +15,7 @@
 				href="<?=Route::url('default', array('controller'=>'subscribe','action'=>'unsubscribe', 'id'=>Auth::instance()->get_user()->id_user))?>" 
 				onclick="return confirm('<?=__('Unsubscribe to all?')?>');"
 				rel"tooltip" title="<?=__('Unsubscribe to all')?>">
-				<i class="icon-remove icon-white"></i>
+				<i class="glyphicon  glyphicon-remove"></i>
 			</a>
 		</th>
 	</tr>
@@ -50,7 +50,7 @@
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'unsubscribe','id'=>$l['id']))?>" 
 					onclick="return confirm('<?=__('Unsubscribe?')?>');"
 					rel"tooltip" title="<?=__('Unsubscribe')?>">
-					<i class="icon-remove icon-white"></i>
+					<i class="glyphicon  glyphicon-remove"></i>
 				</a>
 			</td>
 		</tr>
