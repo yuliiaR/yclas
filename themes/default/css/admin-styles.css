@@ -7,3 +7,5 @@
 .index-delete{margin-top: 10px;}
 .js .collapsed{display: block !important;}
 .navbar-toggle{margin-left: 20px;}
+li.sbp .caret{float: right;margin-top: 7px;}
+.thumbnails{list-style: none;}

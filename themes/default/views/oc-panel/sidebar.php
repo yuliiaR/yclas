@@ -34,7 +34,7 @@
                 <? if($user->id_role==Model_Role::ROLE_ADMIN):?><div class="divider"></div><?endif?>
 
 			<?if ($user->has_access_to_any('settings,config')):?>
-				<li class="dropdown <?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">
+				<li class="dropdown sbp<?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">
                 <a tabindex="-1" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#"><i class="glyphicon  glyphicon-edit"></i><?=__('Settings')?><span class="caret"></span></a>
                     <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
     				    <?Theme::admin_link(__('General'), 'settings','general')?>
@@ -46,7 +46,7 @@
 			<?endif?>
 
             <?if ($user->has_access_to_any('user,role,access')):?>
-                <li class="dropdown <?=(in_array(Request::current()->controller(),array('user','role','access'))) ?'active':''?>">
+                <li class="dropdown sbp<?=(in_array(Request::current()->controller(),array('user','role','access'))) ?'active':''?>">
                 <a tabindex="-1" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#"><i class="glyphicon  glyphicon-user"></i><?=__('Users')?><span class="caret"></span></a>
                     <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
                       <?Theme::admin_link(__('Users'),'user')?>
@@ -57,7 +57,7 @@
             <? endif ?>
 
 			<?if ($user->has_access_to_any('tools')):?>
-				<li class="dropdown <?=(Request::current()->controller()=='tools') ?'active':''?>">
+				<li class="dropdown sbp<?=(Request::current()->controller()=='tools') ?'active':''?>">
                 <a tabindex="-1" id="dLabel" role="button" data-toggle="dropdown" data-target="#"  href="#"><i class="glyphicon glyphicon-wrench"></i><?=__('Tools')?><span class="caret"></span></a>
                     <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
                         <?Theme::admin_link(__('Updates'), 'update','index')?>

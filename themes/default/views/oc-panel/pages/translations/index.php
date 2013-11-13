@@ -36,7 +36,7 @@
                 <?=__('Activate')?>
             </a>
             <?else:?>
-                <span class="badge badge-info"><?=__('Active')?></span>
+                <span class="label label-info"><?=__('Active')?></span>
             <?endif?>
         </td>
     </tr>

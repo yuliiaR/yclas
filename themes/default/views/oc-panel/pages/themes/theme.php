@@ -8,7 +8,7 @@
 <!-- install theme form -->
 <?= FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 <div class="well pull-right">
-    <span class="badge badge-info"><?=__('Install theme')?></span><p><?=__('To install new theme choose zip file.')?></p>
+    <span class="label label-info"><?=__('Install theme')?></span><p><?=__('To install new theme choose zip file.')?></p>
     
     <div class="controll-group">
         <input type="file" name="theme_file" id="theme_file" />
@@ -25,7 +25,7 @@
     <div class="media-body">
         <h4 class="media-heading"><?=$selected['Name']?></h4>
         <p>
-            <span class="badge badge-info"><?=__('Current Theme')?></span>
+            <span class="label label-info"><?=__('Current Theme')?></span>
             <?if (Theme::has_options()):?>
             <a class="btn btn-xs btn-primary" title="<?=__('Theme Options')?>" 
                 href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>">

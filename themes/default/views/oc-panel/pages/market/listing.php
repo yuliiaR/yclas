@@ -19,12 +19,12 @@ foreach ($market as $item):?>
             <h3><?=$item['title']?></h3>
             <p>
                 <?if ( $item['price_offer']>0):?>
-                    <span class="badge badge-important">$<?=$item['price_offer']?></span>
-                    <span class="badge badge-info"><del>$<?=$item['price']?></del></span>
+                    <span class="label label-danger">$<?=$item['price_offer']?></span>
+                    <span class="label label-info"><del>$<?=$item['price']?></del></span>
                 <?else:?>
-                    <span class="badge badge-info">$<?=$item['price']?></span>
+                    <span class="label label-info">$<?=$item['price']?></span>
                 <?endif?>
-                <span class="badge badge-success"><?=$item['type']?></span>
+                <span class="label label-success"><?=$item['type']?></span>
             </p>
             <p>
                 <?=Text::bb2html($item['description'])?>
@@ -39,12 +39,12 @@ foreach ($market as $item):?>
             </p>
             <?endif?>
             <p>
-                <a class="btn btn-primary btn-lg" href="<?=$item['url_buy']?>">
-                    <i class="glyphicon glyphicon-shopping-cart glyphicon"></i>  <?=__('Buy Now')?>
+                <a class="btn btn-primary" href="<?=$item['url_buy']?>">
+                    <i class="glyphicon glyphicon-shopping-cart"></i>  <?=__('Buy Now')?>
                 </a>
                 <?if (empty($item['url_demo'])===FALSE):?>
-                    <a class="btn" target="_blank" href="<?=$item['url_demo']?>">
-                        <i class=" glyphicon-eye-open"></i>
+                    <a class="btn btn-default btn-xs" target="_blank" href="<?=$item['url_demo']?>">
+                        <i class="glyphicon glyphicon-eye-open"></i>
                             <?=__('Preview')?>
                     </a>    
                 <?endif?>
