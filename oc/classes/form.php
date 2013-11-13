@@ -147,6 +147,9 @@ class Form extends Kohana_Form {
         if ($url == NULL)
             $url = Core::post('auth_redirect',URL::current());
 
+        //if (Session::instance()->get('auth_redirect')==NULL)
+            Session::instance()->set('auth_redirect', $url);
+
         return Form::hidden('auth_redirect',$url);
     }
 

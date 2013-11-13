@@ -7,7 +7,7 @@ class Controller_Social extends Controller {
          //if user loged in redirect home
         if (Auth::instance()->logged_in())
             Auth::instance()->login_redirect();
-        
+
 		Social::include_vendor();
 			
 		$config = Social::get();
@@ -75,7 +75,8 @@ class Controller_Social extends Controller {
                     }
 
                     Alert::set(Alert::SUCCESS, __('Welcome!'));
-                    $this->request->redirect(Route::url('default'));
+                    //$this->request->redirect(Route::url('default'));
+                    $this->request->redirect(Session::instance()->get_once('auth_redirect'));
                     
 				}
 			}
@@ -111,7 +112,10 @@ class Controller_Social extends Controller {
                 Auth::instance()->social_login($provider_name,core::get('uid'));
 
                 Alert::set(Alert::SUCCESS, __('Welcome!'));
-                $this->request->redirect(Route::url('default'));
+
+                //change the redirect
+                //$this->request->redirect(Route::url('default'));
+                $this->request->redirect(Session::instance()->get_once('auth_redirect'));
             }
             else
             {
