@@ -7,16 +7,18 @@
 			<fieldset>
 
 				<div class="form-group">
-					<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
+					
 					<div class="col-md-4">
+						<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
 						<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
 
                <!-- drop down selector -->
                 <div class="form-group">
-                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
-                    <div class="col-md-4"> 
+                    
+                    <div class="col-md-4">
+                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?> 
                     <div class="accordion" >
 
                     <?function lili3($item, $key,$cats){?>
@@ -25,14 +27,14 @@
 
                                 <?if (count($item)>0):?>
                                     <label class="radio">
-                                    	<a class="btn btn-primary btn-mini" data-toggle="collapse" type="button"  
+                                    	<a class="btn btn-primary btn-xs" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
                                         	<i class=" glyphicon glyphicon-plus glyphicon"></i> <?=$cats[$key]['name']?>
                                     	</a>
                                     <?if(core::config('advertisement.parent_category')):?>
                                     <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
                                     <?endif?>
-                                     <?if ($cats[$key]['price']>0):?>
+                                    <?if ($cats[$key]['price']>0):?>
                                         <span class="label label-success">
                                         <?=i18n::money_format( $cats[$key]['price'])?>
                                         </span>
@@ -44,7 +46,7 @@
                                     <label class="radio">
                                     <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
                                     
-                                   		<a class="btn btn-mini btn-primary" data-toggle="collapse" type="button"  
+                                   		<a class="btn btn-xs btn-primary" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
                                         	<?=$cats[$key]['name']?>
                                     	</a>
@@ -76,8 +78,9 @@
 				
 				<?if(count($locations) > 1 AND $form_show['location'] != FALSE):?>
                     <div class="form-group">
-                        <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
-                        <div class="col-md-4">          
+                        
+                        <div class="col-md-4">
+                        	<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
                             <select name="location" id="location" class="form-control" required>
                             <option></option>
                             <?function lolo($item, $key,$locs){?>
@@ -94,63 +97,71 @@
 				<?endif?>
 
 				<div class="form-group">
-					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
-					<div class="col-md-4">
-						<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'col-md-6', 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
+					
+					<div class="col-md-8">
+						<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
+						<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control', 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
 					</div>
 				</div>
 				<div class="form-group">
 					<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?> 
-						<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'.$i))?>
+						
 						<div class="col-md-4">
+							<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'.$i))?>
 							<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" />
 						</div>
 					<?endfor?>
 				</div>
 				<?if($form_show['phone'] != FALSE):?>
 				<div class="form-group">
-					<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
+					
 					<div class="col-md-4">
+						<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
 						<?= FORM::input('phone', Request::current()->post('phone'), array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
 					</div>
 				</div>
 				<?endif?>
 				<?if($form_show['address'] != FALSE):?>
 				<div class="form-group">
-					<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
+					
 					<div class="col-md-4">
+						<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
 						<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 					</div>
 				</div>
 				<?endif?>
 				<?if($form_show['price'] != FALSE):?>
 				<div class="form-group">
-					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
+					
 					<div class="col-md-4">
+						<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 						<div class="input-prepend">
-						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => i18n::money_format(1), 'class' => 'input-large', 'id' => 'price', 'type'=>'text'))?>
+						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => i18n::money_format(1), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?>
 						</div>
 					</div>
 				</div>
 				<?endif?>
 				<?if($form_show['website'] != FALSE):?>
 				<div class="form-group">
-					<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
+					
 					<div class="col-md-4">
+						<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
 						<?= FORM::input('website', Request::current()->post('website'), array('placeholder' => __('Website'), 'class' => 'form-control', 'id' => 'website'))?>
 					</div>
 				</div>
 				<?endif?>
 				<?if (!Auth::instance()->get_user()):?>
 				<div class="form-group">
-					<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
+					
 					<div class="col-md-4">
+						<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
 						<?= FORM::input('name', Request::current()->post('name'), array('class'=>'form-control', 'id'=>'name', 'required', 'placeholder'=>__('Name')))?>
 					</div>
 				</div>
 				<div class="form-group">
-					<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
+					
 					<div class="col-md-4">
+						<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
 						<?= FORM::input('email', Request::current()->post('email'), array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
 					</div>
 				</div>

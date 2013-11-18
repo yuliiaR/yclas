@@ -62,12 +62,12 @@ _debounce = function(func, wait, immediate) {
     };
 };
 
-$(window).load(function(){
-    $('input,select,textarea').addClass('form-control');
-    $('label').next().addClass('col-sm-4');
-    $('textarea').parent().removeClass('col-sm-4').addClass('col-sm-6');
-    $('.control-label').addClass('col-sm-3');
-    $('.form-group').removeClass('form-group').addClass('form-group');
-    $('input[type=checkbox],input[type=radio]').removeClass('form-control').removeClass('input-large');
+// $(window).load(function(){
+//     $('input,select,textarea').addClass('form-control');
+//     $('label').next().addClass('col-sm-4');
+//     $('textarea').parent().removeClass('col-sm-4').addClass('col-sm-6');
+//     $('.control-label').addClass('col-sm-3');
+//     $('.form-group').removeClass('form-group').addClass('form-group');
+//     $('input[type=checkbox],input[type=radio]').removeClass('form-control').removeClass('input-large');
 
-});
+// });

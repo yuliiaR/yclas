@@ -51,23 +51,20 @@
 				</div>
 				<?endif?>
 				<div class="form-group">
-					<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
+						<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
 						<?= FORM::input('title', $ad->title, array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
 
 				<!-- drop down selector  CATEGORIES-->
                 <div class="form-group">
+                    <div class="col-sm-4"> 
                     <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
-                    <div class="col-sm-6"> 
-                    <div class="accordion" >
-
+                    <div class="accordion">
                     <?function lili3($item, $key, $cats){?>
-
                         <div class="accordion-group">
-                            <div class="accordion-heading"> 
-
+                            <div class="accordion-heading">
                                 <?if (count($item)>0):?>
                                     <label class="radio">
                                     	<a class="btn btn-primary btn-xs" data-toggle="collapse" type="button"  
@@ -82,18 +79,14 @@
                                         <?=i18n::money_format( $cats['categories'][$key]['price'])?>
                                         </span>
                                     <?endif?>
-                                    
                                     </label>
-                                    
                                 <?else:?>
                                     <label class="radio">
-                                    <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':''?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required > 
-                                    
+                                    <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':''?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required >
                                    		<a class="btn btn-xs btn-primary" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats['categories'][$key]['seoname']?>">                    
                                         	<?=$cats['categories'][$key]['name']?>
                                     	</a>
-
                                      <?if ($cats['categories'][$key]['price']>0):?>
                                         <span class="label label-success">
                                         <?=i18n::money_format( $cats['categories'][$key]['price'])?>
@@ -102,7 +95,6 @@
                                     </label>
                                 <?endif?>
                             </div>
-
                             <?if (count($item)>0):?>
                                 <div id="acc_<?=$cats['categories'][$key]['seoname']?>" 
                                     class="accordion-body collapse <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'in':''?>">
@@ -111,10 +103,8 @@
                                     </div>
                                 </div>
                             <?endif?>
-
                         </div>
                     <?}array_walk($order_categories, 'lili3', array('categories'=>$categories, 'cat_selected'=>$ad->category->seoname) );?>
-
                     </div>
                     </div>
                 </div>
@@ -123,12 +113,11 @@
 				<?if(core::config('advertisement.location') !== FALSE):?>
 				<?if(count($locations) > 1):?>
                     <div class="form-group">
-                        <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
-                        <div class="col-sm-6">          
+                        <div class="col-sm-4">  
+                        <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>        
                             <select name="location" id="location" class="form-control" >
                             <option></option>
                             <?function lolo($item, $key,$locs){?>
-
                             <option value="<?=$key?>" class="<?=($key==$locs['loc_selected'])?'result-selected':''?>" <?=($key==$locs['loc_selected'])?'selected':''?>><?=$locs['locations'][$key]['name']?></option>
                                 <?if (count($item)>0):?>
                                 <optgroup label="<?=$locs['locations'][$key]['name']?>" >    
@@ -143,39 +132,39 @@
 				<?endif?>
 				<!-- /locations -->
 				<div class="form-group">
-					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
 					<div class="col-sm-9">
+						<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
 						<?= FORM::textarea('description', $ad->description, array('class'=>'col-md-9', 'name'=>'description', 'id'=>'description', 'rows'=>8, 'required'))?>
 					</div>
 				</div>
 				<?if(core::config('advertisement.phone') != FALSE):?>
 				<div class="form-group">
-					<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
+						<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
 						<?= FORM::input('phone', $ad->phone, array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
 					</div>
 				</div>
 				<?endif?>
 				<?if(core::config('advertisement.address') != FALSE):?>
 				<div class="form-group">
-					<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
+						<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
 						<?= FORM::input('address', $ad->address, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 					</div>
 				</div>
 				<?endif?>
 				<?if(core::config('advertisement.website') != FALSE):?>
 				<div class="form-group">
-					<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
+						<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
 						<?= FORM::input('website', $ad->website, array('class'=>'form-control', 'id'=>'website', 'placeholder'=>__('Website')))?>
 					</div>
 				</div>
 				<?endif?>
 				<?if(core::config('advertisement.price') != FALSE):?>
 				<div class="form-group">
-					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
+						<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 						<div class="input-prepend">
 							<?= FORM::input('price', $ad->price, array('placeholder'=>i18n::money_format(1),'class'=>'form-control', 'id' => 'price'))?>
 						</div>
@@ -212,7 +201,6 @@
 					<div class="col-md-12">
 						<?$images = $ad->get_images()?>
 						<?if($images):?>
-						
 							<?php foreach ($images as $path => $value):?>
 							<?if(isset($value['thumb'])): // only formated images (not originals)?>
 							<?$img_name = str_replace(".jpg", "", substr(strrchr($value['thumb'], "/"), 1 ));?>
@@ -241,8 +229,9 @@
 				</div>
 				<div class="form-group">
 					<?if (core::config('advertisement.num_images') > count($images)):?> <!-- permition to add more images-->
-						<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images0'))?>
-						<div class="col-sm-6">
+						
+						<div class="col-sm-4">
+							<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images0'))?>
 							<input class="form-control" type="file" name='image0' id='fileInput0' />
 						</div>
 					<?endif?>
