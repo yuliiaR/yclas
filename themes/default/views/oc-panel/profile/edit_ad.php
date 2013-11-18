@@ -72,7 +72,7 @@
                                     <label class="radio">
                                     	<a class="btn btn-primary btn-xs" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats['categories'][$key]['seoname']?>">                    
-                                        	<i class=" glyphicon  glyphicon-plus"></i> <?=$cats['categories'][$key]['name']?>
+                                        	<i class=" glyphicon   glyphicon-plus"></i> <?=$cats['categories'][$key]['name']?>
                                     	</a>
 									<?if(core::config('advertisement.parent_category')):?>
                                     <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':''?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required > 

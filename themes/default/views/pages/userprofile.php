@@ -5,7 +5,7 @@
 </div>
 <?if(is_file(DOCROOT."images/users/".$user->id_user.".png")):?>
 <div class="row">
-	<div class="span3">
+	<div class="col-md-3">
 		<a class="thumbnail">
 			<img src="<?=URL::base('http')?>images/users/<?=$user->id_user?>.png" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
 		</a>
@@ -20,7 +20,7 @@
 		<p><b><?=__('Last Login')?>: </b><?= Date::format($user->last_login, core::config('general.date_format'))?></p>
 
 		<!-- Popup contact form -->
-			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="icon-envelope"></i> <?=__('Send Message')?></button>
+			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=__('Send Message')?></button>
 			<div id="contact-modal" class="modal hide fade">
 	        	<div class="modal-header">
 	         		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
@@ -33,36 +33,36 @@
 						
 						<?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact', 'id'=>$user->id_user)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
 						<fieldset>
-							<div class="control-group">
+							<div class="form-group">
 								<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
-								<div class="controls ">
+								<div class="col-md-4 ">
 									<?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => '', 'id' => 'name', 'required'))?>
 								</div>
 							</div>
-							<div class="control-group">
+							<div class="form-group">
 								
 								<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
-								<div class="controls ">
+								<div class="col-md-4 ">
 									<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => '', 'id' => 'email', 'type'=>'email','required'))?>
 								</div>
 							</div>
-							<div class="control-group">
+							<div class="form-group">
 								
 								<?= FORM::label('subject', __('Subject'), array('class'=>'control-label', 'for'=>'subject'))?>
-								<div class="controls ">
+								<div class="col-md-4 ">
 									<?= FORM::input('subject', "", array('placeholder' => __('Subject'), 'class' => '', 'id' => 'subject'))?>
 								</div>
 							</div>
-							<div class="control-group">
+							<div class="form-group">
 								<?= FORM::label('message', __('Message'), array('class'=>'control-label', 'for'=>'message'))?>
-								<div class="controls">
+								<div class="col-md-4">
 									<?= FORM::textarea('message', "", array('class'=>'', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>	
 									</div>
 							</div>
 							
 							<?if (core::config('advertisement.captcha') != FALSE):?>
-							<div class="control-group">
-								<div class="controls">
+							<div class="form-group">
+								<div class="col-md-4">
 									<?=__('Captcha')?>*:<br />
 									<?=captcha::image_tag('contact')?><br />
 									<?= FORM::input('captcha', "", array('class' => '', 'id' => 'captcha', 'required'))?>

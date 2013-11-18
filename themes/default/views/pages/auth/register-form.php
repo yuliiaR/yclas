@@ -2,31 +2,32 @@
 <form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'register'))?>">         
           <?=Form::errors()?>
           
-          <div class="control-group">
-            <label class="control-label"><?=__('Name')?></label>
-            <div class="controls docs-input-sizes">
-              <input class="input-medium" type="text" name="name" value="<?=Request::current()->post('name')?>" placeholder="<?=__('Name')?>">
+          <div class="form-group">
+            
+            <div class="col-md-4">
+              <label class="control-label"><?=__('Name')?></label>
+              <input class="form-control" type="text" name="name" value="<?=Request::current()->post('name')?>" placeholder="<?=__('Name')?>">
             </div>
           </div>
           
-          <div class="control-group">
-            <label class="control-label"><?=__('Email')?></label>
-            <div class="controls docs-input-sizes">
-              <input class="input-medium" type="text" name="email" value="<?=Request::current()->post('email')?>" placeholder="<?=__('Email')?>">
+          <div class="form-group">
+            <div class="col-md-4">
+              <label class="control-label"><?=__('Email')?></label>
+              <input class="form-control" type="text" name="email" value="<?=Request::current()->post('email')?>" placeholder="<?=__('Email')?>">
             </div>
           </div>
      
-          <div class="control-group">
+          <div class="form-group">
+            <div class="col-md-4">
             <label class="control-label"><?=__('New password')?></label>
-            <div class="controls docs-input-sizes">
-            <input class="input-medium" type="password" name="password1" placeholder="<?=__('Password')?>">
+            <input class="form-control" type="password" name="password1" placeholder="<?=__('Password')?>">
             </div>
           </div>
           
-          <div class="control-group">
+          <div class="form-group">
+            <div class="col-md-4">
             <label class="control-label"><?=__('Repeat password')?></label>
-            <div class="controls docs-input-sizes">
-            <input class="input-medium" type="password" name="password2" placeholder="<?=__('Password')?>">
+            <input class="form-control" type="password" name="password2" placeholder="<?=__('Password')?>">
               <p class="help-block">
               		<?=__('Type your password twice')?>
               </p>
@@ -34,8 +35,8 @@
           </div>
          
           <div class="form-actions">
-          	<a class="btn"  data-dismiss="modal" data-toggle="modal" title="<?=__('Login')?>" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
-				<i class="icon-user"></i> 
+          	<a class="btn btn-default"  data-dismiss="modal" data-toggle="modal" title="<?=__('Login')?>" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+				<i class="glyphicon glyphicon-user"></i> 
 				<?=__('Login')?>
 			</a>
             <button type="submit" class="btn btn-primary"><?=__('Register')?></button>

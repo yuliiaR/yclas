@@ -4,7 +4,7 @@
 <footer>
 
 <?foreach ( widgets::get('footer') as $widget):?>
-<div class="span3">
+<div class="col-md-3">
     <?=$widget->render()?>
 </div>
 <?endforeach?>

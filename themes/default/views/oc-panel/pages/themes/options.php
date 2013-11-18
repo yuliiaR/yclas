@@ -9,11 +9,11 @@
                 <?=__('Using mobile theme')?> <code><?=Core::config('appearance.theme_mobile')?></code>
                 <a class="btn btn-xs btn-warning" title="<?=__('Disable')?>" 
                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>'disable'))?>">
-                    <i class="glyphicon  glyphicon-remove"></i>
+                    <i class="glyphicon   glyphicon-remove"></i>
                 </a>
                 <a class="btn btn-xs btn-primary" title="<?=__('Options')?>" 
                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options','id'=>Core::config('appearance.theme_mobile')))?>">
-                <i class="glyphicon glyphicon-wrench glyphicon"></i></a>
+                <i class="glyphicon  glyphicon-wrench glyphicon"></i></a>
             </p>
         <?endif?>
 </div>

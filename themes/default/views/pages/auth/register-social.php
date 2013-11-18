@@ -3,17 +3,17 @@
                                                                                 'action'=>'register',
                                                                                 'id'    =>$provider)).'?uid='.$uid?>">         
           <?=Form::errors()?>
-          <div class="control-group">
+          <div class="form-group">
             <label class="control-label"><?=__('Name')?></label>
-            <div class="controls docs-input-sizes">
-              <input class="input-medium" type="text" name="name" value="<?=Core::post('name')?><?=Core::get('name')?>" placeholder="<?=__('Name')?>">
+            <div class="col-md-4">
+              <input class="form-control" type="text" name="name" value="<?=Core::post('name')?><?=Core::get('name')?>" placeholder="<?=__('Name')?>">
             </div>
           </div>
           
-          <div class="control-group">
+          <div class="form-group">
             <label class="control-label"><?=__('Email')?></label>
-            <div class="controls docs-input-sizes">
-              <input class="input-medium" type="text" name="email" value="<?=Core::post('email')?>" placeholder="<?=__('Email')?>">
+            <div class="col-md-4">
+              <input class="form-control" type="text" name="email" value="<?=Core::post('email')?>" placeholder="<?=__('Email')?>">
             </div>
           </div>
      

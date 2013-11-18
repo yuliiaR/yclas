@@ -9,14 +9,14 @@
       
         <div class="form-group">
             <label class="control-label"><?=__('Name')?></label>
-                <div class="col-sm-6 docs-input-sizes">
+                <div class="col-sm-6">
                 <input class="form-control" type="text" name="name" placeholder="<?=__('Name')?>" required>
             </div>
         </div>
         
         <div class="form-group">
             <label class="control-label"><?=__('Label')?></label>
-                <div class="col-sm-6 docs-input-sizes">
+                <div class="col-sm-6">
                 <input class="form-control" type="text" name="label" placeholder="<?=__('Label')?>" required>
             </div>
         </div>
@@ -39,7 +39,7 @@
 
         <div class="form-group">
             <label class="control-label"><?=__('Values')?></label>
-                <div class="col-sm-6 docs-input-sizes">
+                <div class="col-sm-6">
                 <input class="form-control" id="cf_values_input" type="text" name="values" placeholder="<?=__('Comma separated for select')?>">
             </div>
         </div>
@@ -63,7 +63,7 @@
         </div>
       
       <div class="form-actions">
-        <a href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'index'))?>" class="btn"><?=__('Cancel')?></a>
+        <a href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'index'))?>" class="btn btn-default"><?=__('Cancel')?></a>
         <button type="submit" class="btn btn-primary"><?=__('Create')?></button>
       </div>
 </form>

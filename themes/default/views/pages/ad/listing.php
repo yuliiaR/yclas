@@ -1,15 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 	 
 
-	<div class="well advise clearfix" id="advise">
+	<div class="well" id="advise">
 
 		<?if ($category!==NULL):?>
             <p><?=Text::bb2html($category->description,TRUE)?></p> 
-            <i class="icon-pencil"></i> 
+            <i class="glyphicon glyphicon-pencil"></i> 
                 <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>?category=<?=$category->seoname?>">
                     <?=__('Publish new advertisement')?></a>
         <?else:?>
-            <i class="icon-pencil"></i> <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>"><?=__('Publish new advertisement')?></a>
+            <i class="glyphicon glyphicon-pencil"></i> <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>"><?=__('Publish new advertisement')?></a>
         <?endif?>
 
 
@@ -19,19 +19,18 @@
 	    <?foreach($ads as $ad ):?>
 	   
 	       	<?if($ad->featured >= Date::unix2mysql(time())):?>
-		    	<article class="list well clearfix featured">
-                    <span class="label label-important"><?=__('Featured')?></span>
+		    	<article class="list well clearfix featured ">
+                    <span class="label label-danger pull-right"><?=__('Featured')?></span>
 		    <?else:?>
 		    	<article class="list well clearfix">
 		    <?endif?>
-		    	<h2>
-		    	    
-		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
-		    		<?if($ad->id_location != 1):?>
+		    	<?if($ad->id_location != 1):?>
 		    		<a href="<?=Route::url('list',array('location'=>$ad->location->seoname))?>" title="<?=$ad->location->name?>">
-		    			<span class="label"><?=$ad->location->name?></span>
+		    			<span class="label label-default"><?=$ad->location->name?></span>
 		    		</a>
-		    		<?endif?>
+		    	<?endif?>
+		    	<h2>
+		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 		    	</h2>
 		    	
 		    	<?if($ad->get_first_image() !== NULL):?>
@@ -51,7 +50,7 @@
 			 
 			    <p><?=substr(Text::removebbcode($ad->description),0, 255);?></p>
 			    
-			    <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="icon-share"></i><?=__('Read more')?></a>
+			    <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="glyphicon glyphicon-share"></i><?=__('Read more')?></a>
 		    	<?if ($user !== NULL && $user->id_role == 10):?>
 		    		<br />
 				<a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><?=__("Edit");?></a> |

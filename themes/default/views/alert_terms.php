@@ -10,7 +10,7 @@
 		<p><?=Text::bb2html($content->description,TRUE)?></p>
 	</div>
 	<div class="modal-footer">
-		<a name="decline_terms" class="btn" onclick='location.href="http://www.google.com"' ><?=__('No')?></a>
+		<a name="decline_terms" class="btn btn-default" onclick='location.href="http://www.google.com"' ><?=__('No')?></a>
 		<a name="accept_terms" class="btn btn-success" onclick='setCookie("accept_terms",1,10000)' data-dismiss="modal" aria-hidden="true"><?=__('I accept')?></a>
 	</div>
 </div>

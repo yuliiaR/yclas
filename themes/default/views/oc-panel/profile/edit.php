@@ -37,15 +37,15 @@
               
               <div class="form-group">
                 <label class="control-label"><?=__('New password')?></label>
-                <div class="col-sm-6 docs-input-sizes">
-                <input class="input-medium" type="password" name="password1" placeholder="<?=__('Password')?>">
+                <div class="col-sm-6">
+                <input class="form-control" type="password" name="password1" placeholder="<?=__('Password')?>">
                 </div>
               </div>
               
               <div class="form-group">
                 <label class="control-label"><?=__('Repeat password')?></label>
-                <div class="col-sm-6 docs-input-sizes">
-                <input class="input-medium" type="password" name="password2" placeholder="<?=__('Password')?>">
+                <div class="col-sm-6">
+                <input class="form-control" type="password" name="password2" placeholder="<?=__('Password')?>">
                   <p class="help-block">
                   		<?=__('Type your password twice to change')?>
                   </p>

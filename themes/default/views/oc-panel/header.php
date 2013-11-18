@@ -3,55 +3,55 @@
 
     <div class="container">
 
-        <!-- <div class="navbar-header"> -->
+            <!-- <div class="navbar-header"> -->
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#mobile-menu-panel">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span class="glyphicon glyphicon-bar"></span>
+                <span class="glyphicon glyphicon-bar"></span>
+                <span class="glyphicon glyphicon-bar"></span>
             </button>
 
             <a class="navbar-brand" href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Panel')?></a>
-        <!-- </div> -->
+            <!-- </div> -->
             <div class="btn-group pull-right ">
                 <?=View::factory('oc-panel/widget_login')?>
             </div>
 
             <div class="collapse navbar-collapse" id="mobile-menu-panel">
                 <ul class="nav navbar-nav">
-                    <?=Theme::admin_link(__('Market'), 'market','index','oc-panel','glyphicon  glyphicon-gift')?>
+                    <?=Theme::admin_link(__('Market'), 'market','index','oc-panel','glyphicon glyphicon-gift')?>
                     <? if(core::config('general.moderation') == 1 OR // moderation on  
                           core::config('general.moderation') == 4 OR // email confiramtion with moderation
                           core::config('general.moderation') == 5):  // payment with moderation?>
-                    <?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','glyphicon  glyphicon-ban-circle')?>
+                    <?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','glyphicon glyphicon-ban-circle')?>
                     <? endif?>
-                	<?=Theme::admin_link(__('Stats'),'stats','index','oc-panel','glyphicon  glyphicon-align-left')?>
-                    <?=Theme::admin_link(__('Widgets'),'widget','index','oc-panel','glyphicon  glyphicon-move')?>
-                    <?=Theme::admin_link(__('Cache'),'tools','cache','oc-panel',' glyphicon-cog glyphicon')?>
+                	<?=Theme::admin_link(__('Stats'),'stats','index','oc-panel','glyphicon glyphicon-align-left')?>
+                    <?=Theme::admin_link(__('Widgets'),'widget','index','oc-panel','glyphicon glyphicon-move')?>
+                    <?=Theme::admin_link(__('Cache'),'tools','cache','oc-panel','  glyphicon-cog glyphicon')?>
                     <? if(Auth::instance()->get_user()->id_role==Model_Role::ROLE_ADMIN):?>
             	    <li  class="dropdown ">
                         <a href="#" class="dropdown-toggle"
-            		      data-toggle="dropdown"><i class="glyphicon  glyphicon-plus"></i> <?=__('New')?> <b class="caret"></b></a>
+            		      data-toggle="dropdown"><i class="glyphicon glyphicon-plus"></i> <?=__('New')?> <b class="caret"></b></a>
                     	<ul class="dropdown-menu">
                             <?=Theme::admin_link(__('Bog post'),'blog','create')?>
                             <?=Theme::admin_link(__('Category'),'category','create')?>
                             <?=Theme::admin_link(__('Location'),'location','create')?>
                             <?=Theme::admin_link(__('Page'),'content','create')?>
-                    		
+                    		<li class="divider"></li>
                     		<li><a href="<?=Route::url('post_new')?>">
-                    			<i class="glyphicon glyphicon-pencil"></i> <?=__('Publish new')?></a>	</li>
+                    			<i class="glyphicon  glyphicon-pencil"></i> <?=__('Publish new')?></a>	</li>
                     	</ul>
             	   </li> 
                    <?else:?>
                     <li><a href="<?=Route::url('post_new')?>">
-                                <i class="glyphicon  glyphicon-pencil"></i> <?=__('Publish new')?></a>
+                                <i class="glyphicon glyphicon-pencil"></i> <?=__('Publish new')?></a>
                     </li>
                    <?endif?>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li>
                         <a href="<?=Route::url('default')?>">
-                                <i class=" glyphicon-home glyphicon"></i>
+                                <i class="  glyphicon-home glyphicon"></i>
                             <?=_('Visit Site')?>
                         </a>
                     </li>

@@ -35,16 +35,16 @@ foreach ($market as $item):?>
             <?if ( $item['price_offer']>0):?>
             <p>
                 <a href="<?=$item['url_buy']?>" class="btn btn-block btn-danger"><?=__('Limited Offer!')?> $<?=$item['price_offer']?></a>
-                <a href="<?=$item['url_buy']?>" class="btn btn-block btn-info"><i class="glyphicon glyphicon-time glyphicon"></i> <?=__('Valid Until')?>  <?= Date::format($item['offer_valid'], core::config('general.date_format'))?></a>
+                <a href="<?=$item['url_buy']?>" class="btn btn-block btn-info"><i class="glyphicon  glyphicon-time glyphicon"></i> <?=__('Valid Until')?>  <?= Date::format($item['offer_valid'], core::config('general.date_format'))?></a>
             </p>
             <?endif?>
             <p>
                 <a class="btn btn-primary" href="<?=$item['url_buy']?>">
-                    <i class="glyphicon glyphicon-shopping-cart"></i>  <?=__('Buy Now')?>
+                    <i class="glyphicon  glyphicon-shopping-cart"></i>  <?=__('Buy Now')?>
                 </a>
                 <?if (empty($item['url_demo'])===FALSE):?>
                     <a class="btn btn-default btn-xs" target="_blank" href="<?=$item['url_demo']?>">
-                        <i class="glyphicon glyphicon-eye-open"></i>
+                        <i class="glyphicon  glyphicon-eye-open"></i>
                             <?=__('Preview')?>
                     </a>    
                 <?endif?>

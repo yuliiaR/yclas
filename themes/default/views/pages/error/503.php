@@ -28,7 +28,7 @@
      		
         </div>
         <a class="btn btn-mini" title="<?=__('Login')?>" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>">
-                <i class="icon-user"></i> 
+                <i class="glyphicon glyphicon-user"></i> 
                 <?=__('Login')?>
             </a>    
     </div>

@@ -6,17 +6,17 @@
 		<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal post_new', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 
-				<div class="control-group">
+				<div class="form-group">
 					<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
-					<div class="controls">
-						<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'input-xlarge', 'id' => 'title', 'required'))?>
+					<div class="col-md-4">
+						<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
 
                <!-- drop down selector -->
-                <div class="control-group">
+                <div class="form-group">
                     <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
-                    <div class="controls"> 
+                    <div class="col-md-4"> 
                     <div class="accordion" >
 
                     <?function lili3($item, $key,$cats){?>
@@ -27,7 +27,7 @@
                                     <label class="radio">
                                     	<a class="btn btn-primary btn-mini" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
-                                        	<i class=" icon-plus icon-white"></i> <?=$cats[$key]['name']?>
+                                        	<i class=" glyphicon glyphicon-plus glyphicon"></i> <?=$cats[$key]['name']?>
                                     	</a>
                                     <?if(core::config('advertisement.parent_category')):?>
                                     <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
@@ -75,10 +75,10 @@
                 </div>
 				
 				<?if(count($locations) > 1 AND $form_show['location'] != FALSE):?>
-                    <div class="control-group">
+                    <div class="form-group">
                         <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
-                        <div class="controls">          
-                            <select name="location" id="location" class="input-xlarge" required>
+                        <div class="col-md-4">          
+                            <select name="location" id="location" class="form-control" required>
                             <option></option>
                             <?function lolo($item, $key,$locs){?>
                             <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
@@ -93,40 +93,40 @@
                     </div>
 				<?endif?>
 
-				<div class="control-group">
+				<div class="form-group">
 					<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
-					<div class="controls">
-						<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'span6', 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
+					<div class="col-md-4">
+						<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'col-md-6', 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="form-group">
 					<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?> 
 						<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'.$i))?>
-						<div class="controls">
+						<div class="col-md-4">
 							<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" />
 						</div>
 					<?endfor?>
 				</div>
 				<?if($form_show['phone'] != FALSE):?>
-				<div class="control-group">
+				<div class="form-group">
 					<?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
-					<div class="controls">
-						<?= FORM::input('phone', Request::current()->post('phone'), array('class'=>'input-xlarge', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
+					<div class="col-md-4">
+						<?= FORM::input('phone', Request::current()->post('phone'), array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
 					</div>
 				</div>
 				<?endif?>
 				<?if($form_show['address'] != FALSE):?>
-				<div class="control-group">
+				<div class="form-group">
 					<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
-					<div class="controls">
-						<?= FORM::input('address', Request::current()->post('address'), array('class'=>'input-xlarge', 'id'=>'address', 'placeholder'=>__('Address')))?>
+					<div class="col-md-4">
+						<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 					</div>
 				</div>
 				<?endif?>
 				<?if($form_show['price'] != FALSE):?>
-				<div class="control-group">
+				<div class="form-group">
 					<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
-					<div class="controls">
+					<div class="col-md-4">
 						<div class="input-prepend">
 						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => i18n::money_format(1), 'class' => 'input-large', 'id' => 'price', 'type'=>'text'))?>
 						</div>
@@ -134,31 +134,31 @@
 				</div>
 				<?endif?>
 				<?if($form_show['website'] != FALSE):?>
-				<div class="control-group">
+				<div class="form-group">
 					<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
-					<div class="controls">
-						<?= FORM::input('website', Request::current()->post('website'), array('placeholder' => __('Website'), 'class' => 'input-xlarge', 'id' => 'website'))?>
+					<div class="col-md-4">
+						<?= FORM::input('website', Request::current()->post('website'), array('placeholder' => __('Website'), 'class' => 'form-control', 'id' => 'website'))?>
 					</div>
 				</div>
 				<?endif?>
 				<?if (!Auth::instance()->get_user()):?>
-				<div class="control-group">
+				<div class="form-group">
 					<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
-					<div class="controls">
-						<?= FORM::input('name', Request::current()->post('name'), array('class'=>'input-xlarge', 'id'=>'name', 'required', 'placeholder'=>__('Name')))?>
+					<div class="col-md-4">
+						<?= FORM::input('name', Request::current()->post('name'), array('class'=>'form-control', 'id'=>'name', 'required', 'placeholder'=>__('Name')))?>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="form-group">
 					<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
-					<div class="controls">
-						<?= FORM::input('email', Request::current()->post('email'), array('class'=>'input-xlarge', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
+					<div class="col-md-4">
+						<?= FORM::input('email', Request::current()->post('email'), array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
 					</div>
 				</div>
 				<?endif?>
 
 				<?if(core::config('advertisement.tos') != ''):?>
-				<div class="control-group">
-					<div class="controls">
+				<div class="form-group">
+					<div class="col-md-4">
                         <label class="checkbox">
                           	<input type="checkbox" required name="tos" id="tos"/> 
 							<a target="_blank" href="<?=Route::url('page', array('seotitle'=>core::config('advertisement.tos')))?>"> <?=__('Terms of service')?></a>
@@ -167,16 +167,16 @@
 				</div>
 				<?endif?>
 				<?if ($form_show['captcha'] != FALSE):?>
-				<div class="control-group">
-					<div class="controls">
+				<div class="form-group">
+					<div class="col-md-4">
 						Captcha*:<br />
 						<?= captcha::image_tag('contact');?><br />
-						<?= FORM::input('captcha', "", array('class' => 'input-xlarge', 'id' => 'captcha', 'required'))?>
+						<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
 					</div>
 				</div>
 				<?endif?>
 				<div class="form-actions">
-					<?= FORM::button('submit', __('Publish new'), array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
+					<?= FORM::button('submit', __('Publish new'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 					<p class="help-block"><?=__('User account will be created')?></p>
 				</div>
 			</fieldset>

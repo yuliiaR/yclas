@@ -67,7 +67,7 @@ $(window).load(function(){
     $('label').next().addClass('col-sm-4');
     $('textarea').parent().removeClass('col-sm-4').addClass('col-sm-6');
     $('.control-label').addClass('col-sm-3');
-    $('.control-group').removeClass('control-group').addClass('form-group');
+    $('.form-group').removeClass('form-group').addClass('form-group');
     $('input[type=checkbox],input[type=radio]').removeClass('form-control').removeClass('input-large');
 
 });

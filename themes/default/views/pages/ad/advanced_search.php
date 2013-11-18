@@ -4,20 +4,20 @@
 	<h1><?=__('Advanced Search')?></h1>
 </div>
 
-<div class="well advise clearfix">
-	<?= FORM::open(Route::url('search'), array('class'=>'navbar-search pull-left', 'method'=>'GET', 'action'=>''))?>
+<div class="well ">
+	<?= FORM::open(Route::url('search'), array('class'=>'navbar-search form-horizontal', 'method'=>'GET', 'action'=>''))?>
 	<fieldset>
-	    <div class="control-group">
-		    <?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'control-label', 'for'=>'advertisement'))?>
-		    <div class="controls">	
-		    	<input type="text" id="title" name="title" class="input-xlarge" value="" placeholder="<?=__('Search')?>">
+	    <div class="form-group">
+		    <div class="col-md-4">	
+                <?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'control-label', 'for'=>'advertisement'))?>
+		    	<input type="text" id="title" name="title" class="form-control" value="" placeholder="<?=__('Search')?>">
 			</div>
 		</div>
 
-        <div class="control-group">
-            <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
-            <div class="controls">          
-                <select name="category" id="category" class="input-xlarge" >
+        <div class="form-group">
+            <div class="col-md-4">          
+                <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
+                <select name="category" id="category" class="form-control" >
                 <option></option>
                 <?function lili($item, $key,$cats){?>
                 <?if(!core::config('advertisement.parent_category')):?>
@@ -50,10 +50,10 @@
         </div>
         
         <?if(count($locations) !== 0):?>
-            <div class="control-group">
-                <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' , 'multiple'))?>
-                <div class="controls">          
-                    <select name="location" id="location" class="input-xlarge" >
+            <div class="form-group">
+                <div class="col-md-4">          
+                    <?= FORM::label('location', __('Location'), array('class'=>'form-label', 'for'=>'location' , 'multiple'))?>
+                    <select name="location" id="location" class="form-control" >
                     <option></option>
                     <?function lolo($item, $key,$locs){?>
                     <option value="<?=$locs[$key]['seoname']?>"><?=$locs[$key]['name']?></option>
@@ -68,9 +68,7 @@
             </div>
         <?endif?>
 
-		<div class="form-actions">
-			<?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn-large btn-primary', 'action'=>Route::url('search')))?> 
-		</div>
+			<?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('search')))?> 
 
 	</fieldset>
 	<?= FORM::close()?>

@@ -63,10 +63,10 @@
     <?endif?>
 
 	<?=$header?>
-    <div class="container">
+    <div class="container bs-docs-container">
         <div class="row">
             
-            <div class="span9">
+            <div class="col-md-9">
                 <?=Breadcrumbs::render('breadcrumbs')?>
                 <?=Alert::show()?>
                 <?=$content?>

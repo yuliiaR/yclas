@@ -29,7 +29,7 @@
             <?if (Theme::has_options()):?>
             <a class="btn btn-xs btn-primary" title="<?=__('Theme Options')?>" 
                 href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options'))?>">
-                <i class="glyphicon glyphicon-wrench glyphicon"></i> </a>
+                <i class="glyphicon  glyphicon-wrench glyphicon"></i> </a>
             <?endif?>
         </p>
         <p><?=$selected['Description']?></p>
@@ -38,11 +38,11 @@
                 <?=__('Using mobile theme')?> <code><?=Core::config('appearance.theme_mobile')?></code>
                 <a class="btn btn-xs btn-warning" title="<?=__('Disable')?>" 
                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>'disable'))?>">
-                    <i class="glyphicon  glyphicon-remove"></i>
+                    <i class="glyphicon   glyphicon-remove"></i>
                 </a>
                 <a class="btn btn-xs btn-primary" title="<?=__('Options')?>" 
                     href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'options','id'=>Core::config('appearance.theme_mobile')))?>">
-                <i class="glyphicon glyphicon-wrench glyphicon"></i></a>
+                <i class="glyphicon  glyphicon-wrench glyphicon"></i></a>
             </p>
         <?endif?>
     </div>
@@ -71,7 +71,7 @@ foreach ($themes as $theme=>$info):?>
             <p>
                 <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'index','id'=>$theme))?>"><?=__('Activate')?></a>
                 <?if (Core::config('appearance.allow_query_theme')=='1'):?>
-                <a class="btn" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a> 
+                <a class="btn btn-default" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a> 
                 <?endif?>   
             </p>
         </div>
@@ -113,7 +113,7 @@ foreach ($mobile_themes as $theme=>$info):?>
             <p><?=$info['License']?> v<?=$info['Version']?></p>
             <p>
                 <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'mobile','id'=>$theme))?>"><?=__('Activate')?></a>
-                <a class="btn" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a>    
+                <a class="btn btn-default" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a>    
             </p>
         </div>
     </div>

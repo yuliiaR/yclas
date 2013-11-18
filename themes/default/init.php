@@ -1,10 +1,10 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 /**
-  * Theme Name: Ocean Free
+  * Theme Name: B3
   * Description: Clean free theme that includes full admin. It has publicity. Do not delete this theme, all the views depend in this theme.
   * Tags: HTML5, Admin, Free
   * Version: 2.1
-  * Author: Chema <chema@garridodiaz.com>
+  * Author: Chema <chema@garridodiaz.com> , <slobodan.josifovic@gmail.com>
   * License: GPL v3
   */
 
@@ -19,21 +19,22 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
  * styles and themes, loaded in this order
  */
 
-Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootswatch/2.3.2/cerulean/bootstrap.min.css' => 'screen',
+Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css' => 'screen',
                         'css/styles.css?v=2.1' => 'screen',
                         'css/slider.css' => 'screen',
-                        'http://cdn.jsdelivr.net/chosen/0.9.12/chosen.css' => 'screen',
-                        'css/jquery.sceditor.min.css' => 'screen', 
-                        'css/bootstrap-image-gallery.css' => 'screen',
+                        'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen',
+                        'css/jquery.sceditor.min.css' => 'screen',
+                        'http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css' => 'screen', 
+                        'css/bootstrap-image-gallery.min.css' => 'screen',
         				);
 
 
-Theme::$scripts['footer']	= array('http://code.jquery.com/jquery-1.9.1.min.js',
-                                    'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js',
+Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+                                    'http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js',
                                     'js/bootstrap-slider.js',
-                                    'http://cdn.jsdelivr.net/chosen/0.9.12/chosen.jquery.min.js',
+                                    'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                     'js/jquery.sceditor.min.js',
-                                    'js/load-image.min.js',
+                                    'http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js',
                                     'js/bootstrap-image-gallery.min.js',
                                     'js/jquery.validate.min.js',
                                     'js/theme.init.js?v=2.1',

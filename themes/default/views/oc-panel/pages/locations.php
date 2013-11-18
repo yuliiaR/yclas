@@ -11,13 +11,13 @@
 <?=_('Home')?>
 <?function lili($item, $key,$locs){?>
 
-    <li data-id="<?=$key?>" id="li_<?=$key?>"><i class="glyphicon  glyphicon-move"></i> <?=$locs[$key]['name']?>
+    <li data-id="<?=$key?>" id="li_<?=$key?>"><i class="glyphicon   glyphicon-move"></i> <?=$locs[$key]['name']?>
         
         <a data-text="<?=__('Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location.')?>" 
            data-id="li_<?=$key?>" 
            class="btn btn-xs btn-danger  pull-right" 
            href="<?=Route::url('oc-panel', array('controller'=> 'location', 'action'=>'delete','id'=>$key))?>">
-                    <i class="glyphicon  glyphicon-trash"></i>
+                    <i class="glyphicon   glyphicon-trash"></i>
         </a>
 
         <a class="btn btn-xs btn-primary pull-right" 

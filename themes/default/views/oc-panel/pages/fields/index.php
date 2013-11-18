@@ -20,7 +20,7 @@
 <ol class='plholder col-md-6' id="ol_1" data-id="1">
 <?if (is_array($fields)):?>
 <?foreach($fields as $name=>$field):?>
-    <li data-id="<?=$name?>" id="<?=$name?>"><i class="glyphicon  glyphicon-move"></i> 
+    <li data-id="<?=$name?>" id="<?=$name?>"><i class="glyphicon   glyphicon-move"></i> 
         <?=$name?>        
         <span class="label label-info "><?=$field['type']?></span>
 
@@ -28,7 +28,7 @@
            data-id="li_<?=$name?>" 
            class="btn btn-xs btn-danger  pull-right"  
            href="<?=Route::url('oc-panel', array('controller'=> 'fields', 'action'=>'delete','id'=>$name))?>">
-                    <i class="glyphicon  glyphicon-trash"></i>
+                    <i class="glyphicon   glyphicon-trash"></i>
         </a>
 
         <a class="btn btn-xs btn-primary pull-right" 

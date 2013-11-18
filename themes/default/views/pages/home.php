@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="well">
+<div class="well row">
     <?if(core::config('advertisement.ads_in_home') == 0):?>
     <h3><?=__('Latest Ads')?></h3>
     <?elseif(core::config('advertisement.ads_in_home') == 1):?>
@@ -7,17 +7,18 @@
     <?elseif(core::config('advertisement.ads_in_home') == 2):?>
     <h3><?=__('Popular Ads last month')?></h3>
     <?endif?>
-    <ul class="thumbnails">
+    <div class="col-md-12">
         <?$i=0;
         foreach($ads as $ad):?>
-        <li class="span2">
-            <div class="thumbnail latest_ads" >
-                
+        <div class="col-md-3">
+            <div class="thumbnail latest_ads">
+                <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
                 <?if($ad->get_first_image()!== NULL):?>
-                <a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-                    <img src="<?=URL::base('http')?><?=$ad->get_first_image()?>" class="img-polaroid">
-                </a>
+                    <img src="<?=URL::base('http')?><?=$ad->get_first_image()?>" >
+                <?else:?>
+                    <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"> 
                 <?endif?>
+                </a>
                 <div class="caption">
                     <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h5>
 
@@ -25,17 +26,17 @@
 
                 </div>
             </div>
-        </li>     
+        </div>     
         <?endforeach?>
-    </ul>
+    </div>
 </div>
 
-<div class='well'>
+<div class='well row'>
     <h3><?=__("Categories")?></h3>
-    <ul class="thumbnails">
+    <div class="col-md-12">
         <?foreach($categs as $c):?>
         <?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
-        <li class="span2 resized">
+        <div class="col-md-4">
             <div class="category_box_title">
                 <p><a title="<?=$c['name']?>" <?=(core::config('advertisement.parent_category'))?'href="'.Route::url('list', array('category'=>$c['seoname'])).'"':""?>><?=strtoupper($c['name']);?></a></p>
             </div>  
@@ -48,12 +49,12 @@
                      <?endforeach?>
                 </ul>
             </div>
-        </li>
+        </div>
         <?
         $i++;
             if ($i%3 == 0) echo '<div class="clear"></div>';
             ?>
         <?endif?>
         <?endforeach?>
-    </ul>
+    </div>
 </div>
