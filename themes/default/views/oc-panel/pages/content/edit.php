@@ -12,26 +12,26 @@
  <?= FORM::open(Route::url('oc-panel',array('controller'=>'content','action'=>'edit','id'=>$cont->id_content)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 <fieldset>
     <div class="form-group">
-        <?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>
-        <div class="col-sm-6">
-            <?= FORM::input('title', $cont->title, array('placeholder' => __('title'), 'class' => '', 'id' => 'title', 'required'))?>
+        <?= FORM::label('title', __('Title'), array('class'=>'control-label col-md-2', 'for'=>'title'))?>
+        <div class="col-sm-4">
+            <?= FORM::input('title', $cont->title, array('placeholder' => __('title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
         </div>
     </div>
     <div class="form-group">
-        <?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
-        <div class="col-sm-6">
-            <?= FORM::select('locale', $locale, core::config('i18n.locale'),array('placeholder' => __('locale'), 'class' => '', 'id' => 'locale', 'required'))?>
+        <?= FORM::label('locale', __('Locale'), array('class'=>'control-label col-md-2', 'for'=>'locale'))?>
+        <div class="col-sm-4">
+            <?= FORM::select('locale', $locale, core::config('i18n.locale'),array('placeholder' => __('locale'), 'class' => 'form-control', 'id' => 'locale', 'required'))?>
         </div>
     </div>
     <div class="form-group">
-        <?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>
-        <div class="col-sm-6">
-            <?= FORM::textarea('description', $cont->description, array('placeholder' => __('description'), 'class' => '', 'id' => 'description'))?>
+        <?= FORM::label('description', __('Description'), array('class'=>'control-label col-md-2', 'for'=>'description'))?>
+        <div class="col-sm-8">
+            <?= FORM::textarea('description', $cont->description, array('placeholder' => __('description'), 'class' => 'form-control', 'id' => 'description'))?>
         </div>
     </div>
     <div class="form-group">
-    <?= FORM::label('status', __('Status'), array('class'=>'control-label', 'for'=>'status'))?>
-        <div class="col-sm-6">
+    <?= FORM::label('status', __('Status'), array('class'=>'control-label col-md-2', 'for'=>'status'))?>
+        <div class="col-sm-4">
             <label class="status">
                 <input type="checkbox" value="<?=$cont->status?>" name="status" <?=($cont->status == TRUE)?'checked':''?> >
             </label>

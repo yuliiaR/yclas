@@ -8,22 +8,25 @@
       <?=Form::errors()?>  
       
         <div class="form-group">
-            <label class="control-label"><?=__('Name')?></label>
-                <div class="col-sm-6">
+            
+                <div class="col-sm-4">
+                <label class="control-label"><?=__('Name')?></label>
                 <input class="form-control" type="text" name="name" placeholder="<?=__('Name')?>" required>
             </div>
         </div>
         
         <div class="form-group">
-            <label class="control-label"><?=__('Label')?></label>
-                <div class="col-sm-6">
+            
+                <div class="col-sm-4">
+                <label class="control-label"><?=__('Label')?></label>
                 <input class="form-control" type="text" name="label" placeholder="<?=__('Label')?>" required>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label" for="date"><?=__('Type')?></label>            
-            <div class="col-sm-6">          
+                        
+            <div class="col-sm-4">
+                <label class="control-label" for="date"><?=__('Type')?></label>         
                 <select name="type"  class="form-control" id="cf_type_fileds" required>
                     <option value="string"><?=__('Text 256 Chars')?></option>
                     <option value="textarea"><?=__('Text Long')?></option>
@@ -38,14 +41,15 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label"><?=__('Values')?></label>
-                <div class="col-sm-6">
+            
+                <div class="col-sm-4">
+                <label class="control-label"><?=__('Values')?></label>
                 <input class="form-control" id="cf_values_input" type="text" name="values" placeholder="<?=__('Comma separated for select')?>">
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <label class="checkbox">
                   <input type="checkbox" name="required"> 
                    <?=__('Required')?>
@@ -54,7 +58,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <label class="checkbox">
                   <input type="checkbox" name="searchable"> 
                    <?=__('Searchable')?>

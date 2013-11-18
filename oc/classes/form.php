@@ -194,7 +194,7 @@ class Form extends Kohana_Form {
         	$class = '';
         
         $attributes = array('placeholder' 		=> (isset($options['label'])) ? $options['label']:$name, 
-                            'class'       		=> 'input-large'.' '.$class, 
+                            'class'       		=> 'form-control'.' '.$class, 
                             'id'          		=> $name, 
                             ($options['display']=='date')?'data-date':'' =>  $value, // optional attr for datapicker.js
                             ($options['display']=='date')?'data-date-format="yyyy-mm-dd"':''=>'', // optional attr for datapicker.js

@@ -14,12 +14,13 @@
 </a>
 <?= FORM::open(Route::url('oc-panel',array('controller'=>'content','action'=>'list')), array('method'=>'GET','class'=>'form-horizontal', 'id'=>'locale_form','enctype'=>'multipart/form-data'))?>
     <div class="form-group">
-        <?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
-        <div class="col-sm-6">
+        
+        <div class="col-sm-4">
+            <?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
             <?$ls = (isset($_REQUEST['locale_select']))?$_REQUEST['locale_select']:'';?>
             <?= FORM::select('locale_select', $locale_list, $ls )?> 
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <?= FORM::hidden('type', $type )?> 
         </div>
     </div>

@@ -8,13 +8,13 @@
 		<?= FORM::open(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')), array('class'=>'well form-horizontal', 'enctype'=>'multipart/form-data'))?>
 				<div class="form-group">
 					<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<?= FORM::input('name', $user->name, array('class'=>'form-control', 'id'=>'name', 'required', 'placeholder'=>__('Name')))?>
 					</div>
 				</div>
 				<div class="form-group">
 					<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<?= FORM::input('email', $user->email, array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
 					</div>
 				</div>
@@ -37,14 +37,14 @@
               
               <div class="form-group">
                 <label class="control-label"><?=__('New password')?></label>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                 <input class="form-control" type="password" name="password1" placeholder="<?=__('Password')?>">
                 </div>
               </div>
               
               <div class="form-group">
                 <label class="control-label"><?=__('Repeat password')?></label>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                 <input class="form-control" type="password" name="password2" placeholder="<?=__('Password')?>">
                   <p class="help-block">
                   		<?=__('Type your password twice to change')?>

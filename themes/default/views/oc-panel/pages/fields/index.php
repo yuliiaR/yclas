@@ -52,11 +52,12 @@
     <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')).'?define=cf', array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
         <fieldset>
             <div class="form-group">
-              <?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
-              <div class="col-sm-6">
+              
+              <div class="col-sm-4">
+                <?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
                 <?= FORM::select('phone', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.phone'), array(
                 'placeholder' => "", 
-                'class' => 'tips', 
+                'class' => 'tips form-control', 
                 'id' => 'phone', 
                 'data-content'=> __("Phone field"),
                 'data-trigger'=>"hover",
@@ -67,11 +68,12 @@
               </div>
             </div>
             <div class="form-group">
-            <?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
-            <div class="col-sm-6">
+            
+            <div class="col-sm-4">
+                <?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
                 <?= FORM::select('website', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.website'), array(
                 'placeholder' => "http://foo.com/", 
-                'class' => 'tips', 
+                'class' => 'tips form-control', 
                 'id' => 'website', 
                 'data-content'=> __("Website field"),
                 'data-trigger'=>"hover",
@@ -82,11 +84,12 @@
               </div>
             </div>
             <div class="form-group">
-              <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
-              <div class="col-sm-6">
+              
+              <div class="col-sm-4">
+                <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
                 <?= FORM::select('location',array(FALSE=>"FALSE",TRUE=>"TRUE"), core::config('advertisement.location'), array(
                 'placeholder' => "", 
-                'class' => 'tips', 
+                'class' => 'tips form-control', 
                 'id' => 'location', 
                 'data-content'=> __("Displays location select"),
                 'data-trigger'=>"hover",
@@ -97,11 +100,12 @@
               </div>
             </div>
             <div class="form-group">
-              <?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
-              <div class="col-sm-6">
+              
+              <div class="col-sm-4">
+                <?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
                 <?= FORM::select('price', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.price'), array(
                 'placeholder' => "", 
-                'class' => 'tips', 
+                'class' => 'tips form-control', 
                 'id' => 'price', 
                 'data-content'=> __("Price field"),
                 'data-trigger'=>"hover",
@@ -112,21 +116,23 @@
               </div>
             </div>
             <div class="form-group">
-              <?= FORM::label('upload_file', __('Upload file'), array('class'=>'control-label', 'for'=>'upload_file'))?>
-              <div class="col-sm-6">
+              
+              <div class="col-sm-4">
+                <?= FORM::label('upload_file', __('Upload file'), array('class'=>'control-label', 'for'=>'upload_file'))?>
                 <?= FORM::select('upload_file',array(FALSE=>"FALSE",TRUE=>"TRUE"), core::config('advertisement.upload_file'), array(
                 'placeholder' => "", 
-                'class' => 'tips', 
+                'class' => 'tips form-control', 
                 'id' => 'upload_file', 
                 ))?>
               </div>
             </div>
             <div class="form-group">
-              <?= FORM::label('captcha', __('Captcha'), array('class'=>'control-label', 'for'=>'captcha'))?>
-              <div class="col-sm-6">
+              
+              <div class="col-sm-4">
+                <?= FORM::label('captcha', __('Captcha'), array('class'=>'control-label', 'for'=>'captcha'))?>
                 <?= FORM::select('captcha', array(FALSE=>"FALSE",TRUE=>"TRUE"), core::config('advertisement.captcha'), array(
                 'placeholder' => "http://foo.com/", 
-                'class' => 'tips', 
+                'class' => 'tips form-control', 
                 'id' => 'captcha', 
                 'data-content'=> __("Enables Captcha"),
                 'data-trigger'=>"hover",
@@ -137,11 +143,12 @@
               </div>
             </div>
             <div class="form-group">
-              <?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
-              <div class="col-sm-6">
+              
+              <div class="col-sm-4">
+                <?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
                 <?= FORM::select('address', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.address'), array(
                 'placeholder' => "", 
-                'class' => 'tips', 
+                'class' => 'tips form-control', 
                 'id' => 'address', 
                 'data-content'=> __("Address field"),
                 'data-trigger'=>"hover",

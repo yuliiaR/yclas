@@ -12,7 +12,7 @@
     <fieldset>
         <div class="form-group">
             <label class="control-label"><?=__('License')?></label>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <input class="form-control" type="text" name="license" value="" placeholder="<?=__('License')?>">
             </div>
           </div>

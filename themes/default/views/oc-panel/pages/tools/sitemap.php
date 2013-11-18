@@ -15,14 +15,14 @@
 
       <div class="form-group">
         <label class="control-label"><?=__("Expire time")?>:</label>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
         <input  type="text" name="expires" value="<?=core::config('sitemap.expires')?>" class="col-md-2"  /> Seconds
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label"><?=__("Update on publish")?>:</label>
-          <div class="col-sm-6"> 
+          <div class="col-sm-4"> 
             <? $input = array("TRUE"=>"TRUE","FALSE"=>"FALSE");?>
               <?= FORM::select('on_post', $input, core::config('sitemap.on_post'), array(
               'placeholder' => 'on_post' ,

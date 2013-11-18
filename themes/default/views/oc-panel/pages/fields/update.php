@@ -9,34 +9,34 @@
       
         <div class="form-group">
             <label class="control-label"><?=__('Name')?></label>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                 <input  DISABLED class="form-control" type="text" name="name" value="<?=$name?>" placeholder="<?=__('Name')?>" required>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label"><?=__('Type')?></label>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                 <input  DISABLED class="form-control" type="text" id="cf_type_field_input" name="type" value="<?=$field_data['type']?>" placeholder="<?=__('Type')?>" required>
             </div>
         </div>
         
         <div class="form-group">
             <label class="control-label"><?=__('Label')?></label>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                 <input class="form-control" type="text" name="label" value="<?=$field_data['label']?>" placeholder="<?=__('Label')?>" required>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label"><?=__('Values')?></label>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                 <input class="form-control" type="text" id="cf_values_input" name="values" value="<?=(is_array($field_data['values']))? implode(",", $field_data['values']): $field_data['values']?>" placeholder="<?=__('Comma separated for select')?>">
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <label class="checkbox">
                   <input type="checkbox" name="required" <?=($field_data['required']==TRUE)?'checked':''?>> 
                    <?=__('Required')?>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <label class="checkbox">
                   <input type="checkbox" name="searchable" <?=($field_data['searchable']==TRUE)?'checked':''?>> 
                    <?=__('Searchable')?>

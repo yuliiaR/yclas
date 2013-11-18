@@ -28,7 +28,7 @@
                     
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="placeholder_form"><?=__('Where do you want the widget displayed?')?></label>
-                        <div class="col-sm-6 col-sm-4">
+                        <div class="col-sm-4 col-sm-4">
                             <?=FORM::select('placeholder', array_combine(widgets::get_placeholders(TRUE),widgets::get_placeholders(TRUE)),$widget->placeholder)?>
                         </div>
                     </div>
