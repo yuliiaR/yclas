@@ -6,6 +6,8 @@ $(function() {
 	$('.dropdown-sidebar').on('click',function(){
 		dropdown($(this));
 	});
+
+	
 });
 
 function dropdown(event){
@@ -23,5 +25,23 @@ function dropdown(event){
 		$('.dropdown-toggle .glyphicon-chevron-down', event)
 			.removeClass('glyphicon-chevron-down')
 			.addClass('glyphicon-chevron-up');
+	}
+}
+
+
+$('.btn-sidebar-menu').on('click', function(){
+	colapse_sidebar($(this));
+});
+function colapse_sidebar(event){
+
+	if($('.hidden-phone div ul').hasClass('active'))
+	{
+		$('.hidden-phone div ul').removeClass('active');
+
+	}
+	else
+	{
+		$('.hidden-phone div ul').addClass('active');
+		dropdown('.dropdown-sidebar');
 	}
 }

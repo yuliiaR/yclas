@@ -14,7 +14,13 @@ li.sbp .caret{float: right;margin-top: 7px;}
 .submenu.active{display: block;}
 .submenu li.active a{text-decoration: underline; font-weight:bold;}
 .submenu li a{border-right: 0px !important;}
+.btn-sidebar-menu{display: none;}
 
- @media screen and (max-width: 979px) {
- 	.hidden-phone{margin-top: 65px;}
- }
+@media screen and (max-width: 989px) {
+	.navbar .nav{float: left;}
+	.hidden-phone{margin-top: 65px;}
+	.hidden-phone div ul{display: none;}
+	.hidden-phone div ul.active{display: block;}
+	.btn-sidebar-menu{display: block; margin-left: 10px;}
+}
+@media screen and (max-width: 979px) {.navbar .nav{float: left !important;}}

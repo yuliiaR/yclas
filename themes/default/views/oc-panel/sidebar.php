@@ -1,13 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="col-md-3 hidden-phone">
 	<div class="well sidebar-nav">
+        <button type="button" class="btn btn-default btn-sidebar-menu">
+                <span class="glyphicon glyphicon-align-justify"></span>
+        </button>
 		<ul class="nav nav-list">
-                <button class="navbar-toggle" type="button" >
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                
 				<?//Theme::admin_link(__('Market'), 'market','index','oc-panel','glyphicon glyphicon-gift')?>
                 <?Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','glyphicon glyphicon-th-large')?>
                 <? if(core::config('general.moderation') == 1 OR // moderation on  
