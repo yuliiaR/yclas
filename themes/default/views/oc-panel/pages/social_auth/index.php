@@ -12,7 +12,7 @@
     <?= FORM::open(Route::url('oc-panel',array('controller'=>'social', 'action'=>'index')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
         <fieldset>
             <div class="form-group">
-            <?= FORM::label('debug_mode', __('Debug Mode'), array('class'=>'control-label', 'for'=>'debug_mode'))?>
+            <?= FORM::label('debug_mode', __('Debug Mode'), array('class'=>'control-label col-sm-2', 'for'=>'debug_mode'))?>
                 <div class="col-sm-4">
                     <?=FORM::select('debug_mode', array(FALSE=>"FALSE",TRUE=>"TRUE"), $config['debug_mode']);?>
                 </div>
@@ -20,14 +20,14 @@
             <hr>
             <?foreach ($config['providers'] as $api => $options):?>
                 <div class="form-group">
-                <?= FORM::label($api, $api, array('class'=>'control-label', 'for'=>$api))?>
+                <?= FORM::label($api, $api, array('class'=>'control-label col-sm-2', 'for'=>$api))?>
                     <div class="col-sm-4">
                         <?=FORM::select($api, array(FALSE=>"FALSE",TRUE=>"TRUE"), $options['enabled']);?>
                     </div>
                 </div>
                 <?if(isset($options['keys']['id'])):?>
                     <div class="form-group">
-                    <?= FORM::label($api.'_id_label', __('Id'), array('class'=>'control-label', 'for'=>$api))?>
+                    <?= FORM::label($api.'_id_label', __('Id'), array('class'=>'control-label col-sm-2', 'for'=>$api))?>
                         <div class="col-sm-4">
                             <?=FORM::input($api.'_id', $options['keys']['id']);?>
                         </div>
@@ -35,7 +35,7 @@
                 <?endif?>
                 <?if(isset($options['keys']['key'])):?>
                     <div class="form-group">
-                    <?= FORM::label($api.'_key_label', __('Key'), array('class'=>'control-label', 'for'=>$api))?>
+                    <?= FORM::label($api.'_key_label', __('Key'), array('class'=>'control-label col-sm-2', 'for'=>$api))?>
                         <div class="col-sm-4">
                             <?=FORM::input($api.'_key', $options['keys']['key']);?>
                         </div>
@@ -43,7 +43,7 @@
                 <?endif?>
                 <?if(isset($options['keys']['secret'])):?>
                     <div class="form-group">
-                    <?= FORM::label($api.'_secret_label', __('secret'), array('class'=>'control-label', 'for'=>$api))?>
+                    <?= FORM::label($api.'_secret_label', __('secret'), array('class'=>'control-label col-sm-2', 'for'=>$api))?>
                         <div class="col-sm-4">
                             <?=FORM::input($api.'_secret', $options['keys']['secret']);?>
                         </div>

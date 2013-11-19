@@ -46,9 +46,9 @@
 <h2><?=__('Create Menu Item')?></h2>
 <!-- drop down selector -->
 <div class="form-group" style="display:none;" id="categories-group">
-    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
-    <div class="col-sm-4"> 
-    <div class="accordion" >
+    <?= FORM::label('category', __('Category'), array('class'=>'control-label col-sm-1', 'for'=>'category' ))?> 
+    <div class="col-sm-4">
+    <div class="accordion">
 
     <?function lili3($item, $key,$cats){?>
         <div class="accordion-group">
@@ -92,7 +92,7 @@
 </div>
 
 <div class="form-group"  id="default-group" style="display:none;">
-    <?= FORM::label('default_links_label', __('Default links'), array('class'=>'control-label', 'for'=>'default_links' ))?>
+    <?= FORM::label('default_links_label', __('Default links'), array('class'=>'control-label col-sm-1', 'for'=>'default_links' ))?>
     <div class="col-sm-4"> 
         <div class="accordion" >
             <div class="accordion-group">
@@ -140,21 +140,21 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label"><?=__('Title')?></label>
+    <label class="control-label col-sm-1"><?=__('Title')?></label>
     <div class="col-sm-4">
         <input class="form-control" type="text" name="title" value="<?=Core::post('title')?>" placeholder="<?=__('Title')?>" required>
     </div>
 </div>
 
 <div class="form-group">
-    <label class="control-label"><?=__('Url')?></label>
+    <label class="control-label col-sm-1"><?=__('Url')?></label>
     <div class="col-sm-4">
         <input class="form-control" type="url" id="url" name="url" value="<?=Core::post('Url')?>" placeholder="http://somedomain.com" required>
     </div>
 </div>
 
 <div class="form-group">
-    <?= FORM::label('target', __('Target'), array('class'=>'control-label', 'for'=>'target' ))?>
+    <?= FORM::label('target', __('Target'), array('class'=>'control-label col-sm-1', 'for'=>'target' ))?>
     <div class="col-sm-4">
         <select name="target" id="target" class="form-control" REQUIRED>
             <option>_self</option>
@@ -166,7 +166,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label"><a target="_blank" href="http://getbootstrap.com/2.3.2/base-css.html#icons"><?=__('Icon')?></a></label>
+    <label class="control-label col-sm-1"><a target="_blank" href="http://getbootstrap.com/2.3.2/base-css.html#icons"><?=__('Icon')?></a></label>
     <div class="col-sm-4">
         <input class="form-control" type="text" name="icon" value="<?=Core::post('icon')?>" placeholder="<?=__('glyphicon  glyphicon-envelope glyphicon')?>">
     </div>

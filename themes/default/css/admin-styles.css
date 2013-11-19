@@ -1,3 +1,4 @@
+.ml-10{margin-left: 10px;}
 .hidden-phone .nav > li a:hover,.hidden-phone .nav > li.active a, .dropdown-sidebar.sbp.active a{border-right: 2px solid;}
 .hidden-phone .nav > li > a {padding: 6px 15px;}
 .thumbnail {margin-right: 20px; margin-bottom: 20px;}
@@ -15,6 +16,7 @@ li.sbp .caret{float: right;margin-top: 7px;}
 .submenu li.active a{text-decoration: underline; font-weight:bold;}
 .submenu li a{border-right: 0px !important;}
 .btn-sidebar-menu{display: none;}
+.dropdown-toggle i{margin-right: 5px;}
 
 @media screen and (max-width: 989px) {
 	.navbar .nav{float: left;}

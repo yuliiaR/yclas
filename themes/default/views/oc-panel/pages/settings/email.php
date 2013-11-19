@@ -16,7 +16,7 @@
 					<?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
 				<?endforeach?>
 				<div class="form-group">
-					<?= FORM::label($forms['notify_email']['key'], __('Notify email'), array('class'=>'control-label col-md-2', 'for'=>$forms['notify_email']['key']))?>
+					<?= FORM::label($forms['notify_email']['key'], __('Notify email'), array('class'=>'control-label col-sm-3', 'for'=>$forms['notify_email']['key']))?>
 					<div class="col-sm-4">
 						<?= FORM::input($forms['notify_email']['key'], $forms['notify_email']['value'], array(
 						'placeholder' => "youremail@mail.com", 
@@ -31,7 +31,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<?= FORM::label($forms['smtp_active']['key'], __('Smtp active'), array('class'=>'control-label col-md-2', 'for'=>$forms['smtp_active']['key']))?>
+					<?= FORM::label($forms['smtp_active']['key'], __('Smtp active'), array('class'=>'control-label col-sm-3', 'for'=>$forms['smtp_active']['key']))?>
 					<div class="col-sm-4">
 						<?= FORM::select($forms['smtp_active']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['smtp_active']['value'], array(
 						'placeholder' => "TRUE or FALSE", 
@@ -46,7 +46,7 @@
 					</div>
 				</div>
                 <div class="form-group">
-                    <?= FORM::label($forms['smtp_ssl']['key'], __('Smtp ssl'), array('class'=>'control-label col-md-2', 'for'=>$forms['smtp_ssl']['key']))?>
+                    <?= FORM::label($forms['smtp_ssl']['key'], __('Smtp ssl'), array('class'=>'control-label col-sm-3', 'for'=>$forms['smtp_ssl']['key']))?>
                     <div class="col-sm-4">
                         <?= FORM::select($forms['smtp_ssl']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['smtp_ssl']['value'], array(
                         'placeholder' => "TRUE or FALSE", 
@@ -61,7 +61,7 @@
                     </div>
                 </div>
 				<div class="form-group">
-					<?= FORM::label($forms['smtp_host']['key'], __('Smtp host'), array('class'=>'control-label col-md-2', 'for'=>$forms['smtp_host']['key']))?>
+					<?= FORM::label($forms['smtp_host']['key'], __('Smtp host'), array('class'=>'control-label col-sm-3', 'for'=>$forms['smtp_host']['key']))?>
 					<div class="col-sm-4">
 						<?= FORM::input($forms['smtp_host']['key'], $forms['smtp_host']['value'], array(
 						'placeholder' => '', 
@@ -76,7 +76,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<?= FORM::label($forms['smtp_port']['key'], __('Smtp port'), array('class'=>'control-label col-md-2', 'for'=>$forms['smtp_port']['key']))?>
+					<?= FORM::label($forms['smtp_port']['key'], __('Smtp port'), array('class'=>'control-label col-sm-3', 'for'=>$forms['smtp_port']['key']))?>
 					<div class="col-sm-4">
 						<?= FORM::input($forms['smtp_port']['key'], $forms['smtp_port']['value'], array(
 						'placeholder' => "", 
@@ -91,7 +91,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<?= FORM::label($forms['smtp_auth']['key'], __('Smtp auth'), array('class'=>'control-label col-md-2', 'for'=>$forms['smtp_auth']['key']))?>
+					<?= FORM::label($forms['smtp_auth']['key'], __('Smtp auth'), array('class'=>'control-label col-sm-3', 'for'=>$forms['smtp_auth']['key']))?>
 					<div class="col-sm-4">
 							<?= FORM::select($forms['smtp_auth']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['smtp_auth']['value'], array(
 							'placeholder' => "", 
@@ -106,7 +106,7 @@
 						</div>
 				</div>
 				<div class="form-group">
-					<?= FORM::label($forms['smtp_user']['key'], __('Smtp user'), array('class'=>'control-label col-md-2', 'for'=>$forms['smtp_user']['key']))?>
+					<?= FORM::label($forms['smtp_user']['key'], __('Smtp user'), array('class'=>'control-label col-sm-3', 'for'=>$forms['smtp_user']['key']))?>
 					<div class="col-sm-4">
 						<?= FORM::input($forms['smtp_user']['key'], $forms['smtp_user']['value'], array(
 						'placeholder' => "", 
@@ -121,7 +121,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<?= FORM::label($forms['smtp_pass']['key'], __('Smtp password'), array('class'=>'control-label col-md-2', 'for'=>$forms['smtp_pass']['key']))?>
+					<?= FORM::label($forms['smtp_pass']['key'], __('Smtp password'), array('class'=>'control-label col-sm-3', 'for'=>$forms['smtp_pass']['key']))?>
 					<div class="col-sm-4">
 						<?= FORM::input($forms['smtp_pass']['key'], $forms['smtp_pass']['value'], array(
 						'placeholder' => "",
@@ -137,7 +137,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<?= FORM::label($forms['new_ad_notify']['key'], __('Notify me on new ad'), array('class'=>'control-label col-md-2', 'for'=>$forms['new_ad_notify']['key']))?>
+					<?= FORM::label($forms['new_ad_notify']['key'], __('Notify me on new ad'), array('class'=>'control-label col-sm-3', 'for'=>$forms['new_ad_notify']['key']))?>
 					<div class="col-sm-4">
 						<?= FORM::select($forms['new_ad_notify']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['new_ad_notify']['value'], array(
 						'placeholder' => "TRUE or FALSE",

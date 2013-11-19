@@ -45,16 +45,23 @@
         <hr>
         <h2><?=__('Charts')?></h2>
 
-        <form id="edit-profile" class="form-inline" method="post" action="">
+        <form id="edit-profile" class="form-horizontal" method="post" action="">
             <fieldset>
-                <?=__('From')?>
-                <input  type="text" class="col-md-2" size="16"
-                        id="from_date" name="from_date"  value="<?=$from_date?>"  
-                        data-date="<?=$from_date?>" data-date-format="yyyy-mm-dd">
-                <?=__('To')?>
-                <input  type="text" class="col-md-2" size="16"
-                        id="to_date" name="to_date"  value="<?=$to_date?>"  
-                        data-date="<?=$to_date?>" data-date-format="yyyy-mm-dd">
+                
+                <div class="form-group">
+                    <div class="col-sm-4">
+                    <?=__('From')?>
+                        <input  type="text" class="col-sm-2" size="16"
+                                id="from_date" name="from_date"  value="<?=$from_date?>"  
+                                data-date="<?=$from_date?>" data-date-format="yyyy-mm-dd">
+                    </div>
+                    <div class="col-sm-4">
+                    <?=__('To')?>
+                        <input  type="text" class="col-sm-2" size="16"
+                                id="to_date" name="to_date"  value="<?=$to_date?>"  
+                                data-date="<?=$to_date?>" data-date-format="yyyy-mm-dd">
+                    </div>
+                </div>
 
             <button type="submit" class="btn btn-primary"><?=__('Filter')?></button> 
             
@@ -63,7 +70,7 @@
 
 
         
-    </div> <!-- /.col-md-12 -->
+    </div> <!-- /.col-sm-12 -->
     
 </div> <!-- /.row -->
 

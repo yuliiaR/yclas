@@ -1,20 +1,21 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <h3><?=$widget->subscribe_title?></h3>
 
-<?= FORM::open(Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id)), array( 'enctype'=>'multipart/form-data'))?>
+<?= FORM::open(Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id)), array('class'=>'form-horizontal ', 'enctype'=>'multipart/form-data'))?>
 <!-- if categories on show selector of categories -->
 	<?if($widget->cat_items !== NULL):?>
-		<div class="control-group">
-			<?= FORM::label('category_subscribe', __('Categories'), array('class'=>'control-label', 'for'=>'category_subscribe'))?>
-			<div class="controls">
-				<select name="category_subscribe[]" id="category_subscribe" class="span2" multiple="true" required>
+		<div class="form-group">
+			
+			<div class="col-xs-10">
+				<?= FORM::label('category_subscribe', __('Categories'), array('class'=>'control-label', 'for'=>'category_subscribe'))?>
+				<select name="category_subscribe[]" id="category_subscribe" class="form-control" multiple required>
 	            <option></option>
 	            <?function lili15($item, $key,$cats){?>
 	            <?if ( count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
-	            <option value="<?=$key?>" style="margin-left:10px;"><?=$cats[$key]['name']?></option>
+	            <option value="<?=$key?>"><?=$cats[$key]['name']?></option>
 	            <?endif?>
 	                <?if ($cats[$key]['id_category_parent'] == 1 OR count($item)>0):?>
-	                <option value="<?=$key?>" style="font-weight:bold;"> <?=$cats[$key]['name']?> </option>  
+	                <option value="<?=$key?>"> <?=$cats[$key]['name']?> </option>  
 	                    <? if (is_array($item)) array_walk($item, 'lili15', $cats);?>
 	                <?endif?>
 	            <?}
@@ -28,10 +29,10 @@
 <!-- locations -->
 <?if($widget->loc_items !== NULL):?>
 	<?if(count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
-	    <div class="control-group">
-	        <?= FORM::label('location_subscribe', __('Location'), array('class'=>'control-label', 'for'=>'location_subscribe' ))?>
-	        <div class="controls">          
-	            <select name="location_subscribe[]" id="location_subscribe" class="span2" required>
+	    <div class="form-group">
+	        <div class="col-xs-10">
+	        	<?= FORM::label('location_subscribe', __('Location'), array('class'=>'control-label', 'for'=>'location_subscribe' ))?>
+	            <select name="location_subscribe[]" id="location_subscribe" class="form-control" required>
 	            <option></option>
 	            <?function lolo10($item, $key,$locs){?>
 	            <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
@@ -49,27 +50,26 @@
 	<?endif?>
 <?endif?>
 <!-- end locatins -->
-
 <?if($widget->user_email == NULL):?>
-	<div class="control-group">
-		<?= FORM::label('email_subscribe', __('Email'), array('class'=>'control-label', 'for'=>'email_subscribe'))?>
-		<div class="controls">
-			<?= FORM::input('email_subscribe', Request::current()->post('email_subscribe'), array('class'=>'span2', 'id'=>'email_subscribe', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
+	<div class="form-group">
+		<div class="col-xs-10">
+			<?= FORM::label('email_subscribe', __('Email'), array('class'=>'control-label', 'for'=>'email_subscribe'))?>
+			<?= FORM::input('email_subscribe', Request::current()->post('email_subscribe'), array('class'=>'form-control', 'id'=>'email_subscribe', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
 		</div>
 	</div>
 <?else:?>
-	<div class="control-group">
-		<div class="controls">
-			<?= FORM::input('email_subscribe', $widget->user_email, array('class'=>'span2', 'id'=>'email_subscribe', 'type'=>'hidden' ,'required','placeholder'=>__('Email')))?>
+	<div class="form-group">
+		<div class="col-xs-10">
+			<?= FORM::input('email_subscribe', $widget->user_email, array('class'=>'form-control', 'id'=>'email_subscribe', 'type'=>'hidden' ,'required','placeholder'=>__('Email')))?>
 		</div>
 	</div>
 <?endif?>
 <?if($widget->price != FALSE):?>
 	<!-- slider -->
-	<div class="control-group">
-		<div class="controls">
+	<div class="form-group">
+		<div class="col-xs-10">
 			<?= FORM::label('price_subscribe', __('Price'), array('class'=>'control-label', 'for'=>'price_subscribe'))?>
-			<input type="text" class="span2 slider_subscribe" value="<?=$widget->min_price?>,<?=$widget->max_price?>" 
+			<input type="text" class="form-control slider_subscribe" value="<?=$widget->min_price?>,<?=$widget->max_price?>" 
 					data-slider-min='<?=$widget->min_price?>' data-slider-max="<?=$widget->max_price?>" 
 					data-slider-step="50" data-slider-value='[<?=$widget->min_price?>,<?=$widget->max_price?>]' 
 					data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" name='price_subscribe' >

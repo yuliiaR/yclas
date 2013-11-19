@@ -17,7 +17,7 @@
 		
 		
         <div class="form-group">
-            <?= FORM::label($forms['maintenance']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/11/activate-access-terms-alert/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label col-md-2', 'for'=>$forms['maintenance']['key']))?>
+            <?= FORM::label($forms['maintenance']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/11/activate-access-terms-alert/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['maintenance']['key']))?>
             <div class="col-sm-4">
                 <?= FORM::select($forms['maintenance']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['maintenance']['value'], array(
                 'placeholder' => "TRUE or FALSE", 
@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group">
-            <?= FORM::label($forms['landing_page']['key'], __('Landing page'), array('class'=>'control-label col-md-2', 'for'=>$forms['landing_page']['key']))?>
+            <?= FORM::label($forms['landing_page']['key'], __('Landing page'), array('class'=>'control-label col-sm-3', 'for'=>$forms['landing_page']['key']))?>
             <div class="col-sm-4">
                 <?= FORM::select($forms['landing_page']['key'], array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING'), $forms['landing_page']['value'], array(
                 'class' => 'tips form-control', 
@@ -48,7 +48,7 @@
         </div>
 
         <div class="form-group">
-            <?= FORM::label($forms['site_name']['key'], __('Site name'), array('class'=>'control-label col-md-2', 'for'=>$forms['site_name']['key']))?>
+            <?= FORM::label($forms['site_name']['key'], __('Site name'), array('class'=>'control-label col-sm-3', 'for'=>$forms['site_name']['key']))?>
             <div class="col-sm-4">
                 <?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
                 'placeholder' => 'Open-classifieds', 
@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            <?= FORM::label($forms['site_description']['key'], __('Site description'), array('class'=>'control-label col-md-2', 'for'=>$forms['site_description']['key']))?>
+            <?= FORM::label($forms['site_description']['key'], __('Site description'), array('class'=>'control-label col-sm-3', 'for'=>$forms['site_description']['key']))?>
             <div class="col-sm-4">
                 <?= FORM::input($forms['site_description']['key'], $forms['site_description']['value'], array(
                 'placeholder' => '', 
@@ -75,7 +75,7 @@
         </div>
 
 		<div class="form-group">
-			<?= FORM::label($forms['base_url']['key'], __('Base URL'), array('class'=>'control-label col-md-2', 'for'=>$forms['base_url']['key']))?>
+			<?= FORM::label($forms['base_url']['key'], __('Base URL'), array('class'=>'control-label col-sm-3', 'for'=>$forms['base_url']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::input($forms['base_url']['key'], $forms['base_url']['value'], array(
 				'placeholder' => "http://foo.com/", 
@@ -90,7 +90,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms['moderation']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/30/how-to-earn-money/'>".__('Moderation')."</a>", array('class'=>'control-label col-md-2', 'for'=>$forms['moderation']['key']))?>
+			<?= FORM::label($forms['moderation']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/30/how-to-earn-money/'>".__('Moderation')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['moderation']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::select($forms['moderation']['key'], array(0=>"Post directly",1=>"Moderation on",2=>"Payment on",3=>"Email confirmation on", 4=>"Email confirmation with Moderation", 5=>"Payment with Moderation"), $forms['moderation']['value'], array(
 				'placeholder' => $forms['moderation']['value'], 
@@ -106,7 +106,7 @@
 		</div>
 		
 		<div class="form-group">
-			<?= FORM::label($forms['advertisements_per_page']['key'], __('Advertisements per page'), array('class'=>'control-label col-md-2', 'for'=>$forms['advertisements_per_page']['key']))?>
+			<?= FORM::label($forms['advertisements_per_page']['key'], __('Advertisements per page'), array('class'=>'control-label col-sm-3', 'for'=>$forms['advertisements_per_page']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::input($forms['advertisements_per_page']['key'], $forms['advertisements_per_page']['value'], array(
 				'placeholder' => "20", 
@@ -121,7 +121,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-           <?= FORM::label($forms['feed_elements']['key'], __('Advertisements in RSS'), array('class'=>'control-label col-md-2', 'for'=>$forms['feed_elements']['key']))?>
+           <?= FORM::label($forms['feed_elements']['key'], __('Advertisements in RSS'), array('class'=>'control-label col-sm-3', 'for'=>$forms['feed_elements']['key']))?>
            <div class="col-sm-4">
                <?= FORM::input($forms['feed_elements']['key'], $forms['feed_elements']['value'], array(
                'placeholder' => "20", 
@@ -136,7 +136,7 @@
            </div>
        </div>
        <div class="form-group">
-           <?= FORM::label($forms['map_elements']['key'], __('Advertisements in Map'), array('class'=>'control-label col-md-2', 'for'=>$forms['map_elements']['key']))?>
+           <?= FORM::label($forms['map_elements']['key'], __('Advertisements in Map'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map_elements']['key']))?>
            <div class="col-sm-4">
                <?= FORM::input($forms['map_elements']['key'], $forms['map_elements']['value'], array(
                'placeholder' => "20", 
@@ -152,7 +152,7 @@
        </div>
 		<div class="form-group">
 			
-                <?= FORM::label($forms['number_format']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/06/how-to-currency-format/'>".__('Money format')."</a>", array('class'=>'control-label col-md-2','for'=>$forms['number_format']['key']))?>
+                <?= FORM::label($forms['number_format']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/06/how-to-currency-format/'>".__('Money format')."</a>", array('class'=>'control-label col-sm-3','for'=>$forms['number_format']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
 				'placeholder' => "20", 
@@ -167,7 +167,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms['date_format']['key'], __('Date format'), array('class'=>'control-label col-md-2', 'for'=>$forms['date_format']['key']))?>
+			<?= FORM::label($forms['date_format']['key'], __('Date format'), array('class'=>'control-label col-sm-3', 'for'=>$forms['date_format']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::input($forms['date_format']['key'], $forms['date_format']['value'], array(
 				'placeholder' => "d/m/Y", 
@@ -182,7 +182,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms['analytics']['key'], __('Analytics'), array('class'=>'control-label col-md-2', 'for'=>$forms['analytics']['key']))?>
+			<?= FORM::label($forms['analytics']['key'], __('Analytics'), array('class'=>'control-label col-sm-3', 'for'=>$forms['analytics']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
 				'placeholder' => 'UA-XXXXX', 
@@ -197,7 +197,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms_img['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label col-md-2', 'for'=>$forms_img['allowed_formats']['key']))?>
+			<?= FORM::label($forms_img['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['allowed_formats']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::select("allowed_formats[]", array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), explode(',', $forms_img['allowed_formats']['value']), array(
 				'placeholder' => $forms_img['allowed_formats']['value'],
@@ -213,7 +213,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms_img['max_image_size']['key'], __('Max image size'), array('class'=>'control-label col-md-2', 'for'=>$forms_img['max_image_size']['key']))?>
+			<?= FORM::label($forms_img['max_image_size']['key'], __('Max image size'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['max_image_size']['key']))?>
 			<div class="col-sm-4">
 				<div class="input-group">
 					<?= FORM::input($forms_img['max_image_size']['key'], $forms_img['max_image_size']['value'], array(
@@ -231,7 +231,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms_img['height']['key'], __('Image height'), array('class'=>'control-label col-md-2', 'for'=>$forms_img['height']['key']))?>
+			<?= FORM::label($forms_img['height']['key'], __('Image height'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['height']['key']))?>
 			<div class="col-sm-4">
 				<div class="input-group">
 					<?= FORM::input($forms_img['height']['key'], $forms_img['height']['value'], array(
@@ -249,7 +249,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms_img['width']['key'], __('Image width'), array('class'=>'control-label col-md-2', 'for'=>$forms_img['width']['key']))?>
+			<?= FORM::label($forms_img['width']['key'], __('Image width'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['width']['key']))?>
 			<div class="col-sm-4">
 				<div class="input-group">
 					<?= FORM::input($forms_img['width']['key'], $forms_img['width']['value'], array(
@@ -267,7 +267,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms_img['height_thumb']['key'], __('Thumb height'), array('class'=>'control-label col-md-2', 'for'=>$forms_img['height_thumb']['key']))?>
+			<?= FORM::label($forms_img['height_thumb']['key'], __('Thumb height'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['height_thumb']['key']))?>
 			<div class="col-sm-4">
 				<div class="input-group">
 					<?= FORM::input($forms_img['height_thumb']['key'], $forms_img['height_thumb']['value'], array(
@@ -285,7 +285,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms_img['width_thumb']['key'], __('Thumb width'), array('class'=>'control-label col-md-2', 'for'=>$forms_img['width_thumb']['key']))?>
+			<?= FORM::label($forms_img['width_thumb']['key'], __('Thumb width'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['width_thumb']['key']))?>
 			<div class="col-sm-4">
 				<div class="input-group">
 					<?= FORM::input($forms_img['width_thumb']['key'], $forms_img['width_thumb']['value'], array(
@@ -304,7 +304,7 @@
 			</div>
 		</div>
         <div class="form-group">
-            <?= FORM::label($forms_img['quality']['key'], __('Image quality'), array('class'=>'control-label col-md-2', 'for'=>$forms_img['quality']['key']))?>
+            <?= FORM::label($forms_img['quality']['key'], __('Image quality'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['quality']['key']))?>
             <div class="col-sm-4">
                 <div class="input-group">
                     <?= FORM::input($forms_img['quality']['key'], $forms_img['quality']['value'], array(
@@ -324,7 +324,7 @@
         </div>
         
         <div class="form-group">
-            <?= FORM::label($forms_img['watermark']['key'], __('Watermark'), array('class'=>'control-label col-md-2', 'for'=>$forms_img['watermark']['key']))?>
+            <?= FORM::label($forms_img['watermark']['key'], __('Watermark'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['watermark']['key']))?>
             <div class="col-sm-4">
                 <?= FORM::select($forms_img['watermark']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms_img['watermark']['value'], array(
                 'placeholder' => "TRUE or FALSE", 
@@ -340,7 +340,7 @@
         </div>
         
         <div class="form-group">
-			<?= FORM::label($forms_img['watermark_path']['key'], __('Watermark path'), array('class'=>'control-label col-md-2', 'for'=>$forms_img['watermark_path']['key']))?>
+			<?= FORM::label($forms_img['watermark_path']['key'], __('Watermark path'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['watermark_path']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::input($forms_img['watermark_path']['key'], $forms_img['watermark_path']['value'], array(
 				'placeholder' => "images/watermark.png", 
@@ -355,7 +355,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms_img['watermark_position']['key'], __('Watermark position'), array('class'=>'control-label col-md-2', 'for'=>$forms_img['watermark_position']['key']))?>
+			<?= FORM::label($forms_img['watermark_position']['key'], __('Watermark position'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['watermark_position']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::select($forms_img['watermark_position']['key'], array(0=>"Center",1=>"Bottom",2=>"Top"), $forms_img['watermark_position']['value'], array(
 				'placeholder' => $forms_img['watermark_position']['value'], 
@@ -371,7 +371,7 @@
 		</div>
 
 		<div class="form-group">
-			<?= FORM::label($forms['akismet_key']['key'], "<a target='_blank' href='http://akismet.com/'>".__('Akismet Key')."</a>", array('class'=>'control-label col-md-2', 'for'=>$forms['akismet_key']['key']))?>
+			<?= FORM::label($forms['akismet_key']['key'], "<a target='_blank' href='http://akismet.com/'>".__('Akismet Key')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['akismet_key']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::input($forms['akismet_key']['key'], $forms['akismet_key']['value'], array(
 				'placeholder' => "", 
@@ -390,7 +390,7 @@
 			$pages[$value->seotitle] = $value->title;
 		}?>
 		<div class="form-group">
-			<?= FORM::label($forms['alert_terms']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/11/activate-access-terms-alert/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label col-md-2', 'for'=>$forms['alert_terms']['key']))?>
+			<?= FORM::label($forms['alert_terms']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/11/activate-access-terms-alert/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['alert_terms']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array( 
 				'class' => 'tips form-control', 
@@ -404,7 +404,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-            <?= FORM::label($forms['search_by_description']['key'], __("Include search by description"), array('class'=>'control-label col-md-2', 'for'=>$forms['search_by_description']['key']))?>
+            <?= FORM::label($forms['search_by_description']['key'], __("Include search by description"), array('class'=>'control-label col-sm-3', 'for'=>$forms['search_by_description']['key']))?>
             <div class="col-sm-4">
                 <?= FORM::select($forms['search_by_description']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['search_by_description']['value'], array(
                 'placeholder' => "TRUE or FALSE", 
@@ -419,7 +419,7 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms['blog']['key'], __("Activates Blog posting"), array('class'=>'control-label col-md-2', 'for'=>$forms['blog']['key']))?>
+            <?= FORM::label($forms['blog']['key'], __("Activates Blog posting"), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog']['key']))?>
             <div class="col-sm-4">
                 <?= FORM::select($forms['blog']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['blog']['value'], array(
                 'placeholder' => "TRUE or FALSE", 
@@ -434,7 +434,7 @@
             </div>
         </div>
         <div class="form-group">
-                <?= FORM::label($forms['blog_disqus']['key'], __('Disqus for blog'), array('class'=>'control-label col-md-2', 'for'=>$forms['blog_disqus']['key']))?>
+                <?= FORM::label($forms['blog_disqus']['key'], __('Disqus for blog'), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog_disqus']['key']))?>
                 <div class="col-sm-4">
                     <?= FORM::input($forms['blog_disqus']['key'], $forms['blog_disqus']['value'], array(
                     'placeholder' => "", 

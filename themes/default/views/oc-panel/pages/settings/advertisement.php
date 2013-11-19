@@ -16,7 +16,7 @@
 			<?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
 			<?endforeach?>
 			<div class="form-group">
-				<?= FORM::label($forms['num_images']['key'], __('Number of images'), array('class'=>'control-label col-md-2', 'for'=>$forms['num_images']['key']))?>
+				<?= FORM::label($forms['num_images']['key'], __('Number of images'), array('class'=>'control-label col-sm-3', 'for'=>$forms['num_images']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::input($forms['num_images']['key'], $forms['num_images']['value'], array(
 					'placeholder' => "4", 
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['parent_category']['key'], __('Parent category'), array('class'=>'control-label col-md-2', 'for'=>$forms['parent_category']['key']))?>
+				<?= FORM::label($forms['parent_category']['key'], __('Parent category'), array('class'=>'control-label col-sm-3', 'for'=>$forms['parent_category']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::select($forms['parent_category']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['parent_category']['value'], array(
 					'placeholder' => "", 
@@ -47,12 +47,12 @@
 			</div>
 			
 			<div class="form-group">
-				<?= FORM::label($forms['expire_date']['key'], __('Ad expiration date'), array('class'=>'control-label col-md-2', 'for'=>$forms['expire_date']['key']))?>
+				<?= FORM::label($forms['expire_date']['key'], __('Ad expiration date'), array('class'=>'control-label col-sm-3', 'for'=>$forms['expire_date']['key']))?>
 				<div class="col-sm-4">
 					<div class="input-group">
 						<?= FORM::input($forms['expire_date']['key'], $forms['expire_date']['value'], array(
 						'placeholder' => $forms['expire_date']['value'], 
-						'class' => 'tips form-control col-md-2', 
+						'class' => 'tips form-control col-sm-3', 
 						'id' => $forms['expire_date']['key'], 
 						'data-content'=> __("Expire days"),
 						'data-trigger'=>"hover",
@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['ads_in_home']['key'], __('Advertisements in home'), array('class'=>'control-label col-md-2', 'for'=>$forms['ads_in_home']['key']))?>
+				<?= FORM::label($forms['ads_in_home']['key'], __('Advertisements in home'), array('class'=>'control-label col-sm-3', 'for'=>$forms['ads_in_home']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::select($forms['ads_in_home']['key'], array(0=>__('Latest Ads'),1=>__('Featured Ads'),2=>__('Popular Ads last month')), $forms['ads_in_home']['value'], array(
 					'placeholder' => $forms['ads_in_home']['value'], 
@@ -80,7 +80,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['address']['key'], __('Address'), array('class'=>'control-label col-md-2', 'for'=>$forms['address']['key']))?>
+				<?= FORM::label($forms['address']['key'], __('Address'), array('class'=>'control-label col-sm-3', 'for'=>$forms['address']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::select($forms['address']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['address']['value'], array(
 					'placeholder' => "", 
@@ -95,7 +95,7 @@
 				</div>
 			</div>
             <div class="form-group">
-                <?= FORM::label($forms['map']['key'], __('Google Maps in Ad'), array('class'=>'control-label col-md-2', 'for'=>$forms['map']['key']))?>
+                <?= FORM::label($forms['map']['key'], __('Google Maps in Ad'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map']['key']))?>
                 <div class="col-sm-4">
                     <?= FORM::select($forms['map']['key'], array(0=>"FALSE",1=>"TRUE"),$forms['map']['value'], array(
                     'placeholder' => "", 
@@ -110,7 +110,7 @@
                 </div>
             </div>
             <div class="form-group">
-				<?= FORM::label($forms['map_zoom']['key'], __('Google map zoom level'), array('class'=>'control-label col-md-2', 'for'=>$forms['map_zoom']['key']))?>
+				<?= FORM::label($forms['map_zoom']['key'], __('Google map zoom level'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map_zoom']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::input($forms['map_zoom']['key'], $forms['map_zoom']['value'], array(
 					'placeholder' => "16", 
@@ -126,7 +126,7 @@
 			</div>
             
             <div class="form-group">
-                <?= FORM::label($forms['center_lat']['key'], __('Map latitude coordinates'), array('class'=>'control-label col-md-2', 'for'=>$forms['center_lat']['key']))?>
+                <?= FORM::label($forms['center_lat']['key'], __('Map latitude coordinates'), array('class'=>'control-label col-sm-3', 'for'=>$forms['center_lat']['key']))?>
                 <div class="col-sm-4">
                     <?= FORM::input($forms['center_lat']['key'], $forms['center_lat']['value'], array(
                     'placeholder' => "40", 
@@ -142,7 +142,7 @@
             </div>
 
 			<div class="form-group">
-				<?= FORM::label($forms['center_lon']['key'], __('Map longitude coordinates'), array('class'=>'control-label col-md-2', 'for'=>$forms['center_lon']['key']))?>
+				<?= FORM::label($forms['center_lon']['key'], __('Map longitude coordinates'), array('class'=>'control-label col-sm-3', 'for'=>$forms['center_lon']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::input($forms['center_lon']['key'], $forms['center_lon']['value'], array(
 					'placeholder' => "3", 
@@ -158,7 +158,7 @@
 			</div>
 			
 			<div class="form-group">
-				<?= FORM::label($forms['phone']['key'], __('Phone'), array('class'=>'control-label col-md-2', 'for'=>$forms['phone']['key']))?>
+				<?= FORM::label($forms['phone']['key'], __('Phone'), array('class'=>'control-label col-sm-3', 'for'=>$forms['phone']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::select($forms['phone']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['phone']['value'], array(
 					'placeholder' => "", 
@@ -173,7 +173,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['website']['key'], __('Website'), array('class'=>'control-label col-md-2', 'for'=>$forms['website']['key']))?>
+				<?= FORM::label($forms['website']['key'], __('Website'), array('class'=>'control-label col-sm-3', 'for'=>$forms['website']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::select($forms['website']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['website']['value'], array(
 					'placeholder' => "http://foo.com/", 
@@ -188,7 +188,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['location']['key'], __('Location'), array('class'=>'control-label col-md-2', 'for'=>$forms['location']['key']))?>
+				<?= FORM::label($forms['location']['key'], __('Location'), array('class'=>'control-label col-sm-3', 'for'=>$forms['location']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::select($forms['location']['key'],array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['location']['value'], array(
 					'placeholder' => "", 
@@ -203,7 +203,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['price']['key'], __('Price'), array('class'=>'control-label col-md-2', 'for'=>$forms['price']['key']))?>
+				<?= FORM::label($forms['price']['key'], __('Price'), array('class'=>'control-label col-sm-3', 'for'=>$forms['price']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::select($forms['price']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['price']['value'], array(
 					'placeholder' => "", 
@@ -218,7 +218,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['upload_file']['key'], __('Upload file'), array('class'=>'control-label col-md-2', 'for'=>$forms['upload_file']['key']))?>
+				<?= FORM::label($forms['upload_file']['key'], __('Upload file'), array('class'=>'control-label col-sm-3', 'for'=>$forms['upload_file']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::select($forms['upload_file']['key'],array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['upload_file']['value'], array(
 					'placeholder' => "", 
@@ -228,7 +228,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['captcha']['key'], __('Captcha'), array('class'=>'control-label col-md-2', 'for'=>$forms['captcha']['key']))?>
+				<?= FORM::label($forms['captcha']['key'], __('Captcha'), array('class'=>'control-label col-sm-3', 'for'=>$forms['captcha']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::select($forms['captcha']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['captcha']['value'], array(
 					'placeholder' => "http://foo.com/", 
@@ -243,7 +243,7 @@
 				</div>
 			</div>
             <div class="form-group">
-                <?= FORM::label($forms['contact']['key'], __('Contact form'), array('class'=>'control-label col-md-2', 'for'=>$forms['contact']['key']))?>
+                <?= FORM::label($forms['contact']['key'], __('Contact form'), array('class'=>'control-label col-sm-3', 'for'=>$forms['contact']['key']))?>
                 <div class="col-sm-4">
                     <?= FORM::select($forms['contact']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['contact']['value'], array(
                     'placeholder' => "", 
@@ -262,7 +262,7 @@
 				$pages[$value->seotitle] = $value->title;
 			}?>
 			<div class="form-group">
-				<?= FORM::label($forms['tos']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/13/how_to_add_pages/'>".__('Terms of Service')."</a>", array('class'=>'control-label col-md-2', 'for'=>$forms['tos']['key']))?>
+				<?= FORM::label($forms['tos']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/13/how_to_add_pages/'>".__('Terms of Service')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['tos']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::select($forms['tos']['key'], $pages, $forms['tos']['value'], array(
 					'placeholder' => "http://foo.com/", 
@@ -277,7 +277,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['disqus']['key'], __('Disqus'), array('class'=>'control-label col-md-2', 'for'=>$forms['disqus']['key']))?>
+				<?= FORM::label($forms['disqus']['key'], __('Disqus'), array('class'=>'control-label col-sm-3', 'for'=>$forms['disqus']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::input($forms['disqus']['key'], $forms['disqus']['value'], array(
 					'placeholder' => "", 
@@ -292,7 +292,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['banned_words']['key'], __('Baned Words'), array('class'=>'control-label col-md-2', 'for'=>$forms['banned_words']['key']))?>
+				<?= FORM::label($forms['banned_words']['key'], __('Baned Words'), array('class'=>'control-label col-sm-3', 'for'=>$forms['banned_words']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::input($forms['banned_words']['key'], $forms['banned_words']['value'], array(
 					'placeholder' => "word1,word2,word3", 
@@ -307,7 +307,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['banned_words_replacement']['key'], __('Baned Words Replacement'), array('class'=>'control-label col-md-2', 'for'=>$forms['banned_words_replacement']['key']))?>
+				<?= FORM::label($forms['banned_words_replacement']['key'], __('Baned Words Replacement'), array('class'=>'control-label col-sm-3', 'for'=>$forms['banned_words_replacement']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::input($forms['banned_words_replacement']['key'], $forms['banned_words_replacement']['value'], array(
 					'placeholder' => "xxx", 

@@ -55,7 +55,7 @@ Form::$errors_tpl 	= '<div class="alert alert-danger"><a class="close" data-dism
 			       		<h4 class="alert-heading">%s</h4>
 			        	<ul>%s</ul></div>';
 
-Form::$error_tpl 	= '<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a>%s</div>';
+Form::$error_tpl 	= '<div class="alert "><a class="close" data-dismiss="alert">×</a>%s</div>';
 
 
 Alert::$tpl 	= 	'<div class="alert alert-%s">

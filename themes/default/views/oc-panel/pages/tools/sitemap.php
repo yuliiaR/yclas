@@ -14,14 +14,14 @@
       <?=Form::errors()?>        
 
       <div class="form-group">
-        <label class="control-label"><?=__("Expire time")?>:</label>
+        <label class="control-label col-sm-2"><?=__("Expire time")?>:</label>
         <div class="col-sm-4">
         <input  type="text" name="expires" value="<?=core::config('sitemap.expires')?>" class="col-md-2"  /> Seconds
         </div>
       </div>
 
       <div class="form-group">
-        <label class="control-label"><?=__("Update on publish")?>:</label>
+        <label class="control-label col-sm-2"><?=__("Update on publish")?>:</label>
           <div class="col-sm-4"> 
             <? $input = array("TRUE"=>"TRUE","FALSE"=>"FALSE");?>
               <?= FORM::select('on_post', $input, core::config('sitemap.on_post'), array(
@@ -31,9 +31,7 @@
               ))?>
           </div>
       </div>
- 
-        
-          
+      
       <div class="form-actions">
       	<a href="<?=Route::url('oc-panel')?>" class="btn btn-default"><?=__('Cancel')?></a>
         <button type="submit" class="btn btn-primary"><?=__('Save')?></button>

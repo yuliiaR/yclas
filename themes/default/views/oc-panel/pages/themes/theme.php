@@ -1,25 +1,13 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?=Form::errors()?>
+<div class="row">
 <div class="page-header">
 	<h1><?=__('Themes')?></h1>
     <p><?=__('You can change the look and feel of your website here.')?><a href="http://open-classifieds.com/2013/08/21/how-to-change-theme/" target="_blank"><?=__('Read more')?></a></p>
 </div>
-<!-- install theme form -->
-<?= FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
-<div class="well pull-right">
-    <span class="label label-info"><?=__('Install theme')?></span><p><?=__('To install new theme choose zip file.')?></p>
-    
-    <div class="controll-group">
-        <input type="file" name="theme_file" id="theme_file" />
-    </div>
-    <div class="controll-group">
-        <?= FORM::button('submit', __('Submit'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme'))))?>
-    </div>
-</div>
-<?= FORM::close()?>
 <!-- end install themeform -->
-<div class="media">
+<div class=" col-md-7 col-sm-10 col-xs-10">
     <?if ($scr = Theme::get_theme_screenshot(Theme::$theme))?>
             <img class="media-object pull-left" width="150px" height="100px" src="<?=$scr?>">
     <div class="media-body">
@@ -47,18 +35,33 @@
         <?endif?>
     </div>
 </div>
-
-<? if (count($themes)>1):?>
-<h2><?=__('Available Themes')?></h2>
-
+<!-- install theme form -->
+<?= FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+<div class="well col-md-5 col-sm-10 col-xs-10">
+    <span class="label label-info"><?=__('Install theme')?></span><p><?=__('To install new theme choose zip file.')?></p>
+    
+    <div class="controll-group">
+        <input type="file" name="theme_file" id="theme_file" />
+    </div>
+    <div class="controll-group">
+        <?= FORM::button('submit', __('Submit'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme'))))?>
+    </div>
+</div>
+<?= FORM::close()?>
+</div>
 <div class="row">
 <div class="col-sm-12">
+<? if (count($themes)>1):?>
+<div class="page-header">
+<h2><?=__('Available Themes')?></h2>
+</div>
+
 <?$i=0;
 foreach ($themes as $theme=>$info):?>
     <?if(Theme::$theme!==$theme):?>
     <?if ($i%3==0):?></div></div><div class="row"><div class="col-sm-12"><?endif?>
     
-    <div class="thumbnail col-md-3">
+    <div class="thumbnail col-md-3 col-sm-3 ">
         <?if ($scr = Theme::get_theme_screenshot($theme)):?>
             <img width="300px" height="200px" src="<?=$scr?>">
         <?endif?>

@@ -11,7 +11,7 @@
         </p>
     <?endif?>
 
-    <a target='_blank' href='http://open-classifieds.com/2013/10/11/how-to-create-custom-fields/'><p><?=__('AdvertisementS Custom Fields')?></p></a>
+    <a target='_blank' href='http://open-classifieds.com/2013/10/11/how-to-create-custom-fields/'><p><?=__('Advertisement Custom Fields')?></p></a>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">
   <?=__('New field')?></a>
 </div>
@@ -46,15 +46,15 @@
 
 <div class="row">
     <div class="page-header">
-    <h1><?=__('Optional Fields')?></h1>
-    <p><?=__('Optional Advertisement Fields')?></p>
+        <h1><?=__('Optional Fields')?></h1>
+        <p><?=__('Optional Advertisement Fields')?></p>
     </div>
     <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')).'?define=cf', array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
         <fieldset>
             <div class="form-group">
-              
+              <?= FORM::label('phone', __('Phone'), array('class'=>'control-label col-sm-2', 'for'=>'phone'))?>
               <div class="col-sm-4">
-                <?= FORM::label('phone', __('Phone'), array('class'=>'control-label', 'for'=>'phone'))?>
+                
                 <?= FORM::select('phone', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.phone'), array(
                 'placeholder' => "", 
                 'class' => 'tips form-control', 
@@ -68,9 +68,9 @@
               </div>
             </div>
             <div class="form-group">
-            
+            <?= FORM::label('website', __('Website'), array('class'=>'control-label col-sm-2', 'for'=>'website'))?>
             <div class="col-sm-4">
-                <?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
+                
                 <?= FORM::select('website', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.website'), array(
                 'placeholder' => "http://foo.com/", 
                 'class' => 'tips form-control', 
@@ -84,9 +84,9 @@
               </div>
             </div>
             <div class="form-group">
-              
+              <?= FORM::label('location', __('Location'), array('class'=>'control-label col-sm-2', 'for'=>'location'))?>
               <div class="col-sm-4">
-                <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location'))?>
+                
                 <?= FORM::select('location',array(FALSE=>"FALSE",TRUE=>"TRUE"), core::config('advertisement.location'), array(
                 'placeholder' => "", 
                 'class' => 'tips form-control', 
@@ -100,9 +100,9 @@
               </div>
             </div>
             <div class="form-group">
-              
+              <?= FORM::label('price', __('Price'), array('class'=>'control-label col-sm-2', 'for'=>'price'))?>
               <div class="col-sm-4">
-                <?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
+                
                 <?= FORM::select('price', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.price'), array(
                 'placeholder' => "", 
                 'class' => 'tips form-control', 
@@ -116,9 +116,9 @@
               </div>
             </div>
             <div class="form-group">
-              
+              <?= FORM::label('upload_file', __('Upload file'), array('class'=>'control-label col-sm-2', 'for'=>'upload_file'))?>
               <div class="col-sm-4">
-                <?= FORM::label('upload_file', __('Upload file'), array('class'=>'control-label', 'for'=>'upload_file'))?>
+                
                 <?= FORM::select('upload_file',array(FALSE=>"FALSE",TRUE=>"TRUE"), core::config('advertisement.upload_file'), array(
                 'placeholder' => "", 
                 'class' => 'tips form-control', 
@@ -127,9 +127,9 @@
               </div>
             </div>
             <div class="form-group">
-              
+              <?= FORM::label('captcha', __('Captcha'), array('class'=>'control-label col-sm-2', 'for'=>'captcha'))?>
               <div class="col-sm-4">
-                <?= FORM::label('captcha', __('Captcha'), array('class'=>'control-label', 'for'=>'captcha'))?>
+                
                 <?= FORM::select('captcha', array(FALSE=>"FALSE",TRUE=>"TRUE"), core::config('advertisement.captcha'), array(
                 'placeholder' => "http://foo.com/", 
                 'class' => 'tips form-control', 
@@ -143,9 +143,9 @@
               </div>
             </div>
             <div class="form-group">
-              
+              <?= FORM::label('address', __('Address'), array('class'=>'control-label col-sm-2', 'for'=>'address'))?>
               <div class="col-sm-4">
-                <?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
+                
                 <?= FORM::select('address', array(FALSE=>"FALSE",TRUE=>"TRUE"),core::config('advertisement.address'), array(
                 'placeholder' => "", 
                 'class' => 'tips form-control', 
