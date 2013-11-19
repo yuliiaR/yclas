@@ -2,13 +2,18 @@
 <div class="col-md-3 hidden-phone">
 	<div class="well sidebar-nav">
 		<ul class="nav nav-list">
-                
-				<?//Theme::admin_link(__('Market'), 'market','index','oc-panel','glyphicon   glyphicon-gift')?>
-                <?Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','glyphicon   glyphicon-th-large')?>
+                <button class="navbar-toggle" type="button" >
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+				<?//Theme::admin_link(__('Market'), 'market','index','oc-panel','glyphicon glyphicon-gift')?>
+                <?Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','glyphicon glyphicon-th-large')?>
                 <? if(core::config('general.moderation') == 1 OR // moderation on  
                       core::config('general.moderation') == 4 OR // email confiramtion with moderation
                       core::config('general.moderation') == 5):  // payment with moderation?>
-				<?Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','glyphicon   glyphicon-ban-circle')?>
+				<?Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','glyphicon glyphicon-ban-circle')?>
                 <? endif?>
 				<?Theme::admin_link(__('Categories'),'category','index','oc-panel','glyphicon  glyphicon-tags')?>
 				<?Theme::admin_link(__('Locations'),'location','index','oc-panel','glyphicon  glyphicon-map-marker')?>
@@ -27,16 +32,16 @@
                 <?Theme::admin_link(__('Themes'), 'theme','index','oc-panel','glyphicon  glyphicon-picture')?>
                 <?if (Theme::has_options()) 
                         Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel','glyphicon  glyphicon-wrench')?>     
-                <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','glyphicon   glyphicon-move')?>   
+                <?Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','glyphicon glyphicon-move')?>   
                 <?Theme::admin_link(__('Menu'), 'menu','index','oc-panel','glyphicon  glyphicon-list')?> 
                 <?Theme::admin_link(__('Custom Fields'), 'fields','index','oc-panel','glyphicon  glyphicon-plus-sign')?>
                 <?Theme::admin_link(__('Social Auth'), 'social','index','oc-panel','glyphicon  glyphicon-thumbs-up')?>
                 <? if($user->id_role==Model_Role::ROLE_ADMIN):?><div class="divider"></div><?endif?>
 
 			<?if ($user->has_access_to_any('settings,config')):?>
-				<li class="dropdown sbp<?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">
-                <a tabindex="-1" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#"><i class="glyphicon   glyphicon-edit"></i><?=__('Settings')?><span class="caret"></span></a>
-                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
+				<li class="dropdown-sidebar sbp <?=(in_array(Request::current()->controller(),array('settings','config'))) ?'active':''?>">
+                <a class="dropdown-toggle"><i class="glyphicon glyphicon-edit"></i><?=__('Settings')?><i class="glyphicon glyphicon-chevron-down pull-right"></i></a>
+                    <ul class="submenu">
     				    <?Theme::admin_link(__('General'), 'settings','general')?>
     				    <?Theme::admin_link(__('Payment'), 'settings','payment')?>
     				    <?Theme::admin_link(__('Email'), 'settings','email')?>
@@ -46,9 +51,9 @@
 			<?endif?>
 
             <?if ($user->has_access_to_any('user,role,access')):?>
-                <li class="dropdown sbp<?=(in_array(Request::current()->controller(),array('user','role','access'))) ?'active':''?>">
-                <a tabindex="-1" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#"><i class="glyphicon   glyphicon-user"></i><?=__('Users')?><span class="caret"></span></a>
-                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
+                <li class="dropdown-sidebar sbp <?=(in_array(Request::current()->controller(),array('user','role','access'))) ?'active':''?>">
+                <a class="dropdown-toggle"><i class="glyphicon glyphicon-user"></i><?=__('Users')?><i class="glyphicon glyphicon-chevron-down pull-right"></i></a>
+                    <ul class="submenu">
                       <?Theme::admin_link(__('Users'),'user')?>
                       <?Theme::admin_link(__('User Roles'),'role')?>
                       <?Theme::admin_link(__('Roles access'),'access')?>
@@ -57,9 +62,9 @@
             <? endif ?>
 
 			<?if ($user->has_access_to_any('tools')):?>
-				<li class="dropdown sbp<?=(Request::current()->controller()=='tools') ?'active':''?>">
-                <a tabindex="-1" id="dLabel" role="button" data-toggle="dropdown" data-target="#"  href="#"><i class="glyphicon glyphicon-wrench"></i><?=__('Tools')?><span class="caret"></span></a>
-                    <ul class="dropdown-menu pull-right">
+				<li class="dropdown-sidebar sbp <?=(Request::current()->controller()=='tools') ?'active':''?>">
+                <a class="dropdown-toggle"><i class="glyphicon glyphicon-wrench"></i><?=__('Tools')?><i class="glyphicon glyphicon-chevron-down pull-right"></i></a>
+                    <ul class="submenu">
                         <?Theme::admin_link(__('Updates'), 'update','index')?>
                         <?Theme::admin_link(__('Sitemap'), 'tools','sitemap')?>
                         <?Theme::admin_link(__('Migration'), 'tools','migration')?>
@@ -86,7 +91,7 @@
             <div class="divider"></div>
 			<?if (Theme::get('premium')!=1):?>
 			
-			<li class="nav-header">Open Classifieds</li>
+			<li class="nav-header"><a href="http://open-classifieds.com/">Open Classifieds</a></li>
 			<li><a href="http://open-classifieds.com/?utm_source=<?=URL::base()?>&utm_medium=oc_sidebar&utm_campaign=<?=date('Y-m-d')?>"><?=__('Home')?></a></li>
 			<li><a href="http://open-classifieds.com/contact/?utm_source=<?=URL::base()?>&utm_medium=oc_sidebar&utm_campaign=<?=date('Y-m-d')?>"><?=__('Contact')?></a></li>
             

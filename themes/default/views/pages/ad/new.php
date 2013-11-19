@@ -52,7 +52,7 @@
                                     	</a>
 
                                      <?if ($cats[$key]['price']>0):?>
-                                        <span class="label label-success">
+                                        <span class="label label-success pull-right">
                                         <?=i18n::money_format( $cats[$key]['price'])?>
                                         </span>
                                     <?endif?>

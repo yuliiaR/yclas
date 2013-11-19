@@ -2,7 +2,7 @@
 <?if (Auth::instance()->logged_in()):?>
 <a class="btn btn-success"
 	href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
-	<i class="glyphicon glyphicon-user glyphicon"></i> 
+	<i class="glyphicon glyphicon-user"></i> 
 </a>
 <a class="btn dropdown-toggle btn-success" data-toggle="dropdown"
 	href="#"> <span class="caret"></span>

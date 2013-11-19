@@ -13,7 +13,7 @@
     <meta name="description" content="<?=$meta_description?>" >
     <meta name="copyright" content="<?=$meta_copywrite?>" >
 	<meta name="author" content="open-classifieds.com">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
+
 
     <?if (core::config('general.blog')==1):?>
     <link rel="alternate" type="application/atom+xml" title="RSS Blog <?=Core::config('general.site_name')?>" href="<?=Route::url('rss-blog')?>" />
@@ -66,7 +66,7 @@
     <div class="container bs-docs-container">
         <div class="row">
             
-            <div class="col-md-9">
+            <div class="col-xs-9">
                 <?=Breadcrumbs::render('breadcrumbs')?>
                 <?=Alert::show()?>
                 <?=$content?>

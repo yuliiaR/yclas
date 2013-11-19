@@ -2,8 +2,9 @@
 <form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'forgot'))?>">         
           <?=Form::errors()?>
           <div class="form-group">
-            <label class="control-label"><?=__('Email')?></label>
-            <div class="col-md-4">
+            
+            <div class="col-xs-6 col-md-4">
+              <label class="control-label"><?=__('Email')?></label>
               <input class="form-control" type="text" name="email" placeholder="<?=__('Email')?>">
             </div>
           </div>

@@ -36,7 +36,7 @@ Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1
                                     'js/jquery.sceditor.min.js',
                                     'http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js',
                                     'js/bootstrap-image-gallery.min.js',
-                                    'js/jquery.validate.min.js',
+                                    'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js',
                                     'js/theme.init.js?v=2.1',
                                     );
 
@@ -51,11 +51,11 @@ Theme::$options = array();
 /**
  * custom error alerts
  */
-Form::$errors_tpl 	= '<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a>
+Form::$errors_tpl 	= '<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a>
 			       		<h4 class="alert-heading">%s</h4>
 			        	<ul>%s</ul></div>';
 
-Form::$error_tpl 	= '<div class="alert"><a class="close" data-dismiss="alert">×</a>%s</div>';
+Form::$error_tpl 	= '<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a>%s</div>';
 
 
 Alert::$tpl 	= 	'<div class="alert alert-%s">

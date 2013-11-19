@@ -1,4 +1,4 @@
-.hidden-phone .nav > li:hover {border-right: 2px solid;}
+.hidden-phone .nav > li a:hover,.hidden-phone .nav > li.active a, .dropdown-sidebar.sbp.active a{border-right: 2px solid;}
 .hidden-phone .nav > li > a {padding: 6px 15px;}
 .thumbnail {margin-right: 20px; margin-bottom: 20px;}
 .divider{border: 1px solid #e3e3e3;margin-top: 10px;margin-bottom: 10px;}
@@ -9,3 +9,12 @@
 .navbar-toggle{margin-left: 20px;}
 li.sbp .caret{float: right;margin-top: 7px;}
 .thumbnails{list-style: none;}
+
+.submenu {display: none; list-style: none;}
+.submenu.active{display: block;}
+.submenu li.active a{text-decoration: underline; font-weight:bold;}
+.submenu li a{border-right: 0px !important;}
+
+ @media screen and (max-width: 979px) {
+ 	.hidden-phone{margin-top: 65px;}
+ }
