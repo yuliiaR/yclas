@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 /**
- * Ads widget reader
+ * Subscribe widget reader
  *
  * @author      Slobodan <slobodan.josifovic@gmail.com>
  * @package     Widget
