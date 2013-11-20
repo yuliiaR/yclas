@@ -75,9 +75,9 @@
         </div><!--/row-->
         <?=$footer?>
     </div><!--/.fluid-container-->
-
-
-	<?=Theme::scripts($scripts,'footer')?>
+  
+  <?=Theme::scripts($scripts,'footer')?>
+	
 		
 	<!--[if lt IE 7 ]>
 		<?=HTML::script('http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js')?>
