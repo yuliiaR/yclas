@@ -10,17 +10,17 @@
 				<?= FORM::label('category_subscribe', __('Categories'), array('class'=>'control-label', 'for'=>'category_subscribe'))?>
 				<select name="category_subscribe[]" id="category_subscribe" class="form-control" multiple required>
 	            <option></option>
-	            <?function lili15($item, $key,$cats){?>
+	            <?function lili_subscribe($item, $key,$cats){?>
 	            <?if ( count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
 	            <option value="<?=$key?>"><?=$cats[$key]['name']?></option>
 	            <?endif?>
 	                <?if ($cats[$key]['id_category_parent'] == 1 OR count($item)>0):?>
 	                <option value="<?=$key?>"> <?=$cats[$key]['name']?> </option>  
-	                    <? if (is_array($item)) array_walk($item, 'lili15', $cats);?>
+	                    <? if (is_array($item)) array_walk($item, 'lili_subscribe', $cats);?>
 	                <?endif?>
 	            <?}
 	            $cat_order = $widget->cat_order_items; 
-	        	array_walk($cat_order , 'lili15', $widget->cat_items);?>
+	        	array_walk($cat_order , 'lili_subscribe', $widget->cat_items);?>
 	            </select> 
 			</div>
 		</div>
@@ -34,16 +34,16 @@
 	        	<?= FORM::label('location_subscribe', __('Location'), array('class'=>'control-label', 'for'=>'location_subscribe' ))?>
 	            <select name="location_subscribe[]" id="location_subscribe" class="form-control" required>
 	            <option></option>
-	            <?function lolo10($item, $key,$locs){?>
+	            <?function lolo_subscribe($item, $key,$locs){?>
 	            <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
 	                <?if (count($item)>0):?>
 	                <optgroup label="<?=$locs[$key]['name']?>_subscribe">    
-	                    <? if (is_array($item)) array_walk($item, 'lolo10', $locs);?>
+	                    <? if (is_array($item)) array_walk($item, 'lolo_subscribe', $locs);?>
 	                    </optgroup>
 	                <?endif?>
 	            <?}
 	            $loc_order = $widget->loc_order_items; 
-	        	array_walk($loc_order , 'lolo10',$widget->loc_items);?>
+	        	array_walk($loc_order , 'lolo_subscribe',$widget->loc_items);?>
 	            </select>
 	        </div>
 	    </div>

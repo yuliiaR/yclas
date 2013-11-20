@@ -9,7 +9,7 @@
             <input type="text" id="title" name="title" class="form-control" value="" placeholder="<?=__('Search')?>">
         </div>
     </div>
-<?if(isset($widget->cat_items)):?>
+<?if($widget->advanced != FALSE):?>
     <?if($widget->cat_items !== NULL):?>
         <div class="form-group">
             
@@ -32,7 +32,6 @@
             </div>
         </div>
     <?endif?>
-
 <!-- end categories/ -->
 <!-- locations -->
 <?if($widget->loc_items !== NULL):?>
@@ -59,7 +58,8 @@
 <?endif?>
 <?endif?>
 <!-- Fields coming from custom fields feature -->
-<?if(isset($widget->custom_fields)):?>
+
+<?if($widget->custom != FALSE AND Theme::get('premium')==1 AND count($providers = Social::get_providers())>0):?>
     <?if (is_array($widget->custom_fields)):?>
         <?foreach($widget->custom_fields as $name=>$field):?>
         <?if($field['searchable']):?>
