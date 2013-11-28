@@ -20,9 +20,7 @@ class Controller_New extends Controller
 		$this->template->styles = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
         $this->template->scripts['footer'] = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
         										   'js/new.js');
-		
-		$user = new Model_User();
-		
+
 		//find all, for populating form select fields 
 		list($categories,$order_categories)  = Model_Category::get_all();
 		list($locations,$order_locations)  	 = Model_Location::get_all();
@@ -37,25 +35,22 @@ class Controller_New extends Controller
 
 		//render view publish new
 		$this->template->content = View::factory('pages/ad/new', array('categories'		    => $categories,
-                                                                        'order_categories'  => $order_categories,
+                                                                       'order_categories'   => $order_categories,
 																	   'locations' 			=> $locations,
-                                                                        'order_locations'   => $order_locations,
+                                                                       'order_locations'    => $order_locations,
 																	   'form_show'			=> $form_show,
                                                                        'fields'             => Model_Field::get_all()));
 		if ($_POST) 
         {
-        	
             // $_POST array with all fields 
-            $data = array(  'auth'          => $auth        =   Auth::instance(),
-                            'title'         => $title       =   $this->request->post('title'),
+            $data = array(  'title'         => $title       =   $this->request->post('title'),
                             'cat'           => $cat         =   $this->request->post('category'),
                             'loc'           => $loc         =   $this->request->post('location'),
                             'description'   => $description =   $this->request->post('description'),
                             'price'         => $price       =   $this->request->post('price'),
                             'address'       => $address     =   $this->request->post('address'),
                             'phone'         => $phone       =   $this->request->post('phone'),
-                            'website'       => $website     =   $this->request->post('website'),
-                            'user'          => $user
+                            'website'       => $website     =   $this->request->post('website')
                             ); 
             
             // append to $data new custom values
@@ -70,11 +65,9 @@ class Controller_New extends Controller
 						$data[$name] = 1;
 				}
         	}
-
-		        	
+	
             // depending on user flow (moderation mode), change usecase
             $moderation = core::config('general.moderation'); 
-
 
             if ($moderation == Model_Ad::POST_DIRECTLY) // direct post no moderation
             {
@@ -85,7 +78,7 @@ class Controller_New extends Controller
                 $this->save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
 
             }
-            elseif($moderation == Model_Ad::MODERATION_ON 
+            elseif( $moderation == Model_Ad::MODERATION_ON 
                  || $moderation == Model_Ad::PAYMENT_ON 
                  || $moderation == Model_Ad::EMAIL_CONFIRAMTION 
                  || $moderation == Model_Ad::EMAIL_MODERATION 
@@ -98,7 +91,6 @@ class Controller_New extends Controller
 		
  	}
 
-
  	/**
  	 * [save_new_ad Save new advertisement if validated, with a given parameters 
  	 * 
@@ -106,19 +98,18 @@ class Controller_New extends Controller
  	 * @param  [int] $status [status of advert.]
  	 * @param  [bool] $published [Confirms if advert is published. ref to model_ad]
  	 * @param  [int] $moderation [moderation status/mode]
- 	 * @param  [bool] $captcha_show [Chaptcha active/notactive. ref to db config]
  	 * 
  	 * @return [view] View dependant on usecase 
- 	 */
- 	public function save_new_ad($data, $status, $published, $moderation, $captcha_show)
+ 	*/
+ 	public function save_new_ad($data, $status, $published, $moderation)
  	{
- 		
-		$new_ad = new Model_Ad();
+ 		$user 		= new Model_User();
+		$new_ad 	= new Model_Ad();
 
 		//$_POST is submitted for a new ad 
 		if($this->request->post()) 
 		{
-			if($captcha_show == FALSE || captcha::check('contact') ) 
+			if(captcha::check('contact')) 
 			{		
 				//FORM DATA 
 				$seotitle = $new_ad->gen_seo_title($data['title']); 
@@ -127,7 +118,6 @@ class Controller_New extends Controller
 				$new_ad->id_location 	= $data['loc'];
 				$new_ad->id_category 	= $data['cat'];
 				$new_ad->description 	= Model_Ad::banned_words($data['description']);
-				$new_ad->type 	 		= '0';
 				$new_ad->seotitle 		= $seotitle;	 
 				$new_ad->status 		= $status; 
 				$new_ad->price 			= floatval(str_replace(',', '.', $data['price'])); 								
@@ -140,42 +130,37 @@ class Controller_New extends Controller
 	            {
 	            	// get only custom values with prefix
 					if (strpos($name,'cf_') !== false) 
-					{
 						$new_ad->$name = $field;
-					}
 	        	}
 	        	
-		 		if (!$data['auth']->logged_in()) 
+	        	// User detection, if doesnt exists create
+	        	$auth_user = Auth::instance();
+		 		if (!$auth_user->logged_in()) 
 				{
 					$name 		= core::post('name');
 					$email		= core::post('email');
-
-					$user 		= new Model_User();
 					$user_id 	= $user->create_new_user($name, $email);
 				}
 				else
 				{
-					$user_id 	= $data['auth']->get_user()->id_user;
-					$name 		= $data['auth']->get_user()->name;
-					$email 		= $data['auth']->get_user()->email;
+					$user_id 	= $auth_user->get_user()->id_user;
+					$name 		= $auth_user->get_user()->name;
+					$email 		= $auth_user->get_user()->email;
 				}
 
+				// SAVE AD
+				$new_ad->id_user = $user_id; // after handling user
+
 				try
-				{
-					// SAVE AD
-					$new_ad->id_user 		= $user_id; // after handling user
-					
+				{	
 					//akismet spam filter
 					if(!core::akismet(Model_Ad::banned_words($data['title']), $email,
 								 	  Model_Ad::banned_words($data['description'])))
 					{
 						if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRAMTION)
-						{
 							$new_ad->status = Model_Ad::STATUS_UNCONFIRMED;
-							$new_ad->save();
-						}
-						else
-							$new_ad->save();
+						
+						$new_ad->save();
 					}
 					else
 					{
@@ -199,13 +184,13 @@ class Controller_New extends Controller
 						$created = $created->created;
 					}
 					
-					$user = new Model_User();
 					$user = $user->where('email', '=', $email)
 						->limit(1)
 						->find();
 
 					// after successful posting send them email depending on moderation
-					if($moderation == Model_Ad::EMAIL_CONFIRAMTION OR $moderation == Model_Ad::EMAIL_MODERATION)
+					if($moderation == Model_Ad::EMAIL_CONFIRAMTION OR 
+					   $moderation == Model_Ad::EMAIL_MODERATION)
 					{
 						$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
                     	$delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$new_ad->id_ad;
@@ -222,7 +207,7 @@ class Controller_New extends Controller
                     											'[URL.DELETEAD]'=>$delete_url));
                     	
 					}
-					else if($moderation == Model_Ad::MODERATION_ON)
+					elseif($moderation == Model_Ad::MODERATION_ON)
 					{
 
                     	$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
@@ -238,7 +223,7 @@ class Controller_New extends Controller
                     										   '[URL.EDITAD]'	=>$edit_url,
                     										   '[URL.DELETEAD]'	=>$delete_url)); // email to notify user of creating, but it is in moderation currently 
 					}
-					else if($moderation == Model_Ad::POST_DIRECTLY)
+					elseif($moderation == Model_Ad::POST_DIRECTLY)
 					{
 						$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
                     	$delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$new_ad->id_ad;
@@ -270,7 +255,6 @@ class Controller_New extends Controller
 		                                    core::config('email.notify_email'),
 		                                    core::config('general.site_name'),'ads.to_admin',
 		                                    $replace);
-
 		            }
 				}
 				catch (ORM_Validation_Exception $e)
@@ -284,7 +268,6 @@ class Controller_New extends Controller
 
 				// IMAGE UPLOAD 
 				// in case something wrong happens user is redirected to edit advert. 
-				$error_message = NULL;
 	    		$filename = NULL;
 	    		$counter = 0;
 
@@ -294,31 +277,25 @@ class Controller_New extends Controller
 
 	    			if (isset($_FILES['image'.$i]))
 	        		{
-		        		$img_files = array($_FILES['image'.$i]);
-
+		        		$img_files = $_FILES['image'.$i];
 		            	$filename = $new_ad->save_image($img_files, $new_ad->id_ad, $created, $new_ad->seotitle, $counter);
-
 	        		}
-
-	        		if ($filename['error'] == TRUE)
-		       		{
+	        		
+	        		if ($filename){
 			        	$new_ad->has_images = 1;
-		        	}
+			        	try 
+						{
+							$new_ad->save();
+						} 
+						catch (Exception $e) 
+						{
+							throw new HTTP_Exception_500($e->getMessage());
+						}
+	        		}
 		        	
-		        	if($filename['error_name'] == "wrong_format" || $filename['error_name'] == 'upload_unsuccessful')
-		        	{
-		        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures, please check format'));
-
+		        	if($filename = FALSE)
 		        		$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad)));
-		        	}
-
-		        	try {
-		        		$new_ad->save();
-		        	} catch (Exception $e) {
-		        		Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures'));
-		        		$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad)));
-		        	}
-	    		}
+		        }
 
 				// PAYMENT METHOD ACTIVE (and other alerts)
 				if($moderation == Model_Ad::PAYMENT_ON || $moderation == Model_Ad::PAYMENT_MODERATION)
@@ -333,28 +310,22 @@ class Controller_New extends Controller
 
 							$new_ad->status = 1;
 							$new_ad->published = Date::unix2mysql(time());
-							try {
-									$new_ad->save();
-									Alert::set(Alert::SUCCESS, __('Advertisement is published. Congratulations!'));
-								} catch (Exception $e) {
-									throw new HTTP_Exception_500($e->getMessage());
-								}	
+							Alert::set(Alert::SUCCESS, __('Advertisement is published. Congratulations!'));	
 						}
 						if($moderation == Model_Ad::PAYMENT_MODERATION)
 							Alert::set(Alert::SUCCESS, __('Advertisement is created but needs to be validated first before it is published.'));
-
 
 						$this->request->redirect(Route::url('default'));
 					}
 					// redirect to payment
         			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
 				}
-				else if ($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRAMTION)
+				elseif ($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRAMTION)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
 					$this->request->redirect(Route::url('default'));
 				}
-				else if ($moderation == Model_Ad::MODERATION_ON)
+				elseif ($moderation == Model_Ad::MODERATION_ON)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
 					$this->request->redirect(Route::url('default'));
@@ -365,9 +336,6 @@ class Controller_New extends Controller
 					Alert::set(Alert::SUCCESS, __('Advertisement is posted. Congratulations!'));
 					$this->request->redirect(Route::url('default'));
 				}
-
-
-
 			}//captcha
 			else
 			{ 

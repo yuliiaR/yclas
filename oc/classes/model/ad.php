@@ -268,163 +268,140 @@ class Model_Ad extends ORM {
      * @param  [string] $seotitle   [unique id, and folder name]
      * @return [bool]               [return true if 1 or more images uploaded, false otherwise]
      */
-    public function save_image($images, $id, $created, $seotitle)
+    public function save_image($image, $id, $created, $seotitle)
     {
-        
-        foreach ($images as $image) 
-        { 
-         
-            if ( 
-            ! Upload::valid($image) OR
-            ! Upload::not_empty($image) OR
-            ! Upload::type($image, explode(',',core::config('image.allowed_formats'))) OR
-            ! Upload::size($image, core::config('image.max_image_size').'M'))
+        if ( 
+        ! Upload::valid($image) OR
+        ! Upload::not_empty($image) OR
+        ! Upload::type($image, explode(',',core::config('image.allowed_formats'))) OR
+        ! Upload::size($image, core::config('image.max_image_size').'M'))
         {
-                if ( Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats'))))
-                {
-                    Alert::set(Alert::ALERT, $image['name'].' '.__('Is not valid format, please use one of this formats "jpg, jpeg, png"'));
-                    return array("error"=>FALSE, "error_name"=>"wrong_format");
-                } 
-                if(!Upload::size($image, core::config('image.max_image_size').'M'))
-                {
-                    Alert::set(Alert::ALERT, $image['name'].' '.__('Is not of valid size. Size is limited on '.core::config('image.max_image_size').'MB per image'));
-                    return array("error"=>FALSE, "error_name"=>"wrong_format");
-                }
-                return array("error"=>FALSE, "error_name"=>"no_image");
-            }
-              
-
-            if ($image !== NULL)
-            {
-                $root           = core::config('general.base_url');
-                $path           = $this->image_path($id , $created);
-                $directory      = DOCROOT.$path;
-                $image_quality  = core::config('image.quality');
-                $width          = core::config('image.width');
-                $width_thumb    = core::config('image.width_thumb');
-                $height_thumb   = core::config('image.height_thumb');
-                $height         = core::config('image.height');
-
-                if(!is_numeric($height)) // when installing this field is empty, to avoid crash we check here
-                    $height         = NULL;
-                if(!is_numeric($height_thumb))
-                    $height_thumb   = NULL;    
-                
-                // d($height_thumb);
-                // count how many files are saved 
-                if (glob($directory . "*.jpg") != false)
-                {
-                    $filecount = count(glob($directory . "*.jpg"));
-
-                    $counter = ($filecount / 2) + 1;
-                    
-                    if(file_exists($directory.$seotitle.'_'.$counter.'.jpg')) // in case we update image, we have to find available number to replace
-                    {
-                        for($i=1; $i<=core::config('advertisement.num_images'); $i++)
-                        {
-                            $counter = $i;
-                            if(!file_exists($directory.$seotitle.'_'.$counter.'.jpg'))
-                            {
-                                break;
-                            }
-                        }
-                    }
-                    
-                }
-                else
-                    $counter = 1;
-           
-                
-                if ($file = Upload::save($image, NULL, $directory))
-                {
-                    $filename_thumb     = 'thumb_'.$seotitle.'_'.$counter.'.jpg';
-                    $filename_original  = $seotitle.'_'.$counter.'.jpg';
-                    
-                   
-                    /*WATERMARK*/
-                    if(core::config('image.watermark'))
-                    {
-                        $mark = Image::factory(core::config('image.watermark_path')); // watermark image object
-                        $size_watermark = getimagesize(core::config('image.watermark_path')); // size of watermark
-                      
-                        if(core::config('image.watermark_position') == 0) // position center
-                        {
-
-                            $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
-                            $wm_top_y = $height/2-$size_watermark[1]/2; // y axis , from top
-                            
-                        }
-                        elseif (core::config('image.watermark_position') == 1) // position bottom
-                        {
-                            $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
-                            $wm_top_y = $height-10; // y axis , from top
-                        }
-                        elseif(core::config('image.watermark_position') == 2) // position top
-                        {
-                            $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
-                            $wm_top_y = 10; // y axis , from top
-                        }
-                    }   
-                    /*end WATERMARK variables*/
-
-                    //if original image is bigger that our constants we resize
-                    $image_size_orig    = getimagesize($file);
-                    
-                    
-                        if($image_size_orig[0] > $width || $image_size_orig[1] > $height)
-                        {
-                            if(core::config('image.watermark')) // watermark ON
-                                Image::factory($file)
-                                    ->resize($width, $height, Image::AUTO)
-                                    ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
-                                    ->save($directory.$filename_original,$image_quality); 
-                            else 
-                                Image::factory($file)
-                                    ->resize($width, $height, Image::AUTO)
-                                    ->save($directory.$filename_original,$image_quality);    
-                        }
-                        //we just save the image changing the quality and different name
-                        else
-                        {
-                            if(core::config('image.watermark'))
-                                Image::factory($file)
-                                    ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
-                                    ->save($directory.$filename_original,$image_quality);
-                            else
-                                Image::factory($file)
-                                    ->save($directory.$filename_original,$image_quality); 
-                        }
-                    
-
-                    //creating the thumb and resizing using the the biggest side INVERSE
-                    Image::factory($directory.$filename_original)
-                        ->resize($width_thumb, $height_thumb, Image::INVERSE)
-                        ->save($directory.$filename_thumb,$image_quality);
-
-                    //check if the height or width of the thumb is bigger than default then crop
-                    if ($height_thumb!==NULL)
-                    {
-                        $image_size_orig = getimagesize($directory.$filename_thumb);
-                        if ($image_size_orig[1] > $height_thumb || $image_size_orig[0] > $width_thumb)
-                        Image::factory($directory.$filename_thumb)
-                                    ->crop($width_thumb, $height_thumb)
-                                    ->save($directory.$filename_thumb); 
-                    }
-                   
-
-                    
-                    // Delete the temporary file
-                    unlink($file);
-
-                    return array("error"=>TRUE, "error_name"=>NULL);
-                }
-                else
-                { 
-                    return array("error"=>FALSE, "error_name"=>"upload_unsuccessful");
-                }
-            }   
+            if (Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats'))))
+                Alert::set(Alert::ALERT, $image['name'].' '.__('Is not valid format, please use one of this formats "'.core::config('image.allowed_formats').'"'));
+            if(!Upload::size($image, core::config('image.max_image_size').'M'))
+                Alert::set(Alert::ALERT, $image['name'].' '.__('Is not of valid size. Size is limited on '.core::config('image.max_image_size').'MB per image'));
+            if(!Upload::not_empty($image))
+                return;
         }
-        return array("error"=>FALSE, "error_name"=>"no_image");
+          
+        if ($image !== NULL)
+        {
+            $path           = $this->image_path($id , $created);
+            $directory      = DOCROOT.$path;
+            $image_quality  = core::config('image.quality');
+            $width          = core::config('image.width');
+            $width_thumb    = core::config('image.width_thumb');
+            $height_thumb   = core::config('image.height_thumb');
+            $height         = core::config('image.height');
+
+            if(!is_numeric($height)) // when installing this field is empty, to avoid crash we check here
+                $height         = NULL;
+            if(!is_numeric($height_thumb))
+                $height_thumb   = NULL;    
+            
+            // count how many files are saved 
+            if (glob($directory . "*.jpg") != false)
+            {
+                $filecount = count(glob($directory . "*.jpg"));
+
+                $counter = ($filecount / 2) + 1;
+                
+                if(file_exists($directory.$seotitle.'_'.$counter.'.jpg')) // in case we update image, we have to find available number to replace
+                {
+                    for($i=1; $i<=core::config('advertisement.num_images'); $i++)
+                    {
+                        $counter = $i;
+                        if(!file_exists($directory.$seotitle.'_'.$counter.'.jpg'))
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+                $counter = 1;
+            
+            if ($file = Upload::save($image, NULL, $directory))
+            {
+                $filename_thumb     = 'thumb_'.$seotitle.'_'.$counter.'.jpg';
+                $filename_original  = $seotitle.'_'.$counter.'.jpg';
+                 
+                /*WATERMARK*/
+                if(core::config('image.watermark'))
+                {
+                    $mark = Image::factory(core::config('image.watermark_path')); // watermark image object
+                    $size_watermark = getimagesize(core::config('image.watermark_path')); // size of watermark
+                  
+                    if(core::config('image.watermark_position') == 0) // position center
+                    {
+                        $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
+                        $wm_top_y = $height/2-$size_watermark[1]/2; // y axis , from top
+                    }
+                    elseif (core::config('image.watermark_position') == 1) // position bottom
+                    {
+                        $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
+                        $wm_top_y = $height-10; // y axis , from top
+                    }
+                    elseif(core::config('image.watermark_position') == 2) // position top
+                    {
+                        $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
+                        $wm_top_y = 10; // y axis , from top
+                    }
+                }   
+                /*end WATERMARK variables*/
+
+                //if original image is bigger that our constants we resize
+                $image_size_orig    = getimagesize($file);
+                
+                    if($image_size_orig[0] > $width || $image_size_orig[1] > $height)
+                    {
+                        if(core::config('image.watermark')) // watermark ON
+                            Image::factory($file)
+                                ->resize($width, $height, Image::AUTO)
+                                ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
+                                ->save($directory.$filename_original,$image_quality); 
+                        else 
+                            Image::factory($file)
+                                ->resize($width, $height, Image::AUTO)
+                                ->save($directory.$filename_original,$image_quality);    
+                    }
+                    //we just save the image changing the quality and different name
+                    else
+                    {
+                        if(core::config('image.watermark'))
+                            Image::factory($file)
+                                ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
+                                ->save($directory.$filename_original,$image_quality);
+                        else
+                            Image::factory($file)
+                                ->save($directory.$filename_original,$image_quality); 
+                    }
+                
+
+                //creating the thumb and resizing using the the biggest side INVERSE
+                Image::factory($directory.$filename_original)
+                    ->resize($width_thumb, $height_thumb, Image::INVERSE)
+                    ->save($directory.$filename_thumb,$image_quality);
+
+                //check if the height or width of the thumb is bigger than default then crop
+                if ($height_thumb!==NULL)
+                {
+                    $image_size_orig = getimagesize($directory.$filename_thumb);
+                    if ($image_size_orig[1] > $height_thumb || $image_size_orig[0] > $width_thumb)
+                    Image::factory($directory.$filename_thumb)
+                                ->crop($width_thumb, $height_thumb)
+                                ->save($directory.$filename_thumb); 
+                }
+                // Delete the temporary file
+                unlink($file);
+                return TRUE;
+            }
+            else 
+            {
+                Alert::set(Alert::ALERT, __('Something went wrong with uploading pictures, please check format'));
+                return FALSE;
+            }
+        }   
     }
 
     /**

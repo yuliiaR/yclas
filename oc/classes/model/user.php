@@ -206,8 +206,9 @@ class Model_User extends ORM {
 	}
 	/**
      * Create new User in database 
-     * 
-     *
+     * @param $name String
+     * @param $email String
+     * @return $id_user Int
      */ 
     public function create_new_user($name,$email)
     {
@@ -230,7 +231,6 @@ class Model_User extends ORM {
                 $user->password     = $new_password_plain;
                 $user->seoname      = $this->gen_seo_title($name);
                 
-                
                 try
                 {
                     $user->save();
@@ -243,10 +243,6 @@ class Model_User extends ORM {
                                                          '[USER.PWD]'=>$new_password_plain));                   
                 }
                 catch (ORM_Validation_Exception $e)
-                {
-                    throw new HTTP_Exception_500($e->getMessage());
-                }
-                catch (Exception $e)
                 {
                     throw new HTTP_Exception_500($e->getMessage());
                 }
