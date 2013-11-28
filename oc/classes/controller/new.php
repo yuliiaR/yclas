@@ -17,16 +17,15 @@ class Controller_New extends Controller
 		$this->template->title           	= __('Publish new advertisement');
 		$this->template->meta_description	= __('Publish new advertisement');
 		
-		$this->template->styles = array('css/datepicker.css' => 'screen');
-        $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
+		$this->template->styles = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
+        $this->template->scripts['footer'] = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
         										   'js/new.js');
 		
-		$user 		= new Model_User();
+		$user = new Model_User();
 		
 		//find all, for populating form select fields 
 		list($categories,$order_categories)  = Model_Category::get_all();
-
-		list($locations,$order_locations)  = Model_Location::get_all();
+		list($locations,$order_locations)  	 = Model_Location::get_all();
 		
 		// bool values from DB, to show or hide this fields in view
 		$form_show = array('captcha'	=>core::config('advertisement.captcha'),
@@ -146,86 +145,29 @@ class Controller_New extends Controller
 					}
 	        	}
 	        	
+		 		if (!$data['auth']->logged_in()) 
+				{
+					$name 		= core::post('name');
+					$email		= core::post('email');
+
+					$user 		= new Model_User();
+					$user_id 	= $user->create_new_user($name, $email);
+				}
+				else
+				{
+					$user_id 	= $data['auth']->get_user()->id_user;
+					$name 		= $data['auth']->get_user()->name;
+					$email 		= $data['auth']->get_user()->email;
+				}
+
 				try
 				{
-
-					/////////////////// USER DETECTION ////////////////
-	        		// case when user is not logged in. 
-	        		// We create new user if he doesn't exists in DB
-	        		// and send him mail for ad created + new profile created
-			 		if (!$data['auth']->logged_in()) 
-					{
-				
-						$name 		= $this->request->post('name');
-						$email		= $this->request->post('email');
-						$password	= $this->request->post('password');
-						// $seoname	= URL::title($this->request->post('name'));
-						
-						// check validity of email
-						if (Valid::email($email,TRUE))
-						{
-							// search for email in DB
-							$user = $data['user']->where('email', '=', $email)
-									->limit(1)
-									->find();
-
-							if(!$user->loaded())
-							{ 
-								$new_password_plain = Text::random();
-								$user->email 	= $email;
-								$user->name 	= $name;
-								$user->status 	= Model_User::STATUS_ACTIVE;
-								$user->id_role	= Model_Role::ROLE_USER;//normal user
-								$user->password = $new_password_plain;
-								$user->seoname 	= $name;
-								
-								try
-								{
-									
-									$user->save();
-
-									Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
-								
-									//we get the QL, and force the regen of token for security
-			                    	$url_pwch = $user->ql('oc-panel',array('controller' => 'profile', 
-			                    										   'action'		=> 'edit'),TRUE);
-
-			                    	$ret = $user->email('user.new',array('[URL.PWCH]'=>$url_pwch,
-			                    										 '[USER.PWD]'=>$new_password_plain));
-														
-								}
-								catch (ORM_Validation_Exception $e)
-								{
-									throw new HTTP_Exception_500($e->getMessage());
-								}
-								catch (Exception $e)
-								{
-									throw new HTTP_Exception_500($e->getMessage());
-								}
-							}
-
-								$usr = $data['user']->id_user;
-						}
-						else
-						{
-							Alert::set(Alert::ALERT, __('Invalid Email'));
-							$this->request->redirect(Route::url('post_new'));
-						}
-					}
-					else
-					{
-						$usr 		= $data['auth']->get_user()->id_user;
-						$name 		= $data['auth']->get_user()->name;
-						$email 		= $data['auth']->get_user()->email;
-					}
-
 					// SAVE AD
-					$new_ad->id_user 		= $usr; // after handling user
+					$new_ad->id_user 		= $user_id; // after handling user
 					
 					//akismet spam filter
-					if(!core::akismet(Model_Ad::banned_words($data['title']), 
-								 	$email,
-								 	Model_Ad::banned_words($data['description'])))
+					if(!core::akismet(Model_Ad::banned_words($data['title']), $email,
+								 	  Model_Ad::banned_words($data['description'])))
 					{
 						if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRAMTION)
 						{
@@ -261,7 +203,6 @@ class Controller_New extends Controller
 					$user = $user->where('email', '=', $email)
 						->limit(1)
 						->find();
-
 
 					// after successful posting send them email depending on moderation
 					if($moderation == Model_Ad::EMAIL_CONFIRAMTION OR $moderation == Model_Ad::EMAIL_MODERATION)

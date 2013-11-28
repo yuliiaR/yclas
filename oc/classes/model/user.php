@@ -204,7 +204,63 @@ class Model_User extends ORM {
 		
 	    
 	}
-	
+	/**
+     * Create new User in database 
+     * 
+     *
+     */ 
+    public function create_new_user($name,$email)
+    {
+        // check validity of email
+        if (Valid::email($email,TRUE))
+        {
+            $user_obj = new self;
+            // search for email in DB
+            $user = $user_obj->where('email', '=', $email)
+                    ->limit(1)
+                    ->find();
+       
+            if(!$user->loaded())
+            { 
+                $new_password_plain = Text::random();
+                $user->email        = $email;
+                $user->name         = $name;
+                $user->status       = Model_User::STATUS_ACTIVE;
+                $user->id_role      = Model_Role::ROLE_USER;//normal user
+                $user->password     = $new_password_plain;
+                $user->seoname      = $this->gen_seo_title($name);
+                
+                
+                try
+                {
+                    $user->save();
+
+                    Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
+                    //we get the QL, and force the regen of token for security
+                    $url_pwch = $user->ql('oc-panel',array('controller' => 'profile', 
+                                                           'action'     => 'edit'),TRUE);
+                    $ret = $user->email('user.new',array('[URL.PWCH]'=>$url_pwch,
+                                                         '[USER.PWD]'=>$new_password_plain));                   
+                }
+                catch (ORM_Validation_Exception $e)
+                {
+                    throw new HTTP_Exception_500($e->getMessage());
+                }
+                catch (Exception $e)
+                {
+                    throw new HTTP_Exception_500($e->getMessage());
+                }
+            }
+
+            return $user->id_user;
+        }
+        else
+        {
+            Alert::set(Alert::ALERT, __('Invalid Email'));
+            $this->request->redirect(Route::url('post_new'));
+        }
+    
+    } 
 
     /**
      * Check the actual controller and action request and validates if the user has access to it

@@ -497,28 +497,50 @@ class Controller_Ad extends Controller {
 		$this->template->title           	= __('Advanced Search');
 		$this->template->meta_description	= __('Advanced Search');
 
-		$this->template->styles = array('css/datepicker.css' => 'screen');
-        $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
+		$this->template->styles = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
+        $this->template->scripts['footer'] = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
                                                    'js/new.js');
 
 		//breadcrumbs
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		
 
-		$cat_obj = new Model_Category();
-		$loc_obj = new Model_Location();
-
-
+		// $cat_obj = new Model_Category();
+		// $loc_obj = new Model_Location();
+		list($cat_obj,$order_categories)  = Model_Category::get_all();
+		list($loc_obj,$order_locations)  = Model_Location::get_all();
+		
+		$pagination = NULL;
+        $ads   = NULL;
 		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user();
 
 		if($this->request->query()) // after query has detected
 		{			
         	// variables 
-        	$search_advert 	= $this->request->query('title');
-        	$search_cat 	= $this->request->query('category');
-        	$search_loc 	= $this->request->query('location');
+        	$search_advert 	= core::get('title');
+        	$search_loc 	= core::get('location');
+
+        	// filter by each variable
+        	$ads = new Model_Ad();
         	
-        	// append to $data new custom values
+        	//if ad have passed expiration time dont show 
+	        if(core::config('advertisement.expire_date') > 0)
+	        {
+	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
+	        }
+
+	        if(!empty($search_advert) OR core::get('search'))
+	        {	
+	        	// if user is using search from header
+	        	if(core::get('search'))
+	        		$search_advert = core::get('search');
+
+	        	$ads = $ads->where('title', 'like', '%'.$search_advert.'%');
+	        		if(core::config('general.search_by_description') == TRUE)
+	        			   $ads = $ads->or_where('description', 'like', '%'.$search_advert.'%');
+	        }
+
+	        // append to $data new custom values
         	$cf_fields = array();
             foreach ($this->request->query() as $name => $field) 
             {
@@ -531,47 +553,26 @@ class Controller_Ad extends Controller {
 							$cf_fields[$name] = 1;
 				}
         	}
-
-        	// filter by each variable
-        	$adverts = new Model_Ad();
-        	$ads = $adverts->where('status', '=', Model_Ad::STATUS_PUBLISHED);
-
-        	//if ad have passed expiration time dont show 
-	        if(core::config('advertisement.expire_date') > 0)
-	        {
-	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
-	        }
-
-	        if(!empty($search_advert) OR $this->request->query('search'))
-	        {	
-	        	// if user is using search from header
-	        	if($this->request->query('search'))
-	        		$search_advert = $this->request->query('search');
-
-	        	$ads = $ads->where('title', 'like', '%'.$search_advert.'%');
-	        		if(core::config('general.search_by_description') == TRUE)
-	        			   $ads = $ads->or_where('description', 'like', '%'.$search_advert.'%');
-	        }
 	        	
-	          	
-	        if(!empty($search_cat))
-	        {  
-	            $cat_obj->where('seoname', '=', $search_cat)
-	                                 ->limit(1)
-	                                 ->find();
+	        $category = NULL;
+            //filter by category 
+            if (core::get('category')!==NULL)
+            {
+                $category = new Model_Category();
+                $category->where('seoname','=',core::get('category'))->limit(1)->find();
+                if ($category->loaded())
+                    $ads->where('id_category', '=', $category->get_siblings_ids());
+            }
 
-	            $ads = $ads->where('id_category', '=', $cat_obj->id_category);
-	            
-	        }
-
-	        if(!empty($search_loc))
-	        {
-	            $loc_obj->where('seoname', '=', $search_loc)
-	                                 ->limit(1)
-	                                 ->find();
-	           
-	            $ads = $ads->where('id_location', '=', $loc_obj->id_location);
-	        }
+	        $location = NULL;
+            //filter by location 
+            if (core::get('location')!==NULL)
+            {
+                $location = new Model_location();
+                $location->where('seoname','=',core::get('location'))->limit(1)->find();
+                if ($location->loaded())
+                    $ads->where('id_location', '=', $location->get_siblings_ids());
+            }
 
 	        foreach ($cf_fields as $key => $value) 
 	        {	
@@ -584,79 +585,47 @@ class Controller_Ad extends Controller {
 		        }
 	        }
 
+	        $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+
 	        // count them for pagination
 			$res_count = $ads->count_all();
 
 			if($res_count>0)
 			{
 			
-           		if ($cat_obj->loaded())
-               		Breadcrumbs::add(Breadcrumb::factory()->set_title($cat_obj->name)->set_url(Route::url('list', array('category'=>$cat_obj->seoname))));
-               	if ($loc_obj->loaded())
-               		Breadcrumbs::add(Breadcrumb::factory()->set_title($loc_obj->name)->set_url(Route::url('list', array('location'=>$loc_obj->seoname))));
-	        
-				$pagination = Pagination::factory(array(
-		                    'view'           	=> 'pagination',
-		                    'total_items'      	=> $res_count,
-		                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
-		        ))->route_params(array(
-		                    'controller' 		=> $this->request->controller(),
-		                    'action'     	 	=> $this->request->action(),
-		                    'category'			=> $cat_obj->seoname,
-		        ));
+				// pagination module
+                $pagination = Pagination::factory(array(
+                        'view'              => 'pagination',
+                        'total_items'       => $res_count,
+                        'items_per_page'    => core::config('general.advertisements_per_page'),
+                ))->route_params(array(
+                        'controller'        => $this->request->controller(),
+                        'action'            => $this->request->action(),
+                        'category'          => ($category!==NULL)?$category->seoname:NULL,
+                ));
 
 		        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
 				
-				$ads = $adverts->order_by('published','desc')
+				$ads = $ads->order_by('published','desc')
 							   ->limit($pagination->items_per_page)
 			        	       ->offset($pagination->offset)
 			        	       ->find_all();
 			}
-			else 
-			{
-                list($categories,$order_categories)  = Model_Category::get_all();
+				
+		}
 
-                list($locations,$order_locations)  = Model_Location::get_all();
+		$this->template->bind('content', $content);
 
-				$this->template->bind('content', $content);
-				Alert::set(Alert::INFO, __('We did not find any advertisements for your search.'));
-				$this->template->content = View::factory('pages/ad/advanced_search', array('categories'           => $categories,
-                                                                        'order_categories'  => $order_categories,
-                                                                       	'locations'          => $locations,
-                                                                        'order_locations'  => $order_locations,
-                                                                        'fields'             => Model_Field::get_all()));
-				return;
-			}	
-
-			$this->template->bind('content', $content);
-			$this->template->content = View::factory('pages/ad/listing', array('ads'		=>$ads, 
-																			   'category'	=>$cat_obj,
-																			   'location'	=>$loc_obj, 
-																			   'pagination'	=>$pagination, 
-																			   'user'		=>$user));
-        }
-        else
-        {
-        	Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Advanced Search')));
-        	if($this->request->query('search'))
-        	{
-        		$unexisting_ad = $this->request->query('search');
-        	}
-        	else $unexisting_ad = NULL;
-
-            //find all, for populating from select fields 
-            list($categories,$order_categories)  = Model_Category::get_all();
-
-            list($locations,$order_locations)  = Model_Location::get_all();
-
-        	$this->template->content = View::factory('pages/ad/advanced_search', array('unexisting_ad'=>$unexisting_ad, 
-                                                                        'categories'           => $categories,
-                                                                        'order_categories'  => $order_categories,
-                                                                       'locations'          => $locations,
-                                                                        'order_locations'  => $order_locations,
-                                                                        'fields'             => Model_Field::get_all()));
-        }
-
+		$this->template->content = View::factory('pages/search', array('ads'		=> $ads, 
+																		   'categories'	=> $cat_obj,
+																		   'order_categories'=> $order_categories,
+																		   'locations'	=> $loc_obj, 
+																		   'order_locations'=>$order_locations,
+																		   'pagination'	=> $pagination, 
+																		   'user'		=> $user,
+																		   'fields' 		=> Model_Field::get_all()));
+        
+		
 	}
 
 	
