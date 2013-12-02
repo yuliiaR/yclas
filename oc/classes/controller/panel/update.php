@@ -227,7 +227,10 @@ class Controller_Panel_Update extends Auth_Controller {
                         array('config_key'     =>'blog_disqus',
                                'group_name'     =>'general', 
                                'config_value'   => ''),
-                         array('config_key'     =>'config',
+                        array('config_key'     =>'upload_images_mobile',
+                               'group_name'     =>'general', 
+                               'config_value'   => 0),
+                        array('config_key'     =>'config',
                                'group_name'     =>'social', 
                                'config_value'   =>'{"debug_mode":"0","providers":{
                                                                           "OpenID":{"enabled":"1"},
