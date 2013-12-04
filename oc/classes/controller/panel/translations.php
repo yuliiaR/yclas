@@ -108,7 +108,8 @@ class Controller_Panel_Translations extends Auth_Controller {
         $pocreator_default->load($default);
 
         $en_array_order = $pocreator_en->strings;
-        ksort($en_array_order,SORT_NATURAL);
+//        ksort($en_array_order,SORT_NATURAL); // since PHP 5.4
+        natcasesort($en_array_order); // better than natsort() ??
 
         //watch out there's a limit of 1000 posts....we have 540...
         if($this->request->post())
