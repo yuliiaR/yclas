@@ -2,7 +2,7 @@ $(function (){
 
 
     
-    $('#formorm_description, textarea[name=description], .cf_textarea_fields').sceditorBBCodePlugin({
+    $('#formorm_description, textarea[name=description]').sceditorBBCodePlugin({
         toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
         "bulletlist,orderedlist|link,unlink|source",
         resizeEnabled: "true"});

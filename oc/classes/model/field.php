@@ -31,7 +31,7 @@ class Model_Field {
      * @param  array  $options 
      * @return bool          
      */
-    public function create($name, $type = 'string', $values = NULL, array $options)
+    public function create($name, $type = 'string', $values = NULL, $categories = NULL, array $options)
     {
         if (!$this->field_exists($name))
         {
@@ -88,7 +88,6 @@ class Model_Field {
                     break;
             }
             
-
             $this->_bs->forge($this->_db);
 
             //save configs
@@ -96,7 +95,7 @@ class Model_Field {
             $conf->where('group_name','=','advertisement')
                  ->where('config_key','=','fields')
                  ->limit(1)->find();
-                        
+
             if ($conf->loaded())
             {
                 //remove the key
@@ -109,7 +108,9 @@ class Model_Field {
                 $fields[$name] = array(
                                 'type'      => $type, 
                                 'label'     => $options['label'],
+                                'tooltip'   => $options['tooltip'],
                                 'values'    => $values,
+                                'categories'=> $categories,
                                 'required'  => $options['required'],
                                 'searchable'=> $options['searchable']
                                 );
@@ -132,7 +133,7 @@ class Model_Field {
      * @param  array  $options 
      * @return bool          
      */
-    public function update($name, $values = NULL, array $options)
+    public function update($name, $values = NULL, $categories = NULL, array $options)
     {
         if ($this->field_exists($name))
         {
@@ -161,7 +162,9 @@ class Model_Field {
                 $fields[$name] = array(
                                 'type'      => $fields[$name]['type'], 
                                 'label'     => $options['label'],
+                                'tooltip'   => $options['tooltip'],
                                 'values'    => $values,
+                                'categories'=> $categories,
                                 'required'  => $options['required'],
                                 'searchable'=> $options['searchable']
                                 );

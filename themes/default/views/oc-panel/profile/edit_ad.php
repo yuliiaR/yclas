@@ -201,7 +201,7 @@
 					<div class="col-md-12">
 						<?$images = $ad->get_images()?>
 						<?if($images):?>
-							<?php foreach ($images as $path => $value):?>
+							<?foreach ($images as $path => $value):?>
 							<?if(isset($value['thumb'])): // only formated images (not originals)?>
 							<?$img_name = str_replace(".jpg", "", substr(strrchr($value['thumb'], "/"), 1 ));?>
 							<div class="col-md-4 edit-image">

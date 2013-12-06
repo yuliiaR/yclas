@@ -171,6 +171,54 @@ class Form extends Kohana_Form {
         //$out = '';
         if ($value === NULL)
             $value = (isset($options['default'])) ? $options['default']:NULL;
+
+
+        $attributes = array('placeholder' => (isset($options['label'])) ? $options['label']:$name, 
+                            'class'       => 'form-control', 
+                            'id'          => $name, 
+                            (isset($options['required']))?'required':''
+                    );
+
+        switch ($options['display']) 
+        {
+            case 'select':
+                $input = FORM::select($name, $options['options'], $value);
+                break;
+            case 'textarea':
+                $input = FORM::textarea($name, $value, $attributes);
+                break;
+            case 'hidden':
+                $input = FORM::hidden($name, $value, $attributes);
+                break;
+            case 'text':
+            default:
+                $input = FORM::input($name, $value, $attributes);
+                break;
+        }
+
+        $out = $label.'<div class="col-md-5">'.$input.'</div>';
+
+        return $out;
+
+    }
+
+    /**
+     * get the html tag code for a field for a custom field
+     * @param  string $name input name
+     * @param  array  $options as defined
+     * @param  mixed $value value of the field, optional.
+     * @return string        HTML
+     */
+    public static function cf_form_tag($name, $options, $value = NULL)
+    {
+        if ($options['display'] != 'hidden')
+            $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label col-md-4 col-xs-1', 'for'=>$name));
+        else
+            $label = '';
+
+        //$out = '';
+        if ($value === NULL)
+            $value = (isset($options['default'])) ? $options['default']:NULL;
         
         // dependent classes on type
         if($options['display']=='date' AND (strpos($name,'cf_') !== FALSE))
@@ -191,20 +239,22 @@ class Form extends Kohana_Form {
         elseif($options['display']=='select' AND (strpos($name,'cf_') !== FALSE))
         	$class = 'cf_select_fields';
         else
-        	$class = '';
+        	$class = NULL;
         
-        $attributes = array('placeholder' 		=> (isset($options['label'])) ? $options['label']:$name, 
-                            'class'       		=> 'form-control'.' '.$class, 
-                            'id'          		=> $name, 
-                            ($options['display']=='date')?'data-date':'' =>  $value, // optional attr for datapicker.js
-                            ($options['display']=='date')?'data-date-format="yyyy-mm-dd"':''=>'', // optional attr for datapicker.js
-                            (isset($options['required']) AND $options['required']== TRUE)?'required':''
+        $attributes = array('placeholder' 		=> (isset($options['label'])) ? $options['label']:$name,
+        					'title' 			=> (isset($options['tooltip'])) ? $options['tooltip']:NULL, 
+                            'data-categories'	=> (isset($options['categories'])) ? json_encode($options['categories']):NULL,
+                            'class'       		=> 'form-control data-custom'.' '.$class, 
+                            'id'          		=> $name,
+                            ($options['display']=='date')?'data-date':NULL =>  $value, // optional attr for datapicker.js
+                            ($options['display']=='date')?'data-date-format="yyyy-mm-dd"':NULL=>NULL, // optional attr for datapicker.js
+                            (isset($options['required']) AND $options['required']== TRUE)?'required':NULL
                     );
 
         switch ($options['display']) 
         {
             case 'select':
-                $input = FORM::select($name, $options['options'], (!is_array($value))?$value:NULL, array('class'=>'form-control'));
+                $input = FORM::select($name, $options['options'], (!is_array($value))?$value:NULL, $attributes);
                 break;
             case 'text':
                 $input = FORM::input($name, $value, $attributes);
@@ -225,14 +275,16 @@ class Form extends Kohana_Form {
                 break;
             case 'radio':
          		$input = FORM::hidden($name, 0);
-         		
+
 	            foreach($options['options'] as $id => $value)
 				{
 					$checked = ($id == $options['default']) ? TRUE : FALSE ;
-					
 					// hidden input + checkbox is a trick to get value of a non selected radio.
-					$input .= '<div class="">'.FORM::label($name, $value, array('class'=>'', 'for'=>$name));
-	                $input .= FORM::radio($name, $id, $checked, $attributes).'</div>';
+                    if($id !== "")
+                    {
+    					$input .= '<div class="">'.FORM::label($name, $value, array('class'=>'', 'for'=>$name));
+    	                $input .= FORM::radio($name, $id, $checked, $attributes).'</div>';
+                    }
 			    }
                 break;
             case 'string':
@@ -243,10 +295,7 @@ class Form extends Kohana_Form {
 
         $out = $label.'<div class="col-md-5">'.$input.'</div>';
 
-        
-
         return $out;
-
     }
 
 } // End TM_Form

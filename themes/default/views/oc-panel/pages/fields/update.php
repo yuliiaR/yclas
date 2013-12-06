@@ -29,9 +29,35 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label"><?=__('Tooltip')?></label>
+                <div class="col-sm-4">
+                <input class="form-control" type="text" name="tooltip" value="<?=(isset($field_data['tooltip']))?$field_data['tooltip']:""?>" placeholder="<?=__('Tooltip')?>">
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="control-label"><?=__('Values')?></label>
                 <div class="col-sm-4">
                 <input class="form-control" type="text" id="cf_values_input" name="values" value="<?=(is_array($field_data['values']))? implode(",", $field_data['values']): $field_data['values']?>" placeholder="<?=__('Comma separated for select')?>">
+            </div>
+        </div>
+
+        <!-- multycategory selector -->
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label class="control-label"><?=__('Categories')?></label>
+                <select id="categories" name="categories[]" multiple>
+                    <option></option>
+                    <?foreach ($categories as $categ => $ctg):?>
+                        <?if($categ !== 1 ):?>
+                            <?if(isset($field_data['categories']) AND in_array($categ, $field_data['categories'])):?>
+                                <option value="<?=$categ?>" selected><?=$ctg['name']?></option>
+                            <?else:?>
+                                <option value="<?=$categ?>"><?=$ctg['name']?></option>
+                            <?endif?>
+                        <?endif?>
+                    <?endforeach?>
+                </select>
             </div>
         </div>
 

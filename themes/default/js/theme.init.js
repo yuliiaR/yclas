@@ -1,6 +1,6 @@
 $(function(){
     
-    $('textarea[name=description], .cf_textarea_fields').sceditorBBCodePlugin({
+    $('textarea[name=description]').sceditorBBCodePlugin({
         toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
         "bulletlist,orderedlist|link,unlink,youtube|source",
         resizeEnabled: "true"
@@ -8,7 +8,7 @@ $(function(){
     
     $("select").chosen();
     
-    $('.btn').tooltip();
+    $('input, select, textarea, .btn').tooltip();
 
 	$('.tips').popover();
 

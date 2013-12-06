@@ -33,6 +33,8 @@ class Controller_Panel_Fields extends Auth_Controller {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('New')));
         $this->template->title = __('New Custom Field for Advertisement');
 
+        //find all, for populating form select fields 
+        list($categories)  = Model_Category::get_all();
 
         if ($_POST)
         {
@@ -44,11 +46,12 @@ class Controller_Panel_Fields extends Auth_Controller {
 
                 $options = array(
                                 'label'     => Core::post('label'),
+                                'tooltip'   => Core::post('tooltip'),
                                 'required'  => (Core::post('required')=='on')?TRUE:FALSE,
                                 'searchable'=> (Core::post('searchable')=='on')?TRUE:FALSE,
                                 );
 
-                if ($field->create($name,Core::post('type'),Core::post('values'),$options))
+                if ($field->create($name,Core::post('type'),Core::post('values'),Core::post('categories'),$options))
                 {
                     Cache::instance()->delete_all();
                     Theme::delete_minified();
@@ -66,7 +69,8 @@ class Controller_Panel_Fields extends Auth_Controller {
             }
         }
 
-        $this->template->content = View::factory('oc-panel/pages/fields/new',array());
+        $this->template->content = View::factory('oc-panel/pages/fields/new',array('categories' => $categories,
+        																			));
     }
 
     public function action_update()
@@ -78,6 +82,8 @@ class Controller_Panel_Fields extends Auth_Controller {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit').' '.$name));
         $this->template->title = __('Edit Custom Field for Advertisement');
 
+        //find all, for populating form select fields 
+        list($categories)  = Model_Category::get_all();
 
         if ($_POST)
         {
@@ -86,11 +92,12 @@ class Controller_Panel_Fields extends Auth_Controller {
 
                 $options = array(
                                 'label'     => Core::post('label'),
+                                'tooltip'   => Core::post('tooltip'),
                                 'required'  => (Core::post('required')=='on')?TRUE:FALSE,
                                 'searchable'=> (Core::post('searchable')=='on')?TRUE:FALSE,
                                 );
 
-                if ($field->update($name,Core::post('values'),$options))
+                if ($field->update($name,Core::post('values'),Core::post('categories'),$options))
                 {
                     Cache::instance()->delete_all();
                     Theme::delete_minified();
@@ -108,7 +115,7 @@ class Controller_Panel_Fields extends Auth_Controller {
             }
         }
 
-        $this->template->content = View::factory('oc-panel/pages/fields/update',array('field_data'=>$field_data,'name'=>$name));
+        $this->template->content = View::factory('oc-panel/pages/fields/update',array('field_data'=>$field_data,'name'=>$name,'categories'=>$categories));
     }
 
 

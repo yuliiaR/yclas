@@ -52,7 +52,7 @@ class Controller_New extends Controller
                             'phone'         => $phone       =   $this->request->post('phone'),
                             'website'       => $website     =   $this->request->post('website')
                             ); 
-            
+            d($_POST);
             // append to $data new custom values
             foreach ($_POST as $name => $field) 
             {
