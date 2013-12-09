@@ -499,7 +499,7 @@ class Controller_Ad extends Controller {
 
 		$this->template->styles = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
         $this->template->scripts['footer'] = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                                   'js/new.js');
+                                                   );
 
 		//breadcrumbs
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
@@ -540,7 +540,6 @@ class Controller_Ad extends Controller {
 	        			   $ads = $ads->or_where('description', 'like', '%'.$search_advert.'%');
 	        }
 
-	        // append to $data new custom values
         	$cf_fields = array();
             foreach ($this->request->query() as $name => $field) 
             {
@@ -623,7 +622,8 @@ class Controller_Ad extends Controller {
 																		   'order_locations'=>$order_locations,
 																		   'pagination'	=> $pagination, 
 																		   'user'		=> $user,
-																		   'fields' 		=> Model_Field::get_all()));
+																		   'fields' 		=> Model_Field::get_all(),
+																		   ));
         
 		
 	}

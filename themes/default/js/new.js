@@ -50,3 +50,41 @@
     //datepicker in case date field exists
     if($('.cf_date_fields').length != 0){
         $('.cf_date_fields').datepicker();}
+
+
+    // custom fields set to categories
+    $( "input[name=category]" ).on( "click", function() {
+        showCustomFieldsByCategory(this);
+    });
+
+    showCustomFieldsByCategory($("input[name=category]:checked"));
+    
+    function showCustomFieldsByCategory(element){
+        id_categ = $(element).val();
+        // only custom fields have class data-custom
+        $(".data-custom").each(function(){
+            // get data-category, contains json array of set categories
+            field = $(this);
+            dataCategories = field.attr('data-categories');
+            // show if cf fields if they dont have categories set
+            if(dataCategories.length != 2){
+                field.parent().parent().css('display','none');
+                field.prop('disabled', true);
+            }
+            else{
+                field.parent().parent().css('display','block');
+                field.prop('disabled', false);
+            }
+            if(dataCategories !== undefined)  
+                if(dataCategories != "")
+                {
+                    // apply if they have equal id_category 
+                    $.each($.parseJSON(dataCategories), function (index, value) { 
+                        if(id_categ == value){
+                            field.parent().parent().css('display','block');
+                            field.prop('disabled', false);
+                        }
+                    });
+                }
+        });
+    }

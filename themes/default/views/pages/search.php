@@ -10,6 +10,7 @@
                 <input type="text" id="search" name="title" class="form-control " value="<?=core::get('search')?>" placeholder="<?=__('Search')?>">  
             </div>
         </div>
+
         <!-- <div class="form-group">
             <label class="" for="price-min"><?=__('Price from')?> </label>  
             <input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="0">
@@ -37,7 +38,7 @@
             </div>
         </div>
         
-        <?if(count($locations) !== 0):?>
+        <?if(count($locations) > 1):?>
             <div class="form-group">
                 
                 <div class="col-lg-4">   
@@ -68,7 +69,8 @@
                     $select[$select_name] = $select_name;
                 }
             } else $select = $field['values']?>
-                <?=Form::form_tag('cf_'.$name, array(    
+
+                <?=Form::cf_form_tag('cf_'.$name, array(    
                     'display'   => $field['type'],
                     'label'     => $field['label'],
                     'default'   => $field['values'],

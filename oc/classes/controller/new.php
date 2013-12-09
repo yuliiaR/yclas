@@ -63,6 +63,9 @@ class Controller_New extends Controller
 					//checkbox and radio when selected return string 'on' as a value
 					if($field == 'on')
 						$data[$name] = 1;
+					if(empty($field))
+						$data[$name] = NULL;
+
 				}
         	}
 	
@@ -129,9 +132,10 @@ class Controller_New extends Controller
 				foreach ($data as $name => $field) 
 	            {
 	            	// get only custom values with prefix
-					if (strpos($name,'cf_') !== false) 
+					if (strpos($name,'cf_') !== false)
 						$new_ad->$name = $field;
 	        	}
+	        	// d($data);
 	        	
 	        	// User detection, if doesnt exists create
 	        	$auth_user = Auth::instance();
