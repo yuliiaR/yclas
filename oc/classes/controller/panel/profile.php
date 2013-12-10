@@ -443,7 +443,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 					if (strpos($name,'cf_') !== false) 
 					{
 						$data[$name] = $field;
-						//checkbox and radio when selected return string 'on' as a value
+						//checkbox when selected return string 'on' as a value
 						if($field == 'on')
 						{
 							$data[$name] = 1;

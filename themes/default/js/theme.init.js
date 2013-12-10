@@ -6,7 +6,9 @@ $(function(){
         resizeEnabled: "true"
     });
     
-    $("select").chosen();
+    if(!$("select").hasClass('disable-chosen')){
+        $("select").chosen();   
+    } 
     
     $('input, select, textarea, .btn').tooltip();
 

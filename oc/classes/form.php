@@ -209,10 +209,10 @@ class Form extends Kohana_Form {
      * @param  mixed $value value of the field, optional.
      * @return string        HTML
      */
-    public static function cf_form_tag($name, $options, $value = NULL)
+    public static function cf_form_tag($name, $options, $value = NULL, $old = FALSE)
     {
         if ($options['display'] != 'hidden')
-            $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label', 'for'=>$name));
+            $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>(!$old)?'control-label':'', 'for'=>$name));
         else
             $label = '';
 
@@ -280,7 +280,7 @@ class Form extends Kohana_Form {
             case 'radio':
          		$input = '';
                 $label = '<b>'.$options['label'].'</b>';
-                $index = -1;
+                $index = 0;
                 $checked = ($value == 1) ? TRUE : FALSE ; 
 	            foreach($options['options'] as $id => $value)
 				{
@@ -296,7 +296,10 @@ class Form extends Kohana_Form {
                 break;
         }
 
-        $out = '<div class="col-md-4 col-xs-12">'.$label.$input.'</div>';
+        if(!$old)
+            $out = '<div class="col-md-4 col-xs-12">'.$label.$input.'</div>';
+        else
+            $out = $label.'<div class="col-md-4 col-xs-12">'.$input.'</div>';
 
         return $out;
     }

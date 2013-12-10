@@ -503,7 +503,7 @@ class Controller_Ad extends Controller {
 
 		//breadcrumbs
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
-		
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
 
 		// $cat_obj = new Model_Category();
 		// $loc_obj = new Model_Location();
@@ -529,15 +529,17 @@ class Controller_Ad extends Controller {
 	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
 	        }
 
-	        if(!empty($search_advert) OR core::get('search'))
+	        if(!empty($search_advert) OR (core::get('search')!==NULL AND strlen(core::get('search'))>=3))
 	        {	
 	        	// if user is using search from header
 	        	if(core::get('search'))
 	        		$search_advert = core::get('search');
 
-	        	$ads = $ads->where('title', 'like', '%'.$search_advert.'%');
-	        		if(core::config('general.search_by_description') == TRUE)
-	        			   $ads = $ads->or_where('description', 'like', '%'.$search_advert.'%');
+	        	$ads
+        			->where_open()
+                	->where('title', 'like', '%'.$search_advert.'%')
+                	->or_where('description', 'like', '%'.$search_advert.'%')
+                	->where_close();
 	        }
 
         	$cf_fields = array();
@@ -547,20 +549,23 @@ class Controller_Ad extends Controller {
 				if (strpos($name,'cf_') !== false) 
 				{
 					$cf_fields[$name] = $field;
-					//checkbox and radio when selected return string 'on' as a value
-						if($field == 'on')
-							$cf_fields[$name] = 1;
+					//checkbox when selected return string 'on' as a value
+					if($field == 'on')
+						$cf_fields[$name] = 1;
+					elseif(empty($field)){
+						$cf_fields[$name] = NULL;
+					}
 				}
         	}
-	        	
+
 	        $category = NULL;
             //filter by category 
             if (core::get('category')!==NULL)
             {
                 $category = new Model_Category();
-                $category->where('seoname','=',core::get('category'))->limit(1)->find();
+                $category->where('seoname','=',core::get('category'));
                 if ($category->loaded())
-                    $ads->where('id_category', '=', $category->get_siblings_ids());
+                    $ads->where('id_category', 'IN', $category->get_siblings_ids());
             }
 
 	        $location = NULL;
@@ -573,14 +578,20 @@ class Controller_Ad extends Controller {
                     $ads->where('id_location', '=', $location->get_siblings_ids());
             }
 
+            //filter by price
+            if (is_numeric(core::get('price-min')) AND is_numeric(core::get('price-max')))
+            {
+                $ads->where('price', 'BETWEEN', array(core::get('price-min'),core::get('price-max')));
+            }
+
 	        foreach ($cf_fields as $key => $value) 
 	        {	
-	        	if(!empty($value))
+	        	if(isset($value) AND $value != NULL)
 	        	{
 		        	if(is_numeric($value))
-		        		$ads = $ads->where($key, '=', $value);
+		        		$ads->where($key, '=', $value);
 		        	elseif(is_string($value))
-		        		$ads = $ads->where($key, 'like', '%'.$value.'%');
+		        		$ads->where($key, 'like', '%'.$value.'%');
 		        }
 	        }
 
@@ -615,7 +626,7 @@ class Controller_Ad extends Controller {
 
 		$this->template->bind('content', $content);
 
-		$this->template->content = View::factory('pages/search', array('ads'		=> $ads, 
+		$this->template->content = View::factory('pages/ad/advanced_search', array('ads'		=> $ads, 
 																		   'categories'	=> $cat_obj,
 																		   'order_categories'=> $order_categories,
 																		   'locations'	=> $loc_obj, 
