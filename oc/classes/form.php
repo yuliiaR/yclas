@@ -209,7 +209,7 @@ class Form extends Kohana_Form {
      * @param  mixed $value value of the field, optional.
      * @return string        HTML
      */
-    public static function cf_form_tag($name, $options, $value = NULL, $old = FALSE)
+    public static function cf_form_tag($name, $options, $value = NULL, $old = FALSE, $inline = FALSE)
     {
         if ($options['display'] != 'hidden')
             $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>(!$old)?'control-label':'', 'for'=>$name));
@@ -296,10 +296,13 @@ class Form extends Kohana_Form {
                 break;
         }
 
-        if(!$old)
-            $out = '<div class="col-md-4 col-xs-12">'.$label.$input.'</div>';
-        else
-            $out = $label.'<div class="col-md-4 col-xs-12">'.$input.'</div>';
+        if(!$old){
+        	(!$inline)?$is_inline = "class='col-md-4 col-xs-12'":$is_inline = "";
+            $out = '<div '.$is_inline.'>'.$label.$input.'</div>';
+        }
+        else{
+            $out = $label.'<div>'.$input.'</div>';
+        }
 
         return $out;
     }
