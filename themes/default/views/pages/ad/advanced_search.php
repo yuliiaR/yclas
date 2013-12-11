@@ -92,6 +92,7 @@
                         <?$i++ ;endforeach?>
                     <?endif?>
                 <?endif?>
+            <div class="clear"></div> 
             <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary pull-right', 'action'=>Route::url('search')))?> 
     </fieldset>
     <?= FORM::close()?>

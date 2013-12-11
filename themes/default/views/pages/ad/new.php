@@ -188,7 +188,9 @@
 				<?endif?>
 				<div class="form-actions">
 					<?= FORM::button('submit', __('Publish new'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
+					<?if (!Auth::instance()->get_user()):?>
 					<p class="help-block"><?=__('User account will be created')?></p>
+					<?endif?>
 				</div>
 			</fieldset>
 		<?= FORM::close()?>

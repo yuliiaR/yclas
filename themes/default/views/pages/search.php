@@ -81,7 +81,8 @@
         <?endif?>
         <?endif?>
         <!-- /endcustom fields -->
-        <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary pull-right', 'action'=>Route::url('search')))?> 
+        <div class="clear"></div> 
+            <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary pull-right', 'action'=>Route::url('search')))?> 
 
     <?= FORM::close()?>
 </div>
