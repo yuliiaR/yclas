@@ -497,10 +497,6 @@ class Controller_Ad extends Controller {
 		$this->template->title           	= __('Advanced Search');
 		$this->template->meta_description	= __('Advanced Search');
 
-		$this->template->styles = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
-        $this->template->scripts['footer'] = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                                   );
-
 		//breadcrumbs
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
@@ -575,7 +571,7 @@ class Controller_Ad extends Controller {
                 $location = new Model_location();
                 $location->where('seoname','=',core::get('location'))->limit(1)->find();
                 if ($location->loaded())
-                    $ads->where('id_location', '=', $location->get_siblings_ids());
+                    $ads->where('id_location', 'IN', $location->get_siblings_ids());
             }
 
             //filter by price

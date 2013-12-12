@@ -37,13 +37,13 @@
 	            <?function lolo_subscribe($item, $key,$locs){?>
 	            <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
 	                <?if (count($item)>0):?>
-	                <optgroup label="<?=$locs[$key]['name']?>_subscribe">    
+	                <optgroup label="<?=$locs[$key]['name']?>">    
 	                    <? if (is_array($item)) array_walk($item, 'lolo_subscribe', $locs);?>
 	                    </optgroup>
 	                <?endif?>
 	            <?}
-	            $loc_order = $widget->loc_order_items; 
-	        	array_walk($loc_order , 'lolo_subscribe',$widget->loc_items);?>
+	            $loc_order_subscribe = $widget->loc_order_items; 
+	        	array_walk($loc_order_subscribe , 'lolo_subscribe',$widget->loc_items);?>
 	            </select>
 	        </div>
 	    </div>

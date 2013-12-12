@@ -424,7 +424,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
 								'title' 		=> $title 		= 	Model_Ad::banned_words(core::post('title')),
 								'seotitle' 		=> $seotitle 	= 	core::post('title'),
-								'cat'			=> $category 	= 	core::post('category'),
+								//'cat'			=> $category 	= 	core::post('category'),
 								'loc'			=> $loc 		= 	core::post('location'),
 								'description'	=> $description = 	Model_Ad::banned_words(core::post('description')),
 								'price'			=> $price 		= 	floatval(str_replace(',', '.', core::post('price'))),
@@ -470,7 +470,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				 
 				$form->title 			= $data['title'];
 				$form->id_location 		= $data['loc'];
-				$form->id_category 		= $data['cat'];
+				//$form->id_category 		= $data['cat'];
 				$form->description 		= $data['description'];
 				// $form->status 			= $data['status'];	
 				$form->price 			= $data['price']; 								
@@ -487,22 +487,39 @@ class Controller_Panel_Profile extends Auth_Controller {
 						$form->$key = $value;
 					}
 	        	}
-
+	        	// d($data['cf_radio']);
 				$obj_ad = new Model_Ad();
 
-				// image upload
-				$error_message = NULL;
+	        	// IMAGE UPLOAD 
+				// in case something wrong happens user is redirected to edit advert. 
 	    		$filename = NULL;
+	    		$counter = 0;
 
-    			if (isset($_FILES['image0']) && count($obj_ad->get_images()) <= core::config('advertisement.num_images'))
-        		{
-	        		$img_files = array($_FILES['image0']);
-	            	$filename = $obj_ad->save_image($img_files, $form->id_ad, $form->created, $form->seotitle);
-        		}
-        		if ( $filename == TRUE)
-	       		{
-		        	$form->has_images = 1;
-	        	}
+	    		for ($i=0; $i < core::config("advertisement.num_images"); $i++) 
+	    		{ 
+	    			$counter++;
+
+	    			if (isset($_FILES['image'.$i]))
+	        		{
+		        		$img_files = $_FILES['image'.$i];
+		            	$filename = $obj_ad->save_image($img_files, $form->id_ad, $form->created, $form->seotitle, $counter);
+	        		}
+	        		
+	        		if ($filename){
+			        	$form->has_images = 1;
+			        	try 
+						{
+							$form->save();
+						} 
+						catch (Exception $e) 
+						{
+							throw new HTTP_Exception_500($e->getMessage());
+						}
+	        		}
+		        	
+		        	if($filename = FALSE)
+		        		$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$form->id_ad)));
+		        }
 
 	        	try 
 	        	{

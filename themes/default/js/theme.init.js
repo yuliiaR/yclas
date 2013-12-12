@@ -9,6 +9,7 @@ $(function(){
     if(!$("select").hasClass('disable-chosen')){
         $("select").chosen();   
     } 
+    $("#category_subscribe").chosen(); 
     
     $('input, select, textarea, .btn').tooltip();
 

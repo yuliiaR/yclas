@@ -17,7 +17,7 @@
         ?>
     	<div class="collapse navbar-collapse" id="mobile-menu-panel">
     		<ul class="nav navbar-nav">
-    		<?if ( count( $menus = Menu::get() )>0 ):?>
+    		<?if (class_exists('Menu') AND count( $menus = Menu::get() )>0 ):?>
                 <?foreach ($menus as $menu => $data):?>
                     <li class="<?=(Request::current()->uri()==$data['url'])?'active':''?>" >
                     <a href="<?=$data['url']?>" target="<?=$data['target']?>">
@@ -34,7 +34,7 @@
                   	<?foreach($cats as $c ):?>
                   		<?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
     						<li class="dropdown-submenu">
-                                <a tabindex="-1" title="<?=$c['seoname']?>" <?=(core::config('advertisement.parent_category'))?'href="'.Route::url('list', array('category'=>$c['seoname'],'location'=>$loc_seoname)).'"':""?>>
+                                <a tabindex="-1" title="<?=$c['seoname']?>" href="<?=Route::url('list', array('category'=>$c['seoname'],'location'=>$loc_seoname))?>">
                                     <?=$c['name']?></a>
                                 
         							<ul class="dropdown-menu">							

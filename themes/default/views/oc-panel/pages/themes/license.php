@@ -17,7 +17,7 @@
             </div>
           </div>
         <div class="form-actions">
-            <?= FORM::button('submit', __('Check'), array('type'=>'submit', 'class'=>'btn-small btn-primary'))?>
+            <?= FORM::button('submit', __('Check'), array('type'=>'submit', 'class'=>'btn btn-primary'))?>
         </div>
     </fieldset> 
 </form>

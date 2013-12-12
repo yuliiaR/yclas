@@ -17,9 +17,8 @@ class Controller_New extends Controller
 		$this->template->title           	= __('Publish new advertisement');
 		$this->template->meta_description	= __('Publish new advertisement');
 		
-		$this->template->styles = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
-        $this->template->scripts['footer'] = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-        										   'js/new.js');
+		
+        $this->template->scripts['footer'] = array('js/new.js');
 
 		//find all, for populating form select fields 
 		list($categories,$order_categories)  = Model_Category::get_all();

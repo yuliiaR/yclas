@@ -216,12 +216,10 @@ class Form extends Kohana_Form {
         else
             $label = '';
 
-        //$out = '';
         if ($value === NULL)
             $value = (isset($options['default'])) ? $options['default']:NULL;
         
         // dependent classes on type
-        
         $class = 'form-control '.'cf_'.$options['display'].'_fields data-custom ';
         switch ($options['display']) {
             case 'textarea':
@@ -281,11 +279,12 @@ class Form extends Kohana_Form {
          		$input = '';
                 $label = '<b>'.$options['label'].'</b>';
                 $index = 0;
-                $checked = ($value == 1) ? TRUE : FALSE ; 
-	            foreach($options['options'] as $id => $value)
+                
+	            foreach($options['options'] as $id => $radio_name)
 				{
+                    $checked = ($value == $index) ? TRUE : FALSE ;
                     if($id !== "")
-                        $input .= '<div class="radio"><label>'.$value.Form::radio($name, $index, $checked, $attributes).'</label></div>';
+                        $input .= '<div class="radio"><label>'.$radio_name.Form::radio($name, $index, $checked, $attributes).'</label></div>';
                     
                     $index++;
 			    }

@@ -1,12 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <? if (count($market)>=1):?>
-<div class="row">
-<ul class="thumbnails">
+
 <?$i=0;
 foreach ($market as $item):?>
-    <?if ($i%3==0):?></ul></div><div class="row"><ul class="thumbnails"><?endif?>
-    <li class="col-md-4 col-sm-4">
+    <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
+    <div class="col-md-4 col-sm-4">
     <div class="thumbnail <?if ( $item['price_offer']>0):?>alert-success<?endif?>" >
 
         <?if (empty($item['url_screenshot'])===FALSE):?>
@@ -52,9 +51,7 @@ foreach ($market as $item):?>
             </p>
         </div>
     </div>
-    </li>
+    </div>
     <?$i++;
     endforeach?>
-</ul>
-</div><!--/row-->
 <?endif?>

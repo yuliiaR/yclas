@@ -132,3 +132,5 @@ li{
 /* collapsable categories selector*/
 .collapsed { display: inline-block !important;}
 .accordion-body {margin-left: 15px;}
+
+.chosen-container-single .chosen-single{height: 27px !important;}

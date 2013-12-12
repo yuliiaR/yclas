@@ -8,18 +8,22 @@
         "Please check your input."
     );
 
-    var $form = $(".edit_ad_form");
-    $form.validate({
-        errorLabelContainer: $(".edit_ad_form div.error"),
-        wrapper: 'div',
-        rules: {
-            title: {minlength:2},
-            price: {regex:"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"}
-        },
-        messages: {
-            price:{regex: "Format is incorect"}
-        }
-    });
+    // some extra rules for custom fields
+    if($('.cf_decimal_fields').length != 0)
+        var $decimal = $(".cf_decimal_fields").attr("name");
+    if($('.cf_integer_fields').length != 0)
+        var $integer = $(".cf_integer_fields").attr("name");
+    
+    var $params = {rules:{}, messages:{}};
+    $params['rules'][$integer] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
+    $params['messages'][$integer] = "Format is incorect";
+    $params['rules'][$decimal] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
+    $params['messages'][$decimal] = "Format is incorect";
+    $params['rules']['price'] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
+    $params['messages']['price'] = "Format is incorect";
+
+    var $form = $(".post_new");
+    $form.validate($params);
     
     //chosen fix
     var settings = $.data($form[0], 'validator').settings;

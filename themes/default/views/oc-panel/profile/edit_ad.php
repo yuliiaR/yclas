@@ -69,10 +69,10 @@
                                     <label class="radio">
                                     	<a class="btn btn-primary btn-xs" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats['categories'][$key]['seoname']?>">                    
-                                        	<i class=" glyphicon   glyphicon-plus"></i> <?=$cats['categories'][$key]['name']?>
+                                        	<i class=" glyphicon glyphicon-plus"></i> <?=$cats['categories'][$key]['name']?>
                                     	</a>
 									<?if(core::config('advertisement.parent_category')):?>
-                                    <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':''?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required > 
+                                    <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':'disabled'?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required > 
                                     <?endif?>
                                      <?if ($cats['categories'][$key]['price']>0):?>
                                         <span class="label label-success">
@@ -82,7 +82,7 @@
                                     </label>
                                 <?else:?>
                                     <label class="radio">
-                                    <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':''?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required >
+                                    <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':'disabled'?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required >
                                    		<a class="btn btn-xs btn-primary" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats['categories'][$key]['seoname']?>">                    
                                         	<?=$cats['categories'][$key]['name']?>
@@ -174,29 +174,33 @@
 				<!-- Fields coming from custom fields feature -->
 				<?if (Theme::get('premium')==1):?>
 					<?if(isset($fields)):?>
-					<?if (is_array($fields)):?>
-						<?foreach($fields as $name=>$field):?>
-						<div class="form-group">
-						<?$cf_name = 'cf_'.$name?>
-						<?if($field['type'] == 'select' OR $field['type'] == 'radio') {
-							$select = array(''=>'');
-							foreach ($field['values'] as $select_name) {
-								$select[$select_name] = $select_name;
-							}
-						}
-						else $select = $field['values']?>
-	    					<?=Form::form_tag('cf_'.$name, array(    
-	                            'display'   => $field['type'],
-	                            'label'     => $field['label'],
-	                            'default'	=> $ad->$cf_name,
-	                            'options'	=> $select,
-	                            'required'	=> $field['required']))?> 
-	                    </div>     
-						<?endforeach?>
-					<?endif?>
+						<?if (is_array($fields)):?>
+							<?foreach($fields as $name=>$field):?>
+							<div class="form-group">
+							<?$cf_name = 'cf_'.$name?>
+							<?if($field['type'] == 'select' OR $field['type'] == 'radio') {
+								$select = array(''=>'');
+								foreach ($field['values'] as $select_name) {
+									$select[$select_name] = $select_name;
+								}
+							} else $select = $field['values']?>
+								<?if(!isset($field['categories']) OR in_array($ad->category->id_category, $field['categories'])):?>
+			    					<?=Form::cf_form_tag('cf_'.$name, array(    
+			                            'display'   => $field['type'],
+			                            'label'     => $field['label'],
+			                            'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
+			                            'default'   => $ad->$cf_name,
+			                            'options'	=> (!is_array($field['values']))? $field['values'] : $select,
+			                            'required'	=> $field['required'],
+			                            'categories'=> (isset($field['categories']))? $field['categories'] : "",))?>
+			                    <?endif?> 
+		                    </div>     
+							<?endforeach?>
+						<?endif?>
 					<?endif?>
 				<?endif?>
 				<!-- /endcustom fields -->
+
 				<div class="row">
 					<div class="col-md-12">
 						<?$images = $ad->get_images()?>
@@ -236,7 +240,7 @@
 						</div>
 					<?endif?>
 				</div>
-				
+				<div class="page-header"></div>
 					<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))))?>
 				
 			</fieldset>

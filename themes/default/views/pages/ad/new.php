@@ -31,9 +31,7 @@
                                        	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
                                         	<i class=" glyphicon glyphicon-plus glyphicon"></i> <?=$cats[$key]['name']?>
                                     	</a>
-                                    <?if(core::config('advertisement.parent_category')):?>
-                                    <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
-                                    <?endif?>
+                                    <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required >
                                     <?if ($cats[$key]['price']>0):?>
                                         <span class="label label-success">
                                         <?=i18n::money_format( $cats[$key]['price'])?>

@@ -17,13 +17,7 @@
                         <select name="category" id="category" class="form-control disable-chosen" value="<?=core::get('category')?>" data-placeholder="<?=__('Category')?>">
                         <option></option>
                         <?function lili($item, $key,$cats){?>
-                        <?if(!core::config('advertisement.parent_category')):?>
-                            <?if($cats[$key]['id_category_parent'] != 1):?>
-                                <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
-                            <?endif?>
-                        <?else:?>
-                            <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
-                        <?endif?>
+                        <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
                             <?if (count($item)>0):?>
                             <optgroup label="<?=$cats[$key]['name']?>">    
                                 <? if (is_array($item)) array_walk($item, 'lili', $cats);?>

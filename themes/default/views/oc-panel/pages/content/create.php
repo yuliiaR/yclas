@@ -42,11 +42,11 @@
             <?= FORM::hidden('type', $type, array('placeholder' => __('Type'), 'class' => 'form-control', 'id' => 'type'))?>
         </div>
     </div>
-    <div class="form-group">
-    <?= FORM::label('status', __('Status'), array('class'=>'control-label col-md-2', 'for'=>'status'))?>
-        <div class="col-sm-4">
-            <label class="status">
-                <input type="checkbox" name="status" >
+    <div class="form-group ">
+    
+        <div class="col-sm-offset-2 col-sm-10">
+            <label class="status checkbox">
+                <?=__('Status')?><input type="checkbox" name="status" >
             </label>
         </div>
     </div>

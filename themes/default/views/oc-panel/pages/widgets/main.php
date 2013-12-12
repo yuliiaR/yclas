@@ -94,14 +94,15 @@
 	    	</div><!--/span--> 
 
 	    	<div class="col-md-9">
-                <h2><?=__('Available widgets')?></h2>
-                <a href="http://open-classifieds.com/2013/08/26/overview-of-widgets/" target="_blank"><?=__('Read more')?></a></a>
-
-				<ul class="">
-					<?foreach ($widgets as $widget):?>
-						<?=$widget->form()?>
-					<?endforeach?>
-				</ul>                
+                <div class="page-header">
+                    <h2><?=__('Available widgets')?></h2>
+                    <a href="http://open-classifieds.com/2013/08/26/overview-of-widgets/" target="_blank"><?=__('Read more')?></a>
+                </div>
+				
+				<?foreach ($widgets as $widget):?>
+					<?=$widget->form()?>
+				<?endforeach?>
+				                
 
 
 	    	</div><!--/span--> 

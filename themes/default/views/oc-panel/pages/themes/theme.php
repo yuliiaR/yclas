@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?=Form::errors()?>
-<div class="row">
+
 <div class="page-header">
 	<h1><?=__('Themes')?></h1>
     <p><?=__('You can change the look and feel of your website here.')?><a href="http://open-classifieds.com/2013/08/21/how-to-change-theme/" target="_blank"><?=__('Read more')?></a></p>
@@ -48,48 +48,42 @@
     </div>
 </div>
 <?= FORM::close()?>
-</div>
-<div class="row">
-<div class="col-sm-12">
-<? if (count($themes)>1):?>
+
 <div class="page-header">
-<h2><?=__('Available Themes')?></h2>
+    <h2><?=__('Available Themes')?></h2>
 </div>
 
+<? if (count($themes)>1):?>
 <?$i=0;
 foreach ($themes as $theme=>$info):?>
     <?if(Theme::$theme!==$theme):?>
-    <?if ($i%3==0):?></div></div><div class="row"><div class="col-sm-12"><?endif?>
-    
-    <div class="thumbnail col-md-3 col-sm-3 ">
-        <?if ($scr = Theme::get_theme_screenshot($theme)):?>
-            <img width="300px" height="200px" src="<?=$scr?>">
-        <?endif?>
-        
+    <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
+    <div class="col-md-4 col-sm-4">
+        <div class="thumbnail ">
+            <?if ($scr = Theme::get_theme_screenshot($theme)):?>
+                <img width="300px" height="200px" src="<?=$scr?>">
+            <?endif?>
+            
 
-        <div class="caption">
-            <h3><?=$info['Name']?></h3>
-            <p><?=$info['Description']?></p>
-            <p><?=$info['License']?> v<?=$info['Version']?></p>
-            <p>
-                <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'index','id'=>$theme))?>"><?=__('Activate')?></a>
-                <?if (Core::config('appearance.allow_query_theme')=='1'):?>
-                <a class="btn btn-default" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a> 
-                <?endif?>   
-            </p>
+            <div class="caption">
+                <h3><?=$info['Name']?></h3>
+                <p><?=$info['Description']?></p>
+                <p><?=$info['License']?> v<?=$info['Version']?></p>
+                <p>
+                    <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'theme','action'=>'index','id'=>$theme))?>"><?=__('Activate')?></a>
+                    <?if (Core::config('appearance.allow_query_theme')=='1'):?>
+                    <a class="btn btn-default" target="_blank" href="<?=Route::url('default')?>?theme=<?=$theme?>"><?=__('Preview')?></a> 
+                    <?endif?>   
+                </p>
+            </div>
         </div>
     </div>
-    
     <?$i++;
     endif?>
 <?endforeach?>
-
-</div>
-</div><!--/row-->
-
 <?endif?>
 
-
+<div class="clearfix"></div>
 <?
 $a_m_themes = count($mobile_themes);
 if(Core::config('appearance.theme_mobile')!='')
@@ -97,13 +91,13 @@ if(Core::config('appearance.theme_mobile')!='')
 
 if ($a_m_themes>0):?>
 <h2><?=__('Available Mobile Themes')?></h2>
-<div class="row">
-<ul class="thumbnails">
+
+
 <?$i=0;
 foreach ($mobile_themes as $theme=>$info):?>
     <?if(Core::config('appearance.theme_mobile')!==$theme):?>
-    <?if ($i%3==0):?></ul></div><div class="row"><ul class="thumbnails"><?endif?>
-    <li class="col-md-4">
+    <?if ($i%3==0):?></ul><div class="row"><ul class="thumbnails"><?endif?>
+    <div class="col-md-4">
     <div class="thumbnail">
 
         <?if ($scr = Theme::get_theme_screenshot($theme)):?>
@@ -120,15 +114,14 @@ foreach ($mobile_themes as $theme=>$info):?>
             </p>
         </div>
     </div>
-    </li>
+    </div>
     <?$i++;
     endif?>
 <?endforeach?>
-</ul>
-</div><!--/row-->    
 <?endif?>
+<div class="clearfix"></div>
 
-<? if (count($market)>0):?>
+<?if (count($market)>0):?>
 <h2><?=__('Themes Market')?></h2>
 <p><?=__('Here you can find a selection of our premium themes.')?></p>
 <p class="text-success"><?=__('All themes include support, updates and 1 site license.')?></p> <?=__('Also white labeled and free of ads')?>!
