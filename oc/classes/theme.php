@@ -61,7 +61,6 @@ class Theme {
                     //externals do nothing...
                     else
                         $ret .= HTML::script($file, NULL, TRUE); 
-                    
                 }
 
                 //name for the minify js file
@@ -78,7 +77,6 @@ class Theme {
                     //getting the content form files
                     foreach ($files as $file) 
                     {
-                        
                         if ( ($version = strpos($file, '?'))>0 )
                             $file = substr($file, 0, $version );
                         if (file_exists(self::theme_folder($theme).'/'.$file))
