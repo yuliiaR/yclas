@@ -38,7 +38,7 @@ class Theme {
         if (isset($scripts[$type])===TRUE)
         {
 
-            if (Kohana::$environment == Kohana::DEVELOPMENT)//@todo
+            if (Kohana::$environment == Kohana::DEVELOPMENT OR Core::config('config.minify') == FALSE)
             {
                 foreach($scripts[$type] as $file)
                 {
@@ -46,7 +46,7 @@ class Theme {
                     $ret .= HTML::script($file, NULL, TRUE);
                 }
             }
-            //only minify in production or stagging
+            //only minify in production or stagging OR if specfied
             else
             {
                 $files = array();
@@ -61,7 +61,6 @@ class Theme {
                     //externals do nothing...
                     else
                         $ret .= HTML::script($file, NULL, TRUE); 
-                    
                 }
 
                 //name for the minify js file
@@ -78,7 +77,6 @@ class Theme {
                     //getting the content form files
                     foreach ($files as $file) 
                     {
-                        
                         if ( ($version = strpos($file, '?'))>0 )
                             $file = substr($file, 0, $version );
                         if (file_exists(self::theme_folder($theme).'/'.$file))
@@ -109,7 +107,7 @@ class Theme {
 
         $ret = '';
 
-        if (Kohana::$environment == Kohana::DEVELOPMENT)
+        if (Kohana::$environment == Kohana::DEVELOPMENT OR Core::config('config.minify') == FALSE)
         {
             foreach($styles as $file => $type)
             {
@@ -238,7 +236,7 @@ class Theme {
         if (!Valid::url($file))
         {
             //@todo add a hook here in case we want to use a CDN
-            return URL::base('http').'themes'.DIRECTORY_SEPARATOR.$theme.DIRECTORY_SEPARATOR.$file;
+            return URL::base().'themes'.DIRECTORY_SEPARATOR.$theme.DIRECTORY_SEPARATOR.$file;
         }
          
         //seems an external url

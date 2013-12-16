@@ -210,7 +210,7 @@
 							<?$img_name = str_replace(".jpg", "", substr(strrchr($value['thumb'], "/"), 1 ));?>
 							<div class="col-md-4 edit-image">
 								<a class="">
-									<img src="<?=URL::base('http')?><?= $value['thumb']?>" class="img-rounded" alt="">
+									<img src="<?=URL::base()?><?= $value['thumb']?>" class="img-rounded" alt="">
 								</a>
 								<button class="btn btn-danger index-delete"
 								   onclick="return confirm('<?=__('Delete?')?>');" 
