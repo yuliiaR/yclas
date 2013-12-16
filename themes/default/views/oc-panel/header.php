@@ -1,9 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
-
     <div class="container">
+        <div class="navbar-header">        </div> 
 
-            <!-- <div class="navbar-header"> -->
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#mobile-menu-panel">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -11,13 +10,12 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Panel')?></a>
-            <!-- </div> -->
-            <div class="btn-group pull-right ">
+            <a class="navbar-brand" href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><i class="glyphicon glyphicon-th-large"></i> <?=__('Panel')?></a>
+            <div class="btn-group pull-right ml-20">
                 <?=View::factory('oc-panel/widget_login')?>
             </div>
 
-            <div class="collapse navbar-collapse" id="mobile-menu-panel">
+            <div class="navbar-collapse collapse" id="mobile-menu-panel">
                 <ul class="nav navbar-nav">
                     <?=Theme::admin_link(__('Market'), 'market','index','oc-panel','glyphicon glyphicon-gift')?>
                     <? if(core::config('general.moderation') == 1 OR // moderation on  
@@ -48,7 +46,8 @@
                     </li>
                    <?endif?>
                 </ul>
-                <ul class="nav navbar-nav pull-right">
+                <div class=""></div>
+                <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="<?=Route::url('default')?>">
                                 <i class="  glyphicon-home glyphicon"></i>
@@ -57,5 +56,5 @@
                     </li>
                 </ul>
             </div> <!--/.nav-collapse -->
-        </div> <!--/.container -->
+    </div><!--/.container -->
 </header><!--/.navbar -->

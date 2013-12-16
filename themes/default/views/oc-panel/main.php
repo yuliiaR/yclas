@@ -70,7 +70,7 @@
 	    <div class="row">
 	    
 		<?=View::factory('oc-panel/sidebar',array('user'=>$user))?>
-			<div class="col-md-9">
+			<div class="col-md-9 col-sm-12 col-xs-12">
 				<?=Breadcrumbs::render('oc-panel/breadcrumbs')?>      
 				<?=Alert::show()?>
 				<?=$content?>
