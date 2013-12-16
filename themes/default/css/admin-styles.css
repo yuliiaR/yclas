@@ -21,6 +21,8 @@ li.sbp .caret{float: right;margin-top: 7px;}
 .dropdown-toggle i{margin-right: 5px;}
 
 .chosen-container-single .chosen-single{height: 27px !important;}
+
+.ml-20{margin-left: 20px;}
 @media screen and (max-width: 989px) {
 	.navbar .nav{float: left;}
 	.hidden-phone{margin-top: 65px;}
@@ -28,4 +30,5 @@ li.sbp .caret{float: right;margin-top: 7px;}
 	.hidden-phone div ul.active{display: block;}
 	.btn-sidebar-menu{display: block; margin-left: 10px;}
 }
-@media screen and (max-width: 979px) {.navbar .nav{float: left !important;}}
+
+@media screen and (max-width: 769px) {.hidden-phone{display: block!important;}}

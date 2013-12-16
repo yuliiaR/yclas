@@ -11,9 +11,10 @@
         </p>
     <?endif?>
 
-    <a target='_blank' href='http://open-classifieds.com/2013/10/11/how-to-create-custom-fields/'><p><?=__('Advertisement Custom Fields')?></p></a>
+    <a target='_blank' href='http://open-classifieds.com/2013/10/11/how-to-create-custom-fields/'><?=__('Advertisement Custom Fields')?></a>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">
-  <?=__('New field')?></a>
+        <?=__('New field')?>
+    </a>
 </div>
 
 
@@ -41,10 +42,9 @@
 </ol><!--ol_1-->
 
 <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'saveorder'))?>'></span>
+<div class="clearfix"></div>
 
-<hr/>
 
-<div class="row">
     <div class="page-header">
         <h1><?=__('Optional Fields')?></h1>
         <p><?=__('Optional Advertisement Fields')?></p>
@@ -163,4 +163,3 @@
             </div>
       </fieldset>
     <?FORM::close()?>
-</div>

@@ -5,7 +5,7 @@
 <!-- if categories on show selector of categories -->
     <div class="form-group">
         <div class="col-xs-10">  
-            <?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'control-label', 'for'=>'advertisement'))?>
+            <?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
             <input type="text" id="title" name="title" class="form-control" value="" placeholder="<?=__('Search')?>">
         </div>
     </div>
@@ -14,7 +14,7 @@
         <div class="form-group">
             
             <div class="col-xs-10">
-                <?= FORM::label('category_widget_search', __('Categories'), array('class'=>'control-label', 'for'=>'category_widget_search'))?>
+                <?= FORM::label('category_widget_search', __('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
                 <select name="category_widget_search" id="category_widget_search" class="form-control">
                 <option></option>
                 <?function lili_search($item, $key,$cats){?>
@@ -40,7 +40,7 @@
     <?if(count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
         <div class="form-group">
             <div class="col-xs-10">
-                <?= FORM::label('location_widget_search', __('Locations'), array('class'=>'control-label', 'for'=>'location_widget_search' ))?>
+                <?= FORM::label('location_widget_search', __('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
                 <select name="location_widget_search" id="location_widget_search" class="form-control">
                 <option></option>
                 <?function lolo_search($item, $key,$locs){?>
@@ -58,6 +58,24 @@
         </div>
     <?endif?>
 <?endif?>
+
+    <?if(core::config('advertisement.price')):?>
+        <div class="form-group">
+             
+            <div class="col-xs-10"> 
+                <label class="" for="price-min"><?=__('Price from')?> </label>
+                <input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+            <div class="col-xs-10">
+                <label class="" for="price-max"><?=__('Price to')?></label>
+                <input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
+            </div>
+        </div>
+    <?endif?>
 <?endif?>
 <!-- Fields coming from custom fields feature -->
 
@@ -88,7 +106,8 @@
     
 <?endif?>
 <!-- /endcustom fields -->
-
+<div class="clearfix"></div>
+<div class="page-header"></div>
     <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('search')))?> 
 <?= FORM::close()?>
 </div>

@@ -164,7 +164,7 @@ class Form extends Kohana_Form {
     public static function form_tag($name, $options, $value = NULL)
     {
         if ($options['display'] != 'hidden')
-            $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label col-md-4 col-xs-1', 'for'=>$name));
+            $label = FORM::label($name, (isset($options['label']))?$options['label']:$name, array('class'=>'control-label col-md-5', 'for'=>$name));
         else
             $label = '';
 
