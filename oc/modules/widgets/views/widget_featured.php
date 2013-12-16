@@ -9,7 +9,7 @@
 		<?if($ad->get_first_image() !== NULL):?>
             <div class="picture pull-right">
                 <a class="pull-right" title="<?=$ad->title;?>" alt="<?=$ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-                <figure><img src="<?=URL::base('http')?><?=$ad->get_first_image()?>"></figure></a>
+                <figure><img src="<?=URL::base()?><?=$ad->get_first_image()?>"></figure></a>
             </div>
         <?else:?>
             <div class="picture pull-right">

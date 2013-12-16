@@ -14,7 +14,7 @@
             <div class="thumbnail latest_ads">
                 <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
                 <?if($ad->get_first_image()!== NULL):?>
-                    <img src="<?=URL::base('http')?><?=$ad->get_first_image()?>" >
+                    <img src="<?=URL::base()?><?=$ad->get_first_image()?>" >
                 <?else:?>
                     <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"> 
                 <?endif?>
