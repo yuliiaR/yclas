@@ -211,7 +211,7 @@ class Core {
      */
     public static function get_market($reload = FALSE)
     {
-        $market_url = 'http://open-classifieds.com/files/market.json';
+        $market_url = 'http://market.open-eshop.com/api/products/open-classifieds';
 
         //try to get the json from the cache
         $market = Core::cache($market_url);
