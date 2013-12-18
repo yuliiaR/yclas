@@ -2,6 +2,16 @@
 
 <? if (count($market)>=1):?>
 
+<!-- Modal -->
+<div class="modal fade" id="marketModal" tabindex="-1" role="dialog" aria-labelledby="marketModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+      </div>
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <?$i=0;
 foreach ($market as $item):?>
     <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
@@ -27,18 +37,15 @@ foreach ($market as $item):?>
             </p>
             <p>
                 <?=Text::bb2html($item['description'])?>
-                <?if (strlen($item['url_more'])>0):?>
-                    <a href="<?=$item['url_more']?>"><?=__('More info')?></a>
-                <?endif?>
             </p>
             <?if ( $item['price_offer']>0):?>
             <p>
-                <a href="<?=$item['url_buy']?>" class="btn btn-block btn-danger"><?=__('Limited Offer!')?> $<?=$item['price_offer']?></a>
-                <a href="<?=$item['url_buy']?>" class="btn btn-block btn-info"><i class="glyphicon  glyphicon-time glyphicon"></i> <?=__('Valid Until')?>  <?= Date::format($item['offer_valid'], core::config('general.date_format'))?></a>
+                <a href="<?=$item['url_buy']?>" class="btn btn-block btn-danger market" data-toggle="modal" data-target="#marketModal"><?=__('Limited Offer!')?> $<?=$item['price_offer']?></a>
+                <a href="<?=$item['url_buy']?>" class="btn btn-block btn-info market" data-toggle="modal" data-target="#marketModal"><i class="glyphicon  glyphicon-time glyphicon"></i> <?=__('Valid Until')?>  <?= Date::format($item['offer_valid'], core::config('general.date_format'))?></a>
             </p>
             <?endif?>
             <p>
-                <a class="btn btn-primary" href="<?=$item['url_buy']?>">
+                <a class="btn btn-primary market" data-toggle="modal" data-target="#marketModal" href="<?=$item['url_buy']?>">
                     <i class="glyphicon  glyphicon-shopping-cart"></i>  <?=__('Buy Now')?>
                 </a>
                 <?if (empty($item['url_demo'])===FALSE):?>

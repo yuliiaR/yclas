@@ -94,8 +94,7 @@ class Controller_Panel_Theme extends Auth_Controller {
             foreach ($json as $theme) 
             {
                 //we add only those the user doesn't have installed
-                if (strtolower($theme['type']) == 'theme' 
-                    AND !in_array(strtolower($theme['seoname']), array_keys($themes))
+                if ( !in_array(strtolower($theme['seoname']), array_keys($themes))
                     AND !in_array(strtolower($theme['seoname']), array_keys($mobile_themes)) )
                     $market[] = $theme;
             }
@@ -212,12 +211,16 @@ class Controller_Panel_Theme extends Auth_Controller {
                 {
                     $zip->extractTo($root);
                     $zip->close();
+                    unlink($root.$zip_theme['name']);
                 } 
                 else 
                 {
                     Alert::set(Alert::ALERT, $zip_theme['name'].' '.__('Zip file faild to extract, please try again.'));
                     $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'index')));
                 }
+
+                //check license from the zip name
+                //$license = substr($zip_theme['name'],0, -4);
 
                 Alert::set(Alert::SUCCESS, $zip_theme['name'].' '.__('You have succesfully installed the theme!'));
                 $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'index')));

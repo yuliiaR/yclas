@@ -207,6 +207,8 @@ class Form extends Kohana_Form {
      * @param  string $name input name
      * @param  array  $options as defined
      * @param  mixed $value value of the field, optional.
+     * @param  boolean  $old =TRUE renders bs2 styles
+     * @param  boolean  $inline renders inline form
      * @return string        HTML
      */
     public static function cf_form_tag($name, $options, $value = NULL, $old = FALSE, $inline = FALSE)

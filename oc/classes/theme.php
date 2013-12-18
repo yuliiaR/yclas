@@ -628,8 +628,7 @@ class Theme {
     {  
         if (Kohana::$environment!== Kohana::DEVELOPMENT)
         {
-            //@todo review URL
-            $api_url = (Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.open-eshop.com':'eshop.lo';
+            $api_url = (Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.open-classifieds.com':'eshop.lo';
             $api_url = 'http://'.$api_url.'/api/license/';
             $ch = curl_init();
             if ($ch)
