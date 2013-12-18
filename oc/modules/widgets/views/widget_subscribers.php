@@ -78,7 +78,7 @@
 <?else:?>
 	<input type="hidden" value='0,0'>
 <?endif?>
-	<div class="form-actions">
+	<div class="">
 		<?= FORM::button('submit', __('Subscribe'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id))))?>
 		
 	</div>
