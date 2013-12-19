@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="col-md-3"> 
+<div class="col-md-3 col-sm-3 col-xs-12"> 
 <?foreach ( widgets::get('sidebar') as $widget):?>
     <?if(get_class($widget) != 'Widget_Contact'):?>
         <div class="category_box_title custom_box">

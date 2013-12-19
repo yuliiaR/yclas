@@ -501,6 +501,7 @@ class Controller_Ad extends Controller {
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
 
+        // $this->template->scripts['footer'] = array('js/search.js');
 		// $cat_obj = new Model_Category();
 		// $loc_obj = new Model_Location();
 		list($cat_obj,$order_categories)  = Model_Category::get_all();
