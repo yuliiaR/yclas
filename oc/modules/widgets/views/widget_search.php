@@ -15,7 +15,7 @@
             
             <div class="col-xs-10">
                 <?= FORM::label('category_widget_search', __('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
-                <select name="category_widget_search" id="category_widget_search" class="form-control">
+                <select data-placeholder="<?=__('Categories')?>" name="category_widget_search" id="category_widget_search" class="form-control">
                 <option></option>
                 <?function lili_search($item, $key,$cats){?>
                 <?if ( count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
@@ -41,7 +41,7 @@
         <div class="form-group">
             <div class="col-xs-10">
                 <?= FORM::label('location_widget_search', __('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
-                <select name="location_widget_search" id="location_widget_search" class="form-control">
+                <select data-placeholder="<?=__('Locations')?>" name="location_widget_search" id="location_widget_search" class="form-control">
                 <option></option>
                 <?function lolo_search($item, $key,$locs){?>
                 <option value="<?=$locs[$key]['seoname']?>"><?=$locs[$key]['name']?></option>

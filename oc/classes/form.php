@@ -174,6 +174,7 @@ class Form extends Kohana_Form {
 
 
         $attributes = array('placeholder' => (isset($options['label'])) ? $options['label']:$name, 
+                            'data-placeholder'       => (isset($options['label'])) ? $options['label']:$name,
                             'class'       => 'form-control', 
                             'id'          => $name, 
                             (isset($options['required']))?'required':''
@@ -241,6 +242,7 @@ class Form extends Kohana_Form {
                 break;
         }
         $attributes = array('placeholder' 		=> (isset($options['label'])) ? $options['label']:$name,
+                            'data-placeholder'       => (isset($options['label'])) ? $options['label']:$name,
         					'title' 			=> (isset($options['tooltip'])) ? $options['tooltip']:NULL, 
                             'data-categories'	=> (isset($options['categories'])) ? json_encode($options['categories']):NULL,
                             'class'       		=> $class, 

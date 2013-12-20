@@ -8,7 +8,7 @@
 			
 			<div class="col-xs-10">
 				<?= FORM::label('category_subscribe', __('Categories'), array('class'=>'control-label', 'for'=>'category_subscribe'))?>
-				<select name="category_subscribe[]" id="category_subscribe" class="form-control" multiple required>
+				<select data-placeholder="<?=__('Categories')?>" name="category_subscribe[]" id="category_subscribe" class="form-control" multiple required>
 	            <option></option>
 	            <?function lili_subscribe($item, $key,$cats){?>
 	            <?if ( count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
@@ -32,7 +32,7 @@
 	    <div class="form-group">
 	        <div class="col-xs-10">
 	        	<?= FORM::label('location_subscribe', __('Location'), array('class'=>'control-label', 'for'=>'location_subscribe' ))?>
-	            <select name="location_subscribe[]" id="location_subscribe" class="form-control" required>
+	            <select data-placeholder="<?=__('Location')?>" name="location_subscribe[]" id="location_subscribe" class="form-control" required>
 	            <option></option>
 	            <?function lolo_subscribe($item, $key,$locs){?>
 	            <option value="<?=$key?>"><?=$locs[$key]['name']?></option>

@@ -79,7 +79,7 @@
                         
                         <div class="col-md-4">
                         	<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
-                            <select name="location" id="location" class="form-control" required>
+                            <select data-placeholder="<?=__('Location')?>" name="location" id="location" class="form-control" required>
                             <option></option>
                             <?function lolo($item, $key,$locs){?>
                             <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
