@@ -8,29 +8,39 @@
         "Please check your input."
     );
 
+    // some extra rules for custom fields
+    if($('.cf_decimal_fields').length != 0)
+        var $decimal = $(".cf_decimal_fields").attr("name");
+    if($('.cf_integer_fields').length != 0)
+        var $integer = $(".cf_integer_fields").attr("name");
+    
+    var $params = {rules:{}, messages:{}};
+    $params['rules'][$integer] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
+    $params['messages'][$integer] = "Format is incorect";
+    $params['rules'][$decimal] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
+    $params['messages'][$decimal] = "Format is incorect";
+    $params['rules']['price'] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
+    $params['messages']['price'] = "Format is incorect";
+
     var $form = $(".post_new");
-    $form.validate({
-        errorLabelContainer: $(".post_new div.error"),
-        wrapper: 'div',
-        rules: {
-            title: {minlength:2},
-            price: {regex:"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"}
-        },
-        highlight: function(element) {
-            $(element).closest('.form-group').addClass('has-error');
-        },
-        unhighlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-error');
-        },
-        messages: {
-            price:{regex: "Format is incorect"}
-        }
-    });
+    $form.validate($params
+        // {
+        // errorLabelContainer: $(".post_new div.error"),
+        // wrapper: 'div',
+        // rules: {
+        //     title: {minlength:2},
+        //     price: {regex:"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"}
+        // },
+        // messages: {
+        //     price:{regex: "Format is incorect"}
+        // }
+    // }
+    );
     
     //chosen fix
     var settings = $.data($form[0], 'validator').settings;
     settings.ignore += ':not(#location)'; // post_new location(any chosen) texarea
-    settings.ignore += ':not(#description)'; // post_new description texarea
+    settings.ignore += ':not([name="description"])'; // post_new description texarea
     
     // $('.chosen-container a').ready(function(){
         

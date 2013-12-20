@@ -6,6 +6,11 @@ $(function(){
         resizeEnabled: "true"
     });
     
+    //sceditorBBCodePlugin for validation, updates iframe on keyup 
+    $( ".sceditor-container iframe" ).contents().find("body").keyup(function() {
+        $("textarea[name=description]").data("sceditor").updateTextareaValue();
+    });
+    
     if(!$("select").hasClass('disable-chosen')){
         $("select").chosen();   
     } 
