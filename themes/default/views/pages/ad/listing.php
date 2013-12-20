@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 	 
 
-	<div class="well" id="advise">
+	<div class="well" id="recomentadion">
 
 		<?if ($category!==NULL):?>
             <p><?=Text::bb2html($category->description,TRUE)?></p> 
@@ -13,7 +13,7 @@
         <?endif?>
 
 
-	</div><!--end of advise-->
+	</div><!--end of recomentadion-->
 
 	<?if(count($ads)):?>
 	    <?foreach($ads as $ad ):?>
