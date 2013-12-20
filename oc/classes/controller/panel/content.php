@@ -73,6 +73,7 @@ class Controller_Panel_Content extends Auth_Controller {
     		try 
 			{
 				$content->save();
+                Cache::instance()->delete_all();
                 Alert::set(Alert::SUCCESS, $this->request->post('type').' '.__('is created'));
 				Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'content','action'=>'list')).'?type='.$p['type'].'&locale_select='.$p['locale']);
 			} 
@@ -122,6 +123,7 @@ class Controller_Panel_Content extends Auth_Controller {
 	    		try 
 				{
 					$content->save();
+                    Cache::instance()->delete_all();
                     Alert::set(Alert::SUCCESS, $content->type.' '.__('is edited'));
 					Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'content','action'=>'edit', 'id'=>$content->id_content)));
 				} 
@@ -156,6 +158,7 @@ class Controller_Panel_Content extends Auth_Controller {
             try
             {
                 $content->delete();
+                Cache::instance()->delete_all();
                 $this->template->content = 'OK';
                 Alert::set(Alert::SUCCESS, __('Content is deleted'));
             }

@@ -17,7 +17,7 @@
         
         <div class="col-sm-4">
             <?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
-            <?$ls = (isset($_REQUEST['locale_select']))?$_REQUEST['locale_select']:'';?>
+            <?$ls = (isset($_REQUEST['locale_select']) AND in_array($_REQUEST['locale_select'], $locale_list))?$_REQUEST['locale_select']:'en_US';?>
             <?= FORM::select('locale_select', $locale_list, $ls )?> 
         </div>
         <div class="col-sm-4">
