@@ -260,10 +260,6 @@ class Controller_New extends Controller
 		                                    $replace);
 		            }
 				}
-				catch (ORM_Validation_Exception $e)
-				{
-					Form::errors($content->errors);
-				}
 				catch (Exception $e)
 				{
 					throw new HTTP_Exception_500($e->getMessage());

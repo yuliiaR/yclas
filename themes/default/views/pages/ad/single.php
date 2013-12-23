@@ -32,9 +32,10 @@
 	<?endif?>
 	<?endif?>
 	<!-- end paypal button -->
-	<div class="row">
+	
 	<?$images = $ad->get_images()?>
 	<?if($images):?>
+	<div class="row">
 		<div id="gallery" class="col-md-9">
 			
 				<?foreach ($images as $path => $value):?>

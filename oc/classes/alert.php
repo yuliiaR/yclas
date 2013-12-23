@@ -12,8 +12,8 @@
 class Alert {
 
     const SUCCESS   = 'success';
-    const ERROR     = 'error';
-    const ALERT     = 'block';
+    const ERROR     = 'danger';
+    const ALERT     = 'warning';
     const INFO      = 'info';
 
     /**

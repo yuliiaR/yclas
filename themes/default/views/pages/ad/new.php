@@ -31,7 +31,7 @@
                                        	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
                                         	<i class=" glyphicon glyphicon-plus glyphicon"></i> <?=$cats[$key]['name']?>
                                     	</a>
-                                    <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required >
+                                    <input <?=($cats[$key]['seoname']==Core::get('category') OR Request::current()->post('category') == $cats[$key]['id'])?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required >
                                     <?if ($cats[$key]['price']>0):?>
                                         <span class="label label-success">
                                         <?=i18n::money_format( $cats[$key]['price'])?>
@@ -42,7 +42,7 @@
                                     
                                 <?else:?>
                                     <label class="radio">
-                                    <input <?=($cats[$key]['seoname']==Core::get('category'))?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
+                                    <input <?=($cats[$key]['seoname']==Core::get('category') OR Request::current()->post('category') == $cats[$key]['id'])?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
                                     
                                    		<a class="btn btn-xs btn-primary" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    

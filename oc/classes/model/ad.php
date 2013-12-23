@@ -128,9 +128,10 @@ class Model_Ad extends ORM {
     {
 
         $ad = new self;
-
+// d($title);
         $title = URL::title($title);
         $seotitle = $title;
+
 
         //find a ad same seotitle
         $a = $ad->where('seotitle', '=', $seotitle)->and_where('id_ad', '!=', $this->id_ad)->limit(1)->find();
