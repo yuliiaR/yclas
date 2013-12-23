@@ -17,7 +17,7 @@
                         <select name="category" id="category" class="form-control disable-chosen" value="<?=core::get('category')?>" data-placeholder="<?=__('Category')?>">
                         <option></option>
                         <?function lili($item, $key,$cats){?>
-                        <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
+                        <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>"><?=$cats[$key]['name']?></option>
                             <?if (count($item)>0):?>
                             <optgroup label="<?=$cats[$key]['name']?>">    
                                 <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
@@ -61,30 +61,6 @@
                         <input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
                     </div>
                 </div>
-                <?endif?>
-                <!-- Fields coming from custom fields feature -->
-                <?if(isset($fields)):?>
-                    <?if (is_array($fields)):?>
-                        <?$i=0; foreach($fields as $name=>$field):?>
-                        <div class="form-group mr-30">
-                            <?if($field['searchable']):?>
-                                <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
-                                    $select = array(''=>'');
-                                    foreach ($field['values'] as $select_name) {
-                                        $select[$select_name] = $select_name;
-                                    }
-                                }?>
-                                <?if($field['type'] == 'checkbox' OR $field['type'] == 'radio'):?><div class="mt-10"></div><?endif?>
-                                    <?=Form::cf_form_tag('cf_'.$name, array(    
-                                        'display'   => $field['type'],
-                                        'label'     => $field['label'],
-                                        'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
-                                        'options'   => (!is_array($field['values']))? $field['values'] : $select,
-                                        ),NULL,FALSE,TRUE)?> 
-                            <?endif?>
-                            </div>
-                        <?$i++ ;endforeach?>
-                    <?endif?>
                 <?endif?>
             <div class="clear"></div> 
             <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary pull-right', 'action'=>Route::url('search')))?> 

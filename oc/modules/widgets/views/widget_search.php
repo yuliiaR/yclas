@@ -19,7 +19,7 @@
                 <option></option>
                 <?function lili_search($item, $key,$cats){?>
                 <?if ( count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
-                <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
+                <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>"><?=$cats[$key]['name']?></option>
                 <?endif?>
                     <?if ($cats[$key]['id_category_parent'] == 1 OR count($item)>0):?>
                     <option value="<?=$key?>"> <?=$cats[$key]['name']?> </option>
