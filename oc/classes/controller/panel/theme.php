@@ -128,9 +128,6 @@ class Controller_Panel_Theme extends Auth_Controller {
                 Alert::set(Alert::SUCCESS, __('Appearance configuration updated'));
             }
             
-
-
-            
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=> (!isset($opt['premium']))?'index':'options')));
         }
 
@@ -155,6 +152,12 @@ class Controller_Panel_Theme extends Auth_Controller {
             if (Theme::license($this->request->post('license'))==TRUE)
             {
                 Theme::set_theme($theme);     
+                 //activating a mobile theme
+                if (in_array($theme, array_keys(Theme::get_installed_themes(TRUE))) )
+                    Theme::set_mobile_theme($theme);
+                else
+                    Theme::set_theme($theme);
+
                 Theme::$options = Theme::get_options($theme);       
                 Theme::load($theme);
 
