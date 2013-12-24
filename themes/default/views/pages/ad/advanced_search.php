@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <?if(count($locations) > 1):?>
+                <?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
                     <div class="form-group">
                         <?= FORM::label('location', __('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
                         <div class="control mr-30">
