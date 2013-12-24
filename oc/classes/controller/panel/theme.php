@@ -151,7 +151,6 @@ class Controller_Panel_Theme extends Auth_Controller {
         {
             if (Theme::license($this->request->post('license'))==TRUE)
             {
-                Theme::set_theme($theme);     
                  //activating a mobile theme
                 if (in_array($theme, array_keys(Theme::get_installed_themes(TRUE))) )
                     Theme::set_mobile_theme($theme);
@@ -226,6 +225,25 @@ class Controller_Panel_Theme extends Auth_Controller {
             }
             
         }
+    }
+
+    /**
+     * mobile theme selector
+     * @return [view] 
+     */
+    public function action_mobile()
+    {
+
+        // save only changed values
+        if($this->request->param('id'))
+        {
+            Theme::set_mobile_theme($this->request->param('id'));
+            
+            Alert::set(Alert::SUCCESS, __('Mobile Theme updated'));
+            $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme','action'=>'index')));
+        }
+
+       
     }
 
 }//end of controller
