@@ -14,11 +14,20 @@ class Controller_Panel_Stats extends Auth_Controller {
     public function action_index()
     {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats')));
+        //local files
+        if (Theme::get('cdn_files') == FALSE)
+        {
+            $this->template->styles = array('css/datepicker.css' => 'screen');
+            $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js', 
+                                                       'js/oc-panel/stats/dashboard.js');
+        }
+        else
+        {
+            $this->template->styles = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
+            $this->template->scripts['footer'] = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
+                                                        'js/oc-panel/stats/dashboard.js');
+        }
 
-        $this->template->styles = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
-        $this->template->scripts['footer'] = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                                    'js/oc-panel/stats/dashboard.js');
-        
         $this->template->title = __('Stats');
         $this->template->bind('content', $content);        
         $content = View::factory('oc-panel/pages/stats/dashboard');

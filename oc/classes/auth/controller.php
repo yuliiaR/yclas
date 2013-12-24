@@ -108,11 +108,11 @@ class Auth_Controller extends Controller
 
 
             Theme::$scripts['footer']		  = array('http://code.jquery.com/jquery-1.9.1.min.js',	
+													  'js/jquery.sceditor.min.js',
 													  'http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js', 
 												      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                                       'js/oc-panel/theme.init.js?v=2.1',
                                                       'js/oc-panel/sidebar.js',
-                                                      'js/jquery.sceditor.min.js'
                                                       );
 		}
 		

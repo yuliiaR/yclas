@@ -96,7 +96,7 @@
 
 				<div class="form-group">
 					
-					<div class="col-md-8">
+					<div class="col-md-9">
 						<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
 						<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control', 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
 					</div>

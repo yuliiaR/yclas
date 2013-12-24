@@ -560,7 +560,7 @@ class Controller_Ad extends Controller {
             if (core::get('category')!==NULL)
             {
                 $category = new Model_Category();
-                $category->where('seoname','=',core::get('category'));
+                $category->where('seoname','=',core::get('category'))->limit(1)->find();
                 if ($category->loaded())
                     $ads->where('id_category', 'IN', $category->get_siblings_ids());
             }

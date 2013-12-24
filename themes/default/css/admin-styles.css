@@ -23,6 +23,12 @@ li.sbp .caret{float: right;margin-top: 7px;}
 .chosen-container-single .chosen-single{height: 27px !important;}
 
 .ml-20{margin-left: 20px;}
+
+/*bbcode style fix*/
+div.sceditor-group{padding: 1px 15px 5px 5px!important;}
+.sceditor-button{padding: 0px 0px 0px 2px!important; width: 20px!important;}
+.sceditor-button, .sceditor-button div{margin-top: 3px!important;}
+
 @media screen and (max-width: 989px) {
 	.navbar .nav{float: left;}
 	.hidden-phone{margin-top: 65px;}

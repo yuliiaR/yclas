@@ -7,13 +7,13 @@
 
 		<?= FORM::open(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')), array('class'=>'well form-horizontal', 'enctype'=>'multipart/form-data'))?>
 				<div class="form-group">
-					<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
+					<?= FORM::label('name', __('Name'), array('class'=>'col-xs-3 control-label', 'for'=>'name'))?>
 					<div class="col-sm-4">
 						<?= FORM::input('name', $user->name, array('class'=>'form-control', 'id'=>'name', 'required', 'placeholder'=>__('Name')))?>
 					</div>
 				</div>
 				<div class="form-group">
-					<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
+					<?= FORM::label('email', __('Email'), array('class'=>'col-xs-3 control-label', 'for'=>'email'))?>
 					<div class="col-sm-4">
 						<?= FORM::input('email', $user->email, array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
 					</div>
@@ -36,14 +36,14 @@
               <?=Form::errors()?>  
               
               <div class="form-group">
-                <label class="control-label"><?=__('New password')?></label>
+                <label class="col-xs-3 control-label"><?=__('New password')?></label>
                 <div class="col-sm-4">
                 <input class="form-control" type="password" name="password1" placeholder="<?=__('Password')?>">
                 </div>
               </div>
               
               <div class="form-group">
-                <label class="control-label"><?=__('Repeat password')?></label>
+                <label class="col-xs-3 control-label"><?=__('Repeat password')?></label>
                 <div class="col-sm-4">
                 <input class="form-control" type="password" name="password2" placeholder="<?=__('Password')?>">
                   <p class="help-block">
@@ -68,9 +68,12 @@
       <form class="well form-horizontal" enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">         
               <?=Form::errors()?>  
               
-            <?= FORM::label('profile_img', __('Profile picture'), array('class'=>'control-label', 'for'=>'profile_img'))?>
+            
             <div class="form-group">
+              <?= FORM::label('profile_img', __('Profile picture'), array('class'=>'col-xs-3 ', 'for'=>'profile_img'))?>
+              <div class="col-sm-4">
               <input type="file" name="profile_image" id="profile_img" />
+              </div>  
             </div>
             
                 <a href="<?=Route::url('oc-panel')?>" class="btn btn-default"><?=__('Cancel')?></a>

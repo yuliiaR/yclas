@@ -148,6 +148,12 @@ li{
 .container{width: 970px!important;}
 .caption{word-wrap:break-word;}
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus{background-color: #2fa3e6;}
+
+/*bbcode style fix*/
+div.sceditor-group{padding: 1px 15px 5px 5px!important;}
+.sceditor-button{padding: 0px 0px 0px 2px!important; width: 20px!important;}
+.sceditor-button, .sceditor-button div{margin-top: 3px!important;}
+
 /*Media screens*/
 @media screen and (max-width: 1199px) {
 	.header-search{display: none;}
@@ -162,5 +168,5 @@ li{
 }
 @media only screen and (max-width: 767px) {
     /* phones */
-    .featured-ads{display: none;}
+    .featured-posts{display: none;}
 }
