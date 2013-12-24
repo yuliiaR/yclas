@@ -254,10 +254,10 @@ class Controller_Panel_Update extends Auth_Controller {
 
         //call update actions 203,205,206,207 
 
-        // $this->action_203();
-        // $this->action_205();
-        // $this->action_206();
-        // $this->action_207();
+        $this->action_203();
+        $this->action_205();
+        $this->action_206();
+        $this->action_207();
 
         //clean cache
         Cache::instance()->delete_all();

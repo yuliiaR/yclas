@@ -542,7 +542,7 @@ class Model_User extends ORM {
         return $user;
     }
 
-    protected $_table_columns =  
+  /*  protected $_table_columns =  
 array (
   'id_user' => 
   array (
@@ -822,5 +822,5 @@ array (
     'key' => 'UNI',
     'privileges' => 'select,insert,update,references',
   ),
-);
+);*/
 } // END Model_User
