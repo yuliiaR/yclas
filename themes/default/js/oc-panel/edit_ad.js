@@ -25,11 +25,11 @@
     var $form = $(".post_new");
     $form.validate($params);
     
-    //chosen fix
-    var settings = $.data($form[0], 'validator').settings;
-    settings.ignore += ':not(.chzn-done)'; // edit_ad_form location(any chosen) texarea
-    settings.ignore += ':not(#description)'; // edit_ad_form description texarea
-    settings.ignore += ':not(.cf_textarea_fields)';//edit_ad_form texarea custom fields
+    // //chosen fix
+    // var settings = $.data($form[0], 'validator').settings;
+    // settings.ignore += ':not(.chzn-done)'; // edit_ad_form location(any chosen) texarea
+    // settings.ignore += ':not(#description)'; // edit_ad_form description texarea
+    // settings.ignore += ':not(.cf_textarea_fields)';//edit_ad_form texarea custom fields
     // end VALIDATION
 
     //datepicker in case date field exists
@@ -42,34 +42,42 @@
         showCustomFieldsByCategory(this);
     });
 
-    showCustomFieldsByCategory($("input[name=category]:checked"));
+    showCustomFieldsByCategory($("span[name=category]"));
     
     function showCustomFieldsByCategory(element){
-        id_categ = $(element).val();
+
+        id_categ = $(element).attr('data-id');
         // only custom fields have class data-custom
         $(".data-custom").each(function(){
             // get data-category, contains json array of set categories
             field = $(this);
             dataCategories = field.attr('data-categories');
-            // show if cf fields if they dont have categories set
-            if(dataCategories.length != 2){
-                field.parent().parent().css('display','none');
-                field.prop('disabled', true);
-            }
-            else{
-                field.parent().parent().css('display','block');
-                field.prop('disabled', false);
-            }
-            if(dataCategories !== undefined)  
-                if(dataCategories != "")
-                {
-                    // apply if they have equal id_category 
-                    $.each($.parseJSON(dataCategories), function (index, value) { 
-                        if(id_categ == value){
-                            field.parent().parent().css('display','block');
-                            field.prop('disabled', false);
-                        }
-                    });
+            if(dataCategories)
+            {
+                // show if cf fields if they dont have categories set
+                if(dataCategories.length != 2){
+                    field.closest('.form-group').css('display','none');
+                    field.prop('disabled', true);
                 }
+                else{
+                    field.closest('.form-group').css('display','block');
+                    field.prop('disabled', false);
+                    $(".cf_select_fields").chosen(); // refresh chosen
+                }
+                if(dataCategories !== undefined)  
+                {   
+                    if(dataCategories != "")
+                    {
+                        // apply if they have equal id_category 
+                        $.each($.parseJSON(dataCategories), function (index, value) { 
+                            if(id_categ == value){
+                                field.closest('.form-group').css('display','block');
+                                field.prop('disabled', false);
+                                $(".cf_select_fields").chosen(); // refresh chosen
+                            }
+                        });
+                    }
+                }
+            }
         });
     }
