@@ -93,7 +93,7 @@
 	    		<?=Alert::show()?>
 	    	</div><!--/span--> 
 
-	    	<div class="col-md-9">
+	    	<div class="col-md-8">
                 <div class="page-header">
                     <h2><?=__('Available widgets')?></h2>
                     <a href="http://open-classifieds.com/2013/08/26/overview-of-widgets/" target="_blank"><?=__('Read more')?></a>
@@ -108,7 +108,7 @@
 	    	</div><!--/span--> 
 	    	
 	    	<!--placeholders-->
-	    	<div class="col-md-3">
+	    	<div class="col-md-4">
 				<?foreach ($placeholders as $placeholder=>$widgets):?>
 				<div class="well sidebar-nav">
                 <p class="nav-header"><?=$placeholder?></p>
