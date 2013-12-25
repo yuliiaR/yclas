@@ -73,8 +73,21 @@ class Controller_Subscribe extends Controller {
 				$max_price = $this->request->post('price_subscribe-2');
 			}
 			
+			
+			//if categry is not selected, subscribe them for all 
+			$obj_category = new Model_Category(); 
+			if($arr_cat === NULL)
+			{
+				$all_cats = $obj_category->get_all();
+				$arr_cat = array();
+				foreach ($all_cats as $ac) 
+				{
+					foreach ($ac as $key => $v) 
+						$arr_cat[] = $key;
+				}
+			}	 
 
-			// create entry table subscriber for each category selected  
+			// create entry table subscriber for each category selected
 			foreach ($arr_cat as $c => $id_value) 
 			{
 				$obj_subscribe = new Model_Subscribe();

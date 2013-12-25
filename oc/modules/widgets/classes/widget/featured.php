@@ -50,7 +50,7 @@ class Widget_Featured extends Widget
         $ads->where('status','=', Model_Ad::STATUS_PUBLISHED);
 
         $ads->where('featured','IS NOT', NULL)
-        ->where('featured','>', DB::expr('NOW()'))
+        ->where('featured','BETWEEN', array(DB::expr('NOW()'), Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60))))
         ->order_by('featured','desc');
          
 

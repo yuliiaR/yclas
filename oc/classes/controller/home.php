@@ -26,7 +26,7 @@ class Controller_Home extends Controller {
                 break;
             case 1:
                 $ads->where('featured','IS NOT', NULL)
-                ->where('featured','>', DB::expr('NOW()'))
+                ->where('featured','BETWEEN', array(DB::expr('NOW()'), Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60))))
                 ->order_by('featured','desc');
                 break;
             case 0:
