@@ -11,8 +11,16 @@
 		</a>
 	</div>
 </div>
+<?else:?>
+<div class="row">
+	<div class="col-md-3">
+		<a class="thumbnail">
+			<img src="<?=URL::base()?>images/users/default-user.jpg" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
+		</a>
+	</div>
+</div>
+<?endif?>
 
-	<?endif?>
 <div class="page-header">
 	<article class="list well clearfix">
 		<h3><?=$user->name?></h3>
