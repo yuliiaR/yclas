@@ -182,17 +182,17 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<?= FORM::label($forms['analytics']['key'], __('Analytics'), array('class'=>'control-label col-sm-3', 'for'=>$forms['analytics']['key']))?>
+			<?= FORM::label($forms['analytics']['key'], __('Analytics Tracking ID'), array('class'=>'control-label col-sm-3', 'for'=>$forms['analytics']['key']))?>
 			<div class="col-sm-4">
 				<?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
-				'placeholder' => 'UA-XXXXX', 
+				'placeholder' => 'UA-XXXXX-YY', 
 				'class' => 'tips form-control input-sm', 
 				'id' => $forms['analytics']['key'],
-				'data-content'=> __(""),
+				'data-content'=> __("Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings"),
 				'data-trigger'=>"hover",
 				'data-placement'=>"right",
 				'data-toggle'=>"popover",
-				'data-original-title'=>__("Analytics"), 
+				'data-original-title'=>__("Analytics Tracking ID"), 
 				))?> 
 			</div>
 		</div>
@@ -346,7 +346,7 @@
 				'placeholder' => "images/watermark.png", 
 				'class' => 'tips form-control input-sm', 
 				'id' => $forms_img['watermark_path']['key'],
-				'data-content'=> __(""),
+				'data-content'=> __("Relative path to the image to use as watermark"),
 				'data-trigger'=>"hover",
 				'data-placement'=>"right",
 				'data-toggle'=>"popover",
@@ -361,11 +361,11 @@
 				'placeholder' => $forms_img['watermark_position']['value'], 
 				'class' => 'tips form-control input-sm ', 
 				'id' => $forms_img['watermark_position']['key'],
-				'data-content'=> __(""),
+				'data-content'=> __("Watermark position"),
 				'data-trigger'=>"hover",
 				'data-placement'=>"right",
 				'data-toggle'=>"popover",
-				'data-original-title'=>__("Watermark possition"), 
+				'data-original-title'=>__("Watermark position"), 
 				))?> 
 			</div>
 		</div>
