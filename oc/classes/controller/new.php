@@ -111,7 +111,7 @@ class Controller_New extends Controller
 		//$_POST is submitted for a new ad 
 		if($this->request->post()) 
 		{
-			if(core::config('advertisement.captcha') == FALSE || captcha::check('publish_new')) 
+			if(freecaptcha::check('publish_new')) 
 			{		
 				//FORM DATA 
 				$seotitle = $new_ad->gen_seo_title($data['title']); 
