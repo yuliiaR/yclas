@@ -146,7 +146,7 @@
 							   href="<?=Route::url('default', array('controller'=>'ad', 
 							   									   'action'=>'img_delete', 
 							   									   'id'=>$ad->id_ad))?>" 
-							   rel"tooltip" 
+							   rel="tooltip" 
 							   title="<?=__('Delete image')?>">
 								<?=__('Delete')?>
 							</button>
