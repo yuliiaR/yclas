@@ -300,7 +300,7 @@ class Controller_New extends Controller
 				if($moderation == Model_Ad::PAYMENT_ON || $moderation == Model_Ad::PAYMENT_MODERATION)
 				{
 					$payment_order = new Model_Order();
-					$order_id = $payment_order->make_new_order($data, $usr, $seotitle);
+					$order_id = $payment_order->make_new_order($data, $user, $seotitle);
 
 					if($order_id == NULL)
 					{
