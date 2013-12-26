@@ -303,19 +303,25 @@ class Controller_New extends Controller
 					$order_id = $payment_order->make_new_order($data, $user, $seotitle);
 
 					if($order_id == NULL)
-					{
-						if($moderation == Model_Ad::PAYMENT_ON)
-						{
+                    {
+                        if($moderation == Model_Ad::PAYMENT_ON)
+                        {
 
-							$new_ad->status = 1;
-							$new_ad->published = Date::unix2mysql(time());
-							Alert::set(Alert::SUCCESS, __('Advertisement is published. Congratulations!'));	
-						}
-						if($moderation == Model_Ad::PAYMENT_MODERATION)
-							Alert::set(Alert::SUCCESS, __('Advertisement is created but needs to be validated first before it is published.'));
+                            $new_ad->status = 1;
+                            $new_ad->published = Date::unix2mysql(time());
+                            try 
+                            {
+                                $new_ad->save();
+                                Alert::set(Alert::SUCCESS, __('Advertisement is published. Congratulations!'));
+                            } catch (Exception $e) {
+                                throw new HTTP_Exception_500($e->getMessage());
+                            }        
+                        }
+                        if($moderation == Model_Ad::PAYMENT_MODERATION)
+                            Alert::set(Alert::SUCCESS, __('Advertisement is created but needs to be validated first before it is published.'));
 
-						$this->request->redirect(Route::url('default'));
-					}
+                        $this->request->redirect(Route::url('default'));
+                    }
 					// redirect to payment
         			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
 				}
