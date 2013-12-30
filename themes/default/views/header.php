@@ -67,12 +67,7 @@
                 <?nav_link('','rss', 'glyphicon glyphicon-signal ', 'index', 'rss')?>
             <?endif?>
             </ul>
-            <?= FORM::open(Route::url('search'), array('class'=>'navbar-form navbar-left', 'method'=>'GET', 'action'=>''))?>
-                <div class="form-group">
-                    <input type="text" name="search" class="search-query form-control" placeholder="<?=__('Search')?>">
-                </div>  
-            <?= FORM::close()?>
-    		
+            
             <div class="btn-group pull-right btn-header-group">
                 <?=View::factory('widget_login')?>
             

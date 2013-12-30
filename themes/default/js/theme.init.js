@@ -6,10 +6,10 @@ $(function(){
         resizeEnabled: "true"
     });
     
-    //sceditorBBCodePlugin for validation, updates iframe on keyup 
-    $( ".sceditor-container iframe" ).contents().find("body").keyup(function() {
-        $("textarea[name=description]").data("sceditor").updateTextareaValue();
-    });
+    //sceditorBBCodePlugin for validation, updates iframe on submit 
+$("button[name=submit]").click(function(){
+    $("textarea[name=description]").data("sceditor").updateTextareaValue();
+});
     
     if(!$("select").hasClass('disable-chosen')){
         $("select").chosen();   

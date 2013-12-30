@@ -17,7 +17,7 @@
                <!-- drop down selector -->
                 <div class="form-group">
                     
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                     <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?> 
                     <div class="accordion" >
 
@@ -31,7 +31,9 @@
                                        	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
                                         	<i class=" glyphicon glyphicon-plus glyphicon"></i> <?=$cats[$key]['name']?>
                                     	</a>
-                                    <input <?=($cats[$key]['seoname']==Core::get('category') OR Request::current()->post('category') == $cats[$key]['id'])?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required >
+                                    <?if(core::config('advertisement.parent_category')):?>
+                                    <input <?=($cats[$key]['seoname']==Core::get('category') OR Request::current()->post('category') == $cats[$key]['id'])?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
+                                    <?endif?>
                                     <?if ($cats[$key]['price']>0):?>
                                         <span class="label label-success">
                                         <?=i18n::money_format( $cats[$key]['price'])?>
