@@ -358,10 +358,12 @@ $succeed    = TRUE;
 
                             if ($values['result'] == FALSE)
                                 $msg .= $values['message'].'<br>';
+
+                                $color = $values['result']?'success':'important'; // http://getbootstrap.com/2.3.2/components.html#labels-badges
                         ?>
 
                             <li><i class="icon-<?php echo ($values['result'])?"ok":"remove"?>"></i> 
-                                <?php echo $name?>
+                            <?php printf ('<span class="label label-%s">%s</span>',$color,$name);?>
                             </li>
                         <?php endforeach?>
 
