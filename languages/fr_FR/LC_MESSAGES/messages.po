@@ -50,7 +50,7 @@ msgstr "Version mobile"
 
 #: String 9
 msgid "Publish new"
-msgstr "OK, Je publie mon annonce"
+msgstr "Publier une annonce"
 
 #: String 10
 msgid "Map"
@@ -130,11 +130,11 @@ msgstr "Envoyer un message"
 
 #: String 29
 msgid "Name"
-msgstr "Mon nom"
+msgstr "Nom"
 
 #: String 30
 msgid "Email"
-msgstr "Mon email"
+msgstr "Email"
 
 #: String 31
 msgid "Subject"
@@ -234,7 +234,7 @@ msgstr "Nouveau"
 
 #: String 55
 msgid "Category"
-msgstr "Catégorie où la publier"
+msgstr "Catégorie"
 
 #: String 56
 msgid "Location"
@@ -374,11 +374,11 @@ msgstr "spam"
 
 #: String 90
 msgid "Title"
-msgstr "Titre de mon annonce"
+msgstr "Titre"
 
 #: String 91
 msgid "Description"
-msgstr "Description de mon annonce"
+msgstr "Description"
 
 #: String 92
 msgid "Delete image"
@@ -386,7 +386,7 @@ msgstr "Supprimer l'image"
 
 #: String 93
 msgid "Images"
-msgstr "Image/Photo"
+msgstr "Images"
 
 #: String 94
 msgid "Phone"
@@ -394,11 +394,11 @@ msgstr "Téléphone"
 
 #: String 95
 msgid "Address"
-msgstr "Mon adresse"
+msgstr "Adresse"
 
 #: String 96
 msgid "Website"
-msgstr "Adresse de mon site ou blog"
+msgstr "Site"
 
 #: String 97
 msgid "Panel"
@@ -498,7 +498,7 @@ msgstr "Outils"
 
 #: String 121
 msgid "Updates"
-msgstr "Mises à jour"
+msgstr "Mises à jour"
 
 #: String 122
 msgid "Sitemap"
@@ -806,7 +806,7 @@ msgstr "Nom d'utilisateur"
 
 #: String 191
 msgid "Database name"
-msgstr "Nom de la base de données à utiliser"
+msgstr "Nom de la base à utiliser"
 
 #: String 192
 msgid "Database charset"
@@ -1508,7 +1508,7 @@ msgstr "Conditions d'utilisation"
 
 #: String 349
 msgid "User account will be created"
-msgstr "Un compte utilisateur sera automatiquement créé pour vous"
+msgstr "Un compte utilisateur sera créé"
 
 #: String 350
 msgid "Advanced Search"
@@ -1642,14 +1642,14 @@ msgstr "Nous l'apprécions vraiment"
 
 #: String 382
 msgid "Welcome to"
-msgstr "Bienvenue dans"
+msgstr "Installation d'"
 
 #: String 383
 msgid "installation"
-msgstr " "
+msgstr "! Bienvenue!"
 
 msgid "Welcome to %s installation"
-msgstr "Bienvenue dans l'installation d'%s"
+msgstr "Bienvenue dans l'installation de %s"
 
 #: String 384
 msgid "Welcome to the super easy and fast installation"
@@ -1695,13 +1695,11 @@ msgstr "Mot de passe de l'administrateur"
 
 #: String 394
 msgid "Sample data"
-msgstr "Créer des catégories de départ"
+msgstr "Insérer des données d'exemple"
 
 #: String 395
 msgid "Creates few sample categories to start with"
-msgstr ""
-"Crée une vingtaine de catégories, en anglais, telles que Emploi, Location, "
-"Langues, ..."
+msgstr "Créer quelques catégories d'exemple pour pouvoir commencer"
 
 #: String 396
 msgid "Hash Key"
@@ -1712,8 +1710,8 @@ msgid ""
 "You need the Hash Key to re-install. You can find this value if you lost it "
 "at"
 msgstr ""
-"Pour la réinstallation vous avez besoin de la clé de Hashage. Si vous l'avez "
-"perdue, vous pouvez trouver sa valeur dans le fichier suivant: "
+"Pour la réinstallation vous avez besoin de la clé de Hashage. Vous pouvez "
+"trouver sa valeur si vous l'avez perdue ici: "
 
 #: String 398
 msgid "Database Configuration"
@@ -2031,7 +2029,7 @@ msgstr "Succès"
 
 #: String 475
 msgid "New profile has been created. Welcome "
-msgstr "Le nouveau profil a été créé. Bienvenue "
+msgstr "Le nouveau profil a été créé. Bienvenu(e) "
 
 #: String 476
 msgid "Something went wrong with uploading pictures, please check format"
@@ -2061,13 +2059,11 @@ msgstr ""
 
 #: String 480
 msgid "Advertisement is posted. Congratulations!"
-msgstr "Votre annonce est publiée. Félicitations!"
+msgstr "L'annonce est publiée. Félicitations!"
 
 #: String 481
 msgid "Captcha is not correct"
-msgstr ""
-"Erreur dans le captcha. Veuillez entrer le nouveau code de vérification "
-"proposé."
+msgstr "Erreur dans le captcha"
 
 #: String 482
 msgid "We are working on our site, please visit later. Thanks"
