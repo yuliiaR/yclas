@@ -5,7 +5,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="<?=Route::url('default')?>"><?=core::config('general.site_name')?></a>
         </div>
-<?var_dump(Model_Category::get_category_count())?>
+
     	<?
         $cats = Model_Category::get_category_count();
         $loc_seoname = NULL;
