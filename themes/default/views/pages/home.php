@@ -34,6 +34,7 @@
 <div class='well row'>
     <h3><?=__("Categories")?></h3>
     <div class="col-md-12">
+    <?$i=0;?>
         <?foreach($categs as $c):?>
         <?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
         <div class="col-md-4">
