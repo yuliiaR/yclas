@@ -85,6 +85,7 @@ class Auth_Controller extends Controller
 			$this->template->scripts          = array();
 			$this->template->user 			  = Auth::instance()->get_user();
 
+
 			/**
 			 * custom options for the theme
 			 * @var array
@@ -147,6 +148,7 @@ class Auth_Controller extends Controller
                                                   'js/oc-panel/sidebar.js',
                                                   );
 	        }
+
 		}
 		
 		
