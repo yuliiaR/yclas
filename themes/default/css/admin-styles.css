@@ -1,4 +1,5 @@
-.ml-10{margin-left: 10px;}
+
+.mr-10{margin-right: 10px;}
 .widget-boxes{margin-right: 20px; }
 .sbp{cursor: pointer;}
 .hidden-phone .nav > li a:hover,.hidden-phone .nav > li.active a, .dropdown-sidebar.sbp.active a{border-right: 2px solid;}
@@ -25,7 +26,7 @@ li.sbp .caret{float: right;margin-top: 7px;}
 
 .ml-20{margin-left: 20px;}
 .edit_ad_form{margin-left: 150px;}
-
+.ml-10{margin-left: 10px!important;}
 /*bbcode style fix*/
 div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 .sceditor-button{padding: 0px 0px 0px 2px!important; width: 20px!important;}

@@ -7,7 +7,7 @@
 		<div class="form-group">
 			
 			<div class="col-xs-10">
-				<?= FORM::label('category_subscribe', __('Categories'), array('class'=>'control-label', 'for'=>'category_subscribe'))?>
+				<?= FORM::label('category_subscribe', __('Categories'), array('class'=>'', 'for'=>'category_subscribe'))?>
 				<select data-placeholder="<?=__('Categories')?>" name="category_subscribe[]" id="category_subscribe" class="form-control" multiple required>
 	            <option></option>
 	            <?function lili_subscribe($item, $key,$cats){?>
@@ -31,7 +31,7 @@
 	<?if(count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
 	    <div class="form-group">
 	        <div class="col-xs-10">
-	        	<?= FORM::label('location_subscribe', __('Location'), array('class'=>'control-label', 'for'=>'location_subscribe' ))?>
+	        	<?= FORM::label('location_subscribe', __('Location'), array('class'=>'', 'for'=>'location_subscribe' ))?>
 	            <select data-placeholder="<?=__('Location')?>" name="location_subscribe[]" id="location_subscribe" class="form-control" required>
 	            <option></option>
 	            <?function lolo_subscribe($item, $key,$locs){?>
@@ -53,7 +53,7 @@
 <?if($widget->user_email == NULL):?>
 	<div class="form-group">
 		<div class="col-xs-10">
-			<?= FORM::label('email_subscribe', __('Email'), array('class'=>'control-label', 'for'=>'email_subscribe'))?>
+			<?= FORM::label('email_subscribe', __('Email'), array('class'=>'', 'for'=>'email_subscribe'))?>
 			<?= FORM::input('email_subscribe', Request::current()->post('email_subscribe'), array('class'=>'form-control', 'id'=>'email_subscribe', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
 		</div>
 	</div>
@@ -68,7 +68,7 @@
 	<!-- slider -->
 	<div class="form-group">
 		<div class="col-xs-10">
-			<?= FORM::label('price_subscribe', __('Price'), array('class'=>'control-label', 'for'=>'price_subscribe'))?>
+			<?= FORM::label('price_subscribe', __('Price'), array('class'=>'', 'for'=>'price_subscribe'))?>
 			<input type="text" class="form-control slider_subscribe" value="<?=$widget->min_price?>,<?=$widget->max_price?>" 
 					data-slider-min='<?=$widget->min_price?>' data-slider-max="<?=$widget->max_price?>" 
 					data-slider-step="50" data-slider-value='[<?=$widget->min_price?>,<?=$widget->max_price?>]' 

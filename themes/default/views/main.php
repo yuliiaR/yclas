@@ -65,12 +65,17 @@
 	<?=$header?>
     <div class="container bs-docs-container">
         <div class="row">
-            
+     
             <div class="col-xs-9">
                 <?=Breadcrumbs::render('breadcrumbs')?>
                 <?=Alert::show()?>
                 <?=$content?>
             </div><!--/span-->
+            <?= FORM::open(Route::url('search'), array('class'=>'col-xs-3', 'method'=>'GET', 'action'=>''))?>
+                <div class="form-group">
+                    <input type="text" name="search" class="search-query form-control" placeholder="<?=__('Search')?>">
+                </div>  
+            <?= FORM::close()?>
             <?=View::fragment('sidebar_front','sidebar')?>
         </div><!--/row-->
         <?=$footer?>

@@ -49,9 +49,90 @@
 		</div>
 		<?= FORM::open(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal edit_ad_form', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
+				<?if(Auth::instance()->get_user()->id_role == 10):?>
+					<!-- drop down selector  CATEGORIES-->
+	                <div class="form-group">
+	                <div class="col-md-5">
+	                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?>
+	                    <div class="accordion" >
+	                    <?function lili3($item, $key, $cats){?>
+	                        <div class="accordion-group">
+	                            <div class="accordion-heading"> 
+	                                <?if (count($item)>0):?>
+	                                    <label class="radio">
+	                                        <a class="btn btn-primary btn-xs" data-toggle="collapse" type="button"  
+	                                                    data-target="#acc_<?=$cats['categories'][$key]['seoname']?>">                    
+	                                            <i class=" glyphicon glyphicon-plus"></i> <?=$cats['categories'][$key]['name']?>
+	                                        </a>
+	                                    <input <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':''?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required > 
+	                                    <?if ($cats['categories'][$key]['price']>0):?>
+	                                        <span class="label label-success">
+	                                        <?=i18n::money_format( $cats['categories'][$key]['price'])?>
+	                                        </span>
+	                                    <?endif?>
+	                                    </label>
+	                                <?else:?>
+	                                    <label class="radio">
+	                                    <input class="ml-10" <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'checked':''?> type="radio" id="radio_<?=$cats['categories'][$key]['seoname']?>" name="category" value="<?=$cats['categories'][$key]['id']?>" required > 
+	                                       	<a class="btn btn-xs btn-primary ml-10" data-toggle="collapse" type="button"  
+	                                            data-target="#acc_<?=$cats['categories'][$key]['seoname']?>">                    
+	                                    		<?=$cats['categories'][$key]['name']?>
+	                                        </a>
+	                                     <?if ($cats['categories'][$key]['price']>0):?>
+	                                        <span class="label label-success">
+	                                        <?=i18n::money_format( $cats['categories'][$key]['price'])?>
+	                                        </span>
+	                                    <?endif?>
+	                                    </label>
+	                                <?endif?>
+	                            </div>
+	                            <?if (count($item)>0):?>
+	                                <div id="acc_<?=$cats['categories'][$key]['seoname']?>" 
+	                                    class="accordion-body collapse <?=($cats['categories'][$key]['seoname']==$cats['cat_selected'])?'in':''?>">
+	                                    <div class="accordion-inner">
+	                                        <? if (is_array($item)) array_walk($item, 'lili3', $cats);?>
+	                                    </div>
+	                                </div>
+	                            <?endif?>
+	                        </div>
+	                    <?}array_walk($order_categories, 'lili3', array('categories'=>$categories, 'cat_selected'=>$ad->category->seoname) );?>
 
-				<span class="label label-primary" name="category" data-id="<?=$ad->category->id_category?>"><?=$ad->category->name?></span>
+	                    </div>
+					</div>
+	                </div>
+	                <!-- /categories -->
+					<!-- LOCATIONS -->
+	                <?if(core::config('advertisement.location') !== FALSE):?>
+	                <?if(count($locations) > 1):?>
+	                    <div class="form-group">
+	                        <div class="col-sm-4 col-xs-11">          
+	                        <?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
+	                            <select name="location" id="location" class="col" >
+	                            <option></option>
+	                            <?function lolo($item, $key,$locs){?>
 
+	                            <option value="<?=$key?>" class="<?=($key==$locs['loc_selected'])?'result-selected':''?>" <?=($key==$locs['loc_selected'])?'selected':''?>><?=$locs['locations'][$key]['name']?></option>
+	                                <?if (count($item)>0):?>
+	                                <optgroup label="<?=$locs['locations'][$key]['name']?>" >    
+	                                    <? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
+	                                    </optgroup>
+	                                <?endif?>
+	                            <?}array_walk($order_locations, 'lolo',array('locations'=>$locations, 'loc_selected'=>$ad->id_location));?>
+	                            </select>
+	                        </div>
+	                    </div>
+	                <?endif?>
+	                <?endif?>
+					<!-- /locations -->
+				<?else:?>
+
+					<span class="label label-primary" name="category" data-id="<?=$ad->category->id_category?>"><?=__('Category').' : '.$ad->category->name?></span>
+					<?if(core::config('advertisement.location') !== FALSE):?>
+		                <?if(count($locations) > 1):?>
+		                	<span class="label label-primary" name="location" data-id="<?=$ad->location->id_location?>"><?=__('Location').' : '.$ad->location->name?></span>
+		                <?endif?>
+	                <?endif?>
+				<?endif?>
 				<div class="form-group">
 					<div class="col-sm-4 col-xs-11">
 						<?= FORM::label('title', __('Title'), array('class'=>'control-label', 'for'=>'title'))?>

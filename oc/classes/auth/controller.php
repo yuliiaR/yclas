@@ -85,35 +85,70 @@ class Auth_Controller extends Controller
 			$this->template->scripts          = array();
 			$this->template->user 			  = Auth::instance()->get_user();
 
-            //other color
-            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
-            {
-                Theme::$styles               = array(                                  
-                                                'http://netdna.bootstrapcdn.com/bootswatch/3.0.0/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',
-                                                'http://cdn.jsdelivr.net/bootstrap/2.3.2/css/bootstrap-responsive.min.css' => 'screen',
-                                                'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
-                                                'http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
-                                                'css/admin-styles.css' => 'screen'
-                                                );
-            }
-            //default theme
-            else
-            {
-                Theme::$styles                    = array('http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css' => 'screen',
-                									// 'http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css' => 'screen',
-                                                    'http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
-                                                      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css'=>'screen',
-                                                      'css/admin-styles.css' => 'screen');
-            }
 
+			/**
+			 * custom options for the theme
+			 * @var array
+			 */
+			Theme::$options = Theme::get_options();
+			//we load earlier the theme since we need some info
+			Theme::load();
 
-            Theme::$scripts['footer']		  = array('http://code.jquery.com/jquery-1.10.2.min.js',	
-													  'js/jquery.sceditor.min.js',
-													  'http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js', 
-												      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
-                                                      'js/oc-panel/theme.init.js?v=2.1',
-                                                      'js/oc-panel/sidebar.js',
-                                                      );
+			if (Theme::get('cdn_files') == FALSE)
+			{
+				//other color
+	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
+	            {
+	                $theme_css = array('css/'.Theme::$skin.'-bootstrap.min.css' => 'screen',);
+	            }
+	            //default theme
+	            else
+	            {
+	                $theme_css = array('css/bootstrap.min.css' => 'screen');
+	            }
+
+            	$common_css = array('css/chosen.min.css' => 'screen', 
+                                    'css/jquery.sceditor.min.css' => 'screen',
+                                    'css/admin-styles.css' => 'screen');
+
+            	Theme::$styles = array_merge($theme_css,$common_css);
+
+	            Theme::$scripts['footer'] = array('js/jquery-1.10.2.js',	
+												  'js/jquery.sceditor.min.js',
+												  'js/bootstrap.min.js', 
+											      'js/chosen.jquery.min.js',
+                                                  'js/oc-panel/theme.init.js?v=2.1.1',
+                                                  'js/oc-panel/sidebar.js',
+                                                  );
+			}
+			else
+			{
+	            //other color
+	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
+	            {
+	                $theme_css = array('http://netdna.bootstrapcdn.com/bootswatch/3.0.3/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
+	            }
+	            //default theme
+	            else
+	            {
+	                $theme_css = array('http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css' => 'screen');
+	            }
+
+            	$common_css = array('http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
+                                    'http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
+                                    'css/admin-styles.css' => 'screen');
+
+            	Theme::$styles = array_merge($theme_css,$common_css);
+
+	            Theme::$scripts['footer'] = array('http://code.jquery.com/jquery-1.10.2.min.js',	
+												  'js/jquery.sceditor.min.js',
+												  'http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js', 
+											      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
+                                                  'js/oc-panel/theme.init.js?v=2.1.1',
+                                                  'js/oc-panel/sidebar.js',
+                                                  );
+	        }
+
 		}
 		
 		
