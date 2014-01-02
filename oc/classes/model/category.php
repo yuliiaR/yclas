@@ -207,7 +207,7 @@ class Model_Category extends ORM {
                 ->as_object()
                 ->cached()
                 ->execute();
-
+d(123);
         $cats_count = array();
         $parent_count = array();
 

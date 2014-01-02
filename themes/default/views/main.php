@@ -65,7 +65,7 @@
 	<?=$header?>
     <div class="container bs-docs-container">
         <div class="row">
-            
+     
             <div class="col-xs-9">
                 <?=Breadcrumbs::render('breadcrumbs')?>
                 <?=Alert::show()?>
