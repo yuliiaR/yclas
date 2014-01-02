@@ -309,20 +309,30 @@ $succeed    = TRUE;
   <body>
 
     <!--phpinfo Modal -->
-    <div id="phpinfoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-body">
-        <?php 
-        //getting the php info clean!
-        ob_start();                                                                                                        
-        phpinfo();                                                                                                     
-        $phpinfo = ob_get_contents();                                                                                         
-        ob_end_clean();  
-        //strip the body html                                                                                                  
-        $phpinfo = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
-        //adding our class
-        echo str_replace('<table', '<table class="table table-striped  table-bordered"', $phpinfo);
-        ?>
-      </div>
+  
+    <div id="phpinfoModal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <?php 
+                    //getting the php info clean!
+                    ob_start();                                                                                                        
+                    phpinfo();                                                                                                     
+                    $phpinfo = ob_get_contents();                                                                                         
+                    ob_end_clean();  
+                    //strip the body html                                                                                                  
+                    $phpinfo = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
+                    //adding our class
+                    echo str_replace('<table', '<table class="table table-striped  table-bordered"', $phpinfo);
+                    ?>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
     </div>
     <!--END phpinfo Modal -->
 
@@ -345,7 +355,7 @@ $succeed    = TRUE;
     <div class="container">
             <div class="row">
             
-            <div class="span3">
+            <div class="col-md-3">
                 <div class="well sidebar-nav">
                 
                     <ul class="nav nav-list">
@@ -393,7 +403,7 @@ $succeed    = TRUE;
             </div>
             <!--/span-->    
 
-<div class="span9">
+<div class="col-md-9">
 <?php if ($_POST && $succeed):?>
     <?php
         //theres post, download latest version, unzip and rediret to install

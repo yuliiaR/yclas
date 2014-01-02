@@ -57,20 +57,29 @@ include 'install.php';
   <body>
 
     <!--phpinfo Modal -->
-    <div id="phpinfoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-body">
-        <?php 
-        //getting the php info clean!
-        ob_start();                                                                                                        
-        phpinfo();                                                                                                     
-        $phpinfo = ob_get_contents();                                                                                         
-        ob_end_clean();  
-        //strip the body html                                                                                                  
-        $phpinfo = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
-        //adding our class
-        echo str_replace('<table', '<table class="table table-striped  table-bordered"', $phpinfo);
-        ?>
-      </div>
+    <div id="phpinfoModal" tabindex="-1" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <?php 
+                    //getting the php info clean!
+                    ob_start();                                                                                                        
+                    phpinfo();                                                                                                     
+                    $phpinfo = ob_get_contents();                                                                                         
+                    ob_end_clean();  
+                    //strip the body html                                                                                                  
+                    $phpinfo = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
+                    //adding our class
+                    echo str_replace('<table', '<table class="table table-striped  table-bordered"', $phpinfo);
+                    ?>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
     </div>
     <!--END phpinfo Modal -->
 
@@ -157,7 +166,7 @@ include 'install.php';
         <?php hostingAd()?>
     <?php elseif($install==TRUE):?>
         <div class="alert alert-success"><?php echo __('Congratulations');?></div>
-        <div class="hero-unit">
+        <div class="jumbotron">
             <h1><?php echo __('Installation done');?></h1>
             <p>
                 <?php echo __('Please now erase the folder');?> <code>/install/</code><br>
@@ -376,12 +385,12 @@ include 'install.php';
     <script type="text/javascript">
     $(function  () {
         $('.modal').css({
-          'width': function () { 
-            return ($(document).width() * .7) + 'px';  
-          },
-          'margin-left': function () { 
-            return -($(this).width() / 2); 
-          },
+          // 'width': function () { 
+          //   return ($(document).width() * .7) + 'px';  
+          // },
+          // 'margin-left': function () { 
+          //   return -($(this).width() / 2); 
+          // },
           //'max-height': '800px';
         });
     })
