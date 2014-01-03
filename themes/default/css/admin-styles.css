@@ -14,6 +14,27 @@
 li.sbp .caret{float: right;margin-top: 7px;}
 .thumbnails{list-style: none;}
 
+/*Sidebar*/
+
+.respon-left-panel {
+    min-width: 316px;
+    padding-right: 0px;
+    background-color: #f5f5f5;
+    -moz-transition: left .1s ease-out;
+-ms-transition: left .1s ease-out;
+-o-transition: left .1s ease-out;
+-webkit-transition: left .1s ease-out;
+transition: left .1s ease-out;
+
+}
+.left-mobile-sidebar{
+	display: block!important;
+	max-width: 300px;
+}
+.miniclose{
+
+}
+
 .submenu {display: none; list-style: none;}
 .submenu.active{display: block;}
 .submenu li.active a{text-decoration: underline; font-weight:bold;}
@@ -33,7 +54,7 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 .sceditor-button, .sceditor-button div{margin-top: 3px!important;}
 
 @media screen and (max-width: 989px) {
-	.navbar .nav{float: left;}
+	.navbar .nav{float: left!important;}
 	.hidden-phone{margin-top: 65px;}
 	.hidden-phone div ul{display: none;}
 	.hidden-phone div ul.active{display: block;}

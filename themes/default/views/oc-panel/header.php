@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
-    <div class="container">
+    <div class="">
         <div class="navbar-header">        </div> 
 
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#mobile-menu-panel">
@@ -56,5 +56,5 @@
                     </li>
                 </ul>
             </div> <!--/.nav-collapse -->
-    </div><!--/.container -->
+    </div><!--/. -->
 </header><!--/.navbar -->

@@ -66,11 +66,11 @@
 
   <body>
 	<?=$header?>
-    <div class="container bs-docs-container">
-	    <div class="row">
+    <div class=" bs-docs-nav">
+
 	    
 		<?=View::factory('oc-panel/sidebar',array('user'=>$user))?>
-			<div class="col-md-9 col-sm-12 col-xs-12">
+			<div class="col-md-8 col-sm-8 col-xs-8">
 				<?=Breadcrumbs::render('oc-panel/breadcrumbs')?>      
 				<?=Alert::show()?>
                 <?if (!isset($_COOKIE['donation_alert'])  AND Theme::get('premium')!=1):?>
@@ -92,9 +92,9 @@
 				<?=$content?>
 	    	</div><!--/span--> 
 	    	
-		</div><!--/row-->
+    <div class="clearfix"></div>
 		<?=$footer?>
-    </div><!--/.fluid-container-->
+    </div><!--/.fluid--->
 
 	<?=Theme::scripts($scripts,'footer','default')?>
 

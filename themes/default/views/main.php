@@ -63,7 +63,7 @@
     <?endif?>
 
 	<?=$header?>
-    <div class="container bs-docs-container">
+    <div class=" bs-docs-container">
         <div class="row">
      
             <div class="col-xs-9">
