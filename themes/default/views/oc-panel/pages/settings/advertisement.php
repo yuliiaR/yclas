@@ -86,7 +86,7 @@
                     'placeholder' => $forms['related']['value'], 
                     'class' => 'tips form-control ', 
                     'id' => $forms['related']['key'],
-                    'data-content'=> __("You can choose if tehres random ads displayed at the advertisement"),
+                    'data-content'=> __("You can choose if tehres random related ads displayed at the advertisement"),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
