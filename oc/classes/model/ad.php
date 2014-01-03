@@ -594,6 +594,7 @@ class Model_Ad extends ORM {
                 ->or_where('id_location','=',$this->id_location)
                 ->where_close()
                 ->where('id_ad','!=',$this->id_ad)
+                ->where('status','=',self::STATUS_PUBLISHED)
                 ->limit(core::config('advertisement.related'))
                 ->order_by(DB::expr('RAND()'))
                 ->find_all();
