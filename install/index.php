@@ -45,78 +45,56 @@ include 'install.php';
       .sidebar-nav {
         padding: 9px 0;
       }
-      #myTab{margin-bottom: 10px;}
-      .inst-btn{margin-top: 8px;}
     </style>
-    
+        
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 
-    <link href="themes/default/css/bootstrap.min.css" rel="stylesheet">
-
-    </head>
+  </head>
 
   <body>
 
     <!--phpinfo Modal -->
-    <div id="phpinfoModal" tabindex="-1" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <?php 
-                    //getting the php info clean!
-                    ob_start();                                                                                                        
-                    phpinfo();                                                                                                     
-                    $phpinfo = ob_get_contents();                                                                                         
-                    ob_end_clean();  
-                    //strip the body html                                                                                                  
-                    $phpinfo = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
-                    //adding our class
-                    echo str_replace('<table', '<table class="table table-striped  table-bordered"', $phpinfo);
-                    ?>
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
+    <div id="phpinfoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-body">
+        <?php 
+        //getting the php info clean!
+        ob_start();                                                                                                        
+        @phpinfo();                                                                                                     
+        $phpinfo = ob_get_contents();                                                                                         
+        ob_end_clean();  
+        //strip the body html                                                                                                  
+        $phpinfo = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
+        //adding our class
+        echo str_replace('<table', '<table class="table table-striped  table-bordered"', $phpinfo);
+        ?>
+      </div>
     </div>
     <!--END phpinfo Modal -->
 
-    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
-        <div class="container">
-            <div class="navbar-header">
-              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand">Open Classifieds <?php echo __("Installation")?></a>
-            </div>
 
-            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-                <div class="nav-collapse">
+    <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+    <div class="container"><a class="brand">Open Classifieds <?php echo __("Installation")?></a>
+    <div class="nav-collapse">
 
-                    <div class="btn-group pull-right inst-btn">
-                        <a class="btn btn-primary" href="http://open-classifieds.com/market/">
-                            <i class="glyphicon-shopping-cart glyphicon"></i> We install it for you, Buy now!
-                        </a>
-                    </div>
+    <div class="btn-group pull-right">
+        <a class="btn btn-primary" href="http://open-classifieds.com/market/">
+            <i class="icon-shopping-cart icon-white"></i> We install it for you, Buy now!
+        </a>
+    </div>
 
-                </div>
-            </nav>
-        </div>
-    </header>
-   
+    </div>
+    <!--/.nav-collapse --></div>
+    </div>
+    </div>    
     <div class="container">
-        <div class="row">
+            <div class="row">
             
-            <div class="col-md-3">
+            <div class="span3">
                 <div class="well sidebar-nav">
                 
                     <ul class="nav nav-list">
-                        <li class="nav-header"><?php echo __("Requirements")?> <?php echo VERSION?></li>
+                        <li class="nav-header"><?php echo __("Requirements")?> OC v.<?php echo VERSION?></li>
                         <li class="divider"></li>
                         
                         <?php foreach ($checks as $name => $values):
@@ -125,10 +103,12 @@ include 'install.php';
 
                             if ($values['result'] == FALSE)
                                 $msg .= $values['message'].'<br>';
+
+                            $color = ($values['result'])?'success':'important';
                         ?>
 
-                            <li><i class="glyphicon glyphicon-<?php echo ($values['result'])?"ok":"remove"?>"></i> 
-                                <?php echo $name?>
+                            <li><i class="icon-<?php echo ($values['result'])?"ok":"remove"?>"></i> 
+                                <?php printf ('<span class="label label-%s">%s</span>',$color,$name);?>    
                             </li>
                         <?php endforeach?>
 
@@ -158,15 +138,15 @@ include 'install.php';
             </div>
             <!--/span-->    
 
-<div class="col-md-9">
+<div class="span9">
 <?php if ($_POST && $succeed):?>
 
     <?php if (!$install && !empty($error_msg)):?>
-         <div class="alert alert-danger"><?php echo $error_msg?></div>
+         <div class="alert alert-error"><?php echo $error_msg?></div>
         <?php hostingAd()?>
     <?php elseif($install==TRUE):?>
         <div class="alert alert-success"><?php echo __('Congratulations');?></div>
-        <div class="jumbotron">
+        <div class="hero-unit">
             <h1><?php echo __('Installation done');?></h1>
             <p>
                 <?php echo __('Please now erase the folder');?> <code>/install/</code><br>
@@ -197,24 +177,23 @@ include 'install.php';
     <div class="alert alert-warning"><?php echo $msg?></div>
 <?php hostingAd();}?>
 
-<form method="post" action="" class="well form-horizontal">
+<form method="post" action="" class="well" >
 <fieldset>
 
 <h2><?php echo __('Site Configuration')?></h2>
 
-<div class="form-group">
-    
-    <div class="col-md-6">
+<div class="control-group">
     <label class="control-label"><?php echo __("Site Language")?></label>
-        <select class="form-control" name="LANGUAGE" onchange="window.location.href='?LANGUAGE='+this.options[this.selectedIndex].value">
+    <div class="controls">
+       <select name="LANGUAGE" onchange="window.location.href='?LANGUAGE='+this.options[this.selectedIndex].value">
             <?php 
             $languages = scandir("languages");
-            foreach ($languages as $lang) {
-                
-                if( strpos($lang,'.')==false && $lang!='.' && $lang!='..' ){
-                    if ($lang==$locale_language)  $sel= "selected=selected";
-                    else $sel = "";
-                    echo "<option $sel value=\"$lang\">$lang</option>";
+            foreach ($languages as $lang) 
+            {    
+                if( strpos($lang,'.')==false && $lang!='.' && $lang!='..' )
+                {
+                    $sel = ($lang==$locale_language) ? ' selected="selected"' : '';
+                    echo "<option$sel value=\"$lang\">$lang</option>";
                 }
             }
             ?>
@@ -222,26 +201,23 @@ include 'install.php';
     </div>
 </div>
 
-<div class="form-group">
-    
-    <div class="col-md-6">
+<div class="control-group">
     <label class="control-label"><?php echo __("Site URL");?>:</label>
-    <input  type="text" size="75" name="SITE_URL" value="<?php echo cP('SITE_NAME',$suggest_url)?>"  class="form-control" />
+    <div class="controls">
+    <input  type="text" size="75" name="SITE_URL" value="<?php echo cP('SITE_NAME',$suggest_url)?>"  class="span6" />
     </div>
 </div>
 
-<div class="form-group">
-    
-    <div class="col-md-6">
+<div class="control-group">
     <label class="control-label"><?php echo __("Site Name")?>:</label>
-    <input  type="text" name="SITE_NAME" placeholder="<?php echo __("Site Name")?>" value="<?php echo cP('SITE_NAME')?>" class="form-control" />
+    <div class="controls">
+    <input  type="text" name="SITE_NAME" placeholder="<?php echo __("Site Name")?>" value="<?php echo cP('SITE_NAME')?>" class="span6" />
     </div>
 </div>
 
-<div class="form-group">
-    
-    <div class="col-md-6">
+<div class="control-group">
     <label class="control-label"><?php echo __("Time Zone")?>:</label>
+    <div class="controls">
     <?php echo get_select_timezones('TIMEZONE',cP('TIMEZONE',date_default_timezone_get()))?>
     </div>
 </div>
@@ -255,35 +231,32 @@ include 'install.php';
 <div class="tab-content">
 
     <div class="tab-pane active" id="install">
-        <div class="form-group">
-            
-            <div class="col-md-6">
+        <div class="control-group">
             <label class="control-label"><?php echo __("Administrator email")?>:</label>
-                <input type="text" name="ADMIN_EMAIL" value="<?php echo cP('ADMIN_EMAIL')?>" placeholder="your@email.com" class="form-control" />
+            <div class="controls">
+                <input type="text" name="ADMIN_EMAIL" value="<?php echo cP('ADMIN_EMAIL')?>" placeholder="your@email.com" class="span6" />
             </div>
         </div>
 
-        <div class="form-group">
-            
-            <div class="col-md-6">
+        <div class="control-group">
             <label class="control-label"><?php echo __("Admin Password")?>:</label>
-                <input type="text" name="ADMIN_PWD" value="<?php echo cP('ADMIN_PWD')?>" class="form-control" />   
+            <div class="controls">
+                <input type="text" name="ADMIN_PWD" value="<?php echo cP('ADMIN_PWD')?>" class="span6" />   
             </div>
         </div>
 
-        <div class="checkbox">
-            <label><input type="checkbox" name="SAMPLE_DB" checked /><?php echo __("Sample data")?></label>
+        <div class="control-group">
+            <label class="checkbox"><input type="checkbox" name="SAMPLE_DB" checked /><?php echo __("Sample data")?></label>
             <span class="help-block"><?php echo __("Creates few sample categories to start with")?></span>
         </div>
         
     </div>
 
     <div class="tab-pane" id="upgrade">
-        <div class="form-group">
-            
-            <div class="col-md-6">
+        <div class="control-group">
             <label class="control-label"><?php echo __("Hash Key")?>:</label>
-                <input type="text" name="HASH_KEY" value="<?php echo cP('HASH_KEY')?>" class="form-control" />   
+            <div class="controls">
+                <input type="text" name="HASH_KEY" value="<?php echo cP('HASH_KEY')?>" class="span6" />   
                 <span class="help-block"><?php echo __('You need the Hash Key to re-install. You can find this value if you lost it at')?> <code>/oc/config/auth.php</code></span>
             </div>
         </div>
@@ -294,51 +267,45 @@ include 'install.php';
 
 <h2><?php echo __('Database Configuration')?></h2>
 
-<div class="form-group">
-    
-    <div class="col-md-6">
+<div class="control-group">
     <label class="control-label"><?php echo __("Host name")?>:</label>
-    <input  type="text" name="DB_HOST" value="<?php echo cP('DB_HOST','localhost')?>" class="form-control"  />
+    <div class="controls">
+    <input  type="text" name="DB_HOST" value="<?php echo cP('DB_HOST','localhost')?>" class="span6"  />
     </div>
 </div>
 
-<div class="form-group">
-    
-    <div class="col-md-6">
+<div class="control-group">
     <label class="control-label"><?php echo __("User name")?>:</label>
-    <input  type="text" name="DB_USER"  value="<?php echo cP('DB_USER','root')?>" class="form-control"   />
+    <div class="controls">
+    <input  type="text" name="DB_USER"  value="<?php echo cP('DB_USER','root')?>" class="span6"   />
     </div>
 </div>
 
-<div class="form-group">
-    
-    <div class="col-md-6">
+<div class="control-group">
     <label class="control-label"><?php echo __("Password")?>:</label>
-    <input type="text" name="DB_PASS" value="<?php echo cP('DB_PASS')?>" class="form-control" />        
+    <div class="controls">
+    <input type="text" name="DB_PASS" value="<?php echo cP('DB_PASS')?>" class="span6" />       
     </div>
 </div>
 
-<div class="form-group">
-    
-    <div class="col-md-6">
+<div class="control-group">
     <label class="control-label"><?php echo __("Database name")?>:</label>
-    <input type="text" name="DB_NAME" value="<?php echo cP('DB_NAME','openclassifieds')?>"  class="form-control"  />
+    <div class="controls">
+    <input type="text" name="DB_NAME" value="<?php echo cP('DB_NAME','openclassifieds')?>"  class="span6"  />
     </div>
 </div>
 
-<div class="form-group">
-    
-    <div class="col-md-6">
+<div class="control-group">
     <label class="control-label"><?php echo __("Database charset")?>:</label>
-    <input type="text" name="DB_CHARSET" value="<?php echo cP('DB_CHARSET','utf8')?>"  class="form-control"   />
+    <div class="controls">
+    <input type="text" name="DB_CHARSET" value="<?php echo cP('DB_CHARSET','utf8')?>"  class="span3"   />
     </div>
 </div>
 
-<div class="form-group">
-    
-    <div class="col-md-6">
+<div class="control-group">
     <label class="control-label"><?php echo __("Table prefix")?>:</label>
-    <input type="text" name="TABLE_PREFIX" value="<?php echo cP('TABLE_PREFIX','oc2_')?>" class="form-control" />
+    <div class="controls">
+    <input type="text" name="TABLE_PREFIX" value="<?php echo cP('TABLE_PREFIX','oc2_')?>" class="text-medium" />
     <span class="help-block"><?php echo __("Allows multiple installations in one database if you give each one a unique prefix")?>. <?php echo __("Only numbers, letters, and underscores")?>.</span>
     </div>
 </div>
@@ -348,11 +315,11 @@ include 'install.php';
 
     <input type="submit" name="action" id="submit" value="<?php echo __("Install")?>" class="btn btn-primary btn-large" />
     <hr>
-    <div class="checkbox">
-        <label>
+    <div class="control-group">
+        <label class="checkbox">
             <input type="checkbox" name="OCAKU" checked />
             <?php echo __("Ocacu classifieds community registration")?> <a target="_blank" href="http://ocacu.com/en/terms.html">
-                <?php echo __('Terms')?></a>
+            <br><?php echo __('Terms')?></a>
         </label>
     </div>
 </div>
@@ -362,7 +329,7 @@ include 'install.php';
 
 <?php else:?>
 
-    <div class="alert alert-danger"><?php echo $msg?></div>
+    <div class="alert alert-error"><?php echo $msg?></div>
     <?php hostingAd()?>
 
 <?php endif?>
@@ -379,18 +346,18 @@ include 'install.php';
 
 </div><!--/.fluid-container-->
     
-    <script type="text/javascript" src="themes/default/js/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="themes/default/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
     $(function  () {
         $('.modal').css({
-          // 'width': function () { 
-          //   return ($(document).width() * .7) + 'px';  
-          // },
-          // 'margin-left': function () { 
-          //   return -($(this).width() / 2); 
-          // },
+          'width': function () { 
+            return ($(document).width() * .7) + 'px';  
+          },
+          'margin-left': function () { 
+            return -($(this).width() / 2); 
+          },
           //'max-height': '800px';
         });
     })
