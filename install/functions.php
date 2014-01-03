@@ -477,7 +477,7 @@ function generate_password ($length = 16)
 /**
  * cleans an string of spaces etc
  * @param  string $s 
- * @return string    
+ * @return string    clean
  */
 function slug($s) 
 {

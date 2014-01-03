@@ -61,6 +61,7 @@ if ($_POST AND $succeed)
 	//save DB config/database.php
 	if ($install)
 	{
+        //clean prefix
         $_POST['TABLE_PREFIX'] = slug($_POST['TABLE_PREFIX']);
 		$search  = array('[DB_HOST]', '[DB_USER]','[DB_PASS]','[DB_NAME]','[TABLE_PREFIX]','[DB_CHARSET]');
 		$replace = array($_POST['DB_HOST'], $_POST['DB_USER'], $_POST['DB_PASS'],$_POST['DB_NAME'],$_POST['TABLE_PREFIX'],$_POST['DB_CHARSET']);
