@@ -91,13 +91,13 @@
 				</li>
 			<?endif?>
             <div class="divider"></div>
-			<?if (Theme::get('premium')!=1):?>
+			<?if (Theme::get('premium')!=1 AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN):?>
     			<li><a href="http://open-classifieds.com/?utm_source=<?=URL::base()?>&utm_medium=oc_sidebar&utm_campaign=<?=date('Y-m-d')?>">Open Classifieds</a></li>   
     			<li class="ml-10"><script type="text/javascript">if (typeof geoip_city!="function")document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://j.maxmind.com/app/geoip.js\"></scr"+"ipt>");
                     document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://api.adserum.com/sync.js?a=6&f=3&w=200&h=200\"></scr"+"ipt>");
                     </script>
                 </li>
-    			
+    			<a href="http://open-classifieds.com/2013/08/19/can-i-remove-license/"><?=__('How to remove this')?>?</a>
                 <li class="ml-10"><a href="https://twitter.com/openclassifieds"
                     onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);"
                     class="twitter-follow-button" data-show-count="false"
