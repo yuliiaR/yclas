@@ -252,20 +252,25 @@ class Controller_Panel_Update extends Auth_Controller {
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
 
-        //call update actions 203,205,206,207 
-
-        $this->action_203();
-        $this->action_205();
-        $this->action_206();
-        $this->action_207();
-
-        //clean cache
-        Cache::instance()->delete_all();
-        Theme::delete_minified();
-            
-        Alert::set(Alert::SUCCESS, __('Updated'));
-        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
+        
     }
+
+    /**
+     * This function will upgrate DB that didn't existed in verisons below 2.1
+     */
+    public function action_211()
+    {
+      // build array with new (missing) configs
+        $configs = array(array('config_key'     =>'related',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>'5'),
+                         );
+
+        // returns TRUE if some config is saved 
+        $return_conf = Model_Config::config_array($configs); 
+    }
+
+
 
     /**
      * This function will upgrate DB that didn't existed in verisons below 2.0.6
@@ -332,7 +337,23 @@ class Controller_Panel_Update extends Auth_Controller {
           
         //delete file when all finished
         File::delete($update_src_dir);
-        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>str_replace('.', '', $version))));
+        //$this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>str_replace('.', '', $version))));
+        
+        //call update actions 203,205,206,207, 21, 211
+
+        $this->action_203();
+        $this->action_205();
+        $this->action_206();
+        $this->action_207();
+        $this->action_21();
+        $this->action_211();
+
+        //clean cache
+        Cache::instance()->delete_all();
+        Theme::delete_minified();
+            
+        Alert::set(Alert::SUCCESS, __('Updated'));
+        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
 
     }
 

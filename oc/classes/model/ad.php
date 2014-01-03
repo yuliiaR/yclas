@@ -579,4 +579,30 @@ class Model_Ad extends ORM {
         return FALSE;
     }
 
+
+
+    public function related()
+    {
+        if($this->loaded())
+        {
+            if (core::config('advertisement.related')>0 )
+            {
+                $ads = new self();
+                $ads = $ads
+                ->where_open()
+                ->or_where('id_category','=',$this->id_category)
+                ->or_where('id_location','=',$this->id_location)
+                ->where_close()
+                ->where('id_ad','!=',$this->id_ad)
+                ->limit(core::config('advertisement.related'))
+                ->order_by(DB::expr('RAND()'))
+                ->find_all();
+
+                return View::factory('pages/ad/related',array('ads'=>$ads))->render();
+            }
+        }
+    
+        return FALSE;
+    }
+
 } // END Model_ad
