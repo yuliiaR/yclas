@@ -268,6 +268,22 @@ class Controller_Panel_Update extends Auth_Controller {
 
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs); 
+
+        //call update actions 203,205,206,207, 21, 211
+
+        $this->action_203();
+        $this->action_205();
+        $this->action_206();
+        $this->action_207();
+        $this->action_21();
+        $this->action_211();
+
+        //clean cache
+        Cache::instance()->delete_all();
+        Theme::delete_minified();
+            
+        Alert::set(Alert::SUCCESS, __('Updated'));
+        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
     }
 
 
@@ -337,24 +353,8 @@ class Controller_Panel_Update extends Auth_Controller {
           
         //delete file when all finished
         File::delete($update_src_dir);
-        //$this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>str_replace('.', '', $version))));
+        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>str_replace('.', '', $version))));
         
-        //call update actions 203,205,206,207, 21, 211
-
-        $this->action_203();
-        $this->action_205();
-        $this->action_206();
-        $this->action_207();
-        $this->action_21();
-        $this->action_211();
-
-        //clean cache
-        Cache::instance()->delete_all();
-        Theme::delete_minified();
-            
-        Alert::set(Alert::SUCCESS, __('Updated'));
-        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
-
     }
 
     
