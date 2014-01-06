@@ -264,6 +264,12 @@ class Controller_Panel_Update extends Auth_Controller {
         $configs = array(array('config_key'     =>'related',
                                'group_name'     =>'advertisement', 
                                'config_value'   =>'5'),
+                        array('config_key'     =>'faq',
+                               'group_name'     =>'general', 
+                               'config_value'   =>'0'), 
+                         array('config_key'     =>'faq_disqus',
+                               'group_name'     =>'general', 
+                               'config_value'   =>''),
                          );
 
         // returns TRUE if some config is saved 
@@ -276,7 +282,6 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->action_206();
         $this->action_207();
         $this->action_21();
-        $this->action_211();
 
         //clean cache
         Cache::instance()->delete_all();

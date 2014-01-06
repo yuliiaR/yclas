@@ -72,6 +72,19 @@ class Sitemap {
                 $sitemap->addUrl($url, date('c',Date::mysql2unix($page->created)),  'monthly',    '0.5');
             }
 
+            //FAQ CMS 
+            if (core::config('general.faq')==1)
+            {
+                $pages =  new Model_Content();
+                $pages = $pages->select('seotitle')->where('type','=','help')->where('status','=','1')->find_all();
+                $sitemap->addUrl(Route::url('faq'), date('c'),  'monthly',    '0.5');
+                foreach($pages as $page)
+                {
+                    $url = Route::url('faq',  array('seotitle'=>$page->seotitle));
+                    $sitemap->addUrl($url, date('c',Date::mysql2unix($page->created)),  'monthly',    '0.5');
+                }
+            }
+
             //locations
             $locs = new Model_Location();
             $locs = $locs->select('seoname')->where('id_location','!=',1)->find_all();

@@ -60,6 +60,9 @@
                 <?if (core::config('general.blog')==1):?>
                     <?nav_link(__('Blog'),'blog','','index','blog')?>
                 <?endif?>
+                <?if (core::config('general.faq')==1):?>
+                    <?nav_link(__('FAQ'),'faq','glyphicon glyphicon-question-sign','index','faq')?>
+                <?endif?>
                 <?nav_link('','ad', 'glyphicon glyphicon-search ', 'advanced_search', 'search')?>
                 <?if (core::config('advertisement.map')==1):?>
                     <?nav_link('','map', 'glyphicon glyphicon-globe ', 'index', 'map')?>

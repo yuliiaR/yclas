@@ -448,6 +448,36 @@
                     ))?> 
                 </div>
             </div>
+        <div class="form-group">
+            <?= FORM::label($forms['faq']['key'], __("Activates FAQ"), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::select($forms['faq']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['faq']['value'], array(
+                'placeholder' => "TRUE or FALSE", 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['faq']['key'], 
+                'data-content'=> __("Once set to TRUE, enables FAQ"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Activates FAQ"),
+                ))?> 
+            </div>
+        </div>
+        <div class="form-group">
+                <?= FORM::label($forms['faq_disqus']['key'], __('Disqus for FAQ'), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq_disqus']['key']))?>
+                <div class="col-sm-4">
+                    <?= FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
+                    'placeholder' => "", 
+                    'class' => 'tips form-control input-sm', 
+                    'id' => $forms['faq_disqus']['key'], 
+                    'data-content'=> __("Disqus for FAQ Comments"),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-original-title'=>__("You need to write your disqus ID to enable the service."),
+                    ))?> 
+                </div>
+            </div>
 		
          <div class="form-group">
             <?= FORM::label($forms['minify']['key'], __("Minify CSS/JS"), array('class'=>'control-label col-sm-3', 'for'=>$forms['minify']['key']))?>
