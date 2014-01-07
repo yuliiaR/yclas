@@ -18,12 +18,14 @@
 </div>
 
 
-<ol class='plholder col-md-6' id="ol_1" data-id="1">
+<ol class='plholder' id="ol_1" data-id="1">
 <?if (is_array($fields)):?>
 <?foreach($fields as $name=>$field):?>
     <li data-id="<?=$name?>" id="<?=$name?>"><i class="glyphicon   glyphicon-move"></i> 
         <?=$name?>        
         <span class="label label-info "><?=$field['type']?></span>
+        <span class="label label-info "><?=($field['searchable'])?__('searchable'):NULL?></span>
+        <span class="label label-info "><?=($field['required'])?__('required'):NULL?></span>
 
         <a data-text="<?=__('Are you sure you want to delete? All data contained in this field will be deleted.')?>" 
            data-id="li_<?=$name?>" 

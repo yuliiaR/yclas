@@ -126,10 +126,12 @@
 					<!-- /locations -->
 				<?else:?>
 
-					<span class="label label-primary" name="category" data-id="<?=$ad->category->id_category?>"><?=__('Category').' : '.$ad->category->name?></span>
+					<span class="label label-primary"  data-id="<?=$ad->category->id_category?>"><?=__('Category').' : '.$ad->category->name?></span>
+					<input type="hidden" name="category" value="<?=$ad->category->id_category?>">
 					<?if(core::config('advertisement.location') !== FALSE):?>
 		                <?if(count($locations) > 1):?>
-		                	<span class="label label-primary" name="location" data-id="<?=$ad->location->id_location?>"><?=__('Location').' : '.$ad->location->name?></span>
+		                	<span class="label label-primary"  data-id="<?=$ad->location->id_location?>"><?=__('Location').' : '.$ad->location->name?></span>
+		                	<input type="hidden" name="location" value="<?=$ad->category->id_location?>">
 		                <?endif?>
 	                <?endif?>
 				<?endif?>

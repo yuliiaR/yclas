@@ -437,7 +437,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
 								'title' 		=> $title 		= 	Model_Ad::banned_words(core::post('title')),
 								'seotitle' 		=> $seotitle 	= 	core::post('title'),
-								//'cat'			=> $category 	= 	core::post('category'),
+								'cat'			=> $category 	= 	core::post('category'),
 								'loc'			=> $loc 		= 	core::post('location'),
 								'description'	=> $description = 	Model_Ad::banned_words(core::post('description')),
 								'price'			=> $price 		= 	floatval(str_replace(',', '.', core::post('price'))),
@@ -483,14 +483,13 @@ class Controller_Panel_Profile extends Auth_Controller {
 				 
 				$form->title 			= $data['title'];
 				$form->id_location 		= $data['loc'];
-				//$form->id_category 		= $data['cat'];
+				$form->id_category 		= $data['cat'];
 				$form->description 		= $data['description'];
 				// $form->status 			= $data['status'];	
 				$form->price 			= $data['price']; 								
 				$form->address 			= $data['address'];
 				$form->website 			= $data['website'];
 				$form->phone			= $data['phone']; 
-
 				// set custom values
 				foreach ($data as $key => $value) 
 	            {
