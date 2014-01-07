@@ -79,6 +79,21 @@
 					))?> 
 				</div>
 			</div>
+            <div class="form-group">
+                <?= FORM::label($forms['related']['key'], __('Related ads'), array('class'=>'control-label col-sm-3', 'for'=>$forms['related']['key']))?>
+                <div class="col-sm-4">
+                    <?= FORM::input($forms['related']['key'], $forms['related']['value'], array(
+                    'placeholder' => $forms['related']['value'], 
+                    'class' => 'tips form-control ', 
+                    'id' => $forms['related']['key'],
+                    'data-content'=> __("You can choose if tehres random related ads displayed at the advertisement"),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-original-title'=>__("Related ads"), 
+                    ))?> 
+                </div>
+            </div>
 			<div class="form-group">
 				<?= FORM::label($forms['address']['key'], __('Address'), array('class'=>'control-label col-sm-3', 'for'=>$forms['address']['key']))?>
 				<div class="col-sm-4">

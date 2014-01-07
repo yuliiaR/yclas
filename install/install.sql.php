@@ -420,6 +420,7 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('advertisement', 'banned_words', ''),
 ('advertisement', 'fields', ''),
 ('advertisement', 'parent_category', 0),
+('advertisement', 'related', 5),
 ('email', 'notify_email', '".$_POST['ADMIN_EMAIL']."'),
 ('email', 'smtp_active', 0),
 ('email', 'new_ad_notify', 0),

@@ -26,6 +26,9 @@
             <?endif?>
             <?Theme::admin_link(__('Page'), 'content','list?type=page&locale_select='.core::config('i18n.locale'),'oc-panel','glyphicon  glyphicon-file')?>
             <?Theme::admin_link(__('Email'), 'content','list?type=email&locale_select='.core::config('i18n.locale'),'oc-panel','glyphicon  glyphicon-envelope')?>
+            <?if (core::config('general.faq')==1):?>
+                <?Theme::admin_link(__('FAQ'), 'content','list?type=help&locale_select='.core::config('i18n.locale'),'oc-panel','glyphicon glyphicon-question-sign')?>
+            <?endif?>
             <?Theme::admin_link(__('Translations'), 'translations','index','oc-panel','glyphicon  glyphicon-globe')?>
             <?Theme::admin_link(__('Newsletters'), 'newsletter','index','oc-panel','glyphicon  glyphicon-envelope')?>
 

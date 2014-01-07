@@ -116,6 +116,15 @@ Route::set('blog', 'blog(/<seotitle>.html)')
 ));
 
 /**
+ * FAQ
+ */
+Route::set('faq', 'faq(/<seotitle>.html)')
+->defaults(array(
+        'controller' => 'faq',    
+        'action'     => 'index',
+));
+
+/**
  * Item / ad view (public)
  */
 Route::set('ad', '<category>/<seotitle>.html')

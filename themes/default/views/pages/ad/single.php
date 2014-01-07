@@ -155,6 +155,7 @@
         <?endif?>
 
         <?=$ad->map()?>
+        <?=$ad->related()?>
 
 	<?endif?>
 	<!-- modal-gallery is the modal dialog used for the image gallery -->
