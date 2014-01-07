@@ -307,7 +307,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['banned_words']['key'], __('Baned Words'), array('class'=>'control-label col-sm-3', 'for'=>$forms['banned_words']['key']))?>
+				<?= FORM::label($forms['banned_words']['key'], __('Banned words'), array('class'=>'control-label col-sm-3', 'for'=>$forms['banned_words']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::input($forms['banned_words']['key'], $forms['banned_words']['value'], array(
 					'placeholder' => "word1,word2,word3", 
@@ -322,7 +322,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['banned_words_replacement']['key'], __('Baned Words Replacement'), array('class'=>'control-label col-sm-3', 'for'=>$forms['banned_words_replacement']['key']))?>
+				<?= FORM::label($forms['banned_words_replacement']['key'], __('Banned words replacement'), array('class'=>'control-label col-sm-3', 'for'=>$forms['banned_words_replacement']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::input($forms['banned_words_replacement']['key'], $forms['banned_words_replacement']['value'], array(
 					'placeholder' => "xxx", 
