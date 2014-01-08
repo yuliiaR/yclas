@@ -1,4 +1,4 @@
-
+.full-w{width: auto}
 .mr-10{margin-right: 10px;}
 .widget-boxes{margin-right: 20px; }
 .sbp{cursor: pointer;}
@@ -15,24 +15,46 @@ li.sbp .caret{float: right;margin-top: 7px;}
 .thumbnails{list-style: none;}
 
 /*Sidebar*/
-
+i.pos {
+	padding: 10px;
+}
 .respon-left-panel {
-    min-width: 316px;
-    padding-right: 0px;
-    background-color: #f5f5f5;
+    margin-top: -7px;
+    width: 235px;
+    padding: 0px;
+    background-color: #222;
     -moz-transition: left .1s ease-out;
--ms-transition: left .1s ease-out;
--o-transition: left .1s ease-out;
--webkit-transition: left .1s ease-out;
-transition: left .1s ease-out;
-
+	-ms-transition: left .1s ease-out;
+	-o-transition: left .1s ease-out;
+	-webkit-transition: left .1s ease-out;
+	transition: left .1s ease-out;
+}
+.side-ul li a:hover {
+	background-color: #222!important;
+}
+.respon-left-panel li a {
+	color: #999;
+}
+.respon-left-panel li a:hover {
+	color: #fff;
 }
 .left-mobile-sidebar{
 	display: block!important;
 	max-width: 300px;
 }
+
 .miniclose{
 
+}
+/*colapsable sidebar*/
+.sidebar-nav .nav.nav-list.side-ul.hide{
+
+}
+.respones-colapse{
+	width: 70px!important;
+	height: 100% !important;
+	min-width: 50px;
+	float: left;
 }
 
 .submenu {display: none; list-style: none;}
@@ -53,18 +75,17 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 .sceditor-button{padding: 0px 0px 0px 2px!important; width: 20px!important;}
 .sceditor-button, .sceditor-button div{margin-top: 3px!important;}
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 979px) {
 	.navbar .nav{float: left!important;}
-	.hidden-phone{margin-top: 65px;}
-	.hidden-phone div ul{display: none;}
-	.hidden-phone div ul.active{display: block;}
 	.btn-sidebar-menu{display: block; margin-left: 10px;}
+	div.bs-docs-nav{margin-top: 57px;}
 }
 
 @media screen and (max-width: 769px) {
-	.hidden-phone{display: block!important;}
 	.edit_ad_form{margin-left: 0px;}
+	.respon-left-panel{width: 150px;position: relative;max-width: 150px;float: left;}
 }
 @media screen and (max-width: 480px) {
+	.main{width: auto; padding: 10px 0px 0px 0px;}
 	.admin-table-user{display: none;}
 }

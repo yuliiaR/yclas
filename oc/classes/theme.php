@@ -522,7 +522,7 @@ class Theme {
                                                     'action'=>$action))?>">
                     <?if($icon!==NULL)?>
                         <i class="<?=$icon?>"></i>
-                    <?=$name?>
+                    <span class="side-name-link"><?=$name?></span>
                 </a>
             </li>
         <?

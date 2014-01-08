@@ -3,7 +3,7 @@
     <div class="">
         <div class="navbar-header">        </div> 
 
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#mobile-menu-panel">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="mobile_header_btn">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

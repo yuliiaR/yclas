@@ -7,9 +7,10 @@
     <p><?=__('You can change the look and feel of your website here.')?><a href="http://open-classifieds.com/2013/08/21/how-to-change-theme/" target="_blank"><?=__('Read more')?></a></p>
 </div>
 <!-- end install themeform -->
-<div class=" col-md-7 col-sm-10 col-xs-10">
+<div class=" col-md-7 col-sm-12 col-xs-12">
     <?if ($scr = Theme::get_theme_screenshot(Theme::$theme))?>
             <img class="media-object pull-left" width="150px" height="100px" src="<?=$scr?>">
+            <div class="clearfix"></div>
     <div class="media-body">
         <h4 class="media-heading"><?=$selected['Name']?></h4>
         <p>
@@ -37,7 +38,7 @@
 </div>
 <!-- install theme form -->
 <?= FORM::open(Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
-<div class="well col-md-5 col-sm-10 col-xs-10">
+<div class="well col-md-5 col-sm-10 col-xs-12">
     <span class="label label-info"><?=__('Install theme')?></span><p><?=__('To install new theme choose zip file.')?></p>
     
     <div class="controll-group">
@@ -58,7 +59,7 @@
 foreach ($themes as $theme=>$info):?>
     <?if(Theme::$theme!==$theme):?>
     <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
-    <div class="col-md-4 col-sm-4">
+    <div class="col-md-4 col-sm-4 col-xs-12">
         <div class="thumbnail ">
             <?if ($scr = Theme::get_theme_screenshot($theme)):?>
                 <img width="300px" height="200px" src="<?=$scr?>">
