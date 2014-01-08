@@ -1,8 +1,8 @@
-.full-w{width: auto}
+.ml-c{margin-left: 100px;}
 .mr-10{margin-right: 10px;}
 .widget-boxes{margin-right: 20px; }
 .sbp{cursor: pointer;}
-.hidden-phone .nav > li a:hover,.hidden-phone .nav > li.active a, .dropdown-sidebar.sbp.active a{border-right: 2px solid;}
+/*.hidden-phone .nav > li a:hover,.hidden-phone .nav > li.active a, .dropdown-sidebar.sbp.active a{border-right: 2px solid;}*/
 .hidden-phone .nav > li > a {padding: 6px 15px;}
 .thumbnail {margin-right: 20px; margin-bottom: 20px;}
 .divider{border: 1px solid #e3e3e3;margin-top: 10px;margin-bottom: 10px;}
@@ -13,14 +13,32 @@
 .navbar-toggle{margin-left: 20px;}
 li.sbp .caret{float: right;margin-top: 7px;}
 .thumbnails{list-style: none;}
+.mobile-head-menu{display: none;}
+/*MAIN CONTENT*/
+.main{
+	
+	margin-left: 210px;
+	position: relative;
+}
+/*HEADER*/
+.header-container{padding: 0px 20px 0px 0px;}
+.navbar-nav li:hover{border-bottom: 3px solid #46b8da;}
 
 /*Sidebar*/
+.btn-colapse-sidebar{cursor: pointer;}
+.side-ul li.active{border-right: 3px solid #46b8da;}
+.side-ul li:hover{border-right: 3px solid #46b8da;}
+
+li.sbp.active{border-right: none;}
+li.sbp:hover{border-right: none;}
+
 i.pos {
-	padding: 10px;
+	padding: 0px 0px 0px 10px;
 }
 .respon-left-panel {
     margin-top: -7px;
-    width: 235px;
+    position: absolute;
+    width: 198px;
     padding: 0px;
     background-color: #222;
     -moz-transition: left .1s ease-out;
@@ -52,7 +70,6 @@ i.pos {
 }
 .respones-colapse{
 	width: 70px!important;
-	height: 100% !important;
 	min-width: 50px;
 	float: left;
 }
@@ -82,8 +99,22 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 }
 
 @media screen and (max-width: 769px) {
+	.main{margin-left: auto;float: left;}
 	.edit_ad_form{margin-left: 0px;}
-	.respon-left-panel{width: 150px;position: relative;max-width: 150px;float: left;}
+	.respon-left-panel{position: absolute;}
+	.mobile-head-menu{display: block;}
+	.mobile-head-menu-item{
+	    float: left;
+	    background: #222;
+	    padding: 7px 2px 6px 5px;
+	    margin: -8px 0px 0px 5px;
+	
+	}
+	.mobile-head-menu-item.open ul.dropdown-menu{
+    position: absolute;
+    background: #222;
+}
+	.mobile-head-menu-item.open a{background-color: #222!important;}
 }
 @media screen and (max-width: 480px) {
 	.main{width: auto; padding: 10px 0px 0px 0px;}

@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
-    <div class="">
+    <div class="header-container">
         <div class="navbar-header">        </div> 
 
             <button class="navbar-toggle" type="button" data-toggle="collapse" id="mobile_header_btn">
@@ -14,6 +14,14 @@
             <div class="btn-group pull-right ml-20">
                 <?=View::factory('oc-panel/widget_login')?>
             </div>
+            
+            <ul class="nav navbar-nav mobile-head-menu">
+                <li class="mobile-head-menu-item">
+                    <a href="">
+                        <i class="glyphicon glyphicon-gift"></i>
+                    </a>
+                </li>  
+            </ul>
 
             <div class="navbar-collapse collapse" id="mobile-menu-panel">
                 <ul class="nav navbar-nav">

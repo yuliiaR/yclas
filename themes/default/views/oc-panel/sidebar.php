@@ -91,6 +91,12 @@
 				</li>
 			<?endif?>
             <div class="divider"></div>
+            <li>
+                <a  class=" btn-colapse-sidebar"><i class="glyphicon glyphicon-circle-arrow-left"></i>
+                <span class="side-name-link"><?=__('Collapse menu')?></span>
+                </a>
+                
+            </li>
 			<?if (Theme::get('premium')!=1 AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN):?>
     			<li class="no-prem"><a href="http://open-classifieds.com/?utm_source=<?=URL::base()?>&utm_medium=oc_sidebar&utm_campaign=<?=date('Y-m-d')?>"><span class="side-name-link">Open Classifieds</span></a></li>   
     			<li class="no-prem ml-10"><script type="text/javascript">if (typeof geoip_city!="function")document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://j.maxmind.com/app/geoip.js\"></scr"+"ipt>");
@@ -104,12 +110,6 @@
                     data-size="large">Follow @openclassifieds</a><br />
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
 			<?endif?>
-            <li>
-                <a  class=" btn-colapse-sidebar"><i class="glyphicon glyphicon-circle-arrow-left"></i>
-                <span class="side-name-link"><?=__('Collapse menu')?></span>
-                </a>
-                
-            </li>
 		</ul>
 	</div>
 	<!--/.well -->
