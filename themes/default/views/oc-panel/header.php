@@ -31,10 +31,11 @@
                         <a href="#" class="dropdown-toggle"
             		      data-toggle="dropdown"><i class="glyphicon glyphicon-plus"></i> <?=__('New')?> <b class="caret"></b></a>
                     	<ul class="dropdown-menu">
-                            <?=Theme::admin_link(__('Blog post'),'blog','create')?>
                             <?=Theme::admin_link(__('Category'),'category','create')?>
                             <?=Theme::admin_link(__('Location'),'location','create')?>
-                            <?=Theme::admin_link(__('Page'),'content','create')?>
+                            <?=Theme::admin_link(__('Blog post'),'blog','create')?>
+                            <?=Theme::admin_link(__('FAQ'),'faq','create')?>
+                            <?=Theme::admin_link(__('Page'), 'content','create?type=page&locale_select='.core::config('i18n.locale'),'oc-panel')?>
                     		<li class="divider"></li>
                     		<li><a href="<?=Route::url('post_new')?>">
                     			<i class="glyphicon  glyphicon-pencil"></i> <?=__('Publish new')?></a>	</li>
