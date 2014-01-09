@@ -89,46 +89,46 @@ class Text extends Kohana_Text {
                                  '<a href="mailto: $1">$1</a>',
                                  '<a href="mailto: $1">$2</a>',
                                  '<img src="$1" alt="$1" />',
-                                 '<img src="$1" alt="$2" />',
+                                 '<img src="$2" alt="$1" />',
                                  '<code>$2</code>',
                                  '<iframe width="560" height="315" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
                                  '<iframe width="560" height="315" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
                                  '<font face="$1">$2</font>'
         );
 
-	/**
-	 *
-	 * This function parses BBcode tag to HTML code (XHTML transitional 1.0)
-	 *
-	 * It parses (only if it is in valid format e.g. an email must to be
-	 * as example@example.ext or similar) the text with BBcode and
-	 * translates in the relative html code.
-	 *
-	 * @param string $text
-	 * @param boolean $advanced his var describes if the parser run in advanced mode (only *simple* bbcode is parsed).
-	 * @return string
-	 */
-	public static function bb2html($text,$advanced=FALSE)
+    /**
+     *
+     * This function parses BBcode tag to HTML code (XHTML transitional 1.0)
+     *
+     * It parses (only if it is in valid format e.g. an email must to be
+     * as example@example.ext or similar) the text with BBcode and
+     * translates in the relative html code.
+     *
+     * @param string $text
+     * @param boolean $advanced his var describes if the parser run in advanced mode (only *simple* bbcode is parsed).
+     * @return string
+     */
+    public static function bb2html($text,$advanced=FALSE)
     {
 
-		//special chars
-		$text  = htmlspecialchars($text, ENT_QUOTES, Kohana::$charset);
+        //special chars
+        $text  = htmlspecialchars($text, ENT_QUOTES, Kohana::$charset);
 
-		/**
-		 *
-		 * Parses basic bbcode, used str_replace since seems to be the fastest
-		 */
-		$text = str_replace(self::$basic_bbcode, self::$basic_html, $text);
+        /**
+         *
+         * Parses basic bbcode, used str_replace since seems to be the fastest
+         */
+        $text = str_replace(self::$basic_bbcode, self::$basic_html, $text);
 
-		//advanced BBCODE
-		if ($advanced)
-		{
-			$text = preg_replace(self::$advanced_bbcode, self::$advanced_html, $text);
-		}
+        //advanced BBCODE
+        if ($advanced)
+        {
+            $text = preg_replace(self::$advanced_bbcode, self::$advanced_html, $text);
+        }
        
-		//before return convert line breaks to HTML
-		return Text::nl2br($text);
-	}
+        //before return convert line breaks to HTML
+        return Text::nl2br($text);
+    }
 
     /**
      * html 2 bbcode basic, usage for migration tool
@@ -152,25 +152,25 @@ class Text extends Kohana_Text {
         return strip_tags($text);
     }
 
-	/**
-	 *
-	 * removes bbcode from text
-	 * @param string $text
-	 * @return string text cleaned
-	 */
-	public static function removebbcode($text)
-	{
-		return strip_tags(str_replace(array('[',']'), array('<','>'), $text));
-	}
+    /**
+     *
+     * removes bbcode from text
+     * @param string $text
+     * @return string text cleaned
+     */
+    public static function removebbcode($text)
+    {
+        return strip_tags(str_replace(array('[',']'), array('<','>'), $text));
+    }
 
-	/**
-	 *
-	 * Inserts HTML line breaks before all newlines in a string
-	 * @param string $var
-	 */
-	public static function nl2br($var)
-	{
-		return str_replace(array('\\r\\n','\r\\n','r\\n','\r\n', '\n', '\r'), '<br />', nl2br($var));
-	}
+    /**
+     *
+     * Inserts HTML line breaks before all newlines in a string
+     * @param string $var
+     */
+    public static function nl2br($var)
+    {
+        return str_replace(array('\\r\\n','\r\\n','r\\n','\r\n', '\n', '\r'), '<br />', nl2br($var));
+    }
 
 }
