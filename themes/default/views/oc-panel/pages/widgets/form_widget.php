@@ -9,7 +9,7 @@
     </button>
 </div> 
 <?else:?>
-    <li class="liholder" id="<?=$widget->id_name()?>"><i class="glyphicon   glyphicon-move"></i>  <?=$widget->title()?> <span class="muted"><?=$widget->title?></span>
+    <li class="liholder" id="<?=$widget->id_name()?>"><i class="glyphicon glyphicon-move"></i>  <?=$widget->title()?> <span class="muted"><?=$widget->title?></span>
         <button class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#modal_<?=$widget->id_name()?>" type="button"><?=__('Edit')?></button>
     </li>
 <?endif?>

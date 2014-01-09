@@ -53,7 +53,7 @@ function colapse_sidebar(event){
 		$('.nav.nav-list.side-ul').removeClass('active').addClass('colapsed');
 		$('.nav.nav-list.side-ul').closest('aside').addClass('respones-colapse');
 		$('.dropdown-sidebar.sbp').addClass('mini-col');
-		$('.main').css('padding-left','90px');
+		$('.main').css('padding-left','70px');
 		$('.no-prem').hide(); // hide adverts
 	}
 	else

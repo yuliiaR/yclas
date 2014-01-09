@@ -35,7 +35,7 @@ li.sbp.active{border-right: none;}
 li.sbp:hover{border-right: none;}
 
 i.pos {
-	padding: 0px 0px 0px 10px;
+	padding: 0px 0px 0px 1px;
 }
 .respon-left-panel {
 	z-index: 1;
@@ -67,12 +67,54 @@ i.pos {
 .miniclose{
 
 }
+/*WIDGET VIEW*/
+body.dragging, body.dragging * {
+          cursor: move !important;
+        }
+        .dragged {
+            position: absolute;
+            top: 0;
+            opacity: .5;
+            z-index: 2000;
+        }
+
+        ul.plholder li.liholder{
+            cursor: move !important;
+            display: block;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #CCC;
+            color: white;
+            background: gray;
+            width: 90%;
+        }
+    
+        ul.plholder li.placeholder{
+            position: relative;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        ul.plholder li.placeholder:before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            margin-top: -5px;
+            left: -5px;
+            top: -4px;
+            border: 5px solid transparent;
+            border-left-color: red;
+            border-right: none;
+            color: red;
+        }
 /*colapsable sidebar*/
 .sidebar-nav .nav.nav-list.side-ul.hide{
 
 }
 .respones-colapse{
-	width: 70px!important;
+	width: 50px!important;
 	min-width: 50px;
 	float: left;
 }
@@ -81,7 +123,7 @@ i.pos {
 .submenu.active{display: block;}
 .submenu li.active a{text-decoration: underline; font-weight:bold;}
 .submenu li a{border-right: 0px !important;}
-.mini-col .submenu.active{ position: absolute;top: 7px;left: 21px; border: 1px solid #e3e3e3; background: #fff; padding: 4px 0px 3px 2px;margin-left: 47px; min-width: 155px; border-radius: 0px 5px 5px 0px;}
+.mini-col .submenu.active{ position: absolute;top: 7px;left: 1px; border: 1px solid #e3e3e3; background: #fff; padding: 4px 0px 3px 2px;margin-left: 47px; min-width: 155px; border-radius: 0px 5px 5px 0px;}
 .mini-col .submenu.active li {
     /* min-width: 155px; */
     padding-right: 50px;
