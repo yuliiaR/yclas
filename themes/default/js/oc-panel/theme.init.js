@@ -4,7 +4,7 @@ $(function (){
     
     $('#formorm_description, textarea[name=description]').sceditorBBCodePlugin({
         toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
-        "bulletlist,orderedlist|link,unlink|source",
+        "bulletlist,orderedlist|link,unlink,image,youtube|source",
         resizeEnabled: "true"});
     
     $('.tips').popover();
