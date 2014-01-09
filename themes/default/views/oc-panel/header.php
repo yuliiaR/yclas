@@ -34,7 +34,7 @@
                             <?=Theme::admin_link(__('Category'),'category','create')?>
                             <?=Theme::admin_link(__('Location'),'location','create')?>
                             <?=Theme::admin_link(__('Blog post'),'blog','create')?>
-                            <?=Theme::admin_link(__('FAQ'),'faq','create')?>
+                            <?=Theme::admin_link(__('FAQ'),'content','create?type=help&locale_select='.core::config('i18n.locale'),'oc-panel')?>
                             <?=Theme::admin_link(__('Page'), 'content','create?type=page&locale_select='.core::config('i18n.locale'),'oc-panel')?>
                     		<li class="divider"></li>
                     		<li><a href="<?=Route::url('post_new')?>">
