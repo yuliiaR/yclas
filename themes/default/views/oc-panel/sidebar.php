@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<aside class="col-md-1 col-sm-1 col-xs-1 respon-left-panel ">
+<aside class="col-md-1 col-sm-1 col-xs-1 respon-left-panel well">
     
     <div class="sidebar-nav">
         

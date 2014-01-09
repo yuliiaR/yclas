@@ -6,7 +6,7 @@
 .hidden-phone .nav > li > a {padding: 6px 15px;}
 .thumbnail {margin-right: 20px; margin-bottom: 20px;}
 .divider{border: 1px solid #e3e3e3;margin-top: 10px;margin-bottom: 10px;}
-.well{background-color: #f5f5f5; background-image:none; }
+
 .edit-image{margin-bottom: 20px;}
 .index-delete{margin-top: 10px;}
 .js .collapsed{display: block !important;}
@@ -15,10 +15,12 @@ li.sbp .caret{float: right;margin-top: 7px;}
 .thumbnails{list-style: none;}
 .mobile-head-menu{display: none;}
 /*MAIN CONTENT*/
+.bs-docs-nav{
+}
 .main{
-	
-	margin-left: 210px;
+	padding-left: 205px;
 	position: relative;
+	min-height: 950px;
 }
 /*HEADER*/
 .header-container{padding: 0px 20px 0px 0px;}
@@ -36,11 +38,12 @@ i.pos {
 	padding: 0px 0px 0px 10px;
 }
 .respon-left-panel {
-    margin-top: -7px;
-    position: absolute;
-    width: 198px;
+	z-index: 1;
+	position: absolute;
+    margin-top: -15px;
+    min-width: 185px;
     padding: 0px;
-    background-color: #222;
+    background-color: inherit;
     -moz-transition: left .1s ease-out;
 	-ms-transition: left .1s ease-out;
 	-o-transition: left .1s ease-out;
@@ -48,13 +51,13 @@ i.pos {
 	transition: left .1s ease-out;
 }
 .side-ul li a:hover {
-	background-color: #222!important;
+	background-color: inherit;
 }
 .respon-left-panel li a {
-	color: #999;
+	color:#000;
 }
 .respon-left-panel li a:hover {
-	color: #fff;
+	color:#000;
 }
 .left-mobile-sidebar{
 	display: block!important;
@@ -78,6 +81,11 @@ i.pos {
 .submenu.active{display: block;}
 .submenu li.active a{text-decoration: underline; font-weight:bold;}
 .submenu li a{border-right: 0px !important;}
+.mini-col .submenu.active{ position: absolute;top: 7px;left: 21px; border: 1px solid #e3e3e3; background: #fff; padding: 4px 0px 3px 2px;margin-left: 47px; min-width: 155px; border-radius: 0px 5px 5px 0px;}
+.mini-col .submenu.active li {
+    /* min-width: 155px; */
+    padding-right: 50px;
+}
 .btn-sidebar-menu{display: none;}
 .dropdown-toggle i{margin-right: 5px;}
 
@@ -91,23 +99,25 @@ i.pos {
 div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 .sceditor-button{padding: 0px 0px 0px 2px!important; width: 20px!important;}
 .sceditor-button, .sceditor-button div{margin-top: 3px!important;}
-
+/*col-md*/
 @media screen and (max-width: 979px) {
 	.navbar .nav{float: left!important;}
 	.btn-sidebar-menu{display: block; margin-left: 10px;}
-	div.bs-docs-nav{margin-top: 57px;}
+	div.bs-docs-nav{margin-top: 57px;min-height: 935px;overflow: hidden;}
 }
-
-@media screen and (max-width: 769px) {
-	.main{margin-left: auto;float: left;}
+/*col-sm*/
+@media screen and (max-width: 769px) { 
+	.main{
+    padding-left: 15px;
+}
 	.edit_ad_form{margin-left: 0px;}
 	.respon-left-panel{position: absolute;}
 	.mobile-head-menu{display: block;}
 	.mobile-head-menu-item{
 	    float: left;
 	    background: #222;
-	    padding: 7px 2px 6px 5px;
-	    margin: -8px 0px 0px 5px;
+	    padding: 7px 2px 4px 5px;
+	    margin: -10px 0px 0px 5px;
 	
 	}
 	.mobile-head-menu-item.open ul.dropdown-menu{
@@ -117,6 +127,6 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 	.mobile-head-menu-item.open a{background-color: #222!important;}
 }
 @media screen and (max-width: 480px) {
-	.main{width: auto; padding: 10px 0px 0px 0px;}
+	.main{ }
 	.admin-table-user{display: none;}
 }

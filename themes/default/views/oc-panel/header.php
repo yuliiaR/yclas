@@ -15,14 +15,6 @@
                 <?=View::factory('oc-panel/widget_login')?>
             </div>
             
-            <ul class="nav navbar-nav mobile-head-menu">
-                <li class="mobile-head-menu-item">
-                    <a href="">
-                        <i class="glyphicon glyphicon-gift"></i>
-                    </a>
-                </li>  
-            </ul>
-
             <div class="navbar-collapse collapse" id="mobile-menu-panel">
                 <ul class="nav navbar-nav">
                     <?=Theme::admin_link(__('Market'), 'market','index','oc-panel','glyphicon glyphicon-gift')?>

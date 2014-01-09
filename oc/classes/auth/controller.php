@@ -99,7 +99,7 @@ class Auth_Controller extends Controller
 				//other color
 	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
 	            {
-	                $theme_css = array('css/'.Theme::$skin.'-bootstrap.min.css' => 'screen',);
+	                $theme_css = array('css/'.Theme::get('admin_theme').'-bootstrap.min.css' => 'screen',);
 	            }
 	            //default theme
 	            else
