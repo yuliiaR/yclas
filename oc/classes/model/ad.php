@@ -596,7 +596,7 @@ class Model_Ad extends ORM {
                 ->where('id_ad','!=',$this->id_ad)
                 ->where('status','=',self::STATUS_PUBLISHED)
                 ->limit(core::config('advertisement.related'))
-                ->order_by(DB::expr('RAND()'))
+                //->order_by(DB::expr('RAND()'))
                 ->find_all();
 
                 return View::factory('pages/ad/related',array('ads'=>$ads))->render();
