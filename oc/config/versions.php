@@ -4,7 +4,7 @@
   array (
     'codename' => 'Damascus',
     'released' => '2014-01-10',
-    'blog' => 'http://open-classifieds.com/2014/01/10/new-release-op…ssifieds-2-1-1/',
+    'blog' => 'http://open-classifieds.com/2014/01/10/new-release-open-classifieds-2-1-1/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.1.1',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=14&state=closed',
     'download' => 'http://j.mp/oc_211',
