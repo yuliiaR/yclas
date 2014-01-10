@@ -1,7 +1,3 @@
-/**
- * [MODERATION / ADVERT. selectbox script]
- * 
- */
 var href = $('.sel_url_to_redirect').attr('href');
 
 var last_str = href.substr(href.lastIndexOf('/') );
