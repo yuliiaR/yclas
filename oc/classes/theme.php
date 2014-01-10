@@ -519,7 +519,7 @@ class Theme {
             <li <?=(Request::current()->controller()==$controller 
                     && Request::current()->action()==$action)?'class="active"':''?> >
                 <a href="<?=Route::url($route,array('controller'=>$controller,
-                                                    'action'=>$action))?>">
+                                                    'action'=>$action))?>" title="<?=$name?>">
                     <?if($icon!==NULL)?>
                         <i class="<?=$icon?>"></i>
                     <span class="side-name-link"><?=$name?></span>

@@ -8,7 +8,7 @@
 		
         <ul class="nav nav-list side-ul active">
 			<?//Theme::admin_link(__('Market'), 'market','index','oc-panel','glyphicon glyphicon-gift')?>
-            <?Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','glyphicon glyphicon-th-large')?>
+            <?Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','glyphicon glyphicon-align-right')?>
             <? if(core::config('general.moderation') == 1 OR // moderation on  
                   core::config('general.moderation') == 4 OR // email confiramtion with moderation
                   core::config('general.moderation') == 5):  // payment with moderation?>

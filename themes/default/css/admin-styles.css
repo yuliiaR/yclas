@@ -87,7 +87,7 @@ li.sbp:hover{border-right: none;}
     margin-top: -15px;
     min-width: 185px;
     padding: 0px;
-    background-color: inherit;
+    /*background-color: inherit;*/
     -moz-transition: left .1s ease-out;
 	-ms-transition: left .1s ease-out;
 	-o-transition: left .1s ease-out;
