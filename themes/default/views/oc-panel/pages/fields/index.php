@@ -11,7 +11,7 @@
         </p>
     <?endif?>
 
-    <a target='_blank' href='http://open-classifieds.com/2013/10/11/how-to-create-custom-fields/'><?=__('Advertisement Custom Fields')?></a>
+    <a target='_blank' href='http://open-classifieds.com/2013/10/13/how-to-create-custom-fields/'><?=__('Advertisement Custom Fields')?></a>
     <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">
         <?=__('New field')?>
     </a>
