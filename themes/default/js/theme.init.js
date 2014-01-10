@@ -31,6 +31,7 @@ $("button[name=submit]").click(function(){
     $(window).load(function(){
         $('#accept_terms_modal').modal('show');
     });
+    if (!navigator.onLine) $('.off-line').show();
 
 });
 
