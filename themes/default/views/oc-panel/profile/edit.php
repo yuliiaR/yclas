@@ -18,11 +18,8 @@
 						<?= FORM::input('email', $user->email, array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
 					</div>
 				</div>
-				
 
-				<div class="form-actions">
-					<?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))))?>
-				</div>
+				<button type="submit" class="btn btn-primary"><?=__('Update')?></button>
 		<?= FORM::close()?>
 	</div>
 	<!--/span-->
@@ -53,10 +50,8 @@
               </div>
               
               
-              	<a href="<?=Route::url('oc-panel')?>" class="btn btn-default"><?=__('Cancel')?></a>
-                <button type="submit" class="btn btn-primary"><?=__('Send')?></button>
+                <button type="submit" class="btn btn-primary"><?=__('Update')?></button>
               
-              <?=Form::CSRF()?>
     	</form>
     </div><!--end col-md-10-->
 
@@ -76,8 +71,7 @@
               </div>  
             </div>
             
-                <a href="<?=Route::url('oc-panel')?>" class="btn btn-default"><?=__('Cancel')?></a>
-                <button type="submit" class="btn btn-primary"><?=__('Send')?></button>
+                <button type="submit" class="btn btn-primary"><?=__('Update')?></button>
               
       </form>
     </div><!--end col-md-10-->
