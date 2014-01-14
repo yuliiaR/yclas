@@ -60,9 +60,15 @@
         <h1><?=__('Profile picture')?></h1>
       </div>
       
+      <div class="row">
+    <div class="col-md-3">
+        <a class="thumbnail">
+            <img src="<?=$user->get_profile_image()?>" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
+        </a>
+    </div>
+</div>
       <form class="well form-horizontal" enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">         
               <?=Form::errors()?>  
-              
             
             <div class="form-group">
               <?= FORM::label('profile_img', __('Profile picture'), array('class'=>'col-xs-3 ', 'for'=>'profile_img'))?>
