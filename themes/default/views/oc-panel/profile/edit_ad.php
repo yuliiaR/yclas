@@ -126,7 +126,7 @@
 	                <?endif?>
 					<!-- /locations -->
 				<?else:?>
-					<span class="label label-primary"  data-id="<?=$ad->category->id_category?>"><?=__('Category').' : '.$ad->category->name?></span>
+					<span class="label label-primary" data-trigger="category" data-id="<?=$ad->category->id_category?>"><?=__('Category').' : '.$ad->category->name?></span>
 					<input type="hidden" name="category" value="<?=$ad->category->id_category?>">
 					<?if(core::config('advertisement.location') !== FALSE):?>
 		                <?if(count($locations) > 1):?>

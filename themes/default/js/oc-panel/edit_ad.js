@@ -35,11 +35,6 @@
     //datepicker in case date field exists
     if($('.cf_date_fields').length != 0){
         $('.cf_date_fields').datepicker();}
-
-     // showCustomFieldsByCategory($("input[name=category]:checked"));
-    $("input[name=category]:checked").trigger('click', function(){
-        
-    });
     
     showCustomFieldsByCategory("input[name=category]:checked");
     // custom fields set to categories
@@ -47,11 +42,16 @@
         showCustomFieldsByCategory(this);
     });
 
+    // if normal user render only custom fields of his category
+    if($("span[data-trigger=category]").length > 0){
+        $("input[name=category]").trigger('click', function(){
+            showCustomFieldsByCategory("input[name=category]");
+        }); 
+    }
     
     
     function showCustomFieldsByCategory(element){
-        console.log(element);
-        id_categ = $(element).val();;
+        id_categ = $(element).val();
         // only custom fields have class data-custom
         $(".data-custom").each(function(){
             // get data-category, contains json array of set categories
