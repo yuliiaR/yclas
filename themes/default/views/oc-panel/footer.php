@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <hr>
-<div class="container">
+
 <footer>
 <!--This is the license for Open Classifieds, do not remove -->
 <p>&copy;
@@ -13,4 +13,3 @@
 
 </p>
 </footer>
-</div>

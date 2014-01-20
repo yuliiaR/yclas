@@ -36,17 +36,22 @@
     if($('.cf_date_fields').length != 0){
         $('.cf_date_fields').datepicker();}
 
-
+     // showCustomFieldsByCategory($("input[name=category]:checked"));
+    $("input[name=category]:checked").trigger('click', function(){
+        
+    });
+    
+    showCustomFieldsByCategory("input[name=category]:checked");
     // custom fields set to categories
     $( "input[name=category]" ).on( "click", function() {
         showCustomFieldsByCategory(this);
     });
 
-    showCustomFieldsByCategory($("span[name=category]"));
+    
     
     function showCustomFieldsByCategory(element){
-
-        id_categ = $(element).attr('data-id');
+        console.log(element);
+        id_categ = $(element).val();;
         // only custom fields have class data-custom
         $(".data-custom").each(function(){
             // get data-category, contains json array of set categories
@@ -62,6 +67,7 @@
                 else{
                     field.closest('.form-group').css('display','block');
                     field.prop('disabled', false);
+                    $(".cf_select_fields").chosen('destroy'); // refresh chosen
                     $(".cf_select_fields").chosen(); // refresh chosen
                 }
                 if(dataCategories !== undefined)  
@@ -70,10 +76,11 @@
                     {
                         // apply if they have equal id_category 
                         $.each($.parseJSON(dataCategories), function (index, value) { 
-                            if(id_categ == value){
+                            if(id_categ == value){console.log(value);
                                 field.closest('.form-group').css('display','block');
                                 field.prop('disabled', false);
-                                $(".cf_select_fields").chosen(); // refresh chosen
+                                $(".cf_select_fields").chosen('destroy'); // refresh chosen
+$(".cf_select_fields").chosen(); // refresh chosen
                             }
                         });
                     }

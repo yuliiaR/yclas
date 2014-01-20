@@ -456,6 +456,10 @@ class Controller_Panel_Profile extends Auth_Controller {
 					if (strpos($name,'cf_') !== false) 
 					{
 						$data[$name] = $field;
+						
+						if($field == '0000-00-00' OR $field == "" OR $field == NULL )
+							$data[$name] = NULL;
+
 						//checkbox when selected return string 'on' as a value
 						if($field == 'on')
 						{

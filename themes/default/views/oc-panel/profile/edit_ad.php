@@ -47,6 +47,7 @@
 			</table>
 			<?endif?>
 		</div>
+
 		<?= FORM::open(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal edit_ad_form', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<?if(Auth::instance()->get_user()->id_role == 10):?>
@@ -125,7 +126,6 @@
 	                <?endif?>
 					<!-- /locations -->
 				<?else:?>
-
 					<span class="label label-primary"  data-id="<?=$ad->category->id_category?>"><?=__('Category').' : '.$ad->category->name?></span>
 					<input type="hidden" name="category" value="<?=$ad->category->id_category?>">
 					<?if(core::config('advertisement.location') !== FALSE):?>
@@ -194,7 +194,7 @@
 									$select[$select_name] = $select_name;
 								}
 							} else $select = $field['values']?>
-								<?if(!isset($field['categories']) OR in_array($ad->category->id_category, $field['categories'])):?>
+								
 			    					<?=Form::cf_form_tag('cf_'.$name, array(    
 			                            'display'   => $field['type'],
 			                            'label'     => $field['label'],
@@ -203,7 +203,7 @@
 			                            'options'	=> (!is_array($field['values']))? $field['values'] : $select,
 			                            'required'	=> $field['required'],
 			                            'categories'=> (isset($field['categories']))? $field['categories'] : "",))?>
-			                    <?endif?> 
+
 		                    </div>     
 							<?endforeach?>
 						<?endif?>

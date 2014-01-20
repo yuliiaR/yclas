@@ -1,6 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <h3><?=$widget->subscribe_title?></h3>
-
 <?= FORM::open(Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id)), array('class'=>'form-horizontal ', 'enctype'=>'multipart/form-data'))?>
 <!-- if categories on show selector of categories -->
 	<?if($widget->cat_items !== NULL):?>
