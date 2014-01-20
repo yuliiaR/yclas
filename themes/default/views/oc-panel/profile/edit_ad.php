@@ -131,7 +131,7 @@
 					<?if(core::config('advertisement.location') !== FALSE):?>
 		                <?if(count($locations) > 1):?>
 		                	<span class="label label-primary"  data-id="<?=$ad->location->id_location?>"><?=__('Location').' : '.$ad->location->name?></span>
-		                	<input type="hidden" name="location" value="<?=$ad->category->id_location?>">
+		                	<input type="hidden" name="location" value="<?=$ad->location->id_location?>">
 		                <?endif?>
 	                <?endif?>
 				<?endif?>
