@@ -547,6 +547,21 @@ class Model_User extends ORM {
         return $user;
     }
 
+    /**
+     * reurns the url of the users profile image
+     * @return string url
+     */
+    public function get_profile_image()
+    {
+
+        if(is_file(DOCROOT."images/users/".$this->id_user.".png"))
+            $imgurl = URL::base().'images/users/'.$this->id_user.'.png';
+        else
+            $imgurl = 'http://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=200';
+
+        return $imgurl;
+    }
+
   /*  protected $_table_columns =  
 array (
   'id_user' => 

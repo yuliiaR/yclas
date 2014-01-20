@@ -18,11 +18,8 @@
 						<?= FORM::input('email', $user->email, array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
 					</div>
 				</div>
-				
 
-				<div class="form-actions">
-					<?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))))?>
-				</div>
+				<button type="submit" class="btn btn-primary"><?=__('Update')?></button>
 		<?= FORM::close()?>
 	</div>
 	<!--/span-->
@@ -53,10 +50,8 @@
               </div>
               
               
-              	<a href="<?=Route::url('oc-panel')?>" class="btn btn-default"><?=__('Cancel')?></a>
-                <button type="submit" class="btn btn-primary"><?=__('Send')?></button>
+                <button type="submit" class="btn btn-primary"><?=__('Update')?></button>
               
-              <?=Form::CSRF()?>
     	</form>
     </div><!--end col-md-10-->
 
@@ -65,9 +60,15 @@
         <h1><?=__('Profile picture')?></h1>
       </div>
       
+      <div class="row">
+    <div class="col-md-3">
+        <a class="thumbnail">
+            <img src="<?=$user->get_profile_image()?>" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
+        </a>
+    </div>
+</div>
       <form class="well form-horizontal" enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">         
               <?=Form::errors()?>  
-              
             
             <div class="form-group">
               <?= FORM::label('profile_img', __('Profile picture'), array('class'=>'col-xs-3 ', 'for'=>'profile_img'))?>
@@ -76,8 +77,7 @@
               </div>  
             </div>
             
-                <a href="<?=Route::url('oc-panel')?>" class="btn btn-default"><?=__('Cancel')?></a>
-                <button type="submit" class="btn btn-primary"><?=__('Send')?></button>
+                <button type="submit" class="btn btn-primary"><?=__('Update')?></button>
               
       </form>
     </div><!--end col-md-10-->

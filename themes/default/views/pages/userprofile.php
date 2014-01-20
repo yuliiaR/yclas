@@ -3,23 +3,14 @@
 <div class="page-header">
 	<h3><?= __('User Profile')?></h3>
 </div>
-<?if(is_file(DOCROOT."images/users/".$user->id_user.".png")):?>
+
 <div class="row">
 	<div class="col-md-3">
 		<a class="thumbnail">
-			<img src="<?=URL::base()?>images/users/<?=$user->id_user?>.png" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
+			<img src="<?=$user->get_profile_image()?>" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
 		</a>
 	</div>
 </div>
-<?else:?>
-<div class="row">
-	<div class="col-md-3">
-		<a class="thumbnail">
-			<img src="<?=URL::base()?>images/users/default-user.jpg" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
-		</a>
-	</div>
-</div>
-<?endif?>
 
 <div class="page-header">
 	<article class="list well clearfix">
