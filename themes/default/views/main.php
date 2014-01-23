@@ -64,7 +64,7 @@
 
 	<?=$header?>
     <div class="container bs-docs-container">
-    <div class="alert alert-warning off-line" style="display:none;"><strong><?=__('Warning')?>!</strong> <?=__('We detected you are currently off-line, please login to gain full experience.')?></div>
+    <div class="alert alert-warning off-line" style="display:none;"><strong><?=__('Warning')?>!</strong> <?=__('We detected you are currently off-line, please connect to gain full experience.')?></div>
         <div class="row">
      
             <div class="col-xs-9">
