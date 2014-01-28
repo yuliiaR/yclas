@@ -20,61 +20,65 @@
 
 		<!-- Popup contact form -->
 			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=__('Send Message')?></button>
-			<div id="contact-modal" class="modal hide fade">
-	        	<div class="modal-header">
-	         		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
-					<h3><?=__('Contact')?></h3>
-	        	</div>
-	        
-	            <div class="modal-body">
-					
-						<?=Form::errors()?>
-						
-						<?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact', 'id'=>$user->id_user)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
-						<fieldset>
-							<div class="form-group">
-								<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
-								<div class="col-md-4 ">
-									<?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => '', 'id' => 'name', 'required'))?>
-								</div>
-							</div>
-							<div class="form-group">
-								
-								<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
-								<div class="col-md-4 ">
-									<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => '', 'id' => 'email', 'type'=>'email','required'))?>
-								</div>
-							</div>
-							<div class="form-group">
-								
-								<?= FORM::label('subject', __('Subject'), array('class'=>'control-label', 'for'=>'subject'))?>
-								<div class="col-md-4 ">
-									<?= FORM::input('subject', "", array('placeholder' => __('Subject'), 'class' => '', 'id' => 'subject'))?>
-								</div>
-							</div>
-							<div class="form-group">
-								<?= FORM::label('message', __('Message'), array('class'=>'control-label', 'for'=>'message'))?>
-								<div class="col-md-4">
-									<?= FORM::textarea('message', "", array('class'=>'', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>	
-									</div>
-							</div>
+			<div id="contact-modal" class="modal fade">
+				<div class="modal-dialog">
+    				<div class="modal-content">
+			        	<div class="modal-header">
+			         		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+							<h3><?=__('Contact')?></h3>
+			        	</div>
+			        
+			            <div class="modal-body">
 							
-							<?if (core::config('advertisement.captcha') != FALSE):?>
-							<div class="form-group">
-								<div class="col-md-4">
-									<?=__('Captcha')?>*:<br />
-									<?=captcha::image_tag('contact')?><br />
-									<?= FORM::input('captcha', "", array('class' => '', 'id' => 'captcha', 'required'))?>
-								</div>
-							</div>
-							<?endif?>
-	  						
-	  						<div class="modal-footer">	
-								<?= FORM::button('submit', __('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
-							</div>
-						</fieldset>
-						<?= FORM::close()?>
-	    		</div>
+								<?=Form::errors()?>
+								
+								<?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact', 'id'=>$user->id_user)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
+								<fieldset>
+									<div class="form-group">
+										<?= FORM::label('name', __('Name'), array('class'=>'col-md-2 control-label', 'for'=>'name'))?>
+										<div class="col-md-4 ">
+											<?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
+										</div>
+									</div>
+									<div class="form-group">
+										
+										<?= FORM::label('email', __('Email'), array('class'=>'col-md-2 control-label', 'for'=>'email'))?>
+										<div class="col-md-4 ">
+											<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
+										</div>
+									</div>
+									<div class="form-group">
+										
+										<?= FORM::label('subject', __('Subject'), array('class'=>'col-md-2 control-label', 'for'=>'subject'))?>
+										<div class="col-md-4 ">
+											<?= FORM::input('subject', "", array('placeholder' => __('Subject'), 'class' => 'form-control', 'id' => 'subject'))?>
+										</div>
+									</div>
+									<div class="form-group">
+										<?= FORM::label('message', __('Message'), array('class'=>'col-md-2 control-label', 'for'=>'message'))?>
+										<div class="col-md-6">
+											<?= FORM::textarea('message', "", array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>	
+											</div>
+									</div>
+									
+									<?if (core::config('advertisement.captcha') != FALSE):?>
+									<div class="form-group">
+										<div class="col-md-4">
+											<?=__('Captcha')?>*:<br />
+											<?=captcha::image_tag('contact')?><br />
+											<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
+										</div>
+									</div>
+									<?endif?>
+			  						
+			  						<div class="modal-footer">	
+										<?= FORM::button('submit', __('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
+									</div>
+								</fieldset>
+								<?= FORM::close()?>
+			    		</div>
+			    	</div>
+			    </div>
 			</div>
 	</article>
 </div>

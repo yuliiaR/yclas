@@ -39,7 +39,7 @@ Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1
                                     'js/bootstrap-image-gallery.min.js',
                                     'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js',
                                     'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                    'js/theme.init.js?v=2.1.2',
+                                        'js/theme.init.js?v=2.1.2',
                                     );
 
 

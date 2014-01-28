@@ -83,7 +83,8 @@
     
         <?if (is_array($widget->custom_fields)):?>
             <?$i=0; foreach($widget->custom_fields as $name=>$field):?>
-            <div class="pull-left mr-30">
+            <div class="pull-left form-group control-group mr-30" id="cf_search">
+                <div class="col-xs-10">
                 <?if($field['searchable']):?>
                     <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
                         $select = array(''=>'');
@@ -97,10 +98,12 @@
                             'label'     => $field['label'],
                             'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
                             'options'   => (!is_array($field['values']))? $field['values'] : $select,
+                            'categories'=> (isset($field['categories']))? $field['categories'] : "",
                             ),NULL,TRUE,TRUE)?>
                             <div class="clear"></div> 
                 <?endif?>
                 </div>
+            </div>
             <?$i++ ;endforeach?>
         <?endif?>
     
