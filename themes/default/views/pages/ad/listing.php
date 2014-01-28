@@ -4,6 +4,9 @@
 	<div class="well" id="recomentadion">
 
 		<?if ($category!==NULL):?>
+			<?if (file_exists(DOCROOT.'images/categories/'.$category->seoname.'.png')):?>
+                <img src="<?=URL::base().'images/categories/'.$category->seoname.'.png'?>" >
+            <?endif?>
             <p><?=Text::bb2html($category->description,TRUE)?></p> 
             <i class="glyphicon glyphicon-pencil"></i> 
                 <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>?category=<?=$category->seoname?>">

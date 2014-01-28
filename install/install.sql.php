@@ -386,7 +386,6 @@ mysql_query("INSERT INTO `".$_POST['TABLE_PREFIX']."config` (`group_name`, `conf
 ('general', 'search_by_description', 0),
 ('general', 'blog', 0),
 ('general', 'blog_disqus',''),
-('general', 'upload_images_mobile', 0),
 ('general', 'minify', 0),
 ('general', 'faq', 0),
 ('general', 'faq_disqus', ''),
