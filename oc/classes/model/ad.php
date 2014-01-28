@@ -328,7 +328,7 @@ class Model_Ad extends ORM {
                 $filename_original  = $seotitle.'_'.$counter.'.jpg';
                  
                 /*WATERMARK*/
-                if(core::config('image.watermark'))
+                if(core::config('image.watermark') AND is_readable(core::config('image.watermark_path')))
                 {
                     $mark = Image::factory(core::config('image.watermark_path')); // watermark image object
                     $size_watermark = getimagesize(core::config('image.watermark_path')); // size of watermark
@@ -356,7 +356,7 @@ class Model_Ad extends ORM {
                 
                     if($image_size_orig[0] > $width || $image_size_orig[1] > $height)
                     {
-                        if(core::config('image.watermark')) // watermark ON
+                        if(core::config('image.watermark') AND is_readable(core::config('image.watermark_path'))) // watermark ON
                             Image::factory($file)
                                 ->resize($width, $height, Image::AUTO)
                                 ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
@@ -369,7 +369,7 @@ class Model_Ad extends ORM {
                     //we just save the image changing the quality and different name
                     else
                     {
-                        if(core::config('image.watermark'))
+                        if(core::config('image.watermark') AND is_readable(core::config('image.watermark_path')))
                             Image::factory($file)
                                 ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
                                 ->save($directory.$filename_original,$image_quality);
@@ -380,7 +380,7 @@ class Model_Ad extends ORM {
                 
 
                 //creating the thumb and resizing using the the biggest side INVERSE
-                Image::factory($directory.$filename_original)
+                Image::factory($file)
                     ->resize($width_thumb, $height_thumb, Image::INVERSE)
                     ->save($directory.$filename_thumb,$image_quality);
 
