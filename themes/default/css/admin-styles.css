@@ -14,9 +14,11 @@
 li.sbp .caret{float: right;margin-top: 7px;}
 .thumbnails{list-style: none;}
 .mobile-head-menu{display: none;}
+
 /*MAIN CONTENT*/
-.bs-docs-nav{
-}
+.panel-body ul {padding-left: 10px;}
+.panel-body li {list-style-type: none;}
+.panel-body a {font-size: 17px;}
 .main{
 	padding-left: 205px;
 	position: relative;
