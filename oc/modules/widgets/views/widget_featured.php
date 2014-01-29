@@ -20,12 +20,12 @@
 	    <div class="featured-sidebar-box-header">
 	        
 	        <a href="<?=Route::url('ad',array('seotitle'=>$ad->seotitle,'category'=>$ad->category->seoname))?>" title="<?=$ad->title?>">
-	        	<span class='f-box-header'><?=substr(Text::removebbcode($ad->title), 0, 15)?> </span>
+	        	<span class='f-box-header'><?=Text::limit_chars(Text::removebbcode($ad->title), 15, NULL, TRUE)?> </span>
 	        </a>
 	       
 	    </div>
 	    <div class="f-description">
-	    	<p><?=substr(Text::removebbcode($ad->description), 0, 30)?></p>		
+	    	<p><?=Text::limit_chars(Text::removebbcode($ad->description), 30, NULL, TRUE)?></p>		
     	</div>
     </div>
 </div>

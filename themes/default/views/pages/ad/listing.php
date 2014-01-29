@@ -51,7 +51,7 @@
 			    	<?}?>  
 			    </ul>
 			 
-			    <p><?=substr(Text::removebbcode($ad->description),0, 255);?></p>
+			    <p><?=Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE);?></p>
 			    
 			    <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="glyphicon glyphicon-share"></i><?=__('Read more')?></a>
 		    	<?if ($user !== NULL && $user->id_role == 10):?>

@@ -22,7 +22,7 @@
                 <div class="caption">
                     <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h5>
 
-                    <p ><?=substr(Text::removebbcode($ad->description), 0, 30)?></p>
+                    <p ><?=Text::limit_chars(Text::removebbcode($ad->description), 30, NULL, TRUE)?></p>
 
                 </div>
             </div>

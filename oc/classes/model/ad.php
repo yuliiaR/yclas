@@ -277,10 +277,14 @@ class Model_Ad extends ORM {
         ! Upload::type($image, explode(',',core::config('image.allowed_formats'))) OR
         ! Upload::size($image, core::config('image.max_image_size').'M'))
         {
-            if (Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats'))))
+            if (Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats')))){
                 Alert::set(Alert::ALERT, $image['name'].' '.__('Is not valid format, please use one of this formats "'.core::config('image.allowed_formats').'"'));
-            if(!Upload::size($image, core::config('image.max_image_size').'M'))
+                return;
+            }
+            if(!Upload::size($image, core::config('image.max_image_size').'M')){
                 Alert::set(Alert::ALERT, $image['name'].' '.__('Is not of valid size. Size is limited on '.core::config('image.max_image_size').'MB per image'));
+                return;
+            }
             if(!Upload::not_empty($image))
                 return;
         }

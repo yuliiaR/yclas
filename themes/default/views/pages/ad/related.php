@@ -17,7 +17,7 @@
                 <?endif?>
                 <a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
             </h4>
-            <p><?=substr(Text::removebbcode($ad->description),0, 255);?> 
+            <p><?=Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE);?> 
                 <?if($ad->id_location != 1):?>
                 <a href="<?=Route::url('list',array('location'=>$ad->location->seoname))?>" title="<?=$ad->location->name?>">
                     <span class="label label-default"><?=$ad->location->name?></span>
