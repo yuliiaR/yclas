@@ -79,14 +79,14 @@
 			<?endif?>
 
 			<? if($user->has_access_to_any('profile') AND $user->id_role!=Model_Role::ROLE_ADMIN):?><div class="divider"></div>
-				<li class="nav-header"><i class="glyphicon glyphicon-user"></i><span class="side-name-link"><?=__('Profile')?></span></li>
-				<?Theme::admin_link(__('Edit profile'), 'profile','edit')?>
-                <?Theme::admin_link(__('My Advertisements'), 'profile','ads')?>
-                <?Theme::admin_link(__('Stats'),'profile','stats')?>
-                <?Theme::admin_link(__('Subscriptions'),'profile','subscriptions')?>
+				<?Theme::admin_link(__('Edit profile'), 'profile','edit','oc-panel','glyphicon glyphicon-edit')?>
+                <?Theme::admin_link(__('My Advertisements'), 'profile','ads','oc-panel','glyphicon glyphicon-bullhorn')?>
+                <?Theme::admin_link(__('Stats'),'profile','stats','oc-panel','glyphicon glyphicon-align-left')?>
+                <?Theme::admin_link(__('Subscriptions'),'profile','subscriptions','oc-panel','glyphicon glyphicon-envelope')?>
 				<li><a
 					href="<?=Route::url('profile',array('seoname'=>$user->seoname))?>">
-					<?=__('Public profile')?>
+					<i class="glyphicon glyphicon-user"></i>
+					<span class="side-name-link"><?=__('Public profile')?></span>
 				</a>
 				</li>
 			<?endif?>
