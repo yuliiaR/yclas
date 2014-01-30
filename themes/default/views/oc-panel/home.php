@@ -22,17 +22,8 @@
 
     <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="panel panel-info">
-        <div class="panel-heading"><h3><?=__('Latest News')?><!-- Place this tag where you want the share button to render. -->
-    <div class="g-plus" data-action="share"></div>
-
-    <!-- Place this tag after the last share tag. -->
-    <script type="text/javascript">
-      (function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/platform.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      })();
-    </script></h3></div>
+        <div class="panel-heading"><h3>Open-Classifieds <?=__('Latest News')?></h3>
+        </div>
             <div class="panel-body">
                 <ul>
                     <?foreach ($rss as $item):?>
