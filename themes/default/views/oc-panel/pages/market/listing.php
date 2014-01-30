@@ -5,7 +5,7 @@
 foreach ($market as $item):?>
     <?if ($i%3==0):?><div class="clearfix"></div><?endif?>
     <div class="col-md-4 col-sm-4">
-    <div class="thumbnail <?if ( $item['price_offer']>0):?>alert-success<?endif?>" >
+    <div class="thumbnail <?if ( $item['price_offer']>0 AND strtotime($item['offer_valid'])>time()):?>alert-success<?endif?>" >
 
         <?if (empty($item['url_screenshot'])===FALSE):?>
             <img  class="thumb_market" src="<?=$item['url_screenshot']?>">
@@ -16,7 +16,7 @@ foreach ($market as $item):?>
         <div class="caption">
             <h3><?=$item['title']?></h3>
             <p>
-                <?if ( $item['price_offer']>0):?>
+                <?if ( $item['price_offer']>0 AND strtotime($item['offer_valid'])>time()):?>
                     <span class="label label-danger">$<?=$item['price_offer']?></span>
                     <span class="label label-info"><del>$<?=$item['price']?></del></span>
                 <?else:?>
@@ -27,7 +27,7 @@ foreach ($market as $item):?>
             <p>
                 <?=Text::bb2html($item['description'])?>
             </p>
-            <?if ( $item['price_offer']>0):?>
+            <?if ( $item['price_offer']>0 AND strtotime($item['offer_valid'])>time()):?>
             <p>
                 <a href="<?=$item['url_buy']?>" class="btn btn-block btn-danger oe_button" data-toggle="modal" data-target="#marketModal"><?=__('Limited Offer!')?> $<?=$item['price_offer']?></a>
                 <a href="<?=$item['url_buy']?>" class="btn btn-block btn-info oe_button" data-toggle="modal" data-target="#marketModal"><i class="glyphicon  glyphicon-time glyphicon"></i> <?=__('Valid Until')?>  <?= Date::format($item['offer_valid'], core::config('general.date_format'))?></a>
