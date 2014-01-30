@@ -271,7 +271,16 @@ class Controller_Panel_Update extends Auth_Controller {
 
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs); 
+       
+    }
 
+    /**
+     * This function will upgrate DB that didn't existed in verisons below 2.1.1
+     */
+    public function action_212()
+    {
+        //nothing in DB for this release
+        
         //call update actions 203,205,206,207, 21, 211
 
         $this->action_203();
@@ -279,6 +288,7 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->action_206();
         $this->action_207();
         $this->action_21();
+        $this->action_211();
 
         //clean cache
         Cache::instance()->delete_all();

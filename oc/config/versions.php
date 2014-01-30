@@ -3,8 +3,8 @@
   '2.1.2' => 
   array (
     'codename' => 'Paje',
-    'released' => '2014-XX-XX',
-    'blog' => 'http://open-classifieds.com//',
+    'released' => '2014-01-30',
+    'blog' => 'http://open-classifieds.com/2014/01/30/new-release-open-classifieds-2-1-2/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.1.2',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=15&state=closed',
     'download' => 'http://j.mp/oc_212',
