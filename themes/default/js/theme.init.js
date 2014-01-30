@@ -31,7 +31,15 @@ $("button[name=submit]").click(function(){
     $(window).load(function(){
         $('#accept_terms_modal').modal('show');
     });
-    if (!navigator.onLine) $('.off-line').show();
+
+    //online offline message
+    window.addEventListener("offline", function(e) {
+        $('.off-line').show();
+    }, false);
+
+    window.addEventListener("online", function(e) {
+        $('.off-line').hide();
+    }, false);
 
 });
 
