@@ -25,6 +25,7 @@
                 <?endif?></p>
         </div>
     </li>
+    <div class="clearfix"></div><br>
     <?endforeach?>
 </ul>
 <?endif?>
