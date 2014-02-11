@@ -23,11 +23,11 @@
                         'placeholder' => "some@email.com", 
                         'class' => 'tips form-control', 
                         'id' => $forms['paypal_account']['key'],
-                        'data-content'=> __("Paypal mail address"),
+                        'data-original-title'=> __("Paypal mail address"),
                         'data-trigger'=>"hover",
                         'data-placement'=>"right",
                         'data-toggle'=>"popover",
-                        'data-original-title'=>__("The paypal email address where the payments will be sent"), 
+                        'data-content'=>__("The paypal email address where the payments will be sent"), 
                         ))?> 
                         </div>
                 </div>
@@ -54,11 +54,11 @@
 						'placeholder' => "USD", 
 						'class' => 'tips form-control', 
 						'id' => $forms['paypal_currency']['key'], 
-						'data-content'=> __("Currency"),
+						'data-original-title'=> __("Currency"),
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Please be sure you are using a currency that paypal supports."),
+						'data-content'=>__("Please be sure you are using a currency that paypal supports."),
 						))?> 
 					</div>
 				</div>
@@ -69,11 +69,11 @@
 						'placeholder' => '', 
 						'class' => 'tips form-control', 
 						'id' => $forms['to_featured']['key'],
-						'data-content'=> __("Featured ads"),
+						'data-original-title'=> __("Featured ads"),
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Featured ads will be highlighted for a defined number of days."), 
+						'data-content'=>__("Featured ads will be highlighted for a defined number of days."), 
 
 						))?> 
 					</div>
@@ -87,11 +87,11 @@
                             'placeholder' => "", 
                             'class' => 'tips form-control col-sm-3', 
                             'id' => $forms['pay_to_go_on_feature']['key'],
-                            'data-content'=> __("Pricing"),
+                            'data-original-title'=> __("Pricing"),
                             'data-trigger'=>"hover",
                             'data-placement'=>"right",
                             'data-toggle'=>"popover",
-                            'data-original-title'=>__("How much the user needs to pay to feature an Ad"),  
+                            'data-content'=>__("How much the user needs to pay to feature an Ad"),  
                             ));?> 
                         
                         <span class="input-group-addon"><?=core::config('payment.paypal_currency')?></span></div>
@@ -105,11 +105,11 @@
                         'placeholder' => $forms['featured_days']['value'], 
                         'class' => 'tips form-control col-sm-3', 
                         'id' => $forms['featured_days']['key'], 
-                        'data-content'=> __("Featured length"),
+                        'data-original-title'=> __("Featured length"),
                         'data-trigger'=>"hover",
                         'data-placement'=>"right",
                         'data-toggle'=>"popover",
-                        'data-original-title'=>__("How many days an ad will be featured after paying."),
+                        'data-content'=>__("How many days an ad will be featured after paying."),
                         ));?>
                         <span class="input-group-addon"><?=__("Days")?></span>
                     </div> 
@@ -122,11 +122,11 @@
 						'placeholder' => "", 
 						'class' => 'tips form-control', 
 						'id' => $forms['to_top']['key'], 
-						'data-content'=> __("Bring to top Ad"),
+						'data-original-title'=> __("Bring to top Ad"),
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__("Brings your Ad to the top of the listing."), 
+						'data-content'=>__("Brings your Ad to the top of the listing."), 
 						))?> 
 					</div>
 				</div>
@@ -138,11 +138,11 @@
 							'placeholder' => "", 
 							'class' => 'tips form-control col-sm-3', 
 							'id' => $forms['pay_to_go_on_top']['key'],
-							'data-content'=> __("Pricing"),
+							'data-original-title'=> __("Pricing"),
 							'data-trigger'=>"hover",
 							'data-placement'=>"right",
 							'data-toggle'=>"popover",
-							'data-original-title'=>__("How much the user needs to pay to top up an Ad"),  
+							'data-content'=>__("How much the user needs to pay to top up an Ad"),  
 							));?> 
 								<span class="input-group-addon"><?=core::config('payment.paypal_currency')?></span>
 						</div>
