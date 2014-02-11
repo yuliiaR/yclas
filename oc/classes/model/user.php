@@ -380,11 +380,11 @@ class Model_User extends ORM {
      * @param  array $file  file to be uploaded
      * @return boolean
      */
-    public function email($seotitle, array $replace = NULL, $from = NULL, $from_name =NULL, $file=NULL)
+    public function email($seotitle, array $replace = NULL, $from = NULL, $from_name =NULL, $file=NULL, $to = NULL)
     {
         if ($this->loaded())
         {
-            return Email::content($this->email,$this->name,$from,$from_name,$seotitle,$replace, $file);  
+            return Email::content(($to == NULL)?$this->email:$to,$this->name,$from,$from_name,$seotitle,$replace, $file);  
         }
         return FALSE;
     }

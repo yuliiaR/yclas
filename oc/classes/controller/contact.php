@@ -73,13 +73,19 @@ class Controller_Contact extends Controller {
                     else 
                         $file = NULL;
                     
+                    //contact email is set use that one
+                    if(core::post('contactemail'))
+                        $to = core::post('contactemail');
+                    else
+                        $to = NULL;
+
                     $ret = $user->email('user.contact',array('[EMAIL.BODY]'		=>core::post('message'),
                                                              '[AD.NAME]'        =>$ad->title,
                         									 '[EMAIL.SENDER]'	=>core::post('name'),
                         									 '[EMAIL.FROM]'		=>core::post('email')),
                                                         core::post('email'),
                                                         core::post('name'),
-                                                        $file);
+                                                        $file, $to);
                     
                     //if succesfully sent
                     if ($ret)
