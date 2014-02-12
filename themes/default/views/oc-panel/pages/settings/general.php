@@ -66,10 +66,16 @@
         <div class="form-group">
             <?= FORM::label($forms['site_description']['key'], __('Site description'), array('class'=>'control-label col-sm-3', 'for'=>$forms['site_description']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::input($forms['site_description']['key'], $forms['site_description']['value'], array(
-                'placeholder' => '', 
+                <?= FORM::textarea($forms['site_description']['key'], $forms['site_description']['value'], array(
+                'placeholder' => __('Description of your site in no more than 160 characters.'),
+				'rows' => 3, 'cols' => 50, 
                 'class' => 'tips form-control input-sm', 
                 'id' => $forms['site_description']['key'],
+                'data-content'=> __('Description used for the <meta name="description"> of the home page. Might be used by Google as search result snippet. (max. 160 chars)'),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Site Description"), 
                 ))?> 
             </div>
         </div>
@@ -100,7 +106,7 @@
 				'data-trigger'=>"hover",
 				'data-placement'=>"right",
 				'data-toggle'=>"popover",
-				'data-original-title'=>__("Moderation col-sm-4"), 
+				'data-original-title'=>__("Moderation"), 
 				))?> 
 			</div>
 		</div>
@@ -127,11 +133,11 @@
                'placeholder' => "20", 
                'class' => 'tips form-control input-sm', 
                'id' => $forms['feed_elements']['key'], 
-               'data-content'=> __("Number of Ads"),
+               'data-original-title'=> __("Number of Ads"),
                'data-trigger'=>"hover",
                'data-placement'=>"right",
                'data-toggle'=>"popover",
-               'data-original-title'=>__("How many ads are going to appear in the RSS of your site."),
+               'data-content'=>__("How many ads are going to appear in the RSS of your site."),
                ))?> 
            </div>
        </div>
@@ -142,11 +148,11 @@
                'placeholder' => "20", 
                'class' => 'tips form-control input-sm', 
                'id' => $forms['map_elements']['key'], 
-               'data-content'=> __("Number of Ads"),
+               'data-original-title'=> __("Number of Ads"),
                'data-trigger'=>"hover",
                'data-placement'=>"right",
                'data-toggle'=>"popover",
-               'data-original-title'=>__("How many ads are going to appear in the map of your site."),
+               'data-content'=>__("How many ads are going to appear in the map of your site."),
                ))?> 
            </div>
        </div>
@@ -199,7 +205,7 @@
 		<div class="form-group">
 			<?= FORM::label($forms_img['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['allowed_formats']['key']))?>
 			<div class="col-sm-4">
-				<?= FORM::select("allowed_formats[]", array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','raw'=>'raw','gif'=>'gif'), explode(',', $forms_img['allowed_formats']['value']), array(
+				<?= FORM::select("allowed_formats[]", array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','webp'=>'webp','gif'=>'gif','raw'=>'raw'), explode(',', $forms_img['allowed_formats']['value']), array(
 				'placeholder' => $forms_img['allowed_formats']['value'],
 				'multiple' => 'true',
 				'class' => 'tips form-control input-sm', 
@@ -440,11 +446,11 @@
                     'placeholder' => "", 
                     'class' => 'tips form-control input-sm', 
                     'id' => $forms['blog_disqus']['key'], 
-                    'data-content'=> __("Disqus for Blog Comments"),
+                    'data-original-title'=> __("Disqus for Blog Comments"),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
-                    'data-original-title'=>__("You need to write your disqus ID to enable the service."),
+                    'data-content'=>__("You need to write your disqus ID to enable the service."),
                     ))?> 
                 </div>
             </div>
@@ -470,11 +476,11 @@
                     'placeholder' => "", 
                     'class' => 'tips form-control input-sm', 
                     'id' => $forms['faq_disqus']['key'], 
-                    'data-content'=> __("Disqus for FAQ Comments"),
+                    'data-original-title'=> __("Disqus for FAQ Comments"),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
-                    'data-original-title'=>__("You need to write your disqus ID to enable the service."),
+                    'data-content'=>__("You need to write your disqus ID to enable the service."),
                     ))?> 
                 </div>
             </div>

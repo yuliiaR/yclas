@@ -22,11 +22,11 @@
 					'placeholder' => "4", 
 					'class' => 'tips form-control', 
 					'id' => $forms['num_images']['key'], 
-					'data-content'=> __("Number of images"),
+					'data-original-title'=> __("Number of images"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Number of images displayed"),
+					'data-content'=>__("Number of images displayed"),
 					))?> 
 				</div>
 			</div>
@@ -37,11 +37,11 @@
 					'placeholder' => "", 
 					'class' => 'tips form-control', 
 					'id' => $forms['parent_category']['key'], 
-					'data-content'=> __("parent_category field"),
+					'data-original-title'=> __("parent_category field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Use parent categories"),
+					'data-content'=>__("Use parent categories"),
 					))?>  
 				</div>
 			</div>
@@ -54,11 +54,11 @@
 						'placeholder' => $forms['expire_date']['value'], 
 						'class' => 'tips form-control col-sm-3', 
 						'id' => $forms['expire_date']['key'], 
-						'data-content'=> __("Expire days"),
+						'data-original-title'=> __("Expire days"),
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-original-title'=>__('After how many days an Ad will expire. 0 for never'),
+						'data-content'=>__('After how many days an Ad will expire. 0 for never'),
 						));?>
 						<span class="input-group-addon"><?=__("Days")?></span>
 					</div> 
@@ -101,11 +101,11 @@
 					'placeholder' => "", 
 					'class' => 'tips form-control', 
 					'id' => $forms['address']['key'], 
-					'data-content'=> __("Address field"),
+					'data-original-title'=> __("Address field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Displays the field Address in the Ad form."),
+					'data-content'=>__("Displays the field Address in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -116,11 +116,11 @@
                     'placeholder' => "", 
                     'class' => 'tips form-control', 
                     'id' => $forms['map']['key'], 
-                    'data-content'=> '',
+                    'data-original-title'=> 'Google Maps',
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
-                    'data-original-title'=>__("Displays the google maps in the Ad."),
+                    'data-content'=>__("Displays the google maps in the Ad."),
                     ))?> 
                 </div>
             </div>
@@ -131,11 +131,11 @@
 					'placeholder' => "16", 
 					'class' => 'tips form-control', 
 					'id' => $forms['map_zoom']['key'], 
-					'data-content'=> __("Zoom level"),
+					'data-original-title'=> __("Zoom level"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Google map default zoom level "),
+					'data-content'=>__("Google map default zoom level "),
 					))?> 
 				</div>
 			</div>
@@ -147,11 +147,11 @@
                     'placeholder' => "40", 
                     'class' => 'tips form-control', 
                     'id' => $forms['center_lat']['key'], 
-                    'data-content'=> __("Latitude coordinates"),
+                    'data-original-title'=> __("Latitude coordinates"),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
-                    'data-original-title'=>__("Google map default latitude coordinates"),
+                    'data-content'=>__("Google map default latitude coordinates"),
                     ))?> 
                 </div>
             </div>
@@ -163,11 +163,11 @@
 					'placeholder' => "3", 
 					'class' => 'tips form-control', 
 					'id' => $forms['center_lon']['key'], 
-					'data-content'=> __("Longitude coordinates"),
+					'data-original-title'=> __("Longitude coordinates"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Google map default longitude coordinates"),
+					'data-content'=>__("Google map default longitude coordinates"),
 					))?> 
 				</div>
 			</div>
@@ -179,11 +179,11 @@
 					'placeholder' => "", 
 					'class' => 'tips form-control', 
 					'id' => $forms['phone']['key'], 
-					'data-content'=> __("Phone field"),
+					'data-original-title'=> __("Phone field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Displays the field Phone in the Ad form."),
+					'data-content'=>__("Displays the field Phone in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -194,11 +194,11 @@
 					'placeholder' => "http://foo.com/", 
 					'class' => 'tips form-control', 
 					'id' => $forms['website']['key'], 
-					'data-content'=> __("Website field"),
+					'data-original-title'=> __("Website field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Displays the field Website in the Ad form."),
+					'data-content'=>__("Displays the field Website in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -209,11 +209,11 @@
 					'placeholder' => "", 
 					'class' => 'tips form-control', 
 					'id' => $forms['location']['key'], 
-					'data-content'=> __("Displays location select"),
+					'data-original-title'=> __("Displays location select"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Displays the Select Location in the Ad form."),
+					'data-content'=>__("Displays the Select Location in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -224,11 +224,11 @@
 					'placeholder' => "", 
 					'class' => 'tips form-control', 
 					'id' => $forms['price']['key'], 
-					'data-content'=> __("Price field"),
+					'data-original-title'=> __("Price field"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Displays the field Price in the Ad form."),
+					'data-content'=>__("Displays the field Price in the Ad form."),
 					))?> 
 				</div>
 			</div>
@@ -249,11 +249,11 @@
 					'placeholder' => "http://foo.com/", 
 					'class' => 'tips form-control', 
 					'id' => $forms['captcha']['key'], 
-					'data-content'=> __("Enables Captcha"),
+					'data-original-title'=> __("Enables Captcha"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Captcha appears in the form."),
+					'data-content'=>__("Captcha appears in the form."),
 					))?> 
 				</div>
 			</div>
@@ -264,11 +264,11 @@
                     'placeholder' => "", 
                     'class' => 'tips form-control', 
                     'id' => $forms['contact']['key'], 
-                    'data-content'=> __("Enables Contact Form"),
+                    'data-original-title'=> __("Enables Contact Form"),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
-                    'data-original-title'=>__("Contact form appears int he ad."),
+                    'data-content'=>__("Contact form appears int he ad."),
                     ))?> 
                 </div>
             </div>
@@ -298,11 +298,11 @@
 					'placeholder' => "", 
 					'class' => 'tips form-control', 
 					'id' => $forms['disqus']['key'], 
-					'data-content'=> __("Disqus Comments"),
+					'data-original-title'=> __("Disqus Comments"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("You need to write your disqus ID to enable the service."),
+					'data-content'=>__("You need to write your disqus ID to enable the service."),
 					))?> 
 				</div>
 			</div>
@@ -313,11 +313,11 @@
 					'placeholder' => "word1,word2,word3", 
 					'class' => 'tips form-control', 
 					'id' => $forms['banned_words']['key'], 
-					'data-content'=> __("Baned words are separated with coma (,)"),
+					'data-original-title'=> __("Baned words are separated with coma (,)"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("You need to write your baned words enable the service."),
+					'data-content'=>__("You need to write your baned words enable the service."),
 					))?> 
 				</div>
 			</div>
@@ -328,11 +328,11 @@
 					'placeholder' => "xxx", 
 					'class' => 'tips form-control', 
 					'id' => $forms['banned_words_replacement']['key'], 
-					'data-content'=> __("Replacement of a banedword"),
+					'data-original-title'=> __("Replacement of a banedword"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-original-title'=>__("Baned word replacement replaces selected array with string that you provided."),
+					'data-content'=>__("Baned word replacement replaces selected array with string that you provided."),
 					))?> 
 				</div>
 			</div>
