@@ -110,7 +110,7 @@
 <?endif?>
 <!-- /endcustom fields -->
 <div class="clearfix"></div>
-<div class="page-header"></div>
+
     <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('search')))?> 
 <?= FORM::close()?>
 </div>
