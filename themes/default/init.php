@@ -19,7 +19,7 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
  * styles and themes, loaded in this order
  */
 
-Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css' => 'screen',
+Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css' => 'screen',
                         'css/styles.css?v=2.1.3' => 'screen',
                         'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
                         'css/slider.css' => 'screen',
@@ -31,7 +31,7 @@ Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/boot
 
 
 Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
-                                    'http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js',
+                                    'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js',
                                     'js/bootstrap-slider.js',
                                     'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                     'js/jquery.sceditor.min.js',
