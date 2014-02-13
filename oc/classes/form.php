@@ -301,7 +301,7 @@ class Form extends Kohana_Form {
 
         if(!$old){
         	(!$inline)?$is_inline = "class='col-md-5 col-sm-8 col-xs-11'":$is_inline = "";
-            $out = '<div '.$is_inline.'>'.$label.$input.'</div>';
+            $out = '<div '.$is_inline.'>'.$label.'<div class="control mr-30">'.$input.'</div></div>';
         }
         else{
             $out = $label.'<div>'.$input.'</div>';
