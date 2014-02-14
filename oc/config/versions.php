@@ -7,7 +7,7 @@
     'blog' => 'http://open-classifieds.com',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.1.3',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=16&state=closed',
-    'download' => '',
+    'download' => 'http://j.mp/oc_213',
   ),
   '2.1.2' => 
   array (
