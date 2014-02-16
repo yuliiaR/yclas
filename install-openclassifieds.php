@@ -12,6 +12,8 @@ ob_start();
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 ini_set('display_errors', 1);
 @set_time_limit(0);
+// Set the full path to the docroot
+define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 
 define('VERSION','2.1.3');
 
@@ -102,7 +104,8 @@ class OC{
         $c = curl_init();
         curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($c, CURLOPT_URL, $url);
-        curl_setopt($c, CURLOPT_TIMEOUT,5); 
+        curl_setopt($c, CURLOPT_TIMEOUT,30);
+        curl_setopt($c, CURLOPT_FOLLOWLOCATION, TRUE); 
         $contents = curl_exec($c);
         curl_close($c);
 
@@ -248,7 +251,7 @@ function hostingAd()
         <p>We have partnership with hosting companies to assure compatibility. And we include:
             <ul>
                 <li>100% Compatible High Speed Hosting</li>
-                <li>1 Premium Theme, of your choice worth $99.99</li>
+                <li>1 Premium Theme, of your choice worth $129.99</li>
                 <li>Professional Installation and Support worth $89</li>
                 <li>Free Domain name, worth $10</li>
             <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/">
@@ -398,19 +401,22 @@ $succeed    = TRUE;
     <?php
         //theres post, download latest version, unzip and rediret to install
         //download file
-        file_put_contents('oc.zip', fopen($versions[$last_version]['download'], 'r'));
+        $file_content = OC::curl_get_contents($versions[$last_version]['download']);
+        file_put_contents('oc.zip', $file_content);
         $fname = 'openclassifieds2-'.$last_version;
 
         $zip = new ZipArchive;
         // open zip file, extract to dir
         if ($zip_open = $zip->open('oc.zip')) 
         {
-            $zip->extractTo('./');
+            $zip->extractTo(DOCROOT);
             $zip->close();  
-            @unlink('oc.zip');
-            OC::copy($fname, './');
-            OC::delete($fname);
+            
+            OC::copy($fname, DOCROOT);
+            
             // delete own file
+            OC::delete($fname);
+            @unlink('oc.zip');
             @unlink($_SERVER['SCRIPT_FILENAME']);
             
             // redirect to install

@@ -405,28 +405,8 @@ class Controller_Panel_Update extends Auth_Controller {
         }
 
         //for each unique license then download!
-        $api_url = (Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.open-classifieds.com':'eshop.lo';
         foreach ($licenses as $license) 
-        {
-            $download_url = 'http://'.$api_url.'/api/download/'.$license.'/?domain='.parse_url(URL::base(), PHP_URL_HOST);
-            $file_content = core::curl_get_contents($download_url);
-            if ($file_content!=FALSE)
-            {
-                // saving zip file to dir.
-                $fname = DOCROOT.'themes/'.$license.'.zip'; //root folder
-            
-                file_put_contents($fname, $file_content);
-
-                $zip = new ZipArchive;
-                if ($zip_open = $zip->open($fname)) 
-                {
-                    $zip->extractTo(DOCROOT.'themes/');
-                    $zip->close();  
-                    unlink($fname);
-                }   
-            }
-            
-        }
+            Theme::download($license); 
         
         Alert::set(Alert::SUCCESS, __('Themes Updated'));
 

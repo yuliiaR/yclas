@@ -246,4 +246,25 @@ class Controller_Panel_Theme extends Auth_Controller {
        
     }
 
+
+    /**
+     * download theme from license key
+     * @return [view] 
+     */
+    public function action_download()
+    {
+        // save only changed values
+        if($license = core::request('license'))
+        {
+            if (($theme = Theme::download($license))!=FALSE)
+            {
+                Alert::set(Alert::SUCCESS, __('Theme downloaded').' '.$theme);
+                $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'license','id'=>$theme)).'?license='.$license);
+            }
+        }
+
+        Alert::set(Alert::ALERT, __('Theme could not be downloaded'));
+        $this->request->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'index')));
+    }
+
 }//end of controller
