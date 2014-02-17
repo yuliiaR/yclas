@@ -76,11 +76,12 @@
                     {
                         // apply if they have equal id_category 
                         $.each($.parseJSON(dataCategories), function (index, value) { 
-                            if(id_categ == value){console.log(value);
-                                field.closest('.form-group#cf_new').css('display','block');
+                            if(id_categ == value){
+                                console.log(value);
+                                field.closest('.form-group').css('display','block');
                                 field.prop('disabled', false);
                                 $(".cf_select_fields").chosen('destroy'); // refresh chosen
-$(".cf_select_fields").chosen(); // refresh chosen
+                                $(".cf_select_fields").chosen(); // refresh chosen
                             }
                         });
                     }
