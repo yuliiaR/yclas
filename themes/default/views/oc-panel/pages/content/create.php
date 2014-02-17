@@ -39,6 +39,14 @@
         </div>
     </div>
     <?endif?>
+    <?if($_REQUEST['type'] == 'email'):?>
+    <div class="form-group">
+        <?= FORM::label('seotitle', __('Seotitle'), array('class'=>'control-label col-md-2', 'for'=>'seotitle'))?>
+        <div class="col-sm-4">
+            <?= FORM::input('seotitle', '', array('placeholder' => __('seotitle'), 'class' => 'form-control', 'id' => 'seotitle'))?>
+        </div>
+    </div>
+    <?endif?>
     <div class="form-group">
         <div class="col-sm-4">
             <?= FORM::hidden('type', $type, array('placeholder' => __('Type'), 'class' => 'form-control', 'id' => 'type'))?>
