@@ -147,9 +147,9 @@ class Controller_Panel_Theme extends Auth_Controller {
         $theme = $this->request->param('id');
 
         // save only changed values
-        if($this->request->post('license'))
+        if(core::request('license'))
         {
-            if (Theme::license($this->request->post('license'))==TRUE)
+            if (Theme::license(core::request('license'))==TRUE)
             {
                  //activating a mobile theme
                 if (in_array($theme, array_keys(Theme::get_installed_themes(TRUE))) )
@@ -160,7 +160,7 @@ class Controller_Panel_Theme extends Auth_Controller {
                 Theme::$options = Theme::get_options($theme);       
                 Theme::load($theme);
 
-                Theme::$data['license']      = $this->request->post('license');
+                Theme::$data['license']      = core::request('license');
                 Theme::$data['license_date'] = time()+7*24*60*60;
                 Theme::save($theme);
 
