@@ -32,6 +32,7 @@ Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/boot
 
 Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
                                     'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js',
+                                    'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                     'js/bootstrap-slider.js',
                                     'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                     'js/jquery.sceditor.min.js',
@@ -39,7 +40,8 @@ Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1
                                     'js/bootstrap-image-gallery.min.js',
                                     'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js',
                                     'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                        'js/theme.init.js?v=2.1.3',
+                                    'js/maplace.min.js',
+                                    'js/theme.init.js?v=2.1.3',
                                     );
 
 
