@@ -154,6 +154,57 @@ class Controller_Panel_Tools extends Auth_Controller {
         $this->template->content = View::factory('oc-panel/pages/tools/logs',array('file'=>$file,'log'=>$log,'date'=>$date));
     }
 
+    public function action_location_generator()
+    {
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Interactive map locations generator')));
+        
+        $this->template->title = __('Interactive map locations generator');
+        
+        $file='locations.html';
+        $log = NULL;
+        if($_POST)
+        {
+            if (file_exists($file) AND file_get_contents($file) !== "")
+            {
+                $dom = new DOMDocument;
+                $dom->loadHTML(file_get_contents($file));
+                $array = NULL;
+                foreach($dom->getElementsByTagName('a') as $tr) {
+                    if ( ! $tr->hasAttribute('href')) {
+                        d($tr->hasAttribute('href'));
+                        continue;
+                    }
+
+                    $location_seoname = str_replace('#', '', $tr->getAttribute('href'));
+                    $location_name = $tr->nodeValue;
+                    $array .= "('$tr->nodeValue', 1, 0, '$location_seoname'),";
+                     
+                }
+                //DB prefix
+                $prefix = Database::instance()->table_prefix();
+
+                $array = substr($array, 0, -1);
+                if($array == FALSE)
+                {
+                    Alert::set(Alert::INFO, __('File location.html contains invalid parsing format!'));
+                    $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'location_generator')));
+                }
+                //base location
+                mysql_query("INSERT INTO `".$prefix."locations`
+                    (`name` ,`id_location_parent` ,`parent_deep` ,`seoname`)
+                    VALUES $array ON DUPLICATE KEY UPDATE `id_location_parent`=1;");
+
+                Alert::set(Alert::SUCCESS, __('Locations have been created'));
+            }
+            else
+            {
+                Alert::set(Alert::INFO, __('File location.html doesn not exists in root folder, or it is empty!'));
+            }
+        } 
+            
+
+        $this->template->content = View::factory('oc-panel/pages/tools/location_generator',array('file'=>$file));
+    }
 
     public function action_sitemap()
     {
