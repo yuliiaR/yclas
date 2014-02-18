@@ -1,7 +1,7 @@
 <?defined('SYSPATH') or exit('Install must be loaded from within index.php!');?>
 
-<?if(!empty($msg)):?>
-    <div class="alert alert-danger"><?=$msg?></div>
+<?if(!empty(install::$msg)):?>
+    <div class="alert alert-danger"><?=install::$msg?></div>
 <?endif?>
 
 <div class="jumbotron">

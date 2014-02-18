@@ -24,12 +24,6 @@ class install{
      * @var string
      */
     const version   = '2.1.3';
-    const name      = 'Open Classifieds';
-    const favicon   = 'http://open-classifieds.com/wp-content/uploads/2012/04/favicon1.ico';
-    const logo      = 'http://open-classifieds.com/wp-content/uploads/2012/04/OC_noTagline_286x52.png';
-    const support   = 'http://open-classifieds.com/support/';
-
-
 
     /**
      * default locale/language of the install
@@ -38,17 +32,28 @@ class install{
     public static $locale = 'en_US';
 
     /**
-     * requirements checks filled on init
-     * @var array
-     */
-    public static $checks = NULL;
-
-    /**
-     * suggested URL and folder were to install
+     * suggested URL with folder were to install
      * @var string
      */
     public static $url = NULL;
+
+    /**
+     * suggested folder were to install
+     * @var string
+     */
     public static $folder = NULL;
+
+    /**
+     * message to notify
+     * @var string
+     */
+    public static $msg = '';
+
+     /**
+      * installation error messages here
+      * @var string
+      */
+    public static $error_msg  = '';
 
     /**
      * initializes the install class and process
@@ -59,30 +64,24 @@ class install{
         //Gets language to use in the install
         self::$locale  = install::request('LANGUAGE', install::get_browser_favorite_language());
         
-        
         //start translations
         install::gettext_init(self::$locale);
-
 
         // Try to guess installation URL
         self::$url = 'http://'.$_SERVER['SERVER_NAME'];
         if ($_SERVER['SERVER_PORT'] != '80') 
             self::$url = self::$url.':'.$_SERVER['SERVER_PORT'];
+
         //getting the folder, erasing the index
-        self::$folder = str_replace('/index.php','', $_SERVER['SCRIPT_NAME']).'/');
+        self::$folder = str_replace('/index.php','', $_SERVER['SCRIPT_NAME']).'/';
         self::$url .=self::$folder;
-
-
-
-        //Software requirements
-        self::$checks = self::requirements();
     }
 
     /**
      * checks that your hosting has everything that needs to have
      * @return array 
      */
-    private static function requirements()
+    public static function requirements()
     {
 
         /**
@@ -213,6 +212,27 @@ class install{
                                     'result'    => class_exists('ZipArchive')
                                     ),
                 );
+    }
+
+    /**
+     * checks from requirements if its compatible or not. Also fills the msg variable
+     * @return boolean 
+     */
+    public static function is_compatible()
+    {
+        self::$msg = '';
+        $compatible = TRUE;
+        foreach (install::requirements() as $name => $values)
+        {
+            if ($values['mandatory'] == TRUE AND $values['result'] == FALSE)
+                $compatible = FALSE;
+
+            if ($values['result'] == FALSE)
+                self::$msg .= $values['message'].'<br>';
+        }
+
+        return $compatible;
+            
     }
 
     /**
@@ -450,6 +470,33 @@ class install{
     }
 
     /**
+     * deletes file or directory recursevely
+     * @param  string $file 
+     * @return void       
+     */
+    public static function delete($file)
+    {
+        if (is_dir($file)) 
+        {
+            $objects = scandir($file);
+            foreach ($objects as $object) 
+            {
+                if ($object != '.' AND $object != '..') 
+                {
+                    if (is_dir($file.'/'.$object)) 
+                        OC::delete($file.'/'.$object); 
+                    else 
+                        unlink($file.'/'.$object);
+                }
+            }
+            reset($objects);
+            @rmdir($file);
+        }
+        elseif(is_file($file))
+            unlink($file);
+    }
+
+    /**
      * generates passwords, used for the auth hash keys etc..
      * @param  integer $length 
      * @return string         
@@ -527,139 +574,150 @@ class install{
      * installs the software
      * @return [type] [description]
      */
-    public static function install()
+    public static function go()
     {
+
         $install    = TRUE;
     
         ///////////////////////////////////////////////////////
-            //check DB connection
-            $link = @mysql_connect(isntall::request('DB_HOST'), isntall::request('DB_USER'), isntall::request('DB_PASS'));
-            if (!$link) 
+        //check DB connection
+        $link = @mysql_connect(install::request('DB_HOST'), install::request('DB_USER'), install::request('DB_PASS'));
+        if (!$link) 
+        {
+            $error_msg = __('Cannot connect to server').' '. install::request('DB_HOST').' '. mysql_error();
+            $install = FALSE;
+        }
+        
+        if ($link AND $install === TRUE) 
+        {
+            if (install::request('DB_NAME'))
             {
-                $error_msg = __('Cannot connect to server').' '. isntall::request('DB_HOST').' '. mysql_error();
-                $install = FALSE;
-            }
-            
-            if ($link && $install) 
-            {
-                if (isntall::request('DB_NAME'))
+                $dbcheck = @mysql_select_db(install::request('DB_NAME'));
+                if (!$dbcheck)
                 {
-                    $dbcheck = @mysql_select_db(isntall::request('DB_NAME'));
-                    if (!$dbcheck)
-                    {
-                         $error_msg.= __('Database name').': ' . mysql_error();
-                         $install = FALSE;
-                    }
+                     $error_msg.= __('Database name').': ' . mysql_error();
+                     $install = FALSE;
+                }
+            }
+            else 
+            {
+                $error_msg.= '<p>'.__('No database name was given').'. '.__('Available databases').':</p>';
+                $db_list = @mysql_query('SHOW DATABASES');
+                $error_msg.= '<pre>';
+                if (!$db_list) 
+                {
+                    $error_msg.= __('Invalid query'). ':<br>' . mysql_error();
                 }
                 else 
                 {
-                    $error_msg.= '<p>'.__('No database name was given').'. '.__('Available databases').':</p>';
-                    $db_list = @mysql_query('SHOW DATABASES');
-                    $error_msg.= '<pre>';
-                    if (!$db_list) 
+                    while ($row = mysql_fetch_assoc($db_list)) 
                     {
-                        $error_msg.= __('Invalid query'). ':<br>' . mysql_error();
+                        $error_msg.= $row['Database'] . '<br>';
                     }
-                    else 
-                    {
-                        while ($row = mysql_fetch_assoc($db_list)) 
-                        {
-                            $error_msg.= $row['Database') . '<br>';
-                        }
-                    }
-
-                    $error_msg.= '</pre>';
-                    $install    = FALSE;
                 }
-            }
 
-            //save DB config/database.php
-            if ($install)
-            {
-                //clean prefix
-                isntall::request('TABLE_PREFIX') = slug(isntall::request('TABLE_PREFIX'));
-                $search  = array('[DB_HOST]', '[DB_USER]','[DB_PASS]','[DB_NAME]','[TABLE_PREFIX]','[DB_CHARSET]');
-                $replace = array(isntall::request('DB_HOST'), isntall::request('DB_USER'), isntall::request('DB_PASS'),isntall::request('DB_NAME'),isntall::request('TABLE_PREFIX'),isntall::request('DB_CHARSET'));
-                $install = install::replace_file(DOCROOT.'isntall2/samples/database.php',$search,$replace,APPPATH.'config/database.php');
-                if (!$install)
-                    $error_msg = __('Problem saving '.APPPATH.'config/database.php');
+                $error_msg.= '</pre>';
+                $install    = FALSE;
             }
+        }
 
+        //save DB config/database.php
+        if ($install === TRUE)
+        {
+            //clean prefix
+            $TABLE_PREFIX = slug(install::request('TABLE_PREFIX'));
+            $search  = array('[DB_HOST]', '[DB_USER]','[DB_PASS]','[DB_NAME]','[TABLE_PREFIX]','[DB_CHARSET]');
+            $replace = array(install::request('DB_HOST'), install::request('DB_USER'), install::request('DB_PASS'),install::request('DB_NAME'),$TABLE_PREFIX,install::request('DB_CHARSET'));
+            $install = install::replace_file(INSTALLROOT.'samples/database.php',$search,$replace,APPPATH.'config/database.php');
+            if (!$install === TRUE)
+                $error_msg = __('Problem saving '.APPPATH.'config/database.php');
+        }
+
+        
+        //install DB
+        if ($install === TRUE)
+        {
+            //check if has key is posted if not generate
+            $hash_key = ((core::request('HASH_KEY')!='')?core::request('HASH_KEY'): generate_password() );
+           
+            //check if DB was already installed, I use content since is the last table to be created
+            $installed = (mysql_num_rows(mysql_query("SHOW TABLES LIKE '".$TABLE_PREFIX."content'"))==1) ? TRUE:FALSE;
+
+            if ($installed===FALSE)//if was installed do not launch the SQL. 
+                include INSTALLROOT.'samples/sql.php';
+        }
+
+        ///////////////////////////////////////////////////////
+        //AUTH config
+        if ($install === TRUE)
+        {
+            $search  = array('[HASH_KEY]', '[COOKIE_SALT]','[QL_KEY]');
+            $replace = array($hash_key,$hash_key,$hash_key);
+            $install = install::replace_file(INSTALLROOT.'samples/auth.php',$search,$replace,APPPATH.'config/auth.php');
+            if (!$install === TRUE)
+                $error_msg = __('Problem saving '.APPPATH.'config/auth.php');
+        }
+
+        ///////////////////////////////////////////////////////
+        //create robots.txt
+        if ($install === TRUE)
+        {
+            $search  = array('[SITE_URL]', '[SITE_FOLDER]');
+            $replace = array(install::request('SITE_URL'), install::request('SITE_FOLDER'));
+            $install = install::replace_file(INSTALLROOT.'samples/robots.txt',$search,$replace,DOCROOT.'robots.txt');
+            if (!$install === TRUE)
+                $error_msg = __('Problem saving '.DOCROOT.'robots.txt');
+        }
+
+
+        ///////////////////////////////////////////////////////
+        //create htaccess
+        if ($install === TRUE)
+        {
+            $search  = array('[SITE_FOLDER]');
+            $replace = array(install::request('SITE_FOLDER'));
+
+            $install = install::replace_file(INSTALLROOT.'samples/example.htaccess',$search,$replace,DOCROOT.'.htaccess');
+
+            if (!$install === TRUE)
+                $error_msg = __('Problem saving '.DOCROOT.'.htaccess');
+        }
+
+
+        ///////////////////////////////////////////////////////
+        //ocaku register
+        if ($install AND core::request('OCAKU') !== NULL)
+        {
+            //ocaku register new site!
+            $ocaku = new ocaku();
+            $ocaku->newSite(array(
+                                'siteName'=>install::request('SITE_NAME'),
+                                'siteUrl' =>install::request('SITE_URL'),
+                                'email'   =>install::request('ADMIN_EMAIL'),
+                                'language'=>substr(install::request('LANGUAGE'),0,2)
+            ));
             
-            //install DB
-            if ($install)
-            {
-                //check if has key is posted if not generate
-                $hash_key = ((core::request('HASH_KEY')!='')?core::request('HASH_KEY'): generate_password() );
-               
-                //check if DB was already installed, I use content since is the last table to be created
-                if(mysql_num_rows(mysql_query("SHOW TABLES LIKE '".isntall::request('TABLE_PREFIX')."content'"))==1) 
-                    $installed = TRUE;
-                else
-                    $installed = FALSE;
-
-                if ($installed===FALSE)//if was installed do not launch the SQL. 
-                    include DOCROOT.'isntall2/install.sql.php';
-            }
+        }
 
         ///////////////////////////////////////////////////////
-            //AUTH config
-            if ($install)
-            {
-                $search  = array('[HASH_KEY]', '[COOKIE_SALT]','[QL_KEY]');
-                $replace = array($hash_key,$hash_key,$hash_key);
-                $install = install::replace_file(DOCROOT.'isntall2/samples/auth.php',$search,$replace,APPPATH.'config/auth.php');
-                if (!$install)
-                    $error_msg = __('Problem saving '.APPPATH.'config/auth.php');
-            }
-
-        ///////////////////////////////////////////////////////
-            //create robots.txt
-            if ($install)
-            {
-                $search  = array('[SITE_URL]', '[SITE_FOLDER]');
-                $replace = array(isntall::request('SITE_URL'), self::$folder);
-                $install = install::replace_file(DOCROOT.'isntall2/samples/robots.txt',$search,$replace,DOCROOT.'robots.txt');
-                if (!$install)
-                    $error_msg = __('Problem saving '.DOCROOT.'robots.txt');
-            }
-
-
-        ///////////////////////////////////////////////////////
-            //create htaccess
-            if ($install)
-            {
-                $search  = array('[SITE_FOLDER]');
-                $replace = array(self::$folder);
-
-                $install = install::replace_file(DOCROOT.'isntall2/samples/example.htaccess',$search,$replace,DOCROOT.'.htaccess');
-
-                if (!$install)
-                    $error_msg = __('Problem saving '.DOCROOT.'.htaccess');
-            }
-
-
-        ///////////////////////////////////////////////////////
-            //ocaku register
-            if ($install AND core::request('OCAKU') !== NULL)
-            {
-                //ocaku register new site!
-                $ocaku = new ocaku();
-                $ocaku->newSite(array(
-                                    'siteName'=>isntall::request('SITE_NAME'),
-                                    'siteUrl' =>isntall::request('SITE_URL'),
-                                    'email'   =>isntall::request('ADMIN_EMAIL'),
-                                    'language'=>substr(isntall::request('LANGUAGE'),0,2)
-                ));
+        //all good! 
+        if ($install === TRUE) 
+        {
+            self::delete(INSTALLROOT.'install.lock');
+            //self::delete(INSTALLROOT);//install.lock prevents from performing a new install
+        }
+        //not succeded :( delete all the tables with that prefix
+        else
+        {
+            $table_list = @mysql_query("SHOW TABLES LIKE '".$TABLE_PREFIX."%'"));
                 
-            }
+            while ($row = mysql_fetch_assoc($table_list)) 
+                mysql_query("DROP TABLE ".$row[0]);
+        }
+        
 
-        ///////////////////////////////////////////////////////
-            //all good!
-            if ($install) 
-                unlink(DOCROOT.'install2/install.lock');//prevents from performing a new install
-            //else @todo mysql rollback??
-    
+        self::$error_msg = $error_msg;
+        return $install;
     }
 }
 

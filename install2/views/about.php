@@ -6,7 +6,7 @@
 
         <li class="divider"></li>
         
-        <li class="nav-header"><?=install::name?></li>
+        <li class="nav-header">Open Classifieds></li>
         <li><a href="http://open-classifieds.com/market/">Market</a></li>
         <li><a href="http://open-classifieds.com/support">Support & More</a></li>
         <li><a href="http://j.mp/thanksdonate" target="_blank">

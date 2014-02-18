@@ -9,7 +9,33 @@
  * @license    GPL v3
  */
 include 'class.install.php';
-include 'bootstrap.php';
+
+// Sanity check, install should only be checked from index.php
+defined('SYSPATH') or exit('Install must be loaded from within index.php!');
+
+//were the install files are located
+define(INSTALL_ROOT,DOCROOT.'install2/');
+
+//prevents from new install to be done
+if(!file_exists(INSTALLROOT.'install.lock')) 
+    die('Installation seems to be done, please remove /install/ folder');
+
+//error_reporting(E_ALL);
+
+//start the install setup
+install::initialize();
+$is_compatible = install::is_compatible();
+
+//choosing what to display
+//execute installation since they are posting data
+if ( ($_POST OR isset($_GET['SITE_NAME'])) AND $is_compatible === TRUE)
+    $view = (install::go())?'success':'form';
+//normally if its compaitble just display the form
+elseif ($is_compatible === TRUE)
+    $view = 'form';
+//not compatible
+else
+    $view = 'hosting';
 ?>
 
 <!doctype html>
@@ -21,14 +47,14 @@ include 'bootstrap.php';
     <meta charset="utf8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title><?=install::name?> <?=__("Installation")?></title>
+    <title>Open Classifieds <?=__("Installation")?></title>
     <meta name="keywords" content="" >
     <meta name="description" content="" >
-    <meta name="copyright" content="<?=install::name?> <?=install::version?>" >
-    <meta name="author" content="<?=install::name?>">
+    <meta name="copyright" content="Open Classifieds <?=install::version?>" >
+    <meta name="author" content="Open Classifieds">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="shortcut icon" href="<?=install::favicon?>" />
+    <link rel="shortcut icon" href="http://open-classifieds.com/wp-content/uploads/2012/04/favicon1.ico" />
 
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -56,7 +82,7 @@ include 'bootstrap.php';
 
     <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
-    <div class="container"><a class="navbar-brand"><?=install::name?> <?=__("Installation")?></a>
+    <div class="container"><a class="navbar-brand">Open Classifieds <?=__("Installation")?></a>
     <div class="nav-collapse">
 
     <div class="btn-group pull-right">
@@ -71,10 +97,13 @@ include 'bootstrap.php';
     </div>    
 
     <div class="container">
-        
+
+        <img src="http://open-classifieds.com/wp-content/uploads/2012/04/OC_noTagline_286x52.png">
+
         <ul class="nav nav-tabs">
             <li class="active"><a href="#home" data-toggle="tab">Install</a></li>
             <li><a href="#requirements" data-toggle="tab">Requirements</a></li>
+            <li><a href="#phpinfo" data-toggle="tab">phpinfo()</a></li>
             <li><a href="http://open-classifieds.com/support/" target="_blank">Support</a></li>
             <li><a href="#about" data-toggle="tab">About</a></li>
         </ul>
@@ -86,17 +115,19 @@ include 'bootstrap.php';
             <div class="tab-pane fade" id="requirements">
                 <?install::view('requirements')?>
             </div>
+            <div class="tab-pane fade" id="phpinfo">
+                <?=str_replace('<table', '<table class="table table-striped table-bordered"', install::phpinfo())?>
+            </div>
             <div class="tab-pane fade" id="about">
                 <?install::view('about')?>
             </div>
         </div>
-
            
         <hr>
 
         <footer>
             <p>
-            &copy;  <a href="http://open-classifieds.com" title="Open Source PHP Classifieds"><?=install::name?></a> 2009 - <?=date('Y')?>
+            &copy;  <a href="http://open-classifieds.com" title="Open Source PHP Classifieds">Open Classifieds</a> 2009 - <?=date('Y')?>
             </p>
         </footer>    
 
