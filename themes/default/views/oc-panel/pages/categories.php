@@ -3,9 +3,21 @@
 <div class="page-header">
     <h1><?=__('Categories')?></h1>
     <p><?=__("Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")." <a target='_blank' href='http://open-classifieds.com/2013/08/12/how-to-add-categories/'>".__('Read more')."</a>"?></p>
-    <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>">
+    <a class="btn btn-primary " href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>">
   <?=__('New category')?></a>
 </div>
+
+<?= FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('class'=>'form-inline', 'enctype'=>'multipart/form-data'))?>
+    <fieldset>
+        <div class="col-sm-4">
+        <?=__('Add Multiple Categories')?>
+            <input type="text" class="col-sm-2" id="from_date" data-role="tagsinput" name="multy_categories">
+        </div>
+        <div class="form-actions">
+        <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories'))))?>
+        </div>
+    </fieldset>
+<?= FORM::close()?>
 
 <ol class='plholder col-md-8' id="ol_1" data-id="1">
 <?=_('Home')?>
