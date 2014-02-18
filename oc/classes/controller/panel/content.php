@@ -92,8 +92,12 @@ class Controller_Panel_Content extends Auth_Controller {
                 }
             }
             // if status is not checked, it is not set as POST response
+
             $content->status = (isset($p['status']))?1:0;
+            if(!isset($p['seotitle']))
             $content->seotitle = $content->gen_seotitle($this->request->post('title'));
+        	else
+        	$content->seotitle = $p['seotitle'];
 
             try 
             {
