@@ -709,7 +709,7 @@ class install{
         //not succeded :( delete all the tables with that prefix
         else
         {
-            $table_list = @mysql_query("SHOW TABLES LIKE '".$TABLE_PREFIX."%'"));
+            $table_list = @mysql_query("SHOW TABLES LIKE '".$TABLE_PREFIX."%'");
                 
             while ($row = mysql_fetch_assoc($table_list)) 
                 mysql_query("DROP TABLE ".$row[0]);

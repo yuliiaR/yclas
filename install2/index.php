@@ -8,19 +8,20 @@
  * @copyright  (c) 2009-2014 Open Classifieds Team
  * @license    GPL v3
  */
-include 'class.install.php';
 
 // Sanity check, install should only be checked from index.php
 defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 
 //were the install files are located
-define(INSTALL_ROOT,DOCROOT.'install2/');
+define('INSTALLROOT', DOCROOT.'install2/');
 
 //prevents from new install to be done
 if(!file_exists(INSTALLROOT.'install.lock')) 
     die('Installation seems to be done, please remove /install/ folder');
 
 //error_reporting(E_ALL);
+
+include 'class.install.php';
 
 //start the install setup
 install::initialize();
