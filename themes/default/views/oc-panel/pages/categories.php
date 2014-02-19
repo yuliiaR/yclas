@@ -6,19 +6,18 @@
     <a class="btn btn-primary " href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>">
   <?=__('New category')?></a>
 </div>
+<div class="col-md-6">
+    
 
-<?= FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('class'=>'form-inline', 'enctype'=>'multipart/form-data'))?>
-    <fieldset>
-        <div class="col-sm-4">
-        <?=__('Add Multiple Categories')?>
-            <input type="text" class="col-sm-2" id="from_date" data-role="tagsinput" name="multy_categories">
-        </div>
-        <div class="form-actions">
+<?= FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('class'=>'form-inline well', 'role'=>'form','enctype'=>'multipart/form-data'))?>
+
+    <div class="form-group">
+        <label for="multy_categories" class="sr-only"><?=__('Add Multiple Categories')?></label>
+        <input type="text" class="form-control col-md-8" size="8" id="multy_categories" data-role="tagsinput" name="multy_categories">
+    </div>
         <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories'))))?>
-        </div>
-    </fieldset>
 <?= FORM::close()?>
-
+</div>
 <ol class='plholder col-md-8' id="ol_1" data-id="1">
 <?=_('Home')?>
 <?function lili($item, $key,$cats){?>
