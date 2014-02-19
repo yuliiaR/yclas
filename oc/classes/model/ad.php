@@ -538,7 +538,7 @@ class Model_Ad extends ORM {
         {
             if (strlen($this->address)>5 AND core::config('advertisement.map')==1 )
             {
-                return View::factory('pages/ad/map',array('address'=>$this->address))->render();
+                return View::factory('pages/ad/map',array('id_ad'=>$this->id_ad))->render();
             }
         }
     
