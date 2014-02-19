@@ -6,17 +6,25 @@
     <a class="btn btn-primary " href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>">
   <?=__('New category')?></a>
 </div>
-<div class="col-md-6">
+<div class="col-md-7">
+
+<div class="well">
+    <span class="label label-info">Heads Up! Quick category creator.</span>
+    <div class="clearfix"></div> 
+    <?=__('Add names for multiple categories, for each one push enter.')?>
+    <div class="clearfix"></div><br>
     
-
-<?= FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('class'=>'form-inline well', 'role'=>'form','enctype'=>'multipart/form-data'))?>
-
-    <div class="form-group">
-        <label for="multy_categories" class="sr-only"><?=__('Add Multiple Categories')?></label>
-        <input type="text" class="form-control col-md-8" size="8" id="multy_categories" data-role="tagsinput" name="multy_categories">
-    </div>
+    <?= FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('class'=>'form-inline', 'role'=>'form','enctype'=>'multipart/form-data'))?>
+        <div class="form-group">
+            <div class="">
+            <?= FORM::label('multy_categories', '', array('class'=>'control-label', 'for'=>'multy_categories'))?>
+                <?= FORM::input('multy_categories', '', array('placeholder' => 'Hit enter to confirm', 'class' => 'form-control', 'id' => 'multy_categories', 'type' => 'text','data-role'=>'tagsinput'))?>
+            </div>
+        </div>
+        <div class="clearfix"></div>
         <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories'))))?>
-<?= FORM::close()?>
+    <?= FORM::close()?>
+    </div>
 </div>
 <ol class='plholder col-md-8' id="ol_1" data-id="1">
 <?=_('Home')?>

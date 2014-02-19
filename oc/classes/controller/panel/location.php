@@ -26,9 +26,11 @@ class Controller_Panel_Location extends Auth_Crud {
         $this->template->title  = __('Locations');
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Locations')));
-        $this->template->styles              = array('css/sortable.css' => 'screen');
+        $this->template->styles  = array('css/sortable.css' => 'screen', 
+                                         'http://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/locations.js';
+        $this->template->scripts['footer'][] = 'http://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
 
         list($locs,$order)  = Model_Location::get_all();
 
@@ -54,7 +56,7 @@ class Controller_Panel_Location extends Auth_Crud {
             $loc->parent_deep        = core::get('deep');
             
 
-            //saves the categories in the same parent the new orders
+            //saves the locations in the same parent the new orders
             $order = 0;
             foreach (core::get('brothers') as $id_loc) 
             {
@@ -127,5 +129,36 @@ class Controller_Panel_Location extends Auth_Crud {
         
         Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index')));  
 
+    }
+
+    /**
+     * Creates multiple locations just with name
+     * @return void      
+     */
+    public function action_multy_locations()
+    {
+        $this->auto_render = FALSE;
+
+        //update the elements related to that ad
+        if ($_POST)
+        {
+            if(core::post('multy_locations') !== "")
+            {
+                $multy_cats = explode(',', core::post('multy_locations'));
+                $obj_location = new Model_Category();
+
+                $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent'));
+                foreach ($multy_cats as $name)
+                {
+                    $insert = $insert->values(array($name,$obj_location->gen_seoname($name),1));
+                }
+                // Insert everything with one query.
+                $insert->execute();
+            }
+            else
+                Alert::set(Alert::INFO, __('Select some locations first.'));
+        }
+        
+        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index'))); 
     }
 }

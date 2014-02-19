@@ -7,6 +7,27 @@
   <?=__('New location')?></a>
 </div>
 
+<div class="col-md-7">
+    <div class="well">
+        <span class="label label-info">Heads Up! Quick location creator.</span>
+        <div class="clearfix"></div> 
+        <?=__('Add names for multiple locations, for each one push enter.')?>
+        <div class="clearfix"></div><br>
+      
+        <?= FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations')), array('class'=>'form-inline', 'role'=>'form','enctype'=>'multipart/form-data'))?>
+            <div class="form-group">
+              <div class="">
+                <?= FORM::label('multy_locations', '', array('class'=>'control-label', 'for'=>'multy_locations'))?>
+                    <?= FORM::input('multy_locations', '', array('placeholder' => 'Hit enter to confirm', 'class' => 'form-control', 'id' => 'multy_locations', 'type' => 'text','data-role'=>'tagsinput'))?>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations'))))?>
+        <?= FORM::close()?>
+    </div>
+</div>
+
+
 <ol class='plholder col-md-8' id="ol_1" data-id="1">
 <?=_('Home')?>
 <?function lili($item, $key,$locs){?>

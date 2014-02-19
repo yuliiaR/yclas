@@ -25,10 +25,12 @@ class Controller_Panel_Category extends Auth_Crud {
         $this->template->title  = __('Categories');
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Categories')));
-        $this->template->styles              = array('css/sortable.css' => 'screen', 'css/bootstrap-tagsinput.css' => 'screen');
+        $this->template->styles  = array('css/sortable.css' => 'screen', 
+                                         'http://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
+        
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/categories.js';
-        $this->template->scripts['footer'][] = 'js/bootstrap-tagsinput.min.js';
+        $this->template->scripts['footer'][] = 'http://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
 
         list($cats,$order)  = Model_Category::get_all();
 
@@ -131,7 +133,7 @@ class Controller_Panel_Category extends Auth_Crud {
 
     }
 
-    /**
+     /**
      * Creates multiple categories just with name
      * @return void      
      */
@@ -142,31 +144,23 @@ class Controller_Panel_Category extends Auth_Crud {
         //update the elements related to that ad
         if ($_POST)
         {
-            $multy_cats = explode(',', core::post('multy_categories'));
-
-
-            $obj_category = new Model_Category();
-            // $c = NULL;
-            // foreach ($multy_cats as $key => $name) 
-            // {
-            //     $seoname = $obj_category->gen_seoname($name);
-            //     $c .= "('$name', 1, '$seoname'),";
-            // }
-            $insert = DB::insert('categories', array('name', 'seoname', 'id_category_parent'));
-            foreach ($multy_cats as $name)
+            // d($_POST);
+            if(core::post('multy_categories') !== "")
             {
-                // $insert = array($obj_category->gen_seoname($name));
-                $insert = $insert->values(array($name,$obj_category->gen_seoname($name),1));
+                $multy_cats = explode(',', core::post('multy_categories'));
+                $obj_category = new Model_Category();
+
+                $insert = DB::insert('categories', array('name', 'seoname', 'id_category_parent'));
+                foreach ($multy_cats as $name)
+                {
+                    $insert = $insert->values(array($name,$obj_category->gen_seoname($name),1));
+                }
+                // Insert everything with one query.
+                $insert->execute();
             }
-            
-
-            // Insert everything with one query.
-            $insert->execute();
-            
+            else
+                Alert::set(Alert::INFO, __('Select some categories first.'));
         }
-        else
-             Alert::set(Alert::SUCCESS, __('Bla'));
-
         
         Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'category','action'=>'index'))); 
     }
