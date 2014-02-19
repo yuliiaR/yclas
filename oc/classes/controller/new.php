@@ -18,7 +18,9 @@ class Controller_New extends Controller
 		$this->template->meta_description	= __('Publish new advertisement');
 		
 		
-        $this->template->scripts['footer'] = array('js/new.js');
+		$this->template->styles = array('http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen');
+        $this->template->scripts['footer'] = array('js/new.js','js/jquery.sceditor.min.js',);
+
 
 		//find all, for populating form select fields 
 		list($categories,$order_categories)  = Model_Category::get_all();

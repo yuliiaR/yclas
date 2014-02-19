@@ -186,8 +186,8 @@ class Controller_Ad extends Controller {
 		
 		$this->template->scripts['footer'][] = 'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
 		$this->template->scripts['footer'][] = 'http://cdn.jsdelivr.net/maplace.js/0.1.2c/maplace.min.js';
-		$this->template->scripts['footer'][] = 'js/gmap.js';
-		
+		$this->template->scripts['footer'][] = 'js/single.js';
+
 		$seotitle = $this->request->param('seotitle',NULL);
 		
 		if ($seotitle!==NULL)

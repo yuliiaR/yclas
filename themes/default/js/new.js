@@ -1,3 +1,8 @@
+    $('textarea[name=description]').sceditorBBCodePlugin({
+    toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
+    "bulletlist,orderedlist|link,unlink,youtube|source",
+    resizeEnabled: "true"
+    });
     // VALIDATION with chosen fix
     $.validator.addMethod(
         "regex",
@@ -23,37 +28,13 @@
     $params['messages']['price'] = "Format is incorect";
 
     var $form = $(".post_new");
-    $form.validate($params
-        // {
-        // errorLabelContainer: $(".post_new div.error"),
-        // wrapper: 'div',
-        // rules: {
-        //     title: {minlength:2},
-        //     price: {regex:"^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"}
-        // },
-        // messages: {
-        //     price:{regex: "Format is incorect"}
-        // }
-    // }
-    );
+    $form.validate($params);
     
     //chosen fix
     var settings = $.data($form[0], 'validator').settings;
     settings.ignore += ':not(#location)'; // post_new location(any chosen) texarea
     settings.ignore += ':not([name="description"])'; // post_new description texarea
-    
-    // $('.chosen-container a').ready(function(){
-        
-    //     // $('.chosen-single').hasClass('chosen-default').addClass('has-error');
-    //     if($(this).hasClass('chosen-default'))
-    //     {
-    //         $(this).addClass('has-error');
-    //     }
-    //     else
-    //     {
-    //         $(this).removeClass('has-error');
-    //     }
-    // });
+
     
     // end VALIDATION
 
