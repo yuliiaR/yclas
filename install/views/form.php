@@ -29,7 +29,7 @@
                         {    
                             if( strpos($lang,'.')==false && $lang!='.' && $lang!='..' )
                             {
-                                $sel = ($lang==install::$locale) ? ' selected="selected"' : '';
+                                $sel = ( strtolower($lang)==strtolower(install::$locale)) ? ' selected="selected"' : '';
                                 echo "<option$sel value=\"$lang\">$lang</option>";
                             }
                         }

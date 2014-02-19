@@ -63,7 +63,7 @@ class install{
     {
         //Gets language to use in the install
         self::$locale  = core::request('LANGUAGE', core::get_browser_favorite_language());
-        
+
         //start translations
         install::gettext_init(self::$locale);
 
@@ -493,8 +493,8 @@ class install{
         //all good! 
         if ($install === TRUE) 
         {
-            //core::delete(INSTALLROOT.'install.lock');
-            core::delete(INSTALLROOT);//prevents from performing a new install
+            core::delete(INSTALLROOT.'install.lock');
+            //core::delete(INSTALLROOT);//prevents from performing a new install
         }
         //not succeded :( delete all the tables with that prefix
         else
@@ -573,7 +573,7 @@ class core{
         if (strlen($lang) == 2)
             $lang .= '_'.strtoupper($lang);
 
-        return $lang;
+        return str_replace('-', '_', $lang);
     }
 
     /**
@@ -681,7 +681,7 @@ class core{
                 if ($object != '.' AND $object != '..') 
                 {
                     if (is_dir($file.'/'.$object)) 
-                        OC::delete($file.'/'.$object); 
+                        core::delete($file.'/'.$object); 
                     else 
                         unlink($file.'/'.$object);
                 }
