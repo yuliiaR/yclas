@@ -1,4 +1,8 @@
-// VALIDATION with chosen fix
+$('.accordion-heading .radio a').click(function(){
+        $('#'+$(this).parent().children('input').attr('id')).prop("checked", true);
+    });
+
+    // VALIDATION with chosen fix
     $.validator.addMethod(
         "regex",
         function(value, element, regexp) {

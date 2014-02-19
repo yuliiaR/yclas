@@ -3,6 +3,10 @@
     "bulletlist,orderedlist|link,unlink,youtube|source",
     resizeEnabled: "true"
     });
+    $('.accordion-heading .radio a').click(function(){
+        $('#'+$(this).parent().children('input').attr('id')).prop("checked", true);
+    });
+
     // VALIDATION with chosen fix
     $.validator.addMethod(
         "regex",
