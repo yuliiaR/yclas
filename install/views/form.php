@@ -9,14 +9,6 @@
     </p>    
 </div>
 
-<?if (!empty(install::$msg)):?>
-    <div class="alert alert-warning"><?=install::$msg?></div>
-<?endif?>
-
-<?if (!empty(install::$error_msg)):?>
-    <div class="alert alert-danger"><?=install::$error_msg?></div>
-<?endif?>
-
 <?if (!empty(install::$msg) OR !empty(install::$error_msg)):?>
     <?install::view('hosting')?>
 <?endif?>
@@ -78,7 +70,7 @@
 
             <ul class="nav nav-tabs" id="myTab">
               <li class="active"><a href="#install" data-toggle="tab"><?=__('New Install')?></a></li>
-              <li><a href="#upgrade" data-toggle="tab"><?=__('Upgrade System')?></a></li>
+              <li><a href="#upgrade" data-toggle="tab"><?=__('Reinstall System')?></a></li>
             </ul>
              
             <div class="tab-content">

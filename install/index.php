@@ -30,7 +30,7 @@ $is_compatible = install::is_compatible();
 //choosing what to display
 //execute installation since they are posting data
 if ( ($_POST OR isset($_GET['SITE_NAME'])) AND $is_compatible === TRUE)
-    $view = (install::execute())?'success':'form';
+    $view = (install::execute()===TRUE)?'success':'form';
 //normally if its compaitble just display the form
 elseif ($is_compatible === TRUE)
     $view = 'form';
@@ -60,8 +60,7 @@ else
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>    <![endif]-->
-    
-    <link type="text/css" href="" rel="stylesheet" media="screen" />    
+       
     <style type="text/css">
     body {
         padding-top: 60px;
@@ -75,6 +74,7 @@ else
     </style>
         
     <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/flatly/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chosen/1.1.0/chosen.min.css">
 
 </head>
 
@@ -82,8 +82,17 @@ else
 
     <div class="navbar navbar-fixed-top navbar-inverse">
         <div class="navbar-inner">
-            <div class="container"><a class="navbar-brand">Open Classifieds <?=__("Installation")?></a>
+            <div class="container">
+                <a class="navbar-brand" href="http://open-classifieds.com"><img src="http://open-classifieds.com/wp-content/uploads/2012/04/OC_noTagline_286x52.png" alt="Open Classifieds <?=__("Installation")?>"></a>
                 <div class="nav-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#home" data-toggle="tab">Install</a></li>
+                        <li><a href="#requirements" data-toggle="tab">Requirements</a></li>
+                        <li><a href="#phpinfo" data-toggle="tab">phpinfo()</a></li>
+                        <li><a href="http://open-classifieds.com/support/" target="_blank">Support</a></li>
+                        <li><a href="#about" data-toggle="tab">About</a></li>
+                    </ul>
+
                     <div class="btn-group pull-right">
                         <a class="btn btn-primary we-install" href="http://open-classifieds.com/market/">
                             <i class="glyphicon-shopping-cart glyphicon"></i> <?=__("We install it for you, Buy now!")?>
@@ -95,16 +104,6 @@ else
     </div>    
 
     <div class="container">
-
-        <img src="http://open-classifieds.com/wp-content/uploads/2012/04/OC_noTagline_286x52.png">
-
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#home" data-toggle="tab">Install</a></li>
-            <li><a href="#requirements" data-toggle="tab">Requirements</a></li>
-            <li><a href="#phpinfo" data-toggle="tab">phpinfo()</a></li>
-            <li><a href="http://open-classifieds.com/support/" target="_blank">Support</a></li>
-            <li><a href="#about" data-toggle="tab">About</a></li>
-        </ul>
 
         <div class="tab-content">
             <div class="tab-pane fade in active" id="home">
@@ -134,9 +133,13 @@ else
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.7/jqBootstrapValidation.min.js"></script>
+    <script src="//cdn.jsdelivr.net/chosen/1.1.0/chosen.jquery.min.js"></script>
 
     <script>
-        $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+        $(function () { 
+            $("select").chosen();
+            $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } 
+        );
     </script>
 
 </body>

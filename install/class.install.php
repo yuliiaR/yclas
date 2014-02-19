@@ -434,7 +434,7 @@ class install{
             $installed = (mysql_num_rows(mysql_query("SHOW TABLES LIKE '".$TABLE_PREFIX."content'"))==1) ? TRUE:FALSE;
 
             if ($installed===FALSE)//if was installed do not launch the SQL. 
-                include INSTALLROOT.'samples/sql.php';
+                include INSTALLROOT.'samples/install.sql'.EXT;
         }
 
         ///////////////////////////////////////////////////////
@@ -493,8 +493,8 @@ class install{
         //all good! 
         if ($install === TRUE) 
         {
-            core::delete(INSTALLROOT.'install.lock');
-            //core::delete(INSTALLROOT);//install.lock prevents from performing a new install
+            //core::delete(INSTALLROOT.'install.lock');
+            core::delete(INSTALLROOT);//prevents from performing a new install
         }
         //not succeded :( delete all the tables with that prefix
         else
@@ -691,6 +691,22 @@ class core{
         }
         elseif(is_file($file))
             unlink($file);
+    }
+
+    /**
+     * rss reader
+     * @param  string $url 
+     * @return array      
+     */
+    public static function rss($url)
+    {
+        $items = array();
+
+        $rss = simplexml_load_file($url);
+        if($rss)
+            $items = $rss->channel->item;
+
+        return $items;
     }
 
     /**

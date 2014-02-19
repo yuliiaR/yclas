@@ -1,6 +1,9 @@
 <?defined('SYSPATH') or exit('Install must be loaded from within index.php!');?>
 
-<h2><?=__("Requirements")?> OC v.<?=install::version?></h2>
+<div class="page-header">
+    <h1><?=__("Software Requirements")?>  v.<?=install::version?></h1>
+    <p><?=__('In this page you can see the requirements checks we do before we install.')?></p>
+</div>
 
 <div class="well">   
     <ul class="">
@@ -11,5 +14,4 @@
             </li>
         <?endforeach?>
     </ul>
-    
 </div>
