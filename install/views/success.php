@@ -6,10 +6,12 @@
     <p>
         <?=__('Please now erase the folder');?> <code>/install/</code><br>
     
-        <a class="btn btn-success btn-large" href="<?=install::request('SITE_URL')?>"><?=__('Go to Your Website')?></a>
+        <a class="btn btn-success btn-large" href="<?=core::request('SITE_URL')?>"><?=__('Go to Your Website')?></a>
         
-        <a class="btn btn-warning btn-large" href="<?=install::request('SITE_URL')?>oc-panel/home/">Admin</a> 
-        <?if(install::request('ADMIN_EMAIL'))?><span class="help-block">user: <?=install::request('ADMIN_EMAIL')?> pass: <?=install::request('ADMIN_PWD')?></span>
+        <a class="btn btn-warning btn-large" href="<?=core::request('SITE_URL')?>oc-panel/home/">Admin</a> 
+        <?if(core::request('ADMIN_EMAIL')):?>
+            <span class="help-block">user: <?=core::request('ADMIN_EMAIL')?> pass: <?=core::request('ADMIN_PWD')?></span>
+        <?endif?>
         <hr>
         <a class="btn btn-primary btn-large" href="http://j.mp/thanksdonate"><?=__('Make a donation')?></a>
         <?=__('We really appreciate it')?>.

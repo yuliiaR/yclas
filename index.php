@@ -76,10 +76,10 @@ define('SYSPATH', realpath($system).DIRECTORY_SEPARATOR);
 unset($application, $modules, $system);
 
 // OC install
-if (file_exists(DOCROOT.'install2/install.lock'))
+if (file_exists(DOCROOT.'install/install.lock'))
 {
 	// Load the installation check
-	return include DOCROOT.'install2/index'.EXT;
+	return include DOCROOT.'install/index'.EXT;
 }
 
 
