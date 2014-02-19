@@ -22,25 +22,23 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
 Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css' => 'screen',
                         'css/styles.css?v=2.1.3' => 'screen',
                         'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
-                        'css/slider.css' => 'screen',
                         'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen',
-                        'css/jquery.sceditor.min.css' => 'screen',
-                        'http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css' => 'screen', 
+                        'http://cdn.jsdelivr.net/blueimp-gallery/2.12.1/css/blueimp-gallery.min.css' => 'screen',
+                        'css/jquery.sceditor.min.css' => 'screen', 
                         'css/bootstrap-image-gallery.min.css' => 'screen',
+                        'css/slider.css' => 'screen',
         				);
 
 
 Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
                                     'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js',
-                                    'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
-                                    'js/bootstrap-slider.js',
                                     'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
-                                    'js/jquery.sceditor.min.js',
-                                    'http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js',
-                                    'js/bootstrap-image-gallery.min.js',
+                                    'http://cdn.jsdelivr.net/blueimp-gallery/2.12.1/js/blueimp-gallery.min.js',
                                     'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js',
                                     'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                    'js/maplace.min.js',
+                                    'js/jquery.sceditor.min.js',
+                                    'js/bootstrap-image-gallery.min.js',
+                                    'js/bootstrap-slider.js',
                                     'js/theme.init.js?v=2.1.3',
                                     );
 
