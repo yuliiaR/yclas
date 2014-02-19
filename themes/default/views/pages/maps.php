@@ -32,7 +32,7 @@
             locations: locations,
             controls_on_map: false,
             map_options: {
-                set_center: [<?=$center_lat?>,<?=$center_lon?> ],
+                //set_center: [<?=$center_lat?>,<?=$center_lon?> ],
                 zoom: <?=$zoom?>
             }
 

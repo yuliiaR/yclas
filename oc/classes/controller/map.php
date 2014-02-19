@@ -34,6 +34,9 @@ class Controller_Map extends Controller {
                 ->cached()
                 ->execute();
 
+        //ads to return
+        $advertisements = array();
+
         foreach($ads as $a)
         {
             if (strlen($a->address)>5)
@@ -43,17 +46,15 @@ class Controller_Map extends Controller {
                 {
                     $a->lat  = $coords['lat'];
                     $a->lon  = $coords['lon'];
-                }
-                else
-                {
-                    //remove from array?
+                    //adding only those we found a coord
+                    $advertisements[] = $a;
                 }
             }
         }
 
 
 
-        $this->template->ads = $ads;
+        $this->template->ads = $advertisements;
 	
 	}
 
