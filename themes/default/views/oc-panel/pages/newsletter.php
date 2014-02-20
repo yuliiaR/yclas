@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-
+    <?=View::factory('oc-panel/elasticemail')?>
+    
 <div class="page-header">
 	<h1><?=__('Newsletter')?></h1>
     <a href="http://open-classifieds.com/2013/08/23/how-to-send-the-newsletter/" target="_blank"><?=__('Read more')?></a>

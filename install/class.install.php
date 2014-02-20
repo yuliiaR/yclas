@@ -366,7 +366,7 @@ class install{
      */
     public static function execute()
     {
-
+        $error_msg = '';
         $install    = TRUE;
     
         ///////////////////////////////////////////////////////
