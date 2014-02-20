@@ -154,56 +154,72 @@ class Controller_Panel_Tools extends Auth_Controller {
         $this->template->content = View::factory('oc-panel/pages/tools/logs',array('file'=>$file,'log'=>$log,'date'=>$date));
     }
 
-    public function action_location_generator()
+    public function action_import_tool()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Interactive map locations generator')));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Import tool for locations and categories')));
         
-        $this->template->title = __('Interactive map locations generator');
+        $this->template->title = __('Import tool for locations and categories');
         
-        $file='locations.html';
-        $log = NULL;
         if($_POST)
         {
-            if (file_exists($file) AND file_get_contents($file) !== "")
+
+            foreach($_FILES as $file => $path) 
             {
-                $dom = new DOMDocument;
-                $dom->loadHTML(file_get_contents($file));
-                $array = NULL;
-                foreach($dom->getElementsByTagName('a') as $tr) {
-                    if ( ! $tr->hasAttribute('href')) {
-                        d($tr->hasAttribute('href'));
-                        continue;
-                    }
-
-                    $location_seoname = str_replace('#', '', $tr->getAttribute('href'));
-                    $location_name = $tr->nodeValue;
-                    $array .= "('$tr->nodeValue', 1, 0, '$location_seoname'),";
-                     
-                }
-                //DB prefix
-                $prefix = Database::instance()->table_prefix();
-
-                $array = substr($array, 0, -1);
-                if($array == FALSE)
+                
+                $csv = $path["tmp_name"];
+                if ($csv!=="" AND ($handle = fopen($csv, "r")) !== FALSE) 
                 {
-                    Alert::set(Alert::INFO, __('File location.html contains invalid parsing format!'));
-                    $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'location_generator')));
-                }
-                //base location
-                mysql_query("INSERT INTO `".$prefix."locations`
-                    (`name` ,`id_location_parent` ,`parent_deep` ,`seoname`)
-                    VALUES $array ON DUPLICATE KEY UPDATE `id_location_parent`=1;");
+                    $i = 0;
+                    $array=NULL;
+                    while(($data = fgetcsv($handle, 0, ",")) !== false)
+                    {
+                        //avoid first line
+                        if ($i!=0)
+                        {
+                            list($name, $seoname) = $data;
+                            if($file=='csv_file_categories')
+                            {
+                                $obj_category = new Model_Category();
+                                $type = 'categories';
+                                $t = 'category';
+                                if($seoname == "")
+                                    $seoname = $obj_category->gen_seoname($name);
+                            }
+                            elseif($file=='csv_file_locations')
+                            {
+                                $obj_location = new Model_Location();
+                                $type = 'locations';
+                                $t = 'location';
+                                if($seoname == "")
+                                    $seoname = $obj_location->gen_seoname($name);
+                            }
+                            $array .= "('$name',1,'$seoname'),";
+                        }
+                        $i++;
+                    }
+                    
+                    $array = substr($array, 0, -1);
+                    
+                    if($array == FALSE)
+                    {
+                        Alert::set(Alert::INFO, __('File '.$path['name'].' contains invalid parsing format!'));
+                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'location_generator')));
+                    }
+                    //base location
+                    //DB prefix
+                    $prefix = Database::instance()->table_prefix();
 
-                Alert::set(Alert::SUCCESS, __('Locations have been created'));
-            }
-            else
-            {
-                Alert::set(Alert::INFO, __('File location.html doesn not exists in root folder, or it is empty!'));
+                    mysql_query("INSERT INTO `".$prefix.$type."`
+                        (`name` ,`id_".$t."_parent`,`seoname`)
+                        VALUES $array ON DUPLICATE KEY UPDATE `id_".$t."_parent`=1;");
+
+                    Alert::set(Alert::SUCCESS, __($type.' have been created'));
+                }
             }
         } 
             
 
-        $this->template->content = View::factory('oc-panel/pages/tools/location_generator',array('file'=>$file));
+        $this->template->content = View::factory('oc-panel/pages/tools/import_tool',array());
     }
 
     public function action_sitemap()
