@@ -4,8 +4,105 @@ class Controller_Map extends Controller {
 
 	public function action_index()
 	{
+        $this->before('/pages/maps');
+
+        $this->template->title  = __('Map');
+
+        $this->template->height = Core::get('height','100%');
+        $this->template->width  = Core::get('width','100%');
+        $this->template->zoom   = Core::get('zoom',core::config('advertisement.map_zoom'));
+
+        $this->template->center_lon = Core::get('lon',core::config('advertisement.center_lon'));
+        $this->template->center_lat = Core::get('lat',core::config('advertisement.center_lat'));
+        
+        //last ads, you can modify this value at: general.feed_elements
+        $ads = DB::select('a.seotitle')
+                ->select(array('c.seoname','category'),'a.title','a.description','a.published','a.address',array('id_ad','lat'),array('id_ad','lon'))
+                ->from(array('ads', 'a'))
+                ->join(array('categories', 'c'),'INNER')    
+                ->on('a.id_category','=','c.id_category')
+                ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
+                ->where('a.address','IS NOT',NULL);
+
+        //if only 1 ad
+        if (is_numeric(core::get('id_ad')))
+            $ads = $ads->where('id_ad','=',core::get('id_ad'));
+
+        $ads = $ads->order_by('published','desc')
+                ->limit(Core::config('general.map_elements'))
+                ->as_object()
+                ->cached()
+                ->execute();
+
+        //ads to return
+        $advertisements = array();
+
+        foreach($ads as $a)
+        {
+            if (strlen($a->address)>5)
+            {
+                //only add ads we could find the location
+                if (($coords  = self::address_coords($a->address))!==FALSE)
+                {
+                    $a->lat  = $coords['lat'];
+                    $a->lon  = $coords['lon'];
+                    //adding only those we found a coord
+                    $advertisements[] = $a;
+                }
+            }
+        }
+
+
+
+        $this->template->ads = $advertisements;
+	
+	}
+
+    /**
+     * get geocode lat/lon points for given address from google
+     * 
+     * @param string $address
+     * @return bool|array false if can't be geocoded, array or geocdoes if successful
+     */
+    public static function address_coords($address) 
+    {
+        $url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address='.rawurlencode($address);
+
+        //try to get the json from the cache
+        $coords = Core::cache($url);
+
+            //not cached :(
+        if ($coords === NULL)
+        {
+            $coords = FALSE;
+
+            //get contents from google
+            if($result = core::curl_get_contents($url)) 
+            {
+                $result = json_decode($result);
+
+                //not found :()
+                if($result->status!="OK")
+                    $coords = FALSE;
+                else
+                {
+                    $coords['lat'] = $result->results[0]->geometry->location->lat;
+                    $coords['lon'] = $result->results[0]->geometry->location->lng;
+                }
+            }
+
+            //save the json
+            Core::cache($url,$coords,strtotime('+7 day'));
+        }
+        
+        return $coords;       
+    }
+
+
+    public function action_index2()
+    {
         require_once Kohana::find_file('vendor', 'php-googlemap/GoogleMap','php');
-  		
+        
         $this->before('/pages/maps');
 
         $this->template->title  = __('Map');
@@ -70,8 +167,8 @@ class Controller_Map extends Controller {
         }
 
         $this->template->map = $map;
-	
-	}
+    
+    }
 
 
 

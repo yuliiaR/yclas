@@ -155,6 +155,10 @@ class install{
                                     'mandatory' => TRUE,
                                     'result'    => (bool) ini_get('short_open_tag')
                                     ),
+                'Safe Mode'   =>array('message'   => '<a href="http://php.net/manual/en/features.safe-mode.php>safe_mode</a> must be disabled.',
+                                        'mandatory' => TRUE,
+                                        'result'    => ((bool) ini_get('safe_mode'))?FALSE:TRUE
+                                        ),
                 'PCRE UTF8' =>array('message'   => '<a href="http://php.net/pcre">PCRE</a> has not been compiled with UTF-8 support.',
                                     'mandatory' => TRUE,
                                     'result'    => (bool) (@preg_match('/^.$/u', 'ñ'))

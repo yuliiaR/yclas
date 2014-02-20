@@ -58,8 +58,8 @@ class Text extends Kohana_Text {
          * @var array $advanced_bbcode
          */
         static $advanced_bbcode = array(
-                                 '#\[color=([a-zA-Z]*|\#?[0-9a-fA-F]{6})](.+)\[/color\]#Usi',
-                                 '#\[size=([0-9][0-9]?)](.+)\[/size\]#Usi',
+                                 '#\[color=(.+)](.+)\[/color\]#Usi',
+                                 '#\[size=(.+)](.+)\[/size\]#Usi',
                                  '#\[quote](\r\n)?(.+?)\[/quote]#si',
                                  '#\[quote=(.*?)](\r\n)?(.+?)\[/quote]#si',
                                  '#\[url](.+)\[/url]#Usi',
@@ -80,8 +80,7 @@ class Text extends Kohana_Text {
          */
         static $advanced_html = array(
                                  '<span style="color: $1">$2</span>',
-                                 // '<span style="font-size: $1px">$2</span>',
-                                 '$2',
+                                 '$2',// '<span style="font-size: $1px">$2</span>',
                                  "<blockquote>$2</blockquote>",
                                  "<blockquote>$3</blockquote>",
                                  '<a rel="nofollow" target="_blank" href="$1">$1</a>',

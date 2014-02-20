@@ -3,7 +3,7 @@
 	<?if ($ad->status != Model_Ad::STATUS_PUBLISHED && $permission === FALSE && ($ad->id_user != $user)):?>
 
 	<div class="page-header">
-		<h1><?= __("This advertisement doesn't exist, or is not yet published!")?></h1>
+		<h1><?= __('This advertisement doesn´t exist, or is not yet published!')?></h1>
 	</div>
 
 	<?else:?>
