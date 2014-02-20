@@ -107,7 +107,8 @@ class Auth_Controller extends Controller
 	                $theme_css = array('css/bootstrap.min.css' => 'screen');
 	            }
 
-            	$common_css = array('css/chosen.min.css' => 'screen', 
+            	$common_css = array('css/chosen.min.css' => 'screen',
+            						'css/jquery.sceditor.min.css'=>'screen', 
                                     'css/admin-styles.css' => 'screen');
 
             	Theme::$styles = array_merge($theme_css,$common_css);
