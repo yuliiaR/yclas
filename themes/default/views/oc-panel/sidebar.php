@@ -73,7 +73,7 @@
                         <?Theme::admin_link(__('Optimize'), 'tools','optimize')?>
                         <?Theme::admin_link(__('Cache'), 'tools','cache')?>
                         <?Theme::admin_link(__('Logs'), 'tools','logs')?>
-                        <?Theme::admin_link(__('Location generator'), 'tools','location_generator')?>
+                        <?Theme::admin_link(__('Import tool'), 'tools','import_tool')?>
                         <?Theme::admin_link(__('PHP Info'), 'tools','phpinfo')?>
                     </ul>
                 </li>
