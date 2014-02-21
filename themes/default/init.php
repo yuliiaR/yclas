@@ -4,7 +4,7 @@
   * Description: Clean free theme that includes full admin. It has publicity. Do not delete this theme, all the views depend in this theme.
   * Tags: HTML5, Admin, Free
   * Version: 2.1.3
-  * Author: Chema <chema@garridodiaz.com> , <slobodan.josifovic@gmail.com>
+  * Author: Chema <chema@open-classifieds.com> , <slobodan@open-classifieds.com>
   * License: GPL v3
   */
 
