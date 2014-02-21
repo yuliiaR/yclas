@@ -1,5 +1,5 @@
 <?defined('SYSPATH') or exit('Install must be loaded from within index.php!');?>
-
+<br>
 <div class="alert alert-success"><?=__('Congratulations');?></div>
 <div class="jumbotron well">
     <h1><?=__('Installation done');?></h1>

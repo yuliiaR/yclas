@@ -138,7 +138,7 @@
                 <div class="form-group">                
                     <div class="col-md-12">
                     <label class="control-label"><?=__("Password")?>:</label>
-                    <input type="text" name="DB_PASS" value="<?=core::request('DB_PASS')?>" class="form-control" data-toggle="tooltip" title="<?=__("Password")?>" required />       
+                    <input type="text" name="DB_PASS" value="<?=core::request('DB_PASS')?>" class="form-control" data-toggle="tooltip" title="<?=__("Password")?>"  />       
                     </div>
                 </div>
 
