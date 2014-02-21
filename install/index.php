@@ -69,42 +69,53 @@ else
     .sidebar-nav {
         padding: 9px 0;
     }
-    .we-install{margin-top: 8px;}
+    .chosen-single{padding: 4px 0px 27px 8px!important;}
+    .chosen-single b{margin: 4px!important;}
+    .navbar-brand{padding: 4px 50px 0px 0px!important;}
+    .we-install{padding: 11px!important;}
     #myTab{margin-bottom: 20px; margin-top: 20px;}
+    .adv{display: none;}
+
     </style>
         
-    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/flatly/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/yeti/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chosen/1.1.0/chosen.min.css">
 
 </head>
 
 <body>
+    <div class="container">
+        <div class="navbar navbar-fixed-top navbar-inverse">
 
-    <div class="navbar navbar-fixed-top navbar-inverse">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="navbar-brand" href="http://open-classifieds.com"><img src="http://open-classifieds.com/wp-content/uploads/2012/04/OC_noTagline_286x52.png" alt="Open Classifieds <?=__("Installation")?>"></a>
-                <div class="nav-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#home" data-toggle="tab">Install</a></li>
-                        <li><a href="#requirements" data-toggle="tab">Requirements</a></li>
-                        <li><a href="#phpinfo" data-toggle="tab">phpinfo()</a></li>
-                        <li><a href="http://open-classifieds.com/support/" target="_blank">Support</a></li>
-                        <li><a href="#about" data-toggle="tab">About</a></li>
-                    </ul>
+            <div class="navbar-inner">
+                <div class="container">
+                    <button class="navbar-toggle pull-left" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-collapse bs-navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#home" data-toggle="tab">Install</a></li>
+                            <li><a href="#requirements" data-toggle="tab">Requirements</a></li>
+                            <li><a href="http://open-classifieds.com/support/" target="_blank">Support</a></li>
+                            <li><a href="#about" data-toggle="tab">About</a></li>
+                        </ul>
 
-                    <div class="btn-group pull-right">
-                        <a class="btn btn-primary we-install" href="http://open-classifieds.com/market/">
-                            <i class="glyphicon-shopping-cart glyphicon"></i> <?=__("We install it for you, Buy now!")?>
-                        </a>
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-primary we-install" href="http://open-classifieds.com/market/">
+                                <i class="glyphicon-shopping-cart glyphicon"></i> <?=__("We install it for you, Buy now!")?>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>    
 
-    <div class="container">
-
+         <a class="" target="_blank" href="http://open-classifieds.com">
+            <img src="http://open-classifieds.com/wp-content/uploads/2012/04/OC_noTagline_286x52.png" alt="Open Classifieds <?=__("Installation")?>">
+        </a>    
         <div class="tab-content">
             <div class="tab-pane fade in active" id="home">
                 <?install::view($view)?>
@@ -126,9 +137,8 @@ else
             <p>
             &copy;  <a href="http://open-classifieds.com" title="Open Source PHP Classifieds">Open Classifieds</a> 2009 - <?=date('Y')?>
             </p>
-        </footer>    
-
-    </div><!--/.fluid-container-->
+        </footer>
+    </div> 
     
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -138,8 +148,29 @@ else
     <script>
         $(function () { 
             $("select").chosen();
-            $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } 
-        );
+            $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); 
+            $('input, select').tooltip(); 
+        });
+
+        $('#advanced-options').click(function(){
+            
+            if($(this).hasClass('active'))
+            {
+                $(this).removeClass('active');
+                $('.adv').each(function(){
+                    $(this).hide();
+                });
+            }
+            else
+            {
+                $(this).addClass('active');
+                $('.adv').each(function(){
+                    $(this).show();
+                });  
+            }
+            
+        });
+
     </script>
 
 </body>

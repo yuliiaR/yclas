@@ -3,15 +3,18 @@
 <div class="page-header">
     <h1><?=__("Software Requirements")?>  v.<?=install::version?></h1>
     <p><?=__('In this page you can see the requirements checks we do before we install.')?></p>
+    <a class="btn btn-primary pull-right" href="#phpinfo" data-toggle="tab">phpinfo()</a>
+    <div class="clearfix"></div>
 </div>
 
-<div class="well">   
-    <ul class="">
-        <?foreach (install::requirements() as $name => $values):
-            $color = ($values['result'])?'success':'important';?>
-            <li><i class="glyphicon glyphicon-<?=($values['result'])?"ok":"remove"?>"></i> 
-                <?printf ('<span class="label label-%s">%s</span>',$color,$name);?>    
-            </li>
-        <?endforeach?>
-    </ul>
-</div>
+<?foreach (install::requirements() as $name => $values):
+    $color = ($values['result'])?'success':'danger';?>
+    <div class="pull-left <?=$color?>" style=" width: 100px; height: 56px; text-align: center;">
+        <h4><i class="glyphicon glyphicon-<?=($values['result'])?"ok":"remove"?>"></i>
+        <div class="clearfix"></div> 
+        <?printf ('<span class="label label-%s">%s</span>',$color,$name);?> </h4>
+    </div>   
+    
+<?endforeach?>
+
+<div class="clearfix"></div><br>
