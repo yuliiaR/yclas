@@ -366,7 +366,7 @@ $succeed    = TRUE;
                             if ($values['result'] == FALSE)
                                 $msg .= $values['message'].'<br>';
 
-                            $color = ($values['result'])?'success':'important';
+                            $color = ($values['result'])?'success':'danger';
                         ?>
 
                             <li><i class="icon-<?php echo ($values['result'])?"ok":"remove"?>"></i> 
