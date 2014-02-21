@@ -528,6 +528,32 @@ class Theme {
 
 
     /**
+     * nav_link generates a link for main nav-bar
+     * @param  string $name       translated name in the A
+     * @param  string $controller
+     * @param  string $action  
+     * @param  string $icon         class name of bootstrap icon to append with nav-link   
+     * @param  string $route      
+     * @param  string $style extra class div 
+     * @param  mixed  $id id for the route
+     */
+    public static function nav_link($name, $controller, $icon=NULL, $action='index', $route='default' , $style = NULL, $id=NULL)
+    {   
+        $data = array('name'=>$name,
+                        'controller'=> $controller,
+                        'action'    => $action,
+                        'route'     => $route,
+                        'icon'      => $icon,
+                        'style'     => $style,
+                        'id'        => $id,);
+
+        return View::factory('nav_link',$data);
+    }
+
+
+
+
+    /**
      * All the Custom options for the theme goes here
      */
     

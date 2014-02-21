@@ -27,7 +27,7 @@
                     </li>
                 <?endforeach?>
             <?else:?>
-    			<?nav_link(__('Listing'),'ad', 'glyphicon glyphicon-list' ,'listing', 'list')?>
+    			<?=Theme::nav_link(__('Listing'),'ad', 'glyphicon glyphicon-list' ,'listing', 'list')?>
     			<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Categories')?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -58,17 +58,17 @@
                   </ul>
                 </li>
                 <?if (core::config('general.blog')==1):?>
-                    <?nav_link(__('Blog'),'blog','','index','blog')?>
+                    <?=Theme::nav_link(__('Blog'),'blog','','index','blog')?>
                 <?endif?>
                 <?if (core::config('general.faq')==1):?>
-                    <?nav_link(__('FAQ'),'faq','','index','faq')?>
+                    <?=Theme::nav_link(__('FAQ'),'faq','','index','faq')?>
                 <?endif?>
-                <?nav_link('','ad', 'glyphicon glyphicon-search ', 'advanced_search', 'search')?>
+                <?=Theme::nav_link('','ad', 'glyphicon glyphicon-search ', 'advanced_search', 'search')?>
                 <?if (core::config('advertisement.map')==1):?>
-                    <?nav_link('','map', 'glyphicon glyphicon-globe ', 'index', 'map')?>
+                    <?=Theme::nav_link('','map', 'glyphicon glyphicon-globe ', 'index', 'map')?>
                 <?endif?>
-                <?nav_link('','contact', 'glyphicon glyphicon-envelope ', 'index', 'contact')?>
-                <?nav_link('','rss', 'glyphicon glyphicon-signal ', 'index', 'rss')?>
+                <?=Theme::nav_link('','contact', 'glyphicon glyphicon-envelope ', 'index', 'contact')?>
+                <?=Theme::nav_link('','rss', 'glyphicon glyphicon-signal ', 'index', 'rss')?>
             <?endif?>
             </ul>
             
