@@ -16,7 +16,7 @@
 <?endif?>
 
 <form method="post" action="" class=" form-horizontal" >
-    <div class="col-md-6">
+    <div class="col-md-6" style="padding-left:0px;">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h2>1. <?=__('Site Configuration')?></h2>
@@ -115,7 +115,7 @@
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6" style="padding-right:0px;">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h2>2. <?=__('Database Configuration')?></h2>
