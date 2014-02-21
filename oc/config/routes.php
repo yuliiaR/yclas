@@ -138,7 +138,7 @@ Route::set('ad', '<category>/<seotitle>.html')
  */
 Route::set('list', '<category>(/<location>)')
 ->defaults(array(
-		'category'	 => 'all',
+		'category'	 => URL::title(__('all')),
 		'controller' => 'ad',    
 		'action'     => 'listing',
 ));
