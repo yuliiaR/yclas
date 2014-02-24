@@ -1,9 +1,9 @@
 <?defined('SYSPATH') or exit('Install must be loaded from within index.php!');?>
 
 <div class="page-header">
+    <a class="btn btn-primary pull-right" id="phpinfobutton" >phpinfo()</a>
     <h1><?=__("Software Requirements")?>  v.<?=install::version?></h1>
     <p><?=__('In this page you can see the requirements checks we do before we install.')?></p>
-    <a class="btn btn-primary pull-right" href="#phpinfo" data-toggle="tab">phpinfo()</a>
     <div class="clearfix"></div>
 </div>
 
@@ -14,7 +14,10 @@
         <div class="clearfix"></div> 
         <?printf ('<span class="label label-%s">%s</span>',$color,$name);?> </h4>
     </div>   
-    
 <?endforeach?>
 
 <div class="clearfix"></div><br>
+
+<div class="hidden" id="phpinfo">
+    <?=str_replace('<table', '<table class="table table-striped table-bordered"', install::phpinfo())?>
+</div>

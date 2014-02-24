@@ -1,13 +1,14 @@
 <?defined('SYSPATH') or exit('Install must be loaded from within index.php!');?>
 
 <div class="page-header">
+    <a class="btn btn-default pull-right" id="advanced-options" ><?=__("Advanced options")?></a>
     <h1><?=__("Welcome to")?> Open Classifieds <?=__("installation")?></h1>
     <p>
         <?=__("Welcome to the super easy and fast installation")?>. 
             <a href="http://open-classifieds.com/market/" target="_blank">
             <?=__("If you need any help please check our professional services")?></a>.
     </p>
-    <a class="btn btn-default pull-right" id="advanced-options" ><?=__("Advanced options")?></a>
+    
     <div class="clearfix"></div>       
 </div>
 
@@ -19,7 +20,7 @@
     <div class="col-md-6" style="padding-left:0px;">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h2>1. <?=__('Site Configuration')?></h2>
+                <h3>1. <?=__('Site Configuration')?></h3>
             </div>
             <div class="panel-body">
                 <div class="form-group">                
@@ -118,9 +119,10 @@
     <div class="col-md-6" style="padding-right:0px;">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h2>2. <?=__('Database Configuration')?></h2>
+                <h3>2. <?=__('Database Configuration')?></h3>
             </div>
             <div class="panel-body">
+                <p><a target="_blank" href="http://open-classifieds.com/2014/02/24/create-mysql-database/">How to create a MySQL database?</a></p>
                 <div class="form-group">                
                     <div class="col-md-12">
                     <label class="control-label"><?=__("Host name")?>:</label>
