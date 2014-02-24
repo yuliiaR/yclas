@@ -63,14 +63,14 @@
                     </div>
                 </div>
 
-                <div class="form-group">                
+                <div class="form-group mb-10">                
                     <div class="col-md-12">
                     <label class="control-label"><?=__("Time Zone")?>:</label>
                     <?=install::get_select_timezones('TIMEZONE',core::request('TIMEZONE',date_default_timezone_get()))?>
                     </div>
                 </div>
             
-                <ul class="nav nav-tabs" id="myTab">
+                <ul class="nav nav-tabs" id="myTab" style="display:none;">
                   <li class="active"><a href="#install" data-toggle="tab"><?=__('New Install')?></a></li>
                   <li><a href="#upgrade" data-toggle="tab"><?=__('Reinstall System')?></a></li>
                 </ul>
@@ -92,12 +92,6 @@
                                 <input type="text" name="ADMIN_PWD" value="<?=core::request('ADMIN_PWD')?>" class="form-control" data-toggle="tooltip" title="<?=__("Admin Password")?>" required />   
                             </div>
                         </div>
-
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="SAMPLE_DB" checked data-toggle="tooltip" title="<?=__("Creates few sample categories to start with")?>"/><?=__("Sample data")?></label>
-                            <span class="help-block"><?=__("Creates few sample categories to start with")?></span>
-                        </div>
-                        
                     </div>
 
                     <div class="tab-pane" id="upgrade">
@@ -151,6 +145,10 @@
                     </div>
                 </div>
 
+                <div class="checkbox">
+                    <label><input type="checkbox" name="SAMPLE_DB" checked data-toggle="tooltip" title="<?=__("Creates few sample categories to start with")?>"/><?=__("Sample data")?></label>
+                </div>
+
                 <div class="form-group adv">
                     <div class="col-sm-12">
                     <div class="checkbox">
@@ -163,7 +161,6 @@
                     </div>
                     </div>
                 </div>
-
                 <div class="form-group adv">                
                     <div class="col-md-12">
                     <label class="control-label"><?=__("Database charset")?>:</label>
@@ -174,25 +171,21 @@
                 <div class="form-group adv">                
                     <div class="col-md-12">
                     <label class="control-label"><?=__("Table prefix")?>:</label>
-                    <input type="text" name="TABLE_PREFIX" value="<?=core::request('TABLE_PREFIX','oc2_')?>" class="form-control" data-toggle="tooltip" title="<?=__("Table prefix")?>" required />
-                    <span class="help-block"><?=__("Allows multiple installations in one database if you give each one a unique prefix")?>. <?=__("Only numbers, letters, and underscores")?>.</span>
+                    <input type="text" name="TABLE_PREFIX" value="<?=core::request('TABLE_PREFIX','oc2_')?>" class="form-control" data-toggle="tooltip" title="<?=__("Allows multiple installations in one database if you give each one a unique prefix")?>. <?=__("Only numbers, letters, and underscores")?>." required />
                     </div>
-                </div>
-                <div class="clearfix"></div><hr>
-                
-                <div class="form-actions ">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="OCAKU" checked="checked" />
-                            <?=__("Ocacu classifieds community registration")?><br>
-                            <a target="_blank" href="http://ocacu.com/en/terms.html"><?=__('Terms')?></a>
-                        </label>
-                    </div>
-                    <div class="clearfix"></div><br>
-                    <input type="submit" name="action" id="submit" value="<?=__("Install")?>" class="btn btn-primary btn-lg pull-right" />
-                    
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="form-actions">
+        <input type="submit" name="action" id="submit" value="<?=__("Install")?>" class="btn btn-primary btn-lg " />
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="OCAKU" checked="checked" checked data-toggle="tooltip" title="<?=__("Terms")?>"/>
+                <?=__("Ocacu classifieds community registration")?><br>
+                <a target="_blank" href="http://ocacu.com/en/terms.html"><?=__('Terms')?></a>
+            </label>
         </div>
     </div>
     <div class="clearfix"></div>

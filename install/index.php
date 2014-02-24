@@ -73,9 +73,12 @@ else
     .chosen-single{padding: 4px 0px 27px 8px!important;}
     .chosen-single b{margin: 4px!important;}
     .navbar-brand{padding: 4px 50px 0px 0px!important;}
-    .we-install{padding: 11px!important;}
-    #myTab{margin-bottom: 20px; margin-top: 20px;}
+    .we-install{padding: 11px!important;margin-top: 7px;}
     .adv{display: none;}
+    .logo img {margin-top: 10px;}
+    .page-header{margin: 25px 0 21px!important;}
+    .mb-10{margin-bottom: 10px!important;}
+    #myTab{margin-top: 14px;}
 
     </style>
         
@@ -114,7 +117,7 @@ else
             </div>
         </div>
 
-         <a class="" target="_blank" href="http://open-classifieds.com">
+         <a class="logo" target="_blank" href="http://open-classifieds.com">
             <img src="http://open-classifieds.com/wp-content/uploads/2012/04/OC_noTagline_286x52.png" alt="Open Classifieds <?=__("Installation")?>">
         </a>    
         <div class="tab-content">
@@ -158,6 +161,7 @@ else
                 $('.adv').each(function(){
                     $(this).hide();
                 });
+                $('#myTab').css('display','none');
             }
             else
             {
@@ -165,7 +169,8 @@ else
                 $(this).addClass('btn-primary');
                 $('.adv').each(function(){
                     $(this).show();
-                });  
+                });
+                $('#myTab').css('display','block');  
             }
         });
 
