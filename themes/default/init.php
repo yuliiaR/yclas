@@ -21,6 +21,7 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
 
 Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css' => 'screen',
                         'css/styles.css?v=2.1.3' => 'screen',
+                        'http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css' => 'screen', 
                         'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
                         'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen',
                         'css/slider.css' => 'screen',
@@ -30,6 +31,7 @@ Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/boot
 Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
                                     'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js',
                                     'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
+                                    'http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js',
                                     'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
                                     'js/bootstrap-slider.js',
                                     'js/theme.init.js?v=2.1.3',
