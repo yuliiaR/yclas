@@ -30,7 +30,6 @@ Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/boot
 Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
                                     'http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js',
                                     'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
-                                    'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js',
                                     'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
                                     'js/bootstrap-slider.js',
                                     'js/theme.init.js?v=2.1.3',

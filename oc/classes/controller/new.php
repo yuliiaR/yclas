@@ -20,6 +20,7 @@ class Controller_New extends Controller
 		
 		$this->template->styles = array('http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
+        $this->template->scripts['footer'][] = 'js/jquery.validate.min.js';
         $this->template->scripts['footer'][] = 'js/new.js';
 
 		//find all, for populating form select fields 
