@@ -19,7 +19,7 @@ define('INSTALLROOT', DOCROOT.'install/');
 if(!file_exists(INSTALLROOT.'install.lock')) 
     die('Installation seems to be done, please remove /install/ folder');
 
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 
 include 'class.install.php';
 
@@ -79,7 +79,7 @@ else
 
     </style>
         
-    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/yeti/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/flatly/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chosen/1.1.0/chosen.min.css">
 
 </head>
@@ -99,8 +99,8 @@ else
                     <div class="navbar-collapse bs-navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#home" data-toggle="tab">Install</a></li>
-                            <li><a href="#requirements" data-toggle="tab">Requirements</a></li>
                             <li><a href="http://open-classifieds.com/support/" target="_blank">Support</a></li>
+                            <li><a href="#requirements" data-toggle="tab">Requirements</a></li>
                             <li><a href="#about" data-toggle="tab">About</a></li>
                         </ul>
 
@@ -123,9 +123,6 @@ else
             </div>
             <div class="tab-pane fade" id="requirements">
                 <?install::view('requirements')?>
-            </div>
-            <div class="tab-pane fade" id="phpinfo">
-                <?=str_replace('<table', '<table class="table table-striped table-bordered"', install::phpinfo())?>
             </div>
             <div class="tab-pane fade" id="about">
                 <?install::view('about')?>
@@ -154,22 +151,37 @@ else
         });
 
         $('#advanced-options').click(function(){
-            
-            if($(this).hasClass('active'))
+            if($(this).hasClass('btn-primary'))
             {
-                $(this).removeClass('active');
+                $(this).removeClass('btn-primary');
+                $(this).addClass('btn-default');
                 $('.adv').each(function(){
                     $(this).hide();
                 });
             }
             else
             {
-                $(this).addClass('active');
+                $(this).removeClass('btn-default');
+                $(this).addClass('btn-primary');
                 $('.adv').each(function(){
                     $(this).show();
                 });  
             }
-            
+        });
+
+        $('#phpinfobutton').click(function(){
+            if($('#phpinfo').hasClass('hidden'))
+            {
+                $(this).removeClass('btn-primary');
+                $(this).addClass('btn-default');
+                $('#phpinfo').removeClass('hidden');
+            }
+            else
+            {
+                $(this).removeClass('btn-default');
+                $(this).addClass('btn-primary');
+                $('#phpinfo').addClass('hidden');
+            }
         });
 
     </script>
