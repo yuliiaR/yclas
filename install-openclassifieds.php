@@ -17,6 +17,12 @@ ini_set('display_errors', 1);
 define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 
 
+//read from oc/versions.json on CDN
+$versions       = install::versions();
+$last_version   = key($versions);
+$is_compatible  = install::is_compatible();
+
+
 /**
  * Helper installation classses
  *
@@ -41,24 +47,6 @@ class install{
     const version   = '2.1.3';
 
     /**
-     * default locale/language of the install
-     * @var string
-     */
-    public static $locale = 'en_US';
-
-    /**
-     * suggested URL with folder were to install
-     * @var string
-     */
-    public static $url = NULL;
-
-    /**
-     * suggested folder were to install
-     * @var string
-     */
-    public static $folder = NULL;
-
-    /**
      * message to notify
      * @var string
      */
@@ -69,23 +57,6 @@ class install{
       * @var string
       */
     public static $error_msg  = '';
-
-    /**
-     * initializes the install class and process
-     * @return void
-     */
-    public static function initialize()
-    {
-
-        // Try to guess installation URL
-        self::$url = 'http://'.$_SERVER['SERVER_NAME'];
-        if ($_SERVER['SERVER_PORT'] != '80') 
-            self::$url = self::$url.':'.$_SERVER['SERVER_PORT'];
-
-        //getting the folder, erasing the index
-        self::$folder = str_replace('/index.php','', $_SERVER['SCRIPT_NAME']).'/';
-        self::$url .=self::$folder;
-    }
 
     /**
      * checks that your hosting has everything that needs to have
@@ -235,12 +206,16 @@ class install{
         return preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
     }
 
+    /**
+     * returns array last version from json
+     * @return array
+     */
+    public static function versions()
+    {
+        return json_decode(core::curl_get_contents('http://open-classifieds.com/files/versions.json?r='.time()),TRUE);
+    }
 
-}
 
-function __($msgid)
-{
-    return $msgid;
 }
 
 class core{
@@ -283,7 +258,7 @@ class core{
                     if(!is_dir( $dest . '/' . $object)) 
                         mkdir( $dest . '/' . $object); // make subdirectory before subdirectory is copied 
 
-                    OC::copy($path, $dest . '/' . $object, $overwrite); //recurse! 
+                    core::copy($path, $dest . '/' . $object, $overwrite); //recurse! 
                 }
                  
             } 
@@ -336,6 +311,22 @@ class core{
     }
 
     /**
+     * rss reader
+     * @param  string $url 
+     * @return array      
+     */
+    public static function rss($url)
+    {
+        $items = array();
+
+        $rss = simplexml_load_file($url);
+        if($rss)
+            $items = $rss->channel->item;
+
+        return $items;
+    }
+
+    /**
      * shortcut for the query method $_GET
      * @param  [type] $key     [description]
      * @param  [type] $default [description]
@@ -369,22 +360,15 @@ class core{
     }
 }
 
-
-
-//start the install setup
-install::initialize();
-$is_compatible = install::is_compatible();
-
-//choosing what to display
-//execute installation since they are posting data
-if ( ($_POST OR isset($_GET['SITE_NAME'])) AND $is_compatible === TRUE)
-    $view = (install::execute()===TRUE)?'success':'form';
-//normally if its compaitble just display the form
-elseif ($is_compatible === TRUE)
-    $view = 'form';
-//not compatible
-else
-    $view = 'hosting';
+/**
+ * gettext short cut currently just echoes
+ * @param  [type] $msgid [description]
+ * @return [type]        [description]
+ */
+function __($msgid)
+{
+    return $msgid;
+}
 ?>
 
 <!doctype html>
@@ -469,14 +453,124 @@ else
             <img src="http://open-classifieds.com/wp-content/uploads/2012/04/OC_noTagline_286x52.png" alt="Open Classifieds <?=__("Installation")?>">
         </a>    
         <div class="tab-content">
+
             <div class="tab-pane fade in active" id="home">
-                <?install::view($view)?>
+                <?
+                //choosing what to display
+                //execute installation since they are posting data
+                if ( $_POST  AND $is_compatible === TRUE)
+                {
+                    //theres post, download latest version, unzip and rediret to install
+                    //download file
+                    $file_content = core::curl_get_contents($versions[$last_version]['download']);
+                    file_put_contents('oc.zip', $file_content);
+                    $fname = 'openclassifieds2-'.$last_version;
+
+                    $zip = new ZipArchive;
+                    // open zip file, extract to dir
+                    if ($zip_open = $zip->open('oc.zip')) 
+                    {
+                        $zip->extractTo(DOCROOT);
+                        $zip->close();  
+                        
+                        core::copy($fname, DOCROOT);
+                        
+                        // delete own file
+                        core::delete($fname);
+                        @unlink('oc.zip');
+                        @unlink($_SERVER['SCRIPT_FILENAME']);
+                        
+                        // redirect to install
+                        header("Location: index.php");    
+                    }   
+                    else 
+                        hosting_view();
+                }
+                //normally if its compaitble just display the form
+                elseif ($is_compatible === TRUE)
+                {?>
+                    <?if (!empty(install::$msg) OR !empty(install::$error_msg)) 
+                            hosting_view();?>
+                    <div class="page-header">
+                        <h1>Install Open Classifieds v<?php echo $last_version;?></h1>
+                        <p>We will download last stable version of Open Classifieds and redirect you to the installation form. <br>
+                            Once you click in the install button can take few seconds until downloaded, please do not close this window.</p>
+                        <div class="clearfix"></div>
+                    </div>
+                    <form method="post" action="" class="" >
+                        <fieldset>
+                            <div class="form-action">
+                            <input type="submit" name="action" id="submit" value="Download and Install" class="btn btn-primary btn-large" />
+                            </div>
+                        </fieldset>
+                    </form>
+                <?}
+                //not compatible
+                else
+                    hosting_view();
+                ?>
             </div>
             <div class="tab-pane fade" id="requirements">
-                <?install::view('requirements')?>
+
+                <div class="page-header">
+                    <a class="btn btn-primary pull-right" id="phpinfobutton" >phpinfo()</a>
+                    <h1><?=__("Software Requirements")?>  v.<?=install::version?></h1>
+                    <p><?=__('In this page you can see the requirements checks we do before we install.')?></p>
+                    <div class="clearfix"></div>
+                </div>
+
+                <?foreach (install::requirements() as $name => $values):
+                    $color = ($values['result'])?'success':'danger';?>
+                    <div class="pull-left <?=$color?>" style=" width: 100px; height: 56px; text-align: center;">
+                        <h4><i class="glyphicon glyphicon-<?=($values['result'])?"ok":"remove"?>"></i>
+                        <div class="clearfix"></div> 
+                        <?printf ('<span class="label label-%s">%s</span>',$color,$name);?> </h4>
+                    </div>   
+                <?endforeach?>
+
+                <div class="clearfix"></div><br>
+
+                <div class="hidden" id="phpinfo">
+                    <?=str_replace('<table', '<table class="table table-striped table-bordered"', install::phpinfo())?>
+                </div>
             </div>
+
             <div class="tab-pane fade" id="about">
-                <?install::view('about')?>
+                <div class="page-header">
+                    <h1><?=__('Welcome')?> </h1>
+                    <p><?=__('Thanks for using Open Classifieds.')?> 
+                        <?=__('Your installation version is')?> <span class="label label-info"><?=install::version?></span> 
+                    </p>
+                    
+                    <div class="clearfix"></div>
+                    <p><?=__('You need help or you have some questions')?>
+                        <a class="btn btn-info btn-xs" target="_blank" href="http://forums.open-classifieds.com/"><i class="glyphicon glyphicon-wrench"></i> <?=__('Forum')?></a>
+                        <a class="btn btn-info btn-xs" target="_blank" href="http://open-classifieds.com/support/"><i class="glyphicon glyphicon-question-sign"></i> <?=__('FAQ')?></a>
+                        <a class="btn btn-info btn-xs" target="_blank" href="http://open-classifieds.com/blog/"><i class="glyphicon glyphicon-pencil"></i> <?=__('Blog')?></a>
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="panel panel-info">
+                    <div class="panel-heading"><h3>Open-Classifieds <?=__('Latest News')?></h3>
+                    </div>
+                        <div class="panel-body">
+                            <ul>
+                                <?foreach (core::rss('http://feeds.feedburner.com/OpenClassifieds')  as $item):?>
+                                    <li><a target="_blank" href="<?=$item->link?>" title="<?=$item->title?>"><?=$item->title?></a></li>
+                                    <div class="divider"></div>
+                                <?endforeach?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <a class="twitter-timeline" href="https://twitter.com/openclassifieds" data-widget-id="428842439499997185">Tweets by @openclassifieds</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fopenclassifieds&amp;width=350&amp;height=600&amp;colorscheme=dark&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=181472118540903" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:350px; height:600px;" allowTransparency="true"></iframe>    
+                </div>
             </div>
         </div>
            
@@ -541,3 +635,42 @@ else
 
 </body>
 </html>
+
+<?
+/**
+ * displayed in case not compatible
+ * @return [type] [description]
+ */
+function hosting_view()
+{
+    ?>
+    <?if (!empty(install::$error_msg)):?>
+    <br>
+    <div class="alert alert-danger"><?=install::$error_msg?></div>
+    <?endif?>
+
+    <?if(!empty(install::$msg)):?>
+        <br>
+        <div class="alert alert-warning">
+            <?=__("We have detected some incompatibilities, installation may not work as expected but you can try.")?> <br>
+            <?=install::$msg?>
+        </div>
+    <?endif?>
+
+    <div class="jumbotron well">
+        <h2>Ups! You need a compatible Hosting</h2>
+        <p class="text-danger">Your hosting seems to be not compatible. Check your settings.<p>
+        <p>We have partnership with hosting companies to assure compatibility. And we include:
+            <ul>
+                <li>100% Compatible High Speed Hosting</li>
+                <li>1 Premium Theme, of your choice worth $129.99</li>
+                <li>Professional Installation and Support worth $89</li>
+                <li>Free Domain name, worth $10</li>
+                <div class="clearfix"></div><br>
+            <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/">
+                <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $5 Month</a>
+        </p>
+    </div>
+    <?
+}
+?>
