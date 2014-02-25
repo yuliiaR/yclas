@@ -108,7 +108,7 @@ class Controller_Panel_Widget extends Auth_Controller {
         {
             $w = Widget::factory($widget_name);
 
-            if ($w->delete())
+            if ($w AND $w->delete())
                 Alert::set(Alert::SUCCESS,sprintf(__('Widget %s deleted'),$widget_name));
             else
                 Alert::set(Alert::ERROR,sprintf(__('Cannot delete widget %s'),$widget_name));
