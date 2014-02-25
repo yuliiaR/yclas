@@ -16,7 +16,11 @@
                 <?if($ad->get_first_image()!== NULL):?>
                     <img src="<?=URL::base()?><?=$ad->get_first_image()?>" >
                 <?else:?>
-                    <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"> 
+                    <?if(file_exists(DOCROOT.'images/categories/'.$ad->category->seoname.'.png')):?>
+                                <img src="<?=URL::base().'images/categories/'.$ad->category->seoname.'.png'?>" >
+                            <?else:?>
+                                <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"> 
+                            <?endif?> 
                 <?endif?>
                 </a>
                 <div class="caption">
