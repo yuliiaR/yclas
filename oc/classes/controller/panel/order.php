@@ -19,6 +19,13 @@ class Controller_Panel_Order extends Auth_Crud {
      */
     public $crud_actions = array('update');
 
+    public function __construct($request, $response)
+    {
+        parent::__construct($request, $response);
+
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Orders'))->set_url(Route::url('oc-panel',array('controller'  => 'order'))));
+    }
+
     /**
      *
      * Loads a basic list info
@@ -27,8 +34,10 @@ class Controller_Panel_Order extends Auth_Crud {
     public function action_index($view = NULL)
     {
         $this->template->title = __('Orders');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('List')));
+
         $this->template->scripts['footer'][] = 'js/oc-panel/crud/index.js';
-        
+
         $orders = new Model_Order();
         //$orders = $orders->where('status', '=', Model_Order::STATUS_PAID);
 
