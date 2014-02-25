@@ -166,7 +166,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label col-sm-1"><a target="_blank" href="http://getbootstrap.com/2.3.2/base-css.html#icons"><?=__('Icon')?></a></label>
+    <label class="control-label col-sm-1"><a target="_blank" href="http://getbootstrap.com/components/#glyphicons"><?=__('Icon')?></a></label>
     <div class="col-sm-4">
         <input class="form-control" type="text" name="icon" value="<?=Core::post('icon')?>" placeholder="<?=__('glyphicon  glyphicon-envelope glyphicon')?>">
     </div>
