@@ -46,6 +46,20 @@ class Model_Order extends ORM {
     );
 
     /**
+     * @var  array  ORM Dependency/hirerachy
+     */
+    protected $_belongs_to = array(
+        'ad' => array(
+                'model'       => 'ad',
+                'foreign_key' => 'id_ad',
+            ),
+        'user' => array(
+                'model'       => 'user',
+                'foreign_key' => 'id_user',
+            ),
+    );
+
+    /**
      * confirm payment for order
      *
      * @param string    $id_order [unique indentifier of order]

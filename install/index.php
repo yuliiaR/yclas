@@ -19,7 +19,8 @@ define('INSTALLROOT', DOCROOT.'install/');
 if(!file_exists(INSTALLROOT.'install.lock')) 
     die('Installation seems to be done, please remove /install/ folder');
 
-error_reporting(E_ALL);
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+ini_set('display_errors', 1);
 
 include 'class.install.php';
 
