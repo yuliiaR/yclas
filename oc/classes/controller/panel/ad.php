@@ -2,6 +2,13 @@
 
 class Controller_Panel_Ad extends Auth_Controller {
 
+	public function __construct($request, $response)
+	{
+		parent::__construct($request, $response);
+
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Ads'))->set_url(Route::url('oc-panel',array('controller'  => 'ad'))));
+	}
+
    	/**
    	 * List all Advertisements (PUBLISHED)
    	 */
@@ -10,6 +17,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		//template header
 		$this->template->title           	= __('Advertisements');
 		$this->template->meta_description	= __('Advertisements');
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('List')));
 		
 		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js'; 
 
