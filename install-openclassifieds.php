@@ -435,7 +435,7 @@ function __($msgid)
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#home" data-toggle="tab">Install</a></li>
                             <li><a href="http://open-classifieds.com/support/" target="_blank">Support</a></li>
-                            <li><a href="#requirements" data-toggle="tab">Requirements</a></li>
+                            <li><a href="#home" data-toggle="tab">Requirements</a></li>
                             <li><a href="#about" data-toggle="tab">About</a></li>
                         </ul>
 
@@ -492,7 +492,7 @@ function __($msgid)
                     <?if (!empty(install::$msg) OR !empty(install::$error_msg)) 
                             hosting_view();?>
                     <div class="page-header">
-                        <h1>Install Open Classifieds v<?php echo $last_version;?></h1>
+                        <h1>Install Open Classifieds v.<?=$last_version;?></h1>
                         <p>We will download last stable version of Open Classifieds and redirect you to the installation form. <br>
                             Once you click in the install button can take few seconds until downloaded, please do not close this window.</p>
                         <div class="clearfix"></div>
@@ -509,30 +509,26 @@ function __($msgid)
                 else
                     hosting_view();
                 ?>
-            </div>
-            <div class="tab-pane fade" id="requirements">
+                    <hr>
+                    <h3><?=__("Software Requirements")?>  v.<?=$last_version;?></h3>
+                    <p><?=__('Requirements checks we do before we install.')?> 
+                        <span class="label label-info" id="phpinfobutton" >phpinfo()</span>
+                    </p>
 
-                <div class="page-header">
-                    <a class="btn btn-primary pull-right" id="phpinfobutton" >phpinfo()</a>
-                    <h1><?=__("Software Requirements")?>  v.<?=install::version?></h1>
-                    <p><?=__('In this page you can see the requirements checks we do before we install.')?></p>
-                    <div class="clearfix"></div>
-                </div>
+                    <?foreach (install::requirements() as $name => $values):
+                        $color = ($values['result'])?'success':'danger';?>
+                        <div class="pull-left <?=$color?>" style=" width: 100px; height: 56px; text-align: center;">
+                            <h4><i class="glyphicon glyphicon-<?=($values['result'])?"ok":"remove"?>"></i>
+                            <div class="clearfix"></div> 
+                            <?printf ('<span class="label label-%s">%s</span>',$color,$name);?> </h4>
+                        </div>   
+                    <?endforeach?>
+        
+                    <div class="clearfix"></div><br>
 
-                <?foreach (install::requirements() as $name => $values):
-                    $color = ($values['result'])?'success':'danger';?>
-                    <div class="pull-left <?=$color?>" style=" width: 100px; height: 56px; text-align: center;">
-                        <h4><i class="glyphicon glyphicon-<?=($values['result'])?"ok":"remove"?>"></i>
-                        <div class="clearfix"></div> 
-                        <?printf ('<span class="label label-%s">%s</span>',$color,$name);?> </h4>
-                    </div>   
-                <?endforeach?>
-
-                <div class="clearfix"></div><br>
-
-                <div class="hidden" id="phpinfo">
-                    <?=str_replace('<table', '<table class="table table-striped table-bordered"', install::phpinfo())?>
-                </div>
+                    <div class="hidden" id="phpinfo">
+                        <?=str_replace('<table', '<table class="table table-striped table-bordered"', install::phpinfo())?>
+                    </div>
             </div>
 
             <div class="tab-pane fade" id="about">
@@ -619,14 +615,14 @@ function __($msgid)
         $('#phpinfobutton').click(function(){
             if($('#phpinfo').hasClass('hidden'))
             {
-                $(this).removeClass('btn-primary');
-                $(this).addClass('btn-default');
+                $(this).removeClass('label-info');
+                $(this).addClass('label-warning');
                 $('#phpinfo').removeClass('hidden');
             }
             else
             {
-                $(this).removeClass('btn-default');
-                $(this).addClass('btn-primary');
+                $(this).removeClass('label-warning');
+                $(this).addClass('label-info');
                 $('#phpinfo').addClass('hidden');
             }
         });
