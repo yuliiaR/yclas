@@ -32,6 +32,15 @@ class Paypal {
     const to_featured           = 3;
 
     /**
+     * @var  array  Available statuses array
+     */
+    public static $products = array(
+        self::category_product  =>  'Paid category',
+        self::to_top            =>  'Top up ad',
+        self::to_featured       =>  'Feature ad',
+    );
+
+    /**
      * validates the data at paypal c&p from https://www.x.com/developers/PayPal/documentation-tools/code-sample/216623
      * @note impossible to test on sandbox, paypal wont work.
      * I really dislike this code but seems to work...
