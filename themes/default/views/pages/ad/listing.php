@@ -36,11 +36,20 @@
 		    		<a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
 		    	</h2>
 		    	
-		    	<?if($ad->get_first_image() !== NULL):?>
-		    		 <a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-		    		 	<img src="<?=URL::base()?><?=$ad->get_first_image()?>" class="img-polaroid advert_img" >
-		    		 </a>
-		    	<?endif?>
+		    	
+		    	<div class="picture">
+                    <a class="pull-left" title="<?=$ad->title;?>" alt="<?=$ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+                        <figure>
+                            <?if($ad->get_first_image() !== NULL):?>
+                                <img src="<?=URL::base()?><?=$ad->get_first_image()?>">
+                            <?elseif(file_exists(DOCROOT.'images/categories/'.$ad->category->seoname.'.png')):?>
+                                <img src="<?=URL::base().'images/categories/'.$ad->category->seoname.'.png'?>" >
+                            <?else:?>
+                                <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>">
+                            <?endif?>
+                        </figure>
+                    </a>
+                </div>
 		    	
 		    	<ul>
 		    		<?if ($ad->published!=0){?>
