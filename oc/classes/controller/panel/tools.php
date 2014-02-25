@@ -13,7 +13,7 @@ class Controller_Panel_Tools extends Auth_Controller {
     public function __construct($request, $response)
     {
         parent::__construct($request, $response);
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Tools'))->set_url(Route::url('oc-panel',array('controller'  => 'tools'))));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Tools')));
         
     }
     
