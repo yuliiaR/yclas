@@ -32,10 +32,7 @@ class Controller_Panel_Content extends Auth_Controller {
         if(Model_Content::get_contents($type,$locale)->count() != 0)
             $contents = Model_Content::get_contents($type,$locale);
         else
-        {
-            Alert::set(Alert::INFO, __('You dont have any ').$type.' for '.$locale.'!');
             $contents = Model_Content::get_contents($type,'en_UK');
-        }
         
         $ll = DB::select(DB::expr('DISTINCT (locale)'))
                 ->from('content')
@@ -102,7 +99,9 @@ class Controller_Panel_Content extends Auth_Controller {
             try 
             {
                 $content->save();
-                Alert::set(Alert::SUCCESS, $this->request->post('type').' '.__('is created'));
+                Alert::set(Alert::SUCCESS, $this->request->post('type').' '.__('is created').'. '.__('Please to see the changes delete the cache')
+                    .'<br><a class="btn btn-primary btn-mini" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
+                    .__('Delete All').'</a>');
                 Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'content','action'=>'list')).'?type='.$p['type'].'&locale_select='.$p['locale']);
             } 
             catch (Exception $e) 
@@ -199,7 +198,9 @@ class Controller_Panel_Content extends Auth_Controller {
             {
                 $content->delete();
                 $this->template->content = 'OK';
-                Alert::set(Alert::SUCCESS, __('Content is deleted'));
+                Alert::set(Alert::SUCCESS, __('Content is deleted').'. '.__('Please to see the changes delete the cache')
+                    .'<br><a class="btn btn-primary btn-mini" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
+                    .__('Delete All').'</a>');
             }
             catch (Exception $e)
             {
