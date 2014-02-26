@@ -112,7 +112,8 @@ class Model_Field {
                                 'values'    => $values,
                                 'categories'=> $categories,
                                 'required'  => $options['required'],
-                                'searchable'=> $options['searchable']
+                                'searchable'=> $options['searchable'],
+                                'admin_privilege'=> $options['admin_privilege']
                                 );
 
                 $conf->config_value = json_encode($fields);
@@ -166,7 +167,8 @@ class Model_Field {
                                 'values'    => $values,
                                 'categories'=> $categories,
                                 'required'  => $options['required'],
-                                'searchable'=> $options['searchable']
+                                'searchable'=> $options['searchable'],
+                                'admin_privilege'=> $options['admin_privilege']
                                 );
 
                 $conf->config_value = json_encode($fields);

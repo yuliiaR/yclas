@@ -78,6 +78,15 @@
                 </label>
             <div class="help-block"></div></div>
         </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label class="checkbox">
+                  <input type="checkbox" name="admin_privilege" <?=(isset($field_data['admin_privilege']) AND $field_data['admin_privilege']==TRUE)?'checked':''?>> 
+                   <?=__('Admin Privileged')?>
+                </label>
+            <div class="help-block"></div></div>
+        </div>
       
       <div class="form-actions">
         <a href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'index'))?>" class="btn btn-default"><?=__('Cancel')?></a>

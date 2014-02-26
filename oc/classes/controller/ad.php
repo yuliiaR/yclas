@@ -289,11 +289,14 @@ class Controller_Ad extends Controller {
                 else 
                     $user = Auth::instance()->get_user()->id_user;
 
+
 				//count how many matches are found 
 		        $hits = new Model_Visit();
 		        $hits = $hits->where('id_ad','=', $ad->id_ad)->count_all();
 
 				$captcha_show = core::config('advertisement.captcha');	
+				
+				$cf_config = json_decode(core::config('advertisement.fields')) ;
 
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
@@ -301,7 +304,8 @@ class Controller_Ad extends Controller {
 																				   'hits'			=>$hits, 
 																				   'captcha_show'	=>$captcha_show,
 																				   'user'			=>$user,
-																				   'custom_fields'	=>$ad->custom_columns()));
+																				   'custom_fields'	=>$ad->custom_columns(),
+																				   'cf_config'		=>$cf_config));
 
 			}
 			//not found in DB
