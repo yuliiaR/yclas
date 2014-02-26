@@ -128,10 +128,9 @@ class Model_Ad extends ORM {
     {
 
         $ad = new self;
-// d($title);
+
         $title = URL::title($title);
         $seotitle = $title;
-
 
         //find a ad same seotitle
         $a = $ad->where('seotitle', '=', $seotitle)->and_where('id_ad', '!=', $this->id_ad)->limit(1)->find();
@@ -162,8 +161,10 @@ class Model_Ad extends ORM {
 
 
     /**
-     *
-     *  Create single table for each advertisement hit 
+     *  Create single table for each advertisement hit
+     * 
+     *  @param int visitor id
+     *  @param int ip address 
      */
     public function count_ad_hit($visitor_id, $ip_address){
         
@@ -233,7 +234,8 @@ class Model_Ad extends ORM {
     /**
      * [gen_img_path] Generate image path with a given parameters $seotitle and 
      * date of advertisement creation 
-     * @param  [date]   $created     [date of creation]
+     * @param  date created
+     * @return string directory
      */
     public function gen_img_path($created)
     { 
@@ -261,9 +263,9 @@ class Model_Ad extends ORM {
     /**
      * save_image upload images with given path
      * 
-     * @param  [array]  $image      [image $_FILE-s ]
-     * @param  [string] $seotitle   [unique id, and folder name]
-     * @return [bool]               [return true if 1 or more images uploaded, false otherwise]
+     * @param array image
+     * @param string seotitle
+     * @return bool
      */
     public function save_image($image, $created, $seotitle)
     {
@@ -407,8 +409,8 @@ class Model_Ad extends ORM {
 
     /**
      * image_path make unique dir path with a given date and id
-     * 
-     * @return [string]             [directory path]
+     * @param date created
+     * @return string path
      */
     public function image_path($created)
     { 
@@ -441,6 +443,12 @@ class Model_Ad extends ORM {
 
         return $path;
     }
+
+    /**
+     * Deletes image from edit ad
+     * @param string img_path
+     * @return bool
+     */
 
     public function delete_images($img_path)
     {
@@ -480,7 +488,7 @@ class Model_Ad extends ORM {
      * Receives a description as a string to replace all baned word
      * with replacement provided.
      * array of baned words and replacement is get fromconfig
-     * @param $decription string
+     * @param string text
      * @return string 
      */
     public static function banned_words($text)
@@ -502,6 +510,7 @@ class Model_Ad extends ORM {
     /**
      * returns true if file is of valid type.
      * Its used to check file sent to user from advert usercontact
+     * @param array file
      * @return BOOL 
      */
     public function is_valid_file($file)
