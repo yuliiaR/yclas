@@ -83,9 +83,9 @@ class Controller_Panel_Widget extends Auth_Controller {
                 $c->reload_config();
 
                 if ($widget_name!=NULL)
-                    Alert::set(Alert::SUCCESS,__('Widget '.$widget_name.' saved in '.$placeholder));
+                    Alert::set(Alert::SUCCESS,sprintf(__('Widget %s saved in %s'),$widget_name,$placeholder));
                 else
-                    Alert::set(Alert::SUCCESS,__('Widget created in '.$placeholder));
+                    Alert::set(Alert::SUCCESS,sprintf(__('Widget created in %s'),$placeholder));
 
                 $this->request->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index')));
             } catch (Exception $e) {
@@ -108,10 +108,10 @@ class Controller_Panel_Widget extends Auth_Controller {
         {
             $w = Widget::factory($widget_name);
 
-            if ($w->delete())
-                Alert::set(Alert::SUCCESS,__('Widget '.$widget_name.' deleted'));
+            if ($w AND $w->delete())
+                Alert::set(Alert::SUCCESS,sprintf(__('Widget %s deleted'),$widget_name));
             else
-                Alert::set(Alert::ERROR,__('Widget '.$widget_name.' can not be deleted'));
+                Alert::set(Alert::ERROR,sprintf(__('Cannot delete widget %s'),$widget_name));
         }
         else
             Alert::set(Alert::ERROR,__('Widget parameter missing'));
