@@ -351,7 +351,7 @@ mysql_query("INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_access`,
 /**
  * Create user God/Admin 
  */
-$password = hash_hmac('sha256', core::request('ADMIN_PWD'), $hash_key);
+$password = hash_hmac('sha256', core::request('ADMIN_PWD'), install::$hash_key);
 mysql_query("INSERT INTO `".core::request('TABLE_PREFIX')."users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) 
 VALUES (1, 'admin', 'admin', '".core::request('ADMIN_EMAIL')."', '$password', 1, 10)");
 
