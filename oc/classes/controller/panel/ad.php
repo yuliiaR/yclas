@@ -197,33 +197,39 @@ class Controller_Panel_Ad extends Auth_Controller {
 					$this->template = View::factory('js');
 					$element = ORM::factory('ad', $id);
 					
-					if($element->loaded())
+					if($element AND $element->loaded())
 					{
 						try
 						{
-							
 							$img_path = $element->gen_img_path($element->id_ad, $element->created);
-							
 
-							if (!is_dir($img_path)) 
-								$element->delete();	
-							else
-							{
+							if (is_dir($img_path))
 								$element->delete_images($img_path);
-								$element->delete();
-							}
-								
+
+							$element->delete();
+							$nb_Ads_Deleted++;
 						}
 						catch (Exception $e)
 						{
-							Alert::set(Alert::ALERT, __('Warning, something went wrong while deleting'));
-							throw new HTTP_Exception_500($e->getMessage());
+							Alert::set(Alert::ERROR, sprintf(__('Warning, something went wrong while deleting Ad with id %u'),$id).':<br>'.$e->getMessage());
+							//throw new HTTP_Exception_500($e->getMessage());
 						}
-					}	
+					}
+					else
+						Alert::set(Alert::ERROR, sprintf(__('Cannot find Ad with id %u'),$id));
 				}
-				
+
 			}
-			Alert::set(Alert::SUCCESS, __('Advertisement is deleted'));
+			$level_Alert = ($nb_Ads_Deleted > 0) ? Alert::SUCCESS : Alert::INFO;
+			if ($nb_Ads_Deleted == 1)
+				$nb_Ads_Deleted = __('Advertisement has been permanently deleted');
+			elseif ($nb_Ads_Deleted >= 2)
+				$nb_Ads_Deleted = sprintf(__('%u advertisements have been permanently deleted'),$nb_Ads_Deleted);
+			else
+				$nb_Ads_Deleted = __('None (0) advertisement has been deleted');
+
+			Alert::set($level_Alert, $nb_Ads_Deleted);
+
 			$param_current_url = $this->request->param('current_url');
 		
 			
