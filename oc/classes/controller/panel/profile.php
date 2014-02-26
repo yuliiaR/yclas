@@ -397,7 +397,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				$deleted_image = core::post('img_delete');
 				if($deleted_image)
 				{
-					$img_path = $form->gen_img_path($form->id_ad, $form->created);
+					$img_path = $form->gen_img_path($form->created);
 					
 					if (!is_dir($img_path)) 
 					{
@@ -458,9 +458,9 @@ class Controller_Panel_Profile extends Auth_Controller {
 				{
 					if($form->has_images == 1)
 					{
-						$current_path = $form->gen_img_path($form->id_ad, $form->created);
+						$current_path = $form->gen_img_path($form->created);
 						// rename current image path to match new seoname
-						rename($current_path, $form->gen_img_path($form->id_ad, $form->created)); 
+						rename($current_path, $form->gen_img_path($form->created)); 
 
 					}
 					$seotitle = $form->gen_seo_title($data['title']);

@@ -201,7 +201,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					{
 						try
 						{
-							$img_path = $element->gen_img_path($element->id_ad, $element->created);
+							$img_path = $element->gen_img_path($element->created);
 
 							if (is_dir($img_path))
 								$element->delete_images($img_path);

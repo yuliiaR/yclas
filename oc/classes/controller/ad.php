@@ -280,7 +280,7 @@ class Controller_Ad extends Controller {
 						$visitor_id = NULL;
 					else
 						$visitor_id = Auth::instance()->get_user()->id_user;
-					$do_hit = $ad->count_ad_hit($ad->id_ad, $visitor_id, ip2long(Request::$client_ip)); // hits counter
+					$do_hit = $ad->count_ad_hit($visitor_id, ip2long(Request::$client_ip)); // hits counter
 					
 					$permission = FALSE;
 					$user = NULL;
@@ -332,7 +332,7 @@ class Controller_Ad extends Controller {
 	public function image_path($data)
 	{
 		$obj_ad = new Model_Ad();
-		$directory = $obj_ad->gen_img_path($data->id_ad, $data->created);
+		$directory = $obj_ad->gen_img_path($data->created);
 
 		$path = array();
 		if(is_dir($directory))

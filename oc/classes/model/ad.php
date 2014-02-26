@@ -163,15 +163,13 @@ class Model_Ad extends ORM {
 
     /**
      *
-     *  Create single table for each advertisement hit
-     *  
-     *  @param $id_ad (model_ad), $id_user(model_user) 
+     *  Create single table for each advertisement hit 
      */
-    public function count_ad_hit($id_ad, $visitor_id, $ip_address){
+    public function count_ad_hit($visitor_id, $ip_address){
         
         //inser new table, as a hit
         $new_hit = DB::insert('visits', array('id_ad', 'id_user', 'ip_address'))
-                                ->values(array($id_ad, $visitor_id, $ip_address))
+                                ->values(array($this->id_ad, $visitor_id, $ip_address))
                                 ->execute();
 
     }
@@ -185,7 +183,7 @@ class Model_Ad extends ORM {
        
         if($this->loaded())
         {  
-            $route = $this->gen_img_path($this->id_ad, $this->created);
+            $route = $this->gen_img_path($this->created);
             $folder = DOCROOT.$route;
 
             if(is_dir($folder))
@@ -235,11 +233,9 @@ class Model_Ad extends ORM {
     /**
      * [gen_img_path] Generate image path with a given parameters $seotitle and 
      * date of advertisement creation 
-     * @param  [string] $id         [id of advert ]
      * @param  [date]   $created     [date of creation]
-     * @return [string]             [directory path]
      */
-    public function gen_img_path($id, $created)
+    public function gen_img_path($created)
     { 
         
         $obj_date = date_parse($created); // convert date to array 
@@ -257,7 +253,7 @@ class Model_Ad extends ORM {
         else
             $day = $obj_date['day'];
 
-        $directory = 'images/'.$year.'/'.$month.'/'.$day.'/'.$id.'/';
+        $directory = 'images/'.$year.'/'.$month.'/'.$day.'/'.$this->id_ad.'/';
        
         return $directory;
     }
@@ -269,7 +265,7 @@ class Model_Ad extends ORM {
      * @param  [string] $seotitle   [unique id, and folder name]
      * @return [bool]               [return true if 1 or more images uploaded, false otherwise]
      */
-    public function save_image($image, $id, $created, $seotitle)
+    public function save_image($image, $created, $seotitle)
     {
         if ( 
         ! Upload::valid($image) OR
@@ -291,7 +287,7 @@ class Model_Ad extends ORM {
           
         if ($image !== NULL)
         {
-            $path           = $this->image_path($id , $created);
+            $path           = $this->image_path($this->id_ad , $created);
             $directory      = DOCROOT.$path;
             $image_quality  = core::config('image.quality');
             $width          = core::config('image.width');
@@ -412,15 +408,14 @@ class Model_Ad extends ORM {
     /**
      * image_path make unique dir path with a given date and id
      * 
-     * @param  [int] $id   [unique id, and folder name]
      * @return [string]             [directory path]
      */
-    public function image_path($id, $created)
+    public function image_path($created)
     { 
         if ($created !== NULL)
         {
             $obj_ad = new Model_Ad();
-            $path = $obj_ad->gen_img_path($id, $created);
+            $path = $obj_ad->gen_img_path($created);
         }
         else
         {
@@ -435,7 +430,7 @@ class Model_Ad extends ORM {
                 $path .= $parse_data[$i].'/';           // append, to create path 
                 
             }
-                $path .= $id.'/';
+                $path .= $this->id_ad.'/';
         }
         
         
