@@ -184,7 +184,7 @@ class Model_Ad extends ORM {
        
         if($this->loaded())
         {  
-            $route = $this->gen_img_path($this->created);
+            $route = $this->gen_img_path($this->id_ad,$this->created);
             $folder = DOCROOT.$route;
 
             if(is_dir($folder))
@@ -237,7 +237,7 @@ class Model_Ad extends ORM {
      * @param  date created
      * @return string directory
      */
-    public function gen_img_path($created)
+    public function gen_img_path($id, $created)
     { 
         
         $obj_date = date_parse($created); // convert date to array 
@@ -255,7 +255,7 @@ class Model_Ad extends ORM {
         else
             $day = $obj_date['day'];
 
-        $directory = 'images/'.$year.'/'.$month.'/'.$day.'/'.$this->id_ad.'/';
+        $directory = 'images/'.$year.'/'.$month.'/'.$day.'/'.$id.'/';
        
         return $directory;
     }
@@ -267,7 +267,7 @@ class Model_Ad extends ORM {
      * @param string seotitle
      * @return bool
      */
-    public function save_image($image, $created, $seotitle)
+    public function save_image($image, $id, $created, $seotitle)
     {
         if ( 
         ! Upload::valid($image) OR
@@ -289,7 +289,7 @@ class Model_Ad extends ORM {
           
         if ($image !== NULL)
         {
-            $path           = $this->image_path($this->id_ad , $created);
+            $path           = $this->image_path($id , $created);
             $directory      = DOCROOT.$path;
             $image_quality  = core::config('image.quality');
             $width          = core::config('image.width');
@@ -412,12 +412,12 @@ class Model_Ad extends ORM {
      * @param date created
      * @return string path
      */
-    public function image_path($created)
+    public function image_path($id, $created)
     { 
         if ($created !== NULL)
         {
             $obj_ad = new Model_Ad();
-            $path = $obj_ad->gen_img_path($created);
+            $path = $obj_ad->gen_img_path($id, $created);
         }
         else
         {
@@ -432,7 +432,7 @@ class Model_Ad extends ORM {
                 $path .= $parse_data[$i].'/';           // append, to create path 
                 
             }
-                $path .= $this->id_ad.'/';
+                $path .= $id.'/';
         }
         
         

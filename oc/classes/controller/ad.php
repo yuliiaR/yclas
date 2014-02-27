@@ -332,7 +332,7 @@ class Controller_Ad extends Controller {
 	public function image_path($data)
 	{
 		$obj_ad = new Model_Ad();
-		$directory = $obj_ad->gen_img_path($data->created);
+		$directory = $obj_ad->gen_img_path($data->id_ad, $data->created);
 
 		$path = array();
 		if(is_dir($directory))

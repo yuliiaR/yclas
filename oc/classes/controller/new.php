@@ -280,7 +280,7 @@ class Controller_New extends Controller
 	    			if (isset($_FILES['image'.$i]))
 	        		{
 		        		$img_files = $_FILES['image'.$i];
-		            	$filename = $new_ad->save_image($img_files, $created, $new_ad->seotitle, $counter);
+		            	$filename = $new_ad->save_image($img_files, $new_ad->id_ad,$created, $new_ad->seotitle, $counter);
 	        		}
 	        		
 	        		if ($filename){
