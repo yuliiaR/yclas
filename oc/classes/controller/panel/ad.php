@@ -188,6 +188,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		if(Auth::instance()->logged_in() && Auth::instance()->get_user()->id_user == $element->id_user 
 			|| Auth::instance()->logged_in() && Auth::instance()->get_user()->id_role == 10)
 		{
+			$nb_Ads_Deleted = 0;
 			foreach ($format_id as $id) 
 			{
 				
@@ -201,7 +202,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					{
 						try
 						{
-							$img_path = $element->gen_img_path($element->created);
+							$img_path = $element->gen_img_path($form->id_ad, $element->created);
 
 							if (is_dir($img_path))
 								$element->delete_images($img_path);

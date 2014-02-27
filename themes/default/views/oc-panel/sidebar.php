@@ -100,9 +100,13 @@
             </li>
 			<?if (Theme::get('premium')!=1 AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN):?>
     			<li class="no-prem"><a href="http://open-classifieds.com/?utm_source=<?=URL::base()?>&utm_medium=oc_sidebar&utm_campaign=<?=date('Y-m-d')?>"><span class="side-name-link">Open Classifieds</span></a></li>   
-    			<li class="no-prem ml-10"><script type="text/javascript">if (typeof geoip_city!="function")document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://j.maxmind.com/app/geoip.js\"></scr"+"ipt>");
-                    document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://api.adserum.com/sync.js?a=6&f=3&w=200&h=200\"></scr"+"ipt>");
-                    </script>
+    			<li class="no-prem ml-10"><script type="text/javascript">
+(function() {var uid = Math.round(Math.random()*10000);
+document.write("<div id=\"serum_"+uid+"\" style=\"min-width:200px;min-height:200px;\" ></div>");
+var as= document.createElement("script"); as.type  = "text/javascript"; as.async = true;
+as.src= (document.location.protocol == "https:" ? "https" : "http")+ "://api.adserum.com/async.js?id="+uid+"&a=6&f=3&w=200&h=200";
+var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(as, s);})();
+</script>
                 </li>
     			<a class="no-prem" href="http://open-classifieds.com/2013/08/19/can-i-remove-license/"><span class="side-name-link"><?=__('How to remove this')?>?</span></a>
                 <li class="ml-10 no-prem"><a href="https://twitter.com/openclassifieds"
