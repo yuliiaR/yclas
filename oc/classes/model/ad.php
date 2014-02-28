@@ -126,7 +126,6 @@ class Model_Ad extends ORM {
     
     public function gen_seo_title($title)
     {
-
         $ad = new self;
 
         $title = URL::title($title);
