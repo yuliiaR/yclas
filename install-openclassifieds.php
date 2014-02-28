@@ -722,7 +722,7 @@ function hosting_view()
     <?endif?>
 
     <div class="jumbotron well">
-        <h2>Ups! You need a compatible Hosting</h2>
+        <h2>Oops! You need a compatible Hosting</h2>
         <p class="text-danger">Your hosting seems to be not compatible. Check your settings.<p>
         <p>We have partnership with hosting companies to assure compatibility. And we include:
             <ul>
