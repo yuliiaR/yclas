@@ -3,7 +3,7 @@
   '2.1.3' => 
   array (
     'codename' => 'Nmemba',
-    'released' => '2014-02-xx',
+    'released' => '2014-03-03',
     'blog' => 'http://open-classifieds.com',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.1.3',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=16&state=closed',
