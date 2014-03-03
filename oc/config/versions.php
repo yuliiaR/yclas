@@ -1,10 +1,20 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+    '2.1.4' => 
+  array (
+    'codename' => 'Budapest',
+    'released' => '2014-04-xx',
+    'blog' => 'http://open-classifieds.com//',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.1.4',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=17&state=closed',
+    'download' => 'http://j.mp/oc_214',
+  ),
+
   '2.1.3' => 
   array (
     'codename' => 'Nmemba',
     'released' => '2014-03-03',
-    'blog' => 'http://open-classifieds.com',
+    'blog' => 'http://open-classifieds.com/2014/03/03/new-release-2-1-3/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.1.3',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=16&state=closed',
     'download' => 'http://j.mp/oc_213',
