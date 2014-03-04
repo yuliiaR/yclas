@@ -18,9 +18,9 @@
   <script type="text/javascript">
     var locations = [
     <?foreach ($ads as $ad):?>
-    {
-            lat: <?=$ad->lat?>,
-            lon: <?=$ad->lon?>,
+    {       
+            lat: <?=str_replace(',', '.', $ad->lat)?>,
+            lon: <?=str_replace(',', '.', $ad->lon)?>,
             title: '<?=$ad->title?>',
             html: '<div style="overflow: visible; cursor: default; clear: both; position: relative; background-color: rgb(255, 255, 255); border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding: 0px; min-width: 150px; max-width:250px; height: 70px;"><div><div><p><a href="<?=Route::url('ad',  array('category'=>$ad->category,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></p></div></div></div>',
     },
