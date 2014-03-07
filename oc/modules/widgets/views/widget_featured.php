@@ -14,7 +14,7 @@
         <?else:?>
             <div class="picture pull-right">
                 <a class="pull-right" title="<?=$ad->title;?>" alt="<?=$ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-                <figure><img src="http://www.placehold.it/75x75&text=<?=$ad->category->name?>"  ></figure></a>
+                <figure><img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"  ></figure></a>
             </div>
         <?endif?>
 	    <div class="featured-sidebar-box-header">
