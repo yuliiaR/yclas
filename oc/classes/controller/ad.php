@@ -175,7 +175,7 @@ class Controller_Ad extends Controller {
                 case 'price-desc':
                     $ads->order_by('price','desc')->order_by('published','desc');
                     break;
-                //featured first
+                //featured
                 case 'featured':
                     $ads->order_by('featured','desc')->order_by('published','desc');
                     break;
