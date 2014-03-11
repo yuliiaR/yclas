@@ -17,6 +17,7 @@
 
 
     </div><!--end of recomentadion-->
+<?if(core::config('general.sort_by')):?>
 <div class="btn-group pull-right">
     <button type="button" id="sort" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
         <span class="glyphicon glyphicon-list-alt"></span><?=__('Sort')?> <span class="caret"></span>
@@ -31,6 +32,7 @@
         <li><a href="?sort=published-desc"><?=__('Oldest')?></a></li>
     </ul>
 </div>
+<?endif?>
 <div class="clearfix"></div>
     <?if(count($ads)):?>
         <?foreach($ads as $ad ):?>

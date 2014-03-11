@@ -470,20 +470,20 @@
             </div>
         </div>
         <div class="form-group">
-                <?= FORM::label($forms['faq_disqus']['key'], __('Disqus for FAQ'), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq_disqus']['key']))?>
-                <div class="col-sm-4">
-                    <?= FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
-                    'placeholder' => "", 
-                    'class' => 'tips form-control input-sm', 
-                    'id' => $forms['faq_disqus']['key'], 
-                    'data-original-title'=> __("Disqus for FAQ Comments"),
-                    'data-trigger'=>"hover",
-                    'data-placement'=>"right",
-                    'data-toggle'=>"popover",
-                    'data-content'=>__("You need to write your disqus ID to enable the service."),
-                    ))?> 
-                </div>
+            <?= FORM::label($forms['faq_disqus']['key'], __('Disqus for FAQ'), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq_disqus']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
+                'placeholder' => "", 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['faq_disqus']['key'], 
+                'data-original-title'=> __("Disqus for FAQ Comments"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-content'=>__("You need to write your disqus ID to enable the service."),
+                ))?> 
             </div>
+        </div>
 		
          <div class="form-group">
             <?= FORM::label($forms['minify']['key'], __("Minify CSS/JS"), array('class'=>'control-label col-sm-3', 'for'=>$forms['minify']['key']))?>
@@ -497,6 +497,22 @@
                 'data-placement'=>"right",
                 'data-toggle'=>"popover",
                 'data-original-title'=>__("Activates Minify CSS/JS"),
+                ))?> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?= FORM::label($forms['sort_by']['key'], __("Sort by"), array('class'=>'control-label col-sm-3', 'for'=>$forms['sort_by']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::select($forms['sort_by']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['sort_by']['value'], array(
+                'placeholder' => "TRUE or FALSE", 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['sort_by']['key'], 
+                'data-content'=> __("Enables Sort option in listing"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Sort by"),
                 ))?> 
             </div>
         </div>

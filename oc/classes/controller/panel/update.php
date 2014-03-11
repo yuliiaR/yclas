@@ -274,22 +274,28 @@ class Controller_Panel_Update extends Auth_Controller {
        
     }
 
-
-
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.1.2
+     * This function will upgrade DB that didn't existed in verisons below 2.1.3
      */
-    public function action_213()
+    public function action_214()
     {        
-        //call update previous versions
+        // build array with new (missing) configs
+        $configs = array(array('config_key'     =>'sort_by',
+                               'group_name'     =>'general', 
+                               'config_value'   =>'1'), 
+                        );
 
+        // returns TRUE if some config is saved 
+        $return_conf = Model_Config::config_array($configs);
+
+        //call update previous versions
         $this->action_203();
         $this->action_205();
         $this->action_206();
         $this->action_207();
         $this->action_21();
         $this->action_211();
-        //nothing in DB for release 2.1.2
+        //nothing in DB for release 2.1.3
 
         //clean cache
         Cache::instance()->delete_all();
@@ -301,8 +307,6 @@ class Controller_Panel_Update extends Auth_Controller {
         Alert::set(Alert::SUCCESS, __('Software Updated to latest version!'));
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
     }
-
-
 
     /**
      * This function will upgrade DB that didn't existed in verisons below 2.0.6
