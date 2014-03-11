@@ -282,7 +282,7 @@ class Controller_Panel_Update extends Auth_Controller {
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'sort_by',
                                'group_name'     =>'general', 
-                               'config_value'   =>'1'), 
+                               'config_value'   =>'published-asc'), 
                         );
 
         // returns TRUE if some config is saved 

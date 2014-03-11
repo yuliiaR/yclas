@@ -157,7 +157,7 @@ class Controller_Ad extends Controller {
             /**
              * order depending on the sort parameter
              */
-            switch (core::request('sort','published-desc')) 
+            switch (core::request('sort',core::config('general.sort_by'))) 
             {
                 //title z->a
                 case 'title-asc':
@@ -189,6 +189,7 @@ class Controller_Ad extends Controller {
                     $ads->order_by('published','desc');
                     break;
             }
+
 
      	    //we sort all ads with few parameters
        		$ads = $ads ->limit($pagination->items_per_page)
