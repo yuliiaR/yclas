@@ -154,11 +154,46 @@ class Controller_Ad extends Controller {
     	   
      	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->current_page));
 
+            /**
+             * order depending on the sort parameter
+             */
+            switch (core::request('sort','published-desc')) 
+            {
+                //title z->a
+                case 'title-asc':
+                    $ads->order_by('title','asc')->order_by('published','desc');
+                    break;
+                //title a->z
+                case 'title-desc':
+                    $ads->order_by('title','desc')->order_by('published','desc');
+                    break;
+                //cheaper first
+                case 'price-asc':
+                    $ads->order_by('price','asc')->order_by('published','desc');
+                    break;
+                //expensive first
+                case 'price-desc':
+                    $ads->order_by('price','desc')->order_by('published','desc');
+                    break;
+                //featured
+                case 'featured':
+                    $ads->order_by('featured','desc')->order_by('published','desc');
+                    break;
+                //oldest first
+                case 'published-asc':
+                    $ads->order_by('published','asc');
+                    break;
+                //newest first
+                case 'published-desc':
+                default:
+                    $ads->order_by('published','desc');
+                    break;
+            }
+
      	    //we sort all ads with few parameters
-       		$ads = $ads->order_by('published','desc')
-		        	            ->limit($pagination->items_per_page)
-		        	            ->offset($pagination->offset)
-		        	            ->find_all();
+       		$ads = $ads ->limit($pagination->items_per_page)
+        	            ->offset($pagination->offset)
+        	            ->find_all();
 		}
 		else
 		{
