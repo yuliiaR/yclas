@@ -135,6 +135,16 @@
 						<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 					</div>
 				</div>
+					<?if(core::config('advertisement.map_pub_new')):?>
+						<div class="popin-map-container">
+							<div class="map-inner" id="map" 
+								data-lat="<?=core::config('advertisement.center_lat')?>" 
+								data-lon="<?=core::config('advertisement.center_lon')?>"
+								data-zoom="<?=core::config('advertisement.map_zoom')?>" 
+								style="height:200px;max-width:400px">
+							</div>
+						</div>
+					<?endif?>
 				<?endif?>
 				<?if($form_show['price'] != FALSE):?>
 				<div class="form-group">

@@ -125,6 +125,21 @@
                 </div>
             </div>
             <div class="form-group">
+                <?= FORM::label($forms['map_pub_new']['key'], __('Google Maps in Publis New'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map_pub_new']['key']))?>
+                <div class="col-sm-4">
+                    <?= FORM::select($forms['map_pub_new']['key'], array(0=>"FALSE",1=>"TRUE"),$forms['map_pub_new']['value'], array(
+                    'placeholder' => "", 
+                    'class' => 'tips form-control', 
+                    'id' => $forms['map_pub_new']['key'], 
+                    'data-original-title'=> 'Google Maps',
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-content'=>__("Displays the google maps in the Publish new form."),
+                    ))?> 
+                </div>
+            </div>
+            <div class="form-group">
 				<?= FORM::label($forms['map_zoom']['key'], __('Google map zoom level'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map_zoom']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::input($forms['map_zoom']['key'], $forms['map_zoom']['value'], array(
