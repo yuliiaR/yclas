@@ -104,11 +104,17 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?> 
-						
-						<div class="col-md-4">
-							<?= FORM::label('images', __('Images'), array('class'=>'control-label', 'for'=>'images'.$i))?>
-							<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" />
+					<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?>
+						<div class="fileinput fileinput-new" data-provides="fileinput">
+						  	<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+							<div>
+						    <span class="btn btn-default btn-file">
+						    	<span class="fileinput-new"><?=__('Select')?></span>
+						    	<span class="fileinput-exists"><?=__('Edit')?></span>
+						    	<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>">
+						    </span>
+						    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=__('Delete')?></a>
+						  </div>
 						</div>
 					<?endfor?>
 				</div>

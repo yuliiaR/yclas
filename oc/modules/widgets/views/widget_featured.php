@@ -9,12 +9,12 @@
 		<?if($ad->get_first_image() !== NULL):?>
             <div class="picture pull-right">
                 <a class="pull-right" title="<?=$ad->title;?>" alt="<?=$ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-                <figure><img src="<?=URL::base()?><?=$ad->get_first_image()?>"></figure></a>
+                <figure><img src="<?=URL::base()?><?=$ad->get_first_image()?>" width="100%"></figure></a>
             </div>
         <?else:?>
             <div class="picture pull-right">
                 <a class="pull-right" title="<?=$ad->title;?>" alt="<?=$ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-                <figure><img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"  ></figure></a>
+                <figure><img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>" width="100%"></figure></a>
             </div>
         <?endif?>
 	    <div class="featured-sidebar-box-header">
