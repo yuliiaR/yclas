@@ -336,6 +336,33 @@ class Controller_Ad extends Controller {
 				$captcha_show = core::config('advertisement.captcha');	
 				
 				$cf_config = json_decode(core::config('advertisement.fields')) ;
+				$active_custom_fields = $ad->custom_columns();
+
+				// Custom fields to display
+				$ad_custom_vals = array();
+				foreach ($active_custom_fields as $name => $value) {
+					$real_name = str_replace("cf_", "", $value['parameters']['column_name']);
+					
+					if(isset($value['value']))//value is set 
+					{	
+						if($cf_config->$real_name->type == 'checkbox') // checkbox is TRUE or FALSE
+						{
+							if(isset($value['value']) AND $value['value'])
+								$ad_custom_vals[$cf_config->$real_name->label] = NULL;
+						}
+						elseif($cf_config->$real_name->type == 'radio') // Radio have list of choices, but is saved as int in DB
+							$ad_custom_vals[$cf_config->$real_name->label] = $cf_config->$real_name->values[$value['value']-1];
+						else
+							$ad_custom_vals[$cf_config->$real_name->label] = $value['value'];
+
+						//admin_privilege can be seen only by admin, so we check if its set / and is admin
+						if(isset($cf_config->$real_name->admin_privilege) AND $cf_config->$real_name->admin_privilege)
+							if(!Auth::instance()->logged_in() OR !Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
+								if(isset($ad_custom_vals[$cf_config->$real_name->label]))
+									unset($ad_custom_vals[$cf_config->$real_name->label]);
+					}
+					
+				}
 
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
@@ -343,8 +370,8 @@ class Controller_Ad extends Controller {
 																				   'hits'			=>$hits, 
 																				   'captcha_show'	=>$captcha_show,
 																				   'user'			=>$user,
-																				   'custom_fields'	=>$ad->custom_columns(),
-																				   'cf_config'		=>$cf_config));
+																				   'cf_list'		=>$ad_custom_vals
+																				   ));
 
 			}
 			//not found in DB
