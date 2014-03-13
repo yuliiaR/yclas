@@ -23,8 +23,11 @@ class Controller_New extends Controller
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.validate.min.js';
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
-        $this->template->scripts['footer'][] = 'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
-        $this->template->scripts['footer'][] = 'http://cdn.jsdelivr.net/gmaps/0.4.4/gmaps.js';
+        if(core::config('advertisement.map_pub_new'))
+        {
+	        $this->template->scripts['footer'][] = 'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
+	        $this->template->scripts['footer'][] = 'http://cdn.jsdelivr.net/gmaps/0.4.4/gmaps.js';
+        }
         $this->template->scripts['footer'][] = 'js/new.js';
 
 		//find all, for populating form select fields 
