@@ -18,10 +18,10 @@
 
     </div><!--end of recomentadion-->
 <div class="btn-group pull-right">
-    <button type="button" id="sort" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
+    <button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
         <span class="glyphicon glyphicon-list-alt"></span><?=__('Sort')?> <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" role="menu">
+    <ul class="dropdown-menu" role="menu" id="sort-list">
         <li><a href="?sort=title-asc"><?=__('Name (A-Z)')?></a></li>
         <li><a href="?sort=title-desc"><?=__('Name (Z-A)')?></a></li>
         <li><a href="?sort=price-asc"><?=__('Price (Low)')?></a></li>
