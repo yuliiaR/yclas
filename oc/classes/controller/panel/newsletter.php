@@ -15,7 +15,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
         // validation active 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Newsletter')));  
         $this->template->title = __('Newsletter');
-        $this->template->styles = array('http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen');
+        //$this->template->styles = array('http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
         
         $user = new Model_User();
