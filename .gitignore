@@ -1,6 +1,8 @@
 oc/cache/*
 oc/logs/*
 images/*
+!images/favicon.ico
 themes/*
 !themes/default/
 oc/vendor/hybridauth/logs.txt
+.gitignore.txt

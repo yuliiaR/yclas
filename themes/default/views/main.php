@@ -51,7 +51,7 @@
       })();
     </script> 
     <?endif?>
-    <link rel="shortcut icon" href="<?=Theme::public_path('img/favicon.ico')?>">
+    <link rel="shortcut icon" href="<?=DOCROOT.'images/favicon.ico'?>">
 
     
   </head>

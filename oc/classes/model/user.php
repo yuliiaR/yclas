@@ -421,7 +421,7 @@ class Model_User extends ORM {
 
     public function exclude_fields()
     {
-       return array('hybridauth_provider_uid','password','last_modified','created','salt', 'ip_created', 'last_ip','token','token_created','token_expires','user_agent','id_location');
+       return array('logins','last_login','hybridauth_provider_uid','password','last_modified','created','salt', 'ip_created', 'last_ip','token','token_created','token_expires','user_agent','id_location');
     }
 
     /**
