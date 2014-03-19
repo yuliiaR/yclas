@@ -14,6 +14,7 @@
     <meta name="copyright" content="<?=$meta_copywrite?>" >
 	<meta name="author" content="open-classifieds.com">
 
+  
 
     <?if (core::config('general.blog')==1):?>
     <link rel="alternate" type="application/atom+xml" title="RSS Blog <?=Core::config('general.site_name')?>" href="<?=Route::url('rss-blog')?>" />
