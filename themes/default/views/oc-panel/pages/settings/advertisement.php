@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <?= FORM::label($forms['map_pub_new']['key'], __('Google Maps in Publis New'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map_pub_new']['key']))?>
+                <?= FORM::label($forms['map_pub_new']['key'], __('Google Maps in Publish New'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map_pub_new']['key']))?>
                 <div class="col-sm-4">
                     <?= FORM::select($forms['map_pub_new']['key'], array(0=>"FALSE",1=>"TRUE"),$forms['map_pub_new']['value'], array(
                     'placeholder' => "", 

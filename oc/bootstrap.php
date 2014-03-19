@@ -96,6 +96,7 @@ $modules = array(
 			   'formmanager'  => MODPATH.'formmanager',// forms to objects ORM
                'widgets'      => MODPATH.'widgets',    // loads default widgets
                'blacksmith'   => MODPATH.'blacksmith',    // used for custom fields
+               'mysqli'       => MODPATH.'mysqli',    // mysqli driver
 );
 
 //modules for development environment, not included in distribution KO with OC, so you need to place them in your environment
