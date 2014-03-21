@@ -52,7 +52,7 @@
       })();
     </script> 
     <?endif?>
-    <link rel="shortcut icon" href="<?=DOCROOT.'images/favicon.ico'?>">
+    <link rel="shortcut icon" href="<?=core::config('general.base_url').'images/favicon.ico'?>">
 
     
   </head>
