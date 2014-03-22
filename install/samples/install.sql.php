@@ -11,10 +11,10 @@
 
 defined('SYSPATH') or exit('Install must be loaded from within index.php!');
 
-mysqli_query('SET NAMES '.core::request('DB_CHARSET'));
-mysqli_query("SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO';");
+mysqli_query($link,'SET NAMES '.core::request('DB_CHARSET'));
+mysqli_query($link,"SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO';");
 
-mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."roles` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."roles` (
   `id_role` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `description` varchar(245) DEFAULT NULL,
@@ -24,7 +24,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."roles
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."access` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."access` (
   `id_access` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_role` int(10) unsigned NOT NULL,
   `access` varchar(100) NOT NULL,
@@ -32,7 +32,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."acces
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."users` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."users` (
   `id_user` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(145) DEFAULT NULL,
   `seoname` varchar(145) DEFAULT NULL,
@@ -60,7 +60,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."user
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."categories` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."categories` (
   `id_category` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(145) NOT NULL,
   `order` int(2) unsigned NOT NULL DEFAULT '0',
@@ -75,7 +75,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."cate
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."locations` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."locations` (
   `id_location` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `order` int(2) unsigned NOT NULL DEFAULT '0',
@@ -88,7 +88,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."locat
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."ads` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."ads` (
   `id_ad` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(10) unsigned NOT NULL,
   `id_category` int(10) unsigned NOT NULL DEFAULT '0',
@@ -118,7 +118,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."ads` 
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."visits` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."visits` (
   `id_visit` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_ad` int(10) unsigned DEFAULT NULL,
   `id_user` int(10) unsigned DEFAULT NULL,
@@ -131,7 +131,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."visit
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."config` ( 
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."config` ( 
   `group_name` VARCHAR(128)  NOT NULL, 
   `config_key` VARCHAR(128)  NOT NULL, 
   `config_value` TEXT,
@@ -139,7 +139,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."confi
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET')." ;");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."orders` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."orders` (
   `id_order` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(10) unsigned NOT NULL,
   `id_ad` int(10) unsigned NULL,
@@ -157,7 +157,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."orde
 )ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."content` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."content` (
   `id_content` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `locale` varchar(8) NOT NULL DEFAULT 'en_UK',
   `order` int(2) unsigned NOT NULL DEFAULT '0',
@@ -172,7 +172,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."conte
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."subscribers` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."subscribers` (
   `id_subscribe` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(10) unsigned NOT NULL,
   `id_category` int(10) unsigned NOT NULL DEFAULT '0',
@@ -184,7 +184,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."subsc
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query("CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."posts` (
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."posts` (
   `id_post` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(10) unsigned NOT NULL,
   `title` varchar(245) NOT NULL,
@@ -199,7 +199,7 @@ mysqli_query("CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."post
 /**
  * add basic content like emails
  */
-mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."content` (`order`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`order`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) 
     VALUES
 (0, 'Change Password [SITE.NAME]', 'auth.remember', 'Hello [USER.NAME],\n\nFollow this link  [URL.QL]\n\nThanks!!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Welcome to [SITE.NAME]!', 'auth.register', 'Welcome [USER.NAME],\n\nWe are really happy that you have joined us! [URL.QL]\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
@@ -217,7 +217,7 @@ mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."content` (`order`, `
 /**
  * Content translations
  */
-mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."content` (`id_content`, `locale`, `order`, `title`, `seotitle`, `description`, `from_email`, `created`, `type`, `status`)
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`id_content`, `locale`, `order`, `title`, `seotitle`, `description`, `from_email`, `created`, `type`, `status`)
     VALUES
 (30, 'ro_RO', 0, 'Anunțul dvs. `[AD.NAME]` a fost adăugat cu succes pe [SITE.NAME]!', 'ads.confirm', 'Bun venit, [USER.NAME].\n\nÎți mulțumim pentru adăugarea anunțului dvs. pe [SITE.NAME].\n\nTe rugăm să apeși un click pe acest link [URL.QL], pentru a confirma anunțul.\n\nToate cele bune!', '".core::request('ADMIN_EMAIL')."', '2013-07-29 10:25:48', 'email', 1),
 (31, 'ro_RO', 0, 'Anunțul dvs. `[AD.NAME]` a fost adăugat pe [SITE.NAME].', 'ads.user_check', 'Bună [USER.NAME],\n\nAnunțul a fost adăugat în contul dvs. [USER.NAME]. Puteți vizita acest link pentru vizualizarea anunțului [URL.AD].\n\nDacă nu sunteți răspunzător pentru adăugarea acestui anunț, vă rugăm să ne contactați, folosind link-ul următor: [URL.CONTACT].', '".core::request('ADMIN_EMAIL')."', '2013-07-29 10:27:46', 'email', 1),
@@ -342,8 +342,8 @@ mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."content` (`id_conten
 /**
  * Access
  */
-mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (5, 'translator', 'User + Translations'), (10, 'admin', 'Full access');");
-mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_access`, `id_role`, `access`) VALUES 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (5, 'translator', 'User + Translations'), (10, 'admin', 'Full access');");
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_access`, `id_role`, `access`) VALUES 
             (1, 10, '*.*'),
             (2, 1, 'profile.*'),(3, 1, 'stats.user'),
             (4, 5, 'translations.*'),(5, 5, 'profile.*'),(6, 5, 'stats.user'),(7, 5, 'content.*');");
@@ -352,7 +352,7 @@ mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_access`
  * Create user God/Admin 
  */
 $password = hash_hmac('sha256', core::request('ADMIN_PWD'), install::$hash_key);
-mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`) 
 VALUES (1, 'admin', 'admin', '".core::request('ADMIN_EMAIL')."', '$password', 1, 10)");
 
 /**
@@ -361,7 +361,7 @@ VALUES (1, 'admin', 'admin', '".core::request('ADMIN_EMAIL')."', '$password', 1,
  * @todo widgets examples? at least at sidebar, rss, text advert, pages, locations...
  *
  */
-mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."config` (`group_name`, `config_key`, `config_value`) VALUES
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`group_name`, `config_key`, `config_value`) VALUES
 ('sitemap', 'expires', '43200'),
 ('sitemap', 'on_post', 1),
 ('appearance', 'theme', 'default'),
@@ -449,13 +449,13 @@ mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."config` (`group_name
 
 
 //base category
-mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."categories` 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."categories` 
   (`id_category` ,`name` ,`order` ,`id_category_parent` ,`parent_deep` ,`seoname` ,`description` )
 VALUES (1, 'Home category', 0 , 0, 0, 'all', 'root category');");
 
 
 //base location
-mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."locations` 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."locations` 
   (`id_location` ,`name` ,`id_location_parent` ,`parent_deep` ,`seoname` ,`description`)
 VALUES (1 , 'Home location', 0, 0, 'all', 'root location');");
 
@@ -465,7 +465,7 @@ VALUES (1 , 'Home location', 0, 0, 'all', 'root location');");
 if ( core::request('SAMPLE_DB') !== NULL)
 {
     //sample catpegories
-    mysqli_query("INSERT INTO `".core::request('TABLE_PREFIX')."categories` (`id_category`, `name`, `order`, `created`, `id_category_parent`, `parent_deep`, `seoname`, `description`, `price`) VALUES
+    mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."categories` (`id_category`, `name`, `order`, `created`, `id_category_parent`, `parent_deep`, `seoname`, `description`, `price`) VALUES
     (2, 'Jobs', 1, '2013-05-01 16:41:04', 1, 0, 'jobs', 'The best place to find work is with our job offers. Also you can ask for work in the ''Need'' section.', 0),
     (3, 'Languages', 2, '2013-05-01 16:41:04', 1, 0, 'languages', 'You want to learn a new language? Or can you teach a language? This is your section!', 0),
     (4, 'Others', 4, '2013-05-01 16:41:04', 1, 0, 'others', 'Whatever you can imagine is in this section.', 0),
