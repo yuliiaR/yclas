@@ -112,7 +112,7 @@ class Controller_Ad extends Controller {
 		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user();
 
 		$ads = new Model_Ad();
-		
+
 		//filter by category or location
         if ($category!==NULL)
         {
@@ -135,6 +135,12 @@ class Controller_Ad extends Controller {
             $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
         }
         
+        // featured ads 
+        if(core::config('advertisement.ads_in_home') == 1)
+        {
+        	$featured = $ads->where('featured', '>=', NOW());
+        }
+        var_dump($featured->count_all());
 
 		$res_count = $ads->count_all();
 		// check if there are some advet.-s
