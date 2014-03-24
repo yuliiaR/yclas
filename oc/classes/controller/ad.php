@@ -141,9 +141,11 @@ class Controller_Ad extends Controller {
         // featured ads 
         if(core::config('advertisement.ads_in_home') == 1)
         {
-        	$featured = $ads->where('featured', '>=', NOW());
+        	$featured = $ads->where('featured', '<=', 'NOW()');
+        	$featured = $ads->limit(Theme::get('num_home_latest_ads', 4))->cached()->find_all();
         }
-        var_dump($featured->count_all());
+        else $featured = NULL;
+        
 
 		$res_count = $ads->count_all();
 		// check if there are some advet.-s
@@ -211,9 +213,10 @@ class Controller_Ad extends Controller {
 			// array of categories sorted for view
 			return array('ads'			=> NULL,
 						 'pagination'	=> NULL, 
-						  'user'          => $user, 
+						  'user'        => $user, 
                          'category'     => $category,
-                         'location'     => $location,);
+                         'location'     => $location,
+                         'featured'		=> NULL);
 		}
 		
 		// array of categories sorted for view
@@ -221,7 +224,8 @@ class Controller_Ad extends Controller {
 					 'pagination'	=> $pagination, 
 					 'user'			=> $user, 
 					 'category'		=> $category,
-					 'location'		=> $location,);
+					 'location'		=> $location,
+					 'featured'		=> $featured);
 	}
 
 	/**
