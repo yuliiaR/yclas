@@ -124,10 +124,9 @@ class Controller_Panel_Update extends Auth_Controller {
         $config_db = Kohana::$config->load('database');
         $charset = $config_db['default']['charset'];
         
-        /*
-          @todo NOT DINAMIC, get charset
-        */
-        mysql_query("CREATE TABLE IF NOT EXISTS `".$prefix."subscribers` (
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS `".$prefix."subscribers` (
                     `id_subscribe` int(10) unsigned NOT NULL AUTO_INCREMENT,
                     `id_user` int(10) unsigned NOT NULL,
                     `id_category` int(10) unsigned NOT NULL DEFAULT '0',
@@ -136,10 +135,14 @@ class Controller_Panel_Update extends Auth_Controller {
                     `max_price` decimal(14,3) NOT NULL DEFAULT '0',
                     `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                     PRIMARY KEY (`id_subscribe`)
-                  ) ENGINE=MyISAM DEFAULT CHARSET=".$charset.";");
+                  ) ENGINE=MyISAM DEFAULT CHARSET=".$charset.";")->execute();
+        }catch (exception $e) {}
         
         // remove INDEX from content table
-        mysql_query("ALTER TABLE `".$prefix."content` DROP INDEX `".$prefix."content_UK_seotitle`");
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".$prefix."content` DROP INDEX `".$prefix."content_UK_seotitle`")->execute();
+        }catch (exception $e) {}
     }
 
     /**
@@ -198,10 +201,18 @@ class Controller_Panel_Update extends Auth_Controller {
         $config_db = Kohana::$config->load('database');
         $charset = $config_db['default']['charset'];
 
-        mysql_query("ALTER TABLE  `".$prefix."users` ADD  `hybridauth_provider_name` VARCHAR( 40 ) NULL DEFAULT NULL ,ADD  `hybridauth_provider_uid` VARCHAR( 245 ) NULL DEFAULT NULL");
-        mysql_query("create unique index ".$prefix."users_UK_provider_AND_uid on ".$prefix."users (hybridauth_provider_name, hybridauth_provider_uid)");
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."users` ADD  `hybridauth_provider_name` VARCHAR( 40 ) NULL DEFAULT NULL ,ADD  `hybridauth_provider_uid` VARCHAR( 245 ) NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE UNIQUE INDEX ".$prefix."users_UK_provider_AND_uid on ".$prefix."users (hybridauth_provider_name, hybridauth_provider_uid)")->execute();
+        }catch (exception $e) {}
         
-        mysql_query("CREATE TABLE IF NOT EXISTS  `".$prefix."posts` (
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS  `".$prefix."posts` (
                   `id_post` int(10) unsigned NOT NULL AUTO_INCREMENT,
                   `id_user` int(10) unsigned NOT NULL,
                   `title` varchar(245) NOT NULL,
@@ -211,7 +222,8 @@ class Controller_Panel_Update extends Auth_Controller {
                   `status` tinyint(1) NOT NULL DEFAULT '0',
                   PRIMARY KEY (`id_post`) USING BTREE,
                   UNIQUE KEY `".$prefix."posts_UK_seotitle` (`seotitle`)
-                ) ENGINE=InnoDB DEFAULT CHARSET=".$charset.";");
+                ) ENGINE=InnoDB DEFAULT CHARSET=".$charset.";")->execute();
+        }catch (exception $e) {}
 
 
         // build array with new (missing) configs
