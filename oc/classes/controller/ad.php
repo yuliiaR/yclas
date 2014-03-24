@@ -138,16 +138,19 @@ class Controller_Ad extends Controller {
             $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
         }
         
-        // featured ads 
-        if(core::config('advertisement.ads_in_home') == 1)
+    
+        // featured ads
+        $featured = NULL; 
+        if(Theme::get('listing_slider') == 2)
         {
-        	$featured = $ads->where('featured', '<=', 'NOW()');
-        	$featured = $ads->limit(Theme::get('num_home_latest_ads', 4))->cached()->find_all();
+                $featured = clone $ads;
+                $featured = $featured->where('featured', '<=', 'NOW()')
+                                ->limit(Theme::get('num_home_latest_ads', 4))
+                                ->find_all();
         }
-        else $featured = NULL;
-        
 
 		$res_count = $ads->count_all();
+
 		// check if there are some advet.-s
 		if ($res_count > 0)
 		{
