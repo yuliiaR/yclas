@@ -117,13 +117,16 @@ class Controller_Ad extends Controller {
         if ($category!==NULL)
         {
             $ads->where('id_category', 'in', $category->get_siblings_ids());
+
+            //category image
+            if(file_exists(DOCROOT.'images/categories/'.$category->seoname.'.png'))
+                    Controller::$image = URL::base().'images/categories/'.$category->seoname.'.png';
         }
 
         if ($location!==NULL)
         {
             $ads->where('id_location', 'in', $location->get_siblings_ids());
         }
-
 
 		//only published ads
         $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
