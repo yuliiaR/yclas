@@ -19,16 +19,21 @@ class Controller extends Kohana_Controller
     public $auto_render = TRUE;
 
     /**
-     * global category get form controller so we can access form anywhere like Controller::$category;
+     * global category get from controller so we can access from anywhere like Controller::$category;
      * @var Model_Category
      */
     public static $category = NULL;
 
     /**
-     * global Location get form controller so we can access form anywhere like Controller::$location;
+     * global Location get from controller so we can access from anywhere like Controller::$location;
      * @var Model_Location
      */
     public static $location = NULL;
+
+    /**
+     * global image get from controller so we can access from anywhere like Controller::$image; used for facebook metas
+     */
+    public static $image = NULL;
     
 
     /**

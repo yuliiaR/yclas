@@ -365,6 +365,9 @@ class Controller_Ad extends Controller {
 					
 				}
 
+                if($ad->get_first_image() !== NULL)
+                    Controller::$image = $ad->get_first_image();
+
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
 																				   'permission'		=>$permission, 

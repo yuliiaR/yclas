@@ -14,7 +14,13 @@
     <meta name="copyright" content="<?=$meta_copywrite?>" >
 	<meta name="author" content="open-classifieds.com">
 
-  
+    <?if (Controller::$image!==NULL):?>
+    <meta property="og:image"   content="<?=core::config('general.base_url').Controller::$image?>"/>
+    <?endif?>
+    <meta property="og:title"   content="<?=$title?>"/>
+    <meta property="og:description"   content="<?=$meta_description?>"/>
+    <meta property="og:url"     content="<?=URL::current()?>"/>
+    <meta property="og:site_name" content="<?=core::config('general.site_name')?>"/>
 
     <?if (core::config('general.blog')==1):?>
     <link rel="alternate" type="application/atom+xml" title="RSS Blog <?=Core::config('general.site_name')?>" href="<?=Route::url('rss-blog')?>" />
