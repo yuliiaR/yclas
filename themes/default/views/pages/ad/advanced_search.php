@@ -14,10 +14,10 @@
                 <div class="form-group">
                 <?= FORM::label('category', __('Category'), array('class'=>'', 'for'=>'category' ))?>
                     <div class="control mr-30">
-                        <select name="category" id="category" class="form-control disable-chosen" value="<?=core::get('category')?>" data-placeholder="<?=__('Category')?>">
+                        <select name="category" id="category" class="form-control " value="<?=core::get('category')?>" data-placeholder="<?=__('Category')?>">
                         <option></option>
                         <?function lili($item, $key,$cats){?>
-                        <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>"><?=$cats[$key]['name']?></option>
+                        <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
                             <?if (count($item)>0):?>
                             <optgroup label="<?=$cats[$key]['name']?>">    
                                 <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
@@ -35,7 +35,7 @@
                             <select name="location" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
                             <option></option>
                             <?function lolo($item, $key,$locs){?>
-                            <option value="<?=$locs[$key]['seoname']?>"><?=$locs[$key]['name']?></option>
+                            <option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
                                 <?if (count($item)>0):?>
                                 <optgroup label="<?=$locs[$key]['name']?>">    
                                     <? if (is_array($item)) array_walk($item, 'lolo', $locs);?>

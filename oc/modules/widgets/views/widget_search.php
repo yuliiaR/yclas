@@ -12,14 +12,13 @@
 <?if($widget->advanced != FALSE):?>
     <?if($widget->cat_items !== NULL):?>
         <div class="form-group">
-            
             <div class="col-xs-10">
-                <?= FORM::label('category_widget_search', __('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
-                <select data-placeholder="<?=__('Categories')?>" name="category_widget_search" id="category_widget_search" class="form-control">
-                <option></option>
+                <?= FORM::label('category', __('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
+                <select data-placeholder="<?=__('Categories')?>" name="category" id="category_widget_search" class="form-control">
+                <option value="<?=core::request('category')?>"></option>
                 <?function lili_search($item, $key,$cats){?>
                 <?if ( count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
-                <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>"><?=$cats[$key]['name']?></option>
+                <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
                 <?endif?>
                     <?if ($cats[$key]['id_category_parent'] == 1 OR count($item)>0):?>
                     <option value="<?=$key?>"> <?=$cats[$key]['name']?> </option>
@@ -41,10 +40,10 @@
         <div class="form-group">
             <div class="col-xs-10">
                 <?= FORM::label('location_widget_search', __('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
-                <select data-placeholder="<?=__('Locations')?>" name="location_widget_search" id="location_widget_search" class="form-control">
+                <select data-placeholder="<?=__('Locations')?>" name="location" id="location_widget_search" class="form-control">
                 <option></option>
                 <?function lolo_search($item, $key,$locs){?>
-                <option value="<?=$locs[$key]['seoname']?>"><?=$locs[$key]['name']?></option>
+                <option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
                     <?if (count($item)>0):?>
                     <optgroup label="<?=$locs[$key]['name']?>">    
                         <? if (is_array($item)) array_walk($item, 'lolo_search', $locs);?>
