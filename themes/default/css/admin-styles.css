@@ -77,7 +77,7 @@ ul.plholder li.placeholder:before {
 .dropdown-menu li a{color:#000!important;}
 
 /*Sidebar*/
-
+.panel-adv-class{padding-left: 0px;}
 .panel-title a {color:#000;text-decoration: none;}
 td li a{padding: 0!important;}
 .panel-group .panel{border-radius: 0px;}

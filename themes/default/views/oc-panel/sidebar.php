@@ -12,7 +12,7 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th">
-                                    </span> <span class="title-txt">eShop</span></a>
+                                    </span> <span class="title-txt">Classifieds</span></a>
                                 </h4>
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse">
@@ -181,7 +181,7 @@
                         </div>
                         <?if (Theme::get('premium')!=1 AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN):?>
                         <div class="panel panel-default no-prem">
-                            <div class="panel-heading">
+                            <div class="panel-heading panel-adv-class">
                                 <a href="http://open-classifieds.com/?utm_source=<?=URL::base()?>&utm_medium=oc_sidebar&utm_campaign=<?=date('Y-m-d')?>"><span class="side-name-link">Open Classifieds</span></a>
                                 <script type="text/javascript">
                                     (function() {var uid = Math.round(Math.random()*10000);
