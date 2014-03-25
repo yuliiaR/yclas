@@ -77,17 +77,34 @@ ul.plholder li.placeholder:before {
 .dropdown-menu li a{color:#000!important;}
 
 /*Sidebar*/
+
+.panel-title a {color:#000;text-decoration: none;}
+td li a{padding: 0!important;}
+.panel-group .panel{border-radius: 0px;}
+
+.br li a{text-decoration: none;}
+.br li {min-width: 110px;}
+.br.active {background-color: #eee!important;}
+.br:hover {background-color: #eee;}
+.panel-default>.panel-heading{background-color: #222!important;border-bottom: 1px solid #101010;border-radius: 0px;}
+.panel-default>.panel-heading+.panel-collapse .panel-body{border:none;}
+.panel-heading a{color:#fff!important;}
+.panel-group .panel+.panel{margin-top: 0px;border:#222;}
+.panel-collapse .panel-body .table li {list-style: none;}
 .btn-colapse-sidebar{cursor: pointer;}
 .side-ul li.active{border-right: 3px solid #46b8da;}
 .side-ul li:hover{border-right: 3px solid #46b8da;}
+.panel{border:none;}
 
+.product-panel{border:1px solid #428bca!important;}
+.product-panel .panel-body{padding: 15px;}
 li.sbp.active{border-right: none;}
 li.sbp:hover{border-right: none;}
 
 .respon-left-panel {
 	z-index: 1;
 	position: absolute;
-    margin-top: -15px;
+    margin-top: -9px;
     min-width: 185px;
     padding: 0px;
     /*background-color: inherit;*/
@@ -125,19 +142,28 @@ li.sbp:hover{border-right: none;}
 	min-width: 35px;
 	float: left;
 }
-
+.panel-body { padding:0px; }
+.panel-body table tr td { padding-left: 15px; }
+.panel-body table tbody.aside-table tr td { padding-left: 25px; padding-right: 25px; }
+.panel-body .table {margin-bottom: 0px; }
 .submenu {display: none; list-style: disc;}
 
 .submenu.active{display: block;}
 .submenu li.active a{text-decoration: underline; font-weight:bold;list-style-type: amharic;}
 .submenu li a{border-right: 0px !important;}
-.mini-col .submenu.active{ list-style: none; position: absolute;top: 7px; left: -14px; border: 1px solid #e3e3e3; background: #fff; padding: 4px 0px 3px 2px;margin-left: 47px; min-width: 155px; border-radius: 0px 5px 5px 0px;}
-.mini-col .submenu.active li {padding-right: 50px;}
+.mini-col{max-width: 45px;}
+.aside-table{position: absolute;
+left: 45px;
+margin-top: -40px;
+background-color: #fff;
+border: 1px solid #eee;}
+.aside-table tr td li{min-width: 135px;}
 .btn-sidebar-menu{display: none;}
 .dropdown-toggle i{margin-right: 5px;}
 
 .chosen-container-single .chosen-single{height: 27px !important;}
 .chosen-container.chosen-container-multi ul.chosen-choices li.search-field input{height: 27px !important;}
+.chosen-container { min-width: 220px !important; }
 
 .ml-20{margin-left: 20px;}
 .edit_ad_form{margin-left: 150px;}
