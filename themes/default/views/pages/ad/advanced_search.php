@@ -70,5 +70,5 @@
 
 <?if (count($ads)>0):?>
     <h3><?=__('Search results')?></h3>
-    <?=View::factory('pages/ad/listing',array('pagination'=>$pagination,'ads'=>$ads,'category'=>NULL, 'location'=>NULL, 'user'=>$user))?>
+    <?=View::factory('pages/ad/listing',array('pagination'=>$pagination,'ads'=>$ads,'category'=>NULL, 'location'=>NULL, 'user'=>$user, 'featured'=>NULL))?>
 <?endif?>
