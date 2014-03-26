@@ -20,38 +20,7 @@ class Controller_Subscribe extends Controller {
 			if(!$user->loaded())
 			{
 				$name = substr($email, '0', stripos($email, '@'));
-
-				$new_password_hash = Auth::instance()->hash_password('password'); 
-				$user->email 	= $email;
-				$user->name 	= $name;
-				$user->status 	= Model_User::STATUS_ACTIVE;
-				$user->id_role	= Model_Role::ROLE_USER;
-				$user->password = $new_password_hash;	
-				$user->seoname 	= $name;
-				
-				try
-				{
-					
-					$user->save();
-
-					Alert::set(Alert::SUCCESS, __('New profile has been created. Welcome ').$name.' !');
-				
-					//we get the QL, and force the regen of token for security
-                	$url_pwch = $user->ql('oc-panel',array('controller' => 'profile', 
-                										   'action'		=> 'edit'),TRUE);
-
-                	$ret = $user->email('user.new',array('[URL.PWCH]'=>$url_pwch,
-                										 '[USER.PWD]'=>$new_password_hash));
-										
-				}
-				catch (ORM_Validation_Exception $e)
-				{
-					throw new HTTP_Exception_500($e->getMessage());
-				}
-				catch (Exception $e)
-				{
-					throw new HTTP_Exception_500($e->getMessage());
-				}
+				$user->create_new_user($name, $email);
 			}
 			/* save this user to data base as subscriber */
 			

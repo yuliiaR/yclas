@@ -45,9 +45,21 @@ class Model_Subscribe extends ORM {
      */
     public static function find_subscribers($data, $price, $seotitle, $email)
     {
-      // locations are optional , get wiget settings for locations and categories 
-      $jsonObj = json_decode(core::config('widget.Widget_Subscribers_1373877069'), true);
-      
+      // if widget active, get his real name from config. Else NULL
+      $widget_name = NULL;
+      foreach (Widgets::get_placeholders() as $placeholder => $widgets) 
+      {
+        foreach ($widgets as $widget) 
+        {
+          $array_widget = (array) $widget;
+          if($array_widget['placeholder'] != 'inactive' AND strpos($array_widget['widget_name'],'Widget_Subscribers') !== false)
+              $widget_name = $array_widget['widget_name'];
+        }
+      }
+
+      // locations are optional , get wiget settings for locations and categories
+      $jsonObj = json_decode(core::config('widget.'.$widget_name), true);
+
       $subscribers = new Model_Subscribe();
       $category = new Model_Category($data['cat']);
 
