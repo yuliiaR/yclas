@@ -46,8 +46,11 @@ $(function (){
     });
 
     $('input').each(function(){
+    if($(this))
     if(!$('input').hasClass('form-control') && 
-    $('input').attr('type') != 'checkbox') {$('input').addClass('form-control');}
+        $('input').attr('type') != 'checkbox') {$('input').addClass('form-control');}
+    if($(this).hasClass('form-control') && 
+        $(this).attr('type') == 'checkbox') {$(this).removeClass('form-control');}
     });
 
 });
