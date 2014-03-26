@@ -118,6 +118,7 @@ class Auth_Crud extends Auth_Controller
             try
             {
                 $element->delete();
+                Request::current()->redirect(Route::url('oc-panel', array('controller'=>$this->request->controller())));
                 $this->template->content = 'OK';
             }
             catch (Exception $e)
