@@ -294,7 +294,7 @@ class Controller_Panel_Update extends Auth_Controller {
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'sort_by',
                                'group_name'     =>'general', 
-                               'config_value'   =>'published-asc'),
+                               'config_value'   =>'published-desc'),
                          array('config_key'     =>'map_pub_new',
                                'group_name'     =>'advertisement', 
                                'config_value'   =>'0'), 
