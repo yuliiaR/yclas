@@ -509,8 +509,8 @@
 																	 'price-asc'=>"Price (Low)",
 																	 'price-desc'=>"Price (High)",
 																	 'featured'=>"Featured",
-																	 'published-asc'=>"Newest",
-																	 'published-desc'=>"Oldest"), 
+																	 'published-desc'=>"Newest",
+																	 'published-asc'=>"Oldest"), 
 				$forms['sort_by']['value'], array(
 				'placeholder' => $forms['sort_by']['value'], 
 				'class' => 'tips form-control input-sm ', 
