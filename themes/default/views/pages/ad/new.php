@@ -104,6 +104,8 @@
 					</div>
 				</div>
 				<div class="form-group">
+<div class="col-md-12">
+
 					<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?>
 						<div class="fileinput fileinput-new" data-provides="fileinput">
 						  	<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
@@ -117,6 +119,7 @@
 						  </div>
 						</div>
 					<?endfor?>
+					</div>
 				</div>
 				<?if($form_show['phone'] != FALSE):?>
 				<div class="form-group">
