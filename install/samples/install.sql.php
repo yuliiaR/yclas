@@ -496,4 +496,4 @@ if ( core::request('SAMPLE_DB') !== NULL)
 }
 
 
-mysqli_close();
+mysqli_close($link);
