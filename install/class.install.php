@@ -707,14 +707,12 @@ class core{
      */
     public static function rss($url)
     {
-        $items = array();
         $rss = FALSE;
-
         $rss = @simplexml_load_file($url);
         if($rss !== FALSE)
-            $items = $rss->channel->item;
-
-        return $items;
+            return $rss->channel->item;
+        else
+            return array();
     }
 
     /**
