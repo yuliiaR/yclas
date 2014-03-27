@@ -116,7 +116,7 @@
                 <h3>2. <?=__('Database Configuration')?></h3>
             </div>
             <div class="panel-body">
-                <p><a target="_blank" href="http://open-classifieds.com/2014/02/24/create-mysql-database/">How to create a MySQL database?</a></p>
+                <p><a target="_blank" href="http://open-classifieds.com/2014/02/24/create-mysql-database/"><?=__("How to create a MySQL database?")?></a></p>
                 <div class="form-group">                
                     <div class="col-md-12">
                     <label class="control-label"><?=__("Host name")?>:</label>
