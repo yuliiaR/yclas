@@ -1,9 +1,18 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
-    '2.1.4' => 
+     '2.1.5' => 
   array (
     'codename' => 'Budapest',
     'released' => '2014-04-26',
+    'blog' => 'http://open-classifieds.com/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.1.5',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=19&state=closed',
+    'download' => 'http://j.mp/oc_215',
+  ),
+    '2.1.4' => 
+  array (
+    'codename' => 'Budapest',
+    'released' => '2014-03-26',
     'blog' => 'http://open-classifieds.com/2014/03/26/new-release-open-classifieds-2-1-4/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.1.4',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=17&state=closed',
