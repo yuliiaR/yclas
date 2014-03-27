@@ -24,7 +24,7 @@ msgstr "Mot de passe oublié?"
 
 #: String 6
 msgid "Profile Picture"
-msgstr "Photo de profil"
+msgstr "Photo du profil"
 
 #: String 7
 msgid "Last Login"
@@ -44,7 +44,7 @@ msgstr "RSS"
 
 #: String 11
 msgid "Remember Password"
-msgstr "Se souvenir de son mot de passe"
+msgstr "Se souvenir de mon mot de passe"
 
 #: String 12
 msgid "advertisements"
@@ -92,7 +92,7 @@ msgstr "Profil utilisateur"
 
 #: String 23
 msgid "We are working on our site, please visit later. Thanks"
-msgstr "Travaux d'amélioration du site en cours. Merci de revenir ultérieurement !"
+msgstr "Travaux d'amélioration du site en cours! Merci de revenir dans quelques instants"
 
 #: String 24
 msgid " Unconfirmed"
@@ -1172,7 +1172,7 @@ msgstr "Type d'annonces à afficher"
 
 #: String 297
 msgid "HTML textarea"
-msgstr "Zone texte HTML"
+msgstr "Zone texte HTML" #tofix
 
 #: String 298
 msgid "Text title displayed"
@@ -1180,7 +1180,7 @@ msgstr "Titre du texte affiché"
 
 #: String 299
 msgid "HTML/text content here"
-msgstr "Votre contenu HTML ou texte ici"
+msgstr "Votre texte ou contenu HTML ici"
 
 #: String 300
 msgid "Ads reader"
@@ -1248,7 +1248,7 @@ msgstr "Nouvel onglet ou fenêtre"
 
 #: String 316
 msgid "Parent frame"
-msgstr "Frame parent"
+msgstr "Cadre parent"
 
 #: String 317
 msgid "Earn money from your site"
@@ -1256,7 +1256,7 @@ msgstr "Gagner de l'argent avec votre site"
 
 #: String 318
 msgid "Banner Format"
-msgstr "Format de bannière"
+msgstr "Format des bannières"
 
 #: String 319
 msgid "Links title displayed"
@@ -1316,7 +1316,7 @@ msgstr "Succès"
 
 #: String 333
 msgid "New profile has been created. Welcome "
-msgstr "Votre profil a été créé. Bienvenue "
+msgstr "Votre profil a bien été créé. Bienvenue "
 
 #: String 334
 msgid "Invalid Email"
@@ -1368,7 +1368,7 @@ msgstr "Dernières publications"
 
 #: String 346
 msgid "We need your email address to complete"
-msgstr "Nous avons besoin de votre adresse email pour compléter"
+msgstr "Nous avons besoin de votre adresse email pour terminer"
 
 #: String 347
 msgid "Error"
@@ -1432,7 +1432,7 @@ msgstr "Infos"
 
 #: String 365
 msgid "Parent deep"
-msgstr "Parent profond"
+msgstr "Parent profond" #tofix
 
 #: String 366
 msgid "Parent"
@@ -1448,7 +1448,7 @@ msgstr "Adresse IP"
 
 #: String 369
 msgid "Has images"
-msgstr "A des images"
+msgstr "Contient des images" #tofix
 
 #: String 370
 msgid "How much the user needs to pay to feature an Ad"
@@ -1464,7 +1464,7 @@ msgstr "Pour"
 
 #: String 373
 msgid "Filter"
-msgstr "Filtre"
+msgstr "Filtre" #tofix verb?
 
 #: String 374
 msgid "Views and Contacts statistic"
@@ -1516,7 +1516,7 @@ msgstr "Nouveau"
 
 #: String 386
 msgid "Bog post"
-msgstr "post de blog"
+msgstr "Message de blog"
 
 #: String 387
 msgid "Welcome"
@@ -1628,7 +1628,7 @@ msgstr "Mettre en avant ?"
 
 #: String 414
 msgid "Refresh listing, go to top?"
-msgstr "Actualiser la liste, allez en haut ?"
+msgstr "Actualiser la liste, allez en haut ?" #tofix
 
 #: String 415
 msgid "Go to top"
@@ -1636,7 +1636,7 @@ msgstr "Vers le haut"
 
 #: String 416
 msgid "Are you sure you want to refresh listing and go to top?"
-msgstr "Êtes-vous sûr de vouloir recharger la liste et aller en haut ?"
+msgstr "Êtes-vous sûr de vouloir recharger la liste et aller en haut ?" #tofix
 
 #: String 417
 msgid "Thanks for using our website."
@@ -2056,7 +2056,7 @@ msgstr "Cliquez ici si vous n'êtes pas redirigé"
 
 #: String 522
 msgid "Change password"
-msgstr "Changer mot de passe"
+msgstr "Changer de mot de passe"
 
 #: String 523
 msgid "New password"
@@ -2080,7 +2080,7 @@ msgstr "Se désabonner de tout ?"
 
 #: String 528
 msgid "Profile picture"
-msgstr "Photo de profil"
+msgstr "Photo du profil"
 
 #: String 529
 msgid "Cancel"
@@ -2092,7 +2092,7 @@ msgstr "Mot de passe"
 
 #: String 531
 msgid "Repeat password"
-msgstr "Répéter mot de passe"
+msgstr "Répéter le mot de passe"
 
 #: String 532
 msgid "Type your password twice to change"
@@ -2168,7 +2168,7 @@ msgstr "Affichage en liste"
 
 #: String 550
 msgid "Header banner, allows HTML"
-msgstr "Bannière d'entête,autorise le HTML."
+msgstr "Bannière d'entête, autorise du HTML."
 
 #: String 551
 msgid "Where you want the sidebar to appear"
@@ -2256,11 +2256,11 @@ msgstr "Nombre d'images affichées"
 
 #: String 572
 msgid "Parent category"
-msgstr "catégorie parent"
+msgstr "catégorie parente"
 
 #: String 573
 msgid "parent_category field"
-msgstr "champ de la catégorie parent"
+msgstr "champ de la catégorie parente"
 
 #: String 574
 msgid "Advertisement Configuration"
@@ -2288,15 +2288,15 @@ msgstr "Mot de passe SMTP"
 
 #: String 580
 msgid "from_email"
-msgstr "de l'email"
+msgstr "Email De"
 
 #: String 581
 msgid "From email"
-msgstr "de l'email"
+msgstr "Email De"
 
 #: String 582
 msgid "Update on publish"
-msgstr "Mettre à jour à la publication"
+msgstr "Mettre à jour à chaque publication"
 
 #: String 583
 msgid "Save"
@@ -2380,7 +2380,7 @@ msgstr "Information"
 
 #: String 603
 msgid "Use parent categories"
-msgstr "Utiliser les catégories parents"
+msgstr "Utiliser les catégories parentes"
 
 #: String 604
 msgid "Ad expiration date"
@@ -2388,15 +2388,15 @@ msgstr "Date d'expiration de l'annonce"
 
 #: String 605
 msgid "Baned Words Replacement"
-msgstr "Remplacer les mots interdits"
+msgstr "Censurer les mots interdits"
 
 #: String 606
 msgid "Replacement of a banedword"
-msgstr "Remplacement d'un mot interdit"
+msgstr "Censure d'un mot interdit"
 
 #: String 607
 msgid "Baned word replacement replaces selected array with string that you provided."
-msgstr "Le remplacement de mot interdits remplace la zone sélectionnée par le texte que vous avez fourni."
+msgstr "La censure des mots interdits remplace la zone sélectionnée par un texte de votre choix."
 
 #: String 608
 msgid "Payments Configuration"
@@ -2476,11 +2476,11 @@ msgstr "Désactivé"
 
 #: String 628
 msgid "You can choose what ads you want to display in home."
-msgstr "Vous pouvez choisir quelle annonce vous voulez publier sur l'accueil"
+msgstr "Vous pouvez choisir quelles annonces vous voulez afficher sur la page d'accueil"
 
 #: String 629
 msgid "Google Maps in Ad"
-msgstr "Carte Google dans l'annonce"
+msgstr "Carte Google dans les annonces"
 
 #: String 630
 msgid "Displays the google maps in the Ad."
@@ -2512,7 +2512,7 @@ msgstr "Jours"
 
 #: String 637
 msgid "Advertisements in home"
-msgstr "Annonces sur l'accueil"
+msgstr "Annonces sur la page d'accueil"
 
 #: String 638
 msgid "Zoom level"
@@ -2536,7 +2536,7 @@ msgstr "Autorise le formulaire de contact"
 
 #: String 643
 msgid "Contact form appears int he ad."
-msgstr "le formulaire de contact apparait dans l'annonce"
+msgstr "Afficher un formulaire de contact dans les annonces"
 
 #: String 644
 msgid "Longitude coordinates"
@@ -2568,7 +2568,7 @@ msgstr "Nom de la base de données à utiliser"
 
 #: String 652
 msgid "Custom fields are only available with premium themes!"
-msgstr "Les champs personnalisés sont réservés aux thèmes premium !"
+msgstr "Les champs personnalisés sont disponibles dans les thèmes premium !"
 
 #: String 653
 msgid "Upgrade your Open Classifieds site to activate this feature."
@@ -2604,7 +2604,7 @@ msgstr "Changer l'ordre de vos catégories. Gardez à l'esprit qu'au delà de 2 
 
 #: String 661
 msgid "AdvertisementS Custom Fields"
-msgstr "Champs personnalisés d'annonce"
+msgstr "Champs personnalisés des annonces"
 
 #: String 662
 msgid "New field"
@@ -2636,7 +2636,7 @@ msgstr "Affiche le champ téléphone dans le formulaire des annonces."
 
 #: String 669
 msgid "Are you sure you want to delete? All data contained in this field will be deleted."
-msgstr "Etes vous sûr de vouloir effacer ? Toutes les données contenues dans le champ seront supprimées"
+msgstr "Êtes-vous sûr de vouloir effacer ? Toutes les données contenues dans ce champ seront supprimées"
 
 #: String 670
 msgid "Optional Fields"
