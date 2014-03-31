@@ -37,3 +37,4 @@ Please read CONTRIBUTING.md
 * Bootstrap Image Gallery https://github.com/blueimp/Bootstrap-Image-Gallery
 * Blacksmith https://github.com/themusicman/Blacksmith
 * Hybrid Auth http://hybridauth.sourceforge.net/
+* MySQLi Kohana https://github.com/Azuka/Kohana-Database-MySQLi
