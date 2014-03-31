@@ -79,23 +79,30 @@
                 <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="glyphicon glyphicon-share"></i><?=__('Read more')?></a>
                 <?if ($user !== NULL && $user->id_role == 10):?>
                     <br />
-                <a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><?=__("Edit");?></a> |
-                <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
-                    onclick="return confirm('<?=__('Deactivate?')?>');"><?=__("Deactivate");?>
-                </a> |
-                <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" 
-                    onclick="return confirm('<?=__('Spam?')?>');"><?=__("Spam");?>
-                </a> |
-                <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" 
-                    onclick="return confirm('<?=__('Delete?')?>');"><?=__("Delete");?>
-                </a>
+                <div class="toolbar btn btn-primary btn-xs"><i class="glyphicon glyphicon-cog"></i>
+                <div id="user-toolbar-options<?=$ad->id_ad?>" class="hide user-toolbar-options">
+                    <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a> |
+                    <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
+                        onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i><?=__("Deactivate");?>
+                    </a> |
+                    <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" 
+                        onclick="return confirm('<?=__('Spam?')?>');"><i class="glyphicon glyphicon-fire"></i><?=__("Spam");?>
+                    </a> |
+                    <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" 
+                        onclick="return confirm('<?=__('Delete?')?>');"><i class="glyphicon glyphicon-remove"></i><?=__("Delete");?>
+                    </a>
 
-                <?elseif($user !== NULL && $user->id_user == $ad->id_user):?>
-                    <br/>
-                <a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><?=__("Edit");?></a> |
-                <a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
-                    onclick="return confirm('<?=__('Deactivate?')?>');"><?=__("Deactivate");?>
-                </a>
+                    </div>
+                    </div>
+                    <?elseif($user !== NULL && $user->id_user == $ad->id_user):?>
+
+                        <br/>
+                    <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i><?=__("Edit");?></a> |
+                    <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
+                        onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i><?=__("Deactivate");?>
+                    </a>
+                </div>
+                </div>
                 <?endif?>
             </article>
         

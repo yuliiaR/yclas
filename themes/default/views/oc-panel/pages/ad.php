@@ -19,8 +19,7 @@
 		  	<input type="text" name="search" id="search" class="form-control" placeholder="<?=__('Search')?>">
 		</form>
 	<?endif?>
-</div>
-
+</div>		
 <a class="btn btn-warning" type="submit" value="spam" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?define='.Model_Ad::STATUS_SPAM?>" rel="tooltip" title="<?=__('Spam Sort')?>">
 	<i class="glyphicon   glyphicon-fire"></i><?=__('Spam')?>
 </a>
@@ -45,7 +44,6 @@
 </a>
 <?endif?>
 
-
 <table class="table table-bordered">
 	<tr>
 		<th>
@@ -62,51 +60,54 @@
 		<!-- in case there are no ads we dont show buttons -->
 		<?if(isset($res)):?>
 		<th>
-			<?if(Request::current()->query('define') != Model_Ad::STATUS_SPAM):?>
-			<a class="spam btn btn-warning  " 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
-				onclick="return confirm('<?=__('Spam?')?>');"
-				rel="tooltip" title="<?=__('Spam')?>">
-				<i class="glyphicon   glyphicon-fire"></i>
-			</a>
-			<?endif?>
-			<?if(Request::current()->query('define') != Model_Ad::STATUS_UNAVAILABLE):?>
-			<a class="deactivate btn btn-warning " 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate'))?>" 
-				onclick="return confirm('<?=__('Deactivate?')?>');"
-				rel="tooltip" title="<?=__('Deactivate')?>">
-				<i class="glyphicon   glyphicon-remove"></i>
-			</a>
-			<?endif?>
-			<?if($current_url != Model_Ad::STATUS_PUBLISHED):?>
-			<a class="activate btn btn-success " 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
-					onclick="return confirm('<?=__('Activate?')?>');"
-					rel="tooltip" title="<?=__('Activate')?>">
-					<i class="glyphicon   glyphicon-ok-sign"></i>
-			</a>
-			<?endif?>
-			<a class="delete btn btn-danger  " 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
-				onclick="return confirm('<?=__('Delete?')?>');"
-			    rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
-				<i class="glyphicon   glyphicon-remove"></i>
-			</a>
-			<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
-			<a class="featured btn btn-primary " 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured', 'current_url'=>$current_url))?>"
-				onclick="return confirm('<?=__('Are you sure you want to make it featured?')?>');"
-			    rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
-				<i class="glyphicon   glyphicon-bookmark"></i>
-			</a>
-			<a class="to_top btn btn-info" 
-				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'to_top', 'current_url'=>$current_url))?>"
-				onclick="return confirm('<?=__('Are you sure you want to make it to_top?')?>');"
-			    rel="tooltip" title="<?=__('to_top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it to top?')?>">
-				<i class="glyphicon   glyphicon-circle-arrow-up"></i>
-			</a>
-			<?endif?>
-
+			<div class="toolbar btn btn-default"><i class="glyphicon glyphicon-cog"></i>
+			<div id="user-toolbar-options-all" class="hide user-toolbar-options">
+				<?if(Request::current()->query('define') != Model_Ad::STATUS_SPAM):?>
+				<a class="spam btn btn-warning  " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
+					onclick="return confirm('<?=__('Spam?')?>');"
+					rel="tooltip" title="<?=__('Spam')?>">
+					<i class="glyphicon   glyphicon-fire"></i>
+				</a>
+				<?endif?>
+				<?if(Request::current()->query('define') != Model_Ad::STATUS_UNAVAILABLE):?>
+				<a class="deactivate btn btn-warning " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate'))?>" 
+					onclick="return confirm('<?=__('Deactivate?')?>');"
+					rel="tooltip" title="<?=__('Deactivate')?>">
+					<i class="glyphicon   glyphicon-remove"></i>
+				</a>
+				<?endif?>
+				<?if($current_url != Model_Ad::STATUS_PUBLISHED):?>
+				<a class="activate btn btn-success " 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
+						onclick="return confirm('<?=__('Activate?')?>');"
+						rel="tooltip" title="<?=__('Activate')?>">
+						<i class="glyphicon   glyphicon-ok-sign"></i>
+				</a>
+				<?endif?>
+				<a class="delete btn btn-danger  " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
+					onclick="return confirm('<?=__('Delete?')?>');"
+				    rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
+					<i class="glyphicon   glyphicon-remove"></i>
+				</a>
+				<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
+				<a class="featured btn btn-primary " 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured', 'current_url'=>$current_url))?>"
+					onclick="return confirm('<?=__('Are you sure you want to make it featured?')?>');"
+				    rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
+					<i class="glyphicon   glyphicon-bookmark"></i>
+				</a>
+				<a class="to_top btn btn-info" 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'to_top', 'current_url'=>$current_url))?>"
+					onclick="return confirm('<?=__('Are you sure you want to make it to_top?')?>');"
+				    rel="tooltip" title="<?=__('to_top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it to top?')?>">
+					<i class="glyphicon   glyphicon-circle-arrow-up"></i>
+				</a>
+				<?endif?>
+			</div>
+			</div>
 		</th>
 		<?endif?>
 	</tr>
@@ -157,66 +158,70 @@
 	    	
 	    	<td><?= substr($ad->published, 0, 11)?></td>
 			<td>
-				<a class="btn btn-primary " 
-					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
-					rel="tooltip" title="<?=__('Update')?>">
-					<i class="glyphicon   glyphicon-edit"></i>
-				</a>
-				<?if($ad->status != Model_Ad::STATUS_SPAM):?>
-				
-				<a class="btn btn-warning " 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-					onclick="return confirm('<?=__('Spam?')?>');"
-					rel="tooltip" title="<?=__('Spam')?>">
-					<i class="glyphicon   glyphicon-fire"></i>
-				</a>
-				<?endif?>
-				<?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
-				<a class="btn btn-warning " 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-					onclick="return confirm('<?=__('Deactivate?')?>');"
-					rel="tooltip" title="<?=__('Deactivate')?>">
-					<i class="glyphicon   glyphicon-remove"></i>
-				</a>
-				<?endif?>
-				<?if( $ad->status != Model_Ad::STATUS_PUBLISHED ):?>
-				<a class="btn btn-success " 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-					onclick="return confirm('<?=__('Activate?')?>');"
-					rel="tooltip" title="<?=__('Activate')?>">
-					<i class="glyphicon   glyphicon-ok-sign"></i>
-				</a>
-				<?endif?>
-				<!-- sel_url_to_redirect is important because is quick selector. This works with dynamic check boxes, where we select href to build new url -->
-				<a class="btn btn-danger  sel_url_to_redirect" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-					onclick="return confirm('<?=__('Delete?')?>');"
-				    rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
-					<i class="glyphicon   glyphicon-remove"></i>
-				</a>
-				<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
-				<?if($ad->featured == NULL):?>
-				<a class="btn btn-primary " 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-					onclick="return confirm('<?=__('Make featured?')?>');"
-				    rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
-					<i class="glyphicon   glyphicon-bookmark"></i>
-				</a>
-				<?else:?>
-				<a class="btn btn-default " 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-					onclick="return confirm('<?=__('Deactivate featured?')?>');"
-				    rel="tooltip" title="<?=__('Deactivate Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to deactivate featured advertisement?')?>">
-					<i class="glyphicon   glyphicon-bookmark"></i>
-				</a>
-				<?endif?>
-				<a class="btn btn-info" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-					onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
-				    rel="tooltip" title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
-					<i class="glyphicon   glyphicon-circle-arrow-up"></i>
-				</a>
-				<?endif?>
+				<div class="toolbar btn btn-default"><i class="glyphicon glyphicon-cog"></i>
+				<div id="user-toolbar-options<?=$ad->id_ad?>" class="hide user-toolbar-options">
+					<a class="btn btn-primary " 
+						href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
+						rel="tooltip" title="<?=__('Update')?>">
+						<i class="glyphicon   glyphicon-edit"></i>
+					</a>
+					<?if($ad->status != Model_Ad::STATUS_SPAM):?>
+					
+					<a class="btn btn-warning " 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+						onclick="return confirm('<?=__('Spam?')?>');"
+						rel="tooltip" title="<?=__('Spam')?>">
+						<i class="glyphicon   glyphicon-fire"></i>
+					</a>
+					<?endif?>
+					<?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+					<a class="btn btn-warning " 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+						onclick="return confirm('<?=__('Deactivate?')?>');"
+						rel="tooltip" title="<?=__('Deactivate')?>">
+						<i class="glyphicon   glyphicon-remove"></i>
+					</a>
+					<?endif?>
+					<?if( $ad->status != Model_Ad::STATUS_PUBLISHED ):?>
+					<a class="btn btn-success " 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+						onclick="return confirm('<?=__('Activate?')?>');"
+						rel="tooltip" title="<?=__('Activate')?>">
+						<i class="glyphicon   glyphicon-ok-sign"></i>
+					</a>
+					<?endif?>
+					<!-- sel_url_to_redirect is important because is quick selector. This works with dynamic check boxes, where we select href to build new url -->
+					<a class="btn btn-danger  sel_url_to_redirect" 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+						onclick="return confirm('<?=__('Delete?')?>');"
+					    rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
+						<i class="glyphicon   glyphicon-remove"></i>
+					</a>
+					<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
+					<?if($ad->featured == NULL):?>
+					<a class="btn btn-primary " 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+						onclick="return confirm('<?=__('Make featured?')?>');"
+					    rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
+						<i class="glyphicon   glyphicon-bookmark"></i>
+					</a>
+					<?else:?>
+					<a class="btn btn-default " 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+						onclick="return confirm('<?=__('Deactivate featured?')?>');"
+					    rel="tooltip" title="<?=__('Deactivate Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to deactivate featured advertisement?')?>">
+						<i class="glyphicon   glyphicon-bookmark"></i>
+					</a>
+					<?endif?>
+					<a class="btn btn-info" 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+						onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
+					    rel="tooltip" title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
+						<i class="glyphicon   glyphicon-circle-arrow-up"></i>
+					</a>
+					<?endif?>
+				</div>
+				</div>
 			</td>
 		</tr>
 	<?endforeach?>
@@ -226,3 +231,4 @@
 <?if(isset($pagination)):?>
 <?=$pagination?>
 <?endif?>
+

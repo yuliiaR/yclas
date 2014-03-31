@@ -54,7 +54,7 @@ class Widget_Featured extends Widget
         ->order_by('featured','desc');
          
 
-        $ads = $ads->limit($this->ads_limit)->cached()->find_all();
+        $ads = $ads->limit($this->ads_limit)->find_all();
          
         $this->ads = $ads;
 

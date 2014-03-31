@@ -19,7 +19,9 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->meta_description	= __('Advertisements');
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('List')));
 		
-		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js'; 
+		$this->template->scripts['footer'][]= 'js/jquery.toolbar.js';
+		$this->template->scripts['footer'][]= 'js/oc-panel/moderation.js';
+		 
 
 		//find all tables 
 		
@@ -113,6 +115,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->title           	= __('Moderation');
 		$this->template->meta_description	= __('Moderation');
 		
+		$this->template->scripts['footer'][]= 'js/jquery.toolbar.js';
 		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js'; 
 
 

@@ -1,3 +1,17 @@
+$(function (){
+	$('.toolbar').each(function(){
+		var id = '#'+$('.user-toolbar-options',this).attr('id');
+		$(this).toolbar({
+	        content: id,
+	        hideOnClick: true, 
+	    });
+	});
+	$('#toolbar-all').toolbar({
+        content: '#user-toolbar-options-all',
+        hideOnClick: true, 
+    });
+	 
+});
 var glyphicon_list = "<span class='glyphicon glyphicon-list-alt'></span>";
 var caret = "<span class='caret'></span>";
 $('#sort-list li').each(function(){

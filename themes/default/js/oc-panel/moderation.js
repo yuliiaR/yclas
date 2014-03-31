@@ -1,3 +1,18 @@
+$(function (){
+	$('.toolbar').each(function(){
+		var id = '#'+$('.user-toolbar-options',this).attr('id');
+		$(this).toolbar({
+	        content: id,
+	        hideOnClick: true, 
+	    });
+	});
+	$('#toolbar-all').toolbar({
+        content: '#user-toolbar-options-all',
+        hideOnClick: true, 
+    });
+	 
+});
+
 var href = $('.sel_url_to_redirect').attr('href');
 
 var last_str = href.substr(href.lastIndexOf('/') );
