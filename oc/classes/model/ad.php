@@ -555,7 +555,7 @@ class Model_Ad extends ORM {
     {
         if($this->loaded())
         {
-            if ($this->status == self::STATUS_PUBLISHED AND core::config('advertisement.map')==1 )
+            if ($this->status == self::STATUS_PUBLISHED AND core::config('advertisement.qr_code')==1 )
             {
                 $url = urlencode($url);
                 return '<img src="https://chart.googleapis.com/chart?chs='.$size.'x'.$size.'&cht=qr&chld='.$EC_level.'|'.$margin.'&chl='.$url.'" alt="QR code" width="'.$size.'" height="'.$size.'"/>';
