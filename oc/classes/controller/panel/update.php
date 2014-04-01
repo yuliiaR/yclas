@@ -302,6 +302,21 @@ class Controller_Panel_Update extends Auth_Controller {
 
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
+    }
+
+    /**
+     * This function will upgrade DB that didn't existed in verisons below 2.1.5
+     */
+    public function action_215()
+    {        
+        // build array with new (missing) configs
+        $configs = array(array('config_key'     =>'qr_code',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>'0'), 
+                        );
+
+        // returns TRUE if some config is saved 
+        $return_conf = Model_Config::config_array($configs);
 
         //call update previous versions
         $this->action_203();
@@ -310,7 +325,7 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->action_207();
         $this->action_21();
         $this->action_211();
-        //nothing in DB for release 2.1.3
+        $this->action_214();
 
         //clean cache
         Cache::instance()->delete_all();

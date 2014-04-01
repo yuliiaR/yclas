@@ -435,6 +435,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'parent_category', 0),
 ('advertisement', 'related', 5),
 ('advertisement', 'map_pub_new', '0'),
+('advertisement', 'qr_code', '0'),
 ('email', 'notify_email', '".core::request('ADMIN_EMAIL')."'),
 ('email', 'smtp_active', 0),
 ('email', 'new_ad_notify', 0),

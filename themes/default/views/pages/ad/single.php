@@ -150,7 +150,9 @@
     		</div>
         <?endif?>
 
-        <?=$ad->map()?>
+        <div class="clearfix"></div><br>
+<?=$ad->qr(URL::current())?>
+<?=$ad->map()?>
         <?=$ad->related()?>
 
 	<?endif?>

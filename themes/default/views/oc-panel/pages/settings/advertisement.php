@@ -351,6 +351,21 @@
 					))?> 
 				</div>
 			</div>
+			<div class="form-group">
+				<?= FORM::label($forms['qr_code']['key'], __('Show QR code'), array('class'=>'control-label col-sm-3', 'for'=>$forms['qr_code']['key']))?>
+				<div class="col-sm-4">
+					<?= FORM::select($forms['qr_code']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['qr_code']['value'], array(
+					'placeholder' => "", 
+					'class' => 'tips form-control', 
+					'id' => $forms['qr_code']['key'], 
+					'data-original-title'=> __("Show QR code"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-content'=>__("Show QR code"),
+					))?>  
+				</div>
+			</div>
 			
 				<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
 			
