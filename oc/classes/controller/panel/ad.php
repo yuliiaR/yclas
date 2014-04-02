@@ -270,6 +270,20 @@ class Controller_Panel_Ad extends Auth_Controller {
 				{
 					if ($spam_ad->status != 30)
 					{
+						
+						//mark user as spamer
+						if($spam_ad->user->status != Model_User::STATUS_SPAM)
+						{
+							$user = new Model_User($spam_ad->user->id_user);
+							if($user->loaded() AND $user->id_role != Model_Role::ROLE_ADMIN)
+							{
+								$user->status = Model_User::STATUS_SPAM;
+								try {
+									$user->save();
+								} catch (Exception $e) {}
+							}
+						}
+
 						$spam_ad->status = 30;
 						
 						try

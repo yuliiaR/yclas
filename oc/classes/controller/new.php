@@ -161,6 +161,25 @@ class Controller_New extends Controller
 					$email 		= $auth_user->get_user()->email;
 				}
 
+				// is user marked as spammer?
+				if($auth_user->logged_in() AND $auth_user->get_user()->status == Model_User::STATUS_SPAM)
+				{
+					Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
+					$this->request->redirect('default');
+				}
+				else
+				{
+					$is_spam = clone $user;
+					$is_spam = $is_spam->where('email', '=', $email)
+											 ->limit(1)
+											 ->find();
+					if($is_spam->status == Model_User::STATUS_SPAM)
+					{
+						Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
+						$this->request->redirect('default');
+					}
+				}
+				
 				// SAVE AD
 				$new_ad->id_user = $user_id; // after handling user
 
@@ -177,6 +196,14 @@ class Controller_New extends Controller
 					}
 					else
 					{
+						if($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN)
+						{
+							$user->status = Model_User::STATUS_SPAM;
+							try {
+								$user->save();
+							} catch (Exception $e) {}
+						}
+						
 						Alert::set(Alert::SUCCESS, __('This post has been considered as spam! We are sorry but we cant publish this advertisement.'));
 						$this->request->redirect('default');
 					}//akismet

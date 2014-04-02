@@ -559,7 +559,6 @@ class Model_Ad extends ORM {
             {
                 $url = urlencode($url);
                 return '<img src="https://chart.googleapis.com/chart?chs='.$size.'x'.$size.'&cht=qr&chld='.$EC_level.'|'.$margin.'&chl='.$url.'" alt="QR code" width="'.$size.'" height="'.$size.'"/>';
-                 
             }
         }
     
