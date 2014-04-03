@@ -400,6 +400,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'minify', 0),
 ('general', 'faq', 0),
 ('general', 'faq_disqus', ''),
+('general', 'black_list', '0'),
 ('general', 'sort_by', 'published-desc'),
 ('general', 'landing_page', '{\"controller\":\"home\",\"action\":\"index\"}'),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),

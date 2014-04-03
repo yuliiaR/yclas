@@ -523,6 +523,22 @@
 				))?> 
 			</div>
 		</div>
+
+		<div class="form-group">
+            <?= FORM::label($forms['black_list']['key'], __("Black List"), array('class'=>'control-label col-sm-3', 'for'=>$forms['black_list']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::select($forms['black_list']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['black_list']['value'], array(
+                'placeholder' => "TRUE or FALSE", 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['black_list']['key'], 
+                'data-content'=> __("If advertisement is marked as spam, user is also marked to be spammer. Next time is not able to publish new advertisement. Until removed from Black List!"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Black List"),
+                ))?> 
+            </div>
+        </div>
 			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
 		
 	</fieldset>	

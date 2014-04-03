@@ -507,6 +507,39 @@ class Model_User extends ORM {
     }
 
     /**
+     * return TRUE if user is spammer
+     *
+     * @param  string $email
+     * @param  bool $spammer, if TRUE change status
+     * @return bool
+     */
+    public function spammer($email, $spammer = FALSE)
+    {
+        $user = new self();
+        $user = $user->where('email', '=', $email)
+                     ->limit(1)
+                     ->find();
+
+        if($user->loaded() AND $user->id_role != Model_Role::ROLE_ADMIN)
+        {
+            //force status change to spam, from controller (eg. Akismet detected spam)
+            if($spammer)
+            {
+                $user->status = self::STATUS_SPAM;
+                try {
+                    $user->save();
+                    return TRUE;
+                } catch (Exception $e) {}
+            }
+
+            if($user->status == self::STATUS_SPAM)
+                return TRUE;
+        }
+        
+        return FALSE;
+    }
+
+    /**
      * creates a User from social data
      * @param  string $email      
      * @param  string $name       

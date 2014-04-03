@@ -112,7 +112,9 @@
                                         <tr><td class="br"><?=Theme::admin_link(__('Users'),'user')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('User Roles'),'role')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Roles access'),'access')?></td></tr>
+                                        <?if(core::config('general.black_list')):?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Black list'),'pool','index','oc-panel','glyphicon  glyphicon-fire')?></td></tr>
+                                        <?endif?>
                                     </table>
                                 </div>
                             </div>

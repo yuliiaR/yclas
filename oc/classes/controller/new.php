@@ -41,7 +41,15 @@ class Controller_New extends Controller
 						   'location'	=>core::config('advertisement.location'),
 						   'address'	=>core::config('advertisement.address'),
 						   'price'		=>core::config('advertisement.price'));
-
+		
+		//Detect early spam users, show him alert and disable his posting
+		$auth_user = Auth::instance();
+		if(core::config('general.black_list') AND 
+		   	$auth_user->logged_in() AND 
+		   	$auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND 
+		   	$auth_user->get_user()->status == Model_User::STATUS_SPAM )
+				Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
+						
 		//render view publish new
 		$this->template->content = View::factory('pages/ad/new', array('categories'		    => $categories,
                                                                        'order_categories'   => $order_categories,
@@ -160,26 +168,18 @@ class Controller_New extends Controller
 					$name 		= $auth_user->get_user()->name;
 					$email 		= $auth_user->get_user()->email;
 				}
-
-				// is user marked as spammer?
-				if($auth_user->logged_in() AND $auth_user->get_user()->status == Model_User::STATUS_SPAM)
+				
+				//Do not allow posting! Case where we detect spam user, that are not logged in. 
+				if(core::config('general.black_list'))
 				{
-					Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
-					$this->request->redirect('default');
-				}
-				else
-				{
-					$is_spam = clone $user;
-					$is_spam = $is_spam->where('email', '=', $email)
-											 ->limit(1)
-											 ->find();
-					if($is_spam->status == Model_User::STATUS_SPAM)
+					$is_spammer = $user->spammer($email);
+					if($is_spammer)
 					{
 						Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
 						$this->request->redirect('default');
 					}
 				}
-				
+
 				// SAVE AD
 				$new_ad->id_user = $user_id; // after handling user
 
@@ -196,14 +196,13 @@ class Controller_New extends Controller
 					}
 					else
 					{
-						if($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN)
+						// is user marked as spammer? Make him one :)
+						if(core::config('general.black_list'))
 						{
-							$user->status = Model_User::STATUS_SPAM;
-							try {
-								$user->save();
-							} catch (Exception $e) {}
+							$is_spammer = $user->spammer($email, TRUE);
+							if($is_spammer)
+								Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
 						}
-						
 						Alert::set(Alert::SUCCESS, __('This post has been considered as spam! We are sorry but we cant publish this advertisement.'));
 						$this->request->redirect('default');
 					}//akismet
