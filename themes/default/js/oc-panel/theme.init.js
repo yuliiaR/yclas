@@ -1,11 +1,32 @@
 $(function (){
-
-
+console.log($("textarea[name=description]").data('editor'));
+    if ($("textarea[name=description]").data('editor')=='html')
+    {
+        $("#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields").sceditor({
+            plugins: "xhtml",
+            height: "450",
+            toolbar: "bold,italic,underline|,strike,subscript,superscript|,left,center,right,justify|" +
+                    "font,size,color,removeformat|,table,code,quote,horizontalrule|,paste,bulletlist,orderedlist|,image,email,link,unlink|,youtube,date,time,ltr,rtl,print,maximize|,source",
+            toolbarExclude : "emoticons",
+            resizeEnabled: "true",
+            emoticonsEnabled: "false",
+            emoticonsCompat: "false",
+            enablePasteFiltering: "true"
+        });
+    }
+    else
+    {   
+        $('#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields').sceditorBBCodePlugin({
+            toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
+            "bulletlist,orderedlist|link,unlink,image,youtube|source",
+            resizeEnabled: "true",
+            enablePasteFiltering: "true"});
+    }
     
-    $('#formorm_description, textarea[name=description]').sceditorBBCodePlugin({
-        toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
-        "bulletlist,orderedlist|link,unlink,image,youtube|source",
-        resizeEnabled: "true"});
+    // $('#formorm_description, textarea[name=description]').sceditorBBCodePlugin({
+    //     toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
+    //     "bulletlist,orderedlist|link,unlink,image,youtube|source",
+    //     resizeEnabled: "true"});
     
     $('.tips').popover();
 
