@@ -52,6 +52,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `token_expires` datetime DEFAULT NULL,
   `hybridauth_provider_name` varchar(40) NULL DEFAULT NULL,
   `hybridauth_provider_uid` varchar(245) NULL DEFAULT NULL,
+  `subscriber` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_email` (`email`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_token` (`token`),

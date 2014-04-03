@@ -133,13 +133,13 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('oc-panel/profile/edit',array('user'=>$user));
-		// $this->template->content = View::factory('pages/useredit',array('user'=>$user, 'captcha_show'=>$captcha_show));
 
 		if($this->request->post())
 		{
 			
 			$user->name = core::post('name');
 			$user->email = core::post('email');
+			$user->subscriber = (core::post('subscriber') != NULL)?core::post('subscriber'):0;
 			$user->seoname = $user->gen_seo_title(core::post('name'));
 
 			try {

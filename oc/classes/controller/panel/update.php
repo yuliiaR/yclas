@@ -321,6 +321,13 @@ class Controller_Panel_Update extends Auth_Controller {
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
 
+        $prefix = Database::instance()->table_prefix();
+
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."users` ADD `subscriber` tinyint(1) NOT NULL DEFAULT '1'")->execute();
+        }catch (exception $e) {}
+
         //call update previous versions
         $this->action_203();
         $this->action_205();
