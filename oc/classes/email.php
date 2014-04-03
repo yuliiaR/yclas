@@ -77,14 +77,29 @@ class Email {
 
         $mail->AddReplyTo($reply,$replyName);//they answer here
 
+        // get un-subscribed users, dont send them emails  
+        $query = DB::select('email')
+                        ->from('users')
+                        ->where('subscriber','=',0)
+                        ->execute();
+        $not_subscribed = $query->as_array('email');
+        
         if (is_array($to))
         {
-            foreach ($to as $contact) 
-                $mail->AddBCC($contact['email'],$contact['name']);               
+            foreach ($to as $contact)
+            {
+                if(!isset($not_subscribed[$contact['email']])) 
+                    $mail->AddBCC($contact['email'],$contact['name']); 
+            }
+                              
         }
         else
-            $mail->AddAddress($to,$to_name);
-
+        {
+            if(!isset($not_subscribed[$to]))
+                $mail->AddAddress($to,$to_name);
+            else
+                return TRUE;
+        }
 
         $mail->IsHTML(TRUE); // send as HTML
 

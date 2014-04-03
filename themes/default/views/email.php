@@ -60,7 +60,9 @@
                     <td valign="top" class="footerContent" mc:edit="footer_content00" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #808080;font-family: Helvetica;font-size: 10px;line-height: 150%;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
                        <?=date('Y')?> &copy; <a href="<?=core::config('general.base_url')?>" target ="_blank" title="<?=core::config('general.site_name')?>">
                             <?=core::config('general.site_name')?>
-                        </a>.
+                        </a>. <a href="<?=core::config('general.base_url')?>oc-panel/profile/edit" target ="_blank" title="<?=__('Unsubscribe')?>">
+                            <?=__('Unsubscribe')?>
+                        </a>
                     </td>
                 </tr>
                 
