@@ -335,7 +335,8 @@ class Controller_Panel_Update extends Auth_Controller {
         {
             DB::query(Database::UPDATE,"INSERT INTO  `".$prefix."access` (`id_role`, `access`) VALUES 
                                                                          (7, 'profile.*'),(7, 'content.*'),(7, 'stats.user.*'),
-                                                                         (7, 'blog.*'),(7, 'translations.*'),(7, 'ad.*')")->execute();
+                                                                         (7, 'blog.*'),(7, 'translations.*'),(7, 'ad.*'),
+                                                                         (7, 'widgets.*'),(7, 'menu.*')")->execute();
         }catch (exception $e) {}
 
         //call update previous versions
