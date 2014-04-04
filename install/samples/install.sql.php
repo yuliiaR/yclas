@@ -343,11 +343,12 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`id_
 /**
  * Access
  */
-mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (5, 'translator', 'User + Translations'), (10, 'admin', 'Full access');");
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (5, 'translator', 'User + Translations'), (7, 'moderator', 'Limited access'), (10, 'admin', 'Full access');");
 mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_access`, `id_role`, `access`) VALUES 
             (1, 10, '*.*'),
             (2, 1, 'profile.*'),(3, 1, 'stats.user'),
-            (4, 5, 'translations.*'),(5, 5, 'profile.*'),(6, 5, 'stats.user'),(7, 5, 'content.*');");
+            (4, 5, 'translations.*'),(5, 5, 'profile.*'),(6, 5, 'stats.user'),(7, 5, 'content.*'),
+            (8, 'profile.*'),(9, 'content.*'),(10, 'stats.user.*'),(11, 'blog.*'),(12, 'translations.*'),(13, 'ad.*'),(14, 'widgets.*'),(15, 'menu.*');");
 
 /**
  * Create user God/Admin 

@@ -13,8 +13,9 @@ class Model_Role extends ORM {
     /**
      * user roles
      */
-    const ROLE_USER         = 1;
-    const ROLE_ADMIN        = 10;
+    const ROLE_USER             = 1;
+    const ROLE_MODERATOR        = 7;
+    const ROLE_ADMIN            = 10;
     /**
      * @var  string  Table name
      */

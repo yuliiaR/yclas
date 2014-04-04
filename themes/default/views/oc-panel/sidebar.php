@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-1 col-sm-1 col-xs-1 respon-left-panel">
                     <div class="panel-group" id="accordion">
-                    <? if($user->id_role==Model_Role::ROLE_ADMIN):?>
+                    <? if($user->id_role==Model_Role::ROLE_ADMIN OR $user->id_role==Model_Role::ROLE_MODERATOR):?>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -145,7 +145,7 @@
                         </div>
                         <?endif?>
                     <?endif?>
-                        <? if($user->has_access_to_any('profile') AND $user->id_role!=Model_Role::ROLE_ADMIN):?>
+                        <? if($user->has_access_to_any('profile') AND $user->id_role!=Model_Role::ROLE_ADMIN AND $user->id_role!=Model_Role::ROLE_MODERATOR):?>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
