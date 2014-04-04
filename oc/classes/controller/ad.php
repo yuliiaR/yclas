@@ -329,14 +329,16 @@ class Controller_Ad extends Controller {
                 $this->template->meta_description = text::removebbcode($ad->description);
 
 				$permission = TRUE; //permission to add hit to advert and give access rights. 
-				if(!Auth::instance()->logged_in() || 
-					(Auth::instance()->get_user()->id_user != $ad->id_user && Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN) || 
-					Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN)
+				$auth_user = Auth::instance();
+                if(!$auth_user->logged_in() OR 
+					($auth_user->get_user()->id_user != $ad->id_user AND ($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR)) OR 
+					($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR))
 				{	
-					if(!Auth::instance()->logged_in())
+
+					if(!$auth_user->logged_in())
 						$visitor_id = NULL;
 					else
-						$visitor_id = Auth::instance()->get_user()->id_user;
+						$visitor_id = $auth_user->get_user()->id_user;
 					$do_hit = $ad->count_ad_hit($visitor_id, ip2long(Request::$client_ip)); // hits counter
 					
 					$permission = FALSE;
@@ -344,7 +346,7 @@ class Controller_Ad extends Controller {
 					
 				} 
                 else 
-                    $user = Auth::instance()->get_user()->id_user;
+                    $user = $auth_user->get_user()->id_user;
 
 
 				//count how many matches are found 
@@ -375,7 +377,7 @@ class Controller_Ad extends Controller {
 
 						//admin_privilege can be seen only by admin, so we check if its set / and is admin
 						if(isset($cf_config->$real_name->admin_privilege) AND $cf_config->$real_name->admin_privilege)
-							if(!Auth::instance()->logged_in() OR !Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
+							if(!$auth_user->logged_in() OR !$auth_user->get_user()->id_role == Model_Role::ROLE_ADMIN)
 								if(isset($ad_custom_vals[$cf_config->$real_name->label]))
 									unset($ad_custom_vals[$cf_config->$real_name->label]);
 					}
@@ -445,7 +447,8 @@ class Controller_Ad extends Controller {
 	 */
 	public function action_to_top()
 	{
-		$payer_id 		= Auth::instance()->get_user()->id_user; 
+        $auth_user = Auth::instance();
+		$payer_id 		= $auth_user->get_user()->id_user; 
 		$id_product 	= Paypal::to_top;
 		$description 	= 'to_top';
 		// update orders table

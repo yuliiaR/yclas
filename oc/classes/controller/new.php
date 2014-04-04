@@ -42,11 +42,11 @@ class Controller_New extends Controller
 						   'address'	=>core::config('advertisement.address'),
 						   'price'		=>core::config('advertisement.price'));
 		
-		//Detect early spam users, show him alert and disable his posting
+		//Detect early spam users, show him alert
 		$auth_user = Auth::instance();
 		if(core::config('general.black_list') AND 
 		   	$auth_user->logged_in() AND 
-		   	$auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND 
+		   	($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR)AND 
 		   	$auth_user->get_user()->status == Model_User::STATUS_SPAM )
 				Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
 						

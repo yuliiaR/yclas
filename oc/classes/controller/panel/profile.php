@@ -223,7 +223,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			if ($deact_ad->loaded())
 			{
 				if(Auth::instance()->get_user()->id_user !== $deact_ad->id_user OR 
-					(Auth::instance()->get_user()->id_role !== Model_Role::ROLE_ADMIN AND Auth::instance()->get_user()->id_user == 1))
+				   Auth::instance()->get_user()->id_role !== Model_Role::ROLE_ADMIN)
 
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
@@ -275,7 +275,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			if ($active_ad->loaded())
 			{
 				if(Auth::instance()->get_user()->id_user !== $active_ad->id_user OR 
-					(Auth::instance()->get_user()->id_role !== Model_Role::ROLE_ADMIN AND Auth::instance()->get_user()->id_user == 1))
+				   Auth::instance()->get_user()->id_role !== Model_Role::ROLE_ADMIN)
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
                     Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
@@ -375,7 +375,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 	
 		if(Auth::instance()->logged_in() && Auth::instance()->get_user()->id_user == $form->id_user 
-			|| Auth::instance()->logged_in() && Auth::instance()->get_user()->id_role == 10)
+			OR Auth::instance()->logged_in() && Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
 		{
 			$extra_payment = core::config('payment');
 			
@@ -530,7 +530,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        		// data['cat'] -> category selected , last_known_ad->id_category -> obj of current ad (before save) 
 	        		$moderation = core::config('general.moderation');
 	        		$last_known_ad = $obj_ad->where('id_ad', '=', $this->request->param('id'))->limit(1)->find();
-	        		if($moderation == Model_Ad::PAYMENT_ON || $moderation == Model_Ad::PAYMENT_MODERATION)
+	        		if($moderation == Model_Ad::PAYMENT_ON OR $moderation == Model_Ad::PAYMENT_MODERATION)
 	        		{
 	        			// PAYMENT METHOD ACTIVE
 						$payment_order = new Model_Order();

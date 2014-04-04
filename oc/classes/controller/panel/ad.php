@@ -187,9 +187,9 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$id = $this->request->param('id');
 		
 		$format_id = explode('_', $id);
-
-		if(Auth::instance()->logged_in() && Auth::instance()->get_user()->id_user == $element->id_user 
-			|| Auth::instance()->logged_in() && Auth::instance()->get_user()->id_role == 10)
+		$auth_user = Auth::instance();
+		if($auth_user->logged_in() AND $auth_user->get_user()->id_user == $element->id_user 
+			OR ($auth_user->get_user()->id_role == Model_Role::ROLE_ADMIN OR $auth_user->get_user()->id_role == Model_Role::ROLE_MODERATOR))
 		{
 			$nb_Ads_Deleted = 0;
 			foreach ($format_id as $id) 
@@ -275,7 +275,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						if($spam_ad->user->status != Model_User::STATUS_SPAM)
 						{
 							$user = new Model_User($spam_ad->user->id_user);
-							if($user->loaded() AND $user->id_role != Model_Role::ROLE_ADMIN)
+							if($user->loaded() AND ($user->id_role != Model_Role::ROLE_ADMIN OR $user->id_role != Model_Role::ROLE_MODERATOR))
 							{
 								$user->status = Model_User::STATUS_SPAM;
 								try {

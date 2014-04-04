@@ -520,7 +520,7 @@ class Model_User extends ORM {
                      ->limit(1)
                      ->find();
 
-        if($user->loaded() AND $user->id_role != Model_Role::ROLE_ADMIN)
+        if($user->loaded() AND ($user->id_role != Model_Role::ROLE_ADMIN AND $user->id_role != Model_Role::ROLE_MODERATOR))
         {
             //force status change to spam, from controller (eg. Akismet detected spam)
             if($spammer)
