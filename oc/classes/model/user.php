@@ -389,6 +389,67 @@ class Model_User extends ORM {
         return FALSE;
     }
 
+    /**
+     * return TRUE if user is spammer
+     *
+     * @param  string $email
+     * @return bool
+     */
+    public function is_spam($email = NULL)
+    {
+        
+        if($email != NULL)
+        {
+            $user = new self();
+            $user = $user->where('email', '=', $email)
+                     ->limit(1)
+                     ->find();
+
+            if($user->loaded() AND $user->status == self::STATUS_SPAM)
+                return TRUE;
+        }
+        else
+        {
+            if($this->status == self::STATUS_SPAM)
+                return TRUE;
+        }
+
+        return FALSE;
+    }
+    /**
+     * change status of user to spam, if not admin or moderator
+     *
+     * @param  string $email
+     */
+    public function user_spam($email = NULL)
+    {
+
+        if($email != NULL)//if $this is not loaded 
+        {
+            $user = new self();
+            $user = $user->where('email', '=', $email)
+                     ->limit(1)
+                     ->find();
+        }
+        else $user = $this;
+
+        if($user->loaded())
+        {
+
+            if($user->id_role != Model_Role::ROLE_ADMIN AND 
+                $user->id_role != Model_Role::ROLE_MODERATOR)
+            {
+                $user->status = self::STATUS_SPAM;
+
+                try {
+                    $user->save();
+                    Alert::set(Alert::ALERT, $user->email.' '.__('has been disable for posting, due to recent spam content!'));
+                } catch (Exception $e) {
+                    
+                }
+            }
+        }
+    }
 
     /**
      * get url with auto QL login and redirect
@@ -507,39 +568,6 @@ class Model_User extends ORM {
     }
 
     /**
-     * return TRUE if user is spammer
-     *
-     * @param  string $email
-     * @param  bool $spammer, if TRUE change status
-     * @return bool
-     */
-    public function spammer($email, $spammer = FALSE)
-    {
-        $user = new self();
-        $user = $user->where('email', '=', $email)
-                     ->limit(1)
-                     ->find();
-
-        if($user->loaded() AND ($user->id_role != Model_Role::ROLE_ADMIN AND $user->id_role != Model_Role::ROLE_MODERATOR))
-        {
-            //force status change to spam, from controller (eg. Akismet detected spam)
-            if($spammer)
-            {
-                $user->status = self::STATUS_SPAM;
-                try {
-                    $user->save();
-                    return TRUE;
-                } catch (Exception $e) {}
-            }
-
-            if($user->status == self::STATUS_SPAM)
-                return TRUE;
-        }
-        
-        return FALSE;
-    }
-
-    /**
      * creates a User from social data
      * @param  string $email      
      * @param  string $name       
@@ -576,7 +604,7 @@ class Model_User extends ORM {
         }
         catch (ORM_Validation_Exception $e)
         {
-            d($e->errors(''));
+            // d($e->errors(''));
         }
 
         return $user;

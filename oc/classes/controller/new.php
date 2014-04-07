@@ -45,10 +45,11 @@ class Controller_New extends Controller
 		//Detect early spam users, show him alert
 		$auth_user = Auth::instance();
 		if(core::config('general.black_list') AND 
-		   	$auth_user->logged_in() AND 
-		   	($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR)AND 
-		   	$auth_user->get_user()->status == Model_User::STATUS_SPAM )
-				Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
+		   	$auth_user->logged_in() AND $auth_user->get_user()->status == Model_User::STATUS_SPAM)
+		{
+			Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
+			$this->request->redirect('default');
+		}
 						
 		//render view publish new
 		$this->template->content = View::factory('pages/ad/new', array('categories'		    => $categories,
@@ -172,11 +173,10 @@ class Controller_New extends Controller
 				//Do not allow posting! Case where we detect spam user, that are not logged in. 
 				if(core::config('general.black_list'))
 				{
-					$is_spammer = $user->spammer($email);
-					if($is_spammer)
+					if(!$user->loaded() AND $user->is_spam($email))
 					{
 						Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
-						$this->request->redirect('default');
+						$this->request->redirect('default');	
 					}
 				}
 
@@ -199,9 +199,8 @@ class Controller_New extends Controller
 						// is user marked as spammer? Make him one :)
 						if(core::config('general.black_list'))
 						{
-							$is_spammer = $user->spammer($email, TRUE);
-							if($is_spammer)
-								Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
+							// change status of user that is marked by akismet as spam
+							($user->loaded())?$user->user_spam():$user->user_spam($email);
 						}
 						Alert::set(Alert::SUCCESS, __('This post has been considered as spam! We are sorry but we cant publish this advertisement.'));
 						$this->request->redirect('default');
