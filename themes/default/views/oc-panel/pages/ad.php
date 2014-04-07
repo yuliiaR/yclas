@@ -157,14 +157,15 @@
 			<?endif?>
 	    	
 	    	<td><?= substr($ad->published, 0, 11)?></td>
-			<td>
+			<td width="120px">
+				<a class="btn btn-primary " 
+					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
+					rel="tooltip" title="<?=__('Update')?>">
+					<i class="glyphicon   glyphicon-edit"></i>
+				</a>
 				<div class="toolbar btn btn-default"><i class="glyphicon glyphicon-cog"></i>
 				<div id="user-toolbar-options<?=$ad->id_ad?>" class="hide user-toolbar-options">
-					<a class="btn btn-primary " 
-						href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
-						rel="tooltip" title="<?=__('Update')?>">
-						<i class="glyphicon   glyphicon-edit"></i>
-					</a>
+					
 					<?if($ad->status != Model_Ad::STATUS_SPAM):?>
 					
 					<a class="btn btn-warning " 

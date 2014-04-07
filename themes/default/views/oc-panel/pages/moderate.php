@@ -21,6 +21,12 @@
 		<!-- in case there are no ads we dont show buttons -->
 		<?if(isset($ads)):?>
 		<th>
+			<a class="activate btn btn-success" 
+				href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
+				onclick="return confirm('<?=__('Activate?')?>');"
+				rel="tooltip" title="<?=__('Activate')?>">
+				<i class="glyphicon   glyphicon-ok-sign"></i>
+			</a>
 			<div class="toolbar btn btn-default"><i class="glyphicon glyphicon-cog"></i>
 			<div id="user-toolbar-options-all" class="hide user-toolbar-options">
 				<a class="spam btn btn-warning" 
@@ -34,12 +40,6 @@
 					onclick="return confirm('<?=__('Deactivate?')?>'));"
 					rel="tooltip" title="<?=__('Deactivate')?>">
 					<i class="glyphicon   glyphicon-remove"></i>
-				</a>
-				<a class="activate btn btn-success" 
-						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
-						onclick="return confirm('<?=__('Activate?')?>');"
-						rel="tooltip" title="<?=__('Activate')?>">
-						<i class="glyphicon   glyphicon-ok-sign"></i>
 				</a>
 				<a class="delete btn btn-danger " 
 					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
@@ -93,14 +93,20 @@
 				<td><?=__('Unavailable')?></td>
 			<?endif?>
 	    	<td><?= substr($ad->created, 0, 11)?></td>
-			<td>
+			<td width="150px">
+				<a class="btn btn-primary" 
+					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
+					rel="tooltip" title="<?=__('Update')?>">
+					<i class="glyphicon   glyphicon-edit"></i>
+				</a>
+				<a class="btn btn-success" 
+					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+					onclick="return confirm('<?=__('Activate?')?>');"
+					rel="tooltip" title="<?=__('Activate')?>">
+					<i class="glyphicon   glyphicon-ok-sign"></i>
+				</a>
 				<div class="toolbar btn btn-default"><i class="glyphicon glyphicon-cog"></i>
 				<div id="user-toolbar-options<?=$ad->id_ad?>" class="hide user-toolbar-options">
-					<a class="btn btn-primary" 
-						href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
-						rel="tooltip" title="<?=__('Update')?>">
-						<i class="glyphicon   glyphicon-edit"></i>
-					</a>
 					<!-- sel_url_to_redirect is important because is quick selector or $current_url. 
 						This works with dynamic check boxes, where we select href to build new url -->
 					<a class="btn btn-warning sel_url_to_redirect" 
@@ -115,12 +121,6 @@
 	                    rel="tooltip" title="<?=__('Spam')?>">
 	                    <i class="glyphicon   glyphicon-fire"></i>
 	                </a>
-					<a class="btn btn-success" 
-						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-						onclick="return confirm('<?=__('Activate?')?>');"
-						rel="tooltip" title="<?=__('Activate')?>">
-						<i class="glyphicon   glyphicon-ok-sign"></i>
-					</a>
 					<a class="btn btn-danger " 
 						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
 						onclick="return confirm('<?=__('Delete?')?>');"
