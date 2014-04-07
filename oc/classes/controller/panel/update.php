@@ -312,8 +312,8 @@ class Controller_Panel_Update extends Auth_Controller {
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'qr_code',
                                'group_name'     =>'advertisement', 
-                               'config_value'   =>'0',
-                               'config_key'     =>'black_list',
+                               'config_value'   =>'0'),
+                         array('config_key'     =>'black_list',
                                'group_name'     =>'general', 
                                'config_value'   =>'0'), 
                         );
