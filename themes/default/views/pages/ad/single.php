@@ -151,7 +151,7 @@
         <?endif?>
 
         <div class="clearfix"></div><br>
-<?=$ad->qr(URL::current())?>
+<?=$ad->qr()?>
 <?=$ad->map()?>
         <?=$ad->related()?>
 

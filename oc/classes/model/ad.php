@@ -551,14 +551,13 @@ class Model_Ad extends ORM {
      * prints the QR code script from the view
      * @return string HTML or false in case not loaded
      */
-    public function qr($url,$size ='150',$EC_level='L',$margin='0')
+    public function qr()
     {
         if($this->loaded())
         {
             if ($this->status == self::STATUS_PUBLISHED AND core::config('advertisement.qr_code')==1 )
             {
-                $url = urlencode($url);
-                return '<img src="https://chart.googleapis.com/chart?chs='.$size.'x'.$size.'&cht=qr&chld='.$EC_level.'|'.$margin.'&chl='.$url.'" alt="QR code" width="'.$size.'" height="'.$size.'"/>';
+                return core::generate_qr(Route::url('ad', array('controller'=>'ad','category'=>$this->category->seoname,'seotitle'=>$this->seotitle)));
             }
         }
     
