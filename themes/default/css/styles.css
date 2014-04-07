@@ -16,6 +16,7 @@ body {
 li{
 	list-style-type: none;
 }
+.list{word-wrap:break-word!important;}
 .resp-header-search {display: none; margin-bottom: 10px;}
 .logo{padding:5px 15px;max-height: 50px;}
 .logo img {max-height: 40px;}
