@@ -405,7 +405,7 @@ class Controller_Panel_Update extends Auth_Controller {
         }   
         else 
         {
-            Alert::set(Alert::ALERT, $fname.' '.__('Zip file faild to extract, please try again.'));
+            Alert::set(Alert::ALERT, $fname.' '.__('Zip file failed to extract, please try again.'));
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'update', 'action'=>'index')));
         }
 

@@ -16,7 +16,7 @@ class Widget_Text extends Widget
 	{	
 
 		$this->title = __('Text');
-		$this->description = __('HTML textarea');
+		$this->description = __('HTML text area');
 
 		$this->fields = array(	
 								'text_title'  => array(	'type'		=> 'text',

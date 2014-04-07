@@ -20,7 +20,7 @@ class Widget_RSS extends Widget
 
 		$this->fields = array(	'rss_limit' => array( 	'type'		=> 'numeric',
 														'display'	=> 'select',
-														'label'		=> __('Number items to display'),
+														'label'		=> __('Number of items to display'),
 														'options'   => array_combine(range(1,50),range(1,50)), 
 														'default'	=> 5,
 														'required'	=> TRUE),

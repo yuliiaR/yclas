@@ -86,7 +86,7 @@
                     'placeholder' => $forms['related']['value'], 
                     'class' => 'tips form-control ', 
                     'id' => $forms['related']['key'],
-                    'data-content'=> __("You can choose if tehres random related ads displayed at the advertisement"),
+                    'data-content'=> __("You can choose if you wish to display random related ads at each advertisement"),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
@@ -283,7 +283,7 @@
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
-                    'data-content'=>__("Contact form appears int he ad."),
+                    'data-content'=>__("Contact form appears in the ad."),
                     ))?> 
                 </div>
             </div>
@@ -328,11 +328,11 @@
 					'placeholder' => "word1,word2,word3", 
 					'class' => 'tips form-control', 
 					'id' => $forms['banned_words']['key'], 
-					'data-original-title'=> __("Baned words are separated with coma (,)"),
+					'data-original-title'=> __("Banned words are separated with coma (,)"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-content'=>__("You need to write your baned words enable the service."),
+					'data-content'=>__("You need to write your banned words to enable the service."),
 					))?> 
 				</div>
 			</div>
@@ -343,11 +343,11 @@
 					'placeholder' => "xxx", 
 					'class' => 'tips form-control', 
 					'id' => $forms['banned_words_replacement']['key'], 
-					'data-original-title'=> __("Replacement of a banedword"),
+					'data-original-title'=> __("Replacement of a banned word"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
-					'data-content'=>__("Baned word replacement replaces selected array with string that you provided."),
+					'data-content'=>__("Banned word replacement replaces selected array with the string you provided."),
 					))?> 
 				</div>
 			</div>

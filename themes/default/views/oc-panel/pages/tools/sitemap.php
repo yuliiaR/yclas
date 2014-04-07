@@ -14,7 +14,7 @@
       <?=Form::errors()?>        
 
       <div class="form-group">
-        <label class="control-label col-sm-2"><?=__("Expire time")?>:</label>
+        <label class="control-label col-sm-2"><?=__("Expiry time")?>:</label>
         <div class="col-sm-4">
         <input  type="text" name="expires" value="<?=core::config('sitemap.expires')?>" class="col-md-2"  /> Seconds
         </div>

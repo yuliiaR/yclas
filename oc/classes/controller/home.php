@@ -82,7 +82,7 @@ class Controller_Home extends Controller {
         Theme::delete_minified();
             
         //redirect home
-        Alert::set(Alert::SUCCESS, __('Default theme seted'));
+        Alert::set(Alert::SUCCESS, __('Default theme selected'));
         $this->request->redirect(Route::url('default')); 
     }
 
