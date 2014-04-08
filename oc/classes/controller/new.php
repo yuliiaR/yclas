@@ -68,7 +68,8 @@ class Controller_New extends Controller
                             'price'         => $price       =   $this->request->post('price'),
                             'address'       => $address     =   $this->request->post('address'),
                             'phone'         => $phone       =   $this->request->post('phone'),
-                            'website'       => $website     =   $this->request->post('website')
+                            'website'       => $website     =   $this->request->post('website'),
+                            'limit'       	=> $limit     	=   $this->request->post('limit')
                             ); 
             
             // append to $data new custom values
@@ -144,7 +145,8 @@ class Controller_New extends Controller
 				$new_ad->price 			= floatval(str_replace(',', '.', $data['price'])); 								
 				$new_ad->address 		= $data['address'];
 				$new_ad->phone			= $data['phone'];
-				$new_ad->website		= $data['website']; 
+				$new_ad->website		= $data['website'];
+				$new_ad->limit			= $data['limit']; 
 				
 				// set custom values
 				foreach ($data as $name => $field) 

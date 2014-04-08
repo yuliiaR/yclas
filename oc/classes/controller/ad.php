@@ -531,6 +531,51 @@ class Controller_Ad extends Controller {
 		$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
 	}
 	
+    /**
+     * [action_buy] Pay for ad, and set new order 
+     *
+     */
+    public function action_buy()
+    {
+        if(core::config('payment.paypal_seller'))
+        {
+            $ad = new Model_Ad($this->request->param('id'));
+
+            if($ad->loaded())
+            {
+
+                if(is_null($ad->limit) OR $ad->limit != 0)//do not allow selling if it already 0
+                {
+                    $payer_id       = Auth::instance()->get_user()->id_user; 
+                    $id_product     = 'ad-'.$ad->id_ad;
+                    $description    = $ad->title;
+
+                    $ord_data = array('id_user'     => $payer_id,
+                                  'id_ad'       => $ad->id_ad,
+                                  'id_product'  => $id_product,
+                                  'paymethod'   => 'paypal', // @TODO - to strict
+                                  'currency'    => core::config('payment.paypal_currency'),
+                                  'amount'      => $ad->price,
+                                  'description' => $description);
+
+                    $order = new Model_Order(); // create order , and returns order id
+                    $order_id = $order->set_new_order($ord_data);
+
+                    // redirect to payment
+                    $this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+                }
+                else
+                {
+                    $ad->status = Model_Ad::STATUS_UNAVAILABLE;
+                    $ad->save();
+                    
+                    Alert::set(Alert::INFO, __('Advertisement').' "'.$ad->title.'" '.__('is sold out!'));
+                    $this->request->redirect(Route::url('default')); 
+                }
+            }
+        }
+    }
+
 	public function action_confirm_post()
 	{
 		$advert_id = $this->request->param('id');

@@ -160,6 +160,17 @@
 					</div>
 				</div>
 				<?endif?>
+				<?if(core::config('advertisement.ads_limit') AND core::config('payment.paypal_seller')):?>
+				<div class="form-group">
+					
+					<div class="col-md-4">
+						<?= FORM::label('limit', __('Sell Limit'), array('class'=>'control-label', 'for'=>'limit'))?>
+						<div class="input-prepend">
+						<?= FORM::input('limit', Request::current()->post('limit'), array('placeholder' => '10', 'class' => 'form-control', 'id' => 'limit', 'type'=>'text'))?>
+						</div>
+					</div>
+				</div>
+				<?endif?>
 				<?if($form_show['website'] != FALSE):?>
 				<div class="form-group">
 					

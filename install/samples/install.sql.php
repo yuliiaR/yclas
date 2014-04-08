@@ -108,6 +108,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `featured` DATETIME  NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `has_images` tinyint(1) NOT NULL DEFAULT '0',
+  `limit` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id_ad`) USING BTREE,
   KEY `".core::request('TABLE_PREFIX')."ads_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."ads_IK_id_category` (`id_category`),
@@ -213,6 +214,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`ord
 (0, 'Advertisement `[AD.NAME]` is created on [SITE.NAME]!', 'ads.user_check', 'Hello [USER.NAME],\n\n Advertisement is created under your account [USER.NAME]! You can visit this link to see advertisement [URL.AD]\n\n If you are not responsible for creating this advertisement, click a link to contact us [URL.CONTACT].\n\n', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!', 'ads.subscribers', 'Hello [USER.NAME],\n\n You may be interested in this one!\n\nYou can visit this link to see advertisement [URL.AD]\n\n', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!', 'ads.to_admin', 'Click here to visit [URL.AD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+(0, 'Advertisement `[AD.TITLE]` is sold on [SITE.NAME]!', 'ads.sold', 'Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nPlease check your bank account for the incoming payment.\n\nClick here to visit [URL.AD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Success! Your advertisement `[AD.NAME]` is created on [SITE.NAME]!', 'ads.confirm', 'Welcome [USER.NAME],\n\nThank you for creating an advertisement at [SITE.NAME]! \n\nPlease click on this link [URL.QL] to confirm it.\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1);");
 
 /**
@@ -439,6 +441,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'related', 5),
 ('advertisement', 'map_pub_new', '0'),
 ('advertisement', 'qr_code', '0'),
+('advertisement', 'ads_limit', '0'),
 ('email', 'notify_email', '".core::request('ADMIN_EMAIL')."'),
 ('email', 'smtp_active', 0),
 ('email', 'new_ad_notify', 0),

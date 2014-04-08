@@ -315,17 +315,32 @@ class Controller_Panel_Update extends Auth_Controller {
                                'config_value'   =>'0'),
                          array('config_key'     =>'black_list',
                                'group_name'     =>'general', 
+                               'config_value'   =>'0'),
+                         array('config_key'     =>'ads_limit',
+                               'group_name'     =>'advertisement', 
                                'config_value'   =>'0'), 
                         );
+        $contents = array(array('order'=>'0',
+                               'title'=>'Advertisement `[AD.TITLE]` is sold on [SITE.NAME]!',
+                               'seotitle'=>'ads.sold',
+                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nPlease check your bank account for the incoming payment.\n\nClick here to visit [URL.AD]",
+                               'from_email'=>core::config('email.notify_email'),
+                               'type'=>'email',
+                               'status'=>'1'));
 
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
+        $return_cont = Model_Content::content_array($contents);
 
         $prefix = Database::instance()->table_prefix();
 
         try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."users` ADD `subscriber` tinyint(1) NOT NULL DEFAULT '1'")->execute();
+        }catch (exception $e) {}
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."ads` ADD `limit` int(10) unsigned DEFAULT NULL")->execute();
         }catch (exception $e) {}
         try
         {

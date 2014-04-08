@@ -58,7 +58,7 @@ class Controller_Payment_Paypal extends Controller{
 			{//same price , currency and email no cheating ;)
 				if (paypal::validate_ipn()) 
 				{
-					$order->confirm_payment($id_order, core::config('general.moderation'));	
+					$order->confirm_payment();	
 				} //payment succeed and we confirm the post ;) (CALL TO LOGIC PUT IN ctrl AD)
 
 				else

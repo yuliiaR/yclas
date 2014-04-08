@@ -36,9 +36,13 @@
 	                </td>
 	                <td><a href="<?=Route::url('oc-panel', array('controller'=> 'profile', 'action'=>'update','id'=>$order->ad->pk())) ?>">
 	                    <?=$order->ad->title?></a></td>
-
+					
+					<?if(isset(Paypal::$products[$order->id_product])):?>
                     <td><?=Paypal::$products[$order->id_product]?></td>
-
+					<?else:?>
+					<td><?=$order->ad->seotitle?></td>
+					<?endif?>
+					
 	                <td><?=$order->amount.' '.$order->currency?></td>
 	                
 	                <td><?=$order->pay_date?></td>

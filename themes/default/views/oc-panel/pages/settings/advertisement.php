@@ -366,6 +366,21 @@
 					))?>  
 				</div>
 			</div>
+			<div class="form-group">
+				<?= FORM::label($forms['ads_limit']['key'], __('Allow limited amount of advertisements to sell'), array('class'=>'control-label col-sm-3', 'for'=>$forms['ads_limit']['key']))?>
+				<div class="col-sm-4">
+					<?= FORM::select($forms['ads_limit']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['ads_limit']['value'], array(
+					'placeholder' => "", 
+					'class' => 'tips form-control', 
+					'id' => $forms['ads_limit']['key'], 
+					'data-original-title'=> __("Allow limited amount of advertisements to sell"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-content'=>__("Allow limited amount of advertisements to sell"),
+					))?>  
+				</div>
+			</div>
 			
 				<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
 			

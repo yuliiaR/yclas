@@ -63,104 +63,128 @@ class Model_Order extends ORM {
      * confirm payment for order
      *
      * @param string    $id_order [unique indentifier of order]
-     * @param int       $id_user  [unique indentifier of user] 
      */
-    public function confirm_payment($id_order, $moderation)
+    public function confirm_payment()
     { 
-        $orders = new self;
-
-        $orders->where('id_order','=',$id_order)
-                         ->where('status','=', 0)
-                         ->limit(1)->find();
-
-        $id_ad = $orders->id_ad;
-
-        $product_find = new Model_Ad();
-        $product_find = $product_find->where('id_ad', '=', $id_ad)->limit(1)->find();
-        $categ = new Model_Category($product_find->id_category);
-
-        $user = new Model_User($orders->id_user);
+        $moderation = core::config('general.moderation');
 
         // update orders
-        if($orders->loaded())
+        if($this->loaded())
         {
-            $orders->status = 1;
-            $orders->pay_date = Date::unix2mysql(time());
-            
+            $advert = new Model_Ad($this->id_ad);
+            $user = new Model_User($this->id_user);
+
+            $this->status = self::STATUS_PAID;
+            $this->pay_date = Date::unix2mysql(time());
+
             try {
-                $orders->save();
+                $this->save();
+
             } catch (Exception $e) {
                 echo $e;  
             }
-        }
+        
 
-        // update product 
-        if($orders->id_product == Paypal::category_product)
-        {
-
-            if($moderation == Model_Ad::PAYMENT_ON)
+            // update product
+            if(!is_numeric($this->id_product))
             {
-                $product_find->published = Date::unix2mysql(time());
-                $product_find->status = 1;
+                // decrease limit of ads, if 0 deactivate
+                if($advert->limit != NULL)
+                {
+                    $limit = $advert->limit-1;
+
+                    if($limit == 0)
+                        $advert->status = Model_Ad::STATUS_UNAVAILABLE;
+                
+                    $advert->limit = $limit;
+                }
 
                 try {
-                    $product_find->save();
+                    $advert->save();
 
                     //we get the QL, and force the regen of token for security
                     $url_cont = $user->ql('contact', array(),TRUE);
-                    $url_ad = $user->ql('ad', array('category'=>$product_find->id_category,
-                                                    'seotitle'=>$product_find->seotitle), TRUE);
+                    $url_ad = $user->ql('ad', array('category'=>$advert->id_category,
+                                                    'seotitle'=>$advert->seotitle), TRUE);
 
-                    $ret = $user->email('ads.user_check',array('[URL.CONTACT]'  =>$url_cont,
-                                                                '[URL.AD]'      =>$url_ad,
-                                                                '[AD.NAME]'     =>$product_find->title));
+                    $ret = $user->email('ads.sold',array(
+                                                        '[URL.AD]'      =>$url_ad,
+                                                        '[AD.TITLE]'     =>$advert->title,
+                                                        '[ORDER.ID]'      =>$this->id_order,
+                                                        '[PRODUCT.ID]'    =>$this->id_product));
+
+                } catch (Exception $e) {
+                    echo $e;
+                }
+                
+            } 
+            elseif($this->id_product == Paypal::category_product)
+            {
+
+                if($moderation == Model_Ad::PAYMENT_ON)
+                {
+                    $advert->published = Date::unix2mysql(time());
+                    $advert->status = Model_Ad::STATUS_UNAVAILABLE;
+
+                    try {
+                        $advert->save();
+
+                        //we get the QL, and force the regen of token for security
+                        $url_cont = $user->ql('contact', array(),TRUE);
+                        $url_ad = $user->ql('ad', array('category'=>$advert->id_category,
+                                                        'seotitle'=>$advert->seotitle), TRUE);
+
+                        $ret = $user->email('ads.user_check',array('[URL.CONTACT]'  =>$url_cont,
+                                                                    '[URL.AD]'      =>$url_ad,
+                                                                    '[AD.NAME]'     =>$advert->title));
+
+                    } catch (Exception $e) {
+                        echo $e;
+                    }
+                }
+                else if($moderation == Model_Ad::PAYMENT_MODERATION)
+                {
+                    $advert->published = Date::unix2mysql(time());
+                    
+                    try 
+                    {
+                        $advert->save(); 
+
+                        $edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$advert->id_ad;
+                        $delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$advert->id_ad;
+
+                        //we get the QL, and force the regen of token for security
+                        $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
+                                                              'action'    => 'update',
+                                                              'id'        => $this->id_ad),TRUE);
+
+                        $ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql,
+                                                               '[AD.NAME]'=>$advert->title,
+                                                               '[URL.EDITAD]'=>$edit_url,
+                                                               '[URL.DELETEAD]'=>$delete_url));     
+                    } catch (Exception $e) {
+                       
+                    }   
+                }
+            }
+            elseif($this->id_product == Paypal::to_top)
+            {
+                $advert->published = Date::unix2mysql(time());
+                try {
+                    $advert->save();
 
                 } catch (Exception $e) {
                     echo $e;
                 }
             }
-            else if($moderation == Model_Ad::PAYMENT_MODERATION)
+            elseif ($this->id_product == Paypal::to_featured)
             {
-                $product_find->published = Date::unix2mysql(time());
-                
-                try 
-                {
-                    $product_find->save(); 
-
-                    $edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$product_find->id_ad;
-                    $delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$product_find->id_ad;
-
-                    //we get the QL, and force the regen of token for security
-                    $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
-                                                          'action'    => 'update',
-                                                          'id'        => $orders->id_ad),TRUE);
-
-                    $ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql,
-                                                           '[AD.NAME]'=>$product_find->title,
-                                                           '[URL.EDITAD]'=>$edit_url,
-                                                           '[URL.DELETEAD]'=>$delete_url));     
+                $advert->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
+                try {
+                    $advert->save();
                 } catch (Exception $e) {
-                   
-                }   
-            }
-        }
-        elseif($orders->id_product == Paypal::to_top)
-        {
-            $product_find->published = Date::unix2mysql(time());
-            try {
-                $product_find->save();
-
-            } catch (Exception $e) {
-                echo $e;
-            }
-        }
-        elseif ($orders->id_product == Paypal::to_featured)
-        {
-            $product_find->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
-            try {
-                $product_find->save();
-            } catch (Exception $e) {
-                echo $e;
+                    echo $e;
+                }
             }
         }
     }

@@ -71,9 +71,12 @@
             <p><a href="<?=$ad->website?>" rel="nofollow"><?=$ad->website?></a></p>
             <?endif?>
         </div>  
-        
-	    <?if(core::config('payment.paypal_seller') AND $ad->price != NULL AND $ad->price != 0):?>
-	    	<a class="btn btn-primary" type="button" type="post" href="https://www.paypal.com/cgi-bin/webscr?business=<?=$ad->user->email?>&cmd=_xclick&currency_code=<?=core::config("payment.paypal_currency")?>&amount=<?=number_format($ad->price, 2, ".",'')?>&item_name=<?=$ad->title?>"><?=__('Buy Now')?></a>
+
+        <?if(Auth::instance()->logged_in()):?>
+		    <?if(core::config('payment.paypal_seller') AND $ad->price != NULL AND $ad->price != 0):?>
+		    	<?$paypal_url = (core::config('payment.sandbox'))?Paypal::ipn_sandbox_url:Paypal::ipn_url?>
+		    	<a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?></a>
+		    <?endif?>
 	    <?endif?>
         
         <hr />
