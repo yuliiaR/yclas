@@ -546,7 +546,16 @@ class Controller_Ad extends Controller {
 
                 if(is_null($ad->stock) OR $ad->stock != 0)//do not allow selling if it already 0
                 {
-                    $payer_id       = Auth::instance()->get_user()->id_user; 
+                    // User detection, if doesnt exists create
+                    $auth_user = Auth::instance();
+                    if (!$auth_user->logged_in()) 
+                    {
+                        Alert::set(Alert::INFO, __('Please log-in first, if you want to buy').' '.$ad->title);
+                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
+                    }
+                    else
+                        $payer_id       = Auth::instance()->get_user()->id_user;
+
                     $id_product     = 'ad-'.$ad->id_ad;
                     $description    = $ad->title;
 
@@ -561,8 +570,10 @@ class Controller_Ad extends Controller {
                     $order = new Model_Order(); // create order , and returns order id
                     $order_id = $order->set_new_order($ord_data);
 
+                    //retrieve info for the item in DB
+
                     // redirect to payment
-                    $this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+                   $this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
                 }
                 else
                 {

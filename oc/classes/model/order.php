@@ -89,14 +89,14 @@ class Model_Order extends ORM {
             if(!is_numeric($this->id_product))
             {
                 // decrease limit of ads, if 0 deactivate
-                if($advert->limit != NULL)
+                if($advert->stock != NULL)
                 {
-                    $limit = $advert->limit-1;
+                    $stock = $advert->stock-1;
 
-                    if($limit == 0)
+                    if($stock == 0)
                         $advert->status = Model_Ad::STATUS_UNAVAILABLE;
                 
-                    $advert->limit = $limit;
+                    $advert->stock = $stock;
                 }
 
                 try {
