@@ -19,7 +19,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
         
         $user = new Model_User();
-        $user->where('status','=',Model_User::STATUS_ACTIVE)->where('subscriber','=',0);
+        $user->where('status','=',Model_User::STATUS_ACTIVE)->where('subscriber','=',1);
         $user = $user->count_all();
 
         if($this->request->post())

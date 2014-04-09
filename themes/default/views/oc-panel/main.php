@@ -12,7 +12,10 @@
     <meta name="keywords" content="<?=$meta_keywords?>" >
     <meta name="description" content="<?=$meta_description?>" >
     <meta name="copyright" content="<?=$meta_copywrite?>" >
-	<meta name="author" content="open-classifieds.com">
+    <?if (Theme::get('premium')!=1):?>
+    <meta name="author" content="open-classifieds.com">
+    <?endif?>
+	
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->

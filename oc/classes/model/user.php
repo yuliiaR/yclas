@@ -382,7 +382,7 @@ class Model_User extends ORM {
      */
     public function email($seotitle, array $replace = NULL, $from = NULL, $from_name =NULL, $file=NULL, $to = NULL)
     {
-        if ($this->loaded())
+        if ($this->loaded() AND $this->subscriber == 1)
         {
             return Email::content(($to == NULL)?$this->email:$to,$this->name,$from,$from_name,$seotitle,$replace, $file);  
         }
