@@ -72,12 +72,12 @@
             <?endif?>
         </div>  
 
-        <?if(Auth::instance()->logged_in()):?>
-		    <?if(core::config('payment.paypal_seller') AND $ad->price != NULL AND $ad->price != 0):?>
-		    	<?$paypal_url = (core::config('payment.sandbox'))?Paypal::ipn_sandbox_url:Paypal::ipn_url?>
-		    	<a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?></a>
-		    <?endif?>
+
+	    <?if(core::config('payment.paypal_seller') AND $ad->price != NULL AND $ad->price != 0):?>
+	    	<?$paypal_url = (core::config('payment.sandbox'))?Paypal::ipn_sandbox_url:Paypal::ipn_url?>
+	    	<a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?></a>
 	    <?endif?>
+
         
         <hr />
         <?if ($ad->can_contact()):?>

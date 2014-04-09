@@ -316,7 +316,7 @@ class Controller_Panel_Update extends Auth_Controller {
                          array('config_key'     =>'black_list',
                                'group_name'     =>'general', 
                                'config_value'   =>'0'),
-                         array('config_key'     =>'ads_limit',
+                         array('config_key'     =>'stock',
                                'group_name'     =>'advertisement', 
                                'config_value'   =>'0'), 
                         );
@@ -340,7 +340,7 @@ class Controller_Panel_Update extends Auth_Controller {
         }catch (exception $e) {}
         try
         {
-            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."ads` ADD `limit` int(10) unsigned DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."ads` ADD `stock` int(10) unsigned DEFAULT NULL")->execute();
         }catch (exception $e) {}
         try
         {

@@ -160,7 +160,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if(core::config('advertisement.ads_limit') AND core::config('payment.paypal_seller')):?>
+				<?if(core::config('advertisement.stock')):?>
 				<div class="form-group">
 					
 					<div class="col-md-4">

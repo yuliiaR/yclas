@@ -544,7 +544,7 @@ class Controller_Ad extends Controller {
             if($ad->loaded())
             {
 
-                if(is_null($ad->limit) OR $ad->limit != 0)//do not allow selling if it already 0
+                if(is_null($ad->stock) OR $ad->stock != 0)//do not allow selling if it already 0
                 {
                     $payer_id       = Auth::instance()->get_user()->id_user; 
                     $id_product     = 'ad-'.$ad->id_ad;

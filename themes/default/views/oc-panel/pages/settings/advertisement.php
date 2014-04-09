@@ -367,12 +367,12 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?= FORM::label($forms['ads_limit']['key'], __('Allow limited amount of advertisements to sell'), array('class'=>'control-label col-sm-3', 'for'=>$forms['ads_limit']['key']))?>
+				<?= FORM::label($forms['stock']['key'], __('Allow limited amount of advertisements to sell'), array('class'=>'control-label col-sm-3', 'for'=>$forms['stock']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['ads_limit']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['ads_limit']['value'], array(
+					<?= FORM::select($forms['stock']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['stock']['value'], array(
 					'placeholder' => "", 
 					'class' => 'tips form-control', 
-					'id' => $forms['ads_limit']['key'], 
+					'id' => $forms['stock']['key'], 
 					'data-original-title'=> __("Allow limited amount of advertisements to sell"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
