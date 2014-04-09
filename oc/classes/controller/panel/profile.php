@@ -429,6 +429,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 								// 'status'		=> $status		= 	core::post('status'),
 								'address'		=> $address 	= 	core::post('address'),
 								'website'		=> $website 	= 	core::post('website'),
+								'stock'			=> $website 	= 	core::post('stock'),
 								'phone'			=> $phone 		= 	core::post('phone'),
 								'has_images'	=> 0,
 								'user'			=> $user 		= new Model_User()
@@ -478,7 +479,10 @@ class Controller_Panel_Profile extends Auth_Controller {
 				$form->price 			= $data['price']; 								
 				$form->address 			= $data['address'];
 				$form->website 			= $data['website'];
-				$form->phone			= $data['phone']; 
+				$form->phone			= $data['phone'];
+
+				$form->stock  = (!empty($data['stock']))?$data['stock']:NULL;
+
 				// set custom values
 				foreach ($data as $key => $value) 
 	            {

@@ -163,6 +163,16 @@
 					</div>
 				</div>
 				<?endif?>
+				<?if(core::config('advertisement.stock')):?>
+				<div class="form-group">
+					<div class="col-sm-4 col-xs-11">
+						<?= FORM::label('stock', __('In Stock'), array('class'=>'control-label', 'for'=>'stock'))?>
+						<div class="input-prepend">
+						<?= FORM::input('stock', $ad->stock, array('placeholder' => '10', 'class' => 'form-control', 'id' => 'stock', 'type'=>'text'))?>
+						</div>
+					</div>
+				</div>
+				<?endif?>
 				<?if(core::config('advertisement.website') != FALSE):?>
 				<div class="form-group">
 					<div class="col-sm-4 col-xs-11">
