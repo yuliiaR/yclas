@@ -102,16 +102,24 @@ class Model_Order extends ORM {
                 try {
                     $advert->save();
 
+
                     //we get the QL, and force the regen of token for security
                     $url_cont = $user->ql('contact', array(),TRUE);
                     $url_ad = $user->ql('ad', array('category'=>$advert->id_category,
                                                     'seotitle'=>$advert->seotitle), TRUE);
-
-                    $ret = $user->email('ads.sold',array(
+                    // send email to BUYER
+                    $ret = $user->email('ads.purchased',array(
                                                         '[URL.AD]'      =>$url_ad,
                                                         '[AD.TITLE]'     =>$advert->title,
                                                         '[ORDER.ID]'      =>$this->id_order,
                                                         '[PRODUCT.ID]'    =>$this->id_product));
+                    // send email to ad OWNER
+                    $user_owner = new Model_User($this->ad->id_user);
+                    $ret = $user_owner->email('ads.sold',array(
+                                                            '[URL.AD]'      =>$url_ad,
+                                                            '[AD.TITLE]'     =>$advert->title,
+                                                            '[ORDER.ID]'      =>$this->id_order,
+                                                            '[PRODUCT.ID]'    =>$this->id_product));
 
                 } catch (Exception $e) {
                     echo $e;

@@ -571,9 +571,12 @@ class Controller_Ad extends Controller {
                     $order_id = $order->set_new_order($ord_data);
 
                     //retrieve info for the item in DB
-
+                    $order = $order->where('id_order', '=', $order_id)
+                       ->where('status', '=', Model_Order::STATUS_CREATED)
+                       ->limit(1)->find();
+                       $order->confirm_payment();
                     // redirect to payment
-                   $this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+                   //$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
                 }
                 else
                 {
