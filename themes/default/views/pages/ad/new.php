@@ -164,9 +164,9 @@
 				<div class="form-group">
 					
 					<div class="col-md-4">
-						<?= FORM::label('limit', __('Sell Limit'), array('class'=>'control-label', 'for'=>'limit'))?>
+						<?= FORM::label('stock', __('In Stock'), array('class'=>'control-label', 'for'=>'stock'))?>
 						<div class="input-prepend">
-						<?= FORM::input('limit', Request::current()->post('limit'), array('placeholder' => '10', 'class' => 'form-control', 'id' => 'limit', 'type'=>'text'))?>
+						<?= FORM::input('stock', Request::current()->post('stock'), array('placeholder' => '10', 'class' => 'form-control', 'id' => 'stock', 'type'=>'text'))?>
 						</div>
 					</div>
 				</div>

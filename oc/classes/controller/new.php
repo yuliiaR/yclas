@@ -69,7 +69,7 @@ class Controller_New extends Controller
                             'address'       => $address     =   $this->request->post('address'),
                             'phone'         => $phone       =   $this->request->post('phone'),
                             'website'       => $website     =   $this->request->post('website'),
-                            'limit'       	=> $limit     	=   $this->request->post('limit')
+                            'stock'       	=> $stock     	=   $this->request->post('stock')
                             ); 
             
             // append to $data new custom values
@@ -146,7 +146,7 @@ class Controller_New extends Controller
 				$new_ad->address 		= $data['address'];
 				$new_ad->phone			= $data['phone'];
 				$new_ad->website		= $data['website'];
-				$new_ad->limit			= $data['limit']; 
+				$new_ad->stock			= $data['stock']; 
 				
 				// set custom values
 				foreach ($data as $name => $field) 
