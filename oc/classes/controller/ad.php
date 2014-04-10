@@ -544,7 +544,7 @@ class Controller_Ad extends Controller {
             if($ad->loaded())
             {
 
-                if(is_null($ad->stock) OR $ad->stock != 0)//do not allow selling if it already 0
+                if($ad->stock > 0)//do not allow selling if it already 0
                 {
                     // User detection, if doesnt exists create
                     $auth_user = Auth::instance();

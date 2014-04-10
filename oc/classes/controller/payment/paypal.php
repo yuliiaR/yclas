@@ -51,11 +51,25 @@ class Controller_Payment_Paypal extends Controller{
 				$product_id = $order->id_product;
 			} 
 
-			if (	Core::post('mc_gross')          == number_format($order->amount, 2, '.', '')
-				&&  Core::post('mc_currency')       == core::config('payment.paypal_currency') 
-				&& (Core::post('receiver_email')    == core::config('payment.paypal_account') 
-					|| Core::post('business')       == core::config('payment.paypal_account')))
-			{//same price , currency and email no cheating ;)
+            //@todo slobodan
+            //order is from a payment done to the owner of the ad
+            if ($order->id_product == NULL)
+            {
+                $user_paid = $order->ad->user;
+
+                $receiver_correct = (Core::post('receiver_email') == $user_paid->email  OR Core::post('business')  == $user_paid->emai);
+            }
+            //any other payment goes to classifieds site payment
+            else
+            { 
+                $receiver_correct = (Core::post('receiver_email') == core::config('payment.paypal_account')  OR Core::post('business')  == core::config('payment.paypal_account'));
+            }
+
+            //same amount and same currency
+			if (Core::post('mc_gross')  == number_format($order->amount, 2, '.', '')
+				AND  Core::post('mc_currency') == core::config('payment.paypal_currency') AND  $receiver_correct)
+			{
+                //same price , currency and email no cheating ;)
 				if (paypal::validate_ipn()) 
 				{
 					$order->confirm_payment();	
@@ -66,7 +80,6 @@ class Controller_Payment_Paypal extends Controller{
 					Kohana::$log->add(Log::ERROR, 'A payment has been made but is flagged as INVALID');
 					$this->response->body('KO');
 				}	
-
 			} 
 			else //trying to cheat....
 			{
