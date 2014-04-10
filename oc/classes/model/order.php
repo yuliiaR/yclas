@@ -89,7 +89,7 @@ class Model_Order extends ORM {
             if(!is_numeric($this->id_product))
             {
                 // decrease limit of ads, if 0 deactivate
-                if($advert->stock != NULL)
+                if($advert->stock >0)
                 {
                     $stock = $advert->stock-1;
 
