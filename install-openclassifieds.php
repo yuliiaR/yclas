@@ -18,10 +18,10 @@ define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 
 //we check first short tags if not we can not even load the installer
 if (! ((bool) ini_get('short_open_tag')) )
-    die('<a href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag">short_open_tag</a> must be enabled in your php.ini.');
+    die('<a href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag" target="_blank">short_open_tag</a> must be enabled in your php.ini.');
 
 if (file_exists(DOCROOT.'oc/config/database.php'))
-    die('Seems Open Classifieds it is already installed');
+    die('It seems Open Classifieds is already installed');
 
 
 //read from oc/versions.json on CDN
