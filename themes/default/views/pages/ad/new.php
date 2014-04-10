@@ -17,45 +17,45 @@
                <!-- drop down selector -->
                 <div class="form-group">
                     
-                    <div class="col-md-5">
+                    <div class="col-md-5 col-sm-8 col-xs-8">
                     <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?> 
                     <div class="accordion" >
-
                     <?function lili3($item, $key,$cats){?>
                         <div class="accordion-group">
                             <div class="accordion-heading"> 
 
                                 <?if (count($item)>0):?>
                                     <label class="radio">
-                                    	<a class="btn btn-primary btn-xs" data-toggle="collapse" type="button"  
+                                    	<a class="btn btn-primary btn-xs cat-selector col-md-12 col-sm-12 col-xs-12" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
-                                        	<i class=" glyphicon glyphicon-plus glyphicon"></i> <?=$cats[$key]['name']?>
+                                        	<i class=" glyphicon glyphicon-plus glyphicon"></i> 
+                                        	<p><?=$cats[$key]['name']?>
+                                        	<?if ($cats[$key]['price']>0):?>
+		                                        <span class="label label-success">
+		                                        <?=i18n::money_format( $cats[$key]['price'])?>
+		                                        </span>
+		                                    <?endif?> 
+		                                    </p>
                                     	</a>
                                     <?if(core::config('advertisement.parent_category')):?>
-                                    <input <?=($cats[$key]['seoname']==Core::get('category') OR Request::current()->post('category') == $cats[$key]['id'])?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
+                                    <input <?=($cats[$key]['seoname']==Core::get('category') OR Request::current()->post('category') == $cats[$key]['id'])?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" class="invisible" value="<?=$cats[$key]['id']?>" required > 
                                     <?endif?>
-                                    <?if ($cats[$key]['price']>0):?>
-                                        <span class="label label-success">
-                                        <?=i18n::money_format( $cats[$key]['price'])?>
-                                        </span>
-                                    <?endif?>
-                                    
                                     </label>
                                     
                                 <?else:?>
                                     <label class="radio">
-                                    <input <?=($cats[$key]['seoname']==Core::get('category') OR Request::current()->post('category') == $cats[$key]['id'])?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" value="<?=$cats[$key]['id']?>" required > 
+                                    <input <?=($cats[$key]['seoname']==Core::get('category') OR Request::current()->post('category') == $cats[$key]['id'])?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" class="invisible" value="<?=$cats[$key]['id']?>" required > 
                                     
-                                   		<a class="btn btn-xs btn-primary" data-toggle="collapse" type="button"  
+                                   		<a class="btn btn-xs btn-primary cat-selector col-md-12 col-sm-12 col-xs-12" data-toggle="collapse" type="button"  
                                        	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
-                                        	<?=$cats[$key]['name']?>
+                                        	<p><?=$cats[$key]['name']?>
+                                        	<?if ($cats[$key]['price']>0):?>
+		                                        <span class="label label-success">
+		                                        <?=i18n::money_format( $cats[$key]['price'])?>
+		                                        </span>
+		                                    <?endif?>
+		                                    </p>
                                     	</a>
-
-                                     <?if ($cats[$key]['price']>0):?>
-                                        <span class="label label-success pull-right">
-                                        <?=i18n::money_format( $cats[$key]['price'])?>
-                                        </span>
-                                    <?endif?>
                                     </label>
                                 <?endif?>
                             </div>

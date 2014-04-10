@@ -1,3 +1,15 @@
+    $('.accordion-heading .radio a').click(function(){
+        $('#'+$(this).parent().children('input').attr('id')).prop("checked", true);
+
+        $('.accordion-heading .radio a').each(function(){
+            if($(this).hasClass('active') )
+            {
+                $(this).removeClass('active');
+            }
+        });
+        if($(this).parent().children('input').is(':checked'))
+            $(this).addClass('active');
+    });
     $('textarea[name=description]').sceditorBBCodePlugin({
     toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
     "bulletlist,orderedlist|link,unlink,youtube|source",
