@@ -351,7 +351,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_a
             (1, 10, '*.*'),
             (2, 1, 'profile.*'),(3, 1, 'stats.user'),
             (4, 5, 'translations.*'),(5, 5, 'profile.*'),(6, 5, 'stats.user'),(7, 5, 'content.*'),
-            (8, 7, 'profile.*'),(9, 7, 'content.*'),(10, 7, 'stats.user.*'),(11, 7, 'blog.*'),(12, 7, 'translations.*'),(13, 7, 'ad.*'),(13, 7, 'widgets.*'),(14, 7, 'menu.*');");
+            (8, 7, 'profile.*'),(9, 7, 'content.*'),(10, 7, 'stats.user'),(11, 7, 'blog.*'),(12, 7, 'translations.*'),(13, 7, 'ad.*'),(14, 7, 'widgets.*'),(15, 7, 'menu.*'),(16, 7, 'category.*'),(17, 7, 'location.*');");
 
 /**
  * Create user God/Admin 
