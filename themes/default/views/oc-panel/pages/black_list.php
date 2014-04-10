@@ -1,7 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<?//d(count($black_list ))?>
-<h1><?=__('Black list')?></h1>
+<div class="page-header">
+  <h1><?=__('Black list')?></h1>
+  <p><?=__("This is a list of users marked as spammers. To understand how this feature works, please read this article")." <a target='_blank' href='#'>".__('Read more')."</a>"?></p>
+
+</div>
+
 <table class="table table-striped">
 	<thead>
         <tr>

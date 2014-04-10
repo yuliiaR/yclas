@@ -315,7 +315,7 @@ class Controller_Panel_Update extends Auth_Controller {
                                'config_value'   =>'0'),
                          array('config_key'     =>'black_list',
                                'group_name'     =>'general', 
-                               'config_value'   =>'0'),
+                               'config_value'   =>'1'),
                          array('config_key'     =>'stock',
                                'group_name'     =>'advertisement', 
                                'config_value'   =>'0'), 
