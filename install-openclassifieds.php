@@ -21,7 +21,7 @@ if (! ((bool) ini_get('short_open_tag')) )
     die('<a href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag">short_open_tag</a> must be enabled in your php.ini.');
 
 if (file_exists(DOCROOT.'oc/config/database.php'))
-    die('Seems Open Classifieds it is already insalled');
+    die('Seems Open Classifieds it is already installed');
 
 
 //read from oc/versions.json on CDN
