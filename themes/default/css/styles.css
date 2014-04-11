@@ -99,7 +99,7 @@ li{
 .cat-selector{margin: 2px 0px 0 0;height: 30px;font-size: 14px;padding-top: 3px;background: #fff;color: inherit;border-color:#ccc;text-align: left;}
 .accordion-heading .glyphicon-plus.glyphicon{float: right;font-size: 18px;}
 .accordion-heading .radio{padding:0;}
-.valid{display: none;}
+
 /* collapsable categories selector*/
 .btn.btn-primary.btn-xs.collapsed {
 	display: inline-block !important;
