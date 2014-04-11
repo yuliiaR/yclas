@@ -40,7 +40,7 @@ class Controller_Payment_Paypal extends Controller{
 		if($order->loaded())
 		{
 			// detect product to be processed 
-			if (is_numeric($order->id_product))
+			if ($order->id_product != Paypal::category_product)
 			{
 				$id_category = new Model_Category();
 				$id_category = $id_category->where('id_category', '=', $order->id_product)->limit(1)->find();
@@ -51,9 +51,8 @@ class Controller_Payment_Paypal extends Controller{
 				$product_id = $order->id_product;
 			} 
 
-            //@todo slobodan
             //order is from a payment done to the owner of the ad
-            if ($order->id_product == NULL)
+            if ($order->id_product == Paypal::advetisement_sell)
             {
                 $user_paid = $order->ad->user;
 

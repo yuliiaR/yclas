@@ -546,17 +546,9 @@ class Controller_Ad extends Controller {
 
                 if($ad->stock > 0)//do not allow selling if it already 0
                 {
-                    // User detection, if doesnt exists create
-                    $auth_user = Auth::instance();
-                    if (!$auth_user->logged_in()) 
-                    {
-                        Alert::set(Alert::INFO, __('Please log-in first, if you want to buy').' '.$ad->title);
-                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
-                    }
-                    else
-                        $payer_id       = Auth::instance()->get_user()->id_user;
-
-                    $id_product     = 'ad-'.$ad->id_ad;
+                    
+                    $payer_id       = Auth::instance()->get_user()->id_user;
+                    $id_product     = Paypal::advetisement_sell;
                     $description    = $ad->title;
 
                     $ord_data = array('id_user'     => $payer_id,
@@ -571,12 +563,9 @@ class Controller_Ad extends Controller {
                     $order_id = $order->set_new_order($ord_data);
 
                     //retrieve info for the item in DB
-                    $order = $order->where('id_order', '=', $order_id)
-                       ->where('status', '=', Model_Order::STATUS_CREATED)
-                       ->limit(1)->find();
-                       $order->confirm_payment();
+                    
                     // redirect to payment
-                   //$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+                   $this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
                 }
                 else
                 {

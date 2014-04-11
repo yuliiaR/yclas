@@ -84,9 +84,8 @@ class Model_Order extends ORM {
                 echo $e;  
             }
         
-
             // update product
-            if(!is_numeric($this->id_product))
+            if($this->id_product == Paypal::advetisement_sell)
             {
                 // decrease limit of ads, if 0 deactivate
                 if($advert->stock >0)
@@ -113,10 +112,10 @@ class Model_Order extends ORM {
                                             '[ORDER.ID]'      =>$this->id_order,
                                             '[PRODUCT.ID]'    =>$this->id_product);
                     // send email to BUYER
-                    $ret = $user->email('ads.purchased',$email_content);
+                    $ret = $user->email('adspurchased',$email_content);
                     // send email to ad OWNER
                     $user_owner = new Model_User($this->ad->id_user);
-                    $ret = $user_owner->email('ads.sold',$email_content);
+                    $ret = $user_owner->email('adssold',$email_content);
 
                 } catch (Exception $e) {
                     echo $e;
