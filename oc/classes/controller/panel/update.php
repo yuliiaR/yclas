@@ -309,6 +309,16 @@ class Controller_Panel_Update extends Auth_Controller {
      */
     public function action_215()
     {        
+        //call update previous versions
+        $this->action_203();
+        $this->action_205();
+        $this->action_206();
+        $this->action_207();
+        $this->action_21();
+        $this->action_211();
+        $this->action_214();
+
+
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'qr_code',
                                'group_name'     =>'advertisement', 
@@ -361,14 +371,6 @@ class Controller_Panel_Update extends Auth_Controller {
                                                                          (10, 7, 'widgets.*'),(9, 7, 'menu.*'),(8, 7, 'category.*')")->execute();
         }catch (exception $e) {}
 
-        //call update previous versions
-        $this->action_203();
-        $this->action_205();
-        $this->action_206();
-        $this->action_207();
-        $this->action_21();
-        $this->action_211();
-        $this->action_214();
 
         //clean cache
         Cache::instance()->delete_all();
