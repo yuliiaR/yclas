@@ -35,7 +35,8 @@
     <li data-id="<?=$key?>" id="li_<?=$key?>"><i class="glyphicon   glyphicon-move"></i> <?=$locs[$key]['name']?>
         
         <a data-text="<?=__('Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location.')?>" 
-           data-id="li_<?=$key?>" 
+           data-id="li_<?=$key?>"
+           onclick="return confirm('<?=__('Delete?')?>');"
            class="btn btn-xs btn-danger  pull-right" 
            href="<?=Route::url('oc-panel', array('controller'=> 'location', 'action'=>'delete','id'=>$key))?>">
                     <i class="glyphicon   glyphicon-trash"></i>
