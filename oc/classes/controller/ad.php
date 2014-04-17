@@ -23,32 +23,28 @@ class Controller_Ad extends Controller {
         
         $location = NULL;
         $location_parent = NULL;
-        if (Controller::$location!==NULL)
+
+        if (Model_Location::current()->loaded())
         {
-            if (Controller::$location->loaded())
-            {
-            	$location = Controller::$location;
-                //adding the location parent
-                if ($location->id_location_parent!=1 AND $location->parent->loaded())
-                    $location_parent = $location->parent;
-            }  
-        }
+        	$location = Model_Location::current();
+            //adding the location parent
+            if ($location->id_location_parent!=1 AND $location->parent->loaded())
+                $location_parent = $location->parent;
+        }  
+        
 
         $category = NULL;
         $category_parent = NULL;
-        if (Controller::$category!==NULL)
+
+        if (Model_Category::current()->loaded())
         {
-            if (Controller::$category->loaded())
-            {
-                $category = Controller::$category;
-                //adding the category parent
-                if ($category->id_category_parent!=1 AND $category->parent->loaded())
-                    $category_parent = $category->parent;
-
-            }
-           
+            $category = Model_Category::current();
+            //adding the category parent
+            if ($category->id_category_parent!=1 AND $category->parent->loaded())
+                $category_parent = $category->parent;
         }
-
+           
+        
         //base title
         if ($category!==NULL)
             $this->template->title = $category->name;

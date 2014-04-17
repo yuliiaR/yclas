@@ -56,18 +56,12 @@ class View extends Kohana_View{
     public static function fragment_name($name)
     {
         $cat_seoname = '';
-        if (Controller::$category!==NULL)
-        {
-            if (Controller::$category->loaded())
-                $cat_seoname = '_category_'.Controller::$category->seoname;
-        }
+        if (Model_Category::current()->loaded())
+            $cat_seoname = '_category_'.Model_Category::current()->seoname;
 
         $loc_seoname = '';
-        if (Controller::$location!==NULL)
-        {
-            if (Controller::$location->loaded())
-                $loc_seoname = '_location_'.Controller::$location->seoname;
-        }
+        if (Model_Location::current()->loaded())
+            $loc_seoname = '_location_'.Model_Location::current()->seoname;
 
         return 'fragment_'.$name.'_'.i18n::lang().'_'.Theme::$theme.$cat_seoname.$loc_seoname; //.Theme::$skin
     }

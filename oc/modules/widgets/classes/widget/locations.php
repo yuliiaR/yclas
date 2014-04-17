@@ -57,33 +57,30 @@ class Widget_Locations extends Widget
 	{
 		$loc = new Model_Location();
 
-		// loaded category
-		if (Controller::$location!==NULL)
+		// loaded locations
+        if (Model_Location::current()->loaded())
         {
-            if (Controller::$location->loaded())
+    	    $location = Model_Location::current()->id_location; // id_location
+    	    
+    	    //list of children of current location
+            // if list_loc dosent have siblings take brothers //
+    	    $list_loc = $loc->where('id_location_parent','=',$location)->order_by('order','asc')->cached()->find_all();
+    	    if(count($list_loc) == 0)
             {
-        	    $location = Controller::$location->id_location; // id_location
-        	    
-        	    //list of children of current location
-                // if list_loc dosent have siblings take brothers //
-        	    $list_loc = $loc->where('id_location_parent','=',$location)->order_by('order','asc')->cached()->find_all();
-        	    if(count($list_loc) == 0)
-                {
-                    $list_loc = $loc->where('id_location_parent','=',Controller::$location->id_location_parent)->order_by('order','asc')->cached()->find_all();
-                }
+                $list_loc = $loc->where('id_location_parent','=',Model_Location::current()->id_location_parent)->order_by('order','asc')->cached()->find_all();
+            }
 
-                //parent of current location
-        	   	$loc_parent_deep = $loc->where('id_location','=',Controller::$location->id_location_parent)->limit(1)->find();
+            //parent of current location
+    	   	$loc_parent_deep = $loc->where('id_location','=',Model_Location::current()->id_location_parent)->limit(1)->find();
 
-                // array with name and seoname of a location and his parent. Is to build breadcrumb in widget
-        	   	$current_and_parent = array('name'			=> Controller::$location->name,
-        	    					        'id'			=> Controller::$location->id_location,
-        	    					        'seoname'		=> Controller::$location->seoname,
-        	    					        'parent_name'	=> $loc_parent_deep->name,
-        	    					        'id_parent'     => $loc_parent_deep->id_location_parent,
-        	    					        'parent_seoname'=> $loc_parent_deep->seoname);
-           	}
-        }
+            // array with name and seoname of a location and his parent. Is to build breadcrumb in widget
+    	   	$current_and_parent = array('name'			=> Model_Location::current()->name,
+    	    					        'id'			=> Model_Location::current()->id_location,
+    	    					        'seoname'		=> Model_Location::current()->seoname,
+    	    					        'parent_name'	=> $loc_parent_deep->name,
+    	    					        'id_parent'     => $loc_parent_deep->id_location_parent,
+    	    					        'parent_seoname'=> $loc_parent_deep->seoname);
+       	}
         else
         {
 			$list_loc = $loc->where('id_location_parent','=',1)->order_by('order','asc')->cached()->find_all();
@@ -93,11 +90,10 @@ class Widget_Locations extends Widget
 		$this->loc_items = $list_loc;
 		$this->loc_breadcrumb = $current_and_parent;
         $this->cat_seoname = NULL;
-        if (Controller::$category!==NULL)
-        {
-            if (Controller::$category->loaded())
-                $this->cat_seoname = Controller::$category->seoname;
-        }
+   
+        if (Model_Category::current()->loaded())
+            $this->cat_seoname = Model_Category::current()->seoname;
+        
 	}
 
 

@@ -28,12 +28,12 @@
     <link rel="alternate" type="application/atom+xml" title="RSS <?=Core::config('general.site_name')?>" href="<?=Route::url('rss')?>" />
 
 
-    <?if (Controller::$category!==NULL AND Controller::$location!==NULL):?>
-    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Controller::$category->name?> - <?=Controller::$location->name?>"  href="<?=Route::url('rss',array('category'=>Controller::$category->seoname,'location'=>Controller::$location->seoname))?>" />
-    <?elseif (Controller::$location!==NULL):?>
-    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Controller::$location->name?>"  href="<?=Route::url('rss',array('category'=>URL::title(__('all')),'location'=>Controller::$location->seoname))?>" />
-    <?elseif (Controller::$category!==NULL):?>
-    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Controller::$category->name?>"  href="<?=Route::url('rss',array('category'=>Controller::$category->seoname))?>" />
+    <?if (Model_Category::current()->loaded() AND Model_Location::current()->loaded()):?>
+    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Model_Category::current()->name?> - <?=Model_Location::current()->name?>"  href="<?=Route::url('rss',array('category'=>Model_Category::current()->seoname,'location'=>Model_Location::current()->seoname))?>" />
+    <?elseif (Model_Location::current()->loaded()):?>
+    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Model_Location::current()->name?>"  href="<?=Route::url('rss',array('category'=>URL::title(__('all')),'location'=>Model_Location::current()->seoname))?>" />
+    <?elseif (Model_Category::current()->loaded()):?>
+    <link rel="alternate" type="application/atom+xml"  title="RSS <?=Core::config('general.site_name')?> - <?=Model_Category::current()->name?>"  href="<?=Route::url('rss',array('category'=>Model_Category::current()->seoname))?>" />
     <?endif?>     
         
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->

@@ -26,17 +26,11 @@ class Controller_Feed extends Controller {
                 ->limit(Core::config('general.feed_elements'));
 
         //filter by category aor location
-        if (Controller::$category!==NULL)
-        {
-            if (Controller::$category->loaded())
-                $ads->where('a.id_category','=',Controller::$category->id_category);
-        }
-
-        if (Controller::$location!==NULL)
-        {
-            if (Controller::$location->loaded())
-                $ads->where('a.id_location','=',Controller::$location->id_location);
-        }
+        if (Model_Category::current()->loaded())
+            $ads->where('a.id_category','=',Model_Category::current()->id_category);
+ 
+        if (Model_Location::current()->loaded())
+            $ads->where('a.id_location','=',Model_Location::current()->id_location);
 
         $ads = $ads->as_object()->cached()->execute();
 

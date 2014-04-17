@@ -9,11 +9,10 @@
     	<?
         $cats = Model_Category::get_category_count();
         $loc_seoname = NULL;
-        if (Controller::$location!==NULL)
-        {
-            if (Controller::$location->loaded())
-                $loc_seoname = Controller::$location->seoname;
-        }
+
+        if (Model_Location::current()->loaded())
+            $loc_seoname = Model_Location::current()->seoname;
+    
         ?>
 
     	<div class="collapse navbar-collapse" id="mobile-menu-panel">
