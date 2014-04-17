@@ -176,6 +176,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                         //avoid first line
                         if ($i!=0)
                         {
+
                             list($name, $seoname) = $data;
                             if($file=='csv_file_categories')
                             {
@@ -203,15 +204,24 @@ class Controller_Panel_Tools extends Auth_Controller {
                     if($array == FALSE)
                     {
                         Alert::set(Alert::INFO, __('File '.$path['name'].' contains invalid parsing format!'));
-                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'location_generator')));
+                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
                     }
+                   
                     //base location
                     //DB prefix
                     $prefix = Database::instance()->table_prefix();
 
-                    mysql_query("INSERT INTO `".$prefix.$type."`
+                    $query = DB::query(Database::UPDATE,"INSERT INTO `".$prefix.$type."`
                         (`name` ,`id_".$t."_parent`,`seoname`)
                         VALUES $array ON DUPLICATE KEY UPDATE `id_".$t."_parent`=1;");
+                    $query->execute();
+                    
+                    if($query == FALSE)
+                    {
+                        Alert::set(Alert::INFO, __('Something went wrong, please check format of the file!'));
+                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                    }
+                    
 
                     Alert::set(Alert::SUCCESS, __($type.' have been created'));
                 }
