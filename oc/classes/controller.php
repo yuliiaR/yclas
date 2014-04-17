@@ -20,13 +20,13 @@ class Controller extends Kohana_Controller
 
     /**
      * global category get from controller so we can access from anywhere like Controller::$category;
-     * @var Model_Category
+     * @var Model_Category DEPRECATED
      */
     public static $category = NULL;
 
     /**
-     * global Location get from controller so we can access from anywhere like Controller::$location;
-     * @var Model_Location
+     * global Location get from controller so we can access from anywhere like Controller::$location; DEPRECATED use Model_Category::current(); we keep it so still compatible with the themes.
+     * @var Model_Location DEPRECATED
      */
     public static $location = NULL;
 
@@ -47,29 +47,17 @@ class Controller extends Kohana_Controller
         Theme::checker();
         
         $this->maintenance();
-
+        
         /**
          * selected category
          */
-        if($this->request->param('category',NULL) != URL::title(__('all')) )
-        {
-            $slug_cat   = new Model_Category();
-            $seo_cat = $slug_cat->where('seoname', '=', $this->request->param('category'))->limit(1)->cached()->find();
-            if ($seo_cat->loaded())
-                self::$category = $seo_cat;
-        }
-        
+        self::$category = Model_Category::current();
+
         /**
          * selected location
          */
-        if($this->request->param('location',NULL) != NULL || $this->request->param('location') != URL::title(__('all')))
-        {
-            $slug_loc   = new Model_Location();
-            $seo_loc = $slug_loc->where('seoname', '=', $this->request->param('location'))->limit(1)->cached()->find();
-            
-            if ($seo_loc->loaded())
-                self::$location = $seo_loc;
-        }
+        self::$location = Model_Location::current();
+
 
         if($this->auto_render===TRUE)
         {

@@ -32,6 +32,33 @@ class Model_Location extends ORM {
                             'foreign_key' => 'id_location_parent'),
     );
 
+    
+    /**
+     * global Model Location instance get from controller so we can access from anywhere like Model_Location::current()
+     * @var Model_Location
+     */
+    protected static $_current = NULL;
+
+    /**
+     * returns the current location
+     * @return Model_Location
+     */
+    public static function current()
+    {
+        //we don't have so let's retrieve
+        if (self::$_current === NULL)
+        {
+            self::$_current = new self();
+            if(Request::current()->param('location') != NULL || Request::current()->param('location') != URL::title(__('all')))
+            {
+                self::$_current = self::$_current->where('seoname', '=', Request::current()->param('location'))
+                                                    ->limit(1)->cached()->find();
+            }
+        }
+
+        return self::$_current;
+    }
+        
 	/**
 	 * Rule definitions for validation
 	 *

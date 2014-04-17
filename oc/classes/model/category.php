@@ -43,8 +43,32 @@ class Model_Category extends ORM {
                             'foreign_key' => 'id_category_parent'),
     );
 
+    /**
+     * global Model Category instance get from controller so we can access from anywhere like Model_Category::current()
+     * @var Model_Location
+     */
+    protected static $_current = NULL;
 
-	
+    /**
+     * returns the current category
+     * @return Model_Category
+     */
+    public static function current()
+    {
+        //we don't have so let's retrieve
+        if (self::$_current === NULL)
+        {
+            self::$_current = new self();
+            if(Request::current()->param('category') != URL::title(__('all')))
+            {
+                self::$_current = self::$_current->where('seoname', '=', Request::current()->param('category'))
+                                                    ->limit(1)->cached()->find();
+            }
+        }
+
+        return self::$_current;
+    }
+
 
 	/**
 	 * Rule definitions for validation

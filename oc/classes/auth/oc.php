@@ -87,9 +87,9 @@ class Auth_OC extends Kohana_Auth {
 		// Load the user
 		$user = new Model_User;
 		$user->where('email', '=', $email)
-		->where('status','=',Model_User::STATUS_ACTIVE)
-		->limit(1)
-		->find();
+    		->where('status','in',array(Model_User::STATUS_ACTIVE,Model_User::STATUS_SPAM))
+    		->limit(1)
+    		->find();
 		//echo $user->password;		d($this->hash($password));
 		// If the passwords match, perform a login
 		if ($user->password === $this->hash($password))
@@ -130,7 +130,7 @@ class Auth_OC extends Kohana_Auth {
 			// Load the user from the token
 			$user = new Model_User;
 			$user ->where('token', '=', $token)
-			->where('status','=',Model_User::STATUS_ACTIVE)
+			->where('status','in',array(Model_User::STATUS_ACTIVE,Model_User::STATUS_SPAM))
 			->where('token_expires','>',DB::expr('NOW()'))
 			->limit(1)
 			->find();
@@ -171,7 +171,7 @@ class Auth_OC extends Kohana_Auth {
         $user = new Model_User;
         $user ->where('hybridauth_provider_name', '=', $provider)
         ->where('hybridauth_provider_uid','=',$identifier)
-        ->where('status','=',Model_User::STATUS_ACTIVE)
+        ->where('status','in',array(Model_User::STATUS_ACTIVE,Model_User::STATUS_SPAM))
         ->limit(1)
         ->find();
 
