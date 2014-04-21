@@ -31,7 +31,7 @@ class Controller_New extends Controller
         $this->template->scripts['footer'][] = 'js/new.js';
 
 		//find all, for populating form select fields 
-		list($categories,$order_categories)  = Model_Category::get_all();
+		$categories = Model_Category::get_by_parent_deep();
 		list($locations,$order_locations)  	 = Model_Location::get_all();
 		
 		// bool values from DB, to show or hide this fields in view
@@ -53,13 +53,13 @@ class Controller_New extends Controller
 						
 		//render view publish new
 		$this->template->content = View::factory('pages/ad/new', array('categories'		    => $categories,
-                                                                       'order_categories'   => $order_categories,
+                                                                       //'order_categories'   => $order_categories,
 																	   'locations' 			=> $locations,
                                                                        'order_locations'    => $order_locations,
 																	   'form_show'			=> $form_show,
                                                                        'fields'             => Model_Field::get_all()));
 		if ($_POST) 
-        {
+        { 
             // $_POST array with all fields 
             $data = array(  'title'         => $title       =   $this->request->post('title'),
                             'cat'           => $cat         =   $this->request->post('category'),
@@ -71,7 +71,6 @@ class Controller_New extends Controller
                             'website'       => $website     =   $this->request->post('website'),
                             'stock'       	=> $stock     	=   $this->request->post('stock')
                             ); 
-            
             // append to $data new custom values
             foreach ($_POST as $name => $field) 
             {

@@ -1,15 +1,5 @@
-    $('.accordion-heading .radio a').click(function(){
-        $('#'+$(this).parent().children('input').attr('id')).prop("checked", true);
 
-        $('.accordion-heading .radio a').each(function(){
-            if($(this).hasClass('active') )
-            {
-                $(this).removeClass('active');
-            }
-        });
-        if($(this).parent().children('input').is(':checked'))
-            $(this).addClass('active');
-    });
+
     $('textarea[name=description]').sceditorBBCodePlugin({
     toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
     "bulletlist,orderedlist|link,unlink,youtube|source",
@@ -57,10 +47,6 @@ function doneTyping () {
 }
 }
 
-    $('.accordion-heading .radio a').click(function(){
-        $('#'+$(this).parent().children('input').attr('id')).prop("checked", true);
-    });
-
     // VALIDATION with chosen fix
     $.validator.addMethod(
         "regex",
@@ -101,16 +87,34 @@ function doneTyping () {
     if($('.cf_date_fields').length != 0){
         $('.cf_date_fields').datepicker();}
 
-
-    // custom fields set to categories
-    $( "input[name=category]" ).on( "click", function() {
-        showCustomFieldsByCategory(this);
+    // activate for each level chained select
+    $('.category_chained_select').each(function(){
+        var level = $(this).data('level');
+        if('#level-'+(level-1)){
+            $('#level-'+level).chained('#level-'+(level-1));
+        }
     });
 
-    showCustomFieldsByCategory($("input[name=category]:checked"));
+    // this will select the correct ID for uploading category
+    $( ".category_chained_select" ).change(function() {
+      $( "option:selected", this ).each(function() {
+            var value_category_id = $(this).attr('value');
+            if(value_category_id != "" && !$(this).parent().hasClass('is_parent')){
+                
+                $('#category-selected').attr('value',value_category_id);
+                showCustomFieldsByCategory($('input[name=category]'));
+                $('.category-price').text('');
+                if($(this).data('price') > 0)
+                    $('.category-price').text($(this).data('price'));
+            }
+        });
+    });
+    showCustomFieldsByCategory($("input[name=category]"));
     
     function showCustomFieldsByCategory(element){
+
         id_categ = $(element).val();
+        console.log(id_categ);
         // only custom fields have class data-custom
         $(".data-custom").each(function(){
             // get data-category, contains json array of set categories

@@ -13,68 +13,27 @@
 						<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
-
-               <!-- drop down selector -->
-                <div class="form-group">
-                    
-                    <div class="col-md-5 col-sm-8 col-xs-8">
-                    <?= FORM::label('category', __('Category'), array('class'=>'control-label', 'for'=>'category' ))?> 
-                    <div class="accordion" >
-                    <?function lili3($item, $key,$cats){?>
-                        <div class="accordion-group">
-                            <div class="accordion-heading"> 
-
-                                <?if (count($item)>0):?>
-                                    <label class="radio">
-                                    	<a class="btn btn-primary btn-xs cat-selector col-md-12 col-sm-12 col-xs-12" data-toggle="collapse" type="button"  
-                                       	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
-                                        	<i class=" glyphicon glyphicon-plus glyphicon"></i> 
-                                        	<p><?=$cats[$key]['name']?>
-                                        	<?if ($cats[$key]['price']>0):?>
-		                                        <span class="label label-success">
-		                                        <?=i18n::money_format( $cats[$key]['price'])?>
-		                                        </span>
-		                                    <?endif?> 
-		                                    </p>
-                                    	</a>
-                                    <?if(core::config('advertisement.parent_category')):?>
-                                    <input <?=($cats[$key]['seoname']==Core::get('category') OR Request::current()->post('category') == $cats[$key]['id'])?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" class="invisible" value="<?=$cats[$key]['id']?>" required > 
-                                    <?endif?>
-                                    </label>
-                                    
-                                <?else:?>
-                                    <label class="radio">
-                                    <input <?=($cats[$key]['seoname']==Core::get('category') OR Request::current()->post('category') == $cats[$key]['id'])?'checked':''?> type="radio" id="radio_<?=$cats[$key]['seoname']?>" name="category" class="invisible" value="<?=$cats[$key]['id']?>" required > 
-                                    
-                                   		<a class="btn btn-xs btn-primary cat-selector col-md-12 col-sm-12 col-xs-12" data-toggle="collapse" type="button"  
-                                       	 	data-target="#acc_<?=$cats[$key]['seoname']?>">                    
-                                        	<p><?=$cats[$key]['name']?>
-                                        	<?if ($cats[$key]['price']>0):?>
-		                                        <span class="label label-success">
-		                                        <?=i18n::money_format( $cats[$key]['price'])?>
-		                                        </span>
-		                                    <?endif?>
-		                                    </p>
-                                    	</a>
-                                    </label>
-                                <?endif?>
-                            </div>
-
-                            <?if (count($item)>0):?>
-                                <div id="acc_<?=$cats[$key]['seoname']?>" 
-                                    class="accordion-body collapse <?=($cats[$key]['seoname']==Core::get('category'))?'in':''?>">
-                                    <div class="accordion-inner">
-                                        <? if (is_array($item)) array_walk($item, 'lili3', $cats);?>
-                                    </div>
-                                </div>
-                            <?endif?>
-
-                        </div>
-                    <?}array_walk($order_categories, 'lili3',$categories);?>
-
-                    </div>
-                    </div>
-                </div>
+				<label for="category"><span class="pull-left"><?=__('Category')?></span>
+					<span class="label label-warning category-price"></span>
+					<input class="invisible pull-left" id="category-selected" name="category" style="height: 0; padding:0;" required></input>
+				</label>
+				<div class="form-group">
+					<?foreach ($categories as $level => $categ):?>
+						<div class="col-md-4">
+						<select id="level-<?=$level?>" data-level="<?=$level?>" 
+								class="category_chained_select <?=(core::config('advertisement.parent_category') AND $level == 0)?'is_parent':NULL?> form-control">
+							<option value=""></option>
+							<?foreach ($categ as $c):?>
+								<?if($c['id']>1):?>
+								<option data-price="<?=($c['price']>0)?$c['price']:NULL?>" value="<?=$c['id']?>" class="<?=$c['id_category_parent']?>"><?=$c['name']?></option>
+								<?endif?>
+							<?endforeach?>
+						</select>
+						</div>
+					<?endforeach?>
+				</div>
+				
+				
 				
 				<?if(count($locations) > 1 AND $form_show['location'] != FALSE):?>
                     <div class="form-group">

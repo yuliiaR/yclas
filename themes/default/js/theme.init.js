@@ -6,7 +6,7 @@ $("button[name=submit]").click(function(){
 });
     
     if(!$("select").hasClass('disable-chosen')){
-        $("select").chosen();   
+        // $("select").chosen();   
     } 
     $("#category_subscribe").chosen(); 
     

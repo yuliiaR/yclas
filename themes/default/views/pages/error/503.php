@@ -27,7 +27,7 @@
             <h2><?=__('We are working on our site, please visit later. Thanks')?></h2>
      		
         </div>
-        <a class="btn btn-xs"  href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>">
+        <a class="btn btn-xs" title="<?=__('Login')?>" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>">
                 <i class="glyphicon glyphicon-user"></i> 
                 <?=__('Login')?>
             </a>    

@@ -292,7 +292,31 @@ class Model_Category extends ORM {
 
         return $cats;
     }
-    
+    /**
+     * returns all by parent deep. Used to order by depth level
+     * @return array
+     */
+    public static function get_by_parent_deep()
+    {
+        $cats = new self;
+        $cats = $cats->order_by('parent_deep','asc')->find_all()->cached()->as_array('id_category');
+
+        
+        //transform the cats to an array
+        $cats_arr = array();
+        foreach ($cats as $cat) 
+        {
+            $cats_arr[$cat->parent_deep][$cat->id_category] =  array('name'               => $cat->name,
+                                                                      'id_category_parent' => $cat->id_category_parent,
+                                                                      'parent_deep'        => $cat->parent_deep,
+                                                                      'seoname'            => $cat->seoname,
+                                                                      'price'              => $cat->price,
+                                                                      'id'                 => $cat->id_category,
+                                                                    );
+        }
+        
+        return $cats_arr;
+    }
 	/**
 	 * 
 	 * formmanager definitions
