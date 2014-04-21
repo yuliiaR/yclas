@@ -34,7 +34,7 @@
           </div>
             <div class="page-header"></div> 
             <div class="col-sm-offset-2">
-              	<a class="btn btn-default"  data-dismiss="modal" data-toggle="modal" title="<?=__('Login')?>" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+              	<a class="btn btn-default"  data-dismiss="modal" data-toggle="modal"  href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
     				<i class="glyphicon glyphicon-user"></i> 
     				<?=__('Login')?>
     			</a>
