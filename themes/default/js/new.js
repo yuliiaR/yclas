@@ -102,43 +102,12 @@ function doneTyping () {
             if(value_category_id != "" && !$(this).parent().hasClass('is_parent')){
                 
                 $('#category-selected').attr('value',value_category_id);
-                showCustomFieldsByCategory($('input[name=category]'));
                 $('.category-price').text('');
                 if($(this).data('price') > 0)
                     $('.category-price').text($(this).data('price'));
             }
         });
     });
-    showCustomFieldsByCategory($("input[name=category]"));
-    
-    function showCustomFieldsByCategory(element){
 
-        id_categ = $(element).val();
-        console.log(id_categ);
-        // only custom fields have class data-custom
-        $(".data-custom").each(function(){
-            // get data-category, contains json array of set categories
-            field = $(this);
-            dataCategories = field.attr('data-categories');
-            // show if cf fields if they dont have categories set
-            if(dataCategories.length != 2){
-                field.parent().parent().css('display','none');
-                field.prop('disabled', true);
-            }
-            else{
-                field.parent().parent().css('display','block');
-                field.prop('disabled', false);
-            }
-            if(dataCategories !== undefined)  
-                if(dataCategories != "")
-                {
-                    // apply if they have equal id_category 
-                    $.each($.parseJSON(dataCategories), function (index, value) { 
-                        if(id_categ == value){
-                            field.parent().parent().css('display','block');
-                            field.prop('disabled', false);
-                        }
-                    });
-                }
-        });
-    }
+    
+    

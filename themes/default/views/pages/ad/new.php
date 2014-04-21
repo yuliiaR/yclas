@@ -13,15 +13,17 @@
 						<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
 					</div>
 				</div>
+				<!-- category select -->
 				<label for="category"><span class="pull-left"><?=__('Category')?></span>
 					<span class="label label-warning category-price"></span>
 					<input class="invisible pull-left" id="category-selected" name="category" style="height: 0; padding:0;" required></input>
 				</label>
+
 				<div class="form-group">
 					<?foreach ($order_parent_deep as $level => $categ):?>
 						<div class="col-md-4">
 						<select id="level-<?=$level?>" data-level="<?=$level?>" 
-								class="category_chained_select <?=(core::config('advertisement.parent_category') AND $level == 0)?'is_parent':NULL?> form-control">
+								class="disable-chosen category_chained_select <?=(core::config('advertisement.parent_category') AND $level == 0)?'is_parent':NULL?> form-control <?=($level != 0)?'hide':NULL?>">
 							<option value=""></option>
 							<?foreach ($categ as $c):?>
 								<?if($c['id']>1):?>
@@ -32,8 +34,6 @@
 						</div>
 					<?endforeach?>
 				</div>
-				
-				
 				
 				<?if(count($locations) > 1 AND $form_show['location'] != FALSE):?>
                     <div class="form-group">

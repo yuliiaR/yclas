@@ -5,10 +5,14 @@ $("button[name=submit]").click(function(){
     $("textarea[name=description]").data("sceditor").updateTextareaValue();
 });
     
-    if(!$("select").hasClass('disable-chosen')){
-        // $("select").chosen();   
-    } 
+    //chosen enable/disable
+    $('select').chosen();
     $("#category_subscribe").chosen(); 
+    $('select').each(function(){
+        if($(this).hasClass('disable-chosen')){
+            $(this).chosen('destroy');      
+        } 
+    });
     
     $('input, select, textarea, .btn').tooltip();
 

@@ -33,8 +33,8 @@ Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1
                                     'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                     'http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js',
                                     'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                    'js/jquery.chained.min.js',
                                     'js/bootstrap-slider.js',
+                                    'js/jquery.chained.min.js',
                                     'js/theme.init.js?v=2.1.5',
                                     );
 
