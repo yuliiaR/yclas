@@ -39,10 +39,10 @@ class Controller_Feed extends Controller {
             $url= Route::url('ad',  array('category'=>$a->category,'seotitle'=>$a->seotitle));
 
             $items[] = array(
-			                	'title' 	    => preg_replace('/&(?!\w+;)/', '&amp;', $a->title),
+			                	'title' 	    => htmlspecialchars($a->title,ENT_QUOTES),
 			                	'link' 	        => $url,
 			                	'pubDate'       => Date::mysql2unix($a->published),
-			                	'description'   => Text::removebbcode(preg_replace('/&(?!\w+;)/', '&amp;',$a->description)),
+			                	'description'   => Text::removebbcode(htmlspecialchars($a->description,ENT_QUOTES)),
 			              );
         }
   
