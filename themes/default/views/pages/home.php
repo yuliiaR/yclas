@@ -1,4 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+<?if(core::config('advertisement.ads_in_home') != 3):?>
 <div class="well row">
     <?if(core::config('advertisement.ads_in_home') == 0):?>
     <h3><?=__('Latest Ads')?></h3>
@@ -34,7 +35,7 @@
         <?endforeach?>
     </div>
 </div>
-
+<?endif?>
 <div class='well row'>
     <h3><?=__("Categories")?></h3>
     <div class="col-md-12">
