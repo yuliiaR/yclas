@@ -146,6 +146,20 @@ class Model_Category extends ORM {
                                                 );
         }
 
+        // array by parent deep, 
+        // each parent deep is one array with categories of the same index
+        $cats_parent_deep = array();
+        foreach ($cats as $cat) 
+        {
+            $cats_parent_deep[$cat->parent_deep][$cat->id_category] =  array('name'               => $cat->name,
+                                                                              'id_category_parent' => $cat->id_category_parent,
+                                                                              'parent_deep'        => $cat->parent_deep,
+                                                                              'seoname'            => $cat->seoname,
+                                                                              'price'              => $cat->price,
+                                                                              'id'                 => $cat->id_category,
+                                                                    );
+        }
+
         //for each category we get his siblings
         $cats_s = array();
         foreach ($cats as $cat) 
@@ -158,7 +172,7 @@ class Model_Category extends ORM {
         else
             $cats_m = array();
         
-        return array($cats_arr,$cats_m);
+        return array($cats_arr,$cats_m, $cats_parent_deep);
     }
 
     /**
@@ -292,31 +306,7 @@ class Model_Category extends ORM {
 
         return $cats;
     }
-    /**
-     * returns all by parent deep. Used to order by depth level
-     * @return array
-     */
-    public static function get_by_parent_deep()
-    {
-        $cats = new self;
-        $cats = $cats->order_by('parent_deep','asc')->find_all()->cached()->as_array('id_category');
 
-        
-        //transform the cats to an array
-        $cats_arr = array();
-        foreach ($cats as $cat) 
-        {
-            $cats_arr[$cat->parent_deep][$cat->id_category] =  array('name'               => $cat->name,
-                                                                      'id_category_parent' => $cat->id_category_parent,
-                                                                      'parent_deep'        => $cat->parent_deep,
-                                                                      'seoname'            => $cat->seoname,
-                                                                      'price'              => $cat->price,
-                                                                      'id'                 => $cat->id_category,
-                                                                    );
-        }
-        
-        return $cats_arr;
-    }
 	/**
 	 * 
 	 * formmanager definitions

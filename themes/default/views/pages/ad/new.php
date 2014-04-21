@@ -18,7 +18,7 @@
 					<input class="invisible pull-left" id="category-selected" name="category" style="height: 0; padding:0;" required></input>
 				</label>
 				<div class="form-group">
-					<?foreach ($categories as $level => $categ):?>
+					<?foreach ($order_parent_deep as $level => $categ):?>
 						<div class="col-md-4">
 						<select id="level-<?=$level?>" data-level="<?=$level?>" 
 								class="category_chained_select <?=(core::config('advertisement.parent_category') AND $level == 0)?'is_parent':NULL?> form-control">
