@@ -343,7 +343,14 @@ class Controller_Panel_Update extends Auth_Controller {
                                'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME], with a details provided abouve.\n\nClick here to visit [URL.AD]",
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
-                               'status'=>'1'));
+                               'status'=>'1'),
+                          array('order'=>'0',
+                               'title'=>'Advertisement `[AD.TITLE]` is out of stock on [SITE.NAME]!',
+                               'seotitle'=>'outofstock',
+                               'description'=>"Hello [USER.NAME],\n\nWhile your ad is out of stock, it is unavailable for others to see. If you wish to increase stock and activate, please follow this link [URL.EDIT].\n\nRegards!",
+                               'from_email'=>core::config('email.notify_email'),
+                               'type'=>'email',
+                               'status'=>'1'),);
 
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);

@@ -429,7 +429,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 								// 'status'		=> $status		= 	core::post('status'),
 								'address'		=> $address 	= 	core::post('address'),
 								'website'		=> $website 	= 	core::post('website'),
-								'stock'			=> $website 	= 	core::post('stock'),
+								'stock'			=> $stock 		= 	core::post('stock'),
 								'phone'			=> $phone 		= 	core::post('phone'),
 								'has_images'	=> 0,
 								'user'			=> $user 		= new Model_User()
@@ -470,7 +470,18 @@ class Controller_Panel_Profile extends Auth_Controller {
 				}
 				else 
 					$form->seotitle = $form->seotitle;
-				 
+
+				// update status on re-stock
+				if(is_numeric($data['stock']))
+				{
+					if($form->stock == 0 OR $data['stock'] == 0)
+						$form->status = Model_Ad::STATUS_UNAVAILABLE;
+					elseif($data['stock'] > 0)
+						$form->status = Model_Ad::STATUS_PUBLISHED;
+				}
+				//update stock, if non numeric to NULL
+				$form->stock = (is_numeric($data['stock']))?$data['stock']:NULL;
+				
 				$form->title 			= $data['title'];
 				$form->id_location 		= $data['loc'];
 				$form->id_category 		= $data['cat'];
@@ -480,8 +491,6 @@ class Controller_Panel_Profile extends Auth_Controller {
 				$form->address 			= $data['address'];
 				$form->website 			= $data['website'];
 				$form->phone			= $data['phone'];
-
-				$form->stock  = (!empty($data['stock']))?$data['stock']:NULL;
 
 				// set custom values
 				foreach ($data as $key => $value) 

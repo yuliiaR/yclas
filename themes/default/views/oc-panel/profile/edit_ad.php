@@ -31,6 +31,7 @@
 					<th><?=__('Profile')?></th>
 					<th><?=__('Name')?></th>
 					<th><?=__('Email')?></th>
+					<th><?=__('Status')?></th>
 				</tr>
 				<tbody>
 					<tr>
@@ -41,6 +42,28 @@
 						<td><p><?= $owner->name?></p></td>
 						<td>	
 							<a href="<?=Route::url('contact')?>"><?= $owner->email?></a>
+						</td>
+						<td>
+							<?$str=NULL;switch ($ad->status) {
+								case Model_Ad::STATUS_NOPUBLISHED:
+									$str = __('NOPUBLISHED');
+									break;
+								case Model_Ad::STATUS_PUBLISHED:
+									$str = __('PUBLISHED');
+									break;
+								case Model_Ad::STATUS_UNCONFIRMED:
+									$str = __('UNCONFIRMED');
+									break;
+								case Model_Ad::STATUS_SPAM:
+									$str = __('SPAM');
+									break;
+								case Model_Ad::STATUS_UNAVAILABLE:
+									$str = __('UNAVAILABLE');
+									break;
+								default:
+									break;
+							}?>	
+							<b><?=$str?></b>
 						</td>
 					</tr>
 				</tbody>

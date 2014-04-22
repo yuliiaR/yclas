@@ -215,6 +215,9 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`ord
 (0, 'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!', 'ads.subscribers', 'Hello [USER.NAME],\n\n You may be interested in this one!\n\nYou can visit this link to see advertisement [URL.AD]\n\n', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!', 'ads.to_admin', 'Click here to visit [URL.AD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Advertisement `[AD.TITLE]` is sold on [SITE.NAME]!', 'adssold', 'Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nPlease check your bank account for the incoming payment.\n\nClick here to visit [URL.AD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+
+(0, 'Advertisement `[AD.TITLE]` is out of stock on [SITE.NAME]!', 'outofstock', 'Hello [USER.NAME],\n\nWhile your ad is out of stock, it is unavailable for others to see. If you wish to increase stock and activate, please follow this link [URL.EDIT].\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+
 (0, 'Advertisement `[AD.TITLE]` is purchased on [SITE.NAME]!', 'adspurchased', 'Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME]\n\nClick here to visit [URL.AD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Success! Your advertisement `[AD.NAME]` is created on [SITE.NAME]!', 'ads.confirm', 'Welcome [USER.NAME],\n\nThank you for creating an advertisement at [SITE.NAME]! \n\nPlease click on this link [URL.QL] to confirm it.\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1);");
 

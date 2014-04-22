@@ -93,7 +93,22 @@ class Model_Order extends ORM {
                     $stock = $advert->stock-1;
 
                     if($stock == 0)
+                    {
                         $advert->status = Model_Ad::STATUS_UNAVAILABLE;
+                        
+                        //we get the QL, and force the regen of token for security
+                        $url_edit = $user->ql('oc-panel',array( 'controller'=> 'profile', 
+                                                                'action'    => 'update',
+                                                                'id'        => $advert->id_ad),TRUE);
+
+                        $email_content = array( '[URL.EDIT]'        =>$url_ad,
+                                                '[AD.TITLE]'        =>$advert->title);
+
+                        // send email to ad OWNER
+                        $user_owner = new Model_User($this->ad->id_user);
+                        $ret = $user_owner->email('outofstock',$email_content);
+
+                    }
                 
                     $advert->stock = $stock;
                 }
@@ -103,7 +118,6 @@ class Model_Order extends ORM {
 
 
                     //we get the QL, and force the regen of token for security
-                    $url_cont = $user->ql('contact', array(),TRUE);
                     $url_ad = $user->ql('ad', array('category'=>$advert->id_category,
                                                     'seotitle'=>$advert->seotitle), TRUE);
 
