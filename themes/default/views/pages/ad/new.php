@@ -15,8 +15,8 @@
 				</div>
 				<!-- category select -->
 				<label for="category"><span class="pull-left"><?=__('Category')?></span>
-					<span class="label label-warning category-price"></span>
-					<input class="invisible pull-left" id="category-selected" name="category" style="height: 0; padding:0;" required></input>
+					<span class="label label-warning category-price ml-10"></span>
+					<input class="invisible pull-left" id="category-selected" name="category" style="height: 0; padding:0; width:0;" required></input>
 				</label>
 
 				<div class="form-group">

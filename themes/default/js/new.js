@@ -99,7 +99,7 @@ function doneTyping () {
     $( ".category_chained_select" ).change(function() {
       $( "option:selected", this ).each(function() {
             var value_category_id = $(this).attr('value');
-            if(value_category_id != "" && !$(this).parent().hasClass('is_parent')){
+            if(!$(this).parent().hasClass('is_parent')){
                 
                 $('#category-selected').attr('value',value_category_id);
                 $('.category-price').text('');

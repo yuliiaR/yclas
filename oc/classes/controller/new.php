@@ -61,55 +61,95 @@ class Controller_New extends Controller
                                                                        'fields'             => Model_Field::get_all()));
 		if ($_POST) 
         {
-            // $_POST array with all fields 
-            $data = array(  'title'         => $title       =   $this->request->post('title'),
-                            'cat'           => $cat         =   $this->request->post('category'),
-                            'loc'           => $loc         =   $this->request->post('location'),
-                            'description'   => $description =   $this->request->post('description'),
-                            'price'         => $price       =   $this->request->post('price'),
-                            'address'       => $address     =   $this->request->post('address'),
-                            'phone'         => $phone       =   $this->request->post('phone'),
-                            'website'       => $website     =   $this->request->post('website'),
-                            'stock'       	=> $stock     	=   $this->request->post('stock')
-                            ); 
-            
-            // append to $data new custom values
-            foreach ($_POST as $name => $field) 
-            {
-            	// get by prefix
-				if (strpos($name,'cf_') !== false) 
-				{
-					$data[$name] = $field;
-					//checkbox when selected return string 'on' as a value
-					if($field == 'on')
-						$data[$name] = 1;
-					if(empty($field))
-						$data[$name] = NULL;
+        	
+        	$validation = Validation::factory($this->request->post())
 
-				}
-        	}
-	
-            // depending on user flow (moderation mode), change usecase
-            $moderation = core::config('general.moderation'); 
+                ->rule('title', 'not_empty')
+                ->rule('title', 'min_length', array(':value', 2))
+                ->rule('title', 'max_length', array(':value', 145))
 
-            if ($moderation == Model_Ad::POST_DIRECTLY) // direct post no moderation
-            {
-                if (Core::config('sitemap.on_post') == TRUE)
-                    Sitemap::generate(); 
+                ->rule('description', 'not_empty')
+                ->rule('description', 'min_length', array(':value', 5))
+    
+                ->rule('category', 'not_empty')
+                ->rule('category', 'numeric');
 
-                $status = Model_Ad::STATUS_PUBLISHED;
-                $this->save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
+            if(!Auth::instance()->logged_in())
+    		{
+            	$validation = $validation->rule('email', 'not_empty')
+            	->rule('email', 'email')
 
+            	->rule('name', 'not_empty')
+            	->rule('name', 'min_length', array(':value', 2))
+            	->rule('name', 'max_length', array(':value', 145));
             }
-            elseif( $moderation == Model_Ad::MODERATION_ON 
-                 || $moderation == Model_Ad::PAYMENT_ON 
-                 || $moderation == Model_Ad::EMAIL_CONFIRMATION 
-                 || $moderation == Model_Ad::EMAIL_MODERATION 
-                 || $moderation == Model_Ad::PAYMENT_MODERATION)
+
+            if(core::config('advertisement.location'))
             {
-                $status = Model_Ad::STATUS_NOPUBLISHED;
-                $this->save_new_ad($data, $status, $published = FALSE, $moderation, $form_show['captcha']);
+            	$validation = $validation->rule('location', 'not_empty')
+            	->rule('location', 'numeric');
             }
+	        
+	        if($validation->check())
+        	{       
+
+	            // $_POST array with all fields 
+	            $data = array(  'title'         => $title       =   $this->request->post('title'),
+	                            'cat'           => $cat         =   $this->request->post('category'),
+	                            'loc'           => $loc         =   $this->request->post('location'),
+	                            'description'   => $description =   $this->request->post('description'),
+	                            'price'         => $price       =   $this->request->post('price'),
+	                            'address'       => $address     =   $this->request->post('address'),
+	                            'phone'         => $phone       =   $this->request->post('phone'),
+	                            'website'       => $website     =   $this->request->post('website'),
+	                            'stock'       	=> $stock     	=   $this->request->post('stock')
+	                            ); 
+	            
+	            // append to $data new custom values
+	            foreach ($_POST as $name => $field) 
+	            {
+	            	// get by prefix
+					if (strpos($name,'cf_') !== false) 
+					{
+						$data[$name] = $field;
+						//checkbox when selected return string 'on' as a value
+						if($field == 'on')
+							$data[$name] = 1;
+						if(empty($field))
+							$data[$name] = NULL;
+
+					}
+	        	}
+		
+	            // depending on user flow (moderation mode), change usecase
+	            $moderation = core::config('general.moderation'); 
+
+	            if ($moderation == Model_Ad::POST_DIRECTLY) // direct post no moderation
+	            {
+	                if (Core::config('sitemap.on_post') == TRUE)
+	                    Sitemap::generate(); 
+
+	                $status = Model_Ad::STATUS_PUBLISHED;
+	                $this->save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
+
+	            }
+	            elseif( $moderation == Model_Ad::MODERATION_ON 
+	                 || $moderation == Model_Ad::PAYMENT_ON 
+	                 || $moderation == Model_Ad::EMAIL_CONFIRMATION 
+	                 || $moderation == Model_Ad::EMAIL_MODERATION 
+	                 || $moderation == Model_Ad::PAYMENT_MODERATION)
+	            {
+	                $status = Model_Ad::STATUS_NOPUBLISHED;
+	                $this->save_new_ad($data, $status, $published = FALSE, $moderation, $form_show['captcha']);
+	            }
+	        }
+	        else
+	        {
+	        	$errors = $validation->errors('ad');
+	        	foreach ($errors as $f => $err) {
+	        		Alert::set(Alert::ALERT, $err);
+	        	}
+	        }
         }
 		
  	}
