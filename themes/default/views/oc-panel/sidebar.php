@@ -110,8 +110,7 @@
                                 <div class="panel-body">
                                     <table class="table no-hide">
                                         <tr><td class="br"><?=Theme::admin_link(__('Users'),'user')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('User Roles'),'role')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Roles access'),'access')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Roles'),'role')?></td></tr>
                                         <?if(core::config('general.black_list')):?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Black list'),'pool','index','oc-panel','glyphicon  glyphicon-fire')?></td></tr>
                                         <?endif?>
@@ -182,17 +181,21 @@
                                 </h4>
                             </div>
                         </div>
-                        <?if (Theme::get('premium')!=1 AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN):?>
+                        <?if (Theme::get('premium')!=1):?>
                         <div class="panel panel-default no-prem">
                             <div class="panel-heading panel-adv-class">
                                 <a href="http://open-classifieds.com/?utm_source=<?=URL::base()?>&utm_medium=oc_sidebar&utm_campaign=<?=date('Y-m-d')?>"><span class="side-name-link">Open Classifieds</span></a>
-                                <script type="text/javascript">
-                                    (function() {var uid = Math.round(Math.random()*10000);
-                                    document.write("<div id=\"serum_"+uid+"\" style=\"min-width:200px;min-height:200px;\" ></div>");
-                                    var as= document.createElement("script"); as.type  = "text/javascript"; as.async = true;
-                                    as.src= (document.location.protocol == "https:" ? "https" : "http")+ "://api.adserum.com/async.js?id="+uid+"&a=6&f=3&w=200&h=200";
-                                    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(as, s);})();
+                                
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <!-- oc_admin_sidebar -->
+                                <ins class="adsbygoogle"
+                                     style="display:inline-block;width:180px;height:150px"
+                                     data-ad-client="ca-pub-9967797131457349"
+                                     data-ad-slot="7696973310"></ins>
+                                <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
+
                                 <a class="no-prem" href="http://open-classifieds.com/2013/08/19/can-i-remove-license/"><span class="side-name-link"><?=__('How to remove this')?>?</span></a>
                                 <a href="https://twitter.com/openclassifieds"
                                    onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);"
