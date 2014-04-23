@@ -7,7 +7,7 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
 		$info = array(
-						'title' 	=> 'RSS '.Core::config('general.site_name'),
+						'title' 	=> 'RSS '.htmlspecialchars(Core::config('general.site_name')),
 						'pubDate' => date("D, d M Y H:i:s T"),
 						'description' => __('Latest published'),
 						'generator' 	=> 'Open Classifieds',
@@ -42,7 +42,7 @@ class Controller_Feed extends Controller {
 			                	'title' 	    => htmlspecialchars($a->title,ENT_QUOTES),
 			                	'link' 	        => $url,
 			                	'pubDate'       => Date::mysql2unix($a->published),
-			                	'description'   => Text::removebbcode(htmlspecialchars($a->description,ENT_QUOTES)),
+			                	'description'   => htmlspecialchars(Text::removebbcode($a->description),ENT_QUOTES),
 			              );
         }
   
