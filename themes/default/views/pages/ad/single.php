@@ -212,4 +212,4 @@
 	    </div>
 	</div>
 
-	<?=$ad->disqus()?>
+	<?=$ad->comments()?>

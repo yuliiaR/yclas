@@ -564,6 +564,40 @@ class Model_Ad extends ORM {
         return FALSE;
     }
 
+
+    /**
+     * prints the comments script from the view
+     * @return string HTML or false in case not loaded
+     */
+    public function comments()
+    {
+        if($this->loaded())
+        {
+            return $this->fbcomments().$this->disqus();
+        }
+    
+        return FALSE;
+    }
+
+    /**
+     * prints the disqus script from the view
+     * @return string HTML or false in case not loaded
+     */
+    public function fbcomments()
+    {
+        if($this->loaded())
+        {
+            if ($this->status == self::STATUS_PUBLISHED AND strlen(core::config('advertisement.fbcomments'))>0 )
+            {
+                return View::factory('pages/ad/fbcomments',
+                                array('fbcomments'=>core::config('advertisement.fbcomments')))
+                        ->render();
+            }
+        }
+    
+        return FALSE;
+    }
+
     /**
      * prints the disqus script from the view
      * @return string HTML or false in case not loaded

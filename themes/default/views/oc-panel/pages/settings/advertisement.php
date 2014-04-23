@@ -306,6 +306,21 @@
 					))?> 
 				</div>
 			</div>
+            <div class="form-group">
+                <?= FORM::label($forms['fbcomments']['key'], __('Facebook comments'), array('class'=>'control-label col-sm-3', 'for'=>$forms['fbcomments']['key']))?>
+                <div class="col-sm-4">
+                    <?= FORM::input($forms['fbcomments']['key'], $forms['fbcomments']['value'], array(
+                    'placeholder' => "", 
+                    'class' => 'tips form-control', 
+                    'id' => $forms['disqus']['key'], 
+                    'data-original-title'=> __("Facebook Comments"),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-content'=>__("You need to write your Facebook APP ID to enable the service."),
+                    ))?> 
+                </div>
+            </div>
 			<div class="form-group">
 				<?= FORM::label($forms['disqus']['key'], __('Disqus'), array('class'=>'control-label col-sm-3', 'for'=>$forms['disqus']['key']))?>
 				<div class="col-sm-4">

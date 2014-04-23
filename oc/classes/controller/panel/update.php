@@ -329,6 +329,9 @@ class Controller_Panel_Update extends Auth_Controller {
                          array('config_key'     =>'stock',
                                'group_name'     =>'advertisement', 
                                'config_value'   =>'0'), 
+                         array('config_key'     =>'fbcomments',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>''),
                         );
         $contents = array(array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is sold on [SITE.NAME]!',
