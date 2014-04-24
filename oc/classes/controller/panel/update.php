@@ -327,7 +327,7 @@ class Controller_Panel_Update extends Auth_Controller {
                                'group_name'     =>'general', 
                                'config_value'   =>'1'),
                          array('config_key'     =>'stock',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'payment', 
                                'config_value'   =>'0'), 
                          array('config_key'     =>'fbcomments',
                                'group_name'     =>'advertisement', 

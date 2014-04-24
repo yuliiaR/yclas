@@ -162,7 +162,22 @@
 						'data-original-title'=>'', 
 						))?> 
 					</div>
-				</div>		
+				</div>	
+                <div class="form-group">
+                    <?= FORM::label($forms['stock']['key'], __('Paypal link stock control'), array('class'=>'control-label col-sm-3', 'for'=>$forms['stock']['key']))?>
+                    <div class="col-sm-4">
+                        <?= FORM::select($forms['stock']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['stock']['value'], array(
+                        'placeholder' => "", 
+                        'class' => 'tips form-control', 
+                        'id' => $forms['stock']['key'], 
+                        'data-original-title'=> __("Paypal link stock control"),
+                        'data-trigger'=>"hover",
+                        'data-placement'=>"right",
+                        'data-toggle'=>"popover",
+                        'data-content'=>__("Paypal link stock control"),
+                        ))?>  
+                    </div>
+                </div>	
 
 				
 					<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
