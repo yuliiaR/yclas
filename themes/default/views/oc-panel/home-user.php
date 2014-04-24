@@ -13,9 +13,8 @@
 
 
 <?if (Theme::get('premium')!=1):?>
-<script type="text/javascript">
-if (typeof geoip_city!="function")document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://j.maxmind.com/app/geoip.js\"></scr"+"ipt>");
-document.write("<scr"+"ipt type=\"text/javascript\" src=\"http://api.adserum.com/sync.js?a=6&f=8&w=728&h=90\"></scr"+"ipt>");
-</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:inline-block;width:250px;height:250px" data-ad-client="ca-pub-9967797131457349" data-ad-slot="2690827714"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
 <?endif?>
 
