@@ -103,7 +103,7 @@ class Controller_Panel_Theme extends Auth_Controller {
             }
         }    
 
-         // save only changed values
+        // change the theme
         if($this->request->param('id'))
         {
             $theme = $this->request->param('id');
@@ -149,7 +149,7 @@ class Controller_Panel_Theme extends Auth_Controller {
         // save only changed values
         if(core::request('license'))
         {
-            if (Theme::license(core::request('license'))==TRUE)
+            if (Theme::license(core::request('license'),$theme)==TRUE)
             {
                  //activating a mobile theme
                 if (in_array($theme, array_keys(Theme::get_installed_themes(TRUE))) )
@@ -169,7 +169,7 @@ class Controller_Panel_Theme extends Auth_Controller {
             }
             else
             {
-                Alert::set(Alert::ERROR, __('There was an error activating your license.'));
+                Alert::set(Alert::INFO, __('There was an error activating your license.'));
             }            
         }
 
