@@ -61,16 +61,7 @@ class Widget_Tools extends Widget
 
                 $user_ads = $user_ads->where('id_user', '=', $ad->id_user)->find_all();
                 $this->user_ads = $user_ads;
-            }
-            else
-            {
-                return $this->ad = NULL;
-            }
-            
-        }
-        else
-        {
-            return $this->ad = NULL;
+            }   
         }
 		
 	}
