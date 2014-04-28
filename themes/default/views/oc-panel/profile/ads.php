@@ -62,7 +62,7 @@
 					rel="tooltip" title="<?=__('Update')?>">
 					<i class="glyphicon glyphicon-edit"></i>
 				</a>
-				<? if(($user->id_role == 10) AND $ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
+				<? if(($user->id_role == Model_Role::ROLE_ADMIN) AND $ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
 				<a class="btn btn-success" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
 					onclick="return confirm('<?=__('Activate?')?>');"
@@ -77,7 +77,7 @@
 					<i class="glyphicon glyphicon-remove"></i>
 				</a>
 				<?endif?>
-				<?if(($user->id_role == 10) OR (core::config('payment.to_top'))):?>
+				<?if(($user->id_role == Model_Role::ROLE_ADMIN) OR (core::config('payment.to_top'))):?>
 					<a class="btn btn-info" 
 						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
 						onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
@@ -85,7 +85,7 @@
 						<i class="glyphicon glyphicon-circle-arrow-up"></i>
 					</a>
 				<?endif?>
-				<?if(($user->id_role == 10) OR (core::config('payment.to_featured'))):?>
+				<?if(($user->id_role == Model_Role::ROLE_ADMIN) OR (core::config('payment.to_featured'))):?>
 					<?if($ad->featured == NULL):?>
 					<a class="btn btn-default" 
 						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 
