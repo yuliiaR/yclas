@@ -368,7 +368,9 @@ class Controller_Ad extends Controller {
 						}
 						elseif($cf_config->$real_name->type == 'radio') // Radio have list of choices, but is saved as int in DB
 							$ad_custom_vals[$cf_config->$real_name->label] = $cf_config->$real_name->values[$value['value']-1];
-						else
+						elseif($cf_config->$real_name->type == 'date')
+                            $ad_custom_vals[$cf_config->$real_name->label] = Date::format($value['value'], core::config('general.date_format'));
+                        else
 							$ad_custom_vals[$cf_config->$real_name->label] = $value['value'];
 
 						//admin_privilege can be seen only by admin, so we check if its set / and is admin
