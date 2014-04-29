@@ -67,7 +67,7 @@
 			<div class="form-group">
 				<?= FORM::label($forms['ads_in_home']['key'], __('Advertisements in home'), array('class'=>'control-label col-sm-3', 'for'=>$forms['ads_in_home']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['ads_in_home']['key'], array(0=>__('Latest Ads'),1=>__('Featured Ads'),2=>__('Popular Ads last month'),3=>__('None')), $forms['ads_in_home']['value'], array(
+					<?= FORM::select($forms['ads_in_home']['key'], array(0=>__('Latest Ads'),1=>__('Featured Ads'),4=>__('Featured Ads Random'),2=>__('Popular Ads last month'),3=>__('None')), $forms['ads_in_home']['value'], array(
 					'placeholder' => $forms['ads_in_home']['value'], 
 					'class' => 'tips form-control ', 
 					'id' => $forms['ads_in_home']['key'],

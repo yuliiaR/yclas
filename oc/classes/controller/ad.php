@@ -141,7 +141,17 @@ class Controller_Ad extends Controller {
         if(Theme::get('listing_slider') == 2)
         {
                 $featured = clone $ads;
-                $featured = $featured->where('featured', '<=', 'NOW()')
+                $featured = $featured->where('featured', '>=', DB::expr('NOW()'))
+                                ->order_by('featured','desc')
+                                ->limit(Theme::get('num_home_latest_ads', 4))
+                                ->find_all();
+        }
+        //random featured
+        elseif(Theme::get('listing_slider') == 3)
+        {
+                $featured = clone $ads;
+                $featured = $featured->where('featured', '>=', DB::expr('NOW()'))
+                                ->order_by(DB::expr('RAND()'))
                                 ->limit(Theme::get('num_home_latest_ads', 4))
                                 ->find_all();
         }

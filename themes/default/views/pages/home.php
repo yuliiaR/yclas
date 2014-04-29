@@ -3,7 +3,7 @@
 <div class="well row">
     <?if(core::config('advertisement.ads_in_home') == 0):?>
     <h3><?=__('Latest Ads')?></h3>
-    <?elseif(core::config('advertisement.ads_in_home') == 1):?>
+    <?elseif(core::config('advertisement.ads_in_home') == 1 OR core::config('advertisement.ads_in_home') == 4):?>
     <h3><?=__('Featured Ads')?></h3>
     <?elseif(core::config('advertisement.ads_in_home') == 2):?>
     <h3><?=__('Popular Ads last month')?></h3>
