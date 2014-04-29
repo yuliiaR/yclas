@@ -109,5 +109,6 @@ function doneTyping () {
         });
     });
 
-    
+    var categ_selected = $('.category_chained_select option:selected').attr('value');
+    $("input[name=category]").attr('value', categ_selected);
     
