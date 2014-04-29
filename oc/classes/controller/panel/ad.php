@@ -469,7 +469,18 @@ class Controller_Panel_Ad extends Auth_Controller {
 		{
 			try 
 			{
-				DB::delete('ads')->where('status', '=', $query)->execute();	
+                $i = 0;
+                foreach ($ads as $ad) 
+                {
+                    $img_path = $ad->gen_img_path($ad->id_ad, $ad->created);
+                    if (is_dir($img_path))
+                        $ad->delete_images($img_path);
+
+                    $ad->delete();
+                    $i++;
+                }
+                Alert::set(Alert::INFO, $i.' '.__('Ads deleted'));
+				//DB::delete('ads')->where('status', '=', $query)->execute();	
 			} 
 			catch (Exception $e) 
 			{

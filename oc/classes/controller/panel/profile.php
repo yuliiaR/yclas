@@ -374,8 +374,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		list($locations,$order_locations)  = Model_Location::get_all();
 
 	
-		if(Auth::instance()->logged_in() && Auth::instance()->get_user()->id_user == $form->id_user 
-			OR Auth::instance()->logged_in() && Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
+		if(Auth::instance()->get_user()->id_user == $form->id_user OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
 		{
 			$extra_payment = core::config('payment');
 			
@@ -542,6 +541,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        		// moderation 2 -> payment on, moderation 5 -> payment with moderation
 	        		// data['cat'] -> category selected , last_known_ad->id_category -> obj of current ad (before save) 
 	        		$moderation = core::config('general.moderation');
+
 	        		$last_known_ad = $obj_ad->where('id_ad', '=', $this->request->param('id'))->limit(1)->find();
 	        		if($moderation == Model_Ad::PAYMENT_ON OR $moderation == Model_Ad::PAYMENT_MODERATION)
 	        		{
@@ -560,18 +560,22 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 								if($advert_have_order->status != Model_Order::STATUS_PAID)
 								{ // order is not payed,  
-									$form->status = 0;
+									$form->status = Model_Ad::STATUS_NOPUBLISHED;
 									Alert::set(Alert::INFO, __('Advertisement is updated, but it won\'t be published until payment is done.'));
 								}
 								else // order is payed, update status and publish 
 								{
 									if($moderation == Model_Ad::PAYMENT_ON)
 									{
-										$form->status = 1;
+										$form->status = Model_Ad::STATUS_PUBLISHED;
 										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));	
 									}
-									else if($moderation == 5)
-										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));
+									else if($moderation == Model_Ad::PAYMENT_MODERATION)
+                                    {
+                                        $form->status = Model_Ad::STATUS_PUBLISHED;
+                                        Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));
+                                    }
+										
 								}
 							}
 							$form->save();
@@ -595,7 +599,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 								{
 									if($moderation == Model_Ad::PAYMENT_ON)
 									{
-										$form->status = 1;
+										$form->status = Model_Ad::STATUS_PUBLISHED;
 										Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));	
 									}
 									else if($moderation == Model_Ad::PAYMENT_MODERATION)
@@ -611,7 +615,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        					if($order_id == NULL) // this is the case when in make_new_order we detect that category OR category_parent doesn't have price
 								{
 									if($moderation == Model_Ad::PAYMENT_ON) // publish
-										$form->status = 1;
+										$form->status = Model_Ad::STATUS_PUBLISHED;
 								}
 								else
 								{
@@ -623,10 +627,22 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        			}
 	        		}
 	        		
-	        		// save ad
-	        		$form->status = $last_known_ad->status;
+                    // ad edited but we have moderation on, so goes to moderation queue unless you are admin
+	        		if( ($moderation == Model_Ad::MODERATION_ON 
+                        OR $moderation == Model_Ad::EMAIL_MODERATION) AND Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN ) 
+                    {
+                        Alert::set(Alert::INFO, __('Advertisement is updated, but first administrator needs to validate. Thank you for being patient!'));
+                        $form->status = Model_Ad::STATUS_NOPUBLISHED;
+                    }
+                    else
+                    {
+                        Alert::set(Alert::SUCCESS, __('Advertisement is updated'));
+                        $form->status = $last_known_ad->status;
+                    }
+                        
+                    // save ad
 	        		$form->save();
-	        		Alert::set(Alert::SUCCESS, __('Advertisement is updated'));
+	        		
 
 	        		$this->request->redirect(Route::url('oc-panel', array('controller'	=>'profile',
 																		  'action'		=>'update',
