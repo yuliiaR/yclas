@@ -361,11 +361,12 @@ class Controller_Ad extends Controller {
 
 				$captcha_show = core::config('advertisement.captcha');	
 				
-				$cf_config = json_decode(core::config('advertisement.fields')) ;
+				$cf_config = json_decode(core::config('advertisement.fields'));
+
 				$active_custom_fields = $ad->custom_columns();
 
 				// Custom fields to display
-				$ad_custom_vals = array();
+				$ad_fields = array();
 				foreach ($active_custom_fields as $name => $value) {
 					$real_name = str_replace("cf_", "", $value['parameters']['column_name']);
 					
@@ -374,23 +375,31 @@ class Controller_Ad extends Controller {
 						if($cf_config->$real_name->type == 'checkbox') // checkbox is TRUE or FALSE
 						{
 							if(isset($value['value']) AND $value['value'])
-								$ad_custom_vals[$cf_config->$real_name->label] = NULL;
+								$ad_fields[$cf_config->$real_name->label] = NULL;
 						}
 						elseif($cf_config->$real_name->type == 'radio') // Radio have list of choices, but is saved as int in DB
-							$ad_custom_vals[$cf_config->$real_name->label] = $cf_config->$real_name->values[$value['value']-1];
+							$ad_fields[$cf_config->$real_name->label] = $cf_config->$real_name->values[$value['value']-1];
 						elseif($cf_config->$real_name->type == 'date')
-                            $ad_custom_vals[$cf_config->$real_name->label] = Date::format($value['value'], core::config('general.date_format'));
+                            $ad_fields[$cf_config->$real_name->label] = Date::format($value['value'], core::config('general.date_format'));
                         else
-							$ad_custom_vals[$cf_config->$real_name->label] = $value['value'];
+							$ad_fields[$cf_config->$real_name->label] = $value['value'];
 
 						//admin_privilege can be seen only by admin, so we check if its set / and is admin
 						if(isset($cf_config->$real_name->admin_privilege) AND $cf_config->$real_name->admin_privilege)
 							if(!$auth_user->logged_in() OR !$auth_user->get_user()->id_role == Model_Role::ROLE_ADMIN)
-								if(isset($ad_custom_vals[$cf_config->$real_name->label]))
-									unset($ad_custom_vals[$cf_config->$real_name->label]);
+								if(isset($ad_fields[$cf_config->$real_name->label]))
+									unset($ad_fields[$cf_config->$real_name->label]);
 					}
 					
 				}
+                
+                // sorting by json
+                $ad_custom_vals = array();
+                foreach ($cf_config as $name => $value) {
+
+                    if(isset($ad_fields[$value->label]))
+                        $ad_custom_vals[$value->label] = $ad_fields[$value->label];
+                }
 
                 if($ad->get_first_image() !== NULL)
                     Controller::$image = $ad->get_first_image();
