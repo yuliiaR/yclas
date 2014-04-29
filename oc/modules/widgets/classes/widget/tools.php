@@ -21,7 +21,7 @@ class Widget_Tools extends Widget
 		$this->fields = array('tools_title'  => array(  'type'      => 'text',
                                                         'display'   => 'text',
                                                         'label'     => __('Tools title displayed'),
-                                                        'default'   => __('Tools'),
+                                                        'default'   => __('Ad Tools'),
                                                         'required'  => FALSE),
         );
 	}
