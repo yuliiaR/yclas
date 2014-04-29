@@ -27,7 +27,7 @@
 							<option value=""></option>
 							<?foreach ($categ as $c):?>
 								<?if($c['id']>1):?>
-								<option data-price="<?=($c['price']>0)?$c['price']:NULL?>" value="<?=$c['id']?>" class="<?=$c['id_category_parent']?>"><?=$c['name']?></option>
+								<option <?=($c['seoname']==Core::get('category') OR Request::current()->post('category') == $c['id'])?'selected':''?> data-price="<?=($c['price']>0)?$c['price']:NULL?>" value="<?=$c['id']?>" class="<?=$c['id_category_parent']?>"><?=$c['name']?></option>
 								<?endif?>
 							<?endforeach?>
 						</select>
