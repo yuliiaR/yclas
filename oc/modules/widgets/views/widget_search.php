@@ -14,7 +14,7 @@
         <div class="form-group">
             <div class="col-xs-10">
                 <?= FORM::label('category', __('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
-                <select data-placeholder="<?=__('Categories')?>" name="category" id="category_widget_search" class="form-control">
+                <select data-placeholder="<?=__('Categories')?>" name="category" id="category_widget_search" class="form-control disable-chosen">
                 <option value="<?=core::request('category')?>"></option>
                 <?function lili_search($item, $key,$cats){?>
                 <?if ( count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
@@ -40,7 +40,7 @@
         <div class="form-group">
             <div class="col-xs-10">
                 <?= FORM::label('location_widget_search', __('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
-                <select data-placeholder="<?=__('Locations')?>" name="location" id="location_widget_search" class="form-control">
+                <select data-placeholder="<?=__('Locations')?>" name="location" id="location_widget_search" class="form-control disable-chosen">
                 <option></option>
                 <?function lolo_search($item, $key,$locs){?>
                 <option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
