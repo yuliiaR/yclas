@@ -119,7 +119,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if(core::config('advertisement.stock')):?>
+				<?if(core::config('payment.stock')):?>
 				<div class="form-group">
 					
 					<div class="col-md-4">

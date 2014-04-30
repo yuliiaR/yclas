@@ -2,8 +2,8 @@
 
 <?if($widget->ad != FALSE):?>
 <div>			
-	<a class="btn btn-danger" style=" width: 100%; " width="100%" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$widget->ad->id_ad))?>"><?=__('Go Top!')?> <?=core::config('payment.to_top')?></a>
-	<a class="btn btn-danger" style=" width: 100%; " type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$widget->ad->id_ad))?>"><?=__('Go Featured!')?> <?=core::config('payment.to_top')?></a>
+	<a class="btn btn-danger center-block" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$widget->ad->id_ad))?>"><?=__('Go Top!')?> <?=i18n::money_format(core::config('payment.pay_to_go_on_top'))?></a>
+	<a class="btn btn-danger center-block" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$widget->ad->id_ad))?>"><?=__('Go Featured!')?> <?=i18n::money_format(core::config('payment.pay_to_go_on_feature'))?></a>
 	<div class="clearfix"></div><br>
 	<a class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$widget->ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a> 
     <a class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$widget->ad->id_ad))?>" 

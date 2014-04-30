@@ -186,7 +186,7 @@
 					</div>
 				</div>
 				<?endif?>
-				<?if(core::config('advertisement.stock')):?>
+				<?if(core::config('payment.stock')):?>
 				<div class="form-group">
 					<div class="col-sm-4 col-xs-11">
 						<?= FORM::label('stock', __('In Stock'), array('class'=>'control-label', 'for'=>'stock'))?>
