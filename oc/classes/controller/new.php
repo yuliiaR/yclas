@@ -86,8 +86,9 @@ class Controller_New extends Controller
 
             if(core::config('advertisement.location'))
             {
-            	$validation = $validation->rule('location', 'not_empty')
-            	->rule('location', 'numeric');
+            	if(count($locations) > 1)
+	            	$validation = $validation->rule('location', 'not_empty')
+	            	->rule('location', 'numeric');
             }
 	        
 	        if($validation->check())

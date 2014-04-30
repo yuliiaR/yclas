@@ -395,11 +395,15 @@ class Controller_Ad extends Controller {
                 
                 // sorting by json
                 $ad_custom_vals = array();
-                foreach ($cf_config as $name => $value) {
-
-                    if(isset($ad_fields[$value->label]))
-                        $ad_custom_vals[$value->label] = $ad_fields[$value->label];
+                if(is_array($cf_config))
+                {
+                    foreach ($cf_config as $name => $value) 
+                    {
+                        if(isset($ad_fields[$value->label]))
+                            $ad_custom_vals[$value->label] = $ad_fields[$value->label];
+                    }
                 }
+                    
 
                 if($ad->get_first_image() !== NULL)
                     Controller::$image = $ad->get_first_image();
