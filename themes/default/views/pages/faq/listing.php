@@ -19,7 +19,7 @@
 <?else:?>
 <!-- Case when we dont have ads for specific category / location -->
     <div class="page-header">
-       <h3><?=__('We do not have any FAQ')?></h3>
+       <h3><?=__('We do not have any FAQ-s')?></h3>
     </div>
 <?endif?>
 

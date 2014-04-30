@@ -29,6 +29,6 @@
 <?else:?>
 <!-- Case when we dont have ads for specific category / location -->
 	<div class="page-header">
-	   <h3><?=__('We do not have any blog post')?></h3>
+	   <h3><?=__('We do not have any blog posts')?></h3>
     </div>
 <?endif?>
