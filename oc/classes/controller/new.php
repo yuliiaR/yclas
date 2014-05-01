@@ -47,7 +47,7 @@ class Controller_New extends Controller
 		if(core::config('general.black_list') AND 
 		   	$auth_user->logged_in() AND $auth_user->get_user()->status == Model_User::STATUS_SPAM)
 		{
-			Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
+			Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
 			$this->request->redirect('default');
 		}
 						
@@ -219,7 +219,7 @@ class Controller_New extends Controller
 				{
 					if(!$user->loaded() AND $user->is_spam($email))
 					{
-						Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content!'));
+						Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
 						$this->request->redirect('default');	
 					}
 				}
