@@ -3,8 +3,8 @@
      '2.1.5' => 
   array (
     'codename' => 'Bogatell',
-    'released' => '2014-04-30',
-    'blog' => 'http://open-classifieds.com/',
+    'released' => '2014-05-01',
+    'blog' => 'http://open-classifieds.com/2014/05/01/open-classifieds-2-1-5/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/2.1.5',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=19&state=closed',
     'download' => 'http://j.mp/oc_215',
