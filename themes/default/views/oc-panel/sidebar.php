@@ -113,6 +113,15 @@
                                         <tr><td class="br"><?=Theme::admin_link(__('Roles'),'role')?></td></tr>
                                         <?if(core::config('general.black_list')):?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Black list'),'pool','index','oc-panel','glyphicon  glyphicon-fire')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Edit profile'), 'profile','edit','oc-panel','glyphicon glyphicon-edit')?></td></tr>
+                                        <tr><td>
+                                            <li>
+                                                <a href="<?=Route::url('profile',array('seoname'=>$user->seoname))?>">
+                                                    <i class="glyphicon glyphicon-user"></i>
+                                                    <span class="side-name-link"><?=__('Public profile')?></span>
+                                                </a>
+                                            </li>
+                                        </td></tr>
                                         <?endif?>
                                     </table>
                                 </div>
