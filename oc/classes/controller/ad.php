@@ -392,10 +392,10 @@ class Controller_Ad extends Controller {
 					}
 					
 				}
-                
+
                 // sorting by json
                 $ad_custom_vals = array();
-                if(is_array($cf_config))
+                if(isset($cf_config))
                 {
                     foreach ($cf_config as $name => $value) 
                     {
