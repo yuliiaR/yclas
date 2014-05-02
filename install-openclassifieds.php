@@ -51,7 +51,7 @@ class install{
      * Software install settings
      * @var string
      */
-    const version   = '2.1.5';
+    const version   = '2.1.6';
 
     /**
      * message to notify
