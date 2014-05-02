@@ -7,7 +7,7 @@
     'blog' => 'http://open-classifieds.com/2014/05/02/open-classifieds-2-1-6/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/master',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=19&state=closed',
-    'download' => 'https://github.com/open-classifieds/openclassifieds2/archive/master.zip',
+    'download' => 'http://j.mp/oc_216',
   ),
  '2.1.5' => 
   array (
