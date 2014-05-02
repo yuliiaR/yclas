@@ -478,6 +478,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 					elseif($data['stock'] > 0)
 						$form->status = Model_Ad::STATUS_PUBLISHED;
 				}
+
 				//update stock, if non numeric to NULL
 				$form->stock = (is_numeric($data['stock']))?$data['stock']:NULL;
 				
@@ -637,10 +638,20 @@ class Controller_Panel_Profile extends Auth_Controller {
                     else
                     {
                         Alert::set(Alert::SUCCESS, __('Advertisement is updated'));
+                        // update status on re-stock
                         $form->status = $last_known_ad->status;
+						if(is_numeric($data['stock']))
+						{
+							if($form->stock == 0 OR $data['stock'] == 0)
+								$form->status = Model_Ad::STATUS_UNAVAILABLE;
+							elseif($data['stock'] > 0)
+								$form->status = Model_Ad::STATUS_PUBLISHED;
+						}
+                        
                     }
                         
                     // save ad
+
 	        		$form->save();
 	        		
 

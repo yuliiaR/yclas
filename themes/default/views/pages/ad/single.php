@@ -72,7 +72,7 @@
             <?endif?>
         </div>  
 
-        <?if(core::config('payment.paypal_seller')==1 AND $ad->price != NULL AND $ad->price != 0):?>
+        <?if(core::config('payment.paypal_seller')==1 AND $ad->price != NULL AND $ad->price != 0 AND $ad->stock > 0):?>
 		    <?if (!Auth::instance()->logged_in()):?>
 		    <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
 		        href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=__('Buy Now')?></a>
