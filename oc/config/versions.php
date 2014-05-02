@@ -9,7 +9,7 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=19&state=closed',
     'download' => 'http://j.mp/oc_216',
   ),
-     '2.1.5' => 
+ '2.1.5' => 
   array (
     'codename' => 'Bogatell',
     'released' => '2014-05-01',
