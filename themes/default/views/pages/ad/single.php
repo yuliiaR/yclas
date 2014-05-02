@@ -72,16 +72,16 @@
             <?endif?>
         </div>  
 
-
-	    <?if (!Auth::instance()->logged_in()):?>
-	    <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
-	        href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=__('Buy Now')?></a>
-	    <?else:?>
-	    	<?if(core::config('payment.paypal_seller') AND $ad->price != NULL AND $ad->price != 0 AND $ad->stock > 0):?>
-	    		<a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?></a>
-	    	<?endif?>
-	    <?endif?>
-
+        <?if(core::config('payment.paypal_seller')):?>
+		    <?if (!Auth::instance()->logged_in()):?>
+		    <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
+		        href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=__('Buy Now')?></a>
+		    <?else:?>
+		    	<?if(core::config('payment.paypal_seller') AND $ad->price != NULL AND $ad->price != 0 AND $ad->stock > 0):?>
+		    		<a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?></a>
+		    	<?endif?>
+		    <?endif?>
+		<?endif?>
         
         <hr />
         <?if ($ad->can_contact()):?>
