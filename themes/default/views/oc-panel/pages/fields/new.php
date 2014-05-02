@@ -8,33 +8,33 @@
       <?=Form::errors()?>  
       
         <div class="form-group">
-            
+                <label class="control-label col-xs-1"><?=__('Name')?></label>
                 <div class="col-sm-4">
-                <label class="control-label"><?=__('Name')?></label>
+                
                 <input class="form-control" type="text" name="name" placeholder="<?=__('Name')?>" required>
             </div>
         </div>
 
         <div class="form-group">
-            
+                <label class="control-label col-xs-1"><?=__('Label')?></label>
                 <div class="col-sm-4">
-                <label class="control-label"><?=__('Label')?></label>
+                
                 <input class="form-control" type="text" name="label" placeholder="<?=__('Label')?>" required>
             </div>
         </div>
 
         <div class="form-group">
-            
+                <label class="control-label col-xs-1"><?=__('Tooltip')?></label>
                 <div class="col-sm-4">
-                <label class="control-label"><?=__('Tooltip')?></label>
+                
                 <input class="form-control" type="text" name="tooltip" placeholder="<?=__('Tooltip')?>" >
             </div>
         </div>
 
         <div class="form-group">
-                        
+            <label class="control-label col-xs-1" for="date"><?=__('Type')?></label>      
             <div class="col-sm-4">
-                <label class="control-label" for="date"><?=__('Type')?></label>         
+                       
                 <select name="type"  class="form-control" id="cf_type_fileds" required>
                     <option value="string"><?=__('Text 256 Chars')?></option>
                     <option value="textarea"><?=__('Text Long')?></option>
@@ -49,17 +49,18 @@
         </div>
 
         <div class="form-group">
-            
+            <label class="control-label col-xs-1"><?=__('Values')?></label>
             <div class="col-sm-4">
-                <label class="control-label"><?=__('Values')?></label>
+                
                 <input class="form-control" id="cf_values_input" type="text" name="values" placeholder="<?=__('Comma separated for select')?>">
             </div>
         </div>
 
         <!-- multycategory selector -->
         <div class="form-group">
+            <label class="control-label col-xs-1"><?=__('Categories')?></label>
         	<div class="col-sm-4">
-        		<label class="control-label"><?=__('Categories')?></label>
+        		
 				<select id="categories" name="categories[]" multiple>
 					<option></option>
 					<?foreach ($categories as $categ => $ctg):?>
@@ -73,7 +74,7 @@
 
         <div class="form-group">
             <div class="col-sm-4">
-                <label class="checkbox">
+                <label class="checkbox col-xs-offset-4">
                   <input type="checkbox" name="required"> 
                    <?=__('Required')?>
                 </label>
@@ -82,7 +83,7 @@
 
         <div class="form-group">
             <div class="col-sm-4">
-                <label class="checkbox">
+                <label class="checkbox col-xs-offset-4">
                   <input type="checkbox" name="searchable"> 
                    <?=__('Searchable')?>
                 </label>
@@ -91,11 +92,11 @@
 
         <div class="form-group">
             <div class="col-sm-4">
-                <label class="checkbox">
+                <label class="checkbox col-xs-offset-4">
                   <input type="checkbox" name="admin_privilege"> 
                    <?=__('Admin Privileged')?>
                 </label>
-            <div class="help-block"><?=__('Can be seen and edited only by admin.')?></div></div>
+            <div class="help-block col-xs-offset-4"><?=__('Can be seen and edited only by admin.')?></div></div>
         </div>
       
       <div class="form-actions">
