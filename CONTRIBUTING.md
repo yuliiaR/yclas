@@ -5,7 +5,7 @@ Looking to contribute something to Open Classifieds? **Here's how you can help.*
 ## Environment
 Recommended PHP 5.5 , MySQL 5.5, Apache 2.2, Linux
 
-For development and to enable debug and disable cache and minify you can create a vhost:
+For development and to enable debug and disable cache and minify as well you can create a vhost:
 
 Host file:
 127.0.0.1   reoc.lo
@@ -56,7 +56,7 @@ We only accept issues that are bug reports or feature requests. Bugs must be iso
 
 - master is the development branch.
 - We create tags per release from master branch.
- -We have many ther branches not in use since we changed the way we use the git flow.
+ -We have many other branches not in use anymore since we changed the way we use the git flow.
 
 
 ## Pull requests
