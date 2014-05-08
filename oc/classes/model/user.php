@@ -230,6 +230,7 @@ class Model_User extends ORM {
                 $user->id_role      = Model_Role::ROLE_USER;//normal user
                 $user->password     = $new_password_plain;
                 $user->seoname      = $this->gen_seo_title($name);
+                $user->subscriber   = 1;
                 
                 try
                 {
