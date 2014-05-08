@@ -82,7 +82,7 @@
     
         <?if (is_array($widget->custom_fields)):?>
             <?$i=0; foreach($widget->custom_fields as $name=>$field):?>
-            <div class="pull-left form-group control-group mr-30" id="cf_search">
+            <div class="form-group control-group " id="cf_search">
                 <div class="col-xs-10">
                 <?if($field['searchable']):?>
                     <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
