@@ -128,7 +128,7 @@ class Controller_New extends Controller
 	            if ($moderation == Model_Ad::POST_DIRECTLY) // direct post no moderation
 	            {
 
-	                if (Core::config('sitemap.on_post') === TRUE)
+	                if (Core::config('sitemap.on_post') == TRUE)
 	                    Sitemap::generate(); 
 
 	                $status = Model_Ad::STATUS_PUBLISHED;
