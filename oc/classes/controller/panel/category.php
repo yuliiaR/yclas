@@ -37,6 +37,36 @@ class Controller_Panel_Category extends Auth_Crud {
         $this->template->content = View::factory('oc-panel/pages/categories',array('cats' => $cats,'order'=>$order));
     }
 
+    /**
+     * CRUD controller: UPDATE
+     */
+    public function action_update()
+    {
+        $this->template->title = __('Update').' '.__($this->_orm_model).' '.$this->request->param('id');
+    
+        $form = new FormOrm($this->_orm_model,$this->request->param('id'));
+        
+        if ($this->request->post())
+        {
+            if ( $success = $form->submit() )
+            {
+                $form->save_object();
+                $form->object->parent_deep =  $form->object->get_deep();
+                $form->object->save();
+                Alert::set(Alert::SUCCESS, __('Item updated').'. '.__('Please to see the changes delete the cache')
+                    .'<br><a class="btn btn-primary btn-mini" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
+                    .__('Delete All').'</a>');
+                $this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
+            }
+            else
+            {
+                Alert::set(Alert::ERROR, __('Check form for errors'));
+            }
+        }
+    
+        return $this->render('oc-panel/crud/update', array('form' => $form));
+    }
+
 
     /**
      * saves the category in a specific order and change the parent
@@ -78,6 +108,14 @@ class Controller_Panel_Category extends Auth_Crud {
                 $order++;
             }
 
+            //recalculating the deep of all the categories
+            $cats = new Model_Category();
+            $cats = $cats->order_by('order','asc')->find_all()->cached()->as_array('id_category');
+            foreach ($cats as $cat) 
+            {
+                $cat->parent_deep = $cat->get_deep();
+                $cat->save();
+            }
 
             $this->template->content = __('Saved');
         }
@@ -86,8 +124,6 @@ class Controller_Panel_Category extends Auth_Crud {
 
 
     }
-
-
 
     /**
      * CRUD controller: DELETE
@@ -165,5 +201,7 @@ class Controller_Panel_Category extends Auth_Crud {
         Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'category','action'=>'index'))); 
     }
 
+
+   
 
 }
