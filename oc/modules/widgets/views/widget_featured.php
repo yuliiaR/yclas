@@ -1,4 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+<h4><?=$widget->featured_title?></h4>
 
 
 <?foreach($widget->ads as $ad):?>

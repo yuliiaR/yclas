@@ -51,11 +51,14 @@ class Controller_Home extends Controller {
 		$this->ads = $ads;
 
 		$categs = Model_Category::get_category_count();
+
+        $locats = Model_Location::get_location_count();
 	
         $this->template->bind('content', $content);
         
         $this->template->content = View::factory('pages/home',array('ads'=>$ads, 
         															'categs'=>$categs,
+                                                                    'locats'=>$locats,
         															));
 		
 	}
