@@ -159,6 +159,8 @@ class Model_Category extends ORM {
                                                                               'id'                 => $cat->id_category,
                                                                     );
         }
+        //sort by key, in case lover level is befor higher
+        ksort($cats_parent_deep);
 
         //for each category we get his siblings
         $cats_s = array();

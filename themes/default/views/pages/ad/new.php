@@ -33,6 +33,11 @@
 						</select>
 						</div>
 					<?endforeach?>
+
+					<div class="clearfix"></div>
+					<div class="col-md-4">
+						<label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"></label></label>  
+					</div>
 				</div>
 				
 				<?if(count($locations) > 1 AND $form_show['location'] != FALSE):?>

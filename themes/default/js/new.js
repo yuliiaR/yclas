@@ -97,16 +97,31 @@ function doneTyping () {
 
     // this will select the correct ID for uploading category
     $( ".category_chained_select" ).change(function() {
+
       $( "option:selected", this ).each(function() {
             var value_category_id = $(this).attr('value');
-            if(!$(this).parent().hasClass('is_parent')){
-                
+
+            if($(this).parent().hasClass('is_parent') || $(this).parent().data('level') > 0){
+
                 $('#category-selected').attr('value',value_category_id);
                 $('.category-price').text('');
                 if($(this).data('price') > 0)
                     $('.category-price').text($(this).data('price'));
             }
+                //coloring select, for user to know if he select option is taken or not
+                if($('#category-selected').attr('value') != ''){
+                    //adding green color, success
+                    $(this).parent().css('background','#dff0d8');
+                    $('.selected-category').html($('.category_chained_select option[value='+$('#category-selected').attr('value')+']').text()).one();
+                }
+        
+                if($('#category-selected').attr('value') == ''){
+                    $(this).parent().css('background','#fff');
+                    $('.selected-category').html('');
+                }
+                     
         });
+                
     });
 
     var categ_selected = $('.category_chained_select option:selected').attr('value');
