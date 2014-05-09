@@ -104,7 +104,7 @@ class Controller_Panel_Profile extends Auth_Controller {
             	$image_quality = core::config('image.quality');
                 
                 // if folder does not exist, try to make it
-               	if ( ! file_exists($root) AND ! @mkdir($root, 775, true)) { // mkdir not successful ?
+               	if ( ! file_exists($root) AND ! @mkdir($root, 0775, true)) { // mkdir not successful ?
                         Alert::set(Alert::ERROR, __('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.'));
                         return; // exit function
                 };
