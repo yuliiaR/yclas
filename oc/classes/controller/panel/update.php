@@ -374,10 +374,13 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
 
+    //public function action_216()
+    //{  }
+    
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 2.1.6
+     * This function will upgrade DB that didn't existed in versions prior to 2.1.7
      */
-    public function action_216()
+    public function action_217()
     {        
         //call update previous versions
         $this->action_203();
@@ -388,6 +391,49 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->action_211();
         $this->action_214();
         $this->action_215();
+
+        $prefix = Database::instance()->table_prefix();
+
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."posts` ADD  `id_post_parent` INT NULL DEFAULT NULL AFTER  `id_user`")->execute();
+        }catch (exception $e) {}
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."posts` ADD  `ip_address` FLOAT NULL DEFAULT NULL AFTER  `created`")->execute();
+        }catch (exception $e) {}
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."posts` ADD  `id_forum` INT NULL DEFAULT NULL AFTER  `id_post_parent`")->execute();
+        }catch (exception $e) {}
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."posts` ENGINE = MYISAM ")->execute();
+        }catch (exception $e) {}
+        
+
+        DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS  `".$prefix."forums` (
+                      `id_forum` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                      `name` varchar(145) NOT NULL,
+                      `order` int(2) unsigned NOT NULL DEFAULT '0',
+                      `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                      `id_forum_parent` int(10) unsigned NOT NULL DEFAULT '0',
+                      `parent_deep` int(2) unsigned NOT NULL DEFAULT '0',
+                      `seoname` varchar(145) NOT NULL,
+                      `description` varchar(255) NULL,
+                      PRIMARY KEY (`id_forum`) USING BTREE,
+                      UNIQUE KEY `".$prefix."forums_IK_seo_name` (`seoname`)
+                    ) ENGINE=MyISAM")->execute();
+
+        // build array with new (missing) configs
+        $configs = array(
+                         array('config_key'     =>'forums',
+                               'group_name'     =>'general', 
+                               'config_value'   =>'0'), 
+                        );
+
+        // returns TRUE if some config is saved 
+        $return_conf = Model_Config::config_array($configs);
 
         //clean cache
         Cache::instance()->delete_all();

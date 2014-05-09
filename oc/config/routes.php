@@ -125,6 +125,43 @@ Route::set('faq', 'faq(/<seotitle>.html)')
 ));
 
 /**
+ * forum new topic
+ */
+Route::set('forum-new', 'forum/'.URL::title(__('new topic')).'.html')
+->defaults(array(
+        'controller' => 'forum',    
+        'action'     => 'new',
+));
+
+/**
+ * forum topic
+ */
+Route::set('forum-topic', 'forum/<forum>/<seotitle>.html')
+->defaults(array(
+        'controller' => 'forum',    
+        'action'     => 'topic',
+));
+
+/**
+ * specific forum list of topics
+ */
+Route::set('forum-list', 'forum/<forum>')
+->defaults(array(
+        'controller' => 'forum',    
+        'action'     => 'list',
+));
+
+/**
+ * all forums / home page
+ */
+Route::set('forum-home', 'forum')
+->defaults(array(
+        'controller' => 'forum',    
+        'action'     => 'index',
+));
+
+
+/**
  * Item / ad view (public)
  */
 Route::set('ad', '<category>/<seotitle>.html')

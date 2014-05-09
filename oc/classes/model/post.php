@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Blog Posts
+ * Blog/Forum Posts
  *
  * @author      Chema <chema@open-classifieds.com>
  * @package     Core
@@ -20,9 +20,25 @@ class Model_Post extends ORM {
      */
     protected $_primary_key = 'id_post';
 
+    /**
+     * status constants
+     */
+    const STATUS_NOACTIVE = 0; 
+    const STATUS_ACTIVE   = 1; 
+
+    /**
+     * @var  array  ORM Dependency/hirerachy
+     */
+    protected $_has_many = array(
+        'replies' => array(
+            'model'       => 'post',
+            'foreign_key' => 'id_post_parent',
+        ),
+    );
 
     protected $_belongs_to = array(
-        'user'       => array('foreign_key' => 'id_user'),
+        'user'       => array('model'       => 'user','foreign_key' => 'id_user'),
+        'forum'       => array('model'       => 'forum','foreign_key' => 'id_forum'),
     );
 
     public function filters()
@@ -53,7 +69,7 @@ class Model_Post extends ORM {
 
     public function exclude_fields()
     {
-        return array('created');
+        return array('created','ip_address','id_forum','id_post_parent');
     }
 
 
@@ -73,9 +89,9 @@ class Model_Post extends ORM {
 
         if ($seotitle != $this->seotitle)
         {
-            $cat = new self;
+            $post = new self;
             //find a user same seotitle
-            $s = $cat->where('seotitle', '=', $seotitle)->limit(1)->find();
+            $s = $post->where('seotitle', '=', $seotitle)->limit(1)->find();
 
             //found, increment the last digit of the seotitle
             if ($s->loaded())
@@ -85,9 +101,9 @@ class Model_Post extends ORM {
                 while($loop)
                 {
                     $attempt = $seotitle.'-'.$cont;
-                    $cat = new self;
+                    $post = new self;
                     unset($s);
-                    $s = $cat->where('seotitle', '=', $attempt)->limit(1)->find();
+                    $s = $post->where('seotitle', '=', $attempt)->limit(1)->find();
                     if(!$s->loaded())
                     {
                         $loop = FALSE;
@@ -108,7 +124,7 @@ class Model_Post extends ORM {
 
 
     /**
-     * prints the disqus script from the view
+     * prints the disqus script from the view for blogs!
      * @return string HTML or false in case not loaded
      */
     public function disqus()
@@ -117,7 +133,7 @@ class Model_Post extends ORM {
         {
             if ($this->status == 1 AND strlen(core::config('general.blog_disqus'))>0 )
             {
-                return View::factory('pages/ad/disqus',
+                return View::factory('pages/disqus',
                                 array('disqus'=>core::config('general.blog_disqus')))
                         ->render();
             }

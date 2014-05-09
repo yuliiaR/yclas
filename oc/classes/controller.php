@@ -106,6 +106,11 @@ class Controller extends Kohana_Controller
     		$this->template->styles  = array_merge_recursive(Theme::$styles, $this->template->styles);
     		$this->template->scripts = array_reverse(array_merge_recursive(Theme::$scripts,$this->template->scripts));
     		
+            //in case theres no description given
+            if ($this->template->meta_description == '')
+                $this->template->meta_description = $this->template->title;
+
+            //title concatenate the site name
             if ($this->template->title != '')
                 $this->template->title .= ' - ';
 

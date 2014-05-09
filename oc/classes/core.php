@@ -16,7 +16,7 @@ class Core {
 	 * OC version
 	 * @var string
 	 */
-	const VERSION = '2.1.6';
+	const VERSION = '2.1.7';
 
 
 	/**
