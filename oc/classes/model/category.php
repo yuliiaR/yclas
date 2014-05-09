@@ -84,7 +84,7 @@ class Model_Category extends ORM {
 			        'parent_deep'		=> array(),
 			        'seoname'			=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
 			        'description'		=> array(array('max_length', array(':value', 255)), ),
-			        'price'				=> array(array('numeric')), );
+			        'price'				=> array(), );
 	}
 
 	/**
