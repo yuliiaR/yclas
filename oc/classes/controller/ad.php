@@ -52,14 +52,9 @@ class Controller_Ad extends Controller {
                 $category_parent = $category->parent;
         }
         
-        if($category == NULL AND $location == NULL)
-            $this->template->meta_description = Core::config('general.site_description');
-        else
-            $this->template->meta_description = Core::config('general.site_name').' '.__('Listing').' '.$category_name.' '.$location_name;
-
         //base title
         if ($category!==NULL)
-            $this->template->title = $category->name;
+            $this->template->title = $category_name;
         else
             $this->template->title = __('all');
 
