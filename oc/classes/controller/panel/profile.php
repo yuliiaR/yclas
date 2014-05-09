@@ -80,12 +80,12 @@ class Controller_Panel_Profile extends Auth_Controller {
         {
         	if ( Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats'))))
             {
-                Alert::set(Alert::ALERT, $image['name'].' '.__('Is not valid format, please use one of this formats "jpg, jpeg, png"'));
+                Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not valid format, please use one of this formats "%s"'),core::config('image.allowed_formats')));
                 $this->request->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
             } 
-            if(!Upload::size($image, core::config('image.max_image_size').'M'))
+            if( ! Upload::size($image, core::config('image.max_image_size').'M'))
             {
-                Alert::set(Alert::ALERT, $image['name'].' '.__('Is not of valid size. Size is limited on '.core::config('general.max_image_size').'MB per image'));
+                Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('general.max_image_size')));
                 $this->request->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
             }
             Alert::set(Alert::ALERT, $image['name'].' '.__('Image is not valid. Please try again.'));
@@ -96,16 +96,18 @@ class Controller_Panel_Profile extends Auth_Controller {
             if($image != NULL) // sanity check 
             {   
             	$user_id = Auth::instance()->get_user()->id_user;
-                // saving/uploadng zip file to dir.
+                // saving/uploading zip file to dir.
                 $root = DOCROOT.'images/users/'; //root folder
             	$image_name = $user_id.'.png';
             	$width = core::config('image.width'); // @TODO dynamic !?
             	$height = core::config('image.height');// @TODO dynamic !?
             	$image_quality = core::config('image.quality');
                 
-                // if folder doesnt exists
-               	if(!file_exists($root))
-               		mkdir($root, 775, true);
+                // if folder does not exist, try to make it
+               	if ( ! file_exists($root) AND ! @mkdir($root, 775, true)) { // mkdir not successful ?
+                        Alert::set(Alert::ERROR, __('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.'));
+                        return; // exit function
+                };
 
                 // save file to root folder, file, name, dir
                 if($file = Upload::save($image, $image_name, $root))
