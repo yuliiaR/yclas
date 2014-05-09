@@ -1,4 +1,4 @@
-<? 
+<?php 
 /**
  * HTML template for the install
  *
@@ -18,7 +18,8 @@ define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 
 //we check first short tags if not we can not even load the installer
 if (! ((bool) ini_get('short_open_tag')) )
-    die('<a href="http://php.net/manual/ini.core.php#ini.short-open-tag" target="_blank">short_open_tag</a> must be enabled in your php.ini.');
+    die('<strong><u>OC Installation requirement</u></strong>: Before you proceed with your OC installation: Keep in mind OC uses the short tag "short cut" syntax.<br><br> Thus the <a href="http://php.net/manual/ini.core.php#ini.short-open-tag" target="_blank">short_open_tag</a> directive must be enabled in your php.ini.<br><br><u>Easy Solution</u>:<ol><li>Open php.ini file and look for line short_open_tag = Off</li><li>Replace it with short_open_tag = On</li><li>Restart then your PHP server</li><li>Refresh this page to resume your OC installation</li><li>Enjoy OC ;)</li></ol>');
+
 
 if (file_exists(DOCROOT.'oc/config/database.php'))
     die('It seems Open Classifieds is already installed');
@@ -458,7 +459,7 @@ function __($msgid)
     <title>Open Classifieds <?=__("Installation")?></title>
     <meta name="keywords" content="" >
     <meta name="description" content="" >
-    <meta name="copyright" content="Open Classifieds <?=install::version?>" >
+    <meta name="copyright" content="Open Classifieds <?=install::VERSION?>" >
     <meta name="author" content="Open Classifieds">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -610,7 +611,7 @@ function __($msgid)
                 <div class="page-header">
                     <h1><?=__('Welcome')?> </h1>
                     <p><?=__('Thanks for using Open Classifieds.')?> 
-                        <?=__('Your installation version is')?> <span class="label label-info"><?=install::version?></span> 
+                        <?=__('Your installation version is')?> <span class="label label-info"><?=install::VERSION?></span> 
                     </p>
                     
                     <div class="clearfix"></div>
@@ -736,10 +737,9 @@ function hosting_view()
                 <li>100% Compatible High Speed Hosting</li>
                 <li>1 Premium Theme, of your choice worth $129.99</li>
                 <li>Professional Installation and Support worth $89</li>
-                <li>Free Domain name, worth $10</li>
                 <div class="clearfix"></div><br>
             <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/">
-                <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $5 Month</a>
+                <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $4 Month</a>
         </p>
     </div>
     <?

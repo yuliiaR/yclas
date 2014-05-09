@@ -35,7 +35,7 @@ class Controller_Panel_Pool extends Auth_Controller {
 				$user->status = Model_User::STATUS_ACTIVE;
 				try {
 					$user->save();
-					Alert::set(Alert::SUCCESS, __('User '.$user->name. ' is removed from black list.'));
+					Alert::set(Alert::SUCCESS, sprintf(__('User %s has been removed from black list.'),$user->name));
 					$this->request->redirect(Route::url('oc-panel', array('controller'=>'pool','action'=>'index')));
 				} catch (Exception $e){}
 			}

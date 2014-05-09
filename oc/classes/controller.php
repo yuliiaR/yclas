@@ -70,15 +70,18 @@ class Controller extends Kohana_Controller
             $this->template->title            = core::config('general.site_name');
             $this->template->meta_keywords    = '';
             $this->template->meta_description = '';
-            $this->template->meta_copywrite   = 'Open Classifieds '.Core::version;
+            $this->template->meta_copyright   = 'Open Classifieds '.Core::VERSION;
             $this->template->content          = '';
             $this->template->styles           = array();
             $this->template->scripts          = array();
 
-            //we can not cache this view since theres dynamic parts
+            //we can NOT cache this view since it contains dynamic parts
             //$this->template->header  = View::factory('header');
 
             //setting inner views try to get from fragment
+
+            // @FIXME @TOFIX no header_front_login fragment since CSRF gets cached :(
+            // possible workaround ? @see http://kohanaframework.org/3.0/guide/kohana/fragments
             // if (Auth::instance()->logged_in())
             //     $this->template->header  = View::fragment('header_front_login','header');
             // else
@@ -103,12 +106,10 @@ class Controller extends Kohana_Controller
     		$this->template->styles  = array_merge_recursive(Theme::$styles, $this->template->styles);
     		$this->template->scripts = array_reverse(array_merge_recursive(Theme::$scripts,$this->template->scripts));
     		
-            if ($this->template->title!='')
-                $concat = ' - ';
-            else
-                $concat = '';
+            if ($this->template->title != '')
+                $this->template->title .= ' - ';
 
-    		$this->template->title.= $concat.core::config('general.site_name');
+    		$this->template->title .= core::config('general.site_name');
 
             //auto generate keywords and description from content
             seo::$charset = Kohana::$charset;

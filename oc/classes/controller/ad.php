@@ -569,7 +569,7 @@ class Controller_Ad extends Controller {
                 {
                     
                     $payer_id       = Auth::instance()->get_user()->id_user;
-                    $id_product     = Paypal::advetisement_sell;
+                    $id_product     = Paypal::advertisement_sell;
                     $description    = $ad->title;
 
                     $ord_data = array('id_user'     => $payer_id,
@@ -593,7 +593,7 @@ class Controller_Ad extends Controller {
                     $ad->status = Model_Ad::STATUS_UNAVAILABLE;
                     $ad->save();
                     
-                    Alert::set(Alert::INFO, __('Advertisement').' "'.$ad->title.'" '.__('is sold out!'));
+                    Alert::set(Alert::INFO, sprintf(__('Advertisement %s is sold out!'),$ad->title));
                     $this->request->redirect(Route::url('default')); 
                 }
             }

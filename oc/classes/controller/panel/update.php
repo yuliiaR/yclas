@@ -28,11 +28,11 @@ class Controller_Panel_Update extends Auth_Controller {
         }
         else
         {
-            Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Updates')));
             $this->template->title = __('Updates');
+            Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
         
             //check if we have latest version of OC
-            if (key($versions)!=core::version)
+            if (key($versions)!=core::VERSION)
                 Alert::set(Alert::ALERT,__('You are not using latest version of OC, please update.').
                     '<br/><br/><a class="btn btn-primary update_btn" href="'.Route::url('oc-panel',array('controller'=>'update','action'=>'latest')).'">
                 '.__('Update').'</a>');
@@ -46,7 +46,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade configs that didn't existed in verisons below 2.0.3 
+     * This function will upgrade configs that didn't existed in versions prior to 2.0.3 
      */
     public function action_203()
     {
@@ -79,7 +79,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.0.5 
+     * This function will upgrade DB that didn't existed in versions prior to 2.0.5 
      * changes added: subscription widget, new email content, map zoom, paypal seller etc..  
      */
     public function action_205()
@@ -146,7 +146,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.0.5 
+     * This function will upgrade DB that didn't existed in versions prior to 2.0.5 
      * changes added: config for landing page, etc..  
      */
     public function action_206()
@@ -173,7 +173,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.0.6
+     * This function will upgrade DB that didn't existed in versions prior to 2.0.6
      * changes added: config for custom field
      */
     public function action_207()
@@ -192,7 +192,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.0.7
+     * This function will upgrade DB that didn't existed in versions prior to 2.0.7
      * changes added: config for advanced search by description
      */
     public function action_21()
@@ -245,16 +245,16 @@ class Controller_Panel_Update extends Auth_Controller {
                         array('config_key'     =>'config',
                                'group_name'     =>'social', 
                                'config_value'   =>'{"debug_mode":"0","providers":{
-                                                                          "OpenID":{"enabled":"1"},
-                                                                          "Yahoo":{"enabled":"0","keys":{"id":"","secret":""}},
-                                                                          "AOL":{"enabled":"1"}
-                                                                          ,"Google":{"enabled":"0","keys":{"id":"","secret":""}},
-                                                                          "Facebook":{"enabled":"0","keys":{"id":"","secret":""}},
-                                                                          "Twitter":{"enabled":"0","keys":{"key":"","secret":""}},
-                                                                          "Live":{"enabled":"0","keys":{"id":"","secret":""}},
-                                                                          "MySpace":{"enabled":"0","keys":{"key":"","secret":""}},
-                                                                          "LinkedIn":{"enabled":"0","keys":{"key":"","secret":""}},
-                                                                          "Foursquare":{"enabled":"0","keys":{"id":"","secret":""}}},
+                                                          "OpenID":{"enabled":"1"},
+                                                          "Yahoo":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                          "AOL":{"enabled":"1"}
+                                                          ,"Google":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                          "Facebook":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                          "Twitter":{"enabled":"0","keys":{"key":"","secret":""}},
+                                                          "Live":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                          "MySpace":{"enabled":"0","keys":{"key":"","secret":""}},
+                                                          "LinkedIn":{"enabled":"0","keys":{"key":"","secret":""}},
+                                                          "Foursquare":{"enabled":"0","keys":{"id":"","secret":""}}},
                                                       "base_url":"",
                                                       "debug_file":""}'));
 
@@ -265,7 +265,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.1
+     * This function will upgrade DB that didn't existed in versions prior to 2.1
      */
     public function action_211()
     {
@@ -287,7 +287,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.1.3
+     * This function will upgrade DB that didn't existed in versions prior to 2.1.3
      */
     public function action_214()
     {        
@@ -305,7 +305,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.1.5
+     * This function will upgrade DB that didn't existed in versions prior to 2.1.5
      */
     public function action_215()
     {        
@@ -326,21 +326,21 @@ class Controller_Panel_Update extends Auth_Controller {
         $contents = array(array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is sold on [SITE.NAME]!',
                                'seotitle'=>'adssold',
-                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nPlease check your bank account for the incoming payment.\n\nClick here to visit [URL.AD]",
+                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nPlease check your bank account for the incoming payment.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is purchased on [SITE.NAME]!',
                                'seotitle'=>'adspurchased',
-                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME], with a details provided abouve.\n\nClick here to visit [URL.AD]",
+                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME], with a details provided abouve.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is out of stock on [SITE.NAME]!',
                                'seotitle'=>'outofstock',
-                               'description'=>"Hello [USER.NAME],\n\nWhile your ad is out of stock, it is unavailable for others to see. If you wish to increase stock and activate, please follow this link [URL.EDIT].\n\nRegards!",
+                               'description'=>"Hello [USER.NAME],\n\nWhile your ad is out of stock, it is unavailable for others to see. If you wish to increase stock and activate, please follow this link [URL.EDIT].\n\nRegards!", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),);
@@ -375,7 +375,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.1.6
+     * This function will upgrade DB that didn't existed in versions prior to 2.1.6
      */
     public function action_216()
     {        
@@ -401,7 +401,8 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.0.6
+     * This function will upgrade DB that didn't existed in previous versions
+     * @FIXME @TOFIX  NEVER USED / NEVER CALLED
      */
     public function action_latest()
     {

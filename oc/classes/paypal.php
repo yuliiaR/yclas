@@ -30,7 +30,7 @@ class Paypal {
     const category_product      = 1;
     const to_top                = 2;
     const to_featured           = 3;
-    const advetisement_sell     = 4;
+    const advertisement_sell    = 4;
 
     /**
      * @var  array  Available statuses array
@@ -39,7 +39,7 @@ class Paypal {
         self::category_product  =>  'Paid category',
         self::to_top            =>  'Top up ad',
         self::to_featured       =>  'Feature ad',
-        self::advetisement_sell =>  'Advetisement sold',
+        self::advertisement_sell=>  'Advertisement sold',
     );
 
     /**

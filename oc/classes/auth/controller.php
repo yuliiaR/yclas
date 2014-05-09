@@ -35,7 +35,7 @@ class Auth_Controller extends Controller
 			//check if user is login
 			if (!Auth::instance()->logged_in( $request->controller(), $request->action(), $request->directory()))
 			{
-				Alert::set(Alert::ERROR, __('You do not have permissions to access '.$request->controller().' '.$request->action()));
+				Alert::set(Alert::ERROR, sprintf(__('You do not have permissions to access %s', $request->controller().' '.$request->action())));
 				$url = Route::get('oc-panel')->uri(array(
 													 'controller' => 'auth', 
 													 'action'     => 'login'));
@@ -77,7 +77,7 @@ class Auth_Controller extends Controller
 			$this->template->title            = __('Panel').' - '.core::config('general.site_name');
 			$this->template->meta_keywords    = '';
 			$this->template->meta_description = '';
-			$this->template->meta_copywrite   = 'Open Classifieds '.Core::version;
+			$this->template->meta_copyright   = 'Open Classifieds '.Core::VERSION;
 			$this->template->header           = View::factory('oc-panel/header');
 			$this->template->content          = '';
 			$this->template->footer           = View::factory('oc-panel/footer');

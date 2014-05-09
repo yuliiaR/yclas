@@ -290,7 +290,7 @@ class Model_Location extends ORM {
 
             foreach ($cat_ids as $c) 
             {
-                $locs[] = $l->id_location;
+                $locs[] = $c->id_location;
             }
         }
 

@@ -157,7 +157,7 @@
 			<?endif?>
 	    	
 	    	<td><?= substr($ad->published, 0, 11)?></td>
-			<td width="120px">
+			<td width="120" style="width:120px">
 				<a class="btn btn-primary " 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
 					rel="tooltip" title="<?=__('Update')?>">

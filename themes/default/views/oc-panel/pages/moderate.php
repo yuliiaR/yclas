@@ -93,7 +93,7 @@
 				<td><?=__('Unavailable')?></td>
 			<?endif?>
 	    	<td><?= substr($ad->created, 0, 11)?></td>
-			<td width="150px">
+			 <td width="150" style="width:150px">
 				<a class="btn btn-primary" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
 					rel="tooltip" title="<?=__('Update')?>">
