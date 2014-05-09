@@ -28,8 +28,8 @@ class Controller_Panel_Update extends Auth_Controller {
         }
         else
         {
-            Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Updates')));
             $this->template->title = __('Updates');
+            Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
         
             //check if we have latest version of OC
             if (key($versions)!=core::version)
@@ -326,21 +326,21 @@ class Controller_Panel_Update extends Auth_Controller {
         $contents = array(array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is sold on [SITE.NAME]!',
                                'seotitle'=>'adssold',
-                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nPlease check your bank account for the incoming payment.\n\nClick here to visit [URL.AD]",
+                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nPlease check your bank account for the incoming payment.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is purchased on [SITE.NAME]!',
                                'seotitle'=>'adspurchased',
-                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME], with a details provided abouve.\n\nClick here to visit [URL.AD]",
+                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME], with a details provided abouve.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is out of stock on [SITE.NAME]!',
                                'seotitle'=>'outofstock',
-                               'description'=>"Hello [USER.NAME],\n\nWhile your ad is out of stock, it is unavailable for others to see. If you wish to increase stock and activate, please follow this link [URL.EDIT].\n\nRegards!",
+                               'description'=>"Hello [USER.NAME],\n\nWhile your ad is out of stock, it is unavailable for others to see. If you wish to increase stock and activate, please follow this link [URL.EDIT].\n\nRegards!", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),);
@@ -375,7 +375,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.1.6
+     * This function will upgrade DB that didn't existed in versions prior to 2.1.6
      */
     public function action_216()
     {        
