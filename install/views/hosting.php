@@ -21,9 +21,8 @@
             <li>100% Compatible High Speed Hosting</li>
             <li>1 Premium Theme, of your choice worth $129.99</li>
             <li>Professional Installation and Support worth $89</li>
-            <li>Free Domain name, worth $10</li>
             <div class="clearfix"></div><br>
         <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/">
-            <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $5 Month</a>
+            <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $4 Month</a>
     </p>
 </div>
