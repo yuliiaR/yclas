@@ -52,7 +52,7 @@ class Controller_Payment_Paypal extends Controller{
 			} 
 
             //order is from a payment done to the owner of the ad
-            if ($order->id_product == Paypal::advetisement_sell)
+            if ($order->id_product == Paypal::advertisement_sell)
             {
                 $user_paid = $order->ad->user;
 
