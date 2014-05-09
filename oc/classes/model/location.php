@@ -107,7 +107,7 @@ class Model_Location extends ORM {
                               ),
                 'id_location_parent' => array(
                                 array(array($this, 'check_parent'))
-                              )
+                              ),
         );
     }
 
@@ -258,8 +258,6 @@ class Model_Location extends ORM {
         $form->fields['id_location_parent']['display_as']   = 'select';
         $form->fields['id_location_parent']['caption']      = 'name';   
 
-        $form->fields['parent_deep']['display_as']   = 'select';
-        $form->fields['parent_deep']['options']      = range(0, 10);
         $form->fields['order']['display_as']   = 'select';
         $form->fields['order']['options']      = range(1, 100);
 
@@ -270,7 +268,7 @@ class Model_Location extends ORM {
 
 	public function exclude_fields()
 	{
-	  return array('created');
+	  return array('created','parent_deep');
 	}
 
     /**
@@ -342,6 +340,34 @@ class Model_Location extends ORM {
         }
 
         return $seoname;
+    }
+
+    /**
+     * returns the deep of parents of this location
+     * @return integer
+     */
+    public function get_deep()
+    {
+        //initial deep
+        $deep = 0;
+
+        if ($this->loaded())
+        {
+            //getting all the cats as array
+            list($locs_arr,$locs_m) = Model_Location::get_all();
+
+            //getin the parent of this location
+            $id_location_parent = $locs_arr[$this->id_location]['id_location_parent'];
+
+            //counting till we find the begining
+            while ($id_location_parent != 1 AND $id_location_parent != 0 AND $deep<100) 
+            {
+                $id_location_parent = $locs_arr[$id_location_parent]['id_location_parent'];
+                $deep++;
+            }
+        }
+        
+        return $deep;
     }
 
     /**
