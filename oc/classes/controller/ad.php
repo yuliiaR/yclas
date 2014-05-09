@@ -29,7 +29,9 @@ class Controller_Ad extends Controller {
         if (Model_Location::current()->loaded())
         {
         	$location = Model_Location::current();
+            if($location->id_location != 1)
             $location_name = $location->name;
+        
             //adding the location parent
             if ($location->id_location_parent!=1 AND $location->parent->loaded())
                 $location_parent = $location->parent;
@@ -43,7 +45,8 @@ class Controller_Ad extends Controller {
         if (Model_Category::current()->loaded())
         {
             $category = Model_Category::current();
-            $category_name = $category->name;
+            if($category->id_category != 1)
+                $category_name = $category->name;
             //adding the category parent
             if ($category->id_category_parent!=1 AND $category->parent->loaded())
                 $category_parent = $category->parent;
