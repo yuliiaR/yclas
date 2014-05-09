@@ -569,7 +569,7 @@ class Controller_Ad extends Controller {
                 {
                     
                     $payer_id       = Auth::instance()->get_user()->id_user;
-                    $id_product     = Paypal::advetisement_sell;
+                    $id_product     = Paypal::advertisement_sell;
                     $description    = $ad->title;
 
                     $ord_data = array('id_user'     => $payer_id,
