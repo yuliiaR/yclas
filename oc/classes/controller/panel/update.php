@@ -46,7 +46,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade configs that didn't existed in verisons below 2.0.3 
+     * This function will upgrade configs that didn't existed in versions prior to 2.0.3 
      */
     public function action_203()
     {
@@ -79,7 +79,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.0.5 
+     * This function will upgrade DB that didn't existed in versions prior to 2.0.5 
      * changes added: subscription widget, new email content, map zoom, paypal seller etc..  
      */
     public function action_205()
@@ -146,7 +146,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.0.5 
+     * This function will upgrade DB that didn't existed in versions prior to 2.0.5 
      * changes added: config for landing page, etc..  
      */
     public function action_206()
@@ -173,7 +173,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.0.6
+     * This function will upgrade DB that didn't existed in versions prior to 2.0.6
      * changes added: config for custom field
      */
     public function action_207()
@@ -192,7 +192,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.0.7
+     * This function will upgrade DB that didn't existed in versions prior to 2.0.7
      * changes added: config for advanced search by description
      */
     public function action_21()
@@ -245,16 +245,16 @@ class Controller_Panel_Update extends Auth_Controller {
                         array('config_key'     =>'config',
                                'group_name'     =>'social', 
                                'config_value'   =>'{"debug_mode":"0","providers":{
-                                                                          "OpenID":{"enabled":"1"},
-                                                                          "Yahoo":{"enabled":"0","keys":{"id":"","secret":""}},
-                                                                          "AOL":{"enabled":"1"}
-                                                                          ,"Google":{"enabled":"0","keys":{"id":"","secret":""}},
-                                                                          "Facebook":{"enabled":"0","keys":{"id":"","secret":""}},
-                                                                          "Twitter":{"enabled":"0","keys":{"key":"","secret":""}},
-                                                                          "Live":{"enabled":"0","keys":{"id":"","secret":""}},
-                                                                          "MySpace":{"enabled":"0","keys":{"key":"","secret":""}},
-                                                                          "LinkedIn":{"enabled":"0","keys":{"key":"","secret":""}},
-                                                                          "Foursquare":{"enabled":"0","keys":{"id":"","secret":""}}},
+                                                          "OpenID":{"enabled":"1"},
+                                                          "Yahoo":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                          "AOL":{"enabled":"1"}
+                                                          ,"Google":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                          "Facebook":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                          "Twitter":{"enabled":"0","keys":{"key":"","secret":""}},
+                                                          "Live":{"enabled":"0","keys":{"id":"","secret":""}},
+                                                          "MySpace":{"enabled":"0","keys":{"key":"","secret":""}},
+                                                          "LinkedIn":{"enabled":"0","keys":{"key":"","secret":""}},
+                                                          "Foursquare":{"enabled":"0","keys":{"id":"","secret":""}}},
                                                       "base_url":"",
                                                       "debug_file":""}'));
 
@@ -265,7 +265,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.1
+     * This function will upgrade DB that didn't existed in versions prior to 2.1
      */
     public function action_211()
     {
@@ -287,7 +287,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.1.3
+     * This function will upgrade DB that didn't existed in versions prior to 2.1.3
      */
     public function action_214()
     {        
@@ -305,7 +305,7 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.1.5
+     * This function will upgrade DB that didn't existed in versions prior to 2.1.5
      */
     public function action_215()
     {        
@@ -375,7 +375,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.1.6
+     * This function will upgrade DB that didn't existed in versions prior to 2.1.6
      */
     public function action_216()
     {        
@@ -401,7 +401,8 @@ class Controller_Panel_Update extends Auth_Controller {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in verisons below 2.0.6
+     * This function will upgrade DB that didn't existed in previous versions
+     * @FIXME @TOFIX  NEVER USED / NEVER CALLED
      */
     public function action_latest()
     {
