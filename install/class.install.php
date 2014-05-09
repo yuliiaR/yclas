@@ -549,7 +549,7 @@ class core{
      *
      * Adapted from
      * @link http://www.thefutureoftheweb.com/blog/use-accept-language-header
-     * @param string $lang default language to retunr in case of any
+     * @param string $lang default language to return in case of any
      * @return NULL|string  favorite user's language
      *
      */

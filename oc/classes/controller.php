@@ -75,10 +75,13 @@ class Controller extends Kohana_Controller
             $this->template->styles           = array();
             $this->template->scripts          = array();
 
-            //we can not cache this view since theres dynamic parts
+            //we can NOT cache this view since it contains dynamic parts
             //$this->template->header  = View::factory('header');
 
             //setting inner views try to get from fragment
+
+            // @FIXME @TOFIX no header_front_login fragment since CSRF gets cached :(
+            // possible workaround ? @see http://kohanaframework.org/3.0/guide/kohana/fragments
             // if (Auth::instance()->logged_in())
             //     $this->template->header  = View::fragment('header_front_login','header');
             // else

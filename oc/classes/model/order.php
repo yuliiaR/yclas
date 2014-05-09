@@ -85,7 +85,7 @@ class Model_Order extends ORM {
             }
         
             // update product
-            if($this->id_product == Paypal::advetisement_sell)
+            if($this->id_product == Paypal::advertisement_sell)
             {
                 // decrease limit of ads, if 0 deactivate
                 if($advert->stock >0)
