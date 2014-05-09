@@ -62,6 +62,9 @@
                 <?if (core::config('general.faq')==1):?>
                     <?=Theme::nav_link(__('FAQ'),'faq','','index','faq')?>
                 <?endif?>
+                <?if (core::config('general.forums')==1):?>
+                    <?=Theme::nav_link(__('Forums'),'forum','glyphicon glyphicon-tag','index','forum-home')?>
+                <?endif?>
                 <?=Theme::nav_link('','ad', 'glyphicon glyphicon-search ', 'advanced_search', 'search')?>
                 <?if (core::config('advertisement.map')==1):?>
                     <?=Theme::nav_link('','map', 'glyphicon glyphicon-globe ', 'index', 'map')?>

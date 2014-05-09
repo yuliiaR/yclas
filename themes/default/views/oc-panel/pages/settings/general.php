@@ -455,6 +455,21 @@
                 </div>
             </div>
         <div class="form-group">
+            <?= FORM::label($forms['forums']['key'], __("Activates Forums"), array('class'=>'control-label col-sm-3', 'for'=>$forms['forums']['key']))?>
+            <div class="col-md-4">
+                <?= FORM::select($forms['forums']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['forums']['value'], array(
+                'placeholder' => "TRUE or FALSE", 
+                'class' => 'tips form-control', 
+                'id' => $forms['forums']['key'], 
+                'data-content'=> __("Once set to TRUE, enables forums posts"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Activates Forums"),
+                ))?> 
+            </div>
+        </div>
+        <div class="form-group">
             <?= FORM::label($forms['faq']['key'], __("Activates FAQ"), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq']['key']))?>
             <div class="col-sm-4">
                 <?= FORM::select($forms['faq']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['faq']['value'], array(
