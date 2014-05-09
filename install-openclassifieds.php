@@ -1,4 +1,4 @@
-<? 
+<?php 
 /**
  * HTML template for the install
  *
