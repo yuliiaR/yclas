@@ -593,7 +593,7 @@ class Controller_Ad extends Controller {
                     $ad->status = Model_Ad::STATUS_UNAVAILABLE;
                     $ad->save();
                     
-                    Alert::set(Alert::INFO, __('Advertisement').' "'.$ad->title.'" '.__('is sold out!'));
+                    Alert::set(Alert::INFO, sprintf(__('Advertisement %s is sold out!'),$ad->title));
                     $this->request->redirect(Route::url('default')); 
                 }
             }

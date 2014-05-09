@@ -275,14 +275,14 @@ class Model_Ad extends ORM {
         ! Upload::size($image, core::config('image.max_image_size').'M'))
         {
             if (Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats')))){
-                Alert::set(Alert::ALERT, $image['name'].' '.__('Is not valid format, please use one of this formats "'.core::config('image.allowed_formats').'"'));
+                Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not valid format, please use one of this formats "%s"'),core::config('image.allowed_formats')));
                 return;
             }
-            if(!Upload::size($image, core::config('image.max_image_size').'M')){
-                Alert::set(Alert::ALERT, $image['name'].' '.__('Is not of valid size. Size is limited on '.core::config('image.max_image_size').'MB per image'));
+            if( ! Upload::size($image, core::config('image.max_image_size').'M')){
+                Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('general.max_image_size')));
                 return;
             }
-            if(!Upload::not_empty($image))
+            if( ! Upload::not_empty($image))
                 return;
         }
           
@@ -296,9 +296,9 @@ class Model_Ad extends ORM {
             $height_thumb   = core::config('image.height_thumb');
             $height         = core::config('image.height');
 
-            if(!is_numeric($height)) // when installing this field is empty, to avoid crash we check here
+            if( ! is_numeric($height)) // when installing this field is empty, to avoid crash we check here
                 $height         = NULL;
-            if(!is_numeric($height_thumb))
+            if( ! is_numeric($height_thumb))
                 $height_thumb   = NULL;    
             
             // count how many files are saved 
@@ -353,7 +353,7 @@ class Model_Ad extends ORM {
                 /*end WATERMARK variables*/
 
                 //if original image is bigger that our constants we resize
-                $image_size_orig    = getimagesize($file);
+                $image_size_orig = getimagesize($file);
                 
                     if($image_size_orig[0] > $width || $image_size_orig[1] > $height)
                     {
@@ -395,7 +395,7 @@ class Model_Ad extends ORM {
                                 ->save($directory.$filename_thumb); 
                 }
                 // Delete the temporary file
-                unlink($file);
+                @unlink($file);
                 return TRUE;
             }
             else 
@@ -436,9 +436,10 @@ class Model_Ad extends ORM {
         
         
 
-        if(!is_dir($path)){         // check if path exists 
-                mkdir($path, 0755, TRUE);
-            }
+        if ( ! is_dir($path) AND ! @mkdir($path, 0755, TRUE)) { // mkdir not successful ?
+            Alert::set(Alert::ERROR, 'model\ad.php:image_path(): '.__('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.'));
+            return 'images/'; // hopefully
+        }
 
         return $path;
     }

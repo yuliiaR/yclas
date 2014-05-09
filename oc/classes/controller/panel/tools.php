@@ -26,9 +26,8 @@ class Controller_Panel_Tools extends Auth_Controller {
 
     public function action_optimize()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Optimize DB')));
-        
         $this->template->title = __('Optimize DB');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
 
         $db = Database::instance('default');
 
@@ -78,9 +77,8 @@ class Controller_Panel_Tools extends Auth_Controller {
 
     public function action_cache()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Cache')));
-        
         $this->template->title = __('Cache');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
 
         $cache_config = Core::config('cache.'.Core::config('cache.default'));
 
@@ -108,9 +106,8 @@ class Controller_Panel_Tools extends Auth_Controller {
 
     public function action_phpinfo()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('PHP Info')));
-        
         $this->template->title = __('PHP Info');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
 
         //getting the php info clean!
         ob_start();                                                                                                        
@@ -128,9 +125,9 @@ class Controller_Panel_Tools extends Auth_Controller {
 
     public function action_logs()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('System logs')));
-        
         $this->template->title = __('System logs');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
+
         //local files
         if (Theme::get('cdn_files') == FALSE)
         {
@@ -156,10 +153,9 @@ class Controller_Panel_Tools extends Auth_Controller {
 
     public function action_import_tool()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Import tool for locations and categories')));
-        
         $this->template->title = __('Import tool for locations and categories');
-        
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
+
         if($_POST)
         {
 
@@ -203,7 +199,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                     
                     if($array == FALSE)
                     {
-                        Alert::set(Alert::INFO, __('File '.$path['name'].' contains invalid parsing format!'));
+                        Alert::set(Alert::INFO, sprintf(__('File %s contains invalid parsing format!'),$path['name']));
                         $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
                     }
                    
@@ -223,7 +219,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                     }
                     
 
-                    Alert::set(Alert::SUCCESS, __($type.' have been created'));
+                    Alert::set(Alert::SUCCESS, sprintf(__('%s have been created'),$type));
                 }
             }
         } 
@@ -234,11 +230,9 @@ class Controller_Panel_Tools extends Auth_Controller {
 
     public function action_sitemap()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Sitemap')));
-        
         $this->template->title = __('Sitemap');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
 
-        
         // all sitemap config values
         $sitemapconfig = new Model_Config();
         $config = $sitemapconfig->where('group_name', '=', 'sitemap')->find_all();
@@ -316,7 +310,6 @@ class Controller_Panel_Tools extends Auth_Controller {
 
             try
             {
-
                 //connect DB
                 $db = Database::instance('migrate', $db_config);
 
@@ -344,10 +337,10 @@ class Controller_Panel_Tools extends Auth_Controller {
             $match_tables = TRUE;
             foreach ($migration_tables as $t) 
             {
-                if(!in_array($t, $tables))
+                if( ! in_array($t, $tables))
                 {
                     $match_tables = FALSE;
-                    Alert::set(Alert::ERROR, ('Table '.$t.'not found'));
+                    Alert::set(Alert::ERROR, sprintf(__('Table %s not found'),$t));
                 }
                     
             }
@@ -359,7 +352,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 //start migration
                 $start_time = microtime(true);
                 $this->migrate($db,$pf);
-                Alert::set(Alert::SUCCESS, 'oh yeah! '.round((microtime(true)-$start_time),3).__('seconds'));
+                Alert::set(Alert::SUCCESS, 'oh yeah! '.round((microtime(true)-$start_time),3).' '.__('seconds'));
             }
             
         }

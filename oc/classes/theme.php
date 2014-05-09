@@ -670,7 +670,7 @@ class Theme {
                 {
                     if ($settings['license'] == $l)
                     {
-                        Alert::set(Alert::INFO, __('This license is in use in the theme ').$theme);
+                        Alert::set(Alert::INFO, sprintf(__('This license is in use in the theme %s'),$theme));
                         return FALSE;
                     }
                 }
