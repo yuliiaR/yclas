@@ -1,5 +1,5 @@
 $(function (){
-console.log($("textarea[name=description]").data('editor'));
+
     if ($("textarea[name=description]").data('editor')=='html')
     {
         $("#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields").sceditor({

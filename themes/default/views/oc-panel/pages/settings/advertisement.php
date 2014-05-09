@@ -340,17 +340,20 @@
 				<?= FORM::label($forms['banned_words']['key'], __('Banned words'), array('class'=>'control-label col-sm-3', 'for'=>$forms['banned_words']['key']))?>
 				<div class="col-sm-4">
 					<?= FORM::input($forms['banned_words']['key'], $forms['banned_words']['value'], array(
-					'placeholder' => "word1,word2,word3", 
+					'placeholder' => __('For banned word push enter.'), 
 					'class' => 'tips form-control', 
 					'id' => $forms['banned_words']['key'], 
 					'data-original-title'=> __("Banned words are separated with coma (,)"),
 					'data-trigger'=>"hover",
 					'data-placement'=>"right",
 					'data-toggle'=>"popover",
+					'data-role'=>'tagsinput',
 					'data-content'=>__("You need to write your banned words to enable the service."),
 					))?> 
 				</div>
+
 			</div>
+
 			<div class="form-group">
 				<?= FORM::label($forms['banned_words_replacement']['key'], __('Banned words replacement'), array('class'=>'control-label col-sm-3', 'for'=>$forms['banned_words_replacement']['key']))?>
 				<div class="col-sm-4">
