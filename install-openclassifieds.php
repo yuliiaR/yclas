@@ -458,7 +458,7 @@ function __($msgid)
     <title>Open Classifieds <?=__("Installation")?></title>
     <meta name="keywords" content="" >
     <meta name="description" content="" >
-    <meta name="copyright" content="Open Classifieds <?=install::version?>" >
+    <meta name="copyright" content="Open Classifieds <?=install::VERSION?>" >
     <meta name="author" content="Open Classifieds">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -610,7 +610,7 @@ function __($msgid)
                 <div class="page-header">
                     <h1><?=__('Welcome')?> </h1>
                     <p><?=__('Thanks for using Open Classifieds.')?> 
-                        <?=__('Your installation version is')?> <span class="label label-info"><?=install::version?></span> 
+                        <?=__('Your installation version is')?> <span class="label label-info"><?=install::VERSION?></span> 
                     </p>
                     
                     <div class="clearfix"></div>

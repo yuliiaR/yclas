@@ -56,7 +56,7 @@ else
     <title>Open Classifieds <?=__("Installation")?></title>
     <meta name="keywords" content="" >
     <meta name="description" content="" >
-    <meta name="copyright" content="Open Classifieds <?=install::version?>" >
+    <meta name="copyright" content="Open Classifieds <?=install::VERSION?>" >
     <meta name="author" content="Open Classifieds">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
