@@ -17,6 +17,7 @@ class Controller_Ad extends Controller {
 		$this->template->scripts['footer'][] = 'js/sort.js';
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		
+        $this->template->meta_description = Core::config('general.site_description');
         /**
          * we get the model of category and location from controller to filter and generate urls titles etc...
          */
@@ -43,7 +44,6 @@ class Controller_Ad extends Controller {
             if ($category->id_category_parent!=1 AND $category->parent->loaded())
                 $category_parent = $category->parent;
         }
-           
         
         //base title
         if ($category!==NULL)
