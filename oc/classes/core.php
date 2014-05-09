@@ -10,7 +10,7 @@
  */
 
 class Core {
-	
+
 	/**
 	 * 
 	 * OC version
@@ -18,31 +18,34 @@ class Core {
 	 */
 	const version = '2.1.6';
 
-	
+
 	/**
 	 * 
 	 * Initializes configs for the APP to run
 	 */
 	public static function initialize()
 	{	
-        		
+
 		/**
 		 * Load all the configs from DB
 		 */
 		//Change the default cache system, based on your config /config/cache.php
 		Cache::$default = Core::config('cache.default');
-		
+
 		//is not loaded yet in Kohana::$config
 		Kohana::$config->attach(new ConfigDB(), FALSE);
 
 		//overwrite default Kohana init configs.
 		Kohana::$base_url = Core::config('general.base_url');
-		
+
 		//enables friendly url @todo from config
 		Kohana::$index_file = FALSE;
 		//cookie salt for the app
 		Cookie::$salt = Core::config('auth.cookie_salt');
-		
+		/* if (empty(Cookie::$salt)) {
+			// @TODO missing cookie salt : add warning message
+		} */
+
 		// -- i18n Configuration and initialization -----------------------------------------
 		I18n::initialize(Core::config('i18n.locale'),Core::config('i18n.charset'));
 
@@ -56,7 +59,7 @@ class Core {
         Theme::initialize();
 
 	}
-	
+
 
 	/**
      * Shortcut to load a group of configs
@@ -139,7 +142,6 @@ class Core {
             return Cache::instance()->set($name,$data, $lifetime);
     }
 
-    
 
 
     /**
@@ -195,7 +197,7 @@ class Core {
     {
         //we check the date of our local versions.php
         $version_file = APPPATH.'config/versions.php';
-        
+
         //if older than a month or ?reload=1 force reload
         if ( time() > strtotime('+1 week',filemtime($version_file)) OR $reload === TRUE )
         {
@@ -210,7 +212,7 @@ class Core {
                 //@todo check file permissions?
                 File::write($version_file, $content);
             }
-            
+
         }
     }
 
@@ -255,8 +257,8 @@ class Core {
         // $contents = curl_exec($c);
         $contents = core::curl_exec_follow($c);
 
-        
-        if(!curl_errno($c))
+
+        if( ! curl_errno($c))
         {
             curl_close($c);
             return ($contents)? $contents : FALSE;
