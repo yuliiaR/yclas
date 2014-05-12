@@ -353,6 +353,7 @@ class Controller_Panel_Profile extends Auth_Controller {
             $this->template->styles = array('css/datepicker.css' => 'screen');
             $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js', 
                                                        'js/jquery.validate.min.js',
+                                                       'js/jquery.chained.min.js',
 	                                                   'js/oc-panel/edit_ad.js');
         }
         else
@@ -360,6 +361,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			$this->template->styles = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
 	        $this->template->scripts['footer'] = array('http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
 	                                                   'js/jquery.validate.min.js',
+	                                                   'js/jquery.chained.min.js',
 	                                                   'js/oc-panel/edit_ad.js');
         }
 
@@ -371,7 +373,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		$form = new Model_Ad($this->request->param('id'));
 		
 		//find all, for populating form select fields 
-		list($categories,$order_categories)  = Model_Category::get_all();
+		list($categories,$order_categories, $parent_category)  = Model_Category::get_all();
 
 		list($locations,$order_locations)  = Model_Location::get_all();
 
@@ -386,6 +388,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 																					   'order_locations'  	=>$order_locations, 
 																					   'categories'			=>$categories,
 																					   'order_categories'	=>$order_categories,
+																					   'order_parent_deep'	=>$parent_category,
 																					   'extra_payment'		=>$extra_payment,
 																					   'fields'             => Model_Field::get_all()));
 		

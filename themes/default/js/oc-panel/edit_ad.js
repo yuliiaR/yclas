@@ -41,19 +41,60 @@ $('.accordion-heading .radio a').click(function(){
     if($('.cf_date_fields').length != 0){
         $('.cf_date_fields').datepicker();}
     
-    showCustomFieldsByCategory("input[name=category]:checked");
-    // custom fields set to categories
-    $( "input[name=category]" ).on( "click", function() {
-        showCustomFieldsByCategory(this);
+    //turn off chosen
+    $(window).load(function(){
+        $('select').each(function(){
+            $(this).chosen(); 
+            $(this).chosen('destroy');      
+        }); 
+        $('select').change(function() {
+            $('select').each(function(){
+                $(this).chosen(); 
+                $(this).chosen('destroy');      
+            });
+        });
+    });
+    // activate for each level chained select
+    $('.category_chained_select').each(function(){
+        var level = $(this).data('level');
+        if('#level-'+(level-1)){
+            $('#level-'+level).chained('#level-'+(level-1));
+        }
     });
 
-    // if normal user render only custom fields of his category
-    if($("span[data-trigger=category]").length > 0){
-        $("input[name=category]").trigger('click', function(){
-            showCustomFieldsByCategory("input[name=category]");
-        }); 
-    }
-    
+    // this will select the correct ID for uploading category
+    $( ".category_chained_select" ).change(function() {
+
+      $( "option:selected", this ).each(function() {
+            var value_category_id = $(this).attr('value');
+
+            if($(this).parent().hasClass('is_parent') || $(this).parent().data('level') > 0){
+
+                $('#category-selected').attr('value',value_category_id);
+                showCustomFieldsByCategory($('input[name=category]'));
+                $('.category-price').text('');
+                if($(this).data('price') > 0)
+                    $('.category-price').text($(this).data('price'));
+            }
+                //coloring select, for user to know if he select option is taken or not
+                if($('#category-selected').attr('value') != ''){
+                    //adding green color, success
+                    $(this).parent().css('background','#dff0d8');
+                    $('.selected-category').html($('.category_chained_select option[value='+$('#category-selected').attr('value')+']').text()).one();
+                }
+        
+                if($('#category-selected').attr('value') == ''){
+                    $(this).parent().css('background','#fff');
+                    $('.selected-category').html('');
+                }
+                     
+        });
+                
+    });
+
+    var categ_selected = $('.category_chained_select option:selected').attr('value');
+
+    showCustomFieldsByCategory($("input[name=category]"));
     
     function showCustomFieldsByCategory(element){
         id_categ = $(element).val();
@@ -66,14 +107,12 @@ $('.accordion-heading .radio a').click(function(){
             {
                 // show if cf fields if they dont have categories set
                 if(dataCategories.length != 2){
-                    field.closest('.form-group').css('display','none');
+                    field.closest('.form-group#cf_new').css('display','none');
                     field.prop('disabled', true);
                 }
                 else{
                     field.closest('.form-group#cf_new').css('display','block');
                     field.prop('disabled', false);
-                    $(".cf_select_fields").chosen('destroy'); // refresh chosen
-                    $(".cf_select_fields").chosen(); // refresh chosen
                 }
                 if(dataCategories !== undefined)  
                 {   
@@ -82,11 +121,9 @@ $('.accordion-heading .radio a').click(function(){
                         // apply if they have equal id_category 
                         $.each($.parseJSON(dataCategories), function (index, value) { 
                             if(id_categ == value){
-                                console.log(value);
-                                field.closest('.form-group').css('display','block');
+                                // console.log(index);
+                                field.closest('.form-group#cf_new').css('display','block');
                                 field.prop('disabled', false);
-                                $(".cf_select_fields").chosen('destroy'); // refresh chosen
-                                $(".cf_select_fields").chosen(); // refresh chosen
                             }
                         });
                     }
