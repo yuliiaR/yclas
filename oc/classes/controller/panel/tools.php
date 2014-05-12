@@ -172,8 +172,10 @@ class Controller_Panel_Tools extends Auth_Controller {
                         //avoid first line
                         if ($i!=0)
                         {
-
+                            
                             list($name, $seoname) = $data;
+                            // $name = str_replace("'", "`", $name);
+                            // $seoname = str_replace("'", "`", $seoname);
                             if($file=='csv_file_categories')
                             {
                                 $obj_category = new Model_Category();
@@ -209,12 +211,21 @@ class Controller_Panel_Tools extends Auth_Controller {
 
                     $query = DB::query(Database::UPDATE,"INSERT INTO `".$prefix.$type."`
                         (`name` ,`id_".$t."_parent`,`seoname`)
-                        VALUES $array ON DUPLICATE KEY UPDATE `id_".$t."_parent`=1;");
-                    $query->execute();
-                    
+                        VALUES $array ON DUPLICATE KEY UPDATE `id_".$t."_parent`=1;"); 
+
+                    try 
+                    {
+                       $query->execute();
+                    } 
+                    catch (Exception $e) 
+                    {
+                        Alert::set(Alert::INFO, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
+                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                    }
+
                     if($query == FALSE)
                     {
-                        Alert::set(Alert::INFO, __('Something went wrong, please check format of the file!'));
+                        Alert::set(Alert::INFO, __('Something went wrong, please check format of the file! Remove single quotes, in case you have any.'));
                         $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
                     }
                     
