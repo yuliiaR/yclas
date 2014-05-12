@@ -59,3 +59,15 @@
             </div> <!--/.nav-collapse -->
     </div><!--/. -->
 </header><!--/.navbar -->
+<div class="col-sm-3 col-md-3 pull-right search-container-oc-faq">
+    <form class="navbar-form p_m0" role="search" action="http://open-classifieds.com/" target="_blank">
+    <div class="input-group">
+        <input type="text" class="form-control header-oc-faq" placeholder="<?=__('Search')?> @Open-classifieds" name="s" style="display: none;">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default pull-right oc-faq-btn">
+                <i class="glyphicon glyphicon-question-sign"></i>
+            </button>
+        </div>
+    </div>
+    </form>
+</div> 

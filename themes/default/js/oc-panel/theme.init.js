@@ -74,6 +74,13 @@ $(function (){
         $(this).attr('type') == 'checkbox') {$(this).removeClass('form-control');}
     });
 
+    // Search widget in header
+    $('.oc-faq-btn').click(function() {
+        // event.preventDefault();
+        $('.header-oc-faq').toggle();
+    });
+    
+
 });
 
 _debounce = function(func, wait, immediate) {
