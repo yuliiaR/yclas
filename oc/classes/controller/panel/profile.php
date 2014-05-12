@@ -472,15 +472,6 @@ class Controller_Panel_Profile extends Auth_Controller {
 				else 
 					$form->seotitle = $form->seotitle;
 
-				// update status on re-stock
-				if(is_numeric($data['stock']))
-				{
-					if($form->stock == 0 OR $data['stock'] == 0)
-						$form->status = Model_Ad::STATUS_UNAVAILABLE;
-					elseif($data['stock'] > 0)
-						$form->status = Model_Ad::STATUS_PUBLISHED;
-				}
-
 				//update stock, if non numeric to NULL
 				$form->stock = (is_numeric($data['stock']))?$data['stock']:NULL;
 				
@@ -488,7 +479,6 @@ class Controller_Panel_Profile extends Auth_Controller {
 				$form->id_location 		= $data['loc'];
 				$form->id_category 		= $data['cat'];
 				$form->description 		= $data['description'];
-				// $form->status 			= $data['status'];	
 				$form->price 			= $data['price']; 								
 				$form->address 			= $data['address'];
 				$form->website 			= $data['website'];

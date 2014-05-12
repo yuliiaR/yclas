@@ -571,8 +571,7 @@ class Controller_Ad extends Controller {
 
             if($ad->loaded())
             {
-
-                if($ad->stock > 0)//do not allow selling if it already 0
+                if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))//do not allow selling if it already 0
                 {
                     
                     $payer_id       = Auth::instance()->get_user()->id_user;

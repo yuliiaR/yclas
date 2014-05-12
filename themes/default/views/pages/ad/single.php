@@ -72,13 +72,15 @@
             <?endif?>
         </div>  
 
-        <?if(core::config('payment.paypal_seller')==1 AND $ad->price != NULL AND $ad->price != 0 AND $ad->stock > 0):?>
-		    <?if (!Auth::instance()->logged_in()):?>
-		    <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
-		        href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=__('Buy Now')?></a>
-		    <?else:?>
-		    	<a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?></a>
-		    <?endif?>
+        <?if(core::config('payment.paypal_seller')==1 AND $ad->price != NULL AND $ad->price != 0):?>
+	      	<?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
+			    <?if (!Auth::instance()->logged_in()):?>
+			    <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
+			        href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=__('Buy Now')?></a>
+			    <?else:?>
+			    	<a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?></a>
+			    <?endif?>
+			<?endif?>
 		<?endif?>
         
         <hr />
