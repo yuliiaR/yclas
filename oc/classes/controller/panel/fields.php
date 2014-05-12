@@ -34,7 +34,7 @@ class Controller_Panel_Fields extends Auth_Controller {
         $this->template->title = __('New Custom Field for Advertisement');
 
         //find all, for populating form select fields 
-        list($categories)  = Model_Category::get_all();
+        list($categories, $order_categories)  = Model_Category::get_all();
 
         if ($_POST)
         {
@@ -71,6 +71,7 @@ class Controller_Panel_Fields extends Auth_Controller {
         }
 
         $this->template->content = View::factory('oc-panel/pages/fields/new',array('categories' => $categories,
+                                                                                   'order_categories' => $order_categories,
         																			));
     }
 

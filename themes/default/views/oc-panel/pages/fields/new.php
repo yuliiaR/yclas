@@ -60,14 +60,16 @@
         <div class="form-group">
             <label class="control-label col-xs-1"><?=__('Categories')?></label>
         	<div class="col-sm-4">
-        		
 				<select id="categories" name="categories[]" multiple>
 					<option></option>
-					<?foreach ($categories as $categ => $ctg):?>
-						<?if($categ !== 1):?>
-						<option value="<?=$categ?>"><?=$ctg['name']?></option>
-						<?endif?>
-					<?endforeach?>
+					<?function lili12($item, $key,$cats){?>
+                        <?if($cats[$key]['id'] != 1):?>
+                        <option value="<?=$cats[$key]['seoname']?>"><?=$cats[$key]['name']?></option>
+                        <?endif?>
+                            <?if (count($item)>0):?>
+                                <? if (is_array($item)) array_walk($item, 'lili12', $cats);?>
+                            <?endif?>
+                        <?}array_walk($order_categories, 'lili12',$categories);?>
 				</select>
 			</div>
 		</div>
