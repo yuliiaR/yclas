@@ -426,6 +426,10 @@ class Controller_Panel_Update extends Auth_Controller {
                     ) ENGINE=MyISAM")->execute();
 
         // build array with new (missing) configs
+        
+        //set sitemap to 0
+        Model_Config::set_value('sitemap','on_post',0);
+
         $configs = array(
                          array('config_key'     =>'forums',
                                'group_name'     =>'general', 
@@ -502,6 +506,7 @@ class Controller_Panel_Update extends Auth_Controller {
                           'oc/classes/',
                           'oc/modules/',
                           'oc/vendor/',
+                          'oc/ko323',
                           'oc/bootstrap.php',
                           'themes/',
                           'languages/',

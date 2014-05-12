@@ -11,7 +11,19 @@
 
 class Sitemap {
 
-	
+    /**
+     * returns last time the sitemap was generated
+     * @return int 
+     */
+	public static function last_generated_time()
+    {
+        if (file_exists(DOCROOT.'sitemap-index.xml'))
+            $time = filemtime(DOCROOT.'sitemap-index.xml');
+        elseif(file_exists(DOCROOT.'sitemap.xml'))
+            $time = filemtime(DOCROOT.'sitemap.xml');
+
+        return $time;
+    }
 	/**
 	 * 
 	 * generate sitemap
@@ -21,11 +33,10 @@ class Sitemap {
 	    //start time
         $start_time = microtime(TRUE);
 
-
         /**
          * only generate the sitemap if older than XXX
          */
-        if ( time()>= Core::cache('sitemap_next') OR $force == TRUE)
+        if ( time()>= (self::last_generated_time()+core::config('sitemap.expires')) OR $force == TRUE)
         {
 
             $site_url = Core::config('general.base_url');
@@ -124,17 +135,48 @@ class Sitemap {
             }
 
             //all the blog posts
-            $sitemap->addUrl(Route::url('blog'), date('c'), 'daily',    '0.7');
-            $posts = new Model_Post();
-            $posts = $posts->where('status','=', 1)
-                    ->order_by('created','desc')
-                    ->find_all();
-            foreach ($posts as $post) 
+            if (core::config('general.blog')==1)
             {
-                $url= Route::url('blog',  array('seotitle'=>$post->seotitle));
-                $sitemap->addUrl($url, date('c'),  'monthly',    '0.5');
+                $sitemap->addUrl(Route::url('blog'), date('c'), 'daily',    '0.7');
+                $posts = new Model_Post();
+                $posts = $posts->where('status','=', 1)
+                        ->where('id_forum','IS',NULL)
+                        ->order_by('created','desc')
+                        ->find_all();
+                foreach ($posts as $post) 
+                {
+                    $url= Route::url('blog',  array('seotitle'=>$post->seotitle));
+                    $sitemap->addUrl($url, date('c'),  'monthly',    '0.5');
+                }
             }
 
+
+            //all the forums and topics
+            if (core::config('general.forums')==1)
+            {
+                $sitemap->addUrl(Route::url('forum-home'), date('c'), 'monthly',    '0.5' );
+
+                $forums =  new Model_Forum();
+                $forums = $forums->select('seoname')->find_all();
+                foreach($forums as $forum)
+                {
+                    $url = Route::url('forum-list',  array('forum'=>$forum->seoname));
+                    $sitemap->addUrl($url, date('c'),  'daily',    '0.7');
+                }
+
+                //all the topics
+                $posts = new Model_Post();
+                $posts = $posts->where('status','=', Model_Post::STATUS_ACTIVE)
+                        ->where('id_forum','IS NOT',NULL)
+                        ->where('id_post_parent','IS',NULL)
+                        ->order_by('created','desc')
+                        ->find_all();
+                foreach ($posts as $post) 
+                {
+                    $url= Route::url('forum-topic',  array('seotitle'=>$post->seotitle,'forum'=>$post->forum->seoname));
+                    $sitemap->addUrl($url, date('c'),'daily',    '0.7');
+                }
+            }
             
             try
             {
@@ -160,10 +202,6 @@ class Sitemap {
         {
             $ret = __('No sitemap generated');
         }
-
-        //setting the new cache to know when would be next generated
-        Core::cache('sitemap_last',time());
-        Core::cache('sitemap_next',time() + (24*60*60)); //24 hours
 
         return $ret.' Time: '.round( microtime(TRUE) - $start_time,2 ).'s';
     }//end sitemap generation
