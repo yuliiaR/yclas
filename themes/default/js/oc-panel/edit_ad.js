@@ -41,19 +41,6 @@ $('.accordion-heading .radio a').click(function(){
     if($('.cf_date_fields').length != 0){
         $('.cf_date_fields').datepicker();}
     
-    //turn off chosen
-    $(window).load(function(){
-        $('select').each(function(){
-            $(this).chosen(); 
-            $(this).chosen('destroy');      
-        }); 
-        $('select').change(function() {
-            $('select').each(function(){
-                $(this).chosen(); 
-                $(this).chosen('destroy');      
-            });
-        });
-    });
     // activate for each level chained select
     $('.category_chained_select').each(function(){
         var level = $(this).data('level');
@@ -95,6 +82,25 @@ $('.accordion-heading .radio a').click(function(){
     var categ_selected = $('.category_chained_select option:selected').attr('value');
 
     showCustomFieldsByCategory($("input[name=category]"));
+
+    $('.category_edit a').click(function(){
+        $('.category_chained').removeClass('hide');
+        $(this).parent().hide();
+    });
+
+    //turn off chosen
+    $(window).load(function(){
+        $('select').each(function(){
+            $(this).chosen(); 
+            $(this).chosen('destroy');      
+        }); 
+        $('select').change(function() {
+            $('select').each(function(){
+                $(this).chosen(); 
+                $(this).chosen('destroy');      
+            });
+        });
+    });
     
     function showCustomFieldsByCategory(element){
         id_categ = $(element).val();

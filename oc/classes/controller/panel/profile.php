@@ -224,8 +224,8 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 			if ($deact_ad->loaded())
 			{
-				if(Auth::instance()->get_user()->id_user !== $deact_ad->id_user OR 
-				   Auth::instance()->get_user()->id_role !== Model_Role::ROLE_ADMIN)
+				if(Auth::instance()->get_user()->id_user != $deact_ad->id_user AND 
+				   Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN)
 
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
