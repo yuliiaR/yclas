@@ -1,7 +1,4 @@
-$('.accordion-heading .radio a').click(function(){
-        $('#'+$(this).parent().children('input').attr('id')).prop("checked", true);
-    });
-
+    
     // VALIDATION with chosen fix
     $.validator.addMethod(
         "regex",
@@ -41,19 +38,6 @@ $('.accordion-heading .radio a').click(function(){
     if($('.cf_date_fields').length != 0){
         $('.cf_date_fields').datepicker();}
     
-    //turn off chosen
-    $(window).load(function(){
-        $('select').each(function(){
-            $(this).chosen(); 
-            $(this).chosen('destroy');      
-        }); 
-        $('select').change(function() {
-            $('select').each(function(){
-                $(this).chosen(); 
-                $(this).chosen('destroy');      
-            });
-        });
-    });
     // activate for each level chained select
     $('.category_chained_select').each(function(){
         var level = $(this).data('level');
@@ -95,9 +79,30 @@ $('.accordion-heading .radio a').click(function(){
     var categ_selected = $('.category_chained_select option:selected').attr('value');
 
     showCustomFieldsByCategory($("input[name=category]"));
+    console.log($("input[name=category]").attr('value'));
+
+    $('.category_edit a').click(function(){
+        $('.category_chained').removeClass('hide');
+        $(this).parent().hide();
+    });
+
+    //turn off chosen
+    $(window).load(function(){
+        $('select').each(function(){
+            $(this).chosen(); 
+            $(this).chosen('destroy');      
+        }); 
+        $('select').change(function() {
+            $('select').each(function(){
+                $(this).chosen(); 
+                $(this).chosen('destroy');      
+            });
+        });
+    });
     
     function showCustomFieldsByCategory(element){
         id_categ = $(element).val();
+        console.log(id_categ);
         // only custom fields have class data-custom
         $(".data-custom").each(function(){
             // get data-category, contains json array of set categories
@@ -107,11 +112,11 @@ $('.accordion-heading .radio a').click(function(){
             {
                 // show if cf fields if they dont have categories set
                 if(dataCategories.length != 2){
-                    field.closest('.form-group#cf_new').css('display','none');
+                    field.closest('#cf_new').css('display','none');
                     field.prop('disabled', true);
                 }
                 else{
-                    field.closest('.form-group#cf_new').css('display','block');
+                    field.closest('#cf_new').css('display','block');
                     field.prop('disabled', false);
                 }
                 if(dataCategories !== undefined)  
@@ -122,7 +127,7 @@ $('.accordion-heading .radio a').click(function(){
                         $.each($.parseJSON(dataCategories), function (index, value) { 
                             if(id_categ == value){
                                 // console.log(index);
-                                field.closest('.form-group#cf_new').css('display','block');
+                                field.closest('#cf_new').css('display','block');
                                 field.prop('disabled', false);
                             }
                         });

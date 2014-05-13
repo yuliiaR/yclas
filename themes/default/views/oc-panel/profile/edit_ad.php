@@ -76,30 +76,35 @@
 				<?if(Auth::instance()->get_user()->id_role == 10):?>
 				
 				<!-- category select -->
-				<label for="category"><span class="pull-left"><?=__('Category')?></span>
-					<span class="label label-warning category-price ml-10"></span>
-					<?var_dump($ad->id_category)?>
-					<input value="<?=$ad->id_category?>" class="invisible pull-left" id="category-selected" name="category" style="height: 0; padding:0; width:0;" required ></input>
-				</label>
-
-				<div class="form-group">
-					<?foreach ($order_parent_deep as $level => $categ):?>
+				<div class="category_edit">
+					<label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"><?=$ad->category->name?></label></label>  
+					<br>
+					<a class=" btn btn-default"><?=__('Edit category')?></a>
+				</div>
+				<div class="category_chained hide">
+					<label for="category"><span class="pull-left"><?=__('Category')?></span>
+						<span class="label label-warning category-price ml-10"></span>
+						<input value="<?=$ad->id_category?>" class="invisible pull-left" id="category-selected" name="category" style="height: 0; padding:0; width:0;" required ></input>
+					</label>
+					<div class="form-group">
+						<?foreach ($order_parent_deep as $level => $categ):?>
+							<div class="col-md-4">
+							<select id="level-<?=$level?>" data-level="<?=$level?>" 
+									class="disable-chosen category_chained_select <?=(core::config('advertisement.parent_category') AND $level == 0)?'is_parent':NULL?> form-control">
+								<option value=""></option>
+								<?foreach ($categ as $c):?>
+									<?if($c['id']>1):?>
+									<option data-price="<?=($c['price']>0)?$c['price']:NULL?>" value="<?=$c['id']?>" class="<?=$c['id_category_parent']?>"><?=$c['name']?></option>
+									<?endif?>
+								<?endforeach?>
+							</select>
+							</div>
+						<?endforeach?>
+						
+						<div class="clearfix"></div>
 						<div class="col-md-4">
-						<select id="level-<?=$level?>" data-level="<?=$level?>" 
-								class="disable-chosen category_chained_select <?=(core::config('advertisement.parent_category') AND $level == 0)?'is_parent':NULL?> form-control <?=($level != 0)?'hide':NULL?>">
-							<option value=""></option>
-							<?foreach ($categ as $c):?>
-								<?if($c['id']>1):?>
-								<option <?=($c['seoname']==Core::get('category') OR Request::current()->post('category') == $c['id'])?'selected':''?> data-price="<?=($c['price']>0)?$c['price']:NULL?>" value="<?=$c['id']?>" class="<?=$c['id_category_parent']?>"><?=$c['name']?></option>
-								<?endif?>
-							<?endforeach?>
-						</select>
+							<label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"><?=$ad->category->name?></label></label>  
 						</div>
-					<?endforeach?>
-
-					<div class="clearfix"></div>
-					<div class="col-md-4">
-						<label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"></label></label>  
 					</div>
 				</div>
 				<?else:?>
@@ -173,7 +178,7 @@
 					<?if(isset($fields)):?>
 						<?if (is_array($fields)):?>
 							<?foreach($fields as $name=>$field):?>
-							<div class="form-group">
+							<div class="form-group" id="cf_new">
 							<?$cf_name = 'cf_'.$name?>
 							<?if($field['type'] == 'select' OR $field['type'] == 'radio') {
 								$select = array(''=>'');
