@@ -50,6 +50,12 @@ class Controller_Panel_Location extends Auth_Crud {
         {
             if ( $success = $form->submit() )
             {
+                if ($form->object->id_location == $form->object->id_location_parent)
+                {
+                    Alert::set(Alert::INFO, __('You can not set as parent the same location'));
+                    $this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$form->object->id_location)));
+                }
+
                 $form->save_object();
                 $form->object->parent_deep =  $form->object->get_deep();
                 $form->object->save();

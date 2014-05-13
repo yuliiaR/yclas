@@ -2,7 +2,7 @@
 
 <h1><?=__('New Forum')?></h1>
 
-<?= FORM::open(Route::url('oc-panel',array('controller'=>'forum','action'=>'update')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+<?= FORM::open(Route::url('oc-panel',array('controller'=>'forum','action'=>'update','id'=>$forum->id_forum)), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 	<fieldset>
 	    <div class="form-group">
 	        <?= FORM::label('name', __('Name'), array('class'=>'col-md-3 control-label', 'for'=>'name'))?>
