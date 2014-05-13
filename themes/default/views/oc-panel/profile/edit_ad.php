@@ -178,7 +178,7 @@
 					<?if(isset($fields)):?>
 						<?if (is_array($fields)):?>
 							<?foreach($fields as $name=>$field):?>
-							<div class="form-group">
+							<div class="form-group" id="cf_new">
 							<?$cf_name = 'cf_'.$name?>
 							<?if($field['type'] == 'select' OR $field['type'] == 'radio') {
 								$select = array(''=>'');
