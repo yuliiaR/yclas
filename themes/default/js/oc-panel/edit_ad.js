@@ -76,10 +76,7 @@
                 
     });
 
-    var categ_selected = $('.category_chained_select option:selected').attr('value');
-
     showCustomFieldsByCategory($("input[name=category]"));
-    console.log($("input[name=category]").attr('value'));
 
     $('.category_edit a').click(function(){
         $('.category_chained').removeClass('hide');
@@ -102,7 +99,6 @@
     
     function showCustomFieldsByCategory(element){
         id_categ = $(element).val();
-        console.log(id_categ);
         // only custom fields have class data-custom
         $(".data-custom").each(function(){
             // get data-category, contains json array of set categories

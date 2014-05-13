@@ -50,7 +50,17 @@ class Controller_New extends Controller
 			Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
 			$this->request->redirect('default');
 		}
-						
+		
+		$id_category = NULL;
+        //filter by category 
+        if (core::get('category')!==NULL)
+        {
+            $category = new Model_Category();
+            $category->where('seoname','=',core::get('category'))->limit(1)->find();
+            if ($category->loaded())
+                $id_category = $category->id_category;
+        }
+
 		//render view publish new
 		$this->template->content = View::factory('pages/ad/new', array('categories'		    => $categories,
                                                                        'order_categories'   => $order_categories,
@@ -58,6 +68,7 @@ class Controller_New extends Controller
 																	   'locations' 			=> $locations,
                                                                        'order_locations'    => $order_locations,
 																	   'form_show'			=> $form_show,
+																	   'id_category'		=> $id_category,
                                                                        'fields'             => Model_Field::get_all()));
 		if ($_POST) 
         {

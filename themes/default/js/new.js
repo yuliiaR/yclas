@@ -125,5 +125,9 @@ function doneTyping () {
     });
 
     var categ_selected = $('.category_chained_select option:selected').attr('value');
-    $("input[name=category]").attr('value', categ_selected);
+$('.category_edit a').click(function(){
+        $('.category_chained').removeClass('hide');
+        $(this).parent().hide();
+    });
+    
     
