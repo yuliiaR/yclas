@@ -151,7 +151,7 @@
 					
 					<div class="col-md-4">
 						<?= FORM::label('website', __('Website'), array('class'=>'control-label', 'for'=>'website'))?>
-						<?= FORM::input('website', Request::current()->post('website'), array('placeholder' => __('Website'), 'class' => 'form-control', 'id' => 'website'))?>
+						<?= FORM::input('website', Request::current()->post('website'), array('placeholder' => core::config("general.base_url"), 'class' => 'form-control', 'id' => 'website'))?>
 					</div>
 				</div>
 				<?endif?>

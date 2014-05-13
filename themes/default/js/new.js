@@ -70,6 +70,7 @@ function doneTyping () {
     $params['messages'][$decimal] = "Format is incorect";
     $params['rules']['price'] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
     $params['messages']['price'] = "Format is incorect";
+    $params['rules']['website'] = {url: true};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
     var $form = $(".post_new");
