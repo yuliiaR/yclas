@@ -70,7 +70,13 @@
         });
                 
     });
-    
+
+    // hide LOCATION if selected by POST
+    $('.location_edit a').click(function(){
+        $('.location_chained').removeClass('hide');
+        $(this).parent().hide();
+    });
+
     //CATEGORY activate for each level chained select
     $('.category_chained_select').each(function(){
         var level = $(this).data('level');
@@ -111,6 +117,7 @@
 
     showCustomFieldsByCategory($("input[name=category]"));
 
+    // hide CATEGORY if selected by POST
     $('.category_edit a').click(function(){
         $('.category_chained').removeClass('hide');
         $(this).parent().hide();

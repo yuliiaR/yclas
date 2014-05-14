@@ -75,38 +75,70 @@
 			<fieldset>
 				<?if(Auth::instance()->get_user()->id_role == 10):?>
 				
-				<!-- category select -->
-				<div class="category_edit">
-					<label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"><?=$ad->category->name?></label></label>  
-					<br>
-					<a class=" btn btn-default"><?=__('Edit category')?></a>
-				</div>
-				<div class="category_chained hide">
-					<label for="category"><span class="pull-left"><?=__('Category')?></span>
-						<span class="label label-warning category-price ml-10"></span>
-						<input value="<?=$ad->id_category?>" class="invisible pull-left" id="category-selected" name="category" style="height: 0; padding:0; width:0;" required ></input>
-					</label>
-					<div class="form-group">
-						<?foreach ($order_parent_deep as $level => $categ):?>
+					<!-- category select -->
+					<div class="category_edit">
+						<label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"><?=$ad->category->name?></label></label>  
+						<br>
+						<a class=" btn btn-default"><?=__('Edit category')?></a>
+					</div>
+					<div class="category_chained hide">
+						<label for="category"><span class="pull-left"><?=__('Category')?></span>
+							<span class="label label-warning category-price ml-10"></span>
+							<input value="<?=$ad->id_category?>" class="invisible pull-left" id="category-selected" name="category" style="height: 0; padding:0; width:0;" required ></input>
+						</label>
+						<div class="form-group">
+							<?foreach ($order_parent_deep as $level => $categ):?>
+								<div class="col-md-4">
+								<select id="level-<?=$level?>" data-level="<?=$level?>" 
+										class="disable-chosen category_chained_select <?=(core::config('advertisement.parent_category') AND $level == 0)?'is_parent':NULL?> form-control">
+									<option value=""></option>
+									<?foreach ($categ as $c):?>
+										<?if($c['id']>1):?>
+										<option data-price="<?=($c['price']>0)?$c['price']:NULL?>" value="<?=$c['id']?>" class="<?=$c['id_category_parent']?>"><?=$c['name']?></option>
+										<?endif?>
+									<?endforeach?>
+								</select>
+								</div>
+							<?endforeach?>
+							
+							<div class="clearfix"></div>
 							<div class="col-md-4">
-							<select id="level-<?=$level?>" data-level="<?=$level?>" 
-									class="disable-chosen category_chained_select <?=(core::config('advertisement.parent_category') AND $level == 0)?'is_parent':NULL?> form-control">
-								<option value=""></option>
-								<?foreach ($categ as $c):?>
-									<?if($c['id']>1):?>
-									<option data-price="<?=($c['price']>0)?$c['price']:NULL?>" value="<?=$c['id']?>" class="<?=$c['id_category_parent']?>"><?=$c['name']?></option>
-									<?endif?>
-								<?endforeach?>
-							</select>
+								<label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"><?=$ad->category->name?></label></label>  
 							</div>
-						<?endforeach?>
-						
-						<div class="clearfix"></div>
-						<div class="col-md-4">
-							<label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"><?=$ad->category->name?></label></label>  
 						</div>
 					</div>
-				</div>
+					<div class="location_edit">
+						<label for="location"><?=__('Selected location')?>: <label for="location" class="selected-location"><?=$ad->location->name?></label></label>  
+						<br>
+						<a class=" btn btn-default"><?=__('Edit location')?></a>
+					</div>
+					<div class="location_chained hide">
+						<label for="location"><span class="pull-left"><?=__('Location')?></span>
+							<span class="label label-warning ml-10"></span>
+							<input value="<?=$ad->id_category?>" class="invisible pull-left" id="location-selected" name="location" style="height: 0; padding:0; width:0;" required></input>
+						</label>
+
+						<div class="form-group">
+							<?foreach ($loc_parent_deep as $level => $locat):?>
+								<div class="col-md-4">
+								<select id="level-loc-<?=$level?>" data-level="<?=$level?>" 
+										class="disable-chosen location_chained_select form-control <?=($level != 0)?'hide':NULL?>">
+									<option value=""></option>
+									<?foreach ($locat as $l):?>
+										<?if($l['id']>1):?>
+										<option value="<?=$l['id']?>" class="<?=$l['id_location_parent']?>"><?=$l['name']?></option>
+										<?endif?>
+									<?endforeach?>
+								</select>
+								</div>
+							<?endforeach?>
+
+							<div class="clearfix"></div>
+							<div class="col-md-4">
+								<label for="location"><?=__('Selected location')?>: <label for="location" class="selected-location"></label></label>  
+							</div>
+						</div>
+					</div>
 				<?else:?>
 					<span class="label label-primary" data-trigger="category" data-id="<?=$ad->category->id_category?>"><?=__('Category').' : '.$ad->category->name?></span>
 					<input type="hidden" name="category" value="<?=$ad->category->id_category?>">

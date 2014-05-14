@@ -375,7 +375,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		//find all, for populating form select fields 
 		list($categories,$order_categories, $parent_category)  = Model_Category::get_all();
 
-		list($locations,$order_locations)  = Model_Location::get_all();
+		list($locations,$order_locations, $loc_parent_deep)  = Model_Location::get_all();
 
 	
 		if(Auth::instance()->get_user()->id_user == $form->id_user OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
@@ -389,6 +389,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 																					   'categories'			=>$categories,
 																					   'order_categories'	=>$order_categories,
 																					   'order_parent_deep'	=>$parent_category,
+																					   'loc_parent_deep'	=>$loc_parent_deep,
 																					   'extra_payment'		=>$extra_payment,
 																					   'fields'             => Model_Field::get_all()));
 		
