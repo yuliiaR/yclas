@@ -63,6 +63,7 @@
     <form class="navbar-form p_m0" role="search" action="http://open-classifieds.com/" target="_blank">
     <div class="input-group">
         <input type="text" class="form-control header-oc-faq" placeholder="<?=__('Search')?> @Open-classifieds" name="s" style="display: none;">
+        <input name="category_name" type="hidden" value="howto"/>
         <div class="input-group-btn">
             <button type="button" class="btn btn-default pull-right oc-faq-btn">
                 <i class="glyphicon glyphicon-question-sign"></i>
