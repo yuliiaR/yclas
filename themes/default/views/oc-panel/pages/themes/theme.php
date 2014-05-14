@@ -44,7 +44,7 @@
     <p><?=__('Install theme from license.')?></p>
     
     <div class="form-group">
-        <input type="text" name="license" id="licese" placeholder="<?=__('license')?>"/>
+        <input type="text" name="license" id="licese" placeholder="<?=__('license')?>" class="form-control"/>
     </div>
         <?= FORM::button('submit', __('Download'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'theme','action'=>'download'))))?>
 
@@ -54,7 +54,7 @@
 
     <p><?=__('To install new theme choose zip file.')?></p>
     <div class="form-group">
-        <input type="file" name="theme_file" id="theme_file" />
+        <input type="file" name="theme_file" id="theme_file" class="form-control" />
     </div>
         <?= FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'theme','action'=>'install_theme'))))?>
 <?= FORM::close()?>
