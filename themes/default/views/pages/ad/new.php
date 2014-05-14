@@ -52,23 +52,31 @@
 				</div>
 				
 				<?if(count($locations) > 1 AND $form_show['location'] != FALSE):?>
-                    <div class="form-group">
-                        
-                        <div class="col-md-4">
-                        	<?= FORM::label('location', __('Location'), array('class'=>'control-label', 'for'=>'location' ))?>
-                            <select data-placeholder="<?=__('Location')?>" name="location" id="location" class="form-control" required>
-                            <option></option>
-                            <?function lolo($item, $key,$locs){?>
-                            <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
-                                <?if (count($item)>0):?>
-                                <optgroup label="<?=$locs[$key]['name']?>">    
-                                    <? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
-                                    </optgroup>
-                                <?endif?>
-                            <?}array_walk($order_locations, 'lolo',$locations);?>
-                            </select>
-                        </div>
-                    </div>
+                    <label for="location"><span class="pull-left"><?=__('Location')?></span>
+						<span class="label label-warning ml-10"></span>
+						<input class="invisible pull-left" id="location-selected" name="location" style="height: 0; padding:0; width:0;" required></input>
+					</label>
+
+					<div class="form-group">
+						<?foreach ($loc_parent_deep as $level => $locat):?>
+							<div class="col-md-4">
+							<select id="level-loc-<?=$level?>" data-level="<?=$level?>" 
+									class="disable-chosen location_chained_select form-control <?=($level != 0)?'hide':NULL?>">
+								<option value=""></option>
+								<?foreach ($locat as $l):?>
+									<?if($l['id']>1):?>
+									<option value="<?=$l['id']?>" class="<?=$l['id_location_parent']?>"><?=$l['name']?></option>
+									<?endif?>
+								<?endforeach?>
+							</select>
+							</div>
+						<?endforeach?>
+
+						<div class="clearfix"></div>
+						<div class="col-md-4">
+							<label for="location"><?=__('Selected location')?>: <label for="location" class="selected-location"></label></label>  
+						</div>
+					</div>
 				<?endif?>
 
 				<div class="form-group">

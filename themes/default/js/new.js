@@ -88,7 +88,39 @@ function doneTyping () {
     if($('.cf_date_fields').length != 0){
         $('.cf_date_fields').datepicker();}
 
-    // activate for each level chained select
+    //LOCATIONS activate for each level chained select for 
+    $('.location_chained_select').each(function(){
+        var level = $(this).data('level');
+        if('#level-loc-'+(level-1)){
+            $('#level-loc-'+level).chained('#level-loc-'+(level-1));
+        }
+    });
+
+    //LOCATION this will select the correct ID for uploading category
+    $( ".location_chained_select" ).change(function() {
+
+      $( "option:selected", this ).each(function() {
+            var value_location_id = $(this).attr('value');
+
+                $('#location-selected').attr('value',value_location_id);
+
+                //coloring select, for user to know if he select option is taken or not
+                if($('#location-selected').attr('value') != ''){
+                    //adding green color, success
+                    $(this).parent().css('background','#dff0d8');
+                    $('.selected-location').html($('.location_chained_select option[value='+$('#location-selected').attr('value')+']').text()).one();
+                }
+        
+                if($('#location-selected').attr('value') == ''){
+                    $(this).parent().css('background','#fff');
+                    $('.selected-location').html('');
+                }
+                     
+        });
+                
+    });
+    
+    //CATEGORY activate for each level chained select
     $('.category_chained_select').each(function(){
         var level = $(this).data('level');
         if('#level-'+(level-1)){

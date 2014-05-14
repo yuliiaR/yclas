@@ -32,7 +32,7 @@ class Controller_New extends Controller
 
 		//find all, for populating form select fields 
 		list($categories,$order_categories, $order_parent_deep)  = Model_Category::get_all();
-		list($locations,$order_locations)  	 = Model_Location::get_all();
+		list($locations,$order_locations, $loc_parent_deep)  	 = Model_Location::get_all();
 		
 		// bool values from DB, to show or hide this fields in view
 		$form_show = array('captcha'	=>core::config('advertisement.captcha'),
@@ -67,6 +67,7 @@ class Controller_New extends Controller
 																	   'order_parent_deep'  => $order_parent_deep,
 																	   'locations' 			=> $locations,
                                                                        'order_locations'    => $order_locations,
+                                                                       'loc_parent_deep'	=> $loc_parent_deep,
 																	   'form_show'			=> $form_show,
 																	   'id_category'		=> $id_category,
                                                                        'fields'             => Model_Field::get_all()));

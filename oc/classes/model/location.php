@@ -133,6 +133,21 @@ class Model_Location extends ORM {
                                                 );
         }
 
+        // array by parent deep, 
+        // each parent deep is one array with categories of the same index
+        $locs_parent_deep = array();
+        foreach ($locs as $loc) 
+        {
+            $locs_parent_deep[$loc->parent_deep][$loc->id_location] =  array('name'               => $loc->name,
+                                                                              'id_location_parent' => $loc->id_location_parent,
+                                                                              'parent_deep'        => $loc->parent_deep,
+                                                                              'seoname'            => $loc->seoname,
+                                                                              'id'                 => $loc->id_location,
+                                                                    );
+        }
+        //sort by key, in case lover level is befor higher
+        ksort($locs_parent_deep);
+
         //for each location we get his siblings
         $locs_s = array();
         foreach ($locs as $loc) 
@@ -145,7 +160,7 @@ class Model_Location extends ORM {
         else
             $locs_m = array();
 
-        return array($locs_arr,$locs_m);
+        return array($locs_arr,$locs_m, $locs_parent_deep);
     }
 
     /**
