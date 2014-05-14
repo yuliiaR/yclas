@@ -56,7 +56,7 @@ class Controller_Payment_Paypal extends Controller{
             {
                 $user_paid = $order->ad->user;
 
-                $receiver_correct = (Core::post('receiver_email') == $user_paid->email  OR Core::post('business')  == $user_paid->emai);
+                $receiver_correct = (Core::post('receiver_email') == $user_paid->email  OR Core::post('business')  == $user_paid->email);
             }
             //any other payment goes to classifieds site payment
             else
@@ -121,6 +121,12 @@ class Controller_Payment_Paypal extends Controller{
         	else
         		$item_name = $order->description.__(' category');
 
+        	// case when selling advert
+        	if($order->id_product == Paypal::advertisement_sell)
+        		$paypal_account = $order->ad->user->email;
+        	else
+        		$paypal_account = core::config('payment.paypal_account');
+
 			$paypal_url = (Core::config('payment.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
 
 		 	$paypal_data = array('order_id'            	=> $order_id,
@@ -128,7 +134,7 @@ class Controller_Payment_Paypal extends Controller{
 	                             'site_name'        	=> core::config('general.site_name'),
 	                             'site_url'            	=> URL::base(TRUE),
 	                             'paypal_url'        	=> $paypal_url,
-	                             'paypal_account'    	=> core::config('payment.paypal_account'),
+	                             'paypal_account'    	=> $paypal_account,
 	                             'paypal_currency'    	=> core::config('payment.paypal_currency'),
 	                             'item_name'			=> $item_name);
 			
