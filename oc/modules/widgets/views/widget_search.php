@@ -21,7 +21,7 @@
                 <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
                 <?endif?>
                     <?if ($cats[$key]['id_category_parent'] == 1 OR count($item)>0):?>
-                    <option value="<?=$key?>"> <?=$cats[$key]['name']?> </option>
+                    <option value="<?=$key?>" data-id="<?=$cats[$key]['id']?>"> <?=$cats[$key]['name']?> </option>
                         <optgroup label="<?=$cats[$key]['name']?>">  
                         <? if (is_array($item)) array_walk($item, 'lili_search', $cats);?>
                         </optgroup>
