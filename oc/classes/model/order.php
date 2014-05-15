@@ -101,7 +101,7 @@ class Model_Order extends ORM {
                                                                 'action'    => 'update',
                                                                 'id'        => $advert->id_ad),TRUE);
 
-                        $email_content = array( '[URL.EDIT]'        =>$url_ad,
+                        $email_content = array( '[URL.EDIT]'        =>$url_edit,
                                                 '[AD.TITLE]'        =>$advert->title);
 
                         // send email to ad OWNER
