@@ -7,7 +7,7 @@
 	    <div class="form-group">
 	        <?= FORM::label('name', __('Name'), array('class'=>'col-md-3 control-label', 'for'=>'name'))?>
 	        <div class="col-md-5">
-	            <?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => '', 'id' => 'name', 'required'))?>
+	            <?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
 	        </div>
 	    </div>
 	    <div class="form-group">
@@ -30,7 +30,7 @@
 	    <div class="form-group">
 	        <?= FORM::label('seoname', __('Seoname'), array('class'=>'col-md-3 control-label', 'for'=>'seoname'))?>
 	        <div class="col-md-5">
-	            <?= FORM::input('seoname', '', array('placeholder' => __('Seoname'), 'class' => '', 'id' => 'seoname'))?>
+	            <?= FORM::input('seoname', '', array('placeholder' => __('Seoname'), 'class' => 'form-control', 'id' => 'seoname'))?>
 	        </div>
 	    </div>
 	    <div class="form-actions">
