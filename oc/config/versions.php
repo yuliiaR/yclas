@@ -3,11 +3,11 @@
   '2.1.7' => 
   array (
     'codename' => 'Ciutadella',
-    'released' => '2014-05-xx',
-    'blog' => 'http://open-classifieds.com/',
+    'released' => '2014-05-19',
+    'blog' => 'http://open-classifieds.com/2014/05/19/open-classifieds-2-1-7/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/master',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=20&page=1&state=closed',
-    'download' => '',
+    'download' => 'https://github.com/open-classifieds/openclassifieds2/archive/master.zip',
   ),
   '2.1.6' => 
   array (
