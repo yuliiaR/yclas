@@ -265,7 +265,8 @@ class Core {
             return ($contents)? $contents : FALSE;
         }
         else 
-            throw new Kohana_Exception('Curl '.$url.' error: ' . curl_error($c));
+            return FALSE;
+            //throw new Kohana_Exception('Curl '.$url.' error: ' . curl_error($c));
     }
 
     /**
