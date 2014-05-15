@@ -129,6 +129,9 @@ class Controller_Panel_Settings extends Auth_Controller {
             $forms_img[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
         }
         
+        //not updatable fields
+        $do_nothing = array('menu');
+
         // save only changed values
         if($this->request->post())
         {
@@ -137,7 +140,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                 
                 $config_res = $this->request->post($c->config_key);
 
-                if($config_res != $c->config_value)
+                if($config_res != $c->config_value AND !in_array($c->config_key, $do_nothing))
                 {
                     $c->config_value = $config_res;
                     try {
