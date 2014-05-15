@@ -180,13 +180,6 @@
     <div class="clearfix"></div>
     <div class="form-actions">
         <input type="submit" name="action" id="submit" value="<?=__("Install")?>" class="btn btn-primary btn-lg " />
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="OCAKU" checked="checked" checked data-toggle="tooltip" title="<?=__("Terms")?>"/>
-                <?=__("Ocacu classifieds community registration")?><br>
-                <a target="_blank" href="http://ocacu.com/en/terms.html"><?=__('Terms')?></a>
-            </label>
-        </div>
     </div>
     <div class="clearfix"></div>
           

@@ -434,6 +434,9 @@ class Controller_Panel_Update extends Auth_Controller {
                          array('config_key'     =>'forums',
                                'group_name'     =>'general', 
                                'config_value'   =>'0'), 
+                         array('config_key'     =>'ocacu',
+                               'group_name'     =>'general', 
+                               'config_value'   =>'0'), 
                         );
 
         // returns TRUE if some config is saved 

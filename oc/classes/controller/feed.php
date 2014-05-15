@@ -121,8 +121,9 @@ class Controller_Feed extends Controller {
             $total_users = $users->count_all();
 
             $info = array(
-                            'site_name'     => Core::config('general.site_name'),
                             'site_url'      => Core::config('general.base_url'),
+                            'site_name'     => Core::config('general.site_name'),
+                            'site_description' => Core::config('general.site_description'),
                             'created'       => $first_ad,   
                             'updated'       => $last_ad,   
                             'email'         => Core::config('email.notify_email'),
