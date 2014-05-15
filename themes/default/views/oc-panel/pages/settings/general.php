@@ -79,6 +79,18 @@
                 ))?> 
             </div>
         </div>
+        
+        <div class="form-group hide">
+            <?= FORM::label($forms['menu']['key'], __('Menu'), array('class'=>'control-label col-sm-3', 'for'=>$forms['menu']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::textarea($forms['menu']['key'], $forms['menu']['value'], array(
+                'placeholder' => __('Description of your site in no more than 160 characters.'),
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['menu']['key'],
+                'data-original-title'=>__("Menu"), 
+                ))?> 
+            </div>
+        </div>
 
 		<div class="form-group">
 			<?= FORM::label($forms['base_url']['key'], __('Base URL'), array('class'=>'control-label col-sm-3', 'for'=>$forms['base_url']['key']))?>

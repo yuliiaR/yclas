@@ -118,11 +118,12 @@ class Controller_Panel_Settings extends Auth_Controller {
         $config = $generalconfig->where('group_name', '=', 'general')->find_all();
         $config_img = $generalconfig->where('group_name', '=', 'image')->find_all();
 
+        // array of values from config for rendering
         foreach ($config as $c) 
         {
             $forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
         }
-        
+        // array of values from config for rendering
         foreach ($config_img as $c)
         {
             $forms_img[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
@@ -135,6 +136,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             {   
                 
                 $config_res = $this->request->post($c->config_key);
+
                 if($config_res != $c->config_value)
                 {
                     $c->config_value = $config_res;
