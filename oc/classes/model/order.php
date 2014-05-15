@@ -188,6 +188,7 @@ class Model_Order extends ORM {
             elseif($this->id_product == Paypal::to_top)
             {
                 $advert->published = Date::unix2mysql(time());
+                $advert->status = Model_Ad::STATUS_PUBLISHED;
                 try {
                     $advert->save();
 
@@ -198,6 +199,7 @@ class Model_Order extends ORM {
             elseif ($this->id_product == Paypal::to_featured)
             {
                 $advert->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
+                $advert->status = Model_Ad::STATUS_PUBLISHED;
                 try {
                     $advert->save();
                 } catch (Exception $e) {
