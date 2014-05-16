@@ -71,6 +71,7 @@ class Controller extends Kohana_Controller
             $this->template->meta_keywords    = '';
             $this->template->meta_description = '';
             $this->template->meta_copyright   = 'Open Classifieds '.Core::VERSION;
+            $this->template->meta_copywrite   = $this->template->meta_copyright;//legacy for old themes
             $this->template->content          = '';
             $this->template->styles           = array();
             $this->template->scripts          = array();
