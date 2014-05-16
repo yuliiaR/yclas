@@ -51,7 +51,7 @@
                     <option></option>
                     <?foreach ($categories as $categ => $ctg):?>
                         <?if($categ !== 1 ):?>
-                            <?if(isset($field_data['categories']) AND in_array($categ, $field_data['categories'])):?>
+                            <?if(isset($field_data['categories']) AND is_array($field_data['categories']) AND in_array($categ, $field_data['categories'])):?>
                                 <option value="<?=$categ?>" selected><?=$ctg['name']?></option>
                             <?else:?>
                                 <option value="<?=$categ?>"><?=$ctg['name']?></option>
