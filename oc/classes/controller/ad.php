@@ -382,7 +382,7 @@ class Controller_Ad extends Controller {
 						if($cf_config->$real_name->type == 'checkbox') // checkbox is TRUE or FALSE
 						{
 							if(isset($value['value']) AND $value['value'])
-								$ad_fields[$cf_config->$real_name->label] = NULL;
+								$ad_fields[$cf_config->$real_name->label] = $value['value'];
 						}
 						elseif($cf_config->$real_name->type == 'radio') // Radio have list of choices, but is saved as int in DB
 							$ad_fields[$cf_config->$real_name->label] = $cf_config->$real_name->values[$value['value']-1];
@@ -408,12 +408,16 @@ class Controller_Ad extends Controller {
                     {
                         if(isset($ad_fields[$value->label]))
                             $ad_custom_vals[$value->label] = $ad_fields[$value->label];
+                        
+                        if($cf_config->$name->type == 'checkbox' AND isset($ad_fields[$value->label]) AND $ad_fields[$value->label])
+                            $ad_custom_vals[$value->label] = NULL;
                     }
                 }
                     
 
                 if($ad->get_first_image() !== NULL)
                     Controller::$image = $ad->get_first_image();
+
 
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
