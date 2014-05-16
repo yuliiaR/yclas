@@ -23,6 +23,7 @@ class Controller_New extends Controller
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.validate.min.js';
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
+        $this->template->scripts['footer'][] = 'js/jquery.chained.min.js';
         if(core::config('advertisement.map_pub_new'))
         {
 	        $this->template->scripts['footer'][] = 'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
