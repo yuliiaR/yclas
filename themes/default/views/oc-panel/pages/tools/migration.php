@@ -12,42 +12,42 @@
       <div class="form-group">
         <label class="control-label col-sm-2"><?=__("Host name")?>:</label>
         <div class="col-sm-4">
-        <input  type="text" name="hostname" value="<?=$db_config['connection']['hostname']?>" class="col-md-3"  />
+        <input  type="text" name="hostname" value="<?=$db_config['connection']['hostname']?>" class="col-md-3 form-control"  />
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2"><?=__("User name")?>:</label>
         <div class="col-sm-4">
-        <input  type="text" name="username"  value="<?=$db_config['connection']['username']?>" class="col-md-3"   />
+        <input  type="text" name="username"  value="<?=$db_config['connection']['username']?>" class="col-md-3 form-control"   />
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2"><?=__("Password")?>:</label>
         <div class="col-sm-4">
-        <input type="text" name="password" value="" class="col-md-3" />   
+        <input type="text" name="password" value="" class="col-md-3 form-control" />   
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2"><?=__("Database name")?>:</label>
         <div class="col-sm-4">
-        <input type="text" name="database" value="<?=$db_config['connection']['database']?>"  class="col-md-3"  />
+        <input type="text" name="database" value="<?=$db_config['connection']['database']?>"  class="col-md-3 form-control"  />
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2"><?=__("Database charset")?>:</label>
         <div class="col-sm-4">
-        <input type="text" name="charset" value="<?=$db_config['charset']?>"  class="col-md-3"   />
+        <input type="text" name="charset" value="<?=$db_config['charset']?>"  class="col-md-3 form-control"   />
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2"><?=__("Table prefix")?>:</label>
         <div class="col-sm-4">
-        <input type="text" name="table_prefix" value="oc_" class="col-md-3" />
+        <input type="text" name="table_prefix" value="oc_" class="col-md-3 form-control" />
         </div>
       </div>
 
