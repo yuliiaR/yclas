@@ -1,3 +1,7 @@
+    //sceditorBBCodePlugin for validation, updates iframe on submit 
+    $("button[name=submit]").click(function(){
+        $("textarea[name=description]").data("sceditor").updateTextareaValue();
+    });
     
     // VALIDATION with chosen fix
     $.validator.addMethod(
@@ -25,14 +29,14 @@
     $params['rules']['website'] = {url: true};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
-    var $form = $(".post_new");
+    var $form = $(".edit_ad_form");
     $form.validate($params);
-    
-    // //chosen fix
-    // var settings = $.data($form[0], 'validator').settings;
-    // settings.ignore += ':not(.chzn-done)'; // edit_ad_form location(any chosen) texarea
-    // settings.ignore += ':not(#description)'; // edit_ad_form description texarea
-    // settings.ignore += ':not(.cf_textarea_fields)';//edit_ad_form texarea custom fields
+
+    //chosen fix
+    var settings = $.data($form[0], 'validator').settings;
+    settings.ignore += ':not(.cf_select_fields)'; // post_new location(any chosen) texarea
+    // settings.ignore += ':not(.sceditor-container)'; // post_new description texarea
+     settings.ignore += ':not(#description)'; // post_new description texarea
     // end VALIDATION
 
     //datepicker in case date field exists

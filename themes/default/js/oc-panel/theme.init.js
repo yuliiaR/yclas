@@ -67,10 +67,11 @@ $(function (){
     });
 
     $('input').each(function(){
-        if(!$(this).hasClass('form-control') && 
-            $(this).attr('type') != 'checkbox' && !$(this).hasClass('form-control')) {$(this).addClass('form-control');}
+        if( $(this).attr('type') != 'checkbox' && !$(this).hasClass('form-control') ) {$(this).addClass('form-control');}
         if($(this).hasClass('form-control') && 
             $(this).attr('type') == 'checkbox' && !$(this).hasClass('form-control')) {$(this).removeClass('form-control');}
+        if($(this).attr('type') == 'radio')
+            $(this).removeClass('form-control');
     });
 
     // Search widget in header

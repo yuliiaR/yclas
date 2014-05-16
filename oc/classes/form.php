@@ -276,7 +276,7 @@ class Form extends Kohana_Form {
                 $input = '';
                 $label = '<b>'.$options['label'].'</b>';
 
-                $input .= '<div class="checkbox"><label>'.$value.FORM::hidden($name, 0).FORM::checkbox($name, NULL, $checked, $attributes).'</label></div>';
+                $input .= '<div class="checkbox"><label>'.FORM::checkbox($name, NULL, $checked, $attributes).'</label></div>';
                 
                 break;
             case 'radio':

@@ -406,7 +406,7 @@ class Controller_Ad extends Controller {
                 {
                     foreach ($cf_config as $name => $value) 
                     {
-                        if(isset($ad_fields[$value->label]))
+                        if(isset($ad_fields[$value->label]) OR $cf_config->$name->type == 'checkbox' )
                             $ad_custom_vals[$value->label] = $ad_fields[$value->label];
                     }
                 }
@@ -414,6 +414,7 @@ class Controller_Ad extends Controller {
 
                 if($ad->get_first_image() !== NULL)
                     Controller::$image = $ad->get_first_image();
+
 
 				$this->template->bind('content', $content);
 				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
