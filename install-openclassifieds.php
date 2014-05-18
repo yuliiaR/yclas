@@ -20,7 +20,7 @@ define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 if (! ((bool) ini_get('short_open_tag')) )
     die('<strong><u>OC Installation requirement</u></strong>: Before you proceed with your OC installation: Keep in mind OC uses the short tag "short cut" syntax.<br><br> Thus the <a href="http://php.net/manual/ini.core.php#ini.short-open-tag" target="_blank">short_open_tag</a> directive must be enabled in your php.ini.<br><br><u>Easy Solution</u>:<ol><li>Open php.ini file and look for line short_open_tag = Off</li><li>Replace it with short_open_tag = On</li><li>Restart then your PHP server</li><li>Refresh this page to resume your OC installation</li><li>Enjoy OC ;)</li></ol>');
 
-
+//prevent from new install to be done over current existing one
 if (file_exists(DOCROOT.'oc/config/database.php'))
     die('It seems Open Classifieds is already installed');
 
@@ -32,7 +32,7 @@ $is_compatible  = install::is_compatible();
 
 
 /**
- * Helper installation classses
+ * Helper installation classes
  *
  * @package    Install
  * @category   Helper
@@ -95,7 +95,7 @@ class install{
          * all the install checks
          */
         return     array(
-                'New Installation'=>array('message'   => 'Seems Open Classifieds it is already insalled',
+                'New Installation'=>array('message'   => 'It seems that Open Classifieds is already installed',
                                         'mandatory' => TRUE,
                                         'result'    => !file_exists('oc/config/database.php')
                                         ),
@@ -103,7 +103,7 @@ class install{
                                         'mandatory' => TRUE,
                                         'result'    => (is_writable(DOCROOT))
                                         ),
-                'PHP'   =>array('message'   => 'PHP 5.3 or newer required, this version is '. PHP_VERSION,
+                'PHP'   =>array('message'   => 'PHP 5.3 or newer is required, this version is '. PHP_VERSION,
                                     'mandatory' => TRUE,
                                     'result'    => version_compare(PHP_VERSION, '5.3', '>=')
                                     ),
@@ -215,7 +215,7 @@ class install{
     }
 
     /**
-     * returns array last version from json
+     * returns array of last versions from json
      * @return array
      */
     public static function versions()
@@ -264,9 +264,9 @@ class core{
                 elseif(is_dir( $path))
                 { 
                     if(!is_dir( $dest . '/' . $object)) 
-                        mkdir( $dest . '/' . $object); // make subdirectory before subdirectory is copied 
+                        mkdir( $dest . '/' . $object); // try to make subdirectory before subdirectory is copied 
 
-                    core::copy($path, $dest . '/' . $object, $overwrite); //recurse! 
+                    core::copy($path, $dest . '/' . $object, $overwrite); //recursive
                 }
                  
             } 
@@ -274,7 +274,7 @@ class core{
      }  
 
     /**
-     * deletes file or directory recursevely
+     * recursively deletes file or directory
      * @param  string $file 
      * @return void       
      */
@@ -288,7 +288,7 @@ class core{
                 if ($object != '.' AND $object != '..') 
                 {
                     if (is_dir($file.'/'.$object)) 
-                        core::delete($file.'/'.$object); 
+                        core::delete($file.'/'.$object); //recursive
                     else 
                         unlink($file.'/'.$object);
                 }
@@ -437,7 +437,7 @@ class core{
 }
 
 /**
- * gettext short cut currently just echoes
+ * gettext short cut currently @TODO just echoes untranslated string
  * @param  [type] $msgid [description]
  * @return [type]        [description]
  */
@@ -457,8 +457,6 @@ function __($msgid)
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>Open Classifieds <?=__("Installation")?></title>
-    <meta name="keywords" content="" >
-    <meta name="description" content="" >
     <meta name="copyright" content="Open Classifieds <?=install::VERSION?>" >
     <meta name="author" content="Open Classifieds">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -490,7 +488,7 @@ function __($msgid)
 
     </style>
         
-    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chosen/1.1.0/chosen.min.css">
 
 </head>
@@ -551,7 +549,7 @@ function __($msgid)
                         
                         core::copy($fname, DOCROOT);
                         
-                        // delete own file
+                        // delete downloaded zip file
                         core::delete($fname);
                         @unlink('oc.zip');
                         @unlink($_SERVER['SCRIPT_FILENAME']);
@@ -562,7 +560,7 @@ function __($msgid)
                     else 
                         hosting_view();
                 }
-                //normally if its compaitble just display the form
+                //normally if compatible just display the form
                 elseif ($is_compatible === TRUE)
                 {?>
                     <?if (!empty(install::$msg) OR !empty(install::$error_msg)) 
