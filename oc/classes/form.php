@@ -155,11 +155,11 @@ class Form extends Kohana_Form {
 
 
     /**
-     * get the html tag code for a field
+     * Returns the html tag code for a field
      * @param  string $name input name
      * @param  array  $options as defined
      * @param  mixed $value value of the field, optional.
-     * @return string        HTML
+     * @return string        HTML of the tag
      */
     public static function form_tag($name, $options, $value = NULL)
     {
