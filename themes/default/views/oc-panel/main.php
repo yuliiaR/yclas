@@ -14,7 +14,7 @@
     
     <?if (Theme::get('premium')!=1):?>
     <meta name="author" content="open-classifieds.com">
-    <?=Core::config('general.site_name')?>
+    <meta name="copyright" content="<?=Core::config('general.site_name')?>" >
     <?else:?>
     <meta name="copyright" content="<?=$meta_copyright?>" >
     <?endif?>
