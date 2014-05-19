@@ -107,9 +107,9 @@ li{
 }
 .accordion-group {
 	border: none;
-	-webkit-border-radius: none;
-	-moz-border-radius: none;
-	border-radius: none;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
 }
 .accordion-inner { border-top: none;}
 
