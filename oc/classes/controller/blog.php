@@ -23,7 +23,7 @@ class Controller_Blog extends Controller {
 	    $this->template->meta_description = __('Blog');
 	    
 	    $posts = new Model_Post();
-        $posts->where('status','=', 1);
+        $posts->where('status','=', Model_Post::STATUS_ACTIVE)->where('id_forum','IS',NULL);
 
         $res_count = $posts->count_all();
         // check if there are some post
