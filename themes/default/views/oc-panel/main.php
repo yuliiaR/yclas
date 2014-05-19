@@ -11,9 +11,12 @@
 	<title><?=$title?></title>
     <meta name="keywords" content="<?=$meta_keywords?>" >
     <meta name="description" content="<?=$meta_description?>" >
-    <meta name="copyright" content="<?=$meta_copyright?>" >
+    
     <?if (Theme::get('premium')!=1):?>
     <meta name="author" content="open-classifieds.com">
+    <?=Core::config('general.site_name')?>
+    <?else:?>
+    <meta name="copyright" content="<?=$meta_copyright?>" >
     <?endif?>
 	
 	<meta name="viewport" content="width=device-width,initial-scale=1">
