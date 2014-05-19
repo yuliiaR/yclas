@@ -302,12 +302,12 @@ class core{
 
     /**
      * gets the html content from a URL
-     * @param  string $url 
-     * @return string      
+     * @param  string $url
+     * @return string on success, false on errors
      */
     public static function curl_get_contents($url)
     {
-        $c = curl_init();
+        $c = curl_init(); if ($c === FALSE) return FALSE;
         curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($c, CURLOPT_URL, $url);
         curl_setopt($c, CURLOPT_TIMEOUT,30); 
