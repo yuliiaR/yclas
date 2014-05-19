@@ -118,7 +118,7 @@ class Auth_Controller extends Controller
 												  'js/jquery.sceditor.min.js',
 												  'js/bootstrap.min.js', 
 											      'js/chosen.jquery.min.js',
-                                                  'js/oc-panel/theme.init.js?v=2.1.7',
+                                                  'js/oc-panel/theme.init.js?v=2.2.0',
                                                   );
 			}
 			else
@@ -145,7 +145,7 @@ class Auth_Controller extends Controller
 												  'js/jquery.sceditor.min.js',
 												  'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', 
 											      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
-                                                  'js/oc-panel/theme.init.js?v=2.1.7',
+                                                  'js/oc-panel/theme.init.js?v=2.2.0',
                                                   );
 	        }
 

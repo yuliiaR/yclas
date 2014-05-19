@@ -382,16 +382,6 @@ class Controller_Panel_Update extends Auth_Controller {
      */
     public function action_217()
     {        
-        //call update previous versions
-        $this->action_203();
-        $this->action_205();
-        $this->action_206();
-        $this->action_207();
-        $this->action_21();
-        $this->action_211();
-        $this->action_214();
-        $this->action_215();
-
         $prefix = Database::instance()->table_prefix();
 
         try
@@ -441,6 +431,29 @@ class Controller_Panel_Update extends Auth_Controller {
 
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
+
+    }
+
+
+    /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.2.0
+     */
+    public function action_220()
+    {        
+        //call update previous versions
+        $this->action_203();
+        $this->action_205();
+        $this->action_206();
+        $this->action_207();
+        $this->action_21();
+        $this->action_211();
+        $this->action_214();
+        $this->action_215();
+        $this->action_220();
+
+        $prefix = Database::instance()->table_prefix();
+
+       
 
         //clean cache
         Cache::instance()->delete_all();
