@@ -133,7 +133,7 @@ class Model_Post extends ORM {
         {
             if ($this->status == 1 AND strlen(core::config('general.blog_disqus'))>0 )
             {
-                return View::factory('pages/disqus',
+                return View::factory('pages/ad/disqus',
                                 array('disqus'=>core::config('general.blog_disqus')))
                         ->render();
             }
