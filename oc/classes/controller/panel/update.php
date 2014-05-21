@@ -441,17 +441,17 @@ class Controller_Panel_Update extends Auth_Controller {
     public function action_220()
     {        
         //call update previous versions
-        $this->action_203();
-        $this->action_205();
-        $this->action_206();
-        $this->action_207();
-        $this->action_21();
-        $this->action_211();
-        $this->action_214();
-        $this->action_215();
-        $this->action_220();
+        // $this->action_203();
+        // $this->action_205();
+        // $this->action_206();
+        // $this->action_207();
+        // $this->action_21();
+        // $this->action_211();
+        // $this->action_214();
+        // $this->action_215();
+        // $this->action_217();
 
-        $prefix = Database::instance()->table_prefix();
+        //$prefix = Database::instance()->table_prefix();
 
        
 
@@ -459,12 +459,22 @@ class Controller_Panel_Update extends Auth_Controller {
         Cache::instance()->delete_all();
         Theme::delete_minified();
         
+        //delete old files from 322
+        File::delete(APPPATH.'ko322');
+        File::delete(MODPATH.'auth');
+        File::delete(MODPATH.'cache');
+        File::delete(MODPATH.'database');
+        File::delete(MODPATH.'image');
+        File::delete(MODPATH.'orm');
+        File::delete(MODPATH.'unittest');
+
         //deactivate maintenance mode
         Model_Config::set_value('general','maintenance',0);
 
         Alert::set(Alert::SUCCESS, __('Software Updated to latest version!'));
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
     }
+
 
     /**
      * This function will upgrade DB that didn't existed in previous versions
@@ -522,7 +532,8 @@ class Controller_Panel_Update extends Auth_Controller {
                           'oc/classes/',
                           'oc/modules/',
                           'oc/vendor/',
-                          'oc/ko323/',
+                          'oc/ko323/',//for next release move to oc/kohana better @todo
+                          'oc/kohana/',
                           'oc/bootstrap.php',
                           'themes/',
                           'languages/',

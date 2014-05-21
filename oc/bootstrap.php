@@ -84,24 +84,25 @@ Kohana::$log->attach(new Log_File(APPPATH.'logs'),$LEVELS);
  */
 Kohana::$config->attach(new Config_File);
 
-
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 $modules = array(
-	'themes'	=> DOCROOT.'themes',     // loaded as a module so we can search file using kohana find_file
-	'auth'		=> MODPATH.'auth',       // Basic authentication
-	'cache'		=> MODPATH.'cache',      // Caching with multiple backends
-	'database'	=> MODPATH.'database',   // Database access
-	'image'		=> MODPATH.'image',      // Image manipulation
-	'orm'		=> MODPATH.'orm',        // Object Relationship Mapping
+	'themes'	    => DOCROOT.'themes',     // loaded as a module so we can search file using kohana find_file
+    //KO Modules
+	'auth'		    => KOMODPATH.'auth',       // Basic authentication
+	'cache'		    => KOMODPATH.'cache',      // Caching with multiple backends
+	'database'	    => KOMODPATH.'database',   // Database access
+	'image'		    => KOMODPATH.'image',      // Image manipulation
+	'orm'		    => KOMODPATH.'orm',        // Object Relationship Mapping
+    //external modules not included on the KO package
 	'pagination'	=> MODPATH.'pagination', // ORM Pagination
 	'breadcrumbs'	=> MODPATH.'breadcrumbs',// breadcrumb view
 	//'plugin'	=> MODPATH.'plugin',     // hooks used for the plugin system
 	'formmanager'	=> MODPATH.'formmanager',// forms to objects ORM
-	'widgets'	=> MODPATH.'widgets',    // loads default widgets
+	'widgets'	    => MODPATH.'widgets',    // loads default widgets
 	'blacksmith'	=> MODPATH.'blacksmith', // used to handle custom fields
-	'mysqli'	=> MODPATH.'mysqli',     // mysqli driver
+	'mysqli'	    => MODPATH.'mysqli',     // mysqli driver
 );
 
 //modules for development environment, not included in distribution KO with OC, so you need to place them in your environment
