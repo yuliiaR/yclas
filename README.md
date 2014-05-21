@@ -16,7 +16,7 @@ Please read CONTRIBUTING.md
 
 # OC works thanks to other GPL software
 
-* Kohana 3.2.2. http://kohanaframework.org/
+* Kohana 3.2.3. http://kohanaframework.org/
 * KO Formmanager https://github.com/colinbm/kohana-formmanager
 * PHP-Gettext https://launchpad.net/php-gettext/
 * Pear File_Gettext http://pear.php.net/package/File_Gettext
