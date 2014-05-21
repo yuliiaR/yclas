@@ -75,6 +75,15 @@ Route::set('rss-blog','rss/blog.xml')
 ));
 
 /**
+ * rss for forum
+ */
+Route::set('rss-forum','rss-forum(/<seoname>).xml')
+->defaults(array(
+        'controller' => 'feed',    
+        'action'     => 'forum',
+));
+
+/**
  * rss
  */
 Route::set('rss','rss(/<category>(/<location>)).xml')
