@@ -133,8 +133,8 @@ class Controller_Forum extends Controller {
         	}
 			else
 			{
-				Alert::set(Alert::WARNING, __('New Topic is not available as a feature.'));
-				$this->request->redirect('forum-home');
+				Alert::set(Alert::INFO, __('New Topic is not available as a feature.'));
+				$this->request->redirect('default');
 			}
         }
 

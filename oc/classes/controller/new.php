@@ -44,7 +44,7 @@ class Controller_New extends Controller
 			}
 			else
 			{
-				Alert::set(Alert::WARNING, __('Posting advertisements is not yet available.'));
+				Alert::set(Alert::INFO, __('Posting advertisements is not yet available.'));
 				$this->request->redirect('default');
 			}
 		}
