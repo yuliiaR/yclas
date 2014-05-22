@@ -112,7 +112,7 @@ class Model_Location extends ORM {
     }
 
     /**
-     * we get the locations in an array and a multidimensional array to know the deep
+     * we get the locations in an array and a multidimensional array to know the deep @todo refactor this, is a mess
      * @return array 
      */
     public static function get_all()
@@ -120,45 +120,57 @@ class Model_Location extends ORM {
         $locs = new self;
         $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
 
-        //transform the locs to an array
-        $locs_arr = array();
-        foreach ($locs as $loc) 
+        if ( ($locs_arr = Core::cache('locs_arr'))===NULL)
         {
-            $locs_arr[$loc->id_location] =  array('name'               => $loc->name,
-                                                  'order'              => $loc->order,
-                                                  'id_location_parent' => $loc->id_location_parent,
-                                                  'parent_deep'        => $loc->parent_deep,
-                                                  'seoname'            => $loc->seoname,
-                                                  'id'                 => $loc->id_location,
-                                                );
+            //transform the locs to an array
+            $locs_arr = array();
+            foreach ($locs as $loc) 
+            {
+                $locs_arr[$loc->id_location] =  array('name'               => $loc->name,
+                                                      'order'              => $loc->order,
+                                                      'id_location_parent' => $loc->id_location_parent,
+                                                      'parent_deep'        => $loc->parent_deep,
+                                                      'seoname'            => $loc->seoname,
+                                                      'id'                 => $loc->id_location,
+                                                    );
+            }
+            Core::cache('locs_arr',$locs_arr);
         }
 
-        // array by parent deep, 
-        // each parent deep is one array with categories of the same index
-        $locs_parent_deep = array();
-        foreach ($locs as $loc) 
+        if ( ($locs_parent_deep = Core::cache('locs_parent_deep'))===NULL)
         {
-            $locs_parent_deep[$loc->parent_deep][$loc->id_location] =  array('name'               => $loc->name,
-                                                                              'id_location_parent' => $loc->id_location_parent,
-                                                                              'parent_deep'        => $loc->parent_deep,
-                                                                              'seoname'            => $loc->seoname,
-                                                                              'id'                 => $loc->id_location,
-                                                                    );
+            // array by parent deep, 
+            // each parent deep is one array with categories of the same index
+            $locs_parent_deep = array();
+            foreach ($locs as $loc) 
+            {
+                $locs_parent_deep[$loc->parent_deep][$loc->id_location] =  array('name'               => $loc->name,
+                                                                                  'id_location_parent' => $loc->id_location_parent,
+                                                                                  'parent_deep'        => $loc->parent_deep,
+                                                                                  'seoname'            => $loc->seoname,
+                                                                                  'id'                 => $loc->id_location,
+                                                                        );
+            }
+            //sort by key, in case lover level is befor higher
+            ksort($locs_parent_deep);
+            Core::cache('locs_parent_deep',$locs_parent_deep);
         }
-        //sort by key, in case lover level is befor higher
-        ksort($locs_parent_deep);
 
-        //for each location we get his siblings
-        $locs_s = array();
-        foreach ($locs as $loc) 
-             $locs_s[$loc->id_location_parent][] = $loc->id_location;
-            
+        if ( ($locs_m = Core::cache('locs_m'))===NULL)
+        {
+            //for each location we get his siblings
+            $locs_s = array();
+            foreach ($locs as $loc) 
+                 $locs_s[$loc->id_location_parent][] = $loc->id_location;
+                
 
-        //last build multidimensional array
-        if (count($locs_s)>1)
-            $locs_m = self::multi_locs($locs_s);
-        else
-            $locs_m = array();
+            //last build multidimensional array
+            if (count($locs_s)>1)
+                $locs_m = self::multi_locs($locs_s);
+            else
+                $locs_m = array();
+            Core::cache('locs_m',$locs_m);
+        }
 
         return array($locs_arr,$locs_m, $locs_parent_deep);
     }

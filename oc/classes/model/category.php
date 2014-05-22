@@ -124,7 +124,7 @@ class Model_Category extends ORM {
     }
 
     /**
-     * we get the categories in an array and a multidimensional array to know the deep
+     * we get the categories in an array and a multidimensional array to know the deep @todo refactor this, is a mess
      * @return array 
      */
     public static function get_all()
@@ -133,47 +133,61 @@ class Model_Category extends ORM {
         $cats = $cats->order_by('order','asc')->find_all()->cached()->as_array('id_category');
 
         //transform the cats to an array
-        $cats_arr = array();
-        foreach ($cats as $cat) 
+        if ( ($cats_arr = Core::cache('cats_arr'))===NULL)
         {
-            $cats_arr[$cat->id_category] =  array('name'               => $cat->name,
-                                                  'order'              => $cat->order,
-                                                  'id_category_parent' => $cat->id_category_parent,
-                                                  'parent_deep'        => $cat->parent_deep,
-                                                  'seoname'            => $cat->seoname,
-                                                  'price'              => $cat->price,
-                                                  'id'                 => $cat->id_category,
-                                                );
-        }
+            $cats_arr = array();
+            foreach ($cats as $cat) 
+            {
+                $cats_arr[$cat->id_category] =  array('name'               => $cat->name,
+                                                      'order'              => $cat->order,
+                                                      'id_category_parent' => $cat->id_category_parent,
+                                                      'parent_deep'        => $cat->parent_deep,
+                                                      'seoname'            => $cat->seoname,
+                                                      'price'              => $cat->price,
+                                                      'id'                 => $cat->id_category,
+                                                    );
+            }
+            Core::cache('cats_arr',$cats_arr);
+        }   
+        
 
         // array by parent deep, 
         // each parent deep is one array with categories of the same index
-        $cats_parent_deep = array();
-        foreach ($cats as $cat) 
+        if ( ($cats_parent_deep = Core::cache('cats_parent_deep'))===NULL)
         {
-            $cats_parent_deep[$cat->parent_deep][$cat->id_category] =  array('name'               => $cat->name,
-                                                                              'id_category_parent' => $cat->id_category_parent,
-                                                                              'parent_deep'        => $cat->parent_deep,
-                                                                              'seoname'            => $cat->seoname,
-                                                                              'price'              => $cat->price,
-                                                                              'id'                 => $cat->id_category,
-                                                                    );
+            $cats_parent_deep = array();
+            foreach ($cats as $cat) 
+            {
+                $cats_parent_deep[$cat->parent_deep][$cat->id_category] =  array('name'               => $cat->name,
+                                                                                  'id_category_parent' => $cat->id_category_parent,
+                                                                                  'parent_deep'        => $cat->parent_deep,
+                                                                                  'seoname'            => $cat->seoname,
+                                                                                  'price'              => $cat->price,
+                                                                                  'id'                 => $cat->id_category,
+                                                                        );
+            }
+            //sort by key, in case lover level is befor higher
+            ksort($cats_parent_deep);
+            Core::cache('cats_parent_deep',$cats_parent_deep);
         }
-        //sort by key, in case lover level is befor higher
-        ksort($cats_parent_deep);
 
-        //for each category we get his siblings
-        $cats_s = array();
-        foreach ($cats as $cat) 
-             $cats_s[$cat->id_category_parent][] = $cat->id_category;
-        
+        //multidimensional array
+        if ( ($cats_m = Core::cache('cats_m'))===NULL)
+        {
+            //for each category we get his siblings
+            $cats_s = array();
+            foreach ($cats as $cat) 
+                 $cats_s[$cat->id_category_parent][] = $cat->id_category;
+            
 
-        //last build multidimensional array
-        if (count($cats_s)>1)
-            $cats_m = self::multi_cats($cats_s);
-        else
-            $cats_m = array();
-        
+            //last build multidimensional array
+            if (count($cats_s)>1)
+                $cats_m = self::multi_cats($cats_s);
+            else
+                $cats_m = array();
+            Core::cache('cats_m',$cats_m);
+        }
+
         return array($cats_arr,$cats_m, $cats_parent_deep);
     }
 
