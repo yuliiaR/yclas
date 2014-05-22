@@ -157,7 +157,7 @@
                         </div>
                         <?endif?>
                     <?endif?>
-                        <? if($user->has_access_to_any('profile') AND $user->id_role!=Model_Role::ROLE_ADMIN AND $user->id_role!=Model_Role::ROLE_MODERATOR):?>
+                        <? if($user->has_access_to_any('profile')):?>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
