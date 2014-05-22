@@ -33,6 +33,22 @@ class Controller_New extends Controller
 
 		//find all, for populating form select fields 
 		list($categories,$order_categories, $order_parent_deep)  = Model_Category::get_all();
+
+		// NO categories redirect ADMIN to categories panel
+		if(count($order_categories) == 0)
+		{
+			if(Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
+			{
+				Alert::set(Alert::INFO, __('Please, first create some categories.'));
+				Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'category','action'=>'index')));
+			}
+			else
+			{
+				Alert::set(Alert::WARNING, __('Posting advertisements is not yet available.'));
+				$this->request->redirect('default');
+			}
+		}
+
 		list($locations,$order_locations, $loc_parent_deep)  	 = Model_Location::get_all();
 		
 		// bool values from DB, to show or hide this fields in view
