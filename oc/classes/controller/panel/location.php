@@ -101,7 +101,8 @@ class Controller_Panel_Location extends Auth_Crud {
                 if ($id_loc!=core::get('id_location'))
                 {
                     $c = new Model_Location($id_loc);
-                    $c->order = $order;
+                    $c->parent_deep     = core::get('deep');
+                    $c->order           = $order;
                     $c->save();
                 }
                 else
@@ -113,14 +114,8 @@ class Controller_Panel_Location extends Auth_Crud {
                 $order++;
             }
 
-            //recalculating the deep of all the categories
-            $locs = new Model_Location();
-            $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
-            foreach ($locs as $loc) 
-            {
-                $loc->parent_deep = $loc->get_deep();
-                $loc->save();
-            }
+            //update deep for all the locations
+            $this->action_deep();
 
             $this->template->content = __('Saved');
         }
@@ -202,4 +197,39 @@ class Controller_Panel_Location extends Auth_Crud {
         
         Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index'))); 
     }
+
+    /**
+     * recalculating the deep of all the locations
+     * @return [type] [description]
+     */
+    public function action_deep()
+    {
+
+        //getting all the cats as array
+        list($locs_arr,$locs_m) = Model_Location::get_all();
+
+
+        $locs = new Model_Location();
+        $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
+        foreach ($locs as $loc) 
+        {
+            $deep = 0;
+
+            //getin the parent of this location
+            $id_location_parent = $locs_arr[$loc->id_location]['id_location_parent'];
+
+            //counting till we find the begining
+            while ($id_location_parent != 1 AND $id_location_parent != 0) 
+            {
+                $id_location_parent = $locs_arr[$id_location_parent]['id_location_parent'];
+                $deep++;
+            }
+
+            $loc->parent_deep = $deep;
+            $loc->save();
+        }
+        //Alert::set(Alert::INFO, __('Success'));
+        //Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index'))); 
+    }
+
 }
