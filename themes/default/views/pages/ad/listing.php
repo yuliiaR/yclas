@@ -24,8 +24,10 @@
     <ul class="dropdown-menu" role="menu" id="sort-list">
         <li><a href="?sort=title-asc"><?=__('Name (A-Z)')?></a></li>
         <li><a href="?sort=title-desc"><?=__('Name (Z-A)')?></a></li>
+        <?if(core::config('advertisement.price')!=FALSE):?>
         <li><a href="?sort=price-asc"><?=__('Price (Low)')?></a></li>
         <li><a href="?sort=price-desc"><?=__('Price (High)')?></a></li>
+        <?endif?>
         <li><a href="?sort=featured"><?=__('Featured')?></a></li>
         <li><a href="?sort=published-desc"><?=__('Newest')?></a></li>
         <li><a href="?sort=published-asc"><?=__('Oldest')?></a></li>
