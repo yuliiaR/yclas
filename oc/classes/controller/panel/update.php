@@ -463,7 +463,20 @@ class Controller_Panel_Update extends Auth_Controller {
 
         $prefix = Database::instance()->table_prefix();
 
-       
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE ".$prefix."config DROP INDEX ".$prefix."config_IK_group_name_AND_config_key")->execute();
+        }catch (exception $e) {}
+        
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE ".$prefix."config ADD PRIMARY KEY (config_key);")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE UNIQUE INDEX ".$prefix."config_UK_group_name_AND_config_key ON ".$prefix."config(`group_name` ,`config_key`)")->execute();
+        }catch (exception $e) {}
 
         //clean cache
         Cache::instance()->delete_all();
