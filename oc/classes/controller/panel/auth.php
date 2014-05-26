@@ -52,7 +52,6 @@ class Controller_Panel_Auth extends Controller {
         else
             $redir = Route::url('oc-panel',array('controller'=>'auth','action'=>'login'));
             
-
 	    $this->request->redirect($redir);
 	
 	}
