@@ -384,6 +384,21 @@
 					))?>  
 				</div>
 			</div>
+			<div class="form-group">
+				<?= FORM::label($forms['login_to_post']['key'], __('Require login to post'), array('class'=>'control-label col-sm-3', 'for'=>$forms['login_to_post']['key']))?>
+				<div class="col-sm-4">
+					<?= FORM::select($forms['login_to_post']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['login_to_post']['value'], array(
+					'placeholder' => "", 
+					'class' => 'tips form-control', 
+					'id' => $forms['login_to_post']['key'], 
+					'data-original-title'=> __("Require login to post"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-content'=>__("Require only the logged in users to post."),
+					))?>  
+				</div>
+			</div>
 			
 				<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
 			

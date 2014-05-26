@@ -449,7 +449,7 @@ class Controller_Panel_Update extends Auth_Controller {
      * This function will upgrade DB that didn't existed in versions prior to 2.1.8
      */
     public function action_218()
-    {        
+    {   
         //call update previous versions
         $this->action_203();
         $this->action_205();
@@ -478,6 +478,15 @@ class Controller_Panel_Update extends Auth_Controller {
             DB::query(Database::UPDATE,"CREATE UNIQUE INDEX ".$prefix."config_UK_group_name_AND_config_key ON ".$prefix."config(`group_name` ,`config_key`)")->execute();
         }catch (exception $e) {}
 
+        $configs = array(
+                         array('config_key'     =>'login_to_post',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   =>'0'),  
+                        );
+
+        // returns TRUE if some config is saved 
+        $return_conf = Model_Config::config_array($configs);
+        
         //clean cache
         Cache::instance()->delete_all();
         Theme::delete_minified();

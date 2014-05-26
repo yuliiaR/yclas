@@ -31,6 +31,12 @@ class Controller_New extends Controller
         }
         $this->template->scripts['footer'][] = 'js/new.js';
 
+        // redirect to login, if conditions are met 
+        if(core::config('advertisement.login_to_post') == TRUE AND !Auth::instance()->logged_in())
+		{
+			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
+		}
+
 		//find all, for populating form select fields 
 		list($categories,$order_categories, $order_parent_deep)  = Model_Category::get_all();
 
@@ -40,7 +46,7 @@ class Controller_New extends Controller
 			if(Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
 			{
 				Alert::set(Alert::INFO, __('Please, first create some categories.'));
-				Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'category','action'=>'index')));
+				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'category','action'=>'index')));
 			}
 			else
 			{
