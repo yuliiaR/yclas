@@ -34,6 +34,7 @@ class Controller_New extends Controller
         // redirect to login, if conditions are met 
         if(core::config('advertisement.login_to_post') == TRUE AND !Auth::instance()->logged_in())
 		{
+			Alert::set(Alert::INFO, __('Please, login before posting advertisement!'));
 			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
 		}
 
