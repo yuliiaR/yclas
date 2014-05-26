@@ -142,7 +142,7 @@ class Model_Order extends ORM {
                 if($moderation == Model_Ad::PAYMENT_ON)
                 {
                     $advert->published = Date::unix2mysql(time());
-                    $advert->status = Model_Ad::STATUS_UNAVAILABLE;
+                    $advert->status = Model_Ad::STATUS_PUBLISHED;
 
                     try {
                         $advert->save();
