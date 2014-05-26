@@ -117,29 +117,34 @@ class Controller_Panel_Settings extends Auth_Controller {
         $generalconfig = new Model_Config();
         $config = $generalconfig->where('group_name', '=', 'general')->find_all();
         $config_img = $generalconfig->where('group_name', '=', 'image')->find_all();
+        $config_i18n = $generalconfig->where('group_name', '=', 'i18n')->find_all();
 
-        // array of values from config for rendering
+        // config general array
         foreach ($config as $c) 
         {
             $forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
         }
-        // array of values from config for rendering
+        // config images array
         foreach ($config_img as $c)
         {
             $forms_img[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
         }
+        // config i18n configs
+        foreach ($config_i18n as $c)
+        {
+            $i18n[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
+        }
         
         //not updatable fields
-        $do_nothing = array('menu');
+        $do_nothing = array('menu','locale','allow_query_language','charset');
 
         // save only changed values
         if($this->request->post())
         {
+            //save general
         	foreach ($config as $c) 
             {   
-                
                 $config_res = $this->request->post($c->config_key);
-
                 if($config_res != $c->config_value AND !in_array($c->config_key, $do_nothing))
                 {
                     $c->config_value = $config_res;
@@ -151,6 +156,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                 }
                   
             }
+            //save image config
             foreach ($config_img as $ci) 
             {   
                 
@@ -170,9 +176,22 @@ class Controller_Panel_Settings extends Auth_Controller {
                     
                     $ci->config_value = $config_res;
                     try {
-
                         $ci->save();
+                    } catch (Exception $e) {
+                        echo $e;
+                    }
+                }
+            }
+            //save i18n
+            foreach ($config_i18n as $cn) 
+            {   
+                $config_res = $this->request->post($cn->config_key);
 
+                if($config_res != $cn->config_value AND !in_array($cn->config_key, $do_nothing))
+                {
+                    $cn->config_value = $config_res;
+                    try {
+                        $cn->save();
                     } catch (Exception $e) {
                         echo $e;
                     }
@@ -184,7 +203,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'general')));
         }
 
-        $this->template->content = View::factory('oc-panel/pages/settings/general', array('forms'=>$forms, 'forms_img'=>$forms_img));
+        $this->template->content = View::factory('oc-panel/pages/settings/general', array('forms'=>$forms, 'forms_img'=>$forms_img,'i18n'=>$i18n));
     }
 
     /**
