@@ -181,7 +181,7 @@ class Controller_Panel_Location extends Auth_Crud {
             if(core::post('multy_locations') !== "")
             {
                 $multy_cats = explode(',', core::post('multy_locations'));
-                $obj_location = new Model_Category();
+                $obj_location = new Model_Location();
 
                 $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent'));
                 foreach ($multy_cats as $name)
