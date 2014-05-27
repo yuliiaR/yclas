@@ -4,7 +4,7 @@
 <?= FORM::open(Route::url('search'), array('class'=>'form-horizontal', 'method'=>'GET', 'action'=>'','enctype'=>'multipart/form-data'))?>
 <!-- if categories on show selector of categories -->
     <div class="form-group">
-        <div class="col-xs-10">  
+        <div class="col-xs-12">  
             <?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
             <input type="text" id="title" name="title" class="form-control" value="" placeholder="<?=__('Search')?>">
         </div>
@@ -12,7 +12,7 @@
 <?if($widget->advanced != FALSE):?>
     <?if($widget->cat_items !== NULL):?>
         <div class="form-group">
-            <div class="col-xs-10">
+            <div class="col-xs-12">
                 <?= FORM::label('category', __('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
                 <select data-placeholder="<?=__('Categories')?>" name="category" id="category_widget_search" class="form-control disable-chosen">
                 <option value="<?=core::request('category')?>"></option>
@@ -38,7 +38,7 @@
 <?if($widget->loc_items !== NULL):?>
     <?if(count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
         <div class="form-group">
-            <div class="col-xs-10">
+            <div class="col-xs-12">
                 <?= FORM::label('location_widget_search', __('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
                 <select data-placeholder="<?=__('Locations')?>" name="location" id="location_widget_search" class="form-control disable-chosen">
                 <option></option>
@@ -61,7 +61,7 @@
     <?if(core::config('advertisement.price')):?>
         <div class="form-group">
              
-            <div class="col-xs-10"> 
+            <div class="col-xs-12"> 
                 <label class="" for="price-min"><?=__('Price from')?> </label>
                 <input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
             </div>
@@ -69,7 +69,7 @@
 
         <div class="form-group">
             
-            <div class="col-xs-10">
+            <div class="col-xs-12">
                 <label class="" for="price-max"><?=__('Price to')?></label>
                 <input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
             </div>
@@ -83,7 +83,7 @@
         <?if (is_array($widget->custom_fields)):?>
             <?$i=0; foreach($widget->custom_fields as $name=>$field):?>
             <div class="form-group control-group " id="cf_search">
-                <div class="col-xs-10">
+                <div class="col-xs-12">
                 <?if($field['searchable']):?>
                     <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
                         $select = array(''=>'');
