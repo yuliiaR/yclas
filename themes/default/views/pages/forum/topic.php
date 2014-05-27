@@ -5,15 +5,15 @@
     <span class="label label-info"><?=$topic->user->name?> <?=Date::fuzzy_span(Date::mysql2unix($topic->created))?></span>
     <?if($previous->loaded()):?>
         <a class="label" href="<?=Route::url('forum-topic',  array('seotitle'=>$previous->seotitle,'forum'=>$forum->seoname))?>" title="<?=$previous->title?>">
-        <i class="glyphicon-backward glyphicon"></i> <?=$previous->title?></i></a>
+        <i class="icon-white icon-backward glyphicon-backward glyphicon"></i> <?=$previous->title?></i></a>
     <?endif?>
     <?if($next->loaded()):?>
         <a class="label" href="<?=Route::url('forum-topic',  array('seotitle'=>$next->seotitle,'forum'=>$forum->seoname))?>" title="<?=$next->title?>">
-        <?=$next->title?> <i class="glyphicon-forward glyphicon"></i></a>
+        <?=$next->title?> <i class="icon-white icon-forward glyphicon-forward glyphicon"></i></a>
     <?endif?>
 </div>
 
-    <div class="col-md-3 ">
+    <div class="col-md-3 span2">
         <div class="thumbnail highlight">
             <img src="<?=$topic->user->get_profile_image()?>" width="120px" height="120px">
             <div class="caption">
@@ -25,11 +25,11 @@
             </div>
         </div> 
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 span6">
         <?if(Auth::instance()->logged_in()):?>
             <?if(Auth::instance()->get_user()->id_role==Model_Role::ROLE_ADMIN):?>
                 <a class="label label-warning pull-right" href="<?=Route::url('oc-panel', array('controller'=> 'topic', 'action'=>'update','id'=>$topic->id_post)) ?>">
-                    <i class="glyphicon glyphicon-edit"></i>
+                    <i class="glyphicon icon-white icon-edit glyphicon-edit"></i>
                 </a>
             <?endif?>
         <?endif?>
@@ -41,7 +41,7 @@
 
 <?foreach ($replies as $reply):?>
 
-    <div class="col-md-3">
+    <div class="col-md-3 span2">
         <div class="thumbnail highlight">
             <img src="<?=$reply->user->get_profile_image()?>" width="120px" height="120px">
             <div class="caption">
@@ -53,11 +53,11 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 span6">
     <?if(Auth::instance()->logged_in()):?>
         <?if(Auth::instance()->get_user()->id_role==Model_Role::ROLE_ADMIN):?>
             <a class="label label-warning pull-right" href="<?=Route::url('oc-panel', array('controller'=> 'topic', 'action'=>'update','id'=>$reply->id_post)) ?>">
-                <i class="glyphicon glyphicon-edit"></i>
+                <i class="glyphicon icon-white icon-edit glyphicon-edit"></i>
             </a>
         <?endif?>
     <?endif?>
@@ -83,9 +83,9 @@
     </ul>
     <?php endif?>       
 
-    <div class="form-group">
+    <div class="form-group control-group">
         <div class="col-md-12">
-            <textarea name="description" rows="10" class="form-control" required><?=core::post('description',__('Reply here'))?></textarea>
+            <textarea name="description" rows="10" class="form-control input-xxlarge" required><?=core::post('description',__('Reply here'))?></textarea>
         </div>
     </div>
 

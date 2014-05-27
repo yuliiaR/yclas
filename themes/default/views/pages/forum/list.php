@@ -53,7 +53,7 @@
                     <?if(Auth::instance()->get_user()->id_role==Model_Role::ROLE_ADMIN):?>
                         <td width="10%">
                             <a class="label label-warning" href="<?=Route::url('oc-panel', array('controller'=> 'topic', 'action'=>'update','id'=>$topic->id_post)) ?>">
-                                <span class="glyphicon glyphicon-edit"></span>
+                                <span class="icon-edit icon-white glyphicon glyphicon-edit"></span>
                             </a>
                         </td>
                     <?endif?>
