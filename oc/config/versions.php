@@ -3,8 +3,8 @@
   '2.1.8' => 
   array (
     'codename' => 'Barceloneta',
-    'released' => '2014-',
-    'blog' => 'http://open-classifieds.com/',
+    'released' => '2014-05-28',
+    'blog' => 'http://open-classifieds.com/2014/05/28/open-classifieds-2-1-8/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.1.7...2.1.8',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=21&page=1&state=closed',
     'download' => 'http://j.mp/oc_218',
@@ -14,7 +14,7 @@
     'codename' => 'Ciutadella',
     'released' => '2014-05-19',
     'blog' => 'http://open-classifieds.com/2014/05/19/open-classifieds-2-1-7/',
-    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/master',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.1.6...2.1.7',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=20&page=1&state=closed',
     'download' => 'http://j.mp/oc_217',
   ),
@@ -23,7 +23,7 @@
     'codename' => 'Llacuna',
     'released' => '2014-05-02',
     'blog' => 'http://open-classifieds.com/2014/05/02/open-classifieds-2-1-6/',
-    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/commits/master',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.1.5...2.1.6',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=19&state=closed',
     'download' => 'http://j.mp/oc_216',
   ),
