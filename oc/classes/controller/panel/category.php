@@ -153,6 +153,10 @@ class Controller_Panel_Category extends Auth_Crud {
             {
                 $category->delete();
                 $this->template->content = 'OK';
+
+                //recalculating the deep of all the categories
+                $this->action_deep();
+                
                 Alert::set(Alert::SUCCESS, __('Category deleted'));
                 
             }
