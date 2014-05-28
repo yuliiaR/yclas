@@ -2,14 +2,31 @@
 
 class Controller_Panel_Content extends Auth_Controller {
 
+    //list index email
+    public function action_email()
+    {
+        $this->action_list('email', core::config('i18n.locale'));
+    }
+    //list index page
+    public function action_page()
+    {
+        $this->action_list('page', core::config('i18n.locale'));
+    }
+    //list index FAQ
+    public function action_help()
+    {
+        $this->action_list('help', core::config('i18n.locale'));
+    }
+
     /**
      * action: LIST
      */
-    public function action_list()
+    public function action_list($type = NULL, $locale = NULL)
     {
         
-        $type = $this->request->query('type');
-        //$site = ($type == 'page')?__('Page'):__('Email');
+        if($type == NULL)
+            $type = core::get('type');
+
         switch ($type) {
             case 'email':
                 $site = __('Email');
@@ -23,7 +40,8 @@ class Controller_Panel_Content extends Auth_Controller {
                 break;
         }
 
-        $locale = core::get('locale_select');
+        if(core::get('locale_select'))
+            $locale = core::get('locale_select');
 
         // validation active 
         Breadcrumbs::add(Breadcrumb::factory()->set_title($site));  
