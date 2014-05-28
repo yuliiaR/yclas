@@ -150,7 +150,12 @@ class Controller_Panel_Location extends Auth_Crud {
             try
             {
                 $location->delete();
+
                 $this->template->content = 'OK';
+
+                //recalculating the deep of all the categories
+                $this->action_deep();
+
                 Alert::set(Alert::SUCCESS, __('Location deleted'));
                 
             }
@@ -204,10 +209,11 @@ class Controller_Panel_Location extends Auth_Crud {
      */
     public function action_deep()
     {
+        //clean the cache so we get updated results
+        Cache::instance()->delete_all();    
 
         //getting all the cats as array
         list($locs_arr,$locs_m) = Model_Location::get_all();
-
 
         $locs = new Model_Location();
         $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
@@ -219,14 +225,18 @@ class Controller_Panel_Location extends Auth_Crud {
             $id_location_parent = $locs_arr[$loc->id_location]['id_location_parent'];
 
             //counting till we find the begining
-            while ($id_location_parent != 1 AND $id_location_parent != 0) 
+            while ($id_location_parent != 1 AND $id_location_parent != 0 AND $deep<10) 
             {
                 $id_location_parent = $locs_arr[$id_location_parent]['id_location_parent'];
                 $deep++;
             }
 
-            $loc->parent_deep = $deep;
-            $loc->save();
+            //saving the location only if different deep
+            if ($loc->parent_deep != $deep)
+            {
+                $loc->parent_deep = $deep;
+                $loc->save();
+            }
         }
         //Alert::set(Alert::INFO, __('Success'));
         //Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index'))); 

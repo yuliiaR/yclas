@@ -90,7 +90,6 @@ class Controller_Panel_Category extends Auth_Crud {
             //saves the current category
             $cat->id_category_parent = core::get('id_category_parent');
             $cat->parent_deep        = core::get('deep');
-            
 
             //saves the categories in the same parent the new orders
             $order = 0;
@@ -224,11 +223,19 @@ class Controller_Panel_Category extends Auth_Crud {
             $id_category_parent = $cats_arr[$cat->id_category]['id_category_parent'];
 
             //counting till we find the begining
-            while ($id_category_parent != 1 AND $id_category_parent != 0) 
+            while ($id_category_parent != 1 AND $id_category_parent != 0 AND $deep<10) 
             {
                 $id_category_parent = $cats_arr[$id_category_parent]['id_category_parent'];
                 $deep++;
             }
+
+            //saving the category only if different deep
+            if ($cat->parent_deep != $deep)
+            {
+                $cat->parent_deep = $deep;
+                $cat->save();
+            }
+            
         }
 
         //Alert::set(Alert::INFO, __('Success'));
