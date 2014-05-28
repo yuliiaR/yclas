@@ -17,10 +17,10 @@
 
 <?= FORM::open(Route::url('oc-panel',array('controller'=>'content','action'=>'list')), array('method'=>'GET','class'=>'form-horizontal', 'id'=>'locale_form','enctype'=>'multipart/form-data'))?>
     <div class="form-group">
-        
+
         <div class="col-sm-4">
             <?= FORM::label('locale', __('Locale'), array('class'=>'control-label', 'for'=>'locale'))?>
-            <?= FORM::select('locale_select', $locale_list, core::request('locale_select') )?> 
+            <?= FORM::select('locale_select', $locale_list, $locale )?> 
         </div>
         <div class="col-sm-4">
             <?= FORM::hidden('type', $type )?> 

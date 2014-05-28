@@ -66,7 +66,8 @@ class Controller_Panel_Content extends Auth_Controller {
         
         $this->template->content = View::factory('oc-panel/pages/content/list',array('contents'=>$contents, 
                                                                                         'type'=>$type, 
-                                                                                        'locale_list'=>$l_locale));
+                                                                                        'locale_list'=>$l_locale,
+                                                                                        'locale' => $locale));
     }
 
     /**
