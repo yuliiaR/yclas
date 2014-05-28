@@ -5,7 +5,7 @@ class Controller_Panel_Blog extends Auth_Crud {
 	/**
 	 * @var $_index_fields ORM fields shown in index
 	 */
-	protected $_index_fields = array('title','created');
+	protected $_index_fields = array('title','created','status');
 
 	/**
 	 * @var $_orm_model ORM model name
@@ -22,7 +22,8 @@ class Controller_Panel_Blog extends Auth_Crud {
         $this->template->title = __($this->_orm_model);
         $this->template->scripts['footer'][] = 'js/oc-panel/crud/index.js';
         
-        $elements = ORM::Factory($this->_orm_model);//->find_all();
+        $elements = new Model_Post();
+        $elements->where('id_forum','IS',NULL);
 
         $pagination = Pagination::factory(array(
                     'view'           => 'pagination',
