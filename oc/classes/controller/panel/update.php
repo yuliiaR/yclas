@@ -513,7 +513,7 @@ class Controller_Panel_Update extends Auth_Controller {
      * @FIXME @TOFIX  NEVER USED / NEVER CALLED
      */
     public function action_latest()
-    {
+    {        
         //activate maintenance mode
         Model_Config::set_value('general','maintenance',1);
 
@@ -581,6 +581,9 @@ class Controller_Panel_Update extends Auth_Controller {
           
         //delete file when all finished
         File::delete($update_src_dir);
+
+        //clean the cache so kohana file finder wont cache the search
+        Cache::instance()->delete_all();
 
         //update themes, different request so doesnt time out
         $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'themes','id'=>str_replace('.', '', $version)))); 

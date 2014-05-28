@@ -89,7 +89,7 @@ class Widget_Locations extends Widget
         $this->locations = $this->locations;
 		$this->loc_items = $list_loc;
 		$this->loc_breadcrumb = $current_and_parent;
-        $this->cat_seoname = NULL;
+        $this->cat_seoname = URL::title(__('all'));
    
         if (Model_Category::current()->loaded())
             $this->cat_seoname = Model_Category::current()->seoname;
