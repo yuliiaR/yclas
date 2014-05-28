@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OfficeGate Language Pack\n"
-"POT-Creation-Date: 2014-05-16 11:20+0200\n"
+"POT-Creation-Date: 2014-05-28 09:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,18 +10,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ..\n"
 
-#: oc/ko322/classes/kohana/i18n.php:10
+#: oc/ko323/system/classes/kohana/i18n.php:10
 msgid "Hello, world"
 msgstr ""
 
-#: oc/ko322/views/profiler/stats.php:24
+#: oc/ko323/system/views/profiler/stats.php:24
 #: oc/views/profiler.php:24
 msgid "Benchmark"
 msgstr ""
 
-#: oc/ko322/views/profiler/stats.php:63
+#: oc/ko323/system/views/profiler/stats.php:63
 #: oc/views/profiler.php:63
 msgid "Application Execution"
+msgstr ""
+
+#: oc/ko323/system/views/kohana/error.php:63
+msgid "PHP internal call"
+msgstr ""
+
+#: oc/ko323/system/views/kohana/error.php:67
+msgid "arguments"
+msgstr ""
+
+#: oc/ko323/system/views/kohana/error.php:89
+#: oc/views/profiler.php:120
+msgid "Environment"
+msgstr ""
+
+#: oc/ko323/system/views/kohana/error.php:92
+#: oc/views/profiler.php:123
+msgid "Included files"
+msgstr ""
+
+#: oc/ko323/system/views/kohana/error.php:103
+#: oc/views/profiler.php:134
+msgid "Loaded extensions"
 msgstr ""
 
 #: oc/classes/theme.php:566
@@ -48,30 +71,32 @@ msgid "Info"
 msgstr ""
 
 #: oc/classes/alert.php:152
-#: themes/reclassifieds/views/main.php:73
-#: themes/ocean/views/main.php:75
-#: themes/newspaper/views/main.php:84
-#: themes/mobile/views/main.php:67
-#: themes/bootplus/views/main.php:72
-#: themes/olson/views/main.php:77
-#: themes/moderndeluxe/views/main.php:72
-#: themes/kamaleon/views/main.php:73
-#: themes/responsive/views/main.php:73
-#: themes/default/views/main.php:74
-#: themes/czsale/views/main.php:73
+#: themes/reclassifieds/views/main.php:79
+#: themes/ocean/views/main.php:81
+#: themes/newspaper/views/main.php:90
+#: themes/mobile/views/main.php:73
+#: themes/bootplus/views/main.php:78
+#: themes/olson/views/main.php:83
+#: themes/moderndeluxe/views/main.php:78
+#: themes/kamaleon/views/main.php:79
+#: themes/responsive/views/main.php:79
+#: themes/default/views/main.php:80
+#: themes/czsale/views/main.php:79
 msgid "Warning"
 msgstr ""
 
 #: oc/classes/alert.php:155
-#: oc/classes/controller/panel/category.php:129
+#: oc/classes/controller/panel/category.php:123
 #: oc/classes/controller/panel/forum.php:81
 #: oc/classes/controller/panel/menu.php:49
-#: oc/classes/controller/panel/location.php:128
+#: oc/classes/controller/panel/location.php:123
 #: oc/classes/controller/panel/fields.php:169
 msgid "Error"
 msgstr ""
 
 #: oc/classes/alert.php:158
+#: oc/classes/controller/panel/category.php:230
+#: oc/classes/controller/panel/location.php:231
 msgid "Success"
 msgstr ""
 
@@ -108,22 +133,22 @@ msgid "page"
 msgstr ""
 
 #: oc/classes/model/category.php:62
-#: oc/classes/model/category.php:349
+#: oc/classes/model/category.php:363
 #: oc/classes/model/location.php:52
 #: oc/classes/controller/ad.php:59
-#: oc/config/routes.php:178
-#: themes/reclassifieds/views/main.php:35
-#: themes/ocean/views/main.php:35
-#: themes/newspaper/views/main.php:38
-#: themes/mobile/views/main.php:33
+#: oc/config/routes.php:187
+#: themes/reclassifieds/views/main.php:41
+#: themes/ocean/views/main.php:41
+#: themes/newspaper/views/main.php:44
+#: themes/mobile/views/main.php:39
 #: themes/mobile/views/header.php:13
-#: themes/bootplus/views/main.php:35
-#: themes/olson/views/main.php:35
-#: themes/moderndeluxe/views/main.php:35
-#: themes/kamaleon/views/main.php:35
-#: themes/responsive/views/main.php:35
-#: themes/default/views/main.php:34
-#: themes/czsale/views/main.php:35
+#: themes/bootplus/views/main.php:41
+#: themes/olson/views/main.php:41
+#: themes/moderndeluxe/views/main.php:41
+#: themes/kamaleon/views/main.php:41
+#: themes/responsive/views/main.php:41
+#: themes/default/views/main.php:40
+#: themes/czsale/views/main.php:41
 msgid "all"
 msgstr ""
 
@@ -147,8 +172,8 @@ msgstr ""
 #: themes/reclassifieds/views/pages/auth/register-form.php:8
 #: themes/reclassifieds/views/pages/auth/register-social.php:7
 #: themes/reclassifieds/views/pages/auth/register-social.php:9
-#: themes/ocean/views/pages/ad/new.php:178
 #: themes/ocean/views/pages/ad/new.php:179
+#: themes/ocean/views/pages/ad/new.php:180
 #: themes/ocean/views/pages/ad/single.php:110
 #: themes/ocean/views/pages/ad/single.php:112
 #: themes/newspaper/views/widget_contact.php:8
@@ -205,8 +230,8 @@ msgstr ""
 #: themes/moderndeluxe/views/pages/auth/register-form.php:8
 #: themes/moderndeluxe/views/pages/auth/register-social.php:7
 #: themes/moderndeluxe/views/pages/auth/register-social.php:9
-#: themes/kamaleon/views/pages/ad/new.php:176
 #: themes/kamaleon/views/pages/ad/new.php:177
+#: themes/kamaleon/views/pages/ad/new.php:178
 #: themes/kamaleon/views/pages/ad/single.php:111
 #: themes/kamaleon/views/pages/ad/single.php:113
 #: themes/responsive/views/pages/contact.php:9
@@ -230,6 +255,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/forum/create.php:10
 #: themes/default/views/oc-panel/pages/forum/update.php:8
 #: themes/default/views/oc-panel/pages/forum/update.php:10
+#: themes/default/views/oc-panel/pages/tools/versions.php:19
 #: themes/default/views/oc-panel/pages/ad.php:54
 #: themes/default/views/oc-panel/pages/fields/update.php:11
 #: themes/default/views/oc-panel/pages/fields/update.php:13
@@ -239,8 +265,8 @@ msgstr ""
 #: themes/default/views/pages/contact.php:11
 #: themes/default/views/pages/userprofile.php:38
 #: themes/default/views/pages/userprofile.php:40
-#: themes/default/views/pages/ad/new.php:170
 #: themes/default/views/pages/ad/new.php:171
+#: themes/default/views/pages/ad/new.php:172
 #: themes/default/views/pages/ad/single.php:108
 #: themes/default/views/pages/ad/single.php:110
 #: themes/default/views/pages/auth/register-form.php:6
@@ -315,6 +341,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/forum/create.php:25
 #: themes/default/views/oc-panel/pages/forum/create.php:27
 #: themes/default/views/oc-panel/pages/forum/update.php:24
+#: themes/default/views/oc-panel/pages/topic/update.php:26
 #: themes/default/views/pages/forum/new.php:40
 #: themes/default/views/pages/forum/new.php:42
 #: themes/default/views/pages/ad/new.php:85
@@ -329,10 +356,10 @@ msgstr ""
 #: oc/modules/widgets/classes/widget/subscribers.php:41
 #: oc/modules/widgets/views/widget_subscribers.php:70
 #: themes/reclassifieds/views/pages/ad/new.php:139
-#: themes/reclassifieds/views/pages/ad/listing.php:122
+#: themes/reclassifieds/views/pages/ad/listing.php:124
 #: themes/reclassifieds/views/pages/ad/single.php:56
-#: themes/ocean/views/pages/ad/new.php:147
-#: themes/ocean/views/pages/ad/listing.php:132
+#: themes/ocean/views/pages/ad/new.php:148
+#: themes/ocean/views/pages/ad/listing.php:134
 #: themes/ocean/views/pages/ad/single.php:56
 #: themes/newspaper/views/pages/ad/new.php:153
 #: themes/newspaper/views/widget_subscribers.php:71
@@ -341,32 +368,32 @@ msgstr ""
 #: themes/mobile/views/pages/ad/single.php:29
 #: themes/mobile/views/pages/ad/related.php:13
 #: themes/bootplus/views/pages/ad/new.php:138
-#: themes/bootplus/views/pages/ad/listing.php:115
+#: themes/bootplus/views/pages/ad/listing.php:117
 #: themes/bootplus/views/pages/ad/single.php:59
 #: themes/olson/views/pages/ad/new.php:148
 #: themes/olson/views/pages/ad/single.php:49
 #: themes/moderndeluxe/views/pages/ad/new.php:139
-#: themes/moderndeluxe/views/pages/ad/listing.php:122
+#: themes/moderndeluxe/views/pages/ad/listing.php:124
 #: themes/moderndeluxe/views/pages/ad/single.php:56
-#: themes/kamaleon/views/pages/ad/new.php:145
-#: themes/kamaleon/views/pages/ad/listing.php:131
+#: themes/kamaleon/views/pages/ad/new.php:146
+#: themes/kamaleon/views/pages/ad/listing.php:133
 #: themes/kamaleon/views/pages/ad/single.php:56
 #: themes/responsive/views/pages/ad/new.php:139
-#: themes/responsive/views/pages/ad/listing.php:123
+#: themes/responsive/views/pages/ad/listing.php:125
 #: themes/responsive/views/pages/ad/single.php:56
 #: themes/default/views/oc-panel/profile/edit_ad.php:201
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:236
 #: themes/default/views/oc-panel/pages/fields/index.php:106
-#: themes/default/views/pages/ad/new.php:139
-#: themes/default/views/pages/ad/listing.php:73
+#: themes/default/views/pages/ad/new.php:140
+#: themes/default/views/pages/ad/listing.php:75
 #: themes/default/views/pages/ad/single.php:57
 #: themes/czsale/views/pages/ad/new.php:164
-#: themes/czsale/views/pages/ad/listing.php:71
+#: themes/czsale/views/pages/ad/listing.php:74
 #: themes/czsale/views/pages/ad/single.php:78
 msgid "Price"
 msgstr ""
 
-#: oc/classes/model/category.php:352
+#: oc/classes/model/category.php:366
 msgid "category"
 msgstr ""
 
@@ -484,7 +511,7 @@ msgstr ""
 #: themes/czsale/views/pages/ad/new.php:27
 #: themes/czsale/views/pages/ad/advanced_search.php:35
 #: themes/czsale/views/pages/ad/advanced_search.php:36
-#: themes/czsale/views/pages/ad/listing.php:74
+#: themes/czsale/views/pages/ad/listing.php:77
 #: themes/czsale/views/pages/ad/single.php:103
 msgid "Location"
 msgstr ""
@@ -530,6 +557,8 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/content/create.php:18
 #: themes/default/views/oc-panel/pages/content/edit.php:17
 #: themes/default/views/oc-panel/pages/content/list.php:32
+#: themes/default/views/oc-panel/pages/topic/update.php:9
+#: themes/default/views/oc-panel/pages/topic/update.php:11
 #: themes/default/views/oc-panel/pages/menu.php:143
 #: themes/default/views/oc-panel/pages/menu.php:145
 #: themes/default/views/pages/forum/new.php:34
@@ -550,8 +579,8 @@ msgstr ""
 #: oc/classes/model/ad.php:94
 #: themes/reclassifieds/views/pages/ad/new.php:121
 #: themes/reclassifieds/views/pages/ad/new.php:123
-#: themes/ocean/views/pages/ad/new.php:128
 #: themes/ocean/views/pages/ad/new.php:129
+#: themes/ocean/views/pages/ad/new.php:130
 #: themes/newspaper/views/pages/ad/new.php:131
 #: themes/newspaper/views/pages/ad/new.php:132
 #: themes/mobile/views/pages/ad/new.php:95
@@ -562,8 +591,8 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:130
 #: themes/moderndeluxe/views/pages/ad/new.php:121
 #: themes/moderndeluxe/views/pages/ad/new.php:123
-#: themes/kamaleon/views/pages/ad/new.php:125
 #: themes/kamaleon/views/pages/ad/new.php:126
+#: themes/kamaleon/views/pages/ad/new.php:127
 #: themes/responsive/views/pages/ad/new.php:121
 #: themes/responsive/views/pages/ad/new.php:123
 #: themes/default/views/oc-panel/profile/edit_ad.php:175
@@ -571,8 +600,8 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:98
 #: themes/default/views/oc-panel/pages/fields/index.php:149
 #: themes/default/views/pages/maps.php:26
-#: themes/default/views/pages/ad/new.php:120
 #: themes/default/views/pages/ad/new.php:121
+#: themes/default/views/pages/ad/new.php:122
 #: themes/czsale/views/pages/ad/new.php:145
 #: themes/czsale/views/pages/ad/new.php:146
 msgid "Address"
@@ -581,8 +610,8 @@ msgstr ""
 #: oc/classes/model/ad.php:96
 #: themes/reclassifieds/views/pages/ad/new.php:113
 #: themes/reclassifieds/views/pages/ad/new.php:115
-#: themes/ocean/views/pages/ad/new.php:119
 #: themes/ocean/views/pages/ad/new.php:120
+#: themes/ocean/views/pages/ad/new.php:121
 #: themes/ocean/views/pages/ad/single.php:93
 #: themes/newspaper/views/pages/ad/new.php:124
 #: themes/newspaper/views/pages/ad/new.php:125
@@ -595,8 +624,8 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:121
 #: themes/moderndeluxe/views/pages/ad/new.php:113
 #: themes/moderndeluxe/views/pages/ad/new.php:115
-#: themes/kamaleon/views/pages/ad/new.php:117
 #: themes/kamaleon/views/pages/ad/new.php:118
+#: themes/kamaleon/views/pages/ad/new.php:119
 #: themes/kamaleon/views/pages/ad/single.php:94
 #: themes/responsive/views/pages/ad/new.php:113
 #: themes/responsive/views/pages/ad/new.php:115
@@ -604,8 +633,8 @@ msgstr ""
 #: themes/default/views/oc-panel/profile/edit_ad.php:168
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:191
 #: themes/default/views/oc-panel/pages/fields/index.php:58
-#: themes/default/views/pages/ad/new.php:111
 #: themes/default/views/pages/ad/new.php:112
+#: themes/default/views/pages/ad/new.php:113
 #: themes/default/views/pages/ad/single.php:91
 #: themes/czsale/views/pages/ad/new.php:136
 #: themes/czsale/views/pages/ad/new.php:137
@@ -622,7 +651,7 @@ msgstr ""
 #: themes/default/views/oc-panel/profile/ads.php:49
 #: themes/default/views/oc-panel/pages/moderate.php:89
 #: themes/default/views/oc-panel/pages/ad.php:150
-#: themes/czsale/views/pages/ad/listing.php:76
+#: themes/czsale/views/pages/ad/listing.php:79
 #: themes/czsale/views/pages/ad/single.php:83
 msgid "Published"
 msgstr ""
@@ -684,8 +713,8 @@ msgstr ""
 #: themes/reclassifieds/views/pages/auth/login-form.php:7
 #: themes/reclassifieds/views/pages/auth/register-social.php:14
 #: themes/reclassifieds/views/pages/auth/register-social.php:16
-#: themes/ocean/views/pages/ad/new.php:185
 #: themes/ocean/views/pages/ad/new.php:186
+#: themes/ocean/views/pages/ad/new.php:187
 #: themes/ocean/views/pages/ad/single.php:116
 #: themes/ocean/views/pages/ad/single.php:118
 #: themes/newspaper/views/widget_contact.php:14
@@ -768,8 +797,8 @@ msgstr ""
 #: themes/moderndeluxe/views/pages/auth/login-form.php:7
 #: themes/moderndeluxe/views/pages/auth/register-social.php:14
 #: themes/moderndeluxe/views/pages/auth/register-social.php:16
-#: themes/kamaleon/views/pages/ad/new.php:183
 #: themes/kamaleon/views/pages/ad/new.php:184
+#: themes/kamaleon/views/pages/ad/new.php:185
 #: themes/kamaleon/views/pages/ad/single.php:117
 #: themes/kamaleon/views/pages/ad/single.php:119
 #: themes/responsive/views/pages/contact.php:16
@@ -799,8 +828,8 @@ msgstr ""
 #: themes/default/views/pages/contact.php:17
 #: themes/default/views/pages/userprofile.php:45
 #: themes/default/views/pages/userprofile.php:47
-#: themes/default/views/pages/ad/new.php:177
 #: themes/default/views/pages/ad/new.php:178
+#: themes/default/views/pages/ad/new.php:179
 #: themes/default/views/pages/ad/single.php:114
 #: themes/default/views/pages/ad/single.php:116
 #: themes/default/views/pages/auth/register-form.php:13
@@ -896,8 +925,8 @@ msgstr ""
 #: oc/classes/model/user.php:256
 #: oc/classes/controller/subscribe.php:82
 #: oc/classes/controller/social.php:122
-#: oc/classes/controller/panel/auth.php:106
-#: oc/classes/controller/panel/auth.php:191
+#: oc/classes/controller/panel/auth.php:112
+#: oc/classes/controller/panel/auth.php:197
 msgid "Invalid Email"
 msgstr ""
 
@@ -909,7 +938,7 @@ msgstr ""
 #: oc/classes/controller/contact.php:12
 #: oc/classes/controller/ad.php:18
 #: oc/classes/controller/ad.php:267
-#: oc/classes/controller/ad.php:669
+#: oc/classes/controller/ad.php:673
 #: oc/classes/controller/panel/profile.php:9
 #: oc/classes/controller/panel/profile.php:11
 #: oc/classes/controller/panel/profile.php:370
@@ -954,7 +983,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/content/list.php:9
 #: themes/default/views/header.php:63
 #: themes/czsale/views/header.php:45
-#: install-openclassifieds.php:620
+#: install-openclassifieds.php:618
 msgid "FAQ"
 msgstr ""
 
@@ -973,8 +1002,8 @@ msgstr ""
 #: themes/ocean/views/pages/ad/listing.php:59
 #: themes/ocean/views/pages/ad/listing.php:61
 #: themes/newspaper/views/pages/ad/new.php:2
-#: themes/newspaper/views/pages/ad/listing.php:17
-#: themes/newspaper/views/pages/ad/listing.php:20
+#: themes/newspaper/views/pages/ad/listing.php:46
+#: themes/newspaper/views/pages/ad/listing.php:49
 #: themes/mobile/views/pages/ad/new.php:5
 #: themes/bootplus/views/pages/ad/new.php:3
 #: themes/bootplus/views/pages/ad/listing.php:55
@@ -998,37 +1027,49 @@ msgstr ""
 msgid "Publish new advertisement"
 msgstr ""
 
-#: oc/classes/controller/new.php:50
-#: oc/classes/controller/new.php:235
+#: oc/classes/controller/new.php:37
+msgid "Please, login before posting advertisement!"
+msgstr ""
+
+#: oc/classes/controller/new.php:49
+msgid "Please, first create some categories."
+msgstr ""
+
+#: oc/classes/controller/new.php:54
+msgid "Posting advertisements is not yet available."
+msgstr ""
+
+#: oc/classes/controller/new.php:74
+#: oc/classes/controller/new.php:259
 msgid "Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us."
 msgstr ""
 
-#: oc/classes/controller/new.php:262
+#: oc/classes/controller/new.php:286
 msgid "This post has been considered as spam! We are sorry but we cant publish this advertisement."
 msgstr ""
 
-#: oc/classes/controller/new.php:407
+#: oc/classes/controller/new.php:431
 msgid "Advertisement is published. Congratulations!"
 msgstr ""
 
-#: oc/classes/controller/new.php:413
+#: oc/classes/controller/new.php:437
 msgid "Advertisement is created but needs to be validated first before it is published."
 msgstr ""
 
-#: oc/classes/controller/new.php:422
+#: oc/classes/controller/new.php:446
 msgid "Advertisement is posted but first you need to activate. Please check your email!"
 msgstr ""
 
-#: oc/classes/controller/new.php:427
-#: oc/classes/controller/ad.php:651
+#: oc/classes/controller/new.php:451
+#: oc/classes/controller/ad.php:655
 msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
 msgstr ""
 
-#: oc/classes/controller/new.php:433
+#: oc/classes/controller/new.php:457
 msgid "Advertisement is posted. Congratulations!"
 msgstr ""
 
-#: oc/classes/controller/new.php:439
+#: oc/classes/controller/new.php:463
 msgid "Captcha is not correct"
 msgstr ""
 
@@ -1102,14 +1143,14 @@ msgstr ""
 #: oc/classes/controller/contact.php:40
 #: oc/classes/controller/contact.php:119
 #: oc/classes/controller/contact.php:160
-#: oc/classes/controller/forum.php:163
-#: oc/classes/controller/forum.php:325
+#: oc/classes/controller/forum.php:180
+#: oc/classes/controller/forum.php:340
 msgid "This email has been considered as spam! We are sorry but we can not send this email."
 msgstr ""
 
 #: oc/classes/controller/contact.php:44
-#: oc/classes/controller/forum.php:167
-#: oc/classes/controller/forum.php:329
+#: oc/classes/controller/forum.php:184
+#: oc/classes/controller/forum.php:344
 msgid "Check the form for errors"
 msgstr ""
 
@@ -1137,7 +1178,7 @@ msgstr ""
 
 #: oc/classes/controller/social.php:77
 #: oc/classes/controller/social.php:114
-#: oc/classes/controller/panel/auth.php:177
+#: oc/classes/controller/panel/auth.php:183
 msgid "Welcome!"
 msgstr ""
 
@@ -1146,7 +1187,7 @@ msgid "Error: please try again!"
 msgstr ""
 
 #: oc/classes/controller/social.php:128
-#: oc/classes/controller/panel/auth.php:197
+#: oc/classes/controller/panel/auth.php:203
 msgid "Register new user"
 msgstr ""
 
@@ -1155,26 +1196,27 @@ msgid "Latest published"
 msgstr ""
 
 #: oc/classes/controller/feed.php:64
+#: oc/classes/controller/feed.php:104
 msgid "Latest post published"
 msgstr ""
 
 #: oc/classes/controller/ad.php:184
-#: oc/classes/controller/ad.php:782
+#: oc/classes/controller/ad.php:786
 #: oc/classes/controller/blog.php:43
 #: themes/mobile/views/pagination.php:6
 msgid "Page "
 msgstr ""
 
-#: oc/classes/controller/ad.php:602
+#: oc/classes/controller/ad.php:606
 msgid "Advertisement %s is sold out!"
 msgstr ""
 
-#: oc/classes/controller/ad.php:635
+#: oc/classes/controller/ad.php:639
 msgid "Your advertisement is successfully activated! Thank you!"
 msgstr ""
 
-#: oc/classes/controller/ad.php:665
-#: oc/classes/controller/ad.php:666
+#: oc/classes/controller/ad.php:669
+#: oc/classes/controller/ad.php:670
 #: oc/modules/widgets/classes/widget/search.php:19
 #: themes/reclassifieds/views/pages/search.php:4
 #: themes/newspaper/views/pages/ad/advanced_search.php:2
@@ -1198,6 +1240,7 @@ msgstr ""
 #: themes/reclassifieds/views/pages/auth/login-form.php:31
 #: themes/reclassifieds/views/widget_login.php:10
 #: themes/ocean/views/header.php:110
+#: themes/newspaper/views/header.php:100
 #: themes/newspaper/views/pages/auth/login.php:2
 #: themes/newspaper/views/pages/auth/register-form.php:35
 #: themes/newspaper/views/pages/auth/login-form.php:30
@@ -1235,6 +1278,7 @@ msgstr ""
 #: themes/default/views/pages/error/503.php:30
 #: themes/default/views/pages/error/503.php:32
 #: themes/default/views/widget_login.php:39
+#: themes/czsale/views/header.php:76
 #: themes/czsale/views/pages/auth/login.php:4
 #: themes/czsale/views/pages/auth/register-form.php:39
 #: themes/czsale/views/pages/auth/login-form.php:31
@@ -1243,7 +1287,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: oc/classes/controller/panel/auth.php:60
+#: oc/classes/controller/panel/auth.php:66
 #: themes/reclassifieds/views/pages/auth/forgot.php:5
 #: themes/newspaper/views/pages/auth/forgot.php:2
 #: themes/mobile/views/pages/auth/forgot.php:5
@@ -1256,19 +1300,19 @@ msgstr ""
 msgid "Remember password"
 msgstr ""
 
-#: oc/classes/controller/panel/auth.php:93
+#: oc/classes/controller/panel/auth.php:99
 msgid "Email to recover password sent"
 msgstr ""
 
-#: oc/classes/controller/panel/auth.php:100
+#: oc/classes/controller/panel/auth.php:106
 msgid "User not in database"
 msgstr ""
 
-#: oc/classes/controller/panel/auth.php:145
+#: oc/classes/controller/panel/auth.php:151
 msgid "User already exists"
 msgstr ""
 
-#: oc/classes/controller/panel/auth.php:186
+#: oc/classes/controller/panel/auth.php:192
 #: oc/classes/controller/panel/profile.php:62
 msgid "Passwords do not match"
 msgstr ""
@@ -1321,7 +1365,7 @@ msgid "Is not valid format, please use ZIP format"
 msgstr ""
 
 #: oc/classes/controller/panel/theme.php:216
-#: oc/classes/controller/panel/update.php:503
+#: oc/classes/controller/panel/update.php:558
 msgid "Zip file failed to extract, please try again."
 msgstr ""
 
@@ -1337,16 +1381,24 @@ msgstr ""
 msgid "Theme could not be downloaded"
 msgstr ""
 
+#: oc/classes/controller/panel/topic.php:63
+msgid "Edit Topic"
+msgstr ""
+
+#: oc/classes/controller/panel/topic.php:93
+msgid "Topic is updated."
+msgstr ""
+
 #: oc/classes/controller/panel/update.php:31
-#: themes/default/views/oc-panel/sidebar.php:146
+#: themes/default/views/oc-panel/sidebar.php:144
 msgid "Updates"
 msgstr ""
 
-#: oc/classes/controller/panel/update.php:36
-msgid "You are not using latest version of OC, please update."
+#: oc/classes/controller/panel/update.php:45
+msgid "You are not using latest version, please update."
 msgstr ""
 
-#: oc/classes/controller/panel/update.php:38
+#: oc/classes/controller/panel/update.php:47
 #: oc/classes/controller/panel/category.php:45
 #: oc/classes/controller/panel/location.php:45
 #: oc/classes/controller/panel/role.php:22
@@ -1362,19 +1414,24 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/moderate.php:99
 #: themes/default/views/oc-panel/pages/forum/update.php:36
 #: themes/default/views/oc-panel/pages/ad.php:163
+#: themes/default/views/oc-panel/pages/topic/update.php:47
 #: themes/default/views/oc-panel/pages/themes/options.php:30
 msgid "Update"
 msgstr ""
 
-#: oc/classes/controller/panel/update.php:452
+#: oc/classes/controller/panel/update.php:49
+msgid "You are using an old version, can not update automatically, please update manually."
+msgstr ""
+
+#: oc/classes/controller/panel/update.php:506
 msgid "Software Updated to latest version!"
 msgstr ""
 
-#: oc/classes/controller/panel/update.php:486
+#: oc/classes/controller/panel/update.php:541
 msgid "We had a problem downloading latest version, try later please."
 msgstr ""
 
-#: oc/classes/controller/panel/update.php:562
+#: oc/classes/controller/panel/update.php:617
 msgid "Themes Updated"
 msgstr ""
 
@@ -1406,10 +1463,10 @@ msgid "Widget parameter missing"
 msgstr ""
 
 #: oc/classes/controller/panel/widget.php:174
-#: oc/classes/controller/panel/category.php:126
+#: oc/classes/controller/panel/category.php:120
 #: oc/classes/controller/panel/forum.php:78
 #: oc/classes/controller/panel/menu.php:46
-#: oc/classes/controller/panel/location.php:125
+#: oc/classes/controller/panel/location.php:120
 #: oc/classes/controller/panel/fields.php:167
 msgid "Saved"
 msgstr ""
@@ -1436,7 +1493,7 @@ msgstr ""
 #: themes/ocean/views/pages/ad/listing.php:68
 #: themes/olson/options.php:89
 #: themes/olson/views/pages/ad/listing.php:62
-#: themes/kamaleon/options.php:109
+#: themes/kamaleon/options.php:110
 #: themes/kamaleon/views/pages/ad/listing.php:67
 msgid "List"
 msgstr ""
@@ -1505,36 +1562,36 @@ msgstr ""
 #: oc/classes/controller/panel/fields.php:84
 #: oc/modules/widgets/views/widget_tools.php:8
 #: themes/reclassifieds/views/pages/ad/new.php:103
-#: themes/reclassifieds/views/pages/ad/listing.php:133
-#: themes/reclassifieds/views/pages/ad/listing.php:151
-#: themes/ocean/views/pages/ad/new.php:106
-#: themes/ocean/views/pages/ad/listing.php:141
-#: themes/ocean/views/pages/ad/listing.php:159
+#: themes/reclassifieds/views/pages/ad/listing.php:135
+#: themes/reclassifieds/views/pages/ad/listing.php:153
+#: themes/ocean/views/pages/ad/new.php:107
+#: themes/ocean/views/pages/ad/listing.php:143
+#: themes/ocean/views/pages/ad/listing.php:161
 #: themes/newspaper/views/pages/blog/listing.php:22
 #: themes/newspaper/views/pages/userprofile.php:128
 #: themes/newspaper/views/pages/userprofile.php:135
 #: themes/newspaper/views/pages/ad/new.php:104
-#: themes/newspaper/views/pages/ad/listing.php:99
-#: themes/newspaper/views/pages/ad/listing.php:116
+#: themes/newspaper/views/pages/ad/listing.php:130
+#: themes/newspaper/views/pages/ad/listing.php:147
 #: themes/mobile/views/pages/blog/listing.php:21
 #: themes/mobile/views/pages/ad/single.php:45
 #: themes/bootplus/views/pages/ad/new.php:102
-#: themes/bootplus/views/pages/ad/listing.php:126
-#: themes/bootplus/views/pages/ad/listing.php:144
+#: themes/bootplus/views/pages/ad/listing.php:128
+#: themes/bootplus/views/pages/ad/listing.php:146
 #: themes/olson/views/pages/ad/new.php:107
-#: themes/olson/views/pages/ad/listing.php:131
-#: themes/olson/views/pages/ad/listing.php:149
+#: themes/olson/views/pages/ad/listing.php:133
+#: themes/olson/views/pages/ad/listing.php:151
 #: themes/moderndeluxe/views/pages/userprofile.php:109
 #: themes/moderndeluxe/views/pages/userprofile.php:122
 #: themes/moderndeluxe/views/pages/ad/new.php:103
-#: themes/moderndeluxe/views/pages/ad/listing.php:133
-#: themes/moderndeluxe/views/pages/ad/listing.php:151
-#: themes/kamaleon/views/pages/ad/new.php:104
-#: themes/kamaleon/views/pages/ad/listing.php:140
-#: themes/kamaleon/views/pages/ad/listing.php:158
+#: themes/moderndeluxe/views/pages/ad/listing.php:135
+#: themes/moderndeluxe/views/pages/ad/listing.php:153
+#: themes/kamaleon/views/pages/ad/new.php:105
+#: themes/kamaleon/views/pages/ad/listing.php:142
+#: themes/kamaleon/views/pages/ad/listing.php:160
 #: themes/responsive/views/pages/ad/new.php:103
-#: themes/responsive/views/pages/ad/listing.php:134
-#: themes/responsive/views/pages/ad/listing.php:152
+#: themes/responsive/views/pages/ad/listing.php:136
+#: themes/responsive/views/pages/ad/listing.php:154
 #: themes/default/views/oc-panel/crud/index.php:35
 #: themes/default/views/oc-panel/pages/forums.php:23
 #: themes/default/views/oc-panel/pages/content/edit.php:6
@@ -1554,12 +1611,12 @@ msgstr ""
 #: themes/default/views/pages/forum/list.php:27
 #: themes/default/views/pages/userprofile.php:105
 #: themes/default/views/pages/userprofile.php:118
-#: themes/default/views/pages/ad/new.php:98
-#: themes/default/views/pages/ad/listing.php:84
-#: themes/default/views/pages/ad/listing.php:102
+#: themes/default/views/pages/ad/new.php:99
+#: themes/default/views/pages/ad/listing.php:86
+#: themes/default/views/pages/ad/listing.php:104
 #: themes/czsale/views/pages/ad/new.php:116
-#: themes/czsale/views/pages/ad/listing.php:107
-#: themes/czsale/views/pages/ad/listing.php:125
+#: themes/czsale/views/pages/ad/listing.php:110
+#: themes/czsale/views/pages/ad/listing.php:128
 msgid "Edit"
 msgstr ""
 
@@ -1635,15 +1692,15 @@ msgstr ""
 msgid "Check form for errors"
 msgstr ""
 
-#: oc/classes/controller/panel/category.php:162
+#: oc/classes/controller/panel/category.php:156
 msgid "Category deleted"
 msgstr ""
 
-#: oc/classes/controller/panel/category.php:171
+#: oc/classes/controller/panel/category.php:165
 msgid "Category not deleted"
 msgstr ""
 
-#: oc/classes/controller/panel/category.php:204
+#: oc/classes/controller/panel/category.php:198
 msgid "Select some categories first."
 msgstr ""
 
@@ -1675,8 +1732,7 @@ msgstr ""
 #: themes/olson/views/menu.php:12
 #: themes/moderndeluxe/views/widget_login.php:19
 #: themes/kamaleon/views/widget_login.php:19
-#: themes/default/views/oc-panel/sidebar.php:120
-#: themes/default/views/oc-panel/sidebar.php:171
+#: themes/default/views/oc-panel/sidebar.php:169
 #: themes/default/views/oc-panel/widget_login.php:19
 #: themes/default/views/widget_login.php:19
 #: themes/czsale/views/widget_login.php:14
@@ -1737,7 +1793,7 @@ msgstr ""
 #: oc/classes/controller/panel/stats.php:31
 #: oc/modules/widgets/classes/widget/stats.php:18
 #: oc/modules/widgets/classes/widget/stats.php:24
-#: themes/default/views/oc-panel/sidebar.php:173
+#: themes/default/views/oc-panel/sidebar.php:171
 #: themes/default/views/oc-panel/header.php:26
 msgid "Stats"
 msgstr ""
@@ -1750,7 +1806,7 @@ msgstr ""
 #: install/views/about.php:4
 #: themes/default/views/oc-panel/home.php:4
 #: themes/default/views/oc-panel/home-user.php:5
-#: install-openclassifieds.php:612
+#: install-openclassifieds.php:610
 msgid "Welcome"
 msgstr ""
 
@@ -1781,8 +1837,8 @@ msgstr ""
 #: oc/classes/controller/panel/ad.php:116
 #: themes/default/views/oc-panel/sidebar.php:25
 #: themes/default/views/oc-panel/header.php:24
-#: themes/default/views/oc-panel/pages/settings/general.php:99
-#: themes/default/views/oc-panel/pages/settings/general.php:109
+#: themes/default/views/oc-panel/pages/settings/general.php:110
+#: themes/default/views/oc-panel/pages/settings/general.php:120
 #: themes/default/views/oc-panel/pages/moderate.php:5
 msgid "Moderation"
 msgstr ""
@@ -1849,6 +1905,7 @@ msgstr ""
 #: themes/responsive/views/header.php:50
 #: themes/default/views/oc-panel/sidebar.php:55
 #: themes/default/views/oc-panel/pages/forums.php:4
+#: themes/default/views/oc-panel/pages/topic/update.php:16
 #: themes/default/views/header.php:66
 #: themes/default/views/pages/forum/home.php:7
 #: themes/czsale/views/header.php:48
@@ -1931,7 +1988,6 @@ msgstr ""
 
 #: oc/classes/controller/panel/pool.php:13
 #: oc/classes/controller/panel/pool.php:14
-#: themes/default/views/oc-panel/sidebar.php:119
 #: themes/default/views/oc-panel/pages/black_list.php:4
 msgid "Black list"
 msgstr ""
@@ -1942,7 +1998,7 @@ msgstr ""
 
 #: oc/classes/controller/panel/tools.php:16
 #: oc/modules/widgets/classes/widget/tools.php:18
-#: themes/default/views/oc-panel/sidebar.php:140
+#: themes/default/views/oc-panel/sidebar.php:138
 msgid "Tools"
 msgstr ""
 
@@ -1955,7 +2011,7 @@ msgid "Database Optimized"
 msgstr ""
 
 #: oc/classes/controller/panel/tools.php:80
-#: themes/default/views/oc-panel/sidebar.php:150
+#: themes/default/views/oc-panel/sidebar.php:148
 #: themes/default/views/oc-panel/header.php:28
 #: themes/default/views/oc-panel/pages/tools/cache.php:4
 msgid "Cache"
@@ -1970,7 +2026,7 @@ msgid "Deleted expired cache"
 msgstr ""
 
 #: oc/classes/controller/panel/tools.php:109
-#: themes/default/views/oc-panel/sidebar.php:153
+#: themes/default/views/oc-panel/sidebar.php:151
 msgid "PHP Info"
 msgstr ""
 
@@ -2000,7 +2056,7 @@ msgid "%s have been created"
 msgstr ""
 
 #: oc/classes/controller/panel/tools.php:244
-#: themes/default/views/oc-panel/sidebar.php:147
+#: themes/default/views/oc-panel/sidebar.php:145
 #: themes/default/views/oc-panel/pages/tools/sitemap.php:5
 msgid "Sitemap"
 msgstr ""
@@ -2014,7 +2070,7 @@ msgid "Open Classifieds migration"
 msgstr ""
 
 #: oc/classes/controller/panel/tools.php:294
-#: themes/default/views/oc-panel/sidebar.php:148
+#: themes/default/views/oc-panel/sidebar.php:146
 #: themes/default/views/oc-panel/pages/tools/migration.php:5
 msgid "Migration"
 msgstr ""
@@ -2056,15 +2112,15 @@ msgstr ""
 msgid "You can not set as parent the same location"
 msgstr ""
 
-#: oc/classes/controller/panel/location.php:159
+#: oc/classes/controller/panel/location.php:154
 msgid "Location deleted"
 msgstr ""
 
-#: oc/classes/controller/panel/location.php:168
+#: oc/classes/controller/panel/location.php:163
 msgid "Location not deleted"
 msgstr ""
 
-#: oc/classes/controller/panel/location.php:200
+#: oc/classes/controller/panel/location.php:195
 msgid "Select some locations first."
 msgstr ""
 
@@ -2090,13 +2146,13 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: oc/classes/controller/panel/settings.php:183
-#: oc/classes/controller/panel/settings.php:233
+#: oc/classes/controller/panel/settings.php:202
+#: oc/classes/controller/panel/settings.php:252
 msgid "General Configuration updated"
 msgstr ""
 
-#: oc/classes/controller/panel/settings.php:199
-#: oc/classes/controller/panel/settings.php:200
+#: oc/classes/controller/panel/settings.php:218
+#: oc/classes/controller/panel/settings.php:219
 msgid "Payments"
 msgstr ""
 
@@ -2132,11 +2188,11 @@ msgstr ""
 #: oc/classes/controller/forum.php:22
 #: oc/classes/controller/forum.php:23
 #: oc/classes/controller/forum.php:47
-#: oc/classes/controller/forum.php:213
+#: oc/classes/controller/forum.php:228
 #: install/views/about.php:11
 #: themes/default/views/oc-panel/home.php:14
 #: themes/default/views/pages/forum/new.php:21
-#: install-openclassifieds.php:619
+#: install-openclassifieds.php:617
 msgid "Forum"
 msgstr ""
 
@@ -2144,12 +2200,20 @@ msgstr ""
 msgid "Please login before posting"
 msgstr ""
 
-#: oc/classes/controller/forum.php:172
+#: oc/classes/controller/forum.php:131
+msgid "Please, first create some Forums."
+msgstr ""
+
+#: oc/classes/controller/forum.php:136
+msgid "New Topic is not available as a feature."
+msgstr ""
+
+#: oc/classes/controller/forum.php:189
 #: themes/default/views/pages/forum/new.php:3
 msgid "New Forum Topic"
 msgstr ""
 
-#: oc/classes/controller/forum.php:315
+#: oc/classes/controller/forum.php:330
 msgid "Reply added, thanks!"
 msgstr ""
 
@@ -2172,7 +2236,7 @@ msgstr ""
 #: themes/default/views/header.php:60
 #: themes/default/views/pages/blog/listing.php:3
 #: themes/czsale/views/header.php:42
-#: install-openclassifieds.php:621
+#: install-openclassifieds.php:619
 msgid "Blog"
 msgstr ""
 
@@ -2189,7 +2253,7 @@ msgstr ""
 msgid "Some errors in the form"
 msgstr ""
 
-#: oc/classes/controller.php:150
+#: oc/classes/controller.php:151
 msgid "You are in maintenance mode, only you can see the website"
 msgstr ""
 
@@ -2213,6 +2277,10 @@ msgstr ""
 #: themes/default/views/widget_login.php:13
 #: themes/czsale/views/widget_login.php:8
 msgid "Panel"
+msgstr ""
+
+#: oc/classes/auth/controller.php:38
+msgid "You do not have permissions to access %s"
 msgstr ""
 
 #: oc/modules/pagination/views/pagination/basic.php:4
@@ -2486,7 +2554,7 @@ msgstr ""
 #: themes/responsive/views/pages/ad/single.php:97
 #: themes/default/views/pages/userprofile.php:28
 #: themes/default/views/pages/ad/single.php:99
-#: themes/czsale/views/header.php:54
+#: themes/czsale/views/header.php:51
 msgid "Contact"
 msgstr ""
 
@@ -2595,7 +2663,7 @@ msgstr ""
 #: themes/reclassifieds/views/pages/search.php:10
 #: themes/reclassifieds/views/pages/search.php:87
 #: themes/reclassifieds/views/pages/ad/advanced_search.php:93
-#: themes/ocean/views/main.php:82
+#: themes/ocean/views/main.php:88
 #: themes/ocean/views/header.php:88
 #: themes/ocean/views/pages/ad/advanced_search.php:92
 #: themes/newspaper/views/header.php:84
@@ -2625,7 +2693,7 @@ msgstr ""
 #: themes/responsive/views/pages/search.php:10
 #: themes/responsive/views/pages/search.php:87
 #: themes/responsive/views/pages/ad/advanced_search.php:93
-#: themes/default/views/main.php:84
+#: themes/default/views/main.php:90
 #: themes/default/views/oc-panel/pages/ad.php:19
 #: themes/default/views/oc-panel/pages/menu.php:115
 #: themes/default/views/pages/ad/advanced_search.php:66
@@ -2656,35 +2724,36 @@ msgstr ""
 
 #: oc/modules/widgets/classes/widget/featured.php:25
 #: themes/reclassifieds/options.php:65
-#: themes/reclassifieds/views/pages/ad/listing.php:70
-#: themes/reclassifieds/views/pages/ad/listing.php:89
+#: themes/reclassifieds/views/pages/ad/listing.php:72
+#: themes/reclassifieds/views/pages/ad/listing.php:91
 #: themes/ocean/options.php:70
-#: themes/ocean/views/pages/ad/listing.php:81
+#: themes/ocean/views/pages/ad/listing.php:83
+#: themes/newspaper/options.php:113
 #: themes/newspaper/views/pages/userprofile.php:90
-#: themes/newspaper/views/pages/ad/listing.php:36
-#: themes/newspaper/views/pages/ad/listing.php:55
+#: themes/newspaper/views/pages/ad/listing.php:67
+#: themes/newspaper/views/pages/ad/listing.php:86
 #: themes/newspaper/views/pages/ad/related.php:10
 #: themes/bootplus/options.php:75
-#: themes/bootplus/views/pages/ad/listing.php:70
-#: themes/bootplus/views/pages/ad/listing.php:89
+#: themes/bootplus/views/pages/ad/listing.php:72
+#: themes/bootplus/views/pages/ad/listing.php:91
 #: themes/olson/options.php:79
-#: themes/olson/views/pages/ad/listing.php:75
+#: themes/olson/views/pages/ad/listing.php:77
 #: themes/moderndeluxe/options.php:65
-#: themes/moderndeluxe/views/pages/ad/listing.php:70
-#: themes/moderndeluxe/views/pages/ad/listing.php:89
-#: themes/kamaleon/options.php:99
-#: themes/kamaleon/views/pages/ad/listing.php:80
+#: themes/moderndeluxe/views/pages/ad/listing.php:72
+#: themes/moderndeluxe/views/pages/ad/listing.php:91
+#: themes/kamaleon/options.php:100
+#: themes/kamaleon/views/pages/ad/listing.php:82
 #: themes/responsive/options.php:85
-#: themes/responsive/views/pages/ad/listing.php:71
-#: themes/responsive/views/pages/ad/listing.php:90
+#: themes/responsive/views/pages/ad/listing.php:73
+#: themes/responsive/views/pages/ad/listing.php:92
 #: themes/default/views/oc-panel/profile/ads.php:93
 #: themes/default/views/oc-panel/pages/ad.php:99
 #: themes/default/views/oc-panel/pages/ad.php:206
-#: themes/default/views/pages/ad/listing.php:29
-#: themes/default/views/pages/ad/listing.php:40
+#: themes/default/views/pages/ad/listing.php:31
+#: themes/default/views/pages/ad/listing.php:42
 #: themes/default/views/pages/ad/related.php:16
-#: themes/czsale/options.php:77
-#: themes/czsale/views/pages/ad/listing.php:58
+#: themes/czsale/options.php:78
+#: themes/czsale/views/pages/ad/listing.php:60
 msgid "Featured"
 msgstr ""
 
@@ -2968,101 +3037,101 @@ msgid "Go Featured!"
 msgstr ""
 
 #: oc/modules/widgets/views/widget_tools.php:10
-#: themes/reclassifieds/views/pages/ad/listing.php:135
-#: themes/reclassifieds/views/pages/ad/listing.php:153
-#: themes/ocean/views/pages/ad/listing.php:143
-#: themes/ocean/views/pages/ad/listing.php:161
+#: themes/reclassifieds/views/pages/ad/listing.php:137
+#: themes/reclassifieds/views/pages/ad/listing.php:155
+#: themes/ocean/views/pages/ad/listing.php:145
+#: themes/ocean/views/pages/ad/listing.php:163
 #: themes/newspaper/views/pages/userprofile.php:129
-#: themes/newspaper/views/pages/ad/listing.php:101
-#: themes/newspaper/views/pages/ad/listing.php:118
-#: themes/bootplus/views/pages/ad/listing.php:128
-#: themes/bootplus/views/pages/ad/listing.php:146
-#: themes/olson/views/pages/ad/listing.php:133
-#: themes/olson/views/pages/ad/listing.php:151
+#: themes/newspaper/views/pages/ad/listing.php:132
+#: themes/newspaper/views/pages/ad/listing.php:149
+#: themes/bootplus/views/pages/ad/listing.php:130
+#: themes/bootplus/views/pages/ad/listing.php:148
+#: themes/olson/views/pages/ad/listing.php:135
+#: themes/olson/views/pages/ad/listing.php:153
 #: themes/moderndeluxe/views/pages/userprofile.php:111
-#: themes/moderndeluxe/views/pages/ad/listing.php:135
-#: themes/moderndeluxe/views/pages/ad/listing.php:153
-#: themes/kamaleon/views/pages/ad/listing.php:142
-#: themes/kamaleon/views/pages/ad/listing.php:160
-#: themes/responsive/views/pages/ad/listing.php:136
-#: themes/responsive/views/pages/ad/listing.php:154
+#: themes/moderndeluxe/views/pages/ad/listing.php:137
+#: themes/moderndeluxe/views/pages/ad/listing.php:155
+#: themes/kamaleon/views/pages/ad/listing.php:144
+#: themes/kamaleon/views/pages/ad/listing.php:162
+#: themes/responsive/views/pages/ad/listing.php:138
+#: themes/responsive/views/pages/ad/listing.php:156
 #: themes/default/views/oc-panel/profile/ads.php:75
 #: themes/default/views/oc-panel/pages/moderate.php:40
 #: themes/default/views/oc-panel/pages/moderate.php:114
 #: themes/default/views/oc-panel/pages/ad.php:76
 #: themes/default/views/oc-panel/pages/ad.php:181
 #: themes/default/views/pages/userprofile.php:107
-#: themes/default/views/pages/ad/listing.php:86
-#: themes/default/views/pages/ad/listing.php:104
-#: themes/czsale/views/pages/ad/listing.php:109
-#: themes/czsale/views/pages/ad/listing.php:127
+#: themes/default/views/pages/ad/listing.php:88
+#: themes/default/views/pages/ad/listing.php:106
+#: themes/czsale/views/pages/ad/listing.php:112
+#: themes/czsale/views/pages/ad/listing.php:130
 msgid "Deactivate?"
 msgstr ""
 
 #: oc/modules/widgets/views/widget_tools.php:10
-#: themes/reclassifieds/views/pages/ad/listing.php:135
-#: themes/reclassifieds/views/pages/ad/listing.php:153
-#: themes/ocean/views/pages/ad/listing.php:143
-#: themes/ocean/views/pages/ad/listing.php:161
+#: themes/reclassifieds/views/pages/ad/listing.php:137
+#: themes/reclassifieds/views/pages/ad/listing.php:155
+#: themes/ocean/views/pages/ad/listing.php:145
+#: themes/ocean/views/pages/ad/listing.php:163
 #: themes/newspaper/views/pages/userprofile.php:129
-#: themes/newspaper/views/pages/ad/listing.php:102
-#: themes/newspaper/views/pages/ad/listing.php:119
-#: themes/bootplus/views/pages/ad/listing.php:128
-#: themes/bootplus/views/pages/ad/listing.php:146
-#: themes/olson/views/pages/ad/listing.php:133
-#: themes/olson/views/pages/ad/listing.php:151
+#: themes/newspaper/views/pages/ad/listing.php:133
+#: themes/newspaper/views/pages/ad/listing.php:150
+#: themes/bootplus/views/pages/ad/listing.php:130
+#: themes/bootplus/views/pages/ad/listing.php:148
+#: themes/olson/views/pages/ad/listing.php:135
+#: themes/olson/views/pages/ad/listing.php:153
 #: themes/moderndeluxe/views/pages/userprofile.php:111
-#: themes/moderndeluxe/views/pages/ad/listing.php:135
-#: themes/moderndeluxe/views/pages/ad/listing.php:153
-#: themes/kamaleon/views/pages/ad/listing.php:142
-#: themes/kamaleon/views/pages/ad/listing.php:160
-#: themes/responsive/views/pages/ad/listing.php:136
-#: themes/responsive/views/pages/ad/listing.php:154
+#: themes/moderndeluxe/views/pages/ad/listing.php:137
+#: themes/moderndeluxe/views/pages/ad/listing.php:155
+#: themes/kamaleon/views/pages/ad/listing.php:144
+#: themes/kamaleon/views/pages/ad/listing.php:162
+#: themes/responsive/views/pages/ad/listing.php:138
+#: themes/responsive/views/pages/ad/listing.php:156
 #: themes/default/views/oc-panel/profile/ads.php:76
 #: themes/default/views/oc-panel/pages/moderate.php:41
 #: themes/default/views/oc-panel/pages/moderate.php:115
 #: themes/default/views/oc-panel/pages/ad.php:77
 #: themes/default/views/oc-panel/pages/ad.php:182
 #: themes/default/views/pages/userprofile.php:107
-#: themes/default/views/pages/ad/listing.php:86
-#: themes/default/views/pages/ad/listing.php:104
-#: themes/czsale/views/pages/ad/listing.php:109
-#: themes/czsale/views/pages/ad/listing.php:127
+#: themes/default/views/pages/ad/listing.php:88
+#: themes/default/views/pages/ad/listing.php:106
+#: themes/czsale/views/pages/ad/listing.php:112
+#: themes/czsale/views/pages/ad/listing.php:130
 msgid "Deactivate"
 msgstr ""
 
 #: oc/modules/widgets/views/widget_tools.php:15
-#: themes/reclassifieds/views/pages/ad/listing.php:138
-#: themes/ocean/views/pages/ad/listing.php:146
+#: themes/reclassifieds/views/pages/ad/listing.php:140
+#: themes/ocean/views/pages/ad/listing.php:148
 #: themes/newspaper/views/pages/userprofile.php:130
-#: themes/newspaper/views/pages/ad/listing.php:104
-#: themes/bootplus/views/pages/ad/listing.php:131
-#: themes/olson/views/pages/ad/listing.php:136
+#: themes/newspaper/views/pages/ad/listing.php:135
+#: themes/bootplus/views/pages/ad/listing.php:133
+#: themes/olson/views/pages/ad/listing.php:138
 #: themes/moderndeluxe/views/pages/userprofile.php:114
-#: themes/moderndeluxe/views/pages/ad/listing.php:138
-#: themes/kamaleon/views/pages/ad/listing.php:145
-#: themes/responsive/views/pages/ad/listing.php:139
+#: themes/moderndeluxe/views/pages/ad/listing.php:140
+#: themes/kamaleon/views/pages/ad/listing.php:147
+#: themes/responsive/views/pages/ad/listing.php:141
 #: themes/default/views/oc-panel/pages/moderate.php:34
 #: themes/default/views/oc-panel/pages/moderate.php:120
 #: themes/default/views/oc-panel/pages/ad.php:68
 #: themes/default/views/oc-panel/pages/ad.php:173
 #: themes/default/views/pages/userprofile.php:110
-#: themes/default/views/pages/ad/listing.php:89
-#: themes/czsale/views/pages/ad/listing.php:112
+#: themes/default/views/pages/ad/listing.php:91
+#: themes/czsale/views/pages/ad/listing.php:115
 msgid "Spam?"
 msgstr ""
 
 #: oc/modules/widgets/views/widget_tools.php:15
-#: themes/reclassifieds/views/pages/ad/listing.php:138
-#: themes/ocean/views/pages/ad/listing.php:146
+#: themes/reclassifieds/views/pages/ad/listing.php:140
+#: themes/ocean/views/pages/ad/listing.php:148
 #: themes/newspaper/views/pages/userprofile.php:130
-#: themes/newspaper/views/pages/ad/listing.php:105
-#: themes/bootplus/views/pages/ad/listing.php:131
-#: themes/olson/views/pages/ad/listing.php:136
+#: themes/newspaper/views/pages/ad/listing.php:136
+#: themes/bootplus/views/pages/ad/listing.php:133
+#: themes/olson/views/pages/ad/listing.php:138
 #: themes/moderndeluxe/views/pages/userprofile.php:114
-#: themes/moderndeluxe/views/pages/ad/listing.php:138
-#: themes/kamaleon/views/pages/ad/listing.php:145
-#: themes/responsive/views/pages/ad/listing.php:139
+#: themes/moderndeluxe/views/pages/ad/listing.php:140
+#: themes/kamaleon/views/pages/ad/listing.php:147
+#: themes/responsive/views/pages/ad/listing.php:141
 #: themes/default/views/oc-panel/profile/ads.php:51
 #: themes/default/views/oc-panel/pages/moderate.php:35
 #: themes/default/views/oc-panel/pages/moderate.php:91
@@ -3073,24 +3142,24 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/ad.php:152
 #: themes/default/views/oc-panel/pages/ad.php:174
 #: themes/default/views/pages/userprofile.php:110
-#: themes/default/views/pages/ad/listing.php:89
-#: themes/czsale/views/pages/ad/listing.php:112
+#: themes/default/views/pages/ad/listing.php:91
+#: themes/czsale/views/pages/ad/listing.php:115
 msgid "Spam"
 msgstr ""
 
 #: oc/modules/widgets/views/widget_tools.php:18
-#: themes/reclassifieds/views/pages/ad/listing.php:141
-#: themes/ocean/views/pages/ad/listing.php:149
+#: themes/reclassifieds/views/pages/ad/listing.php:143
+#: themes/ocean/views/pages/ad/listing.php:151
 #: themes/newspaper/views/pages/blog/listing.php:23
 #: themes/newspaper/views/pages/userprofile.php:131
-#: themes/newspaper/views/pages/ad/listing.php:107
+#: themes/newspaper/views/pages/ad/listing.php:138
 #: themes/mobile/views/pages/blog/listing.php:23
-#: themes/bootplus/views/pages/ad/listing.php:134
-#: themes/olson/views/pages/ad/listing.php:139
+#: themes/bootplus/views/pages/ad/listing.php:136
+#: themes/olson/views/pages/ad/listing.php:141
 #: themes/moderndeluxe/views/pages/userprofile.php:117
-#: themes/moderndeluxe/views/pages/ad/listing.php:141
-#: themes/kamaleon/views/pages/ad/listing.php:148
-#: themes/responsive/views/pages/ad/listing.php:142
+#: themes/moderndeluxe/views/pages/ad/listing.php:143
+#: themes/kamaleon/views/pages/ad/listing.php:150
+#: themes/responsive/views/pages/ad/listing.php:144
 #: themes/default/views/oc-panel/profile/edit_ad.php:249
 #: themes/default/views/oc-panel/pages/categories.php:36
 #: themes/default/views/oc-panel/pages/moderate.php:46
@@ -3100,32 +3169,32 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/ad.php:197
 #: themes/default/views/pages/blog/listing.php:23
 #: themes/default/views/pages/userprofile.php:113
-#: themes/default/views/pages/ad/listing.php:92
-#: themes/czsale/views/pages/ad/listing.php:115
+#: themes/default/views/pages/ad/listing.php:94
+#: themes/czsale/views/pages/ad/listing.php:118
 msgid "Delete?"
 msgstr ""
 
 #: oc/modules/widgets/views/widget_tools.php:18
 #: themes/reclassifieds/views/pages/ad/new.php:106
-#: themes/reclassifieds/views/pages/ad/listing.php:141
-#: themes/ocean/views/pages/ad/new.php:109
-#: themes/ocean/views/pages/ad/listing.php:149
+#: themes/reclassifieds/views/pages/ad/listing.php:143
+#: themes/ocean/views/pages/ad/new.php:110
+#: themes/ocean/views/pages/ad/listing.php:151
 #: themes/newspaper/views/pages/blog/listing.php:23
 #: themes/newspaper/views/pages/userprofile.php:131
 #: themes/newspaper/views/pages/ad/new.php:107
-#: themes/newspaper/views/pages/ad/listing.php:108
+#: themes/newspaper/views/pages/ad/listing.php:139
 #: themes/mobile/views/pages/blog/listing.php:23
 #: themes/bootplus/views/pages/ad/new.php:105
-#: themes/bootplus/views/pages/ad/listing.php:134
+#: themes/bootplus/views/pages/ad/listing.php:136
 #: themes/olson/views/pages/ad/new.php:110
-#: themes/olson/views/pages/ad/listing.php:139
+#: themes/olson/views/pages/ad/listing.php:141
 #: themes/moderndeluxe/views/pages/userprofile.php:117
 #: themes/moderndeluxe/views/pages/ad/new.php:106
-#: themes/moderndeluxe/views/pages/ad/listing.php:141
-#: themes/kamaleon/views/pages/ad/new.php:107
-#: themes/kamaleon/views/pages/ad/listing.php:148
+#: themes/moderndeluxe/views/pages/ad/listing.php:143
+#: themes/kamaleon/views/pages/ad/new.php:108
+#: themes/kamaleon/views/pages/ad/listing.php:150
 #: themes/responsive/views/pages/ad/new.php:106
-#: themes/responsive/views/pages/ad/listing.php:142
+#: themes/responsive/views/pages/ad/listing.php:144
 #: themes/default/views/oc-panel/crud/index.php:41
 #: themes/default/views/oc-panel/profile/edit_ad.php:258
 #: themes/default/views/oc-panel/pages/content/list.php:56
@@ -3136,10 +3205,10 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/ad.php:198
 #: themes/default/views/pages/blog/listing.php:23
 #: themes/default/views/pages/userprofile.php:113
-#: themes/default/views/pages/ad/new.php:101
-#: themes/default/views/pages/ad/listing.php:92
+#: themes/default/views/pages/ad/new.php:102
+#: themes/default/views/pages/ad/listing.php:94
 #: themes/czsale/views/pages/ad/new.php:119
-#: themes/czsale/views/pages/ad/listing.php:115
+#: themes/czsale/views/pages/ad/listing.php:118
 msgid "Delete"
 msgstr ""
 
@@ -3216,19 +3285,7 @@ msgstr ""
 msgid "to"
 msgstr ""
 
-#: oc/views/profiler.php:120
-msgid "Environment"
-msgstr ""
-
-#: oc/views/profiler.php:123
-msgid "Included files"
-msgstr ""
-
-#: oc/views/profiler.php:134
-msgid "Loaded extensions"
-msgstr ""
-
-#: oc/config/routes.php:130
+#: oc/config/routes.php:139
 msgid "new topic"
 msgstr ""
 
@@ -3258,7 +3315,7 @@ msgstr ""
 #: install/index.php:56
 #: install/index.php:126
 #: install-openclassifieds.php:459
-#: install-openclassifieds.php:529
+#: install-openclassifieds.php:527
 msgid "Installation"
 msgstr ""
 
@@ -3285,7 +3342,7 @@ msgid "About"
 msgstr ""
 
 #: install/index.php:117
-#: install-openclassifieds.php:520
+#: install-openclassifieds.php:518
 msgid "We install it for you, Buy now!"
 msgstr ""
 
@@ -3314,7 +3371,7 @@ msgid "We really appreciate it"
 msgstr ""
 
 #: install/views/requirements.php:5
-#: install-openclassifieds.php:589
+#: install-openclassifieds.php:587
 msgid "Software Requirements"
 msgstr ""
 
@@ -3324,26 +3381,26 @@ msgstr ""
 
 #: install/views/about.php:5
 #: themes/default/views/oc-panel/home.php:5
-#: install-openclassifieds.php:613
+#: install-openclassifieds.php:611
 msgid "Thanks for using Open Classifieds."
 msgstr ""
 
 #: install/views/about.php:6
 #: themes/default/views/oc-panel/home.php:6
 #: themes/default/views/oc-panel/pages/tools/versions.php:6
-#: install-openclassifieds.php:614
+#: install-openclassifieds.php:612
 msgid "Your installation version is"
 msgstr ""
 
 #: install/views/about.php:10
 #: themes/default/views/oc-panel/home.php:12
-#: install-openclassifieds.php:618
+#: install-openclassifieds.php:616
 msgid "You need help or you have some questions"
 msgstr ""
 
 #: install/views/about.php:19
 #: themes/default/views/oc-panel/home.php:25
-#: install-openclassifieds.php:627
+#: install-openclassifieds.php:625
 msgid "Latest News"
 msgstr ""
 
@@ -3388,11 +3445,12 @@ msgstr ""
 
 #: install/views/form.php:61
 #: install/views/form.php:62
-#: themes/default/views/oc-panel/pages/settings/general.php:61
+#: themes/default/views/oc-panel/pages/settings/general.php:72
 msgid "Site Name"
 msgstr ""
 
 #: install/views/form.php:68
+#: themes/default/views/oc-panel/pages/settings/general.php:36
 msgid "Time Zone"
 msgstr ""
 
@@ -3475,30 +3533,31 @@ msgid "Only numbers, letters, and underscores"
 msgstr ""
 
 #: install/views/hosting.php:11
-#: install-openclassifieds.php:727
+#: install-openclassifieds.php:725
 msgid "We have detected some incompatibilities, installation may not work as expected but you can try."
 msgstr ""
 
 #: themes/reclassifieds/options.php:15
 #: themes/ocean/options.php:15
+#: themes/newspaper/options.php:26
 #: themes/bootplus/options.php:15
 #: themes/olson/options.php:25
 #: themes/moderndeluxe/options.php:15
-#: themes/kamaleon/options.php:40
+#: themes/kamaleon/options.php:41
 #: themes/responsive/options.php:25
-#: themes/czsale/options.php:27
+#: themes/czsale/options.php:28
 msgid "Change the admin color theme"
 msgstr ""
 
 #: themes/reclassifieds/options.php:27
 #: themes/ocean/options.php:27
-#: themes/newspaper/options.php:41
+#: themes/newspaper/options.php:52
 #: themes/bootplus/options.php:37
 #: themes/olson/options.php:37
 #: themes/moderndeluxe/options.php:27
-#: themes/kamaleon/options.php:61
+#: themes/kamaleon/options.php:62
 #: themes/responsive/options.php:47
-#: themes/czsale/options.php:39
+#: themes/czsale/options.php:40
 msgid "Display breadcrumb"
 msgstr ""
 
@@ -3509,9 +3568,9 @@ msgstr ""
 #: themes/ocean/options.php:87
 #: themes/ocean/options.php:108
 #: themes/ocean/options.php:116
-#: themes/newspaper/options.php:42
-#: themes/newspaper/options.php:68
-#: themes/newspaper/options.php:111
+#: themes/newspaper/options.php:53
+#: themes/newspaper/options.php:79
+#: themes/newspaper/options.php:139
 #: themes/mobile/options.php:69
 #: themes/mobile/options.php:90
 #: themes/mobile/options.php:98
@@ -3525,18 +3584,18 @@ msgstr ""
 #: themes/olson/options.php:125
 #: themes/moderndeluxe/options.php:28
 #: themes/moderndeluxe/options.php:86
-#: themes/kamaleon/options.php:53
-#: themes/kamaleon/options.php:62
-#: themes/kamaleon/options.php:116
-#: themes/kamaleon/options.php:137
-#: themes/kamaleon/options.php:145
+#: themes/kamaleon/options.php:54
+#: themes/kamaleon/options.php:63
+#: themes/kamaleon/options.php:117
+#: themes/kamaleon/options.php:138
+#: themes/kamaleon/options.php:146
 #: themes/responsive/options.php:39
 #: themes/responsive/options.php:48
 #: themes/responsive/options.php:106
-#: themes/czsale/options.php:40
-#: themes/czsale/options.php:86
-#: themes/czsale/options.php:103
-#: themes/czsale/options.php:111
+#: themes/czsale/options.php:41
+#: themes/czsale/options.php:87
+#: themes/czsale/options.php:104
+#: themes/czsale/options.php:112
 msgid "Yes"
 msgstr ""
 
@@ -3548,9 +3607,9 @@ msgstr ""
 #: themes/ocean/options.php:88
 #: themes/ocean/options.php:109
 #: themes/ocean/options.php:117
-#: themes/newspaper/options.php:43
-#: themes/newspaper/options.php:69
-#: themes/newspaper/options.php:112
+#: themes/newspaper/options.php:54
+#: themes/newspaper/options.php:80
+#: themes/newspaper/options.php:140
 #: themes/mobile/options.php:70
 #: themes/mobile/options.php:91
 #: themes/mobile/options.php:99
@@ -3566,20 +3625,20 @@ msgstr ""
 #: themes/moderndeluxe/options.php:29
 #: themes/moderndeluxe/options.php:87
 #: themes/moderndeluxe/views/alert_terms.php:13
-#: themes/kamaleon/options.php:54
-#: themes/kamaleon/options.php:63
-#: themes/kamaleon/options.php:117
-#: themes/kamaleon/options.php:138
-#: themes/kamaleon/options.php:146
+#: themes/kamaleon/options.php:55
+#: themes/kamaleon/options.php:64
+#: themes/kamaleon/options.php:118
+#: themes/kamaleon/options.php:139
+#: themes/kamaleon/options.php:147
 #: themes/responsive/options.php:40
 #: themes/responsive/options.php:49
 #: themes/responsive/options.php:107
 #: themes/responsive/views/alert_terms.php:13
 #: themes/default/views/alert_terms.php:15
-#: themes/czsale/options.php:41
-#: themes/czsale/options.php:87
-#: themes/czsale/options.php:104
-#: themes/czsale/options.php:112
+#: themes/czsale/options.php:42
+#: themes/czsale/options.php:88
+#: themes/czsale/options.php:105
+#: themes/czsale/options.php:113
 msgid "No"
 msgstr ""
 
@@ -3589,7 +3648,7 @@ msgstr ""
 #: themes/bootplus/options.php:46
 #: themes/olson/options.php:55
 #: themes/moderndeluxe/options.php:36
-#: themes/kamaleon/options.php:70
+#: themes/kamaleon/options.php:71
 #: themes/responsive/options.php:56
 msgid "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
 msgstr ""
@@ -3597,9 +3656,9 @@ msgstr ""
 #: themes/reclassifieds/options.php:40
 #: themes/bootplus/options.php:50
 #: themes/moderndeluxe/options.php:40
-#: themes/kamaleon/options.php:74
+#: themes/kamaleon/options.php:75
 #: themes/responsive/options.php:60
-#: themes/czsale/options.php:52
+#: themes/czsale/options.php:53
 msgid "Short description that appears after the site name."
 msgstr ""
 
@@ -3609,21 +3668,21 @@ msgstr ""
 #: themes/bootplus/options.php:55
 #: themes/olson/options.php:60
 #: themes/moderndeluxe/options.php:45
-#: themes/kamaleon/options.php:79
+#: themes/kamaleon/options.php:80
 #: themes/responsive/options.php:65
-#: themes/czsale/options.php:57
+#: themes/czsale/options.php:58
 msgid "Numbers of ads to display in home slider"
 msgstr ""
 
 #: themes/reclassifieds/options.php:51
 #: themes/ocean/options.php:56
-#: themes/newspaper/options.php:49
+#: themes/newspaper/options.php:60
 #: themes/bootplus/options.php:61
 #: themes/olson/options.php:66
 #: themes/moderndeluxe/options.php:51
-#: themes/kamaleon/options.php:85
+#: themes/kamaleon/options.php:86
 #: themes/responsive/options.php:71
-#: themes/czsale/options.php:63
+#: themes/czsale/options.php:64
 msgid "Where you want the sidebar to appear"
 msgstr ""
 
@@ -3631,78 +3690,82 @@ msgstr ""
 #: themes/reclassifieds/options.php:63
 #: themes/ocean/options.php:57
 #: themes/ocean/options.php:68
-#: themes/newspaper/options.php:50
+#: themes/newspaper/options.php:61
+#: themes/newspaper/options.php:111
 #: themes/bootplus/options.php:62
 #: themes/bootplus/options.php:73
 #: themes/olson/options.php:67
 #: themes/olson/options.php:77
 #: themes/moderndeluxe/options.php:52
 #: themes/moderndeluxe/options.php:63
-#: themes/kamaleon/options.php:86
-#: themes/kamaleon/options.php:97
+#: themes/kamaleon/options.php:87
+#: themes/kamaleon/options.php:98
 #: themes/responsive/options.php:72
 #: themes/responsive/options.php:83
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:70
-#: themes/czsale/options.php:64
-#: themes/czsale/options.php:75
+#: themes/czsale/options.php:65
+#: themes/czsale/options.php:76
 msgid "None"
 msgstr ""
 
 #: themes/reclassifieds/options.php:53
 #: themes/ocean/options.php:58
-#: themes/newspaper/options.php:51
+#: themes/newspaper/options.php:62
 #: themes/bootplus/options.php:63
 #: themes/olson/options.php:68
 #: themes/moderndeluxe/options.php:53
-#: themes/kamaleon/options.php:87
+#: themes/kamaleon/options.php:88
 #: themes/responsive/options.php:73
-#: themes/czsale/options.php:65
+#: themes/czsale/options.php:66
 msgid "Right side"
 msgstr ""
 
 #: themes/reclassifieds/options.php:54
 #: themes/ocean/options.php:59
-#: themes/newspaper/options.php:52
+#: themes/newspaper/options.php:63
 #: themes/bootplus/options.php:64
 #: themes/olson/options.php:69
 #: themes/moderndeluxe/options.php:54
-#: themes/kamaleon/options.php:88
+#: themes/kamaleon/options.php:89
 #: themes/responsive/options.php:74
-#: themes/czsale/options.php:66
+#: themes/czsale/options.php:67
 msgid "Left side"
 msgstr ""
 
 #: themes/reclassifieds/options.php:61
 #: themes/ocean/options.php:66
+#: themes/newspaper/options.php:109
 #: themes/bootplus/options.php:71
 #: themes/olson/options.php:75
 #: themes/moderndeluxe/options.php:61
-#: themes/kamaleon/options.php:95
+#: themes/kamaleon/options.php:96
 #: themes/responsive/options.php:81
-#: themes/czsale/options.php:73
+#: themes/czsale/options.php:74
 msgid "Display slider in listing"
 msgstr ""
 
 #: themes/reclassifieds/options.php:64
 #: themes/ocean/options.php:69
+#: themes/newspaper/options.php:112
 #: themes/bootplus/options.php:74
 #: themes/olson/options.php:78
 #: themes/moderndeluxe/options.php:64
-#: themes/kamaleon/options.php:98
+#: themes/kamaleon/options.php:99
 #: themes/responsive/options.php:84
 #: themes/default/views/oc-panel/pages/menu.php:41
-#: themes/czsale/options.php:76
+#: themes/czsale/options.php:77
 msgid "Default"
 msgstr ""
 
 #: themes/reclassifieds/options.php:66
 #: themes/ocean/options.php:71
+#: themes/newspaper/options.php:114
 #: themes/bootplus/options.php:76
 #: themes/olson/options.php:80
 #: themes/moderndeluxe/options.php:66
-#: themes/kamaleon/options.php:100
+#: themes/kamaleon/options.php:101
 #: themes/responsive/options.php:86
-#: themes/czsale/options.php:78
+#: themes/czsale/options.php:79
 msgid "Featured Random"
 msgstr ""
 
@@ -3712,9 +3775,9 @@ msgstr ""
 #: themes/bootplus/options.php:83
 #: themes/olson/options.php:104
 #: themes/moderndeluxe/options.php:73
-#: themes/kamaleon/options.php:124
+#: themes/kamaleon/options.php:125
 #: themes/responsive/options.php:93
-#: themes/czsale/options.php:94
+#: themes/czsale/options.php:95
 msgid "Header banner, allows HTML"
 msgstr ""
 
@@ -3724,48 +3787,48 @@ msgstr ""
 #: themes/bootplus/options.php:87
 #: themes/olson/options.php:108
 #: themes/moderndeluxe/options.php:77
-#: themes/kamaleon/options.php:128
+#: themes/kamaleon/options.php:129
 #: themes/responsive/options.php:97
-#: themes/czsale/options.php:98
+#: themes/czsale/options.php:99
 msgid "Footer banner, allows HTML"
 msgstr ""
 
 #: themes/reclassifieds/options.php:81
 #: themes/ocean/options.php:103
-#: themes/newspaper/options.php:98
+#: themes/newspaper/options.php:125
 #: themes/mobile/options.php:85
 #: themes/bootplus/options.php:91
 #: themes/olson/options.php:112
 #: themes/moderndeluxe/options.php:81
-#: themes/kamaleon/options.php:132
+#: themes/kamaleon/options.php:133
 #: themes/responsive/options.php:101
 msgid "Listing random position banner, allows HTML"
 msgstr ""
 
 #: themes/reclassifieds/options.php:85
 #: themes/ocean/options.php:115
-#: themes/newspaper/options.php:110
+#: themes/newspaper/options.php:138
 #: themes/mobile/options.php:97
 #: themes/bootplus/options.php:95
 #: themes/olson/options.php:124
 #: themes/moderndeluxe/options.php:85
-#: themes/kamaleon/options.php:144
+#: themes/kamaleon/options.php:145
 #: themes/responsive/options.php:105
-#: themes/czsale/options.php:110
+#: themes/czsale/options.php:111
 msgid "Uses CDN for CSS/JS"
 msgstr ""
 
-#: themes/reclassifieds/views/main.php:73
-#: themes/ocean/views/main.php:75
-#: themes/newspaper/views/main.php:84
-#: themes/mobile/views/main.php:67
-#: themes/bootplus/views/main.php:72
-#: themes/olson/views/main.php:77
-#: themes/moderndeluxe/views/main.php:72
-#: themes/kamaleon/views/main.php:73
-#: themes/responsive/views/main.php:73
-#: themes/default/views/main.php:74
-#: themes/czsale/views/main.php:73
+#: themes/reclassifieds/views/main.php:79
+#: themes/ocean/views/main.php:81
+#: themes/newspaper/views/main.php:90
+#: themes/mobile/views/main.php:73
+#: themes/bootplus/views/main.php:78
+#: themes/olson/views/main.php:83
+#: themes/moderndeluxe/views/main.php:78
+#: themes/kamaleon/views/main.php:79
+#: themes/responsive/views/main.php:79
+#: themes/default/views/main.php:80
+#: themes/czsale/views/main.php:79
 msgid "We detected you are currently off-line, please connect to gain full experience."
 msgstr ""
 
@@ -3779,7 +3842,7 @@ msgstr ""
 
 #: themes/reclassifieds/views/header.php:25
 #: themes/reclassifieds/views/pages/ad/new.php:225
-#: themes/ocean/views/pages/ad/new.php:236
+#: themes/ocean/views/pages/ad/new.php:237
 #: themes/newspaper/views/pages/ad/new.php:234
 #: themes/mobile/views/pages/ad/new.php:189
 #: themes/bootplus/views/pages/ad/new.php:224
@@ -3787,12 +3850,12 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:237
 #: themes/moderndeluxe/views/pages/ad/new.php:225
 #: themes/kamaleon/views/header.php:16
-#: themes/kamaleon/views/pages/ad/new.php:234
+#: themes/kamaleon/views/pages/ad/new.php:235
 #: themes/responsive/views/header.php:27
 #: themes/responsive/views/pages/ad/new.php:225
 #: themes/default/views/oc-panel/header.php:41
 #: themes/default/views/oc-panel/header.php:46
-#: themes/default/views/pages/ad/new.php:203
+#: themes/default/views/pages/ad/new.php:204
 #: themes/czsale/views/header.php:25
 #: themes/czsale/views/pages/ad/new.php:262
 #: themes/czsale/views/footer.php:8
@@ -3818,11 +3881,13 @@ msgstr ""
 
 #: themes/reclassifieds/views/header.php:145
 #: themes/ocean/views/header.php:125
+#: themes/newspaper/views/header.php:115
 #: themes/bootplus/views/header.php:122
 #: themes/moderndeluxe/views/header.php:151
 #: themes/kamaleon/views/header.php:169
 #: themes/responsive/views/header.php:155
 #: themes/default/views/header.php:110
+#: themes/czsale/views/header.php:91
 msgid "Forgot password"
 msgstr ""
 
@@ -3833,6 +3898,7 @@ msgstr ""
 #: themes/reclassifieds/views/pages/auth/login-form.php:28
 #: themes/reclassifieds/views/pages/auth/register-social.php:21
 #: themes/ocean/views/header.php:140
+#: themes/newspaper/views/header.php:130
 #: themes/newspaper/views/pages/auth/register-form.php:37
 #: themes/newspaper/views/pages/auth/register.php:2
 #: themes/newspaper/views/pages/auth/forgot-form.php:14
@@ -3873,6 +3939,7 @@ msgstr ""
 #: themes/default/views/pages/auth/forgot-form.php:13
 #: themes/default/views/pages/auth/login-form.php:28
 #: themes/default/views/pages/auth/register-social.php:21
+#: themes/czsale/views/header.php:106
 #: themes/czsale/views/pages/auth/register-form.php:41
 #: themes/czsale/views/pages/auth/register.php:5
 #: themes/czsale/views/pages/auth/forgot-form.php:13
@@ -3966,88 +4033,91 @@ msgid "Selected location"
 msgstr ""
 
 #: themes/reclassifieds/views/pages/ad/new.php:96
+#: themes/ocean/views/pages/ad/new.php:99
 #: themes/newspaper/views/pages/ad/new.php:92
 #: themes/mobile/views/pages/ad/new.php:75
 #: themes/mobile/views/pages/ad/new.php:78
 #: themes/bootplus/views/pages/ad/new.php:95
 #: themes/moderndeluxe/views/pages/ad/new.php:96
+#: themes/kamaleon/views/pages/ad/new.php:97
 #: themes/responsive/views/pages/ad/new.php:96
 #: themes/default/views/oc-panel/profile/edit_ad.php:270
+#: themes/default/views/pages/ad/new.php:90
 #: themes/czsale/views/pages/ad/new.php:103
 #: themes/czsale/views/pages/ad/new.php:107
 msgid "Images"
 msgstr ""
 
 #: themes/reclassifieds/views/pages/ad/new.php:102
-#: themes/ocean/views/pages/ad/new.php:105
+#: themes/ocean/views/pages/ad/new.php:106
 #: themes/newspaper/views/pages/ad/new.php:103
 #: themes/bootplus/views/pages/ad/new.php:101
 #: themes/olson/views/pages/ad/new.php:106
 #: themes/moderndeluxe/views/pages/ad/new.php:102
-#: themes/kamaleon/views/pages/ad/new.php:103
+#: themes/kamaleon/views/pages/ad/new.php:104
 #: themes/responsive/views/pages/ad/new.php:102
 #: themes/default/views/oc-panel/pages/fields/new.php:44
-#: themes/default/views/pages/ad/new.php:97
+#: themes/default/views/pages/ad/new.php:98
 #: themes/czsale/views/pages/ad/new.php:115
 msgid "Select"
 msgstr ""
 
 #: themes/reclassifieds/views/pages/ad/new.php:151
-#: themes/ocean/views/pages/ad/new.php:158
+#: themes/ocean/views/pages/ad/new.php:159
 #: themes/mobile/views/pages/ad/new.php:115
 #: themes/bootplus/views/pages/ad/new.php:150
 #: themes/olson/views/pages/ad/new.php:159
 #: themes/moderndeluxe/views/pages/ad/new.php:151
-#: themes/kamaleon/views/pages/ad/new.php:156
+#: themes/kamaleon/views/pages/ad/new.php:157
 #: themes/responsive/views/pages/ad/new.php:151
 #: themes/default/views/oc-panel/profile/edit_ad.php:183
-#: themes/default/views/pages/ad/new.php:150
+#: themes/default/views/pages/ad/new.php:151
 #: themes/czsale/views/pages/ad/new.php:175
 msgid "In Stock"
 msgstr ""
 
 #: themes/reclassifieds/views/pages/ad/new.php:160
-#: themes/ocean/views/pages/ad/new.php:169
+#: themes/ocean/views/pages/ad/new.php:170
 #: themes/newspaper/views/pages/ad/new.php:162
 #: themes/mobile/views/pages/ad/new.php:124
 #: themes/mobile/views/pages/ad/single.php:35
 #: themes/bootplus/views/pages/ad/new.php:159
 #: themes/olson/views/pages/ad/new.php:170
 #: themes/moderndeluxe/views/pages/ad/new.php:160
-#: themes/kamaleon/views/pages/ad/new.php:167
+#: themes/kamaleon/views/pages/ad/new.php:168
 #: themes/responsive/views/pages/ad/new.php:160
 #: themes/default/views/oc-panel/profile/edit_ad.php:193
 #: themes/default/views/oc-panel/profile/edit_ad.php:194
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:206
 #: themes/default/views/oc-panel/pages/fields/index.php:74
-#: themes/default/views/pages/ad/new.php:161
+#: themes/default/views/pages/ad/new.php:162
 #: themes/czsale/views/pages/ad/new.php:186
 msgid "Website"
 msgstr ""
 
 #: themes/reclassifieds/views/pages/ad/new.php:210
-#: themes/ocean/views/pages/ad/new.php:219
+#: themes/ocean/views/pages/ad/new.php:220
 #: themes/newspaper/views/pages/ad/new.php:221
 #: themes/mobile/views/pages/ad/new.php:174
 #: themes/bootplus/views/pages/ad/new.php:209
 #: themes/olson/views/pages/ad/new.php:220
 #: themes/moderndeluxe/views/pages/ad/new.php:210
-#: themes/kamaleon/views/pages/ad/new.php:217
+#: themes/kamaleon/views/pages/ad/new.php:218
 #: themes/responsive/views/pages/ad/new.php:210
-#: themes/default/views/pages/ad/new.php:188
+#: themes/default/views/pages/ad/new.php:189
 #: themes/czsale/views/pages/ad/new.php:246
 msgid "Terms of service"
 msgstr ""
 
 #: themes/reclassifieds/views/pages/ad/new.php:227
-#: themes/ocean/views/pages/ad/new.php:238
+#: themes/ocean/views/pages/ad/new.php:239
 #: themes/newspaper/views/pages/ad/new.php:236
 #: themes/bootplus/views/pages/ad/new.php:226
 #: themes/olson/views/pages/ad/new.php:239
 #: themes/moderndeluxe/views/pages/ad/new.php:227
-#: themes/kamaleon/views/pages/ad/new.php:236
+#: themes/kamaleon/views/pages/ad/new.php:237
 #: themes/responsive/views/pages/ad/new.php:227
-#: themes/default/views/pages/ad/new.php:205
+#: themes/default/views/pages/ad/new.php:206
 #: themes/czsale/views/pages/ad/new.php:264
 msgid "User account will be created"
 msgstr ""
@@ -4056,8 +4126,8 @@ msgstr ""
 #: themes/reclassifieds/views/pages/ad/listing.php:57
 #: themes/ocean/views/pages/ad/listing.php:58
 #: themes/ocean/views/pages/ad/listing.php:61
-#: themes/newspaper/views/pages/ad/listing.php:16
-#: themes/newspaper/views/pages/ad/listing.php:20
+#: themes/newspaper/views/pages/ad/listing.php:45
+#: themes/newspaper/views/pages/ad/listing.php:49
 #: themes/bootplus/views/pages/ad/listing.php:54
 #: themes/bootplus/views/pages/ad/listing.php:57
 #: themes/moderndeluxe/views/pages/ad/listing.php:54
@@ -4076,7 +4146,7 @@ msgstr ""
 
 #: themes/reclassifieds/views/pages/ad/listing.php:63
 #: themes/ocean/views/pages/ad/listing.php:74
-#: themes/newspaper/views/pages/ad/listing.php:29
+#: themes/newspaper/views/pages/ad/listing.php:58
 #: themes/bootplus/views/pages/ad/listing.php:63
 #: themes/olson/views/pages/ad/listing.php:68
 #: themes/moderndeluxe/views/pages/ad/listing.php:63
@@ -4089,7 +4159,7 @@ msgstr ""
 
 #: themes/reclassifieds/views/pages/ad/listing.php:66
 #: themes/ocean/views/pages/ad/listing.php:77
-#: themes/newspaper/views/pages/ad/listing.php:32
+#: themes/newspaper/views/pages/ad/listing.php:61
 #: themes/bootplus/views/pages/ad/listing.php:66
 #: themes/olson/views/pages/ad/listing.php:71
 #: themes/moderndeluxe/views/pages/ad/listing.php:66
@@ -4102,7 +4172,7 @@ msgstr ""
 
 #: themes/reclassifieds/views/pages/ad/listing.php:67
 #: themes/ocean/views/pages/ad/listing.php:78
-#: themes/newspaper/views/pages/ad/listing.php:33
+#: themes/newspaper/views/pages/ad/listing.php:62
 #: themes/bootplus/views/pages/ad/listing.php:67
 #: themes/olson/views/pages/ad/listing.php:72
 #: themes/moderndeluxe/views/pages/ad/listing.php:67
@@ -4113,22 +4183,9 @@ msgstr ""
 msgid "Name (Z-A)"
 msgstr ""
 
-#: themes/reclassifieds/views/pages/ad/listing.php:68
-#: themes/ocean/views/pages/ad/listing.php:79
-#: themes/newspaper/views/pages/ad/listing.php:34
-#: themes/bootplus/views/pages/ad/listing.php:68
-#: themes/olson/views/pages/ad/listing.php:73
-#: themes/moderndeluxe/views/pages/ad/listing.php:68
-#: themes/kamaleon/views/pages/ad/listing.php:78
-#: themes/responsive/views/pages/ad/listing.php:69
-#: themes/default/views/pages/ad/listing.php:27
-#: themes/czsale/views/pages/ad/listing.php:56
-msgid "Price (Low)"
-msgstr ""
-
 #: themes/reclassifieds/views/pages/ad/listing.php:69
 #: themes/ocean/views/pages/ad/listing.php:80
-#: themes/newspaper/views/pages/ad/listing.php:35
+#: themes/newspaper/views/pages/ad/listing.php:64
 #: themes/bootplus/views/pages/ad/listing.php:69
 #: themes/olson/views/pages/ad/listing.php:74
 #: themes/moderndeluxe/views/pages/ad/listing.php:69
@@ -4136,59 +4193,72 @@ msgstr ""
 #: themes/responsive/views/pages/ad/listing.php:70
 #: themes/default/views/pages/ad/listing.php:28
 #: themes/czsale/views/pages/ad/listing.php:57
+msgid "Price (Low)"
+msgstr ""
+
+#: themes/reclassifieds/views/pages/ad/listing.php:70
+#: themes/ocean/views/pages/ad/listing.php:81
+#: themes/newspaper/views/pages/ad/listing.php:65
+#: themes/bootplus/views/pages/ad/listing.php:70
+#: themes/olson/views/pages/ad/listing.php:75
+#: themes/moderndeluxe/views/pages/ad/listing.php:70
+#: themes/kamaleon/views/pages/ad/listing.php:80
+#: themes/responsive/views/pages/ad/listing.php:71
+#: themes/default/views/pages/ad/listing.php:29
+#: themes/czsale/views/pages/ad/listing.php:58
 msgid "Price (High)"
 msgstr ""
 
-#: themes/reclassifieds/views/pages/ad/listing.php:71
-#: themes/ocean/views/pages/ad/listing.php:82
-#: themes/newspaper/views/pages/ad/listing.php:37
-#: themes/bootplus/views/pages/ad/listing.php:71
-#: themes/olson/views/pages/ad/listing.php:76
-#: themes/moderndeluxe/views/pages/ad/listing.php:71
-#: themes/kamaleon/views/pages/ad/listing.php:81
-#: themes/responsive/views/pages/ad/listing.php:72
-#: themes/default/views/pages/ad/listing.php:30
-#: themes/czsale/views/pages/ad/listing.php:59
+#: themes/reclassifieds/views/pages/ad/listing.php:73
+#: themes/ocean/views/pages/ad/listing.php:84
+#: themes/newspaper/views/pages/ad/listing.php:68
+#: themes/bootplus/views/pages/ad/listing.php:73
+#: themes/olson/views/pages/ad/listing.php:78
+#: themes/moderndeluxe/views/pages/ad/listing.php:73
+#: themes/kamaleon/views/pages/ad/listing.php:83
+#: themes/responsive/views/pages/ad/listing.php:74
+#: themes/default/views/pages/ad/listing.php:32
+#: themes/czsale/views/pages/ad/listing.php:61
 msgid "Newest"
 msgstr ""
 
-#: themes/reclassifieds/views/pages/ad/listing.php:72
-#: themes/ocean/views/pages/ad/listing.php:83
-#: themes/newspaper/views/pages/ad/listing.php:38
-#: themes/bootplus/views/pages/ad/listing.php:72
-#: themes/olson/views/pages/ad/listing.php:77
-#: themes/moderndeluxe/views/pages/ad/listing.php:72
-#: themes/kamaleon/views/pages/ad/listing.php:82
-#: themes/responsive/views/pages/ad/listing.php:73
-#: themes/default/views/pages/ad/listing.php:31
-#: themes/czsale/views/pages/ad/listing.php:60
+#: themes/reclassifieds/views/pages/ad/listing.php:74
+#: themes/ocean/views/pages/ad/listing.php:85
+#: themes/newspaper/views/pages/ad/listing.php:69
+#: themes/bootplus/views/pages/ad/listing.php:74
+#: themes/olson/views/pages/ad/listing.php:79
+#: themes/moderndeluxe/views/pages/ad/listing.php:74
+#: themes/kamaleon/views/pages/ad/listing.php:84
+#: themes/responsive/views/pages/ad/listing.php:75
+#: themes/default/views/pages/ad/listing.php:33
+#: themes/czsale/views/pages/ad/listing.php:62
 msgid "Oldest"
 msgstr ""
 
-#: themes/reclassifieds/views/pages/ad/listing.php:119
-#: themes/ocean/views/pages/ad/listing.php:129
+#: themes/reclassifieds/views/pages/ad/listing.php:121
+#: themes/ocean/views/pages/ad/listing.php:131
 #: themes/newspaper/views/pages/blog/listing.php:14
 #: themes/newspaper/views/pages/userprofile.php:122
-#: themes/newspaper/views/pages/ad/listing.php:93
+#: themes/newspaper/views/pages/ad/listing.php:124
 #: themes/newspaper/views/pages/ad/related.php:42
 #: themes/mobile/views/pages/userprofile.php:94
 #: themes/mobile/views/pages/userprofile.php:96
-#: themes/bootplus/views/pages/ad/listing.php:112
+#: themes/bootplus/views/pages/ad/listing.php:114
 #: themes/moderndeluxe/views/pages/userprofile.php:102
-#: themes/moderndeluxe/views/pages/ad/listing.php:119
-#: themes/kamaleon/views/pages/ad/listing.php:128
-#: themes/responsive/views/pages/ad/listing.php:120
+#: themes/moderndeluxe/views/pages/ad/listing.php:121
+#: themes/kamaleon/views/pages/ad/listing.php:130
+#: themes/responsive/views/pages/ad/listing.php:122
 #: themes/default/views/pages/userprofile.php:98
-#: themes/default/views/pages/ad/listing.php:70
+#: themes/default/views/pages/ad/listing.php:72
 msgid "Publish Date"
 msgstr ""
 
-#: themes/reclassifieds/views/pages/ad/listing.php:128
+#: themes/reclassifieds/views/pages/ad/listing.php:130
 #: themes/newspaper/views/pages/blog/listing.php:18
 #: themes/mobile/views/pages/blog/listing.php:17
-#: themes/bootplus/views/pages/ad/listing.php:121
-#: themes/moderndeluxe/views/pages/ad/listing.php:128
-#: themes/responsive/views/pages/ad/listing.php:129
+#: themes/bootplus/views/pages/ad/listing.php:123
+#: themes/moderndeluxe/views/pages/ad/listing.php:130
+#: themes/responsive/views/pages/ad/listing.php:131
 #: themes/default/views/oc-panel/pages/categories.php:5
 #: themes/default/views/oc-panel/pages/locations.php:5
 #: themes/default/views/oc-panel/pages/black_list.php:5
@@ -4201,21 +4271,21 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/widgets/widget.php:4
 #: themes/default/views/pages/blog/listing.php:17
 #: themes/default/views/pages/faq/listing.php:14
-#: themes/default/views/pages/ad/listing.php:79
+#: themes/default/views/pages/ad/listing.php:81
 msgid "Read more"
 msgstr ""
 
-#: themes/reclassifieds/views/pages/ad/listing.php:173
-#: themes/ocean/views/pages/ad/listing.php:184
-#: themes/newspaper/views/pages/ad/listing.php:137
+#: themes/reclassifieds/views/pages/ad/listing.php:175
+#: themes/ocean/views/pages/ad/listing.php:186
+#: themes/newspaper/views/pages/ad/listing.php:168
 #: themes/mobile/views/pages/ad/listing.php:49
-#: themes/bootplus/views/pages/ad/listing.php:166
-#: themes/olson/views/pages/ad/listing.php:177
-#: themes/moderndeluxe/views/pages/ad/listing.php:173
-#: themes/kamaleon/views/pages/ad/listing.php:185
-#: themes/responsive/views/pages/ad/listing.php:174
-#: themes/default/views/pages/ad/listing.php:117
-#: themes/czsale/views/pages/ad/listing.php:166
+#: themes/bootplus/views/pages/ad/listing.php:168
+#: themes/olson/views/pages/ad/listing.php:179
+#: themes/moderndeluxe/views/pages/ad/listing.php:175
+#: themes/kamaleon/views/pages/ad/listing.php:187
+#: themes/responsive/views/pages/ad/listing.php:176
+#: themes/default/views/pages/ad/listing.php:119
+#: themes/czsale/views/pages/ad/listing.php:170
 msgid "We do not have any advertisements in this category"
 msgstr ""
 
@@ -4396,14 +4466,14 @@ msgstr ""
 #: themes/ocean/options.php:36
 #: themes/bootplus/options.php:28
 #: themes/olson/options.php:46
-#: themes/kamaleon/options.php:52
+#: themes/kamaleon/options.php:53
 #: themes/responsive/options.php:38
 msgid "Header tool bar gets fixed in the top"
 msgstr ""
 
 #: themes/ocean/options.php:77
 #: themes/olson/options.php:86
-#: themes/kamaleon/options.php:106
+#: themes/kamaleon/options.php:107
 msgid "Default state for list/grid in listing"
 msgstr ""
 
@@ -4411,23 +4481,23 @@ msgstr ""
 #: themes/ocean/views/pages/ad/listing.php:71
 #: themes/olson/options.php:88
 #: themes/olson/views/pages/ad/listing.php:65
-#: themes/kamaleon/options.php:108
+#: themes/kamaleon/options.php:109
 #: themes/kamaleon/views/pages/ad/listing.php:70
 msgid "Grid"
 msgstr ""
 
 #: themes/ocean/options.php:86
-#: themes/newspaper/options.php:67
+#: themes/newspaper/options.php:78
 #: themes/olson/options.php:95
-#: themes/kamaleon/options.php:115
-#: themes/czsale/options.php:85
+#: themes/kamaleon/options.php:116
+#: themes/czsale/options.php:86
 msgid "Infinite scroll"
 msgstr ""
 
 #: themes/ocean/options.php:107
 #: themes/olson/options.php:116
-#: themes/kamaleon/options.php:136
-#: themes/czsale/options.php:102
+#: themes/kamaleon/options.php:137
+#: themes/czsale/options.php:103
 msgid "Content shift right to left"
 msgstr ""
 
@@ -4459,51 +4529,55 @@ msgstr ""
 msgid "Select a color scheme"
 msgstr ""
 
-#: themes/newspaper/options.php:26
+#: themes/newspaper/options.php:37
 msgid "Image logo URL"
 msgstr ""
 
-#: themes/newspaper/options.php:31
+#: themes/newspaper/options.php:42
 msgid "Web site slogan"
 msgstr ""
 
-#: themes/newspaper/options.php:36
+#: themes/newspaper/options.php:47
 msgid "Set max layout width in pixels"
 msgstr ""
 
-#: themes/newspaper/options.php:58
+#: themes/newspaper/options.php:69
 msgid "Turn of sidebar in advetrisement page"
 msgstr ""
 
-#: themes/newspaper/options.php:59
-#: themes/newspaper/options.php:76
-#: themes/newspaper/options.php:85
+#: themes/newspaper/options.php:70
+#: themes/newspaper/options.php:87
+#: themes/newspaper/options.php:96
 msgid "Hide"
 msgstr ""
 
-#: themes/newspaper/options.php:60
-#: themes/newspaper/options.php:77
-#: themes/newspaper/options.php:86
+#: themes/newspaper/options.php:71
+#: themes/newspaper/options.php:88
+#: themes/newspaper/options.php:97
 msgid "Show"
 msgstr ""
 
-#: themes/newspaper/options.php:75
+#: themes/newspaper/options.php:86
 msgid "Show locations in HOME"
 msgstr ""
 
-#: themes/newspaper/options.php:84
+#: themes/newspaper/options.php:95
 msgid "Show big query search in HOME"
 msgstr ""
 
-#: themes/newspaper/options.php:93
-msgid "Set query sologan for home search"
+#: themes/newspaper/options.php:104
+msgid "Set query slogan for home search"
 msgstr ""
 
-#: themes/newspaper/options.php:102
+#: themes/newspaper/options.php:120
+msgid "Number of advertisements in listing slider"
+msgstr ""
+
+#: themes/newspaper/options.php:130
 msgid "HTML code for header banner"
 msgstr ""
 
-#: themes/newspaper/options.php:106
+#: themes/newspaper/options.php:134
 msgid "HTML code for footer banner"
 msgstr ""
 
@@ -4563,7 +4637,7 @@ msgstr ""
 #: themes/moderndeluxe/views/widget_login.php:16
 #: themes/kamaleon/views/widget_login.php:16
 #: themes/default/views/oc-panel/profile/ads.php:4
-#: themes/default/views/oc-panel/sidebar.php:172
+#: themes/default/views/oc-panel/sidebar.php:170
 #: themes/default/views/oc-panel/widget_login.php:16
 #: themes/default/views/widget_login.php:16
 #: themes/czsale/views/widget_login.php:11
@@ -4575,8 +4649,8 @@ msgstr ""
 #: themes/olson/views/menu.php:15
 #: themes/moderndeluxe/views/widget_login.php:22
 #: themes/kamaleon/views/widget_login.php:22
-#: themes/default/views/oc-panel/sidebar.php:125
-#: themes/default/views/oc-panel/sidebar.php:179
+#: themes/default/views/oc-panel/sidebar.php:123
+#: themes/default/views/oc-panel/sidebar.php:177
 #: themes/default/views/oc-panel/widget_login.php:22
 #: themes/default/views/widget_login.php:22
 #: themes/czsale/views/widget_login.php:17
@@ -4698,19 +4772,19 @@ msgstr ""
 msgid "Are you sure you want to delete?"
 msgstr ""
 
-#: themes/default/views/oc-panel/main.php:82
+#: themes/default/views/oc-panel/main.php:85
 msgid "Help us improve!"
 msgstr ""
 
-#: themes/default/views/oc-panel/main.php:83
+#: themes/default/views/oc-panel/main.php:86
 msgid "Open Classifieds is an amazing free Open Source Software. With a small donation you are helping us keep the project alive and updated. Thanks!"
 msgstr ""
 
-#: themes/default/views/oc-panel/main.php:88
+#: themes/default/views/oc-panel/main.php:91
 msgid "Or"
 msgstr ""
 
-#: themes/default/views/oc-panel/main.php:90
+#: themes/default/views/oc-panel/main.php:93
 msgid "Buy a Theme"
 msgstr ""
 
@@ -4721,6 +4795,7 @@ msgstr ""
 #: themes/default/views/oc-panel/profile/ads.php:17
 #: themes/default/views/oc-panel/pages/moderate.php:20
 #: themes/default/views/oc-panel/pages/order/index.php:25
+#: themes/default/views/oc-panel/pages/tools/versions.php:20
 #: themes/default/views/oc-panel/pages/ad.php:59
 #: themes/default/views/oc-panel/pages/fields/new.php:43
 msgid "Date"
@@ -4760,6 +4835,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/translations/index.php:36
 #: themes/default/views/oc-panel/pages/ad.php:85
 #: themes/default/views/oc-panel/pages/ad.php:190
+#: themes/default/views/oc-panel/pages/topic/update.php:41
 #: themes/default/views/oc-panel/pages/themes/theme.php:85
 #: themes/default/views/oc-panel/pages/themes/theme.php:124
 msgid "Activate"
@@ -4976,32 +5052,32 @@ msgstr ""
 msgid "Roles"
 msgstr ""
 
-#: themes/default/views/oc-panel/sidebar.php:149
+#: themes/default/views/oc-panel/sidebar.php:147
 #: themes/default/views/oc-panel/pages/tools/optimize.php:7
 msgid "Optimize"
 msgstr ""
 
-#: themes/default/views/oc-panel/sidebar.php:151
+#: themes/default/views/oc-panel/sidebar.php:149
 msgid "Logs"
 msgstr ""
 
-#: themes/default/views/oc-panel/sidebar.php:152
+#: themes/default/views/oc-panel/sidebar.php:150
 msgid "Import tool"
 msgstr ""
 
-#: themes/default/views/oc-panel/sidebar.php:165
+#: themes/default/views/oc-panel/sidebar.php:163
 msgid "Profile Options"
 msgstr ""
 
-#: themes/default/views/oc-panel/sidebar.php:174
+#: themes/default/views/oc-panel/sidebar.php:172
 msgid "Subscriptions"
 msgstr ""
 
-#: themes/default/views/oc-panel/sidebar.php:192
+#: themes/default/views/oc-panel/sidebar.php:190
 msgid "Collapse menu"
 msgstr ""
 
-#: themes/default/views/oc-panel/sidebar.php:212
+#: themes/default/views/oc-panel/sidebar.php:210
 msgid "How to remove this"
 msgstr ""
 
@@ -5381,7 +5457,7 @@ msgid "Contact form appears in the ad."
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:290
-#: themes/default/views/oc-panel/pages/settings/general.php:394
+#: themes/default/views/oc-panel/pages/settings/general.php:405
 msgid "Deactivated"
 msgstr ""
 
@@ -5407,8 +5483,8 @@ msgid "Disqus Comments"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:335
-#: themes/default/views/oc-panel/pages/settings/general.php:453
-#: themes/default/views/oc-panel/pages/settings/general.php:498
+#: themes/default/views/oc-panel/pages/settings/general.php:464
+#: themes/default/views/oc-panel/pages/settings/general.php:509
 msgid "You need to write your disqus ID to enable the service."
 msgstr ""
 
@@ -5446,6 +5522,15 @@ msgstr ""
 msgid "Show QR code"
 msgstr ""
 
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:388
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:394
+msgid "Require login to post"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/advertisement.php:398
+msgid "Require only the logged in users to post."
+msgstr ""
+
 #: themes/default/views/oc-panel/pages/settings/general.php:6
 msgid "General Configuration"
 msgstr ""
@@ -5467,305 +5552,305 @@ msgstr ""
 msgid "Enables the site to maintenance"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:36
-#: themes/default/views/oc-panel/pages/settings/general.php:45
+#: themes/default/views/oc-panel/pages/settings/general.php:47
+#: themes/default/views/oc-panel/pages/settings/general.php:56
 msgid "Landing page"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:41
+#: themes/default/views/oc-panel/pages/settings/general.php:52
 msgid "It changes landing page of website"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:51
+#: themes/default/views/oc-panel/pages/settings/general.php:62
 msgid "Site name"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:57
+#: themes/default/views/oc-panel/pages/settings/general.php:68
 msgid "Here you can declare your display name. This is seen by everyone!"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:67
+#: themes/default/views/oc-panel/pages/settings/general.php:78
 msgid "Site description"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:70
+#: themes/default/views/oc-panel/pages/settings/general.php:81
 msgid "Description of your site in no more than 160 characters."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:78
+#: themes/default/views/oc-panel/pages/settings/general.php:89
 msgid "Site Description"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:84
+#: themes/default/views/oc-panel/pages/settings/general.php:95
 msgid "Base URL"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:90
+#: themes/default/views/oc-panel/pages/settings/general.php:101
 msgid "Is a base path of your site (e.g. http://open-classifieds.com/). Everything else is built based on this field."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:94
+#: themes/default/views/oc-panel/pages/settings/general.php:105
 msgid "Base URL path"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:115
+#: themes/default/views/oc-panel/pages/settings/general.php:126
 msgid "Advertisements per page"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:121
+#: themes/default/views/oc-panel/pages/settings/general.php:132
 msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:125
+#: themes/default/views/oc-panel/pages/settings/general.php:136
 msgid "Number of ads per page"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:130
+#: themes/default/views/oc-panel/pages/settings/general.php:141
 msgid "Advertisements in RSS"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:136
-#: themes/default/views/oc-panel/pages/settings/general.php:151
+#: themes/default/views/oc-panel/pages/settings/general.php:147
+#: themes/default/views/oc-panel/pages/settings/general.php:162
 msgid "Number of Ads"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:140
+#: themes/default/views/oc-panel/pages/settings/general.php:151
 msgid "How many ads are going to appear in the RSS of your site."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:145
+#: themes/default/views/oc-panel/pages/settings/general.php:156
 msgid "Advertisements in Map"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:155
+#: themes/default/views/oc-panel/pages/settings/general.php:166
 msgid "How many ads are going to appear in the map of your site."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:161
+#: themes/default/views/oc-panel/pages/settings/general.php:172
 msgid "Money format"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:167
+#: themes/default/views/oc-panel/pages/settings/general.php:178
 msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:171
+#: themes/default/views/oc-panel/pages/settings/general.php:182
 msgid "Decimal representation"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:176
-#: themes/default/views/oc-panel/pages/settings/general.php:186
+#: themes/default/views/oc-panel/pages/settings/general.php:187
+#: themes/default/views/oc-panel/pages/settings/general.php:197
 msgid "Date format"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:182
+#: themes/default/views/oc-panel/pages/settings/general.php:193
 msgid "Each advertisement has a publish date. By selecting format, you can change how it is shown on your website."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:191
-#: themes/default/views/oc-panel/pages/settings/general.php:201
+#: themes/default/views/oc-panel/pages/settings/general.php:202
+#: themes/default/views/oc-panel/pages/settings/general.php:212
 msgid "Analytics Tracking ID"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:197
+#: themes/default/views/oc-panel/pages/settings/general.php:208
 msgid "Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:206
 #: themes/default/views/oc-panel/pages/settings/general.php:217
+#: themes/default/views/oc-panel/pages/settings/general.php:228
 msgid "Allowed image formats"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:213
+#: themes/default/views/oc-panel/pages/settings/general.php:224
 msgid "Set this up to restrict image formats that are being uploaded to your server."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:222
+#: themes/default/views/oc-panel/pages/settings/general.php:233
 msgid "Max image size"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:229
+#: themes/default/views/oc-panel/pages/settings/general.php:240
 msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:233
+#: themes/default/views/oc-panel/pages/settings/general.php:244
 msgid "Image size in mega bites(Mb)"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:240
+#: themes/default/views/oc-panel/pages/settings/general.php:251
 msgid "Image height"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:247
+#: themes/default/views/oc-panel/pages/settings/general.php:258
 msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:251
+#: themes/default/views/oc-panel/pages/settings/general.php:262
 msgid "Image height in pixels(px)"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:258
+#: themes/default/views/oc-panel/pages/settings/general.php:269
 msgid "Image width"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:265
+#: themes/default/views/oc-panel/pages/settings/general.php:276
 msgid "Each image is resized when uploaded. This is the width of big image."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:269
+#: themes/default/views/oc-panel/pages/settings/general.php:280
 msgid "Image width in pixels(px)"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:276
+#: themes/default/views/oc-panel/pages/settings/general.php:287
 msgid "Thumb height"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:283
+#: themes/default/views/oc-panel/pages/settings/general.php:294
 msgid "Thumb is a small image resized to fit certain elements. This is the height for this image."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:287
+#: themes/default/views/oc-panel/pages/settings/general.php:298
 msgid "Thumb height in pixels(px)"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:294
+#: themes/default/views/oc-panel/pages/settings/general.php:305
 msgid "Thumb width"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:301
+#: themes/default/views/oc-panel/pages/settings/general.php:312
 msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:305
+#: themes/default/views/oc-panel/pages/settings/general.php:316
 msgid "Thumb width in pixels(px)"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:313
+#: themes/default/views/oc-panel/pages/settings/general.php:324
 msgid "Image quality"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:320
+#: themes/default/views/oc-panel/pages/settings/general.php:331
 msgid "Choose the quality of the stored images (1-100% of the original)."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:324
+#: themes/default/views/oc-panel/pages/settings/general.php:335
 msgid "Image Quality"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:333
-#: themes/default/views/oc-panel/pages/settings/general.php:343
+#: themes/default/views/oc-panel/pages/settings/general.php:344
+#: themes/default/views/oc-panel/pages/settings/general.php:354
 msgid "Watermark"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:339
+#: themes/default/views/oc-panel/pages/settings/general.php:350
 msgid "Appends watermark to images"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:349
-#: themes/default/views/oc-panel/pages/settings/general.php:359
+#: themes/default/views/oc-panel/pages/settings/general.php:360
+#: themes/default/views/oc-panel/pages/settings/general.php:370
 msgid "Watermark path"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:355
+#: themes/default/views/oc-panel/pages/settings/general.php:366
 msgid "Relative path to the image to use as watermark"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:364
-#: themes/default/views/oc-panel/pages/settings/general.php:370
-#: themes/default/views/oc-panel/pages/settings/general.php:374
+#: themes/default/views/oc-panel/pages/settings/general.php:375
+#: themes/default/views/oc-panel/pages/settings/general.php:381
+#: themes/default/views/oc-panel/pages/settings/general.php:385
 msgid "Watermark position"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:380
-#: themes/default/views/oc-panel/pages/settings/general.php:390
+#: themes/default/views/oc-panel/pages/settings/general.php:391
+#: themes/default/views/oc-panel/pages/settings/general.php:401
 msgid "Akismet Key"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:386
+#: themes/default/views/oc-panel/pages/settings/general.php:397
 msgid "Providing akismet key will activate this feature. This feature deals with spam posts and emails."
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:399
-#: themes/default/views/oc-panel/pages/settings/general.php:408
+#: themes/default/views/oc-panel/pages/settings/general.php:410
+#: themes/default/views/oc-panel/pages/settings/general.php:419
 msgid "Accept Terms Alert"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:413
-#: themes/default/views/oc-panel/pages/settings/general.php:423
+#: themes/default/views/oc-panel/pages/settings/general.php:424
+#: themes/default/views/oc-panel/pages/settings/general.php:434
 msgid "Include search by description"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:419
+#: themes/default/views/oc-panel/pages/settings/general.php:430
 msgid "Once set to TRUE, enables search to look for key words in description"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:428
-#: themes/default/views/oc-panel/pages/settings/general.php:438
+#: themes/default/views/oc-panel/pages/settings/general.php:439
+#: themes/default/views/oc-panel/pages/settings/general.php:449
 msgid "Activates Blog posting"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:434
+#: themes/default/views/oc-panel/pages/settings/general.php:445
 msgid "Once set to TRUE, enables blog posts"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:443
+#: themes/default/views/oc-panel/pages/settings/general.php:454
 msgid "Disqus for blog"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:449
+#: themes/default/views/oc-panel/pages/settings/general.php:460
 msgid "Disqus for Blog Comments"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:458
-#: themes/default/views/oc-panel/pages/settings/general.php:468
+#: themes/default/views/oc-panel/pages/settings/general.php:469
+#: themes/default/views/oc-panel/pages/settings/general.php:479
 msgid "Activates Forums"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:464
+#: themes/default/views/oc-panel/pages/settings/general.php:475
 msgid "Once set to TRUE, enables forums posts"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:473
-#: themes/default/views/oc-panel/pages/settings/general.php:483
+#: themes/default/views/oc-panel/pages/settings/general.php:484
+#: themes/default/views/oc-panel/pages/settings/general.php:494
 msgid "Activates FAQ"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:479
+#: themes/default/views/oc-panel/pages/settings/general.php:490
 msgid "Once set to TRUE, enables FAQ"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:488
+#: themes/default/views/oc-panel/pages/settings/general.php:499
 msgid "Disqus for FAQ"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:494
+#: themes/default/views/oc-panel/pages/settings/general.php:505
 msgid "Disqus for FAQ Comments"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:504
+#: themes/default/views/oc-panel/pages/settings/general.php:515
 msgid "Minify CSS/JS"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:510
+#: themes/default/views/oc-panel/pages/settings/general.php:521
 msgid "Once set to TRUE, enables minify CSS and JS to speed up your site"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:514
+#: themes/default/views/oc-panel/pages/settings/general.php:525
 msgid "Activates Minify CSS/JS"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:520
-#: themes/default/views/oc-panel/pages/settings/general.php:533
-#: themes/default/views/oc-panel/pages/settings/general.php:537
+#: themes/default/views/oc-panel/pages/settings/general.php:531
+#: themes/default/views/oc-panel/pages/settings/general.php:544
+#: themes/default/views/oc-panel/pages/settings/general.php:548
 msgid "Sort by in listing"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:543
-#: themes/default/views/oc-panel/pages/settings/general.php:553
+#: themes/default/views/oc-panel/pages/settings/general.php:554
+#: themes/default/views/oc-panel/pages/settings/general.php:564
 msgid "Black List"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/settings/general.php:549
+#: themes/default/views/oc-panel/pages/settings/general.php:560
 msgid "If advertisement is marked as spam, user is also marked to be spammer. Next time is not able to publish new advertisement. Until removed from Black List!"
 msgstr ""
 
@@ -5790,6 +5875,8 @@ msgid "from_email"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/content/create.php:44
+#: themes/default/views/oc-panel/pages/topic/update.php:32
+#: themes/default/views/oc-panel/pages/topic/update.php:34
 msgid "Seotitle"
 msgstr ""
 
@@ -5922,6 +6009,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/forum/create.php:16
 #: themes/default/views/oc-panel/pages/forum/update.php:14
 #: themes/default/views/oc-panel/pages/forum/update.php:16
+#: themes/default/views/oc-panel/pages/topic/update.php:18
 msgid "Forum parent"
 msgstr ""
 
@@ -6046,15 +6134,11 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/tools/versions.php:19
-msgid "Information"
-msgstr ""
-
-#: themes/default/views/oc-panel/pages/tools/versions.php:25
+#: themes/default/views/oc-panel/pages/tools/versions.php:27
 msgid "Latest"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/tools/versions.php:26
+#: themes/default/views/oc-panel/pages/tools/versions.php:28
 msgid "Current"
 msgstr ""
 
@@ -6202,6 +6286,10 @@ msgstr ""
 
 #: themes/default/views/oc-panel/pages/newsletter.php:74
 msgid "From Email"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/topic/update.php:3
+msgid "Update Topic"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/themes/theme.php:7
@@ -6575,10 +6663,10 @@ msgstr ""
 msgid "If you wanted to go to the main page instead, click here."
 msgstr ""
 
-#: themes/czsale/options.php:48
+#: themes/czsale/options.php:49
 msgid "URL to your Logo. Recommended size W:200px x H:120px. Leave blank for none."
 msgstr ""
 
-#: install-openclassifieds.php:590
+#: install-openclassifieds.php:588
 msgid "Requirements checks we do before we install."
 msgstr ""
