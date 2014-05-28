@@ -492,7 +492,7 @@ class Controller_Panel_Update extends Auth_Controller {
         Theme::delete_minified();
         
         //delete old files from 322
-        //File::delete(APPPATH.'ko322');
+        File::delete(APPPATH.'ko322');
         File::delete(MODPATH.'auth');
         File::delete(MODPATH.'cache');
         File::delete(MODPATH.'database');

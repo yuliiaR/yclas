@@ -192,30 +192,6 @@
                                 </h4>
                             </div>
                         </div>
-                        <?if (Theme::get('premium')!=1):?>
-                        <div class="panel panel-default no-prem">
-                            <div class="panel-heading panel-adv-class">
-                                <a href="http://open-classifieds.com/?utm_source=<?=URL::base()?>&utm_medium=oc_sidebar&utm_campaign=<?=date('Y-m-d')?>"><span class="side-name-link">Open Classifieds</span></a>
-                                
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- oc_admin_sidebar -->
-                                <ins class="adsbygoogle"
-                                     style="display:inline-block;width:180px;height:150px"
-                                     data-ad-client="ca-pub-9967797131457349"
-                                     data-ad-slot="7696973310"></ins>
-                                <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-
-                                <a class="no-prem" href="http://open-classifieds.com/2013/08/19/can-i-remove-license/"><span class="side-name-link"><?=__('How to remove this')?>?</span></a>
-                                <a href="https://twitter.com/openclassifieds"
-                                   onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);"
-                                   class="twitter-follow-button" data-show-count="false"
-                                   data-size="large">Follow @openclassifieds</a><br />
-                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
-                            </div>
-                        </div>
-                        <?endif?>
                     </div>
                 </div>
             </div>
