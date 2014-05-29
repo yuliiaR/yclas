@@ -1,6 +1,14 @@
 <?php defined('SYSPATH') OR die('No direct script access.') ?>
 <?php
 
+if ( !function_exists('__') )
+{
+    function __($s) 
+    { 
+        return $s; 
+    } 
+}
+
 // Unique error identifier
 $error_id = uniqid('error');
 

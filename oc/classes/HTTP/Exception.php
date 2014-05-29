@@ -12,9 +12,7 @@ class HTTP_Exception extends Kohana_HTTP_Exception {
      * @return Response
      */
     public function get_response()
-    {
-        // Lets log the Exception, Just in case it's important!
-        Kohana_Exception::log($this);
+    {        
  
         if (Kohana::$environment === Kohana::DEVELOPMENT)
         {
@@ -23,6 +21,9 @@ class HTTP_Exception extends Kohana_HTTP_Exception {
         }
         else
         {
+            // Lets log the Exception, Just in case it's important!
+            Kohana_Exception::log($this);
+
             // Generate a nicer looking "Oops" page.
             $view = View::factory('pages/error/default');
  
