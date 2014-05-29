@@ -508,14 +508,12 @@ class Controller_Panel_Update extends Auth_Controller {
 
         $prefix = Database::instance()->table_prefix();
 
-
         //clean cache
         Cache::instance()->delete_all();
         Theme::delete_minified();
         
         //delete old files from 323
         File::delete(APPPATH.'ko323');
-        File::delete(APPPATH.'classes/kohana/');
         File::delete(APPPATH.'classes/image/');
 
         //deactivate maintenance mode

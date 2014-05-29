@@ -64,12 +64,12 @@
         <?endif?>
         <?endif?>
 
-        <h1>Sorry...</h1>
-        <p>Something went wrong while we are processing your request. 
+        <h1>Sorry!</h1>
+        <p>Something went wrong with your request. 
 
         This incident is logged and we are already notified about this problem.</p>
 
-        <p><a href="<?php echo URL::site('/', TRUE) ?>">If you wanted to go to the main page, click here.</a></p>
+        <p>You can go <a href="javascript: history.go(-1)">Back</a> or to our <a href="<?php echo URL::site('/', TRUE) ?>">Home page</a>.</p>
       </div>
 
 

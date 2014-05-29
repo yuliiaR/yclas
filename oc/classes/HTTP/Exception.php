@@ -25,7 +25,7 @@ class HTTP_Exception extends Kohana_HTTP_Exception {
             Kohana_Exception::log($this);
 
             // Generate a nicer looking "Oops" page.
-            $view = View::factory('pages/error/default');
+            $view = View::factory('pages/error/default', array('message'=>$e->getMessage()) );
  
             $response = Response::factory()
                 ->status($this->getCode())
