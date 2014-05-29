@@ -3,6 +3,11 @@
 class Kohana extends Kohana_Core {
 
     /**
+     * @var  boolean  True if Kohana is running from the command line
+     */
+    public static $is_cli = FALSE;
+
+    /**
      * original requested data
      * @var array
      */
