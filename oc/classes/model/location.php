@@ -196,7 +196,7 @@ class Model_Location extends ORM {
     {
           $expr_date = core::config('advertisement.expire_date');
           $locs = DB::select('l.*')
-                  ->select(array(DB::select('COUNT("id_ad")')
+                  ->select(array(DB::select(DB::expr('COUNT("id_ad")'))
                           ->from(array('ads','a'))
                           ->where('a.id_location','=',DB::expr(core::config('database.default.table_prefix').'l.id_location'))
                           ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', DB::expr('NOW()'))

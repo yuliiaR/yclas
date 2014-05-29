@@ -23,7 +23,7 @@ class install{
      * Software install settings
      * @var string
      */
-    const VERSION   = '2.1.8';
+    const VERSION   = '2.2.0';
 
     /**
      * default locale/language of the install
@@ -139,7 +139,7 @@ class install{
                                     ),
                 'SYS'       =>array('message'   => 'The configured <code>'.SYSPATH.'</code> directory does not exist or does not contain required files.',
                                     'mandatory' => TRUE,
-                                    'result'    => (is_dir(SYSPATH) AND is_file(SYSPATH.'classes/kohana'.EXT))
+                                    'result'    => (is_dir(SYSPATH) AND is_file(SYSPATH.'classes/Kohana'.EXT))
                                     ),
                 'APP'       =>array('message'   => 'The configured <code>'.APPPATH.'</code> directory does not exist or does not contain required files.',
                                     'mandatory' => TRUE,

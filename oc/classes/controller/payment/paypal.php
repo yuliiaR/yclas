@@ -145,7 +145,7 @@ class Controller_Payment_Paypal extends Controller{
 		else
 		{
 			Alert::set(Alert::INFO, __('Order could not be loaded'));
-            $this->request->redirect(Route::url('default'));
+            $this->redirect(Route::url('default'));
 		}
 	}
 

@@ -17,7 +17,7 @@ class Controller_Panel_Settings extends Auth_Controller {
 
     public function action_index()
     {
-        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'settings','action'=>'general')));  
+        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'settings','action'=>'general')));  
     }
 
     /**
@@ -55,7 +55,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                     }
                 }
             }
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'form')));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'form')));
             
         }
 
@@ -95,7 +95,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             }
             // Cache::instance()->delete_all();
             Alert::set(Alert::SUCCESS, __('Email Configuration updated'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'email')));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'email')));
         }
 
         $this->template->content = View::factory('oc-panel/pages/settings/email', array('config'=>$config));
@@ -200,7 +200,7 @@ class Controller_Panel_Settings extends Auth_Controller {
 
             
             Alert::set(Alert::SUCCESS, __('General Configuration updated'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'general')));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'general')));
         }
 
         $this->template->content = View::factory('oc-panel/pages/settings/general', array('forms'=>$forms, 'forms_img'=>$forms_img,'i18n'=>$i18n));
@@ -250,7 +250,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             }
             
             Alert::set(Alert::SUCCESS, __('General Configuration updated'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
         }
 
         $this->template->content = View::factory('oc-panel/pages/settings/payment', array('config'          => $config,

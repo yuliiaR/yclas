@@ -450,16 +450,6 @@ class Controller_Panel_Update extends Auth_Controller {
      */
     public function action_218()
     {   
-        //call update previous versions
-        $this->action_203();
-        $this->action_205();
-        $this->action_206();
-        $this->action_207();
-        $this->action_21();
-        $this->action_211();
-        $this->action_214();
-        $this->action_215();
-        $this->action_217();
 
         $prefix = Database::instance()->table_prefix();
 
@@ -487,10 +477,6 @@ class Controller_Panel_Update extends Auth_Controller {
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
         
-        //clean cache
-        Cache::instance()->delete_all();
-        Theme::delete_minified();
-        
         //delete old files from 322
         File::delete(APPPATH.'ko322');
         File::delete(MODPATH.'auth');
@@ -500,11 +486,43 @@ class Controller_Panel_Update extends Auth_Controller {
         File::delete(MODPATH.'orm');
         File::delete(MODPATH.'unittest');
 
+    }
+
+
+        /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.2.0
+     */
+    public function action_220()
+    {   
+        //call update previous versions
+        $this->action_203();
+        $this->action_205();
+        $this->action_206();
+        $this->action_207();
+        $this->action_21();
+        $this->action_211();
+        $this->action_214();
+        $this->action_215();
+        $this->action_217();
+        $this->action_218();
+
+        $prefix = Database::instance()->table_prefix();
+
+
+        //clean cache
+        Cache::instance()->delete_all();
+        Theme::delete_minified();
+        
+        //delete old files from 323
+        File::delete(APPPATH.'ko323');
+        File::delete(APPPATH.'classes/kohana/');
+        File::delete(APPPATH.'classes/image/');
+
         //deactivate maintenance mode
         Model_Config::set_value('general','maintenance',0);
 
         Alert::set(Alert::SUCCESS, __('Software Updated to latest version!'));
-        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
+        $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
     }
 
 
@@ -539,7 +557,7 @@ class Controller_Panel_Update extends Auth_Controller {
         if ($file_content == FALSE)
         {
             Alert::set(Alert::ALERT, __('We had a problem downloading latest version, try later please.'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'update', 'action'=>'index')));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'update', 'action'=>'index')));
         }
 
         //Write the file
@@ -556,7 +574,7 @@ class Controller_Panel_Update extends Auth_Controller {
         else 
         {
             Alert::set(Alert::ALERT, $fname.' '.__('Zip file failed to extract, please try again.'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'update', 'action'=>'index')));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'update', 'action'=>'index')));
         }
 
         //files to be replaced / move specific files
@@ -583,7 +601,7 @@ class Controller_Panel_Update extends Auth_Controller {
         File::delete($update_src_dir);
 
         //update themes, different request so doesnt time out
-        $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'themes','id'=>str_replace('.', '', $version)))); 
+        $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'themes','id'=>str_replace('.', '', $version)))); 
       
     }
 
@@ -618,12 +636,12 @@ class Controller_Panel_Update extends Auth_Controller {
 
         //if theres version passed we redirect here to finish the update, if no version means was called directly
         if ( ($version = $this->request->param('id')) !==NULL)
-            $this->request->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>$version)));   
+            $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>$version)));   
         else
         {
             //deactivate maintenance mode
             Model_Config::set_value('general','maintenance',0);
-            $this->request->redirect(Route::url('oc-panel', array('controller'=>'theme', 'action'=>'index'))); 
+            $this->redirect(Route::url('oc-panel', array('controller'=>'theme', 'action'=>'index'))); 
         }
                     
     }

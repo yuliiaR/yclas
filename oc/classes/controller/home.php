@@ -91,7 +91,7 @@ class Controller_Home extends Controller {
             
         //redirect home
         Alert::set(Alert::SUCCESS, __('Default theme selected'));
-        $this->request->redirect(Route::url('default')); 
+        $this->redirect(Route::url('default')); 
     }
 
 } // End Welcome

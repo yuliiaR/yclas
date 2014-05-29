@@ -254,7 +254,7 @@ class Model_User extends ORM {
         else
         {
             Alert::set(Alert::ALERT, __('Invalid Email'));
-            $this->request->redirect(Route::url('post_new'));
+            $this->redirect(Route::url('post_new'));
         }
     
     } 

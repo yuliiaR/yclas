@@ -13,7 +13,7 @@ class Controller_Page extends Controller {
         
         if ($seotitle!==NULL)
         {
-            $page = Model_Content::get($seotitle);
+            $page = Model_Content::get_by_title($seotitle);
 
             if ($page->loaded())
             {

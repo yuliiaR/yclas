@@ -112,7 +112,7 @@ class Controller_Contact extends Controller {
                         Alert::set(Alert::ERROR, __('Message not sent'));
 
                     
-                    Request::current()->redirect(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
+                    HTTP::redirect(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
 			    }
                 else
                 {
@@ -164,7 +164,7 @@ class Controller_Contact extends Controller {
             else
                 Alert::set(Alert::ERROR, __('You made some mistake'));
 
-            Request::current()->redirect(Route::url('profile',array('seoname'=>$user->seoname)));
+            HTTP::redirect(Route::url('profile',array('seoname'=>$user->seoname)));
         }
     
     }

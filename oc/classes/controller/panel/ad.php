@@ -238,16 +238,16 @@ class Controller_Panel_Ad extends Auth_Controller {
 		
 			
 			if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+				HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 			elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+				HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 			else
-				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+				HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 		}
 		else
 		{
 			Alert::set(Alert::ERROR, __('You dont have permission to access this link'));
-			$this->request->redirect(Route::url('default'));
+			$this->redirect(Route::url('default'));
 		}
 	}
 
@@ -291,11 +291,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 					{				
 						Alert::set(Alert::ALERT, __('Warning, Advertisement is already marked as spam'));
 						if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 						else
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 					} 
 				}
 				else
@@ -308,11 +308,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 		Alert::set(Alert::SUCCESS, __('Advertisement is marked as spam'));
 		
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 	}
 
 
@@ -352,11 +352,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 					{				
 						Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
 						if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 						else
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 					} 
 				}
 				else
@@ -369,11 +369,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
 		
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 
 	}
 
@@ -423,11 +423,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 					{				
 						Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'active'"));
 						if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 						else
-							Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 					} 
 				}
 				else
@@ -446,11 +446,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
 			
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 	}
 
 	/**
@@ -490,11 +490,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 		}
 
 		if ($query['define'] == Model_Ad::STATUS_NOPUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($query['define'] == Model_Ad::STATUS_PUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$query['define']);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$query['define']);
 	}
 
 	public function action_featured()
@@ -544,11 +544,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 		Alert::set(Alert::SUCCESS, __('Advertisement is featured'));
 		
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 
 	}
 
@@ -586,11 +586,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 		Alert::set(Alert::SUCCESS, __('Advertisement is to top'));
 		
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
 
 	}
 

@@ -50,7 +50,7 @@ class Controller_FAQ extends Controller {
     public function action_view($seotitle)
     {
        
-        $faq = Model_Content::get($seotitle,'help');
+        $faq = Model_Content::get_by_title($seotitle,'help');
 
         if ($faq->loaded())
         {

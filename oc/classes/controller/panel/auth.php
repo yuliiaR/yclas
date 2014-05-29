@@ -52,7 +52,7 @@ class Controller_Panel_Auth extends Controller {
         else
             $redir = Route::url('oc-panel',array('controller'=>'auth','action'=>'login'));
             
-	    $this->request->redirect($redir);
+	    $this->redirect($redir);
 	
 	}
 	
@@ -69,7 +69,7 @@ class Controller_Panel_Auth extends Controller {
 		//if user loged in redirect home
 		if (Auth::instance()->logged_in())
 		{
-			$this->request->redirect(Route::get('oc-panel')->uri());
+			$this->redirect(Route::get('oc-panel')->uri());
 		}
 		//posting data so try to remember password
 		elseif (core::post('email') AND CSRF::valid('forgot'))
@@ -97,7 +97,7 @@ class Controller_Panel_Auth extends Controller {
                     if ($ret)
                     {
                         Alert::set(Alert::SUCCESS, __('Email to recover password sent'));
-                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
+                        $this->redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
                     }
 
 				}
@@ -129,7 +129,7 @@ class Controller_Panel_Auth extends Controller {
 		//if user loged in redirect home
 		if (Auth::instance()->logged_in())
 		{
-			$this->request->redirect(Route::get('oc-panel')->uri());
+			$this->redirect(Route::get('oc-panel')->uri());
 		}
 		//posting data so try to remember password
 		elseif (core::post('email') AND CSRF::valid('register'))
@@ -182,7 +182,7 @@ class Controller_Panel_Auth extends Controller {
 
                         Alert::set(Alert::SUCCESS, __('Welcome!'));
                         //login the user
-                        $this->request->redirect(Core::post('auth_redirect',Route::url('oc-panel')));
+                        $this->redirect(Core::post('auth_redirect',Route::url('oc-panel')));
 						
 					}
 		
@@ -220,7 +220,7 @@ class Controller_Panel_Auth extends Controller {
 			$url = Route::url('oc-panel',array('controller' => 'auth', 
 										  		'action'     => 'login'),'http');	
 		}
-		$this->request->redirect($url);
+		$this->redirect($url);
 	}
 
 }

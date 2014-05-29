@@ -495,7 +495,7 @@ class Controller_Ad extends Controller {
 
 			try {
 				$ad->save();
-				$this->request->redirect(Route::url('list')); 
+				$this->redirect(Route::url('list')); 
 
 			} catch (Exception $e) {
 				throw new HTTP_Exception_500($e->getMessage());
@@ -515,7 +515,7 @@ class Controller_Ad extends Controller {
 	
 		
 		// redirect to payment
-		$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+		$this->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
 
 	}
 	
@@ -542,7 +542,7 @@ class Controller_Ad extends Controller {
 
 			try {
 				$ad->save();
-				$this->request->redirect(Route::url('list')); 
+				$this->redirect(Route::url('list')); 
 
 			} catch (Exception $e) {
 				throw new HTTP_Exception_500($e->getMessage());
@@ -560,7 +560,7 @@ class Controller_Ad extends Controller {
 		$order_id = new Model_Order(); // create order , and returns order id
 		$order_id = $order_id->set_new_order($ord_data);
 		// redirect to payment
-		$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+		$this->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
 	}
 	
     /**
@@ -596,7 +596,7 @@ class Controller_Ad extends Controller {
                     //retrieve info for the item in DB
                     
                     // redirect to payment
-                   $this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+                   $this->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
                 }
                 else
                 {
@@ -604,7 +604,7 @@ class Controller_Ad extends Controller {
                     $ad->save();
                     
                     Alert::set(Alert::INFO, sprintf(__('Advertisement %s is sold out!'),$ad->title));
-                    $this->request->redirect(Route::url('default')); 
+                    $this->redirect(Route::url('default')); 
                 }
             }
         }
@@ -637,7 +637,7 @@ class Controller_Ad extends Controller {
 					Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $advert->price)), $advert->seotitle, Auth::instance()->get_user()->email); // if subscription is on
 					
 					Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
-					$this->request->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
+					$this->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
 				} 
 				catch (Exception $e) 
 				{
@@ -653,7 +653,7 @@ class Controller_Ad extends Controller {
 				{
 					$advert->save();
 					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
-					$this->request->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
+					$this->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
 				} 
 				catch (Exception $e) 
 				{

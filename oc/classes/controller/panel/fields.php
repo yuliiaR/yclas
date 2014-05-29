@@ -58,7 +58,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                     Theme::delete_minified();
 
                     Alert::set(Alert::SUCCESS,__('Field created '.$name));
-                    Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
+                    HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
                 }
                 else
                     Alert::set(Alert::ERROR,__('Field already exists '.$name));
@@ -106,7 +106,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                     Theme::delete_minified();
 
                     Alert::set(Alert::SUCCESS,__('Field edited '.$name));
-                    Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
+                    HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
                 }
                 else
                     Alert::set(Alert::ERROR,__('Field cant be edited'.$name));
@@ -140,7 +140,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                 else
                     Alert::set(Alert::ERROR,__('Field does not exists '.$name));
 
-                $this->request->redirect(Route::url('oc-panel', array('controller'=>'fields', 'action'=>'index')));
+                $this->redirect(Route::url('oc-panel', array('controller'=>'fields', 'action'=>'index')));
 
         } catch (Exception $e) {
             //throw 500

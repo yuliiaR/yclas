@@ -250,7 +250,7 @@ class Model_Category extends ORM {
 	{
         $expr_date = core::config('advertisement.expire_date');
         $cats = DB::select('c.*')
-                ->select(array(DB::select('COUNT("id_ad")')
+                ->select(array(DB::select(DB::expr('COUNT("id_ad")'))
                         ->from(array('ads','a'))
                         ->where('a.id_category','=',DB::expr(core::config('database.default.table_prefix').'c.id_category'))
                         ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', DB::expr('NOW()'))

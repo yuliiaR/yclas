@@ -39,7 +39,7 @@ class Auth_Controller extends Controller
 				$url = Route::get('oc-panel')->uri(array(
 													 'controller' => 'auth', 
 													 'action'     => 'login'));
-				$this->request->redirect($url);
+				$this->redirect($url);
 			}
 
             //in case we are loading another theme since we use the allow query we force the configs of the selected theme
@@ -118,7 +118,7 @@ class Auth_Controller extends Controller
 												  'js/jquery.sceditor.min.js',
 												  'js/bootstrap.min.js', 
 											      'js/chosen.jquery.min.js',
-                                                  'js/oc-panel/theme.init.js?v=2.1.8',
+                                                  'js/oc-panel/theme.init.js?v=2.2.0',
                                                   );
 			}
 			else
@@ -145,7 +145,7 @@ class Auth_Controller extends Controller
 												  'js/jquery.sceditor.min.js',
 												  'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', 
 											      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
-                                                  'js/oc-panel/theme.init.js?v=2.1.8',
+                                                  'js/oc-panel/theme.init.js?v=2.2.0',
                                                   );
 	        }
 

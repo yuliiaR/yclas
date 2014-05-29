@@ -36,10 +36,10 @@ class Controller_Panel_Pool extends Auth_Controller {
 				try {
 					$user->save();
 					Alert::set(Alert::SUCCESS, sprintf(__('User %s has been removed from black list.'),$user->name));
-					$this->request->redirect(Route::url('oc-panel', array('controller'=>'pool','action'=>'index')));
+					$this->redirect(Route::url('oc-panel', array('controller'=>'pool','action'=>'index')));
 				} catch (Exception $e){}
 			}
-			$this->request->redirect(Route::url('oc-panel', array('controller'=>'pool','action'=>'index')));
+			$this->redirect(Route::url('oc-panel', array('controller'=>'pool','action'=>'index')));
 		}
 	}
 }

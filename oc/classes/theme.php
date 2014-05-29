@@ -644,7 +644,7 @@ class Theme {
             elseif (Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN )
             {
                 Alert::set(Alert::INFO, __('License validation error, please insert again.'));
-                Request::current()->redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'license')));
+                HTTP::redirect(Route::url('oc-panel',array('controller'=>'theme', 'action'=>'license')));
             }
         } 
     }
