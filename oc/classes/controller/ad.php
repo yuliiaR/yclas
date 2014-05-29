@@ -433,14 +433,14 @@ class Controller_Ad extends Controller {
 			else
 			{
 				//throw 404
-				throw new HTTP_Exception_404();
+				throw HTTP_Exception::factory(404,__('Page not found'));
 			}
 			
 		}
 		else//this will never happen
 		{
 			//throw 404
-			throw new HTTP_Exception_404();
+			throw HTTP_Exception::factory(404,__('Page not found'));
 		}
 	}
 	
@@ -498,7 +498,7 @@ class Controller_Ad extends Controller {
 				$this->redirect(Route::url('list')); 
 
 			} catch (Exception $e) {
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 		}
 		
@@ -545,7 +545,7 @@ class Controller_Ad extends Controller {
 				$this->redirect(Route::url('list')); 
 
 			} catch (Exception $e) {
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 		}
 
@@ -641,7 +641,7 @@ class Controller_Ad extends Controller {
 				} 
 				catch (Exception $e) 
 				{
-					throw new HTTP_Exception_500($e->getMessage());
+					throw HTTP_Exception::factory(500,$e->getMessage());
 				}
 			}
 			if(core::config('general.moderation') == Model_Ad::EMAIL_MODERATION)
@@ -657,7 +657,7 @@ class Controller_Ad extends Controller {
 				} 
 				catch (Exception $e) 
 				{
-					throw new HTTP_Exception_500($e->getMessage());
+					throw HTTP_Exception::factory(500,$e->getMessage());
 				}
 			}
 		}

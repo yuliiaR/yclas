@@ -41,14 +41,14 @@ class Controller_User extends Controller {
 			else
 			{
 				//throw 404
-				throw new HTTP_Exception_404();
+				throw HTTP_Exception::factory(404,__('Page not found'));
 			}
 			
 		}
 		else//this will never happen
 		{
 			//throw 404
-			throw new HTTP_Exception_404();
+			throw HTTP_Exception::factory(404,__('Page not found'));
 		}
 	}
 

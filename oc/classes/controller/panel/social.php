@@ -63,7 +63,7 @@ class Controller_Panel_Social extends Auth_Controller {
 				} 
 				catch (Exception $e) 
 				{
-					throw new HTTP_Exception_500($e->getMessage());
+					throw HTTP_Exception::factory(500,$e->getMessage());
 				}
 			
 			}

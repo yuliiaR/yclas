@@ -216,7 +216,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						catch (Exception $e)
 						{
 							Alert::set(Alert::ERROR, sprintf(__('Warning, something went wrong while deleting Ad with id %u'),$id).':<br>'.$e->getMessage());
-							//throw new HTTP_Exception_500($e->getMessage());
+							//throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 					}
 					else
@@ -284,7 +284,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						}
 						catch (Exception $e)
 						{
-							throw new HTTP_Exception_500($e->getMessage());
+							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 					}
 					else
@@ -301,7 +301,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				else
 				{
 					//throw 404
-					throw new HTTP_Exception_404();
+					throw HTTP_Exception::factory(404,__('Page not found'));
 				}
 			}
 		}
@@ -345,7 +345,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						}
 							catch (Exception $e)
 						{
-							throw new HTTP_Exception_500($e->getMessage());
+							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 					}
 					else
@@ -362,7 +362,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				else
 				{
 					//throw 404
-					throw new HTTP_Exception_404();
+					throw HTTP_Exception::factory(404,__('Page not found'));
 				}
 			}
 		}
@@ -416,7 +416,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						}
 							catch (Exception $e)
 						{
-							throw new HTTP_Exception_500($e->getMessage());
+							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 					}
 					else
@@ -433,7 +433,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 				else
 				{
 					//throw 404
-					throw new HTTP_Exception_404();
+					throw HTTP_Exception::factory(404,__('Page not found'));
 				}
 			}
 		}
@@ -485,7 +485,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			catch (Exception $e) 
 			{
 				Alert::set(Alert::ALERT, __('Warning, something went wrong while deleting'));
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 		}
 
@@ -536,7 +536,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			    else
 				{
 					//throw 404
-					throw new HTTP_Exception_404();
+					throw HTTP_Exception::factory(404,__('Page not found'));
 				}
 			    
 			}
@@ -578,7 +578,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			    else
 				{
 					//throw 404
-					throw new HTTP_Exception_404();
+					throw HTTP_Exception::factory(404,__('Page not found'));
 				}
 			    
 			}

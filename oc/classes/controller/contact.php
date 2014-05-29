@@ -104,7 +104,7 @@ class Controller_Contact extends Controller {
                             $visit_contact_obj->save();
                         } catch (Exception $e) {
                             //throw 500
-                            throw new HTTP_Exception_500($e->getMessage());
+                            throw HTTP_Exception::factory(500,$e->getMessage());
                         }
 
                     }

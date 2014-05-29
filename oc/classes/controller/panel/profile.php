@@ -43,11 +43,11 @@ class Controller_Panel_Profile extends Auth_Controller {
 					}
 					catch (ORM_Validation_Exception $e)
 					{
-						throw new HTTP_Exception_500($e->getMessage());
+						throw HTTP_Exception::factory(500,$e->getMessage());
 					}
 					catch (Exception $e)
 					{
-						throw new HTTP_Exception_500($e->getMessage());
+						throw HTTP_Exception::factory(500,$e->getMessage());
 					}
 
 					Alert::set(Alert::SUCCESS, __('Password is changed'));
@@ -151,7 +151,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				
 			} catch (Exception $e) {
 				//throw 500
-				throw new HTTP_Exception_500();
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}	
 		}
 	}
@@ -241,7 +241,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 					}
 						catch (Exception $e)
 					{
-						throw new HTTP_Exception_500($e->getMessage());
+						throw HTTP_Exception::factory(500,$e->getMessage());
 					}
 				}
 				else
@@ -253,7 +253,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			else
 			{
 				//throw 404
-				throw new HTTP_Exception_404();
+				throw HTTP_Exception::factory(404,__('Page not found'));
 			}
 		}
 		
@@ -293,7 +293,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 					}
 						catch (Exception $e)
 					{
-						throw new HTTP_Exception_500($e->getMessage());
+						throw HTTP_Exception::factory(500,$e->getMessage());
 					}
 				}
 				else
@@ -305,7 +305,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			else
 			{
 				//throw 404
-				throw new HTTP_Exception_404();
+				throw HTTP_Exception::factory(404,__('Page not found'));
 			}
 		}
 		
@@ -523,7 +523,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 						} 
 						catch (Exception $e) 
 						{
-							throw new HTTP_Exception_500($e->getMessage());
+							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 	        		}
 		        	
@@ -656,7 +656,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 																		  'id'			=>$form->id_ad)));
 	        	} catch (Exception $e) {
 	 				//throw 500
-					throw new HTTP_Exception_500($e->getMessage());       		
+					throw HTTP_Exception::factory(500,$e->getMessage());       		
 	        	}
 
 	        	
@@ -925,7 +925,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			} 
 			catch (Exception $e) 
 			{
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 		}
 	}

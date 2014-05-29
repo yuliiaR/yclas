@@ -66,7 +66,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                 
 
             } catch (Exception $e) {
-                throw new HTTP_Exception_500();     
+                throw HTTP_Exception::factory(500,$e->getMessage());     
             }
         }
 
@@ -114,7 +114,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                 
 
             } catch (Exception $e) {
-                throw new HTTP_Exception_500();     
+                throw HTTP_Exception::factory(500,$e->getMessage());     
             }
         }
 
@@ -144,7 +144,7 @@ class Controller_Panel_Fields extends Auth_Controller {
 
         } catch (Exception $e) {
             //throw 500
-            throw new HTTP_Exception_500();     
+            throw HTTP_Exception::factory(500,$e->getMessage());     
         }
         
         

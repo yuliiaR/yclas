@@ -70,7 +70,7 @@ class Controller_Subscribe extends Controller {
 				try {
 					$obj_subscribe->save();
 				} catch (Exception $e) {
-					throw new HTTP_Exception_500($e->getMessage());
+					throw HTTP_Exception::factory(500,$e->getMessage());
 				}
 				
 			}
@@ -96,7 +96,7 @@ class Controller_Subscribe extends Controller {
 				$s->delete();
 				
 			} catch (Exception $e) {
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 		}
 

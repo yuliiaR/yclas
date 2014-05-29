@@ -105,7 +105,7 @@ class Controller_Forum extends Controller {
         else
         {
             //throw 404
-            throw new HTTP_Exception_404();
+            throw HTTP_Exception::factory(404,__('Page not found'));
         }
         
     }
@@ -281,7 +281,7 @@ class Controller_Forum extends Controller {
         else
         {
             //throw 404
-            throw new HTTP_Exception_404();
+            throw HTTP_Exception::factory(404,__('Page not found'));
         }
 
     }
