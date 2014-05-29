@@ -2,12 +2,12 @@
                 return array (
  '2.2.0' => 
   array (
-    'codename' => '',
-    'released' => '2014-',
-    'blog' => '',
+    'codename' => 'Dryocopus',
+    'released' => '2014-xx-xx',
+    'blog' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=22&page=1&state=closed',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.1.8...2.2.0',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=22&page=1&state=closed',
-    'download' => '',
+    'download' => 'https://github.com/open-classifieds/openclassifieds2/archive/2.2.0.zip',
   ),
   '2.1.8' => 
   array (

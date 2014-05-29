@@ -508,9 +508,6 @@ class Controller_Panel_Update extends Auth_Controller {
 
         $prefix = Database::instance()->table_prefix();
 
-        //clean cache
-        Cache::instance()->delete_all();
-        Theme::delete_minified();
         
         //delete old files from 323
         File::delete(APPPATH.'ko323');
@@ -597,6 +594,10 @@ class Controller_Panel_Update extends Auth_Controller {
           
         //delete file when all finished
         File::delete($update_src_dir);
+
+        //clean cache
+        Cache::instance()->delete_all();
+        Theme::delete_minified();
 
         //update themes, different request so doesnt time out
         $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'themes','id'=>str_replace('.', '', $version)))); 
