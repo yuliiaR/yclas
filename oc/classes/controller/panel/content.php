@@ -5,23 +5,23 @@ class Controller_Panel_Content extends Auth_Controller {
     //list index email
     public function action_email()
     {
-        $this->action_list('email', core::config('i18n.locale'));
+        $this->action_list('email');
     }
     //list index page
     public function action_page()
     {
-        $this->action_list('page', core::config('i18n.locale'));
+        $this->action_list('page');
     }
     //list index FAQ
     public function action_help()
     {
-        $this->action_list('help', core::config('i18n.locale'));
+        $this->action_list('help');
     }
 
     /**
      * action: LIST
      */
-    public function action_list($type = NULL, $locale = NULL)
+    public function action_list($type = NULL)
     {
         
         if($type == NULL)
@@ -39,9 +39,9 @@ class Controller_Panel_Content extends Auth_Controller {
                 $site = __('Page');
                 break;
         }
+        
 
-        if(core::get('locale_select'))
-            $locale = core::get('locale_select');
+        $locale = core::get('locale_select', core::config('i18n.locale'));
 
         // validation active 
         Breadcrumbs::add(Breadcrumb::factory()->set_title($site));  
