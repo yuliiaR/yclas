@@ -18,11 +18,6 @@ class Core {
 	 */
 	const VERSION = '2.2.0';
 
-    /**
-     * @var  boolean  True if Kohana is running from the command line
-     */
-    public static $is_cli = FALSE;
-
 	/**
 	 * 
 	 * Initializes configs for the APP to run
