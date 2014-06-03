@@ -73,18 +73,17 @@ class Controller_Social extends Controller {
                             Auth::instance()->social_login($provider_name, $user_profile->identifier);
                         }
                     }
-
-                    Alert::set(Alert::SUCCESS, __('Welcome!'));
-                    //$this->redirect(Route::url('default'));
-                    $this->redirect(Session::instance()->get_once('auth_redirect',Route::url('default')));
                     
+                    Alert::set(Alert::SUCCESS, __('Welcome!'));
 				}
 			}
 			catch( Exception $e )
 			{
 				Alert::set(Alert::ERROR, __('Error: please try again!')." ".$e->getMessage());
-				$this->redirect(Route::url('default'));
 			}
+
+            $this->redirect(Session::instance()->get_once('auth_redirect',Route::url('default')));
+
 		} 
 	}
 

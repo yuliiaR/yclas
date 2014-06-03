@@ -19,11 +19,9 @@ class Controller_Panel_Social extends Auth_Controller {
         $this->template->styles              = array('css/sortable.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
 
+        //retrieve social_auth values
         $config = Social::get();
-        //retrieve social_auth
-
-		$this->template->content = View::factory('oc-panel/pages/social_auth/index',array('config'=>$config));
-	
+        
 		if($p = $this->request->post())
 		{
 			$confit_old = $config;
@@ -45,7 +43,7 @@ class Controller_Panel_Social extends Auth_Controller {
 						$config_new['providers'][$key]['enabled'] = $value;
 				}
 			}
-			// two fields not inclooded
+			// two fields not included
 			$config_new['base_url']      = Route::url('default',array('controller'=>'social','action'=>'login','id'=>1));
 			$config_new['debug_file']    = DOCROOT.'oc/vendor/hybridauth/logs.txt';
 			
@@ -59,7 +57,8 @@ class Controller_Panel_Social extends Auth_Controller {
 				try 
 				{
 					$conf->save();
-					$this->redirect(Route::url('oc-panel',array('controller'=>'social','action'=>'index')));	
+                    $config = $config_new;//we update the form values if we changed them
+                    Alert::set(Alert::SUCCESS, __('Social Auth updated'));
 				} 
 				catch (Exception $e) 
 				{
@@ -68,5 +67,9 @@ class Controller_Panel_Social extends Auth_Controller {
 			
 			}
 		}
+
+        $this->template->content = View::factory('oc-panel/pages/social_auth/index',array('config'=>$config));
+
+        
 	}
 }
