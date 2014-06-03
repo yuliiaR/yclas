@@ -22,28 +22,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->scripts['footer'][]= 'js/jquery.toolbar.js';
 		$this->template->scripts['footer'][]= 'js/oc-panel/moderation.js';
 		 
-
-		//find all tables 
 		
 		$ads = new Model_Ad();
 		
-		if($this->request->query('define'))
-		{
-			if($this->request->query('define') == Model_Ad::STATUS_SPAM)
-			{
-				$ads = $ads->where('status', '=', Model_Ad::STATUS_SPAM); // display SPAM by overwriting query
-			}
-			elseif($this->request->query('define') == Model_Ad::STATUS_UNAVAILABLE)
-			{
-				$ads = $ads->where('status', '=', Model_Ad::STATUS_UNAVAILABLE); // display UNAVAILABLE by overwriting query	
-			}
-			elseif($this->request->query('define') == Model_Ad::STATUS_UNCONFIRMED)
-			{
-				$ads = $ads->where('status', '=', Model_Ad::STATUS_UNCONFIRMED); // display UNCONFIRMED (email activated ads) by overwriting query
-			}
-					
-		}
-		else $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+        //filter ads by status
+        $ads = $ads->where('status', '=', Core::get('status',Model_Ad::STATUS_PUBLISHED));
+		
 		
 		// sort ads by search value
 		if($q = $this->request->query('search'))
@@ -53,7 +37,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 	        	$ads = $ads->or_where('description', 'like', '%'.$q.'%');
 		}
 		
-		$res_count = $ads->count_all();
+        $ads_count = clone $ads;
+		$res_count = $ads_count->count_all();
 		if ($res_count > 0)
 		{
 
@@ -82,13 +67,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 	       	$arr_hits = array(); // array of hit integers 
 	       	
 	        // fill array with hit integers 
-	        foreach ($ads as $key_ads) {
-	        	
+	        foreach ($ads as $key_ads) 
+            {	
 	        	// match hits with ad
 	        	$h = $hits->where('id_ad','=', $key_ads->id_ad);
 	        	$count = count($h->find_all()); // count individual hits 
 	        	array_push($arr_hits, $count);
-	
 	        }
 
 
@@ -234,7 +218,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 			Alert::set($level_Alert, $nb_Ads_Deleted);
 
-			$param_current_url = $this->request->param('current_url');
+			$param_current_url = Core::get('current_url');
 		
 			
 			if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
@@ -242,7 +226,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 				HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 			else
-				HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+				HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 		}
 		else
 		{
@@ -257,7 +241,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 	public function action_spam()
 	{
 		$id = $this->request->param('id');
-		$param_current_url = $this->request->param('current_url');
+		$param_current_url = Core::get('current_url');
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
@@ -295,7 +279,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 						else
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 					} 
 				}
 				else
@@ -312,7 +296,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 	}
 
 
@@ -323,7 +307,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 	{
 
 		$id = $this->request->param('id');
-		$param_current_url = $this->request->param('current_url');
+		$param_current_url = Core::get('current_url');
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
@@ -335,9 +319,9 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 				if ($deact_ad->loaded())
 				{
-					if ($deact_ad->status != 50)
+					if ($deact_ad->status != Model_Ad::STATUS_UNAVAILABLE)
 					{
-						$deact_ad->status = 50;
+						$deact_ad->status = Model_Ad::STATUS_UNAVAILABLE;
 						
 						try
 						{
@@ -356,7 +340,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 						else
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 					} 
 				}
 				else
@@ -373,7 +357,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 
 	}
 
@@ -385,7 +369,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 	{
 
 		$id = $this->request->param('id');
-		$param_current_url = $this->request->param('current_url');
+		$param_current_url = Core::get('current_url');
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
@@ -396,7 +380,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 				if ($active_ad->loaded())
 				{
-					if ($active_ad->status != 1)
+					if ($active_ad->status != Model_Ad::STATUS_PUBLISHED)
 					{
 						$active_ad->published = Date::unix2mysql(time());
 						$active_ad->status = Model_Ad::STATUS_PUBLISHED;
@@ -427,7 +411,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 						else
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 					} 
 				}
 				else
@@ -450,7 +434,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 	}
 
 	/**
@@ -489,19 +473,19 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 
-		if ($query['define'] == Model_Ad::STATUS_NOPUBLISHED)
+		if ($query['status'] == Model_Ad::STATUS_NOPUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
-		elseif ($query['define'] == Model_Ad::STATUS_PUBLISHED)
+		elseif ($query['status'] == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$query['define']);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$query['status']);
 	}
 
 	public function action_featured()
 	{
 
 		$id = $this->request->param('id');
-		$param_current_url = $this->request->param('current_url');
+		$param_current_url = Core::get('current_url');
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
@@ -548,7 +532,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 
 	}
 
@@ -556,7 +540,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 	{
 
 		$id = $this->request->param('id');
-		$param_current_url = $this->request->param('current_url');
+		$param_current_url = Core::get('current_url');
 		$format_id = explode('_', $id);
 
 		foreach ($format_id as $id) 
@@ -590,7 +574,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
-			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?define='.$param_current_url);
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 
 	}
 
@@ -608,8 +592,9 @@ class Controller_Panel_Ad extends Auth_Controller {
 				if($usr->loaded())
 				{
 
-					$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$ad->id_ad;
-                    $delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$ad->id_ad;
+					$edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad));
+                    $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad));
+
 					//we get the QL, and force the regen of token for security
 					$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
 				 	                                'seotitle'=> $ad->seotitle),TRUE);

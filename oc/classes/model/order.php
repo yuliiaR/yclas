@@ -168,8 +168,8 @@ class Model_Order extends ORM {
                     {
                         $advert->save(); 
 
-                        $edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$advert->id_ad;
-                        $delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$advert->id_ad;
+                        $edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$advert->id_ad));
+                        $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$advert->id_ad));
 
                         //we get the QL, and force the regen of token for security
                         $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
