@@ -24,23 +24,6 @@ class Paypal {
     const ipn_sandbox_url      	= 'https://www.sandbox.paypal.com/cgi-bin/webscr';
     const ipn_url              	= 'https://www.paypal.com/cgi-bin/webscr';
 
-    /**
-     * Id of products 
-     */
-    const category_product      = 1;
-    const to_top                = 2;
-    const to_featured           = 3;
-    const advertisement_sell    = 4;
-
-    /**
-     * @var  array  Available statuses array
-     */
-    public static $products = array(
-        self::category_product  =>  'Paid category',
-        self::to_top            =>  'Top up ad',
-        self::to_featured       =>  'Feature ad',
-        self::advertisement_sell=>  'Advertisement sold',
-    );
 
     /**
      * validates the data at paypal c&p from https://www.x.com/developers/PayPal/documentation-tools/code-sample/216623

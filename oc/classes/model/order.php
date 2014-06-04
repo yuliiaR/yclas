@@ -46,6 +46,24 @@ class Model_Order extends ORM {
     );
 
     /**
+     * Id of products 
+     */
+    const CATEGORY_PRODUCT      = 1; //paid to post in a paid category
+    const TO_TOP                = 2; //paid to return the ad to the first page
+    const TO_FEATURED           = 3; // paid to featured an ad in the site
+    const AD_SELL               = 4; // a customer paid to buy the item/ad 
+
+    /**
+     * @var  array  Available statuses array
+     */
+    public static $products = array(
+        self::CATEGORY_PRODUCT  =>  'Paid category',
+        self::TO_TOP            =>  'Top up ad',
+        self::TO_FEATURED       =>  'Feature ad',
+        self::AD_SELL           =>  'Advertisement sold',
+    );
+
+    /**
      * @var  array  ORM Dependency/hirerachy
      */
     protected $_belongs_to = array(
@@ -85,7 +103,7 @@ class Model_Order extends ORM {
             }
         
             // update product
-            if($this->id_product == Paypal::advertisement_sell)
+            if($this->id_product == Model_Order::AD_SELL)
             {
                 // decrease limit of ads, if 0 deactivate
                 if($advert->stock >0)
@@ -136,7 +154,7 @@ class Model_Order extends ORM {
                 }
                 
             } 
-            elseif($this->id_product == Paypal::category_product)
+            elseif($this->id_product == Paypal::CATEGORY_PRODUCT)
             {
 
                 if($moderation == Model_Ad::PAYMENT_ON)
@@ -168,8 +186,8 @@ class Model_Order extends ORM {
                     {
                         $advert->save(); 
 
-                        $edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$advert->id_ad;
-                        $delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$advert->id_ad;
+                        $edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$advert->id_ad));
+                        $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$advert->id_ad));
 
                         //we get the QL, and force the regen of token for security
                         $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
@@ -185,7 +203,7 @@ class Model_Order extends ORM {
                     }   
                 }
             }
-            elseif($this->id_product == Paypal::to_top)
+            elseif($this->id_product == Model_Order::TO_TOP)
             {
                 $advert->published = Date::unix2mysql(time());
                 $advert->status = Model_Ad::STATUS_PUBLISHED;
@@ -196,7 +214,7 @@ class Model_Order extends ORM {
                     echo $e;
                 }
             }
-            elseif ($this->id_product == Paypal::to_featured)
+            elseif ($this->id_product == Model_Order::TO_FEATURED)
             {
                 $advert->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
                 $advert->status = Model_Ad::STATUS_PUBLISHED;
@@ -285,7 +303,7 @@ class Model_Order extends ORM {
         
         // make order 
         $payer_id = $usr; 
-        $id_product = Paypal::category_product;
+        $id_product = Paypal::CATEGORY_PRODUCT;
 
         $ad = new Model_Ad();
         $ad = $ad->where('seotitle', '=', $seotitle)->limit(1)->find();

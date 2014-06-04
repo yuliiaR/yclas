@@ -73,6 +73,7 @@ class Model_Visit extends ORM {
                         ->where('created','between',array(date('Y-m-d',strtotime('-'.$days.' day')),date::unix2mysql()))
                         ->group_by(DB::expr('id_ad'))
                         ->order_by('count','asc')
+                        ->cached()
                         ->execute();
 
         return $query->as_array('id_ad');

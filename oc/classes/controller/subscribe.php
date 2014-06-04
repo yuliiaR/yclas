@@ -70,17 +70,17 @@ class Controller_Subscribe extends Controller {
 				try {
 					$obj_subscribe->save();
 				} catch (Exception $e) {
-					throw new HTTP_Exception_500($e->getMessage());
+					throw HTTP_Exception::factory(500,$e->getMessage());
 				}
 				
 			}
 			Alert::set(Alert::SUCCESS, __('Thank you for subscribing'));
-			$this->request->redirect(Route::url('default'));
+			$this->redirect(Route::url('default'));
 		}
 		else
 		{
 			Alert::set(Alert::ALERT, __('Invalid Email'));
-			$this->request->redirect(Route::url('default'));
+			$this->redirect(Route::url('default'));
 		}
 	} 
 
@@ -96,12 +96,12 @@ class Controller_Subscribe extends Controller {
 				$s->delete();
 				
 			} catch (Exception $e) {
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 		}
 
 		Alert::set(Alert::SUCCESS, __('You are unsubscribed'));
-		$this->request->redirect(Route::url('default'));
+		$this->redirect(Route::url('default'));
 		
 	}
 

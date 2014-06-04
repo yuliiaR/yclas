@@ -158,7 +158,7 @@ class Model_User extends ORM {
 			}
 			catch(Exception $e)
 			{
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 			
 		}
@@ -198,7 +198,7 @@ class Model_User extends ORM {
 			}
 			catch(Exception $e)
 			{
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 		}
 		
@@ -245,7 +245,7 @@ class Model_User extends ORM {
                 }
                 catch (ORM_Validation_Exception $e)
                 {
-                    throw new HTTP_Exception_500($e->getMessage());
+                    throw HTTP_Exception::factory(500,$e->getMessage());
                 }
             }
 
@@ -254,7 +254,7 @@ class Model_User extends ORM {
         else
         {
             Alert::set(Alert::ALERT, __('Invalid Email'));
-            $this->request->redirect(Route::url('post_new'));
+            $this->redirect(Route::url('post_new'));
         }
     
     } 
@@ -599,8 +599,9 @@ class Model_User extends ORM {
         try
         {
             $user->save();
-            //send welcome email
-            $user->email('auth.register',array('[USER.PWD]'=>$password,
+            //send welcome email only if its new
+            if (isset($password))
+                $user->email('auth.register',array('[USER.PWD]'=>$password,
                                                     '[URL.QL]'=>$user->ql('default',NULL,TRUE))
                                             );
         }

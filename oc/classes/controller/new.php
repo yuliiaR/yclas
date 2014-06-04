@@ -35,7 +35,7 @@ class Controller_New extends Controller
         if(core::config('advertisement.login_to_post') == TRUE AND !Auth::instance()->logged_in())
 		{
 			Alert::set(Alert::INFO, __('Please, login before posting advertisement!'));
-			Request::current()->redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
 		}
 
 		//find all, for populating form select fields 
@@ -47,12 +47,12 @@ class Controller_New extends Controller
 			if(Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
 			{
 				Alert::set(Alert::INFO, __('Please, first create some categories.'));
-				Request::current()->redirect(Route::url('oc-panel',array('controller'=>'category','action'=>'index')));
+				HTTP::redirect(Route::url('oc-panel',array('controller'=>'category','action'=>'index')));
 			}
 			else
 			{
 				Alert::set(Alert::INFO, __('Posting advertisements is not yet available.'));
-				$this->request->redirect('default');
+				$this->redirect('default');
 			}
 		}
 
@@ -72,7 +72,7 @@ class Controller_New extends Controller
 		   	$auth_user->logged_in() AND $auth_user->get_user()->status == Model_User::STATUS_SPAM)
 		{
 			Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
-			$this->request->redirect('default');
+			$this->redirect('default');
 		}
 		
 		$id_category = NULL;
@@ -257,7 +257,7 @@ class Controller_New extends Controller
 					if(!$user->loaded() AND $user->is_spam($email))
 					{
 						Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
-						$this->request->redirect('default');	
+						$this->redirect('default');	
 					}
 				}
 
@@ -284,7 +284,7 @@ class Controller_New extends Controller
 							($user->loaded())?$user->user_spam():$user->user_spam($email);
 						}
 						Alert::set(Alert::SUCCESS, __('This post has been considered as spam! We are sorry but we cant publish this advertisement.'));
-						$this->request->redirect('default');
+						$this->redirect('default');
 					}//akismet
 
 					// if moderation is off update db field with time of creation 
@@ -378,7 +378,7 @@ class Controller_New extends Controller
 				}
 				catch (Exception $e)
 				{
-					throw new HTTP_Exception_500($e->getMessage());
+					throw HTTP_Exception::factory(500,$e->getMessage());
 				}
 
 				// IMAGE UPLOAD 
@@ -404,12 +404,12 @@ class Controller_New extends Controller
 						} 
 						catch (Exception $e) 
 						{
-							throw new HTTP_Exception_500($e->getMessage());
+							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 	        		}
 		        	
 		        	if($filename = FALSE)
-		        		$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad)));
+		        		$this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad)));
 		        }
 
 				// PAYMENT METHOD ACTIVE (and other alerts)
@@ -430,32 +430,32 @@ class Controller_New extends Controller
                                 $new_ad->save();
                                 Alert::set(Alert::SUCCESS, __('Advertisement is published. Congratulations!'));
                             } catch (Exception $e) {
-                                throw new HTTP_Exception_500($e->getMessage());
+                                throw HTTP_Exception::factory(500,$e->getMessage());
                             }        
                         }
                         if($moderation == Model_Ad::PAYMENT_MODERATION)
                             Alert::set(Alert::SUCCESS, __('Advertisement is created but needs to be validated first before it is published.'));
 
-                        $this->request->redirect(Route::url('default'));
+                        $this->redirect(Route::url('default'));
                     }
 					// redirect to payment
-        			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
+        			$this->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
 				}
 				elseif ($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRMATION)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
-					$this->request->redirect(Route::url('default'));
+					$this->redirect(Route::url('default'));
 				}
 				elseif ($moderation == Model_Ad::MODERATION_ON)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
-					$this->request->redirect(Route::url('default'));
+					$this->redirect(Route::url('default'));
 				}
 				else
 				{
 					Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $data['price'])), $seotitle, $email);
 					Alert::set(Alert::SUCCESS, __('Advertisement is posted. Congratulations!'));
-					$this->request->redirect(Route::url('default'));
+					$this->redirect(Route::url('default'));
 				}
 			}//captcha
 			else

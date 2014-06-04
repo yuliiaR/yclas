@@ -20,7 +20,7 @@ class Controller_Panel_Tools extends Auth_Controller {
     public function action_index()
     {
         //@todo just a view with links?
-        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'update','action'=>'index')));  
+        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'update','action'=>'index')));  
     }
 
 
@@ -202,7 +202,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                     if($array == FALSE)
                     {
                         Alert::set(Alert::INFO, sprintf(__('File %s contains invalid parsing format!'),$path['name']));
-                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                        $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
                     }
                    
                     //base location
@@ -220,13 +220,13 @@ class Controller_Panel_Tools extends Auth_Controller {
                     catch (Exception $e) 
                     {
                         Alert::set(Alert::INFO, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
-                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                        $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
                     }
 
                     if($query == FALSE)
                     {
                         Alert::set(Alert::INFO, __('Something went wrong, please check format of the file! Remove single quotes, in case you have any.'));
-                        $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                        $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
                     }
                     
 
@@ -267,7 +267,7 @@ class Controller_Panel_Tools extends Auth_Controller {
             }
             // Cache::instance()->delete_all();
             Alert::set(Alert::SUCCESS, __('Sitemap Configuration updated'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap')));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap')));
         }
 
         //force regenerate sitemap

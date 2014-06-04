@@ -108,7 +108,7 @@ Route::set('sitejson','info.json')
 /**
  * user admin/panel route
  */
-Route::set('oc-panel', 'oc-panel(/<controller>(/<action>(/<id>(/<current_url>))))')
+Route::set('oc-panel', 'oc-panel(/<controller>(/<action>(/<id>)))')
 ->defaults(array(
 		'directory'  => 'panel',
 		'controller' => 'home',
@@ -203,10 +203,8 @@ Route::set('profile', 'user/<seoname>/<action>')
 /**
  * Error router
  */
-Route::set('error', 'oc-error/<action>/<origuri>(/<message>)',
-array('action' => '[0-9]++',
-                    	  'origuri' => '.+', 
-                    	  'message' => '.+'))
+Route::set('error', 'oc-error/<action>(/<message>)',
+array('action' => '[0-9]++','message' => '.+'))
 ->defaults(array(
     'controller' => 'error',
     'action'     => 'index'

@@ -15,7 +15,7 @@ $(function (){
 
 var href = $('.sel_url_to_redirect').attr('href');
 
-var last_str = href.substr(href.lastIndexOf('/') );
+var last_str = '';//href.substr(href.lastIndexOf('/') );
 
 var url_array = {"del"			:{'href':$("a.delete").attr("href")},
 				 "spam"			:{'href':$("a.spam").attr("href")},

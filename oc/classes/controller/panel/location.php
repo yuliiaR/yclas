@@ -53,7 +53,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 if ($form->object->id_location == $form->object->id_location_parent)
                 {
                     Alert::set(Alert::INFO, __('You can not set as parent the same location'));
-                    $this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$form->object->id_location)));
+                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$form->object->id_location)));
                 }
 
                 $form->save_object();
@@ -62,7 +62,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 Alert::set(Alert::SUCCESS, __('Item updated').'. '.__('Please to see the changes delete the cache')
                     .'<br><a class="btn btn-primary btn-mini" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
                     .__('Delete All').'</a>');
-                $this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
+                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
             }
             else
             {
@@ -168,7 +168,7 @@ class Controller_Panel_Location extends Auth_Crud {
              Alert::set(Alert::SUCCESS, __('Location not deleted'));
 
         
-        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index')));  
+        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index')));  
 
     }
 
@@ -200,7 +200,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 Alert::set(Alert::INFO, __('Select some locations first.'));
         }
         
-        Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index'))); 
+        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index'))); 
     }
 
     /**
@@ -239,7 +239,7 @@ class Controller_Panel_Location extends Auth_Crud {
             }
         }
         //Alert::set(Alert::INFO, __('Success'));
-        //Request::current()->redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index'))); 
+        //HTTP::redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index'))); 
     }
 
 }

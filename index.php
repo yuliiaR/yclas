@@ -16,14 +16,14 @@ $modules = $application.'/modules';
  *
  * @see  http://kohanaframework.org/guide/about.install#system
  */
-$system = $application.'/ko323/system';
+$system = $application.'/kohana/system';
 
 /**
  * The directory in which KO modules are located.
  *
  * @see  http://kohanaframework.org/guide/about.install#modules
  */
-$komodules = $application.'/ko323/modules';
+$komodules = $application.'/kohana/modules';
 
 /**
  * The default extension of resource files. If you change this, all resources

@@ -43,11 +43,11 @@ class Controller_Panel_Profile extends Auth_Controller {
 					}
 					catch (ORM_Validation_Exception $e)
 					{
-						throw new HTTP_Exception_500($e->getMessage());
+						throw HTTP_Exception::factory(500,$e->getMessage());
 					}
 					catch (Exception $e)
 					{
-						throw new HTTP_Exception_500($e->getMessage());
+						throw HTTP_Exception::factory(500,$e->getMessage());
 					}
 
 					Alert::set(Alert::SUCCESS, __('Password is changed'));
@@ -81,15 +81,15 @@ class Controller_Panel_Profile extends Auth_Controller {
         	if ( Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats'))))
             {
                 Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not valid format, please use one of this formats "%s"'),core::config('image.allowed_formats')));
-                $this->request->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
             } 
             if( ! Upload::size($image, core::config('image.max_image_size').'M'))
             {
                 Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('general.max_image_size')));
-                $this->request->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
             }
             Alert::set(Alert::ALERT, $image['name'].' '.__('Image is not valid. Please try again.'));
-            $this->request->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
         }
         else
         {
@@ -120,7 +120,7 @@ class Controller_Panel_Profile extends Auth_Controller {
                 }
                 
                 Alert::set(Alert::SUCCESS, $image['name'].' '.__('Image is uploaded.'));
-                $this->request->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
             }
             
         }
@@ -147,11 +147,11 @@ class Controller_Panel_Profile extends Auth_Controller {
 			try {
 				$user->save();
 				Alert::set(Alert::SUCCESS, __('You have successfuly changed your data'));
-				$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
+				$this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
 				
 			} catch (Exception $e) {
 				//throw 500
-				throw new HTTP_Exception_500();
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}	
 		}
 	}
@@ -229,7 +229,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
-                    Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
+                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
                 }
                 elseif ($deact_ad->status != 50)
 				{
@@ -241,24 +241,24 @@ class Controller_Panel_Profile extends Auth_Controller {
 					}
 						catch (Exception $e)
 					{
-						throw new HTTP_Exception_500($e->getMessage());
+						throw HTTP_Exception::factory(500,$e->getMessage());
 					}
 				}
 				else
 				{				
 					Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
-					Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
+					HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 				} 
 			}
 			else
 			{
 				//throw 404
-				throw new HTTP_Exception_404();
+				throw HTTP_Exception::factory(404,__('Page not found'));
 			}
 		}
 		
 		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
+		HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 	}
 
 	/**
@@ -280,7 +280,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 				   Auth::instance()->get_user()->id_role !== Model_Role::ROLE_ADMIN)
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
-                    Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
+                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
                 }
 				elseif ($active_ad->status != 1)
 				{
@@ -293,19 +293,19 @@ class Controller_Panel_Profile extends Auth_Controller {
 					}
 						catch (Exception $e)
 					{
-						throw new HTTP_Exception_500($e->getMessage());
+						throw HTTP_Exception::factory(500,$e->getMessage());
 					}
 				}
 				else
 				{				
 					Alert::set(Alert::ALERT, __("Advertisement is already marked as 'active'"));
-					Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
+					HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 				} 
 			}
 			else
 			{
 				//throw 404
-				throw new HTTP_Exception_404();
+				throw HTTP_Exception::factory(404,__('Page not found'));
 			}
 		}
 		
@@ -333,7 +333,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			Sitemap::generate();
 
 		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
-		Request::current()->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
+		HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 	}
 
 	/**
@@ -418,7 +418,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 						$orig_img = str_replace('thumb_', '', $deleted_image);
 						unlink($img_path.$orig_img.".jpg");
 
-						$this->request->redirect(Route::url('oc-panel', array('controller'	=>'profile',
+						$this->redirect(Route::url('oc-panel', array('controller'	=>'profile',
 																			  'action'		=>'update',
 																			  'id'			=>$form->id_ad)));
 					}
@@ -523,12 +523,12 @@ class Controller_Panel_Profile extends Auth_Controller {
 						} 
 						catch (Exception $e) 
 						{
-							throw new HTTP_Exception_500($e->getMessage());
+							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 	        		}
 		        	
 		        	if($filename = FALSE)
-		        		$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$form->id_ad)));
+		        		$this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$form->id_ad)));
 		        }
 
 	        	try 
@@ -576,7 +576,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 								}
 							}
 							$form->save();
-	        				$this->request->redirect(Route::url('oc-panel', array('controller'	=>'profile',
+	        				$this->redirect(Route::url('oc-panel', array('controller'	=>'profile',
 																				  'action'		=>'update',
 																				  'id'			=>$form->id_ad)));
 						
@@ -591,7 +591,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        				{
 	        					// sanity check -> we don't want to charge him twice for same category 
 	        					if($advert_have_order->status != Model_Order::STATUS_PAID)
-	        						$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $advert_have_order->id_order))); 	
+	        						$this->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $advert_have_order->id_order))); 	
 								else // order is payed, update status and publish 
 								{
 									if($moderation == Model_Ad::PAYMENT_ON)
@@ -617,7 +617,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 								else
 								{
 									// redirect to payment
-				        			$this->request->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route	
+				        			$this->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route	
 								}
 								$form->save();								
 	        				}	
@@ -651,12 +651,12 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        		$form->save();
 	        		
 
-	        		$this->request->redirect(Route::url('oc-panel', array('controller'	=>'profile',
+	        		$this->redirect(Route::url('oc-panel', array('controller'	=>'profile',
 																		  'action'		=>'update',
 																		  'id'			=>$form->id_ad)));
 	        	} catch (Exception $e) {
 	 				//throw 500
-					throw new HTTP_Exception_500($e->getMessage());       		
+					throw HTTP_Exception::factory(500,$e->getMessage());       		
 	        	}
 
 	        	
@@ -665,7 +665,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		else
 		{
 			Alert::set(Alert::ERROR, __('You dont have permission to access this link'));
-			$this->request->redirect(Route::url('default'));
+			$this->redirect(Route::url('default'));
 		}
 	}
 
@@ -921,11 +921,11 @@ class Controller_Panel_Profile extends Auth_Controller {
 			{
 				$subscription->delete();
 				Alert::set(Alert::SUCCESS, __('You are unsubscribed'));
-				$this->request->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'subscriptions')));
+				$this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'subscriptions')));
 			} 
 			catch (Exception $e) 
 			{
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 		}
 	}
@@ -936,7 +936,7 @@ class Controller_Panel_Profile extends Auth_Controller {
     */ 
    public function action_public()
    {
-        $this->request->redirect(Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname)));
+        $this->redirect(Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname)));
    }
 
 

@@ -433,14 +433,14 @@ class Controller_Ad extends Controller {
 			else
 			{
 				//throw 404
-				throw new HTTP_Exception_404();
+				throw HTTP_Exception::factory(404,__('Page not found'));
 			}
 			
 		}
 		else//this will never happen
 		{
 			//throw 404
-			throw new HTTP_Exception_404();
+			throw HTTP_Exception::factory(404,__('Page not found'));
 		}
 	}
 	
@@ -481,7 +481,7 @@ class Controller_Ad extends Controller {
 	{
         $auth_user = Auth::instance();
 		$payer_id 		= $auth_user->get_user()->id_user; 
-		$id_product 	= Paypal::to_top;
+		$id_product 	= Model_Order::TO_TOP;
 		$description 	= 'to_top';
 		// update orders table
 		// fields
@@ -495,10 +495,10 @@ class Controller_Ad extends Controller {
 
 			try {
 				$ad->save();
-				$this->request->redirect(Route::url('list')); 
+				$this->redirect(Route::url('list')); 
 
 			} catch (Exception $e) {
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 		}
 		
@@ -515,7 +515,7 @@ class Controller_Ad extends Controller {
 	
 		
 		// redirect to payment
-		$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+		$this->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
 
 	}
 	
@@ -527,7 +527,7 @@ class Controller_Ad extends Controller {
 	public function action_to_featured()
 	{
 		$payer_id 		= Auth::instance()->get_user()->id_user; 
-		$id_product 	= Paypal::to_featured;
+		$id_product 	= Model_Order::TO_FEATURED;
 		$description 	= 'to_featured';
 
 		// update orders table
@@ -542,10 +542,10 @@ class Controller_Ad extends Controller {
 
 			try {
 				$ad->save();
-				$this->request->redirect(Route::url('list')); 
+				$this->redirect(Route::url('list')); 
 
 			} catch (Exception $e) {
-				throw new HTTP_Exception_500($e->getMessage());
+				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 		}
 
@@ -560,7 +560,7 @@ class Controller_Ad extends Controller {
 		$order_id = new Model_Order(); // create order , and returns order id
 		$order_id = $order_id->set_new_order($ord_data);
 		// redirect to payment
-		$this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+		$this->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
 	}
 	
     /**
@@ -579,7 +579,7 @@ class Controller_Ad extends Controller {
                 {
                     
                     $payer_id       = Auth::instance()->get_user()->id_user;
-                    $id_product     = Paypal::advertisement_sell;
+                    $id_product     = Model_Order::AD_SELL;
                     $description    = $ad->title;
 
                     $ord_data = array('id_user'     => $payer_id,
@@ -596,7 +596,7 @@ class Controller_Ad extends Controller {
                     //retrieve info for the item in DB
                     
                     // redirect to payment
-                   $this->request->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+                   $this->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
                 }
                 else
                 {
@@ -604,7 +604,7 @@ class Controller_Ad extends Controller {
                     $ad->save();
                     
                     Alert::set(Alert::INFO, sprintf(__('Advertisement %s is sold out!'),$ad->title));
-                    $this->request->redirect(Route::url('default')); 
+                    $this->redirect(Route::url('default')); 
                 }
             }
         }
@@ -637,11 +637,11 @@ class Controller_Ad extends Controller {
 					Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $advert->price)), $advert->seotitle, Auth::instance()->get_user()->email); // if subscription is on
 					
 					Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
-					$this->request->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
+					$this->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
 				} 
 				catch (Exception $e) 
 				{
-					throw new HTTP_Exception_500($e->getMessage());
+					throw HTTP_Exception::factory(500,$e->getMessage());
 				}
 			}
 			if(core::config('general.moderation') == Model_Ad::EMAIL_MODERATION)
@@ -653,11 +653,11 @@ class Controller_Ad extends Controller {
 				{
 					$advert->save();
 					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
-					$this->request->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
+					$this->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
 				} 
 				catch (Exception $e) 
 				{
-					throw new HTTP_Exception_500($e->getMessage());
+					throw HTTP_Exception::factory(500,$e->getMessage());
 				}
 			}
 		}

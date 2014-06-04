@@ -56,7 +56,7 @@ class Auth_Crud extends Auth_Controller
 			$url = Route::get('oc-panel')->uri(array(
 														'controller'  => $this->request->controller(), 
 														'action'      => 'index'));
-			$this->request->redirect($url);
+			$this->redirect($url);
 		}
 				
 		//url used in the breadcrumb
@@ -118,7 +118,7 @@ class Auth_Crud extends Auth_Controller
             try
             {
                 $element->delete();
-                Request::current()->redirect(Route::url('oc-panel', array('controller'=>$this->request->controller())));
+                HTTP::redirect(Route::url('oc-panel', array('controller'=>$this->request->controller())));
                 $this->template->content = 'OK';
             }
             catch (Exception $e)
@@ -151,7 +151,7 @@ class Auth_Crud extends Auth_Controller
                     .'<br><a class="btn btn-primary btn-mini" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
                     .__('Delete All').'</a>');
             
-				$this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
+				$this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
 			}
 			else 
 			{
@@ -180,7 +180,7 @@ class Auth_Crud extends Auth_Controller
 				Alert::set(Alert::SUCCESS, __('Item updated').'. '.__('Please to see the changes delete the cache')
                     .'<br><a class="btn btn-primary btn-mini" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
                     .__('Delete All').'</a>');
-				$this->request->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
+				$this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
 			}
 			else
 			{

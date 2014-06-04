@@ -1,4 +1,4 @@
-#  Open Classifieds 2.1.8
+#  Open Classifieds 2.2.0
 
 
 # Description
@@ -16,7 +16,7 @@ Please read CONTRIBUTING.md
 
 # OC works thanks to other GPL software
 
-* Kohana 3.2.3. http://kohanaframework.org/
+* Kohana 3.3.2 http://kohanaframework.org/
 * KO Formmanager https://github.com/colinbm/kohana-formmanager
 * PHP-Gettext https://launchpad.net/php-gettext/
 * Pear File_Gettext http://pear.php.net/package/File_Gettext
