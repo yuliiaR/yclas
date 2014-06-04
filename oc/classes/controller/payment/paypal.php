@@ -40,7 +40,7 @@ class Controller_Payment_Paypal extends Controller{
 		if($order->loaded())
 		{
 			// detect product to be processed 
-			if ($order->id_product != Paypal::category_product)
+			if ($order->id_product != Model_Order::CATEGORY_PRODUCT)
 			{
 				$id_category = new Model_Category();
 				$id_category = $id_category->where('id_category', '=', $order->id_product)->limit(1)->find();
@@ -52,7 +52,7 @@ class Controller_Payment_Paypal extends Controller{
 			} 
 
             //order is from a payment done to the owner of the ad
-            if ($order->id_product == Paypal::advertisement_sell)
+            if ($order->id_product == Model_Order::AD_SELL)
             {
                 $user_paid = $order->ad->user;
 
@@ -114,15 +114,15 @@ class Controller_Payment_Paypal extends Controller{
         if ($order->loaded())
         {
         	// dependant on product we have different names
-        	if($order->id_product == Paypal::to_featured)
+        	if($order->id_product == Model_Order::TO_FEATURED)
         		$item_name = __('Advertisement to featured');
-        	else if ($order->id_product == Paypal::to_top)
+        	else if ($order->id_product == Model_Order::TO_TOP)
         		$item_name = __('Advertisement to top');
         	else
         		$item_name = $order->description.__(' category');
 
         	// case when selling advert
-        	if($order->id_product == Paypal::advertisement_sell)
+        	if($order->id_product == Model_Order::AD_SELL)
         		$paypal_account = $order->ad->user->email;
         	else
         		$paypal_account = core::config('payment.paypal_account');

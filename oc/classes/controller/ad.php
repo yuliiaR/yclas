@@ -481,7 +481,7 @@ class Controller_Ad extends Controller {
 	{
         $auth_user = Auth::instance();
 		$payer_id 		= $auth_user->get_user()->id_user; 
-		$id_product 	= Paypal::to_top;
+		$id_product 	= Model_Order::TO_TOP;
 		$description 	= 'to_top';
 		// update orders table
 		// fields
@@ -527,7 +527,7 @@ class Controller_Ad extends Controller {
 	public function action_to_featured()
 	{
 		$payer_id 		= Auth::instance()->get_user()->id_user; 
-		$id_product 	= Paypal::to_featured;
+		$id_product 	= Model_Order::TO_FEATURED;
 		$description 	= 'to_featured';
 
 		// update orders table
@@ -579,7 +579,7 @@ class Controller_Ad extends Controller {
                 {
                     
                     $payer_id       = Auth::instance()->get_user()->id_user;
-                    $id_product     = Paypal::advertisement_sell;
+                    $id_product     = Model_Order::AD_SELL;
                     $description    = $ad->title;
 
                     $ord_data = array('id_user'     => $payer_id,
