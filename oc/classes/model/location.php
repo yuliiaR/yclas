@@ -201,7 +201,7 @@ class Model_Location extends ORM {
                   ->select(array(DB::select(DB::expr('COUNT("id_ad")'))
                           ->from(array('ads','a'))
                           ->where('a.id_location','=',DB::expr(core::config('database.default.table_prefix').'l.id_location'))
-                          ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', DB::expr('NOW()'))
+                          ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', Date::unix2mysql())
                           ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
                           ->group_by('id_location'), 'count'))
                   ->from(array('locations', 'l'))

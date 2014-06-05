@@ -655,7 +655,7 @@ class Model_Ad extends ORM {
             //if ad have passed expiration time dont show 
             if(core::config('advertisement.expire_date') > 0)
             {
-                $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
+                $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
             }
 
             $ads = $ads->limit(core::config('advertisement.related'))->find_all();

@@ -139,7 +139,7 @@ class Controller_Ad extends Controller {
         //if ad have passed expiration time dont show 
         if(core::config('advertisement.expire_date') > 0)
         {
-            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
         }
         
     
@@ -148,7 +148,7 @@ class Controller_Ad extends Controller {
         if(Theme::get('listing_slider') == 2)
         {
                 $featured = clone $ads;
-                $featured = $featured->where('featured', '>=', DB::expr('NOW()'))
+                $featured = $featured->where('featured', '>=', Date::unix2mysql())
                                 ->order_by('featured','desc')
                                 ->limit(Theme::get('num_home_latest_ads', 4))
                                 ->find_all();
@@ -157,7 +157,7 @@ class Controller_Ad extends Controller {
         elseif(Theme::get('listing_slider') == 3)
         {
                 $featured = clone $ads;
-                $featured = $featured->where('featured', '>=', DB::expr('NOW()'))
+                $featured = $featured->where('featured', '>=', Date::unix2mysql())
                                 ->order_by(DB::expr('RAND()'))
                                 ->limit(Theme::get('num_home_latest_ads', 4))
                                 ->find_all();
@@ -695,7 +695,7 @@ class Controller_Ad extends Controller {
         	//if ad have passed expiration time dont show 
 	        if(core::config('advertisement.expire_date') > 0)
 	        {
-	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
+	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
 	        }
 
 	        if(!empty($search_advert) OR (core::get('search')!==NULL AND strlen(core::get('search'))>=3))

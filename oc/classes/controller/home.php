@@ -26,12 +26,12 @@ class Controller_Home extends Controller {
                 break;
             case 1:
                 $ads->where('featured','IS NOT', NULL)
-                ->where('featured', '>=', DB::expr('NOW()'))
+                ->where('featured', '>=', Date::unix2mysql())
                 ->order_by('featured','desc');
                 break;
             case 4:
                 $ads->where('featured','IS NOT', NULL)
-                ->where('featured', '>=', DB::expr('NOW()'))
+                ->where('featured', '>=', Date::unix2mysql())
                 ->order_by(DB::expr('RAND()'));
                 break;
             case 0:
@@ -43,7 +43,7 @@ class Controller_Home extends Controller {
         //if ad have passed expiration time dont show 
         if(core::config('advertisement.expire_date') > 0)
         {
-            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', DB::expr('NOW()'));
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
         }
 
         $ads = $ads->limit(Theme::get('num_home_latest_ads', 4))->cached()->find_all();

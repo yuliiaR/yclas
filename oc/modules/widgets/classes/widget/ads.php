@@ -74,7 +74,7 @@ class Widget_Ads extends Widget
                 break;
             case 'featured':
                 $ads->where('featured','IS NOT', NULL)
-                ->where('featured','BETWEEN', array(DB::expr('NOW()'), Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60))))
+                ->where('featured','BETWEEN', array(Date::unix2mysql(), Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60))))
                 ->order_by('featured','desc');
                 break;
             case 'latest':

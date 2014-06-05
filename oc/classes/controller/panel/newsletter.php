@@ -22,7 +22,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
         $query = DB::select(DB::expr('COUNT(id_user) count'))
                         ->from('ads')
                         ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->where('featured','<',DB::expr('NOW()'))
+                        ->where('featured','<',Date::unix2mysql())
                         ->group_by('id_user')
                         ->execute();
 
@@ -102,7 +102,7 @@ class Controller_Panel_Newsletter extends Auth_Controller {
                             ->join(array('ads','a'))
                             ->using('id_user')
                             ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
-                            ->where('a.featured','<',DB::expr('NOW()'))
+                            ->where('a.featured','<',Date::unix2mysql())
                             ->where('u.subscriber','=',1)
                             ->group_by('id_user')
                             ->execute();
