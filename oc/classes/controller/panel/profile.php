@@ -36,7 +36,8 @@ class Controller_Panel_Profile extends Auth_Controller {
 				if(!empty($new_pass)){
 
 					$user->password = core::post('password1');
-
+                    $user->last_modified = Date::unix2mysql();
+                    
 					try
 					{
 						$user->save();
@@ -141,8 +142,9 @@ class Controller_Panel_Profile extends Auth_Controller {
 			
 			$user->name = core::post('name');
 			$user->email = core::post('email');
-			$user->subscriber = (core::post('subscriber') != NULL)?core::post('subscriber'):0;
+			$user->subscriber = core::post('subscriber',0);
 			$user->seoname = $user->gen_seo_title(core::post('name'));
+            $user->last_modified = Date::unix2mysql();
 
 			try {
 				$user->save();
