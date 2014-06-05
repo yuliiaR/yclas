@@ -85,7 +85,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `seoname` varchar(145) NOT NULL,
   `description` varchar(255) NULL,
   PRIMARY KEY (`id_location`),
-  UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_UK_seoname` (`seoname`)
+  UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
