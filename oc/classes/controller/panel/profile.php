@@ -921,12 +921,13 @@ class Controller_Panel_Profile extends Auth_Controller {
 			{
 				$subscription->delete();
 				Alert::set(Alert::SUCCESS, __('You are unsubscribed'));
-				$this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'subscriptions')));
 			} 
 			catch (Exception $e) 
 			{
 				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
+
+            $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'subscriptions')));
 		}
 	}
 
