@@ -94,7 +94,6 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `id_user` int(10) unsigned NOT NULL,
   `id_category` int(10) unsigned NOT NULL DEFAULT '0',
   `id_location` int(10) unsigned NOT NULL DEFAULT '0',
-  `type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `title` varchar(145) NOT NULL,
   `seotitle` varchar(145) NOT NULL,
   `description` text NOT NULL,
