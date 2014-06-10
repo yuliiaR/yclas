@@ -56,18 +56,17 @@ class Controller_Panel_Fields extends Auth_Controller {
                 {
                     Cache::instance()->delete_all();
                     Theme::delete_minified();
-
                     Alert::set(Alert::SUCCESS,__('Field created '.$name));
-                    HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
                 }
                 else
                     Alert::set(Alert::ERROR,__('Field already exists '.$name));
-
-                
+ 
 
             } catch (Exception $e) {
                 throw HTTP_Exception::factory(500,$e->getMessage());     
             }
+
+            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
         }
 
         $this->template->content = View::factory('oc-panel/pages/fields/new',array('categories' => $categories,
