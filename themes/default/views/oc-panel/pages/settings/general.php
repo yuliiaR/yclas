@@ -35,7 +35,7 @@
 		<div class="form-group">
 			<label class="control-label col-sm-3"><?=__("Time Zone")?>:</label>                
             <div class="col-sm-4">
-            <?= FORM::select($i18n['timezone']['key'], core::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
+            <?= FORM::select($i18n['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
 					'placeholder' => "Madrid [+1:00]", 
 					'class' => 'tips form-control', 
 					'id' => $i18n['timezone']['key'], 

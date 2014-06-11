@@ -215,10 +215,10 @@ class Controller_New extends Controller
 				//FORM DATA 
 				$seotitle = $new_ad->gen_seo_title($data['title']); 
 				
-				$new_ad->title 			= Model_Ad::banned_words($data['title']);
+				$new_ad->title 			= Text::banned_words($data['title']);
 				$new_ad->id_location 	= $data['loc'];
 				$new_ad->id_category 	= $data['cat'];
-				$new_ad->description 	= Model_Ad::banned_words($data['description']);
+				$new_ad->description 	= Text::banned_words($data['description']);
 				$new_ad->seotitle 		= $seotitle;	 
 				$new_ad->status 		= $status; 
 				$new_ad->price 			= floatval(str_replace(',', '.', $data['price'])); 								
@@ -267,8 +267,7 @@ class Controller_New extends Controller
 				try
 				{	
 					//akismet spam filter
-					if(!core::akismet(Model_Ad::banned_words($data['title']), $email,
-								 	  Model_Ad::banned_words($data['description'])))
+					if(!core::akismet($data['title'], $email, $data['description']))
 					{
 						if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRMATION)
 							$new_ad->status = Model_Ad::STATUS_UNCONFIRMED;

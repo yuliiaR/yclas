@@ -427,11 +427,11 @@ class Controller_Panel_Profile extends Auth_Controller {
 				}// end of img delete
 
 				$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
-								'title' 		=> $title 		= 	Model_Ad::banned_words(core::post('title')),
+								'title' 		=> $title 		= 	Text::banned_words(core::post('title')),
 								'seotitle' 		=> $seotitle 	= 	core::post('title'),
 								'cat'			=> $category 	= 	core::post('category'),
 								'loc'			=> $loc 		= 	core::post('location'),
-								'description'	=> $description = 	Model_Ad::banned_words(core::post('description')),
+								'description'	=> $description = 	Text::banned_words(core::post('description')),
 								'price'			=> $price 		= 	floatval(str_replace(',', '.', core::post('price'))),
 								// 'status'		=> $status		= 	core::post('status'),
 								'address'		=> $address 	= 	core::post('address'),
