@@ -556,6 +556,7 @@ class Model_User extends ORM {
             $user->id_role      = 1;
             $user->seoname      = $user->gen_seo_title($user->name);
             $user->password     = Text::random('alnum', 8);
+            $user->subscriber   = 1;
             try
             {
                 $user->save();
@@ -592,6 +593,7 @@ class Model_User extends ORM {
             $user->id_role      = 1;
             $user->seoname      = $user->gen_seo_title($user->name);
             $user->password     = $password;
+            $user->subscriber   = 1;
         }
         //always we set this values even if user existed
         $user->hybridauth_provider_name = $provider;
