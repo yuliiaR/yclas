@@ -317,8 +317,8 @@ class Controller_Panel_Profile extends Auth_Controller {
 		$usr = new Model_User($active_ad->id_user);
 		if($usr->loaded())
 		{
-			$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$active_ad->id_ad;
-            $delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$active_ad->id_ad;
+            $edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$active_ad->id_ad));
+            $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$active_ad->id_ad));
 
 			//we get the QL, and force the regen of token for security
 			$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
@@ -917,7 +917,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 		$subscription = new Model_Subscribe($id_subscribe);
 
-		if($subscription->loaded())
+		if($subscription->loaded() AND $subscription->id_user == Auth::instance()->get_user()->id_user)
 		{
 			try 
 			{

@@ -204,14 +204,14 @@ class Controller_New extends Controller
  	*/
  	public function save_new_ad($data, $status, $published, $moderation)
  	{
- 		$user 		= new Model_User();
-		$new_ad 	= new Model_Ad();
 
 		//$_POST is submitted for a new ad 
 		if($this->request->post()) 
 		{
 			if(captcha::check('publish_new')) 
 			{		
+                $new_ad     = new Model_Ad();
+
 				//FORM DATA 
 				$seotitle = $new_ad->gen_seo_title($data['title']); 
 				
@@ -234,22 +234,16 @@ class Controller_New extends Controller
 					if (strpos($name,'cf_') !== false)
 						$new_ad->$name = $field;
 	        	}
-	        	// d($data);
-	        	
+
 	        	// User detection, if doesnt exists create
-	        	$auth_user = Auth::instance();
-		 		if (!$auth_user->logged_in()) 
-				{
-					$name 		= core::post('name');
-					$email		= core::post('email');
-					$user_id 	= $user->create_new_user($name, $email);
-				}
+		 		if (!Auth::instance()->logged_in()) 
+					$user = Model_User::create_email(core::post('email'), core::post('name'));
 				else
-				{
-					$user_id 	= $auth_user->get_user()->id_user;
-					$name 		= $auth_user->get_user()->name;
-					$email 		= $auth_user->get_user()->email;
-				}
+                    $user = Auth::instance()->get_user();
+
+                $user_id    = $user->id_user;
+                $name       = $user->name;
+                $email      = $user->email;
 				
 				//Do not allow posting! Case where we detect spam user, that are not logged in. 
 				if(core::config('general.black_list'))
@@ -310,8 +304,8 @@ class Controller_New extends Controller
 					if($moderation == Model_Ad::EMAIL_CONFIRMATION OR 
 					   $moderation == Model_Ad::EMAIL_MODERATION)
 					{
-						$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
-                    	$delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$new_ad->id_ad;
+                        $edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad));
+                        $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$new_ad->id_ad));
 
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
@@ -327,9 +321,8 @@ class Controller_New extends Controller
 					}
 					elseif($moderation == Model_Ad::MODERATION_ON)
 					{
-
-                    	$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
-                    	$delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$new_ad->id_ad;
+                    	$edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad));
+                        $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$new_ad->id_ad));
 
 						//we get the QL, and force the regen of token for security
                     	$url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
@@ -343,8 +336,8 @@ class Controller_New extends Controller
 					}
 					elseif($moderation == Model_Ad::POST_DIRECTLY)
 					{
-						$edit_url = core::config('general.base_url').'oc-panel/profile/update/'.$new_ad->id_ad;
-                    	$delete_url = core::config('general.base_url').'oc-panel/ad/delete/'.$new_ad->id_ad;
+						$edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad));
+                        $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$new_ad->id_ad));;
 
 						$url_cont = $user->ql('contact', array(),TRUE);
 						$url_ad = $user->ql('ad', array('category'=>$data['cat'],

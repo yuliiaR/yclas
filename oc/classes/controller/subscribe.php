@@ -20,7 +20,7 @@ class Controller_Subscribe extends Controller {
 			if(!$user->loaded())
 			{
 				$name = substr($email, '0', stripos($email, '@'));
-				$user->create_new_user($name, $email);
+				$user = Model_User::create_email($email, $name);
 			}
 			/* save this user to data base as subscriber */
 			
@@ -86,21 +86,15 @@ class Controller_Subscribe extends Controller {
 
 	public function action_unsubscribe()
 	{
-		// unsubscribe user
-		$obj_subscribe = new Model_Subscribe();
-		$un_subscribe = $obj_subscribe->where('id_user', '=', $this->request->param('id'))->find_all();
-		
-		// foreach entry in table where user id, delete it 
-		foreach ($un_subscribe as $s) {
-			try {
-				$s->delete();
-				
-			} catch (Exception $e) {
-				throw HTTP_Exception::factory(500,$e->getMessage());
-			}
-		}
+        if (Auth::instance()->logged_in()) 
+        {
+            $user = Auth::instance()->get_user();
 
-		Alert::set(Alert::SUCCESS, __('You are unsubscribed'));
+            DB::delete('subscribers')->where('id_user', '=', $user->id_user)->execute();
+
+    		Alert::set(Alert::SUCCESS, __('You are unsubscribed'));
+        }
+
 		$this->redirect(Route::url('default'));
 		
 	}
