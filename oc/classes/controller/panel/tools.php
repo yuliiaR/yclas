@@ -487,9 +487,22 @@ class Controller_Panel_Tools extends Auth_Controller {
         {
             if (Valid::email($a['email']))
             {
+                //gettin the id_user
+                if(isset($users_map[$a['email']]))
+                {
+                    $id_user = $users_map[$a['email']]; 
+                }
+                //doesnt exits creating it
+                else
+                {
+                    $user = Model_User::create_email($a['email'], $a['name']);
+                    $id_user = $user->id_user;
+                }
+                    
+
                 $ad = new Model_Ad();
                 $ad->id_ad          = $a['idPost']; //so images still work
-                $ad->id_user        = (isset($users_map[$a['email']]))?$users_map[$a['email']]:Model_User::create_email($a['email'], $a['name']);
+                $ad->id_user        = $id_user;
                 $ad->id_category    = (isset($categories_map[$a['idCategory']]))?$categories_map[$a['idCategory']]:1;
                 $ad->id_location    = (isset($locations_map[$a['idLocation']]))?$locations_map[$a['idLocation']]:1;
                 $ad->title          = $a['title'];
