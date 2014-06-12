@@ -56,7 +56,7 @@ class Email extends OC_Email{
             //adding anchor tags to any [URL.* match
             foreach ($replace as $key => $value) 
             {
-                if(strpos($key, '[URL.')===0 OR $key == '[SITE.URL]')
+                if(strpos($key, '[URL.')===0 OR $key == '[SITE.URL]'  AND $value!='')
                     $replace[$key] = '[url='.$value.']'.parse_url($value, PHP_URL_HOST).'[/url]';
             }
 
