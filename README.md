@@ -4,14 +4,14 @@
 # Description
 Open Classifieds is a powerful script that can transform any domain into a fully customizable classifieds site within a few seconds. Thousands of web developers trust OC to run their big classifieds website. OC can be used to create car/auto sales, job search board, buying & selling real estate and almost anything you can think of. And when you’re ready for more, there are themes and premium support available to transform your site into anything you can imagine.
 
-# License GPL v3
-Please read LICENSE.md
-
 # How to Install
-Please read INSTALL.md
+Please read [INSTALL.md](INSTALL.md)
+
+# License GPL v3
+Please read [LICENSE.md](LICENSE.md)
 
 # How to Contribute
-Please read CONTRIBUTING.md
+Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 
 # OC works thanks to other GPL software
