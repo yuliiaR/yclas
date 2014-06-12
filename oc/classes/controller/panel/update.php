@@ -513,6 +513,13 @@ class Controller_Panel_Update extends Auth_Controller {
         File::delete(APPPATH.'ko323');
         File::delete(APPPATH.'classes/image/');
 
+        //delete modules since now they are part of common
+        File::delete(MODPATH.'pagination');
+        File::delete(MODPATH.'breadcrumbs');
+        File::delete(MODPATH.'formmanager');
+        File::delete(MODPATH.'mysqli');
+
+
         //deactivate maintenance mode
         Model_Config::set_value('general','maintenance',0);
 
