@@ -5,28 +5,36 @@ Looking to contribute something to Open Classifieds? **Here's how you can help.*
 ## Environment
 Recommended PHP 5.5 , MySQL 5.5, Apache 2.2, Linux
 
-For development and to enable debug and disable cache and minify as well you can create a vhost:
+For development we recommend you to create a vhost called reoc.lo this will enable debug/profiler tools, disable cache and disable minify
 
+```
 Host file:
 127.0.0.1   reoc.lo
+```
 
+```
 Vhost apache:
 <VirtualHost *:80>
 ServerName reoc.lo
 DocumentRoot /var/www/reoc/
 </VirtualHost>
+```
 
 ## Git usage
 Example to clone project on local:
 
+```
 git clone git@github.com:open-classifieds/openclassifieds2.git reoc
 cd reoc
-git branch -a (lists all the branches)
-git checkout -b master origin/master (or any other branch)
+git submodule init
+git submodule update
+```
 
+This will clone the openclassifieds2 project + submodule at oc/modules/common https://github.com/open-classifieds/common
 
 GIT files to ignore changes, DO NOT COMMIT THIS FILES:
 
+```
 git update-index --assume-unchanged robots.txt
 git update-index --assume-unchanged oc/config/auth.php
 git update-index --assume-unchanged oc/config/database.php
@@ -38,6 +46,7 @@ git update-index --assume-unchanged oc/cache/.empty
 git update-index --assume-unchanged oc/logs/.empty
 git update-index --assume-unchanged images/.empty
 git update-index --assume-unchanged images/users/.empty
+```
 
 ## Reporting issues
 
