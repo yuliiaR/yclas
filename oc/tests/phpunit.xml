@@ -12,7 +12,7 @@
                 <directory suffix="*">../../install</directory>
                 <directory suffix="*">../../languages</directory>
                 <directory suffix="*">../../images</directory>
-                <directory suffix="*">../ko322</directory>
+                <directory suffix="*">../kohana</directory>
                 <directory suffix="*">../cache</directory>
                 <directory suffix="*">../config</directory>
                 <directory suffix="*">../logs</directory>
