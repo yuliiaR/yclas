@@ -109,16 +109,16 @@ class Auth_Controller extends Controller
 
             	$common_css = array('css/chosen.min.css' => 'screen',
             						'css/jquery.sceditor.min.css'=>'screen', 
-                                    'css/admin-styles.css' => 'screen');
+                                    'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
             	Theme::$styles = array_merge($theme_css,$common_css);
 
 	            Theme::$scripts['footer'] = array('js/jquery-1.10.2.js',
-	            								  'js/oc-panel/sidebar.js',	
+	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
 												  'js/jquery.sceditor.min.js',
 												  'js/bootstrap.min.js', 
 											      'js/chosen.jquery.min.js',
-                                                  'js/oc-panel/theme.init.js?v=2.2.0',
+                                                  'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                   );
 			}
 			else
@@ -136,16 +136,16 @@ class Auth_Controller extends Controller
 
             	$common_css = array('http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
                                     'http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
-                                    'css/admin-styles.css' => 'screen');
+                                    'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
             	Theme::$styles = array_merge($theme_css,$common_css);
 
 	            Theme::$scripts['footer'] = array('http://code.jquery.com/jquery-1.10.2.min.js',
-	            								  'js/oc-panel/sidebar.js',	
+	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
 												  'js/jquery.sceditor.min.js',
 												  'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', 
 											      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
-                                                  'js/oc-panel/theme.init.js?v=2.2.0',
+                                                  'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                   );
 	        }
 

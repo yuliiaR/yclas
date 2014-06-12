@@ -23,7 +23,7 @@ Theme::$styles = array( 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/boot
                         'http://cdn.jsdelivr.net/blueimp-gallery/2.14.0/css/blueimp-gallery.min.css' => 'screen', 
                         'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
                         'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen',
-                        'css/styles.css?v=2.2.0' => 'screen',
+                        'css/styles.css?v='.Core::VERSION => 'screen',
                         'css/slider.css' => 'screen',
         				);
 
@@ -34,7 +34,7 @@ Theme::$scripts['footer']	= array('http://ajax.googleapis.com/ajax/libs/jquery/1
                                     'http://cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js',
                                     'http://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
                                     'js/bootstrap-slider.js',
-                                    'js/theme.init.js?v=2.2.0',
+                                    'js/theme.init.js?v='.Core::VERSION,
                                     );
 
 
