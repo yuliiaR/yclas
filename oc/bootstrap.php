@@ -109,8 +109,8 @@ $modules = array(
 	'breadcrumbs'	=> COMMONPATH.'modules/breadcrumbs',// breadcrumb view
 	'formmanager'	=> COMMONPATH.'modules/formmanager',// forms to objects ORM
     'mysqli'        => COMMONPATH.'modules/mysqli',     // mysqli driver
+	'widgets'	    => COMMONPATH.'modules/widgets',    // loads default widgets
     //modules unique for open classifieds
-	'widgets'	    => MODPATH.'widgets',    // loads default widgets
 	'blacksmith'	=> MODPATH.'blacksmith', // used to handle custom fields
 );
 

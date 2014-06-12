@@ -87,11 +87,12 @@ class Controller_Panel_Widget extends Auth_Controller {
                 else
                     Alert::set(Alert::SUCCESS,sprintf(__('Widget created in %s'),$placeholder));
 
-                $this->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index')));
             } catch (Exception $e) {
                 //throw 500
                 throw HTTP_Exception::factory(500,$e->getMessage());     
             }
+
+            $this->redirect(Route::url('oc-panel', array('controller'=>'widget', 'action'=>'index')));
         }
   
         
