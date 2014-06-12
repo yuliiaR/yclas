@@ -8,7 +8,7 @@ Open Classifieds is a powerful script that can transform any domain into a fully
 Please read [INSTALL.md](INSTALL.md)
 
 # License GPL v3
-Please read [LICENSE.md](LICENSE.md)
+Please read [LICENSE](LICENSE)
 
 # How to Contribute
 Please read [CONTRIBUTING.md](CONTRIBUTING.md)
