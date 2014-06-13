@@ -674,10 +674,6 @@ class Controller_Ad extends Controller {
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
 
         $this->template->scripts['footer'] = array('js/search.js');
-		// $cat_obj = new Model_Category();
-		// $loc_obj = new Model_Location();
-		list($cat_obj,$order_categories)  = Model_Category::get_all();
-		list($loc_obj,$order_locations)  = Model_Location::get_all();
 		
 		$pagination = NULL;
         $ads   = NULL;
@@ -795,16 +791,16 @@ class Controller_Ad extends Controller {
 
 		$this->template->bind('content', $content);
 
-		$this->template->content = View::factory('pages/ad/advanced_search', array('ads'		=> $ads, 
-																		   'categories'	=> $cat_obj,
-																		   'order_categories'=> $order_categories,
-																		   'locations'	=> $loc_obj, 
-																		   'order_locations'=>$order_locations,
-																		   'pagination'	=> $pagination, 
-																		   'user'		=> $user,
-																		   'fields' 		=> Model_Field::get_all(),
-																		   ));
-        
+		$this->template->content = View::factory('pages/ad/advanced_search', array('ads'		      => $ads, 
+        																		   'categories'	      => Model_Category::get_as_array(),
+        																		   'order_categories' => Model_Category::get_multidimensional(),
+        																		   'locations'	      => Model_Location::get_as_array(), 
+        																		   'order_locations'  => Model_Location::get_multidimensional(),
+        																		   'pagination'	      => $pagination, 
+        																		   'user'		      => $user,
+        																		   'fields' 		  => Model_Field::get_all(),
+        																		   ));
+                
 		
 	}
 

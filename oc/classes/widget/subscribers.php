@@ -88,33 +88,18 @@ class Widget_Subscribers extends Widget
      */
     public function before()
     {
-
-       
         // get all categories
         if ($this->categories != FALSE)
         {
-            // loaded category
-            list($categories,$order_categories)  = Model_Category::get_all();
-
-            $arr_cat = array();
-            foreach ($categories as $cat => $value) 
-            {
-                if($value['id'] != 1)
-                    $arr_cat[$value['id']] = $value['name'];
-            }
-            
-            $this->cat_items = $categories;
-            $this->cat_order_items = $order_categories;
-
+            $this->cat_items = Model_Category::get_as_array();
+            $this->cat_order_items = Model_Category::get_multidimensional();
         }
 
         // get all locations
         if ($this->locations != FALSE)
         {
-            list($locations,$order_locations)  = Model_Location::get_all();
-
-            $this->loc_items = $locations;
-            $this->loc_order_items = $order_locations;
+            $this->loc_items        = Model_Location::get_as_array();
+            $this->loc_order_items  = Model_Location::get_multidimensional();
         }
 
         if($this->price != FALSE)

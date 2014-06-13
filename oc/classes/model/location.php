@@ -111,17 +111,18 @@ class Model_Location extends ORM {
         );
     }
 
+
     /**
-     * we get the locations in an array and a multidimensional array to know the deep @todo refactor this, is a mess
+     * we get the locations in an array 
      * @return array 
      */
-    public static function get_all()
+    public static function get_as_array()
     {
-        $locs = new self;
-        $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
-
         if ( ($locs_arr = Core::cache('locs_arr'))===NULL)
         {
+            $locs = new self;
+            $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
+
             //transform the locs to an array
             $locs_arr = array();
             foreach ($locs as $loc) 
@@ -137,10 +138,24 @@ class Model_Location extends ORM {
             Core::cache('locs_arr',$locs_arr);
         }
 
+        return $locs_arr;
+    }
+
+    /**
+     * we get the locations in an array using as key the deep they are, perfect fro chained selects
+     * @return array 
+     */
+    public static function get_by_deep()
+    {
+        // array by parent deep, 
+        // each parent deep is one array with locations of the same index
         if ( ($locs_parent_deep = Core::cache('locs_parent_deep'))===NULL)
         {
+            $locs = new self;
+            $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
+
             // array by parent deep, 
-            // each parent deep is one array with categories of the same index
+            // each parent deep is one array with locations of the same index
             $locs_parent_deep = array();
             foreach ($locs as $loc) 
             {
@@ -156,8 +171,21 @@ class Model_Location extends ORM {
             Core::cache('locs_parent_deep',$locs_parent_deep);
         }
 
+        return $locs_parent_deep;
+    }
+
+
+    /**
+     * we get the locations in an array miltidimensional by deep.
+     * @return array 
+     */
+    public static function get_multidimensional()
+    {
         if ( ($locs_m = Core::cache('locs_m'))===NULL)
         {
+            $locs = new self;
+            $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
+
             //for each location we get his siblings
             $locs_s = array();
             foreach ($locs as $loc) 
@@ -171,7 +199,60 @@ class Model_Location extends ORM {
                 $locs_m = array();
             Core::cache('locs_m',$locs_m);
         }
+        return $locs_m;
+    }
 
+    /**
+     * gets a multidimensional array wit the locations
+     * @param  array  $locs_s      id_location->array(id_siblings)
+     * @param  integer $id_location 
+     * @param  integer $deep        
+     * @return array               
+     */
+    public static function multi_locs($locs_s,$id_location = 1, $deep = 0)
+    {    
+        $ret = NULL;
+        //we take all the siblings and try to set the grandsons...
+        //we check that the id_location sibling has other siblings
+        if (isset($locs_s[$id_location]))
+        {
+            foreach ($locs_s[$id_location] as $id_sibling) 
+            {
+                //we check that the id_location sibling has other siblings
+                if (isset($locs_s[$id_sibling]))
+                {
+                    if (is_array($locs_s[$id_sibling]))
+                    {
+                        $ret[$id_sibling] = self::multi_locs($locs_s,$id_sibling,$deep+1);
+                    }
+                }
+                //no siblings we only set the key
+                else 
+                    $ret[$id_sibling] = NULL;
+                
+            }
+        }
+        
+        return $ret;
+    }
+
+
+    /**
+     * we get the locations in an array and a multidimensional array to know the deep @todo refactor this, is a mess
+     * @deprecated function not in use, just here so we do not break the API to old themes
+     * @return array 
+     */
+    public static function get_all()
+    {
+        //as array
+        $locs_arr = self::get_as_array();
+
+        //multidimensional array
+        $locs_m = self::get_multidimensional();
+
+        //array by deep
+        $locs_parent_deep = self::get_by_deep();
+        
         return array($locs_arr,$locs_m, $locs_parent_deep);
     }
 
@@ -248,39 +329,6 @@ class Model_Location extends ORM {
       return $locs_count;
     }
 
-    /**
-     * gets a multidimensional array wit the locations
-     * @param  array  $locs_s      id_location->array(id_siblings)
-     * @param  integer $id_location 
-     * @param  integer $deep        
-     * @return array               
-     */
-    public static function multi_locs($locs_s,$id_location = 1, $deep = 0)
-    {    
-        $ret = NULL;
-        //we take all the siblings and try to set the grandsons...
-        //we check that the id_location sibling has other siblings
-        if (isset($locs_s[$id_location]))
-        {
-            foreach ($locs_s[$id_location] as $id_sibling) 
-            {
-                //we check that the id_location sibling has other siblings
-                if (isset($locs_s[$id_sibling]))
-                {
-                    if (is_array($locs_s[$id_sibling]))
-                    {
-                        $ret[$id_sibling] = self::multi_locs($locs_s,$id_sibling,$deep+1);
-                    }
-                }
-                //no siblings we only set the key
-                else 
-                    $ret[$id_sibling] = NULL;
-                
-            }
-        }
-        
-        return $ret;
-    }
 
 	public function form_setup($form)
 	{
@@ -385,7 +433,7 @@ class Model_Location extends ORM {
         if ($this->loaded())
         {
             //getting all the cats as array
-            list($locs_arr,$locs_m) = Model_Location::get_all();
+            $locs_arr = Model_Location::get_as_array();
 
             //getin the parent of this location
             $id_location_parent = $locs_arr[$this->id_location]['id_location_parent'];

@@ -32,7 +32,8 @@ class Controller_Panel_Location extends Auth_Crud {
         $this->template->scripts['footer'][] = 'js/oc-panel/locations.js';
         $this->template->scripts['footer'][] = 'http://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
 
-        list($locs,$order)  = Model_Location::get_all();
+        $locs  = Model_Location::get_as_array();
+        $order = Model_Location::get_multidimensional();
 
         $this->template->content = View::factory('oc-panel/pages/locations',array('locs' => $locs,'order'=>$order));
     }
@@ -213,7 +214,7 @@ class Controller_Panel_Location extends Auth_Crud {
         Cache::instance()->delete_all();    
 
         //getting all the cats as array
-        list($locs_arr,$locs_m) = Model_Location::get_all();
+        $locs_arr  = Model_Location::get_as_array();
 
         $locs = new Model_Location();
         $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');

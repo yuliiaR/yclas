@@ -60,8 +60,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 	        $hits = new Model_Visit();
 	        // $hits->find_all();
 
-			$list_cat = Model_Category::get_all();
-			$list_loc = Model_Location::get_all();
+			$list_cat = Model_Category::get_as_array();
+			$list_loc = Model_Location::get_as_array();
 
 
 	       	$arr_hits = array(); // array of hit integers 
@@ -131,8 +131,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 	        $hits = new Model_Visit();
 	        $hits->find_all();
 
-			$list_cat = Model_Category::get_all();
-			$list_loc = Model_Location::get_all();
+			$list_cat = Model_Category::get_as_array();
+			$list_loc = Model_Location::get_as_array();
 
 	       	$arr_hits = array(); // array of hit integers 
 	       	

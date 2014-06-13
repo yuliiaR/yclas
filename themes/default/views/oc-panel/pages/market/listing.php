@@ -23,6 +23,12 @@ foreach ($market as $item):?>
                     <span class="label label-info">$<?=$item['price']?></span>
                 <?endif?>
                 <span class="label label-success"><?=$item['type']?></span>
+                <?if (empty($item['url_demo'])===FALSE):?>
+                    <a class="btn btn-default btn-xs" target="_blank" href="<?=$item['url_demo']?>">
+                        <i class="glyphicon  glyphicon-eye-open"></i>
+                            <?=__('Preview')?>
+                    </a>    
+                <?endif?>
             </p>
             <p>
                 <?=Text::bb2html($item['description'])?>
@@ -37,12 +43,12 @@ foreach ($market as $item):?>
                 <a class="btn btn-primary oe_button" data-toggle="modal" data-target="#marketModal" href="<?=$item['url_buy']?>">
                     <i class="glyphicon  glyphicon-shopping-cart"></i>  <?=__('Buy Now')?>
                 </a>
-                <?if (empty($item['url_demo'])===FALSE):?>
-                    <a class="btn btn-default btn-xs" target="_blank" href="<?=$item['url_demo']?>">
-                        <i class="glyphicon  glyphicon-eye-open"></i>
-                            <?=__('Preview')?>
-                    </a>    
+                <?if (strtolower($item['type'])=='themes' AND $item['title']!='Pack of themes'):?>
+                <a class="btn btn-warning" href="http://open-classifieds.com/hosting/">
+                    <i class="glyphicon  glyphicon-shopping-cart"></i>  Hosted $3.49/M
+                </a>
                 <?endif?>
+                
                 
             </p>
         </div>
@@ -51,3 +57,29 @@ foreach ($market as $item):?>
     <?$i++;
     endforeach?>
 <?endif?>
+
+    <div class="col-md-4 col-sm-4">
+    <div class="thumbnail" >
+
+        <img  class="thumb_market" src="http://open-classifieds.com/files/market/custom.png">
+       
+        
+        <div class="caption">
+            <h3>Custom Theme</h3>
+            <p>
+                <span class="label label-info">From $200</span>
+                <span class="label label-success">themes</span>
+            </p>
+
+            <p>
+                Want to make your classified ads site unique to look more professional for your customers? You can have a theme designed specially for you!
+            </p>
+            
+            <p>
+                <a class="btn btn-primary"  href="http://open-classifieds.com/customization/">
+                    <i class="glyphicon  glyphicon-shopping-cart"></i>  Get a quote!
+                </a>                
+            </p>
+        </div>
+    </div>
+    </div>

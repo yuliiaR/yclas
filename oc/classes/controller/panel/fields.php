@@ -34,7 +34,8 @@ class Controller_Panel_Fields extends Auth_Controller {
         $this->template->title = __('New Custom Field for Advertisement');
 
         //find all, for populating form select fields 
-        list($categories, $order_categories)  = Model_Category::get_all();
+        $categories         = Model_Category::get_as_array();  
+        $order_categories   = Model_Category::get_multidimensional();
 
         if ($_POST)
         {
@@ -84,7 +85,7 @@ class Controller_Panel_Fields extends Auth_Controller {
         $this->template->title = __('Edit Custom Field for Advertisement');
 
         //find all, for populating form select fields 
-        list($categories)  = Model_Category::get_all();
+        $categories  = Model_Category::get_as_array();
 
         if ($_POST)
         {

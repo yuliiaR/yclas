@@ -39,7 +39,9 @@ class Controller_New extends Controller
 		}
 
 		//find all, for populating form select fields 
-		list($categories,$order_categories, $order_parent_deep)  = Model_Category::get_all();
+		$categories         = Model_Category::get_as_array();  
+        $order_categories   = Model_Category::get_multidimensional();
+        $order_parent_deep  = Model_Category::get_by_deep();
 
 		// NO categories redirect ADMIN to categories panel
 		if(count($order_categories) == 0)
@@ -47,7 +49,7 @@ class Controller_New extends Controller
 			if(Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
 			{
 				Alert::set(Alert::INFO, __('Please, first create some categories.'));
-				HTTP::redirect(Route::url('oc-panel',array('controller'=>'category','action'=>'index')));
+				$this->redirect(Route::url('oc-panel',array('controller'=>'category','action'=>'index')));
 			}
 			else
 			{
@@ -56,7 +58,10 @@ class Controller_New extends Controller
 			}
 		}
 
-		list($locations,$order_locations, $loc_parent_deep)  	 = Model_Location::get_all();
+        //get locations
+        $locations         = Model_Location::get_as_array();  
+        $order_locations   = Model_Location::get_multidimensional();
+        $loc_parent_deep   = Model_Location::get_by_deep();
 		
 		// bool values from DB, to show or hide this fields in view
 		$form_show = array('captcha'	=>core::config('advertisement.captcha'),

@@ -121,18 +121,18 @@
 				</label>
 			</td>
 			
-			<?foreach($category[0] as $cat => $c){ if ($c['id'] == $ad->id_category) $cat_name = $c['seoname']; }?>
+			<?foreach($category as $cat => $c){ if ($c['id'] == $ad->id_category) $cat_name = $c['seoname']; }?>
 			<td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?=wordwrap($ad->title, 15, "<br />\n"); ?></a>
 			</td>
 
-			<? foreach($category[0] as $cat => $c ):?>
+			<? foreach($category as $cat => $c ):?>
 				<? if ($c['id'] == $ad->id_category): ?>
 					<td><?= wordwrap($c['name'], 15, "<br />\n"); ?>
 				<?endif?>
 	    	<?endforeach?>
 			
             <?$locat_name = NULL;?>
-			<?foreach($location[0] as $loc => $l):?>
+			<?foreach($location as $loc => $l):?>
 				<? if ($l['id'] == $ad->id_location): 
                     $locat_name=$l['name'];?>
 					<td><?=wordwrap($locat_name, 15, "<br />\n");?></td>

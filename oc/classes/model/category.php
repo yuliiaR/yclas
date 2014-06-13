@@ -124,17 +124,17 @@ class Model_Category extends ORM {
     }
 
     /**
-     * we get the categories in an array and a multidimensional array to know the deep @todo refactor this, is a mess
+     * we get the categories in an array 
      * @return array 
      */
-    public static function get_all()
+    public static function get_as_array()
     {
-        $cats = new self;
-        $cats = $cats->order_by('order','asc')->find_all()->cached()->as_array('id_category');
-
         //transform the cats to an array
         if ( ($cats_arr = Core::cache('cats_arr'))===NULL)
         {
+            $cats = new self;
+            $cats = $cats->order_by('order','asc')->find_all()->cached()->as_array('id_category');
+
             $cats_arr = array();
             foreach ($cats as $cat) 
             {
@@ -149,12 +149,23 @@ class Model_Category extends ORM {
             }
             Core::cache('cats_arr',$cats_arr);
         }   
-        
 
+        return $cats_arr;
+    }
+
+    /**
+     * we get the categories in an array using as key the deep they are, perfect fro chained selects
+     * @return array 
+     */
+    public static function get_by_deep()
+    {
         // array by parent deep, 
         // each parent deep is one array with categories of the same index
         if ( ($cats_parent_deep = Core::cache('cats_parent_deep'))===NULL)
         {
+            $cats = new self;
+            $cats = $cats->order_by('order','asc')->find_all()->cached()->as_array('id_category');
+
             $cats_parent_deep = array();
             foreach ($cats as $cat) 
             {
@@ -171,9 +182,22 @@ class Model_Category extends ORM {
             Core::cache('cats_parent_deep',$cats_parent_deep);
         }
 
+        return $cats_parent_deep;
+    }
+
+
+    /**
+     * we get the categories in an array miltidimensional by deep.
+     * @return array 
+     */
+    public static function get_multidimensional()
+    {
         //multidimensional array
         if ( ($cats_m = Core::cache('cats_m'))===NULL)
         {
+            $cats = new self;
+            $cats = $cats->order_by('order','asc')->find_all()->cached()->as_array('id_category');
+
             //for each category we get his siblings
             $cats_s = array();
             foreach ($cats as $cat) 
@@ -188,7 +212,7 @@ class Model_Category extends ORM {
             Core::cache('cats_m',$cats_m);
         }
 
-        return array($cats_arr,$cats_m, $cats_parent_deep);
+        return $cats_m;
     }
 
     /**
@@ -222,6 +246,25 @@ class Model_Category extends ORM {
             }
         }
         return $ret;
+    }
+
+    /**
+     * we get the categories in an array and a multidimensional array to know the deep @todo refactor this, is a mess
+     * @deprecated function not in use, just here so we do not break the API to old themes
+     * @return array 
+     */
+    public static function get_all()
+    {
+        //as array
+        $cats_arr = self::get_as_array();
+
+        //multidimensional array
+        $cats_m = self::get_multidimensional();
+
+        //array by deep
+        $cats_parent_deep = self::get_by_deep();
+        
+        return array($cats_arr,$cats_m, $cats_parent_deep);
     }
 
 
@@ -426,7 +469,7 @@ class Model_Category extends ORM {
         if ($this->loaded())
         {
             //getting all the cats as array
-            list($cats_arr,$cats_m, $cats_parent_deep) = Model_Category::get_all();
+            $cats_arr = Model_Category::get_as_array();
 
             //getin the parent of this category
             $id_category_parent = $cats_arr[$this->id_category]['id_category_parent'];

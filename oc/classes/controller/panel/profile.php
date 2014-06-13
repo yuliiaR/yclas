@@ -374,10 +374,15 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 		$form = new Model_Ad($this->request->param('id'));
 		
-		//find all, for populating form select fields 
-		list($categories,$order_categories, $parent_category)  = Model_Category::get_all();
+        //find all, for populating form select fields 
+        $categories         = Model_Category::get_as_array();  
+        $order_categories   = Model_Category::get_multidimensional();
+        $parent_category  = Model_Category::get_by_deep();
 
-		list($locations,$order_locations, $loc_parent_deep)  = Model_Location::get_all();
+        //get locations
+        $locations         = Model_Location::get_as_array();  
+        $order_locations   = Model_Location::get_multidimensional();
+        $loc_parent_deep   = Model_Location::get_by_deep();
 
 	
 		if(Auth::instance()->get_user()->id_user == $form->id_user OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
