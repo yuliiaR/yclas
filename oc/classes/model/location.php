@@ -374,6 +374,50 @@ class Model_Location extends ORM {
         return $locs;
     }
 
+     /**
+     * returns all the siblings ids+ the idlocation, used to filter the ads
+     * @return array
+     */
+    public function get_siblings_ids()
+    {
+        if ($this->loaded())
+        {
+            //name used in the cache for storage
+            $cache_name = 'get_siblings_ids_lcoations_'.$this->id_location;
+
+            if ( ($ids_siblings = Core::cache($cache_name))===NULL)
+            {
+                //array that contains all the siblings as keys (1,2,3,4,..)
+                $ids_siblings = array();
+
+                //we add himself as we use the clause IN on the where
+                $ids_siblings[] = $this->id_location;
+
+                $locations = new self();
+                $locations = $locations->where('id_location_parent','=',$this->id_location)->cached()->find_all();
+
+                foreach ($locations as $location) 
+                {
+                    $ids_siblings[] = $location->id_location;
+
+                    //adding his children recursevely if they have any
+                    if ( count($siblings_locs = $location->get_siblings_ids())>1 ) 
+                        $ids_siblings = array_merge($ids_siblings,$siblings_locs);       
+                }
+
+                //removing repeated values
+                $ids_siblings = array_unique($ids_siblings);
+
+                //cache the result is expensive!
+                Core::cache($cache_name,$ids_siblings);
+            }
+
+            return $ids_siblings;
+        }
+
+        //not loaded
+        return NULL;
+    }
 
     /**
      * return the title formatted for the URL
