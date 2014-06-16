@@ -599,7 +599,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
 				 	                                'seotitle'=> $ad->seotitle),TRUE);
 
-					$ret = $usr->email('ads.activated',array('[USER.OWNER]'=>$usr->name,
+					$ret = $usr->email('ads_activated',array('[USER.OWNER]'=>$usr->name,
 															 '[URL.QL]'=>$url_ql,
 															 '[AD.NAME]'=>$ad->title,
 															 '[URL.EDITAD]'=>$edit_url,

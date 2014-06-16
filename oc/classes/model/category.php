@@ -280,6 +280,7 @@ class Model_Category extends ORM {
             $expr_date = core::config('advertisement.expire_date');
             $db_prefix = core::config('database.default.table_prefix');
 
+            //getting categories and how many ads have a category.
             $cats = DB::select('c.*')
                     ->select(array(DB::select(DB::expr('COUNT("id_ad")'))
                             ->from(array('ads','a'))
@@ -293,11 +294,15 @@ class Model_Category extends ORM {
                     ->cached()
                     ->execute();
 
+            //array where we store the categories with the count
             $cats_count = array();
+
+            //array to store parents_id with the count. So later we can easily add them up
             $parent_count = array();
 
             foreach ($cats as $c) 
             {
+
                 $cats_count[$c->id_category] = array(   'id_category'   => $c->id_category,
                                                         'seoname'       => $c->seoname,
                                                         'name'          => $c->name,

@@ -29,7 +29,7 @@ class Controller_Contact extends Controller {
                     if (Email::content(core::config('email.notify_email'),
                                         core::config('general.site_name'),
                                         core::post('email'),
-                                        core::post('name'),'contact.admin',
+                                        core::post('name'),'contact_admin',
                                         $replace))
                         Alert::set(Alert::SUCCESS, __('Your message has been sent'));
                     else
@@ -79,7 +79,7 @@ class Controller_Contact extends Controller {
                     else
                         $to = NULL;
 
-                    $ret = $user->email('user.contact',array('[EMAIL.BODY]'		=>core::post('message'),
+                    $ret = $user->email('user_contact',array('[EMAIL.BODY]'		=>core::post('message'),
                                                              '[AD.NAME]'        =>$ad->title,
                         									 '[EMAIL.SENDER]'	=>core::post('name'),
                         									 '[EMAIL.FROM]'		=>core::post('email')),
@@ -144,7 +144,7 @@ class Controller_Contact extends Controller {
                                   core::post('email'),
                                   core::post('message')))
                 {
-                    $ret = $user->email('userprofile.contact',array('[EMAIL.BODY]'     =>core::post('message'),
+                    $ret = $user->email('userprofile_contact',array('[EMAIL.BODY]'     =>core::post('message'),
                                                                     '[EMAIL.SENDER]'   =>core::post('name'),
                                                                     '[EMAIL.SUBJECT]'   =>core::post('subject'),
                                                                     '[EMAIL.FROM]'     =>core::post('email')),core::post('email'),core::post('name'));

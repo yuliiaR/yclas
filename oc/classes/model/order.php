@@ -124,7 +124,7 @@ class Model_Order extends ORM {
 
                         // send email to ad OWNER
                         $user_owner = new Model_User($this->ad->id_user);
-                        $ret = $user_owner->email('outofstock',$email_content);
+                        $ret = $user_owner->email('out_of_stock',$email_content);
 
                     }
                 
@@ -144,10 +144,10 @@ class Model_Order extends ORM {
                                             '[ORDER.ID]'      =>$this->id_order,
                                             '[PRODUCT.ID]'    =>$this->id_product);
                     // send email to BUYER
-                    $ret = $user->email('adspurchased',$email_content);
+                    $ret = $user->email('ads_purchased',$email_content);
                     // send email to ad OWNER
                     $user_owner = new Model_User($this->ad->id_user);
-                    $ret = $user_owner->email('adssold',$email_content);
+                    $ret = $user_owner->email('ads_sold',$email_content);
 
                 } catch (Exception $e) {
                     echo $e;
@@ -170,7 +170,7 @@ class Model_Order extends ORM {
                         $url_ad = $user->ql('ad', array('category'=>$advert->id_category,
                                                         'seotitle'=>$advert->seotitle), TRUE);
 
-                        $ret = $user->email('ads.user_check',array('[URL.CONTACT]'  =>$url_cont,
+                        $ret = $user->email('ads_user_check',array('[URL.CONTACT]'  =>$url_cont,
                                                                     '[URL.AD]'      =>$url_ad,
                                                                     '[AD.NAME]'     =>$advert->title));
 
@@ -194,7 +194,7 @@ class Model_Order extends ORM {
                                                               'action'    => 'update',
                                                               'id'        => $this->id_ad),TRUE);
 
-                        $ret = $user->email('ads.notify',array('[URL.QL]'=>$url_ql,
+                        $ret = $user->email('ads_notify',array('[URL.QL]'=>$url_ql,
                                                                '[AD.NAME]'=>$advert->title,
                                                                '[URL.EDITAD]'=>$edit_url,
                                                                '[URL.DELETEAD]'=>$delete_url));     

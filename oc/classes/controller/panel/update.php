@@ -76,7 +76,7 @@ class Controller_Panel_Update extends Auth_Controller {
         
         $contents = array(array('order'=>'0',
                                'title'=>'Hello [USER.NAME]!',
-                               'seotitle'=>'userprofile.contact',
+                               'seotitle'=>'userprofile_contact',
                                'description'=>"User [EMAIL.SENDER] [EMAIL.FROM], have a message for you: \n\n [EMAIL.SUBJECT] \n\n[EMAIL.BODY]. \n\n Regards!",
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
@@ -113,14 +113,14 @@ class Controller_Panel_Update extends Auth_Controller {
 
         $contents = array(array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!',
-                               'seotitle'=>'ads.subscribers',
+                               'seotitle'=>'ads_subscribers',
                                'description'=>"Hello [USER.NAME],\n\nYou may be interested in this one [AD.TITLE]!\n\nYou can visit this link to see advertisement [URL.AD]",
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!',
-                               'seotitle'=>'ads.to_admin',
+                               'seotitle'=>'ads_to_admin',
                                'description'=>"Click here to visit [URL.AD]",
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
@@ -335,21 +335,21 @@ class Controller_Panel_Update extends Auth_Controller {
                         );
         $contents = array(array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is sold on [SITE.NAME]!',
-                               'seotitle'=>'adssold',
+                               'seotitle'=>'ads_sold',
                                'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nPlease check your bank account for the incoming payment.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is purchased on [SITE.NAME]!',
-                               'seotitle'=>'adspurchased',
+                               'seotitle'=>'ads_purchased',
                                'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME], with a details provided abouve.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is out of stock on [SITE.NAME]!',
-                               'seotitle'=>'outofstock',
+                               'seotitle'=>'out_of_stock',
                                'description'=>"Hello [USER.NAME],\n\nWhile your ad is out of stock, it is unavailable for others to see. If you wish to increase stock and activate, please follow this link [URL.EDIT].\n\nRegards!", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
@@ -508,6 +508,29 @@ class Controller_Panel_Update extends Auth_Controller {
 
         $prefix = Database::instance()->table_prefix();
 
+        //updating emails contents replacing . for _
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle=REPLACE(seotitle,'.','_') WHERE type='email'")->execute();
+        }catch (exception $e) {}
+
+        //updating contents bad names
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='ads_sold' WHERE seotitle='adssold' AND type='email'")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='out_of_stock' WHERE seotitle='outofstock' AND type='email'")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='ads_purchased' WHERE seotitle='adspurchased' AND type='email'")->execute();
+        }catch (exception $e) {}
+        //end updating emails
+        
         
         //delete old files from 323
         File::delete(APPPATH.'ko323');

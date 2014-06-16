@@ -91,7 +91,7 @@ class Controller_Panel_Auth extends Controller {
                     $url_ql = $user->ql('oc-panel',array( 'controller' => 'profile', 
                                                           'action'     => 'changepass'),TRUE);
 
-                    $ret = $user->email('auth.remember',array('[URL.QL]'=>$url_ql));
+                    $ret = $user->email('auth_remember',array('[URL.QL]'=>$url_ql));
 
                     //email sent notify and redirect him
                     if ($ret)
@@ -177,7 +177,7 @@ class Controller_Panel_Auth extends Controller {
 						//login the user
 						Auth::instance()->login(core::post('email'), core::post('password1'));
                         //send email
-                        $user->email('auth.register',array('[USER.PWD]'=>core::post('password1'),
+                        $user->email('auth_register',array('[USER.PWD]'=>core::post('password1'),
                                                             '[URL.QL]'=>$user->ql('default',NULL,TRUE))
                                                     );
 
