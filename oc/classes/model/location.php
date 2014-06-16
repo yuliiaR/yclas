@@ -278,10 +278,12 @@ class Model_Location extends ORM {
         if ( ($locs_count = Core::cache('locs_count'))===NULL)
         {
             $expr_date = core::config('advertisement.expire_date');
+            $db_prefix = core::config('database.default.table_prefix');
+
             $locs = DB::select('l.*')
                   ->select(array(DB::select(DB::expr('COUNT("id_ad")'))
                           ->from(array('ads','a'))
-                          ->where('a.id_location','=',DB::expr(core::config('database.default.table_prefix').'l.id_location'))
+                          ->where('a.id_location','=',DB::expr($db_prefix.'l.id_location'))
                           ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', Date::unix2mysql())
                           ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
                           ->group_by('id_location'), 'count'))
@@ -291,20 +293,23 @@ class Model_Location extends ORM {
                   ->cached()
                   ->execute();
 
+            //array where we store the locations with the count
             $locs_count = array();
+
+            //array to store parents_id with the count. So later we can easily add them up
             $parent_count = array();
 
             foreach ($locs as $l) 
             {
-                $locs_count[$l->id_location] = array('id_location'          => $l->id_location,
-                                                'seoname'             => $l->seoname,
-                                                'name'                => $l->name,
-                                                'id_location_parent'  => $l->id_location_parent,
-                                                'parent_deep'         => $l->parent_deep,
-                                                'order'               => $l->order,
-                                                'has_siblings'        => FALSE,
-                                                'count'               => (is_numeric($l->count))?$l->count:0
-                                                );
+                $locs_count[$l->id_location] = array(   'id_location'         => $l->id_location,
+                                                        'seoname'             => $l->seoname,
+                                                        'name'                => $l->name,
+                                                        'id_location_parent'  => $l->id_location_parent,
+                                                        'parent_deep'         => $l->parent_deep,
+                                                        'order'               => $l->order,
+                                                        'has_siblings'        => FALSE,
+                                                        'count'               => (is_numeric($l->count))?$l->count:0
+                                                        );
                 //counting the ads the parent have
                 if ($l->id_location_parent!=0)
                 {
