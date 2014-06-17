@@ -3,7 +3,7 @@
 Looking to contribute something to Open Classifieds? **Here's how you can help.**
 
 ## Environment
-Recommended PHP 5.5 , MySQL 5.5, Apache 2.2, Linux
+Recommended PHP 5.5 , MySQL 5.5, Apache 2.2, Linux.
 
 For development we recommend you to create a vhost called 'reoc.lo' this will enable debug/profiler tools, disable cache and disable minify
 
@@ -67,6 +67,20 @@ Ready ;)
 Normal commit
 
 Changes in oc/modules/common (common project/submodule)
+
+## Keep sync with original
+First time, add a remote with the upstream
+```
+git remote add upstream git@github.com:open-classifieds/openclassifieds2.git
+```
+
+Everytime you want to sync just:
+```
+git fetch upstream
+git merge upstream/master
+```
+
+Remember to be at you master branch!
 
 ## Pull Requests
 
