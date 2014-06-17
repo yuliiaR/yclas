@@ -69,90 +69,121 @@ class Auth_Controller extends Controller
 	
 		if($this->auto_render===TRUE)
 		{
-			// Load the template
-			$this->template = ($template===NULL)?'oc-panel/main':$template;
-			$this->template = View::factory($this->template);
-				
-			// Initialize empty values
-			$this->template->title            = __('Panel').' - '.core::config('general.site_name');
-			$this->template->meta_keywords    = '';
-			$this->template->meta_description = '';
-			$this->template->meta_copyright   = 'Open Classifieds '.Core::VERSION;
-			$this->template->header           = View::factory('oc-panel/header');
-			$this->template->content          = '';
-			$this->template->footer           = View::factory('oc-panel/footer');
-			$this->template->styles           = array();
-			$this->template->scripts          = array();
-			$this->template->user 			  = Auth::instance()->get_user();
+            // Load the template
+            $this->template = ($template===NULL)?'oc-panel/main':$template;
+            //if its and ajx request I want only the content
+            if(Core::get('rel')=='ajax')
+                $this->template = 'oc-panel/content';
+            $this->template = View::factory($this->template);
+                
+            // Initialize empty values
+            $this->template->title            = __('Panel').' - '.core::config('general.site_name');
+            $this->template->meta_keywords    = '';
+            $this->template->meta_description = '';
+            $this->template->meta_copyright   = 'Open Classifieds '.Core::VERSION;
+            $this->template->header           = '';
+            $this->template->content          = '';
+            $this->template->footer           = '';
+            $this->template->styles           = array();
+            $this->template->scripts          = array();
+            $this->template->user             = Auth::instance()->get_user();
 
+            //non ajax request
+            if (Core::get('rel')!='ajax')
+            {
+    			$this->template->header           = View::factory('oc-panel/header');
+    			$this->template->footer           = View::factory('oc-panel/footer');
 
-			/**
-			 * custom options for the theme
-			 * @var array
-			 */
-			Theme::$options = Theme::get_options();
-			//we load earlier the theme since we need some info
-			Theme::load();
+    			/**
+    			 * custom options for the theme
+    			 * @var array
+    			 */
+    			Theme::$options = Theme::get_options();
+    			//we load earlier the theme since we need some info
+    			Theme::load();
 
-			if (Theme::get('cdn_files') == FALSE)
-			{
-				//other color
-	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
-	            {
-	                $theme_css = array('css/'.Theme::get('admin_theme').'-bootstrap.min.css' => 'screen',);
-	            }
-	            //default theme
-	            else
-	            {
-	                $theme_css = array('css/bootstrap.min.css' => 'screen');
-	            }
+    			if (Theme::get('cdn_files') == FALSE)
+    			{
+    				//other color
+    	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
+    	            {
+    	                $theme_css = array('css/'.Theme::get('admin_theme').'-bootstrap.min.css' => 'screen',);
+    	            }
+    	            //default theme
+    	            else
+    	            {
+    	                $theme_css = array('css/bootstrap.min.css' => 'screen');
+    	            }
 
-            	$common_css = array('css/chosen.min.css' => 'screen',
-            						'css/jquery.sceditor.min.css'=>'screen', 
-                                    'css/admin-styles.css?v='.Core::VERSION => 'screen');
+                	$common_css = array('css/chosen.min.css' => 'screen',
+                						'css/jquery.sceditor.min.css'=>'screen', 
+                                        'css/loadingbar.css'=>'screen', 
+                                        'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
-            	Theme::$styles = array_merge($theme_css,$common_css);
+                	Theme::$styles = array_merge($theme_css,$common_css);
 
-	            Theme::$scripts['footer'] = array('js/jquery-1.10.2.js',
-	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
-												  'js/jquery.sceditor.min.js',
-												  'js/bootstrap.min.js', 
-											      'js/chosen.jquery.min.js',
-                                                  'js/oc-panel/theme.init.js?v='.Core::VERSION,
-                                                  );
-			}
-			else
-			{
-	            //other color
-	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
-	            {
-	                $theme_css = array('http://netdna.bootstrapcdn.com/bootswatch/3.1.1/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
-	            }
-	            //default theme
-	            else
-	            {
-	                $theme_css = array('http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' => 'screen');
-	            }
+    	            Theme::$scripts['footer'] = array('js/jquery-1.10.2.js',
+    	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
+    												  'js/jquery.sceditor.min.js',
+    												  'js/bootstrap.min.js', 
+    											      'js/chosen.jquery.min.js',
+                                                      'js/oc-panel/theme.init.js?v='.Core::VERSION,
+                                                      );
+    			}
+    			else
+    			{
+    	            //other color
+    	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
+    	            {
+    	                $theme_css = array('http://netdna.bootstrapcdn.com/bootswatch/3.1.1/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
+    	            }
+    	            //default theme
+    	            else
+    	            {
+    	                $theme_css = array('http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' => 'screen');
+    	            }
 
-            	$common_css = array('http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
-                                    'http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
-                                    'css/admin-styles.css?v='.Core::VERSION => 'screen');
+                	$common_css = array('http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
+                                        'http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
+                                        'css/loadingbar.css'=>'screen', 
+                                        'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
-            	Theme::$styles = array_merge($theme_css,$common_css);
+                	Theme::$styles = array_merge($theme_css,$common_css);
 
-	            Theme::$scripts['footer'] = array('http://code.jquery.com/jquery-1.10.2.min.js',
-	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
-												  'js/jquery.sceditor.min.js',
-												  'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', 
-											      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
-                                                  'js/oc-panel/theme.init.js?v='.Core::VERSION,
-                                                  );
-	        }
+    	            Theme::$scripts['footer'] = array('http://code.jquery.com/jquery-1.10.2.min.js',
+    	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
+    												  'js/jquery.sceditor.min.js',
+    												  'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', 
+    											      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
+                                                      'js/jquery.loadingbar.min.js',
+                                                      'js/oc-panel/theme.init.js?v='.Core::VERSION,
+                                                      );
+    	        }
+            }
 
 		}
 		
 		
 	}
+
+
+
+    /**
+     * Fill in default values for our properties before rendering the output.
+     */
+    public function after()
+    {
+        //ajax request
+        if (Core::get('rel')=='ajax')
+        {
+            // Add defaults to template variables.
+            $this->template->styles  = $this->template->styles;
+            $this->template->scripts = array_reverse($this->template->scripts);
+            $this->response->body($this->template->render());
+        }
+        else
+            parent::after();
+    }
 
 
 }

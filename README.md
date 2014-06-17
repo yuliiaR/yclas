@@ -38,3 +38,4 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 * Blacksmith https://github.com/themusicman/Blacksmith
 * Hybrid Auth http://hybridauth.sourceforge.net/
 * MySQLi Kohana https://github.com/Azuka/Kohana-Database-MySQLi
+* JS Loading Bar https://github.com/peachananr/loading-bar
