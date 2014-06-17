@@ -64,23 +64,23 @@ git checkout master
 Ready ;)
 
 ## How to commit
-Normal commit
+If you have made modifications to the code.
 
-Changes in oc/modules/common (common project/submodule)
-
-## Keep sync with original
-First time, add a remote with the upstream
 ```
-git remote add upstream git@github.com:open-classifieds/openclassifieds2.git
+git status # to see what's going on
+git commit -a -m 'message here, this will commit the changes on the tracked files'
+git push origin master # will "upload" the changes to your repo
 ```
 
-Everytime you want to sync just:
+Tricks
 ```
-git fetch upstream
-git merge upstream/master
+git add . # will add all the files, even new ones
+git add -u # will add all the tracked files even the deleted ones
 ```
 
-Remember to be at you master branch!
+
+If you made changes in any file located at oc/modules/common (common submodule), you need to browse that directory since its a different repo. To commit works exactly the same.
+
 
 ## Pull Requests
 
@@ -90,6 +90,22 @@ Notes:
 - Try to submit pull requests against master branch for easier merging
 - Try not to pollute your pull request with unintended changes--keep them simple and small
 - Try to share which browsers your code has been tested in before submitting a pull request
+
+## Keep sync with original repo
+First time, add a remote with the upstream
+```
+git remote add upstream git@github.com:open-classifieds/openclassifieds2.git
+```
+
+Everytime you want to sync just
+```
+git fetch upstream
+git merge upstream/master
+```
+
+Do the same for common repo if needed.
+
+Remember to be at you master branch!
 
 ## Reporting issues
 
