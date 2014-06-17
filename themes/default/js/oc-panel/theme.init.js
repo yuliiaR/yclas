@@ -84,37 +84,51 @@ $(function (){
 
 });
 
-_debounce = function(func, wait, immediate) {
-    var timeout, result;
-    return function() {
-        var context = this, args = arguments;
-        var later = function() {
-            timeout = null;
-            if (!immediate) result = func.apply(context, args);
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) result = func.apply(context, args);
-        return result;
-    };
-};
-
 
 function setCookie(c_name,value,exdays)
 {
-var exdate = new Date();
-exdate.setDate(exdate.getDate() + exdays);
-var c_value = escape(value) + ((exdays==null) ? "" : ";path=/; expires="+exdate.toUTCString());
-document.cookie=c_name + "=" + c_value;
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var c_value = escape(value) + ((exdays==null) ? "" : ";path=/; expires="+exdate.toUTCString());
+    document.cookie=c_name + "=" + c_value;
 }
 
-// $(window).load(function(){
-//     $('input,select,textarea').addClass('form-control');
-//     $('label').next().addClass('col-sm-4');
-//     $('textarea').parent().removeClass('col-sm-4').addClass('col-sm-6');
-//     $('.control-label').addClass('col-sm-3');
-//     $('.form-group').removeClass('form-group').addClass('form-group');
-//     $('input[type=checkbox],input[type=radio]').removeClass('form-control').removeClass('input-large');
 
-// });
+//from https://github.com/peachananr/loading-bar
+//I have recoded it a bit since uses a loop each, which is not convenient for me at all
+$(function(){
+    $("a.ajax-load").click(function(e){
+        e.preventDefault(); 
+        button = $(this);
+        //get the link location that was clicked
+        pageurl = button.attr('href');
+
+        //to get the ajax content and display in div with id 'content'
+        $.ajax({
+            url:pageurl+'?rel=ajax',
+            beforeSend: function() {
+                                        if ($("#loadingbar").length === 0) {
+                                            $("body").append("<div id='loadingbar'></div>")
+                                            $("#loadingbar").addClass("waiting").append($("<dt/><dd/>"));
+                                            $("#loadingbar").width((50 + Math.random() * 30) + "%");
+                                        }
+                                    }
+                                    }).always(function() {
+                                        $("#loadingbar").width("101%").delay(200).fadeOut(400, function() {
+                                        $(this).remove();});
+                                    }).done(function(data) {
+                                        document.title = button.attr('title');
+                                        if ( history.replaceState ) history.pushState( {}, document.title, pageurl );
+                                        $("#content").html(data);});
+
+        return false;  
+    });
+    
+});
+
+/* the below code is to override back button to get the ajax content without reload*/
+$(window).bind('popstate', function() {
+    $.ajax({url:location.pathname+'?rel=ajax',success: function(data){
+        $('#content').html(data);
+    }});
+});
