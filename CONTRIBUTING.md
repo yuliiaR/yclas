@@ -52,7 +52,7 @@ git update-index --assume-unchanged .gitmodules
 Modify the hidden file .gitmodules, this is to track changes at the neo22s/common repo
 - Ex git@github.com:open-classifieds.com/common.git
 - To git@github.com:neo22s/common.git
-- Save file
+- Save file.
 
 
 Go to common module and change to branch master
