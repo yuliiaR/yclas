@@ -16,7 +16,7 @@ Host file:
 Vhost apache:
 <VirtualHost *:80>
 ServerName reoc.lo
-DocumentRoot /var/www/reoc/
+DocumentRoot /var/www/open-classifieds/
 </VirtualHost>
 ```
 
@@ -76,6 +76,7 @@ Tricks
 ```
 git add . # will add all the files, even new ones
 git add -u # will add all the tracked files even the deleted ones
+git commit -a -m 'working on open-classifieds/openclassifieds#725' # this will mention an issue in the repo
 ```
 
 
