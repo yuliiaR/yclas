@@ -5,7 +5,7 @@ Looking to contribute something to Open Classifieds? **Here's how you can help.*
 ## Environment
 Recommended PHP 5.5 , MySQL 5.5, Apache 2.2, Linux
 
-For development we recommend you to create a vhost called reoc.lo this will enable debug/profiler tools, disable cache and disable minify
+For development we recommend you to create a vhost called 'reoc.lo' this will enable debug/profiler tools, disable cache and disable minify
 
 ```
 Host file:
@@ -20,12 +20,13 @@ DocumentRoot /var/www/reoc/
 </VirtualHost>
 ```
 
-## Git usage
-Example to clone project on local:
+## Cloning repo
+Go to https://github.com/open-classifieds for each repo in the top right theres a button that says Fork. Click there to clone each repo, don't forget to clone common. That will copy the repos to your github user, ex: https://github.com/neo22s?tab=repositories
 
+Clone your project in local
 ```
-git clone git@github.com:open-classifieds/openclassifieds2.git reoc
-cd reoc
+git clone git@github.com:neo22s/openclassifieds2.git open-classifieds
+cd open-classifieds
 git submodule init
 git submodule update
 ```
@@ -33,7 +34,6 @@ git submodule update
 This will clone the openclassifieds2 project + submodule at oc/modules/common https://github.com/open-classifieds/common
 
 GIT files to ignore changes, DO NOT COMMIT THIS FILES:
-
 ```
 git update-index --assume-unchanged robots.txt
 git update-index --assume-unchanged oc/config/auth.php
@@ -46,7 +46,36 @@ git update-index --assume-unchanged oc/cache/.empty
 git update-index --assume-unchanged oc/logs/.empty
 git update-index --assume-unchanged images/.empty
 git update-index --assume-unchanged images/users/.empty
+git update-index --assume-unchanged .gitmodules
 ```
+
+Modify the hidden file .gitmodules, this is to track changes at the neo22s/common repo
+- Ex git@github.com:open-classifieds.com/common.git
+- To git@github.com:neo22s/common.git
+- Save file
+
+
+Go to common module and change to branch master
+```
+cd oc/modules/common
+git checkout master
+```
+
+Ready ;)
+
+## How to commit
+Normal commit
+
+Changes in oc/modules/common (common project/submodule)
+
+## Pull Requests
+
+Now you have new code at your fork ex https://github.com/neo22s/common. To move them to the original https://github.com/open-classified/common repo you need to go to https://github.com/neo22s/common, and click on Pull Request (next to compare). This will create a pull request to the original code and the responsible will decide to merge it or not.
+
+Notes:
+- Try to submit pull requests against master branch for easier merging
+- Try not to pollute your pull request with unintended changes--keep them simple and small
+- Try to share which browsers your code has been tested in before submitting a pull request
 
 ## Reporting issues
 
@@ -66,14 +95,6 @@ We only accept issues that are bug reports or feature requests. Bugs must be iso
 - master is the development branch.
 - We create tags per release from master branch.
  -We have many other branches not in use anymore since we changed the way we use the git flow.
-
-
-## Pull requests
-
-- Try to submit pull requests against master branch for easier merging
-- Try not to pollute your pull request with unintended changes--keep them simple and small
-- Try to share which browsers your code has been tested in before submitting a pull request
-
 
 
 ## Coding standards
