@@ -444,33 +444,6 @@ class Controller_Ad extends Controller {
 		}
 	}
 	
-	
-	/**
-	 * [image_path Get directory path of specific advert.]
-	 * @param  [array] $data [all values of one advert.]
-	 * @return [array]       [array of dir. path where images of advert. are ]
-	 */
-	public function image_path($data)
-	{
-		$obj_ad = new Model_Ad();
-		$directory = $obj_ad->gen_img_path($data->id_ad, $data->created);
-
-		$path = array();
-		if(is_dir($directory))
-		{	
-			$filename = array_diff(scandir($directory, 1), array('..','.')); //return all file names , and store in array 
-
-			foreach ($filename as $filename) {
-				array_push($path, $directory.$filename);		
-			}
-		}
-		else
-		{ 	
-			return FALSE ;
-		}
-
-		return $path;
-	}
 
 	/**
 	 * [action_to_top] [pay to go on top, and make order]

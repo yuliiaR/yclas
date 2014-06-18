@@ -183,7 +183,7 @@ class Model_Ad extends ORM {
        
         if($this->loaded())
         {  
-            $route = $this->gen_img_path($this->id_ad,$this->created);
+            $route = $this->image_path();
             $folder = DOCROOT.$route;
 
             if(is_dir($folder))
@@ -230,18 +230,19 @@ class Model_Ad extends ORM {
         return (isset($first_image[$type])) ? $first_image[$type] : NULL ;
     }
 
+
     /**
-     * [gen_img_path] Generate image path with a given parameters $seotitle and 
-     * date of advertisement creation 
-     * @param  date created
-     * @return string directory
+     * image_path make unique dir path with a given date and id
+     * @return string path
      */
-    public function gen_img_path($id, $created)
+    public function image_path()
     { 
+        if (!$this->loaded())
+            return FALSE;
+
+        $obj_date = date_parse($this->created); // convert date to array 
         
-        $obj_date = date_parse($created); // convert date to array 
-        
-            $year = $obj_date['year']; // take last 2 integers 
+        $year = $obj_date['year'];
         
         // check for length, because original path is with 2 integers 
         if(strlen($obj_date['month']) != 2)
@@ -254,20 +255,32 @@ class Model_Ad extends ORM {
         else
             $day = $obj_date['day'];
 
-        $directory = 'images/'.$year.'/'.$month.'/'.$day.'/'.$id.'/';
-       
-        return $directory;
+        $path = 'images/'.$year.'/'.$month.'/'.$day.'/'.$this->id_ad.'/';       
+        
+        //check if path is a directory
+        if ( ! is_dir($path) )
+        {
+            //not a directory, try to create it
+            if (! @mkdir($path, 0755, TRUE))
+                return FALSE;//failed creation :()
+        }
+
+        return $path;
     }
 
     /**
      * save_image upload images with given path
      * 
      * @param array image
-     * @param string seotitle
      * @return bool
      */
-    public function save_image($image, $id, $created, $seotitle)
+    public function save_image($image)
     {
+        if (!$this->loaded())
+            return FALSE;
+
+        $seotitle = $this->seotitle;
+
         if ( 
         ! Upload::valid($image) OR
         ! Upload::not_empty($image) OR
@@ -288,7 +301,12 @@ class Model_Ad extends ORM {
           
         if ($image !== NULL)
         {
-            $path           = $this->image_path($id , $created);
+            $path           = $this->image_path();
+            if ($path === FALSE)
+            {
+                Alert::set(Alert::ERROR, 'model\ad.php:save_image(): '.__('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.'));
+                return FALSE;
+            }
             $directory      = DOCROOT.$path;
             $image_quality  = core::config('image.quality');
             $width          = core::config('image.width');
@@ -329,7 +347,7 @@ class Model_Ad extends ORM {
                 $filename_original  = $seotitle.'_'.$counter.'.jpg';
                  
                 /*WATERMARK*/
-                if(core::config('image.watermark') AND is_readable(core::config('image.watermark_path')))
+                if(core::config('image.watermark')==TRUE AND is_readable(core::config('image.watermark_path')))
                 {
                     $mark = Image::factory(core::config('image.watermark_path')); // watermark image object
                     $size_watermark = getimagesize(core::config('image.watermark_path')); // size of watermark
@@ -407,63 +425,22 @@ class Model_Ad extends ORM {
     }
 
     /**
-     * image_path make unique dir path with a given date and id
-     * @param date created
-     * @return string path
-     */
-    public function image_path($id, $created)
-    { 
-        if ($created !== NULL)
-        {
-            $obj_ad = new Model_Ad();
-            $path = $obj_ad->gen_img_path($id, $created);
-        }
-        else
-        {
-            $date = Date::format(time(), 'Y/m/d');
-
-            $parse_data = explode("/", $date);          // make array with date values
-        
-            $path = "images/"; // root upload folder
-
-            for ($i=0; $i < count($parse_data); $i++) 
-            { 
-                $path .= $parse_data[$i].'/';           // append, to create path 
-                
-            }
-                $path .= $id.'/';
-        }
-        
-        
-
-        if ( ! is_dir($path) AND ! @mkdir($path, 0755, TRUE)) { // mkdir not successful ?
-            Alert::set(Alert::ERROR, 'model\ad.php:image_path(): '.__('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.'));
-            return 'images/'; // hopefully
-        }
-
-        return $path;
-    }
-
-    /**
      * Deletes image from edit ad
-     * @param string img_path
      * @return bool
      */
 
-    public function delete_images($img_path)
+    public function delete_images()
     {
-        // Loop through the folder
-        $dir = dir($img_path);
+        if (!$this->loaded())
+            return FALSE;
 
-        while (false !== $entry = $dir->read()) {
-        // Skip pointers
-          if ($entry == '.' || $entry == '..') {
-            continue;
-          }
-          unlink($img_path.$entry);
-        }
-        
-        rmdir($img_path);
+        $img_path = DOCROOT.$this->image_path();
+
+        if (!is_dir($img_path))
+            return FALSE;
+
+        File::delete($img_path);
+
         return TRUE;
     }
 
@@ -482,32 +459,6 @@ class Model_Ad extends ORM {
         }
     
         return FALSE;
-    }
-
-
-    /**
-     * returns true if file is of valid type.
-     * Its used to check file sent to user from advert usercontact
-     * @param array file
-     * @return BOOL 
-     */
-    public function is_valid_file($file)
-    {
-        //catch file
-        $file = $_FILES['file'];
-        //validate file
-        if( $file !== NULL)
-        {     
-            if ( 
-                ! Upload::valid($file) OR
-                ! Upload::not_empty($file) OR
-                ! Upload::type($file, array('jpg', 'jpeg', 'png', 'pdf','doc','docx')) OR
-                ! Upload::size($file, core::config('image.max_image_size').'M'))
-                {
-                    return FALSE;
-                }
-            return TRUE;
-        }
     }
 
     /**
@@ -616,7 +567,10 @@ class Model_Ad extends ORM {
     }
 
 
-
+    /**
+     * returns related ads
+     * @return view
+     */
     public function related()
     {
         if($this->loaded() AND core::config('advertisement.related')>0 )

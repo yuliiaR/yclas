@@ -18,7 +18,7 @@
 					<?if($id_category == NULL):?>
 						<label for="category"><?=__('Selected Category does not exists, please select another one!')?></label>
 					<?else:?>
-						<label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"><?=Core::get('category')?></label></label>
+						<label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"><?=$selected_category->name?></label></label>
 					<?endif?>
 					<br>
 					<a class=" btn btn-default"><?=__('Select another category')?></a>
@@ -88,7 +88,7 @@
 				</div>
 				<div class="form-group">
 				<label class="control-label col-xs-1"><?=__('Images')?></label>
-<div class="col-md-12">
+                <div class="col-md-12">
 					
 					<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?>
 						<div class="fileinput fileinput-new" data-provides="fileinput">
