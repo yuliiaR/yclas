@@ -189,11 +189,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					{
 						try
 						{
-							$img_path = $element->gen_img_path($element->id_ad, $element->created);
-
-							if (is_dir($img_path))
-								$element->delete_images($img_path);
-
+							$element->delete_images();
 							$element->delete();
 							$nb_Ads_Deleted++;
 						}
@@ -456,10 +452,7 @@ class Controller_Panel_Ad extends Auth_Controller {
                 $i = 0;
                 foreach ($ads as $ad) 
                 {
-                    $img_path = $ad->gen_img_path($ad->id_ad, $ad->created);
-                    if (is_dir($img_path))
-                        $ad->delete_images($img_path);
-
+                    $ad->delete_images();
                     $ad->delete();
                     $i++;
                 }

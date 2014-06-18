@@ -173,7 +173,7 @@ class Controller_New extends Controller
 	                    Sitemap::generate(); 
 
 	                $status = Model_Ad::STATUS_PUBLISHED;
-	                $this->save_new_ad($data, $status, $published = TRUE, $moderation, $form_show['captcha']);
+	                $this->save_new_ad($data, $status, TRUE, $moderation, $form_show['captcha']);
 
 	            }
 	            elseif( $moderation == Model_Ad::MODERATION_ON 
@@ -183,13 +183,14 @@ class Controller_New extends Controller
 	                 || $moderation == Model_Ad::PAYMENT_MODERATION)
 	            {
 	                $status = Model_Ad::STATUS_NOPUBLISHED;
-	                $this->save_new_ad($data, $status, $published = FALSE, $moderation, $form_show['captcha']);
+	                $this->save_new_ad($data, $status, FALSE, $moderation, $form_show['captcha']);
 	            }
 	        }
 	        else
 	        {
 	        	$errors = $validation->errors('ad');
-	        	foreach ($errors as $f => $err) {
+	        	foreach ($errors as $f => $err) 
+                {
 	        		Alert::set(Alert::ALERT, $err);
 	        	}
 	        }
@@ -263,137 +264,111 @@ class Controller_New extends Controller
 				// SAVE AD
 				$new_ad->id_user = $user_id; // after handling user
 
-				try
-				{	
-					//akismet spam filter
-					if(!core::akismet($data['title'], $email, $data['description']))
-					{
-						if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRMATION)
-							$new_ad->status = Model_Ad::STATUS_UNCONFIRMED;
-						
-						$new_ad->save();
-					}
-					else
-					{
-						// is user marked as spammer? Make him one :)
-						if(core::config('general.black_list'))
-						{
-							// change status of user that is marked by akismet as spam
-							($user->loaded())?$user->user_spam():$user->user_spam($email);
-						}
-						Alert::set(Alert::SUCCESS, __('This post has been considered as spam! We are sorry but we cant publish this advertisement.'));
-						$this->redirect('default');
-					}//akismet
-
-					// if moderation is off update db field with time of creation 
-					if($published)
-					{	
-						$_ad_published = new Model_Ad();
-						$_ad_published->where('seotitle', '=', $seotitle)->limit(1)->find();
-						$_ad_published->published = $_ad_published->created;
-						$_ad_published->save();
-						$created = $_ad_published->created;
-					}
-					else 
-					{
-						$created = new Model_Ad();
-						$created = $created->where('seotitle', '=', $seotitle)->limit(1)->find(); 
-						$created = $created->created;
-					}
 					
-					$user = $user->where('email', '=', $email)
-						->limit(1)
-						->find();
-
-					// after successful posting send them email depending on moderation
-					if($moderation == Model_Ad::EMAIL_CONFIRMATION OR 
-					   $moderation == Model_Ad::EMAIL_MODERATION)
-					{
-                        $edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad));
-                        $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$new_ad->id_ad));
-
-						//we get the QL, and force the regen of token for security
-                    	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
-                                                          	 'action'     => 'confirm_post',
-                                                          	 'id'		  => $new_ad->id_ad),TRUE);
-                    	
-                    	
-                    	$ret = $user->email('ads_confirm',array('[URL.QL]'=>$url_ql,
-                    											'[AD.NAME]'=>$new_ad->title,
-                    											'[URL.EDITAD]'=>$edit_url,
-                    											'[URL.DELETEAD]'=>$delete_url));
-                    	
-					}
-					elseif($moderation == Model_Ad::MODERATION_ON)
-					{
-                    	$edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad));
-                        $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$new_ad->id_ad));
-
-						//we get the QL, and force the regen of token for security
-                    	$url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
-                                                          	  'action'    => 'update',
-                                                          	  'id'		  => $new_ad->id_ad),TRUE);
-
-                    	$ret = $user->email('ads_notify',array('[URL.QL]'		=>$url_ql,
-                    										   '[AD.NAME]'		=>$new_ad->title,
-                    										   '[URL.EDITAD]'	=>$edit_url,
-                    										   '[URL.DELETEAD]'	=>$delete_url)); // email to notify user of creating, but it is in moderation currently 
-					}
-					elseif($moderation == Model_Ad::POST_DIRECTLY)
-					{
-						$edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad));
-                        $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$new_ad->id_ad));;
-
-						$url_cont = $user->ql('contact', array(),TRUE);
-						$url_ad = $user->ql('ad', array('category'=>$data['cat'],
-			                							'seotitle'=>$seotitle), TRUE);
-
-						$ret = $user->email('ads_user_check',array('[URL.CONTACT]'	=>$url_cont,
-			                										'[URL.AD]'		=>$url_ad,
-			                										'[AD.NAME]'		=>$new_ad->title,
-			                										'[URL.EDITAD]'	=>$edit_url,
-                    										   		'[URL.DELETEAD]'=>$delete_url));
-					}
-
-
-					// new ad notification email to admin (notify_email), if set to TRUE 
-					if(core::config('email.new_ad_notify'))
-					{
-						 
-						$url_ad = $user->ql('ad', array('category'=>$data['cat'],
-				                						'seotitle'=>$seotitle), TRUE);
-						
-						$replace = array('[URL.AD]'    	   =>$url_ad,
-	                                  	 '[AD.TITLE]'  	   =>$new_ad->title);
-
-		                Email::content(core::config('email.notify_email'),
-		                                    core::config('general.site_name'),
-		                                    core::config('email.notify_email'),
-		                                    core::config('general.site_name'),'ads_to_admin',
-		                                    $replace);
-		            }
-				}
-				catch (Exception $e)
+				//akismet spam filter
+				if(core::akismet($data['title'], $email, $data['description']) == TRUE)
 				{
-					throw HTTP_Exception::factory(500,$e->getMessage());
+					// is user marked as spammer? Make him one :)
+					if(core::config('general.black_list'))
+					   $user->user_spam();
+					
+					Alert::set(Alert::SUCCESS, __('This post has been considered as spam! We are sorry but we cant publish this advertisement.'));
+					$this->redirect('default');
+				}//akismet
+
+                //status of the ad
+                if($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRMATION)
+                    $new_ad->status = Model_Ad::STATUS_UNCONFIRMED;
+                
+                
+                $new_ad->created = Date::unix2mysql();
+                // if moderation is off update db field with time of creation 
+                if($published)
+                    $new_ad->published = $new_ad->created;
+
+                //save the ad
+                try 
+                {
+                    $new_ad->save();
+                } 
+                catch (Exception $e) 
+                {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
+				
+                $edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad));
+                $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$new_ad->id_ad));
+
+				// after successful posting send them email depending on moderation
+				if($moderation == Model_Ad::EMAIL_CONFIRMATION OR 
+				   $moderation == Model_Ad::EMAIL_MODERATION)
+				{
+					//we get the QL, and force the regen of token for security
+                	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
+                                                      	 'action'     => 'confirm_post',
+                                                      	 'id'		  => $new_ad->id_ad),TRUE);
+                	
+                	
+                	$ret = $user->email('ads_confirm',array('[URL.QL]'=>$url_ql,
+                											'[AD.NAME]'=>$new_ad->title,
+                											'[URL.EDITAD]'=>$edit_url,
+                											'[URL.DELETEAD]'=>$delete_url));
+                	
 				}
+				elseif($moderation == Model_Ad::MODERATION_ON)
+				{
+					//we get the QL, and force the regen of token for security
+                	$url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
+                                                      	  'action'    => 'update',
+                                                      	  'id'		  => $new_ad->id_ad),TRUE);
+
+                	$ret = $user->email('ads_notify',array('[URL.QL]'		=>$url_ql,
+                										   '[AD.NAME]'		=>$new_ad->title,
+                										   '[URL.EDITAD]'	=>$edit_url,
+                										   '[URL.DELETEAD]'	=>$delete_url)); // email to notify user of creating, but it is in moderation currently 
+				}
+				elseif($moderation == Model_Ad::POST_DIRECTLY)
+				{
+					$url_cont = $user->ql('contact', array(),TRUE);
+					$url_ad = $user->ql('ad', array('category'=>$data['cat'],
+		                							'seotitle'=>$seotitle), TRUE);
+
+					$ret = $user->email('ads_user_check',array('[URL.CONTACT]'	=>$url_cont,
+		                										'[URL.AD]'		=>$url_ad,
+		                										'[AD.NAME]'		=>$new_ad->title,
+		                										'[URL.EDITAD]'	=>$edit_url,
+                										   		'[URL.DELETEAD]'=>$delete_url));
+				}
+
+
+				// new ad notification email to admin (notify_email), if set to TRUE 
+				if(core::config('email.new_ad_notify'))
+				{
+                    $url_ad = Route::url('ad', array('category'=>$data['cat'],'seotitle'=>$seotitle));
+					
+					$replace = array('[URL.AD]'    	   =>$url_ad,
+                                  	 '[AD.TITLE]'  	   =>$new_ad->title);
+
+	                Email::content(core::config('email.notify_email'),
+	                                    core::config('general.site_name'),
+	                                    core::config('email.notify_email'),
+	                                    core::config('general.site_name'),'ads_to_admin',
+	                                    $replace);
+	            }
+
+                
 
 				// IMAGE UPLOAD 
 				// in case something wrong happens user is redirected to edit advert. 
 	    		$filename = NULL;
-	    		$counter = 0;
 
 	    		for ($i=0; $i < core::config("advertisement.num_images"); $i++) 
 	    		{ 
-	    			$counter++;
-
 	    			if (isset($_FILES['image'.$i]))
-	        		{
-		        		$img_files = $_FILES['image'.$i];
-		            	$filename = $new_ad->save_image($img_files, $new_ad->id_ad,$created, $new_ad->seotitle, $counter);
-	        		}
-	        		
-	        		if ($filename){
+		            	$filename = $new_ad->save_image($_FILES['image'.$i]);
+	        			        		
+	        		if ($filename)
+                    {
 			        	$new_ad->has_images = 1;
 			        	try 
 						{
@@ -404,8 +379,7 @@ class Controller_New extends Controller
 							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 	        		}
-		        	
-		        	if($filename = FALSE)
+		        	else
 		        		$this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad)));
 		        }
 
@@ -419,9 +393,8 @@ class Controller_New extends Controller
                     {
                         if($moderation == Model_Ad::PAYMENT_ON)
                         {
-
-                            $new_ad->status = 1;
-                            $new_ad->published = Date::unix2mysql(time());
+                            $new_ad->status = Model_Ad::STATUS_PUBLISHED;
+                            $new_ad->published = Date::unix2mysql();
                             try 
                             {
                                 $new_ad->save();
@@ -432,8 +405,7 @@ class Controller_New extends Controller
                         }
                         if($moderation == Model_Ad::PAYMENT_MODERATION)
                             Alert::set(Alert::SUCCESS, __('Advertisement is created but needs to be validated first before it is published.'));
-
-                        $this->redirect(Route::url('default'));
+                        
                     }
 					// redirect to payment
         			$this->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
@@ -441,19 +413,18 @@ class Controller_New extends Controller
 				elseif ($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRMATION)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
-					$this->redirect(Route::url('default'));
 				}
 				elseif ($moderation == Model_Ad::MODERATION_ON)
 				{
 					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
-					$this->redirect(Route::url('default'));
 				}
 				else
 				{
 					Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $data['price'])), $seotitle, $email);
 					Alert::set(Alert::SUCCESS, __('Advertisement is posted. Congratulations!'));
-					$this->redirect(Route::url('default'));
 				}
+
+                $this->redirect(Route::url('default'));
 			}//captcha
 			else
 			{ 

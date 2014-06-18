@@ -154,7 +154,7 @@ class Model_Order extends ORM {
                 }
                 
             } 
-            elseif($this->id_product == Paypal::CATEGORY_PRODUCT)
+            elseif($this->id_product == Model_Order::CATEGORY_PRODUCT)
             {
 
                 if($moderation == Model_Ad::PAYMENT_ON)
@@ -254,17 +254,7 @@ class Model_Order extends ORM {
 			Kohana::$log->add(Log::ERROR, Kohana_Exception::text($e));
 		} 
 
-		// find correct order to make paypal invoice 
-		$order_id = new Model_Order();
-		$order_id = $order_id->where('id_ad','=',$ord_data['id_ad'])
-							 ->where('status','=',0)
-							 ->where('id_user','=',$ord_data['id_user'])
-							 ->where('id_product', '=', $ord_data['id_product'])
-							 ->order_by('id_order', 'desc')
-							 ->limit(1)->find();
-		$order_id = $order_id->id_order; 
-
-		return $order_id;
+		return $order->id_order;
 	}
 
     /**
@@ -273,7 +263,7 @@ class Model_Order extends ORM {
      * @param  [array] $data        [Array with data related to advert]
      * @param  [int] $usr           [user id]
      * @param  [string] $seotitle   [seotitle of advertisement]
-     * @return [view]               [Redirect to payment or back to home if price is 0]
+     * @return [view]               [order_id or null if no proce set]
      */
     public function make_new_order($data, $usr, $seotitle)
     {
@@ -288,22 +278,17 @@ class Model_Order extends ORM {
             $cat_parent = $cat_parent->where('id_category', '=', $parent)->limit(1)->find();
 
             if($cat_parent->price == 0) // @TODO add case of moderation + payment (moderation = 5)
-            {
-                return $order_id = NULL;
-            }
+                return NULL;
             else
-            {
                 $amount = $cat_parent->price;
-            }
         }
         else
-        {
             $amount = $cat->price;
-        }
+        
         
         // make order 
         $payer_id = $usr; 
-        $id_product = Paypal::CATEGORY_PRODUCT;
+        $id_product = Model_Order::CATEGORY_PRODUCT;
 
         $ad = new Model_Ad();
         $ad = $ad->where('seotitle', '=', $seotitle)->limit(1)->find();
