@@ -3,7 +3,7 @@
 		<h1><?=__('Publish new advertisement')?></h1>
 	</div>
 	<div class=" well">
-		<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal post_new', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('post_new',array('controller'=>'new','action'=>'index')), array('class'=>'form-horizontal post_new', 'id'=>'publish-new', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 
 				<div class="form-group">
@@ -201,7 +201,7 @@
 				</div>
 				<?endif?>
 				<div class="form-actions">
-					<?= FORM::button('submit', __('Publish new'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
+					<?= FORM::button('submit', __('Publish new'), array('type'=>'submit', 'id' => 'publish-new-btn', 'class'=>'btn btn-primary', 'data-loading-text'=>__('Loading...'), 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 					<?if (!Auth::instance()->get_user()):?>
 					<p class="help-block"><?=__('User account will be created')?></p>
 					<?endif?>
