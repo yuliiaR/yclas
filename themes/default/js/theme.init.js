@@ -30,11 +30,11 @@ $("button[name=submit]").click(function(){
         $('#accept_terms_modal').modal('show');
     });
 
-	//publish new loading button
-	$('#publish-new-btn').click(function () {
-		if ($("#publish-new").valid()) {
-		    $(this).button('loading');
-		}
+    //publish new loading button
+    $('#publish-new-btn').click(function () {
+        if ($("#publish-new").valid()) {
+            $(this).button('loading');
+        }
     });
 
     //online offline message
