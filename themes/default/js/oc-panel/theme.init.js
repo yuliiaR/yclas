@@ -1,5 +1,5 @@
-$(function (){
-
+function init_panel()
+{
     if ($("textarea[name=description]").data('editor')=='html')
     {
         $("#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields").sceditor({
@@ -80,32 +80,24 @@ $(function (){
         // event.preventDefault();
         $('.header-oc-faq').toggle();
     });
-    
-
-});
-
-
-function setCookie(c_name,value,exdays)
-{
-    var exdate = new Date();
-    exdate.setDate(exdate.getDate() + exdays);
-    var c_value = escape(value) + ((exdays==null) ? "" : ";path=/; expires="+exdate.toUTCString());
-    document.cookie=c_name + "=" + c_value;
 }
+
+$(function (){
+    init_panel();
+});
 
 
 //from https://github.com/peachananr/loading-bar
 //I have recoded it a bit since uses a loop each, which is not convenient for me at all
 $(function(){
-    $("a.ajax-load").click(function(e){
+    $("body").on( "click", "a.ajax-load",function(e){
         e.preventDefault(); 
         button = $(this);
         //get the link location that was clicked
         pageurl = button.attr('href');
-
         //to get the ajax content and display in div with id 'content'
         $.ajax({
-            url:pageurl+'?rel=ajax',
+            url:updateURLParameter(pageurl,'rel','ajax'),
             beforeSend: function() {
                                         if ($("#loadingbar").length === 0) {
                                             $("body").append("<div id='loadingbar'></div>")
@@ -121,7 +113,7 @@ $(function(){
                                         if ( history.replaceState ) history.pushState( {}, document.title, pageurl );
                                         $('.br').removeClass('active');
                                         button.closest('.br').addClass('active');
-                                        $("#content").html(data);});
+                                        $("#content").html(data);init_panel();});
 
         return false;  
     });
@@ -130,7 +122,39 @@ $(function(){
 
 /* the below code is to override back button to get the ajax content without reload*/
 $(window).bind('popstate', function() {
-    $.ajax({url:location.pathname+'?rel=ajax',success: function(data){
+    $.ajax({url:updateURLParameter(location.pathname,'rel','ajax'),success: function(data){
         $('#content').html(data);
     }});
 });
+
+
+function setCookie(c_name,value,exdays)
+{
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var c_value = escape(value) + ((exdays==null) ? "" : ";path=/; expires="+exdate.toUTCString());
+    document.cookie=c_name + "=" + c_value;
+}
+
+/**
+ * http://stackoverflow.com/a/10997390/11236
+ */
+function updateURLParameter(url, param, paramVal){
+    var newAdditionalURL = "";
+    var tempArray = url.split("?");
+    var baseURL = tempArray[0];
+    var additionalURL = tempArray[1];
+    var temp = "";
+    if (additionalURL) {
+        tempArray = additionalURL.split("&");
+        for (i=0; i<tempArray.length; i++){
+            if(tempArray[i].split('=')[0] != param){
+                newAdditionalURL += temp + tempArray[i];
+                temp = "&";
+            }
+        }
+    }
+
+    var rows_txt = temp + "" + param + "=" + paramVal;
+    return baseURL + "?" + newAdditionalURL + rows_txt;
+}

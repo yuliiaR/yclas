@@ -37,8 +37,8 @@
 	                <td><a href="<?=Route::url('oc-panel', array('controller'=> 'profile', 'action'=>'update','id'=>$order->ad->pk())) ?>">
 	                    <?=$order->ad->title?></a></td>
 					
-					<?if(isset(Paypal::$products[$order->id_product])):?>
-                    <td><?=Paypal::$products[$order->id_product]?></td>
+					<?if(isset(Model_Order::$products[$order->id_product])):?>
+                    <td><?=Model_Order::$products[$order->id_product]?></td>
 					<?else:?>
 					<td><?=$order->ad->seotitle?></td>
 					<?endif?>
