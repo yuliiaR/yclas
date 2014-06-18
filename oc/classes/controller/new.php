@@ -81,13 +81,28 @@ class Controller_New extends Controller
 		}
 		
 		$id_category = NULL;
-        //filter by category 
-        if (core::get('category')!==NULL)
+        $selected_category = new Model_Category();
+        //if theres a category by post or by get
+        if (Core::request('category')!==NULL)
         {
-            $category = new Model_Category();
-            $category->where('seoname','=',core::get('category'))->limit(1)->find();
-            if ($category->loaded())
-                $id_category = $category->id_category;
+            if (is_numeric(Core::request('category')))
+                $selected_category->where('id_category','=',core::request('category'))->limit(1)->find();
+            else
+                $selected_category->where('seoname','=',core::request('category'))->limit(1)->find();
+
+            if ($selected_category->loaded())
+                $id_category = $selected_category->id_category;
+        }
+
+
+        $selected_location = new Model_Location();
+        //if theres a location by post or by get
+        if (Core::request('location')!==NULL)
+        {
+            if (is_numeric(Core::request('location')))
+                $selected_location->where('id_location','=',core::request('location'))->limit(1)->find();
+            else
+                $selected_location->where('seoname','=',core::request('location'))->limit(1)->find();
         }
 
 		//render view publish new
@@ -99,6 +114,7 @@ class Controller_New extends Controller
                                                                        'loc_parent_deep'	=> $loc_parent_deep,
 																	   'form_show'			=> $form_show,
 																	   'id_category'		=> $id_category,
+                                                                       'selected_category'  => $selected_category,
                                                                        'fields'             => Model_Field::get_all()));
 		if ($_POST) 
         {
@@ -379,8 +395,6 @@ class Controller_New extends Controller
 							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 	        		}
-		        	else
-		        		$this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad)));
 		        }
 
 				// PAYMENT METHOD ACTIVE (and other alerts)
