@@ -549,7 +549,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			        try {
 			            $element->save();
 			        } catch (Exception $e) {
-			 	        echo $e;
+			 	        throw HTTP_Exception::factory(500,$e->getMessage());
 			        }
 			    }
 			    else

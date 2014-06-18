@@ -261,7 +261,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                     try {
                         $c->save();
                     } catch (Exception $e) {
-                        echo $e;
+                        throw HTTP_Exception::factory(500,$e->getMessage());
                     }
                 }
             }

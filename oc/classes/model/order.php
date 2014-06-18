@@ -99,7 +99,7 @@ class Model_Order extends ORM {
                 $this->save();
 
             } catch (Exception $e) {
-                echo $e;  
+                throw HTTP_Exception::factory(500,$e->getMessage());  
             }
         
             // update product
@@ -150,7 +150,7 @@ class Model_Order extends ORM {
                     $ret = $user_owner->email('ads_sold',$email_content);
 
                 } catch (Exception $e) {
-                    echo $e;
+                    throw HTTP_Exception::factory(500,$e->getMessage());
                 }
                 
             } 
@@ -175,7 +175,7 @@ class Model_Order extends ORM {
                                                                     '[AD.NAME]'     =>$advert->title));
 
                     } catch (Exception $e) {
-                        echo $e;
+                        throw HTTP_Exception::factory(500,$e->getMessage());
                     }
                 }
                 else if($moderation == Model_Ad::PAYMENT_MODERATION)
@@ -211,7 +211,7 @@ class Model_Order extends ORM {
                     $advert->save();
 
                 } catch (Exception $e) {
-                    echo $e;
+                    throw HTTP_Exception::factory(500,$e->getMessage());
                 }
             }
             elseif ($this->id_product == Model_Order::TO_FEATURED)
@@ -221,7 +221,7 @@ class Model_Order extends ORM {
                 try {
                     $advert->save();
                 } catch (Exception $e) {
-                    echo $e;
+                    throw HTTP_Exception::factory(500,$e->getMessage());
                 }
             }
         }
