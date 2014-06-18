@@ -177,7 +177,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		{
 
 			$pagination = Pagination::factory(array(
-                    'view'           	=> 'pagination',
+                    'view'           	=> 'oc-panel/crud/pagination',
                     'total_items'    	=> $res_count,
                     'items_per_page' 	=> core::config('general.advertisements_per_page')
      	    ))->route_params(array(

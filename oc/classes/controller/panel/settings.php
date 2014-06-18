@@ -50,7 +50,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                         try {
                             $c->save();
                         } catch (Exception $e) {
-                            echo $e;
+                            throw HTTP_Exception::factory(500,$e->getMessage());
                         }
                     }
                 }
@@ -89,7 +89,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                     try {
                         $c->save();
                     } catch (Exception $e) {
-                        echo $e;
+                        throw HTTP_Exception::factory(500,$e->getMessage());
                     }
                 }
             }
@@ -151,7 +151,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                     try {
                         $c->save();
                     } catch (Exception $e) {
-                        echo $e;
+                        throw HTTP_Exception::factory(500,$e->getMessage());
                     }
                 }
                   
@@ -178,7 +178,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                     try {
                         $ci->save();
                     } catch (Exception $e) {
-                        echo $e;
+                        throw HTTP_Exception::factory(500,$e->getMessage());
                     }
                 }
             }
@@ -193,7 +193,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                     try {
                         $cn->save();
                     } catch (Exception $e) {
-                        echo $e;
+                        throw HTTP_Exception::factory(500,$e->getMessage());
                     }
                 }
             }
@@ -244,7 +244,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                     try {
                         $c->save();
                     } catch (Exception $e) {
-                        echo $e;
+                        throw HTTP_Exception::factory(500,$e->getMessage());
                     }
                 }
             }

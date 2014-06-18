@@ -43,7 +43,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		{
 
 			$pagination = Pagination::factory(array(
-                    'view'           	=> 'pagination',
+                    'view'           	=> 'oc-panel/crud/pagination',
                     'total_items'    	=> $res_count,
                     'items_per_page' 	=> core::config('general.advertisements_per_page')
      	    ))->route_params(array(
@@ -113,7 +113,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		{
 
 			$pagination = Pagination::factory(array(
-                    'view'           	=> 'pagination',
+                    'view'           	=> 'oc-panel/crud/pagination',
                     'total_items'    	=> $res_count,
                     'items_per_page' 	=> core::config('general.advertisements_per_page')
      	    ))->route_params(array(
@@ -549,7 +549,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			        try {
 			            $element->save();
 			        } catch (Exception $e) {
-			 	        echo $e;
+			 	        throw HTTP_Exception::factory(500,$e->getMessage());
 			        }
 			    }
 			    else
