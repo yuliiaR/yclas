@@ -51,7 +51,7 @@ class Form extends OC_Form {
                 break;
         }
         $attributes = array('placeholder'       => (isset($options['label'])) ? $options['label']:$name,
-                            'data-placeholder'       => (isset($options['label'])) ? $options['label']:$name,
+                            'data-placeholder'       => (isset($options['data-placeholder'])) ? $options['data-placeholder'] : ((isset($options['label'])) ? $options['label'] : $name),
                             'title'             => (isset($options['tooltip'])) ? $options['tooltip']:NULL, 
                             'data-categories'   => (isset($options['categories'])) ? json_encode($options['categories']):NULL,
                             'class'             => $class, 
