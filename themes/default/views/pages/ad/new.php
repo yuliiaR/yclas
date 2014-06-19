@@ -91,7 +91,7 @@
                 <div class="col-md-12">
 					
 					<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?>
-						<div class="fileinput fileinput-new" data-provides="fileinput">
+						<div class="fileinput fileinput-new <?=($i>=1)?'hidden':NULL?>" data-provides="fileinput">
 						  	<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
 							<div>
 						    <span class="btn btn-default btn-file">
