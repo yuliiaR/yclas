@@ -163,4 +163,8 @@ $('.category_edit a').click(function(){
         $(this).parent().hide();
     });
     
-    
+    //unhide next box image after selecting first
+    $('.fileinput').on('change.bs.fileinput', function() {
+       $(this).next('.fileinput').removeClass('hidden');
+    });
+        
