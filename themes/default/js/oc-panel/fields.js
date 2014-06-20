@@ -46,16 +46,17 @@ $(function  () {
     })
 })
 
+
 $(function(){
     $('.index-delete').click(function(event) {
-          
+          event.preventDefault();
           $this = $(this);
           if (confirm($this.data('text')))
           {
-              $('#'+$this.data('id')).hide("slow");
-                return true;
+              $.ajax({ url: $this.attr('href'),
+                }).done(function ( data ) {
+                    $('#'+$this.data('id')).hide("slow");
+                });
           }
-          else event.preventDefault();
-
     });
 });
