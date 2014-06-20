@@ -37,11 +37,6 @@ $("button[name=submit]").click(function(){
         }
     });
 
-    //unhide next box image after selecting first
-	$('.fileinput').on('change.bs.fileinput', function() {
-	   $(this).next('.fileinput').removeClass('hidden');
-	});
-
     //online offline message
     window.addEventListener("offline", function(e) {
         $('.off-line').show();
