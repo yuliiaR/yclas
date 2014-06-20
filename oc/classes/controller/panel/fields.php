@@ -20,7 +20,6 @@ class Controller_Panel_Fields extends Auth_Controller {
         $this->template->styles              = array('css/sortable.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/fields.js';
-
         //retrieve fields
 
 		$this->template->content = View::factory('oc-panel/pages/fields/index',array('fields'=>Model_Field::get_all()));
@@ -104,18 +103,16 @@ class Controller_Panel_Fields extends Auth_Controller {
                 {
                     Cache::instance()->delete_all();
                     Theme::delete_minified();
-
                     Alert::set(Alert::SUCCESS,__('Field edited '.$name));
-                    HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
                 }
                 else
                     Alert::set(Alert::ERROR,__('Field cant be edited'.$name));
 
-                
-
             } catch (Exception $e) {
                 throw HTTP_Exception::factory(500,$e->getMessage());     
             }
+
+            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
         }
 
         $this->template->content = View::factory('oc-panel/pages/fields/update',array('field_data'=>$field_data,'name'=>$name,'categories'=>$categories));
@@ -130,23 +127,11 @@ class Controller_Panel_Fields extends Auth_Controller {
         $field  = new Model_Field();
 
         try {
-
-                if ($field->delete($name))
-                {
-                    Cache::instance()->delete_all();
-                    Theme::delete_minified();
-                    Alert::set(Alert::SUCCESS,__('Field deleted '.$name));
-                }
-                else
-                    Alert::set(Alert::ERROR,__('Field does not exists '.$name));
-
-                $this->redirect(Route::url('oc-panel', array('controller'=>'fields', 'action'=>'index')));
-
+            $this->template->content = ($field->delete($name))?'OK':'KO';
         } catch (Exception $e) {
             //throw 500
             throw HTTP_Exception::factory(500,$e->getMessage());     
         }
-        
         
     }
 

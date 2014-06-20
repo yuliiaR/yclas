@@ -7,12 +7,12 @@
     <?if (Theme::get('premium')!=1):?>
         <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
             <?=__('Custom fields are only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
-            <a class="btn btn-success pull-right" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>"><?=__('Browse Themes')?></a>
+            <a class="btn btn-success pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>"><?=__('Browse Themes')?></a>
         </p>
     <?endif?>
 
     <a target='_blank' href='http://open-classifieds.com/2013/10/13/how-to-create-custom-fields/'><?=__('Advertisement Custom Fields')?></a>
-    <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">
+    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">
         <?=__('New field')?>
     </a>
 </div>
@@ -21,7 +21,7 @@
 <ol class='plholder' id="ol_1" data-id="1">
 <?if (is_array($fields)):?>
 <?foreach($fields as $name=>$field):?>
-    <li data-id="<?=$name?>" id="<?=$name?>"><i class="glyphicon   glyphicon-move"></i> 
+    <li data-id="<?=$name?>" id="li_<?=$name?>"><i class="glyphicon   glyphicon-move"></i> 
         <?=$name?>        
         <span class="label label-info "><?=$field['type']?></span>
         <span class="label label-info "><?=($field['searchable'])?__('searchable'):NULL?></span>
@@ -30,12 +30,12 @@
 
         <a data-text="<?=__('Are you sure you want to delete? All data contained in this field will be deleted.')?>" 
            data-id="li_<?=$name?>" 
-           class="btn btn-xs btn-danger  pull-right"  
+           class="btn btn-xs btn-danger  pull-right index-delete"  
            href="<?=Route::url('oc-panel', array('controller'=> 'fields', 'action'=>'delete','id'=>$name))?>">
                     <i class="glyphicon   glyphicon-trash"></i>
         </a>
 
-        <a class="btn btn-xs btn-primary pull-right" 
+        <a class="btn btn-xs btn-primary pull-right ajax-load" 
             href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'update','id'=>$name))?>">
             <?=__('Edit')?>
         </a>

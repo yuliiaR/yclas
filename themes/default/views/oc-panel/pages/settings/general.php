@@ -90,22 +90,9 @@
                 ))?> 
             </div>
         </div>
+		
+		<?=FORM::hidden($forms['base_url']['key'], $forms['base_url']['value'])?>
 
-		<div class="form-group">
-			<?= FORM::label($forms['base_url']['key'], __('Base URL'), array('class'=>'control-label col-sm-3', 'for'=>$forms['base_url']['key']))?>
-			<div class="col-sm-4">
-				<?= FORM::input($forms['base_url']['key'], $forms['base_url']['value'], array(
-				'placeholder' => "http://foo.com/", 
-				'class' => 'tips form-control input-sm', 
-				'id' => $forms['base_url']['key'],
-				'data-content'=> __("Is a base path of your site (e.g. http://open-classifieds.com/). Everything else is built based on this field."),
-				'data-trigger'=>"hover",
-				'data-placement'=>"right",
-				'data-toggle'=>"popover",
-				'data-original-title'=>__("Base URL path"), 
-				))?> 
-			</div>
-		</div>
 		<div class="form-group">
 			<?= FORM::label($forms['moderation']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/30/how-to-earn-money/'>".__('Moderation')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['moderation']['key']))?>
 			<div class="col-sm-4">
