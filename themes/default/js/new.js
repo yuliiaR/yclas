@@ -167,4 +167,10 @@ $('.category_edit a').click(function(){
     $('.fileinput').on('change.bs.fileinput', function() {
        $(this).next('.fileinput').removeClass('hidden');
     });
-        
+
+    //publish new processing modal
+    $('#publish-new-btn').click(function () {
+        if ($("#publish-new").valid()) {
+            $('#processing-modal').modal('show');
+        }
+    });
