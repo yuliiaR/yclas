@@ -19,16 +19,19 @@
         <div class="form-group">
             <?= FORM::label($forms['maintenance']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/15/how-to-activate-maintenance-mode/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['maintenance']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::select($forms['maintenance']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['maintenance']['value'], array(
-                'placeholder' => "TRUE or FALSE", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['maintenance']['key'], 
-                'data-content'=> __("Enables the site to maintenance"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Maintenance Mode"),
-                ))?> 
+                <div class="onoffswitch">
+					<?= Form::checkbox($forms['maintenance']['key'], 1, (bool) $forms['maintenance']['value'], array(
+					'placeholder' => "TRUE or FALSE", 
+                    'class' => 'onoffswitch-checkbox', 
+					'id' => $forms['maintenance']['key'], 
+					'data-content'=> __("Enables the site to maintenance"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Maintenance Mode"),
+                    ))?>
+                    <?= FORM::label($forms['maintenance']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['maintenance']['key']))?>
+                </div>
             </div>
         </div>
         
@@ -330,16 +333,19 @@
         <div class="form-group">
             <?= FORM::label($forms_img['watermark']['key'], __('Watermark'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['watermark']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::select($forms_img['watermark']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms_img['watermark']['value'], array(
-                'placeholder' => "TRUE or FALSE", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms_img['watermark']['key'], 
-                'data-content'=> __("Appends watermark to images"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Watermark"),
-                ))?> 
+                <div class="onoffswitch">
+					<?= Form::checkbox($forms_img['watermark']['key'], 1, (bool) $forms_img['watermark']['value'], array(
+					'placeholder' => "TRUE or FALSE", 
+                    'class' => 'onoffswitch-checkbox', 
+					'id' => $forms_img['watermark']['key'], 
+					'data-content'=> __("Appends watermark to images"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Watermark"),
+                    ))?>
+                    <?= FORM::label($forms_img['watermark']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms_img['watermark']['key']))?>
+                </div>
             </div>
         </div>
         
@@ -410,31 +416,37 @@
 		<div class="form-group">
             <?= FORM::label($forms['search_by_description']['key'], __("Include search by description"), array('class'=>'control-label col-sm-3', 'for'=>$forms['search_by_description']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::select($forms['search_by_description']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['search_by_description']['value'], array(
-                'placeholder' => "TRUE or FALSE", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['search_by_description']['key'], 
-                'data-content'=> __("Once set to TRUE, enables search to look for key words in description"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Include search by description"),
-                ))?> 
+                <div class="onoffswitch">
+					<?= Form::checkbox($forms['search_by_description']['key'], 1, (bool) $forms['search_by_description']['value'], array(
+					'placeholder' => "TRUE or FALSE", 
+                    'class' => 'onoffswitch-checkbox', 
+					'id' => $forms['search_by_description']['key'], 
+					'data-content'=> __("Once set to TRUE, enables search to look for key words in description"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Include search by description"),
+                    ))?>
+                    <?= FORM::label($forms['search_by_description']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['search_by_description']['key']))?>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <?= FORM::label($forms['blog']['key'], __("Activates Blog posting"), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::select($forms['blog']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['blog']['value'], array(
-                'placeholder' => "TRUE or FALSE", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['blog']['key'], 
-                'data-content'=> __("Once set to TRUE, enables blog posts"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Activates Blog posting"),
-                ))?> 
+                <div class="onoffswitch">
+					<?= Form::checkbox($forms['blog']['key'], 1, (bool) $forms['blog']['value'], array(
+					'placeholder' => "TRUE or FALSE", 
+                    'class' => 'onoffswitch-checkbox', 
+					'id' => $forms['blog']['key'], 
+					'data-content'=> __("Once set to TRUE, enables blog posts"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Activates Blog posting"),
+                    ))?>
+                    <?= FORM::label($forms['blog']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['blog']['key']))?>
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -455,31 +467,37 @@
         <div class="form-group">
             <?= FORM::label($forms['forums']['key'], __("Activates Forums"), array('class'=>'control-label col-sm-3', 'for'=>$forms['forums']['key']))?>
             <div class="col-md-4">
-                <?= FORM::select($forms['forums']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['forums']['value'], array(
-                'placeholder' => "TRUE or FALSE", 
-                'class' => 'tips form-control', 
-                'id' => $forms['forums']['key'], 
-                'data-content'=> __("Once set to TRUE, enables forums posts"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Activates Forums"),
-                ))?> 
+                <div class="onoffswitch">
+					<?= Form::checkbox($forms['forums']['key'], 1, (bool) $forms['forums']['value'], array(
+					'placeholder' => "TRUE or FALSE", 
+                    'class' => 'onoffswitch-checkbox', 
+					'id' => $forms['forums']['key'], 
+					'data-content'=> __("Once set to TRUE, enables forums posts"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Activates Forums"),
+                    ))?>
+                    <?= FORM::label($forms['forums']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['forums']['key']))?>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <?= FORM::label($forms['faq']['key'], __("Activates FAQ"), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::select($forms['faq']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['faq']['value'], array(
-                'placeholder' => "TRUE or FALSE", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['faq']['key'], 
-                'data-content'=> __("Once set to TRUE, enables FAQ"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Activates FAQ"),
-                ))?> 
+                <div class="onoffswitch">
+					<?= Form::checkbox($forms['faq']['key'], 1, (bool) $forms['faq']['value'], array(
+					'placeholder' => "TRUE or FALSE", 
+                    'class' => 'onoffswitch-checkbox', 
+					'id' => $forms['faq']['key'], 
+					'data-content'=> __("Once set to TRUE, enables FAQ"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Activates FAQ"),
+                    ))?>
+                    <?= FORM::label($forms['faq']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['faq']['key']))?>
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -501,16 +519,19 @@
          <div class="form-group">
             <?= FORM::label($forms['minify']['key'], __("Minify CSS/JS"), array('class'=>'control-label col-sm-3', 'for'=>$forms['minify']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::select($forms['minify']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['minify']['value'], array(
-                'placeholder' => "TRUE or FALSE", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['minify']['key'], 
-                'data-content'=> __("Once set to TRUE, enables minify CSS and JS to speed up your site"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Activates Minify CSS/JS"),
-                ))?> 
+                <div class="onoffswitch">
+					<?= Form::checkbox($forms['minify']['key'], 1, (bool) $forms['minify']['value'], array(
+					'placeholder' => "TRUE or FALSE", 
+                    'class' => 'onoffswitch-checkbox', 
+					'id' => $forms['minify']['key'], 
+					'data-content'=> __("Once set to TRUE, enables minify CSS and JS to speed up your site"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Activates Minify CSS/JS"),
+                    ))?>
+                    <?= FORM::label($forms['minify']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['minify']['key']))?>
+                </div>
             </div>
         </div>
 
@@ -540,16 +561,19 @@
 		<div class="form-group">
             <?= FORM::label($forms['black_list']['key'], __("Black List"), array('class'=>'control-label col-sm-3', 'for'=>$forms['black_list']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::select($forms['black_list']['key'], array(FALSE=>'FALSE',TRUE=>'TRUE'), $forms['black_list']['value'], array(
-                'placeholder' => "TRUE or FALSE", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['black_list']['key'], 
-                'data-content'=> __("If advertisement is marked as spam, user is also marked to be spammer. Next time is not able to publish new advertisement. Until removed from Black List!"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Black List"),
-                ))?> 
+                <div class="onoffswitch">
+					<?= Form::checkbox($forms['black_list']['key'], 1, (bool) $forms['black_list']['value'], array(
+					'placeholder' => "TRUE or FALSE", 
+                    'class' => 'onoffswitch-checkbox', 
+					'id' => $forms['black_list']['key'], 
+					'data-content'=> __("If advertisement is marked as spam, user is also marked to be spammer. Next time is not able to publish new advertisement. Until removed from Black List!"),
+					'data-trigger'=>"hover",
+					'data-placement'=>"right",
+					'data-toggle'=>"popover",
+					'data-original-title'=>__("Black List"),
+                    ))?>
+                    <?= FORM::label($forms['black_list']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['black_list']['key']))?>
+                </div>
             </div>
         </div>
 			<?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
