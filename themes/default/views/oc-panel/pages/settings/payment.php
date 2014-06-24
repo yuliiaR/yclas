@@ -35,16 +35,19 @@
 				<div class="form-group">
 					<?= FORM::label($forms['sandbox']['key'], __('Sandbox'), array('class'=>'control-label col-sm-3', 'for'=>$forms['sandbox']['key']))?>
 					<div class="col-sm-4">
-						<?= FORM::select($forms['sandbox']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['sandbox']['value'], array(
-						'placeholder' => "TRUE or FALSE", 
-						'class' => 'tips form-controlti', 
-						'id' => $forms['sandbox']['key'],
-						'data-content'=> '',
-						'data-trigger'=>"hover",
-						'data-placement'=>"right",
-						'data-toggle'=>"popover",
-						'data-original-title'=>'', 
-						))?> 
+                        <div class="onoffswitch">
+                            <?= Form::checkbox($forms['sandbox']['key'], 1, (bool) $forms['sandbox']['value'], array(
+                            'placeholder' => "TRUE or FALSE", 
+                            'class' => 'onoffswitch-checkbox', 
+							'id' => $forms['sandbox']['key'],
+							'data-content'=> '',
+							'data-trigger'=>"hover",
+							'data-placement'=>"right",
+							'data-toggle'=>"popover",
+							'data-original-title'=>'', 
+                            ))?>
+                            <?= FORM::label($forms['sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['sandbox']['key']))?>
+                        </div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -151,16 +154,19 @@
 				<div class="form-group">
 					<?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/09/02/pay-directly-from-ad/'>".__('User paypal link')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['paypal_seller']['key']))?>
 					<div class="col-sm-4">
-						<?= FORM::select($forms['paypal_seller']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['paypal_seller']['value'], array(
-						'placeholder' => "TRUE or FALSE", 
-						'class' => 'tips form-controlti', 
-						'id' => $forms['paypal_seller']['key'],
-						'data-content'=> '',
-						'data-trigger'=>"hover",
-						'data-placement'=>"right",
-						'data-toggle'=>"popover",
-						'data-original-title'=>'', 
-						))?> 
+                        <div class="onoffswitch">
+                            <?= Form::checkbox($forms['paypal_seller']['key'], 1, (bool) $forms['paypal_seller']['value'], array(
+                            'placeholder' => "TRUE or FALSE", 
+                            'class' => 'onoffswitch-checkbox', 
+							'id' => $forms['paypal_seller']['key'],
+							'data-content'=> '',
+							'data-trigger'=>"hover",
+							'data-placement'=>"right",
+							'data-toggle'=>"popover",
+							'data-original-title'=>'', 
+                            ))?>
+                            <?= FORM::label($forms['paypal_seller']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['paypal_seller']['key']))?>
+                        </div>
 					</div>
 				</div>	
                 <div class="form-group">
