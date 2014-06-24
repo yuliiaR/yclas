@@ -169,8 +169,10 @@ $('.category_edit a').click(function(){
     });
 
     //publish new processing modal
-    $('#publish-new-btn').click(function () {
-        if ($("#publish-new").valid()) {
-            $('#processing-modal').modal('show');
-        }
+    $(function(){
+		$('#publish-new-btn').click(function () {
+			if ($("#publish-new").valid()) {
+				$('#processing-modal').modal('show');
+			}
+		});
     });
