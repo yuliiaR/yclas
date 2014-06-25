@@ -82,148 +82,57 @@ class Model_Order extends ORM {
      *
      * @param string    $id_order [unique indentifier of order]
      */
-    public function confirm_payment()
+    public function confirm_payment($paymethod = 'paypal')
     { 
-        $moderation = core::config('general.moderation');
-
+        
         // update orders
         if($this->loaded())
         {
-            $advert = new Model_Ad($this->id_ad);
-            $user = new Model_User($this->id_user);
+            $ad  = $this->ad;
 
-            $this->status = self::STATUS_PAID;
-            $this->pay_date = Date::unix2mysql(time());
+            $this->status    = self::STATUS_PAID;
+            $this->pay_date  = Date::unix2mysql();
+            $this->paymethod = $paymethod;
 
             try {
                 $this->save();
-
             } catch (Exception $e) {
                 throw HTTP_Exception::factory(500,$e->getMessage());  
             }
-        
-            // update product
-            if($this->id_product == Model_Order::AD_SELL)
-            {
-                // decrease limit of ads, if 0 deactivate
-                if($advert->stock >0)
-                {
-                    $stock = $advert->stock-1;
 
-                    if($stock == 0)
-                    {
-                        $advert->status = Model_Ad::STATUS_UNAVAILABLE;
-                        
-                        //we get the QL, and force the regen of token for security
-                        $url_edit = $user->ql('oc-panel',array( 'controller'=> 'profile', 
-                                                                'action'    => 'update',
-                                                                'id'        => $advert->id_ad),TRUE);
-
-                        $email_content = array( '[URL.EDIT]'        =>$url_edit,
-                                                '[AD.TITLE]'        =>$advert->title);
-
-                        // send email to ad OWNER
-                        $user_owner = new Model_User($this->ad->id_user);
-                        $ret = $user_owner->email('out_of_stock',$email_content);
-
-                    }
+            //send email to site owner! new sale!! 
+            if(core::config('email.new_ad_notify') == TRUE)
+            {                    
+                $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
                 
-                    $advert->stock = $stock;
-                }
+                $replace = array('[AD.TITLE]'   => $ad->title,
+                                 '[URL.AD]'     => $url_ad,
+                                 '[ORDER.ID]'   => $this->id_order,
+                                 '[PRODUCT.ID]' => $this->id_product);
 
-                try {
-                    $advert->save();
-
-
-                    //we get the QL, and force the regen of token for security
-                    $url_ad = $user->ql('ad', array('category'=>$advert->id_category,
-                                                    'seotitle'=>$advert->seotitle), TRUE);
-
-                    $email_content = array('[URL.AD]'      =>$url_ad,
-                                            '[AD.TITLE]'     =>$advert->title,
-                                            '[ORDER.ID]'      =>$this->id_order,
-                                            '[PRODUCT.ID]'    =>$this->id_product);
-                    // send email to BUYER
-                    $ret = $user->email('ads_purchased',$email_content);
-                    // send email to ad OWNER
-                    $user_owner = new Model_User($this->ad->id_user);
-                    $ret = $user_owner->email('ads_sold',$email_content);
-
-                } catch (Exception $e) {
-                    throw HTTP_Exception::factory(500,$e->getMessage());
-                }
-                
-            } 
-            elseif($this->id_product == Model_Order::CATEGORY_PRODUCT)
-            {
-
-                if($moderation == Model_Ad::PAYMENT_ON)
-                {
-                    $advert->published = Date::unix2mysql(time());
-                    $advert->status = Model_Ad::STATUS_PUBLISHED;
-
-                    try {
-                        $advert->save();
-
-                        //we get the QL, and force the regen of token for security
-                        $url_cont = $user->ql('contact', array(),TRUE);
-                        $url_ad = $user->ql('ad', array('category'=>$advert->id_category,
-                                                        'seotitle'=>$advert->seotitle), TRUE);
-
-                        $ret = $user->email('ads_user_check',array('[URL.CONTACT]'  =>$url_cont,
-                                                                    '[URL.AD]'      =>$url_ad,
-                                                                    '[AD.NAME]'     =>$advert->title));
-
-                    } catch (Exception $e) {
-                        throw HTTP_Exception::factory(500,$e->getMessage());
-                    }
-                }
-                else if($moderation == Model_Ad::PAYMENT_MODERATION)
-                {
-                    $advert->published = Date::unix2mysql(time());
-                    
-                    try 
-                    {
-                        $advert->save(); 
-
-                        $edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$advert->id_ad));
-                        $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$advert->id_ad));
-
-                        //we get the QL, and force the regen of token for security
-                        $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
-                                                              'action'    => 'update',
-                                                              'id'        => $this->id_ad),TRUE);
-
-                        $ret = $user->email('ads_notify',array('[URL.QL]'=>$url_ql,
-                                                               '[AD.NAME]'=>$advert->title,
-                                                               '[URL.EDITAD]'=>$edit_url,
-                                                               '[URL.DELETEAD]'=>$delete_url));     
-                    } catch (Exception $e) {
-                       
-                    }   
-                }
+                Email::content(core::config('email.notify_email'),
+                                    core::config('general.site_name'),
+                                    core::config('email.notify_email'),
+                                    core::config('general.site_name'),'ads_sold',
+                                    $replace);
             }
-            elseif($this->id_product == Model_Order::TO_TOP)
-            {
-                $advert->published = Date::unix2mysql(time());
-                $advert->status = Model_Ad::STATUS_PUBLISHED;
-                try {
-                    $advert->save();
 
-                } catch (Exception $e) {
-                    throw HTTP_Exception::factory(500,$e->getMessage());
-                }
+            //depending on the product different actions
+            switch ($this->id_product) {
+                case Model_Order::AD_SELL:
+                        $ad->sale($this->user);
+                    break;
+                case Model_Order::TO_TOP:
+                        $ad->to_top();
+                    break;
+                case Model_Order::TO_FEATURED:
+                        $ad->to_feature();
+                    break;
+                case Model_Order::CATEGORY_PRODUCT:
+                        $ad->paid_category();
+                    break;
             }
-            elseif ($this->id_product == Model_Order::TO_FEATURED)
-            {
-                $advert->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
-                $advert->status = Model_Ad::STATUS_PUBLISHED;
-                try {
-                    $advert->save();
-                } catch (Exception $e) {
-                    throw HTTP_Exception::factory(500,$e->getMessage());
-                }
-            }
+ 
         }
     }
 

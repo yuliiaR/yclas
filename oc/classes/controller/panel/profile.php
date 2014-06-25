@@ -576,13 +576,12 @@ class Controller_Panel_Profile extends Auth_Controller {
                             throw HTTP_Exception::factory(500,$e->getMessage());
                         }
 
-                        $order = Model_Order::new_order($form, $form->user, Model_Order::CATEGORY_PRODUCT, $amount, NULL, 'category product');
+                        $order = Model_Order::new_order($form, $form->user, Model_Order::CATEGORY_PRODUCT, $amount, NULL, $new_ad->category->name);
                         // redirect to invoice
                         $this->redirect(Route::url('default', array('controller'=> 'ad','action'=>'invoice' , 'id' => $order->id_order)));
                     }
 
         		}
-
         		
                 // ad edited but we have moderation on, so goes to moderation queue unless you are admin
         		if( ($moderation == Model_Ad::MODERATION_ON 

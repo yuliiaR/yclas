@@ -343,7 +343,7 @@ class Controller_Panel_Update extends Auth_Controller {
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is purchased on [SITE.NAME]!',
                                'seotitle'=>'ads_purchased',
-                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME], with a details provided abouve.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
+                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME], with a details provided above.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),

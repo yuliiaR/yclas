@@ -5,12 +5,12 @@
 *
 * @package Open Classifieds
 * @subpackage Core
-* @category Helper
-* @author Chema Garrido <chema@open-classifieds.com>, Slobodan Josifovic <slobodan@open-classifieds.com>
+* @category Payment
+* @author Chema Garrido <chema@open-classifieds.com>
 * @license GPL v3
 */
 
-class Controller_Payment_Paypal extends Controller{
+class Controller_Paypal extends Controller{
 	
 
 	public function after()
@@ -39,17 +39,6 @@ class Controller_Payment_Paypal extends Controller{
 		
 		if($order->loaded())
 		{
-			// detect product to be processed 
-			if ($order->id_product != Model_Order::CATEGORY_PRODUCT)
-			{
-				$id_category = new Model_Category();
-				$id_category = $id_category->where('id_category', '=', $order->id_product)->limit(1)->find();
-				$product_id  = $id_category->id_category;
-			}
-			else
-			{
-				$product_id = $order->id_product;
-			} 
 
             //order is from a payment done to the owner of the ad
             if ($order->id_product == Model_Order::AD_SELL)
@@ -71,7 +60,7 @@ class Controller_Payment_Paypal extends Controller{
                 //same price , currency and email no cheating ;)
 				if (paypal::validate_ipn()) 
 				{
-					$order->confirm_payment();	
+					$order->confirm_payment('paypal');	
 				} //payment succeed and we confirm the post ;) (CALL TO LOGIC PUT IN ctrl AD)
 
 				else
