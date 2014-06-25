@@ -227,85 +227,55 @@ class Model_Order extends ORM {
         }
     }
 
-    /**
-	 * [set_new_order] Creates new order with given parameters, and gets newlly created id_order
-	 * @param  [array] $ord_data array of necessary parameters to create order
-	 * @return [int] self order id
-	 */
-	public static function set_new_order($ord_data)
-	{
-
-		//create order		
-		$order = new self;
-
-		$order->id_user       = $ord_data['id_user'];
-		$order->id_ad         = $ord_data['id_ad'];
-		$order->id_product    = $ord_data['id_product'];
-		$order->paymethod     = $ord_data['paymethod'];
-		$order->currency      = $ord_data['currency'];
-		$order->amount        = $ord_data['amount'];
-        $order->description   = $ord_data['description'];
-
-		try 
-		{
-			$order->save();
-		} 
-		catch (Exception $e){
-			Kohana::$log->add(Log::ERROR, Kohana_Exception::text($e));
-		} 
-
-		return $order->id_order;
-	}
 
     /**
-     * [make_new_order] Process data related to new advert and makes call to payment system. 
-     * Controlls price of a product and calls function for seting new order to create new order in DB 
-     * @param  [array] $data        [Array with data related to advert]
-     * @param  [int] $usr           [user id]
-     * @param  [string] $seotitle   [seotitle of advertisement]
-     * @return [view]               [order_id or null if no proce set]
+     * creates an order
+     * @param  Model_Ad $ad          
+     * @param  integer   $id_product  
+     * @param  numeric   $amount      
+     * @param  string   $currency    
+     * @param  string   $description 
+     * @return Model_Order                
      */
-    public function make_new_order($data, $usr, $seotitle)
+    public static function new_order(Model_Ad $ad, Model_User $user, $id_product, $amount, $currency = NULL, $description = NULL)
     {
-        $category   = new Model_Category();
-        $cat        = $category->where('id_category', '=', $data['cat'])->limit(1)->find();
+        if ($currency === NULL)
+            $currency = core::config('payment.paypal_currency');
 
-        // check category price, if 0 check parent
-        if($cat->price == 0)
+        //get if theres an unpaid order for this product and this ad
+        $order = new Model_Order();
+        $order->where('id_ad','=',$id_ad)
+              ->where('id_user','=',$user->id_user)
+              ->where('status','=',Model_Order::STATUS_CREATED)
+              ->where('id_product','=',$id_product)
+              ->where('amount','=',$amount)
+              ->where('currency','=',$currency)
+              ->limit(1);
+
+        //if no unpaid create order
+        if (!$order->loaded())
         {
-            $parent     = $cat->id_category_parent;
-            $cat_parent = new Model_Category();
-            $cat_parent = $cat_parent->where('id_category', '=', $parent)->limit(1)->find();
+            //create order      
+            $order = new Model_Order;
+            $order->id_user       = $user->id_user;
+            $order->id_ad         = $ad->id_ad;
+            $order->id_product    = $id_product;
+            $order->currency      = $currency;
+            $order->amount        = $amount;
+            $order->description   = $description;
 
-            if($cat_parent->price == 0) // @TODO add case of moderation + payment (moderation = 5)
-                return NULL;
-            else
-                $amount = $cat_parent->price;
-        }
-        else
-            $amount = $cat->price;
-        
-        
-        // make order 
-        $payer_id = $usr; 
-        $id_product = Model_Order::CATEGORY_PRODUCT;
+            try {
+                $order->save();
+            } 
+            catch (Exception $e){
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }     
 
-        $ad = new Model_Ad();
-        $ad = $ad->where('seotitle', '=', $seotitle)->limit(1)->find();
-
-        $ord_data = array('id_user'     => $payer_id,
-                          'id_ad'       => $ad->id_ad,
-                          'id_product'  => $id_product,
-                          'paymethod'   => 'paypal', // @TODO - to strict
-                          'currency'    => core::config('payment.paypal_currency'),
-                          'amount'      => $amount,
-                          'description' => $cat->seoname);
-
-        $order_id = new self; // create order , and returns order id
-        $order_id = $this->set_new_order($ord_data);
-
-        return $order_id;
+        return $order;
     }
+
+
 
     public function exclude_fields()
     {

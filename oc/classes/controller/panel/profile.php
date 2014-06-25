@@ -377,6 +377,8 @@ class Controller_Panel_Profile extends Auth_Controller {
 	
 		if(Auth::instance()->get_user()->id_user == $form->id_user OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
 		{
+            $original_category = $form->category;
+
 			$extra_payment = core::config('payment');
 
             $cat = new Model_Category();
@@ -522,100 +524,70 @@ class Controller_Panel_Profile extends Auth_Controller {
 		        		$this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$form->id_ad)));
 		        }
 
-	        		
-        		// if user changes category, do payment first
-        		// moderation 2 -> payment on, moderation 5 -> payment with moderation
-        		// data['cat'] -> category selected , last_known_ad->id_category -> obj of current ad (before save) 
-        		$moderation = core::config('general.moderation');
+                // update status on re-stock
+                if(is_numeric($data['stock']))
+                {
+                    //not really sure of this lines...
+                    if($form->stock == 0 OR $data['stock'] == 0)
+                        $form->status = Model_Ad::STATUS_UNAVAILABLE;
+                    elseif($data['stock'] > 0 AND $form->status == Model_Ad::STATUS_UNAVAILABLE)
+                        $form->status = Model_Ad::STATUS_PUBLISHED;
+                }
 
-        		$last_known_ad = $obj_ad->where('id_ad', '=', $this->request->param('id'))->limit(1)->find();
-        		if($moderation == Model_Ad::PAYMENT_ON OR $moderation == Model_Ad::PAYMENT_MODERATION)
+	        	$moderation = core::config('general.moderation');
+
+                //payment for category only if category changed
+        		if( ($moderation == Model_Ad::PAYMENT_ON OR $moderation == Model_Ad::PAYMENT_MODERATION) AND $data['cat'] !== $original_category->id_category )
         		{
-        			// PAYMENT METHOD ACTIVE
-					$payment_order = new Model_Order();
-					$advert_have_order = $payment_order->where('id_ad', '=', $this->request->param('id'));
-					   
-        			if($data['cat'] == $last_known_ad->id_category) // user didn't changed category 
-        			{
-        				// check if he payed when ad was created (is successful), 
-        				// if not give him alert that he didn't payed, and ad will not be published until he do  
-						$cat_check = $cat->where('id_category', '=', $last_known_ad->id_category)->limit(1)->find(); // current category
-						$advert_have_order->and_where('description', '=', $cat_check->seoname)->limit(1)->find();
-						if($advert_have_order->loaded()) // if user have order
-						{
+                    $amount = 0;
+                    $new_cat = new Model_Category($data['cat']);
 
-							if($advert_have_order->status != Model_Order::STATUS_PAID)
-							{ // order is not payed,  
-								$form->status = Model_Ad::STATUS_NOPUBLISHED;
-								Alert::set(Alert::INFO, __('Advertisement is updated, but it won\'t be published until payment is done.'));
-							}
-							else // order is payed, update status and publish 
-							{
-								if($moderation == Model_Ad::PAYMENT_ON)
-								{
-									$form->status = Model_Ad::STATUS_PUBLISHED;
-									Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));	
-								}
-								else if($moderation == Model_Ad::PAYMENT_MODERATION)
-                                {
-                                    $form->status = Model_Ad::STATUS_PUBLISHED;
-                                    Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));
-                                }
-									
-							}
-						}
-						$form->save();
-        				$this->redirect(Route::url('oc-panel', array('controller'	=>'profile',
-																			  'action'		=>'update',
-																			  'id'			=>$form->id_ad)));
-					
-        			} // end - same category
-        			else // different category
-        			{ 
-        				// user have pending order with new category(possible that he previously tried to do the same action)
-        				
-						$cat_check = $cat->where('id_category', '=', $data['cat'])->limit(1)->find(); // newly selected category
-						$advert_have_order->and_where('description', '=', $cat_check->seoname)->limit(1)->find();
-        				if($advert_have_order->loaded())
-        				{
-        					// sanity check -> we don't want to charge him twice for same category 
-        					if($advert_have_order->status != Model_Order::STATUS_PAID)
-        						$this->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $advert_have_order->id_order))); 	
-							else // order is payed, update status and publish 
-							{
-								if($moderation == Model_Ad::PAYMENT_ON)
-								{
-									$form->status = Model_Ad::STATUS_PUBLISHED;
-									Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));	
-								}
-								else if($moderation == Model_Ad::PAYMENT_MODERATION)
-									Alert::set(Alert::SUCCESS, __('Advertisement is updated!'));
-								
-							}
-							$form->save();
-        				}
-        				else // user doesn't have order -> create new order and redirect him to payment (do not update status until payment is confirmed)
-        				{
-        					$order_id = $payment_order->make_new_order($data, Auth::instance()->get_user()->id_user, $form->seotitle);
-        					
-        					if($order_id == NULL) // this is the case when in make_new_order we detect that category OR category_parent doesn't have price
-							{
-								if($moderation == Model_Ad::PAYMENT_ON) // publish
-									$form->status = Model_Ad::STATUS_PUBLISHED;
-							}
-							else
-							{
-								// redirect to payment
-			        			$this->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route	
-							}
-							$form->save();								
-        				}	
-        			}
+                    // check category price, if 0 check parent
+                    if($new_cat->price == 0)
+                    {
+                        $cat_parent = new Model_Category($new_cat->id_category_parent);
+
+                        //category without price
+                        if($cat_parent->price == 0)
+                        {
+                            //swapping moderation since theres no price :(
+                            if ($moderation == Model_Ad::PAYMENT_ON)
+                                $moderation = Model_Ad::POST_DIRECTLY;
+                            elseif($moderation == Model_Ad::PAYMENT_MODERATION)
+                                $moderation = Model_Ad::MODERATION_ON;
+                        }
+                        else
+                            $amount = $cat_parent->price;
+                    }
+                    else
+                        $amount = $new_cat->price;
+        			
+                    //only process apyment if you need to pay
+                    if ($amount > 0)
+                    {
+                        try {
+                            //put the ad into moderation since we want payment + moderation
+                            if($moderation == Model_Ad::PAYMENT_MODERATION)
+                                $form->status = Model_Ad::STATUS_NOPUBLISHED;
+
+                            $form->save();
+                        } 
+                        catch (Exception $e){
+                            throw HTTP_Exception::factory(500,$e->getMessage());
+                        }
+
+                        $order = Model_Order::new_order($form, $form->user, Model_Order::CATEGORY_PRODUCT, $amount, NULL, 'category product');
+                        // redirect to invoice
+                        $this->redirect(Route::url('default', array('controller'=> 'ad','action'=>'invoice' , 'id' => $order->id_order)));
+                    }
+
         		}
+
         		
                 // ad edited but we have moderation on, so goes to moderation queue unless you are admin
         		if( ($moderation == Model_Ad::MODERATION_ON 
-                    OR $moderation == Model_Ad::EMAIL_MODERATION) AND Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN ) 
+                    OR $moderation == Model_Ad::EMAIL_MODERATION
+                    OR $moderation == Model_Ad::PAYMENT_MODERATION) AND Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN ) 
                 {
                     Alert::set(Alert::INFO, __('Advertisement is updated, but first administrator needs to validate. Thank you for being patient!'));
                     $form->status = Model_Ad::STATUS_NOPUBLISHED;
@@ -623,28 +595,18 @@ class Controller_Panel_Profile extends Auth_Controller {
                 else
                 {
                     Alert::set(Alert::SUCCESS, __('Advertisement is updated'));
-                    // update status on re-stock
-                    $form->status = $last_known_ad->status;
-					if(is_numeric($data['stock']))
-					{
-						if($form->stock == 0 OR $data['stock'] == 0)
-							$form->status = Model_Ad::STATUS_UNAVAILABLE;
-						elseif($data['stock'] > 0)
-							$form->status = Model_Ad::STATUS_PUBLISHED;
-					}
-                    
                 }
                     
                 // save ad
-
-        		$form->save();
+        		try {
+                    $form->save();
+                } 
+                catch (Exception $e){
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
         		
 
-        		$this->redirect(Route::url('oc-panel', array('controller'	=>'profile',
-																	  'action'		=>'update',
-																	  'id'			=>$form->id_ad)));
-	    
-
+        		$this->redirect(Route::url('oc-panel', array('controller'	=>'profile', 'action' =>'update', 'id' =>$form->id_ad)));
 	        	
 			}
 

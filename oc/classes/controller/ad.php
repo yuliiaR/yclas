@@ -287,8 +287,6 @@ class Controller_Ad extends Controller {
                         $category_parent = $category->parent;
 
                 }
-                   
-                
 
                 //base category  title
                 if ($category!==NULL)
@@ -444,97 +442,89 @@ class Controller_Ad extends Controller {
 		}
 	}
 	
-
 	/**
 	 * [action_to_top] [pay to go on top, and make order]
 	 *
-	 * @TODO if paymant is corrent and done update order table(status, pay_date), and put it to top (change published date)
 	 */
 	public function action_to_top()
 	{
-        $auth_user = Auth::instance();
-		$payer_id 		= $auth_user->get_user()->id_user; 
-		$id_product 	= Model_Order::TO_TOP;
-		$description 	= 'to_top';
-		// update orders table
-		// fields
-		$ad = new Model_Ad($this->request->param('id'));
-		
-		//case when payment is set to 0, it gets published without payment
-		if(core::config('payment.pay_to_go_on_top') == FALSE)
-		{
-			$ad->status = 1;
-			$ad->published = Date::unix2mysql(time());
+        //check pay to go top is enabled
+        if(core::config('payment.to_top') == FALSE)
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        
+        $id_product = Model_Order::TO_TOP;
 
-			try {
-				$ad->save();
-				$this->redirect(Route::url('list')); 
+        //check ad exists
+        $id_ad  = $this->request->param('id');
+        $ad     = new Model_Ad($id_ad);
+        if ($ad->loaded())
+        {
+            //case when payment is set to 0, it goes to top without payment, no generating order
+            if(core::config('payment.pay_to_go_on_top') <= 0)
+            {
+                $ad->published = Date::unix2mysql();
+                try {
+                    $ad->save();
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
 
-			} catch (Exception $e) {
-				throw HTTP_Exception::factory(500,$e->getMessage());
-			}
-		}
-		
-		$ord_data = array('id_user' 	=> $payer_id,
-						  'id_ad' 		=> $ad->id_ad,
-						  'id_product' 	=> $id_product,
-						  'paymethod' 	=> 'paypal', // @TODO - to strict
-						  'currency' 	=> core::config('payment.paypal_currency'),
-						  'amount' 		=> core::config('payment.pay_to_go_on_top'),
-						  'description'	=> $description);
+                $this->redirect(Route::url('list')); 
+            }
 
-		$order_id = new Model_Order(); // create order , and returns order id
-		$order_id = $order_id->set_new_order($ord_data);
-	
-		
-		// redirect to payment
-		$this->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
+            $amount     = core::config('payment.pay_to_go_on_top');
+            $currency   = core::config('payment.paypal_currency');
+           
+            $order = Model_Order::new_order($ad, $ad->user, $id_product, $amount, $currency, 'to_top');
 
+            // redirect to payment
+            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'invoice' ,'id' => $order->id_order)));
+        }
+        else
+            throw HTTP_Exception::factory(404,__('Page not found'));
 	}
-	
-	/**
-	 * [action_to_featured] [pay to go in featured]
-	 *
-	 * @TODO - when paypal returns token, update
-	 */
-	public function action_to_featured()
-	{
-		$payer_id 		= Auth::instance()->get_user()->id_user; 
-		$id_product 	= Model_Order::TO_FEATURED;
-		$description 	= 'to_featured';
 
-		// update orders table
-		// fields
-		$ad = new Model_Ad($this->request->param('id'));
-	
-		//case when payment is set to 0, it gets published without payment
-		if(core::config('payment.pay_to_go_on_feature') == FALSE)
-		{
-			$ad->status = 1;
-			$ad->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
+    /**
+     * [action_to_featured] [pay to go in featured]
+     *
+     */
+    public function action_to_featured()
+    {
+        //check pay to featured top is enabled
+        if(core::config('payment.to_featured') == FALSE)
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        
+        $id_product = Model_Order::TO_FEATURED;
 
-			try {
-				$ad->save();
-				$this->redirect(Route::url('list')); 
+        //check ad exists
+        $id_ad  = $this->request->param('id');
+        $ad     = new Model_Ad($id_ad);
+        if ($ad->loaded())
+        {
+            //case when payment is set to 0,gets featured for free...
+            if(core::config('payment.pay_to_go_on_feature') <= 0)
+            {
+                $ad->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
+                try {
+                    $ad->save();
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
 
-			} catch (Exception $e) {
-				throw HTTP_Exception::factory(500,$e->getMessage());
-			}
-		}
+                $this->redirect(Route::url('list')); 
+            }
 
-		$ord_data = array('id_user' 	=> $payer_id,
-						  'id_ad' 		=> $ad->id_ad,
-						  'id_product' 	=> $id_product,
-						  'paymethod' 	=> 'paypal', // @TODO - to strict
-						  'currency' 	=> core::config('payment.paypal_currency'),
-						  'amount' 		=> core::config('payment.pay_to_go_on_feature'),
-						  'description'	=> $description);
-		
-		$order_id = new Model_Order(); // create order , and returns order id
-		$order_id = $order_id->set_new_order($ord_data);
-		// redirect to payment
-		$this->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
-	}
+            $amount     = core::config('payment.pay_to_go_on_feature');
+            $currency   = core::config('payment.paypal_currency');
+
+            $order = Model_Order::new_order($ad, $ad->user, $id_product, $amount, $currency, 'to_featured');
+
+            // redirect to payment
+            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'invoice' ,'id' => $order->id_order)));
+        }
+        else
+            throw HTTP_Exception::factory(404,__('Page not found'));
+    }
 	
     /**
      * [action_buy] Pay for ad, and set new order 
@@ -542,46 +532,77 @@ class Controller_Ad extends Controller {
      */
     public function action_buy()
     {
-        if(core::config('payment.paypal_seller'))
+        //check pay to featured top is enabled
+        if(core::config('payment.paypal_seller') == FALSE)
+            throw HTTP_Exception::factory(404,__('Page not found'));
+
+        //getting the user that wants to buy now
+        if (!Auth::instance()->logged_in())
         {
-            $ad = new Model_Ad($this->request->param('id'));
+            Alert::set(Alert::INFO, __('To buy this product you first need to register'));
+            $this->redirect(Route::url('oc-panel'));
+        }
 
-            if($ad->loaded())
+        $payer_user = Auth::instance()->get_user();
+        
+        $id_product = Model_Order::AD_SELL;
+
+        //check ad exists
+        $id_ad  = $this->request->param('id');
+        $ad     = new Model_Ad($id_ad);
+            
+        if($ad->loaded())
+        {
+            //do not allow selling if it already 0
+            if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
             {
-                if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))//do not allow selling if it already 0
-                {
-                    
-                    $payer_id       = Auth::instance()->get_user()->id_user;
-                    $id_product     = Model_Order::AD_SELL;
-                    $description    = $ad->title;
+                $amount     = $ad->price;
+                $currency   = core::config('payment.paypal_currency');
 
-                    $ord_data = array('id_user'     => $payer_id,
-                                  'id_ad'       => $ad->id_ad,
-                                  'id_product'  => $id_product,
-                                  'paymethod'   => 'paypal', // @TODO - to strict
-                                  'currency'    => core::config('payment.paypal_currency'),
-                                  'amount'      => $ad->price,
-                                  'description' => $description);
+                $order = Model_Order::new_order($ad, $payer_user, $id_product, $amount, $currency, 'Buy: '.$ad->seotitle);
 
-                    $order = new Model_Order(); // create order , and returns order id
-                    $order_id = $order->set_new_order($ord_data);
-
-                    //retrieve info for the item in DB
-                    
-                    // redirect to payment
-                   $this->redirect(Route::url('default', array('controller' =>'payment_paypal','action'=>'form' ,'id' => $order_id)));
-                }
-                else
-                {
-                    $ad->status = Model_Ad::STATUS_UNAVAILABLE;
-                    $ad->save();
-                    
-                    Alert::set(Alert::INFO, sprintf(__('Advertisement %s is sold out!'),$ad->title));
-                    $this->redirect(Route::url('default')); 
-                }
+                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'invoice' ,'id' => $order_id)));
             }
         }
+        else
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        
     }
+
+
+    /**
+     * pay an invoice, renders the paymenthods button, anyone with an ID of an order can pay it, we do not have control
+     * @return [type] [description]
+     */
+    public function action_invoice()
+    {
+        $order = new Model_Order($this->request->param('id'));
+
+        if ($order->loaded())
+        {
+            //if paid...no way jose
+            if ($order->status != Model_Order::STATUS_CREATED)
+            {
+                Alert::set(Alert::INFO, __('This order was already paid.'));
+                $this->redirect(Route::url('default'));
+            }
+
+            //template header
+            $this->template->title              = __('Pay Invoice');
+            Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+            Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
+
+            $this->template->bind('content', $content);
+
+            $this->template->content = View::factory('pages/ad/invoice',array('order' => $order)); 
+        }
+        else
+        {
+            //throw 404
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+    }
+
 
 	public function action_confirm_post()
 	{

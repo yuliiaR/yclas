@@ -463,7 +463,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'banned_words_replacement', 'xxx'),
 ('advertisement', 'banned_words', ''),
 ('advertisement', 'fields', ''),
-('advertisement', 'parent_category', 0),
+('advertisement', 'parent_category', 1),
 ('advertisement', 'related', 5),
 ('advertisement', 'map_pub_new', '0'),
 ('advertisement', 'qr_code', '0'),
