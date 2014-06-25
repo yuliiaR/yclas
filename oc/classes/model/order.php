@@ -153,7 +153,7 @@ class Model_Order extends ORM {
 
         //get if theres an unpaid order for this product and this ad
         $order = new Model_Order();
-        $order->where('id_ad','=',$id_ad)
+        $order->where('id_ad','=',$ad->id_ad)
               ->where('id_user','=',$user->id_user)
               ->where('status','=',Model_Order::STATUS_CREATED)
               ->where('id_product','=',$id_product)

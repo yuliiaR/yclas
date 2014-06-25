@@ -87,7 +87,7 @@ class Controller_Paypal extends Controller{
 	/**
 	 * [action_form] generates the form to pay at paypal
 	 */
-	public function action_form()
+	public function action_pay()
 	{ 
 		$this->auto_render = FALSE;
 
