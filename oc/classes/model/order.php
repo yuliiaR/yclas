@@ -48,20 +48,28 @@ class Model_Order extends ORM {
     /**
      * Id of products 
      */
-    const CATEGORY_PRODUCT      = 1; //paid to post in a paid category
-    const TO_TOP                = 2; //paid to return the ad to the first page
-    const TO_FEATURED           = 3; // paid to featured an ad in the site
-    const AD_SELL               = 4; // a customer paid to buy the item/ad 
+    const PRODUCT_CATEGORY      = 1; //paid to post in a paid category
+    const PRODUCT_TO_TOP        = 2; //paid to return the ad to the first page
+    const PRODUCT_TO_FEATURED   = 3; // paid to featured an ad in the site
+    const PRODUCT_AD_SELL       = 4; // a customer paid to buy the item/ad 
 
     /**
-     * @var  array  Available statuses array
+     * returns the product description
+     * @param  int $product 
+     * @return string          
      */
-    public static $products = array(
-        self::CATEGORY_PRODUCT  =>  'Paid category',
-        self::TO_TOP            =>  'Top up ad',
-        self::TO_FEATURED       =>  'Feature ad',
-        self::AD_SELL           =>  'Advertisement sold',
-    );
+    public static function product_desc($product)
+    {
+        $products = array(
+            self::PRODUCT_CATEGORY      =>  __('Post in paid category'),
+            self::PRODUCT_TO_TOP        =>  __('Top up ad'),
+            self::PRODUCT_TO_FEATURED   =>  __('Feature ad'),
+            self::PRODUCT_AD_SELL       =>  __('Buy product'),
+        );
+
+        return (isset($products[$product])) ? $products[$product] : '' ;
+    }
+
 
     /**
      * @var  array  ORM Dependency/hirerachy
@@ -119,16 +127,16 @@ class Model_Order extends ORM {
 
             //depending on the product different actions
             switch ($this->id_product) {
-                case Model_Order::AD_SELL:
+                case Model_Order::PRODUCT_AD_SELL:
                         $ad->sale($this->user);
                     break;
-                case Model_Order::TO_TOP:
+                case Model_Order::PRODUCT_TO_TOP:
                         $ad->to_top();
                     break;
-                case Model_Order::TO_FEATURED:
+                case Model_Order::PRODUCT_TO_FEATURED:
                         $ad->to_feature();
                     break;
-                case Model_Order::CATEGORY_PRODUCT:
+                case Model_Order::PRODUCT_CATEGORY:
                         $ad->paid_category();
                     break;
             }
@@ -139,7 +147,8 @@ class Model_Order extends ORM {
 
     /**
      * creates an order
-     * @param  Model_Ad $ad          
+     * @param  Model_Ad $ad    
+     * @param  Model_User $user          
      * @param  integer   $id_product  
      * @param  numeric   $amount      
      * @param  string   $currency    
@@ -150,6 +159,9 @@ class Model_Order extends ORM {
     {
         if ($currency === NULL)
             $currency = core::config('payment.paypal_currency');
+
+        if ($description === NULL)
+            $description = Model_Order::product_desc($id_product);
 
         //get if theres an unpaid order for this product and this ad
         $order = new Model_Order();

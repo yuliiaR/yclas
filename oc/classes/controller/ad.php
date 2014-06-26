@@ -452,7 +452,7 @@ class Controller_Ad extends Controller {
         if(core::config('payment.to_top') == FALSE)
             throw HTTP_Exception::factory(404,__('Page not found'));
         
-        $id_product = Model_Order::TO_TOP;
+        $id_product = Model_Order::PRODUCT_TO_TOP;
 
         //check ad exists
         $id_ad  = $this->request->param('id');
@@ -475,10 +475,10 @@ class Controller_Ad extends Controller {
             $amount     = core::config('payment.pay_to_go_on_top');
             $currency   = core::config('payment.paypal_currency');
            
-            $order = Model_Order::new_order($ad, $ad->user, $id_product, $amount, $currency, 'to_top');
+            $order = Model_Order::new_order($ad, $ad->user, $id_product, $amount, $currency);
 
             // redirect to payment
-            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'invoice' ,'id' => $order->id_order)));
+            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
         }
         else
             throw HTTP_Exception::factory(404,__('Page not found'));
@@ -494,7 +494,7 @@ class Controller_Ad extends Controller {
         if(core::config('payment.to_featured') == FALSE)
             throw HTTP_Exception::factory(404,__('Page not found'));
         
-        $id_product = Model_Order::TO_FEATURED;
+        $id_product = Model_Order::PRODUCT_TO_FEATURED;
 
         //check ad exists
         $id_ad  = $this->request->param('id');
@@ -517,10 +517,10 @@ class Controller_Ad extends Controller {
             $amount     = core::config('payment.pay_to_go_on_feature');
             $currency   = core::config('payment.paypal_currency');
 
-            $order = Model_Order::new_order($ad, $ad->user, $id_product, $amount, $currency, 'to_featured');
+            $order = Model_Order::new_order($ad, $ad->user, $id_product, $amount, $currency);
 
             // redirect to payment
-            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'invoice' ,'id' => $order->id_order)));
+            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
         }
         else
             throw HTTP_Exception::factory(404,__('Page not found'));
@@ -545,7 +545,7 @@ class Controller_Ad extends Controller {
 
         $payer_user = Auth::instance()->get_user();
         
-        $id_product = Model_Order::AD_SELL;
+        $id_product = Model_Order::PRODUCT_AD_SELL;
 
         //check ad exists
         $id_ad  = $this->request->param('id');
@@ -559,9 +559,9 @@ class Controller_Ad extends Controller {
                 $amount     = $ad->price;
                 $currency   = core::config('payment.paypal_currency');
 
-                $order = Model_Order::new_order($ad, $payer_user, $id_product, $amount, $currency, 'Buy: '.$ad->seotitle);
+                $order = Model_Order::new_order($ad, $payer_user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
 
-                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'invoice' ,'id' => $order_id)));
+                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order_id)));
             }
         }
         else
@@ -574,7 +574,7 @@ class Controller_Ad extends Controller {
      * pay an invoice, renders the paymenthods button, anyone with an ID of an order can pay it, we do not have control
      * @return [type] [description]
      */
-    public function action_invoice()
+    public function action_checkout()
     {
         $order = new Model_Order($this->request->param('id'));
 
@@ -588,13 +588,13 @@ class Controller_Ad extends Controller {
             }
 
             //template header
-            $this->template->title              = __('Pay Invoice');
+            $this->template->title              = __('Checkout').' '.Model_Order::product_desc($order->id_product);
             Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
             Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
 
             $this->template->bind('content', $content);
 
-            $this->template->content = View::factory('pages/ad/invoice',array('order' => $order)); 
+            $this->template->content = View::factory('pages/ad/checkout',array('order' => $order)); 
         }
         else
         {

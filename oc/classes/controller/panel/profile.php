@@ -576,9 +576,9 @@ class Controller_Panel_Profile extends Auth_Controller {
                             throw HTTP_Exception::factory(500,$e->getMessage());
                         }
 
-                        $order = Model_Order::new_order($form, $form->user, Model_Order::CATEGORY_PRODUCT, $amount, NULL, $new_ad->category->name);
+                        $order = Model_Order::new_order($form, $form->user, Model_Order::PRODUCT_CATEGORY, $amount, NULL, Model_Order::product_desc($id_product).' '.$new_ad->category->name);
                         // redirect to invoice
-                        $this->redirect(Route::url('default', array('controller'=> 'ad','action'=>'invoice' , 'id' => $order->id_order)));
+                        $this->redirect(Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order)));
                     }
 
         		}

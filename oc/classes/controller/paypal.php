@@ -41,7 +41,7 @@ class Controller_Paypal extends Controller{
 		{
 
             //order is from a payment done to the owner of the ad
-            if ($order->id_product == Model_Order::AD_SELL)
+            if ($order->id_product == Model_Order::PRODUCT_AD_SELL)
             {
                 $user_paid = $order->ad->user;
 
@@ -103,15 +103,15 @@ class Controller_Paypal extends Controller{
         if ($order->loaded())
         {
         	// dependant on product we have different names
-        	if($order->id_product == Model_Order::TO_FEATURED)
+        	if($order->id_product == Model_Order::PRODUCT_TO_FEATURED)
         		$item_name = __('Advertisement to featured');
-        	else if ($order->id_product == Model_Order::TO_TOP)
+        	else if ($order->id_product == Model_Order::PRODUCT_TO_TOP)
         		$item_name = __('Advertisement to top');
         	else
         		$item_name = $order->description.__(' category');
 
         	// case when selling advert
-        	if($order->id_product == Model_Order::AD_SELL)
+        	if($order->id_product == Model_Order::PRODUCT_AD_SELL)
         		$paypal_account = $order->ad->user->email;
         	else
         		$paypal_account = core::config('payment.paypal_account');

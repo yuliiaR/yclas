@@ -423,9 +423,9 @@ class Controller_New extends Controller
                 {
                     case Model_Ad::PAYMENT_ON:
                     case Model_Ad::PAYMENT_MODERATION:
-                            $order = Model_Order::new_order($new_ad, $new_ad->user, Model_Order::CATEGORY_PRODUCT, $amount, NULL, $new_ad->category->name);
+                            $order = Model_Order::new_order($new_ad, $new_ad->user, Model_Order::PRODUCT_CATEGORY, $amount, NULL, Model_Order::product_desc($id_product).' '.$new_ad->category->name);
                             // redirect to invoice
-                            $this->redirect(Route::url('default', array('controller'=> 'ad','action'=>'invoice' , 'id' => $order->id_order)));
+                            $this->redirect(Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order)));
                         break;
 
                     case Model_Ad::EMAIL_MODERATION:
