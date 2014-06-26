@@ -43,88 +43,88 @@ class Model_Subscribe extends ORM {
     /**
      * Function for saving emails to subscribers
      */
-    public static function find_subscribers($data, $price, $seotitle, $email)
+    public static function find_subscribers($data, $price, $seotitle)
     {
-      // if widget active, get his real name from config. Else NULL
-      $widget_name = NULL;
-      foreach (Widgets::get_placeholders() as $placeholder => $widgets) 
-      {
-        foreach ($widgets as $widget) 
+        // if widget active, get his real name from config. Else NULL
+        $widget_name = NULL;
+        foreach (Widgets::get_placeholders() as $placeholder => $widgets) 
         {
-          $array_widget = (array) $widget;
-          if($array_widget['placeholder'] != 'inactive' AND strpos($array_widget['widget_name'],'Widget_Subscribers') !== false)
-              $widget_name = $array_widget['widget_name'];
+            foreach ($widgets as $widget) 
+            {
+                $array_widget = (array) $widget;
+                if($array_widget['placeholder'] != 'inactive' AND strpos($array_widget['widget_name'],'Widget_Subscribers') !== false)
+                    $widget_name = $array_widget['widget_name'];
+            }
         }
-      }
 
-      // locations are optional , get wiget settings for locations and categories
-      $jsonObj = json_decode(core::config('widget.'.$widget_name), true);
+        // locations are optional , get wiget settings for locations and categories
+        $jsonObj = json_decode(core::config('widget.'.$widget_name), true);
 
-      $subscribers = new Model_Subscribe();
-      $category = new Model_Category($data['cat']);
+        $subscribers = new Model_Subscribe();
+        $category = new Model_Category($data['cat']);
 
-      if($category->loaded())
-      {
-        if($category->id_category_parent !== 1)
-          $cat_parent = $category->id_category_parent;
-      }
+        if($category->loaded())
+        {
+            if($category->id_category_parent !== 1)
+                $cat_parent = $category->id_category_parent;
+        }
 
-      //only min/max price is required in widget settings
-      if($price !== '0')
-        $subscribers->where('min_price', '<=', $price)
-                    ->where('max_price', '>=', $price);
-      else
-        $subscribers->where('min_price', '<=', 0)
-                    ->where('max_price', '>=', 0);
+        //only min/max price is required in widget settings
+        if($price !== '0')
+            $subscribers->where('min_price', '<=', $price)
+                        ->where('max_price', '>=', $price);
+        else
+            $subscribers->where('min_price', '<=', 0)
+                        ->where('max_price', '>=', 0);
 
-      //location is set     
-      if($data['loc'] != NULL AND $jsonObj['data']['locations'] !== '0')
-       $subscribers =  $subscribers->where('id_location', '=', $data['loc']);
+        //location is set     
+        if($data['loc'] != NULL AND $jsonObj['data']['locations'] !== '0')
+            $subscribers =  $subscribers->where('id_location', '=', $data['loc']);
 
-      //category is set
-      if($jsonObj['data']['categories'] !== '0')
-        $subscribers =  $subscribers->where('id_category', 'IN', array($data['cat'], $cat_parent));
+        //category is set
+        if($jsonObj['data']['categories'] !== '0')
+            $subscribers =  $subscribers->where('id_category', 'IN', array($data['cat'], $cat_parent));
 
-      $subscribers = $subscribers->find_all();
+        $subscribers = $subscribers->find_all();
 
-      $subscribers_id = array(); // array to be filled with user emails
-      foreach ($subscribers as $subs) 
-      {
-        // do not repeat same users.
-        if(!in_array($subs->id_user, $subscribers_id))
-          $subscribers_id[] = $subs->id_user;
-      }
+        $subscribers_id = array(); // array to be filled with user emails
+        foreach ($subscribers as $subs) 
+        {
+            // do not repeat same users.
+            if(!in_array($subs->id_user, $subscribers_id))
+                $subscribers_id[] = $subs->id_user;
+        }
       
-      // query for getting users, transform it to array and pass to email function 
-      if(count($subscribers_id) > 0)
-      {  
+        // query for getting users, transform it to array and pass to email function 
+        if(count($subscribers_id) > 0)
+        {  
 
-        $query = DB::select('email')->select('name')
-                    ->from('users')
-                    ->where('id_user', 'IN', $subscribers_id)
-                    ->where('status','=',Model_User::STATUS_ACTIVE)
-                    ->execute();
+            $query = DB::select('email')->select('name')
+                        ->from('users')
+                        ->where('id_user', 'IN', $subscribers_id)
+                        ->where('status','=',Model_User::STATUS_ACTIVE)
+                        ->execute();
 
-        $users = $query->as_array();
+            $users = $query->as_array();
 
-        $user = new Model_User();
-        $user = $user->where('email', '=', $email)
-                     ->where('status','=',Model_User::STATUS_ACTIVE)->limit(1)->find();
 
-        // Send mails like in newsletter, to multiple users simultaneously @TODO NOT YET READY 
-        if (count($users)>0)
-        {
-            $url_ad = $user->ql('ad', array('category'=>$data['cat'],
-                                            'seotitle'=>$seotitle), TRUE); 
+            // Send mails like in newsletter, to multiple users simultaneously @TODO NOT YET READY 
+            if (count($users)>0)
+            {
 
-            if ( !Email::send($users,'',"Advertisement is created on ".core::config('general.site_name')."!",
-                                        "Hello, You may be interested in this one: \n\n ".$data['title']."! \n\n
-                                        You can visit this link to see advertisement ".$url_ad,
-                                        "no-reply ".core::config('general.site_name'), 
-                                        core::config('email.notify_email') ) )
-                Alert::set(Alert::ERROR,__('Error on mail delivery, not sent'));
+                $url_ad = Route::url('ad', array('category'=>$data['cat'],'seotitle'=>$seotitle));
+                        
+                $replace = array('[URL.AD]'        =>$url_ad,
+                                 '[AD.TITLE]'      =>$new_ad->title);
+
+                Email::content($users,'',
+                                    core::config('email.notify_email'),
+                                    core::config('general.site_name'),
+                                    'ads-subscribers',
+                                    $replace);
+
+            }
         }
-      }
 
     }
 
