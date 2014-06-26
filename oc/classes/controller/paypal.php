@@ -61,8 +61,7 @@ class Controller_Paypal extends Controller{
 				if (paypal::validate_ipn()) 
 				{
 					$order->confirm_payment('paypal');	
-				} //payment succeed and we confirm the post ;) (CALL TO LOGIC PUT IN ctrl AD)
-
+				}
 				else
 				{
 					Kohana::$log->add(Log::ERROR, 'A payment has been made but is flagged as INVALID');
@@ -102,14 +101,6 @@ class Controller_Paypal extends Controller{
 
         if ($order->loaded())
         {
-        	// dependant on product we have different names
-        	if($order->id_product == Model_Order::PRODUCT_TO_FEATURED)
-        		$item_name = __('Advertisement to featured');
-        	else if ($order->id_product == Model_Order::PRODUCT_TO_TOP)
-        		$item_name = __('Advertisement to top');
-        	else
-        		$item_name = $order->description.__(' category');
-
         	// case when selling advert
         	if($order->id_product == Model_Order::PRODUCT_AD_SELL)
         		$paypal_account = $order->ad->user->email;
@@ -125,7 +116,7 @@ class Controller_Paypal extends Controller{
 	                             'paypal_url'        	=> $paypal_url,
 	                             'paypal_account'    	=> $paypal_account,
 	                             'paypal_currency'    	=> core::config('payment.paypal_currency'),
-	                             'item_name'			=> $item_name);
+	                             'item_name'			=> $order->description);
 			
 			$this->template = View::factory('paypal', $paypal_data);
             $this->response->body($this->template->render());

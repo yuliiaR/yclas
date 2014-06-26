@@ -325,7 +325,7 @@ class Controller_New extends Controller
                                                       	 'id'		  => $new_ad->id_ad),TRUE);
                 	
                 	
-                	$ret = $user->email('ads_confirm',array('[URL.QL]'=>$url_ql,
+                	$ret = $user->email('ads-confirm',array('[URL.QL]'=>$url_ql,
                 											'[AD.NAME]'=>$new_ad->title,
                 											'[URL.EDITAD]'=>$edit_url,
                 											'[URL.DELETEAD]'=>$delete_url));
@@ -338,7 +338,7 @@ class Controller_New extends Controller
                                                       	  'action'    => 'update',
                                                       	  'id'		  => $new_ad->id_ad),TRUE);
 
-                	$ret = $user->email('ads_notify',array('[URL.QL]'		=>$url_ql,
+                	$ret = $user->email('ads-notify',array('[URL.QL]'		=>$url_ql,
                 										   '[AD.NAME]'		=>$new_ad->title,
                 										   '[URL.EDITAD]'	=>$edit_url,
                 										   '[URL.DELETEAD]'	=>$delete_url)); // email to notify user of creating, but it is in moderation currently 
@@ -349,7 +349,7 @@ class Controller_New extends Controller
 					$url_ad = $user->ql('ad', array('category'=>$data['cat'],
 		                							'seotitle'=>$seotitle), TRUE);
 
-					$ret = $user->email('ads_user_check',array('[URL.CONTACT]'	=>$url_cont,
+					$ret = $user->email('ads-user-check',array('[URL.CONTACT]'	=>$url_cont,
 		                										'[URL.AD]'		=>$url_ad,
 		                										'[AD.NAME]'		=>$new_ad->title,
 		                										'[URL.EDITAD]'	=>$edit_url,
@@ -368,7 +368,8 @@ class Controller_New extends Controller
 	                Email::content(core::config('email.notify_email'),
 	                                    core::config('general.site_name'),
 	                                    core::config('email.notify_email'),
-	                                    core::config('general.site_name'),'ads_to_admin',
+	                                    core::config('general.site_name'),
+                                        'ads-to-admin',
 	                                    $replace);
 	            }
 
@@ -439,7 +440,7 @@ class Controller_New extends Controller
                     
                     case Model_Ad::POST_DIRECTLY:
                     default:
-                            Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $data['price'])), $seotitle, $email);
+                            Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $data['price'])), $seotitle);
                             Alert::set(Alert::SUCCESS, __('Advertisement is posted. Congratulations!'));
                         break;
                 }

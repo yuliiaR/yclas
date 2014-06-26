@@ -624,7 +624,7 @@ class Model_Ad extends ORM {
                                             '[AD.TITLE]'        =>$this->title);
 
                     // send email to ad OWNER
-                    $this->user->email('out_of_stock',$email_content);
+                    $this->user->email('out-of-stock',$email_content);
                 }
             
             }
@@ -643,10 +643,10 @@ class Model_Ad extends ORM {
                                     '[ORDER.ID]'      =>$this->id_order,
                                     '[PRODUCT.ID]'    =>$this->id_product);
             // send email to BUYER
-            $user_buyer->email('ads_purchased',$email_content);
+            $user_buyer->email('ads-purchased',$email_content);
 
             // send email to ad OWNER
-            $this->user->email('ads_sold',$email_content);
+            $this->user->email('ads-sold',$email_content);
 
             
         }
@@ -717,7 +717,7 @@ class Model_Ad extends ORM {
                 $url_ad = $user->ql('ad', array('category'=>$data['cat'],
                                                     'seotitle'=>$seotitle), TRUE);
 
-                $ret = $user->email('ads_user_check',array('[URL.CONTACT]'  =>$url_cont,
+                $ret = $user->email('ads-user-check',array('[URL.CONTACT]'  =>$url_cont,
                                                             '[URL.AD]'      =>$url_ad,
                                                             '[AD.NAME]'     =>$new_ad->title,
                                                             '[URL.EDITAD]'  =>$edit_url,
@@ -731,7 +731,7 @@ class Model_Ad extends ORM {
                                                       'action'    => 'update',
                                                       'id'        => $this->id_ad),TRUE);
 
-                $ret = $this->user->email('ads_notify',array('[URL.QL]'=>$url_ql,
+                $ret = $this->user->email('ads-notify',array('[URL.QL]'=>$url_ql,
                                                        '[AD.NAME]'=>$this->title,
                                                        '[URL.EDITAD]'=>$edit_url,
                                                        '[URL.DELETEAD]'=>$delete_url));     

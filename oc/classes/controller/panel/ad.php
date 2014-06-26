@@ -343,7 +343,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 											'loc'			=> $loc 		= 	$active_ad->location,	
 										 );
 
-							Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $active_ad->price)), $active_ad->seotitle, Auth::instance()->get_user()->email); // if subscription is on
+							Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $active_ad->price)), $active_ad->seotitle); // if subscription is on
 
 						}
 						catch (Exception $e)
@@ -485,16 +485,15 @@ class Controller_Panel_Ad extends Auth_Controller {
 	//temporary function until i figure out how to deal with mass mails @TODO EMAIL
 	public function multiple_mails($receivers)
 	{
-	
 		foreach ($receivers as $num => $receiver_id) {
 			if(is_numeric($receiver_id))
 			{
 				$ad 		= new Model_Ad($receiver_id);
-				$cat 		= new Model_Category($ad->id_category);
-				$usr 		= new Model_User($ad->id_user);
-
-				if($usr->loaded())
+				if($ad->loaded())
 				{
+
+                    $cat        = $ad->category;
+                    $usr        = $ad->user;
 
 					$edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad));
                     $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad));
@@ -503,7 +502,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
 				 	                                'seotitle'=> $ad->seotitle),TRUE);
 
-					$ret = $usr->email('ads_activated',array('[USER.OWNER]'=>$usr->name,
+					$ret = $usr->email('ads-activated',array('[USER.OWNER]'=>$usr->name,
 															 '[URL.QL]'=>$url_ql,
 															 '[AD.NAME]'=>$ad->title,
 															 '[URL.EDITAD]'=>$edit_url,

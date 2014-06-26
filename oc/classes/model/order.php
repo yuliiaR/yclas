@@ -54,22 +54,31 @@ class Model_Order extends ORM {
     const PRODUCT_AD_SELL       = 4; // a customer paid to buy the item/ad 
 
     /**
-     * returns the product description
-     * @param  int $product 
+     * returns the product array
      * @return string          
      */
-    public static function product_desc($product)
+    public static function products()
     {
-        $products = array(
+        return array(
             self::PRODUCT_CATEGORY      =>  __('Post in paid category'),
             self::PRODUCT_TO_TOP        =>  __('Top up ad'),
             self::PRODUCT_TO_FEATURED   =>  __('Feature ad'),
             self::PRODUCT_AD_SELL       =>  __('Buy product'),
         );
+    }
+
+
+    /**
+     * returns the product descripton
+     * @param  int $product 
+     * @return string          
+     */
+    public static function product_desc($product)
+    {
+        $products = self::products();
 
         return (isset($products[$product])) ? $products[$product] : '' ;
     }
-
 
     /**
      * @var  array  ORM Dependency/hirerachy
@@ -121,7 +130,7 @@ class Model_Order extends ORM {
                 Email::content(core::config('email.notify_email'),
                                     core::config('general.site_name'),
                                     core::config('email.notify_email'),
-                                    core::config('general.site_name'),'ads_sold',
+                                    core::config('general.site_name'),'ads-sold',
                                     $replace);
             }
 
@@ -165,13 +174,13 @@ class Model_Order extends ORM {
 
         //get if theres an unpaid order for this product and this ad
         $order = new Model_Order();
-        $order->where('id_ad','=',$ad->id_ad)
-              ->where('id_user','=',$user->id_user)
-              ->where('status','=',Model_Order::STATUS_CREATED)
-              ->where('id_product','=',$id_product)
-              ->where('amount','=',$amount)
-              ->where('currency','=',$currency)
-              ->limit(1);
+        $order->where('id_ad',      '=', $ad->id_ad)
+              ->where('id_user',    '=', $user->id_user)
+              ->where('status',     '=', Model_Order::STATUS_CREATED)
+              ->where('id_product', '=', $id_product)
+              ->where('amount',     '=', $amount)
+              ->where('currency',   '=', $currency)
+              ->limit(1)->find();
 
         //if no unpaid create order
         if (!$order->loaded())
@@ -191,6 +200,15 @@ class Model_Order extends ORM {
             catch (Exception $e){
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
+
+            //send email to user with link to pay
+            $url_checkout = $user->ql('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order));
+                
+            $replace = array('[ORDER.ID]'    => $order->id_order,
+                             '[ORDER.DESC]'  => $order->description,
+                             '[URL.CHECKOUT]'=> $url_checkout);
+
+            $user->email('new-order',$replace);
         }     
 
         return $order;
@@ -200,7 +218,23 @@ class Model_Order extends ORM {
 
     public function exclude_fields()
     {
-        return array('created','parent_deep','order');
+        return array('created','id_ad','id_user');
+    }
+
+    /**
+     * 
+     * formmanager definitions
+     * 
+     */
+    public function form_setup($form)
+    {   
+
+        $form->fields['description']['display_as'] = 'textarea';
+        $form->fields['status']['display_as']       = 'select';
+        $form->fields['status']['options']          = array_keys(self::$statuses);
+        $form->fields['id_product']['display_as']   = 'select';
+        $form->fields['id_product']['options']      = array_keys(self::products());
+
     }
     
     protected $_table_columns =  

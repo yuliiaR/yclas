@@ -615,8 +615,8 @@ class Controller_Ad extends Controller {
 			if(core::config('general.moderation') == Model_Ad::EMAIL_CONFIRMATION)
 			{
 
-				$advert->status = 1; // status active
-				$advert->published = Date::unix2mysql(time());
+				$advert->status = Model_Ad::STATUS_PUBLISHED; // status active
+				$advert->published = Date::unix2mysql();
 
 				try 
 				{
@@ -628,7 +628,7 @@ class Controller_Ad extends Controller {
 									'loc'			=> $loc 		= 	$advert->location,	
 								 );
 
-					Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $advert->price)), $advert->seotitle, Auth::instance()->get_user()->email); // if subscription is on
+					Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $advert->price)), $advert->seotitle); // if subscription is on
 					
 					Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
 					$this->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
@@ -641,7 +641,7 @@ class Controller_Ad extends Controller {
 			if(core::config('general.moderation') == Model_Ad::EMAIL_MODERATION)
 			{
 
-				$advert->status = 0; // status active
+				$advert->status = Model_Ad::STATUS_NOPUBLISHED;
 
 				try 
 				{
