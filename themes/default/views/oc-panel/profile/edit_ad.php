@@ -5,6 +5,12 @@
 			<h1><?=__('Edit Advertisement')?></h1>
 		</div>
 	<div class="well">	
+        <?foreach ($orders as $order):?>
+            <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
+            <i class="glyphicon glyphicon-shopping-cart"></i> <?=__('Pay')?> <?=$order->description?>  
+            </a>
+        <?endforeach?>
+
 		<!-- PAYPAL buttons to featured and to top -->
 		<?if((core::config('payment.pay_to_go_on_top') > 0  
 				&& core::config('payment.to_top') != FALSE )
@@ -12,11 +18,11 @@
 				&& core::config('payment.to_featured') != FALSE)):?>
 			<div id="recomentadion" class="well recomentadion clearfix">
 				<?if(core::config('payment.pay_to_go_on_top') > 0 && core::config('payment.to_top') != FALSE):?>
-					<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').core::config('payment.pay_to_go_on_top').' '.core::config('payment.paypal_currency');?></p>
+					<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
 					<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
 				<?endif?>
 				<?if(core::config('payment.pay_to_go_on_feature') > 0 && core::config('payment.to_featured') != FALSE):?>
-					<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').core::config('payment.pay_to_go_on_feature').' '.core::config('payment.paypal_currency');?></p>
+					<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_feature'),core::config('payment.paypal_currency'));?></p>
 					<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
 				<?endif?>
 			</div>

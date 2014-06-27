@@ -433,7 +433,6 @@ class Controller_Panel_Profile extends Auth_Controller {
 			if ($this->request->post())
 			{
 				
-
 				// deleting single image by path 
 				$deleted_image = core::post('img_delete');
 				if($deleted_image)
@@ -643,6 +642,11 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        	
 			}
 
+            //get all orders
+            $orders = new Model_Order();
+            $orders = $orders->where('id_user', '=', $form->id_user)
+                            ->where('status','=',Model_Order::STATUS_CREATED)
+                            ->where('id_ad','=',$form->id_ad)->find_all();
 
             Breadcrumbs::add(Breadcrumb::factory()->set_title("Update"));
             $this->template->content = View::factory('oc-panel/profile/edit_ad', array('ad'                 =>$form, 
@@ -653,6 +657,7 @@ class Controller_Panel_Profile extends Auth_Controller {
                                                                                        'order_parent_deep'  =>$parent_category,
                                                                                        'loc_parent_deep'    =>$loc_parent_deep,
                                                                                        'extra_payment'      =>$extra_payment,
+                                                                                       'orders'             =>$orders,
                                                                                        'fields'             => Model_Field::get_all()));
 
 		}
