@@ -163,7 +163,8 @@ class Controller_Ad extends Controller {
                                 ->find_all();
         }
 
-		$res_count = $ads->count_all();
+        $res_count = clone $ads;
+		$res_count = $res_count->count_all();
 
 		// check if there are some advet.-s
 		if ($res_count > 0)
