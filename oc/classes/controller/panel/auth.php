@@ -159,7 +159,8 @@ class Controller_Panel_Auth extends Controller {
 						$user->id_role	= 1;//normal user
 						$user->password = core::post('password1');
 						$user->seoname 	= $user->gen_seo_title(core::post('name'));
-						
+						$user->subscriber = 1;
+                        
 						try
 						{
 							$user->save();
