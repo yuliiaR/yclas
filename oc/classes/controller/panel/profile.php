@@ -158,6 +158,40 @@ class Controller_Panel_Profile extends Auth_Controller {
 		}
 	}
 
+    public function action_orders()
+    {
+        $user = Auth::instance()->get_user();
+
+        $this->template->title = __('My payments');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My payments')));
+
+        $orders = new Model_Order();
+        $orders = $orders->where('id_user', '=', $user->id_user);
+
+
+        $pagination = Pagination::factory(array(
+                    'view'           => 'oc-panel/crud/pagination',
+                    'total_items'    => $orders->count_all(),
+        ))->route_params(array(
+                    'controller' => $this->request->controller(),
+                    'action'     => $this->request->action(),
+        ));
+
+        $pagination->title($this->template->title);
+
+        $orders = $orders->order_by('created','desc')
+        ->limit($pagination->items_per_page)
+        ->offset($pagination->offset)
+        ->find_all();
+
+        $pagination = $pagination->render();
+
+        $this->template->bind('content', $content);
+        $this->template->content = View::factory('oc-panel/profile/orders', array('orders' => $orders,'pagination'=>$pagination));
+
+        
+    }
+
 	public function action_ads()
 	{
 		$cat = new Model_Category();
