@@ -56,7 +56,7 @@
         </a>
 
         <?if ($order->id_product!==Model_Order::PRODUCT_AD_SELL):?>
-
+            <?=$order->alternative_pay_button()?>
         <?endif?>
 
     </div>

@@ -236,6 +236,25 @@ class Model_Order extends ORM {
         $form->fields['id_product']['options']      = array_keys(self::products());
 
     }
+
+    /**
+     * renders a modal with alternative paymethod instructions
+     * @return string 
+     */
+    public function alternative_pay_button()
+    {
+        if($this->loaded())
+        {
+            if (core::config('payment.alternative')!='' )
+            {
+                $content = Model_Content::get_by_title(core::config('payment.alternative'));
+                return View::factory('pages/alternative_payment',array('content'=>$content))->render();
+            }
+        }
+    
+        return FALSE;
+    }
+
     
     protected $_table_columns =  
 array (

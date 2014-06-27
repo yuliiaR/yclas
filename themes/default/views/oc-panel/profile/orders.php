@@ -34,7 +34,7 @@
 
                     <td>
                         <?if ($order->status == Model_Order::STATUS_CREATED):?>
-                        <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
+                        <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
                         <i class="glyphicon glyphicon-shopping-cart"></i> <?=__('Pay')?>   
                         </a>
                         <?else:?>

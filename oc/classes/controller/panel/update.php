@@ -545,12 +545,39 @@ class Controller_Panel_Update extends Auth_Controller {
                         );
 
         Model_Content::content_array($contents);
+
+        //new payments...
+        $configs = array(
+                         array('config_key'     =>'bitpay_apikey',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'paymill_private',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'paymill_public',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'stripe_public',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'stripe_private',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'stripe_address',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>'0'), 
+                         array('config_key'     =>'alternative',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                        );
+
+        Model_Config::config_array($configs);
         
         //delete old files from 323
         File::delete(APPPATH.'ko323');
         File::delete(APPPATH.'classes/image/');
 
-        //delete modules since now they are part of common
+        //delete modules since now they are part of module common
         File::delete(MODPATH.'pagination');
         File::delete(MODPATH.'breadcrumbs');
         File::delete(MODPATH.'formmanager');
