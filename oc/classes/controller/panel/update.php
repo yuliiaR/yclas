@@ -450,16 +450,6 @@ class Controller_Panel_Update extends Auth_Controller {
      */
     public function action_218()
     {   
-        //call update previous versions
-        $this->action_203();
-        $this->action_205();
-        $this->action_206();
-        $this->action_207();
-        $this->action_21();
-        $this->action_211();
-        $this->action_214();
-        $this->action_215();
-        $this->action_217();
 
         $prefix = Database::instance()->table_prefix();
 
@@ -486,19 +476,33 @@ class Controller_Panel_Update extends Auth_Controller {
 
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
+    }
+
+
+        /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.1.8.1
+     */
+    public function action_2181()
+    {   
+        //call update previous versions
+        $this->action_203();
+        $this->action_205();
+        $this->action_206();
+        $this->action_207();
+        $this->action_21();
+        $this->action_211();
+        $this->action_214();
+        $this->action_215();
+        $this->action_217();
+        $this->action_218();
+
+        // returns TRUE if some config is saved 
+        $return_conf = Model_Config::config_array($configs);
         
         //clean cache
         Cache::instance()->delete_all();
         Theme::delete_minified();
         
-        //delete old files from 322
-        File::delete(APPPATH.'ko322');
-        File::delete(MODPATH.'auth');
-        File::delete(MODPATH.'cache');
-        File::delete(MODPATH.'database');
-        File::delete(MODPATH.'image');
-        File::delete(MODPATH.'orm');
-        File::delete(MODPATH.'unittest');
 
         //deactivate maintenance mode
         Model_Config::set_value('general','maintenance',0);

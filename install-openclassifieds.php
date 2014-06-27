@@ -52,7 +52,7 @@ class install{
      * Software install settings
      * @var string
      */
-    const VERSION   = '2.1.8';
+    const VERSION   = '2.1.8.1';
 
     /**
      * message to notify
