@@ -476,6 +476,15 @@ class Controller_Panel_Update extends Auth_Controller {
 
         // returns TRUE if some config is saved 
         $return_conf = Model_Config::config_array($configs);
+
+        //delete old files from 322
+        File::delete(APPPATH.'ko322');
+        File::delete(MODPATH.'auth');
+        File::delete(MODPATH.'cache');
+        File::delete(MODPATH.'database');
+        File::delete(MODPATH.'image');
+        File::delete(MODPATH.'orm');
+        File::delete(MODPATH.'unittest');
     }
 
 
@@ -499,7 +508,6 @@ class Controller_Panel_Update extends Auth_Controller {
         //clean cache
         Cache::instance()->delete_all();
         Theme::delete_minified();
-        
 
         //deactivate maintenance mode
         Model_Config::set_value('general','maintenance',0);
