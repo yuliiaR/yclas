@@ -178,8 +178,8 @@
 				<div class="form-group">
 					
 					<div class="col-md-4">
-						<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
-						<?= FORM::input('email', Request::current()->post('email'), array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
+						<?= FORM::label('email', (core::config('payment.paypal_seller')==1)?__('Paypal Email'):__('Email'), array('class'=>'control-label', 'for'=>'email'))?>
+						<?= FORM::input('email', Request::current()->post('email'), array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>(core::config('payment.paypal_seller')==1)?__('Paypal Email'):__('Email')))?>
 					</div>
 				</div>
 				<?endif?>
