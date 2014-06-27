@@ -4,7 +4,7 @@
   array (
     'codename' => 'Barceloneta',
     'released' => '2014-07-02',
-    'blog' => 'http://open-classifieds.com/2014/05/29/open-classifieds-2-1-8/',
+    'blog' => 'http://open-classifieds.com/2014/07/02/open-classifieds-2-1-8-1/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.1.8...2.1.8.1',
     'issues' => '',
     'download' => 'http://j.mp/oc_2181',
