@@ -495,9 +495,6 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->action_215();
         $this->action_217();
         $this->action_218();
-
-        // returns TRUE if some config is saved 
-        $return_conf = Model_Config::config_array($configs);
         
         //clean cache
         Cache::instance()->delete_all();
