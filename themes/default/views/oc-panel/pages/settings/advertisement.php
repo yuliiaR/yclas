@@ -4,7 +4,7 @@
 <?=Form::errors()?>
 <div class="page-header">
 	<h1><?=__('Advertisement Configuration')?></h1>
-    <p class=""><?=__('List of optional fields. To activate/deactivate select "TRUE/FALSE" in desired field.')?></p>
+    <p class=""><?=__('List of optional fields. To activate/deactivate select "ON/OFF" in desired field.')?></p>
 
 </div>
 
@@ -33,16 +33,19 @@
 			<div class="form-group">
 				<?= FORM::label($forms['parent_category']['key'], __('Parent category'), array('class'=>'control-label col-sm-3', 'for'=>$forms['parent_category']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['parent_category']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['parent_category']['value'], array(
-					'placeholder' => "", 
-					'class' => 'tips form-control', 
-					'id' => $forms['parent_category']['key'], 
-					'data-original-title'=> __("parent_category field"),
-					'data-trigger'=>"hover",
-					'data-placement'=>"right",
-					'data-toggle'=>"popover",
-					'data-content'=>__("Use parent categories"),
-					))?>  
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['parent_category']['key'], 1, (bool) $forms['parent_category']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['parent_category']['key'], 
+						'data-original-title'=> __("parent_category field"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Use parent categories"),
+						))?>
+						<?= FORM::label($forms['parent_category']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['parent_category']['key']))?>
+					</div>
 				</div>
 			</div>
 			
@@ -97,46 +100,55 @@
 			<div class="form-group">
 				<?= FORM::label($forms['address']['key'], __('Address'), array('class'=>'control-label col-sm-3', 'for'=>$forms['address']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['address']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['address']['value'], array(
-					'placeholder' => "", 
-					'class' => 'tips form-control', 
-					'id' => $forms['address']['key'], 
-					'data-original-title'=> __("Address field"),
-					'data-trigger'=>"hover",
-					'data-placement'=>"right",
-					'data-toggle'=>"popover",
-					'data-content'=>__("Displays the field Address in the Ad form."),
-					))?> 
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['address']['key'], 1, (bool) $forms['address']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['address']['key'], 
+						'data-original-title'=> __("Address field"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Displays the field Address in the Ad form."),
+						))?>
+						<?= FORM::label($forms['address']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['address']['key']))?>
+					</div>
 				</div>
 			</div>
             <div class="form-group">
                 <?= FORM::label($forms['map']['key'], __('Google Maps in Ad'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map']['key']))?>
                 <div class="col-sm-4">
-                    <?= FORM::select($forms['map']['key'], array(0=>"FALSE",1=>"TRUE"),$forms['map']['value'], array(
-                    'placeholder' => "", 
-                    'class' => 'tips form-control', 
-                    'id' => $forms['map']['key'], 
-                    'data-original-title'=> 'Google Maps',
-                    'data-trigger'=>"hover",
-                    'data-placement'=>"right",
-                    'data-toggle'=>"popover",
-                    'data-content'=>__("Displays the google maps in the Ad."),
-                    ))?> 
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['map']['key'], 1, (bool) $forms['map']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['map']['key'], 
+						'data-original-title'=> __("Google Maps"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Displays the google maps in the Ad."),
+						))?>
+						<?= FORM::label($forms['map']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['map']['key']))?>
+					</div>
                 </div>
             </div>
             <div class="form-group">
                 <?= FORM::label($forms['map_pub_new']['key'], __('Google Maps in Publish New'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map_pub_new']['key']))?>
                 <div class="col-sm-4">
-                    <?= FORM::select($forms['map_pub_new']['key'], array(0=>"FALSE",1=>"TRUE"),$forms['map_pub_new']['value'], array(
-                    'placeholder' => "", 
-                    'class' => 'tips form-control', 
-                    'id' => $forms['map_pub_new']['key'], 
-                    'data-original-title'=> 'Google Maps',
-                    'data-trigger'=>"hover",
-                    'data-placement'=>"right",
-                    'data-toggle'=>"popover",
-                    'data-content'=>__("Displays the google maps in the Publish new form."),
-                    ))?> 
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['map_pub_new']['key'], 1, (bool) $forms['map_pub_new']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['map_pub_new']['key'], 
+						'data-original-title'=> __("Google Maps"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Displays the google maps in the Publish new form."),
+						))?>
+						<?= FORM::label($forms['map_pub_new']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['map_pub_new']['key']))?>
+					</div>
                 </div>
             </div>
             <div class="form-group">
@@ -190,101 +202,122 @@
 			<div class="form-group">
 				<?= FORM::label($forms['phone']['key'], __('Phone'), array('class'=>'control-label col-sm-3', 'for'=>$forms['phone']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['phone']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['phone']['value'], array(
-					'placeholder' => "", 
-					'class' => 'tips form-control', 
-					'id' => $forms['phone']['key'], 
-					'data-original-title'=> __("Phone field"),
-					'data-trigger'=>"hover",
-					'data-placement'=>"right",
-					'data-toggle'=>"popover",
-					'data-content'=>__("Displays the field Phone in the Ad form."),
-					))?> 
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['phone']['key'], 1, (bool) $forms['phone']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['phone']['key'], 
+						'data-original-title'=> __("Phone field"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Displays the field Phone in the Ad form."),
+						))?>
+						<?= FORM::label($forms['phone']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['phone']['key']))?>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<?= FORM::label($forms['website']['key'], __('Website'), array('class'=>'control-label col-sm-3', 'for'=>$forms['website']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['website']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['website']['value'], array(
-					'placeholder' => "http://foo.com/", 
-					'class' => 'tips form-control', 
-					'id' => $forms['website']['key'], 
-					'data-original-title'=> __("Website field"),
-					'data-trigger'=>"hover",
-					'data-placement'=>"right",
-					'data-toggle'=>"popover",
-					'data-content'=>__("Displays the field Website in the Ad form."),
-					))?> 
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['website']['key'], 1, (bool) $forms['website']['value'], array(
+						'placeholder' => "http://foo.com/", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['website']['key'], 
+						'data-original-title'=> __("Website field"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Displays the field Website in the Ad form."),
+						))?>
+						<?= FORM::label($forms['website']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['website']['key']))?>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<?= FORM::label($forms['location']['key'], __('Location'), array('class'=>'control-label col-sm-3', 'for'=>$forms['location']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['location']['key'],array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['location']['value'], array(
-					'placeholder' => "", 
-					'class' => 'tips form-control', 
-					'id' => $forms['location']['key'], 
-					'data-original-title'=> __("Displays location select"),
-					'data-trigger'=>"hover",
-					'data-placement'=>"right",
-					'data-toggle'=>"popover",
-					'data-content'=>__("Displays the Select Location in the Ad form."),
-					))?> 
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['location']['key'], 1, (bool) $forms['location']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['location']['key'], 
+						'data-original-title'=> __("Displays location select"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Displays the Select Location in the Ad form."),
+						))?>
+						<?= FORM::label($forms['location']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['location']['key']))?>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<?= FORM::label($forms['price']['key'], __('Price'), array('class'=>'control-label col-sm-3', 'for'=>$forms['price']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['price']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['price']['value'], array(
-					'placeholder' => "", 
-					'class' => 'tips form-control', 
-					'id' => $forms['price']['key'], 
-					'data-original-title'=> __("Price field"),
-					'data-trigger'=>"hover",
-					'data-placement'=>"right",
-					'data-toggle'=>"popover",
-					'data-content'=>__("Displays the field Price in the Ad form."),
-					))?> 
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['price']['key'], 1, (bool) $forms['price']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['price']['key'], 
+						'data-original-title'=> __("Price field"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Displays the field Price in the Ad form."),
+						))?>
+						<?= FORM::label($forms['price']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['price']['key']))?>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<?= FORM::label($forms['upload_file']['key'], __('Upload file'), array('class'=>'control-label col-sm-3', 'for'=>$forms['upload_file']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['upload_file']['key'],array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['upload_file']['value'], array(
-					'placeholder' => "", 
-					'class' => 'tips form-control', 
-					'id' => $forms['upload_file']['key'], 
-					))?>
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['upload_file']['key'], 1, (bool) $forms['upload_file']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['upload_file']['key'], 
+						))?>
+						<?= FORM::label($forms['upload_file']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['upload_file']['key']))?>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<?= FORM::label($forms['captcha']['key'], __('Captcha'), array('class'=>'control-label col-sm-3', 'for'=>$forms['captcha']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['captcha']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['captcha']['value'], array(
-					'placeholder' => "http://foo.com/", 
-					'class' => 'tips form-control', 
-					'id' => $forms['captcha']['key'], 
-					'data-original-title'=> __("Enables Captcha"),
-					'data-trigger'=>"hover",
-					'data-placement'=>"right",
-					'data-toggle'=>"popover",
-					'data-content'=>__("Captcha appears in the form."),
-					))?> 
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['captcha']['key'], 1, (bool) $forms['captcha']['value'], array(
+						'placeholder' => "http://foo.com/", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['captcha']['key'], 
+						'data-original-title'=> __("Enables Captcha"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Captcha appears in the form."),
+						))?>
+						<?= FORM::label($forms['captcha']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['captcha']['key']))?>
+					</div>
 				</div>
 			</div>
             <div class="form-group">
                 <?= FORM::label($forms['contact']['key'], __('Contact form'), array('class'=>'control-label col-sm-3', 'for'=>$forms['contact']['key']))?>
                 <div class="col-sm-4">
-                    <?= FORM::select($forms['contact']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"), $forms['contact']['value'], array(
-                    'placeholder' => "", 
-                    'class' => 'tips form-control', 
-                    'id' => $forms['contact']['key'], 
-                    'data-original-title'=> __("Enables Contact Form"),
-                    'data-trigger'=>"hover",
-                    'data-placement'=>"right",
-                    'data-toggle'=>"popover",
-                    'data-content'=>__("Contact form appears in the ad."),
-                    ))?> 
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['contact']['key'], 1, (bool) $forms['contact']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['contact']['key'], 
+						'data-original-title'=> __("Enables Contact Form"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Contact form appears in the ad."),
+						))?>
+						<?= FORM::label($forms['contact']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['contact']['key']))?>
+					</div>
                 </div>
             </div>
 			<?$pages = array(''=>__('Deactivated'))?>
@@ -372,31 +405,37 @@
 			<div class="form-group">
 				<?= FORM::label($forms['qr_code']['key'], __('Show QR code'), array('class'=>'control-label col-sm-3', 'for'=>$forms['qr_code']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['qr_code']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['qr_code']['value'], array(
-					'placeholder' => "", 
-					'class' => 'tips form-control', 
-					'id' => $forms['qr_code']['key'], 
-					'data-original-title'=> __("Show QR code"),
-					'data-trigger'=>"hover",
-					'data-placement'=>"right",
-					'data-toggle'=>"popover",
-					'data-content'=>__("Show QR code"),
-					))?>  
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['qr_code']['key'], 1, (bool) $forms['qr_code']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['qr_code']['key'], 
+						'data-original-title'=> __("Show QR code"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Show QR code"),
+						))?>
+						<?= FORM::label($forms['qr_code']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['qr_code']['key']))?>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<?= FORM::label($forms['login_to_post']['key'], __('Require login to post'), array('class'=>'control-label col-sm-3', 'for'=>$forms['login_to_post']['key']))?>
 				<div class="col-sm-4">
-					<?= FORM::select($forms['login_to_post']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['login_to_post']['value'], array(
-					'placeholder' => "", 
-					'class' => 'tips form-control', 
-					'id' => $forms['login_to_post']['key'], 
-					'data-original-title'=> __("Require login to post"),
-					'data-trigger'=>"hover",
-					'data-placement'=>"right",
-					'data-toggle'=>"popover",
-					'data-content'=>__("Require only the logged in users to post."),
-					))?>  
+					<div class="onoffswitch">
+						<?= FORM::checkbox($forms['login_to_post']['key'], 1, (bool) $forms['login_to_post']['value'], array(
+						'placeholder' => "", 
+						'class' => 'onoffswitch-checkbox', 
+						'id' => $forms['login_to_post']['key'], 
+						'data-original-title'=> __("Require login to post"),
+						'data-trigger'=>"hover",
+						'data-placement'=>"right",
+						'data-toggle'=>"popover",
+						'data-content'=>__("Require only the logged in users to post."),
+						))?>
+						<?= FORM::label($forms['login_to_post']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['login_to_post']['key']))?>
+					</div>
 				</div>
 			</div>
 			

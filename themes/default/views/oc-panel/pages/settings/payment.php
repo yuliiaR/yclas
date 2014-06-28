@@ -121,16 +121,19 @@
 				<div class="form-group">
 					<?= FORM::label($forms['to_top']['key'], __('Bring to top Ad'), array('class'=>'control-label col-sm-3', 'for'=>$forms['to_top']['key']))?>
 					<div class="col-sm-4">
-						<?= FORM::select($forms['to_top']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE") ,$forms['to_top']['value'], array(
-						'placeholder' => "", 
-						'class' => 'tips form-control', 
-						'id' => $forms['to_top']['key'], 
-						'data-original-title'=> __("Bring to top Ad"),
-						'data-trigger'=>"hover",
-						'data-placement'=>"right",
-						'data-toggle'=>"popover",
-						'data-content'=>__("Brings your Ad to the top of the listing."), 
-						))?> 
+						<div class="onoffswitch">
+							<?= FORM::checkbox($forms['to_top']['key'], 1, (bool) $forms['to_top']['value'], array(
+							'placeholder' => "TRUE or FALSE", 
+							'class' => 'onoffswitch-checkbox', 
+							'id' => $forms['to_top']['key'],
+							'data-content'=> '',
+							'data-trigger'=>"hover",
+							'data-placement'=>"right",
+							'data-toggle'=>"popover",
+							'data-original-title'=>'', 
+							))?>
+							<?= FORM::label($forms['to_top']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['to_top']['key']))?>
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -172,16 +175,19 @@
                 <div class="form-group">
                     <?= FORM::label($forms['stock']['key'], __('Paypal link stock control'), array('class'=>'control-label col-sm-3', 'for'=>$forms['stock']['key']))?>
                     <div class="col-sm-4">
-                        <?= FORM::select($forms['stock']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['stock']['value'], array(
-                        'placeholder' => "", 
-                        'class' => 'tips form-control', 
-                        'id' => $forms['stock']['key'], 
-                        'data-original-title'=> __("Paypal link stock control"),
-                        'data-trigger'=>"hover",
-                        'data-placement'=>"right",
-                        'data-toggle'=>"popover",
-                        'data-content'=>__("Paypal link stock control"),
-                        ))?>  
+                        <div class="onoffswitch">
+                            <?= Form::checkbox($forms['stock']['key'], 1, (bool) $forms['stock']['value'], array(
+                            'placeholder' => "TRUE or FALSE", 
+                            'class' => 'onoffswitch-checkbox', 
+							'id' => $forms['stock']['key'],
+							'data-content'=> '',
+							'data-trigger'=>"hover",
+							'data-placement'=>"right",
+							'data-toggle'=>"popover",
+							'data-original-title'=>'', 
+                            ))?>
+                            <?= FORM::label($forms['stock']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stock']['key']))?>
+                        </div>
                     </div>
                 </div>	
 
