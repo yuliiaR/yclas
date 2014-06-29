@@ -144,17 +144,28 @@
 			
 			<td><?= $hits[$i++];?></td>
 			
-			<? if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
-				<td><?=__('Not published')?></td>
-			<? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
-				<td><?=__('Published')?></td>
-			<? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
-				<td><?=__('Spam')?></td>
-	    	<? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
-				<td><?=__('Unavailable')?></td>
-			<? elseif($ad->status == Model_Ad::STATUS_UNCONFIRMED):?>
-				<td><?=__('Unconfirmed')?></td>
-			<?endif?>
+			<td>
+            <?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
+                <?=__('Not published')?>
+            <? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
+                <?=__('Published')?>
+            <? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
+                <?=__('Spam')?>
+            <? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
+                <?=__('Unavailable')?>
+            <?endif?>
+
+            <?if( ($order = $ad->get_order())!==FALSE ):?>
+                <a class="label <?=($order->status==Model_Order::STATUS_PAID)?'label-success':'label-warning'?> " 
+                    href="<?=Route::url('oc-panel', array('controller'=> 'order','action'=>'update','id' => $order->id_order))?>">
+                <?if ($order->status==Model_Order::STATUS_CREATED):?>
+                    <?=__('Not paid')?>
+                <?elseif ($order->status==Model_Order::STATUS_PAID):?>
+                    <?=__('Paid')?>
+                <?endif?>
+                    <?=i18n::format_currency($order->amount,$order->currency)?>
+                </a>
+            <?endif?>
 	    	
 	    	<td><?= substr($ad->published, 0, 11)?></td>
 			<td width="120" style="width:120px">

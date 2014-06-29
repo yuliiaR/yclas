@@ -739,7 +739,25 @@ class Model_Ad extends ORM {
         }
     }
 
+    /**
+     * returns and order for the given product, great to check if was paid or not
+     * @param  int  $id_product Model_Order::PRODUCT_
+     * @return boolean/Model_Order             false if not found, Model_Order if found
+     */
+    public function get_order($id_product = Model_Order::PRODUCT_CATEGORY)
+    {
+        if ($this->loaded())
+        {
+            //get if theres an unpaid order for this product and this ad
+            $order = new Model_Order();
+            $order->where('id_ad',      '=', $this->id_ad)
+                  ->where('id_user',    '=', $this->user->id_user)
+                  ->where('id_product', '=', $id_product)
+                  ->limit(1)->find();
 
-
+            return ($order->loaded())?$order:FALSE;
+        }
+        return FALSE;
+    }
 
 } // END Model_ad

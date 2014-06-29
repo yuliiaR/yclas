@@ -43,17 +43,28 @@
             <?endif?>
 		
 			
-			<? if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
-				<td><?=__('Not published')?></td>
-			<? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
-				<td><?=__('Published')?></td>
-			<? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
-				<td><?=__('Spam')?></td>
-	    	<? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
-				<td><?=__('Unavailable')?></td>
-			<? elseif($ad->status == Model_Ad::STATUS_UNCONFIRMED):?>
-				<td><?=__('Unconfirmed')?></td>
-			<?endif?>
+			<td>
+            <?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
+                <?=__('Not published')?>
+            <? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
+                <?=__('Published')?>
+            <? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
+                <?=__('Spam')?>
+            <? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
+                <?=__('Unavailable')?>
+            <?endif?>
+
+            <?if( ($order = $ad->get_order())!==FALSE ):?>
+                <?if ($order->status==Model_Order::STATUS_CREATED AND $ad->status != Model_Ad::STATUS_PUBLISHED):?>
+                    <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
+                        <i class="glyphicon glyphicon-shopping-cart"></i> <?=__('Pay')?>  <?=i18n::format_currency($order->amount,$order->currency)?> 
+                    </a>
+                <?elseif ($order->status==Model_Order::STATUS_PAID):?>
+                    (<?=__('Paid')?>)
+                <?endif?>
+            <?endif?>
+
+            </td>
 	    	
 	    	<td><?= substr($ad->created, 0, 11)?></td>
 			<td>
