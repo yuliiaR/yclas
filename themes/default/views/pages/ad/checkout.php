@@ -51,12 +51,19 @@
                 </tr>
             </tbody>
         </table>
+
+        <?if (Core::config('payment.paypal_account')!=''):?>
         <a class="btn btn-success btn-lg pull-right" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
         <?=__('Pay with Paypal')?>   <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
-
+        <div class="clearfix"></div>
+        <?endif?>
+        
         <?if ($order->id_product!==Model_Order::PRODUCT_AD_SELL):?>
+        <?=Controller_Authorize::form($order)?>
+        <div class="pull-right">
             <?=$order->alternative_pay_button()?>
+        </div>
         <?endif?>
 
     </div>

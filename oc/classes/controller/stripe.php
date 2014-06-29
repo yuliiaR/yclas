@@ -64,7 +64,7 @@ class Controller_Stripe extends Controller{
                         $user = Auth::instance()->get_user();
 
                     //mark as paid
-                    $order->confirm_payment('stripe');
+                    $order->confirm_payment('stripe',Core::post('stripeToken'));
                     
                     //redirect him to his ads
                     Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));

@@ -153,6 +153,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `amount` decimal(14,3) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `description` varchar(145) DEFAULT NULL,
+  `txn_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_order`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_status` (`status`)
@@ -400,6 +401,9 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'stripe_address', '0'),
 ('payment', 'alternative', ''),
 ('payment', 'bitpay_apikey', ''),
+('payment', 'authorize_sandbox', '0'),
+('payment', 'authorize_login', ''),
+('payment', 'authorize_key', ''),
 ('general', 'number_format', '%n'),
 ('general', 'date_format', 'd-m-y'),
 ('general', 'base_url', '".core::request('SITE_URL')."'),

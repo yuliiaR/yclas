@@ -60,7 +60,7 @@ class Controller_Paypal extends Controller{
                 //same price , currency and email no cheating ;)
 				if (paypal::validate_ipn()) 
 				{
-					$order->confirm_payment('paypal');	
+					$order->confirm_payment('paypal',Core::post('txn_id'));	
 				}
 				else
 				{

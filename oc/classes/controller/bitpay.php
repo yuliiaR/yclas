@@ -92,7 +92,7 @@ class Controller_Bitpay extends Controller{
                     case 'complete':
 
                         //mark as paid
-                        $order->confirm_payment('bitpay');
+                        $order->confirm_payment('bitpay',$product,Core::post('txn_id'));
 
                         $this->response->body('OK');
 

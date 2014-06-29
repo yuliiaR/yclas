@@ -533,6 +533,12 @@ class Controller_Panel_Update extends Auth_Controller {
             DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='ads-purchased' WHERE seotitle='adspurchased' AND type='email'")->execute();
         }catch (exception $e) {}
         //end updating emails
+        //
+        //order transaction
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."orders` ADD  `txn_id` VARCHAR( 255 ) NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
         
         //new mails
         $contents = array(array('order'=>0,
@@ -569,6 +575,16 @@ class Controller_Panel_Update extends Auth_Controller {
                          array('config_key'     =>'alternative',
                                'group_name'     =>'payment', 
                                'config_value'   =>''), 
+                         array('config_key'     =>'authorize_sandbox',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>'0'), 
+                         array('config_key'     =>'authorize_login',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'authorize_key',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''),
+
                         );
 
         Model_Config::config_array($configs);

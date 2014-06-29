@@ -73,7 +73,7 @@ class Controller_Paymill extends Controller{
                 if ( isset( $transaction[ 'status' ] ) && ( $transaction[ 'status' ] == 'closed' ) ) 
                 {
                     //mark as paid
-                    $order->confirm_payment('paymill');
+                    $order->confirm_payment('paymill',Core::post('paymillToken'));
                     
                     //redirect him to his ads
                     Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));

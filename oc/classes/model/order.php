@@ -98,8 +98,9 @@ class Model_Order extends ORM {
      * confirm payment for order
      *
      * @param string    $id_order [unique indentifier of order]
+     * @param string    $txn_id id of the transaction depending on provider
      */
-    public function confirm_payment($paymethod = 'paypal')
+    public function confirm_payment($paymethod = 'paypal', $txn_id = NULL)
     { 
         
         // update orders
@@ -110,6 +111,7 @@ class Model_Order extends ORM {
             $this->status    = self::STATUS_PAID;
             $this->pay_date  = Date::unix2mysql();
             $this->paymethod = $paymethod;
+            $this->txn_id    = $txn_id;
 
             try {
                 $this->save();
@@ -234,6 +236,7 @@ class Model_Order extends ORM {
         $form->fields['status']['options']          = array_keys(self::$statuses);
         $form->fields['id_product']['display_as']   = 'select';
         $form->fields['id_product']['options']      = array_keys(self::products());
+        $form->fields['txn_id']['display_as']       = 'text';
 
     }
 
@@ -255,175 +258,5 @@ class Model_Order extends ORM {
         return FALSE;
     }
 
-    
-    protected $_table_columns =  
-array (
-  'id_order' => 
-  array (
-    'type' => 'int',
-    'min' => '0',
-    'max' => '4294967295',
-    'column_name' => 'id_order',
-    'column_default' => NULL,
-    'data_type' => 'int unsigned',
-    'is_nullable' => false,
-    'ordinal_position' => 1,
-    'display' => '10',
-    'comment' => '',
-    'extra' => 'auto_increment',
-    'key' => 'PRI',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'id_user' => 
-  array (
-    'type' => 'int',
-    'min' => '0',
-    'max' => '4294967295',
-    'column_name' => 'id_user',
-    'column_default' => NULL,
-    'data_type' => 'int unsigned',
-    'is_nullable' => false,
-    'ordinal_position' => 2,
-    'display' => '10',
-    'comment' => '',
-    'extra' => '',
-    'key' => 'MUL',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'id_ad' => 
-  array (
-    'type' => 'int',
-    'min' => '0',
-    'max' => '4294967295',
-    'column_name' => 'id_ad',
-    'column_default' => NULL,
-    'data_type' => 'int unsigned',
-    'is_nullable' => true,
-    'ordinal_position' => 3,
-    'display' => '10',
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'id_product' => 
-  array (
-    'type' => 'string',
-    'column_name' => 'id_product',
-    'column_default' => NULL,
-    'data_type' => 'varchar',
-    'is_nullable' => false,
-    'ordinal_position' => 4,
-    'character_maximum_length' => '20',
-    'collation_name' => 'utf8_general_ci',
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'paymethod' => 
-  array (
-    'type' => 'string',
-    'column_name' => 'paymethod',
-    'column_default' => NULL,
-    'data_type' => 'varchar',
-    'is_nullable' => true,
-    'ordinal_position' => 5,
-    'character_maximum_length' => '20',
-    'collation_name' => 'utf8_general_ci',
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'created' => 
-  array (
-    'type' => 'string',
-    'column_name' => 'created',
-    'column_default' => 'CURRENT_TIMESTAMP',
-    'data_type' => 'timestamp',
-    'is_nullable' => false,
-    'ordinal_position' => 6,
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'pay_date' => 
-  array (
-    'type' => 'string',
-    'column_name' => 'pay_date',
-    'column_default' => NULL,
-    'data_type' => 'datetime',
-    'is_nullable' => true,
-    'ordinal_position' => 7,
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'currency' => 
-  array (
-    'type' => 'string',
-    'exact' => true,
-    'column_name' => 'currency',
-    'column_default' => NULL,
-    'data_type' => 'char',
-    'is_nullable' => false,
-    'ordinal_position' => 8,
-    'character_maximum_length' => '3',
-    'collation_name' => 'utf8_general_ci',
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'amount' => 
-  array (
-    'type' => 'float',
-    'exact' => true,
-    'column_name' => 'amount',
-    'column_default' => '0.000',
-    'data_type' => 'decimal',
-    'is_nullable' => false,
-    'ordinal_position' => 9,
-    'numeric_scale' => '3',
-    'numeric_precision' => '14',
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'status' => 
-  array (
-    'type' => 'int',
-    'min' => '-128',
-    'max' => '127',
-    'column_name' => 'status',
-    'column_default' => '0',
-    'data_type' => 'tinyint',
-    'is_nullable' => false,
-    'ordinal_position' => 10,
-    'display' => '1',
-    'comment' => '',
-    'extra' => '',
-    'key' => 'MUL',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'description' => 
-  array (
-    'type' => 'string',
-    'column_name' => 'description',
-    'column_default' => NULL,
-    'data_type' => 'varchar',
-    'is_nullable' => true,
-    'ordinal_position' => 11,
-    'character_maximum_length' => '145',
-    'collation_name' => 'utf8_general_ci',
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
-);
+
 }

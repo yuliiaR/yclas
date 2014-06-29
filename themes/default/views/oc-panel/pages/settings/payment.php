@@ -21,42 +21,8 @@
 					<?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
 				<?endforeach?>
 
-                <div class="form-group">
-                    <?= FORM::label($forms['paypal_account']['key'], __('Paypal account'), array('class'=>'control-label col-sm-3', 'for'=>$forms['paypal_account']['key']))?>
-                    <div class="col-sm-4">
-                        <?= FORM::input($forms['paypal_account']['key'], $forms['paypal_account']['value'], array(
-                        'placeholder' => "some@email.com", 
-                        'class' => 'tips form-control', 
-                        'id' => $forms['paypal_account']['key'],
-                        'data-original-title'=> __("Paypal mail address"),
-                        'data-trigger'=>"hover",
-                        'data-placement'=>"right",
-                        'data-toggle'=>"popover",
-                        'data-content'=>__("The paypal email address where the payments will be sent"), 
-                        ))?> 
-                        </div>
-                </div>
-
 				<div class="form-group">
-					<?= FORM::label($forms['sandbox']['key'], __('Sandbox'), array('class'=>'control-label col-sm-3', 'for'=>$forms['sandbox']['key']))?>
-					<div class="col-sm-4">
-                        <div class="onoffswitch">
-                            <?= Form::checkbox($forms['sandbox']['key'], 1, (bool) $forms['sandbox']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
-                            'class' => 'onoffswitch-checkbox', 
-							'id' => $forms['sandbox']['key'],
-							'data-content'=> '',
-							'data-trigger'=>"hover",
-							'data-placement'=>"right",
-							'data-toggle'=>"popover",
-							'data-original-title'=>'', 
-                            ))?>
-                            <?= FORM::label($forms['sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['sandbox']['key']))?>
-                        </div>
-					</div>
-				</div>
-				<div class="form-group">
-					<?= FORM::label($forms['paypal_currency']['key'], __('Paypal currency'), array('class'=>'control-label col-sm-3', 'for'=>$forms['paypal_currency']['key']))?>
+					<?= FORM::label($forms['paypal_currency']['key'], __('Site currency'), array('class'=>'control-label col-sm-3', 'for'=>$forms['paypal_currency']['key']))?>
 					<div class="col-sm-4">
 						<?= FORM::select($forms['paypal_currency']['key'], $paypal_currency , array_search($forms['paypal_currency']['value'], $paypal_currency), array(
 						'placeholder' => "USD", 
@@ -66,7 +32,7 @@
 						'data-trigger'=>"hover",
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
-						'data-content'=>__("Please be sure you are using a currency that paypal supports."),
+						'data-content'=>__("Please be sure you are using a currency that your payment gateway supports."),
 						))?> 
 					</div>
 				</div>
@@ -156,39 +122,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/09/02/pay-directly-from-ad/'>".__('User paypal link')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['paypal_seller']['key']))?>
-					<div class="col-sm-4">
-                        <div class="onoffswitch">
-                            <?= Form::checkbox($forms['paypal_seller']['key'], 1, (bool) $forms['paypal_seller']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
-                            'class' => 'onoffswitch-checkbox', 
-							'id' => $forms['paypal_seller']['key'],
-							'data-content'=> '',
-							'data-trigger'=>"hover",
-							'data-placement'=>"right",
-							'data-toggle'=>"popover",
-							'data-original-title'=>'', 
-                            ))?>
-                            <?= FORM::label($forms['paypal_seller']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['paypal_seller']['key']))?>
-                        </div>
-					</div>
-				</div>	
-                <div class="form-group">
-                    <?= FORM::label($forms['stock']['key'], __('Paypal link stock control'), array('class'=>'control-label col-sm-3', 'for'=>$forms['stock']['key']))?>
-                    <div class="col-sm-4">
-                        <?= FORM::select($forms['stock']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['stock']['value'], array(
-                        'placeholder' => "", 
-                        'class' => 'tips form-control', 
-                        'id' => $forms['stock']['key'], 
-                        'data-original-title'=> __("Paypal link stock control"),
-                        'data-trigger'=>"hover",
-                        'data-placement'=>"right",
-                        'data-toggle'=>"popover",
-                        'data-content'=>__("Paypal link stock control"),
-                        ))?>  
-                    </div>
-                </div>	
+				
 
                 <div class="form-group">
                     <?= FORM::label($forms['alternative']['key'], __('Alternative Payment'), array('class'=>'col-md-3 control-label', 'for'=>$forms['alternative']['key']))?>
@@ -204,6 +138,139 @@
                         ))?> 
                     </div>
                 </div>
+
+                <hr>
+                <h2>Paypal</h2>
+                <div class="form-group">
+                    <?= FORM::label($forms['paypal_account']['key'], __('Paypal account'), array('class'=>'control-label col-sm-3', 'for'=>$forms['paypal_account']['key']))?>
+                    <div class="col-sm-4">
+                        <?= FORM::input($forms['paypal_account']['key'], $forms['paypal_account']['value'], array(
+                        'placeholder' => "some@email.com", 
+                        'class' => 'tips form-control', 
+                        'id' => $forms['paypal_account']['key'],
+                        'data-original-title'=> __("Paypal mail address"),
+                        'data-trigger'=>"hover",
+                        'data-placement'=>"right",
+                        'data-toggle'=>"popover",
+                        'data-content'=>__("The paypal email address where the payments will be sent"), 
+                        ))?> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <?= FORM::label($forms['sandbox']['key'], __('Sandbox'), array('class'=>'control-label col-sm-3', 'for'=>$forms['sandbox']['key']))?>
+                    <div class="col-sm-4">
+                        <div class="onoffswitch">
+                            <?= Form::checkbox($forms['sandbox']['key'], 1, (bool) $forms['sandbox']['value'], array(
+                            'placeholder' => "TRUE or FALSE", 
+                            'class' => 'onoffswitch-checkbox', 
+                            'id' => $forms['sandbox']['key'],
+                            'data-content'=> '',
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"right",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>'', 
+                            ))?>
+                            <?= FORM::label($forms['sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['sandbox']['key']))?>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/09/02/pay-directly-from-ad/'>".__('User paypal link')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['paypal_seller']['key']))?>
+                    <div class="col-sm-4">
+                        <div class="onoffswitch">
+                            <?= Form::checkbox($forms['paypal_seller']['key'], 1, (bool) $forms['paypal_seller']['value'], array(
+                            'placeholder' => "TRUE or FALSE", 
+                            'class' => 'onoffswitch-checkbox', 
+                            'id' => $forms['paypal_seller']['key'],
+                            'data-content'=> '',
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"right",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>'', 
+                            ))?>
+                            <?= FORM::label($forms['paypal_seller']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['paypal_seller']['key']))?>
+                        </div>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <?= FORM::label($forms['stock']['key'], __('Paypal link stock control'), array('class'=>'control-label col-sm-3', 'for'=>$forms['stock']['key']))?>
+                    <div class="col-sm-4">
+                        <?= FORM::select($forms['stock']['key'], array(FALSE=>"FALSE",TRUE=>"TRUE"),$forms['stock']['value'], array(
+                        'placeholder' => "", 
+                        'class' => 'tips form-control', 
+                        'id' => $forms['stock']['key'], 
+                        'data-original-title'=> __("Paypal link stock control"),
+                        'data-trigger'=>"hover",
+                        'data-placement'=>"right",
+                        'data-toggle'=>"popover",
+                        'data-content'=>__("Paypal link stock control"),
+                        ))?>  
+                    </div>
+                </div>  
+
+                <hr>
+                <h2>Authorize.net</h2>
+                <div class="form-group">
+                    <label class="col-md-5 col-md-offset-3">
+                        <p>To get paid via Credit card you need an Atuthorize.net account. It's free to register. </p>
+                        <a class="btn btn-success" target="_blank" href="https://authorize.net">
+                            <i class="glyphicon glyphicon-pencil"></i> Register for free at Authorize</a>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <?= FORM::label($forms['authorize_sandbox']['key'], __('Sandbox'), array('class'=>'control-label col-sm-3', 'for'=>$forms['authorize_sandbox']['key']))?>
+                    <div class="col-sm-4">
+                        <div class="onoffswitch">
+                            <?= Form::checkbox($forms['authorize_sandbox']['key'], 1, (bool) $forms['authorize_sandbox']['value'], array(
+                            'placeholder' => "TRUE or FALSE", 
+                            'class' => 'onoffswitch-checkbox', 
+                            'id' => $forms['authorize_sandbox']['key'],
+                            'data-content'=> '',
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"right",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>'', 
+                            ))?>
+                            <?= FORM::label($forms['authorize_sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['authorize_sandbox']['key']))?>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    
+                    <?= FORM::label($forms['authorize_login']['key'], __('Authorize API Login'), array('class'=>'col-md-3 control-label', 'for'=>$forms['authorize_login']['key']))?>
+                    <div class="col-md-5">
+                        <?= FORM::input($forms['authorize_login']['key'], $forms['authorize_login']['value'], array(
+                        'placeholder' => "", 
+                        'class' => 'tips form-control', 
+                        'id' => $forms['authorize_login']['key'],
+                        'data-content'=> __('Authorize API Login'),
+                        'data-trigger'=>"hover",
+                        'data-placement'=>"right",
+                        'data-toggle'=>"popover",
+                        'data-original-title'=>'', 
+                        ))?> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <?= FORM::label($forms['authorize_key']['key'], __('Authorize transaction Key'), array('class'=>'col-md-3 control-label', 'for'=>$forms['authorize_key']['key']))?>
+                    <div class="col-md-5">
+                        <?= FORM::input($forms['authorize_key']['key'], $forms['authorize_key']['value'], array(
+                        'placeholder' => "", 
+                        'class' => 'tips form-control', 
+                        'id' => $forms['authorize_key']['key'],
+                        'data-content'=> __("Authorize transaction Key"),
+                        'data-trigger'=>"hover",
+                        'data-placement'=>"right",
+                        'data-toggle'=>"popover",
+                        'data-original-title'=>'', 
+                        ))?> 
+                        </div>
+                </div>
+
+                <hr>
+                <h2>Paymill</h2>
 
                 <div class="form-group">
                     <label class="col-md-5 col-md-offset-3">
@@ -244,7 +311,8 @@
                         ))?> 
                         </div>
                 </div>
-
+                <hr>
+                <h2>Stripe</h2>
                 <div class="form-group">
                     <label class="col-md-5 col-md-offset-3">
                         <p>To get paid via Credit card you can also use a Stripe account. It's free to register. They charge 2'95% of any sale.</p>
@@ -303,7 +371,8 @@
                         </div>
                     </div>
                 </div>
-
+                <hr>
+                <h2>Bitpay</h2>
                 <div class="form-group">
                     <label class="col-md-5 col-md-offset-3">
                         <p>Accept bitcoins using Bitpay</p>
