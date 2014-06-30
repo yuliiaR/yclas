@@ -165,7 +165,7 @@ class Model_Ad extends ORM {
     {
         if (!Model_Visit::is_bot() AND $this->loaded())
         {
-            if(!$auth_user->logged_in())
+            if(!Auth::instance()->logged_in())
                 $visitor_id = NULL;
             else
                 $visitor_id = $auth_user->get_user()->id_user;
