@@ -2,11 +2,11 @@
                 return array (
   '2.1.8.1' => 
   array (
-    'codename' => 'Barceloneta',
-    'released' => '2014-07-02',
-    'blog' => 'http://open-classifieds.com/2014/07/02/open-classifieds-2-1-8-1/',
+    'codename' => 'Vila Olimpica',
+    'released' => '2014-06-30',
+    'blog' => 'http://open-classifieds.com/2014/06/30/open-classifieds-2-1-8-1/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.1.8...2.1.8.1',
-    'issues' => 'http://open-classifieds.com/2014/06/11/how-to-fix-classifieds-listings-page-issue/',
+    'issues' => 'http://open-classifieds.com/2014/06/30/open-classifieds-2-1-8-1/',
     'download' => 'http://j.mp/oc_2181',
   ),
   '2.1.8' => 
