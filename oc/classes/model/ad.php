@@ -160,16 +160,28 @@ class Model_Ad extends ORM {
     /**
      *  Create single table for each advertisement hit
      * 
-     *  @param int visitor id
      */
-    public function count_ad_hit($visitor_id)
+    public function count_ad_hit()
     {
-        //inser new table, as a hit
         if (!Model_Visit::is_bot() AND $this->loaded())
-            $new_hit = DB::insert('visits', array('id_ad', 'id_user', 'ip_address'))
-                                ->values(array($this->id_ad, $visitor_id, ip2long(Request::$client_ip)))
-                                ->execute();
+        {
+            if(!$auth_user->logged_in())
+                $visitor_id = NULL;
+            else
+                $visitor_id = $auth_user->get_user()->id_user;
 
+            //insert new visit
+            if ($this->id_user!=$visitor_id)
+                $new_hit = DB::insert('visits', array('id_ad', 'id_user', 'ip_address'))
+                                    ->values(array($this->id_ad, $visitor_id, ip2long(Request::$client_ip)))
+                                    ->execute();
+
+            //count how many matches are found 
+            $hits = new Model_Visit();
+            $hits = $hits->where('id_ad','=', $this->id_ad)->count_all();
+        }
+        return 0;
+        
     }
 
     /**

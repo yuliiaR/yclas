@@ -347,11 +347,6 @@ class Controller_Ad extends Controller {
 					($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR))
 				{	
 
-					if(!$auth_user->logged_in())
-						$visitor_id = NULL;
-					else
-						$visitor_id = $auth_user->get_user()->id_user;
-					$do_hit = $ad->count_ad_hit($visitor_id); // hits counter
 					
 					$permission = FALSE;
 					$user = NULL;
@@ -360,10 +355,7 @@ class Controller_Ad extends Controller {
                 else 
                     $user = $auth_user->get_user()->id_user;
 
-
-				//count how many matches are found 
-		        $hits = new Model_Visit();
-		        $hits = $hits->where('id_ad','=', $ad->id_ad)->count_all();
+                $hits = $ad->count_ad_hit();				
 
 				$captcha_show = core::config('advertisement.captcha');	
 				
