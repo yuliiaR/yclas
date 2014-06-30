@@ -347,10 +347,8 @@ class Controller_Ad extends Controller {
 					($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR))
 				{	
 
-					
 					$permission = FALSE;
 					$user = NULL;
-					
 				} 
                 else 
                     $user = $auth_user->get_user()->id_user;
