@@ -59,6 +59,8 @@
             </div> <!--/.nav-collapse -->
     </div><!--/. -->
 </header><!--/.navbar -->
+
+<?if (Auth::instance()->get_user()->id_role != Model_Role::ROLE_USER):?>
 <div class="col-sm-3 col-md-3 pull-right search-container-oc-faq">
     <form class="navbar-form p_m0" role="search" action="http://open-classifieds.com/" target="_blank">
     <div class="input-group">
@@ -72,3 +74,4 @@
     </div>
     </form>
 </div> 
+<?endif?>
