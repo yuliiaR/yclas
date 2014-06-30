@@ -156,23 +156,22 @@ class Model_Ad extends ORM {
         return $seotitle;
     }
 
-   
-
 
     /**
      *  Create single table for each advertisement hit
      * 
      *  @param int visitor id
-     *  @param int ip address 
      */
-    public function count_ad_hit($visitor_id, $ip_address){
-        
+    public function count_ad_hit($visitor_id)
+    {
         //inser new table, as a hit
-        $new_hit = DB::insert('visits', array('id_ad', 'id_user', 'ip_address'))
-                                ->values(array($this->id_ad, $visitor_id, $ip_address))
+        if (!Model_Visit::is_bot() AND $this->loaded())
+            $new_hit = DB::insert('visits', array('id_ad', 'id_user', 'ip_address'))
+                                ->values(array($this->id_ad, $visitor_id, ip2long(Request::$client_ip)))
                                 ->execute();
 
     }
+
     /**
      * Gets all images
      * @return [array] [array with image names]

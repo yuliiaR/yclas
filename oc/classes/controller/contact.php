@@ -93,18 +93,21 @@ class Controller_Contact extends Controller {
                         Alert::set(Alert::SUCCESS, __('Your message has been sent'));
 
                         // we are updating field of visit table (contact)
-                        $visit_contact_obj = new Model_Visit();
+                        $visit = new Model_Visit();
 
-                        $visit_contact_obj->where('id_ad', '=', $this->request->param('id'))
+                        $visit->where('id_ad', '=', $this->request->param('id'))
+                                          ->where('ip_address', '=',ip2long(Request::$client_ip))
                                           ->order_by('created', 'desc')
                                           ->limit(1)->find();
-                                                          
-                        try {
-                            $visit_contact_obj->contacted = 1;
-                            $visit_contact_obj->save();
-                        } catch (Exception $e) {
-                            //throw 500
-                            throw HTTP_Exception::factory(500,$e->getMessage());
+                        if ($visit->loaded())
+                        {
+                            $visit->contacted = 1;
+                            try {
+                                $visit->save();
+                            } catch (Exception $e) {
+                                //throw 500
+                                throw HTTP_Exception::factory(500,$e->getMessage());
+                            }
                         }
 
                     }

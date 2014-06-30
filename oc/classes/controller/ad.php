@@ -351,7 +351,7 @@ class Controller_Ad extends Controller {
 						$visitor_id = NULL;
 					else
 						$visitor_id = $auth_user->get_user()->id_user;
-					$do_hit = $ad->count_ad_hit($visitor_id, ip2long(Request::$client_ip)); // hits counter
+					$do_hit = $ad->count_ad_hit($visitor_id); // hits counter
 					
 					$permission = FALSE;
 					$user = NULL;
