@@ -533,13 +533,33 @@ class Controller_Panel_Update extends Auth_Controller {
             DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='ads-purchased' WHERE seotitle='adspurchased' AND type='email'")->execute();
         }catch (exception $e) {}
         //end updating emails
-        //
+        
+
         //order transaction
         try
         {    
             DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."orders` ADD  `txn_id` VARCHAR( 255 ) NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
         
+
+        //ip_address from float to bigint
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."users` CHANGE last_ip last_ip BIGINT NULL DEFAULT NULL ")->execute();
+        }catch (exception $e) {}
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."visits` CHANGE ip_address ip_address BIGINT NULL DEFAULT NULL ")->execute();
+        }catch (exception $e) {}
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."ads` CHANGE ip_address ip_address BIGINT NULL DEFAULT NULL ")->execute();
+        }catch (exception $e) {}
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."posts` CHANGE ip_address ip_address BIGINT NULL DEFAULT NULL ")->execute();
+        }catch (exception $e) {}
+
         //new mails
         $contents = array(array('order'=>0,
                                 'title'=>'Reciept for [ORDER.DESC] #[ORDER.ID]',
