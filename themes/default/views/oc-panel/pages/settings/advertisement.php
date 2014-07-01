@@ -34,6 +34,7 @@
 				<?= FORM::label($forms['parent_category']['key'], __('Parent category'), array('class'=>'control-label col-sm-3', 'for'=>$forms['parent_category']['key']))?>
 				<div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['parent_category']['key'], 0);?>
 						<?= FORM::checkbox($forms['parent_category']['key'], 1, (bool) $forms['parent_category']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 
@@ -101,6 +102,7 @@
 				<?= FORM::label($forms['address']['key'], __('Address'), array('class'=>'control-label col-sm-3', 'for'=>$forms['address']['key']))?>
 				<div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['address']['key'], 0);?>
 						<?= FORM::checkbox($forms['address']['key'], 1, (bool) $forms['address']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 
@@ -119,6 +121,7 @@
                 <?= FORM::label($forms['map']['key'], __('Google Maps in Ad'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map']['key']))?>
                 <div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['map']['key'], 0);?>
 						<?= FORM::checkbox($forms['map']['key'], 1, (bool) $forms['map']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 
@@ -137,6 +140,7 @@
                 <?= FORM::label($forms['map_pub_new']['key'], __('Google Maps in Publish New'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map_pub_new']['key']))?>
                 <div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['map_pub_new']['key'], 0);?>
 						<?= FORM::checkbox($forms['map_pub_new']['key'], 1, (bool) $forms['map_pub_new']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 
@@ -203,6 +207,7 @@
 				<?= FORM::label($forms['phone']['key'], __('Phone'), array('class'=>'control-label col-sm-3', 'for'=>$forms['phone']['key']))?>
 				<div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['phone']['key'], 0);?>
 						<?= FORM::checkbox($forms['phone']['key'], 1, (bool) $forms['phone']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 
@@ -221,6 +226,7 @@
 				<?= FORM::label($forms['website']['key'], __('Website'), array('class'=>'control-label col-sm-3', 'for'=>$forms['website']['key']))?>
 				<div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['website']['key'], 0);?>
 						<?= FORM::checkbox($forms['website']['key'], 1, (bool) $forms['website']['value'], array(
 						'placeholder' => "http://foo.com/", 
 						'class' => 'onoffswitch-checkbox', 
@@ -239,6 +245,7 @@
 				<?= FORM::label($forms['location']['key'], __('Location'), array('class'=>'control-label col-sm-3', 'for'=>$forms['location']['key']))?>
 				<div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['location']['key'], 0);?>
 						<?= FORM::checkbox($forms['location']['key'], 1, (bool) $forms['location']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 
@@ -257,6 +264,7 @@
 				<?= FORM::label($forms['price']['key'], __('Price'), array('class'=>'control-label col-sm-3', 'for'=>$forms['price']['key']))?>
 				<div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['price']['key'], 0);?>
 						<?= FORM::checkbox($forms['price']['key'], 1, (bool) $forms['price']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 
@@ -275,6 +283,7 @@
 				<?= FORM::label($forms['upload_file']['key'], __('Upload file'), array('class'=>'control-label col-sm-3', 'for'=>$forms['upload_file']['key']))?>
 				<div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['upload_file']['key'], 0);?>
 						<?= FORM::checkbox($forms['upload_file']['key'], 1, (bool) $forms['upload_file']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 
@@ -288,6 +297,7 @@
 				<?= FORM::label($forms['captcha']['key'], __('Captcha'), array('class'=>'control-label col-sm-3', 'for'=>$forms['captcha']['key']))?>
 				<div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['captcha']['key'], 0);?>
 						<?= FORM::checkbox($forms['captcha']['key'], 1, (bool) $forms['captcha']['value'], array(
 						'placeholder' => "http://foo.com/", 
 						'class' => 'onoffswitch-checkbox', 
@@ -306,6 +316,7 @@
                 <?= FORM::label($forms['contact']['key'], __('Contact form'), array('class'=>'control-label col-sm-3', 'for'=>$forms['contact']['key']))?>
                 <div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['contact']['key'], 0);?>
 						<?= FORM::checkbox($forms['contact']['key'], 1, (bool) $forms['contact']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 
@@ -406,6 +417,7 @@
 				<?= FORM::label($forms['qr_code']['key'], __('Show QR code'), array('class'=>'control-label col-sm-3', 'for'=>$forms['qr_code']['key']))?>
 				<div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['qr_code']['key'], 0);?>
 						<?= FORM::checkbox($forms['qr_code']['key'], 1, (bool) $forms['qr_code']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 
@@ -424,6 +436,7 @@
 				<?= FORM::label($forms['login_to_post']['key'], __('Require login to post'), array('class'=>'control-label col-sm-3', 'for'=>$forms['login_to_post']['key']))?>
 				<div class="col-sm-4">
 					<div class="onoffswitch">
+						<?= FORM::hidden($forms['login_to_post']['key'], 0);?>
 						<?= FORM::checkbox($forms['login_to_post']['key'], 1, (bool) $forms['login_to_post']['value'], array(
 						'placeholder' => "", 
 						'class' => 'onoffswitch-checkbox', 

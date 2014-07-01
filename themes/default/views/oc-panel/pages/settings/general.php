@@ -20,6 +20,7 @@
             <?= FORM::label($forms['maintenance']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/15/how-to-activate-maintenance-mode/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['maintenance']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
+                	<?= FORM::hidden($forms['maintenance']['key'], 0);?>
 					<?= Form::checkbox($forms['maintenance']['key'], 1, (bool) $forms['maintenance']['value'], array(
 					'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -334,6 +335,7 @@
             <?= FORM::label($forms_img['watermark']['key'], __('Watermark'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['watermark']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
+                	<?= FORM::hidden($forms_img['watermark']['key'], 0);?>
 					<?= Form::checkbox($forms_img['watermark']['key'], 1, (bool) $forms_img['watermark']['value'], array(
 					'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -417,6 +419,7 @@
             <?= FORM::label($forms['search_by_description']['key'], __("Include search by description"), array('class'=>'control-label col-sm-3', 'for'=>$forms['search_by_description']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
+                	<?= FORM::hidden($forms['search_by_description']['key'], 0);?>
 					<?= Form::checkbox($forms['search_by_description']['key'], 1, (bool) $forms['search_by_description']['value'], array(
 					'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -435,6 +438,7 @@
             <?= FORM::label($forms['blog']['key'], __("Activates Blog posting"), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
+                	<?= FORM::hidden($forms['blog']['key'], 0);?>
 					<?= Form::checkbox($forms['blog']['key'], 1, (bool) $forms['blog']['value'], array(
 					'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -468,6 +472,7 @@
             <?= FORM::label($forms['forums']['key'], __("Activates Forums"), array('class'=>'control-label col-sm-3', 'for'=>$forms['forums']['key']))?>
             <div class="col-md-4">
                 <div class="onoffswitch">
+                	<?= FORM::hidden($forms['forums']['key'], 0);?>
 					<?= Form::checkbox($forms['forums']['key'], 1, (bool) $forms['forums']['value'], array(
 					'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -486,6 +491,7 @@
             <?= FORM::label($forms['faq']['key'], __("Activates FAQ"), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
+                	<?= FORM::hidden($forms['faq']['key'], 0);?>
 					<?= Form::checkbox($forms['faq']['key'], 1, (bool) $forms['faq']['value'], array(
 					'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -520,6 +526,7 @@
             <?= FORM::label($forms['minify']['key'], __("Minify CSS/JS"), array('class'=>'control-label col-sm-3', 'for'=>$forms['minify']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
+                	<?= FORM::hidden($forms['minify']['key'], 0);?>
 					<?= Form::checkbox($forms['minify']['key'], 1, (bool) $forms['minify']['value'], array(
 					'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -562,6 +569,7 @@
             <?= FORM::label($forms['black_list']['key'], __("Black List"), array('class'=>'control-label col-sm-3', 'for'=>$forms['black_list']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
+                	<?= FORM::hidden($forms['black_list']['key'], 0);?>
 					<?= Form::checkbox($forms['black_list']['key'], 1, (bool) $forms['black_list']['value'], array(
 					'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
