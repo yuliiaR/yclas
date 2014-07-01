@@ -25,7 +25,7 @@ class Controller_Panel_Settings extends Auth_Controller {
      * captcha, uploading text file  
      * @return [view] Renders view with form inputs
      */
-	public function action_form()
+    public function action_form()
     {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Advertisement')));
         $this->template->title = __('Advertisement');
@@ -42,13 +42,16 @@ class Controller_Panel_Settings extends Auth_Controller {
             {
                 $config_res = $this->request->post($c->config_key); 
 
-                if($config_res !== $c->config_value)
+                if(isset($config_res))
                 {
-                    $c->config_value = $config_res;
-                    try {
-                        $c->save();
-                    } catch (Exception $e) {
-                        throw HTTP_Exception::factory(500,$e->getMessage());
+                    if($config_res !== $c->config_value)
+                    {
+                        $c->config_value = $config_res;
+                        try {
+                            $c->save();
+                        } catch (Exception $e) {
+                            throw HTTP_Exception::factory(500,$e->getMessage());
+                        }
                     }
                 }
             }
@@ -76,7 +79,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         // save only changed values
         if($this->request->post())
         {
-        	foreach ($config as $c) 
+            foreach ($config as $c) 
             {
                 $config_res = $this->request->post($c->config_key); 
 
@@ -139,7 +142,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         if($this->request->post())
         {
             //save general
-        	foreach ($config as $c) 
+            foreach ($config as $c) 
             {   
                 $config_res = $this->request->post($c->config_key);
                 if($config_res != $c->config_value AND !in_array($c->config_key, $do_nothing))
@@ -225,7 +228,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         // save only changed values
         if($this->request->post())
         {
-        	foreach ($config as $c) 
+            foreach ($config as $c) 
             {
                 $config_res = $this->request->post($c->config_key); 
 
