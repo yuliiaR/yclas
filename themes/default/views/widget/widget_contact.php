@@ -3,6 +3,8 @@
 <h3><?=$widget->text_title?></h3>
 <?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'user_contact', 'id'=>$widget->id_ad)), array('class'=>'form-horizontal ', 'enctype'=>'multipart/form-data'))?>
 	<fieldset>
+        
+        <?if (!Auth::instance()->logged_in()):?>
 		<div class="form-group">
 			<div class="col-xs-10">
 			<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
@@ -15,6 +17,8 @@
 				<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
 			</div>
 		</div>
+        <?endif?>
+
 		<div class="form-group">
 			<div class="col-xs-10">
 			<?= FORM::label('subject', __('Subject'), array('class'=>'control-label', 'for'=>'subject'))?>

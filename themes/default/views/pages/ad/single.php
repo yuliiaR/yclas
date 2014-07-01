@@ -104,6 +104,7 @@
 							
 							<?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'user_contact', 'id'=>$ad->id_ad)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
 							<fieldset>
+                                <?if (!Auth::instance()->get_user()):?>
 								<div class="form-group">
 								<?= FORM::label('name', __('Name'), array('class'=>'col-sm-2 control-label', 'for'=>'name'))?>
 									<div class="col-md-4 ">
@@ -116,6 +117,7 @@
 										<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class'=>'form-control', 'id' => 'email', 'type'=>'email','required'))?>
 									</div>
 								</div>
+                                <?endif?>
 								<div class="form-group">
 								<?= FORM::label('subject', __('Subject'), array('class'=>'col-sm-2 control-label', 'for'=>'subject'))?>
 									<div class="col-md-4 ">
