@@ -168,7 +168,7 @@ class Model_Ad extends ORM {
             if(!Auth::instance()->logged_in())
                 $visitor_id = NULL;
             else
-                $visitor_id = $auth_user->get_user()->id_user;
+                $visitor_id = Auth::instance()->get_user()->id_user;
 
             //insert new visit
             if ($this->id_user!=$visitor_id)
