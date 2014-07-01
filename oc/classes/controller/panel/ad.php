@@ -167,68 +167,54 @@ class Controller_Panel_Ad extends Auth_Controller {
 	 */
 	public function action_delete()
 	{
-		$element = ORM::factory('ad', $this->request->param('id'));
 		$id = $this->request->param('id');
 		
 		$format_id = explode('_', $id);
 		$auth_user = Auth::instance();
-		if($auth_user->logged_in() AND $auth_user->get_user()->id_user == $element->id_user 
-			OR ($auth_user->get_user()->id_role == Model_Role::ROLE_ADMIN OR $auth_user->get_user()->id_role == Model_Role::ROLE_MODERATOR))
+	
+		$nb_Ads_Deleted = 0;
+		foreach ($format_id as $id) 
 		{
-			$nb_Ads_Deleted = 0;
-			foreach ($format_id as $id) 
-			{
-				
-				if (isset($id) AND $id !== '')
-				{
-					$this->auto_render = FALSE;
-					$this->template = View::factory('js');
-					$element = ORM::factory('ad', $id);
-					
-					if($element AND $element->loaded())
-					{
-						try
-						{
-							$element->delete_images();
-							$element->delete();
-							$nb_Ads_Deleted++;
-						}
-						catch (Exception $e)
-						{
-							Alert::set(Alert::ERROR, sprintf(__('Warning, something went wrong while deleting Ad with id %u'),$id).':<br>'.$e->getMessage());
-							//throw HTTP_Exception::factory(500,$e->getMessage());
-						}
-					}
-					else
-						Alert::set(Alert::ERROR, sprintf(__('Cannot find Ad with id %u'),$id));
-				}
-
-			}
-			$level_Alert = ($nb_Ads_Deleted > 0) ? Alert::SUCCESS : Alert::INFO;
-			if ($nb_Ads_Deleted == 1)
-				$nb_Ads_Deleted = __('Advertisement has been permanently deleted');
-			elseif ($nb_Ads_Deleted >= 2)
-				$nb_Ads_Deleted = sprintf(__('%u advertisements have been permanently deleted'),$nb_Ads_Deleted);
-			else
-				$nb_Ads_Deleted = __('None (0) advertisement has been deleted');
-
-			Alert::set($level_Alert, $nb_Ads_Deleted);
-
-			$param_current_url = Core::get('current_url');
-		
 			
-			if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-				HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
-			elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-				HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
-			else
-				HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
+			if (isset($id) AND $id !== '')
+			{
+				$ad = new Model_Ad($id);
+				
+				if($ad->loaded())
+				{
+					try
+					{
+						$ad->delete_images();
+						$ad->delete();
+						$nb_Ads_Deleted++;
+					}
+					catch (Exception $e)
+					{
+						Alert::set(Alert::ERROR, sprintf(__('Warning, something went wrong while deleting Ad with id %u'),$id).':<br>'.$e->getMessage());
+						//throw HTTP_Exception::factory(500,$e->getMessage());
+					}
+				}
+			}
+
 		}
+		$level_Alert = ($nb_Ads_Deleted > 0) ? Alert::SUCCESS : Alert::INFO;
+		if ($nb_Ads_Deleted == 1)
+			$nb_Ads_Deleted = __('Advertisement has been permanently deleted');
+		elseif ($nb_Ads_Deleted >= 2)
+			$nb_Ads_Deleted = sprintf(__('%u advertisements have been permanently deleted'),$nb_Ads_Deleted);
 		else
-		{
-			Alert::set(Alert::ERROR, __('You dont have permission to access this link'));
-			$this->redirect(Route::url('default'));
-		}
+			$nb_Ads_Deleted = __('None (0) advertisement has been deleted');
+
+		Alert::set($level_Alert, $nb_Ads_Deleted);
+
+		$param_current_url = Core::get('current_url');
+		
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		else
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 	}
 
 	/**
@@ -244,45 +230,28 @@ class Controller_Panel_Ad extends Auth_Controller {
 		{ 
 			if (isset($id) AND $id !== '')
 			{ 
-				$spam_ad = ORM::factory('ad', $id);
+				$spam_ad = new Model_Ad($id);
 
 				if ($spam_ad->loaded())
 				{
-					if ($spam_ad->status != 30)
+					if ($spam_ad->status != Model_Ad::STATUS_SPAM)
 					{
-						
 						//mark user as spamer
 						$user = new Model_User($spam_ad->user->id_user);
 						if($user->loaded())
 							$user->user_spam();
 
-						$spam_ad->status = 30;
+						$spam_ad->status = Model_Ad::STATUS_SPAM;
 						
-						try
-						{
+						try{
 							$spam_ad->save();
 						}
-						catch (Exception $e)
-						{
+						catch (Exception $e){
 							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 					}
-					else
-					{				
-						Alert::set(Alert::ALERT, __('Warning, Advertisement is already marked as spam'));
-						if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
-						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
-						else
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
-					} 
 				}
-				else
-				{
-					//throw 404
-					throw HTTP_Exception::factory(404,__('Page not found'));
-				}
+				
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is marked as spam'));
@@ -310,8 +279,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		{
 			if (isset($id) AND $id !== '')
 			{
-
-				$deact_ad = ORM::factory('ad', $id);
+				$deact_ad = new Model_Ad($id);
 
 				if ($deact_ad->loaded())
 				{
@@ -319,31 +287,15 @@ class Controller_Panel_Ad extends Auth_Controller {
 					{
 						$deact_ad->status = Model_Ad::STATUS_UNAVAILABLE;
 						
-						try
-						{
+						try{
 							$deact_ad->save();
 						}
-							catch (Exception $e)
-						{
+						catch (Exception $e){
 							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 					}
-					else
-					{				
-						Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
-						if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
-						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
-						else
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
-					} 
 				}
-				else
-				{
-					//throw 404
-					throw HTTP_Exception::factory(404,__('Page not found'));
-				}
+				
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
@@ -378,8 +330,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 				{
 					if ($active_ad->status != Model_Ad::STATUS_PUBLISHED)
 					{
-						$active_ad->published = Date::unix2mysql(time());
-						$active_ad->status = Model_Ad::STATUS_PUBLISHED;
+						$active_ad->published = Date::unix2mysql();
+						$active_ad->status    = Model_Ad::STATUS_PUBLISHED;
 						
 						try
 						{
@@ -391,29 +343,14 @@ class Controller_Panel_Ad extends Auth_Controller {
 											'loc'			=> $loc 		= 	$active_ad->location,	
 										 );
 
-							Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $active_ad->price)), $active_ad->seotitle, Auth::instance()->get_user()->email); // if subscription is on
+							Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $active_ad->price)), $active_ad->seotitle); // if subscription is on
 
 						}
-							catch (Exception $e)
+						catch (Exception $e)
 						{
 							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 					}
-					else
-					{				
-						Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'active'"));
-						if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
-						elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
-						else
-							HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
-					} 
-				}
-				else
-				{
-					//throw 404
-					throw HTTP_Exception::factory(404,__('Page not found'));
 				}
 			}
 		}
@@ -485,36 +422,25 @@ class Controller_Panel_Ad extends Auth_Controller {
 		{
 			if (isset($id) AND $id !== '')
 			{
-				$featured_ad = ORM::factory('ad', $id);
+				$featured_ad = new Model_Ad($id);
 
 				if ($featured_ad->loaded())
 				{
-					
 					if($featured_ad->featured == NULL)
 					{
-						$featured_ad->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
-	        
-				        try {
-				            $featured_ad->save();
-				        } catch (Exception $e) {
-				 	          
-				        }
+						$featured_ad->to_feature();
 				    }
 				    else
-					{				
+					{		
+                        //unfeature it		
 						$featured_ad->featured = NULL;
 						try {
 				            $featured_ad->save();
 				        } catch (Exception $e) {
-				 	          
+				 	          throw HTTP_Exception::factory(500,$e->getMessage());
 				        }
 					} 
 			    }
-			    else
-				{
-					//throw 404
-					throw HTTP_Exception::factory(404,__('Page not found'));
-				}
 			    
 			}
 		}
@@ -540,24 +466,9 @@ class Controller_Panel_Ad extends Auth_Controller {
 		{
 			if (isset($id) AND $id !== '')
 			{
-				$element = ORM::factory('ad', $id);
-
-				if ($element->loaded())
-				{
-					$element->published = Date::unix2mysql(time());
-        
-			        try {
-			            $element->save();
-			        } catch (Exception $e) {
-			 	        throw HTTP_Exception::factory(500,$e->getMessage());
-			        }
-			    }
-			    else
-				{
-					//throw 404
-					throw HTTP_Exception::factory(404,__('Page not found'));
-				}
-			    
+                $ad = new Model_Ad($id);
+                if ($ad->loaded())
+                    $ad->to_top();			    
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is to top'));
@@ -574,16 +485,15 @@ class Controller_Panel_Ad extends Auth_Controller {
 	//temporary function until i figure out how to deal with mass mails @TODO EMAIL
 	public function multiple_mails($receivers)
 	{
-	
 		foreach ($receivers as $num => $receiver_id) {
 			if(is_numeric($receiver_id))
 			{
 				$ad 		= new Model_Ad($receiver_id);
-				$cat 		= new Model_Category($ad->id_category);
-				$usr 		= new Model_User($ad->id_user);
-
-				if($usr->loaded())
+				if($ad->loaded())
 				{
+
+                    $cat        = $ad->category;
+                    $usr        = $ad->user;
 
 					$edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad));
                     $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad));
@@ -592,7 +502,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
 				 	                                'seotitle'=> $ad->seotitle),TRUE);
 
-					$ret = $usr->email('ads_activated',array('[USER.OWNER]'=>$usr->name,
+					$ret = $usr->email('ads-activated',array('[USER.OWNER]'=>$usr->name,
 															 '[URL.QL]'=>$url_ql,
 															 '[AD.NAME]'=>$ad->title,
 															 '[URL.EDITAD]'=>$edit_url,

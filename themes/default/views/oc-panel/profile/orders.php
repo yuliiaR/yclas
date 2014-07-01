@@ -21,11 +21,9 @@
                 <th><?=__('Status') ?></th>
                 <th><?=__('Product') ?></th>
                 <th><?=__('Amount') ?></th>
-	            <th><?=__('User') ?></th>
 	            <th><?=__('Ad') ?></th>
 	            <th><?=__('Date') ?></th>
                 <th><?=__('Date Paid') ?></th>
-				<th><?=__('Actions') ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,29 +32,26 @@
 					
 	                <td><?=$order->pk()?></td>
 
-                    <td><?=Model_Order::$statuses[$order->status]?></td>
+                    <td>
+                        <?if ($order->status == Model_Order::STATUS_CREATED):?>
+                        <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
+                        <i class="glyphicon glyphicon-shopping-cart"></i> <?=__('Pay')?>   
+                        </a>
+                        <?else:?>
+                            <?=Model_Order::$statuses[$order->status]?>
+                        <?endif?>
+                    </td>
 
                     <td><?=Model_Order::product_desc($order->id_product)?></td>
                     
                     <td><?=i18n::format_currency($order->amount, $order->currency)?></td>
 
-	                <td><a href="<?=Route::url('oc-panel', array('controller'=> 'user', 'action'=>'update','id'=>$order->user->pk())) ?>">
-	                    <?=$order->user->name?></a> - <?=$order->user->email?>
-	                </td>
 	                <td><a href="<?=Route::url('oc-panel', array('controller'=> 'profile', 'action'=>'update','id'=>$order->ad->pk())) ?>" title="<?=$order->ad->title?>">
 	                    <?=Text::limit_chars($order->ad->title, 30, NULL, TRUE)?></a></td>
 						                
 	                <td><?=$order->created?></td>
 
                     <td><?=$order->pay_date?></td>
-
-					<td width="80px">
-						<?if ($controller->allowed_crud_action('update')):?>
-						<a title="<?=__('Edit')?>" class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'update','id'=>$order->pk()))?>">
-							<i class="glyphicon glyphicon-edit"></i>
-						</a>
-						<?endif?>
-					</td>
 
 				</tr>
 			<?endforeach?>

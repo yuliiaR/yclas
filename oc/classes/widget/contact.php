@@ -60,4 +60,26 @@ class Widget_Contact extends Widget
 
     }
 
+    /**
+     * renders the widget view with the data
+     * @return string HTML 
+     */     
+    public function render()
+    {
+        //only in view ad single
+        if ($this->loaded AND strtolower(Request::current()->controller())=='ad' AND Request::current()->action()=='view' )
+        {
+            $this->before();
+
+            //get the view file (check if exists in the theme if not default), and inject the widget
+            $out = View::factory('widget/'.strtolower(get_class($this)),array('widget' => $this));
+
+            $this->after();
+
+            return $out;
+        }
+        
+        return FALSE;
+    }
+
 }

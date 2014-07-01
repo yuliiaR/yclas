@@ -48,23 +48,47 @@ class Widget_Tools extends Widget
         
         $ad = new Model_Ad();
         $user_ads = clone $ad;
+
+        //get current ad do not filter by user since admin also can see
         $ad->where('seotitle','=',Request::current()->param('seotitle'))
            ->limit(1)
            ->find();
-        $auth = Auth::instance();
-        if($ad->loaded() AND $auth->logged_in())  
-            
+
+        if($ad->loaded() AND Auth::instance()->logged_in())  
         {
-            if($auth->get_user()->id_role == Model_Role::ROLE_ADMIN OR $auth->get_user()->id_user == $ad->id_user)
+            $user = Auth::instance()->get_user();
+
+            if($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_user == $ad->id_user)
             {
                 $this->ad = $ad;
-
-                $user_ads = $user_ads->where('id_user', '=', $ad->id_user)->find_all();
-                $this->user_ads = $user_ads;
+                $this->user_ads = $user_ads->where('id_user', '=', $ad->id_user)->find_all();
             }   
         }
 		
 	}
+
+
+    /**
+     * renders the widget view with the data
+     * @return string HTML 
+     */     
+    public function render()
+    {
+        //only in view ad single
+        if ($this->loaded AND strtolower(Request::current()->controller())=='ad' AND Request::current()->action()=='view' )
+        {
+            $this->before();
+
+            //get the view file (check if exists in the theme if not default), and inject the widget
+            $out = View::factory('widget/'.strtolower(get_class($this)),array('widget' => $this));
+
+            $this->after();
+
+            return $out;
+        }
+        
+        return FALSE;
+    }
 
 
 }

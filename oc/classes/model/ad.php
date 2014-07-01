@@ -156,23 +156,34 @@ class Model_Ad extends ORM {
         return $seotitle;
     }
 
-   
-
 
     /**
      *  Create single table for each advertisement hit
      * 
-     *  @param int visitor id
-     *  @param int ip address 
      */
-    public function count_ad_hit($visitor_id, $ip_address){
-        
-        //inser new table, as a hit
-        $new_hit = DB::insert('visits', array('id_ad', 'id_user', 'ip_address'))
-                                ->values(array($this->id_ad, $visitor_id, $ip_address))
-                                ->execute();
+    public function count_ad_hit()
+    {
+        if (!Model_Visit::is_bot() AND $this->loaded())
+        {
+            if(!Auth::instance()->logged_in())
+                $visitor_id = NULL;
+            else
+                $visitor_id = Auth::instance()->get_user()->id_user;
 
+            //insert new visit
+            if ($this->id_user!=$visitor_id)
+                $new_hit = DB::insert('visits', array('id_ad', 'id_user', 'ip_address'))
+                                    ->values(array($this->id_ad, $visitor_id, ip2long(Request::$client_ip)))
+                                    ->execute();
+
+            //count how many matches are found 
+            $hits = new Model_Visit();
+            $hits = $hits->where('id_ad','=', $this->id_ad)->count_all();
+        }
+        return 0;
+        
     }
+
     /**
      * Gets all images
      * @return [array] [array with image names]
@@ -596,6 +607,167 @@ class Model_Ad extends ORM {
             return View::factory('pages/ad/related',array('ads'=>$ads))->render();
         }
     
+        return FALSE;
+    }
+
+
+  
+    public function sale( Model_User $user_buyer )
+    {
+        if($this->loaded())
+        {    
+            // decrease limit of ads, if 0 deactivate
+            if($this->stock >0)
+            {
+                $stock = $this->stock-1;
+
+                //deactivate the ad
+                if($stock == 0)
+                {
+                    $this->status = Model_Ad::STATUS_UNAVAILABLE;
+                    
+                    //send email to owner that the he run out of stock
+                    $url_edit = $user->ql('oc-panel',array( 'controller'=> 'profile', 
+                                                            'action'    => 'update',
+                                                            'id'        => $this->id_ad),TRUE);
+
+                    $email_content = array( '[URL.EDIT]'        =>$url_edit,
+                                            '[AD.TITLE]'        =>$this->title);
+
+                    // send email to ad OWNER
+                    $this->user->email('out-of-stock',$email_content);
+                }
+            
+            }
+
+            try {
+                $this->save();
+            } catch (Exception $e) {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+
+                
+            $url_ad = Route::url('ad', array('category'=>$this->id_category,'seotitle'=>$this->seotitle));
+
+            $email_content = array('[URL.AD]'      =>$url_ad,
+                                    '[AD.TITLE]'     =>$this->title,
+                                    '[ORDER.ID]'      =>$this->id_order,
+                                    '[PRODUCT.ID]'    =>$this->id_product);
+            // send email to BUYER
+            $user_buyer->email('ads-purchased',$email_content);
+
+            // send email to ad OWNER
+            $this->user->email('ads-sold',$email_content);
+
+            
+        }
+    
+ 
+    }
+
+    /**
+     * tops up an advertisement
+     * @return void 
+     */
+    public function to_top()
+    {
+        if($this->loaded())
+        {    
+            $this->published = Date::unix2mysql();
+            try {
+                $this->save();
+            } catch (Exception $e) {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+    }
+
+    /**
+     * features an advertisement
+     * @return void 
+     */
+    public function to_feature()
+    {
+        if($this->loaded())
+        {    
+            $this->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
+            try {
+                $this->save();
+            } catch (Exception $e) {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+    }
+
+    /**
+     * paid for a category, notify user and publish ad if needed
+     * @return void 
+     */
+    public function paid_category()
+    {
+        if($this->loaded())
+        {    
+            $moderation = core::config('general.moderation');
+
+            $edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$this->id_ad));
+            $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$this->id_ad));
+
+            if($moderation == Model_Ad::PAYMENT_ON)
+            {
+                $this->published = Date::unix2mysql();
+                $this->status    = Model_Ad::STATUS_PUBLISHED;
+
+                try {
+                    $this->save();
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
+
+                //notify ad is published
+                $url_cont = $user->ql('contact', array(),TRUE);
+                $url_ad = $user->ql('ad', array('category'=>$data['cat'],
+                                                    'seotitle'=>$seotitle), TRUE);
+
+                $ret = $user->email('ads-user-check',array('[URL.CONTACT]'  =>$url_cont,
+                                                            '[URL.AD]'      =>$url_ad,
+                                                            '[AD.NAME]'     =>$new_ad->title,
+                                                            '[URL.EDITAD]'  =>$edit_url,
+                                                            '[URL.DELETEAD]'=>$delete_url));
+                
+            }
+            elseif($moderation == Model_Ad::PAYMENT_MODERATION)
+            {
+                //he paid but stays in moderation
+                $url_ql = $this->user->ql('oc-panel',array( 'controller'=> 'profile', 
+                                                      'action'    => 'update',
+                                                      'id'        => $this->id_ad),TRUE);
+
+                $ret = $this->user->email('ads-notify',array('[URL.QL]'=>$url_ql,
+                                                       '[AD.NAME]'=>$this->title,
+                                                       '[URL.EDITAD]'=>$edit_url,
+                                                       '[URL.DELETEAD]'=>$delete_url));     
+            }
+        }
+    }
+
+    /**
+     * returns and order for the given product, great to check if was paid or not
+     * @param  int  $id_product Model_Order::PRODUCT_
+     * @return boolean/Model_Order             false if not found, Model_Order if found
+     */
+    public function get_order($id_product = Model_Order::PRODUCT_CATEGORY)
+    {
+        if ($this->loaded())
+        {
+            //get if theres an unpaid order for this product and this ad
+            $order = new Model_Order();
+            $order->where('id_ad',      '=', $this->id_ad)
+                  ->where('id_user',    '=', $this->user->id_user)
+                  ->where('id_product', '=', $id_product)
+                  ->limit(1)->find();
+
+            return ($order->loaded())?$order:FALSE;
+        }
         return FALSE;
     }
 

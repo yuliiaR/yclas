@@ -83,15 +83,30 @@
             <?endif?>
 
             <td><?= $hits[$i++];?></td>
+            <td>
             <?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
-                <td><?=__('Not published')?></td>
+                <?=__('Not published')?>
             <? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
-                <td><?=__('Published')?></td>
+                <?=__('Published')?>
             <? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
-                <td><?=__('Spam')?></td>
+                <?=__('Spam')?>
             <? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
-                <td><?=__('Unavailable')?></td>
+                <?=__('Unavailable')?>
             <?endif?>
+
+            <?if( ($order = $ad->get_order())!==FALSE ):?>
+                <a class="label <?=($order->status==Model_Order::STATUS_PAID)?'label-success':'label-warning'?> " 
+                    href="<?=Route::url('oc-panel', array('controller'=> 'order','action'=>'update','id' => $order->id_order))?>">
+                <?if ($order->status==Model_Order::STATUS_CREATED):?>
+                    <?=__('Not paid')?>
+                <?elseif ($order->status==Model_Order::STATUS_PAID):?>
+                    <?=__('Paid')?>
+                <?endif?>
+                    <?=i18n::format_currency($order->amount,$order->currency)?>
+                </a>
+            <?endif?>
+
+            </td>
             <td><?= substr($ad->created, 0, 11)?></td>
              <td width="150" style="width:150px">
                 <a class="btn btn-primary" 

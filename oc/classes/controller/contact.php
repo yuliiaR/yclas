@@ -17,19 +17,29 @@ class Controller_Contact extends Controller {
             //captcha check
             if(captcha::check('contact'))
             {
+                //check if user is loged in
+                if (Auth::instance()->logged_in())
+                {
+                    $email_from = Auth::instance()->get_user()->email;
+                    $name_from  = Auth::instance()->get_user()->name;
+                }
+                else
+                {
+                    $email_from = core::post('email');
+                    $name_from  = core::post('name');
+                }
+
                 //akismet spam filter
-                if(!core::akismet(core::post('name'), 
-                                  core::post('email'),
-                                  core::post('message')))
+                if(!core::akismet($name_from, $email_from,core::post('message')))
                 {
                     $replace = array('[EMAIL.BODY]'     =>core::post('message'),
-                                      '[EMAIL.SENDER]'  =>core::post('name'),
-                                      '[EMAIL.FROM]'    =>core::post('email'));
+                                      '[EMAIL.SENDER]'  =>$name_from,
+                                      '[EMAIL.FROM]'    =>$email_from);
 
                     if (Email::content(core::config('email.notify_email'),
                                         core::config('general.site_name'),
-                                        core::post('email'),
-                                        core::post('name'),'contact_admin',
+                                        $email_from,
+                                        $name_from,'contact-admin',
                                         $replace))
                         Alert::set(Alert::SUCCESS, __('Your message has been sent'));
                     else
@@ -63,10 +73,20 @@ class Controller_Contact extends Controller {
          
 			if(captcha::check('contact'))
 			{ 
+                //check if user is loged in
+                if (Auth::instance()->logged_in())
+                {
+                    $email_from = Auth::instance()->get_user()->email;
+                    $name_from  = Auth::instance()->get_user()->name;
+                }
+                else
+                {
+                    $email_from = core::post('email');
+                    $name_from  = core::post('name');
+                }
+
                 //akismet spam filter
-                if(!core::akismet(core::post('name'), 
-                                  core::post('email'),
-                                  core::post('message')))
+                if(!core::akismet($name_from, $email_from,core::post('message')))
                 {
                     if(isset($_FILES['file']))
                         $file = $_FILES['file'];
@@ -79,12 +99,12 @@ class Controller_Contact extends Controller {
                     else
                         $to = NULL;
 
-                    $ret = $user->email('user_contact',array('[EMAIL.BODY]'		=>core::post('message'),
+                    $ret = $user->email('user-contact',array('[EMAIL.BODY]'		=>core::post('message'),
                                                              '[AD.NAME]'        =>$ad->title,
-                        									 '[EMAIL.SENDER]'	=>core::post('name'),
-                        									 '[EMAIL.FROM]'		=>core::post('email')),
-                                                        core::post('email'),
-                                                        core::post('name'),
+                        									 '[EMAIL.SENDER]'	=>$name_from,
+                        									 '[EMAIL.FROM]'		=>$email_from),
+                                                        $email_from,
+                                                        $name_from,
                                                         $file, $to);
                     
                     //if succesfully sent
@@ -93,18 +113,21 @@ class Controller_Contact extends Controller {
                         Alert::set(Alert::SUCCESS, __('Your message has been sent'));
 
                         // we are updating field of visit table (contact)
-                        $visit_contact_obj = new Model_Visit();
+                        $visit = new Model_Visit();
 
-                        $visit_contact_obj->where('id_ad', '=', $this->request->param('id'))
+                        $visit->where('id_ad', '=', $this->request->param('id'))
+                                          ->where('ip_address', '=',ip2long(Request::$client_ip))
                                           ->order_by('created', 'desc')
                                           ->limit(1)->find();
-                                                          
-                        try {
-                            $visit_contact_obj->contacted = 1;
-                            $visit_contact_obj->save();
-                        } catch (Exception $e) {
-                            //throw 500
-                            throw HTTP_Exception::factory(500,$e->getMessage());
+                        if ($visit->loaded())
+                        {
+                            $visit->contacted = 1;
+                            try {
+                                $visit->save();
+                            } catch (Exception $e) {
+                                //throw 500
+                                throw HTTP_Exception::factory(500,$e->getMessage());
+                            }
                         }
 
                     }
@@ -139,15 +162,25 @@ class Controller_Contact extends Controller {
 
             if(captcha::check('contact'))
             {
-                //akismet spam filter
-                if(!core::akismet(core::post('name'), 
-                                  core::post('email'),
-                                  core::post('message')))
+                //check if user is loged in
+                if (Auth::instance()->logged_in())
                 {
-                    $ret = $user->email('userprofile_contact',array('[EMAIL.BODY]'     =>core::post('message'),
-                                                                    '[EMAIL.SENDER]'   =>core::post('name'),
+                    $email_from = Auth::instance()->get_user()->email;
+                    $name_from  = Auth::instance()->get_user()->name;
+                }
+                else
+                {
+                    $email_from = core::post('email');
+                    $name_from  = core::post('name');
+                }
+
+                //akismet spam filter
+                if(!core::akismet($name_from, $email_from,core::post('message')))
+                {
+                    $ret = $user->email('user-profile-contact',array('[EMAIL.BODY]'     =>core::post('message'),
+                                                                    '[EMAIL.SENDER]'   =>$name_from,
                                                                     '[EMAIL.SUBJECT]'   =>core::post('subject'),
-                                                                    '[EMAIL.FROM]'     =>core::post('email')),core::post('email'),core::post('name'));
+                                                                    '[EMAIL.FROM]'     =>$email_from),$email_from,core::post('name'));
                     
                     //if succesfully sent
                     if ($ret)

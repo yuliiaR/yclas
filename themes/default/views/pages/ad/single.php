@@ -21,11 +21,11 @@
 			&& core::config('payment.to_featured') != FALSE)):?>
 		<div id="recomentadion" class="well recomentadion clearfix">
 			<?if(core::config('payment.pay_to_go_on_top') > 0 && core::config('payment.to_top') != FALSE):?>
-				<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').core::config('payment.pay_to_go_on_top').' '.core::config('payment.paypal_currency');?></p>
+				<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
 				<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
 			<?endif?>
 			<?if(core::config('payment.pay_to_go_on_feature') > 0 && core::config('payment.to_featured') != FALSE):?>
-				<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').core::config('payment.pay_to_go_on_feature').' '.core::config('payment.paypal_currency');?></p>
+				<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_feature'),core::config('payment.paypal_currency'));?></p>
 				<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
 			<?endif?>
 		</div>
@@ -104,6 +104,7 @@
 							
 							<?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'user_contact', 'id'=>$ad->id_ad)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
 							<fieldset>
+                                <?if (!Auth::instance()->get_user()):?>
 								<div class="form-group">
 								<?= FORM::label('name', __('Name'), array('class'=>'col-sm-2 control-label', 'for'=>'name'))?>
 									<div class="col-md-4 ">
@@ -116,6 +117,7 @@
 										<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class'=>'form-control', 'id' => 'email', 'type'=>'email','required'))?>
 									</div>
 								</div>
+                                <?endif?>
 								<div class="form-group">
 								<?= FORM::label('subject', __('Subject'), array('class'=>'col-sm-2 control-label', 'for'=>'subject'))?>
 									<div class="col-md-4 ">

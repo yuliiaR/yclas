@@ -76,7 +76,7 @@ class Controller_Panel_Update extends Auth_Controller {
         
         $contents = array(array('order'=>'0',
                                'title'=>'Hello [USER.NAME]!',
-                               'seotitle'=>'userprofile_contact',
+                               'seotitle'=>'user-profile-contact',
                                'description'=>"User [EMAIL.SENDER] [EMAIL.FROM], have a message for you: \n\n [EMAIL.SUBJECT] \n\n[EMAIL.BODY]. \n\n Regards!",
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
@@ -114,13 +114,13 @@ class Controller_Panel_Update extends Auth_Controller {
         $contents = array(array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!',
                                'seotitle'=>'ads_subscribers',
-                               'description'=>"Hello [USER.NAME],\n\nYou may be interested in this one [AD.TITLE]!\n\nYou can visit this link to see advertisement [URL.AD]",
+                               'description'=>"Hello,\n\nYou may be interested in this one [AD.TITLE]!\n\nYou can visit this link to see advertisement [URL.AD]",
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is created on [SITE.NAME]!',
-                               'seotitle'=>'ads_to_admin',
+                               'seotitle'=>'ads-to-admin',
                                'description'=>"Click here to visit [URL.AD]",
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
@@ -335,21 +335,21 @@ class Controller_Panel_Update extends Auth_Controller {
                         );
         $contents = array(array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is sold on [SITE.NAME]!',
-                               'seotitle'=>'ads_sold',
+                               'seotitle'=>'ads-sold',
                                'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nPlease check your bank account for the incoming payment.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is purchased on [SITE.NAME]!',
-                               'seotitle'=>'ads_purchased',
-                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME], with a details provided abouve.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
+                               'seotitle'=>'ads-purchased',
+                               'description'=>"Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME], with a details provided above.\n\nClick here to visit [URL.AD]", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
                           array('order'=>'0',
                                'title'=>'Advertisement `[AD.TITLE]` is out of stock on [SITE.NAME]!',
-                               'seotitle'=>'out_of_stock',
+                               'seotitle'=>'out-of-stock',
                                'description'=>"Hello [USER.NAME],\n\nWhile your ad is out of stock, it is unavailable for others to see. If you wish to increase stock and activate, please follow this link [URL.EDIT].\n\nRegards!", // @FIXME i18n ?
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
@@ -488,55 +488,132 @@ class Controller_Panel_Update extends Auth_Controller {
 
     }
 
-
-        /**
+    /**
      * This function will upgrade DB that didn't existed in versions prior to 2.2.0
      */
     public function action_220()
     {   
-        //call update previous versions
-        $this->action_203();
-        $this->action_205();
-        $this->action_206();
-        $this->action_207();
-        $this->action_21();
-        $this->action_211();
-        $this->action_214();
-        $this->action_215();
-        $this->action_217();
-        $this->action_218();
+        //TODO
+        $this->update_previous();
 
         $prefix = Database::instance()->table_prefix();
 
+
         //updating emails contents replacing . for _
+        
+        //cleaning emails not in use
         try
         {
-            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle=REPLACE(seotitle,'.','_') WHERE type='email'")->execute();
+            DB::query(Database::DELETE,"DELETE FROM ".$prefix."content WHERE seotitle='user.new' AND type='email'")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle=REPLACE(seotitle,'.','-') WHERE type='email'")->execute();
         }catch (exception $e) {}
 
         //updating contents bad names
         try
         {
-            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='ads_sold' WHERE seotitle='adssold' AND type='email'")->execute();
+            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='ads-sold' WHERE seotitle='adssold' AND type='email'")->execute();
         }catch (exception $e) {}
 
         try
         {
-            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='out_of_stock' WHERE seotitle='outofstock' AND type='email'")->execute();
+            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='out-of-stock' WHERE seotitle='outofstock' AND type='email'")->execute();
         }catch (exception $e) {}
 
         try
         {
-            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='ads_purchased' WHERE seotitle='adspurchased' AND type='email'")->execute();
+            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='ads-purchased' WHERE seotitle='adspurchased' AND type='email'")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle='ads-purchased' WHERE seotitle='adspurchased' AND type='email'")->execute();
         }catch (exception $e) {}
         //end updating emails
         
+
+        //order transaction
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."orders` ADD  `txn_id` VARCHAR( 255 ) NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+        
+
+        //ip_address from float to bigint
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."users` CHANGE last_ip last_ip BIGINT NULL DEFAULT NULL ")->execute();
+        }catch (exception $e) {}
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."visits` CHANGE ip_address ip_address BIGINT NULL DEFAULT NULL ")->execute();
+        }catch (exception $e) {}
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."ads` CHANGE ip_address ip_address BIGINT NULL DEFAULT NULL ")->execute();
+        }catch (exception $e) {}
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".$prefix."posts` CHANGE ip_address ip_address BIGINT NULL DEFAULT NULL ")->execute();
+        }catch (exception $e) {}
+
+        //new mails
+        $contents = array(array('order'=>0,
+                                'title'=>'Reciept for [ORDER.DESC] #[ORDER.ID]',
+                               'seotitle'=>'new-order',
+                               'description'=>"Hello [USER.NAME],Thanks for buying [ORDER.DESC].\n\nPlease complete the payment here [URL.CHECKOUT]",
+                               'from_email'=>core::config('email.notify_email'),
+                               'type'=>'email',
+                               'status'=>'1'),
+                        );
+
+        Model_Content::content_array($contents);
+
+        //new payments...
+        $configs = array(
+                         array('config_key'     =>'bitpay_apikey',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'paymill_private',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'paymill_public',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'stripe_public',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'stripe_private',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'stripe_address',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>'0'), 
+                         array('config_key'     =>'alternative',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'authorize_sandbox',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>'0'), 
+                         array('config_key'     =>'authorize_login',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''), 
+                         array('config_key'     =>'authorize_key',
+                               'group_name'     =>'payment', 
+                               'config_value'   =>''),
+
+                        );
+
+        Model_Config::config_array($configs);
         
         //delete old files from 323
         File::delete(APPPATH.'ko323');
         File::delete(APPPATH.'classes/image/');
 
-        //delete modules since now they are part of common
+        //delete modules since now they are part of module common
         File::delete(MODPATH.'pagination');
         File::delete(MODPATH.'breadcrumbs');
         File::delete(MODPATH.'formmanager');
@@ -550,6 +627,25 @@ class Controller_Panel_Update extends Auth_Controller {
         $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
     }
 
+    /**
+     * [update_previous description]
+     * @return [type] [description]
+     */
+    public function update_previous()
+    {
+        //call update previous versions
+        $this->action_203();
+        $this->action_205();
+        $this->action_206();
+        $this->action_207();
+        $this->action_21();
+        $this->action_211();
+        $this->action_214();
+        $this->action_215();
+        $this->action_217();
+        $this->action_218();
+
+    }
 
     /**
      * This function will upgrade DB that didn't existed in previous versions

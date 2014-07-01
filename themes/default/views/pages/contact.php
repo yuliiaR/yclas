@@ -5,6 +5,7 @@
 	<h1><?=__('Contact Us')?></h1>
 	<?= FORM::open(Route::url('contact'), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 	<fieldset>
+        <?if (!Auth::instance()->logged_in()):?>
 		<div class="form-group">
 		<?= FORM::label('name', __('Name'), array('class'=>'col-sm-2 control-label', 'for'=>'name'))?>
 			<div class="col-md-5">
@@ -17,6 +18,8 @@
 				<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
 			</div>
 		</div>
+        <?endif?>
+        
 		<div class="form-group">
 			<?= FORM::label('subject', __('Subject'), array('class'=>'col-sm-2 control-label', 'for'=>'subject'))?>
 			<div class="col-md-5 ">

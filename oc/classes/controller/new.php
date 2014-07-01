@@ -325,7 +325,7 @@ class Controller_New extends Controller
                                                       	 'id'		  => $new_ad->id_ad),TRUE);
                 	
                 	
-                	$ret = $user->email('ads_confirm',array('[URL.QL]'=>$url_ql,
+                	$ret = $user->email('ads-confirm',array('[URL.QL]'=>$url_ql,
                 											'[AD.NAME]'=>$new_ad->title,
                 											'[URL.EDITAD]'=>$edit_url,
                 											'[URL.DELETEAD]'=>$delete_url));
@@ -338,7 +338,7 @@ class Controller_New extends Controller
                                                       	  'action'    => 'update',
                                                       	  'id'		  => $new_ad->id_ad),TRUE);
 
-                	$ret = $user->email('ads_notify',array('[URL.QL]'		=>$url_ql,
+                	$ret = $user->email('ads-notify',array('[URL.QL]'		=>$url_ql,
                 										   '[AD.NAME]'		=>$new_ad->title,
                 										   '[URL.EDITAD]'	=>$edit_url,
                 										   '[URL.DELETEAD]'	=>$delete_url)); // email to notify user of creating, but it is in moderation currently 
@@ -349,7 +349,7 @@ class Controller_New extends Controller
 					$url_ad = $user->ql('ad', array('category'=>$data['cat'],
 		                							'seotitle'=>$seotitle), TRUE);
 
-					$ret = $user->email('ads_user_check',array('[URL.CONTACT]'	=>$url_cont,
+					$ret = $user->email('ads-user-check',array('[URL.CONTACT]'	=>$url_cont,
 		                										'[URL.AD]'		=>$url_ad,
 		                										'[AD.NAME]'		=>$new_ad->title,
 		                										'[URL.EDITAD]'	=>$edit_url,
@@ -358,7 +358,7 @@ class Controller_New extends Controller
 
 
 				// new ad notification email to admin (notify_email), if set to TRUE 
-				if(core::config('email.new_ad_notify'))
+				if(core::config('email.new_ad_notify') == TRUE)
 				{
                     $url_ad = Route::url('ad', array('category'=>$data['cat'],'seotitle'=>$seotitle));
 					
@@ -368,11 +368,11 @@ class Controller_New extends Controller
 	                Email::content(core::config('email.notify_email'),
 	                                    core::config('general.site_name'),
 	                                    core::config('email.notify_email'),
-	                                    core::config('general.site_name'),'ads_to_admin',
+	                                    core::config('general.site_name'),
+                                        'ads-to-admin',
 	                                    $replace);
 	            }
 
-                
 
 				// IMAGE UPLOAD 
 				// in case something wrong happens user is redirected to edit advert. 
@@ -386,65 +386,74 @@ class Controller_New extends Controller
 	        		if ($filename)
                     {
 			        	$new_ad->has_images = 1;
-			        	try 
-						{
+			        	try {
 							$new_ad->save();
 						} 
-						catch (Exception $e) 
-						{
+						catch (Exception $e){
 							throw HTTP_Exception::factory(500,$e->getMessage());
 						}
 	        		}
 		        }
 
-				// PAYMENT METHOD ACTIVE (and other alerts)
-				if($moderation == Model_Ad::PAYMENT_ON || $moderation == Model_Ad::PAYMENT_MODERATION)
-				{
-					$payment_order = new Model_Order();
-					$order_id = $payment_order->make_new_order($data, $user, $seotitle);
-
-					if($order_id == NULL)
+                //calculate how much he need to pay in case we have payment on
+                if ($moderation == Model_Ad::PAYMENT_ON OR $moderation == Model_Ad::PAYMENT_MODERATION)
+                {
+                    // check category price, if 0 check parent
+                    if($new_ad->category->price == 0)
                     {
-                        if($moderation == Model_Ad::PAYMENT_ON)
+                        $cat_parent = new Model_Category($new_ad->category->id_category_parent);
+
+                        //category without price
+                        if($cat_parent->price == 0)
                         {
-                            $new_ad->status = Model_Ad::STATUS_PUBLISHED;
-                            $new_ad->published = Date::unix2mysql();
-                            try 
-                            {
-                                $new_ad->save();
-                                Alert::set(Alert::SUCCESS, __('Advertisement is published. Congratulations!'));
-                            } catch (Exception $e) {
-                                throw HTTP_Exception::factory(500,$e->getMessage());
-                            }        
+                            //swapping moderation since theres no price :(
+                            if ($moderation == Model_Ad::PAYMENT_ON)
+                                $moderation = Model_Ad::POST_DIRECTLY;
+                            elseif($moderation == Model_Ad::PAYMENT_MODERATION)
+                                $moderation = Model_Ad::MODERATION_ON;
                         }
-                        if($moderation == Model_Ad::PAYMENT_MODERATION)
-                            Alert::set(Alert::SUCCESS, __('Advertisement is created but needs to be validated first before it is published.'));
-                        
+                        else
+                            $amount = $cat_parent->price;
                     }
-					// redirect to payment
-        			$this->redirect(Route::url('default', array('controller'=> 'payment_paypal','action'=>'form' , 'id' => $order_id))); // @TODO - check route
-				}
-				elseif ($moderation == Model_Ad::EMAIL_MODERATION OR $moderation == Model_Ad::EMAIL_CONFIRMATION)
-				{
-					Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
-				}
-				elseif ($moderation == Model_Ad::MODERATION_ON)
-				{
-					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
-				}
-				else
-				{
-					Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $data['price'])), $seotitle, $email);
-					Alert::set(Alert::SUCCESS, __('Advertisement is posted. Congratulations!'));
-				}
+                    else
+                        $amount = $new_ad->category->price;
+                }
+
+                //where and what we say to the user depending ont he moderation
+                switch ($moderation) 
+                {
+                    case Model_Ad::PAYMENT_ON:
+                    case Model_Ad::PAYMENT_MODERATION:
+                            $order = Model_Order::new_order($new_ad, $new_ad->user, Model_Order::PRODUCT_CATEGORY, $amount, NULL, Model_Order::product_desc(Model_Order::PRODUCT_CATEGORY).' '.$new_ad->category->name);
+                            // redirect to invoice
+                            $this->redirect(Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order)));
+                        break;
+
+                    case Model_Ad::EMAIL_MODERATION:
+                    case Model_Ad::EMAIL_CONFIRMATION:
+                            Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
+                        break;
+
+                    case Model_Ad::MODERATION_ON:
+                            Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
+                        break;
+                    
+                    case Model_Ad::POST_DIRECTLY:
+                    default:
+                            Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $data['price'])), $seotitle);
+                            Alert::set(Alert::SUCCESS, __('Advertisement is posted. Congratulations!'));
+                        break;
+                }
 
                 $this->redirect(Route::url('default'));
+
 			}//captcha
 			else
 			{ 
 				Alert::set(Alert::ALERT, __('Captcha is not correct'));
 			}
 		}//is post
+
  	}// save new ad
 
 }

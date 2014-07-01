@@ -42,16 +42,13 @@ class Controller_Panel_Settings extends Auth_Controller {
             {
                 $config_res = $this->request->post($c->config_key); 
 
-                if(isset($config_res))
+                if($config_res !== $c->config_value)
                 {
-                    if($config_res !== $c->config_value)
-                    {
-                        $c->config_value = $config_res;
-                        try {
-                            $c->save();
-                        } catch (Exception $e) {
-                            throw HTTP_Exception::factory(500,$e->getMessage());
-                        }
+                    $c->config_value = $config_res;
+                    try {
+                        $c->save();
+                    } catch (Exception $e) {
+                        throw HTTP_Exception::factory(500,$e->getMessage());
                     }
                 }
             }
@@ -253,7 +250,12 @@ class Controller_Panel_Settings extends Auth_Controller {
             $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
         }
 
+        $pages = array(''=>__('Deactivated'));
+        foreach (Model_Content::get_pages() as $key => $value) 
+            $pages[$value->seotitle] = $value->title;
+
         $this->template->content = View::factory('oc-panel/pages/settings/payment', array('config'          => $config,
+                                                                                           'pages'          => $pages,
                                                                                           'paypal_currency' => $paypal_currency));
     }
 
