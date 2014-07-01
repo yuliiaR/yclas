@@ -54,7 +54,7 @@
 				<?if(count($locations) > 1 AND $form_show['location'] != FALSE):?>
                     <label for="location"><span class="pull-left"><?=__('Location')?></span>
 						<span class="label label-warning ml-10"></span>
-						<input class="invisible pull-left" id="location-selected" name="location" style="height: 0; padding:0; width:0;" required></input>
+						<input class="invisible pull-left" id="location-selected" name="location" value="<?=$id_location?>" style="height: 0; padding:0; width:0;" required></input>
 					</label>
 
 					<div class="form-group">
@@ -74,7 +74,7 @@
 
 						<div class="clearfix"></div>
 						<div class="col-md-4">
-							<label for="location"><?=__('Selected location')?>: <label for="location" class="selected-location"></label></label>  
+							<label for="location"><?=__('Selected location')?>: <label for="location" class="selected-location"><?=$selected_location->name?></label></label>  
 						</div>
 					</div>
 				<?endif?>

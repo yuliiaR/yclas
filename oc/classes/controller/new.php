@@ -94,7 +94,7 @@ class Controller_New extends Controller
                 $id_category = $selected_category->id_category;
         }
 
-
+        $id_location = NULL;
         $selected_location = new Model_Location();
         //if theres a location by post or by get
         if (Core::request('location')!==NULL)
@@ -103,6 +103,9 @@ class Controller_New extends Controller
                 $selected_location->where('id_location','=',core::request('location'))->limit(1)->find();
             else
                 $selected_location->where('seoname','=',core::request('location'))->limit(1)->find();
+
+            if ($selected_location->loaded())
+                $id_location = $selected_location->id_location;
         }
 
 		//render view publish new
@@ -115,6 +118,8 @@ class Controller_New extends Controller
 																	   'form_show'			=> $form_show,
 																	   'id_category'		=> $id_category,
                                                                        'selected_category'  => $selected_category,
+                                                                       'id_location'		=> $id_location,
+                                                                       'selected_location'  => $selected_location,
                                                                        'fields'             => Model_Field::get_all()));
 		if ($_POST) 
         {
