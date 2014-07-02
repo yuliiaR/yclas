@@ -42,7 +42,7 @@
                     <i class="glyphicon   glyphicon-trash"></i>
         </a>
 
-        <a class="btn btn-xs btn-primary pull-right" 
+        <a class="btn btn-xs btn-primary pull-right ajax-load" 
             href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'update','id'=>$key))?>">
             <?=__('Edit')?>
         </a>
