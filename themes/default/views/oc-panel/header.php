@@ -61,7 +61,7 @@
 </header><!--/.navbar -->
 
 <?if (Auth::instance()->get_user()->id_role != Model_Role::ROLE_USER):?>
-<div class="col-sm-3 col-md-3 pull-right search-container-oc-faq">
+<div class="col-sm-3 col-md-3 hidden-xs pull-right search-container-oc-faq">
     <form class="navbar-form p_m0" role="search" action="http://open-classifieds.com/" target="_blank">
     <div class="input-group">
         <input type="text" class="form-control header-oc-faq" placeholder="<?=__('Search FAQs')?>" name="s" style="display: none;">
