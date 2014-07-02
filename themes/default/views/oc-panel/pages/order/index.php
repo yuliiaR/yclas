@@ -52,7 +52,7 @@
 
 					<td width="80px">
 						<?if ($controller->allowed_crud_action('update')):?>
-						<a title="<?=__('Edit')?>" class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'update','id'=>$order->pk()))?>">
+						<a title="<?=__('Edit')?>" class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'update','id'=>$order->pk()))?>">
 							<i class="glyphicon glyphicon-edit"></i>
 						</a>
 						<?endif?>

@@ -20,26 +20,26 @@
 		</form>
 	<?endif?>
 </div>		
-<a class="btn btn-warning" type="submit" value="spam" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_SPAM?>" rel="tooltip" title="<?=__('Spam Sort')?>">
+<a class="btn btn-warning ajax-load" type="submit" value="spam" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_SPAM?>" rel="tooltip" title="<?=__('Spam Sort')?>">
 	<i class="glyphicon   glyphicon-fire"></i><?=__('Spam')?>
 </a>
-<a class="btn btn-default" type="submit" value="unavailable" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_UNAVAILABLE?>" rel="tooltip" title="<?=__('Unavailable Sort')?>">
+<a class="btn btn-default ajax-load" type="submit" value="unavailable" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_UNAVAILABLE?>" rel="tooltip" title="<?=__('Unavailable Sort')?>">
 	<i class=" glyphicon  glyphicon-exclamation-sign glyphicon"></i><?=__(' Unavailable')?>
 </a>
-<a class="btn btn-info" type="submit" value="unconfirmed" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_UNCONFIRMED?>" rel="tooltip" title="<?=__('Unconfirmed Sort')?>">
+<a class="btn btn-info ajax-load" type="submit" value="unconfirmed" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_UNCONFIRMED?>" rel="tooltip" title="<?=__('Unconfirmed Sort')?>">
 	<i class=" glyphicon  glyphicon-plane glyphicon"></i><?=__(' Unconfirmed')?>
 </a>
 
 <?if(Core::get('status') == Model_Ad::STATUS_UNAVAILABLE):?>
-<a class="btn btn-danger pull-right" type="submit" value="unavailable" onclick="return confirm('<?=__('Delete All Unavailable?')?>');" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Model_Ad::STATUS_UNAVAILABLE?>" rel="tooltip" title="<?=__('Delete All Unavailable')?>">
+<a class="btn btn-danger pull-right ajax-load" type="submit" value="unavailable" onclick="return confirm('<?=__('Delete All Unavailable?')?>');" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Model_Ad::STATUS_UNAVAILABLE?>" rel="tooltip" title="<?=__('Delete All Unavailable')?>">
 	<?=__('Delete All')?>
 </a>
 <?elseif (Core::get('status') == Model_Ad::STATUS_UNCONFIRMED):?>
-<a class="btn btn-danger pull-right" type="submit" value="unconfirmed" onclick="return confirm('<?=__('Delete All Unconfirmed?')?>');" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Model_Ad::STATUS_UNCONFIRMED?>" rel="tooltip" title="<?=__('Delete All Unconfirmed')?>">
+<a class="btn btn-danger pull-right ajax-load" type="submit" value="unconfirmed" onclick="return confirm('<?=__('Delete All Unconfirmed?')?>');" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Model_Ad::STATUS_UNCONFIRMED?>" rel="tooltip" title="<?=__('Delete All Unconfirmed')?>">
 	<?=__('Delete All')?>
 </a>
 <?elseif (Core::get('status') == Model_Ad::STATUS_SPAM):?>
-<a class="btn btn-danger pull-right" type="submit" value="spam" onclick="return confirm('<?=__('Delete All Spam?')?>');" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Model_Ad::STATUS_SPAM?>" rel="tooltip" title="<?=__('Delete All Spam')?>">
+<a class="btn btn-danger pull-right ajax-load" type="submit" value="spam" onclick="return confirm('<?=__('Delete All Spam?')?>');" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Model_Ad::STATUS_SPAM?>" rel="tooltip" title="<?=__('Delete All Spam')?>">
 	<?=__('Delete All')?>
 </a>
 <?endif?>
@@ -169,7 +169,7 @@
 	    	
 	    	<td><?= substr($ad->published, 0, 11)?></td>
 			<td width="120" style="width:120px">
-				<a class="btn btn-primary " 
+				<a class="btn btn-primary ajax-load" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
 					rel="tooltip" title="<?=__('Update')?>">
 					<i class="glyphicon   glyphicon-edit"></i>
