@@ -147,7 +147,13 @@ class Controller_Panel_Fields extends Auth_Controller {
         $this->template = View::factory('js');
 
 
-        if ($field->change_order(Core::get('order')))
+        $order = Core::get('order');
+
+        array_walk($order, function(&$item, $key){
+                $item = str_replace('li_', '', $item);
+        });
+
+        if ($field->change_order($order))
 
             $this->template->content = __('Saved');
         else
