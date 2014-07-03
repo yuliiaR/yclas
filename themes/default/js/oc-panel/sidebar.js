@@ -45,7 +45,7 @@ function colapse_sidebar(event){
   if(event)
   {
     //set cookie to be avare of current state of sidebar
-    $.cookie('sidebar_state', 'collapsed');
+    $.cookie('sidebar_state', 'collapsed', { expires: 7, path: '/' });
 
     $('.panel-body table.table').each(function(){
       $('tbody',this).addClass('aside-table');; // hide links in sidebar
@@ -71,7 +71,7 @@ function colapse_sidebar(event){
   else
   {
     //set cookie to be avare of current state of sidebar
-    $.cookie('sidebar_state', 'not-collapsed');
+    $.cookie('sidebar_state', 'not-collapsed', { expires: 7, path: '/' });
 
     $('.panel-body table.table').each(function(){
       $('tbody', this).removeClass('aside-table');
