@@ -8,7 +8,7 @@
     <p><?=__('Your Hash Key for this installation is')?> 
          <span class="label label-info"><?=core::config('auth.hash_key')?></span>
     </p>
-        <a class="btn btn-primary pull-right" href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>'index'))?>?reload=1">
+        <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'update','action'=>'index'))?>?reload=1">
             <?=__('Check for updates')?></a>
 
 </div>

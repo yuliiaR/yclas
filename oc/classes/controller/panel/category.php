@@ -61,7 +61,7 @@ class Controller_Panel_Category extends Auth_Crud {
                 $form->object->parent_deep =  $form->object->get_deep();
                 $form->object->save();
                 Alert::set(Alert::SUCCESS, __('Item updated').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
+                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
                     .__('Delete All').'</a>');
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
             }

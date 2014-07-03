@@ -123,6 +123,7 @@ class Auth_Controller extends Controller
                 	Theme::$styles = array_merge($theme_css,$common_css);
 
     	            Theme::$scripts['footer'] = array('js/jquery-1.10.2.js',
+    	            								  'js/jquery.cookie.min.js',	
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
     												  'js/bootstrap.min.js', 
@@ -151,6 +152,7 @@ class Auth_Controller extends Controller
                 	Theme::$styles = array_merge($theme_css,$common_css);
 
     	            Theme::$scripts['footer'] = array('http://code.jquery.com/jquery-1.10.2.min.js',
+    											      'http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js',
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
     												  'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', 
