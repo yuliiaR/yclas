@@ -9,6 +9,15 @@
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=22&page=1&state=closed',
     'download' => 'https://github.com/open-classifieds/openclassifieds2/releases/download/2.2.0/openclassifieds2-2.2.0.zip',
   ),
+  '2.1.8.1' => 
+  array (
+    'codename' => 'Vila Olimpica',
+    'released' => '2014-06-30',
+    'blog' => 'http://open-classifieds.com/2014/06/30/open-classifieds-2-1-8-1/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.1.8...2.1.8.1',
+    'issues' => 'http://open-classifieds.com/2014/06/30/open-classifieds-2-1-8-1/',
+    'download' => 'http://j.mp/oc_2181',
+  ),
   '2.1.8' => 
   array (
     'codename' => 'Barceloneta',
