@@ -115,6 +115,7 @@ $(function(){
                                         $('.br').removeClass('active');
                                         button.closest('.br').addClass('active');
                                         $("#content").html(data);
+                                        $("#content").find("script").each(function(i) {eval($(this).text());
                                         init_panel();});
 
         return false;  
