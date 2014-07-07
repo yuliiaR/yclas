@@ -80,6 +80,13 @@ function init_panel()
         // event.preventDefault();
         $('.header-oc-faq').toggle();
     });
+	
+	// Menu icon picker
+	$(".icon-picker").iconPicker();
+	
+	// Load google api
+	$.getScript("http://www.google.com/jsapi");
+	
 }
 
 $(function (){
@@ -115,8 +122,8 @@ $(function(){
                                         $('.br').removeClass('active');
                                         button.closest('.br').addClass('active');
                                         $("#content").html(data);
-                                        $("#content").find("script").each(function(i) {eval($(this).text());
-                                        init_panel();});
+                                        init_panel();
+                                    });
 
         return false;  
     });
