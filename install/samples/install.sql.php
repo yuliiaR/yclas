@@ -217,6 +217,28 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   PRIMARY KEY (`id_forum`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."forums_IK_seo_name` (`seoname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+
+
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."crontab` (
+  `id_crontab` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `period` varchar(50) NOT NULL,
+  `callback` varchar(140) NOT NULL,
+  `params` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_started` datetime  DEFAULT NULL,
+  `date_finished` datetime  DEFAULT NULL,
+  `date_next` datetime  DEFAULT NULL,
+  `times_executed`  bigint DEFAULT '0',
+  `output` varchar(50) DEFAULT NULL,
+  `running` tinyint(1) NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_crontab`),
+  UNIQUE KEY `".core::request('TABLE_PREFIX')."crontab_UK_name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+
+
 /**
  * add basic content like emails
  */

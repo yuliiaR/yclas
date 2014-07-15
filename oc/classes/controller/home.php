@@ -63,5 +63,4 @@ class Controller_Home extends Controller {
 		
 	}
 
-
 } // End Welcome

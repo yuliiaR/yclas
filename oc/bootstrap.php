@@ -110,6 +110,7 @@ $modules = array(
 	'formmanager'	=> COMMONPATH.'modules/formmanager',// forms to objects ORM
     'mysqli'        => COMMONPATH.'modules/mysqli',     // mysqli driver
 	'widgets'	    => COMMONPATH.'modules/widgets',    // loads default widgets
+    'cron'          => COMMONPATH.'modules/cron',    // cron module
     //modules unique for open classifieds
 	'blacksmith'	=> MODPATH.'blacksmith', // used to handle custom fields
 );
