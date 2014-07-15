@@ -574,7 +574,7 @@ class Controller_Panel_Update extends Auth_Controller {
                       `date_started` datetime  DEFAULT NULL,
                       `date_finished` datetime  DEFAULT NULL,
                       `date_next` datetime  DEFAULT NULL,
-                      `times_executed`  bigint DEFAULT NULL,
+                      `times_executed`  bigint DEFAULT '0',
                       `output` varchar(50) DEFAULT NULL,
                       `running` tinyint(1) NOT NULL DEFAULT '0',
                       `active` tinyint(1) NOT NULL DEFAULT '1',
