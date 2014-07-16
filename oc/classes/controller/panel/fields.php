@@ -54,8 +54,7 @@ class Controller_Panel_Fields extends Auth_Controller {
 
                 if ($field->create($name,Core::post('type'),Core::post('values'),Core::post('categories'),$options))
                 {
-                    Cache::instance()->delete_all();
-                    Theme::delete_minified();
+                    Core::delete_cache();
                     Alert::set(Alert::SUCCESS,__('Field created '.$name));
                 }
                 else
@@ -101,8 +100,7 @@ class Controller_Panel_Fields extends Auth_Controller {
 
                 if ($field->update($name,Core::post('values'),Core::post('categories'),$options))
                 {
-                    Cache::instance()->delete_all();
-                    Theme::delete_minified();
+                    Core::delete_cache();
                     Alert::set(Alert::SUCCESS,__('Field edited '.$name));
                 }
                 else

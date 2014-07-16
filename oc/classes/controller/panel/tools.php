@@ -34,14 +34,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         //force optimize all tables
         if (Core::get('force')==1)
         {
-            $tables = $db->query(Database::SELECT, 'SHOW TABLES');
-
-            foreach ($tables as $table)
-            {
-                $table = array_values($table);
-                $to[] = $table[0];
-            }
-            $db->query(Database::SELECT, 'OPTIMIZE TABLE '.implode(', ', $to));
+            Core::optimize_db();
             Alert::set(Alert::SUCCESS,__('Database Optimized'));
         }
 
@@ -85,8 +78,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         //force clean cache
         if (Core::get('force')==1)
         {
-            Cache::instance()->delete_all();
-            Theme::delete_minified();
+            Core::delete_cache();
             Alert::set(Alert::SUCCESS,__('All cache deleted'));
 
         }
