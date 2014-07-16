@@ -138,12 +138,12 @@ class Auth_Controller extends Controller
     	            //other color
     	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
     	            {
-    	                $theme_css = array('http://netdna.bootstrapcdn.com/bootswatch/3.1.1/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
+    	                $theme_css = array('http://netdna.bootstrapcdn.com/bootswatch/3.2.0/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
     	            }
     	            //default theme
     	            else
     	            {
-    	                $theme_css = array('http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' => 'screen');
+    	                $theme_css = array('http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' => 'screen');
     	            }
 
                 	$common_css = array('http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
@@ -159,7 +159,7 @@ class Auth_Controller extends Controller
     	            								  'js/iconPicker.min.js',	
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
-    												  'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', 
+    												  'http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js', 
     											      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                                       'js/jquery.loadingbar.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
