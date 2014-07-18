@@ -82,11 +82,11 @@ class Controller_Panel_Update extends Auth_Controller {
         $file_name      = $update_src_dir.'/'.$last_version.'.zip'; //full file name
         
         
-        //check if exists file name
+        //check if exists already the download, if does delete
         if (file_exists($file_name))  
             unlink($file_name); 
 
-        //create dir if doesnt exists
+        //create update dir if doesnt exists
         if (!is_dir($update_src_dir))  
             mkdir($update_src_dir, 0775); 
           
@@ -114,6 +114,9 @@ class Controller_Panel_Update extends Auth_Controller {
             Alert::set(Alert::ALERT, $file_name.' '.__('Zip file failed to extract, please try again.'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'update', 'action'=>'index')));
         }
+
+        //delete downloaded file
+        unlink($file_name);
         
         //move files in different request so more time
         $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'files'))); 
@@ -126,12 +129,19 @@ class Controller_Panel_Update extends Auth_Controller {
      */
     public function action_files()
     {
+        ignore_user_abort(true);
+
         $folder_prefix  = 'openclassifieds2-';//the folder inside the ZIP file UGLY!! TODO get folder name
         $last_version   = key(core::config('versions')); //get latest version
         $update_src_dir = DOCROOT.'update'; // update dir 
+        //this sucks!! lets read update_src_dir needs to be only 1 folder, if only 1 folder then use that folder, if more than 1 folder as from use update_src_dir
+        $from           = $update_src_dir.'/'.$folder_prefix.$last_version;
 
-        //list of files to ignore the copy, TODO ignore languages folder?
-        $ignore_list = array('robots.txt',
+        //can we access the folder?
+        if (is_dir($from))
+        {
+            //list of files to ignore the copy, TODO ignore languages folder?
+            $ignore_list = array('robots.txt',
                             'oc/config/auth.php',
                             'oc/config/database.php',
                             '.htaccess',
@@ -140,12 +150,9 @@ class Controller_Panel_Update extends Auth_Controller {
                             'install/install.lock',
                             );
 
-        //copy all except the ignored files and only if files different size
-        $from = $update_src_dir.'/'.$folder_prefix.$last_version;
-        if (is_dir($from))
-        {
             //activate maintenance mode since we are moving files...
             Model_Config::set_value('general','maintenance',1);
+            //copy all except the ignored files and only if files different size
             File::copy($from, DOCROOT, 2, $ignore_list);
         }
         else
@@ -174,6 +181,8 @@ class Controller_Panel_Update extends Auth_Controller {
      */
     public function action_database()
     {
+        ignore_user_abort(true);
+        
         //activate maintenance mode
         Model_Config::set_value('general','maintenance',1);
 
