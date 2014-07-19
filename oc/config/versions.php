@@ -7,7 +7,7 @@
     'blog' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=22&page=1&state=closed',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.1.8.1...2.2.0',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=22&page=1&state=closed',
-    'download' => 'https://github.com/open-classifieds/openclassifieds2/releases/download/2.2.0/openclassifieds2-2.2.0.zip',
+    'download' => 'https://github.com/open-classifieds/openclassifieds2/releases/download/2.2.0/openclassifieds2-master.zip',
   ),
   '2.1.8.1' => 
   array (

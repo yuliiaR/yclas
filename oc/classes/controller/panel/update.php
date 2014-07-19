@@ -10,8 +10,6 @@
  */
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
-    static $folder_prefix = 'openclassifieds2-';
-
     /**
      * This function will upgrade DB that didn't existed in versions prior to 2.2.0
      */
