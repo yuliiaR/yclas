@@ -189,13 +189,8 @@ class Controller_New extends Controller
 
 	            if ($moderation == Model_Ad::POST_DIRECTLY) // direct post no moderation
 	            {
-
-	                if (Core::config('sitemap.on_post') == TRUE)
-	                    Sitemap::generate(); 
-
 	                $status = Model_Ad::STATUS_PUBLISHED;
 	                $this->save_new_ad($data, $status, TRUE, $moderation, $form_show['captcha']);
-
 	            }
 	            elseif( $moderation == Model_Ad::MODERATION_ON 
 	                 || $moderation == Model_Ad::PAYMENT_ON 

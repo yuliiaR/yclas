@@ -365,9 +365,6 @@ class Controller_Panel_Profile extends Auth_Controller {
                     								 '[URL.DELETEAD]'=>$delete_url));	
 		}	
 
-		if (Core::config('sitemap.on_post') == TRUE)
-			Sitemap::generate();
-
 		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
 		HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
 	}

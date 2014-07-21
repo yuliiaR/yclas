@@ -357,9 +357,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 		$this->multiple_mails($format_id); // sending many mails at the same time @TODO EMAIl
 
-		if (Core::config('sitemap.on_post') == TRUE)
-			Sitemap::generate();
-
 		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
 			
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
