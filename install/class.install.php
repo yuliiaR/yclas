@@ -483,11 +483,10 @@ class install{
         //not succeded :( delete all the tables with that prefix
         elseif($link!=FALSE)
         {
-            if ($table_list = mysqli_query($link, "SHOW TABLES LIKE '".$TABLE_PREFIX."%'")) 
-            {
-                while ($row = mysqli_fetch_assoc($table_list)) 
-                    mysqli_query($link,"DROP TABLE ".$row[0]);
-            }        
+            $table_list = @mysqli_query($link,"SHOW TABLES LIKE '".$TABLE_PREFIX."%'");
+            if ($table_list !== FALSE)
+                while ($row = mysqli_fetch_assoc($table_list))
+                    @mysqli_query($link,"DROP TABLE ".$row[0]);
         }
         
 
@@ -515,7 +514,7 @@ class core{
         for ($i=0; $i <$length ; $i++) 
         { 
             // pick a random character from the possible ones
-			$password .= substr($possible, mt_rand(0, $possible_length), 1);
+            $password .= substr($possible, mt_rand(0, $possible_length), 1);
         }
 
         return $password;
