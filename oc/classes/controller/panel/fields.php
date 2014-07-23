@@ -55,10 +55,10 @@ class Controller_Panel_Fields extends Auth_Controller {
                 if ($field->create($name,Core::post('type'),Core::post('values'),Core::post('categories'),$options))
                 {
                     Core::delete_cache();
-                    Alert::set(Alert::SUCCESS,__('Field created '.$name));
+                    Alert::set(Alert::SUCCESS,sprintf(__('Field %s created'),$name));
                 }
                 else
-                    Alert::set(Alert::ERROR,__('Field already exists '.$name));
+                    Alert::set(Alert::ERROR,sprintf(__('Field %s already exists'),$name));
  
 
             } catch (Exception $e) {
@@ -101,10 +101,10 @@ class Controller_Panel_Fields extends Auth_Controller {
                 if ($field->update($name,Core::post('values'),Core::post('categories'),$options))
                 {
                     Core::delete_cache();
-                    Alert::set(Alert::SUCCESS,__('Field edited '.$name));
+                    Alert::set(Alert::SUCCESS,sprintf(__('Field %s edited'),$name));
                 }
                 else
-                    Alert::set(Alert::ERROR,__('Field cant be edited'.$name));
+                    Alert::set(Alert::ERROR,sprintf(__('Field %s cannot be edited'),$name));
 
             } catch (Exception $e) {
                 throw HTTP_Exception::factory(500,$e->getMessage());     
@@ -125,7 +125,7 @@ class Controller_Panel_Fields extends Auth_Controller {
         $field  = new Model_Field();
 
         try {
-            $this->template->content = ($field->delete($name))?'OK':'KO';
+            $this->template->content = ($field->delete($name))?sprintf(__('Field %s deleted'),$name):sprintf(__('Field %s does not exists'),$name);
         } catch (Exception $e) {
             //throw 500
             throw HTTP_Exception::factory(500,$e->getMessage());     
