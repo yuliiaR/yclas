@@ -2,12 +2,13 @@
 
     <?=View::factory('oc-panel/elasticemail')?>
 
-		 <?=Form::errors()?>
-		<div class="page-header">
-			<h1><?=__('Email Configuration')?></h1>
-		<p><?=__('List of general configuration values. Replace input fields with new desired values')?></p>
-        <p>How to configure <a href="http://open-classifieds.com/2014/02/12/configure-elasticemail-open-classifieds/">ElasticEmail</a></p>
-        </div>
+    <?=Form::errors()?>
+
+    <div class="page-header">
+        <h1><?=__('Email Configuration')?></h1>
+        <p><?=__('Email Setup and emails configuration values. Replace input fields with new desired values')?></p>
+        <p><?=sprintf(__('How to configure %s'),'<a href="http://open-classifieds.com/2014/02/12/configure-elasticemail-open-classifieds/" target="_blank">ElasticEmail</a>')?></p>
+    </div>
 
 		<div class="well">
 		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
