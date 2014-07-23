@@ -142,7 +142,7 @@ class install{
                                     'result'    => version_compare(PHP_VERSION, '5.3', '>=')
                                     ),
                 'mod_rewrite'=>array('message'  => $mod_msg,
-                                    'mandatory' => $mod_mandatory,
+                                    'mandatory' => FALSE,
                                     'result'    => $mod_result
                                     ),
                 'Short Tag'   =>array('message'   => '<a href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag">short_open_tag</a> must be enabled in your php.ini.',
