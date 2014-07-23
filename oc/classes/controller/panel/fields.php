@@ -29,7 +29,7 @@ class Controller_Panel_Fields extends Auth_Controller {
     public function action_new()
     {
      
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('New')));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('New field')));
         $this->template->title = __('New Custom Field for Advertisement');
 
         //find all, for populating form select fields 
