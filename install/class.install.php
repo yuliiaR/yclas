@@ -93,19 +93,11 @@ class install{
         /**
          * mod rewrite check
          */
-        if(function_exists('apache_get_modules'))
-        {
-            $mod_msg        = 'Install requires Apache mod_rewrite module to be installed';
-            $mod_mandatory  = TRUE;
-            $mod_result     = in_array('mod_rewrite',apache_get_modules());
-        }
-        //in case they dont use apache a nicer message
-        else 
-        {
-            $mod_msg        = 'Can not check if mod_rewrite installed, probably everything is fine. Try to proceed with the installation anyway ;)';
-            $mod_mandatory  = FALSE;
-            $mod_result     = FALSE;
-        }
+        $mod_result = ((function_exists('apache_get_modules') AND in_array('mod_rewrite',apache_get_modules()))
+            OR (getenv('HTTP_MOD_REWRITE')=='On')
+            OR (strpos(@shell_exec('/usr/local/apache/bin/apachectl -l'), 'mod_rewrite') !== FALSE)
+            OR (isset($_SERVER['IIS_UrlRewriteModule'])));
+        $mod_msg = ($mod_result)?NULL:'Can not check if mod_rewrite is installed, probably everything is fine. Try to proceed with the installation anyway ;)';
                 
                 
         /**
@@ -491,11 +483,10 @@ class install{
         //not succeded :( delete all the tables with that prefix
         elseif($link!=FALSE)
         {
-            if ($table_list = mysqli_query($link, "SHOW TABLES LIKE '".$TABLE_PREFIX."%'")) 
-            {
-                while ($row = mysqli_fetch_assoc($table_list)) 
-                    mysqli_query($link,"DROP TABLE ".$row[0]);
-            }        
+            $table_list = @mysqli_query($link,"SHOW TABLES LIKE '".$TABLE_PREFIX."%'");
+            if ($table_list !== FALSE)
+                while ($row = mysqli_fetch_assoc($table_list))
+                    @mysqli_query($link,"DROP TABLE ".$row[0]);
         }
         
 
@@ -523,7 +514,7 @@ class core{
         for ($i=0; $i <$length ; $i++) 
         { 
             // pick a random character from the possible ones
-			$password .= substr($possible, mt_rand(0, $possible_length), 1);
+            $password .= substr($possible, mt_rand(0, $possible_length), 1);
         }
 
         return $password;
