@@ -60,7 +60,7 @@
         <div class="form-group">
             <label class="control-label col-xs-1"><?=__('Categories')?></label>
         	<div class="col-sm-4">
-				<select id="categories" name="categories[]" multiple>
+				<select id="categories" name="categories[]" multiple data-placeholder="<?=__('Choose 1 or several categories')?>">
 					<option></option>
 					<?function lili12($item, $key,$cats){?>
                         <?if($cats[$key]['id'] != 1):?>
