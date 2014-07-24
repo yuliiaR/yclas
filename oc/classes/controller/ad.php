@@ -672,7 +672,10 @@ class Controller_Ad extends Controller {
 
         	// filter by each variable
         	$ads = new Model_Ad();
-        	
+
+        	// early filter
+	        $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+
         	//if ad have passed expiration time dont show 
 	        if(core::config('advertisement.expire_date') > 0)
 	        {
@@ -728,10 +731,26 @@ class Controller_Ad extends Controller {
                     $ads->where('id_location', 'IN', $location->get_siblings_ids());
             }
 
-            //filter by price
-            if (is_numeric(core::get('price-min')) AND is_numeric(core::get('price-max')))
+            //filter by price(s)
+            if (is_numeric($price_min = str_replace(',','.',core::get('price-min')))) // handle comma (,) used in some countries for prices
+                $price_min = (float)$price_min; // round((float)$price_min,2)
+            if (is_numeric($price_max = str_replace(',','.',core::get('price-max')))) // handle comma (,) used in some countries for prices
+                $price_max = (float)$price_max; // round((float)$price_max,2)
+
+            if ($price_min AND $price_max)
             {
-                $ads->where('price', 'BETWEEN', array(core::get('price-min'),core::get('price-max')));
+                if ($price_min > $price_max) // swap 2 values
+                    $price_min = $price_max + $price_min - ( $price_max = $price_min );
+                
+                $ads->where('price', 'BETWEEN', array($price_min,$price_max));
+            }
+            elseif ($price_min) // only min price has been provided
+            {
+                $ads->where('price', '>=', $price_min);
+            }
+            elseif ($price_max) // only max price has been provided
+            {
+                $ads->where('price', '<=', $price_max);
             }
 
 	        foreach ($cf_fields as $key => $value) 
@@ -744,8 +763,6 @@ class Controller_Ad extends Controller {
 		        		$ads->where($key, 'like', '%'.$value.'%');
 		        }
 	        }
-
-	        $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 
 	        // count them for pagination
 			$res_count = $ads->count_all();
