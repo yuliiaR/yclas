@@ -113,7 +113,8 @@ class Model_Field {
                                 'categories'=> $categories,
                                 'required'  => $options['required'],
                                 'searchable'=> $options['searchable'],
-                                'admin_privilege'=> $options['admin_privilege']
+                                'admin_privilege'   => $options['admin_privilege'],
+                                'show_listing'      => $options['show_listing']
                                 );
 
                 $conf->config_value = json_encode($fields);
@@ -168,7 +169,8 @@ class Model_Field {
                                 'categories'=> $categories,
                                 'required'  => $options['required'],
                                 'searchable'=> $options['searchable'],
-                                'admin_privilege'=> $options['admin_privilege']
+                                'admin_privilege' => $options['admin_privilege'],
+                                'show_listing'    => $options['show_listing']
                                 );
 
                 $conf->config_value = json_encode($fields);
@@ -275,11 +277,11 @@ class Model_Field {
 
     /**
      * get the custom fields for an ad
-     * @return array
+     * @return array/class
      */
-    public static function get_all($id_ad = NULL)
+    public static function get_all($as_array = TRUE)
     {
-        return json_decode(core::config('advertisement.fields'),TRUE);
+        return json_decode(core::config('advertisement.fields'),$as_array);
     }
 
     /**

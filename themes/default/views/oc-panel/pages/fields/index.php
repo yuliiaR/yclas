@@ -26,7 +26,8 @@
         <span class="label label-info "><?=$field['type']?></span>
         <span class="label label-info "><?=($field['searchable'])?__('searchable'):NULL?></span>
         <span class="label label-info "><?=($field['required'])?__('required'):NULL?></span>
-        <span class="label label-info "><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('admin_privilege'):NULL?></span>
+        <span class="label label-info "><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>
+        <span class="label label-info "><?=(isset($field['show_listing']) AND $field['show_listing'])?__('Show listing'):NULL?></span>
 
         <a data-text="<?=__('Are you sure you want to delete? All data contained in this field will be deleted.')?>" 
            data-id="li_<?=$name?>" 
