@@ -29,7 +29,7 @@ $komodules = $application.'/kohana/modules';
  * The directory where common Open Classifieds files are
  *
  */
-$common = $modules.'/common';
+$common = $application.'/common';
 
 /**
  * The default extension of resource files. If you change this, all resources

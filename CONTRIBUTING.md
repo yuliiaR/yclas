@@ -31,7 +31,7 @@ git submodule init
 git submodule update
 ```
 
-This will clone the openclassifieds2 project + submodule at oc/modules/common https://github.com/open-classifieds/common
+This will clone the openclassifieds2 project + submodule at oc/common https://github.com/open-classifieds/common
 
 GIT files to ignore changes, DO NOT COMMIT THIS FILES:
 ```
@@ -57,7 +57,7 @@ Modify the hidden file .gitmodules, this is to track changes at the neo22s/commo
 
 Go to common module and change to branch master
 ```
-cd oc/modules/common
+cd oc/common
 git checkout master
 ```
 
@@ -80,7 +80,7 @@ git commit -a -m 'working on open-classifieds/openclassifieds#725' # this will m
 ```
 
 
-If you made changes in any file located at oc/modules/common (common submodule), you need to browse that directory since its a different repo. To commit works exactly the same.
+If you made changes in any file located at oc/common (common submodule), you need to browse that directory since its a different repo. To commit works exactly the same.
 
 
 ## Pull Requests
