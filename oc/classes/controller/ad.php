@@ -658,8 +658,6 @@ class Controller_Ad extends Controller {
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
 
-        $this->template->scripts['footer'] = array('js/search.js');
-		
 		$pagination = NULL;
         $ads   = NULL;
 		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user();
