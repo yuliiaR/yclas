@@ -47,7 +47,7 @@
         <label class="control-label col-xs-1"><?=__('Categories')?></label>
             <div class="col-sm-4">
                 
-                <select id="categories" name="categories[]" multiple>
+                <select id="categories" name="categories[]" multiple data-placeholder="<?=__('Choose 1 or several categories')?>">
                     <option></option>
                     <?foreach ($categories as $categ => $ctg):?>
                         <?if($categ !== 1 ):?>
@@ -68,7 +68,7 @@
                   <input type="checkbox" name="required" <?=($field_data['required']==TRUE)?'checked':''?>> 
                    <?=__('Required')?>
                 </label>
-            <div class="help-block"></div></div>
+            <div class="help-block col-xs-offset-4"><?=__('Required field to submit a new ad.')?></div></div>
         </div>
 
         <div class="form-group">
@@ -77,7 +77,7 @@
                   <input type="checkbox" name="searchable" <?=($field_data['searchable']==TRUE)?'checked':''?>> 
                    <?=__('Searchable')?>
                 </label>
-            <div class="help-block"></div></div>
+            <div class="help-block col-xs-offset-4"><?=__('Search in ads will include this field as well.')?></div></div>
         </div>
 
         <div class="form-group">
@@ -86,7 +86,7 @@
                   <input type="checkbox" name="admin_privilege" <?=(isset($field_data['admin_privilege']) AND $field_data['admin_privilege']==TRUE)?'checked':''?>> 
                    <?=__('Admin Privileged')?>
                 </label>
-            <div class="help-block"></div></div>
+            <div class="help-block col-xs-offset-4"><?=__('Can be seen and edited only by admin.')?></div></div>
         </div>
       
       <div class="form-actions">

@@ -9,7 +9,7 @@
 <div class="col-md-7">
 
 <div class="well">
-    <span class="label label-info">Heads Up! Quick category creator.</span>
+    <span class="label label-info"><?=__('Heads Up!')?> <?=__('Quick category creator.')?></span>
     <div class="clearfix"></div> 
     <?=__('Add names for multiple categories, for each one push enter.')?>
     <div class="clearfix"></div><br>

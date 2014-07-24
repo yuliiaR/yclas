@@ -4,7 +4,7 @@
     <h1><?=__('Import tool for locations and categories')?></h1>
 </div>
 <div class="well">
-    <span class="label label-info">Heads Up!</span> 
+    <span class="label label-info"><?=__('Heads Up!')?></span> 
     <?=__('Select .csv file to upload categories or locations. Valid format must be:')?>
     <table class="table table-striped ">
 	  	<thead>

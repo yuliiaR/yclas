@@ -60,7 +60,7 @@
         <div class="form-group">
             <label class="control-label col-xs-1"><?=__('Categories')?></label>
         	<div class="col-sm-4">
-				<select id="categories" name="categories[]" multiple>
+				<select id="categories" name="categories[]" multiple data-placeholder="<?=__('Choose 1 or several categories')?>">
 					<option></option>
 					<?function lili12($item, $key,$cats){?>
                         <?if($cats[$key]['id'] != 1):?>
@@ -80,7 +80,7 @@
                   <input type="checkbox" name="required"> 
                    <?=__('Required')?>
                 </label>
-            <div class="help-block"></div></div>
+            <div class="help-block col-xs-offset-4"><?=__('Required field to submit a new ad.')?></div></div>
         </div>
 
         <div class="form-group">
@@ -89,7 +89,7 @@
                   <input type="checkbox" name="searchable"> 
                    <?=__('Searchable')?>
                 </label>
-            <div class="help-block"></div></div>
+            <div class="help-block col-xs-offset-4"><?=__('Search in ads will include this field as well.')?></div></div>
         </div>
 
         <div class="form-group">

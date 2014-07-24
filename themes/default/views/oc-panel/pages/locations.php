@@ -9,7 +9,7 @@
 
 <div class="col-md-7">
     <div class="well">
-        <span class="label label-info">Heads Up! Quick location creator.</span>
+        <span class="label label-info"><?=__('Heads Up!')?> <?=__('Quick location creator.')?></span>
         <div class="clearfix"></div> 
         <?=__('Add names for multiple locations, for each one push enter.')?>
         <div class="clearfix"></div><br>
