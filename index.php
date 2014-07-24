@@ -26,8 +26,9 @@ $system = $application.'/kohana/system';
 $komodules = $application.'/kohana/modules';
 
 /**
- * The directory where common Open Classifieds files are
- *
+ * The directory where common Open Classifieds files are 
+ * @see https://github.com/open-classifieds/common
+ * @see https://github.com/open-classifieds/openclassifieds2/blob/master/CONTRIBUTING.md
  */
 $common = $application.'/common';
 
