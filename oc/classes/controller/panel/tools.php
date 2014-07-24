@@ -222,7 +222,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                     }
                     
 
-                    Alert::set(Alert::SUCCESS, sprintf(__('%s have been created'),$type));
+                    Alert::set(Alert::SUCCESS, sprintf(__('%s have been created'),__($type)));
                 }
             }
         } 
