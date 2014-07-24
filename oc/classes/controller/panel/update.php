@@ -18,7 +18,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         //updating contents replacing . for _
         try
         {
-            DB::query(Database::UPDATE,"UPDATE ".$prefix."content SET seotitle=REPLACE(seotitle,'.','-') WHERE type='email'")->execute();
+            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."content SET seotitle=REPLACE(seotitle,'.','-') WHERE type='email'")->execute();
         }catch (exception $e) {}
 
         //cleaning emails not in use
@@ -113,6 +113,38 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::DELETE,"DELETE FROM ".self::$db_prefix."config WHERE (config_key='expires' OR config_key='on_post') AND  group_name='sitemap'")->execute();
         }catch (exception $e) {}
 
+        //categories description to HTML
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` CHANGE  `description`  `description` TEXT NULL DEFAULT NULL;")->execute();
+        }catch (exception $e) {}
+        
+        $categories = new Model_Category();
+        $categories = $categories->find_all();
+        foreach ($categories as $category) 
+        {
+            $category->description = Text::bb2html($category->description,TRUE);
+            try {
+                $category->save();
+            } catch (Exception $e) {}
+        }
+
+        //locations description to HTML
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` CHANGE  `description`  `description` TEXT NULL DEFAULT NULL;")->execute();
+        }catch (exception $e) {}
+
+        $locations = new Model_Location();
+        $locations = $locations->find_all();
+        foreach ($locations as $location) 
+        {
+            $location->description = Text::bb2html($location->description,TRUE);
+            try {
+                $location->save();
+            } catch (Exception $e) {}
+        }
+
         //new mails
         $contents = array(array('order'=>0,
                                 'title'=>'Reciept for [ORDER.DESC] #[ORDER.ID]',
@@ -125,7 +157,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
 
         Model_Content::content_array($contents);
 
-        //new payments...
+        //new configs...
         $configs = array(
                          array('config_key'     =>'bitpay_apikey',
                                'group_name'     =>'payment', 
