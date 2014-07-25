@@ -184,7 +184,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                                 if($seoname == "")
                                     $seoname = $obj_location->gen_seoname($name);
                             }
-                            $array .= "('$name',1,'$seoname'),";
+                            $array .= '('.Database::instance()->quote($name).',1,'.Database::instance()->quote($seoname).'),';
                         }
                         $i++;
                     }
