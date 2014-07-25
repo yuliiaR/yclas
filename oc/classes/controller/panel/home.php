@@ -9,11 +9,10 @@ class Controller_Panel_Home extends Auth_Controller {
         if (Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN)
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'profile','action'=>'index')));  
 
-        Core::ocacu();
+        Core::ocacu(); // ?? still used ??
 
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Welcome')));
-		$this->template->title = 'Welcome';
-
+        $this->template->title = __('Welcome');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
 
         //try to get the RSS from the cache
         $rss_url = 'http://feeds.feedburner.com/OpenClassifieds';
