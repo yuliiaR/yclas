@@ -35,32 +35,6 @@
                 </div>
             </div>
         </div>
-        
-        <div class="form-group">
-            <label class="control-label col-sm-3"><?=__("Time Zone")?>:</label>                
-            <div class="col-sm-4">
-            <?= FORM::select($i18n['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
-                    'placeholder' => "Madrid [+1:00]", 
-                    'class' => 'tips form-control', 
-                    'id' => $i18n['timezone']['key'], 
-                    ))?> 
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <?= FORM::label($forms['landing_page']['key'], __('Landing page'), array('class'=>'control-label col-sm-3', 'for'=>$forms['landing_page']['key']))?>
-            <div class="col-sm-4">
-                <?= FORM::select($forms['landing_page']['key'], array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING'), $forms['landing_page']['value'], array(
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['landing_page']['key'], 
-                'data-content'=> __("It changes landing page of website"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Landing page"),
-                ))?> 
-            </div>
-        </div>
 
         <div class="form-group">
             <?= FORM::label($forms['site_name']['key'], __('Site name'), array('class'=>'control-label col-sm-3', 'for'=>$forms['site_name']['key']))?>
@@ -94,8 +68,6 @@
                 ))?> 
             </div>
         </div>
-        
-        <?=FORM::hidden($forms['base_url']['key'], $forms['base_url']['value'])?>
 
         <div class="form-group">
             <?= FORM::label($forms['moderation']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/30/how-to-earn-money/'>".__('Moderation')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['moderation']['key']))?>
@@ -113,6 +85,121 @@
             </div>
         </div>
         
+        <div class="form-group">
+            <?= FORM::label($forms['landing_page']['key'], __('Landing page'), array('class'=>'control-label col-sm-3', 'for'=>$forms['landing_page']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::select($forms['landing_page']['key'], array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING'), $forms['landing_page']['value'], array(
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['landing_page']['key'], 
+                'data-content'=> __("It changes landing page of website"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Landing page"),
+                ))?> 
+            </div>
+        </div>
+        
+        <?=FORM::hidden($forms['base_url']['key'], $forms['base_url']['value'])?>
+        
+        <?$pages = array(''=>__('Deactivated'))?>
+        <?foreach (Model_Content::get_pages() as $key => $value) {
+            $pages[$value->seotitle] = $value->title;
+        }?>
+        <div class="form-group">
+            <?= FORM::label($forms['alert_terms']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/14/activate-access-terms-alert/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['alert_terms']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array( 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['alert_terms']['key'], 
+                'data-content'=> __("If you choose to use alert terms, you can select page you want to render. And to edit content, select link 'Content' on your admin panel sidebar. Find page named <name_you_specified> click 'Edit'. In section 'Description' add content that suits you."),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Accept Terms Alert"),
+                ))?> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?= FORM::label($forms['analytics']['key'], __('Analytics Tracking ID'), array('class'=>'control-label col-sm-3', 'for'=>$forms['analytics']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
+                'placeholder' => 'UA-XXXXX-YY', 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['analytics']['key'],
+                'data-content'=> __("Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Analytics Tracking ID"), 
+                ))?> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?= FORM::label($forms['akismet_key']['key'], "<a target='_blank' href='http://akismet.com/'>".__('Akismet Key')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['akismet_key']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::input($forms['akismet_key']['key'], $forms['akismet_key']['value'], array(
+                'placeholder' => "", 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['akismet_key']['key'],
+                'data-content'=> __("Providing akismet key will activate this feature. This feature deals with spam posts and emails."),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Akismet Key"), 
+                ))?> 
+            </div>
+        </div>
+
+        <hr>
+        <h2><?=__("Regional Settings")?></h2>
+        <div class="form-group">
+            
+                <?= FORM::label($forms['number_format']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/06/how-to-currency-format/'>".__('Money format')."</a>", array('class'=>'control-label col-sm-3','for'=>$forms['number_format']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
+                'placeholder' => "20", 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['number_format']['key'],
+                'data-content'=> __("Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Decimal representation"), 
+                ))?> 
+            </div>
+        </div>
+        <div class="form-group">
+            <?= FORM::label($forms['date_format']['key'], __('Date format'), array('class'=>'control-label col-sm-3', 'for'=>$forms['date_format']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::input($forms['date_format']['key'], $forms['date_format']['value'], array(
+                'placeholder' => "d/m/Y", 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['date_format']['key'], 
+                'data-content'=> __("Each advertisement has a publish date. By selecting format, you can change how it is shown on your website."),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__("Date format"),
+                ))?> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3"><?=__("Time Zone")?>:</label>                
+            <div class="col-sm-4">
+            <?= FORM::select($i18n['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
+                    'placeholder' => "Madrid [+1:00]", 
+                    'class' => 'tips form-control', 
+                    'id' => $i18n['timezone']['key'], 
+                    ))?> 
+            </div>
+        </div>
+        
+        <hr>
+        <h2><?=__("Listings Options")?></h2>
         <div class="form-group">
             <?= FORM::label($forms['advertisements_per_page']['key'], __('Advertisements per page'), array('class'=>'control-label col-sm-3', 'for'=>$forms['advertisements_per_page']['key']))?>
             <div class="col-sm-4">
@@ -158,52 +245,32 @@
                ))?> 
            </div>
        </div>
+
         <div class="form-group">
-            
-                <?= FORM::label($forms['number_format']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/08/06/how-to-currency-format/'>".__('Money format')."</a>", array('class'=>'control-label col-sm-3','for'=>$forms['number_format']['key']))?>
+            <?= FORM::label($forms['sort_by']['key'], __('Sort by in listing'), array('class'=>'control-label col-sm-3', 'for'=>$forms['sort_by']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
-                'placeholder' => "20", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['number_format']['key'],
-                'data-content'=> __("Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."),
+                <?= FORM::select($forms['sort_by']['key'], array('title-asc'=>"Name (A-Z)",
+                                                                     'title-desc'=>"Name (Z-A)",
+                                                                     'price-asc'=>"Price (Low)",
+                                                                     'price-desc'=>"Price (High)",
+                                                                     'featured'=>"Featured",
+                                                                     'published-desc'=>"Newest",
+                                                                     'published-asc'=>"Oldest"), 
+                $forms['sort_by']['value'], array(
+                'placeholder' => $forms['sort_by']['value'], 
+                'class' => 'tips form-control input-sm ', 
+                'id' => $forms['sort_by']['key'],
+                'data-content'=> __("Sort by in listing"),
                 'data-trigger'=>"hover",
                 'data-placement'=>"right",
                 'data-toggle'=>"popover",
-                'data-original-title'=>__("Decimal representation"), 
+                'data-original-title'=>__("Sort by in listing"), 
                 ))?> 
             </div>
         </div>
-        <div class="form-group">
-            <?= FORM::label($forms['date_format']['key'], __('Date format'), array('class'=>'control-label col-sm-3', 'for'=>$forms['date_format']['key']))?>
-            <div class="col-sm-4">
-                <?= FORM::input($forms['date_format']['key'], $forms['date_format']['value'], array(
-                'placeholder' => "d/m/Y", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['date_format']['key'], 
-                'data-content'=> __("Each advertisement has a publish date. By selecting format, you can change how it is shown on your website."),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Date format"),
-                ))?> 
-            </div>
-        </div>
-        <div class="form-group">
-            <?= FORM::label($forms['analytics']['key'], __('Analytics Tracking ID'), array('class'=>'control-label col-sm-3', 'for'=>$forms['analytics']['key']))?>
-            <div class="col-sm-4">
-                <?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
-                'placeholder' => 'UA-XXXXX-YY', 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['analytics']['key'],
-                'data-content'=> __("Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Analytics Tracking ID"), 
-                ))?> 
-            </div>
-        </div>
+
+        <hr>
+        <h2><?=__("Images Options")?></h2>
         <div class="form-group">
             <?= FORM::label($forms_img['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['allowed_formats']['key']))?>
             <div class="col-sm-4">
@@ -382,58 +449,8 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <?= FORM::label($forms['akismet_key']['key'], "<a target='_blank' href='http://akismet.com/'>".__('Akismet Key')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['akismet_key']['key']))?>
-            <div class="col-sm-4">
-                <?= FORM::input($forms['akismet_key']['key'], $forms['akismet_key']['value'], array(
-                'placeholder' => "", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['akismet_key']['key'],
-                'data-content'=> __("Providing akismet key will activate this feature. This feature deals with spam posts and emails."),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Akismet Key"), 
-                ))?> 
-            </div>
-        </div>
-        <?$pages = array(''=>__('Deactivated'))?>
-        <?foreach (Model_Content::get_pages() as $key => $value) {
-            $pages[$value->seotitle] = $value->title;
-        }?>
-        <div class="form-group">
-            <?= FORM::label($forms['alert_terms']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/14/activate-access-terms-alert/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['alert_terms']['key']))?>
-            <div class="col-sm-4">
-                <?= FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array( 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['alert_terms']['key'], 
-                'data-content'=> __("If you choose to use alert terms, you can select page you want to render. And to edit content, select link 'Content' on your admin panel sidebar. Find page named <name_you_specified> click 'Edit'. In section 'Description' add content that suits you."),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Accept Terms Alert"),
-                ))?> 
-            </div>
-        </div>
-        <div class="form-group">
-            <?= FORM::label($forms['search_by_description']['key'], __("Include search by description"), array('class'=>'control-label col-sm-3', 'for'=>$forms['search_by_description']['key']))?>
-            <div class="col-sm-4">
-                <div class="onoffswitch">
-                    <?= FORM::hidden($forms['search_by_description']['key'], 0);?>
-                    <?= Form::checkbox($forms['search_by_description']['key'], 1, (bool) $forms['search_by_description']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
-                    'class' => 'onoffswitch-checkbox', 
-                    'id' => $forms['search_by_description']['key'], 
-                    'data-content'=> __("Once set to TRUE, enables search to look for key words in description"),
-                    'data-trigger'=>"hover",
-                    'data-placement'=>"right",
-                    'data-toggle'=>"popover",
-                    'data-original-title'=>__("Include search by description"),
-                    ))?>
-                    <?= FORM::label($forms['search_by_description']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['search_by_description']['key']))?>
-                </div>
-            </div>
-        </div>
+        <hr>
+        <h2><?=__("Enable Special Features")?></h2>
         <div class="form-group">
             <?= FORM::label($forms['blog']['key'], __("Activates Blog posting"), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog']['key']))?>
             <div class="col-sm-4">
@@ -453,21 +470,6 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-                <?= FORM::label($forms['blog_disqus']['key'], __('Disqus for blog'), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog_disqus']['key']))?>
-                <div class="col-sm-4">
-                    <?= FORM::input($forms['blog_disqus']['key'], $forms['blog_disqus']['value'], array(
-                    'placeholder' => "", 
-                    'class' => 'tips form-control input-sm', 
-                    'id' => $forms['blog_disqus']['key'], 
-                    'data-original-title'=> __("Disqus for Blog Comments"),
-                    'data-trigger'=>"hover",
-                    'data-placement'=>"right",
-                    'data-toggle'=>"popover",
-                    'data-content'=>__("You need to write your disqus ID to enable the service."),
-                    ))?> 
-                </div>
-            </div>
         <div class="form-group">
             <?= FORM::label($forms['forums']['key'], __("Activates Forums"), array('class'=>'control-label col-sm-3', 'for'=>$forms['forums']['key']))?>
             <div class="col-md-4">
@@ -506,21 +508,6 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <?= FORM::label($forms['faq_disqus']['key'], __('Disqus for FAQ'), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq_disqus']['key']))?>
-            <div class="col-sm-4">
-                <?= FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
-                'placeholder' => "", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['faq_disqus']['key'], 
-                'data-original-title'=> __("Disqus for FAQ Comments"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-content'=>__("You need to write your disqus ID to enable the service."),
-                ))?> 
-            </div>
-        </div>
         
          <div class="form-group">
             <?= FORM::label($forms['minify']['key'], __("Minify CSS/JS"), array('class'=>'control-label col-sm-3', 'for'=>$forms['minify']['key']))?>
@@ -543,29 +530,6 @@
         </div>
 
         <div class="form-group">
-            <?= FORM::label($forms['sort_by']['key'], __('Sort by in listing'), array('class'=>'control-label col-sm-3', 'for'=>$forms['sort_by']['key']))?>
-            <div class="col-sm-4">
-                <?= FORM::select($forms['sort_by']['key'], array('title-asc'=>"Name (A-Z)",
-                                                                     'title-desc'=>"Name (Z-A)",
-                                                                     'price-asc'=>"Price (Low)",
-                                                                     'price-desc'=>"Price (High)",
-                                                                     'featured'=>"Featured",
-                                                                     'published-desc'=>"Newest",
-                                                                     'published-asc'=>"Oldest"), 
-                $forms['sort_by']['value'], array(
-                'placeholder' => $forms['sort_by']['value'], 
-                'class' => 'tips form-control input-sm ', 
-                'id' => $forms['sort_by']['key'],
-                'data-content'=> __("Sort by in listing"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Sort by in listing"), 
-                ))?> 
-            </div>
-        </div>
-
-        <div class="form-group">
             <?= FORM::label($forms['black_list']['key'], __("Black List"), array('class'=>'control-label col-sm-3', 'for'=>$forms['black_list']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
@@ -584,6 +548,60 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-group">
+            <?= FORM::label($forms['search_by_description']['key'], __("Include search by description"), array('class'=>'control-label col-sm-3', 'for'=>$forms['search_by_description']['key']))?>
+            <div class="col-sm-4">
+                <div class="onoffswitch">
+                    <?= FORM::hidden($forms['search_by_description']['key'], 0);?>
+                    <?= Form::checkbox($forms['search_by_description']['key'], 1, (bool) $forms['search_by_description']['value'], array(
+                    'placeholder' => "TRUE or FALSE", 
+                    'class' => 'onoffswitch-checkbox', 
+                    'id' => $forms['search_by_description']['key'], 
+                    'data-content'=> __("Once set to TRUE, enables search to look for key words in description"),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-original-title'=>__("Include search by description"),
+                    ))?>
+                    <?= FORM::label($forms['search_by_description']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['search_by_description']['key']))?>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <h2><?=__("Comments Configuration")?></h2>
+        <div class="form-group">
+                <?= FORM::label($forms['blog_disqus']['key'], __('Disqus for blog'), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog_disqus']['key']))?>
+                <div class="col-sm-4">
+                    <?= FORM::input($forms['blog_disqus']['key'], $forms['blog_disqus']['value'], array(
+                    'placeholder' => "", 
+                    'class' => 'tips form-control input-sm', 
+                    'id' => $forms['blog_disqus']['key'], 
+                    'data-original-title'=> __("Disqus for Blog Comments"),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-content'=>__("You need to write your disqus ID to enable the service."),
+                    ))?> 
+                </div>
+        </div>
+        <div class="form-group">
+            <?= FORM::label($forms['faq_disqus']['key'], __('Disqus for FAQ'), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq_disqus']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
+                'placeholder' => "", 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['faq_disqus']['key'], 
+                'data-original-title'=> __("Disqus for FAQ Comments"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-content'=>__("You need to write your disqus ID to enable the service."),
+                ))?> 
+            </div>
+        </div>
+
             <?= FORM::button('submit', 'Update', array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
         
     </fieldset> 
