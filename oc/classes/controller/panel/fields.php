@@ -50,6 +50,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                 'required'          => (Core::post('required')=='on')?TRUE:FALSE,
                                 'searchable'        => (Core::post('searchable')=='on')?TRUE:FALSE,
                                 'admin_privilege'   => (Core::post('admin_privilege')=='on')?TRUE:FALSE,
+                                'show_listing'      => (Core::post('show_listing')=='on')?TRUE:FALSE,
                                 );
 
                 if ($field->create($name,Core::post('type'),Core::post('values'),Core::post('categories'),$options))
@@ -96,6 +97,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                 'required'          => (Core::post('required')=='on')?TRUE:FALSE,
                                 'searchable'        => (Core::post('searchable')=='on')?TRUE:FALSE,
                                 'admin_privilege'   => (Core::post('admin_privilege')=='on')?TRUE:FALSE,
+                                'show_listing'      => (Core::post('show_listing')=='on')?TRUE:FALSE,
                                 );
 
                 if ($field->update($name,Core::post('values'),Core::post('categories'),$options))

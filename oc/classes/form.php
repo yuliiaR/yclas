@@ -80,12 +80,11 @@ class Form extends OC_Form {
                 $input = FORM::input($name, $value, $attributes);
                 break;
             case 'checkbox':
-                $checked = ($value == 1) ? TRUE : FALSE ;  
+                $checked = isset($value); // value can be 1 or 'on'
 
-                $input = '';
                 $label = '<b>'.$options['label'].'</b>';
 
-                $input .= '<div class="checkbox"><label>'.FORM::checkbox($name, NULL, $checked, $attributes).'</label></div>';
+                $input = '<div class="checkbox"><label>'.FORM::checkbox($name, NULL, $checked, $attributes).'</label></div>';
                 
                 break;
             case 'radio':

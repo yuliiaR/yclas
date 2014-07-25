@@ -558,21 +558,82 @@ class Model_Ad extends ORM {
         return FALSE;
     }
     
-    /**
-    * returns a list with custom field values
+
+   /**
+    * returns a list with custom field values of this ad
+    * @param  boolean $show_listing only those fields that needs to be displayed on the list of ads show_listing===TRUE
     * @return array else false 
     */
-    public function custom_columns()
+    public function custom_columns($show_listing = FALSE)
     {
         if($this->loaded())
         {
-            $custom_columns = array();
+            //is the admin getting the CF fields?
+            $is_admin = FALSE;
+            if (Auth::instance()->logged_in())
+                if (Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
+                    $is_admin = TRUE;
+
+            //custom fields config, label, name and order
+            $cf_config = Model_Field::get_all(FALSE);
+
+            if(!isset($cf_config))
+                return FALSE;
+            
+            //getting the custom fields this advertisement has and his value          
+            $active_custom_fields = array();
             foreach($this->_table_columns as $value)
             {   
-                if(strpos($value['column_name'],'cf_') !== false) // take only custom columns
-                    $custom_columns[$value['column_name']] = array('value'=>$this->$value['column_name'], 'parameters' => $value);
+                //we want only those that are custom fields
+                if(strpos($value['column_name'],'cf_') !== FALSE) 
+                {
+                    $cf_name  = str_replace('cf_', '', $value['column_name']);
+                    $cf_value = $this->$value['column_name'];
+
+                    //if the CF has value need to be only seen by admin
+                    if(isset($cf_value) AND ($cf_config->$cf_name->admin_privilege!=TRUE OR $is_admin === TRUE) )
+                    {   
+                        //formating the value depending on the type
+                        switch ($cf_config->$cf_name->type) 
+                        {   
+                            case 'checkbox':
+                                $cf_value = ($cf_value)?$cf_value:NULL;
+                                break;
+                            case 'radio':
+                                $cf_value = $cf_config->$cf_name->values[$cf_value-1];
+                                break;
+                            case 'date':
+                                $cf_value = Date::format($cf_value, core::config('general.date_format'));
+                                break;
+                        }      
+                        
+                        //should it be added to the listing? //I added the isset since those who update may not have this field ;)
+                        if ($show_listing == TRUE AND isset($cf_config->$cf_name->show_listing)) 
+                        {
+                            //only to the listing
+                            if ($cf_config->$cf_name->show_listing===TRUE)
+                            {
+                                $active_custom_fields[$cf_name] = $cf_value;
+                            }                            
+                        }
+                        else
+                            $active_custom_fields[$cf_name] = $cf_value;
+                    }
+       
+                }
             }
-            return $custom_columns;
+
+            // sorting using json order
+            $ad_custom_vals = array();
+            foreach ($cf_config as $name => $value) 
+            {
+                if(isset($active_custom_fields[$name]))
+                    $ad_custom_vals[$value->label] = $active_custom_fields[$name];
+            }
+
+
+            return $ad_custom_vals;
+            
         }
         return FALSE;
     }
