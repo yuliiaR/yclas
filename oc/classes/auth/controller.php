@@ -119,6 +119,8 @@ class Auth_Controller extends Controller
                 						'css/jquery.sceditor.min.css'=>'screen', 
                                         'css/loadingbar.css'=>'screen', 
                 						'css/icon-picker.min.css'=>'screen', 
+                						'css/font-awesome.min.css'=>'screen', 
+                						'css/summernote.css'=>'screen', 
                                         'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
@@ -128,6 +130,7 @@ class Auth_Controller extends Controller
     	            								  'js/iconPicker.min.js',	
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
+    												  'js/summernote.min.js',
     												  'js/bootstrap.min.js', 
     											      'js/chosen.jquery.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
@@ -149,6 +152,8 @@ class Auth_Controller extends Controller
                 	$common_css = array('http://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
                                         'http://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
                                         'css/loadingbar.css'=>'screen', 
+                                        'http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'=>'screen', 
+                                        'http://cdn.jsdelivr.net/summernote/0.5.1/summernote.css'=>'screen', 
                                         'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
@@ -159,6 +164,7 @@ class Auth_Controller extends Controller
     	            								  'js/iconPicker.min.js',	
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
+    											      'http://cdn.jsdelivr.net/summernote/0.5.1/summernote.min.js',
     												  'http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js', 
     											      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                                       'js/jquery.loadingbar.min.js',

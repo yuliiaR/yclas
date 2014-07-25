@@ -2,18 +2,15 @@ function init_panel()
 {
     if ($("textarea[name=description]").data('editor')=='html')
     {
-        $("#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields").sceditor({
-            plugins: "xhtml",
+        $("#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields").summernote({
             height: "450",
-            toolbar: "bold,italic,underline|,strike,subscript,superscript|,left,center,right,justify|" +
-                    "font,size,color,removeformat|,table,code,quote,horizontalrule|,paste,bulletlist,orderedlist|,image,email,link,unlink|,youtube,date,time,ltr,rtl,print,maximize|,source",
-            toolbarExclude : "emoticons",
-            resizeEnabled: "true",
-            emoticonsEnabled: "false",
-            emoticonsCompat: "false",
-            enablePasteFiltering: "true"
         });
     }
+	else if ($( "#crud-post" ).length || $( "#crud-category" ).length || $( "#crud-location" ).length) {
+		$("#formorm_description").summernote({
+            height: "350",
+        });
+	}
     else
     {   
         $('#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields').sceditorBBCodePlugin({
