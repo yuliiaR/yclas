@@ -27,8 +27,7 @@
             <div class="panel-body">
                 <ul>
                     <?foreach ($rss as $item):?>
-                        <li><a target="_blank" href="<?=$item['link']?>" title="<?=$item['title']?>"><?=$item['title']?></a></li>
-                        <div class="divider"></div>
+                        <li><a target="_blank" href="<?=$item['link']?>" title="<?=HTML::chars($item['title'])?>"><?=$item['title']?></a><div class="divider"></div></li>
                     <?endforeach?>
                 </ul>
             </div>
