@@ -104,7 +104,10 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
                                     ('Sitemap', '* 3 * * *', 'Sitemap::generate', NULL, 'Regenerates the sitemap everyday at 3am',1),
                                     ('Clean Cache', '* 5 * * *', 'Core::delete_cache', NULL, 'Once day force to flush all the cache.', 1),
-                                    ('Optimize DB', '* 4 1 * *', 'Core::optimize_db', NULL, 'once a month we optimize the DB', 1);")->execute();
+                                    ('Optimize DB', '* 4 1 * *', 'Core::optimize_db', NULL, 'once a month we optimize the DB', 1),
+                                    ('Unpaid Orders', '* 7 * * *', 'Cron_Ad::unpaid', NULL, 'Notify by email unpaid orders 2 days after was created', 1),
+                                    ('Expired Featured Ad', '* 8 * * *', 'Cron_Ad::expired_featured', NULL, 'Notify by email of expired featured ad', 1),
+                                    ('Expired Ad', '* 9 * * *', 'Cron_Ad::expired', NULL, 'Notify by email of expired ad', 1);")->execute();
         }catch (exception $e) {}
 
         //delete old sitemap config
@@ -177,6 +180,13 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
+                            array('order'=>0,
+                                'title'=>'Your ad [AD.NAME] has expired',
+                               'seotitle'=>'ad-expired',
+                               'description'=>"Hello [USER.NAME],Your ad [AD.NAME] has expired \n\nPlease check your ad here [URL.EDITAD]",
+                               'from_email'=>core::config('email.notify_email'),
+                               'type'=>'email',
+                               'status'=>'1'),
                         );
 
         Model_Content::content_array($contents);
@@ -227,15 +237,15 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
 
         Model_Config::config_array($configs);
 
-        //delete old files from 323
-        File::delete(APPPATH.'ko323');
-        File::delete(APPPATH.'classes/image/');
+        //delete old files from 323, no need they need to update manually
+        // File::delete(APPPATH.'ko323');
+        // File::delete(APPPATH.'classes/image/');
 
-        //delete modules since now they are part of module common
-        File::delete(MODPATH.'pagination');
-        File::delete(MODPATH.'breadcrumbs');
-        File::delete(MODPATH.'formmanager');
-        File::delete(MODPATH.'mysqli');
+        // //delete modules since now they are part of module common
+        // File::delete(MODPATH.'pagination');
+        // File::delete(MODPATH.'breadcrumbs');
+        // File::delete(MODPATH.'formmanager');
+        // File::delete(MODPATH.'mysqli');
        
     }
     
