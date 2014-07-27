@@ -52,7 +52,7 @@
                     <li>
                         <a href="<?=Route::url('default')?>">
                                 <i class="  glyphicon-home glyphicon"></i>
-                            <?=_('Visit Site')?>
+                            <?=_('Go to Your Website')?>
                         </a>
                     </li>
                 </ul>
