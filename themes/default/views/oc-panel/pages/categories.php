@@ -18,7 +18,7 @@
         <div class="form-group">
             <div class="">
             <?= FORM::label('multy_categories', '', array('class'=>'control-label', 'for'=>'multy_categories'))?>
-                <?= FORM::input('multy_categories', '', array('placeholder' => 'Hit enter to confirm', 'class' => 'form-control', 'id' => 'multy_categories', 'type' => 'text','data-role'=>'tagsinput'))?>
+                <?= FORM::input('multy_categories', '', array('placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_categories', 'type' => 'text','data-role'=>'tagsinput'))?>
             </div>
         </div>
         <div class="clearfix"></div>
