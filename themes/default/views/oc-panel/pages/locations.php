@@ -18,7 +18,7 @@
             <div class="form-group">
               <div class="">
                 <?= FORM::label('multy_locations', '', array('class'=>'control-label', 'for'=>'multy_locations'))?>
-                    <?= FORM::input('multy_locations', '', array('placeholder' => 'Hit enter to confirm', 'class' => 'form-control', 'id' => 'multy_locations', 'type' => 'text','data-role'=>'tagsinput'))?>
+                    <?= FORM::input('multy_locations', '', array('placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_locations', 'type' => 'text','data-role'=>'tagsinput'))?>
                 </div>
             </div>
             <div class="clearfix"></div>
