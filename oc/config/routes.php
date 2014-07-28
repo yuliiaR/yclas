@@ -171,6 +171,15 @@ Route::set('forum-home', 'forum')
 
 
 /**
+ * ad reviews page
+ */
+Route::set('ad-review', URL::title(__('reviews')).'/<seotitle>.html')
+->defaults(array(
+        'controller' => 'ad',    
+        'action'     => 'reviews',
+));
+
+/**
  * Item / ad view (public)
  */
 Route::set('ad', '<category>/<seotitle>.html')
@@ -178,6 +187,8 @@ Route::set('ad', '<category>/<seotitle>.html')
 		'controller' => 'ad',    
 		'action'     => 'view',
 ));
+
+
 
 /**
  * Sort by Category / Location

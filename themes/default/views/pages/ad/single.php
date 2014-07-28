@@ -61,6 +61,20 @@
                 <span class="label label-info"><?= Date::format($ad->published, core::config('general.date_format'))?></span>
                 <span class="label label-info"><?=$hits?> <?=__('Hits')?></span> 
             </div>    
+
+            <?if (Core::config('general.reviews')==1):?>
+                <a class="label label-success" href="<?=Route::url('ad-review', array('seotitle'=>$ad->seotitle))?>" >
+                <?if ($ad->rate!==NULL):?>
+                    <div class="rating">
+                        <?for ($i=0; $i < round($ad->rate,1); $i++):?>
+                            <span class="glyphicon glyphicon-star"></span>
+                        <?endfor?>
+                    </div>
+                <?else:?>
+                    <?=__('Leave a review')?>
+                <?endif?>
+                </a>
+            <?endif?>
         </div>
 
         <br/>

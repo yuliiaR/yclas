@@ -386,6 +386,84 @@ class Controller_Ad extends Controller {
 			throw HTTP_Exception::factory(404,__('Page not found'));
 		}
 	}
+
+    /**
+     * 
+     * Display reviews advert. 
+     * @throws HTTP_Exception_404
+     * 
+     */
+    public function action_reviews()
+    {
+        $seotitle = $this->request->param('seotitle',NULL);
+        
+        if ($seotitle!==NULL)
+        {
+            $ad = new Model_Ad();
+            $ad->where('seotitle','=', $seotitle)
+                ->where('status','!=',Model_Ad::STATUS_SPAM)
+                ->limit(1)->cached()->find();
+
+            if ($ad->loaded())
+            {
+                Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+                Breadcrumbs::add(Breadcrumb::factory()->set_title($ad->title)->set_url(Route::url('ad',array('seotitle'=>$ad->seotitle,'category'=>$ad->category->seoname))));
+
+
+                $this->template->title = $ad->title.' - '. __('Reviews');
+                
+                Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Reviews')));     
+
+                
+                $this->template->meta_description = text::removebbcode($ad->description);
+
+                $permission = TRUE; //permission to add hit to advert and give access rights. 
+                $auth_user = Auth::instance();
+                if(!$auth_user->logged_in() OR 
+                    ($auth_user->get_user()->id_user != $ad->id_user AND ($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR)) OR 
+                    ($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR))
+                {   
+
+                    $permission = FALSE;
+                    $user = NULL;
+                } 
+                else 
+                    $user = $auth_user->get_user()->id_user;
+
+
+                $captcha_show = core::config('advertisement.captcha');  
+                                    
+
+                if($ad->get_first_image() !== NULL)
+                    Controller::$image = $ad->get_first_image();
+
+                $reviews = new Model_Review();
+                $reviews = $reviews->where('id_ad','=',$ad->id_ad)
+                                ->where('status', '=', Model_Review::STATUS_ACTIVE)->find_all();
+
+                $this->template->bind('content', $content);
+                $this->template->content = View::factory('pages/ad/reviews',array('ad'               =>$ad,
+                                                                                   'permission'     =>$permission, 
+                                                                                   'captcha_show'   =>$captcha_show,
+                                                                                   'user'           =>$user,
+                                                                                   'reviews'         =>$reviews,
+                                                                                   ));
+
+            }
+            //not found in DB
+            else
+            {
+                //throw 404
+                throw HTTP_Exception::factory(404,__('Page not found'));
+            }
+            
+        }
+        else//this will never happen
+        {
+            //throw 404
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+    }
 	
 	/**
 	 * [action_to_top] [pay to go on top, and make order]

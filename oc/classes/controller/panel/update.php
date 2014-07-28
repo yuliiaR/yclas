@@ -172,6 +172,40 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             } catch (Exception $e) {}
         }
 
+        //Reviews
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `rate` FLOAT( 4, 2 ) NULL DEFAULT NULL ;")->execute();
+        }catch (exception $e) {}
+
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` ADD `rate` FLOAT( 4, 2 ) NULL DEFAULT NULL ;")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS ".self::$db_prefix."reviews (
+                id_review int(10) unsigned NOT NULL AUTO_INCREMENT,
+                id_user int(10) unsigned NOT NULL,
+                id_ad int(10) unsigned DEFAULT NULL,
+                rate int(2) unsigned NOT NULL DEFAULT '0',
+                description varchar(1000) NOT NULL,
+                created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                ip_address float DEFAULT NULL,
+                status tinyint(1) NOT NULL DEFAULT '0',
+                PRIMARY KEY (id_review) USING BTREE,
+                KEY ".self::$db_prefix."reviews_IK_id_user (id_user),
+                KEY ".self::$db_prefix."reviews_IK_id_ad (id_ad)
+                ) ENGINE=MyISAM;")->execute();
+        } catch (Exception $e) {}
+
+        //User description About
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users`  ADD  `description` TEXT NULL DEFAUlT NULL AFTER  `password` ")->execute();
+        }catch (exception $e) {}
+
         //new mails
         $contents = array(array('order'=>0,
                                 'title'=>'Reciept for [ORDER.DESC] #[ORDER.ID]',
@@ -184,6 +218,13 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                 'title'=>'Your ad [AD.NAME] has expired',
                                'seotitle'=>'ad-expired',
                                'description'=>"Hello [USER.NAME],Your ad [AD.NAME] has expired \n\nPlease check your ad here [URL.EDITAD]",
+                               'from_email'=>core::config('email.notify_email'),
+                               'type'=>'email',
+                               'status'=>'1'),
+                            array('order'=>'0',
+                               'title'=>'New review for [AD.TITLE] [RATE]',
+                               'seotitle'=>'ad-review',
+                               'description'=>'[URL.QL]\n\n[RATE]\n\n[DESCRIPTION]',
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
@@ -232,7 +273,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                          array('config_key'     =>'elastic_password',
                                'group_name'     =>'email', 
                                'config_value'   =>''),
-
+                         array('config_key'     =>'reviews',
+                               'group_name'     =>'general', 
+                               'config_value'   =>'0'), 
+                         array('config_key'     =>'reviews_paid',
+                               'group_name'     =>'general', 
+                               'config_value'   =>'0'), 
                         );
 
         Model_Config::config_array($configs);
