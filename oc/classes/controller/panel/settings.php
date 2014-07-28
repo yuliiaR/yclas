@@ -112,28 +112,16 @@ class Controller_Panel_Settings extends Auth_Controller {
 
         // all form config values
         $generalconfig = new Model_Config();
-        $config = $generalconfig->where('group_name', '=', 'general')->find_all();
-        $config_img = $generalconfig->where('group_name', '=', 'image')->find_all();
-        $config_i18n = $generalconfig->where('group_name', '=', 'i18n')->find_all();
+        $config = $generalconfig->where('group_name', '=', 'general')->or_where('group_name', '=', 'image')->or_where('group_name', '=', 'i18n')->find_all();
 
         // config general array
         foreach ($config as $c) 
         {
-            $forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
-        }
-        // config images array
-        foreach ($config_img as $c)
-        {
-            $forms_img[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
-        }
-        // config i18n configs
-        foreach ($config_i18n as $c)
-        {
-            $i18n[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value);
+            $forms[$c->config_key] = $forms[$c->config_key] = array('key'=>$c->group_name.'['.$c->config_key.'][]', 'id'=>$c->config_key, 'value'=>$c->config_value);
         }
         
         //not updatable fields
-        $do_nothing = array('menu','locale','allow_query_language','charset');
+        $do_nothing = array('menu','locale','allow_query_language','charset','translate','ocacu');
 
         // save only changed values
         if($this->request->post())
@@ -141,66 +129,20 @@ class Controller_Panel_Settings extends Auth_Controller {
             //save general
             foreach ($config as $c) 
             {   
-                $config_res = $this->request->post($c->config_key);
-                if($config_res != $c->config_value AND !in_array($c->config_key, $do_nothing))
+                $config_res = $this->request->post();
+				if(!in_array($c->config_key, $do_nothing) AND $config_res[$c->group_name][$c->config_key][0] != $c->config_value)
                 {
-                    $c->config_value = $config_res;
-                    try {
-                        $c->save();
-                    } catch (Exception $e) {
-                        throw HTTP_Exception::factory(500,$e->getMessage());
-                    }
+                    $c->config_value = $config_res[$c->group_name][$c->config_key][0];
+                    Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);
                 }
                   
             }
-            //save image config
-            foreach ($config_img as $ci) 
-            {   
-                
-                $allowed_formats = '';
-                $config_res = $this->request->post($ci->config_key);
-                if($config_res != $ci->config_value)
-                {
-                    if($ci->config_key == 'allowed_formats')
-                    {
-                        
-                      foreach ($config_res as $key => $value) 
-                      {
-                          $allowed_formats .= $value.",";
-                      }
-                      $config_res = $allowed_formats;
-                    } 
-                    
-                    $ci->config_value = $config_res;
-                    try {
-                        $ci->save();
-                    } catch (Exception $e) {
-                        throw HTTP_Exception::factory(500,$e->getMessage());
-                    }
-                }
-            }
-            //save i18n
-            foreach ($config_i18n as $cn) 
-            {   
-                $config_res = $this->request->post($cn->config_key);
 
-                if($config_res != $cn->config_value AND !in_array($cn->config_key, $do_nothing))
-                {
-                    $cn->config_value = $config_res;
-                    try {
-                        $cn->save();
-                    } catch (Exception $e) {
-                        throw HTTP_Exception::factory(500,$e->getMessage());
-                    }
-                }
-            }
-
-            
             Alert::set(Alert::SUCCESS, __('General Configuration updated'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'general')));
         }
 
-        $this->template->content = View::factory('oc-panel/pages/settings/general', array('forms'=>$forms, 'forms_img'=>$forms_img,'i18n'=>$i18n));
+        $this->template->content = View::factory('oc-panel/pages/settings/general', array('forms'=>$forms));
     }
 
     /**
@@ -259,5 +201,47 @@ class Controller_Panel_Settings extends Auth_Controller {
                                                                                           'paypal_currency' => $paypal_currency));
     }
 
+    /**
+     * Image configuration 
+     * @return [view] Renders view with form inputs
+     */
+    public function action_image()
+    {
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Image')));
+        $this->template->title = __('Image');
+
+        // all form config values
+        $imageconf = new Model_Config();
+        $config = $imageconf->where('group_name', '=', 'image')->find_all();
+
+        // save only changed values
+        if($this->request->post())
+        {
+            foreach ($config as $c) 
+            {
+                $config_res = $this->request->post(); 
+
+                if($config_res[$c->group_name][$c->config_key][0] != $c->config_value)
+                {
+                    if($c->config_key == 'allowed_formats')
+                    {
+                      $allowed_formats = '';
+                      foreach ($config_res[$c->group_name][$c->config_key] as $key => $value) 
+                      {
+                          $allowed_formats .= $value.",";
+                      }
+                      $config_res[$c->group_name][$c->config_key][0] = $allowed_formats;
+                    } 
+
+                    $c->config_value = $config_res[$c->group_name][$c->config_key][0];
+					Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);
+                }
+            }
+            Alert::set(Alert::SUCCESS, __('Image Configuration updated'));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'image')));
+        }
+
+        $this->template->content = View::factory('oc-panel/pages/settings/image', array('config'=>$config));
+    }
 
 }//end of controller

@@ -20,7 +20,6 @@
             <?= FORM::label($forms['maintenance']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/10/15/how-to-activate-maintenance-mode/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['maintenance']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
-                    <?= FORM::hidden($forms['maintenance']['key'], 0);?>
                     <?= Form::checkbox($forms['maintenance']['key'], 1, (bool) $forms['maintenance']['value'], array(
                     'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -32,6 +31,7 @@
                     'data-original-title'=>__("Maintenance Mode"),
                     ))?>
                     <?= FORM::label($forms['maintenance']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['maintenance']['key']))?>
+                    <?= FORM::hidden($forms['maintenance']['key'], 0);?>
                 </div>
             </div>
         </div>
@@ -190,10 +190,10 @@
         <div class="form-group">
             <label class="control-label col-sm-3"><?=__("Time Zone")?>:</label>                
             <div class="col-sm-4">
-            <?= FORM::select($i18n['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
+            <?= FORM::select($forms['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
                     'placeholder' => "Madrid [+1:00]", 
                     'class' => 'tips form-control', 
-                    'id' => $i18n['timezone']['key'], 
+                    'id' => $forms['timezone']['key'], 
                     ))?> 
             </div>
         </div>
@@ -272,13 +272,13 @@
         <hr>
         <h2><?=__("Images Options")?></h2>
         <div class="form-group">
-            <?= FORM::label($forms_img['allowed_formats']['key'], __('Allowed image formats'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['allowed_formats']['key']))?>
+            <?= FORM::label($forms['allowed_formats']['id'], __('Allowed image formats'), array('class'=>'control-label col-sm-3', 'for'=>$forms['allowed_formats']['id']))?>
             <div class="col-sm-4">
-                <?= FORM::select("allowed_formats[]", array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','webp'=>'webp','gif'=>'gif','raw'=>'raw'), explode(',', $forms_img['allowed_formats']['value']), array(
-                'placeholder' => $forms_img['allowed_formats']['value'],
+                <?= FORM::select($forms['allowed_formats']['key'], array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','webp'=>'webp','gif'=>'gif','raw'=>'raw'), explode(',', $forms['allowed_formats']['value']), array(
+                'placeholder' => $forms['allowed_formats']['value'],
                 'multiple' => 'true',
                 'class' => 'tips form-control input-sm', 
-                'id' => $forms_img['allowed_formats']['key'],
+                'id' => $forms['allowed_formats']['id'],
                 'data-content'=> __("Set this up to restrict image formats that are being uploaded to your server."),
                 'data-trigger'=>"hover",
                 'data-placement'=>"right",
@@ -288,13 +288,13 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms_img['max_image_size']['key'], __('Max image size'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['max_image_size']['key']))?>
+            <?= FORM::label($forms['max_image_size']['key'], __('Max image size'), array('class'=>'control-label col-sm-3', 'for'=>$forms['max_image_size']['key']))?>
             <div class="col-sm-4">
                 <div class="input-group">
-                    <?= FORM::input($forms_img['max_image_size']['key'], $forms_img['max_image_size']['value'], array(
+                    <?= FORM::input($forms['max_image_size']['key'], $forms['max_image_size']['value'], array(
                     'placeholder' => "5", 
                     'class' => 'tips form-control input-sm span', 
-                    'id' => $forms_img['max_image_size']['key'],
+                    'id' => $forms['max_image_size']['key'],
                     'data-content'=> __("Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
@@ -306,13 +306,13 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms_img['height']['key'], __('Image height'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['height']['key']))?>
+            <?= FORM::label($forms['height']['key'], __('Image height'), array('class'=>'control-label col-sm-3', 'for'=>$forms['height']['key']))?>
             <div class="col-sm-4">
                 <div class="input-group">
-                    <?= FORM::input($forms_img['height']['key'], $forms_img['height']['value'], array(
+                    <?= FORM::input($forms['height']['key'], $forms['height']['value'], array(
                     'placeholder' => "700", 
                     'class' => 'tips form-control input-sm', 
-                    'id' => $forms_img['height']['key'], 
+                    'id' => $forms['height']['key'], 
                     'data-content'=> __("Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
@@ -324,13 +324,13 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms_img['width']['key'], __('Image width'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['width']['key']))?>
+            <?= FORM::label($forms['width']['key'], __('Image width'), array('class'=>'control-label col-sm-3', 'for'=>$forms['width']['key']))?>
             <div class="col-sm-4">
                 <div class="input-group">
-                    <?= FORM::input($forms_img['width']['key'], $forms_img['width']['value'], array(
+                    <?= FORM::input($forms['width']['key'], $forms['width']['value'], array(
                     'placeholder' => "1024", 
                     'class' => 'tips form-control input-sm', 
-                    'id' => $forms_img['width']['key'],
+                    'id' => $forms['width']['key'],
                     'data-content'=> __("Each image is resized when uploaded. This is the width of big image."),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
@@ -342,13 +342,13 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms_img['height_thumb']['key'], __('Thumb height'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['height_thumb']['key']))?>
+            <?= FORM::label($forms['height_thumb']['key'], __('Thumb height'), array('class'=>'control-label col-sm-3', 'for'=>$forms['height_thumb']['key']))?>
             <div class="col-sm-4">
                 <div class="input-group">
-                    <?= FORM::input($forms_img['height_thumb']['key'], $forms_img['height_thumb']['value'], array(
+                    <?= FORM::input($forms['height_thumb']['key'], $forms['height_thumb']['value'], array(
                     'placeholder' => "200", 
                     'class' => 'tips form-control input-sm', 
-                    'id' => $forms_img['height_thumb']['key'],
+                    'id' => $forms['height_thumb']['key'],
                     'data-content'=> __("Thumb is a small image resized to fit certain elements. This is the height for this image."),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
@@ -360,13 +360,13 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms_img['width_thumb']['key'], __('Thumb width'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['width_thumb']['key']))?>
+            <?= FORM::label($forms['width_thumb']['key'], __('Thumb width'), array('class'=>'control-label col-sm-3', 'for'=>$forms['width_thumb']['key']))?>
             <div class="col-sm-4">
                 <div class="input-group">
-                    <?= FORM::input($forms_img['width_thumb']['key'], $forms_img['width_thumb']['value'], array(
+                    <?= FORM::input($forms['width_thumb']['key'], $forms['width_thumb']['value'], array(
                     'placeholder' => "200", 
                     'class' => 'tips form-control input-sm', 
-                    'id' => $forms_img['width_thumb']['key'],
+                    'id' => $forms['width_thumb']['key'],
                     'data-content'=> __("Thumb is a small image resized to fit certain elements. This is width of this image."),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
@@ -379,13 +379,13 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms_img['quality']['key'], __('Image quality'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['quality']['key']))?>
+            <?= FORM::label($forms['quality']['key'], __('Image quality'), array('class'=>'control-label col-sm-3', 'for'=>$forms['quality']['key']))?>
             <div class="col-sm-4">
                 <div class="input-group">
-                    <?= FORM::input($forms_img['quality']['key'], $forms_img['quality']['value'], array(
+                    <?= FORM::input($forms['quality']['key'], $forms['quality']['value'], array(
                     'placeholder' => "95", 
                     'class' => 'tips form-control input-sm', 
-                    'id' => $forms_img['quality']['key'],
+                    'id' => $forms['quality']['key'],
                     'data-content'=> __("Choose the quality of the stored images (1-100% of the original)."),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
@@ -399,32 +399,32 @@
         </div>
         
         <div class="form-group">
-            <?= FORM::label($forms_img['watermark']['key'], __('Watermark'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['watermark']['key']))?>
+            <?= FORM::label($forms['watermark']['key'], __('Watermark'), array('class'=>'control-label col-sm-3', 'for'=>$forms['watermark']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
-                    <?= FORM::hidden($forms_img['watermark']['key'], 0);?>
-                    <?= Form::checkbox($forms_img['watermark']['key'], 1, (bool) $forms_img['watermark']['value'], array(
+                    <?= Form::checkbox($forms['watermark']['key'], 1, (bool) $forms['watermark']['value'], array(
                     'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
-                    'id' => $forms_img['watermark']['key'], 
+                    'id' => $forms['watermark']['key'], 
                     'data-content'=> __("Appends watermark to images"),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-original-title'=>__("Watermark"),
                     ))?>
-                    <?= FORM::label($forms_img['watermark']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms_img['watermark']['key']))?>
+                    <?= FORM::label($forms['watermark']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['watermark']['key']))?>
+                    <?= FORM::hidden($forms['watermark']['key'], 0);?>
                 </div>
             </div>
         </div>
         
         <div class="form-group">
-            <?= FORM::label($forms_img['watermark_path']['key'], __('Watermark path'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['watermark_path']['key']))?>
+            <?= FORM::label($forms['watermark_path']['key'], __('Watermark path'), array('class'=>'control-label col-sm-3', 'for'=>$forms['watermark_path']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::input($forms_img['watermark_path']['key'], $forms_img['watermark_path']['value'], array(
+                <?= FORM::input($forms['watermark_path']['key'], $forms['watermark_path']['value'], array(
                 'placeholder' => "images/watermark.png", 
                 'class' => 'tips form-control input-sm', 
-                'id' => $forms_img['watermark_path']['key'],
+                'id' => $forms['watermark_path']['key'],
                 'data-content'=> __("Relative path to the image to use as watermark"),
                 'data-trigger'=>"hover",
                 'data-placement'=>"right",
@@ -434,12 +434,12 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms_img['watermark_position']['key'], __('Watermark position'), array('class'=>'control-label col-sm-3', 'for'=>$forms_img['watermark_position']['key']))?>
+            <?= FORM::label($forms['watermark_position']['key'], __('Watermark position'), array('class'=>'control-label col-sm-3', 'for'=>$forms['watermark_position']['key']))?>
             <div class="col-sm-4">
-                <?= FORM::select($forms_img['watermark_position']['key'], array(0=>"Center",1=>"Bottom",2=>"Top"), $forms_img['watermark_position']['value'], array(
-                'placeholder' => $forms_img['watermark_position']['value'], 
+                <?= FORM::select($forms['watermark_position']['key'], array(0=>"Center",1=>"Bottom",2=>"Top"), $forms['watermark_position']['value'], array(
+                'placeholder' => $forms['watermark_position']['value'], 
                 'class' => 'tips form-control input-sm ', 
-                'id' => $forms_img['watermark_position']['key'],
+                'id' => $forms['watermark_position']['key'],
                 'data-content'=> __("Watermark position"),
                 'data-trigger'=>"hover",
                 'data-placement'=>"right",
@@ -455,7 +455,6 @@
             <?= FORM::label($forms['blog']['key'], __("Activates Blog posting"), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
-                    <?= FORM::hidden($forms['blog']['key'], 0);?>
                     <?= Form::checkbox($forms['blog']['key'], 1, (bool) $forms['blog']['value'], array(
                     'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -467,6 +466,7 @@
                     'data-original-title'=>__("Activates Blog posting"),
                     ))?>
                     <?= FORM::label($forms['blog']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['blog']['key']))?>
+                    <?= FORM::hidden($forms['blog']['key'], 0);?>
                 </div>
             </div>
         </div>
@@ -474,7 +474,6 @@
             <?= FORM::label($forms['forums']['key'], __("Activates Forums"), array('class'=>'control-label col-sm-3', 'for'=>$forms['forums']['key']))?>
             <div class="col-md-4">
                 <div class="onoffswitch">
-                    <?= FORM::hidden($forms['forums']['key'], 0);?>
                     <?= Form::checkbox($forms['forums']['key'], 1, (bool) $forms['forums']['value'], array(
                     'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -486,6 +485,7 @@
                     'data-original-title'=>__("Activates Forums"),
                     ))?>
                     <?= FORM::label($forms['forums']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['forums']['key']))?>
+                    <?= FORM::hidden($forms['forums']['key'], 0);?>
                 </div>
             </div>
         </div>
@@ -493,7 +493,6 @@
             <?= FORM::label($forms['faq']['key'], __("Activates FAQ"), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
-                    <?= FORM::hidden($forms['faq']['key'], 0);?>
                     <?= Form::checkbox($forms['faq']['key'], 1, (bool) $forms['faq']['value'], array(
                     'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -505,6 +504,7 @@
                     'data-original-title'=>__("Activates FAQ"),
                     ))?>
                     <?= FORM::label($forms['faq']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['faq']['key']))?>
+                    <?= FORM::hidden($forms['faq']['key'], 0);?>
                 </div>
             </div>
         </div>
@@ -513,7 +513,6 @@
             <?= FORM::label($forms['minify']['key'], __("Minify CSS/JS"), array('class'=>'control-label col-sm-3', 'for'=>$forms['minify']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
-                    <?= FORM::hidden($forms['minify']['key'], 0);?>
                     <?= Form::checkbox($forms['minify']['key'], 1, (bool) $forms['minify']['value'], array(
                     'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -525,6 +524,7 @@
                     'data-original-title'=>__("Activates Minify CSS/JS"),
                     ))?>
                     <?= FORM::label($forms['minify']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['minify']['key']))?>
+                    <?= FORM::hidden($forms['minify']['key'], 0);?>
                 </div>
             </div>
         </div>
@@ -533,7 +533,6 @@
             <?= FORM::label($forms['black_list']['key'], __("Black List"), array('class'=>'control-label col-sm-3', 'for'=>$forms['black_list']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
-                    <?= FORM::hidden($forms['black_list']['key'], 0);?>
                     <?= Form::checkbox($forms['black_list']['key'], 1, (bool) $forms['black_list']['value'], array(
                     'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -545,6 +544,7 @@
                     'data-original-title'=>__("Black List"),
                     ))?>
                     <?= FORM::label($forms['black_list']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['black_list']['key']))?>
+                    <?= FORM::hidden($forms['black_list']['key'], 0);?>
                 </div>
             </div>
         </div>
@@ -553,7 +553,6 @@
             <?= FORM::label($forms['search_by_description']['key'], __("Include search by description"), array('class'=>'control-label col-sm-3', 'for'=>$forms['search_by_description']['key']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
-                    <?= FORM::hidden($forms['search_by_description']['key'], 0);?>
                     <?= Form::checkbox($forms['search_by_description']['key'], 1, (bool) $forms['search_by_description']['value'], array(
                     'placeholder' => "TRUE or FALSE", 
                     'class' => 'onoffswitch-checkbox', 
@@ -565,6 +564,7 @@
                     'data-original-title'=>__("Include search by description"),
                     ))?>
                     <?= FORM::label($forms['search_by_description']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['search_by_description']['key']))?>
+                    <?= FORM::hidden($forms['search_by_description']['key'], 0);?>
                 </div>
             </div>
         </div>
