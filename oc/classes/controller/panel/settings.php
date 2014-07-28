@@ -112,7 +112,7 @@ class Controller_Panel_Settings extends Auth_Controller {
 
         // all form config values
         $generalconfig = new Model_Config();
-        $config = $generalconfig->where('group_name', '=', 'general')->or_where('group_name', '=', 'image')->or_where('group_name', '=', 'i18n')->find_all();
+        $config = $generalconfig->where('group_name', '=', 'general')->or_where('group_name', '=', 'i18n')->find_all();
 
         // config general array
         foreach ($config as $c) 
