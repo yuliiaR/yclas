@@ -4,7 +4,7 @@
         <div class="navbar-header">        </div> 
 
             <button class="navbar-toggle pull-left" type="button" data-toggle="collapse" id="mobile_header_btn">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only"><?=__('Toggle navigation')?></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -52,7 +52,7 @@
                     <li>
                         <a href="<?=Route::url('default')?>">
                                 <i class="  glyphicon-home glyphicon"></i>
-                            <?=_('Visit Site')?>
+                            <?=_('Go to Your Website')?>
                         </a>
                     </li>
                 </ul>
