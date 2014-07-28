@@ -71,6 +71,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `seoname` varchar(145) NOT NULL,
   `description` text NOT NULL,
   `price` decimal(10,2) NOT NULL DEFAULT '0',
+  `icon` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id_category`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_IK_seo_name` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
@@ -84,6 +85,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `parent_deep` int(2) unsigned NOT NULL DEFAULT '0',
   `seoname` varchar(145) NOT NULL,
   `description` text NOT NULL,
+  `icon` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
