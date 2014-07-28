@@ -16,10 +16,10 @@ class Cron_Ad {
      */
     public static function expired_featured()
     {
-        //find expired ads
+        //find expired ads of yesterday
         $ads = new Model_Ad();
         $ads = $ads ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                    ->where('featured','<',Date::unix2mysql())
+                    ->where(DB::expr('DATE(featured)'),'=', Date::format('-1 days','Y-m-d'))
                     ->find_all();
 
         foreach ($ads as $ad) 
@@ -38,12 +38,12 @@ class Cron_Ad {
      */
     public static function expired()
     {
-        //feature expire date active?
+        //feature expire ads from yesterday
         if(core::config('advertisement.expire_date') > 0)
         {
             $ads = new Model_Ad();
             $ads = $ads ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '<', Date::unix2mysql())
+                        ->where(DB::expr('DATE(DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY))'),'=', Date::format('-1 days','Y-m-d'))
                         ->find_all();
 
             foreach ($ads as $ad) 
@@ -60,15 +60,16 @@ class Cron_Ad {
 
 
     /**
-     * unpaid orders for ads 1 day ago reminder
+     * unpaid orders for ads 2 days ago reminder
      * @param integer $days, how many days after created
      * @return void
      */
     public static function unpaid($days = 2)
     {
+        //getting orders not paid from 2 days ago
         $orders = new Model_Order();
         $orders = $orders->where('status','=',Model_Order::STATUS_CREATED)
-                            ->where(DB::expr('DATE_ADD( created, INTERVAL '.$days.' DAY)'),'<',Date::unix2mysql())
+                            ->where(DB::expr('DATE( created)'),'=', Date::format('-'.$days.' days','Y-m-d'))
                             ->where('id_ad','IS NOT',NULL)
                             ->find_all();
 
