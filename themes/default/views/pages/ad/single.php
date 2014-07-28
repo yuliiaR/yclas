@@ -62,7 +62,7 @@
                 <span class="label label-info"><?=$hits?> <?=__('Hits')?></span> 
             </div>    
 
-            <?if (Core::config('general.reviews')==1):?>
+            <?if (Core::config('advertisement.reviews')==1):?>
                 <a class="label label-success" href="<?=Route::url('ad-review', array('seotitle'=>$ad->seotitle))?>" >
                 <?if ($ad->rate!==NULL):?>
                     <div class="rating">

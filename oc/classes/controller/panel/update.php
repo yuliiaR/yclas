@@ -274,10 +274,10 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                'group_name'     =>'email', 
                                'config_value'   =>''),
                          array('config_key'     =>'reviews',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'advertisement', 
                                'config_value'   =>'0'), 
                          array('config_key'     =>'reviews_paid',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'advertisement', 
                                'config_value'   =>'0'), 
                         );
 

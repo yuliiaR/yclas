@@ -602,50 +602,6 @@
             </div>
         </div>
 
-        <hr>
-        <h2><?=__("Reviews Configuration")?></h2>
-
-        <div class="form-group">
-            <?= FORM::label($forms['reviews']['key'], __("Enable reviews"), array('class'=>'control-label col-sm-3', 'for'=>$forms['reviews']['key']))?>
-            <div class="col-sm-4">
-                <div class="onoffswitch">
-                    <?= FORM::hidden($forms['reviews']['key'], 0);?>
-                    <?= Form::checkbox($forms['reviews']['key'], 1, (bool) $forms['reviews']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
-                    'class' => 'onoffswitch-checkbox', 
-                    'id' => $forms['reviews']['key'], 
-                    'data-content'=> __("Enables reviews for ads and the users."),
-                    'data-trigger'=>"hover",
-                    'data-placement'=>"right",
-                    'data-toggle'=>"popover",
-                    'data-original-title'=>__("Enable reviews"),
-                    ))?>
-                    <?= FORM::label($forms['reviews']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['reviews']['key']))?>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <?= FORM::label($forms['reviews_paid']['key'], __("Only for paid transactions"), array('class'=>'control-label col-sm-3', 'for'=>$forms['reviews_paid']['key']))?>
-            <div class="col-sm-4">
-                <div class="onoffswitch">
-                    <?= FORM::hidden($forms['reviews_paid']['key'], 0);?>
-                    <?= Form::checkbox($forms['reviews_paid']['key'], 1, (bool) $forms['reviews_paid']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
-                    'class' => 'onoffswitch-checkbox', 
-                    'id' => $forms['reviews_paid']['key'], 
-                    'data-content'=> __("You need to enable paypal link to allow only reviews on purchases."),
-                    'data-trigger'=>"hover",
-                    'data-placement'=>"right",
-                    'data-toggle'=>"popover",
-                    'data-original-title'=>__("Reviews for paid transactions"),
-                    ))?>
-                    <?= FORM::label($forms['reviews_paid']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['reviews_paid']['key']))?>
-                </div>
-            </div>
-        </div>
-
-
         <?= FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
         
     </fieldset> 
