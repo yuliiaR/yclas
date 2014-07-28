@@ -38,6 +38,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `seoname` varchar(145) DEFAULT NULL,
   `email` varchar(145) NOT NULL,
   `password` varchar(64) NOT NULL,
+  `description` text NULL DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
   `id_role` int(10) unsigned DEFAULT '1',
   `id_location` int(10) unsigned DEFAULT NULL,
@@ -53,6 +54,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `hybridauth_provider_name` varchar(40) NULL DEFAULT NULL,
   `hybridauth_provider_uid` varchar(245) NULL DEFAULT NULL,
   `subscriber` tinyint(1) NOT NULL DEFAULT '1',
+  `rate` FLOAT( 4, 2 ) NULL DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_email` (`email`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_token` (`token`),
@@ -69,7 +71,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `id_category_parent` int(10) unsigned NOT NULL DEFAULT '0',
   `parent_deep` int(2) unsigned NOT NULL DEFAULT '0',
   `seoname` varchar(145) NOT NULL,
-  `description` text NOT NULL,
+  `description` text NULL DEFAULT NULL,
   `price` decimal(10,2) NOT NULL DEFAULT '0',
   `icon` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id_category`) USING BTREE,
@@ -84,7 +86,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `id_location_parent` int(10) unsigned NOT NULL DEFAULT '0',
   `parent_deep` int(2) unsigned NOT NULL DEFAULT '0',
   `seoname` varchar(145) NOT NULL,
-  `description` text NOT NULL,
+  `description` text NULL DEFAULT NULL,
   `icon` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
@@ -110,6 +112,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `has_images` tinyint(1) NOT NULL DEFAULT '0',
   `stock` int(10) unsigned DEFAULT NULL,
+  `rate` FLOAT( 4, 2 ) NULL DEFAULT NULL,
   PRIMARY KEY (`id_ad`) USING BTREE,
   KEY `".core::request('TABLE_PREFIX')."ads_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."ads_IK_id_category` (`id_category`),
@@ -240,6 +243,19 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   UNIQUE KEY `".core::request('TABLE_PREFIX')."crontab_UK_name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."reviews (
+    id_review int(10) unsigned NOT NULL AUTO_INCREMENT,
+    id_user int(10) unsigned NOT NULL,
+    id_ad int(10) unsigned DEFAULT NULL,
+    rate int(2) unsigned NOT NULL DEFAULT '0',
+    description varchar(1000) NOT NULL,
+    created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    ip_address bigint DEFAULT NULL,
+    status tinyint(1) NOT NULL DEFAULT '0',
+    PRIMARY KEY (id_review) USING BTREE,
+    KEY ".core::request('TABLE_PREFIX')."reviews_IK_id_user (id_user),
+    KEY ".core::request('TABLE_PREFIX')."reviews_IK_id_ad (id_ad)
+    ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 /**
  * add basic content like emails
@@ -261,7 +277,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`ord
 (0, 'Advertisement `[AD.TITLE]` is purchased on [SITE.NAME]!', 'ads-purchased', 'Order ID: [ORDER.ID]\n\nProduct ID: [PRODUCT.ID]\n\nFor any inconvenience please contact administrator of [SITE.NAME]\n\nClick here to visit [URL.AD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Reciept for [ORDER.DESC] #[ORDER.ID]', 'new-order', 'Hello [USER.NAME],Thanks for buying [ORDER.DESC].\n\nPlease complete the payment here [URL.CHECKOUT]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Success! Your advertisement `[AD.NAME]` is created on [SITE.NAME]!', 'ads-confirm', 'Welcome [USER.NAME],\n\nThank you for creating an advertisement at [SITE.NAME]! \n\nPlease click on this link [URL.QL] to confirm it.\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
-(0, 'Your ad [AD.NAME] has expired', 'ad-expired', 'Hello [USER.NAME],Your ad [AD.NAME] has expired \n\nPlease check your ad here [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', 'email', 1);");
+(0, 'Your ad [AD.NAME] has expired', 'ad-expired', 'Hello [USER.NAME],Your ad [AD.NAME] has expired \n\nPlease check your ad here [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+(0, 'New review for [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\n\n[RATE]\n\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1);");
 
 /**
  * Content translations
@@ -488,6 +505,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'map_pub_new', '0'),
 ('advertisement', 'qr_code', '0'),
 ('advertisement', 'login_to_post', '0'),
+('advertisement', 'reviews', '0'),
+('advertisement', 'reviews_paid', '0'),
 ('email', 'notify_email', '".core::request('ADMIN_EMAIL')."'),
 ('email', 'smtp_active', 0),
 ('email', 'new_ad_notify', 0),

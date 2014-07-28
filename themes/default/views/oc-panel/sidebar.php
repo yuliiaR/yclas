@@ -27,6 +27,9 @@
                                         <tr><td class="br"><?=Theme::admin_link(__('Categories'),'category','index','oc-panel','glyphicon  glyphicon-tags')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Locations'),'location','index','oc-panel','glyphicon  glyphicon-map-marker')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Orders'), 'order','index','oc-panel','glyphicon  glyphicon-shopping-cart')?></td></tr>
+                                        <?if (core::config('advertisement.reviews')==1):?>
+                                            <tr><td class="br"><?=Theme::admin_link(__('Reviews'), 'review','index','oc-panel','glyphicon glyphicon-star-empty')?></td></tr>
+                                        <?endif?>
                                     </table>
                                 </div>
                             </div>

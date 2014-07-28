@@ -832,4 +832,20 @@ class Model_Ad extends ORM {
         return FALSE;
     }
 
+    /**
+     * saves the ads review rates recalculating it
+     * @return [type] [description]
+     */
+    public function recalculate_rate()
+    {
+        if($this->loaded())
+        {
+            //get all the rates and divide by them
+            $this->rate = Model_Review::get_ad_rate($this);
+            $this->save();
+            return $this->rate;
+        }
+        return FALSE;
+    }
+
 } // END Model_ad
