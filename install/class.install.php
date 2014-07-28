@@ -684,12 +684,11 @@ class core{
      */
     public static function rss($url)
     {
-        $rss = FALSE;
-        $rss = @simplexml_load_file($url);
-        if($rss !== FALSE)
-            return $rss->channel->item;
-        else
-            return array();
+		$rss = @simplexml_load_file($url);
+		if($rss == FALSE OR ! isset($rss->channel->item))
+			return array();
+
+		return $rss->channel->item;
     }
 
     /**

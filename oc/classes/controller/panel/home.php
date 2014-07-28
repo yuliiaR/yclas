@@ -11,9 +11,8 @@ class Controller_Panel_Home extends Auth_Controller {
 
         Core::ocacu();
 
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Welcome')));
-		$this->template->title = 'Welcome';
-
+        $this->template->title = __('Welcome');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
 
         //try to get the RSS from the cache
         $rss_url = 'http://feeds.feedburner.com/OpenClassifieds';
