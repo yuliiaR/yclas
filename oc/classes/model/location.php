@@ -484,4 +484,17 @@ class Model_Location extends ORM {
         return (is_numeric($id_parent))? $id_parent:1;
     }
 
+    /**
+     * reurns the url of the location icon
+     * @return string url
+     */
+    public function get_icon()
+    {
+
+        if(is_file(DOCROOT."images/locations/".$this->seoname.".png"))
+            return URL::base().'images/locations/'.$this->seoname.'.png';
+        else
+            return FALSE;
+    }
+
 } // END Model_Location

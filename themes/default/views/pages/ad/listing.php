@@ -4,8 +4,8 @@
     <div class="well" id="recomentadion">
 
         <?if ($category!==NULL):?>
-            <?if (file_exists(DOCROOT.'images/categories/'.$category->seoname.'.png')):?>
-                <img src="<?=URL::base().'images/categories/'.$category->seoname.'.png'?>" >
+            <?if(( $icon_src = $category->get_icon() )!==FALSE ):?>
+                <img src="<?=$icon_src?>" class="img-responsive">
             <?endif?>
             <p><?=$category->description?></p> 
             <i class="glyphicon glyphicon-pencil"></i> 
@@ -58,8 +58,8 @@
                         <figure>
                             <?if($ad->get_first_image() !== NULL):?>
                                 <img src="<?=URL::base()?><?=$ad->get_first_image()?>">
-                            <?elseif(file_exists(DOCROOT.'images/categories/'.$ad->category->seoname.'.png')):?>
-                                <img src="<?=URL::base().'images/categories/'.$ad->category->seoname.'.png'?>" >
+                            <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
+                                <img src="<?=$icon_src?>" class="img-responsive" >
                             <?else:?>
                                 <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>">
                             <?endif?>

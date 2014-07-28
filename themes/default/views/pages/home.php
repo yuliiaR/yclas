@@ -17,8 +17,8 @@
                 <?if($ad->get_first_image()!== NULL):?>
                     <img src="<?=URL::base()?><?=$ad->get_first_image()?>" >
                 <?else:?>
-                    <?if(file_exists(DOCROOT.'images/categories/'.$ad->category->seoname.'.png')):?>
-                                <img src="<?=URL::base().'images/categories/'.$ad->category->seoname.'.png'?>" >
+                    <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
+                                <img src="<?=$icon_src?>" >
                             <?else:?>
                                 <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"> 
                             <?endif?> 
