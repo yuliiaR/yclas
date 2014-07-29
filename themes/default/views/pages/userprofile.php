@@ -9,12 +9,24 @@
 		<a class="thumbnail">
 			<img src="<?=$user->get_profile_image()?>" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
 		</a>
+        <p>
+            <?=$user->description?>
+        </p>
 	</div>
 </div>
 
 <div class="page-header">
 	<article class="list well clearfix">
 		<h3><?=$user->name?></h3>
+        <?if (Core::config('advertisement.reviews')==1):?>
+        <p>
+            <?if ($user->rate!==NULL):?>
+                <?for ($i=0; $i < round($user->rate,1); $i++):?>
+                    <span class="glyphicon glyphicon-star"></span>
+                <?endfor?>
+            <?endif?>
+        </p>
+        <?endif?>
 		<p><b><?=__('Created')?>: </b><?= Date::format($user->created, core::config('general.date_format')) ?></p>
 		<p><b><?=__('Last Login')?>: </b><?= Date::format($user->last_login, core::config('general.date_format'))?></p>
 

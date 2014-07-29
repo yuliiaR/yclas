@@ -18,6 +18,12 @@
 					<?= FORM::input('email', $user->email, array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
 				</div>
 			</div>
+            <div class="form-group">
+                <?= FORM::label('description', __('Description'), array('class'=>'col-xs-3 control-label', 'for'=>'description'))?>
+                <div class="col-sm-4">
+                    <?= FORM::input('description', $user->description, array('class'=>'form-control', 'id'=>'description', 'type'=>'description' ,'placeholder'=>__('Description')))?>
+                </div>
+            </div>
             <div class="col-md-offset-4">
             <div class="checkbox">
                 <label>
