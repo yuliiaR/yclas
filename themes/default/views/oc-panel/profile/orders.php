@@ -1,18 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<form class="form-inline" method="get" action="<?=URL::current();?>">
-  	<div class="form-group pull-right">
-  		<div class="">
-	      	<input type="text" class="form-control search-query" name="email" placeholder="<?=__('email')?>" value="<?=core::get('email')?>">
-		</div>
-	</div>
-</form>
-
 <div class="page-header">
-    
 	<h1><?=__('Orders')?></h1>		
-
 </div>
+
 <div class="table-responsive">
 	<table class="table table-striped table-bordered">
 		<thead>

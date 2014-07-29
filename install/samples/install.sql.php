@@ -257,6 +257,15 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."
     KEY ".core::request('TABLE_PREFIX')."reviews_IK_id_ad (id_ad)
     ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."favorites (
+    id_favorite int(10) unsigned NOT NULL AUTO_INCREMENT,
+    id_user int(10) unsigned NOT NULL,
+    id_ad int(10) unsigned NOT NULL,
+    created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id_favorite) USING BTREE,
+    KEY ".core::request('TABLE_PREFIX')."favorites_IK_id_user_AND_id_ad (id_user,id_ad)
+    ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+
 /**
  * add basic content like emails
  */

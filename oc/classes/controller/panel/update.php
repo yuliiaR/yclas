@@ -206,6 +206,19 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users`  ADD  `description` TEXT NULL DEFAUlT NULL AFTER  `password` ")->execute();
         }catch (exception $e) {}
 
+        //Favorites table
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS ".self::$db_prefix."favorites (
+                                        id_favorite int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                        id_user int(10) unsigned NOT NULL,
+                                        id_ad int(10) unsigned NOT NULL,
+                                        created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                        PRIMARY KEY (id_favorite) USING BTREE,
+                                        KEY ".self::$db_prefix."favorites_IK_id_user_AND_id_ad (id_user,id_ad)
+                                        ) ENGINE=MyISAM;")->execute();
+        } catch (Exception $e) {}
+
         //new mails
         $contents = array(array('order'=>0,
                                 'title'=>'Reciept for [ORDER.DESC] #[ORDER.ID]',

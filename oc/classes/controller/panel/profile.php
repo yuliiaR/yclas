@@ -928,6 +928,62 @@ class Controller_Panel_Profile extends Auth_Controller {
 		}
 	}
 
+    public function action_favorites()
+    {
+        $user = Auth::instance()->get_user();
+
+        //favs or unfavs
+        if (is_numeric($id_ad = $this->request->param('id')))
+        {
+            $this->auto_render = FALSE;
+            $this->template = View::factory('js');
+
+            $ad = new Model_Ad($id_ad);
+            //ad exists
+            if ($ad->loaded())
+            {   
+                //try to find the fav
+                $fav = new Model_Favorite();
+                $fav->where('id_user', '=', $user->id_user)
+                                ->where('id_ad', '=', $id_ad)
+                                ->find();
+
+                if ($fav->loaded())
+                {
+                    //fav existed deleting
+                    $fav->delete();
+                    $this->template->content = __('Deleted');
+                }
+                else
+                {
+                    //create the fav
+                    $fav = new Model_Favorite();
+                    $fav->id_user = $user->id_user;
+                    $fav->id_ad   = $id_ad;
+                    $fav->save();
+                    $this->template->content = __('Saved');
+                }
+            }
+            else
+                $this->template->content = __('Ad Not Found');
+            
+        }
+        else
+        {
+            $this->template->title = __('My Favorites');
+            Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
+            $this->template->scripts['footer'][] = 'js/oc-panel/favorite.js';
+
+            $favorites = new Model_Favorite();
+            $favorites = $favorites->where('id_user', '=', $user->id_user)
+                            ->order_by('created','desc')
+                            ->find_all();
+
+            $this->template->bind('content', $content);
+            $this->template->content = View::factory('oc-panel/profile/favorites', array('favorites' => $favorites));
+        }
+    }
+
    /**
     * redirects to public profile, we use it so we can cache the view and redirect them
     * @return redirect 
