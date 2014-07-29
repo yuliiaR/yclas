@@ -160,10 +160,8 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 .sceditor-button{padding: 0px 0px 0px 2px!important; width: 20px!important;}
 .sceditor-button, .sceditor-button div{margin-top: 3px!important;}
 
-.picture figure {min-width:150px;}
-.picture .icon-placeholder, .latest_ads  .icon-placeholder {background-color:#CCCCCC;color:#969696;}
-.picture .icon-placeholder {padding:42%;margin-right:10px;}
-.latest_ads  .icon-placeholder {padding:42% 44%;}
+.favorite i {font-size:20px;color:#888888;}
+.favorite .remove-favorite i {color:#C9302C;}
 
 /*Media screens*/
 @media screen and (max-width: 1199px) {

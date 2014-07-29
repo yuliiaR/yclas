@@ -36,13 +36,23 @@
 <div class="clearfix"></div>
     <?if(count($ads)):?>
         <?foreach($ads as $ad ):?>
-
             <?if($ad->featured >= Date::unix2mysql(time())):?>
                 <article class="list well clearfix featured ">
                     <span class="label label-danger pull-right"><?=__('Featured')?></span>
             <?else:?>
                 <article class="list well clearfix">
             <?endif?>
+                <div class="pull-right favorite" id="fav-<?=$ad->id_ad?>">
+                    <?if (Auth::instance()->logged_in()):?>
+                        <a data-id="fav-<?=$ad->id_ad?>" class="add-favorite" title="<?=__('Add to Favorites')?>" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'favorites','id'=>$ad->id_ad))?>">
+                        	<i class="glyphicon glyphicon-heart-empty"></i>
+						</a>
+                    <?else:?>
+                        <a data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+                        	<i class="glyphicon glyphicon-heart"></i>
+						</a>
+                    <?endif?>
+                </div>
                 <?if($ad->id_location != 1):?>
                     <a href="<?=Route::url('list',array('location'=>$ad->location->seoname))?>" title="<?=$ad->location->name?>">
                         <span class="label label-default"><?=$ad->location->name?></span>
@@ -60,8 +70,8 @@
                                 <img src="<?=URL::base()?><?=$ad->get_first_image()?>">
                             <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
                                 <img src="<?=$icon_src?>" class="img-responsive" >
-                            <?elseif(!empty($ad->category->icon)):?>
-                                <i class="<?=$ad->category->icon?> icon-placeholder"></i>  
+                            <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
+                                <img src="<?=$icon_src?>" class="img-responsive" >
                             <?else:?>
                                 <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>">
                             <?endif?>
