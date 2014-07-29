@@ -99,7 +99,10 @@
                                         <tr><td class="br"><?=Theme::admin_link(__('General'), 'settings','general')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Payment'), 'settings','payment')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Email'), 'settings','email')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Images'), 'settings','image')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Advertisement'), 'settings','form')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Custom Fields'), 'fields','index','oc-panel')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Social Auth'), 'social','index','oc-panel')?></td></tr>
                                     </table>
                                 </div>
                             </div>

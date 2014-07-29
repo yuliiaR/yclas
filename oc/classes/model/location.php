@@ -73,6 +73,7 @@ class Model_Location extends ORM {
 				        'parent_deep'		=> array(),
 				        'seoname'			=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
 				        'description'		=> array(),
+				        'icon'				=> array(),
 		);
 	}
 
@@ -90,6 +91,7 @@ class Model_Location extends ORM {
 	        'parent_deep'			=> __('Parent deep'),
 	        'seoname'				=> __('Seoname'),
 	        'description'			=> __('Description'),
+	        'icon'					=> __('Icon'),
 		);
 	}
 
@@ -482,6 +484,19 @@ class Model_Location extends ORM {
     public function check_parent($id_parent)
     {
         return (is_numeric($id_parent))? $id_parent:1;
+    }
+
+    /**
+     * reurns the url of the location icon
+     * @return string url
+     */
+    public function get_icon()
+    {
+
+        if(is_file(DOCROOT."images/locations/".$this->seoname.".png"))
+            return URL::base().'images/locations/'.$this->seoname.'.png';
+        else
+            return FALSE;
     }
 
 } // END Model_Location

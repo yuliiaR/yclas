@@ -292,6 +292,25 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         // File::delete(MODPATH.'breadcrumbs');
         // File::delete(MODPATH.'formmanager');
         // File::delete(MODPATH.'mysqli');
+		
+		//categories icon
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` ADD  `icon` VARCHAR( 145 ) NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
+		//locations icon
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD  `icon` VARCHAR( 145 ) NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
+		//assign new group_name to configs
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."config SET group_name='advertisement' WHERE config_key = 'advertisements_per_page' OR config_key = 'feed_elements' OR config_key = 'map_elements' OR config_key = 'sort_by'")->execute();
+        }catch (exception $e) {}
+            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."content SET seotitle=REPLACE(seotitle,'.','-') WHERE type='email'")->execute();
        
     }
     

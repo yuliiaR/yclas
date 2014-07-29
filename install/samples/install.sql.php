@@ -73,6 +73,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `seoname` varchar(145) NOT NULL,
   `description` text NULL DEFAULT NULL,
   `price` decimal(10,2) NOT NULL DEFAULT '0',
+  `icon` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id_category`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_IK_seo_name` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
@@ -86,6 +87,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `parent_deep` int(2) unsigned NOT NULL DEFAULT '0',
   `seoname` varchar(145) NOT NULL,
   `description` text NULL DEFAULT NULL,
+  `icon` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
@@ -449,11 +451,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'maintenance', 0),
 ('general', 'analytics', ''),
 ('general', 'translate', ''),
-('general', 'feed_elements', '20'),
-('general', 'map_elements', '100'),
 ('general', 'site_name', '".core::request('SITE_NAME')."'),
 ('general', 'site_description', ''),
-('general', 'advertisements_per_page', '10'),
 ('general', 'akismet_key', ''),
 ('general', 'alert_terms', ''),
 ('general', 'search_by_description', 0),
@@ -464,7 +463,6 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'faq_disqus', ''),
 ('general', 'forums', '0'),
 ('general', 'black_list', '1'),
-('general', 'sort_by', 'published-desc'),
 ('general', 'ocacu', '0'),
 ('general', 'landing_page', '{\"controller\":\"home\",\"action\":\"index\"}'),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
@@ -505,6 +503,10 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'login_to_post', '0'),
 ('advertisement', 'reviews', '0'),
 ('advertisement', 'reviews_paid', '0'),
+('advertisement', 'advertisements_per_page', '10'),
+('advertisement', 'feed_elements', '20'),
+('advertisement', 'map_elements', '100'),
+('advertisement', 'sort_by', 'published-desc'),
 ('email', 'notify_email', '".core::request('ADMIN_EMAIL')."'),
 ('email', 'smtp_active', 0),
 ('email', 'new_ad_notify', 0),

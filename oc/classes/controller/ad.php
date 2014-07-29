@@ -174,7 +174,7 @@ class Controller_Ad extends Controller {
        		$pagination = Pagination::factory(array(
                     'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
-                    'items_per_page' 	=> core::config('general.advertisements_per_page'),
+                    'items_per_page' 	=> core::config('advertisement.advertisements_per_page'),
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
@@ -187,7 +187,7 @@ class Controller_Ad extends Controller {
             /**
              * order depending on the sort parameter
              */
-            switch (core::request('sort',core::config('general.sort_by'))) 
+            switch (core::request('sort',core::config('advertisement.sort_by'))) 
             {
                 //title z->a
                 case 'title-asc':
@@ -804,7 +804,7 @@ class Controller_Ad extends Controller {
                 $pagination = Pagination::factory(array(
                         'view'              => 'pagination',
                         'total_items'       => $res_count,
-                        'items_per_page'    => core::config('general.advertisements_per_page'),
+                        'items_per_page'    => core::config('advertisement.advertisements_per_page'),
                 ))->route_params(array(
                         'controller'        => $this->request->controller(),
                         'action'            => $this->request->action(),

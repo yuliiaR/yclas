@@ -15,7 +15,7 @@ class Controller_Feed extends Controller {
   		
   		$items = array();
 
-  		//last ads, you can modify this value at: general.feed_elements
+  		//last ads, you can modify this value at: advertisement.feed_elements
         $ads = DB::select('a.seotitle')
                 ->select(array('c.seoname','category'),'a.title','a.description','a.published')
                 ->from(array('ads', 'a'))
@@ -23,7 +23,7 @@ class Controller_Feed extends Controller {
                 ->on('a.id_category','=','c.id_category')
                 ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
                 ->order_by('published','desc')
-                ->limit(Core::config('general.feed_elements'));
+                ->limit(Core::config('advertisement.feed_elements'));
 
         //filter by category aor location
         if (Model_Category::current()->loaded())
@@ -70,7 +70,7 @@ class Controller_Feed extends Controller {
         $posts = new Model_Post();
         $posts = $posts->where('status','=', 1)
                 ->order_by('created','desc')
-                ->limit(Core::config('general.feed_elements'))
+                ->limit(Core::config('advertisement.feed_elements'))
                 ->cached()
                 ->find_all();
            
@@ -117,7 +117,7 @@ class Controller_Feed extends Controller {
         $topics = $topics->where('status','=', Model_Topic::STATUS_ACTIVE)
                 ->where('id_post_parent','IS',NULL)
                 ->order_by('created','desc')
-                ->limit(Core::config('general.feed_elements'))
+                ->limit(Core::config('advertisement.feed_elements'))
                 ->cached()
                 ->find_all();
            

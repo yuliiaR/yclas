@@ -84,7 +84,8 @@ class Model_Category extends ORM {
 			        'parent_deep'		=> array(),
 			        'seoname'			=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
 			        'description'		=> array(),
-			        'price'				=> array(), );
+			        'price'				=> array(),
+			        'icon'				=> array(), );
 	}
 
 	/**
@@ -102,7 +103,8 @@ class Model_Category extends ORM {
 			        'parent_deep'			=> __('Parent deep'),
 			        'seoname'				=> __('Seoname'),
 			        'description'			=> __('Description'),
-			        'price'					=> __('Price'));
+			        'price'					=> __('Price'),
+			        'icon'					=> __('Icon'));
 	}
 	
     /**
@@ -494,6 +496,18 @@ class Model_Category extends ORM {
         }
         
         return $deep;
+    }
+
+    /**
+     * reurns the url of the category icon
+     * @return string url
+     */
+    public function get_icon()
+    {
+		if(is_file(DOCROOT."images/categories/".$this->seoname.".png"))
+            return URL::base().'images/categories/'.$this->seoname.'.png';
+		else
+            return FALSE;
     }
 
 } // END Model_Category

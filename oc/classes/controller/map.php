@@ -15,7 +15,7 @@ class Controller_Map extends Controller {
         $this->template->center_lon = Core::get('lon',core::config('advertisement.center_lon'));
         $this->template->center_lat = Core::get('lat',core::config('advertisement.center_lat'));
         
-        //last ads, you can modify this value at: general.feed_elements
+        //last ads, you can modify this value at: advertisement.feed_elements
         $ads = DB::select('a.seotitle')
                 ->select(array('c.seoname','category'),'a.title','a.description','a.published','a.address',array('id_ad','lat'),array('id_ad','lon'))
                 ->from(array('ads', 'a'))
@@ -29,7 +29,7 @@ class Controller_Map extends Controller {
             $ads = $ads->where('id_ad','=',core::get('id_ad'));
 
         $ads = $ads->order_by('published','desc')
-                ->limit(Core::config('general.map_elements'))
+                ->limit(Core::config('advertisement.map_elements'))
                 ->as_object()
                 ->cached()
                 ->execute();
@@ -137,7 +137,7 @@ class Controller_Map extends Controller {
         else
         {
 
-            //last ads, you can modify this value at: general.feed_elements
+            //last ads, you can modify this value at: advertisement.feed_elements
             $ads = DB::select('a.seotitle')
                     ->select(array('c.seoname','category'),'a.title','a.published','a.address')
                     ->from(array('ads', 'a'))
@@ -146,7 +146,7 @@ class Controller_Map extends Controller {
                     ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
                     ->where('a.address','IS NOT',NULL)
                     ->order_by('published','desc')
-                    ->limit(Core::config('general.map_elements'))
+                    ->limit(Core::config('advertisement.map_elements'))
                     ->as_object()
                     ->cached()
                     ->execute();
