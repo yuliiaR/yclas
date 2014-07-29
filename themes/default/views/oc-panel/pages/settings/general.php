@@ -199,78 +199,7 @@
         </div>
         
         <hr>
-        <h2><?=__("Listings Options")?></h2>
-        <div class="form-group">
-            <?= FORM::label($forms['advertisements_per_page']['id'], __('Advertisements per page'), array('class'=>'control-label col-sm-3', 'for'=>$forms['advertisements_per_page']['id']))?>
-            <div class="col-sm-4">
-                <?= FORM::input($forms['advertisements_per_page']['key'], $forms['advertisements_per_page']['value'], array(
-                'placeholder' => "20", 
-                'class' => 'tips form-control input-sm', 
-                'id' => $forms['advertisements_per_page']['id'], 
-                'data-content'=> __("This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Number of ads per page"),
-                ))?> 
-            </div>
-        </div>
-        <div class="form-group">
-           <?= FORM::label($forms['feed_elements']['id'], __('Advertisements in RSS'), array('class'=>'control-label col-sm-3', 'for'=>$forms['feed_elements']['id']))?>
-           <div class="col-sm-4">
-               <?= FORM::input($forms['feed_elements']['key'], $forms['feed_elements']['value'], array(
-               'placeholder' => "20", 
-               'class' => 'tips form-control input-sm', 
-               'id' => $forms['feed_elements']['id'], 
-               'data-original-title'=> __("Number of Ads"),
-               'data-trigger'=>"hover",
-               'data-placement'=>"right",
-               'data-toggle'=>"popover",
-               'data-content'=>__("How many ads are going to appear in the RSS of your site."),
-               ))?> 
-           </div>
-       </div>
-       <div class="form-group">
-           <?= FORM::label($forms['map_elements']['id'], __('Advertisements in Map'), array('class'=>'control-label col-sm-3', 'for'=>$forms['map_elements']['id']))?>
-           <div class="col-sm-4">
-               <?= FORM::input($forms['map_elements']['key'], $forms['map_elements']['value'], array(
-               'placeholder' => "20", 
-               'class' => 'tips form-control input-sm', 
-               'id' => $forms['map_elements']['id'], 
-               'data-original-title'=> __("Number of Ads"),
-               'data-trigger'=>"hover",
-               'data-placement'=>"right",
-               'data-toggle'=>"popover",
-               'data-content'=>__("How many ads are going to appear in the map of your site."),
-               ))?> 
-           </div>
-       </div>
-
-        <div class="form-group">
-            <?= FORM::label($forms['sort_by']['id'], __('Sort by in listing'), array('class'=>'control-label col-sm-3', 'for'=>$forms['sort_by']['id']))?>
-            <div class="col-sm-4">
-                <?= FORM::select($forms['sort_by']['key'], array('title-asc'=>"Name (A-Z)",
-                                                                     'title-desc'=>"Name (Z-A)",
-                                                                     'price-asc'=>"Price (Low)",
-                                                                     'price-desc'=>"Price (High)",
-                                                                     'featured'=>"Featured",
-                                                                     'published-desc'=>"Newest",
-                                                                     'published-asc'=>"Oldest"), 
-                $forms['sort_by']['value'], array(
-                'placeholder' => $forms['sort_by']['value'], 
-                'class' => 'tips form-control input-sm ', 
-                'id' => $forms['sort_by']['id'],
-                'data-content'=> __("Sort by in listing"),
-                'data-trigger'=>"hover",
-                'data-placement'=>"right",
-                'data-toggle'=>"popover",
-                'data-original-title'=>__("Sort by in listing"), 
-                ))?> 
-            </div>
-        </div>
-
-        <hr>
-        <h2><?=__("Enable Special Features")?></h2>
+        <h2><?=__("Enable Additional Features")?></h2>
         <div class="form-group">
             <?= FORM::label($forms['blog']['id'], __("Activates Blog posting"), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog']['id']))?>
             <div class="col-sm-4">

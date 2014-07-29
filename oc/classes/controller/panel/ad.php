@@ -45,7 +45,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			$pagination = Pagination::factory(array(
                     'view'           	=> 'oc-panel/crud/pagination',
                     'total_items'    	=> $res_count,
-                    'items_per_page' 	=> core::config('general.advertisements_per_page')
+                    'items_per_page' 	=> core::config('advertisement.advertisements_per_page')
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
@@ -115,7 +115,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			$pagination = Pagination::factory(array(
                     'view'           	=> 'oc-panel/crud/pagination',
                     'total_items'    	=> $res_count,
-                    'items_per_page' 	=> core::config('general.advertisements_per_page')
+                    'items_per_page' 	=> core::config('advertisement.advertisements_per_page')
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
