@@ -60,6 +60,8 @@
                                 <img src="<?=URL::base()?><?=$ad->get_first_image()?>">
                             <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
                                 <img src="<?=$icon_src?>" class="img-responsive" >
+                            <?elseif(!empty($ad->category->icon)):?>
+                                <i class="<?=$ad->category->icon?> icon-placeholder"></i>  
                             <?else:?>
                                 <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>">
                             <?endif?>

@@ -19,6 +19,8 @@
                 <?else:?>
                     <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
                                 <img src="<?=$icon_src?>" >
+                            <?elseif(!empty($ad->category->icon)):?>
+                                <i class="<?=$ad->category->icon?> icon-placeholder"></i>                           
                             <?else:?>
                                 <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"> 
                             <?endif?> 
