@@ -9,6 +9,17 @@
 	<?else:?>
 	<?=Form::errors()?>
 	<div class="page-header">
+		<div class="pull-right favorite" id="fav-<?=$ad->id_ad?>">
+			<?if (Auth::instance()->logged_in()):?>
+				<a data-id="fav-<?=$ad->id_ad?>" class="add-favorite" title="<?=__('Add to Favorites')?>" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'favorites','id'=>$ad->id_ad))?>">
+                	<i class="glyphicon glyphicon-heart-empty"></i>
+                </a>
+			<?else:?>
+				<a data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+                	<i class="glyphicon glyphicon-heart"></i>
+				</a>
+			<?endif?>
+		</div>
 		<h1><?= $ad->title;?></h1>
 	</div>
 
