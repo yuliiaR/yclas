@@ -59,6 +59,7 @@ class Model_Review extends ORM {
 
         $form->fields['id_ad']['display_as']      = 'text'; 
         $form->fields['id_user']['display_as']    = 'text';
+        $form->fields['description']['display_as']    = 'textarea';
     }
 
     /**

@@ -37,7 +37,7 @@
 	                <td><a href="<?=Route::url('profile', array('seoname'=> $review->user->seoname, 'action'=>'reviews')) ?>">
 	                    <?=$review->user->name?></a> - <?=$review->user->email?>
 	                </td>
-	                <td><a href="<?=Route::url('ad-review', array('seoname'=> $review->ad->seoname)) ?>">
+	                <td><a href="<?=Route::url('ad-review', array('seotitle'=> $review->ad->seotitle)) ?>">
 	                    <?=$review->ad->title?></a></td>
 	                <td><?=$review->rate?></td>
 	                <td><?=$review->created?></td>

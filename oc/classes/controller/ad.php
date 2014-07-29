@@ -209,6 +209,10 @@ class Controller_Ad extends Controller {
                 case 'featured':
                     $ads->order_by('featured','desc')->order_by('published','desc');
                     break;
+                //rating
+                case 'rating':
+                    $ads->order_by('rate','desc')->order_by('published','desc');
+                    break;
                 //oldest first
                 case 'published-asc':
                     $ads->order_by('published','asc');
@@ -397,7 +401,7 @@ class Controller_Ad extends Controller {
     {
         $seotitle = $this->request->param('seotitle',NULL);
         
-        if ($seotitle!==NULL)
+        if ($seotitle!==NULL AND Core::config('advertisement.reviews')==1)
         {
             $ad = new Model_Ad();
             $ad->where('seotitle','=', $seotitle)
@@ -406,9 +410,87 @@ class Controller_Ad extends Controller {
 
             if ($ad->loaded())
             {
+                $errors = NULL;
+
+                //adding a new review
+                if($this->request->post() AND Auth::instance()->logged_in() )  
+                {
+                    $user = Auth::instance()->get_user();
+
+                    //only able to review if bought the product
+                    if (Core::config('advertisement.reviews_paid')==1)
+                    {
+                        $order = new Model_Order();
+                        $order->where('id_ad','=',$ad->id_ad)
+                                ->where('id_user','=',$user->id_user)
+                                ->where('id_product','=',Model_Order::PRODUCT_AD_SELL)
+                                ->where('status','=',Model_Order::STATUS_PAID)
+                                ->find();
+
+                        if (!$order->loaded())
+                        {
+                            Alert::set(Alert::ERROR, __('You can only add a review if you bought this product'));
+                            $this->redirect(Route::url('ad-review',array('seotitle'=>$ad->seotitle)));
+                        }                        
+                    }
+
+                    $review = new Model_Review();
+                    $review->where('id_ad','=',$ad->id_ad)
+                            ->where_open()
+                            ->or_where('id_user','=',$user->id_user)
+                            ->or_where('ip_address','=',ip2long(Request::$client_ip))
+                            ->where_close()
+                            ->find();
+                            //d($review);
+                    if (!$review->loaded())
+                    {
+                        if (captcha::check('review'))
+                        {
+                            $validation = Validation::factory($this->request->post())->rule('rate', 'numeric')
+                                                        ->rule('description', 'not_empty')->rule('description', 'min_length', array(':value', 5))
+                                                        ->rule('description', 'max_length', array(':value', 1000));
+                            if ($validation->check())
+                            {
+                                $rate = core::post('rate');
+                                if ($rate>Model_Review::RATE_MAX)
+                                    $rate = Model_Review::RATE_MAX;
+                                elseif ($rate<0)
+                                    $rate = 0;
+
+                                $review = new Model_Review();
+                                $review->id_user        = $user->id_user;
+                                $review->id_ad          = $ad->id_ad;
+                                $review->description    = core::post('description');
+                                $review->status         = Model_Review::STATUS_ACTIVE;
+                                $review->ip_address     = ip2long(Request::$client_ip);
+                                $review->rate           = $rate;
+                                $review->save();
+                                //email product owner?? notify him of new review
+                                $ad->user->email('ad-review',
+                                             array('[AD.TITLE]'     =>$ad->title,
+                                                    '[RATE]'        =>$review->rate,
+                                                    '[DESCRIPTION]' =>$review->description,
+                                                    '[URL.QL]'      =>$ad->user->ql('ad-review',array('seotitle'=>$ad->seotitle))));
+
+                                $ad->recalculate_rate();
+                                $ad->user->recalculate_rate();
+                                Alert::set(Alert::SUCCESS, __('Thanks for your review!'));
+                            }
+                            else
+                                $errors = $validation->errors('ad');
+                        }
+                        else
+                            Alert::set(Alert::ERROR, __('Wrong Captcha'));
+                    }
+                    else
+                        Alert::set(Alert::ERROR, __('You already added a review'));
+                }     
+                
+                $this->template->scripts['footer'][] = 'js/jquery.raty.min.js';
+                $this->template->scripts['footer'][] = 'js/review.js';
+
                 Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
                 Breadcrumbs::add(Breadcrumb::factory()->set_title($ad->title)->set_url(Route::url('ad',array('seotitle'=>$ad->seotitle,'category'=>$ad->category->seoname))));
-
 
                 $this->template->title = $ad->title.' - '. __('Reviews');
                 
@@ -447,6 +529,7 @@ class Controller_Ad extends Controller {
                                                                                    'captcha_show'   =>$captcha_show,
                                                                                    'user'           =>$user,
                                                                                    'reviews'         =>$reviews,
+                                                                                   'errors'         =>$errors
                                                                                    ));
 
             }

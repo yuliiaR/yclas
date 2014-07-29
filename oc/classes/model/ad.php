@@ -578,7 +578,7 @@ class Model_Ad extends ORM {
             $cf_config = Model_Field::get_all(FALSE);
 
             if(!isset($cf_config))
-                return FALSE;
+                return array();
             
             //getting the custom fields this advertisement has and his value          
             $active_custom_fields = array();
@@ -635,7 +635,7 @@ class Model_Ad extends ORM {
             return $ad_custom_vals;
             
         }
-        return FALSE;
+        return array();
     }
 
 

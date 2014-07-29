@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<?if ($ad->status != Model_Ad::STATUS_PUBLISHED && $permission === FALSE && ($ad->id_user != $user)):?>
+<?if ($ad->status != Model_Ad::STATUS_PUBLISHED AND $permission === FALSE AND ($ad->id_user != $user) OR (Theme::get('premium')!=1)):?>
 
 <div class="page-header">
 	<h1><?= __('This advertisement doesn´t exist, or is not yet published!')?></h1>
@@ -24,9 +24,62 @@
                         <span class="glyphicon glyphicon-comment"></span><?=count($reviews)?> <?=__('reviews')?>
                     </div>
                 </div>
+
+                <?if (Auth::instance()->logged_in()):?>
+                <a class="btn btn-success pull-right" data-toggle="modal" data-target="#review-modal" href="#">
+                <?else:?>
+                <a class="btn btn-success pull-right" data-toggle="modal" data-dismiss="modal" 
+                    href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+                <?endif?>
+                    <i class="glyphicon glyphicon-bullhorn"></i> <?=__('Add New Review')?>
+                </a>
+
             </div>
         </div>
     </div>
+
+    <?if (Auth::instance()->logged_in()):?>    
+    <div id="review-modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+                    <h3><?=__('Add New Review')?></h3>
+                </div>
+                <div class="modal-body">
+                    <?=Form::errors()?>
+                    <form action="" method="post">
+                    <fieldset>
+                        <div id="review_raty"></div>
+
+                        <div class="control-group">
+                            <?= FORM::label('description', __('Review'), array('class'=>'control-label', 'for'=>'description'))?>
+                            <div class="controls">
+                                <?= FORM::textarea('description', core::post('description',''), array('placeholder' => __('Review'), 'class' => 'span6', 'name'=>'description', 'id'=>'description', 'required'))?>   
+                            </div>
+                        </div>
+
+                        <?if (core::config('advertisement.captcha') != FALSE):?>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <?=__('Captcha')?>*:<br />
+                                <?=captcha::image_tag('review')?><br />
+                                <?= FORM::input('captcha', "", array('class'=>'form-control', 'id' => 'captcha', 'required'))?>
+                            </div>
+                        </div>
+                        <?endif?>
+
+                        <div class="modal-footer">  
+                            <input type="submit" class="btn btn-success" value="<?=__('Post Review')?>" />
+                        </div>
+
+                    </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?endif?>
     
     <hgroup class="mb20"></hgroup>
     <?if(count($reviews)):?>
