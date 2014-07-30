@@ -10,6 +10,7 @@
         <th>
             <input type="checkbox" id="select-all" onclick="check_all();">
         </th>
+        <th>#</th>
         <th><?=__('Edit')?></th>
         <th><?=__('Name')?></th>
         <th><?=__('Category')?></th>
@@ -48,7 +49,7 @@
             <td>
                 <input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
             </td>
-
+            <td><?=$ad->id_ad?>
             <td>
                 <a class="btn btn-primary" 
                     href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 

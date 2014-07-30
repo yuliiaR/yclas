@@ -49,6 +49,7 @@
 		<th>
 			<input type="checkbox" id="select-all" onclick="check_all();">
 		</th>
+        <th>#</th>
 		<th><?=__('Name')?></th>
 		<th><?=__('Category')?></th>
 		<th><?=__('Location')?></th>
@@ -116,6 +117,8 @@
 			<td>
 				<input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
 			</td>
+
+            <td><?=$ad->id_ad?>
 			
 			<td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->name,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
             </td>
