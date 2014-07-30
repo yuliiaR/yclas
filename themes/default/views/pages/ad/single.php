@@ -16,7 +16,7 @@
                 </a>
 			<?else:?>
 				<a data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
-                	<i class="glyphicon glyphicon-heart"></i>
+                	<i class="glyphicon glyphicon-heart-empty"></i>
 				</a>
 			<?endif?>
 		</div>
