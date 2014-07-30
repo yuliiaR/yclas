@@ -56,31 +56,10 @@ class Controller_Panel_Ad extends Auth_Controller {
                 	            ->offset($pagination->offset)
                 	            ->find_all();
 		
-	        //find all tables 
-	        $hits = new Model_Visit();
-	        // $hits->find_all();
-
-			$list_cat = Model_Category::get_as_array();
-			$list_loc = Model_Location::get_as_array();
-
-
-	       	$arr_hits = array(); // array of hit integers 
-	       	
-	        // fill array with hit integers 
-	        foreach ($ads as $key_ads) 
-            {	
-	        	// match hits with ad
-	        	$h = $hits->where('id_ad','=', $key_ads->id_ad);
-	        	$count = count($h->find_all()); // count individual hits 
-	        	array_push($arr_hits, $count);
-	        }
-
 
 			$this->template->content = View::factory('oc-panel/pages/ad',array('res'			=> $ads,
-																				'pagination'	=> $pagination,
-																				'category'		=> $list_cat,
-																				'location'		=> $list_loc,
-																				'hits'			=> $arr_hits)); // create view, and insert list with data
+																				'pagination'	=> $pagination
+                                                                                )); 
 
 		}
 		else
@@ -121,37 +100,16 @@ class Controller_Panel_Ad extends Auth_Controller {
                     'action'      		=> $this->request->action(),
                  
     	    ));
-    	    $ads = $ads->where('ad.status', '=', Model_Ad::STATUS_NOPUBLISHED)
+    	    $ads = $ads->where('status', '=', Model_Ad::STATUS_NOPUBLISHED)
     	    					->order_by('created','desc')
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
                 	            ->find_all();
 		
-	        //find all tables 
-	        $hits = new Model_Visit();
-	        $hits->find_all();
-
-			$list_cat = Model_Category::get_as_array();
-			$list_loc = Model_Location::get_as_array();
-
-	       	$arr_hits = array(); // array of hit integers 
-	       	
-	        // fill array with hit integers 
-	        foreach ($ads as $key_ads) {
-	        	
-	        	// match hits with ad
-	        	$h = $hits->where('id_ad','=', $key_ads->id_ad);
-	        	$count = count($h->find_all()); // count individual hits 
-	        	array_push($arr_hits, $count);
-	
-	        }
 
 			$this->template->content = View::factory('oc-panel/pages/moderate',array('ads'			=> $ads,
 																					'pagination'	=> $pagination,
-																					'category'		=> $list_cat,
-																					'location'		=> $list_loc,
-																					'hits'			=> $arr_hits)); // create view, and insert list with data
-
+																					)); 
 		}
 		else
 		{

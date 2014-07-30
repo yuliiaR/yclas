@@ -32,6 +32,17 @@ class Model_Ad extends ORM {
     	'location'	 => array('foreign_key' => 'id_location'),
     );
 
+
+    /**
+     * @var  array  ORM Dependency/hirerachy
+     */
+    protected $_has_many = array(
+        'visits' => array(
+            'model'       => 'visit',
+            'foreign_key' => 'id_ad',
+        ),
+    );
+
     /**
      * status constants
      */

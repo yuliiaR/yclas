@@ -8,10 +8,9 @@
 <table class="table table-bordered">
     <tr>
         <th>
-            <label class="checkbox">
-                    <input type="checkbox" id="select-all" onclick="check_all();">
-            </label>
+            <input type="checkbox" id="select-all" onclick="check_all();">
         </th>
+        <th><?=__('Edit')?></th>
         <th><?=__('Name')?></th>
         <th><?=__('Category')?></th>
         <th><?=__('Location')?></th>
@@ -27,62 +26,52 @@
                 rel="tooltip" title="<?=__('Activate')?>">
                 <i class="glyphicon   glyphicon-ok-sign"></i>
             </a>
-            <div class="toolbar btn btn-default"><i class="glyphicon glyphicon-cog"></i>
-            <div id="user-toolbar-options-all" class="hide user-toolbar-options">
-                <a class="spam btn btn-warning" 
+            <a class="spam btn btn-warning" 
                     href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
                     onclick="return confirm('<?=__('Spam?')?>');"
                     rel="tooltip" title="<?=__('Spam')?>">
                     <i class="glyphicon   glyphicon-fire"></i>
                 </a>
-                <a class="deactivate btn btn-warning" 
-                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate'))?>" 
-                    onclick="return confirm('<?=__('Deactivate?')?>'));"
-                    rel="tooltip" title="<?=__('Deactivate')?>">
-                    <i class="glyphicon   glyphicon-remove"></i>
-                </a>
-                <a class="delete btn btn-danger " 
-                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
-                    onclick="return confirm('<?=__('Delete?')?>');"
-                    rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
-                    <i class="glyphicon   glyphicon-remove"></i>
-                </a>
-            </div>
-            </div>
+            <a class="delete btn btn-danger " 
+                href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
+                onclick="return confirm('<?=__('Delete?')?>');"
+                rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
+                <i class="glyphicon   glyphicon-remove"></i>
+            </a>
         </th>
         <?endif?>
     </tr>
-<? if($ads != NULL):?>
-    <? $i = 0; foreach($ads as $ad):?>  
+    <?if(isset($ads)):?>
+    <?foreach($ads as $ad):?>  
     <tbody>
         <tr>
             <td>
-                <label class="checkbox">
-                    <input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
-                </label>
-            </td>
-            <?foreach($category as $cat => $c){ if ($c['id'] == $ad->id_category) $cat_name = $c['seoname']; }?>
-            <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
+                <input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
             </td>
 
-            <? foreach($category as $cat => $c ):?>
-                <? if ($c['id'] == $ad->id_category): ?>
-                    <td><?= wordwrap($c['name'], 15, "<br />\n"); ?>
-                <?endif?>
-            <?endforeach?>
+            <td>
+                <a class="btn btn-primary" 
+                    href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
+                    rel="tooltip" title="<?=__('Update')?>">
+                    <i class="glyphicon   glyphicon-edit"></i>
+                </a>
+            </td>
             
-            <?$locat_name = NULL;?>
-            <?foreach($location as $loc => $l):?>
-                <? if ($l['id'] == $ad->id_location): 
-                    $locat_name=$l['name'];?>
-                    <td><?=wordwrap($locat_name, 15, "<br />\n");?></td>
-                <?endif?>
-            <?endforeach?>
-            <?if($locat_name == NULL):?>
-                <td>n/a</td>
-            <?endif?>
+            <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->name,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
+            </td>
 
-            <td><?= $hits[$i++];?></td>
+            <td><?= wordwrap($ad->category->name, 15, "<br />\n"); ?>
+                 
+            <td>
+                <?if($ad->location->loaded()):?>
+                    <?=wordwrap($ad->location->name, 15, "<br />\n");?>
+                <?else:?>
+                    n/a
+                <?endif?>
+            </td>
+
+            <td><?=$ad->visits->count_all();?></td>
+
             <td>
             <?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
                 <?=__('Not published')?>
@@ -105,52 +94,36 @@
                     <?=i18n::format_currency($order->amount,$order->currency)?>
                 </a>
             <?endif?>
-
             </td>
+
             <td><?= substr($ad->created, 0, 11)?></td>
              <td width="150" style="width:150px">
-                <a class="btn btn-primary" 
-                    href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
-                    rel="tooltip" title="<?=__('Update')?>">
-                    <i class="glyphicon   glyphicon-edit"></i>
-                </a>
                 <a class="btn btn-success" 
                     href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
                     onclick="return confirm('<?=__('Activate?')?>');"
                     rel="tooltip" title="<?=__('Activate')?>">
                     <i class="glyphicon   glyphicon-ok-sign"></i>
                 </a>
-                <div class="toolbar btn btn-default"><i class="glyphicon glyphicon-cog"></i>
-                <div id="user-toolbar-options<?=$ad->id_ad?>" class="hide user-toolbar-options">
-                    <!-- sel_url_to_redirect is important because is quick selector or $current_url. 
-                        This works with dynamic check boxes, where we select href to build new url -->
-                    <a class="btn btn-warning sel_url_to_redirect" 
-                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                        onclick="return confirm('<?=__('Deactivate?')?>');"
-                        rel="tooltip" title="<?=__('Deactivate')?>">
-                        <i class="glyphicon   glyphicon-remove"></i>
-                    </a>
-                    <a class=" btn btn-warning" 
-                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                        onclick="return confirm('<?=__('Spam?')?>');"
-                        rel="tooltip" title="<?=__('Spam')?>">
-                        <i class="glyphicon   glyphicon-fire"></i>
-                    </a>
-                    <a class="btn btn-danger " 
-                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                        onclick="return confirm('<?=__('Delete?')?>');"
-                        rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
-                        <i class="glyphicon   glyphicon-remove"></i>
-                    </a>
-                </div>
-                </div>
+               
+                <a class=" btn btn-warning" 
+                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+                    onclick="return confirm('<?=__('Spam?')?>');"
+                    rel="tooltip" title="<?=__('Spam')?>">
+                    <i class="glyphicon   glyphicon-fire"></i>
+                </a>
+                <a class="btn btn-danger " 
+                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+                    onclick="return confirm('<?=__('Delete?')?>');"
+                    rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
+                    <i class="glyphicon   glyphicon-remove"></i>
+                </a>
             </td>
         </tr>
-    <?endforeach?>
-    <?endif?>
+    <?endforeach?>  
     </tbody>
+    <?endif?>
 </table>
+
 <?if(isset($pagination)):?>
 <?=$pagination?>
 <?endif?>
-    
