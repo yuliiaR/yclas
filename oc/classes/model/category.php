@@ -84,8 +84,7 @@ class Model_Category extends ORM {
 			        'parent_deep'		=> array(),
 			        'seoname'			=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
 			        'description'		=> array(),
-			        'price'				=> array(),
-			        'icon'				=> array(), );
+			        'price'				=> array(), );
 	}
 
 	/**
@@ -103,8 +102,7 @@ class Model_Category extends ORM {
 			        'parent_deep'			=> __('Parent deep'),
 			        'seoname'				=> __('Seoname'),
 			        'description'			=> __('Description'),
-			        'price'					=> __('Price'),
-			        'icon'					=> __('Icon'));
+			        'price'					=> __('Price'));
 	}
 	
     /**

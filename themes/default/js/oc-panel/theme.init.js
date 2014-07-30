@@ -85,7 +85,7 @@ function init_panel()
     });
 	
 	// Menu icon picker
-	$(".icon-picker, input[name='formorm[icon]']").iconPicker();
+	$(".icon-picker").iconPicker();
 	
 	// Load google api
 	$.getScript("http://www.google.com/jsapi");
