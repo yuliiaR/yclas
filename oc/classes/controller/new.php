@@ -22,6 +22,7 @@ class Controller_New extends Controller
 										'css/jasny-bootstrap.min.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.validate.min.js';
+		$this->template->scripts['footer'][] = Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate'));
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.chained.min.js';
         if(core::config('advertisement.map_pub_new'))
