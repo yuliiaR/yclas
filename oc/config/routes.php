@@ -180,6 +180,15 @@ Route::set('ad-review', URL::title(__('reviews')).'/<seotitle>.html')
 ));
 
 /**
+ * javascript localization
+ */
+Route::set('jslocalization', 'jslocalization/<action>')
+->defaults(array(
+        'controller' => 'jslocalization',    
+        'action'     => 'validate',
+));
+
+/**
  * Item / ad view (public)
  */
 Route::set('ad', '<category>/<seotitle>.html')

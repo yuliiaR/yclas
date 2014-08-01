@@ -33,7 +33,12 @@ function init_panel()
     
     $('.tips').popover();
 
-    $("select").chosen({width: "100%"});
+    $("select").chosen({
+        no_results_text: getChosenLocalization("no_results_text"),
+        placeholder_text_multiple: getChosenLocalization("placeholder_text_multiple"),
+        placeholder_text_single: getChosenLocalization("placeholder_text_single"),
+        width: "100%"
+        });
     
     $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
     

@@ -133,6 +133,7 @@ class Auth_Controller extends Controller
     												  'js/summernote.min.js',
     												  'js/bootstrap.min.js', 
     											      'js/chosen.jquery.min.js',
+    											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
     			}
@@ -167,6 +168,7 @@ class Auth_Controller extends Controller
     											      'http://cdn.jsdelivr.net/summernote/0.5.1/summernote.min.js',
     												  'http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js', 
     											      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
+    											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
                                                       'js/jquery.loadingbar.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );

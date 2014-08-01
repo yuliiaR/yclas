@@ -6,8 +6,16 @@ $("button[name=submit]").click(function(){
 });
     
     //chosen enable/disable
-    $('select').chosen();
-    $("#category_subscribe").chosen(); 
+    $('select').chosen({
+        no_results_text: getChosenLocalization("no_results_text"),
+        placeholder_text_multiple: getChosenLocalization("placeholder_text_multiple"),
+        placeholder_text_single: getChosenLocalization("placeholder_text_single")
+    });
+    $("#category_subscribe").chosen({
+        no_results_text: getChosenLocalization("no_results_text"),
+        placeholder_text_multiple: getChosenLocalization("placeholder_text_multiple"),
+        placeholder_text_single: getChosenLocalization("placeholder_text_single")
+    }); 
     $('select').each(function(){
         if($(this).hasClass('disable-chosen')){
             $(this).chosen('destroy');      
