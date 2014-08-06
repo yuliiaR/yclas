@@ -91,7 +91,9 @@ class Controller_Panel_Auth extends Controller {
                     $url_ql = $user->ql('oc-panel',array( 'controller' => 'profile', 
                                                           'action'     => 'changepass'),TRUE);
 
-                    $ret = $user->email('auth-remember',array('[URL.QL]'=>$url_ql));
+                    //we don't use this since checks if the user is subscribed which is stupid since you want to remember your password.
+                    //$ret = $user->email('auth-remember',array('[URL.QL]'=>$url_ql));
+                    $ret = Email::content($user->email,$user->name,NULL,NULL,'auth-remember',array('[URL.QL]'=>$url_ql)); 
 
                     //email sent notify and redirect him
                     if ($ret)
@@ -152,35 +154,12 @@ class Controller_Panel_Auth extends Controller {
 					}
 					else
 					{
-						//create user
-						$user->email 	= $email;
-						$user->name		= core::post('name');
-						$user->status	= Model_User::STATUS_ACTIVE;
-						$user->id_role	= 1;//normal user
-						$user->password = core::post('password1');
-						$user->seoname 	= $user->gen_seo_title(core::post('name'));
-                        $user->subscriber = 1;
-						
-						try
-						{
-							$user->save();
-						}
-						catch (ORM_Validation_Exception $e)
-						{
-							//Form::errors($content->errors);
-						}
-						catch (Exception $e)
-						{
-							throw HTTP_Exception::factory(500,$e->getMessage());
-						}
+                        //creating the user
+                        $user = Model_User::create_email($email,core::post('name'),core::post('password1'));
 						
 						//login the user
 						Auth::instance()->login(core::post('email'), core::post('password1'));
-                        //send email
-                        $user->email('auth-register',array('[USER.PWD]'=>core::post('password1'),
-                                                            '[URL.QL]'=>$user->ql('default',NULL,TRUE))
-                                                    );
-
+                        
                         Alert::set(Alert::SUCCESS, __('Welcome!'));
                         //login the user
                         $this->redirect(Core::post('auth_redirect',Route::url('oc-panel')));

@@ -303,7 +303,22 @@ class Controller_New extends Controller
                 if($published)
                     $new_ad->published = $new_ad->created;
 
-                //save the ad
+               
+
+                // IMAGE UPLOAD 
+                // in case something wrong happens user is redirected to edit advert. 
+                $filename = NULL;
+
+                for ($i=0; $i < core::config('advertisement.num_images'); $i++) 
+                { 
+                    if (isset($_FILES['image'.$i]))
+                        $filename = $new_ad->save_image($_FILES['image'.$i]);
+
+                    if ($filename)
+                        $new_ad->has_images = 1;
+                }
+
+                //SAVE  the ad
                 try 
                 {
                     $new_ad->save();
@@ -312,89 +327,12 @@ class Controller_New extends Controller
                 {
                     throw HTTP_Exception::factory(500,$e->getMessage());
                 }
+
+                /////////// NOTIFICATION Emails
 				
                 $edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$new_ad->id_ad));
                 $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$new_ad->id_ad));
 
-				// after successful posting send them email depending on moderation
-				if($moderation == Model_Ad::EMAIL_CONFIRMATION OR 
-				   $moderation == Model_Ad::EMAIL_MODERATION)
-				{
-					//we get the QL, and force the regen of token for security
-                	$url_ql = $user->ql('default',array( 'controller' => 'ad', 
-                                                      	 'action'     => 'confirm_post',
-                                                      	 'id'		  => $new_ad->id_ad),TRUE);
-                	
-                	
-                	$ret = $user->email('ads-confirm',array('[URL.QL]'=>$url_ql,
-                											'[AD.NAME]'=>$new_ad->title,
-                											'[URL.EDITAD]'=>$edit_url,
-                											'[URL.DELETEAD]'=>$delete_url));
-                	
-				}
-				elseif($moderation == Model_Ad::MODERATION_ON)
-				{
-					//we get the QL, and force the regen of token for security
-                	$url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
-                                                      	  'action'    => 'update',
-                                                      	  'id'		  => $new_ad->id_ad),TRUE);
-
-                	$ret = $user->email('ads-notify',array('[URL.QL]'		=>$url_ql,
-                										   '[AD.NAME]'		=>$new_ad->title,
-                										   '[URL.EDITAD]'	=>$edit_url,
-                										   '[URL.DELETEAD]'	=>$delete_url)); // email to notify user of creating, but it is in moderation currently 
-				}
-				elseif($moderation == Model_Ad::POST_DIRECTLY)
-				{
-					$url_cont = $user->ql('contact', array(),TRUE);
-					$url_ad = $user->ql('ad', array('category'=>$data['cat'],
-		                							'seotitle'=>$seotitle), TRUE);
-
-					$ret = $user->email('ads-user-check',array('[URL.CONTACT]'	=>$url_cont,
-		                										'[URL.AD]'		=>$url_ad,
-		                										'[AD.NAME]'		=>$new_ad->title,
-		                										'[URL.EDITAD]'	=>$edit_url,
-                										   		'[URL.DELETEAD]'=>$delete_url));
-				}
-
-
-				// new ad notification email to admin (notify_email), if set to TRUE 
-				if(core::config('email.new_ad_notify') == TRUE)
-				{
-                    $url_ad = Route::url('ad', array('category'=>$data['cat'],'seotitle'=>$seotitle));
-					
-					$replace = array('[URL.AD]'    	   =>$url_ad,
-                                  	 '[AD.TITLE]'  	   =>$new_ad->title);
-
-	                Email::content(core::config('email.notify_email'),
-	                                    core::config('general.site_name'),
-	                                    core::config('email.notify_email'),
-	                                    core::config('general.site_name'),
-                                        'ads-to-admin',
-	                                    $replace);
-	            }
-
-
-				// IMAGE UPLOAD 
-				// in case something wrong happens user is redirected to edit advert. 
-	    		$filename = NULL;
-
-	    		for ($i=0; $i < core::config("advertisement.num_images"); $i++) 
-	    		{ 
-	    			if (isset($_FILES['image'.$i]))
-		            	$filename = $new_ad->save_image($_FILES['image'.$i]);
-	        			        		
-	        		if ($filename)
-                    {
-			        	$new_ad->has_images = 1;
-			        	try {
-							$new_ad->save();
-						} 
-						catch (Exception $e){
-							throw HTTP_Exception::factory(500,$e->getMessage());
-						}
-	        		}
-		        }
 
                 //calculate how much he need to pay in case we have payment on
                 if ($moderation == Model_Ad::PAYMENT_ON OR $moderation == Model_Ad::PAYMENT_MODERATION)
@@ -432,18 +370,62 @@ class Controller_New extends Controller
 
                     case Model_Ad::EMAIL_MODERATION:
                     case Model_Ad::EMAIL_CONFIRMATION:
+                            $url_ql = $user->ql('default',array( 'controller' => 'ad', 
+                                                         'action'     => 'confirm_post',
+                                                         'id'         => $new_ad->id_ad),TRUE);
+                    
+                    
+                            $user->email('ads-confirm',array('[URL.QL]'=>$url_ql,
+                                                            '[AD.NAME]'=>$new_ad->title,
+                                                            '[URL.EDITAD]'=>$edit_url,
+                                                            '[URL.DELETEAD]'=>$delete_url));
                             Alert::set(Alert::INFO, __('Advertisement is posted but first you need to activate. Please check your email!'));
                         break;
 
                     case Model_Ad::MODERATION_ON:
+                            $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
+                                                          'action'    => 'update',
+                                                          'id'        => $new_ad->id_ad),TRUE);
+
+                            $user->email('ads-notify',array('[URL.QL]'       =>$url_ql,
+                                                           '[AD.NAME]'      =>$new_ad->title,
+                                                           '[URL.EDITAD]'   =>$edit_url,
+                                                           '[URL.DELETEAD]' =>$delete_url)); // email to notify user of creating, but it is in moderation currently 
                             Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
                         break;
                     
                     case Model_Ad::POST_DIRECTLY:
                     default:
+                            $url_cont = $user->ql('contact', array(),TRUE);
+                            $url_ad = $user->ql('ad', array('category'=>$data['cat'],
+                                                            'seotitle'=>$seotitle), TRUE);
+
+                            $user->email('ads-user-check',array('[URL.CONTACT]'  =>$url_cont,
+                                                                        '[URL.AD]'      =>$url_ad,
+                                                                        '[AD.NAME]'     =>$new_ad->title,
+                                                                        '[URL.EDITAD]'  =>$edit_url,
+                                                                        '[URL.DELETEAD]'=>$delete_url));
+
                             Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $data['price'])), $seotitle);
                             Alert::set(Alert::SUCCESS, __('Advertisement is posted. Congratulations!'));
                         break;
+                }
+
+                //NOTIFY ADMIN
+                // new ad notification email to admin (notify_email), if set to TRUE 
+                if(core::config('email.new_ad_notify') == TRUE)
+                {
+                    $url_ad = Route::url('ad', array('category'=>$data['cat'],'seotitle'=>$seotitle));
+                    
+                    $replace = array('[URL.AD]'        =>$url_ad,
+                                     '[AD.TITLE]'      =>$new_ad->title);
+
+                    Email::content(core::config('email.notify_email'),
+                                        core::config('general.site_name'),
+                                        core::config('email.notify_email'),
+                                        core::config('general.site_name'),
+                                        'ads-to-admin',
+                                        $replace);
                 }
 
                 $this->redirect(Route::url('default'));
