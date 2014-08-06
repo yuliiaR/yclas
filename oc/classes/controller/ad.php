@@ -667,7 +667,7 @@ class Controller_Ad extends Controller {
 
                 $order = Model_Order::new_order($ad, $payer_user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
 
-                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order_id)));
+                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
             }
         }
         else
