@@ -20,7 +20,7 @@
 	                <td><?= Date::format($favorite->created, core::config('general.date_format'))?></td>
                     <td>
                         <a  data-text="<?=__('Are you sure you want to delete?')?>" 
-                        data-id="tr<?=$favorite->id_favorite?>" class="btn btn-danger index-delete" title="<?=__('Delete')?>" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'favorites','id'=>$favorite->id_ad))?>">
+                        data-id="tr<?=$favorite->id_favorite?>" class="btn btn-danger index-delete index-delete-inline" title="<?=__('Delete')?>" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'favorites','id'=>$favorite->id_ad))?>">
                         <i class="glyphicon   glyphicon-heart"></i>
                         </a>
                     </td>

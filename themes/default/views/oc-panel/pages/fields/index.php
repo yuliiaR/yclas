@@ -31,7 +31,7 @@
 
         <a data-text="<?=__('Are you sure you want to delete? All data contained in this field will be deleted.')?>" 
            data-id="li_<?=$name?>" 
-           class="btn btn-xs btn-danger  pull-right index-delete"  
+           class="btn btn-xs btn-danger pull-right index-delete index-delete-inline"  
            href="<?=Route::url('oc-panel', array('controller'=> 'fields', 'action'=>'delete','id'=>$name))?>">
                     <i class="glyphicon   glyphicon-trash"></i>
         </a>
