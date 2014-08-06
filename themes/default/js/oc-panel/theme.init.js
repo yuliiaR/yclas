@@ -82,12 +82,6 @@ function init_panel()
         if($(this).attr('type') == 'radio')
             $(this).removeClass('form-control');
     });
-
-    // Search widget in header
-    $('.oc-faq-btn').click(function() {
-        // event.preventDefault();
-        $('.header-oc-faq').toggle();
-    });
 	
 	// Menu icon picker
 	$(".icon-picker").iconPicker();
@@ -99,6 +93,12 @@ function init_panel()
 
 $(function (){
     init_panel();
+
+    // Search widget in header
+    $('.oc-faq-btn').click(function() {
+        // event.preventDefault();
+        $('.header-oc-faq').toggle();
+    });
 });
 
 
