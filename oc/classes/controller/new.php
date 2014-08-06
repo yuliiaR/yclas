@@ -280,7 +280,6 @@ class Controller_New extends Controller
 
 				// SAVE AD
 				$new_ad->id_user = $user_id; // after handling user
-
 					
 				//akismet spam filter
 				if(core::akismet($data['title'], $email, $data['description']) == TRUE)
@@ -303,10 +302,18 @@ class Controller_New extends Controller
                 if($published)
                     $new_ad->published = $new_ad->created;
 
-               
+                //SAVE  the ad, so we can operate with him
+                try 
+                {
+                    $new_ad->save();
+                } 
+                catch (Exception $e) 
+                {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
+
 
                 // IMAGE UPLOAD 
-                // in case something wrong happens user is redirected to edit advert. 
                 $filename = NULL;
 
                 for ($i=0; $i < core::config('advertisement.num_images'); $i++) 
@@ -317,15 +324,17 @@ class Controller_New extends Controller
                     if ($filename)
                         $new_ad->has_images = 1;
                 }
-
-                //SAVE  the ad
-                try 
+                //since theres images save the ad again...
+                if ($new_ad->has_images == 1)
                 {
-                    $new_ad->save();
-                } 
-                catch (Exception $e) 
-                {
-                    throw HTTP_Exception::factory(500,$e->getMessage());
+                    try 
+                    {
+                        $new_ad->save();
+                    } 
+                    catch (Exception $e) 
+                    {
+                        throw HTTP_Exception::factory(500,$e->getMessage());
+                    }
                 }
 
                 /////////// NOTIFICATION Emails
@@ -373,7 +382,6 @@ class Controller_New extends Controller
                             $url_ql = $user->ql('default',array( 'controller' => 'ad', 
                                                          'action'     => 'confirm_post',
                                                          'id'         => $new_ad->id_ad),TRUE);
-                    
                     
                             $user->email('ads-confirm',array('[URL.QL]'=>$url_ql,
                                                             '[AD.NAME]'=>$new_ad->title,
