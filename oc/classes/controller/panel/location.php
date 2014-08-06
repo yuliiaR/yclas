@@ -229,6 +229,8 @@ class Controller_Panel_Location extends Auth_Crud {
                 }
                 // Insert everything with one query.
                 $insert->execute();
+
+                Core::delete_cache();
             }
             else
                 Alert::set(Alert::INFO, __('Select some locations first.'));
