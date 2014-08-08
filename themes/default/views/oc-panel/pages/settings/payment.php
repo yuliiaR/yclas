@@ -204,7 +204,7 @@
                     </div>
                 </div>  
                 <div class="form-group">
-                    <?= FORM::label($forms['stock']['key'], __('Paypal link stock control'), array('class'=>'control-label col-sm-3', 'for'=>$forms['stock']['key']))?>
+                    <?= FORM::label($forms['stock']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/09/02/pay-directly-from-ad/'>".__('Paypal link stock control')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['stock']['key']))?>
                     <div class="col-sm-4">
                         <div class="onoffswitch">
                             <?= FORM::hidden($forms['stock']['key'], 0);?>

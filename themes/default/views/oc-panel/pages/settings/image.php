@@ -142,7 +142,7 @@
         </div>
         
         <div class="form-group">
-            <?= FORM::label($forms['watermark']['id'], __('Watermark'), array('class'=>'control-label col-sm-3', 'for'=>$forms['watermark']['id']))?>
+            <?= FORM::label($forms['watermark']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/11/12/how-to-add-a-watermark/'>".__('Watermark')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['watermark']['id']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['watermark']['key'], 1, (bool) $forms['watermark']['value'], array(
