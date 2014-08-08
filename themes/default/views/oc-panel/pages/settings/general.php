@@ -86,7 +86,7 @@
         </div>
         
         <div class="form-group">
-            <?= FORM::label($forms['landing_page']['id'], __('Landing page'), array('class'=>'control-label col-sm-3', 'for'=>$forms['landing_page']['id']))?>
+            <?= FORM::label($forms['landing_page']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/09/20/home-or-listing/'>".__('Landing page')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['landing_page']['id']))?>
             <div class="col-sm-4">
                 <?= FORM::select($forms['landing_page']['key'], array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING'), $forms['landing_page']['value'], array(
                 'class' => 'tips form-control input-sm', 
@@ -172,7 +172,7 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms['date_format']['id'], __('Date format'), array('class'=>'control-label col-sm-3', 'for'=>$forms['date_format']['id']))?>
+            <?= FORM::label($forms['date_format']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/03/22/change-date-format/'>".__('Date format')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['date_format']['id']))?>
             <div class="col-sm-4">
                 <?= FORM::input($forms['date_format']['key'], $forms['date_format']['value'], array(
                 'placeholder' => "d/m/Y", 
@@ -201,7 +201,7 @@
         <hr>
         <h2><?=__("Enable Additional Features")?></h2>
         <div class="form-group">
-            <?= FORM::label($forms['blog']['id'], __("Activates Blog posting"), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog']['id']))?>
+            <?= FORM::label($forms['blog']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/01/22/how-to-create-a-blog/'>".__("Activates Blog posting")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['blog']['id']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['blog']['key'], 1, (bool) $forms['blog']['value'], array(
@@ -220,7 +220,7 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms['forums']['id'], __("Activates Forums"), array('class'=>'control-label col-sm-3', 'for'=>$forms['forums']['id']))?>
+            <?= FORM::label($forms['forums']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/06/20/showcase-how-to-build-a-forum-with-oc/'>".__("Activates Forums")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['forums']['id']))?>
             <div class="col-md-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['forums']['key'], 1, (bool) $forms['forums']['value'], array(
@@ -239,7 +239,7 @@
             </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms['faq']['id'], __("Activates FAQ"), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq']['id']))?>
+            <?= FORM::label($forms['faq']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/01/21/create-frequent-asked-questions-faq/'>".__("Activates FAQ")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['faq']['id']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['faq']['key'], 1, (bool) $forms['faq']['value'], array(
@@ -279,7 +279,7 @@
         </div>
 
         <div class="form-group">
-            <?= FORM::label($forms['black_list']['id'], __("Black List"), array('class'=>'control-label col-sm-3', 'for'=>$forms['black_list']['id']))?>
+            <?= FORM::label($forms['black_list']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/05/08/activate-blacklist-works/'>".__("Black List")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['black_list']['id']))?>
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['black_list']['key'], 1, (bool) $forms['black_list']['value'], array(
@@ -321,7 +321,7 @@
         <hr>
         <h2><?=__("Comments Configuration")?></h2>
         <div class="form-group">
-                <?= FORM::label($forms['blog_disqus']['id'], __('Disqus for blog'), array('class'=>'control-label col-sm-3', 'for'=>$forms['blog_disqus']['id']))?>
+                <?= FORM::label($forms['blog_disqus']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/01/22/how-to-create-a-blog/'>".__('Disqus for blog')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['blog_disqus']['id']))?>
                 <div class="col-sm-4">
                     <?= FORM::input($forms['blog_disqus']['key'], $forms['blog_disqus']['value'], array(
                     'placeholder' => "", 
@@ -336,7 +336,7 @@
                 </div>
         </div>
         <div class="form-group">
-            <?= FORM::label($forms['faq_disqus']['id'], __('Disqus for FAQ'), array('class'=>'control-label col-sm-3', 'for'=>$forms['faq_disqus']['id']))?>
+            <?= FORM::label($forms['faq_disqus']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/01/21/create-frequent-asked-questions-faq/'>".__('Disqus for FAQ')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['faq_disqus']['id']))?>
             <div class="col-sm-4">
                 <?= FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
                 'placeholder' => "", 

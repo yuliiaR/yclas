@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <?= FORM::label($forms['ads_in_home']['key'], __('Advertisements in home'), array('class'=>'control-label col-sm-3', 'for'=>$forms['ads_in_home']['key']))?>
+                <?= FORM::label($forms['ads_in_home']['key'], "<a target='_blank' href='http://open-classifieds.com/2014/04/04/manage-ads-slider/'>".__('Advertisements in home')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['ads_in_home']['key']))?>
                 <div class="col-sm-4">
                     <?= FORM::select($forms['ads_in_home']['key'], array(0=>__('Latest Ads'),1=>__('Featured Ads'),4=>__('Featured Ads Random'),2=>__('Popular Ads last month'),3=>__('None')), $forms['ads_in_home']['value'], array(
                     'placeholder' => $forms['ads_in_home']['value'], 
@@ -101,7 +101,7 @@
 
             <h2><?=__("Publish Options")?></h2>
             <div class="form-group">
-                <?= FORM::label($forms['login_to_post']['key'], __('Require login to post'), array('class'=>'control-label col-sm-3', 'for'=>$forms['login_to_post']['key']))?>
+                <?= FORM::label($forms['login_to_post']['key'], "<a target='_blank' href='http://open-classifieds.com/2014/05/30/force-registration-posting-new-ad/'>".__('Require login to post')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['login_to_post']['key']))?>
                 <div class="col-sm-4">
                     <div class="onoffswitch">
                         <?= FORM::hidden($forms['login_to_post']['key'], 0);?>
@@ -450,12 +450,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <?= FORM::label($forms['fbcomments']['key'], __('Facebook comments'), array('class'=>'control-label col-sm-3', 'for'=>$forms['fbcomments']['key']))?>
+                <?= FORM::label($forms['fbcomments']['key'], "<a target='_blank' href='http://open-classifieds.com/2014/05/06/add-facebook-comments/'>".__('Facebook comments')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['fbcomments']['key']))?>
                 <div class="col-sm-4">
                     <?= FORM::input($forms['fbcomments']['key'], $forms['fbcomments']['value'], array(
                     'placeholder' => "", 
                     'class' => 'tips form-control', 
-                    'id' => $forms['disqus']['key'], 
+                    'id' => $forms['fbcomments']['key'], 
                     'data-original-title'=> __("Facebook Comments"),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
@@ -465,7 +465,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <?= FORM::label($forms['disqus']['key'], __('Disqus'), array('class'=>'control-label col-sm-3', 'for'=>$forms['disqus']['key']))?>
+                <?= FORM::label($forms['disqus']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/12/07/how-to-activate-comments-with-disqus/'>".__('Disqus')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['disqus']['key']))?>
                 <div class="col-sm-4">
                     <?= FORM::input($forms['disqus']['key'], $forms['disqus']['value'], array(
                     'placeholder' => "", 

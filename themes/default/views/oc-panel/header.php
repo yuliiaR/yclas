@@ -51,8 +51,12 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="<?=Route::url('default')?>">
-                                <i class="  glyphicon-home glyphicon"></i>
-                            <?=_('Go to Your Website')?>
+                            <i class="glyphicon-home glyphicon"></i>
+                            <?if (Auth::instance()->get_user()->id_role != Model_Role::ROLE_USER):?>
+	                            <?=__('Go to Your Website')?>
+                            <?else:?>
+	                            <?=__('Go to Website')?>
+                            <?endif?>
                         </a>
                     </li>
                 </ul>

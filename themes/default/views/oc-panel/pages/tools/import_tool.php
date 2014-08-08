@@ -2,6 +2,7 @@
 
 <div class="page-header">
     <h1><?=__('Import tool for locations and categories')?></h1>
+	<p><a href="http://open-classifieds.com/2014/06/06/use-import-tool-categories-locations/" target="_blank"><?=__('Read more')?></a></p>
 </div>
 <div class="well">
     <span class="label label-info"><?=__('Heads Up!')?></span> 
