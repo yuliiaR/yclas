@@ -39,6 +39,11 @@ function init_panel()
         placeholder_text_single: getChosenLocalization("placeholder_text_single"),
         width: "100%"
         });
+    $('select').each(function(){
+        if($(this).hasClass('disable-chosen')){
+            $(this).chosen('destroy');      
+        } 
+    });
     
     $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
     
