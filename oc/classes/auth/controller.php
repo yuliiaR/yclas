@@ -134,6 +134,7 @@ class Auth_Controller extends Controller
     												  'js/bootstrap.min.js', 
     											      'js/chosen.jquery.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
+    											      'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
     			}
@@ -170,6 +171,7 @@ class Auth_Controller extends Controller
     											      'http://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
                                                       'js/jquery.loadingbar.min.js',
+                                                      'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
     	        }
