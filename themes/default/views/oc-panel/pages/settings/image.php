@@ -146,7 +146,7 @@
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['watermark']['key'], 1, (bool) $forms['watermark']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
+                    'placeholder' => __("TRUE or FALSE"), 
                     'class' => 'onoffswitch-checkbox', 
                     'id' => $forms['watermark']['id'], 
                     'data-content'=> __("Appends watermark to images"),

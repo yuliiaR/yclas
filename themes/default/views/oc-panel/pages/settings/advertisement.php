@@ -559,7 +559,7 @@
                 <div class="onoffswitch">
                     <?= FORM::hidden($forms['reviews_paid']['key'], 0);?>
                     <?= Form::checkbox($forms['reviews_paid']['key'], 1, (bool) $forms['reviews_paid']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
+                    'placeholder' => __("TRUE or FALSE"), 
                     'class' => 'onoffswitch-checkbox', 
                     'id' => $forms['reviews_paid']['key'], 
                     'data-content'=> __("You need to enable paypal link to allow only reviews on purchases."),
