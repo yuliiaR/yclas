@@ -12,7 +12,7 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th">
-                                    </span> <span class="title-txt">Classifieds</span></a>
+                                    </span> <span class="title-txt"><?=__('Classifieds')?></span></a>
                                 </h4>
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse">

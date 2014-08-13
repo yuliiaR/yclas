@@ -97,7 +97,7 @@
                     <div class="col-sm-4">
                         <div class="onoffswitch">
                             <?= FORM::checkbox($forms['to_top']['key'], 1, (bool) $forms['to_top']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
+                            'placeholder' => __("TRUE or FALSE"), 
                             'class' => 'onoffswitch-checkbox', 
                             'id' => $forms['to_top']['key'],
                             'data-content'=> '',
@@ -170,7 +170,7 @@
                         <div class="onoffswitch">
                             <?= FORM::hidden($forms['sandbox']['key'], 0);?>
                             <?= Form::checkbox($forms['sandbox']['key'], 1, (bool) $forms['sandbox']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
+                            'placeholder' => __("TRUE or FALSE"), 
                             'class' => 'onoffswitch-checkbox', 
                             'id' => $forms['sandbox']['key'],
                             'data-content'=> '',
@@ -190,7 +190,7 @@
                         <div class="onoffswitch">
                             <?= FORM::hidden($forms['paypal_seller']['key'], 0);?>
                             <?= Form::checkbox($forms['paypal_seller']['key'], 1, (bool) $forms['paypal_seller']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
+                            'placeholder' => __("TRUE or FALSE"), 
                             'class' => 'onoffswitch-checkbox', 
                             'id' => $forms['paypal_seller']['key'],
                             'data-content'=> '',
@@ -209,7 +209,7 @@
                         <div class="onoffswitch">
                             <?= FORM::hidden($forms['stock']['key'], 0);?>
                             <?= Form::checkbox($forms['stock']['key'], 1, (bool) $forms['stock']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
+                            'placeholder' => __("TRUE or FALSE"), 
                             'class' => 'onoffswitch-checkbox', 
                             'id' => $forms['stock']['key'],
                             'data-content'=> '',
@@ -237,7 +237,7 @@
                     <div class="col-sm-4">
                         <div class="onoffswitch">
                             <?= Form::checkbox($forms['authorize_sandbox']['key'], 1, (bool) $forms['authorize_sandbox']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
+                            'placeholder' => __("TRUE or FALSE"), 
                             'class' => 'onoffswitch-checkbox', 
                             'id' => $forms['authorize_sandbox']['key'],
                             'data-content'=> '',
@@ -372,7 +372,7 @@
                     <div class="col-md-5">
                         <div class="onoffswitch">
                             <?= Form::checkbox($forms['stripe_address']['key'], 1, (bool) $forms['stripe_address']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
+                            'placeholder' => __("TRUE or FALSE"), 
                             'class' => 'onoffswitch-checkbox', 
                             'id' => $forms['stripe_address']['key'], 
                             'data-content'=> '',

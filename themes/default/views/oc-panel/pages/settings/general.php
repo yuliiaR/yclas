@@ -21,7 +21,7 @@
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['maintenance']['key'], 1, (bool) $forms['maintenance']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
+                    'placeholder' => __("TRUE or FALSE"), 
                     'class' => 'onoffswitch-checkbox', 
                     'id' => $forms['maintenance']['id'], 
                     'data-content'=> __("Enables the site to maintenance"),
@@ -205,7 +205,7 @@
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['blog']['key'], 1, (bool) $forms['blog']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
+                    'placeholder' => __("TRUE or FALSE"), 
                     'class' => 'onoffswitch-checkbox', 
                     'id' => $forms['blog']['id'], 
                     'data-content'=> __("Once set to TRUE, enables blog posts"),
@@ -224,7 +224,7 @@
             <div class="col-md-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['forums']['key'], 1, (bool) $forms['forums']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
+                    'placeholder' => __("TRUE or FALSE"), 
                     'class' => 'onoffswitch-checkbox', 
                     'id' => $forms['forums']['id'], 
                     'data-content'=> __("Once set to TRUE, enables forums posts"),
@@ -243,7 +243,7 @@
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['faq']['key'], 1, (bool) $forms['faq']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
+                    'placeholder' => __("TRUE or FALSE"), 
                     'class' => 'onoffswitch-checkbox', 
                     'id' => $forms['faq']['id'], 
                     'data-content'=> __("Once set to TRUE, enables FAQ"),
@@ -263,7 +263,7 @@
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['minify']['key'], 1, (bool) $forms['minify']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
+                    'placeholder' => __("TRUE or FALSE"), 
                     'class' => 'onoffswitch-checkbox', 
                     'id' => $forms['minify']['id'], 
                     'data-content'=> __("Once set to TRUE, enables minify CSS and JS to speed up your site"),
@@ -283,7 +283,7 @@
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['black_list']['key'], 1, (bool) $forms['black_list']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
+                    'placeholder' => __("TRUE or FALSE"), 
                     'class' => 'onoffswitch-checkbox', 
                     'id' => $forms['black_list']['id'], 
                     'data-content'=> __("If advertisement is marked as spam, user is also marked to be spammer. Next time is not able to publish new advertisement. Until removed from Black List!"),
@@ -303,7 +303,7 @@
             <div class="col-sm-4">
                 <div class="onoffswitch">
                     <?= Form::checkbox($forms['search_by_description']['key'], 1, (bool) $forms['search_by_description']['value'], array(
-                    'placeholder' => "TRUE or FALSE", 
+                    'placeholder' => __("TRUE or FALSE"), 
                     'class' => 'onoffswitch-checkbox', 
                     'id' => $forms['search_by_description']['id'], 
                     'data-content'=> __("Once set to TRUE, enables search to look for key words in description"),

@@ -20,7 +20,7 @@
           	<td><?=$user->name?></td>
           	<td><?=$user->email?></td>
           	<td><a href="<?=Route::url('oc-panel', array('controller'=>'pool','action'=>'remove','id'=>$user->id_user))?>" 
-          		   class="btn btn-info">Remove</a></td>
+          		   class="btn btn-info"><?=__('Remove')?></a></td>
         </tr>
         <?endforeach?>
     </tbody>

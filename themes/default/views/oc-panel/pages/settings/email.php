@@ -37,7 +37,7 @@
 						<div class="onoffswitch">
 							<?= FORM::hidden($forms['new_ad_notify']['key'], 0);?>
 							<?= Form::checkbox($forms['new_ad_notify']['key'], 1, (bool) $forms['new_ad_notify']['value'], array(
-							'placeholder' => "TRUE or FALSE", 
+							'placeholder' => __("TRUE or FALSE"), 
 							'class' => 'onoffswitch-checkbox', 
 							'id' => $forms['new_ad_notify']['key'], 
 							'data-content'=> '',
@@ -52,7 +52,7 @@
 				</div>
 
                 <hr>
-                <h2>ElasticEmail Configuration</h2>
+                <h2><?=__("ElasticEmail Configuration")?></h2>
                 <div class="form-group">
                     <div class="col-sm-4">
                         <a class="btn btn-success" href="http://j.mp/elasticemailoc" target="_blank" onclick='setCookie("elastic_alert",1,365)' >Sign Up ElasticEmail $5 Free</a>
@@ -64,7 +64,7 @@
                         <div class="onoffswitch">
                             <?= FORM::hidden($forms['elastic_active']['key'], 0);?>
                             <?= Form::checkbox($forms['elastic_active']['key'], 1, (bool) $forms['elastic_active']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
+                            'placeholder' => __("TRUE or FALSE"), 
                             'class' => 'onoffswitch-checkbox', 
                             'id' => $forms['elastic_active']['key'], 
                             'data-content'=> '',
@@ -109,14 +109,14 @@
                 </div>
 
                 <hr>
-                <h2>SMTP Configuration</h2>
+                <h2><?=__("SMTP Configuration")?></h2>
 				<div class="form-group">
                     <?= FORM::label($forms['smtp_active']['key'], __('Smtp active'), array('class'=>'control-label col-sm-3', 'for'=>$forms['smtp_active']['key']))?>
                     <div class="col-sm-4">
                         <div class="onoffswitch">
                             <?= FORM::hidden($forms['smtp_active']['key'], 0);?>
                             <?= Form::checkbox($forms['smtp_active']['key'], 1, (bool) $forms['smtp_active']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
+                            'placeholder' => __("TRUE or FALSE"), 
                             'class' => 'onoffswitch-checkbox', 
                             'id' => $forms['smtp_active']['key'], 
                             'data-content'=> '',
@@ -135,7 +135,7 @@
                         <div class="onoffswitch">
                             <?= FORM::hidden($forms['smtp_ssl']['key'], 0);?>
                             <?= Form::checkbox($forms['smtp_ssl']['key'], 1, (bool) $forms['smtp_ssl']['value'], array(
-                            'placeholder' => "TRUE or FALSE", 
+                            'placeholder' => __("TRUE or FALSE"), 
                             'class' => 'onoffswitch-checkbox', 
                             'id' => $forms['smtp_ssl']['key'], 
                             'data-content'=> '',

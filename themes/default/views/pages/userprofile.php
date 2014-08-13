@@ -106,7 +106,7 @@
 		<?endif?>
 		
 			<h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>"><?=$ads->title?></a></h4>
-			<p><strong>Description: </strong><?=Text::removebbcode($ads->description)?><p>
+			<p><strong><?=__('Description')?>: </strong><?=Text::removebbcode($ads->description)?><p>
 			<p><b><?=__('Publish Date');?>:</b> <?= Date::format($ads->published, core::config('general.date_format'))?><p>
 		
 
