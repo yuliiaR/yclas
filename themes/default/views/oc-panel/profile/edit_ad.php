@@ -121,7 +121,7 @@
 					<div class="location_chained hide">
 						<label for="location"><span class="pull-left"><?=__('Location')?></span>
 							<span class="label label-warning ml-10"></span>
-							<input value="<?=$ad->id_category?>" class="invisible pull-left" id="location-selected" name="location" style="height: 0; padding:0; width:0;" required></input>
+							<input value="<?=$ad->id_location?>" class="invisible pull-left" id="location-selected" name="location" style="height: 0; padding:0; width:0;" required></input>
 						</label>
 
 						<div class="form-group">
