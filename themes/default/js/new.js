@@ -181,3 +181,16 @@ $('.category_edit a').click(function(){
 			}
 		});
     });
+	
+    //sure you want to leave alert
+	$(function(){
+		$('#publish-new').data('serialize',$('#publish-new').serialize());
+		$("#publish-new-btn").click(function(){
+			$(this).data('clicked', true);
+		});
+		$(window).bind('beforeunload', function(){
+			if($('#publish-new').serialize()!=$('#publish-new').data('serialize') && !$('#publish-new-btn').data('clicked') ) {
+				return 'It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost.';
+			}
+		});
+    });
