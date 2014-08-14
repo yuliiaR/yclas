@@ -60,7 +60,6 @@
         <?endif?>
         
         <?if ($order->id_product!==Model_Order::PRODUCT_AD_SELL):?>
-        <?=Controller_Authorize::form($order)?>
         <div class="pull-right">
             <?=$order->alternative_pay_button()?>
         </div>
