@@ -12,7 +12,13 @@ class Controller_New extends Controller
 	 */
 	public function action_index()
 	{
-
+        //Detect early spam users, show him alert
+        if (core::config('general.black_list') == TRUE AND Model_User::is_spam(Core::post('email')) === TRUE)
+        {
+            Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
+            $this->redirect('default');
+        }
+        
 		//template header
 		$this->template->title           	= __('Publish new advertisement');
 		$this->template->meta_description	= __('Publish new advertisement');
@@ -72,14 +78,6 @@ class Controller_New extends Controller
 						   'address'	=>core::config('advertisement.address'),
 						   'price'		=>core::config('advertisement.price'));
 		
-		//Detect early spam users, show him alert
-		$auth_user = Auth::instance();
-		if(core::config('general.black_list') AND 
-		   	$auth_user->logged_in() AND $auth_user->get_user()->status == Model_User::STATUS_SPAM)
-		{
-			Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
-			$this->redirect('default');
-		}
 		
 		$id_category = NULL;
         $selected_category = new Model_Category();
@@ -267,16 +265,6 @@ class Controller_New extends Controller
                 $user_id    = $user->id_user;
                 $name       = $user->name;
                 $email      = $user->email;
-				
-				//Do not allow posting! Case where we detect spam user, that are not logged in. 
-				if(core::config('general.black_list'))
-				{
-					if(!$user->loaded() AND $user->is_spam($email))
-					{
-						Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
-						$this->redirect('default');	
-					}
-				}
 
 				// SAVE AD
 				$new_ad->id_user = $user_id; // after handling user
