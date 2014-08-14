@@ -30,7 +30,7 @@ class Controller_New extends Controller
 	        $this->template->scripts['footer'][] = 'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
 	        $this->template->scripts['footer'][] = 'http://cdn.jsdelivr.net/gmaps/0.4.4/gmaps.js';
         }
-        $this->template->scripts['footer'][] = 'js/new.js';
+        $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
 
         // redirect to login, if conditions are met 
         if(core::config('advertisement.login_to_post') == TRUE AND !Auth::instance()->logged_in())
