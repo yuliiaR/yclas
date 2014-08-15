@@ -58,8 +58,7 @@ function doneTyping () {
         function(value, element, regexp) {
             var re = new RegExp(regexp);
             return this.optional(element) || re.test(value);
-        },
-        "Please check your input."
+        }
     );
 
     // some extra rules for custom fields
@@ -70,12 +69,12 @@ function doneTyping () {
     
     var $params = {rules:{}, messages:{}};
     $params['rules'][$integer] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
-    $params['messages'][$integer] = "Format is incorect";
     $params['rules'][$decimal] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
-    $params['messages'][$decimal] = "Format is incorect";
     $params['rules']['price'] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
-    $params['messages']['price'] = "Format is incorect";
-    $params['rules']['website'] = {url: true};
+    $params['rules']['title'] = {maxlength: 145};
+    $params['rules']['address'] = {maxlength: 145};
+    $params['rules']['phone'] = {maxlength: 30};
+    $params['rules']['website'] = {url: true, maxlength: 200};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
     var $form = $(".post_new");
