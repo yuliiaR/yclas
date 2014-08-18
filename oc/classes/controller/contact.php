@@ -144,7 +144,9 @@ class Controller_Contact extends Controller {
             }
 			else
 			{
-				Alert::set(Alert::ERROR, __('You made some mistake'));
+				Alert::set(Alert::ERROR, __('Captcha is not correct'));
+				
+				HTTP::redirect(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
 			}
 		}
 	
@@ -195,7 +197,7 @@ class Controller_Contact extends Controller {
 
             }
             else
-                Alert::set(Alert::ERROR, __('You made some mistake'));
+                Alert::set(Alert::ERROR, __('Captcha is not correct'));
 
             HTTP::redirect(Route::url('profile',array('seoname'=>$user->seoname)));
         }
