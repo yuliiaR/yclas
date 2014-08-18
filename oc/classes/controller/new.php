@@ -429,7 +429,12 @@ class Controller_New extends Controller
                                         $replace);
                 }
 
-                $this->redirect(Route::url('default'));
+                //if post directly redirect him to the ad
+                if ($moderation == Model_Ad::POST_DIRECTLY)
+                    $this->redirect(Route::url('ad', array('controller'=>'ad','category'=>$new_ad->category->seoname,'seotitle'=>$new_ad->seotitle)));
+                else
+                    $this->redirect(Route::url('default'));
+                
 
 			}//captcha
 			else
