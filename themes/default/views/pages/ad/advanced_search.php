@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?=Form::errors()?>
 <div class="well recomentadion clearfix">
+    <h1><?=__('Search')?></h1>
     <?= FORM::open(Route::url('search'), array('class'=>'form-inline', 'method'=>'GET', 'action'=>''))?>
         <fieldset>
          

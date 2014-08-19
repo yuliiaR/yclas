@@ -1,7 +1,4 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="page-header">
-    <h1><?=core::config('general.site_name')?></h1>
-</div>
 <?if(core::config('advertisement.ads_in_home') != 3):?>
 <div class="well row">
     <?if(core::config('advertisement.ads_in_home') == 0):?>
