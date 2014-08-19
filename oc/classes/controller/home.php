@@ -8,7 +8,10 @@ class Controller_Home extends Controller {
 	    //template header
 	    $this->template->title            = '';
 	    // $this->template->meta_keywords    = 'keywords';
-	    $this->template->meta_description = Core::config('general.site_description');
+	    if(core::config('general.site_description') != '')
+			$this->template->meta_description = core::config('general.site_description');		    
+	    else 
+			$this->template->meta_description = core::config('general.site_name').' '.__('official homepage, get your post listed now.');		    
 
 	    //setting main view/template and render pages  
 

@@ -54,9 +54,24 @@ class Controller_Ad extends Controller {
         
         //base title
         if ($category!==NULL)
+        {
             $this->template->title = $category_name;
+            if ($category->description != '') 
+				$this->template->meta_description = $category->description;	            
+            else 
+				$this->template->meta_description = __('All').' '.$category_name.' '.__('in').' '.core::config('general.site_name');
+		}	            
         else
-            $this->template->title = __('all');
+        {
+			$this->template->title = __('all');
+			if ($location!==NULL)
+				if ($location->description != '')
+					$this->template->meta_description = $location->description;
+				else
+					$this->template->meta_description = __('List of all postings in').' '.$location_name;
+			else
+				$this->template->meta_description = __('List of all postings in').' '.core::config('general.site_name');
+        }
 
         //adding location titles and breadcrumbs
         if ($location!==NULL)
@@ -342,7 +357,7 @@ class Controller_Ad extends Controller {
 				Breadcrumbs::add(Breadcrumb::factory()->set_title($ad->title));   	
 
 				
-                $this->template->meta_description = text::removebbcode($ad->description);
+                $this->template->meta_description = $ad->title.' '.__('in').' '.$category->name.' '.__('on').' '.core::config('general.site_name');
 
 				$permission = TRUE; //permission to add hit to advert and give access rights. 
 				$auth_user = Auth::instance();
@@ -767,7 +782,7 @@ class Controller_Ad extends Controller {
 	{
 		//template header
 		$this->template->title           	= __('Advanced Search');
-		$this->template->meta_description	= __('Advanced Search');
+		$this->template->meta_description	= __('Search in').' '.core::config('general.site_name');
 
 		//breadcrumbs
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));

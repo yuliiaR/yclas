@@ -1,4 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+<div class="page-header">
+    <h1><?=core::config('general.site_name')?></h1>
+</div>
 <?if(core::config('advertisement.ads_in_home') != 3):?>
 <div class="well row">
     <?if(core::config('advertisement.ads_in_home') == 0):?>
@@ -18,11 +21,11 @@
                     <img src="<?=URL::base()?><?=$ad->get_first_image()?>" >
                 <?else:?>
                     <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" >
+                                <img src="<?=$icon_src?>" alt="<?=$ad->title?>" >
                     <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" >
+                                <img src="<?=$icon_src?>" alt="<?=$ad->title?>" >
                             <?else:?>
-                                <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"> 
+                                <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>" alt="<?=$ad->title?>"> 
                             <?endif?> 
                 <?endif?>
                 </a>
