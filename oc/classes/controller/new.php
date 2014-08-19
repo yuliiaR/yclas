@@ -133,7 +133,12 @@ class Controller_New extends Controller
                 ->rule('description', 'min_length', array(':value', 5))
     
                 ->rule('category', 'not_empty')
-                ->rule('category', 'numeric');
+                ->rule('category', 'numeric')
+
+                ->rule('price', 'numeric')
+                ->rule('address', 'max_length', array(':value', 145))
+                ->rule('phone', 'max_length', array(':value', 30))
+                ->rule('website', 'max_length', array(':value', 200));
 
             if(!Auth::instance()->logged_in())
     		{
@@ -156,15 +161,15 @@ class Controller_New extends Controller
         	{       
 
 	            // $_POST array with all fields 
-	            $data = array(  'title'         => $title       =   $this->request->post('title'),
-	                            'cat'           => $cat         =   $this->request->post('category'),
-	                            'loc'           => $loc         =   $this->request->post('location'),
-	                            'description'   => $description =   $this->request->post('description'),
-	                            'price'         => $price       =   $this->request->post('price'),
-	                            'address'       => $address     =   $this->request->post('address'),
-	                            'phone'         => $phone       =   $this->request->post('phone'),
-	                            'website'       => $website     =   $this->request->post('website'),
-	                            'stock'       	=> $stock     	=   $this->request->post('stock')
+	            $data = array(  'title'         => $title       =   Core::post('title'),
+	                            'cat'           => $cat         =   Core::post('category'),
+	                            'loc'           => $loc         =   Core::post('location'),
+	                            'description'   => $description =   Core::post('description'),
+	                            'price'         => $price       =   Core::post('price'),
+	                            'address'       => $address     =   Core::post('address'),
+	                            'phone'         => $phone       =   Core::post('phone'),
+	                            'website'       => $website     =   Core::post('website'),
+	                            'stock'       	=> $stock     	=   Core::post('stock')
 	                            ); 
 	            
 	            // append to $data new custom values
@@ -424,7 +429,12 @@ class Controller_New extends Controller
                                         $replace);
                 }
 
-                $this->redirect(Route::url('default'));
+                //if post directly redirect him to the ad
+                if ($moderation == Model_Ad::POST_DIRECTLY)
+                    $this->redirect(Route::url('ad', array('controller'=>'ad','category'=>$new_ad->category->seoname,'seotitle'=>$new_ad->seotitle)));
+                else
+                    $this->redirect(Route::url('default'));
+                
 
 			}//captcha
 			else
