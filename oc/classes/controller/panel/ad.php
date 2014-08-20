@@ -167,7 +167,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 		$param_current_url = Core::get('current_url');
 		
-		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
@@ -214,7 +214,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is marked as spam'));
 		
-		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
@@ -258,7 +258,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
 		
-		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
@@ -317,7 +317,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
 			
-		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
@@ -358,7 +358,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			}
 		}
 
-		if ($query['status'] == Model_Ad::STATUS_NOPUBLISHED)
+		if ($query['status'] == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status) )
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($query['status'] == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
@@ -401,7 +401,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is featured'));
 		
-		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
@@ -428,7 +428,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is to top'));
 		
-		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED)
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status) )
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));

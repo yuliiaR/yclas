@@ -19,9 +19,7 @@
                                 <div class="panel-body">
                                     <table class="table">
                                         <tr><td><?=Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','glyphicon glyphicon-align-right')?></td></tr>
-                                        <? if(core::config('general.moderation') == 1 OR // moderation on  
-                                              core::config('general.moderation') == 4 OR // email confiramtion with moderation
-                                              core::config('general.moderation') == 5):  // payment with moderation?>
+                                        <? if( in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  ):  // payment with moderation?>
                                             <tr><td><?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','glyphicon glyphicon-ban-circle')?></td></tr>   
                                         <? endif?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Categories'),'category','index','oc-panel','glyphicon  glyphicon-tags')?></td></tr>

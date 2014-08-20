@@ -63,6 +63,10 @@ class Model_Ad extends ORM {
     const EMAIL_MODERATION      = 4; // sends email to confirm, but admin needs also to validate
     const PAYMENT_MODERATION    = 5; // even after payment, admin still needs to validate
     
+    //this are the moderation statuses that makes moderation link appear
+    public static $moderation_status = array(self::MODERATION_ON,
+                                            self::EMAIL_MODERATION , 
+                                            self::PAYMENT_MODERATION);
     /**
      * Rule definitions for validation
      *
