@@ -285,6 +285,24 @@ class Controller_Panel_Location extends Auth_Crud {
 		
 		$location = new Model_Location($this->request->param('id'));
         
+        if(core::post('icon_delete'))
+        {            
+            $root = DOCROOT.'images/locations/'; //root folder
+            
+            if (!is_dir($root)) 
+            {
+                return FALSE;
+            }
+            else
+            {	
+                //delete icon
+                unlink($root.$location->seoname.'.png');
+                
+                Alert::set(Alert::SUCCESS, __('Icon deleted.'));
+                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
+            }
+        }// end of icon delete
+
         if ( 
             ! Upload::valid($icon) OR
             ! Upload::not_empty($icon) OR
