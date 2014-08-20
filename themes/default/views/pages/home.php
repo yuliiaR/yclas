@@ -13,7 +13,7 @@
         foreach($ads as $ad):?>
         <div class="col-md-3">
             <div class="thumbnail latest_ads">
-                <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+                <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"  class="min-h">
                 <?if($ad->get_first_image()!== NULL):?>
                     <img src="<?=URL::base()?><?=$ad->get_first_image()?>" >
                 <?else:?>
