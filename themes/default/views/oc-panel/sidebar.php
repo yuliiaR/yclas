@@ -79,8 +79,6 @@
                                         <?endif?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','glyphicon glyphicon-move')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Menu'), 'menu','index','oc-panel','glyphicon glyphicon-list')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Custom Fields'), 'fields','index','oc-panel','glyphicon  glyphicon-plus-sign')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Social Auth'), 'social','index','oc-panel','glyphicon glyphicon-thumbs-up')?></td></tr>
                                     </table>
                                 </div>
                             </div>
@@ -101,7 +99,8 @@
                                         <tr><td class="br"><?=Theme::admin_link(__('Email'), 'settings','email')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Images'), 'settings','image')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Advertisement'), 'settings','form')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Custom Fields'), 'fields','index','oc-panel')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Custom Fields'), 'fields','index','oc-panel','glyphicon  glyphicon-plus-sign')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Social Auth'), 'social','index','oc-panel','glyphicon glyphicon-thumbs-up')?></td></tr>
                                     </table>
                                 </div>
                             </div>
