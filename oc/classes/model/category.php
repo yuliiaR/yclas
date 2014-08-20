@@ -267,75 +267,75 @@ class Model_Category extends ORM {
         return array($cats_arr,$cats_m, $cats_parent_deep);
     }
 
+    /**
+     * counts how many ads have each category
+     * @return array
+     */
+    public static function get_category_count()
+    {
+        $expr_date = core::config('advertisement.expire_date');
+        $db_prefix = core::config('database.default.table_prefix');
 
-	/**
-	 * counts how many ads have each category
-	 * @return array
-	 */
-	public static function get_category_count()
-	{
-        if ( ($cats_count = Core::cache('cats_count'))===NULL)
-        {
-
-            $expr_date = core::config('advertisement.expire_date');
-            $db_prefix = core::config('database.default.table_prefix');
-
-            //getting categories and how many ads have a category.
-            $cats = DB::select('c.*')
-                    ->select(array(DB::select(DB::expr('COUNT("id_ad")'))
-                            ->from(array('ads','a'))
-                            ->where('a.id_category','=',DB::expr($db_prefix.'c.id_category'))
-                            ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', Date::unix2mysql())
-                            ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
-                            ->group_by('id_category'), 'count'))
+        //get the categories that have ads id_category->num ads
+        $count_ads = DB::select('c.id_category' , array(DB::expr('COUNT("a.id_ad")'),'count'))
                     ->from(array('categories', 'c'))
-                    ->order_by('order','asc')
-                    ->as_object()
+                    ->join(array('ads','a'))
+                    ->using('id_category')
+                        ->where('a.id_category','=',DB::expr($db_prefix.'c.id_category'))
+                        ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', Date::unix2mysql())
+                        ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
+                    ->group_by('c.id_category')
+                    ->order_by('c.order','asc')
                     ->cached()
                     ->execute();
+        $count_ads = $count_ads->as_array('id_category');
 
-            //array where we store the categories with the count
-            $cats_count = array();
+        //get all the categories ORM so we can use the functions, do not use root category
+        $categories = new self();
+        $categories = $categories->where('id_category','!=',1)->cached()->find_all();
 
-            //array to store parents_id with the count. So later we can easily add them up
-            $parent_count = array();
 
-            foreach ($cats as $c) 
+        //getting the count of ads into the parents
+        $parents_count = array();
+        foreach ($categories as $category) 
+        {
+            //this one has ads so lets add it to the parents
+            if (isset($count_ads[$category->id_category]))
             {
+                //adding himself if doesnt exists
+                if (!isset($parents_count[$category->id_category]))
+                    $parents_count[$category->id_category] = $count_ads[$category->id_category];
 
-                $cats_count[$c->id_category] = array(   'id_category'   => $c->id_category,
-                                                        'seoname'       => $c->seoname,
-                                                        'name'          => $c->name,
-                                                        'id_category_parent'        => $c->id_category_parent,
-                                                        'parent_deep'   => $c->parent_deep,
-                                                        'order'         => $c->order,
-                                                        'price'         => $c->price,
-                                                        'has_siblings'  => FALSE,
-                                                        'count'         => (is_numeric($c->count))?$c->count:0
-                                                        );
-                //counting the ads the parent have
-                if ($c->id_category_parent!=0)
+                //for each parent of this category add the count
+                foreach ($category->get_parents_ids() as $id ) 
                 {
-                    if (!isset($parent_count[$c->id_category_parent]))
-                        $parent_count[$c->id_category_parent] = 0;
-
-                    $parent_count[$c->id_category_parent]+=$c->count;
+                    if (isset($parents_count[$id]))
+                        $parents_count[$id]['count']+= $count_ads[$category->id_category]['count'];
+                    else
+                        $parents_count[$id]['count'] = $count_ads[$category->id_category]['count'];
                 }
-                
             }
+        }
 
-            foreach ($parent_count as $id_category => $count) 
-            {
-                //attaching the count to the parents so we know each parent how many ads have
-                $cats_count[$id_category]['count'] += $count;
-                $cats_count[$id_category]['has_siblings'] = TRUE;
-            }
+        //generating the array
+        $cats_count = array();
+        foreach ($categories as $category) 
+        {
+            $cats_count[$category->id_category] = array(   'id_category'   => $category->id_category,
+                                                            'seoname'       => $category->seoname,
+                                                            'name'          => $category->name,
+                                                            'id_category_parent'        => $category->id_category_parent,
+                                                            'parent_deep'   => $category->parent_deep,
+                                                            'order'         => $category->order,
+                                                            'price'         => $category->price,
+                                                            'has_siblings'  => isset($parents_count[$category->id_category]),
+                                                            'count'         => isset($parents_count[$category->id_category])?$parents_count[$category->id_category]['count']:0,
+                                                );
+        }
 
-            Core::cache('cats_count',$cats_count);
-        }  
-		
-		return $cats_count;
-	}
+        return $cats_count;
+    }
+
 
     /**
      * returns all the siblings ids+ the idcategory, used to filter the ads
@@ -376,6 +376,46 @@ class Model_Category extends ORM {
             }
 
             return $ids_siblings;
+        }
+
+        //not loaded
+        return NULL;
+    }
+
+
+    /**
+     * returns all the parents ids, used to count ads
+     * @return array
+     */
+    public function get_parents_ids()
+    {
+        if ($this->loaded())
+        {
+            //name used in the cache for storage
+            $cache_name = 'get_parents_ids_category_'.$this->id_category;
+
+            if ( ($ids_parents = Core::cache($cache_name))===NULL)
+            {
+                //array that contains all the parents as keys (1,2,3,4,..)
+                $ids_parents = array();
+
+                if ($this->id_category_parent!=1)
+                {
+                    //adding the parent only if loaded
+                    if ($this->parent->loaded())
+                    {
+                        $ids_parents[] = $this->parent->id_category;
+                        $ids_parents = array_merge($ids_parents,$this->parent->get_parents_ids()); //recursive 
+                    }
+                    //removing repeated values
+                    $ids_parents = array_unique($ids_parents);  
+                }
+
+                //cache the result is expensive!
+                Core::cache($cache_name,$ids_parents);
+            }
+
+            return $ids_parents;
         }
 
         //not loaded
