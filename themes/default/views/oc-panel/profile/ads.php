@@ -88,7 +88,7 @@
 					<i class="glyphicon glyphicon-remove"></i>
 				</a>
 				<?endif?>
-				<?if(($user->id_role == Model_Role::ROLE_ADMIN) OR (core::config('payment.to_top'))):?>
+				<?if( core::config('payment.to_top') ):?>
 					<a class="btn btn-info" 
 						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
 						onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
@@ -96,7 +96,7 @@
 						<i class="glyphicon glyphicon-circle-arrow-up"></i>
 					</a>
 				<?endif?>
-				<?if(($user->id_role == Model_Role::ROLE_ADMIN) OR (core::config('payment.to_featured'))):?>
+				<?if( core::config('payment.to_featured')):?>
 					<?if($ad->featured == NULL):?>
 					<a class="btn btn-default" 
 						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 

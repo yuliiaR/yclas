@@ -1,10 +1,17 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?if($widget->ad != FALSE):?>
-<div>			
+<div>		
+    <?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE):?>	
 	<a class="btn btn-danger center-block" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$widget->ad->id_ad))?>"><?=__('Go Top!')?> <?=i18n::money_format(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'))?></a>
+    <?endif?>
+    
+    <?if(core::config('payment.pay_to_go_on_feature') > 0 AND core::config('payment.to_featured') != FALSE):?>
 	<a class="btn btn-danger center-block" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$widget->ad->id_ad))?>"><?=__('Go Featured!')?> <?=i18n::money_format(core::config('payment.pay_to_go_on_feature'),core::config('payment.paypal_currency'))?></a>
-	<div class="clearfix"></div><br>
+	<?endif?>
+
+    <div class="clearfix"></div><br>
+
 	<a class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$widget->ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a> 
     <a class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$widget->ad->id_ad))?>" 
         onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i><?=__("Deactivate");?>
