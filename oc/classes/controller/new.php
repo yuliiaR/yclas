@@ -398,7 +398,7 @@ class Controller_New extends Controller
                     case Model_Ad::POST_DIRECTLY:
                     default:
                             $url_cont = $user->ql('contact', array(),TRUE);
-                            $url_ad = $user->ql('ad', array('category'=>$data['cat'],
+                            $url_ad = $user->ql('ad', array('category'=>$new_ad->category->seoname,
                                                             'seotitle'=>$seotitle), TRUE);
 
                             $user->email('ads-user-check',array('[URL.CONTACT]'  =>$url_cont,
@@ -416,7 +416,7 @@ class Controller_New extends Controller
                 // new ad notification email to admin (notify_email), if set to TRUE 
                 if(core::config('email.new_ad_notify') == TRUE)
                 {
-                    $url_ad = Route::url('ad', array('category'=>$data['cat'],'seotitle'=>$seotitle));
+                    $url_ad = Route::url('ad', array('category'=>$new_ad->category->seoname,'seotitle'=>$seotitle));
                     
                     $replace = array('[URL.AD]'        =>$url_ad,
                                      '[AD.TITLE]'      =>$new_ad->title);
