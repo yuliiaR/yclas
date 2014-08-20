@@ -15,6 +15,9 @@
 		<th><?=__('Location')?></th>
 		<th><?=__('Status')?></th>
 		<th><?=__('Date')?></th>
+        <?if( core::config('payment.to_featured')):?>
+        <th><?=__('Featured')?></th>
+        <?endif?>
 		<th></th>
 	</tr>
 	<? $i = 0; foreach($ads as $ad):?>
@@ -66,7 +69,31 @@
 
             </td>
 	    	
-	    	<td><?= substr($ad->created, 0, 11)?></td>
+	    	<td><?= Date::format($ad->created, core::config('general.date_format'))?></td>
+
+            <?if( core::config('payment.to_featured')):?>
+            <td>
+                <?if($ad->featured == NULL):?>
+                    <a class="btn btn-default" 
+                        href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 
+                        onclick="return confirm('<?=__('Make featured?')?>');"
+                        rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
+                        <i class="glyphicon glyphicon-bookmark "></i> <?=__('Featured')?>
+                    </a>
+                <?else:?>
+                    <?= Date::format($ad->featured, core::config('general.date_format'))?>
+                <?endif?>
+                <?if ($ad->featured != NULL AND $user->id_role == Model_Role::ROLE_ADMIN):?>
+                <a class="btn btn-info" 
+                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad))?>" 
+                    onclick="return confirm('<?=__('Deactivate featured?')?>');"
+                    rel="tooltip" title="<?=__('Deactivate featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to deactivate featured advertisement?')?>">
+                    <i class="glyphicon glyphicon-bookmark"></i>
+                </a>
+                <?endif?>
+            </td>
+            <?endif?>
+
 			<td>
 				<a class="btn btn-primary" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
@@ -95,23 +122,6 @@
 					    rel="tooltip" title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
 						<i class="glyphicon glyphicon-circle-arrow-up"></i>
 					</a>
-				<?endif?>
-				<?if( core::config('payment.to_featured')):?>
-					<?if($ad->featured == NULL):?>
-					<a class="btn btn-default" 
-						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 
-						onclick="return confirm('<?=__('Make featured?')?>');"
-					    rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
-						<i class="glyphicon glyphicon-bookmark "></i>
-					</a>
-					<?else:?>
-					<a class="btn btn-info" 
-						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad))?>" 
-						onclick="return confirm('<?=__('Deactivate featured?')?>');"
-					    rel="tooltip" title="<?=__('Deactivate featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to deactivate featured advertisement?')?>">
-						<i class="glyphicon glyphicon-bookmark"></i>
-					</a>
-					<?endif?>
 				<?endif?>
 			</td>
 		</tr>

@@ -97,7 +97,7 @@
             <?endif?>
             </td>
 
-            <td><?= substr($ad->created, 0, 11)?></td>
+            <td><?= Date::format($ad->created, core::config('general.date_format'))?></td>
              <td width="150" style="width:150px">
                 <a class="btn btn-success" 
                     href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 

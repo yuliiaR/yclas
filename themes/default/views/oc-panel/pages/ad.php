@@ -158,7 +158,7 @@
                 </a>
             <?endif?>
 	    	
-	    	<td><?= substr($ad->published, 0, 11)?></td>
+	    	<td><?= Date::format($ad->published, core::config('general.date_format'))?></td>
 			<td width="120" style="width:120px">
 				<a class="btn btn-primary ajax-load" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
