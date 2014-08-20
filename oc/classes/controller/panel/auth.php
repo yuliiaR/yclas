@@ -8,6 +8,7 @@ class Controller_Panel_Auth extends Controller {
      */
 	public function action_login()
 	{	    
+		$this->template->meta_description = __('Login to').' '.core::config('general.site_name');
 		
 	    //if user loged in redirect home
 	    if (Auth::instance()->logged_in())
@@ -65,6 +66,7 @@ class Controller_Panel_Auth extends Controller {
         //template header
         $this->template->title            = __('Remember password');
 		$this->template->content = View::factory('pages/auth/forgot');
+		$this->template->meta_description = __('Here you can reset your password if you forgot it.');
 		
 		//if user loged in redirect home
 		if (Auth::instance()->logged_in())
@@ -125,6 +127,7 @@ class Controller_Panel_Auth extends Controller {
 	 */
 	public function action_register()
 	{
+		$this->template->meta_description = __('Create a new profile at').' '.core::config('general.site_name');
 		$this->template->content = View::factory('pages/auth/register');
 		$this->template->content->msg = '';
 		

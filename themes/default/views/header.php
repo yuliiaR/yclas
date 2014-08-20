@@ -3,7 +3,7 @@
 
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="<?=Route::url('default')?>"><?=core::config('general.site_name')?></a>
+            <a class="navbar-brand" href="<?=Route::url('default')?>"><h1><?=core::config('general.site_name')?></h1></a>
         </div>
 
     	<?

@@ -18,11 +18,11 @@
                     <img src="<?=URL::base()?><?=$ad->get_first_image()?>" >
                 <?else:?>
                     <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" >
+                                <img src="<?=$icon_src?>" alt="<?=$ad->title?>" >
                     <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" >
+                                <img src="<?=$icon_src?>" alt="<?=$ad->title?>" >
                             <?else:?>
-                                <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>"> 
+                                <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>" alt="<?=$ad->title?>"> 
                             <?endif?> 
                 <?endif?>
                 </a>

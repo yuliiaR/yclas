@@ -163,6 +163,8 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 .favorite i {font-size:20px;color:#888888;}
 .favorite .remove-favorite i {color:#C9302C;}
 
+.navbar-brand h1 {font-size: 18px;line-height:20px; margin:0;}
+
 /*Media screens*/
 @media screen and (max-width: 1199px) {
 	.header-search{display: none;}

@@ -1,11 +1,21 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
      
 
+    <div class="page-header">
+        <?if ($category!==NULL):?>
+	       <h1><?=$category->name?></h1>
+        <?elseif ($location!==NULL):?>
+           <h1><?=$location->name?></h1>
+        <?else:?>
+           <h1><?=__('Listings')?></h1>
+	    <?endif?>
+	</div>
+
     <div class="well" id="recomentadion">
 
         <?if ($category!==NULL):?>
             <?if(( $icon_src = $category->get_icon() )!==FALSE ):?>
-                <img src="<?=$icon_src?>" class="img-responsive">
+                <img src="<?=$icon_src?>" class="img-responsive" alt="<?=$category->name?>">
             <?endif?>
             <p><?=$category->description?></p> 
             <i class="glyphicon glyphicon-pencil"></i> 
@@ -70,9 +80,9 @@
                             <?if($ad->get_first_image() !== NULL):?>
                                 <img src="<?=URL::base()?><?=$ad->get_first_image()?>">
                             <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" class="img-responsive" >
+                                <img src="<?=$icon_src?>" class="img-responsive" alt="<?= $ad->title;?>">
                             <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" class="img-responsive" >
+                                <img src="<?=$icon_src?>" class="img-responsive" alt="<?= $ad->title;?>">
                             <?else:?>
                                 <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>">
                             <?endif?>
