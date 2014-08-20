@@ -52,29 +52,41 @@
 				</div>
 				
 				<?if(count($locations) > 1 AND $form_show['location'] != FALSE):?>
-                    <label for="location"><span class="pull-left"><?=__('Location')?></span>
-						<span class="label label-warning ml-10"></span>
-						<input class="invisible pull-left" id="location-selected" name="location" value="<?=$id_location?>" style="height: 0; padding:0; width:0;" required></input>
-					</label>
-
-					<div class="form-group">
-						<?foreach ($loc_parent_deep as $level => $locat):?>
+					<!-- location select -->
+					<div class="location_edit <?=($id_location==NULL)?'hide':''?>">
+						<?if($id_location == NULL):?>
+							<label for="location"><?=__('Selected Location does not exists, please select another one!')?></label>
+						<?else:?>
+							<label for="location"><?=__('Selected Location')?>: <label for="location" class="selected-location"><?=$selected_location->name?></label></label>
+						<?endif?>
+						<br>
+						<a class=" btn btn-default"><?=__('Select another location')?></a>
+					</div>
+					<div class="location_chained <?=($id_location!=NULL)?'hide':''?>">
+	                    <label for="location"><span class="pull-left"><?=__('Location')?></span>
+							<span class="label label-warning ml-10"></span>
+							<input class="invisible pull-left" id="location-selected" name="location" value="<?=$id_location?>" style="height: 0; padding:0; width:0;" required></input>
+						</label>
+	
+						<div class="form-group">
+							<?foreach ($loc_parent_deep as $level => $locat):?>
+								<div class="col-md-4">
+								<select id="level-loc-<?=$level?>" data-level="<?=$level?>" 
+										class="disable-chosen location_chained_select form-control <?=($level != 0)?'hide':NULL?>">
+									<option value=""></option>
+									<?foreach ($locat as $l):?>
+										<?if($l['id']>1):?>
+										<option value="<?=$l['id']?>" class="<?=$l['id_location_parent']?>"><?=$l['name']?></option>
+										<?endif?>
+									<?endforeach?>
+								</select>
+								</div>
+							<?endforeach?>
+	
+							<div class="clearfix"></div>
 							<div class="col-md-4">
-							<select id="level-loc-<?=$level?>" data-level="<?=$level?>" 
-									class="disable-chosen location_chained_select form-control <?=($level != 0)?'hide':NULL?>">
-								<option value=""></option>
-								<?foreach ($locat as $l):?>
-									<?if($l['id']>1):?>
-									<option value="<?=$l['id']?>" class="<?=$l['id_location_parent']?>"><?=$l['name']?></option>
-									<?endif?>
-								<?endforeach?>
-							</select>
+								<label for="location"><?=__('Selected location')?>: <label for="location" class="selected-location"></label></label>  
 							</div>
-						<?endforeach?>
-
-						<div class="clearfix"></div>
-						<div class="col-md-4">
-							<label for="location"><?=__('Selected location')?>: <label for="location" class="selected-location"><?=$selected_location->name?></label></label>  
 						</div>
 					</div>
 				<?endif?>

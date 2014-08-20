@@ -162,8 +162,13 @@ function doneTyping () {
     });
 
     var categ_selected = $('.category_chained_select option:selected').attr('value');
-$('.category_edit a').click(function(){
+    $('.category_edit a').click(function(){
         $('.category_chained').removeClass('hide');
+        $(this).parent().hide();
+    });
+
+    $('.location_edit a').click(function(){
+        $('.location_chained').removeClass('hide');
         $(this).parent().hide();
     });
     
