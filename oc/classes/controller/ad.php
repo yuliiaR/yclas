@@ -449,6 +449,13 @@ class Controller_Ad extends Controller {
                         }                        
                     }
 
+                    //not allowing to review to yourself
+                    if ($user->id_user == $user->id_user)
+                    {
+                        Alert::set(Alert::ERROR, __('You can not review yourself.'));
+                        $this->redirect(Route::url('ad-review',array('seotitle'=>$ad->seotitle)));
+                    }
+
                     $review = new Model_Review();
                     $review->where('id_ad','=',$ad->id_ad)
                             ->where_open()
