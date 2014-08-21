@@ -27,10 +27,10 @@ class Controller_Panel_Location extends Auth_Crud {
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Locations')));
         $this->template->styles  = array('css/sortable.css' => 'screen', 
-                                         'http://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
+                                         'https://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/locations.js';
-        $this->template->scripts['footer'][] = 'http://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
+        $this->template->scripts['footer'][] = 'https://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
 
         $locs  = Model_Location::get_as_array();
         $order = Model_Location::get_multidimensional();
@@ -285,6 +285,24 @@ class Controller_Panel_Location extends Auth_Crud {
 		
 		$location = new Model_Location($this->request->param('id'));
         
+        if(core::post('icon_delete'))
+        {            
+            $root = DOCROOT.'images/locations/'; //root folder
+            
+            if (!is_dir($root)) 
+            {
+                return FALSE;
+            }
+            else
+            {	
+                //delete icon
+                unlink($root.$location->seoname.'.png');
+                
+                Alert::set(Alert::SUCCESS, __('Icon deleted.'));
+                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
+            }
+        }// end of icon delete
+
         if ( 
             ! Upload::valid($icon) OR
             ! Upload::not_empty($icon) OR
@@ -302,18 +320,15 @@ class Controller_Panel_Location extends Auth_Crud {
 				$this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
             }
             Alert::set(Alert::ALERT, $icon['name'].' '.__('Image is not valid. Please try again.'));
-            $this->redirect(Route::url('oc-panel',array('controller'=>'location','action'=>'update')));
+            $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
         }
         else
         {
             if($icon != NULL) // sanity check 
             {   
-                // saving/uploading zip file to dir.
+                // saving/uploading img file to dir.
                 $root = DOCROOT.'images/locations/'; //root folder
-            	$icon_name = $location->seoname.'.png';
-            	$width = core::config('image.width'); // @TODO dynamic !?
-            	$height = core::config('image.height');// @TODO dynamic !?
-            	$image_quality = core::config('image.quality');
+                $icon_name = $location->seoname.'.png';
                 
                 // if folder does not exist, try to make it
                	if ( ! file_exists($root) AND ! @mkdir($root, 0775, true)) { // mkdir not successful ?
@@ -322,14 +337,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 };
 
                 // save file to root folder, file, name, dir
-                if($file = Upload::save($icon, $icon_name, $root))
-                {
-	                // resize uploaded image 
-	                Image::factory($file)
-                        ->resize($width, $height, Image::AUTO)
-                        ->save($root.$icon_name,$image_quality);
-
-                }
+                Upload::save($icon, $icon_name, $root);
                 
                 Alert::set(Alert::SUCCESS, $icon['name'].' '.__('Icon is uploaded.'));
 				$this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
