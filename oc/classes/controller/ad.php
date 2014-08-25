@@ -55,7 +55,12 @@ class Controller_Ad extends Controller {
         //base title
         if ($category!==NULL)
         {
+            //category image
+            if(( $icon_src = $category->get_icon() )!==FALSE )
+                Controller::$image = $icon_src;
+
             $this->template->title = $category_name;
+
             if ($category->description != '') 
 				$this->template->meta_description = $category->description;	            
             else 
@@ -76,6 +81,10 @@ class Controller_Ad extends Controller {
         //adding location titles and breadcrumbs
         if ($location!==NULL)
         {
+            //in case we dont have the category image we use the location
+            if(( $icon_src = $location->get_icon() )!==FALSE AND Controller::$image===NULL)
+                Controller::$image = $icon_src;
+
             $this->template->title .= ' - '.$location->name;
 
             if ($location_parent!==NULL)
@@ -102,15 +111,12 @@ class Controller_Ad extends Controller {
                 Breadcrumbs::add(Breadcrumb::factory()->set_title($category_parent->name)
                     ->set_url(Route::url('list', array('category'=>$category_parent->seoname))));
             }
-                
             
             if ($category!==NULL)
                 Breadcrumbs::add(Breadcrumb::factory()->set_title($category->name)
                     ->set_url(Route::url('list', array('category'=>$category->seoname))));
         }
 
-
-    
 
         $data = $this->list_logic($category, $location);
    		
@@ -136,10 +142,6 @@ class Controller_Ad extends Controller {
         if ($category!==NULL)
         {
             $ads->where('id_category', 'in', $category->get_siblings_ids());
-
-            //category image
-            if(file_exists(DOCROOT.'images/categories/'.$category->seoname.'.png'))
-                    Controller::$image = URL::base().'images/categories/'.$category->seoname.'.png';
         }
 
         if ($location!==NULL)
