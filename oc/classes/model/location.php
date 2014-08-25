@@ -277,7 +277,7 @@ class Model_Location extends ORM {
     {
         if ( ($locs_count = Core::cache('locs_count'))===NULL)
         {
-            $expr_date = core::config('advertisement.expire_date');
+            $expr_date = (is_numeric(core::config('advertisement.expire_date')))?core::config('advertisement.expire_date'):0;
             $db_prefix = core::config('database.default.table_prefix');
 
             $locs = DB::select('l.*')

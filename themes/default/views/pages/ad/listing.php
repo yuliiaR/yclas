@@ -12,21 +12,22 @@
 	</div>
 
     <div class="well" id="recomentadion">
-
-        <?if ($category!==NULL):?>
-            <?if(( $icon_src = $category->get_icon() )!==FALSE ):?>
-                <img src="<?=$icon_src?>" class="img-responsive" alt="<?=$category->name?>">
-            <?endif?>
-            <p><?=$category->description?></p> 
-            <i class="glyphicon glyphicon-pencil"></i> 
-                <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>?category=<?=$category->seoname?>">
-                    <?=__('Publish new advertisement')?></a>
-        <?else:?>
-            <i class="glyphicon glyphicon-pencil"></i> <a title="<?=__('New Advertisement')?>" href="<?=Route::url('post_new')?>"><?=__('Publish new advertisement')?></a>
+        <?if (Controller::$image!==NULL):?>
+            <img src="<?=Controller::$image?>" class="img-responsive" alt="<?=Controller::$image?>">
         <?endif?>
 
+        <p>
+        <?if ($category!==NULL):?>
+            <?=$category->description?> 
+        <?elseif ($location!==NULL):?>
+            <?=$location->description?>
+        <?endif?>
+        </p>
 
+        <i class="glyphicon glyphicon-pencil"></i> <a title="<?=__('New Advertisement')?>" 
+            href="<?=Route::url('post_new')?>?category=<?=($category!==NULL)?$category->seoname:''?>&location=<?=($location!==NULL)?$location->seoname:''?>"><?=__('Publish new advertisement')?></a>
     </div><!--end of recomentadion-->
+
 <div class="btn-group pull-right">
     <button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
         <span class="glyphicon glyphicon-list-alt"></span><?=__('Sort')?> <span class="caret"></span>

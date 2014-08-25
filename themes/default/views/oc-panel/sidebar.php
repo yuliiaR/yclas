@@ -92,11 +92,11 @@
                             <div id="collapseSettings" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <table class="table">
-                                        <tr><td class="br"><?=Theme::admin_link(__('General'), 'settings','general')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Payment'), 'settings','payment')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Email'), 'settings','email')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Images'), 'settings','image')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Advertisement'), 'settings','form')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('General'), 'settings','general','oc-panel','glyphicon  glyphicon-dashboard')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Payment'), 'settings','payment','oc-panel','glyphicon  glyphicon-credit-card')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Email'), 'settings','email','oc-panel','glyphicon  glyphicon-envelope')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Images'), 'settings','image','oc-panel','glyphicon  glyphicon-picture')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Advertisement'), 'settings','form','oc-panel','glyphicon  glyphicon-edit')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Custom Fields'), 'fields','index','oc-panel','glyphicon  glyphicon-plus-sign')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Social Auth'), 'social','index','oc-panel','glyphicon glyphicon-thumbs-up')?></td></tr>
                                     </table>
@@ -115,8 +115,8 @@
                             <div id="collapseUser" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <table class="table no-hide">
-                                        <tr><td class="br"><?=Theme::admin_link(__('Users'),'user')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Roles'),'role')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Users'),'user','index','oc-panel','glyphicon  glyphicon-user')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Roles'),'role','index','oc-panel','glyphicon  glyphicon-retweet')?></td></tr>
                                        <?if(core::config('general.black_list')):?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Black list'),'pool','index','oc-panel','glyphicon  glyphicon-fire')?></td></tr>
                                         <?endif?>
