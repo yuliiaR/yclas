@@ -531,7 +531,7 @@
             </div>
 
         <hr>
-        <h2><?=__("Reviews Configuration")?></h2>
+        <h2><a target='_blank' href='http://open-classifieds.com/2014/08/13/review-system-works/'><?=__("Reviews Configuration")?></a></h2>
 
         <div class="form-group">
             <?= FORM::label($forms['reviews']['key'], __("Enable reviews"), array('class'=>'control-label col-sm-3', 'for'=>$forms['reviews']['key']))?>
