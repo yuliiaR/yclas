@@ -4,7 +4,7 @@
 		 <?=Form::errors()?>
 		<div class="page-header">
 			<h1><?=__('Payments Configuration')?></h1>
-            <p class=""><?=__('List of payment configuration values. Replace input fields with new desired values.')?></p>
+            <p class=""><?=__('List of payment configuration values. Replace input fields with new desired values.')?> <a target='_blank' href='http://open-classifieds.com/2014/08/21/setup-payment-gateways/'><?=__('Read more')?></a></p>
             <?if (Theme::get('premium')!=1):?>
                 <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
                     Authorize, Stripe, Paymill and Bitpay <?=__('only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
