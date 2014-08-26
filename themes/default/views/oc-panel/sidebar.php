@@ -145,15 +145,15 @@
                             <div id="collapseTools" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <table class="table">
-                                        <tr><td class="br"><?=Theme::admin_link(__('Updates'), 'update','index')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Crontab'), 'crontab','index')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Sitemap'), 'tools','sitemap')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Migration'), 'tools','migration')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Optimize'), 'tools','optimize')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Cache'), 'tools','cache')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Logs'), 'tools','logs')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Import tool'), 'tools','import_tool')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('PHP Info'), 'tools','phpinfo')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Import tool'), 'tools','import_tool','oc-panel','glyphicon  glyphicon-import')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Updates'), 'update','index','oc-panel','glyphicon  glyphicon-refresh')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Crontab'), 'crontab','index','oc-panel','glyphicon  glyphicon-calendar')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Sitemap'), 'tools','sitemap','oc-panel','glyphicon  glyphicon-list-alt')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Migration'), 'tools','migration','oc-panel','glyphicon  glyphicon-forward')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Optimize'), 'tools','optimize','oc-panel','glyphicon  glyphicon-compressed')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Cache'), 'tools','cache','oc-panel','glyphicon  glyphicon-cog')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Logs'), 'tools','logs','oc-panel','glyphicon  glyphicon-list-alt')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('PHP Info'), 'tools','phpinfo','oc-panel','glyphicon  glyphicon-info-sign')?></td></tr>
                                     </table>
                                 </div>
                             </div>
