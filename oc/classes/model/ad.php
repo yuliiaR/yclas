@@ -606,7 +606,17 @@ class Model_Ad extends ORM {
                     $cf_value = $this->$value['column_name'];
 
                     //if the CF has value need to be only seen by admin
-                    if(isset($cf_value) AND ($cf_config->$cf_name->admin_privilege!=TRUE OR $is_admin === TRUE) )
+                    $display = FALSE;
+
+                    if ($is_admin === TRUE)
+                        $display = TRUE;
+                    elseif (isset($cf_config->$cf_name->admin_privilege))
+                    {
+                        if ($cf_config->$cf_name->admin_privilege==FALSE)
+                            $display = TRUE;
+                    }
+
+                    if(isset($cf_value) AND $display )
                     {   
                         //formating the value depending on the type
                         switch ($cf_config->$cf_name->type) 
