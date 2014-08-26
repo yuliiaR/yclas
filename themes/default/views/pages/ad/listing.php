@@ -13,7 +13,7 @@
 
     <div class="well" id="recomentadion">
         <?if (Controller::$image!==NULL):?>
-            <img src="<?=Controller::$image?>" class="img-responsive" alt="<?=($category!==NULL) ? $category->name : (($location!==NULL) ? $location->name : NULL)?>">
+            <img src="<?=Controller::$image?>" class="img-responsive" alt="<?=($category!==NULL) ? $category->name : (($location!==NULL AND $category===NULL) ? $location->name : NULL)?>">
         <?endif?>
 
         <p>
