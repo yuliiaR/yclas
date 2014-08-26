@@ -168,7 +168,7 @@
                                     </span> <span class="title-txt"><?=__('Profile Options')?></span></a>
                                 </h4>
                             </div>
-                            <div id="collapseFive" class="panel-collapse collapse">
+                            <div id="collapseFive" class="panel-collapse collapse <?=(Auth::instance()->get_user()->id_role == Model_Role::ROLE_USER ? "in" : NULL)?>">
                                 <div class="panel-body">
                                     <table class="table">
                                         <tr><td class="br"><?=Theme::admin_link(__('Edit profile'), 'profile','edit','oc-panel','glyphicon glyphicon-edit')?></td></tr>
