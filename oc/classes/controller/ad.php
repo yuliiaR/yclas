@@ -733,60 +733,6 @@ class Controller_Ad extends Controller {
         }
     }
 
-
-	public function action_confirm_post()
-	{
-		$advert_id = $this->request->param('id');
-
-		$advert = new Model_Ad($advert_id);
-
-		if($advert->loaded())
-		{
-			if(core::config('general.moderation') == Model_Ad::EMAIL_CONFIRMATION)
-			{
-
-				$advert->status = Model_Ad::STATUS_PUBLISHED; // status active
-				$advert->published = Date::unix2mysql();
-
-				try 
-				{
-					$advert->save();
-
-					//subscription is on
-					$data = array(	'title' 		=> $title 		= 	$advert->title,
-									'cat'			=> $cat 		= 	$advert->category,
-									'loc'			=> $loc 		= 	$advert->location,	
-								 );
-
-					Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $advert->price)), $advert->seotitle); // if subscription is on
-					
-					Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
-					$this->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
-				} 
-				catch (Exception $e) 
-				{
-					throw HTTP_Exception::factory(500,$e->getMessage());
-				}
-			}
-			if(core::config('general.moderation') == Model_Ad::EMAIL_MODERATION)
-			{
-
-				$advert->status = Model_Ad::STATUS_NOPUBLISHED;
-
-				try 
-				{
-					$advert->save();
-					Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
-					$this->redirect(Route::url('ad', array('category'=>$advert->id_category, 'seotitle'=>$advert->seotitle)));	
-				} 
-				catch (Exception $e) 
-				{
-					throw HTTP_Exception::factory(500,$e->getMessage());
-				}
-			}
-		}
-	}
-
 	public function action_advanced_search()
 	{
 		//template header

@@ -667,6 +667,67 @@ class Controller_Panel_Profile extends Auth_Controller {
 		}
 	}
 
+    /**
+     * confirms the post of and advertisement
+     * @return void 
+     */
+    public function action_confirm()
+    {
+        $advert = new Model_Ad($this->request->param('id'));
+
+        if($advert->loaded())
+        {
+
+            if(Auth::instance()->get_user()->id_user !== $advert->id_user)
+            {
+                Alert::set(Alert::ALERT, __("This is not your advertisement."));
+                HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
+            }
+
+            if(core::config('general.moderation') == Model_Ad::EMAIL_CONFIRMATION)
+            {
+                $advert->status = Model_Ad::STATUS_PUBLISHED; // status active
+                $advert->published = Date::unix2mysql();
+
+                try 
+                {
+                    $advert->save();
+
+                    //subscription is on
+                    $data = array(  'title'         => $advert->title,
+                                    'cat'           => $advert->category,
+                                    'loc'           => $advert->location,  
+                                 );
+
+                    Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $advert->price)), $advert->seotitle); // if subscription is on
+                    Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
+                        
+                } 
+                catch (Exception $e) 
+                {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
+            }
+            elseif(core::config('general.moderation') == Model_Ad::EMAIL_MODERATION)
+            {
+                $advert->status = Model_Ad::STATUS_NOPUBLISHED;
+
+                try 
+                {
+                    $advert->save();
+                    Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
+                } 
+                catch (Exception $e) 
+                {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
+            }
+
+            $this->redirect(Route::url('ad', array('category'=>$advert->category->seoname, 'seotitle'=>$advert->seotitle)));
+        }
+
+    }
+
 	public function action_stats()
    	{
    

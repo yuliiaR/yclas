@@ -372,9 +372,9 @@ class Controller_New extends Controller
 
                     case Model_Ad::EMAIL_MODERATION:
                     case Model_Ad::EMAIL_CONFIRMATION:
-                            $url_ql = $user->ql('default',array( 'controller' => 'ad', 
-                                                         'action'     => 'confirm_post',
-                                                         'id'         => $new_ad->id_ad),TRUE);
+                            $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
+                                                          'action'    => 'confirm',
+                                                          'id'        => $new_ad->id_ad),TRUE);
                     
                             $user->email('ads-confirm',array('[URL.QL]'=>$url_ql,
                                                             '[AD.NAME]'=>$new_ad->title,
