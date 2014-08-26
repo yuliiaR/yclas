@@ -223,6 +223,12 @@ class Controller_Panel_Settings extends Auth_Controller {
             foreach ($config as $c) 
             {
                 $config_res = $this->request->post(); 
+                
+                if (!array_key_exists('allowed_formats', $config_res[$c->group_name]))
+                {
+                    Alert::set(Alert::ERROR, __('At least one image format should be allowed.'));
+                    $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'image')));
+                }
 
                 if($config_res[$c->group_name][$c->config_key][0] != $c->config_value)
                 {
