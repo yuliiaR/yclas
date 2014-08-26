@@ -155,7 +155,7 @@
                     'data-toggle'=>"popover",
                     'data-original-title'=>__("Watermark"),
                     ))?>
-                    <?= FORM::label($forms['watermark']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['watermark']['key']))?>
+                    <?= FORM::label($forms['watermark']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['watermark']['key']))?>
                     <?= FORM::hidden($forms['watermark']['key'], 0);?>
                 </div>
             </div>
