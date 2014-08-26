@@ -410,7 +410,12 @@ class Model_Location extends ORM {
     {
         //in case seoname is really small or null
         if (strlen($seoname)<3)
-            $seoname = $this->name;
+        {
+            if (strlen($this->name)>=3)
+                $seoname = $this->name;
+            else
+                $seoname = __('location').'-'.$seoname;
+        }
 
         $seoname = URL::title($seoname);
         if ($seoname != $this->seoname)
