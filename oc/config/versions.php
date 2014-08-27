@@ -3,11 +3,11 @@
  '2.2.0' => 
   array (
     'codename' => 'Dryocopus',
-    'released' => '2014-xx-xx',
-    'blog' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=22&page=1&state=closed',
+    'released' => '2014-08-27',
+    'blog' => 'http://open-classifieds.com/2014/08/27/open-classifieds-2-2-0/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.1.8.1...2.2.0',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=22&page=1&state=closed',
-    'download' => 'http://test.lo/openclassifieds2-2.2.0.zip',
+    'download' => 'http://j.mp/oc_220',
   ),
   '2.1.8.1' => 
   array (
