@@ -178,6 +178,7 @@ class Model_Ad extends ORM {
      */
     public function count_ad_hit()
     {
+        $hits = 0;
         if (!Model_Visit::is_bot() AND $this->loaded())
         {
             if(!Auth::instance()->logged_in())
@@ -195,7 +196,7 @@ class Model_Ad extends ORM {
             $hits = new Model_Visit();
             $hits = $hits->where('id_ad','=', $this->id_ad)->count_all();
         }
-        return 0;
+        return $hits;
         
     }
 
