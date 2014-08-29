@@ -51,8 +51,6 @@ class Controller_Home extends Controller {
 
         $ads = $ads->limit(Theme::get('num_home_latest_ads', 4))->cached()->find_all();
 
-		$this->ads = $ads;
-
 		$categs = Model_Category::get_category_count();
 
         $locats = Model_Location::get_location_count();
