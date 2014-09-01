@@ -115,7 +115,7 @@ class Model_Subscribe extends ORM {
                 $url_ad = Route::url('ad', array('category'=>$data['cat'],'seotitle'=>$seotitle));
                         
                 $replace = array('[URL.AD]'        =>$url_ad,
-                                 '[AD.TITLE]'      =>$new_ad->title);
+                                 '[AD.TITLE]'      =>$data['title']);
 
                 Email::content($users,'',
                                     core::config('email.notify_email'),
