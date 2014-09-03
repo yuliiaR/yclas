@@ -208,7 +208,7 @@ class Model_Ad extends ORM {
     {
         $image_path = array();
        
-        if($this->loaded())
+        if($this->loaded() AND $this->has_images == TRUE)
         {  
             $route = $this->image_path();
             $folder = DOCROOT.$route;
