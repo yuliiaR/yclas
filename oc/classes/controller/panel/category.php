@@ -54,6 +54,7 @@ class Controller_Panel_Category extends Auth_Crud {
             {
                 $form->object->description = Kohana::$_POST_ORIG['formorm']['description'];
                 $form->save_object();
+                Core::delete_cache();
                 Alert::set(Alert::SUCCESS, __('Item created').'. '.__('Please to see the changes delete the cache')
                     .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
                     .__('Delete All').'</a>');
@@ -92,6 +93,7 @@ class Controller_Panel_Category extends Auth_Crud {
                 $form->save_object();
                 $form->object->parent_deep =  $form->object->get_deep();
                 $form->object->save();
+                Core::delete_cache();
                 Alert::set(Alert::SUCCESS, __('Item updated').'. '.__('Please to see the changes delete the cache')
                     .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1">'
                     .__('Delete All').'</a>');
@@ -148,7 +150,7 @@ class Controller_Panel_Category extends Auth_Crud {
 
             //recalculating the deep of all the categories
             $this->action_deep();
-
+            Core::delete_cache();
             $this->template->content = __('Saved');
         }
         else
@@ -188,7 +190,7 @@ class Controller_Panel_Category extends Auth_Crud {
 
                 //recalculating the deep of all the categories
                 $this->action_deep();
-                
+                Core::delete_cache();
                 Alert::set(Alert::SUCCESS, __('Category deleted'));
                 
             }
