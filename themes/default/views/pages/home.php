@@ -18,11 +18,11 @@
                     <img src="<?=URL::base()?><?=$ad->get_first_image()?>" >
                 <?else:?>
                     <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" alt="<?=$ad->title?>" >
+                                <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
                     <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" alt="<?=$ad->title?>" >
+                                <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
                             <?else:?>
-                                <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>" alt="<?=$ad->title?>"> 
+                                <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>" alt="<?=HTML::chars($ad->title)?>"> 
                             <?endif?> 
                 <?endif?>
                 </a>
@@ -46,13 +46,13 @@
         <?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
         <div class="col-md-4">
             <div class="category_box_title">
-                <p><a title="<?=$c['name']?>" href="<?=Route::url('list', array('category'=>$c['seoname']))?>"><?=mb_strtoupper($c['name']);?></a></p>
+                <p><a title="<?=HTML::chars($c['name'])?>" href="<?=Route::url('list', array('category'=>$c['seoname']))?>"><?=mb_strtoupper($c['name']);?></a></p>
             </div>  
             <div class="well custom_box_content" style="padding: 8px 0;">
                 <ul class="nav nav-list">
                     <?foreach($categs as $chi):?>
                         <?if($chi['id_category_parent'] == $c['id_category']):?>
-                        <li><a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><?=$chi['name'];?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
+                        <li><a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><?=$chi['name'];?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
                         <?endif?>
                      <?endforeach?>
                 </ul>

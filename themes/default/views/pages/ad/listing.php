@@ -13,7 +13,7 @@
 
     <div class="well" id="recomentadion">
         <?if (Controller::$image!==NULL):?>
-            <img src="<?=Controller::$image?>" class="img-responsive" alt="<?=($category!==NULL) ? $category->name : (($location!==NULL AND $category===NULL) ? $location->name : NULL)?>">
+            <img src="<?=Controller::$image?>" class="img-responsive" alt="<?=($category!==NULL) ? HTML::chars($category->name) : (($location!==NULL AND $category===NULL) ? HTML::chars($location->name) : NULL)?>">
         <?endif?>
 
         <p>
@@ -66,24 +66,24 @@
                     <?endif?>
                 </div>
                 <?if($ad->id_location != 1):?>
-                    <a href="<?=Route::url('list',array('location'=>$ad->location->seoname))?>" title="<?=$ad->location->name?>">
+                    <a href="<?=Route::url('list',array('location'=>$ad->location->seoname))?>" title="<?=HTML::chars($ad->location->name)?>">
                         <span class="label label-default"><?=$ad->location->name?></span>
                     </a>
                 <?endif?>
                 <h2>
-                    <a title="<?= $ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
+                    <a title="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
                 </h2>
                 
                 
                 <div class="picture">
-                    <a class="pull-left" title="<?=$ad->title;?>" alt="<?=$ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+                    <a class="pull-left" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
                         <figure>
                             <?if($ad->get_first_image() !== NULL):?>
                                 <img src="<?=URL::base()?><?=$ad->get_first_image()?>">
                             <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" class="img-responsive" alt="<?= $ad->title;?>">
+                                <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title);?>">
                             <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" class="img-responsive" alt="<?= $ad->title;?>">
+                                <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title);?>">
                             <?else:?>
                                 <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>">
                             <?endif?>
@@ -102,7 +102,7 @@
              
                 <p><?=Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE);?></p>
                 
-                <a title="<?= $ad->seotitle;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="glyphicon glyphicon-share"></i><?=__('Read more')?></a>
+                <a title="<?=HTML::chars($ad->seotitle);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="glyphicon glyphicon-share"></i><?=__('Read more')?></a>
                 <?if ($user !== NULL && $user->id_role == Model_Role::ROLE_ADMIN):?>
                     <br />
                     <div class="toolbar btn btn-primary btn-xs"><i class="glyphicon glyphicon-cog"></i>

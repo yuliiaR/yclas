@@ -87,7 +87,7 @@
         
         <article class="search-result row">
             <div class="col-xs-12 col-sm-12 col-md-3 span3">
-                <a title="<?=$review->user->name?>" class="thumbnail"><img src="<?=$review->user->get_profile_image()?>" alt="<?=__('Profile image')?>" height="140px"></a>
+                <a title="<?=HTML::chars($review->user->name)?>" class="thumbnail"><img src="<?=$review->user->get_profile_image()?>" alt="<?=__('Profile image')?>" height="140px"></a>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-9 span6">
                 <div class="row">
