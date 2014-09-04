@@ -244,7 +244,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."reviews (
     id_review int(10) unsigned NOT NULL AUTO_INCREMENT,
     id_user int(10) unsigned NOT NULL,
-    id_ad int(10) unsigned DEFAULT NULL,
+    id_ad int(10) unsigned NOT NULL,
     rate int(2) unsigned NOT NULL DEFAULT '0',
     description varchar(1000) NOT NULL,
     created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
