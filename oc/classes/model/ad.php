@@ -179,7 +179,7 @@ class Model_Ad extends ORM {
     public function count_ad_hit()
     {
         $hits = 0;
-        if (!Model_Visit::is_bot() AND $this->loaded())
+        if (!Model_Visit::is_bot() AND $this->loaded() AND core::config('advertisement.count_visits')==1)
         {
             if(!Auth::instance()->logged_in())
                 $visitor_id = NULL;

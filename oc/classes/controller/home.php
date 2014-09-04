@@ -19,7 +19,13 @@ class Controller_Home extends Controller {
 	    $ads = new Model_Ad();
         $ads->where('status','=', Model_Ad::STATUS_PUBLISHED);
 
-        switch (core::config('advertisement.ads_in_home')) 
+        $ads_in_home = core::config('advertisement.ads_in_home');
+
+        //in case we do not count visits we cant show popular
+        if(core::config('advertisement.count_visits')==0 AND $ads_in_home==2)
+            $ads_in_home = 0;
+
+        switch ($ads_in_home) 
         {
             case 2:
                 $id_ads = array_keys(Model_Visit::popular_ads());

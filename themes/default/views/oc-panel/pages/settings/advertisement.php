@@ -83,10 +83,21 @@
                     ))?> 
                 </div>
             </div>
+            <?
+                $ads_in_home = array(0=>__('Latest Ads'),
+                                    1=>__('Featured Ads'),
+                                    4=>__('Featured Ads Random'),
+                                    2=>__('Popular Ads last month'),
+                                    3=>__('None'));
+
+                if(core::config('advertisement.count_visits')==0)
+                    unset($ads_in_home[2]);
+            ?>
             <div class="form-group">
                 <?= FORM::label($forms['ads_in_home']['key'], "<a target='_blank' href='http://open-classifieds.com/2014/04/04/manage-ads-slider/'>".__('Advertisements in home')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['ads_in_home']['key']))?>
                 <div class="col-sm-4">
-                    <?= FORM::select($forms['ads_in_home']['key'], array(0=>__('Latest Ads'),1=>__('Featured Ads'),4=>__('Featured Ads Random'),2=>__('Popular Ads last month'),3=>__('None')), $forms['ads_in_home']['value'], array(
+                    <?= FORM::select($forms['ads_in_home']['key'], $ads_in_home
+                    , $forms['ads_in_home']['value'], array(
                     'placeholder' => $forms['ads_in_home']['value'], 
                     'class' => 'tips form-control ', 
                     'id' => $forms['ads_in_home']['key'],
@@ -431,6 +442,25 @@
                         'data-content'=>__("Displays the google maps in the Ad."),
                         ))?>
                         <?= FORM::label($forms['map']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['map']['key']))?>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <?= FORM::label($forms['count_visits']['key'], __('Count visits ads'), array('class'=>'control-label col-sm-3', 'for'=>$forms['count_visits']['key']))?>
+                <div class="col-sm-4">
+                    <div class="onoffswitch">
+                        <?= FORM::hidden($forms['count_visits']['key'], 0);?>
+                        <?= FORM::checkbox($forms['count_visits']['key'], 1, (bool) $forms['count_visits']['value'], array(
+                        'placeholder' => "", 
+                        'class' => 'onoffswitch-checkbox', 
+                        'id' => $forms['count_visits']['key'], 
+                        'data-original-title'=> __("Count visits"),
+                        'data-trigger'=>"hover",
+                        'data-placement'=>"right",
+                        'data-toggle'=>"popover",
+                        'data-content'=>__("You can choose if you wish to display amount of visits at each advertisement."),
+                        ))?>
+                        <?= FORM::label($forms['count_visits']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['count_visits']['key']))?>
                     </div>
                 </div>
             </div>

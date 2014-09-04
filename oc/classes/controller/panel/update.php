@@ -15,7 +15,14 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
      */
     public function action_221()
     {  
-        
+        $configs = array(
+                        array( 'config_key'     =>'count_visits',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   => 1),
+
+                        );
+
+        Model_Config::config_array($configs);
     }
 
     /**
