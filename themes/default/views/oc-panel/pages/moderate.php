@@ -15,7 +15,9 @@
         <th><?=__('Name')?></th>
         <th><?=__('Category')?></th>
         <th><?=__('Location')?></th>
+        <?if(core::config('advertisement.count_visits')==1):?>
         <th><?=__('Hits')?></th>
+        <?endif?>
         <th><?=__('Status')?></th>
         <th><?=__('Date')?></th>
         <!-- in case there are no ads we dont show buttons -->
@@ -70,8 +72,9 @@
                     n/a
                 <?endif?>
             </td>
-
+            <?if(core::config('advertisement.count_visits')==1):?>
             <td><?=$ad->visits->count_all();?></td>
+            <?endif?>
 
             <td>
             <?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>

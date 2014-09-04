@@ -11,6 +11,21 @@
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
     /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.2.1
+     */
+    public function action_221()
+    {  
+        $configs = array(
+                        array( 'config_key'     =>'count_visits',
+                               'group_name'     =>'advertisement', 
+                               'config_value'   => 1),
+
+                        );
+
+        Model_Config::config_array($configs);
+    }
+
+    /**
      * This function will upgrade DB that didn't existed in versions prior to 2.2.0
      */
     public function action_220()
@@ -188,7 +203,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS ".self::$db_prefix."reviews (
                 id_review int(10) unsigned NOT NULL AUTO_INCREMENT,
                 id_user int(10) unsigned NOT NULL,
-                id_ad int(10) unsigned DEFAULT NULL,
+                id_ad int(10) unsigned NOT NULL,
                 rate int(2) unsigned NOT NULL DEFAULT '0',
                 description varchar(1000) NOT NULL,
                 created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

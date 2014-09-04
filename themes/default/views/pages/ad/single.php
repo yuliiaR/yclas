@@ -71,7 +71,9 @@
             <a class="label label-default" href="<?=Route::url('profile',  array('seoname'=>$ad->user->seoname))?>"><?=$ad->user->name?></a>
             <div class="pull-right">
                 <span class="label label-info"><?= Date::format($ad->published, core::config('general.date_format'))?></span>
+                <?if(core::config('advertisement.count_visits')==1):?>
                 <span class="label label-info"><?=$hits?> <?=__('Hits')?></span> 
+                <?endif?>
             </div>    
 
         </div>

@@ -244,7 +244,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."reviews (
     id_review int(10) unsigned NOT NULL AUTO_INCREMENT,
     id_user int(10) unsigned NOT NULL,
-    id_ad int(10) unsigned DEFAULT NULL,
+    id_ad int(10) unsigned NOT NULL,
     rate int(2) unsigned NOT NULL DEFAULT '0',
     description varchar(1000) NOT NULL,
     created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -514,6 +514,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'feed_elements', '20'),
 ('advertisement', 'map_elements', '100'),
 ('advertisement', 'sort_by', 'published-desc'),
+('advertisement', 'count_visits', 1),
 ('email', 'notify_email', '".core::request('ADMIN_EMAIL')."'),
 ('email', 'smtp_active', 0),
 ('email', 'new_ad_notify', 0),

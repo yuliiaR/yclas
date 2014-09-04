@@ -32,6 +32,7 @@
 		</thead>
 		<tbody>
 			<?foreach($reviews as $review):?>
+                <?if ($review->user->loaded() AND $review->ad->loaded()):?>
 				<tr id="tr<?=$review->pk()?>">
 	                <td><?=$review->pk()?></td>
 	                <td><a href="<?=Route::url('profile', array('seoname'=> $review->user->seoname, 'action'=>'reviews')) ?>">
@@ -49,6 +50,7 @@
 						<?endif?>
 					</td>
 				</tr>
+                <?endif?>
 			<?endforeach?>
 		</tbody>
 	</table>
