@@ -31,7 +31,7 @@
 <ul>
 	<?foreach($widget->user_ads as $ads):?>
 		<li>
-			<a title="<?=$ads->title;?>" alt="<?=$ads->title;?>" href="<?=Route::url('ad', array('category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>">
+			<a title="<?=HTML::chars($ads->title);?>" alt="<?=HTML::chars($ads->title);?>" href="<?=Route::url('ad', array('category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>">
 			<?=$ads->title;?>
 			</a>
 		</li>

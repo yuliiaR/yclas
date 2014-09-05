@@ -20,6 +20,13 @@
     <?endif?>
 	
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+	
+	<!--  Disallow Bots -->
+	<meta name="robots" content="noindex,nofollow,noodp,noydir">
+	<meta name="googlebot" content="noindex,noarchive,nofollow,noodp">
+	<meta name="slurp" content="noindex,nofollow,noodp">
+	<meta name="bingbot" content="noindex,nofollow,noodp,noydir">
+	<meta name="msnbot" content="noindex,nofollow,noodp,noydir">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>

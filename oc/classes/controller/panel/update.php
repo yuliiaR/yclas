@@ -19,6 +19,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'count_visits',
                                'group_name'     =>'advertisement', 
                                'config_value'   => 1),
+                        array( 'config_key'     =>'disallowbots',
+                               'group_name'     =>'general', 
+                               'config_value'   => 0),
 
                         );
 

@@ -7,7 +7,7 @@
 	<div class="featured-sidebar-box">
 		<?if($ad->get_first_image() !== NULL):?>
 			<div class="picture pull-right">
-				<a class="pull-right" title="<?=$ad->title;?>" alt="<?=$ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+				<a class="pull-right" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
 					<figure>
 						<img src="<?=URL::base()?><?=$ad->get_first_image()?>" width="100%">
 					</figure>
@@ -15,7 +15,7 @@
 			</div>
 		<?else:?>
 			<div class="picture pull-right">
-				<a class="pull-right" title="<?=$ad->title;?>" alt="<?=$ad->title;?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+				<a class="pull-right" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
 					<figure>
 						<img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>" width="100%">
 					</figure>
@@ -23,7 +23,7 @@
 			</div>
 		<?endif?>
 		<div class="featured-sidebar-box-header">
-			<a href="<?=Route::url('ad',array('seotitle'=>$ad->seotitle,'category'=>$ad->category->seoname))?>" title="<?=$ad->title?>">
+			<a href="<?=Route::url('ad',array('seotitle'=>$ad->seotitle,'category'=>$ad->category->seoname))?>" title="<?=HTML::chars($ad->title)?>">
 				<span class='f-box-header'><?=Text::limit_chars(Text::removebbcode($ad->title), 15, NULL, TRUE)?></span>
 	        </a>
 	    </div>

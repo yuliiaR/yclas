@@ -21,6 +21,14 @@
     <meta property="og:description"   content="<?=$meta_description?>"/>
     <meta property="og:url"     content="<?=URL::current()?>"/>
     <meta property="og:site_name" content="<?=core::config('general.site_name')?>"/>
+    
+    <?if (core::config('general.disallowbots')=='1'):?>
+        <meta name="robots" content="noindex,nofollow,noodp,noydir" />
+        <meta name="googlebot" content="noindex,noarchive,nofollow,noodp" />
+        <meta name="slurp" content="noindex,nofollow,noodp" />
+        <meta name="bingbot" content="noindex,nofollow,noodp,noydir" />
+        <meta name="msnbot" content="noindex,nofollow,noodp,noydir" />
+    <?endif?>
 
     <?if (core::config('general.blog')==1):?>
     <link rel="alternate" type="application/atom+xml" title="RSS Blog <?=Core::config('general.site_name')?>" href="<?=Route::url('rss-blog')?>" />
@@ -50,7 +58,7 @@
     
     <?=Theme::styles($styles)?>	
 	<?=Theme::scripts($scripts)?>
-    <?if ( core::config('general.analytics')!='' AND Kohana::$environment === Kohana::PRODUCTION ): ?>
+    <?if ( Kohana::$environment === Kohana::PRODUCTION AND core::config('general.analytics')!=='' ): ?>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', '<?=Core::config('general.analytics')?>']);

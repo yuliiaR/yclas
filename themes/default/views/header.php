@@ -34,7 +34,7 @@
                   	<?foreach($cats as $c ):?>
                   		<?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
     						<li class="dropdown-submenu">
-                                <a tabindex="-1" title="<?=$c['seoname']?>" href="<?=Route::url('list', array('category'=>$c['seoname'],'location'=>$loc_seoname))?>">
+                                <a tabindex="-1" title="<?=HTML::chars($c['seoname'])?>" href="<?=Route::url('list', array('category'=>$c['seoname'],'location'=>$loc_seoname))?>">
                                     <?=$c['name']?>
                                 </a>
                                 <?if($c['has_siblings'] AND $c['id_category_parent'] == 1):?>
@@ -42,7 +42,7 @@
             						 	<?foreach($cats as $chi):?>
                                     	<?if($chi['id_category_parent'] == $c['id_category']):?>
                                    			<li>
-                                                <a title="<?=$chi['name']?>" href="<?=Route::url('list', array('category'=>$chi['seoname'],'location'=>$loc_seoname))?>">
+                                                <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname'],'location'=>$loc_seoname))?>">
                                                     <span class="header_cat_list"><?=$chi['name']?></span> 
                                                     <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span>
                                                 </a>
