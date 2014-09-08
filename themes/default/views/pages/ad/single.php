@@ -83,7 +83,7 @@
         <div>
             <?= Text::bb2html($ad->description,TRUE)?>
             <?if (Valid::url($ad->website)):?>
-            <p><a href="<?=$ad->website?>" rel="nofollow"><?=$ad->website?></a></p>
+            <p><a href="<?=$ad->website?>" rel="nofollow" target="_blank">><?=$ad->website?></a></p>
             <?endif?>
         </div>  
 
