@@ -33,8 +33,8 @@ class Controller_Panel_Settings extends Auth_Controller {
         // all form config values
         $advertisement = new Model_Config();
         $config = $advertisement->where('group_name', '=', 'advertisement')->find_all();
-        $this->template->styles  = array('https://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
-        $this->template->scripts['footer'][] = 'https://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
+        $this->template->styles  = array('//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
+        $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
         // save only changed values
         if($this->request->post())
         {

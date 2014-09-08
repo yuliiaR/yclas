@@ -27,10 +27,10 @@ class Controller_Panel_Location extends Auth_Crud {
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Locations')));
         $this->template->styles  = array('css/sortable.css' => 'screen', 
-                                         'https://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
+                                         '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/locations.js';
-        $this->template->scripts['footer'][] = 'https://cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
+        $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
 
         $locs  = Model_Location::get_as_array();
         $order = Model_Location::get_multidimensional();

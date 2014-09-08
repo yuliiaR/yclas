@@ -19,22 +19,22 @@ Widgets::$theme_placeholders	= array('footer', 'sidebar');
  * styles and themes, loaded in this order
  */
 
-Theme::$styles = array( 'https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' => 'screen',
-                        'https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' => 'screen',
-                        'https://cdn.jsdelivr.net/blueimp-gallery/2.14.0/css/blueimp-gallery.min.css' => 'screen', 
-                        'https://cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
-                        'https://cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen',
+Theme::$styles = array( '//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' => 'screen',
+                        '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' => 'screen',
+                        '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/css/blueimp-gallery.min.css' => 'screen', 
+                        '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
+                        '//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen',
                         'css/styles.css?v='.Core::VERSION => 'screen',
                         'css/slider.css' => 'screen',
         				);
 
 
-Theme::$scripts['footer']	= array('https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
-                                    'https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js',
-                                    'https://cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
+Theme::$scripts['footer']	= array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+                                    '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js',
+                                    '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
-                                    'https://cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js',
-                                    'https://cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
+                                    '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js',
+                                    '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
                                     'js/bootstrap-slider.js',
                                     'js/default.init.js?v='.Core::VERSION,
                                     'js/theme.init.js?v='.Core::VERSION,
