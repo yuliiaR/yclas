@@ -119,6 +119,8 @@ $(function(){
         button = $(this);
         //get the link location that was clicked
         pageurl = button.attr('href');
+        button.css('cursor','wait');
+
         //to get the ajax content and display in div with id 'content'
         $.ajax({
             url:updateURLParameter(pageurl,'rel','ajax'),
