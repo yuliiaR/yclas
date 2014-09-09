@@ -24,7 +24,7 @@ class Controller_New extends Controller
 		$this->template->meta_description	= __('Publish new advertisement');
 		
 		
-		$this->template->styles = array('https://cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
+		$this->template->styles = array('//cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
 										'css/jasny-bootstrap.min.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.validate.min.js';
@@ -33,8 +33,8 @@ class Controller_New extends Controller
         $this->template->scripts['footer'][] = 'js/jquery.chained.min.js';
         if(core::config('advertisement.map_pub_new'))
         {
-	        $this->template->scripts['footer'][] = 'https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
-	        $this->template->scripts['footer'][] = 'https://cdn.jsdelivr.net/gmaps/0.4.4/gmaps.js';
+	        $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
+	        $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.4/gmaps.js';
         }
         $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
 
