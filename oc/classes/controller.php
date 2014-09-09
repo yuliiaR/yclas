@@ -141,7 +141,7 @@ class Controller extends Kohana_Controller
         {
             $user = Auth::instance()->get_user();
 
-            if (isset($user->id_role) AND ($user->id_role===Model_Role::ROLE_ADMIN OR $user->id_role==Model_Role::ROLE_MODERATOR))
+            if (isset($user->id_role) AND ($user->id_role==Model_Role::ROLE_ADMIN OR $user->id_role==Model_Role::ROLE_MODERATOR))
             {
                 Alert::set(Alert::INFO, __('You are in maintenance mode, only you can see the website'));
             }
