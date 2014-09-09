@@ -54,8 +54,9 @@ class Controller_Paypal extends Controller{
             }
 
             //same amount and same currency
-			if (Core::post('mc_gross')  == number_format($order->amount, 2, '.', '')
-				AND  Core::post('mc_currency') == core::config('payment.paypal_currency') AND  $receiver_correct)
+			if ( Core::post('payment_status')   == 'Completed' 
+                AND  Core::post('mc_gross')     == number_format($order->amount, 2, '.', '')
+				AND  Core::post('mc_currency')  == core::config('payment.paypal_currency') AND  $receiver_correct)
 			{
                 //same price , currency and email no cheating ;)
 				if (paypal::validate_ipn()) 
