@@ -71,21 +71,21 @@
                     </a>
                 <?endif?>
                 <h2>
-                    <a title="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
+                    <a title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title?></a>
                 </h2>
                 
                 
                 <div class="picture">
-                    <a class="pull-left" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+                    <a class="pull-left" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
                         <figure>
                             <?if($ad->get_first_image() !== NULL):?>
-                                <img src="<?=URL::base()?><?=$ad->get_first_image()?>">
+                                <img src="<?=URL::base()?><?=$ad->get_first_image()?>" alt="<?=HTML::chars($ad->title)?>" />
                             <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title);?>">
+                                <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
                             <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title);?>">
+                                <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
                             <?else:?>
-                                <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>">
+                                <img src="http://www.placehold.it/200x200&text=<?=urlencode($ad->category->name)?>" width="200" height="200" />
                             <?endif?>
                         </figure>
                     </a>
@@ -93,7 +93,7 @@
                 
                 <ul>
                     <?if ($ad->published!=0){?>
-                        <li><b><?=__('Publish Date');?>:</b> <?= Date::format($ad->published, core::config('general.date_format'))?></li>
+                        <li><b><?=__('Publish Date');?>:</b> <?=Date::format($ad->published, core::config('general.date_format'))?></li>
                     <? }?>
                     <?if ($ad->price!=0){?>
                         <li class="price"><?=__('Price');?>: <b><?=i18n::money_format( $ad->price)?></b></li>
