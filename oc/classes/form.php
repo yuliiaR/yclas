@@ -96,7 +96,7 @@ class Form extends OC_Form {
                 {
                     $checked = ($value == $index) ? TRUE : FALSE ;
                     if($id !== "")
-                        $input .= '<div class="radio"><label>'.$radio_name.Form::radio($name, $index, $checked, $attributes).'</label></div>';
+                        $input .= '<div class="radio"><label>'.Form::radio($name, $index, $checked, $attributes).$radio_name.'</label></div>';
                     
                     $index++;
                 }
