@@ -143,8 +143,7 @@ $(function(){
                                     });
 
         return false;  
-    });
-    
+    });  
 });
 
 /* the below code is to override back button to get the ajax content without reload*/
