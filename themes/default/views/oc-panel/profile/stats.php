@@ -38,30 +38,34 @@
         <h2><?=__('Charts')?></h2>
 
         <form id="edit-profile" class="form-inline" method="post" action="">
-            <fieldset>   
-                <div class="col-sm-4">
-                <?=__('From')?>
-                    <input  type="text" class="col-sm-2" size="16"
-                            id="from_date" name="from_date"  value="<?=$from_date?>"  
-                            data-date="<?=$from_date?>" data-date-format="yyyy-mm-dd">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><?=__('From')?></div>
+                    <input type="text" class="form-control" id="from_date" name="from_date" value="<?=$from_date?>" data-date="<?=$from_date?>" data-date-format="yyyy-mm-dd">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
                 </div>
-                <div class="col-sm-4">
-                <?=__('To')?>
-                    <input  type="text" class="col-sm-2" size="16"
-                            id="to_date" name="to_date"  value="<?=$to_date?>"  
-                            data-date="<?=$to_date?>" data-date-format="yyyy-mm-dd">
+            </div>
+            <span>-</span>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><?=__('To')?></div>
+                    <input type="text" class="form-control" id="to_date" name="to_date" value="<?=$to_date?>" data-date="<?=$to_date?>" data-date-format="yyyy-mm-dd">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
                 </div>
-                
-                <button type="submit" class="btn btn-primary"><?=__('Filter')?></button>
-            </fieldset>
+            </div>
+            <button type="submit" class="btn btn-primary"><?=__('Filter')?></button>
         </form>
-
-
         
     </div> <!-- /.col-md-12 -->
     
 </div> <!-- /.row -->
-   
+
+<br>
+
 <?=Chart::column($stats_daily,array('title'=>__('Views and Contacts statistic'),
                                     'height'=>400,
                                     'width'=>800,
