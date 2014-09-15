@@ -113,14 +113,17 @@ class Controller_Panel_Profile extends Auth_Controller {
                 // save file to root folder, file, name, dir
                 if($file = Upload::save($image, $image_name, $root))
                 {
-	                // resize uploaded image 
-	                Image::factory($file)
+                    // resize uploaded image 
+                    Image::factory($file)
                         ->resize($width, $height, Image::AUTO)
                         ->save($root.$image_name,$image_quality);
 
+                    Alert::set(Alert::SUCCESS, $image['name'].' '.__('Image is uploaded.'));   
                 }
+                else
+                    Alert::set(Alert::ERROR, $image['name'].' '.__('Icon file could not been saved.'));
                 
-                Alert::set(Alert::SUCCESS, $image['name'].' '.__('Image is uploaded.'));
+                
                 $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
             }
             
