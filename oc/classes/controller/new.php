@@ -349,7 +349,11 @@ class Controller_New extends Controller
                         {
                             //swapping moderation since theres no price :(
                             if ($moderation == Model_Ad::PAYMENT_ON)
+                            {
                                 $moderation = Model_Ad::POST_DIRECTLY;
+                                $new_ad->status = Model_Ad::STATUS_PUBLISHED;
+                                $new_ad->save();
+                            }
                             elseif($moderation == Model_Ad::PAYMENT_MODERATION)
                                 $moderation = Model_Ad::MODERATION_ON;
                         }
@@ -374,7 +378,7 @@ class Controller_New extends Controller
                     case Model_Ad::EMAIL_CONFIRMATION:
                             $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
                                                           'action'    => 'confirm',
-                                                          'id'        => $new_ad->id_ad),TRUE);
+                                                          'id'        => $new_ad->id_ad));
                     
                             $user->email('ads-confirm',array('[URL.QL]'=>$url_ql,
                                                             '[AD.NAME]'=>$new_ad->title,
@@ -386,7 +390,7 @@ class Controller_New extends Controller
                     case Model_Ad::MODERATION_ON:
                             $url_ql = $user->ql('oc-panel',array( 'controller'=> 'profile', 
                                                           'action'    => 'update',
-                                                          'id'        => $new_ad->id_ad),TRUE);
+                                                          'id'        => $new_ad->id_ad));
 
                             $user->email('ads-notify',array('[URL.QL]'       =>$url_ql,
                                                            '[AD.NAME]'      =>$new_ad->title,
@@ -397,9 +401,9 @@ class Controller_New extends Controller
                     
                     case Model_Ad::POST_DIRECTLY:
                     default:
-                            $url_cont = $user->ql('contact', array(),TRUE);
+                            $url_cont = $user->ql('contact', array());
                             $url_ad = $user->ql('ad', array('category'=>$new_ad->category->seoname,
-                                                            'seotitle'=>$seotitle), TRUE);
+                                                            'seotitle'=>$seotitle));
 
                             $user->email('ads-user-check',array('[URL.CONTACT]'  =>$url_cont,
                                                                         '[URL.AD]'      =>$url_ad,

@@ -731,7 +731,7 @@ class Model_Ad extends ORM {
             }
 
                 
-            $url_ad = Route::url('ad', array('category'=>$this->id_category,'seotitle'=>$this->seotitle));
+            $url_ad = Route::url('ad', array('category'=>$this->category->seoname,'seotitle'=>$this->seotitle));
 
             $email_content = array('[URL.AD]'      =>$url_ad,
                                     '[AD.TITLE]'     =>$this->title,
@@ -808,13 +808,13 @@ class Model_Ad extends ORM {
                 }
 
                 //notify ad is published
-                $url_cont = $user->ql('contact', array(),TRUE);
-                $url_ad = $user->ql('ad', array('category'=>$data['cat'],
-                                                    'seotitle'=>$seotitle), TRUE);
+                $url_cont = $this->user->ql('contact', array());
+                $url_ad = $this->user->ql('ad', array('category'=>$this->category->seoname,
+                                                    'seotitle'=>$this->seotitle));
 
-                $ret = $user->email('ads-user-check',array('[URL.CONTACT]'  =>$url_cont,
+                $ret = $this->user->email('ads-user-check',array('[URL.CONTACT]'  =>$url_cont,
                                                             '[URL.AD]'      =>$url_ad,
-                                                            '[AD.NAME]'     =>$new_ad->title,
+                                                            '[AD.NAME]'     =>$this->title,
                                                             '[URL.EDITAD]'  =>$edit_url,
                                                             '[URL.DELETEAD]'=>$delete_url));
                 
@@ -824,7 +824,7 @@ class Model_Ad extends ORM {
                 //he paid but stays in moderation
                 $url_ql = $this->user->ql('oc-panel',array( 'controller'=> 'profile', 
                                                       'action'    => 'update',
-                                                      'id'        => $this->id_ad),TRUE);
+                                                      'id'        => $this->id_ad));
 
                 $ret = $this->user->email('ads-notify',array('[URL.QL]'=>$url_ql,
                                                        '[AD.NAME]'=>$this->title,
