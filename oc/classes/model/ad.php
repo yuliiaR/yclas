@@ -217,10 +217,8 @@ class Model_Ad extends ORM {
             { 
                 foreach (new DirectoryIterator($folder) as $file) 
                 {   
-
                     if(!$file->isDot())
                     {   
-
                         $key = explode('_', $file->getFilename());
                         $key = end($key);
                         $key = explode('.', $key);
@@ -235,6 +233,8 @@ class Model_Ad extends ORM {
                 }
             }
         }
+
+        ksort($image_path);
 
         return $image_path;
     }
