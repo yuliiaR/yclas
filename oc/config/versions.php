@@ -1,5 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+  '2.2.1' => 
+  array (
+    'codename' => 'Dryocopus',
+    'released' => '2014-09-17',
+    'blog' => 'http://open-classifieds.com/2014/09/17/open-classifieds-2-2-1/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.2.2...2.2.1',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=23&page=1&state=closed',
+    'download' => 'http://j.mp/oc_221b1',
+  ),
  '2.2.0' => 
   array (
     'codename' => 'Dryocopus',
