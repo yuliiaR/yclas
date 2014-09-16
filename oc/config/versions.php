@@ -2,7 +2,7 @@
                 return array (
   '2.2.1' => 
   array (
-    'codename' => 'Dryocopus',
+    'codename' => 'Abroscopus',
     'released' => '2014-09-17',
     'blog' => 'http://open-classifieds.com/2014/09/17/open-classifieds-2-2-1/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.2.2...2.2.1',
