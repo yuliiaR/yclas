@@ -25,7 +25,6 @@
                     <? endif?>
                 	<?=Theme::admin_link(__('Stats'),'stats','index','oc-panel','glyphicon glyphicon-align-left')?>
                     <?=Theme::admin_link(__('Widgets'),'widget','index','oc-panel','glyphicon glyphicon-move')?>
-                    <?=Theme::admin_link(__('Cache'),'tools','cache','oc-panel','  glyphicon-cog glyphicon')?>
                     <? if(Auth::instance()->get_user()->id_role==Model_Role::ROLE_ADMIN):?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
