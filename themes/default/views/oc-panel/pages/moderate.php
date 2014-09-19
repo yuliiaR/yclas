@@ -102,24 +102,40 @@
 
             <td><?= Date::format($ad->created, core::config('general.date_format'))?></td>
              <td width="150" style="width:150px">
-                <a class="btn btn-success" 
+                <a
                     href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                    onclick="return confirm('<?=__('Activate?')?>');"
-                    rel="tooltip" title="<?=__('Activate')?>">
-                    <i class="glyphicon   glyphicon-ok-sign"></i>
+                    class="btn btn-success" 
+                    title="<?=__('Activate?')?>" 
+                    data-toggle="confirmation" 
+                    data-placement="left" 
+                    data-href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+                    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                    data-btnCancelLabel="<?=__('No way!')?>">
+                    <i class="glyphicon glyphicon-ok-sign"></i>
                 </a>
                
-                <a class=" btn btn-warning" 
+                <a
                     href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                    onclick="return confirm('<?=__('Spam?')?>');"
-                    rel="tooltip" title="<?=__('Spam')?>">
-                    <i class="glyphicon   glyphicon-fire"></i>
+                    class="btn btn-warning" 
+                    title="<?=__('Spam?')?>" 
+                    data-toggle="confirmation" 
+                    data-placement="left" 
+                    data-href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+                    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                    data-btnCancelLabel="<?=__('No way!')?>">
+                    <i class="glyphicon glyphicon-fire"></i>
                 </a>
-                <a class="btn btn-danger " 
+
+                <a
                     href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                    onclick="return confirm('<?=__('Delete?')?>');"
-                    rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
-                    <i class="glyphicon   glyphicon-remove"></i>
+                    class="btn btn-danger" 
+                    title="<?=__('Spam?')?>" 
+                    data-toggle="confirmation" 
+                    data-placement="left" 
+                    data-href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+                    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                    data-btnCancelLabel="<?=__('No way!')?>">
+                    <i class="glyphicon glyphicon-remove"></i>
                 </a>
             </td>
         </tr>

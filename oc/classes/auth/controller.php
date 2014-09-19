@@ -127,7 +127,7 @@ class Auth_Controller extends Controller
 
     	            Theme::$scripts['footer'] = array('js/jquery-1.10.2.js',
     	            								  'js/jquery.cookie.min.js',	
-    	            								  'js/iconPicker.min.js',	
+    	            								  'js/iconPicker.min.js',
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
     												  'js/summernote.min.js',
@@ -135,6 +135,7 @@ class Auth_Controller extends Controller
     											      'js/chosen.jquery.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
     											      'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
+    											      'js/bootstrap-confirmation.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
     			}
@@ -163,7 +164,7 @@ class Auth_Controller extends Controller
     	            Theme::$scripts['footer'] = array('//code.jquery.com/jquery-1.10.2.min.js',
     											      '//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js',
 													  'js/jquery.cookie.min.js',
-    	            								  'js/iconPicker.min.js',	
+    	            								  'js/iconPicker.min.js',
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
     											      '//cdn.jsdelivr.net/summernote/0.5.1/summernote.min.js',
@@ -171,6 +172,7 @@ class Auth_Controller extends Controller
     											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
                                                       'js/jquery.loadingbar.min.js',
+                                                      'js/bootstrap-confirmation.min.js',
                                                       'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );

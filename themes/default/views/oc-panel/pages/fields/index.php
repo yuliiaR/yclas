@@ -29,11 +29,16 @@
         <span class="label label-info "><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>
         <span class="label label-info "><?=(isset($field['show_listing']) AND $field['show_listing'])?__('Show listing'):NULL?></span>
 
-        <a data-text="<?=__('Are you sure you want to delete? All data contained in this field will be deleted.')?>" 
-           data-id="li_<?=$name?>" 
-           class="btn btn-xs btn-danger pull-right index-delete index-delete-inline"  
-           href="<?=Route::url('oc-panel', array('controller'=> 'fields', 'action'=>'delete','id'=>$name))?>">
-                    <i class="glyphicon   glyphicon-trash"></i>
+        <a 
+            href="<?=Route::url('oc-panel', array('controller'=> 'fields', 'action'=>'delete','id'=>$name))?>" 
+            class="btn btn-xs btn-danger pull-right index-delete index-delete-inline" 
+            title="<?=__('Are you sure you want to delete? All data contained in this field will be deleted.')?>" 
+            data-id="li_<?=$name?>" 
+            data-placement="left" 
+            data-href="<?=Route::url('oc-panel', array('controller'=> 'fields', 'action'=>'delete','id'=>$name))?>" 
+            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+            data-btnCancelLabel="<?=__('No way!')?>">
+            <i class="glyphicon glyphicon-trash"></i>
         </a>
 
         <a class="btn btn-xs btn-primary pull-right ajax-load" 
