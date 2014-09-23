@@ -285,6 +285,12 @@ class Controller_Panel_Category extends Auth_Crud {
 		$icon = $_FILES['category_icon']; //file post
 		
 		$category = new Model_Category($this->request->param('id'));
+		
+		if(core::config('image.aws_s3_active'))
+        {
+            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+        }
         
 		if(core::post('icon_delete'))
 		{            
@@ -298,6 +304,10 @@ class Controller_Panel_Category extends Auth_Crud {
             {	
                 //delete icon
                 unlink($root.$category->seoname.'.png');
+                
+                // delete icon from Amazon S3
+                if(core::config('image.aws_s3_active'))
+                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$category->seoname.'.png', S3::ACL_PUBLIC_READ);
                 
                 Alert::set(Alert::SUCCESS, __('Icon deleted.'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
@@ -318,7 +328,7 @@ class Controller_Panel_Category extends Auth_Crud {
             if( ! Upload::size($icon, core::config('image.max_image_size').'M'))
             {
                 Alert::set(Alert::ALERT, $icon['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('general.max_image_size')));
-				$this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
+            $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
             }
             Alert::set(Alert::ALERT, $icon['name'].' '.__('Image is not valid. Please try again.'));
             $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
@@ -338,10 +348,18 @@ class Controller_Panel_Category extends Auth_Crud {
                 };
 
                 // save file to root folder, file, name, dir
-                Upload::save($icon, $icon_name, $root);
-                
-                Alert::set(Alert::SUCCESS, $icon['name'].' '.__('Icon is uploaded.'));
-				$this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
+                if($file = Upload::save($icon, $icon_name, $root))
+                {
+                    // put icon to Amazon S3
+                    if(core::config('image.aws_s3_active'))
+                        $s3->putObject($s3->inputFile($file), core::config('image.aws_s3_bucket'), 'images/categories/'.$icon_name, S3::ACL_PUBLIC_READ);
+
+                    Alert::set(Alert::SUCCESS, $icon['name'].' '.__('Icon is uploaded.'));
+                }
+                else
+                    Alert::set(Alert::ERROR, $icon['name'].' '.__('Icon file could not been saved.'));
+
+                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
             }
             
         }

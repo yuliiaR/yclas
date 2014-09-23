@@ -11,6 +11,29 @@
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
     /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.3.0
+     */
+    public function action_230()
+    {
+        $configs = array(
+                        array( 'config_key'     =>'aws_s3_active',
+                               'group_name'     =>'image',
+                               'config_value'   => 0),
+                        array( 'config_key'     =>'aws_access_key',
+                               'group_name'     =>'image',
+                               'config_value'   =>''),
+                        array( 'config_key'     =>'aws_secret_key',
+                               'group_name'     =>'image',
+                               'config_value'   =>''),
+                        array( 'config_key'     =>'aws_s3_bucket',
+                               'group_name'     =>'image',
+                               'config_value'   =>''),
+                        );
+        
+        Model_Config::config_array($configs);
+    }
+    
+    /**
      * This function will upgrade DB that didn't existed in versions prior to 2.2.1
      */
     public function action_221()

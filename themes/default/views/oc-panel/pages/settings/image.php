@@ -191,6 +191,73 @@
                 ))?> 
             </div>
         </div>
+        
+        <hr>
+        <h2><?=__("Amazon S3 Configuration")?></h2>
+        <div class="form-group">
+            <?= FORM::label($forms['aws_s3_active']['key'], __('Amazon S3 active'), array('class'=>'control-label col-sm-3', 'for'=>$forms['aws_s3_active']['key']))?>
+            <div class="col-sm-4">
+                <div class="onoffswitch">
+                    <?= Form::checkbox($forms['aws_s3_active']['key'], 1, (bool) $forms['aws_s3_active']['value'], array(
+                    'placeholder' => __("TRUE or FALSE"), 
+                    'class' => 'onoffswitch-checkbox', 
+                    'id' => $forms['aws_s3_active']['key'], 
+                    'data-content'=> '',
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-original-title'=>'',
+                    ))?>
+                    <?= FORM::label($forms['aws_s3_active']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['aws_s3_active']['key']))?>
+                    <?= FORM::hidden($forms['aws_s3_active']['key'], 0);?>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <?= FORM::label($forms['aws_access_key']['key'], __('AWS Access Key'), array('class'=>'control-label col-sm-3', 'for'=>$forms['aws_access_key']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::input($forms['aws_access_key']['key'], $forms['aws_access_key']['value'], array(
+                'placeholder' => '', 
+                'class' => 'tips form-control', 
+                'id' => $forms['aws_access_key']['key'], 
+                'data-content'=> '',
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>'',              
+                ))?> 
+            </div>
+        </div>
+        <div class="form-group">
+            <?= FORM::label($forms['aws_secret_key']['key'], __('AWS Secret Key'), array('class'=>'control-label col-sm-3', 'for'=>$forms['aws_secret_key']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::input($forms['aws_secret_key']['key'], $forms['aws_secret_key']['value'], array(
+                'placeholder' => "", 
+                'class' => 'tips form-control', 
+                'id' => $forms['aws_secret_key']['key'], 
+                'data-content'=> '',
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>'',          
+                ))?> 
+            </div>
+        </div>
+        <div class="form-group">
+            <?= FORM::label($forms['aws_s3_bucket']['key'], __('Amazon S3 Bucket Name'), array('class'=>'control-label col-sm-3', 'for'=>$forms['aws_s3_bucket']['key']))?>
+            <div class="col-sm-4">
+                <?= FORM::input($forms['aws_s3_bucket']['key'], $forms['aws_s3_bucket']['value'], array(
+                'placeholder' => "", 
+                'class' => 'tips form-control', 
+                'id' => $forms['aws_s3_bucket']['key'], 
+                'data-content'=> '',
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-original-title'=>'',          
+                ))?> 
+            </div>
+        </div>
 
 				<?= FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'image'))))?>
 				

@@ -282,11 +282,17 @@ class Controller_Panel_Location extends Auth_Crud {
 
 	public function action_icon()
 	{
-		//get icon
-		$icon = $_FILES['location_icon']; //file post
-		
-		$location = new Model_Location($this->request->param('id'));
+        //get icon
+        $icon = $_FILES['location_icon']; //file post
         
+        $location = new Model_Location($this->request->param('id'));
+        
+        if(core::config('image.aws_s3_active'))
+        {
+            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+        }
+
         if(core::post('icon_delete'))
         {            
             $root = DOCROOT.'images/locations/'; //root folder
@@ -299,6 +305,10 @@ class Controller_Panel_Location extends Auth_Crud {
             {	
                 //delete icon
                 unlink($root.$location->seoname.'.png');
+                
+                // delete icon from Amazon S3
+                if(core::config('image.aws_s3_active'))
+                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$location->seoname.'.png', S3::ACL_PUBLIC_READ);
                 
                 Alert::set(Alert::SUCCESS, __('Icon deleted.'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
@@ -337,12 +347,20 @@ class Controller_Panel_Location extends Auth_Crud {
                         Alert::set(Alert::ERROR, __('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.'));
                         return; // exit function
                 };
-
-                // save file to root folder, file, name, dir
-                Upload::save($icon, $icon_name, $root);
                 
-                Alert::set(Alert::SUCCESS, $icon['name'].' '.__('Icon is uploaded.'));
-				$this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
+                // save file to root folder, file, name, dir
+                if($file = Upload::save($icon, $icon_name, $root))
+                {
+                    // put icon to Amazon S3
+                    if(core::config('image.aws_s3_active'))
+                        $s3->putObject($s3->inputFile($file), core::config('image.aws_s3_bucket'), 'images/locations/'.$icon_name, S3::ACL_PUBLIC_READ);
+                
+                    Alert::set(Alert::SUCCESS, $icon['name'].' '.__('Icon is uploaded.'));
+                }
+                else
+                    Alert::set(Alert::ERROR, $icon['name'].' '.__('Icon file could not been saved.'));
+                
+                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
             }
             
         }
