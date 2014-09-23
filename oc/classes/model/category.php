@@ -274,7 +274,7 @@ class Model_Category extends ORM {
     public static function get_category_count()
     {
         $expr_date = (is_numeric(core::config('advertisement.expire_date')))?core::config('advertisement.expire_date'):0;
-        $db_prefix = core::config('database.default.table_prefix');
+        $db_prefix = Database::instance('default')->table_prefix();
 
         //get the categories that have ads id_category->num ads
         $count_ads = DB::select('c.id_category' , array(DB::expr('COUNT("a.id_ad")'),'count'))
