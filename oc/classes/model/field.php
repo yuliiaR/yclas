@@ -17,7 +17,7 @@ class Model_Field {
 
     public function __construct()
     {
-        $this->_db_prefix   = core::config('database.default.table_prefix');
+        $this->_db_prefix   = Database::instance('default')->table_prefix();
         $this->_db          = Database::instance();
         $this->_bs          = Blacksmith::alter();
 
