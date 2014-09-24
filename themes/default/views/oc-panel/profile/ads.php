@@ -101,26 +101,41 @@
 					<i class="glyphicon glyphicon-edit"></i>
 				</a>
 				<? if(($user->id_role == Model_Role::ROLE_ADMIN) AND $ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
-				<a class="btn btn-success" 
-					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
-					onclick="return confirm('<?=__('Activate?')?>');"
-					rel="tooltip" title="<?=__('Activate')?>">
-					<i class="glyphicon glyphicon-ok glyphicon"></i>
-				</a>
+                    <a
+				        href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
+				        class="btn btn-success" 
+				        title="<?=__('Activate?')?>" 
+				        data-toggle="confirmation" 
+				        data-placement="left" 
+				        data-href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
+				        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+				        data-btnCancelLabel="<?=__('No way!')?>">
+				        <i class="glyphicon glyphicon-ok glyphicon"></i>
+				    </a>
 				<?elseif($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
-				<a class="btn btn-warning" 
-					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
-					onclick="return confirm('<?=__('Deactivate?')?>');"
-					rel="tooltip" title="<?=__('Deactivate')?>">
-					<i class="glyphicon glyphicon-remove"></i>
-				</a>
+				    <a
+				        href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
+				        class="btn btn-warning" 
+				        title="<?=__('Deactivate?')?>" 
+				        data-toggle="confirmation" 
+				        data-placement="left" 
+				        data-href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
+				        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+				        data-btnCancelLabel="<?=__('No way!')?>">
+				        <i class="glyphicon glyphicon-remove"></i>
+				    </a>
 				<?endif?>
 				<?if( core::config('payment.to_top') ):?>
-					<a class="btn btn-info" 
-						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
-						onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
-					    rel="tooltip" title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
-						<i class="glyphicon glyphicon-circle-arrow-up"></i>
+					<a
+					    href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
+					    class="btn btn-info" 
+					    title="<?=__('Refresh listing, go to top?')?>" 
+					    data-toggle="confirmation" 
+					    data-placement="left" 
+					    data-href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
+					    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+					    data-btnCancelLabel="<?=__('No way!')?>">
+					    <i class="glyphicon glyphicon-circle-arrow-up"></i>
 					</a>
 				<?endif?>
 			</td>

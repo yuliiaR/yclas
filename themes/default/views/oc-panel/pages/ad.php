@@ -37,7 +37,16 @@
     </a>
 
     <?if(Core::get('status') == Model_Ad::STATUS_UNAVAILABLE OR Core::get('status') == Model_Ad::STATUS_UNCONFIRMED OR Core::get('status') == Model_Ad::STATUS_SPAM):?>
-    <a class="btn btn-danger pull-right ajax-load" type="submit" value="unavailable" onclick="return confirm('<?=__('Delete All?')?>');" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Core::get('status')?>" rel="tooltip" title="<?=__('Delete All')?>">
+    <a
+        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Core::get('status')?>" 
+        class="btn btn-danger pull-right" 
+        title="<?=__('Delete All?')?>" 
+        data-toggle="confirmation" 
+        data-placement="left" 
+        data-href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Core::get('status')?>" 
+        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+        data-btnOkClass="btn btn-sm btn-danger ajax-load" 
+        data-btnCancelLabel="<?=__('No way!')?>">
         <i class=" glyphicon  glyphicon-minus glyphicon"></i> <?=__('Delete All')?>
     </a>
     <?endif?>

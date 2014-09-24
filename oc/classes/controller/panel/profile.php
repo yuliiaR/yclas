@@ -72,6 +72,12 @@ class Controller_Panel_Profile extends Auth_Controller {
 	{
 		//get image
 		$image = $_FILES['profile_image']; //file post
+		
+		if(core::config('image.aws_s3_active'))
+		{
+		    require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+		    $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+		}
         
         if ( 
             ! Upload::valid($image) OR
@@ -117,6 +123,10 @@ class Controller_Panel_Profile extends Auth_Controller {
                     Image::factory($file)
                         ->resize($width, $height, Image::AUTO)
                         ->save($root.$image_name,$image_quality);
+                    
+                    // put image to Amazon S3
+                    if(core::config('image.aws_s3_active'))
+                        $s3->putObject($s3->inputFile($file), core::config('image.aws_s3_bucket'), 'images/users/'.$image_name, S3::ACL_PUBLIC_READ);
 
                     Alert::set(Alert::SUCCESS, $image['name'].' '.__('Image is uploaded.'));   
                 }
