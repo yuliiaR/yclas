@@ -121,6 +121,7 @@ class Auth_Controller extends Controller
                 						'css/icon-picker.min.css'=>'screen', 
                 						'css/font-awesome.min.css'=>'screen', 
                 						'css/summernote.css'=>'screen', 
+                						'css/bootstrap-tour.min.css'=>'screen',
                                         'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
@@ -133,6 +134,7 @@ class Auth_Controller extends Controller
     												  'js/summernote.min.js',
     												  'js/bootstrap.min.js', 
     											      'js/chosen.jquery.min.js',
+    											      'js/bootstrap-tour.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
     											      'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
     											      'js/bootstrap-confirmation.min.js',
@@ -157,6 +159,7 @@ class Auth_Controller extends Controller
                                         'css/loadingbar.css'=>'screen', 
                                         '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'=>'screen', 
                                         '//cdn.jsdelivr.net/summernote/0.5.1/summernote.css'=>'screen', 
+                                        '//cdn.jsdelivr.net/bootstrap-tour/0.9.3/css/bootstrap-tour.min.css',
                                         'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
@@ -168,6 +171,7 @@ class Auth_Controller extends Controller
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
     											      '//cdn.jsdelivr.net/summernote/0.5.1/summernote.min.js',
+    											      '//cdn.jsdelivr.net/bootstrap-tour/0.9.3/js/bootstrap-tour.min.js',
     												  '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js', 
     											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
