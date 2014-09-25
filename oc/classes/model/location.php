@@ -501,10 +501,11 @@ class Model_Location extends ORM {
             $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
             if (($s3->getObjectInfo(core::config('image.aws_s3_bucket'),
                 'images/locations/'.$this->seoname.'.png')) !== false)
-                
-                return ((Request::$initial->secure()) ? 'https://' : 'http://')
-                    .core::config('image.aws_s3_bucket').'.'.'s3.amazonaws.com/'
-                    .'images/locations/'.$this->seoname.'.png';
+            {
+                $protocol = Request::$initial->secure() ? 'https://' : 'http://';
+                $imgdomain = core::config('image.aws_s3_bucket').(core::config('image.aws_s3_domain') ? NULL : '.s3.amazonaws.com');
+                return $protocol.$imgdomain.'/images/locations/'.$this->seoname.'.png';
+            }
             else
                 return FALSE;
         }

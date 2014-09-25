@@ -47,8 +47,7 @@
 	
 	<?$images = $ad->get_images()?>
 	<?if($images):?>
-	<?$images_base = (core::config('image.aws_s3_active')) ? ((Request::$initial->secure()) ? 'https://' : 'http://')
-	           .core::config('image.aws_s3_bucket').'.'.'s3.amazonaws.com/' : URL::base()?>
+	<?$images_base = (core::config('image.aws_s3_active')) ? ((Request::$initial->secure()) ? 'https://' : 'http://').core::config('image.aws_s3_bucket').((core::config('image.aws_s3_domain')) ? NULL : '.s3.amazonaws.com') : URL::base()?>
 	<div class="row">
 		<div id="gallery" class="col-md-9">
 			
