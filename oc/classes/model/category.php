@@ -84,7 +84,10 @@ class Model_Category extends ORM {
 			        'parent_deep'		=> array(),
 			        'seoname'			=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
 			        'description'		=> array(),
-			        'price'				=> array(), );
+			        'price'				=> array(),
+			        'last_modified'		=> array(),
+			        'has_images'			=> array(array('numeric')),
+			        );
 	}
 
 	/**
@@ -102,7 +105,10 @@ class Model_Category extends ORM {
 			        'parent_deep'			=> __('Parent deep'),
 			        'seoname'				=> __('Seoname'),
 			        'description'			=> __('Description'),
-			        'price'					=> __('Price'));
+			        'price'					=> __('Price'),
+			        'last_modified'			=> __('Last modified'),
+			        'has_image'				=> __('Has image'),
+			        );
 	}
 	
     /**
@@ -441,7 +447,7 @@ class Model_Category extends ORM {
 
 	public function exclude_fields()
 	{
-		return array('created','parent_deep');
+		return array('created','parent_deep','has_image','last_modified');
 	}
 
     /**
@@ -548,27 +554,21 @@ class Model_Category extends ORM {
      */
     public function get_icon()
     {
-        if(core::config('image.aws_s3_active'))
-        {
-            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
-            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
-            if (($s3->getObjectInfo(core::config('image.aws_s3_bucket'),
-                'images/categories/'.$this->seoname.'.png')) !== false)
+        if ($this->has_image) {
+            if(core::config('image.aws_s3_active'))
             {
                 $protocol = Request::$initial->secure() ? 'https://' : 'http://';
-                $imgdomain = core::config('image.aws_s3_bucket').(core::config('image.aws_s3_domain') ? NULL : '.s3.amazonaws.com');
-                return $protocol.$imgdomain.'/images/categories/'.$this->seoname.'.png';
+                $cdndomain = core::config('image.aws_s3_bucket')
+                            .(core::config('image.aws_s3_domain') ? '/' : '.s3.amazonaws.com/');
+                $version = $this->last_modified ? '?v='.Date::mysql2unix($this->last_modified) : NULL;
+                
+                return $protocol.$cdndomain.'images/categories/'.$this->seoname.'.png'.$version;
             }
             else
-                return FALSE;
+                return URL::base().'images/categories/'.$this->seoname.'.png'
+                        .(($this->last_modified) ? '?v='.Date::mysql2unix($this->last_modified) : NULL);
         }
-        else
-        {
-            if(is_file(DOCROOT."images/categories/".$this->seoname.".png"))
-                return URL::base().'images/categories/'.$this->seoname.'.png';
-            else
-                return FALSE;
-        }
+        
+        return FALSE;
     }
-
 } // END Model_Category

@@ -287,13 +287,13 @@ class Controller_Panel_Location extends Auth_Crud {
         
         $location = new Model_Location($this->request->param('id'));
         
-        if(core::config('image.aws_s3_active'))
+        if (core::config('image.aws_s3_active'))
         {
             require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
             $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
         }
 
-        if(core::post('icon_delete'))
+        if (core::post('icon_delete'))
         {            
             $root = DOCROOT.'images/locations/'; //root folder
             
@@ -309,6 +309,11 @@ class Controller_Panel_Location extends Auth_Crud {
                 // delete icon from Amazon S3
                 if(core::config('image.aws_s3_active'))
                     $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$location->seoname.'.png');
+                
+                // update location info
+                $location->has_image = 0;
+                $location->last_modified = Date::unix2mysql();
+                $location->save();
                 
                 Alert::set(Alert::SUCCESS, __('Icon deleted.'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
@@ -326,7 +331,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 Alert::set(Alert::ALERT, $icon['name'].' '.sprintf(__('Is not valid format, please use one of this formats "%s"'),core::config('image.allowed_formats')));
 				$this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
             } 
-            if( ! Upload::size($icon, core::config('image.max_image_size').'M'))
+            if ( ! Upload::size($icon, core::config('image.max_image_size').'M'))
             {
                 Alert::set(Alert::ALERT, $icon['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('general.max_image_size')));
 				$this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
@@ -336,10 +341,11 @@ class Controller_Panel_Location extends Auth_Crud {
         }
         else
         {
-            if($icon != NULL) // sanity check 
+            if ($icon != NULL) // sanity check 
             {   
                 // saving/uploading img file to dir.
-                $root = DOCROOT.'images/locations/'; //root folder
+                $path = 'images/locations/';
+                $root = DOCROOT.$path; //root folder
                 $icon_name = $location->seoname.'.png';
                 
                 // if folder does not exist, try to make it
@@ -349,12 +355,17 @@ class Controller_Panel_Location extends Auth_Crud {
                 };
                 
                 // save file to root folder, file, name, dir
-                if($file = Upload::save($icon, $icon_name, $root))
+                if ($file = Upload::save($icon, $icon_name, $root))
                 {
                     // put icon to Amazon S3
-                    if(core::config('image.aws_s3_active'))
-                        $s3->putObject($s3->inputFile($file), core::config('image.aws_s3_bucket'), 'images/locations/'.$icon_name, S3::ACL_PUBLIC_READ);
-                
+                    if (core::config('image.aws_s3_active'))
+                        $s3->putObject($s3->inputFile($file), core::config('image.aws_s3_bucket'), $path.$icon_name, S3::ACL_PUBLIC_READ);
+                    
+                    // update location info
+                    $location->has_image = 1;
+                    $location->last_modified = Date::unix2mysql();
+                    $location->save();
+                    
                     Alert::set(Alert::SUCCESS, $icon['name'].' '.__('Icon is uploaded.'));
                 }
                 else

@@ -15,7 +15,7 @@
             <div class="thumbnail latest_ads">
                 <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"  class="min-h">
                 <?if($ad->get_first_image()!== NULL):?>
-                    <?$images_base = (core::config('image.aws_s3_active')) ? ((Request::$initial->secure()) ? 'https://' : 'http://').core::config('image.aws_s3_bucket').((core::config('image.aws_s3_domain')) ? NULL : '.s3.amazonaws.com') : URL::base()?>
+                    <?$images_base = (core::config('image.aws_s3_active')) ? ((Request::$initial->secure()) ? 'https://' : 'http://').core::config('image.aws_s3_bucket').((core::config('image.aws_s3_domain')) ? '/' : '.s3.amazonaws.com/') : URL::base()?>
                     <img src="<?=$images_base?><?=$ad->get_first_image()?>" alt="<?=HTML::chars($ad->title)?>">
                 <?else:?>
                     <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>

@@ -6,7 +6,7 @@
     <?foreach($ads as $ad ):?>
     <li class="media">
         <?if($ad->get_first_image() !== NULL):?>
-        <?$images_base = (core::config('image.aws_s3_active')) ? ((Request::$initial->secure()) ? 'https://' : 'http://').core::config('image.aws_s3_bucket').((core::config('image.aws_s3_domain')) ? NULL : '.s3.amazonaws.com') : URL::base()?>
+        <?$images_base = (core::config('image.aws_s3_active')) ? ((Request::$initial->secure()) ? 'https://' : 'http://').core::config('image.aws_s3_bucket').((core::config('image.aws_s3_domain')) ? '/' : '.s3.amazonaws.com/') : URL::base()?>
         <a class="pull-left" title="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
             <img class="media-object" width="64px" height="64px" src="<?=$images_base?><?=$ad->get_first_image()?>" alt="<?= HTML::chars($ad->title)?>">
         </a>
