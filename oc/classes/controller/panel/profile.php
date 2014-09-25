@@ -464,6 +464,27 @@ class Controller_Panel_Profile extends Auth_Controller {
 						//delete original image
 						$orig_img = str_replace('thumb_', '', $deleted_image);
 						unlink($img_path.$orig_img.".jpg");
+						
+						// delete image from Amazon S3
+						if(core::config('image.aws_s3_active'))
+						{
+						    require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+						    $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'), false, "s3.amazonaws.com:10001");
+						    //delete formated image
+						    $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$deleted_image.'.jpg');
+						    //delete original image
+						    $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$orig_img.'.jpg');
+						}
+						
+						$form->has_images = $form->has_images-1;
+						try 
+						{
+						    $form->save();
+						} 
+						catch (Exception $e) 
+						{
+						    throw HTTP_Exception::factory(500,$e->getMessage());
+						}
 
 						$this->redirect(Route::url('oc-panel', array('controller'	=>'profile',
 																			  'action'		=>'update',
@@ -554,7 +575,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        		}
 	        		
 	        		if ($filename){
-			        	$form->has_images = 1;
+			        	$form->has_images = $form->has_images+1;
 			        	try 
 						{
 							$form->save();

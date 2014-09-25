@@ -308,7 +308,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 
                 // delete icon from Amazon S3
                 if(core::config('image.aws_s3_active'))
-                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$location->seoname.'.png', S3::ACL_PUBLIC_READ);
+                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$location->seoname.'.png');
                 
                 Alert::set(Alert::SUCCESS, __('Icon deleted.'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
