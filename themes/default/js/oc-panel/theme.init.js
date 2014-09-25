@@ -97,6 +97,8 @@ function init_panel()
 	// Call open_eshop.init function only if exist
 	if (typeof open_eshop !== 'undefined' && $.isFunction(open_eshop.init)) {open_eshop.init(open_eshop);}
 	
+	// Modal confirmation
+	$('[data-toggle="confirmation"]').confirmation();
 }
 
 $(function (){

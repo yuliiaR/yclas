@@ -47,14 +47,16 @@
 	
 	<?$images = $ad->get_images()?>
 	<?if($images):?>
+	<?$images_base = (core::config('image.aws_s3_active')) ? ((Request::$initial->secure()) ? 'https://' : 'http://')
+	           .core::config('image.aws_s3_bucket').'.'.'s3.amazonaws.com/' : URL::base()?>
 	<div class="row">
 		<div id="gallery" class="col-md-9">
 			
 				<?foreach ($images as $path => $value):?>
 				<?if( isset($value['thumb']) AND isset($value['image']) ):?>
 					<div class="col-md-3">
-					<a href="<?=URL::base()?><?= $value['image']?>" class="thumbnail gallery-item" data-gallery>
-						<img src="<?=URL::base()?><?= $value['thumb']?>"  class="img-rounded" alt="">
+					<a href="<?=$images_base?><?= $value['image']?>" class="thumbnail gallery-item" data-gallery>
+						<img src="<?=$images_base?><?= $value['thumb']?>" class="img-rounded" alt="<?=HTML::chars($ad->title)?>">
 					</a>
 					</div>
 				<?endif?>	

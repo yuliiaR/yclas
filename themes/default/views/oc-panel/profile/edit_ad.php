@@ -243,13 +243,14 @@
 				<div class="form-group">
 				<div class="col-md-12">
 					<?$images = $ad->get_images()?>
+					<?$images_base = (core::config('image.aws_s3_active')) ? ((Request::$initial->secure()) ? 'https://' : 'http://').core::config('image.aws_s3_bucket').'.'.'s3.amazonaws.com/' : URL::base()?>
 					<?if($images):?>
 						<?foreach ($images as $path => $value):?>
 						<?if(isset($value['thumb'])): // only formated images (not originals)?>
 						<?$img_name = str_replace(".jpg", "", substr(strrchr($value['thumb'], "/"), 1 ));?>
 						<div class="col-md-4 col-sm-4 col-md-4 edit-image">
 							<a class="">
-								<img src="<?=URL::base()?><?= $value['thumb']?>" class="img-rounded thumbnail" alt="">
+								<img src="<?=$images_base?><?= $value['thumb']?>" class="img-rounded thumbnail" alt="">
 							</a>
 							<button class="btn btn-danger index-delete"
 							   onclick="return confirm('<?=__('Delete?')?>');" 

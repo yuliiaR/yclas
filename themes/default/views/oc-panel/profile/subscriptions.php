@@ -11,11 +11,16 @@
 		<th><?=__('Max Price')?></th>
 		<th><?=__('Created')?></th>
 		<th>
-			<a class=" btn btn-danger  " 
+			<a
 				href="<?=Route::url('default', array('controller'=>'subscribe','action'=>'unsubscribe', 'id'=>Auth::instance()->get_user()->id_user))?>" 
-				onclick="return confirm('<?=__('Unsubscribe to all?')?>');"
-				rel="tooltip" title="<?=__('Unsubscribe to all')?>">
-				<i class="glyphicon   glyphicon-remove"></i>
+				class="btn btn-danger" 
+				title="<?=__('Unsubscribe to all?')?>" 
+				data-toggle="confirmation" 
+				data-placement="left" 
+				data-href="<?=Route::url('default', array('controller'=>'subscribe','action'=>'unsubscribe', 'id'=>Auth::instance()->get_user()->id_user))?>" 
+				data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+				data-btnCancelLabel="<?=__('No way!')?>">
+				<i class="glyphicon glyphicon-remove"></i>
 			</a>
 		</th>
 	</tr>
@@ -46,11 +51,16 @@
 			</td>
 			<td>
 				<!-- unsubscribe one entry button -->
-				<a class="btn btn-warning" 
+				<a
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'unsubscribe','id'=>$l['id']))?>" 
-					onclick="return confirm('<?=__('Unsubscribe?')?>');"
-					rel="tooltip" title="<?=__('Unsubscribe')?>">
-					<i class="glyphicon   glyphicon-remove"></i>
+					class="btn btn-warning" 
+					title="<?=__('Unsubscribe?')?>" 
+					data-toggle="confirmation" 
+					data-placement="left" 
+					data-href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'unsubscribe','id'=>$l['id']))?>" 
+					data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+					data-btnCancelLabel="<?=__('No way!')?>">
+					<i class="glyphicon glyphicon-remove"></i>
 				</a>
 			</td>
 		</tr>
