@@ -350,8 +350,9 @@ class Controller_New extends Controller
                             //swapping moderation since theres no price :(
                             if ($moderation == Model_Ad::PAYMENT_ON)
                             {
-                                $moderation = Model_Ad::POST_DIRECTLY;
-                                $new_ad->status = Model_Ad::STATUS_PUBLISHED;
+                                $moderation        = Model_Ad::POST_DIRECTLY;
+                                $new_ad->status    = Model_Ad::STATUS_PUBLISHED;
+                                $new_ad->published = $new_ad->created;
                                 $new_ad->save();
                             }
                             elseif($moderation == Model_Ad::PAYMENT_MODERATION)
