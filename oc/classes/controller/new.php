@@ -315,10 +315,10 @@ class Controller_New extends Controller
                         $filename = $new_ad->save_image($_FILES['image'.$i]);
 
                     if ($filename)
-                        $new_ad->has_images = 1;
+                        $new_ad->has_images = $i+1;
                 }
                 //since theres images save the ad again...
-                if ($new_ad->has_images == 1)
+                if ($new_ad->has_images > 0)
                 {
                     try 
                     {

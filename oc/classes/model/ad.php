@@ -87,6 +87,7 @@ class Model_Ad extends ORM {
 				        'phone'			=> array(array('max_length', array(':value', 30)), ),
 				        'status'		=> array(array('numeric')),
 				        'has_images'	=> array(array('numeric')),
+				        'last_modified'	=> array(),
 				    );
     }
 
@@ -114,6 +115,7 @@ class Model_Ad extends ORM {
 			        'published'		=> __('Published'),
 			        'status'		=> __('Status'),
 			        'has_images'	=> __('Has images'),
+			        'last_modified'	=> __('Last modified'),
 			    );
     }
     
@@ -209,55 +211,29 @@ class Model_Ad extends ORM {
         $image_path = array();
        
         if($this->loaded() AND $this->has_images > 0)
-        {  
-            $route = $this->image_path();
-            $folder = DOCROOT.$route;
-            
-            if(core::config('image.aws_s3_active'))
-            {
-                require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
-                $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
-                
-                foreach ($s3->getBucket(core::config('image.aws_s3_bucket'), '/'.$route) as $file) 
-                {   
-                    $key = explode('_', $file['name']);
-                    $key = end($key);
-                    $key = explode('.', $key);
-                    $key = (isset($key[0])) ? $key[0] : NULL ;
-                
-                    if(is_numeric($key))
-                    {
-                        $type = (strpos($file['name'], '/'.$route.'thumb_') === 0) ? 'thumb' : 'image' ;
-                        $image_path[$key][$type] = ltrim($file['name'], '/');
-                    }
-                }
-            }
+        {              
+            if (core::config('image.aws_s3_active'))
+                $base = core::config('image.aws_s3_bucket')
+                        .(core::config('image.aws_s3_domain') ? '/' : '.s3.amazonaws.com/');
             else
+                $base = URL::base();
+            
+            $route      = $this->image_path();
+            $folder     = DOCROOT.$route;
+            $seotitle   = $this->seotitle;
+            $version    = $this->last_modified ? '?v='.Date::mysql2unix($this->last_modified) : NULL;
+            $protocol   = Request::$initial->secure() ? 'https://' : 'http://';
+            
+            for ($i=1; $i <= $this->has_images; $i++) 
             {
-                if(is_dir($folder))
-                { 
-                    foreach (new DirectoryIterator($folder) as $file) 
-                    {   
-                        if(!$file->isDot())
-                        {   
-                            $key = explode('_', $file->getFilename());
-                            $key = end($key);
-                            $key = explode('.', $key);
-                            $key = (isset($key[0])) ? $key[0] : NULL ;
-    
-                            if(is_numeric($key))
-                            {
-                                $type = (strpos($file->getFilename(), 'thumb_') === 0) ? 'thumb' : 'image' ;
-                                $image_path[$key][$type] = $route.$file->getFilename();
-                            }
-                        }
-                    }
-                }
+                $filename_thumb = 'thumb_'.$seotitle.'_'.$i.'.jpg';
+                $filename_original = $seotitle.'_'.$i.'.jpg';
+                $image_path[$i]['image'] = $route.$filename_original.$version;
+                $image_path[$i]['thumb'] = $route.$filename_thumb.$version;
+                $image_path[$i]['base'] = $protocol.$base;
             }
         }
-
-        ksort($image_path);
-
+        
         return $image_path;
     }
 
@@ -270,7 +246,7 @@ class Model_Ad extends ORM {
     {
         $images = $this->get_images();
 
-        if(count($images) >= 1)
+        if(count($images) > 0)
             $first_image = reset($images);
 
         return (isset($first_image[$type])) ? $first_image[$type] : NULL ;
@@ -320,7 +296,7 @@ class Model_Ad extends ORM {
      * @param array image
      * @return bool
      */
-    public function save_image($image, $counter = 1)
+    public function save_image($image)
     {
         if (!$this->loaded())
             return FALSE;
@@ -371,30 +347,10 @@ class Model_Ad extends ORM {
             if( ! is_numeric($height_thumb))
                 $height_thumb   = NULL;    
             
-            // how many files are saved 
-            if ($this->has_images > 0)
-            {
-                $counter = $this->has_images;
-                
-                    if(file_exists($directory.$seotitle.'_'.$counter.'.jpg')) // in case we update image, we have to find available number to replace
-                    {
-                        for($i=1; $i<=core::config('advertisement.num_images'); $i++)
-                        {
-                            $counter = $i;
-                            if(!file_exists($directory.$seotitle.'_'.$counter.'.jpg'))
-                            {
-                                break;
-                            }
-                        }
-                    }
-            }
-            else
-                $counter = 1;
-            
             if ($file = Upload::save($image, NULL, $directory))
             {
-                $filename_thumb     = 'thumb_'.$seotitle.'_'.$counter.'.jpg';
-                $filename_original  = $seotitle.'_'.$counter.'.jpg';
+                $filename_thumb     = 'thumb_'.$seotitle.'_'.($this->has_images+1).'.jpg';
+                $filename_original  = $seotitle.'_'.($this->has_images+1).'.jpg';
                  
                 /*WATERMARK*/
                 if(core::config('image.watermark')==TRUE AND is_readable(core::config('image.watermark_path')))
@@ -431,20 +387,12 @@ class Model_Ad extends ORM {
                                 ->resize($width, $height, Image::AUTO)
                                 ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
                                 ->save($directory.$filename_original,$image_quality);
-                                
-                            // put image to Amazon S3
-                            if(core::config('image.aws_s3_active'))
-                                $s3->putObject($s3->inputFile($directory.$filename_original), core::config('image.aws_s3_bucket'), $path.$filename_original, S3::ACL_PUBLIC_READ);
                         }
                         else 
                         {
                             Image::factory($file)
                                 ->resize($width, $height, Image::AUTO)
                                 ->save($directory.$filename_original,$image_quality);
-                                
-                            // put image to Amazon S3
-                            if(core::config('image.aws_s3_active'))
-                                $s3->putObject($s3->inputFile($directory.$filename_original), core::config('image.aws_s3_bucket'), $path.$filename_original, S3::ACL_PUBLIC_READ);
                         }
                     }
                     //we just save the image changing the quality and different name
@@ -455,32 +403,19 @@ class Model_Ad extends ORM {
                             Image::factory($file)
                                 ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
                                 ->save($directory.$filename_original,$image_quality);
-                            
-                            // put image to Amazon S3
-                            if(core::config('image.aws_s3_active'))
-                                $s3->putObject($s3->inputFile($directory.$filename_original), core::config('image.aws_s3_bucket'), $path.$filename_original, S3::ACL_PUBLIC_READ);
                         }
                         else
                         {
                             Image::factory($file)
                                 ->save($directory.$filename_original,$image_quality);
-                            
-                            // put image to Amazon S3
-                            if(core::config('image.aws_s3_active'))
-                                $s3->putObject($s3->inputFile($directory.$filename_original), core::config('image.aws_s3_bucket'), $path.$filename_original, S3::ACL_PUBLIC_READ);
                         }
                     }
                 
-
                 //creating the thumb and resizing using the the biggest side INVERSE
                 Image::factory($file)
                     ->resize($width_thumb, $height_thumb, Image::INVERSE)
                     ->save($directory.$filename_thumb,$image_quality);
                     
-                // put thumb to Amazon S3
-                if(core::config('image.aws_s3_active'))
-                    $s3->putObject($s3->inputFile($directory.$filename_thumb), core::config('image.aws_s3_bucket'), $path.$filename_thumb, S3::ACL_PUBLIC_READ);
-
                 //check if the height or width of the thumb is bigger than default then crop
                 if ($height_thumb!==NULL)
                 {
@@ -490,15 +425,16 @@ class Model_Ad extends ORM {
                         Image::factory($directory.$filename_thumb)
                                     ->crop($width_thumb, $height_thumb)
                                     ->save($directory.$filename_thumb);
-                        
-                        // put thumb to Amazon S3
-                        if(core::config('image.aws_s3_active'))
-                        {
-                            $s3->deleteObject(core::config('image.aws_s3_bucket'), $path.$filename_thumb);
-                            $s3->putObject($s3->inputFile($directory.$filename_thumb), core::config('image.aws_s3_bucket'), $path.$filename_thumb, S3::ACL_PUBLIC_READ);
-                        }
                     }
                 }
+                
+                // put image and thumb to Amazon S3
+                if(core::config('image.aws_s3_active'))
+                {
+                    $s3->putObject($s3->inputFile($directory.$filename_original), core::config('image.aws_s3_bucket'), $path.$filename_original, S3::ACL_PUBLIC_READ);
+                    $s3->putObject($s3->inputFile($directory.$filename_thumb), core::config('image.aws_s3_bucket'), $path.$filename_thumb, S3::ACL_PUBLIC_READ);
+                }
+                
                 // Delete the temporary file
                 @unlink($file);
                 return TRUE;
@@ -522,11 +458,6 @@ class Model_Ad extends ORM {
             return FALSE;
 
         $img_path = DOCROOT.$this->image_path();
-
-        if (!is_dir($img_path))
-            return FALSE;
-
-        File::delete($img_path);
         
         if(core::config('image.aws_s3_active') AND $this->has_images > 0)
         {
@@ -546,6 +477,11 @@ class Model_Ad extends ORM {
             }
         }
 
+        if (!is_dir($img_path))
+            return FALSE;
+
+        File::delete($img_path);
+        
         return TRUE;
     }
 

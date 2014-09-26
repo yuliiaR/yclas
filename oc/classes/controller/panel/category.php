@@ -242,7 +242,7 @@ class Controller_Panel_Category extends Auth_Crud {
     }
 
     /**
-     * recalculating the deep of all the locations
+     * recalculating the deep of all the categories
      * @return [type] [description]
      */
     public function action_deep()
@@ -286,13 +286,13 @@ class Controller_Panel_Category extends Auth_Crud {
 		
 		$category = new Model_Category($this->request->param('id'));
 		
-		if(core::config('image.aws_s3_active'))
+		if (core::config('image.aws_s3_active'))
         {
             require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
             $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
         }
         
-		if(core::post('icon_delete'))
+		if (core::post('icon_delete'))
 		{            
             $root = DOCROOT.'images/categories/'; //root folder
             
@@ -307,7 +307,12 @@ class Controller_Panel_Category extends Auth_Crud {
                 
                 // delete icon from Amazon S3
                 if(core::config('image.aws_s3_active'))
-                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$category->seoname.'.png', S3::ACL_PUBLIC_READ);
+                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$category->seoname.'.png');
+                
+                // update category info
+                $category->has_image = 0;
+                $category->last_modified = Date::unix2mysql();
+                $category->save();
                 
                 Alert::set(Alert::SUCCESS, __('Icon deleted.'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
@@ -335,10 +340,11 @@ class Controller_Panel_Category extends Auth_Crud {
         }
         else
         {
-            if($icon != NULL) // sanity check 
+            if ($icon != NULL) // sanity check 
             {   
                 // saving/uploading img file to dir.
-                $root = DOCROOT.'images/categories/'; //root folder
+                $path = 'images/categories/';
+                $root = DOCROOT.$path; //root folder
                 $icon_name = $category->seoname.'.png';
                 
                 // if folder does not exist, try to make it
@@ -346,19 +352,24 @@ class Controller_Panel_Category extends Auth_Crud {
                         Alert::set(Alert::ERROR, __('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.'));
                         return; // exit function
                 };
-
+                
                 // save file to root folder, file, name, dir
-                if($file = Upload::save($icon, $icon_name, $root))
+                if ($file = Upload::save($icon, $icon_name, $root))
                 {
                     // put icon to Amazon S3
-                    if(core::config('image.aws_s3_active'))
-                        $s3->putObject($s3->inputFile($file), core::config('image.aws_s3_bucket'), 'images/categories/'.$icon_name, S3::ACL_PUBLIC_READ);
-
+                    if (core::config('image.aws_s3_active'))
+                        $s3->putObject($s3->inputFile($file), core::config('image.aws_s3_bucket'), $path.$icon_name, S3::ACL_PUBLIC_READ);
+                    
+                    // update category info
+                    $category->has_image = 1;
+                    $category->last_modified = Date::unix2mysql();
+                    $category->save();
+                    
                     Alert::set(Alert::SUCCESS, $icon['name'].' '.__('Icon is uploaded.'));
                 }
                 else
                     Alert::set(Alert::ERROR, $icon['name'].' '.__('Icon file could not been saved.'));
-
+                    
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
             }
             

@@ -15,6 +15,37 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
      */
     public function action_230()
     {
+        //categories/locations/users/ads has_image/last_modified
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` ADD `last_modified` DATETIME NULL DEFAULT NULL ;")->execute();
+        }catch (exception $e) {}
+        
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` ADD `has_image` TINYINT( 1 ) NOT NULL DEFAULT '0' ;")->execute();
+        }catch (exception $e) {}
+        
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `last_modified` DATETIME NULL DEFAULT NULL ;")->execute();
+        }catch (exception $e) {}
+        
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `has_image` TINYINT( 1 ) NOT NULL DEFAULT '0' ;")->execute();
+        }catch (exception $e) {}
+        
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `has_image` TINYINT( 1 ) NOT NULL DEFAULT '0' ;")->execute();
+        }catch (exception $e) {}
+        
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` ADD `last_modified` DATETIME NULL DEFAULT NULL ;")->execute();
+        }catch (exception $e) {}
+        
         $configs = array(
                         array( 'config_key'     =>'aws_s3_active',
                                'group_name'     =>'image',
@@ -28,6 +59,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'aws_s3_bucket',
                                'group_name'     =>'image',
                                'config_value'   =>''),
+                        array( 'config_key'     =>'aws_s3_domain',
+                               'group_name'     =>'image',
+                               'config_value'   =>0),
                         );
         
         Model_Config::config_array($configs);

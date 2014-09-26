@@ -55,6 +55,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `hybridauth_provider_uid` varchar(245) NULL DEFAULT NULL,
   `subscriber` tinyint(1) NOT NULL DEFAULT '1',
   `rate` FLOAT( 4, 2 ) NULL DEFAULT NULL,
+  `has_image` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_email` (`email`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_token` (`token`),
@@ -73,6 +74,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `seoname` varchar(145) NOT NULL,
   `description` text NULL DEFAULT NULL,
   `price` decimal(10,2) NOT NULL DEFAULT '0',
+  `last_modified` DATETIME  NULL,
+  `has_image` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_IK_seo_name` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
@@ -86,6 +89,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `parent_deep` int(2) unsigned NOT NULL DEFAULT '0',
   `seoname` varchar(145) NOT NULL,
   `description` text NULL DEFAULT NULL,
+  `last_modified` DATETIME  NULL,
+  `has_image` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
@@ -107,6 +112,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `published` DATETIME  NULL,
   `featured` DATETIME  NULL,
+  `last_modified` DATETIME  NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `has_images` tinyint(1) NOT NULL DEFAULT '0',
   `stock` int(10) unsigned DEFAULT NULL,
@@ -487,6 +493,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('image', 'aws_access_key', ''),
 ('image', 'aws_secret_key', ''),
 ('image', 'aws_s3_bucket', ''),
+('image', 'aws_s3_domain', 0),
 ('advertisement', 'num_images', '4'),
 ('advertisement', 'expire_date', '0'),
 ('advertisement', 'address', 1),
