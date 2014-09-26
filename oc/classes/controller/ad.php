@@ -500,8 +500,13 @@ class Controller_Ad extends Controller {
                                 $ad->user->recalculate_rate();
                                 Alert::set(Alert::SUCCESS, __('Thanks for your review!'));
                             }
-                            else
+                            else{
                                 $errors = $validation->errors('ad');
+                                foreach ($errors as $f => $err) 
+                                    {
+                                    Alert::set(Alert::ALERT, $err);
+                                }
+                            }
                         }
                         else
                             Alert::set(Alert::ERROR, __('Wrong Captcha'));
