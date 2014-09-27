@@ -192,6 +192,26 @@
             </div>
         </div>
         
+        <div class="form-group">
+            <?= FORM::label($forms['disallow_nudes']['id'], __('Disallow nude pictures'), array('class'=>'control-label col-sm-3', 'for'=>$forms['disallow_nudes']['id']))?>
+            <div class="col-sm-4">
+                <div class="onoffswitch">
+                    <?= Form::checkbox($forms['disallow_nudes']['key'], 1, (bool) $forms['disallow_nudes']['value'], array(
+                    'placeholder' => __("TRUE or FALSE"),
+                    'class' => 'onoffswitch-checkbox',
+                    'id' => $forms['disallow_nudes']['id'],
+                    'data-content'=> __("Restricts likely nude pictures that are being uploaded to your server."),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-original-title'=>__("disallow_nudes"),
+                    ))?>
+                    <?= FORM::label($forms['disallow_nudes']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['disallow_nudes']['key']))?>
+                    <?= FORM::hidden($forms['disallow_nudes']['key'], 0);?>
+                </div>
+            </div>
+        </div>
+        
         <hr>
         <h2><?=__("Amazon S3 Configuration")?></h2>
         <div class="form-group">

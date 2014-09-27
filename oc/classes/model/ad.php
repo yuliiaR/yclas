@@ -327,6 +327,12 @@ class Model_Ad extends ORM {
                 return;
         }
           
+        if (core::config('image.disallow_nudes') AND ! Upload::not_nude_image($image))
+        {
+            Alert::set(Alert::ALERT, $image['name'].' '.__('Seems a nude picture so you cannot upload it'));
+            return;
+        }
+        
         if ($image !== NULL)
         {
             $path           = $this->image_path();

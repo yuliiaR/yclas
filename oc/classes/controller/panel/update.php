@@ -62,6 +62,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'aws_s3_domain',
                                'group_name'     =>'image',
                                'config_value'   =>0),
+                        array( 'config_key'     =>'disallow_nudes',
+                               'group_name'     =>'image',
+                               'config_value'   =>0),
                         );
         
         Model_Config::config_array($configs);
