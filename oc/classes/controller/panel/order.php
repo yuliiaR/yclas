@@ -47,8 +47,9 @@ class Controller_Panel_Order extends Auth_Crud {
             $user->where('email','=',core::get('email'))->limit(1)->find();
             if ($user->loaded())
                 $orders = $orders->where('id_user', '=', $user->id_user);
+            else
+                Alert::set(Alert::ALERT, sprintf(__('Sorry, could not find any user matching "%s" email.'), core::get('email')));
         }
-
 
         $pagination = Pagination::factory(array(
                     'view'           => 'oc-panel/crud/pagination',
