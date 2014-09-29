@@ -214,10 +214,8 @@ class Model_Ad extends ORM {
         {              
             if (core::config('image.aws_s3_active'))
             {
-                $protocol = (Request::$initial->secure() AND ! core::config('image.aws_s3_domain')) ? 'https://' : 'http://';
-                $base = $protocol
-                        .core::config('image.aws_s3_bucket')
-                        .(core::config('image.aws_s3_domain') ? '/' : '.s3.amazonaws.com/');
+                $protocol = Request::$initial->secure() ? 'https://' : 'http://';
+                $base = $protocol.core::config('image.aws_s3_domain');
             }
             else
                 $base = URL::base();

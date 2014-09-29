@@ -240,10 +240,29 @@ class Controller_Panel_Settings extends Auth_Controller {
                           $allowed_formats .= $value.",";
                       }
                       $config_res[$c->group_name][$c->config_key][0] = $allowed_formats;
-                    } 
+                    }
+                    
+                    if($c->config_key == 'aws_s3_domain')
+                    {
+                        switch ($config_res[$c->group_name]['aws_s3_domain'][0])
+                        {
+                            case 'bn-s3':
+                                $s3_domain = $config_res[$c->group_name]['aws_s3_bucket'][0].'.s3.amazonaws.com';
+                                break;
+                                
+                            case 'bn':
+                                $s3_domain = $config_res[$c->group_name]['aws_s3_bucket'][0];
+                                break;
+                                
+                            default:
+                                $s3_domain = 's3.amazonaws.com/'.$config_res[$c->group_name]['aws_s3_bucket'][0];
+                                break;
+                        }
+                        $config_res[$c->group_name][$c->config_key][0] = $s3_domain.'/';
+                    }
 
                     $c->config_value = $config_res[$c->group_name][$c->config_key][0];
-					Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);
+                    Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);
                 }
             }
             Alert::set(Alert::SUCCESS, __('Image Configuration updated'));

@@ -6,7 +6,7 @@
 <div class="well <?=(get_class($widget)=='Widget_Featured')?'featured-custom-box':''?>" >
 	<div class="featured-sidebar-box">
 		<?if($ad->get_first_image() !== NULL):?>
-			<?$images_base = (core::config('image.aws_s3_active')) ? ((Request::$initial->secure()) ? 'https://' : 'http://').core::config('image.aws_s3_bucket').((core::config('image.aws_s3_domain')) ? '/' : '.s3.amazonaws.com/') : URL::base()?>
+			<?$images_base = (core::config('image.aws_s3_active')) ? ((Request::$initial->secure()) ? 'https://' : 'http://').core::config('image.aws_s3_domain') : URL::base()?>
 			<div class="picture pull-right">
 				<a class="pull-right" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
 					<figure>

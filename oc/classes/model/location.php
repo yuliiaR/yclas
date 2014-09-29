@@ -503,11 +503,9 @@ class Model_Location extends ORM {
             if(core::config('image.aws_s3_active'))
             {
                 $protocol = Request::$initial->secure() ? 'https://' : 'http://';
-                $cdndomain = core::config('image.aws_s3_bucket')
-                            .(core::config('image.aws_s3_domain') ? '/' : '.s3.amazonaws.com/');
                 $version = $this->last_modified ? '?v='.Date::mysql2unix($this->last_modified) : NULL;
                 
-                return $protocol.$cdndomain.'images/locations/'.$this->seoname.'.png'.$version;
+                return $protocol.core::config('image.aws_s3_domain').'images/locations/'.$this->seoname.'.png'.$version;
             }
             else
                 return URL::base().'images/locations/'.$this->seoname.'.png'
