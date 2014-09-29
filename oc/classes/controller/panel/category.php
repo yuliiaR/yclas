@@ -303,7 +303,7 @@ class Controller_Panel_Category extends Auth_Crud {
             else
             {	
                 //delete icon
-                unlink($root.$category->seoname.'.png');
+                @unlink($root.$category->seoname.'.png');
                 
                 // delete icon from Amazon S3
                 if(core::config('image.aws_s3_active'))
