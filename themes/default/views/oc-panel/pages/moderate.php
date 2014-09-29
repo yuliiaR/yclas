@@ -60,7 +60,7 @@
                 </a>
             </td>
             
-            <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->name,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
+            <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
             </td>
 
             <td><?= wordwrap($ad->category->name, 15, "<br />\n"); ?>

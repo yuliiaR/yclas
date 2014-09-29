@@ -494,6 +494,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('image', 'aws_secret_key', ''),
 ('image', 'aws_s3_bucket', ''),
 ('image', 'aws_s3_domain', 0),
+('image', 'disallow_nudes', 0),
 ('advertisement', 'num_images', '4'),
 ('advertisement', 'expire_date', '0'),
 ('advertisement', 'address', 1),

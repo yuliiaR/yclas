@@ -213,8 +213,10 @@ class Model_Ad extends ORM {
         if($this->loaded() AND $this->has_images > 0)
         {              
             if (core::config('image.aws_s3_active'))
-                $base = core::config('image.aws_s3_bucket')
-                        .(core::config('image.aws_s3_domain') ? '/' : '.s3.amazonaws.com/');
+            {
+                $protocol = Request::$initial->secure() ? 'https://' : 'http://';
+                $base = $protocol.core::config('image.aws_s3_domain');
+            }
             else
                 $base = URL::base();
             
@@ -222,7 +224,6 @@ class Model_Ad extends ORM {
             $folder     = DOCROOT.$route;
             $seotitle   = $this->seotitle;
             $version    = $this->last_modified ? '?v='.Date::mysql2unix($this->last_modified) : NULL;
-            $protocol   = Request::$initial->secure() ? 'https://' : 'http://';
             
             for ($i=1; $i <= $this->has_images; $i++) 
             {
@@ -230,7 +231,7 @@ class Model_Ad extends ORM {
                 $filename_original = $seotitle.'_'.$i.'.jpg';
                 $image_path[$i]['image'] = $route.$filename_original.$version;
                 $image_path[$i]['thumb'] = $route.$filename_thumb.$version;
-                $image_path[$i]['base'] = $protocol.$base;
+                $image_path[$i]['base'] = $base;
             }
         }
         
@@ -327,6 +328,12 @@ class Model_Ad extends ORM {
                 return;
         }
           
+        if (core::config('image.disallow_nudes') AND ! Upload::not_nude_image($image))
+        {
+            Alert::set(Alert::ALERT, $image['name'].' '.__('Seems a nude picture so you cannot upload it'));
+            return;
+        }
+        
         if ($image !== NULL)
         {
             $path           = $this->image_path();
