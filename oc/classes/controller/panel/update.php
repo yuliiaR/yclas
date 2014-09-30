@@ -15,6 +15,17 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
      */
     public function action_230()
     {
+        //control login attempts
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `last_failed` DATETIME NULL DEFAULT NULL ;")->execute();
+        }catch (exception $e) {}
+        
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `failed_attempts` int(10) unsigned DEFAULT 0")->execute();
+        }catch (exception $e) {}
+        
         //categories/locations/users/ads has_image/last_modified
         try 
         {
