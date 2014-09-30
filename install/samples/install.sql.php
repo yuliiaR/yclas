@@ -56,6 +56,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `subscriber` tinyint(1) NOT NULL DEFAULT '1',
   `rate` FLOAT( 4, 2 ) NULL DEFAULT NULL,
   `has_image` tinyint(1) NOT NULL DEFAULT '0',
+  `failed_attempts` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `last_failed` datetime DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_email` (`email`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_token` (`token`),
