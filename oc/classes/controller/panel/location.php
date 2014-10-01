@@ -35,7 +35,7 @@ class Controller_Panel_Location extends Auth_Crud {
         $locs  = Model_Location::get_as_array();
         $order = Model_Location::get_multidimensional();
 
-        $this->template->content = View::factory('oc-panel/pages/locations',array('locs' => $locs,'order'=>$order));
+        $this->template->content = View::factory('oc-panel/pages/locations/index',array('locs' => $locs,'order'=>$order));
     }
 
     /**
@@ -106,7 +106,7 @@ class Controller_Panel_Location extends Auth_Crud {
             }
         }
     
-        return $this->render('oc-panel/crud/update', array('form' => $form, 'location' => $location));
+        return $this->render('oc-panel/pages/locations/update', array('form' => $form, 'location' => $location));
     }
 
     /**
