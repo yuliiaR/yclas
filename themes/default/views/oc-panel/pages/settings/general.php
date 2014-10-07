@@ -278,26 +278,6 @@
             </div>
         </div>
         
-         <div class="form-group">
-            <?= FORM::label($forms['minify']['id'], __("Minify CSS/JS"), array('class'=>'control-label col-sm-3', 'for'=>$forms['minify']['id']))?>
-            <div class="col-sm-4">
-                <div class="onoffswitch">
-                    <?= Form::checkbox($forms['minify']['key'], 1, (bool) $forms['minify']['value'], array(
-                    'placeholder' => __("TRUE or FALSE"), 
-                    'class' => 'onoffswitch-checkbox', 
-                    'id' => $forms['minify']['id'], 
-                    'data-content'=> __("Once set to TRUE, enables minify CSS and JS to speed up your site"),
-                    'data-trigger'=>"hover",
-                    'data-placement'=>"right",
-                    'data-toggle'=>"popover",
-                    'data-original-title'=>__("Activates Minify CSS/JS"),
-                    ))?>
-                    <?= FORM::label($forms['minify']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['minify']['id']))?>
-                    <?= FORM::hidden($forms['minify']['key'], 0);?>
-                </div>
-            </div>
-        </div>
-
         <div class="form-group">
             <?= FORM::label($forms['black_list']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/05/08/activate-blacklist-works/'>".__("Black List")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['black_list']['id']))?>
             <div class="col-sm-4">
