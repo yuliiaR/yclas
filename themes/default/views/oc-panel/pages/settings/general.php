@@ -173,6 +173,40 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <?= FORM::label($forms['html_head']['id'], __('HTML in HEAD element'), array('class'=>'control-label col-sm-3', 'for'=>$forms['html_head']['id']))?>
+            <div class="col-sm-4">
+                <?= FORM::textarea($forms['html_head']['key'], $forms['html_head']['value'], array(
+                'placeholder' => '',
+                'rows' => 3, 'cols' => 50, 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['html_head']['id'],
+                'data-content'=> __('To include your custom HTML code (validation metadata, reference to JS/CSS files, etc.) in the HEAD element of the rendered page.'),
+                'data-trigger'=>"hover",
+                'data-placement'=>"bottom",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__('HTML in HEAD element'), 
+                ))?> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?= FORM::label($forms['html_footer']['id'], __('HTML in footer'), array('class'=>'control-label col-sm-3', 'for'=>$forms['html_footer']['id']))?>
+            <div class="col-sm-4">
+                <?= FORM::textarea($forms['html_footer']['key'], $forms['html_footer']['value'], array(
+                'placeholder' => '',
+                'rows' => 3, 'cols' => 50, 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['html_footer']['id'],
+                'data-content'=> __('To include your custom HTML code (reference to JS or CSS files, etc.) in the footer of the rendered page.'),
+                'data-trigger'=>"hover",
+                'data-placement'=>"bottom",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__('HTML in footer'), 
+                ))?> 
+            </div>
+        </div>
+
         <hr>
         <h2><?=__("Regional Settings")?></h2>
         <div class="form-group">
@@ -278,26 +312,6 @@
             </div>
         </div>
         
-         <div class="form-group">
-            <?= FORM::label($forms['minify']['id'], __("Minify CSS/JS"), array('class'=>'control-label col-sm-3', 'for'=>$forms['minify']['id']))?>
-            <div class="col-sm-4">
-                <div class="onoffswitch">
-                    <?= Form::checkbox($forms['minify']['key'], 1, (bool) $forms['minify']['value'], array(
-                    'placeholder' => __("TRUE or FALSE"), 
-                    'class' => 'onoffswitch-checkbox', 
-                    'id' => $forms['minify']['id'], 
-                    'data-content'=> __("Once set to TRUE, enables minify CSS and JS to speed up your site"),
-                    'data-trigger'=>"hover",
-                    'data-placement'=>"right",
-                    'data-toggle'=>"popover",
-                    'data-original-title'=>__("Activates Minify CSS/JS"),
-                    ))?>
-                    <?= FORM::label($forms['minify']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['minify']['id']))?>
-                    <?= FORM::hidden($forms['minify']['key'], 0);?>
-                </div>
-            </div>
-        </div>
-
         <div class="form-group">
             <?= FORM::label($forms['black_list']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/05/08/activate-blacklist-works/'>".__("Black List")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['black_list']['id']))?>
             <div class="col-sm-4">

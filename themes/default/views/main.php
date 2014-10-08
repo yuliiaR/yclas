@@ -58,6 +58,7 @@
     
     <?=Theme::styles($styles)?>	
 	<?=Theme::scripts($scripts)?>
+	<?=core::config('general.html_head')?>
     <?if ( Kohana::$environment === Kohana::PRODUCTION AND core::config('general.analytics')!=='' ): ?>
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -104,6 +105,7 @@
     </div><!--/.fluid-container-->
   
   <?=Theme::scripts($scripts,'footer')?>
+  <?=core::config('general.html_footer')?>
 	
 		
 
