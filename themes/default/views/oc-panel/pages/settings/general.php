@@ -173,6 +173,40 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <?= FORM::label($forms['html_head']['id'], __('HTML in HEAD element'), array('class'=>'control-label col-sm-3', 'for'=>$forms['html_head']['id']))?>
+            <div class="col-sm-4">
+                <?= FORM::textarea($forms['html_head']['key'], $forms['html_head']['value'], array(
+                'placeholder' => '',
+                'rows' => 3, 'cols' => 50, 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['html_head']['id'],
+                'data-content'=> __('To include your custom HTML code (validation metadata, reference to JS/CSS files, etc.) in the HEAD element of the rendered page.'),
+                'data-trigger'=>"hover",
+                'data-placement'=>"bottom",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__('HTML in HEAD element'), 
+                ))?> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?= FORM::label($forms['html_footer']['id'], __('HTML in footer'), array('class'=>'control-label col-sm-3', 'for'=>$forms['html_footer']['id']))?>
+            <div class="col-sm-4">
+                <?= FORM::textarea($forms['html_footer']['key'], $forms['html_footer']['value'], array(
+                'placeholder' => '',
+                'rows' => 3, 'cols' => 50, 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['html_footer']['id'],
+                'data-content'=> __('To include your custom HTML code (reference to JS or CSS files, etc.) in the footer of the rendered page.'),
+                'data-trigger'=>"hover",
+                'data-placement'=>"bottom",
+                'data-toggle'=>"popover",
+                'data-original-title'=>__('HTML in footer'), 
+                ))?> 
+            </div>
+        </div>
+
         <hr>
         <h2><?=__("Regional Settings")?></h2>
         <div class="form-group">
