@@ -55,9 +55,9 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
                         if (empty($seoname))
                         {
                             $seoname = $obj_model_imported->gen_seoname($name);
-
-                            $array .= '('.Database::instance()->quote($name).',1,'.Database::instance()->quote($seoname).'),';
                         }
+                        
+                        $array .= '('.Database::instance()->quote($name).',1,'.Database::instance()->quote($seoname).'),';
                         $i++;
                     }
                     fclose($handle); 
@@ -94,7 +94,7 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
             if ($bool_csv_parse_error)
             {
                 Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
-                $this->request->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
             }
         } 
 
