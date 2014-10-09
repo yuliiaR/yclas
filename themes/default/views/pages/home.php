@@ -23,7 +23,7 @@
                     <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
                                 <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
                             <?else:?>
-                                <img src="http://www.placehold.it/200x200&text=<?=$ad->category->name?>" alt="<?=HTML::chars($ad->title)?>"> 
+                                <img src="//www.placehold.it/200x200&text=<?=$ad->category->name?>" alt="<?=HTML::chars($ad->title)?>"> 
                             <?endif?> 
                 <?endif?>
                 </a>

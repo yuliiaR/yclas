@@ -124,7 +124,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         }
         
         //not updatable fields
-        $do_nothing = array('menu','locale','allow_query_language','charset','translate','ocacu');
+        $do_nothing = array('menu','locale','allow_query_language','charset','translate','ocacu','minify');
 
         // save only changed values
         if($this->request->post())
@@ -135,8 +135,12 @@ class Controller_Panel_Settings extends Auth_Controller {
                 $config_res = $this->request->post();
 				if(!in_array($c->config_key, $do_nothing) AND $config_res[$c->group_name][$c->config_key][0] != $c->config_value)
                 {
-                    $c->config_value = $config_res[$c->group_name][$c->config_key][0];
-                    Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);
+                    if ($c->config_key == 'html_head' OR $c->config_key == 'html_footer')
+                        $c->config_value = Kohana::$_POST_ORIG[$c->group_name][$c->config_key][0];
+                    else
+                        $c->config_value = $config_res[$c->group_name][$c->config_key][0];
+
+                    Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);    
                 }
                   
             }

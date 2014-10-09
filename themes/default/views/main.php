@@ -53,11 +53,12 @@
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
     <!--[if lt IE 9]>
-      <?=HTML::script('http://html5shim.googlecode.com/svn/trunk/html5.js')?>
+      <script type="text/javascript" src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     
     <?=Theme::styles($styles)?>	
 	<?=Theme::scripts($scripts)?>
+	<?=core::config('general.html_head')?>
     <?if ( Kohana::$environment === Kohana::PRODUCTION AND core::config('general.analytics')!=='' ): ?>
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -104,6 +105,7 @@
     </div><!--/.fluid-container-->
   
   <?=Theme::scripts($scripts,'footer')?>
+  <?=core::config('general.html_footer')?>
 	
 		
 
