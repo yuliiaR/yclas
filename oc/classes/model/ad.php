@@ -214,7 +214,7 @@ class Model_Ad extends ORM {
         {              
             if (core::config('image.aws_s3_active'))
             {
-                $protocol = Request::$initial->secure() ? 'https://' : 'http://';
+                $protocol = Core::is_HTTPS() ? 'https://' : 'http://';
                 $base = $protocol.core::config('image.aws_s3_domain');
             }
             else
