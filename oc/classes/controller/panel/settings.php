@@ -168,21 +168,12 @@ class Controller_Panel_Settings extends Auth_Controller {
         $paymentconf = new Model_Config();
         $config = $paymentconf->where('group_name', '=', 'payment')->find_all();
         
-        $paypal_currency = Paypal::get_currency(); // currencies limited by paypal
-
-
         // save only changed values
         if($this->request->post())
         {
             foreach ($config as $c) 
             {
                 $config_res = $this->request->post($c->config_key); 
-
-                
-                if($c->config_key == 'paypal_currency')
-                {   
-                    $config_res = $paypal_currency[core::post('paypal_currency')];
-                }
 
                 if($config_res != $c->config_value)
                 {
@@ -204,8 +195,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             $pages[$value->seotitle] = $value->title;
 
         $this->template->content = View::factory('oc-panel/pages/settings/payment', array('config'          => $config,
-                                                                                           'pages'          => $pages,
-                                                                                          'paypal_currency' => $paypal_currency));
+                                                                                           'pages'          => $pages));
     }
 
     /**

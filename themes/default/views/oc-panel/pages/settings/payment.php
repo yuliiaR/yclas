@@ -24,16 +24,16 @@
 				<div class="form-group">
 					<?= FORM::label($forms['paypal_currency']['key'], __('Site currency'), array('class'=>'control-label col-sm-3', 'for'=>$forms['paypal_currency']['key']))?>
 					<div class="col-sm-4">
-						<?= FORM::select($forms['paypal_currency']['key'], $paypal_currency , array_search($forms['paypal_currency']['value'], $paypal_currency), array(
-						'placeholder' => "USD", 
-						'class' => 'tips form-control', 
-						'id' => $forms['paypal_currency']['key'], 
-						'data-original-title'=> __("Currency"),
-						'data-trigger'=>"hover",
-						'data-placement'=>"right",
-						'data-toggle'=>"popover",
-						'data-content'=>__("Please be sure you are using a currency that your payment gateway supports."),
-						))?> 
+                        <?= FORM::input($forms['paypal_currency']['key'], $forms['paypal_currency']['value'], array(
+                        'placeholder' => $forms['paypal_currency']['value'], 
+                        'class' => 'tips form-control col-sm-3', 
+                        'id' => $forms['paypal_currency']['key'], 
+                        'data-original-title'=> __("Currency"),
+                        'data-trigger'=>"hover",
+                        'data-placement'=>"right",
+                        'data-toggle'=>"popover",
+                        'data-content'=>__("Please be sure you are using a currency that your payment gateway supports."),
+                        ));?>
 					</div>
 				</div>
 				<div class="form-group">
