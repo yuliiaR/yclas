@@ -320,7 +320,7 @@
                     'placeholder' => __("TRUE or FALSE"), 
                     'class' => 'onoffswitch-checkbox', 
                     'id' => $forms['black_list']['id'], 
-                    'data-content'=> __("If advertisement is marked as spam, user is also marked to be spammer. Next time is not able to publish new advertisement. Until removed from Black List!"),
+                    'data-content'=> __("If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register."),
                     'data-trigger'=>"hover",
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",

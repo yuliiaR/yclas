@@ -25,7 +25,3 @@
         <?endforeach?>
     </tbody>
 </table>
-<?foreach ($black_list as $user):?>
-	
-<?endforeach?>
-

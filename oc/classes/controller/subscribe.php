@@ -19,8 +19,7 @@ class Controller_Subscribe extends Controller {
     		// and send him mail for ad created + new profile created
 			if(!$user->loaded())
 			{
-				$name = substr($email, '0', stripos($email, '@'));
-				$user = Model_User::create_email($email, $name);
+				$user = Model_User::create_email($email);
 			}
 			/* save this user to data base as subscriber */
 			
