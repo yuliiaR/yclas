@@ -122,6 +122,7 @@ class Auth_Controller extends Controller
                 						'css/font-awesome.min.css'=>'screen', 
                 						'css/summernote.css'=>'screen', 
                 						'css/bootstrap-tour.min.css'=>'screen',
+                						'css/sweet-alert.min.css'=>'screen',
                                         'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
@@ -137,7 +138,7 @@ class Auth_Controller extends Controller
     											      'js/bootstrap-tour.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
     											      'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
-    											      'js/bootstrap-confirmation.min.js',
+    											      'js/sweet-alert.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
     			}
@@ -159,7 +160,8 @@ class Auth_Controller extends Controller
                                         'css/loadingbar.css'=>'screen', 
                                         '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'=>'screen', 
                                         '//cdn.jsdelivr.net/summernote/0.5.1/summernote.css'=>'screen', 
-                                        '//cdn.jsdelivr.net/bootstrap-tour/0.9.3/css/bootstrap-tour.min.css',
+                                        '//cdn.jsdelivr.net/bootstrap-tour/0.9.3/css/bootstrap-tour.min.css'=>'screen',
+                                        '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css'=>'screen',
                                         'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
@@ -176,7 +178,7 @@ class Auth_Controller extends Controller
     											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
                                                       'js/jquery.loadingbar.min.js',
-                                                      'js/bootstrap-confirmation.min.js',
+                                                      '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js',
                                                       'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );

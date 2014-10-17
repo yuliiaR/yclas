@@ -107,8 +107,6 @@
                     class="btn btn-success" 
                     title="<?=__('Activate?')?>" 
                     data-toggle="confirmation" 
-                    data-placement="left" 
-                    data-href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
                     data-btnOkLabel="<?=__('Yes, definitely!')?>" 
                     data-btnCancelLabel="<?=__('No way!')?>">
                     <i class="glyphicon glyphicon-ok-sign"></i>
@@ -119,8 +117,6 @@
                     class="btn btn-warning" 
                     title="<?=__('Spam?')?>" 
                     data-toggle="confirmation" 
-                    data-placement="left" 
-                    data-href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
                     data-btnOkLabel="<?=__('Yes, definitely!')?>" 
                     data-btnCancelLabel="<?=__('No way!')?>">
                     <i class="glyphicon glyphicon-fire"></i>
@@ -131,8 +127,6 @@
                     class="btn btn-danger" 
                     title="<?=__('Spam?')?>" 
                     data-toggle="confirmation" 
-                    data-placement="left" 
-                    data-href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
                     data-btnOkLabel="<?=__('Yes, definitely!')?>" 
                     data-btnCancelLabel="<?=__('No way!')?>">
                     <i class="glyphicon glyphicon-remove"></i>

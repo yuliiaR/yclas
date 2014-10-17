@@ -56,8 +56,6 @@
 					class="btn btn-warning" 
 					title="<?=__('Unsubscribe?')?>" 
 					data-toggle="confirmation" 
-					data-placement="left" 
-					data-href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'unsubscribe','id'=>$l['id']))?>" 
 					data-btnOkLabel="<?=__('Yes, definitely!')?>" 
 					data-btnCancelLabel="<?=__('No way!')?>">
 					<i class="glyphicon glyphicon-remove"></i>
