@@ -24,16 +24,16 @@
 
 <div class="btn-group">
     <a href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index'))?>" class="btn btn-success">
-        <i class=" glyphicon  glyphicon-globe glyphicon"></i> <?=__('All ads')?>
+        <i class="glyphicon glyphicon-globe"></i> <?=__('All ads')?>
     </a>
     <a class="btn btn-warning ajax-load" type="submit" value="spam" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_SPAM?>" rel="tooltip" title="<?=__('Spam Sort')?>">
-    <i class="glyphicon   glyphicon-fire"></i> <?=__('Spam')?>
+    <i class="glyphicon glyphicon-fire"></i> <?=__('Spam')?>
     </a>
     <a class="btn btn-default ajax-load" type="submit" value="unavailable" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_UNAVAILABLE?>" rel="tooltip" title="<?=__('Unavailable Sort')?>">
-        <i class=" glyphicon  glyphicon-exclamation-sign glyphicon"></i> <?=__(' Unavailable')?>
+        <i class="glyphicon glyphicon-exclamation-sign"></i> <?=__(' Unavailable')?>
     </a>
     <a class="btn btn-info ajax-load" type="submit" value="unconfirmed" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_UNCONFIRMED?>" rel="tooltip" title="<?=__('Unconfirmed Sort')?>">
-        <i class=" glyphicon  glyphicon-plane glyphicon"></i> <?=__(' Unconfirmed')?>
+        <i class=" glyphicon glyphicon-plane"></i> <?=__(' Unconfirmed')?>
     </a>
 
     <?if(Core::get('status') == Model_Ad::STATUS_UNAVAILABLE OR Core::get('status') == Model_Ad::STATUS_UNCONFIRMED OR Core::get('status') == Model_Ad::STATUS_SPAM):?>
@@ -42,12 +42,9 @@
         class="btn btn-danger pull-right" 
         title="<?=__('Delete All?')?>" 
         data-toggle="confirmation" 
-        data-placement="left" 
-        data-href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Core::get('status')?>" 
         data-btnOkLabel="<?=__('Yes, definitely!')?>" 
-        data-btnOkClass="btn btn-sm btn-danger ajax-load" 
         data-btnCancelLabel="<?=__('No way!')?>">
-        <i class=" glyphicon  glyphicon-minus glyphicon"></i> <?=__('Delete All')?>
+        <i class="glyphicon glyphicon-minus"></i> <?=__('Delete All')?>
     </a>
     <?endif?>
 </div>

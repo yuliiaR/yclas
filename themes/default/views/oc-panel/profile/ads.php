@@ -106,11 +106,9 @@
 				        class="btn btn-success" 
 				        title="<?=__('Activate?')?>" 
 				        data-toggle="confirmation" 
-				        data-placement="left" 
-				        data-href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
 				        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
 				        data-btnCancelLabel="<?=__('No way!')?>">
-				        <i class="glyphicon glyphicon-ok glyphicon"></i>
+				        <i class="glyphicon glyphicon-ok"></i>
 				    </a>
 				<?elseif($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
 				    <a
@@ -118,8 +116,6 @@
 				        class="btn btn-warning" 
 				        title="<?=__('Deactivate?')?>" 
 				        data-toggle="confirmation" 
-				        data-placement="left" 
-				        data-href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
 				        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
 				        data-btnCancelLabel="<?=__('No way!')?>">
 				        <i class="glyphicon glyphicon-remove"></i>
@@ -131,8 +127,6 @@
 					    class="btn btn-info" 
 					    title="<?=__('Refresh listing, go to top?')?>" 
 					    data-toggle="confirmation" 
-					    data-placement="left" 
-					    data-href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
 					    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
 					    data-btnCancelLabel="<?=__('No way!')?>">
 					    <i class="glyphicon glyphicon-circle-arrow-up"></i>

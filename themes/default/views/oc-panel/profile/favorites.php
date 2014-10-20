@@ -24,8 +24,6 @@
                             class="btn btn-danger index-delete index-delete-inline" 
                             title="<?=__('Are you sure you want to delete?')?>" 
                             data-id="tr<?=$favorite->id_favorite?>" 
-                            data-placement="left" 
-                            data-href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'favorites','id'=>$favorite->id_ad))?>" 
                             data-btnOkLabel="<?=__('Yes, definitely!')?>" 
                             data-btnCancelLabel="<?=__('No way!')?>">
                             <i class="glyphicon glyphicon-trash"></i>
