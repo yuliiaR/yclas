@@ -53,6 +53,48 @@
 <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'saveorder'))?>'></span>
 <div class="clearfix"></div>
 
+<div class="page-header">
+    <h1><?=__('Custom Fields Templates')?></h1>
+    <p><?=__('Create custom fields among predefined templates.')?></p>
+</div>
+
+<form class="form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'template'))?>">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="date"><?=__('Type')?></label>      
+        <div class="col-sm-4">
+            <select name="type" class="form-control" id="cf_type_fileds" required>
+                <option value="cars"><?=__('Cars')?></option>
+                <option value="houses"><?=__('Real State')?></option>
+                <option value="jobs"><?=__('Jobs')?></option>
+                <option value="dating"><?=__('Friendship and Dating')?></option>  
+            </select>
+        </div>
+    </div>
+    <!-- multycategory selector -->
+    <div class="form-group">
+        <label class="control-label col-sm-2"><?=__('Categories')?></label>
+        <div class="col-sm-4">
+            <select id="categories" name="categories[]" multiple data-placeholder="<?=__('Choose 1 or several categories')?>">
+                <option></option>
+                <?function lili12($item, $key,$cats){?>
+                    <?if($cats[$key]['id'] != 1):?>
+                        <option value="<?=$cats[$key]['id']?>"><?=$cats[$key]['name']?></option>
+                    <?endif?>
+                    <?if (count($item)>0):?>
+                        <? if (is_array($item)) array_walk($item, 'lili12', $cats);?>
+                    <?endif?>
+                <?}array_walk($order_categories, 'lili12',$categories);?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-4 col-sm-offset-2">
+            <button type="submit" class="btn btn-primary"><?=__('Create')?></button>
+        </div>
+    </div>
+</form>
+
+<div class="clearfix"></div>
 
     <div class="page-header">
         <h1><?=__('Optional Fields')?></h1>
