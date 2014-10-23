@@ -408,6 +408,25 @@
                 </div>
             </div>
             <div class="form-group">
+                <?= FORM::label($forms['login_to_contact']['key'], __('Require login to contact'), array('class'=>'control-label col-sm-3', 'for'=>$forms['login_to_contact']['key']))?>
+                <div class="col-sm-4">
+                    <div class="onoffswitch">
+                        <?= FORM::hidden($forms['login_to_contact']['key'], 0);?>
+                        <?= FORM::checkbox($forms['login_to_contact']['key'], 1, (bool) $forms['login_to_contact']['value'], array(
+                        'placeholder' => "", 
+                        'class' => 'onoffswitch-checkbox', 
+                        'id' => $forms['login_to_contact']['key'], 
+                        'data-original-title'=> __("Require login to contact"),
+                        'data-trigger'=>"hover",
+                        'data-placement'=>"right",
+                        'data-toggle'=>"popover",
+                        'data-content'=>__("Require only the logged in users to contact."),
+                        ))?>
+                        <?= FORM::label($forms['login_to_contact']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['login_to_contact']['key']))?>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 <?= FORM::label($forms['qr_code']['key'], __('Show QR code'), array('class'=>'control-label col-sm-3', 'for'=>$forms['qr_code']['key']))?>
                 <div class="col-sm-4">
                     <div class="onoffswitch">

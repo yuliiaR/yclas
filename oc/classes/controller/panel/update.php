@@ -82,6 +82,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'html_footer',
                                'group_name'     =>'general',
                                'config_value'   =>''),
+                        array( 'config_key'     =>'login_to_contact',
+                               'group_name'     =>'advertisement',
+                               'config_value'   => 0),
                         );
         
         Model_Config::config_array($configs);

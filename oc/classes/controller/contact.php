@@ -70,9 +70,16 @@ class Controller_Contact extends Controller {
 		{
 
             $user = new Model_User($ad->id_user);
-         
-			if(captcha::check('contact'))
-			{ 
+        
+            //require login to contact
+            if (core::config('advertisement.login_to_contact') == TRUE AND !Auth::instance()->logged_in())
+            {
+                Alert::set(Alert::INFO, __('Please, login before contacting'));
+                HTTP::redirect(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
+            }
+
+            if(captcha::check('contact'))
+            { 
                 //check if user is loged in
                 if (Auth::instance()->logged_in())
                 {
