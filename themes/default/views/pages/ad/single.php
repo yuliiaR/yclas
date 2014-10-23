@@ -100,7 +100,14 @@
         
         <hr />
         <?if ($ad->can_contact()):?>
-		<button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=__('Send Message')?></button>
+            <?if (core::config('advertisement.login_to_contact') == TRUE AND !Auth::instance()->logged_in()) :?>
+                <a class="btn btn-success" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+                    <i class="glyphicon glyphicon-envelope"></i> 
+                    <?=__('Send Message')?>
+                </a>
+            <?else :?>
+                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=__('Send Message')?></button>
+            <?endif?>
 
         <?if (core::config('advertisement.phone')==1 AND strlen($ad->phone)>1):?>
             <a class="btn btn-warning" href="tel:<?=$ad->phone?>"><?=__('Phone').': '.$ad->phone?></a>
