@@ -2,7 +2,7 @@
 
 
  <?=Form::errors()?>
-<div class="page-header">
+<div id="page-general-configuration" class="page-header">
     <h1><?=__('General Configuration')?></h1>
     <p class="">
         <?=__('General site settings.')?>

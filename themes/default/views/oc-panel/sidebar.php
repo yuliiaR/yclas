@@ -162,7 +162,7 @@
                     <?endif?>
                         <? if($user->has_access_to_any('profile')):?>
                         <div class="panel panel-default">
-                            <div class="panel-heading">
+                            <div class="panel-heading" id="menu-profile-options">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class="glyphicon glyphicon-align-justify">
                                     </span> <span class="title-txt"><?=__('Profile Options')?></span></a>
