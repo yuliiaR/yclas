@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="row">
 	<div class="col-md-10">
-		<div class="page-header">
+		<div id="page-edit-profile" class="page-header">
 			<h1><?=__('Edit Profile')?></h1>
 		</div>
 

@@ -60,7 +60,7 @@
                 </ul>
                 <div class=""></div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+                    <li id="visit-website">
                         <a href="<?=Route::url('default')?>">
                             <i class="glyphicon-home glyphicon"></i>
                             <?if (Auth::instance()->get_user()->id_role != Model_Role::ROLE_USER):?>
@@ -77,7 +77,7 @@
 
 <?if (Auth::instance()->get_user()->id_role != Model_Role::ROLE_USER):?>
 <div class="col-sm-3 col-md-3 hidden-xs pull-right search-container-oc-faq">
-    <form class="navbar-form pull-right p_m0" role="search" action="http://open-classifieds.com/" target="_blank">
+    <form id="oc-faq" class="navbar-form pull-right p_m0" role="search" action="http://open-classifieds.com/" target="_blank">
     <div class="input-group">
         <input type="text" class="form-control header-oc-faq" placeholder="<?=__('Search FAQs')?>" name="s" style="display: none;">
         <input name="category_name" type="hidden" value="howto"/>

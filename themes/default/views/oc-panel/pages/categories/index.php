@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="page-header">
+<div id="page-categories" class="page-header">
     <h1><?=__('Categories')?></h1>
     <p><?=__("Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")." <a target='_blank' href='http://open-classifieds.com/2013/08/12/how-to-add-categories/'>".__('Read more')."</a>"?></p>
     <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>">

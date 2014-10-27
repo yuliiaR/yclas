@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="page-header">
+<div id="page-welcome" class="page-header">
     <h1><?=__('Welcome')?> <?=Auth::instance()->get_user()->name?></h1>
     <p><?=__('Thanks for using Open Classifieds.')?> 
         <?=__('Your installation version is')?> <span class="label label-info"><?=core::VERSION?></span> 
