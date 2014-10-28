@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="hero-unit">
+<div id="page-welcome" class="hero-unit">
     <h1>
     <?=__('Welcome')?>
     <?=Auth::instance()->get_user()->name?>

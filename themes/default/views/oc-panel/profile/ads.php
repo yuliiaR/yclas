@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?=Alert::show()?>
-<div class="page-header">
+<div id="page-my-dvertisements" class="page-header">
 	<h1><?=__('My Advertisements')?></h1>
 </div>
 
