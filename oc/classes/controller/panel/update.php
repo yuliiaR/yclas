@@ -319,7 +319,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
 
         //new mails
         $contents = array(array('order'=>0,
-                                'title'=>'Reciept for [ORDER.DESC] #[ORDER.ID]',
+                                'title'=>'Receipt for [ORDER.DESC] #[ORDER.ID]',
                                'seotitle'=>'new-order',
                                'description'=>"Hello [USER.NAME],Thanks for buying [ORDER.DESC].\n\nPlease complete the payment here [URL.CHECKOUT]",
                                'from_email'=>core::config('email.notify_email'),
