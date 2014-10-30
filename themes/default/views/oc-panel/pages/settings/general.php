@@ -6,7 +6,7 @@
     <h1><?=__('General Configuration')?></h1>
     <p class="">
         <?=__('General site settings.')?>
-        <a class="btn btn-default pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>"><?=__('All configurations')?></a>
+        <a class="btn btn-default pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>" title="<?=__('All configurations')?>"><?=__('All configurations')?></a>
 
     </p>
 </div>

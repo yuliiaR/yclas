@@ -7,12 +7,12 @@
     <?if (Theme::get('premium')!=1):?>
         <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
             <?=__('Custom fields are only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
-            <a class="btn btn-success pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>"><?=__('Browse Themes')?></a>
+            <a class="btn btn-success pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>" title="<?=__('Browse Themes')?>"><?=__('Browse Themes')?></a>
         </p>
     <?endif?>
 
     <a target='_blank' href='http://open-classifieds.com/2013/10/13/how-to-create-custom-fields/'><?=__('Advertisement Custom Fields')?></a>
-    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>">
+    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>" title="<?=__('New field')?>">
         <?=__('New field')?>
     </a>
 </div>
@@ -41,7 +41,7 @@
             <i class="glyphicon glyphicon-trash"></i>
         </a>
 
-        <a class="btn btn-xs btn-primary pull-right ajax-load" 
+        <a class="btn btn-xs btn-primary pull-right ajax-load" title="<?=__('Edit')?>"
             href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'update','id'=>$name))?>">
             <?=__('Edit')?>
         </a>
