@@ -3,7 +3,7 @@
 <div id="page-categories" class="page-header">
     <h1><?=__('Categories')?></h1>
     <p><?=__("Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")." <a target='_blank' href='http://open-classifieds.com/2013/08/12/how-to-add-categories/'>".__('Read more')."</a>"?></p>
-    <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>">
+    <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>" title="<?=__('New Category')?>">
   <?=__('New Category')?></a>
 </div>
 <div class="col-md-7">
@@ -42,7 +42,7 @@
             <i class="glyphicon glyphicon-trash"></i>
         </a>
 
-        <a class="btn btn-xs btn-primary pull-right ajax-load" 
+        <a class="btn btn-xs btn-primary pull-right ajax-load" title="<?=__('Edit')?>"
             href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'update','id'=>$key))?>">
             <?=__('Edit')?>
         </a>

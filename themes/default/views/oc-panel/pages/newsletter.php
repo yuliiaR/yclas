@@ -5,14 +5,14 @@
   <?if (Theme::get('premium')!=1):?>
         <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
             <?=__('Only if you have a premium theme you will be able to filter by users!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
-            <a class="btn btn-success pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>"><?=__('Browse Themes')?></a>
+            <a class="btn btn-success pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>" title="<?=__('Browse Themes')?>"><?=__('Browse Themes')?></a>
         </p>
     <?endif?>
 
 <div class="page-header">
     <h1><?=__('Newsletter')?></h1>
   <a href="http://open-classifieds.com/2013/08/23/how-to-send-the-newsletter/" target="_blank"><?=__('Read more')?></a>
-    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'email'))?>?force=1">
+    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'email'))?>?force=1" title="<?=__('Email Settings')?>">
   <?=__('Email Settings')?></a>
 </div>
 
