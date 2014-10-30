@@ -206,7 +206,7 @@
 					<div class="col-sm-4 col-xs-11">
 						<?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?>
 						<div class="input-prepend">
-							<?= FORM::input('price', $ad->price, array('placeholder'=>i18n::money_format(1),'class'=>'form-control', 'id' => 'price'))?>
+							<?= FORM::input('price', $ad->price, array('placeholder'=>html_entity_decode(i18n::money_format(1)),'class'=>'form-control', 'id' => 'price'))?>
 						</div>
 					</div>
 				</div>
