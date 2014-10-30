@@ -422,6 +422,13 @@ class Model_Location extends ORM {
         }
 
         $seoname = URL::title($seoname);
+
+        //this are reserved categories names used in the routes.php
+        $banned_names = array('location',__('location'));
+        //same name as a route..shit!
+        if (in_array($seoname, $banned_names))
+            $seoname = URL::title(__('location')).'-'.$seoname; 
+
         if ($seoname != $this->seoname)
         {
             $loc = new self;

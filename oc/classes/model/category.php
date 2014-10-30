@@ -471,7 +471,7 @@ class Model_Category extends ORM {
         $seoname = URL::title($seoname);
 
         //this are reserved categories names used in the routes.php
-        $banned_names = array('blog','faq','forum','oc-panel','rss','oc-error',URL::title(__('all')),URL::title(__('reviews')),'user','stripe','paymill','bitpay','paypal');
+        $banned_names = array(__('category'),'category','blog','faq','forum','oc-panel','rss','oc-error',URL::title(__('all')),URL::title(__('reviews')),'user','stripe','paymill','bitpay','paypal');
         //same name as a route..shit!
         if (in_array($seoname, $banned_names))
             $seoname = URL::title(__('category')).'-'.$seoname; 
