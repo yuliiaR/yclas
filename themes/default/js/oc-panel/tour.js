@@ -1,6 +1,8 @@
 $(function (){
 // Instance the tour
-    var tour = new Tour();
+    var tour = new Tour({
+        container: "#content"
+    });
 
     tour.addSteps([
         {
