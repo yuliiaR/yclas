@@ -27,6 +27,17 @@ height: 200px; width: 300px;
 }
 .accordion-inner { border-top: none;}
 
+/* bootstrap hack to fix content width inside hidden tabs */
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+    display: block;
+    height: 0;
+    overflow-y: hidden;
+}
+.tab-content > .active,
+.pill-content > .active {
+    height: auto;
+}
 
 @media screen and (max-width: 979px) {
 body { padding-top:0; }
