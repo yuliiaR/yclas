@@ -14,6 +14,19 @@
  */
 Widgets::$theme_placeholders	= array('footer', 'sidebar');
 
+/**
+ * custom options for the theme
+ * @var array
+ */
+Theme::$options = Theme::get_options();
+
+//we load earlier the theme since we need some info
+Theme::load();
+
+/**
+ * styles and themes, loaded in this order
+ */
+Theme::$skin = Theme::get('theme');
 
 /**
  * styles and themes, loaded in this order
@@ -26,8 +39,10 @@ Theme::$styles = array( '//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap
                         '//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen',
                         'css/styles.css?v='.Core::VERSION => 'screen',
                         'css/slider.css' => 'screen',
-        				);
+                    );
 
+if (Theme::$skin!='default')
+    Theme::$styles = array_merge(Theme::$styles, array('css/color-'.Theme::$skin.'.css' => 'screen'));
 
 Theme::$scripts['footer']	= array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
                                     '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js',
