@@ -142,7 +142,7 @@ function doneTyping () {
 
                 $('#category-selected').attr('value',value_category_id);
                 $('.category-price').text('');
-                if($(this).data('price') > 0)
+                if($(this).attr('data-price'))
                     $('.category-price').text($(this).data('price'));
             }
                 //coloring select, for user to know if he select option is taken or not
