@@ -4,9 +4,12 @@
 	<h1><?=__('My Advertisements')?></h1>
 </div>
 
+<?if (Core::config('advertisement.only_admin_post')!=1):?>
 <a class="btn btn-primary" href="<?=Route::url('post_new')?>" rel="tooltip" title="<?=__('New Advertisement')?>">
 	<i class="glyphicon glyphicon-pencil"></i><?=__(' New')?>
 </a>
+<?endif?>
+
 <table class="table table-bordered">
 	<tr>
 		
