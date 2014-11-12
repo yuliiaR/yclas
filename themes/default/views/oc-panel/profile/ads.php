@@ -95,6 +95,11 @@
             <?endif?>
 
 			<td>
+                <a class="btn btn-primary" 
+                    href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'stats','id'=>$ad->id_ad))?>" 
+                    rel="tooltip" title="<?=__('Stats')?>">
+                    <i class="glyphicon glyphicon-align-left"></i>
+                </a>
 				<a class="btn btn-primary" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
 					rel="tooltip" title="<?=__('Update')?>">

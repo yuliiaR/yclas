@@ -1,5 +1,9 @@
 <div class="page-header">
-    <h1><?=__('Statistics')?></h1>   
+    <h1><?=__('Statistics')?>
+    <?if ($advert->loaded()):?>
+    : <?=$advert->title?>
+    <?endif?>
+    </h1>   
 </div>
 
 <div class="row">
