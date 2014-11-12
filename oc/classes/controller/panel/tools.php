@@ -415,5 +415,81 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
 
     }
 
+    /**
+     * cleans old pictures
+     * @return [type] [description]
+     */
+    public function action_cleanimages()
+    {
+        $count_deleted = 0;
+
+        //loop for directory image
+        $folder = DOCROOT.'images';
+
+        //year
+        foreach (new DirectoryIterator($folder) as $year)
+        {
+            if($year->isDir() AND !$year->isDot() AND is_numeric($year->getFilename()))
+            {
+                //month
+                foreach (new DirectoryIterator($year->getPathname()) as $month)
+                {
+                    if($month->isDir() AND !$month->isDot() AND is_numeric($month->getFilename()))
+                    {
+                        //day
+                        foreach (new DirectoryIterator($month->getPathname()) as $day)
+                        {
+                            if($day->isDir() AND !$day->isDot() AND is_numeric($day->getFilename()))
+                            {                                
+                                //id_ad
+                                foreach (new DirectoryIterator($day->getPathname()) as $id_ad)
+                                {
+                                    if($id_ad->isDir() AND !$id_ad->isDot() AND is_numeric($id_ad->getFilename()))
+                                    {   
+                                        $delete = TRUE;
+
+                                        //if ad is available leave it, if not delete folder ID
+                                        $ad = new Model_Ad($id_ad->getFilename());
+                                        if ($ad->loaded() AND $ad->status == Model_Ad::STATUS_PUBLISHED)
+                                            $delete = FALSE;
+                                        
+                                        //ok lets get rid of it!
+                                        if ($delete === TRUE)
+                                        {
+                                            echo '<br>Deleting: '.$id_ad->getFilename().'---'.$id_ad->getPathname();
+                                            File::delete($id_ad->getPathname());
+                                            
+                                            //if the ad was loaded means had a different status, put it like he doesnt have images.
+                                            if($ad->loaded() )
+                                            {
+                                                $ad->has_images = 0;
+                                                $ad->save();
+                                                //$ad->delete();//optional
+                                            }
+
+                                            $count_deleted++;
+                                        }
+
+                                    }
+                                }
+
+
+                            }
+                        }
+
+                    }
+                }
+
+               
+
+
+            }
+        }
+
+        echo '<br>deleted '.$count_deleted;
+        
+            
+    }
+
 
 }
