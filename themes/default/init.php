@@ -34,6 +34,7 @@ Theme::$skin = Theme::get('theme');
 
 Theme::$styles = array( '//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' => 'screen',
                         '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' => 'screen',
+Theme::$styles = array( '//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' => 'screen',
                         '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/css/blueimp-gallery.min.css' => 'screen', 
                         '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
                         '//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen',
@@ -45,7 +46,7 @@ if (Theme::$skin!='default')
     Theme::$styles = array_merge(Theme::$styles, array('css/color-'.Theme::$skin.'.css' => 'screen'));
 
 Theme::$scripts['footer']	= array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
-                                    '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js',
+                                    '//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js',
                                     '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
                                     '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js',

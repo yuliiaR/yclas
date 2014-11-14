@@ -154,7 +154,7 @@ class Auth_Controller extends Controller
     	            //default theme
     	            else
     	            {
-    	                $theme_css = array('//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' => 'screen');
+    	                $theme_css = array('//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' => 'screen');
     	            }
 
                 	$common_css = array('//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
@@ -176,7 +176,7 @@ class Auth_Controller extends Controller
     												  'js/jquery.sceditor.min.js',
     											      '//cdn.jsdelivr.net/summernote/0.5.1/summernote.min.js',
     											      '//cdn.jsdelivr.net/bootstrap-tour/0.9.3/js/bootstrap-tour.min.js',
-    												  '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js', 
+    												  '//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js', 
     											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'bstour')),
                                                       'js/oc-panel/'.(Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN) ? 'tour-user.js' : 'tour.js',	
