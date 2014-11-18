@@ -127,7 +127,7 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
         if ($this->request->post())
         {
             $db_config = array (
-                'type' => 'mysql',
+                'type' => 'mysqli',
                 'connection' => 
                 array (
                     'hostname' => Core::post('hostname'),
