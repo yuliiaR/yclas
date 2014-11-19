@@ -11,6 +11,7 @@ $(function (){
            content: getTourLocalization("step1_content"),
            path: "/oc-panel",
            placement: "top",
+           redirect: false,
         },
         {
            element: "#page-categories",
@@ -18,6 +19,7 @@ $(function (){
            content: getTourLocalization("step2_content"),
            path: "/oc-panel/category",
            placement: "top",
+           redirect: false,
         },
         {
            element: "#page-general-configuration",
@@ -25,6 +27,7 @@ $(function (){
            content: getTourLocalization("step3_content"),
            path: "/oc-panel/settings/general",
            placement: "top",
+           redirect: false,
         },
         {
            element: "#page-themes",
@@ -32,6 +35,7 @@ $(function (){
            content: getTourLocalization("step4_content"),
            path: "/oc-panel/theme",
            placement: "top",
+           redirect: false,
         },
         {
            element: "#oc-faq",
@@ -39,6 +43,7 @@ $(function (){
            content: getTourLocalization("step5_content"),
            path: "/oc-panel/theme",
            placement: "left",
+           redirect: false,
     }
     ]);
 

@@ -162,7 +162,7 @@ class Auth_Controller extends Controller
                                         'css/loadingbar.css'=>'screen', 
                                         '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'=>'screen', 
                                         '//cdn.jsdelivr.net/summernote/0.5.1/summernote.css'=>'screen', 
-                                        '//cdn.jsdelivr.net/bootstrap-tour/0.9.3/css/bootstrap-tour.min.css'=>'screen',
+                                        '//cdn.jsdelivr.net/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css'=>'screen',
                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css'=>'screen',
                                         'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
@@ -175,7 +175,7 @@ class Auth_Controller extends Controller
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
     											      '//cdn.jsdelivr.net/summernote/0.5.1/summernote.min.js',
-    											      '//cdn.jsdelivr.net/bootstrap-tour/0.9.3/js/bootstrap-tour.min.js',
+    											      'js/bootstrap-tour.min.js',
     												  '//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js', 
     											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'bstour')),

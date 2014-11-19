@@ -598,7 +598,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 	        		}
 	        		
 	        		if ($filename){
-			        	$form->has_images = $form->has_images+1;
+			        	$form->has_images++;
 			        	$form->last_modified = Date::unix2mysql();
 			        	try 
 						{

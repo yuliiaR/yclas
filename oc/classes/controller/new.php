@@ -260,6 +260,7 @@ class Controller_New extends Controller
 				$new_ad->phone			= $data['phone'];
 				$new_ad->website		= $data['website'];
 				$new_ad->stock			= $data['stock']; 
+				$new_ad->has_images 		= 0;
 				
 				// set custom values
 				foreach ($data as $name => $field) 
@@ -323,7 +324,7 @@ class Controller_New extends Controller
                         $filename = $new_ad->save_image($_FILES['image'.$i]);
 
                     if ($filename)
-                        $new_ad->has_images = $i+1;
+                        $new_ad->has_images++;
                 }
                 //since theres images save the ad again...
                 if ($new_ad->has_images > 0)
