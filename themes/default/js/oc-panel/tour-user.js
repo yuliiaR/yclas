@@ -11,6 +11,7 @@ $(function (){
            content: getTourLocalization("step6_content"),
            path: "/oc-panel/profile",
            placement: "top",
+           redirect: false,
         },
         {
            element: "#page-my-dvertisements",
@@ -18,6 +19,7 @@ $(function (){
            content: getTourLocalization("step7_content"),
            path: "/oc-panel/profile/ads",
            placement: "top",
+           redirect: false,
         },
         {
            element: "#page-edit-profile",
@@ -25,6 +27,7 @@ $(function (){
            content: getTourLocalization("step8_content"),
            path: "/oc-panel/profile/edit",
            placement: "top",
+           redirect: false,
         },
         {
            element: "#menu-profile-options",
@@ -32,6 +35,7 @@ $(function (){
            content: getTourLocalization("step9_content"),
            path: "/oc-panel/profile/edit",
            placement: "right",
+           redirect: false,
         },
         {
            element: "#visit-website",
@@ -39,6 +43,7 @@ $(function (){
            content: getTourLocalization("step10_content"),
            path: "/oc-panel/profile/edit",
            placement: "left",
+           redirect: false,
     }
     ]);
 
