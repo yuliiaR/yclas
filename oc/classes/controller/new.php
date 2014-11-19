@@ -18,6 +18,14 @@ class Controller_New extends Controller
             Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
             $this->redirect('default');
         }
+
+        //advertisement.only_admin_post
+        if( Core::config('advertisement.only_admin_post')==1 AND (
+            !Auth::instance()->logged_in() OR  
+            (Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN)))
+        {
+            $this->redirect('default');
+        }
         
 		//template header
 		$this->template->title           	= __('Publish new advertisement');

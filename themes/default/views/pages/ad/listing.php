@@ -23,9 +23,10 @@
             <?=$location->description?>
         <?endif?>
         </p>
-
+        <?if (Core::config('advertisement.only_admin_post')!=1):?>
         <i class="glyphicon glyphicon-pencil"></i> <a title="<?=__('New Advertisement')?>" 
             href="<?=Route::url('post_new')?>?category=<?=($category!==NULL)?$category->seoname:''?>&location=<?=($location!==NULL)?$location->seoname:''?>"><?=__('Publish new advertisement')?></a>
+        <?endif?>
     </div><!--end of recomentadion-->
 
 <div class="btn-group pull-right">

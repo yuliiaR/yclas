@@ -76,11 +76,12 @@
             
             <div class="btn-group pull-right btn-header-group">
                 <?=View::factory('widget_login')?>
-            
+                <?if (Core::config('advertisement.only_admin_post')!=1):?>
                 <a class="btn btn-danger" href="<?=Route::url('post_new')?>">
                     <i class="glyphicon glyphicon-pencil glyphicon"></i>
                     <?=__('Publish new ')?>
                 </a>                
+                <?endif?>
             </div>	
     	</div><!--/.nav-collapse -->
     </div>

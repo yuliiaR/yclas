@@ -788,7 +788,6 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 	public function action_stats()
    	{
-   
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats')));
 
         //local files
@@ -808,6 +807,51 @@ class Controller_Panel_Profile extends Auth_Controller {
         $this->template->title = __('Stats');
         $this->template->bind('content', $content);        
         $content = View::factory('oc-panel/profile/stats');
+
+
+        $user    = Auth::instance()->get_user();
+        $list_ad = array();
+        $advert  = new Model_Ad();
+
+        //single stats for 1 ad
+        if (is_numeric($id_ad = $this->request->param('id')))
+        {
+            $advert = new Model_Ad($id_ad);
+
+            if($advert->loaded())
+            {
+                if($user->id_user !== $advert->id_user)
+                {
+                    Alert::set(Alert::ALERT, __("This is not your advertisement."));
+                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
+                }
+
+                Breadcrumbs::add(Breadcrumb::factory()->set_title($advert->title));
+
+                // make a list of 1 ad (array), and than pass this array to query (IN).. To get correct visits
+                $list_ad[] = $id_ad;
+            }
+        }
+
+        //we didnt filter by ad, so lets get them all!
+        if (empty($list_ad))
+        {
+            $ads = new Model_Ad();
+            $collection_of_user_ads = $ads->where('id_user', '=', $user->id_user)->find_all();
+
+            $list_ad = array();
+            foreach ($collection_of_user_ads as $key) {
+                // make a list of ads (array), and than pass this array to query (IN).. To get correct visits
+                $list_ad[] = $key->id_ad;
+            }
+        }
+
+        // if user doesn't have any ads
+        if(empty($list_ad))
+            $list_ad = array(NULL);
+
+        $content->advert = $advert;
+        
 
         //Getting the dates and range
         $from_date = Core::post('from_date',strtotime('-1 month'));
@@ -830,20 +874,6 @@ class Controller_Panel_Profile extends Auth_Controller {
         $content->from_date = date('Y-m-d',$from_date);
         $content->to_date   = date('Y-m-d',$to_date) ;
 
-        // user and his ads
-        $user = Auth::instance()->get_user();
-        $ads = new Model_Ad();
-        $collection_of_user_ads = $ads->where('id_user', '=', $user->id_user)->find_all();
-
-        $list_ad = array();
-        foreach ($collection_of_user_ads as $key) {
-        	// make a list of ads (array), and than pass this array to query (IN).. To get correct visits
-        	$list_ad[] = $key->id_ad;
-        }
-        
-        // if user doesn't have any ads
-       	if(empty($list_ad))
-        	$list_ad = array(NULL);
         
         /////////////////////CONTACT STATS////////////////////////////////
 

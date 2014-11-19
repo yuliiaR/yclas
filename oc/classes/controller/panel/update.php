@@ -91,6 +91,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'custom_css_version',
                                'group_name'     =>'appearance',
                                'config_value'   => 0),
+                        array( 'config_key'     =>'only_admin_post',
+                               'group_name'     =>'advertisement',
+                               'config_value'   => 0),
                         );
         
         Model_Config::config_array($configs);
