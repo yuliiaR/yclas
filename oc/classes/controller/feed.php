@@ -16,34 +16,35 @@ class Controller_Feed extends Controller {
   		$items = array();
 
   		//last ads, you can modify this value at: advertisement.feed_elements
-        $ads = DB::select('a.seotitle')
-                ->select(array('c.seoname','category'),'a.title','a.description','a.published')
-                ->from(array('ads', 'a'))
-                ->join(array('categories', 'c'),'INNER')
-                ->on('a.id_category','=','c.id_category')
-                ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
+        $ads = new Model_Ad();
+        $ads    ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                 ->order_by('published','desc')
                 ->limit(Core::config('advertisement.feed_elements'));
 
         //filter by category aor location
         if (Model_Category::current()->loaded())
-            $ads->where('a.id_category','=',Model_Category::current()->id_category);
+            $ads->where('id_category','=',Model_Category::current()->id_category);
  
         if (Model_Location::current()->loaded())
-            $ads->where('a.id_location','=',Model_Location::current()->id_location);
+            $ads->where('id_location','=',Model_Location::current()->id_location);
 
-        $ads = $ads->as_object()->cached()->execute();
+        $ads = $ads->cached()->find_all();
 
         foreach($ads as $a)
         {
-            $url= Route::url('ad',  array('category'=>$a->category,'seotitle'=>$a->seotitle));
+            $url= Route::url('ad',  array('category'=>$a->category->seoname,'seotitle'=>$a->seotitle));
+            $item = array(
+                                'title'         => htmlspecialchars($a->title,ENT_QUOTES),
+                                'link'          => $url,
+                                'pubDate'       => Date::mysql2unix($a->published),
+                                'description'   => htmlspecialchars(Text::removebbcode($a->description),ENT_QUOTES),
+                          );
+            if($a->get_first_image() !== NULL)
+            {
+                $item['description'] = '<img src="'.Core::S3_domain().$a->get_first_image().'" />'.$item['description'];
+            }
 
-            $items[] = array(
-			                	'title' 	    => htmlspecialchars($a->title,ENT_QUOTES),
-			                	'link' 	        => $url,
-			                	'pubDate'       => Date::mysql2unix($a->published),
-			                	'description'   => htmlspecialchars(Text::removebbcode($a->description),ENT_QUOTES),
-			              );
+            $items[] = $item;
         }
   
   		$xml = Feed::create($info, $items);
