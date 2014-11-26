@@ -55,14 +55,6 @@ Theme::$scripts['footer']	= array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2
                                     'js/theme.init.js?v='.Core::VERSION,
                                     );
 
-
-/**
- * custom options for the theme
- * @var array
- */
-Theme::$options = array();
-
-
 /**
  * custom error alerts
  */
