@@ -712,8 +712,9 @@ class Model_Ad extends ORM {
                 $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
             }
 
-            $ads = $ads->limit(core::config('advertisement.related'))->find_all();
-            //->order_by(DB::expr('RAND()'))
+            $ads = $ads->limit(core::config('advertisement.related'))
+            ->order_by(DB::expr('RAND()'))
+            ->find_all();
 
             return View::factory('pages/ad/related',array('ads'=>$ads))->render();
         }

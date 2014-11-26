@@ -619,11 +619,11 @@ if ( core::request('SAMPLE_DB') !== NULL)
 
 //crontabs
 mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
-('Sitemap', '* 3 * * *', 'Sitemap::generate', NULL, 'Regenerates the sitemap everyday at 3am',1),
-('Clean Cache', '* 5 * * *', 'Core::delete_cache', NULL, 'Once day force to flush all the cache.', 1),
-('Optimize DB', '* 4 1 * *', 'Core::optimize_db', NULL, 'once a month we optimize the DB', 1),
-('Unpaid Orders', '* 7 * * *', 'Cron_Ad::unpaid', NULL, 'Notify unpaid orders 2 days after was created', 1),
-('Expired Featured Ad', '* 8 * * *', 'Cron_Ad::expired_featured', NULL, 'Notify by email of expired featured ad', 1),
-('Expired Ad', '* 9 * * *', 'Cron_Ad::expired', NULL, 'Notify by email of expired ad', 1);");
+('Sitemap', '00 3 * * *', 'Sitemap::generate', NULL, 'Regenerates the sitemap everyday at 3am',1),
+('Clean Cache', '00 5 * * *', 'Core::delete_cache', NULL, 'Once day force to flush all the cache.', 1),
+('Optimize DB', '00 4 1 * *', 'Core::optimize_db', NULL, 'once a month we optimize the DB', 1),
+('Unpaid Orders', '00 7 * * *', 'Cron_Ad::unpaid', NULL, 'Notify unpaid orders 2 days after was created', 1),
+('Expired Featured Ad', '00 8 * * *', 'Cron_Ad::expired_featured', NULL, 'Notify by email of expired featured ad', 1),
+('Expired Ad', '00 9 * * *', 'Cron_Ad::expired', NULL, 'Notify by email of expired ad', 1);");
 
 mysqli_close($link);

@@ -15,6 +15,18 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
      */
     public function action_230()
     {
+        //Cron update
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."crontab` SET period='00 3 * * *' WHERE callback='Sitemap::generate' LIMIT 1")->execute();
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."crontab` SET period='00 5 * * *' WHERE callback='Core::delete_cache' LIMIT 1")->execute();
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."crontab` SET period='00 4 1 * *' WHERE callback='Core::optimize_db' LIMIT 1")->execute();
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."crontab` SET period='00 7 * * *' WHERE callback='Cron_Ad::unpaid' LIMIT 1")->execute();
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."crontab` SET period='00 8 * * *' WHERE callback='Cron_Ad::expired_featured' LIMIT 1")->execute();
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."crontab` SET period='00 9 * * *' WHERE callback='Cron_Ad::expired' LIMIT 1")->execute();
+
+        }catch (exception $e) {}
+
         //control login attempts
         try 
         {
@@ -57,6 +69,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` ADD `last_modified` DATETIME NULL DEFAULT NULL ;")->execute();
         }catch (exception $e) {}
         
+        //new configs
         $configs = array(
                         array( 'config_key'     =>'aws_s3_active',
                                'group_name'     =>'image',
@@ -209,12 +222,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         try
         {
             DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
-                                    ('Sitemap', '* 3 * * *', 'Sitemap::generate', NULL, 'Regenerates the sitemap everyday at 3am',1),
-                                    ('Clean Cache', '* 5 * * *', 'Core::delete_cache', NULL, 'Once day force to flush all the cache.', 1),
-                                    ('Optimize DB', '* 4 1 * *', 'Core::optimize_db', NULL, 'once a month we optimize the DB', 1),
-                                    ('Unpaid Orders', '* 7 * * *', 'Cron_Ad::unpaid', NULL, 'Notify by email unpaid orders 2 days after was created', 1),
-                                    ('Expired Featured Ad', '* 8 * * *', 'Cron_Ad::expired_featured', NULL, 'Notify by email of expired featured ad', 1),
-                                    ('Expired Ad', '* 9 * * *', 'Cron_Ad::expired', NULL, 'Notify by email of expired ad', 1);")->execute();
+                                    ('Sitemap', '00 3 * * *', 'Sitemap::generate', NULL, 'Regenerates the sitemap everyday at 3am',1),
+                                    ('Clean Cache', '00 5 * * *', 'Core::delete_cache', NULL, 'Once day force to flush all the cache.', 1),
+                                    ('Optimize DB', '00 4 1 * *', 'Core::optimize_db', NULL, 'once a month we optimize the DB', 1),
+                                    ('Unpaid Orders', '00 7 * * *', 'Cron_Ad::unpaid', NULL, 'Notify by email unpaid orders 2 days after was created', 1),
+                                    ('Expired Featured Ad', '00 8 * * *', 'Cron_Ad::expired_featured', NULL, 'Notify by email of expired featured ad', 1),
+                                    ('Expired Ad', '00 9 * * *', 'Cron_Ad::expired', NULL, 'Notify by email of expired ad', 1);")->execute();
         }catch (exception $e) {}
 
         //delete old sitemap config
