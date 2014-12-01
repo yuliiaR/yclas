@@ -7,7 +7,7 @@
         &nbsp; <small><?=Auth::instance()->get_user()->email?> </small>
     </h1>
 
-    <p><?=__('Thanks for using our website.')?> </a>
+    <p><?=__('Thanks for using our website.')?></p>
 </div>
 
 
