@@ -8,4 +8,4 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<div class="fb-comments" data-href="<?=URL::current()?>" data-numposts="5" data-width="720" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="<?=$datahref?>" data-numposts="5" data-width="720" data-colorscheme="light"></div>

@@ -571,7 +571,8 @@ class Model_Ad extends ORM {
             if ($this->status == self::STATUS_PUBLISHED AND strlen(core::config('advertisement.fbcomments'))>0 )
             {
                 return View::factory('pages/ad/fbcomments',
-                                array('fbcomments'=>core::config('advertisement.fbcomments')))
+                                array(  'fbcomments'=>core::config('advertisement.fbcomments'),
+                                        'datahref'=>Route::url('ad', array('controller'=>'ad','category'=>$this->category->seoname,'seotitle'=>$this->seotitle))))
                         ->render();
             }
         }
