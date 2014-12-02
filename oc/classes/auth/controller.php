@@ -160,6 +160,7 @@ class Auth_Controller extends Controller
                 	$common_css = array('//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
                                         '//cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
                                         'css/loadingbar.css'=>'screen', 
+                                        'css/icon-picker.min.css'=>'screen', 
                                         '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'=>'screen', 
                                         '//cdn.jsdelivr.net/summernote/0.5.1/summernote.css'=>'screen', 
                                         '//cdn.jsdelivr.net/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css'=>'screen',
