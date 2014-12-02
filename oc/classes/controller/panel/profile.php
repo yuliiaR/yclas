@@ -415,6 +415,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 			$this->template->styles = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
 	        $this->template->scripts['footer'] = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
 	                                                   'js/jquery.validate.min.js',
+	                                                   Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
 	                                                   'js/jquery.chained.min.js',
 	                                                   'js/oc-panel/edit_ad.js');
         }
