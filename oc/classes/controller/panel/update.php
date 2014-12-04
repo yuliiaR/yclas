@@ -107,6 +107,15 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'only_admin_post',
                                'group_name'     =>'advertisement',
                                'config_value'   => 0),
+                        array( 'config_key'     =>'map_active',
+                               'group_name'     =>'appearance',
+                               'config_value'   => 1),
+                        array( 'config_key'     =>'map_jscode',
+                               'group_name'     =>'appearance',
+                               'config_value'   =>''),
+                        array( 'config_key'     =>'map_settings',
+                               'group_name'     =>'appearance',
+                               'config_value'   =>''),
                         );
         
         Model_Config::config_array($configs);
