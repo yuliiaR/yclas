@@ -7,7 +7,7 @@ $(function (){
     tour.addSteps([
         {
            element: "#page-welcome",
-           title: getChosenLocalization("step1_title"),
+           title: getTourLocalization("step1_title"),
            content: getTourLocalization("step1_content"),
            path: "/oc-panel",
            placement: "top",

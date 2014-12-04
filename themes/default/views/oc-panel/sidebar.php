@@ -78,6 +78,16 @@
                                         <tr><td class="br"><?=Theme::admin_link(__('Custom CSS'), 'theme','css','oc-panel','glyphicon glyphicon-sound-stereo')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Widgets'), 'widget','index','oc-panel','glyphicon glyphicon-move')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Menu'), 'menu','index','oc-panel','glyphicon glyphicon-list')?></td></tr>
+                                        <tr>
+                                            <td class="br">
+                                                <li <?=(Request::current()->controller()=='map')?'class="active"':''?> >
+                                                    <a href="<?=Route::url('oc-panel',array('controller'=>'map','action'=>'index'))?>" title="<?=__('Interactive Map')?>">
+                                                        <i class="glyphicon glyphicon-map-marker"></i>
+                                                        <span class="side-name-link"><?=__('Interactive Map')?></span>
+                                                    </a>
+                                                </li>
+                                            </td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
