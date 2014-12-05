@@ -167,8 +167,15 @@
                     <?=i18n::format_currency($order->amount,$order->currency)?>
                 </a>
             <?endif?>
+            </td>
 	    	
-	    	<td><?= Date::format($ad->published, core::config('general.date_format'))?></td>
+	    	<td>
+	    		<? if ($ad->status == Model_Ad::STATUS_PUBLISHED):?>	    	
+			    	<?= Date::format($ad->published, core::config('general.date_format')) ?>		    	
+		    	<? else: ?>
+			    	<?= Date::format($ad->created, core::config('general.date_format')) ?>
+			<? endif ?>
+	    	</td>
 			<td width="120" style="width:120px">
 				<a class="btn btn-primary ajax-load" 
 					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
