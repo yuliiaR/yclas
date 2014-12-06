@@ -37,9 +37,13 @@
 		<?if (core::config('advertisement.captcha') != FALSE):?>
 		<div class="form-group">
 			<div class="col-md-5 col-sm-offset-2">
-				<?=__('Captcha')?>*:<br />
-				<?=captcha::image_tag('contact')?><br />
-				<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
+				<?if (Core::config('general.recaptcha_active')):?>
+					<?=Captcha::recaptcha_display()?>
+				<?else:?>
+					<?=__('Captcha')?>*:<br />
+					<?=captcha::image_tag('contact')?><br />
+					<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
+				<?endif?>
 			</div>
 		</div>
 		<?endif?>

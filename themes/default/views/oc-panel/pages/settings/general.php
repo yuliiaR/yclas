@@ -385,6 +385,58 @@
             </div>
         </div>
 
+        <hr>
+        <h2><?=__("reCAPTCHA Configuration")?></h2>
+        <div class="form-group">
+            <?= FORM::label($forms['recaptcha_active']['id'], "<a target='_blank' href='https://www.google.com/recaptcha/intro/index.html'>".__("Enable reCAPTCHA as captcha provider")."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['recaptcha_active']['id']))?>
+            <div class="col-sm-4">
+                <div class="onoffswitch">
+                    <?= Form::checkbox($forms['recaptcha_active']['key'], 1, (bool) $forms['recaptcha_active']['value'], array(
+                    'placeholder' => __("TRUE or FALSE"), 
+                    'class' => 'onoffswitch-checkbox', 
+                    'id' => $forms['recaptcha_active']['id'], 
+                    'data-content'=> __("If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register."),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-original-title'=>__("Black List"),
+                    ))?>
+                    <?= FORM::label($forms['recaptcha_active']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['recaptcha_active']['id']))?>
+                    <?= FORM::hidden($forms['recaptcha_active']['key'], 0);?>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+                <?= FORM::label($forms['recaptcha_sitekey']['id'], "<a target='_blank' href='https://www.google.com/recaptcha/admin#list'>".__('reCAPTCHA Site Key')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['recaptcha_sitekey']['id']))?>
+                <div class="col-sm-4">
+                    <?= FORM::input($forms['recaptcha_sitekey']['key'], $forms['recaptcha_sitekey']['value'], array(
+                    'placeholder' => "", 
+                    'class' => 'tips form-control input-sm', 
+                    'id' => $forms['recaptcha_sitekey']['id'], 
+                    'data-original-title'=> __("reCaptcha Site Key"),
+                    'data-trigger'=>"hover",
+                    'data-placement'=>"right",
+                    'data-toggle'=>"popover",
+                    'data-content'=>__("You need to write reCAPTCHA Site Key to enable the service."),
+                    ))?> 
+                </div>
+        </div>
+        <div class="form-group">
+            <?= FORM::label($forms['recaptcha_secretkey']['id'], "<a target='_blank' href='https://www.google.com/recaptcha/admin#list'>".__('reCAPTCHA Secret Key')."</a>", array('class'=>'control-label col-sm-3', 'for'=>$forms['recaptcha_secretkey']['id']))?>
+            <div class="col-sm-4">
+                <?= FORM::input($forms['recaptcha_secretkey']['key'], $forms['recaptcha_secretkey']['value'], array(
+                'placeholder' => "", 
+                'class' => 'tips form-control input-sm', 
+                'id' => $forms['recaptcha_secretkey']['id'], 
+                'data-original-title'=> __("reCaptcha Secret Key"),
+                'data-trigger'=>"hover",
+                'data-placement'=>"right",
+                'data-toggle'=>"popover",
+                'data-content'=>__("You need to write your reCAPTCHA Secret Key to enable the service."),
+                ))?> 
+            </div>
+        </div>
+
         <?= FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
         
     </fieldset> 

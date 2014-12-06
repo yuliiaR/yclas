@@ -209,9 +209,13 @@
 				<?if ($form_show['captcha'] != FALSE):?>
 				<div class="form-group">
 					<div class="col-md-4">
-						Captcha*:<br />
-						<?= captcha::image_tag('publish_new');?><br />
-						<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
+						<?if (Core::config('general.recaptcha_active')):?>
+							<?=Captcha::recaptcha_display()?>
+						<?else:?>
+							Captcha*:<br />
+							<?= captcha::image_tag('publish_new');?><br />
+							<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
+						<?endif?>
 					</div>
 				</div>
 				<?endif?>
