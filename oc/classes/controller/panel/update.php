@@ -116,6 +116,15 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'map_settings',
                                'group_name'     =>'appearance',
                                'config_value'   =>''),
+                        array( 'config_key'     =>'recaptcha_active',
+                               'group_name'     =>'general',
+                               'config_value'   =>''),
+                        array( 'config_key'     =>'recaptcha_secretkey',
+                               'group_name'     =>'general',
+                               'config_value'   =>''),
+                        array( 'config_key'     =>'recaptcha_sitekey',
+                               'group_name'     =>'general',
+                               'config_value'   =>''),
                         );
         
         Model_Config::config_array($configs);
