@@ -89,7 +89,19 @@
               </div>  
             </div>
             
-                <button type="submit" class="btn btn-primary"><?=__('Update')?></button> 
+            <button type="submit" class="btn btn-primary"><?=__('Update')?></button>
+            
+            <?if ($user->has_image):?>
+                <button type="submit"
+                        class="btn btn-danger index-delete index-delete-inline"
+                        onclick="return confirm('<?=__('Delete photo?')?>');" 
+                        type="submit" 
+                        name="photo_delete"
+                        value="1" 
+                        title="<?=__('Delete photo')?>">
+                        <?=__('Delete photo')?>
+                </button>
+            <?endif?>
       </form>
     </div><!--end col-md-10-->
 </div>
