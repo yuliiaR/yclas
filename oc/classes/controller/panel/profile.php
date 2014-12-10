@@ -79,6 +79,32 @@ class Controller_Panel_Profile extends Auth_Controller {
 		    $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
 		}
         
+        if (Core::post('photo_delete'))
+        {
+            $user = Auth::instance()->get_user();
+            $root = DOCROOT.'images/users/'; //root folder
+        
+            if (!is_dir($root)) 
+                return FALSE;
+            
+            else
+            {	
+                //delete photo
+                @unlink($root.$user->id_user.'.png');
+        
+                // delete photo from Amazon S3
+                if(core::config('image.aws_s3_active'))
+                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/users/'.$user->id_user.'.png');
+        
+                // update user info
+                $user->has_image = 0;
+                $user->save();
+        
+                Alert::set(Alert::SUCCESS, __('Photo deleted.'));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
+            }
+        }// end of photo delete
+        
         if ( 
             ! Upload::valid($image) OR
             ! Upload::not_empty($image) OR
