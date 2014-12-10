@@ -392,7 +392,7 @@ msgstr "Etiqueta"
 
 #: String 98
 msgid "Tooltip"
-msgstr "Sugerenia"
+msgstr "Sugerencia"
 
 #: String 99
 msgid "Required"
