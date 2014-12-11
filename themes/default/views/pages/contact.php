@@ -9,13 +9,13 @@
 		<div class="form-group">
 		<?= FORM::label('name', __('Name'), array('class'=>'col-sm-2 control-label', 'for'=>'name'))?>
 			<div class="col-md-5">
-				<?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
+				<?= FORM::input('name', Core::post('name'), array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
 			</div>
 		</div>
 		<div class="form-group">
 			<?= FORM::label('email', __('Email'), array('class'=>'col-sm-2 control-label', 'for'=>'email'))?>
 			<div class="col-md-5 ">
-				<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
+				<?= FORM::input('email', Core::post('email'), array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
 			</div>
 		</div>
         <?endif?>
@@ -23,14 +23,14 @@
 		<div class="form-group">
 			<?= FORM::label('subject', __('Subject'), array('class'=>'col-sm-2 control-label', 'for'=>'subject'))?>
 			<div class="col-md-5 ">
-				<?= FORM::input('subject', "", array('placeholder' => __('Subject'), 'class' => 'form-control', 'id' => 'subject'))?>
+				<?= FORM::input('subject', Core::post('subject'), array('placeholder' => __('Subject'), 'class' => 'form-control', 'id' => 'subject'))?>
 			</div>
 		</div>
 		<div class="form-group">
 			<?= FORM::label('message', __('Message'), array('class'=>'col-sm-2 control-label', 'for'=>'message'))?>
 			<div class="col-md-5">
 				
-				<?= FORM::textarea('message', "", array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>7, 'required'))?>	
+				<?= FORM::textarea('message', Core::post('message'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>7, 'required'))?>	
 			</div>
 		</div>
 		

@@ -6,14 +6,6 @@ $(function (){
 
     tour.addSteps([
         {
-           element: "#page-welcome",
-           title: getChosenLocalization("step6_title"),
-           content: getTourLocalization("step6_content"),
-           path: "/oc-panel/profile",
-           placement: "top",
-           redirect: false,
-        },
-        {
            element: "#page-my-dvertisements",
            title: "",
            content: getTourLocalization("step7_content"),
@@ -27,7 +19,7 @@ $(function (){
            content: getTourLocalization("step8_content"),
            path: "/oc-panel/profile/edit",
            placement: "top",
-           redirect: false,
+           redirect: true,
         },
         {
            element: "#menu-profile-options",
@@ -35,7 +27,7 @@ $(function (){
            content: getTourLocalization("step9_content"),
            path: "/oc-panel/profile/edit",
            placement: "right",
-           redirect: false,
+           redirect: true,
         },
         {
            element: "#visit-website",
@@ -43,7 +35,7 @@ $(function (){
            content: getTourLocalization("step10_content"),
            path: "/oc-panel/profile/edit",
            placement: "left",
-           redirect: false,
+           redirect: true,
     }
     ]);
 
