@@ -1,4 +1,4 @@
-#  Open Classifieds 2.2.1
+#  Open Classifieds 2.3.0
 
 
 # Description
