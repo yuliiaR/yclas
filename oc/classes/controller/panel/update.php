@@ -128,6 +128,51 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         );
         
         Model_Config::config_array($configs);
+        
+        //upgrade has_image field to use it as images count
+        $ads = new Model_Ad();
+        $ads = $ads->where('has_images','>',0)->find_all();
+        
+        if(count($ads))
+        {
+            foreach ($ads as $ad) 
+            {
+                $ad->has_images = 0;//begin with 0 images
+                $route = $ad->image_path();
+                $folder = DOCROOT.$route;
+                
+                if(is_dir($folder))
+                { 
+                    foreach (new DirectoryIterator($folder) as $file) 
+                    {   
+                        if(!$file->isDot())
+                        {   
+                            $key = explode('_', $file->getFilename());
+                            $key = end($key);
+                            $key = explode('.', $key);
+                            $key = (isset($key[0])) ? $key[0] : NULL ;
+                            if(is_numeric($key))
+                            {
+                                if (strpos($file->getFilename(), 'thumb_') === 0)
+                                {
+                                    $ad->has_images++;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                //update has_images count
+                try 
+                {
+                    $ad->save();
+                } 
+                catch (Exception $e) 
+                {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
+            }
+        }
     }
     
     /**
