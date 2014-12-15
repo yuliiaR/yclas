@@ -142,7 +142,8 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                 $folder = DOCROOT.$route;
                 
                 if(is_dir($folder))
-                { 
+                {
+                    //retrive ad pictures
                     foreach (new DirectoryIterator($folder) as $file) 
                     {   
                         if(!$file->isDot())
@@ -155,13 +156,23 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                             {
                                 if (strpos($file->getFilename(), 'thumb_') === 0)
                                 {
-                                    $ad->has_images++;
-        
-                                    //reordering image file names
-                                    @rename($folder.$ad->seotitle.'_'.$key.'.jpg', $folder.$ad->seotitle.'_'.$ad->has_images.'.jpg');
-                                    @rename($folder.'thumb_'.$ad->seotitle.'_'.$key.'.jpg', $folder.'thumb_'.$ad->seotitle.'_'.$ad->has_images.'.jpg');
+                                    $image_keys[] = $key;
                                 }
                             }
+                        }
+                    }
+                    
+                    //count images and reordering file names
+                    if (count($image_keys))
+                    {
+                        asort($image_keys);
+                        
+                        foreach ($image_keys as $image_key)
+                        {
+                            $ad->has_images++;
+                            
+                            @rename($folder.$ad->seotitle.'_'.$image_key.'.jpg', $folder.$ad->seotitle.'_'.$ad->has_images.'.jpg');
+                            @rename($folder.'thumb_'.$ad->seotitle.'_'.$image_key.'.jpg', $folder.'thumb_'.$ad->seotitle.'_'.$ad->has_images.'.jpg');
                         }
                     }
                 }
