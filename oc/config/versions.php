@@ -3,8 +3,8 @@
   '2.3.0' => 
   array (
     'codename' => 'Bayahibe',
-    'released' => '2014-12-15',
-    'blog' => 'http://open-classifieds.com/2014/12/15/open-classifieds-2-3-0/',
+    'released' => '2014-12-16',
+    'blog' => 'http://open-classifieds.com/2014/12/16/open-classifieds-2-3-0/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.2.1...2.3.0',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=24&page=1&state=closed',
     'download' => 'http://j.mp/oc_230',
