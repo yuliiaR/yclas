@@ -189,6 +189,70 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                 }
             }
         }
+
+        //upgrade categories has_image
+        $images_path = DOCROOT.'images/categories';
+        if(is_dir($images_path))
+        {
+            //retrive cat pictures
+            foreach (new DirectoryIterator($images_path) as $file) 
+            {   
+                if($file->isFile())
+                {   
+                    $cat_name =  str_replace('.png','', $file->getFilename());
+                    $cat = new Model_Category();
+                    $cat->where('seoname','=',$cat_name)->find();
+                    if ($cat->loaded())
+                    {
+                        $cat->has_image = 1;
+                        $cat->save();
+                    }
+                }
+            }
+        }
+
+
+        //upgrade locations has_image
+        $images_path = DOCROOT.'images/locations';
+        if(is_dir($images_path))
+        {
+            //retrive loc pictures
+            foreach (new DirectoryIterator($images_path) as $file) 
+            {   
+                if($file->isFile())
+                {   
+                    $loc_name =  str_replace('.png','', $file->getFilename());
+                    $loc = new Model_Location();
+                    $loc->where('seoname','=',$loc_name)->find();
+                    if ($loc->loaded())
+                    {
+                        $loc->has_image = 1;
+                        $loc->save();
+                    }
+                }
+            }
+        }
+
+        //upgrade users has_image
+        $images_path = DOCROOT.'images/users';
+        if(is_dir($images_path))
+        {
+            //retrive user pictures
+            foreach (new DirectoryIterator($images_path) as $file) 
+            {   
+                if($file->isFile() AND is_numeric($id_user =  str_replace('.png','', $file->getFilename())))
+                {  
+                    $user = new Model_User($id_user);
+                    if ($user->loaded())
+                    {
+                        $user->has_image = 1;
+                        $user->save();
+                    }
+                }
+            }
+        }
+
+
     }
     
     /**
