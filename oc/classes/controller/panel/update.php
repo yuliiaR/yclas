@@ -140,6 +140,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                 $ad->has_images = 0;//begin with 0 images
                 $route = $ad->image_path();
                 $folder = DOCROOT.$route;
+                $image_keys = array();
                 
                 if(is_dir($folder))
                 {
