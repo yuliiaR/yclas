@@ -11,7 +11,6 @@
             <input type="checkbox" id="select-all" onclick="check_all();">
         </th>
         <th>#</th>
-        <th><?=__('Edit')?></th>
         <th><?=__('Name')?></th>
         <th><?=__('Category')?></th>
         <th><?=__('Location')?></th>
@@ -45,20 +44,13 @@
         <?endif?>
     </tr>
     <?if(isset($ads)):?>
-    <?foreach($ads as $ad):?>  
     <tbody>
-        <tr>
+    <?foreach($ads as $ad):?>  
+        <tr id="tr<?=$ad->id_ad?>">
             <td>
                 <input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
             </td>
             <td><?=$ad->id_ad?>
-            <td>
-                <a class="btn btn-primary" 
-                    href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
-                    rel="tooltip" title="<?=__('Update')?>">
-                    <i class="glyphicon   glyphicon-edit"></i>
-                </a>
-            </td>
             
             <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
             </td>
@@ -101,12 +93,19 @@
             </td>
 
             <td><?= Date::format($ad->created, core::config('general.date_format'))?></td>
-             <td width="150" style="width:150px">
+             <td style="width:190px">
+                
+                <a class="btn btn-primary" 
+                    href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
+                    rel="tooltip" title="<?=__('Update')?>">
+                    <i class="glyphicon   glyphicon-edit"></i>
+                </a>
+                
                 <a
                     href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                    class="btn btn-success" 
+                    class="btn btn-success index-moderation" 
                     title="<?=__('Activate?')?>" 
-                    data-toggle="confirmation" 
+                    data-id="tr<?=$ad->id_ad?>" 
                     data-btnOkLabel="<?=__('Yes, definitely!')?>" 
                     data-btnCancelLabel="<?=__('No way!')?>">
                     <i class="glyphicon glyphicon-ok-sign"></i>
@@ -114,9 +113,9 @@
                
                 <a
                     href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                    class="btn btn-warning" 
+                    class="btn btn-warning index-moderation" 
                     title="<?=__('Spam?')?>" 
-                    data-toggle="confirmation" 
+                    data-id="tr<?=$ad->id_ad?>" 
                     data-btnOkLabel="<?=__('Yes, definitely!')?>" 
                     data-btnCancelLabel="<?=__('No way!')?>">
                     <i class="glyphicon glyphicon-fire"></i>
@@ -124,9 +123,9 @@
 
                 <a
                     href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                    class="btn btn-danger" 
-                    title="<?=__('Spam?')?>" 
-                    data-toggle="confirmation" 
+                    class="btn btn-danger index-moderation" 
+                    title="<?=__('Delete?')?>" 
+                    data-id="tr<?=$ad->id_ad?>" 
                     data-btnOkLabel="<?=__('Yes, definitely!')?>" 
                     data-btnCancelLabel="<?=__('No way!')?>">
                     <i class="glyphicon glyphicon-remove"></i>
