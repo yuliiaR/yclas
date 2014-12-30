@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php
 
 /**
 * Stripe class
@@ -54,23 +54,6 @@ class Controller_Stripe extends Controller{
                                                         "card"      => $token,
                                                         "description" => $order->description)
                                                     );
-
-                    if (!Auth::instance()->logged_in())
-                    {
-                        //create user if doesnt exists and send email to user with password
-                        $user = Model_User::create_email($email,core::post('stripeBillingName',$email));
-                    }
-                    else//he was loged so we use his user
-                        $user = Auth::instance()->get_user();
-
-                    //mark as paid
-                    $order->confirm_payment('stripe',Core::post('stripeToken'));
-                    
-                    //redirect him to his ads
-                    Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
-                    $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')));
-                    
-                    
                 }
                 catch(Stripe_CardError $e) 
                 {
@@ -80,6 +63,12 @@ class Controller_Stripe extends Controller{
                     $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
                 }
                 
+                //mark as paid
+                $order->confirm_payment('stripe',Core::post('stripeToken'));
+                
+                //redirect him to his ads
+                Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
+                $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')));
             }
             else
             {
