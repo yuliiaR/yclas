@@ -968,7 +968,7 @@ msgstr "imagenes importantes"
 
 #: String 242
 msgid "Advertisement Title"
-msgstr "Título del ancuncio"
+msgstr "Título del anuncio"
 
 #: String 243
 msgid "to"
@@ -3648,7 +3648,7 @@ msgstr "Anuncio marcado como spam"
 
 #: String 912
 msgid "None (0) advertisement has been deleted"
-msgstr "Ningún ancuncio ha sido eliminado"
+msgstr "Ningún anuncio ha sido eliminado"
 
 #: String 913
 msgid "Advertisement is active and published"
