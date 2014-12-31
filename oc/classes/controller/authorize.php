@@ -19,12 +19,12 @@ class Controller_Authorize extends Controller{
      */
     public static function form(Model_Order $order)
     {
-        if ( Core::config('payment.authorize_login')!='' AND Core::config('payment.authorize_key')!='' )
+        if ( Core::config('payment.authorize_login')!='' AND 
+            Core::config('payment.authorize_key')!='' AND
+            Auth::instance()->logged_in() AND $order->loaded())
         {
-            if (Auth::instance()->logged_in() AND $order->loaded())
-                return View::factory('pages/authorize/form',array('order'=>$order));
-            elseif ($order->loaded())
-                return View::factory('pages/authorize/button');
+            return View::factory('pages/authorize/form',array('order'=>$order));
+           
         }
         return '';
     }
@@ -44,7 +44,7 @@ class Controller_Authorize extends Controller{
                        ->where('status', '=', Model_Order::STATUS_CREATED)
                        ->limit(1)->find();
 
-        if (Auth::instance()->logged_in() AND $order->loaded())
+        if ($order->loaded())
         {
             // include class vendor
             require Kohana::find_file('vendor/authorize/', 'autoload');

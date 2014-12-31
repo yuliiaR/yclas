@@ -30,18 +30,10 @@ class Controller_Bitpay extends Controller{
 
         if ($order->loaded())
         {
-            //user needs to be loged
-            if (Auth::instance()->logged_in())
-                $user = Auth::instance()->get_user();
-            else
-            {
-                Alert::set(Alert::INFO, __('Please login before purchasing'));
-                $this->redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
-            }
 
             //options send to create the invoice
-            $options = array(   'buyerName'     => $user->name,
-                                'buyerEmail'    => $user->email,
+            $options = array(   'buyerName'     => $order->user->name,
+                                'buyerEmail'    => $order->user->email,
                                 'currency'      => $order->currency,
                                 'redirectURL'   => Route::url('oc-panel', array('controller'=>'profile','action'=>'orders'))
                             );
@@ -90,12 +82,9 @@ class Controller_Bitpay extends Controller{
                     case 'confirmed':
                         Kohana::$log->add(Log::DEBUG,'BitPay bitcoin payment confirmed. Awaiting network confirmation and completed status.');
                     case 'complete':
-
                         //mark as paid
-                        $order->confirm_payment('bitpay',$product,Core::post('txn_id'));
-
+                        $order->confirm_payment('bitpay',(isset($ipn_result['id']))?$ipn_result['id']:'');
                         $this->response->body('OK');
-
                         break;
                     case 'invalid':
                         Kohana::$log->add(Log::ERROR,  'Bitcoin payment is invalid for this order! The payment was not confirmed by the network within 1 hour.' );
