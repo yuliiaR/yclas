@@ -4,7 +4,7 @@ oc/config/database.php
 .htaccess
 sitemap.xml.gz
 sitemap.xml
-
+install/install.lock
 oc/cache/*
 oc/logs/*
 images/*
