@@ -33,21 +33,6 @@ git submodule update
 
 This will clone the openclassifieds2 project + submodule at oc/common https://github.com/open-classifieds/common
 
-GIT files to ignore changes, DO NOT COMMIT THIS FILES:
-```
-git update-index --assume-unchanged robots.txt
-git update-index --assume-unchanged oc/config/auth.php
-git update-index --assume-unchanged oc/config/database.php
-git update-index --assume-unchanged .htaccess
-git update-index --assume-unchanged sitemap.xml.gz
-git update-index --assume-unchanged sitemap.xml
-git update-index --assume-unchanged install/install.lock
-git update-index --assume-unchanged oc/cache/.empty
-git update-index --assume-unchanged oc/logs/.empty
-git update-index --assume-unchanged images/.empty
-git update-index --assume-unchanged images/users/.empty
-git update-index --assume-unchanged .gitmodules
-```
 
 Modify the hidden file .gitmodules, this is to track changes at the neo22s/common repo
 - Ex git@github.com:open-classifieds.com/common.git
