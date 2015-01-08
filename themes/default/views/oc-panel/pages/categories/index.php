@@ -52,7 +52,9 @@
         </ol><!--ol_<?=$key?>-->
 
     </li><!--li_<?=$key?>-->
-<?}array_walk($order, 'lili',$cats);?>
+<?}
+if(is_array($order))
+    array_walk($order, 'lili',$cats);?>
 </ol><!--ol_1-->
 
 <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'category','action'=>'saveorder'))?>'></span>

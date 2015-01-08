@@ -54,7 +54,7 @@ class Widget_Subscribers extends Widget
                                 'min_price'  => array(  'type'      => 'text',
                                                         'display'   => 'text',
                                                         'label'     => __('Minimum Price'),
-                                                        'default'   => __('0'),
+                                                        'default'   => 0,
                                                         'required'  => TRUE),
 
                                 'max_price'  => array(  'type'      => 'text',
