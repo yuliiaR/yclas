@@ -31,11 +31,11 @@
 
     <h4><?=__('Upload CSV file')?></h4>
     <div class="form-group">
-    	<label for=""> <?=__('Inport Categories')?></label>
+    	<label for=""> <?=__('import Categories')?></label>
         <input type="file" name="csv_file_categories" id="csv_file_categories" class="form-control"/>
     </div>
     <div class="form-group">
-    	<label for=""><?=__('Inport Locations')?></label>
+    	<label for=""><?=__('import Locations')?></label>
         <input type="file" name="csv_file_locations" id="csv_file_locations" class="form-control"/>
     </div>
         <?= FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'))))?>

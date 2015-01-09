@@ -19,7 +19,8 @@
 	                <?endif?>
 	            <?}
 	            $cat_order = $widget->cat_order_items; 
-	        	array_walk($cat_order , 'lili_subscribe', $widget->cat_items);?>
+                if (is_array($cat_order))
+	        	  array_walk($cat_order , 'lili_subscribe', $widget->cat_items);?>
 	            </select> 
 			</div>
 		</div>
@@ -42,7 +43,8 @@
 	                <?endif?>
 	            <?}
 	            $loc_order_subscribe = $widget->loc_order_items; 
-	        	array_walk($loc_order_subscribe , 'lolo_subscribe',$widget->loc_items);?>
+	        	if (is_array($loc_order_subscribe))
+                    array_walk($loc_order_subscribe , 'lolo_subscribe',$widget->loc_items);?>
 	            </select>
 	        </div>
 	    </div>

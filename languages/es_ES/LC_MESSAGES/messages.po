@@ -95,11 +95,11 @@ msgid "Name is mandatory. But seoname is not, if not provided it is automaticall
 msgstr "Nombre es obligatorio. Pero seoname no lo es, si no lo pone se genera automáticamente"
 
 #: String 24
-msgid "Inport Locations"
+msgid "import Locations"
 msgstr "Importar Ubicaciones"
 
 #: String 25
-msgid "Inport Categories"
+msgid "import Categories"
 msgstr "Importar Categorias"
 
 #: String 26
@@ -968,7 +968,7 @@ msgstr "imagenes importantes"
 
 #: String 242
 msgid "Advertisement Title"
-msgstr "Título del ancuncio"
+msgstr "Título del anuncio"
 
 #: String 243
 msgid "to"
@@ -3648,7 +3648,7 @@ msgstr "Anuncio marcado como spam"
 
 #: String 912
 msgid "None (0) advertisement has been deleted"
-msgstr "Ningún ancuncio ha sido eliminado"
+msgstr "Ningún anuncio ha sido eliminado"
 
 #: String 913
 msgid "Advertisement is active and published"

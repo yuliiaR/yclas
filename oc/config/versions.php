@@ -1,5 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+  '2.3.1' => 
+  array (
+    'codename' => 'Boca Chica',
+    'released' => '2015-01-31',
+    'blog' => 'http://open-classifieds.com/2015/01/31/open-classifieds-2-3-1/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.3.0...2.3.1',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?milestone=25&page=1&state=closed',
+    'download' => 'http://j.mp/oc_230',
+  ),
   '2.3.0' => 
   array (
     'codename' => 'Bayahibe',

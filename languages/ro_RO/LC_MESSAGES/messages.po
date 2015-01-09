@@ -1711,11 +1711,11 @@ msgid "Database space"
 msgstr "Spaţiul bazei de date"
 
 #: String 428
-msgid "Inport Categories"
+msgid "import Categories"
 msgstr "Importă categorii"
 
 #: String 429
-msgid "Inport Locations"
+msgid "import Locations"
 msgstr "Importăp locaţii"
 
 #: String 430

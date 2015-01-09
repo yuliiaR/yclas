@@ -31,11 +31,11 @@ msgid "Generate"
 msgstr "Générer"
 
 #: String 8
-msgid "Inport Locations"
+msgid "import Locations"
 msgstr "Importer des Lieux"
 
 #: String 9
-msgid "Inport Categories"
+msgid "import Categories"
 msgstr "Importer des Catégories"
 
 #: String 10
