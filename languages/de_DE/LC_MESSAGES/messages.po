@@ -1735,7 +1735,7 @@ msgid "Upload CSV file"
 msgstr "Upload CSV Datei"
 
 #: String 435
-msgid "Inport Categories"
+msgid "import Categories"
 msgstr "Kategorien importieren"
 
 #: String 436
@@ -1775,7 +1775,7 @@ msgid "Upload"
 msgstr "Upload"
 
 #: String 445
-msgid "Inport Locations"
+msgid "import Locations"
 msgstr "Standorte importieren"
 
 #: String 446

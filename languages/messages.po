@@ -4236,11 +4236,11 @@ msgid "Upload CSV file"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/tools/import_tool.php:34
-msgid "Inport Categories"
+msgid "import Categories"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/tools/import_tool.php:38
-msgid "Inport Locations"
+msgid "import Locations"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/tools/import_tool.php:41

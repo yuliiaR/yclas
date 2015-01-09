@@ -95,11 +95,11 @@ msgid "Name is mandatory. But seoname is not, if not provided it is automaticall
 msgstr "Nombre es obligatorio. Pero seoname no lo es, si no lo pone se genera automáticamente"
 
 #: String 24
-msgid "Inport Locations"
+msgid "import Locations"
 msgstr "Importar Ubicaciones"
 
 #: String 25
-msgid "Inport Categories"
+msgid "import Categories"
 msgstr "Importar Categorias"
 
 #: String 26

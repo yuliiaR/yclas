@@ -1219,11 +1219,11 @@ msgid "Quick location creator."
 msgstr "Kjapp stedsgenerator"
 
 #: String 305
-msgid "Inport Locations"
+msgid "import Locations"
 msgstr "Importer sted"
 
 #: String 306
-msgid "Inport Categories"
+msgid "import Categories"
 msgstr "Importer kategori"
 
 #: String 307

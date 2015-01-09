@@ -1739,7 +1739,7 @@ msgid "Upload CSV file"
 msgstr "Μεταφόρτωση αρχείου CSV"
 
 #: String 435
-msgid "Inport Categories"
+msgid "import Categories"
 msgstr "Εισαγωγή κατηγοριών"
 
 #: String 436
@@ -1779,7 +1779,7 @@ msgid "Upload"
 msgstr "Μεταφόρτωση"
 
 #: String 445
-msgid "Inport Locations"
+msgid "import Locations"
 msgstr "Εισαγωγή τοποθεσιών"
 
 #: String 446

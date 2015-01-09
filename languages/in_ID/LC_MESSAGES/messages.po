@@ -3895,11 +3895,11 @@ msgid "Upload CSV file"
 msgstr "Upload file CSV"
 
 #: String 974
-msgid "Inport Locations"
+msgid "import Locations"
 msgstr "Lokasi impor"
 
 #: String 975
-msgid "Inport Categories"
+msgid "import Categories"
 msgstr "impor Kategori"
 
 #: String 976
