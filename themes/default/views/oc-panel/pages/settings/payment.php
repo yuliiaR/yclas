@@ -15,7 +15,7 @@
 
 
 		<div class="well">
-		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<?foreach ($config as $c):?>
 					<?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
@@ -69,6 +69,7 @@
                             'data-placement'=>"right",
                             'data-toggle'=>"popover",
                             'data-content'=>__("How much the user needs to pay to feature an Ad"),  
+                            'data-rule-number' => 'true',
                             ));?> 
                         
                         <span class="input-group-addon"><?=core::config('payment.paypal_currency')?></span></div>
@@ -87,6 +88,7 @@
                         'data-placement'=>"right",
                         'data-toggle'=>"popover",
                         'data-content'=>__("How many days an ad will be featured after paying."),
+                        'data-rule-digits' => 'true',
                         ));?>
                         <span class="input-group-addon"><?=__("Days")?></span>
                     </div> 
@@ -123,6 +125,7 @@
 							'data-placement'=>"right",
 							'data-toggle'=>"popover",
 							'data-content'=>__("How much the user needs to pay to top up an Ad"),  
+							'data-rule-number' => 'true',
 							));?> 
 								<span class="input-group-addon"><?=core::config('payment.paypal_currency')?></span>
 						</div>
