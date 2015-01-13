@@ -11,7 +11,7 @@
     </div>
 
 		<div class="well">
-		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
 			<fieldset>
 				<?foreach ($config as $c):?>
 					<?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
@@ -28,6 +28,7 @@
 						'data-placement'=>"right",
 						'data-toggle'=>"popover",
 						'data-original-title'=>__("Email From"),
+						'data-rule-email' => 'true',
 						))?> 
 					</div>
 				</div>
@@ -174,7 +175,8 @@
                         'data-trigger'=>"hover",
                         'data-placement'=>"right",
                         'data-toggle'=>"popover",
-                        'data-original-title'=>'',          
+                        'data-original-title'=>'',  
+                        'data-rule-digits' => 'true',
                         ))?> 
                     </div>
                 </div>

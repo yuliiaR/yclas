@@ -12,7 +12,7 @@
 </div>
 
 <div class="well">
-<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
     <fieldset>
         
         
@@ -68,6 +68,7 @@
                 'data-placement'=>"right",
                 'data-toggle'=>"popover",
                 'data-original-title'=>__("Site Name"), 
+                'data-rule-required'=>'true',
                 ))?> 
             </div>
         </div>

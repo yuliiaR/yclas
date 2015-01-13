@@ -8,7 +8,7 @@
 </div>
 
 <div class="well">
-<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'image')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'image')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
     <fieldset>
         <?foreach ($config as $c):?>
             <? $forms[$c->config_key] = array('key'=>'image['.$c->config_key.'][]', 'id'=>$c->config_key, 'value'=>$c->config_value)?>
@@ -43,6 +43,8 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-original-title'=>__("Image size in mega bites(Mb)"), 
+                    'data-rule-required'=>'true',
+                    'data-rule-digits' => 'true',
                     ))?>
                     <span class="input-group-addon">MB</span>
                 </div> 
@@ -61,6 +63,7 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-original-title'=>__("Image height in pixels(px)"),
+                    'data-rule-digits' => 'true',
                     ))?>
                     <span class="input-group-addon">px</span>
                 </div> 
@@ -79,6 +82,7 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-original-title'=>__("Image width in pixels(px)"), 
+                    'data-rule-digits' => 'true',
                     ))?>
                     <span class="input-group-addon">px</span>
                 </div> 
@@ -97,6 +101,7 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-original-title'=>__("Thumb height in pixels(px)"), 
+                    'data-rule-digits' => 'true',
                     ))?>
                     <span class="input-group-addon">px</span>
                 </div> 
@@ -115,7 +120,7 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-original-title'=>__("Thumb width in pixels(px)"),
-
+                    'data-rule-digits' => 'true',
                     ))?>
                     <span class="input-group-addon">px</span>
                 </div> 
@@ -134,7 +139,8 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-original-title'=>__("Image Quality"),
-
+                    'data-rule-required'=>'true',
+                    'data-rule-digits' => 'true',
                     ))?>
                     <span class="input-group-addon">%</span>
                 </div> 

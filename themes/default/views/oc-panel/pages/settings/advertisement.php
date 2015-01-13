@@ -10,7 +10,7 @@
 
 
 <div class="well">
-    <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+    <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
         <fieldset>
             <?foreach ($config as $c):?>
             <?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
@@ -28,6 +28,8 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-original-title'=>__("Number of ads per page"),
+                    'data-rule-required'=>'true',
+                    'data-rule-digits' => 'true',
                     ))?> 
                 </div>
             </div>
@@ -43,6 +45,8 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-content'=>__("How many ads are going to appear in the RSS of your site."),
+                    'data-rule-required'=>'true',
+                    'data-rule-digits' => 'true',
                     ))?> 
                 </div>
             </div>
@@ -58,6 +62,8 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-content'=>__("How many ads are going to appear in the map of your site."),
+                    'data-rule-required'=>'true',
+                    'data-rule-digits' => 'true',
                ))?> 
                 </div>
             </div>
@@ -164,6 +170,8 @@
                         'data-placement'=>"right",
                         'data-toggle'=>"popover",
                         'data-content'=>__('After how many days an Ad will expire. 0 for never'),
+                        'data-rule-required'=>'true',
+                        'data-rule-digits' => 'true',
                         ));?>
                         <span class="input-group-addon"><?=__("Days")?></span>
                     </div> 
@@ -403,6 +411,8 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-content'=>__("Number of images displayed"),
+                    'data-rule-required'=>'true',
+                    'data-rule-digits' => 'true',
                     ))?> 
                 </div>
             </div>
@@ -516,6 +526,8 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-original-title'=>__("Related ads"), 
+                    'data-rule-required'=>'true',
+                    'data-rule-digits' => 'true',
                     ))?> 
                 </div>
             </div>
@@ -564,6 +576,7 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-content'=>__("Google map default zoom level "),
+                    'data-rule-digits' => 'true',
                     ))?> 
                 </div>
             </div>
@@ -580,6 +593,7 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-content'=>__("Google map default latitude coordinates"),
+                    'data-rule-number' => 'true',
                     ))?> 
                 </div>
             </div>
@@ -596,6 +610,7 @@
                     'data-placement'=>"right",
                     'data-toggle'=>"popover",
                     'data-content'=>__("Google map default longitude coordinates"),
+                    'data-rule-number' => 'true',
                     ))?> 
                 </div>
             </div>
