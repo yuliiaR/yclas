@@ -544,7 +544,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 				$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
 								'title' 		=> $title 		= 	Text::banned_words(core::post('title')),
-								'seotitle' 		=> $seotitle 	= 	core::post('title'),
+								//'seotitle' 		=> $seotitle 	= 	core::post('title'),
 								'cat'			=> $category 	= 	core::post('category'),
 								'loc'			=> $loc 		= 	core::post('location'),
 								'description'	=> $description = 	Text::banned_words(core::post('description')),
@@ -576,15 +576,6 @@ class Controller_Panel_Profile extends Auth_Controller {
 						}
 					}
 	        	}
-
-				//insert data
-				if (core::post('title') != $form->title)
-				{
-					$seotitle = $form->gen_seo_title($data['title']);
-					$form->seotitle = $seotitle;	
-				}
-				else 
-					$form->seotitle = $form->seotitle;
 
 				//update stock, if non numeric to NULL
 				$form->stock = (is_numeric($data['stock']))?$data['stock']:NULL;
