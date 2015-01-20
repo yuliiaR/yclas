@@ -52,12 +52,31 @@ class Controller_Panel_Location extends Auth_Crud {
         {
             if ( $success = $form->submit() )
             {
+                //location is different than himself, cant be his ow father!!!
+                if ($form->object->id_location == $form->object->id_location_parent)
+                {
+                    Alert::set(Alert::INFO, __('You can not set as parent the same location'));
+                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'create')));
+                }
+
+                //check if the parent is loaded/exists avoiding errors
+                $parent_loc = new Model_Location($form->object->id_location_parent);
+                if (!$parent_loc->loaded())
+                {
+                    Alert::set(Alert::INFO, __('You are assigning a parent location that does not exist'));
+                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'create')));
+                }
+
                 $form->object->description = Kohana::$_POST_ORIG['formorm']['description'];
-                $form->save_object();
+                
+                try {
+                    $form->object->save();
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());  
+                }
+
                 Core::delete_cache();
-                Alert::set(Alert::SUCCESS, __('Item created').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete All').'">'
-                    .__('Delete All').'</a>');
+                Alert::set(Alert::SUCCESS, __('Location created'));
             
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
             }
@@ -89,15 +108,32 @@ class Controller_Panel_Location extends Auth_Crud {
                     $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$form->object->id_location)));
                 }
 
+                //check if the parent is loaded/exists avoiding errors
+                $parent_loc = new Model_Location($form->object->id_location_parent);
+                if (!$parent_loc->loaded())
+                {
+                    Alert::set(Alert::INFO, __('You are assigning a parent location that does not exist'));
+                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'create')));
+                }
+
                 $form->object->description = Kohana::$_POST_ORIG['formorm']['description'];
 
-                $form->save_object();
+                try {
+                    $form->object->save();
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());  
+                }
+
                 $form->object->parent_deep =  $form->object->get_deep();
-                $form->object->save();
+
+                try {
+                    $form->object->save();
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());  
+                }
+
                 Core::delete_cache();
-                Alert::set(Alert::SUCCESS, __('Item updated').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete All').'">'
-                    .__('Delete All').'</a>');
+                Alert::set(Alert::SUCCESS, __('Item updated'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
             }
             else
@@ -120,7 +156,10 @@ class Controller_Panel_Location extends Auth_Crud {
 
         $loc = new Model_Location(core::get('id_location'));
 
-        if ($loc->loaded())
+        //check if the parent is loaded/exists avoiding errors
+        $parent_loc = new Model_Category(core::get('id_location_parent'));
+
+        if ($loc->loaded() AND $parent_loc->loaded())
         {
             //saves the current location
             $loc->id_location_parent = core::get('id_location_parent');
@@ -171,15 +210,22 @@ class Controller_Panel_Location extends Auth_Crud {
         //update the elements related to that ad
         if ($location->loaded())
         {
+            //check if the parent is loaded/exists avoiding errors, if doesnt exist to the root
+            $parent_loc = new Model_Location($location->id_location_parent);
+            if ($parent_loc->loaded())
+                $id_location_parent = $location->id_location_parent;
+            else
+                $id_location_parent = 1;
+
             //update all the siblings this location has and set the location parent
             $query = DB::update('locations')
-                        ->set(array('id_location_parent' => $location->id_location_parent))
+                        ->set(array('id_location_parent' => $id_location_parent))
                         ->where('id_location_parent','=',$location->id_location)
                         ->execute();
 
             //update all the ads this location has and set the location parent
             $query = DB::update('ads')
-                        ->set(array('id_location' => $location->id_location_parent))
+                        ->set(array('id_location' => $id_location_parent))
                         ->where('id_location','=',$location->id_location)
                         ->execute();
 

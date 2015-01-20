@@ -52,12 +52,31 @@ class Controller_Panel_Category extends Auth_Crud {
         {
             if ( $success = $form->submit() )
             {
+                //category is different than himself, cant be his ow father!!!
+                if ($form->object->id_category == $form->object->id_category_parent)
+                {
+                    Alert::set(Alert::INFO, __('You can not set as parent the same category'));
+                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'create')));
+                }
+
+                //check if the parent is loaded/exists avoiding errors
+                $parent_cat = new Model_Category($form->object->id_category_parent);
+                if (!$parent_cat->loaded())
+                {
+                    Alert::set(Alert::INFO, __('You are assigning a parent category that does not exist'));
+                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'create')));
+                }
+
                 $form->object->description = Kohana::$_POST_ORIG['formorm']['description'];
-                $form->save_object();
+                
+                try {
+                    $form->object->save();
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());  
+                }
+
                 Core::delete_cache();
-                Alert::set(Alert::SUCCESS, __('Item created').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete All').'">'
-                    .__('Delete All').'</a>');
+                Alert::set(Alert::SUCCESS, __('Category created'));
             
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
             }
@@ -84,19 +103,39 @@ class Controller_Panel_Category extends Auth_Crud {
         {
             if ( $success = $form->submit() )
             {
+                //category is different than himself, cant be his ow father!!!
                 if ($form->object->id_category == $form->object->id_category_parent)
                 {
                     Alert::set(Alert::INFO, __('You can not set as parent the same category'));
                     $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$form->object->id_category)));
                 }
+
+                //check if the parent is loaded/exists avoiding errors
+                $parent_cat = new Model_Category($form->object->id_category_parent);
+                if (!$parent_cat->loaded())
+                {
+                    Alert::set(Alert::INFO, __('You are assigning a parent category that does not exist'));
+                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$form->object->id_category)));
+                }
+
                 $form->object->description = Kohana::$_POST_ORIG['formorm']['description'];
-                $form->save_object();
+                
+                try {
+                    $form->object->save();
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());  
+                }
+
                 $form->object->parent_deep =  $form->object->get_deep();
-                $form->object->save();
+
+                try {
+                    $form->object->save();
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());  
+                }
+                
                 Core::delete_cache();
-                Alert::set(Alert::SUCCESS, __('Item updated').'. '.__('Please to see the changes delete the cache')
-                    .'<br><a class="btn btn-primary btn-mini ajax-load" href="'.Route::url('oc-panel',array('controller'=>'tools','action'=>'cache')).'?force=1" title="'.__('Delete All').'">'
-                    .__('Delete All').'</a>');
+                Alert::set(Alert::SUCCESS, __('Item updated'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
             }
             else
@@ -120,10 +159,13 @@ class Controller_Panel_Category extends Auth_Crud {
 
         $cat = new Model_Category(core::get('id_category'));
 
-        if ($cat->loaded())
+        //check if the parent is loaded/exists avoiding errors
+        $parent_cat = new Model_Category(core::get('id_category_parent'));
+
+        if ($cat->loaded() AND $parent_cat->loaded())
         {
             //saves the current category
-            $cat->id_category_parent = core::get('id_category_parent');
+            $cat->id_category_parent = $parent_cat->id_category;
             $cat->parent_deep        = core::get('deep');
 
             //saves the categories in the same parent the new orders
@@ -171,15 +213,23 @@ class Controller_Panel_Category extends Auth_Crud {
         //update the elements related to that ad
         if ($category->loaded())
         {
+            //check if the parent is loaded/exists avoiding errors, if doesnt exist to the root
+            $parent_cat = new Model_Category($category->id_category_parent);
+            if ($parent_cat->loaded())
+                $id_category_parent = $category->id_category_parent;
+            else
+                $id_category_parent = 1;
+            
+
             //update all the siblings this category has and set the category parent
             $query = DB::update('categories')
-                        ->set(array('id_category_parent' => $category->id_category_parent))
+                        ->set(array('id_category_parent' => $id_category_parent))
                         ->where('id_category_parent','=',$category->id_category)
                         ->execute();
 
             //update all the ads this category has and set the category parent
             $query = DB::update('ads')
-                        ->set(array('id_category' => $category->id_category_parent))
+                        ->set(array('id_category' => $id_category_parent))
                         ->where('id_category','=',$category->id_category)
                         ->execute();
 
