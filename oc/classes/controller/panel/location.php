@@ -228,6 +228,22 @@ class Controller_Panel_Location extends Auth_Crud {
                         ->set(array('id_location' => $id_location_parent))
                         ->where('id_location','=',$location->id_location)
                         ->execute();
+                        
+            //delete icon_delete
+            $root = DOCROOT.'images/locations/'; //root folder
+            if (is_dir($root))
+            {
+                @unlink($root.$location->seoname.'.png');
+            
+                // delete icon from Amazon S3
+                if(core::config('image.aws_s3_active'))
+                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$location->seoname.'.png');
+            
+                // update location info
+                $location->has_image = 0;
+                $location->last_modified = Date::unix2mysql();
+                $location->save();            
+            }
 
             try
             {
