@@ -311,7 +311,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                 $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
             }
             
-            Alert::set(Alert::SUCCESS, __('General Configuration updated'));
+            Alert::set(Alert::SUCCESS, __('Payments Configuration updated'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
         }
 

@@ -648,7 +648,7 @@ class Model_Ad extends ORM {
                         switch ($cf_config->$cf_name->type) 
                         {   
                             case 'checkbox':
-                                $cf_value = ($cf_value)?$cf_value:NULL;
+                                $cf_value = ($cf_value)?'checkbox_'.$cf_value:NULL;
                                 break;
                             case 'radio':
                                 $cf_value = $cf_config->$cf_name->values[$cf_value-1];
