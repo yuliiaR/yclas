@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.3.1\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2015-01-22 14:31:53\n"
 "PO-Revision-Date: 2015-01-22 14:31:53\n"
 "Last-Translator: admin <neo22s@gmail.com>\n"
+=======
+"POT-Creation-Date: 2015-01-22 10:55:42\n"
+"PO-Revision-Date: 2015-01-22 10:55:42\n"
+"Last-Translator: admin <oliver@open-classifieds.com>\n"
+>>>>>>> fe460d113588c7f5e8b73746e60c65c97d96920c
 "Language-Team: en\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -777,7 +783,7 @@ msgstr "Convertir"
 
 #: String 191
 msgid "Convert Address into Lat/Lon:"
-msgstr ""
+msgstr "Convierte la dirección en Lat/Lon:"
 
 #: String 192
 msgid "Copy all?, Be aware this will replace all your texts."
