@@ -109,7 +109,9 @@ class Controller_Contact extends Controller {
                     $ret = $user->email('user-contact',array('[EMAIL.BODY]'		=>core::post('message'),
                                                              '[AD.NAME]'        =>$ad->title,
                         									 '[EMAIL.SENDER]'	=>$name_from,
-                        									 '[EMAIL.FROM]'		=>$email_from),
+                        									 '[EMAIL.FROM]'		=>$email_from,
+                                                             '[URL.AD]'         =>Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))
+                                                             ),
                                                         $email_from,
                                                         $name_from,
                                                         $file, $to);
