@@ -491,6 +491,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'translate', ''),
 ('general', 'site_name', '".core::request('SITE_NAME')."'),
 ('general', 'site_description', ''),
+('general', 'subscribe', 0),
 ('general', 'akismet_key', ''),
 ('general', 'alert_terms', ''),
 ('general', 'search_by_description', 0),
