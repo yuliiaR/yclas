@@ -118,7 +118,27 @@ function init_panel()
 	    function(){
 	        window.open(href,"_self");
 	    });
-	}); 
+	});
+	
+	if($("#subscribeModal").length !== 0) {
+	   $('#subscribeModal').modal('show');
+	}
+	
+	$('#subscribe-cancel').click(function() {
+	    $.ajax({ url: $(this).data('url'),
+	        }).done(function ( data ) {
+	            $('#subscribeModal').modal('hide')
+	    });
+	});
+	
+	$('#subscribe-accept').click(function() {
+	    var email = $(this).data('email');
+	    $.ajax({ url: $(this).data('url'),
+	        }).done(function ( data ) {
+	            $('#subscribeModal').modal('hide')
+	    });
+	    $.post( "http://open-classifieds.com", { email: email } );
+	});
 }
 
 $(function (){

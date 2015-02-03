@@ -13,3 +13,29 @@
 
 </p>
 </footer>
+<?if (Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN AND Core::config('general.subscribe')==0) :?>
+    <div class="modal fade" id="subscribeModal" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert"><i class="fa fa-lightbulb-o"></i> <?=__('Suscribe to our Newsletter?')?></div>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="email"><?=__('Email')?></label>
+                            <div class="col-md-6 input-group">
+                                <input type="email" class="form-control" id="email" name="email" value="<?=Auth::instance()->get_user()->email?>" disabled>
+                                <span class="input-group-addon">@</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center">
+                        <button type="button" id="subscribe-cancel" class="btn btn-default" data-url="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>?subscribe=1"><?=__('No way!')?></button>
+                        <button type="button" id="subscribe-accept" class="btn btn-success" data-email="<?=Auth::instance()->get_user()->email?>" data-url="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>?subscribe=1"><?=__('Subscribe')?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?endif?>

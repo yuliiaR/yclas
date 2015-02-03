@@ -8,7 +8,11 @@ class Controller_Panel_Home extends Auth_Controller {
         //if not god redirect him to the normal profile page
         if (Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN)
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'profile','action'=>'ads')));  
-
+        
+        // Update subscribe config action
+        if (Core::get('subscribe'))
+            Model_Config::set_value('general', 'subscribe', Core::get('subscribe')); 
+        
         Core::ocacu();
 
         $this->template->title = __('Welcome');
