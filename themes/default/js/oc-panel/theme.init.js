@@ -133,11 +133,15 @@ function init_panel()
 	
 	$('#subscribe-accept').click(function() {
 	    var email = $(this).data('email');
+
+        $.post( "http://sendy.open-classifieds.com/subscribe", { email: email, list:'xaDN6Z763vL0P2JBtbJzUuYg' } );
+
 	    $.ajax({ url: $(this).data('url'),
 	        }).done(function ( data ) {
-	            $('#subscribeModal').modal('hide')
+	            $('#subscribeModal').modal('hide');
+                window.location.href = window.location.href;
 	    });
-	    $.post( "http://open-classifieds.com", { email: email } );
+
 	});
 }
 

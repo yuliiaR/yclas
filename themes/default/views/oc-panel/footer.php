@@ -18,7 +18,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <div class="alert alert-info" role="alert"><i class="fa fa-lightbulb-o"></i> <?=__('Subscribe to our Newsletter?')?></div>
+                    <div class="alert alert-info" role="alert"><i class="fa fa-lightbulb-o"></i> Hi! Subcribe to Open Classifieds newsletter, you will get a full guide on PDF, some tips and news about software updates. We will never spam you!.</div>
                     <div class="form-horizontal">
                         <div class="form-group">
                             <label class="control-label col-md-4" for="email"><?=__('Email')?></label>
@@ -31,8 +31,8 @@
                 </div>
                 <div class="modal-footer">
                     <div class="text-center">
-                        <button type="button" id="subscribe-cancel" class="btn btn-default" data-url="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>?subscribe=1"><?=__('No way!')?></button>
-                        <button type="button" id="subscribe-accept" class="btn btn-success" data-email="<?=Auth::instance()->get_user()->email?>" data-url="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>?subscribe=1"><?=__('Subscribe')?></button>
+                        <button type="button" id="subscribe-cancel" class="btn btn-default btn-xs pull-left" data-url="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'subscribe'))?>"><?=__('No')?></button>
+                        <button type="button" id="subscribe-accept" class="btn btn-success" data-email="<?=Auth::instance()->get_user()->email?>" data-url="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'subscribe'))?>"><?=__('Yes, Keep me updated!')?></button>
                     </div>
                 </div>
             </div>

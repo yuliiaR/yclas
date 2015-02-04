@@ -2,16 +2,12 @@
 
 class Controller_Panel_Home extends Auth_Controller {
 
-    
+
 	public function action_index()
 	{
         //if not god redirect him to the normal profile page
         if (Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN)
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'profile','action'=>'ads')));  
-        
-        // Update subscribe config action
-        if (Core::get('subscribe'))
-            Model_Config::set_value('general', 'subscribe', Core::get('subscribe')); 
         
         Core::ocacu();
 
@@ -263,7 +259,16 @@ class Controller_Panel_Home extends Auth_Controller {
         $content->orders_total = (isset($orders[0]['count']))?$orders[0]['count']:0;
 	}
     
+    //marked email as subscribed
+    public function action_subscribe()
+    {
+        $this->auto_render = FALSE;
+        // Update subscribe config action
+        Model_Config::set_value('general', 'subscribe', 1); 
+        Core::delete_cache();
 
+        die('OK');
+    }
 	
 
 }
