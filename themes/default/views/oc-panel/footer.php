@@ -18,7 +18,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <div class="alert alert-info" role="alert"><i class="fa fa-lightbulb-o"></i> <?=__('Suscribe to our Newsletter?')?></div>
+                    <div class="alert alert-info" role="alert"><i class="fa fa-lightbulb-o"></i> <?=__('Subscribe to our Newsletter?')?></div>
                     <div class="form-horizontal">
                         <div class="form-group">
                             <label class="control-label col-md-4" for="email"><?=__('Email')?></label>
