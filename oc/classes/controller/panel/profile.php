@@ -79,7 +79,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		    $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
 		}
         
-        if (Core::post('photo_delete') AND Auth::instance()->get_user()>delete_image()==TRUE )
+        if (Core::post('photo_delete') AND Auth::instance()->get_user()->delete_image()==TRUE )
         {
 
             Alert::set(Alert::SUCCESS, __('Photo deleted.'));
