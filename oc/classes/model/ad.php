@@ -900,4 +900,35 @@ class Model_Ad extends ORM {
         return FALSE;
     }
 
+
+    /**
+     * Deletes a single record while ignoring relationships.
+     *
+     * @chainable
+     * @throws Kohana_Exception
+     * @return ORM
+     */
+    public function delete()
+    {
+        if ( ! $this->_loaded)
+            throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
+
+        $this->delete_images();
+        
+        //delete favorites
+        DB::delete('favorites')->where('id_ad', '=',$this->id_ad)->execute();
+        
+        //delete reviews
+        DB::delete('reviews')->where('id_ad', '=',$this->id_ad)->execute();
+
+        //delete orders
+        DB::update('orders')->set(array('id_ad' => NULL))->where('id_ad', '=',$this->id_ad)->execute();
+
+        //remove visits ads
+        DB::update('visits')->set(array('id_ad' => NULL))->where('id_ad', '=',$this->id_ad)->execute();
+
+
+        parent::delete();
+    }
+
 } // END Model_ad

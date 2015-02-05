@@ -358,31 +358,11 @@ class Controller_Panel_Category extends Auth_Crud {
             $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
         }
         
-		if (core::post('icon_delete'))
+		if (core::post('icon_delete') AND $category->delete_icon()==TRUE)
 		{            
-            $root = DOCROOT.'images/categories/'; //root folder
-            
-            if (!is_dir($root)) 
-            {
-                return FALSE;
-            }
-            else
-            {	
-                //delete icon
-                @unlink($root.$category->seoname.'.png');
-                
-                // delete icon from Amazon S3
-                if(core::config('image.aws_s3_active'))
-                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$category->seoname.'.png');
-                
-                // update category info
-                $category->has_image = 0;
-                $category->last_modified = Date::unix2mysql();
-                $category->save();
-                
-                Alert::set(Alert::SUCCESS, __('Icon deleted.'));
-                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
-            }
+            Alert::set(Alert::SUCCESS, __('Icon deleted.'));
+            $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
+
         }// end of icon delete
 
         if ( 
