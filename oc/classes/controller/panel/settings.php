@@ -211,6 +211,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             $validation =   Validation::factory($this->request->post())
                             ->rule('general_maintenance', 'range', array(':value', 0, 1))
                             ->rule('general_disallowbots', 'range', array(':value', 0, 1))
+                            ->rule('general_cookie_consent', 'range', array(':value', 0, 1))
                             ->rule('general_site_name', 'not_empty')
                             ->rule('general_moderation', 'not_empty')
                             ->rule('general_moderation', 'range', array(':value', 0, 5))
