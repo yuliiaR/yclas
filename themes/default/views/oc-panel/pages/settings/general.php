@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['disallowbots']['id'], __("Disallows (blocks) Bots and Crawlers on this website"), array('class'=>'control-label col-sm-4', 'for'=>$forms['disallowbots']['id']))?>
                         <div class="col-sm-8">
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['site_name']['id'], __('Site name'), array('class'=>'control-label col-sm-4', 'for'=>$forms['site_name']['id']))?>
                         <div class="col-sm-8">
@@ -70,7 +70,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['site_description']['id'], __('Site description'), array('class'=>'control-label col-sm-4', 'for'=>$forms['site_description']['id']))?>
                         <div class="col-sm-8">
@@ -87,7 +87,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['moderation']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/06/16/how-ads-moderation-works/'>".__('Moderation')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['moderation']['id']))?>
                         <div class="col-sm-8">
@@ -103,7 +103,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['landing_page']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/09/20/home-or-listing/'>".__('Landing page')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['landing_page']['id']))?>
                         <div class="col-sm-8">
@@ -118,9 +118,9 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <?=FORM::hidden($forms['base_url']['key'], $forms['base_url']['value'])?>
-                    
+
                     <?$pages = array(''=>__('Deactivated'))?>
                     <?foreach (Model_Content::get_pages() as $key => $value) {
                         $pages[$value->seotitle] = $value->title;
@@ -139,7 +139,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label col-sm-3', 'for'=>$forms['cookie_consent']['id']))?>
                         <div class="col-sm-4">
@@ -159,7 +159,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['analytics']['id'], __('Analytics Tracking ID'), array('class'=>'control-label col-sm-4', 'for'=>$forms['analytics']['id']))?>
                         <div class="col-sm-8">
@@ -175,7 +175,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['akismet_key']['id'], "<a target='_blank' href='http://akismet.com/'>".__('Akismet Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['akismet_key']['id']))?>
                         <div class="col-sm-8">
@@ -191,7 +191,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['html_head']['id'], __('HTML in HEAD element'), array('class'=>'control-label col-sm-4', 'for'=>$forms['html_head']['id']))?>
                         <div class="col-sm-8">
@@ -208,7 +208,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['html_footer']['id'], __('HTML in footer'), array('class'=>'control-label col-sm-4', 'for'=>$forms['html_footer']['id']))?>
                         <div class="col-sm-8">
@@ -228,7 +228,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-default">
             <div class="panel-heading"><?=__('Regional Settings')?></div>
             <div class="panel-body">
@@ -248,7 +248,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['date_format']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/03/22/change-date-format/'>".__('Date format')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['date_format']['id']))?>
                         <div class="col-sm-8">
@@ -264,7 +264,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="control-label col-sm-4"><?=__("Time Zone")?>:</label>                
                         <div class="col-sm-8">
@@ -278,7 +278,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-default">
             <div class="panel-heading"><?=__("Enable Additional Features")?></div>
             <div class="panel-body">
@@ -302,7 +302,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['forums']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/06/20/showcase-how-to-build-a-forum-with-oc/'>".__("Activates Forums")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['forums']['id']))?>
                         <div class="col-md-8">
@@ -341,7 +341,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['black_list']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/05/08/activate-blacklist-works/'>".__("Black List")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['black_list']['id']))?>
                         <div class="col-sm-8">
@@ -361,7 +361,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['search_by_description']['id'], __("Include search by description"), array('class'=>'control-label col-sm-4', 'for'=>$forms['search_by_description']['id']))?>
                         <div class="col-sm-8">
@@ -384,7 +384,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-default">
             <div class="panel-heading"><?=__("Comments Configuration")?></div>
             <div class="panel-body">
@@ -404,7 +404,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['faq_disqus']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/01/21/create-frequent-asked-questions-faq/'>".__('Disqus for FAQ')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['faq_disqus']['id']))?>
                         <div class="col-sm-8">
@@ -423,7 +423,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-default">
             <div class="panel-heading"><?=__("reCAPTCHA Configuration")?></div>
             <div class="panel-body">
@@ -447,7 +447,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['recaptcha_sitekey']['id'], "<a target='_blank' href='https://www.google.com/recaptcha/admin#list'>".__('reCAPTCHA Site Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['recaptcha_sitekey']['id']))?>
                         <div class="col-sm-8">
@@ -463,7 +463,7 @@
                             ))?> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['recaptcha_secretkey']['id'], "<a target='_blank' href='https://www.google.com/recaptcha/admin#list'>".__('reCAPTCHA Secret Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['recaptcha_secretkey']['id']))?>
                         <div class="col-sm-8">
@@ -482,7 +482,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="col-sm-8 col-sm-offset-4">
@@ -493,4 +493,3 @@
         </form>
     </div>
 </div>
-

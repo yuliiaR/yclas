@@ -355,31 +355,10 @@ class Controller_Panel_Location extends Auth_Crud {
             $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
         }
 
-        if (core::post('icon_delete'))
+        if (core::post('icon_delete')  AND $location->delete_icon()==TRUE )
         {            
-            $root = DOCROOT.'images/locations/'; //root folder
-            
-            if (!is_dir($root)) 
-            {
-                return FALSE;
-            }
-            else
-            {	
-                //delete icon
-                unlink($root.$location->seoname.'.png');
-                
-                // delete icon from Amazon S3
-                if(core::config('image.aws_s3_active'))
-                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$location->seoname.'.png');
-                
-                // update location info
-                $location->has_image = 0;
-                $location->last_modified = Date::unix2mysql();
-                $location->save();
-                
-                Alert::set(Alert::SUCCESS, __('Icon deleted.'));
-                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
-            }
+            Alert::set(Alert::SUCCESS, __('Icon deleted.'));
+            $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$location->id_location)));
         }// end of icon delete
 
         if ( 

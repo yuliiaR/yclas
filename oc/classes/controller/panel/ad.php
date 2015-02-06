@@ -142,7 +142,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 				{
 					try
 					{
-						$ad->delete_images();
 						$ad->delete();
 						$nb_Ads_Deleted++;
 					}
@@ -344,7 +343,6 @@ class Controller_Panel_Ad extends Auth_Controller {
                 $i = 0;
                 foreach ($ads as $ad) 
                 {
-                    $ad->delete_images();
                     $ad->delete();
                     $i++;
                 }

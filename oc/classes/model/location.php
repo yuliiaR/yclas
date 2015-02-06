@@ -423,7 +423,7 @@ class Model_Location extends ORM {
 
         $seoname = URL::title($seoname);
 
-        //this are reserved categories names used in the routes.php
+        //this are reserved locations names used in the routes.php
         $banned_names = array('location',__('location'));
         //same name as a route..shit!
         if (in_array($seoname, $banned_names))
@@ -521,4 +521,67 @@ class Model_Location extends ORM {
         
         return FALSE;
     }
+
+    /**
+     * deletes the icon of the category
+     * @return boolean 
+     */
+    public function delete_icon()
+    {
+        if ( ! $this->_loaded)
+            throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
+
+
+        if (core::config('image.aws_s3_active'))
+        {
+            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+        }
+
+        $root = DOCROOT.'images/locations/'; //root folder
+            
+        if (!is_dir($root)) 
+        {
+            return FALSE;
+        }
+        else
+        {   
+            //delete icon
+            @unlink($root.$this->seoname.'.png');
+            
+            // delete icon from Amazon S3
+            if(core::config('image.aws_s3_active'))
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$this->seoname.'.png');
+            
+            // update category info
+            $this->has_image = 0;
+            $this->last_modified = Date::unix2mysql();
+            $this->save();
+            
+        }
+
+        return TRUE;
+    }
+
+    /**
+     * Deletes a single record while ignoring relationships.
+     *
+     * @chainable
+     * @throws Kohana_Exception
+     * @return ORM
+     */
+    public function delete()
+    {
+        if ( ! $this->_loaded)
+            throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
+
+        //remove image
+        $this->delete_icon();
+        
+        //delete subscribtions
+        DB::delete('subscribers')->where('id_location', '=',$this->id_location)->execute();
+
+        parent::delete();
+    }
+
 } // END Model_Location
