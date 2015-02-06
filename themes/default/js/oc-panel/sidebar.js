@@ -58,7 +58,7 @@ function colapse_sidebar(event){
     });
 
     $('.table').removeClass('active').addClass('colapsed');
-    $('.main').css('padding-left','50px');
+    $('.main').css('padding-left','70px');
     $('.no-prem').hide(); // hide adverts
     
     $('.btn-colapse-sidebar span.glyphicon')
@@ -84,7 +84,7 @@ function colapse_sidebar(event){
     });
 
     $('.table').removeClass('colapsed').addClass('active');
-    $('.main').css('padding-left','205px');
+    $('.main').css('padding-left','250px');
     $('.no-prem').show(); // show adverts
     
     $('.btn-colapse-sidebar span.glyphicon')

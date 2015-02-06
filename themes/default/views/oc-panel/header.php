@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+<header class="navbar navbar-default navbar-fixed-top bs-docs-nav">
     <div class="header-container">
         <div class="navbar-header">        </div> 
 
@@ -11,7 +11,7 @@
             </button>
 
             <a class="navbar-brand ajax-load" href="<?=(Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN) ? Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')) : Route::url('oc-panel',array('controller'=>'home'))?>" title="<?=__('Panel')?>">
-                <i class="glyphicon glyphicon-th-large"></i> <?=__('Panel')?>
+                <i class="glyphicon glyphicon-th-large"></i> <?=__('Admin Panel')?>
             </a>
             <div class="btn-group pull-right ml-20">
                 <?=View::factory('oc-panel/widget_login')?>

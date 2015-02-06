@@ -2,6 +2,9 @@
 
 <?=Alert::show()?>
 <div class="page-header">
+    <form id="advert_search" method="GET" class="pull-right" enctype="multipart/form-data">
+          <input type="text" name="search" id="search" class="form-control" placeholder="<?=__('Search')?>">
+    </form>
 	<?if(Core::get('status') == Model_Ad::STATUS_UNAVAILABLE):?>
 		<? $current_url = Model_Ad::STATUS_UNAVAILABLE?>
 		<h1><?=__('Unavailable')?></h1>
@@ -13,14 +16,9 @@
 		<h1><?=__('Spam')?></h1>
 	<?else:?>
 		<? $current_url = Model_Ad::STATUS_PUBLISHED?>
-		<h1><?=__('Advertisements')?></h1>
-		<a target='_blank' href='http://open-classifieds.com/2013/08/29/how-to-manage-advertisements/'><?=__('Read more')?></a>
-		<form id="advert_search" method="GET" class="pull-right" enctype="multipart/form-data">
-		  	<input type="text" name="search" id="search" class="form-control" placeholder="<?=__('Search')?>">
-		</form>
+		<h1><?=__('Advertisements')?> <small><a target='_blank' href='http://open-classifieds.com/2013/08/29/how-to-manage-advertisements/'><?=__('Read more')?></a></small></h1>
 	<?endif?>
 </div>		
-
 
 <div class="btn-group">
     <a href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index'))?>" class="btn btn-success">
@@ -48,12 +46,19 @@
     </a>
     <?endif?>
 </div>
-
-
+<br>
+<br>
+<div class="clearfix"></div>
+<div class="panel panel-default">
+    <div class="panel-body">
 <table class="table table-bordered">
 	<tr>
 		<th>
-			<input type="checkbox" id="select-all" onclick="check_all();">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="select-all" onclick="check_all();">
+				</label>
+			</div>
 		</th>
         <th>#</th>
 		<th><?=__('Name')?></th>
@@ -123,7 +128,11 @@
 	<tbody>
 		<tr>
 			<td>
-				<input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
+				<div class="checkbox">
+				    <label>
+				        <input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
+				    </labe>
+				</div>
 			</td>
 
             <td><?=$ad->id_ad?>
@@ -248,7 +257,9 @@
 	<?endif?>
 	</tbody>
 </table>
+    </div>
+</div>
 <?if(isset($pagination)):?>
-<?=$pagination?>
+    <div class="text-center"><?=$pagination?></div>
 <?endif?>
 
