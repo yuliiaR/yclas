@@ -250,11 +250,12 @@
                             </div>
                         </div>
                         <?endif?>
-                        <div class="panel panel-sidebar">
+                        <div class="panel panel-sidebar collapse-menu">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a  class=" btn-colapse-sidebar"><span class="glyphicon glyphicon-circle-arrow-left"></span>
-                                    <span class="title-txt"><?=__('Collapse menu')?></span>
+                                    <a  class=" btn-colapse-sidebar">
+                                        <span class="glyphicon glyphicon-circle-arrow-left"></span>
+                                        <span class="title-txt"><?=__('Collapse menu')?></span>
                                     </a>
                                 </h4>
                             </div>

@@ -293,6 +293,17 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 .plholder {
     padding: 0;
 }
+.collapse-menu {
+    position: absolute;
+    bottom: 50px;
+    width: 225px;
+}
+.collapse-menu .btn-colapse-sidebar {
+    background-color: #000000 !important;
+}
+.mini-col .collapse-menu {
+    width: 45px;
+}
 /*col-md*/
 @media screen and (max-width: 979px) {
 	.navbar .nav{float: left!important;}
