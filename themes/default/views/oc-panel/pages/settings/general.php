@@ -141,8 +141,8 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label col-sm-3', 'for'=>$forms['cookie_consent']['id']))?>
-                        <div class="col-sm-4">
+                        <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label col-sm-4', 'for'=>$forms['cookie_consent']['id']))?>
+                        <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['cookie_consent']['key'], 1, (bool) $forms['cookie_consent']['value'], array(
                                 'placeholder' => __("TRUE or FALSE"), 

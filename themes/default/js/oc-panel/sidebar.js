@@ -26,7 +26,7 @@ if($(window).width() > '750'){
   $('#mobile_header_btn, .btn-colapse-sidebar').on('click', function(){
     if(sidebar.hasClass('hide')){
       sidebar.removeClass('hide');
-      main_content.css('margin-left','200px');
+      main_content.css('margin-left','230px');
     }
     else{
       sidebar.addClass('hide');

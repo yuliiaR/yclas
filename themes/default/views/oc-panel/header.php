@@ -18,7 +18,7 @@
             </div>
             
             <div class="navbar-collapse collapse" id="mobile-menu-panel">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav hidden-sm">
                     <?=Theme::admin_link(__('Market'), 'market','index','oc-panel','glyphicon glyphicon-gift')?>
                     <? if(core::config('general.moderation') == 1 OR // moderation on  
                           core::config('general.moderation') == 4 OR // email confiramtion with moderation
