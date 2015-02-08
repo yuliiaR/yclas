@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+<header class="navbar navbar-default navbar-fixed-top bs-docs-nav">
     <div class="header-container">
         <div class="navbar-header">        </div> 
 
@@ -11,14 +11,14 @@
             </button>
 
             <a class="navbar-brand ajax-load" href="<?=(Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN) ? Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')) : Route::url('oc-panel',array('controller'=>'home'))?>" title="<?=__('Panel')?>">
-                <i class="glyphicon glyphicon-th-large"></i> <?=__('Panel')?>
+                <i class="glyphicon glyphicon-th-large"></i> <?=__('Admin Panel')?>
             </a>
             <div class="btn-group pull-right ml-20">
                 <?=View::factory('oc-panel/widget_login')?>
             </div>
             
             <div class="navbar-collapse collapse" id="mobile-menu-panel">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav hidden-sm">
                     <?=Theme::admin_link(__('Market'), 'market','index','oc-panel','glyphicon glyphicon-gift')?>
                     <? if(core::config('general.moderation') == 1 OR // moderation on  
                           core::config('general.moderation') == 4 OR // email confiramtion with moderation

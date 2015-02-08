@@ -8,19 +8,22 @@
                 <div class="col-md-1 col-sm-1 col-xs-1 respon-left-panel">
                     <div class="panel-group <?=(core::cookie('sidebar_state') == 'collapsed')? 'mini-col':NULL?>" id="accordion">
                     <? if($user->id_role==Model_Role::ROLE_ADMIN OR $user->id_role==Model_Role::ROLE_MODERATOR):?>
-                        <div class="panel panel-default">
+                        <div class="panel panel-sidebar">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th">
-                                    </span> <span class="title-txt"><?=__('Classifieds')?></span></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        <i class="fa fa-angle-double-down i-right"></i>
+                                        <span class="glyphicon glyphicon-th"></span>
+                                        <span class="title-txt"><?=__('Classifieds')?></span>
+                                    </a>
                                 </h4>
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <table class="table">
-                                        <tr><td><?=Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','glyphicon glyphicon-align-right')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Advertisements'),'ad','index','oc-panel','glyphicon glyphicon-align-right')?></td></tr>
                                         <? if( in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  ):  // payment with moderation?>
-                                            <tr><td><?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','glyphicon glyphicon-ban-circle')?></td></tr>   
+                                            <tr><td class="br"><?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel','glyphicon glyphicon-ban-circle')?></td></tr>   
                                         <? endif?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Categories'),'category','index','oc-panel','glyphicon  glyphicon-tags')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Locations'),'location','index','oc-panel','glyphicon  glyphicon-map-marker')?></td></tr>
@@ -32,11 +35,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-default">
+                        <div class="panel panel-sidebar">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-folder-open">
-                                    </span> <span class="title-txt"><?=__('Content')?></span></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        <i class="fa fa-angle-double-down i-right"></i>
+                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                        <span class="title-txt"><?=__('Content')?></span>
+                                    </a>
                                 </h4>
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
@@ -61,11 +67,14 @@
                             </div>
                         </div>
                         
-                        <div class="panel panel-default">
+                        <div class="panel panel-sidebar">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-picture">
-                                    </span> <span class="title-txt"><?=__('Appearance')?></span></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        <i class="fa fa-angle-double-down i-right"></i>
+                                        <span class="glyphicon glyphicon-picture"></span>
+                                        <span class="title-txt"><?=__('Appearance')?></span>
+                                    </a>
                                 </h4>
                             </div>
                             <div id="collapseFour" class="panel-collapse collapse">
@@ -93,11 +102,14 @@
                             </div>
                         </div>
                         <?if ($user->has_access_to_any('settings,config')):?>
-                        <div class="panel panel-default">
+                        <div class="panel panel-sidebar">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseSettings"><span class="glyphicon glyphicon-wrench">
-                                    </span> <span class="title-txt"><?=__('Settings')?></span></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseSettings">
+                                        <i class="fa fa-angle-double-down i-right"></i>
+                                        <span class="glyphicon glyphicon-wrench"></span>
+                                        <span class="title-txt"><?=__('Settings')?></span>
+                                    </a>
                                 </h4>
                             </div>
                             <div id="collapseSettings" class="panel-collapse collapse">
@@ -116,11 +128,14 @@
                         </div>
                         <?endif?>
                         <?if ($user->has_access_to_any('user,role,access')):?>
-                        <div class="panel panel-default">
+                        <div class="panel panel-sidebar">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseUser"><span class="glyphicon glyphicon-user">
-                                    </span> <span class="title-txt"><?=__('Users')?></span></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseUser">
+                                        <i class="fa fa-angle-double-down i-right"></i>
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        <span class="title-txt"><?=__('Users')?></span>
+                                    </a>
                                 </h4>
                             </div>
                             <div id="collapseUser" class="panel-collapse collapse">
@@ -132,7 +147,7 @@
                                         <tr><td class="br"><?=Theme::admin_link(__('Black list'),'pool','index','oc-panel','glyphicon  glyphicon-fire')?></td></tr>
                                         <?endif?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Edit profile'), 'profile','edit','oc-panel','glyphicon glyphicon-edit')?></td></tr>
-                                        <tr><td>
+                                        <tr><td class="br">
                                             <li>
                                                 <a href="<?=Route::url('profile',array('seoname'=>$user->seoname))?>">
                                                     <i class="glyphicon glyphicon-user"></i>
@@ -146,11 +161,14 @@
                         </div>
                         <?endif?>
                         <?if ($user->has_access_to_any('tools')):?>
-                        <div class="panel panel-default">
+                        <div class="panel panel-sidebar">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTools"><span class="glyphicon glyphicon-filter">
-                                    </span> <span class="title-txt"><?=__('Tools')?></span></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTools">
+                                        <i class="fa fa-angle-double-down i-right"></i>
+                                        <span class="glyphicon glyphicon-filter"></span>
+                                        <span class="title-txt"><?=__('Tools')?></span>
+                                    </a>
                                 </h4>
                             </div>
                             <div id="collapseTools" class="panel-collapse collapse">
@@ -172,11 +190,14 @@
                         <?endif?>
                     <?endif?>
                     <? if($user->id_role==Model_Role::ROLE_TRANSLATOR):?>
-                        <div class="panel panel-default">
+                        <div class="panel panel-sidebar">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-folder-open">
-                                    </span> <span class="title-txt"><?=__('Content')?></span></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        <i class="fa fa-angle-double-down i-right"></i>
+                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                        <span class="title-txt"><?=__('Content')?></span>
+                                    </a>
                                 </h4>
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
@@ -197,11 +218,14 @@
                         </div>
                     <?endif?>
                         <? if($user->has_access_to_any('profile')):?>
-                        <div class="panel panel-default">
+                        <div class="panel panel-sidebar">
                             <div class="panel-heading" id="menu-profile-options">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class="glyphicon glyphicon-align-justify">
-                                    </span> <span class="title-txt"><?=__('Profile Options')?></span></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                        <i class="fa fa-angle-double-down i-right"></i>
+                                        <span class="glyphicon glyphicon-align-justify"></span>
+                                        <span class="title-txt"><?=__('Profile Options')?></span>
+                                    </a>
                                 </h4>
                             </div>
                             <div id="collapseFive" class="panel-collapse collapse <?=(Auth::instance()->get_user()->id_role == Model_Role::ROLE_USER ? "in" : NULL)?>">
@@ -213,7 +237,7 @@
                                         <tr><td class="br"><?=Theme::admin_link(__('My Favorites'), 'profile','favorites','oc-panel','glyphicon glyphicon-heart')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Stats'),'profile','stats','oc-panel','glyphicon glyphicon-align-left')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Subscriptions'),'profile','subscriptions','oc-panel','glyphicon glyphicon-envelope')?></td></tr>
-                                        <tr><td>
+                                        <tr><td class="br">
                                             <li>
                                                 <a href="<?=Route::url('profile',array('seoname'=>$user->seoname))?>">
                                                     <i class="glyphicon glyphicon-user"></i>
@@ -226,11 +250,12 @@
                             </div>
                         </div>
                         <?endif?>
-                        <div class="panel panel-default">
+                        <div class="panel panel-sidebar collapse-menu">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a  class=" btn-colapse-sidebar"><span class="glyphicon glyphicon-circle-arrow-left"></span>
-                                    <span class="title-txt"><?=__('Collapse menu')?></span>
+                                    <a  class=" btn-colapse-sidebar">
+                                        <span class="glyphicon glyphicon-circle-arrow-left"></span>
+                                        <span class="title-txt"><?=__('Collapse menu')?></span>
                                     </a>
                                 </h4>
                             </div>

@@ -4,7 +4,8 @@
 		<div class="page-header">
 			<h1><?=__('Edit Advertisement')?></h1>
 		</div>
-	<div class="well">	
+<div class="panel panel-default">
+	<div class="panel-body">	
         <?foreach ($orders as $order):?>
             <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
             <i class="glyphicon glyphicon-shopping-cart"></i> <?=__('Pay')?> <?=$order->description?>  
@@ -286,5 +287,4 @@
 			</fieldset>
 		<?= FORM::close()?>
 	</div>
-	<!--/well-->
-		
+</div>		
