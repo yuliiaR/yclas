@@ -112,7 +112,7 @@ class Auth_Controller extends Controller
     	            //default theme
     	            else
     	            {
-    	                $theme_css = array('css/bootstrap.min.css' => 'screen');
+    	                $theme_css = array('css/paper-bootstrap.min.css' => 'screen');
     	            }
 
                 	$common_css = array('css/chosen.min.css' => 'screen',
@@ -149,12 +149,12 @@ class Auth_Controller extends Controller
     	            //other color
     	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
     	            {
-    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.0/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
+    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.2/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
     	            }
     	            //default theme
     	            else
     	            {
-    	                $theme_css = array('//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' => 'screen');
+    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.2/paper/bootstrap.min.css' => 'screen');
     	            }
 
                 	$common_css = array('//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
@@ -175,7 +175,7 @@ class Auth_Controller extends Controller
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
     											      '//cdn.jsdelivr.net/summernote/0.5.1/summernote.min.js',
-    												  '//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js', 
+    												  '//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js', 
     											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                                       'js/bootstrap-tour.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'bstour')),
