@@ -116,7 +116,7 @@ class Auth_Controller extends Controller
     	            }
 
                 	$common_css = array('css/chosen.min.css' => 'screen',
-                						'css/jquery.sceditor.min.css'=>'screen', 
+                						'css/jquery.sceditor.default.min.css'=>'screen', 
                                         'css/loadingbar.css'=>'screen', 
                 						'css/icon-picker.min.css'=>'screen', 
                 						'css/font-awesome.min.css'=>'screen', 
@@ -132,6 +132,7 @@ class Auth_Controller extends Controller
     	            								  'js/iconPicker.min.js',
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
+    												  'js/jquery.sceditor.bbcode.min.js',
     												  'js/summernote.min.js',
     												  'js/bootstrap.min.js', 
     											      'js/chosen.jquery.min.js',
