@@ -151,6 +151,26 @@
                     </div>
                     
                     <div class="form-group">
+                        <?= FORM::label($forms['only_admin_post']['key'], __('Only administrators can publish'), array('class'=>'control-label col-sm-4', 'for'=>$forms['only_admin_post']['key']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= FORM::hidden($forms['only_admin_post']['key'], 0);?>
+                                <?= FORM::checkbox($forms['only_admin_post']['key'], 1, (bool) $forms['only_admin_post']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['only_admin_post']['key'], 
+                                'data-original-title'=> __("Only administrators can publish"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-content'=>__("Only administrators can publish"),
+                                ))?>
+                                <?= FORM::label($forms['only_admin_post']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['only_admin_post']['key']))?>
+                            </div>
+                        </div>
+                    </div>  
+                    
+                    <div class="form-group">
                         <?= FORM::label($forms['expire_date']['key'], __('Ad expiration date'), array('class'=>'control-label col-sm-4', 'for'=>$forms['expire_date']['key']))?>
                         <div class="col-sm-8">
                             <div class="input-group">

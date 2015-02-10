@@ -116,7 +116,7 @@ class Auth_Controller extends Controller
     	            }
 
                 	$common_css = array('css/chosen.min.css' => 'screen',
-                						'css/jquery.sceditor.min.css'=>'screen', 
+                						'css/jquery.sceditor.default.min.css'=>'screen', 
                                         'css/loadingbar.css'=>'screen', 
                 						'css/icon-picker.min.css'=>'screen', 
                 						'css/font-awesome.min.css'=>'screen', 
@@ -132,6 +132,7 @@ class Auth_Controller extends Controller
     	            								  'js/iconPicker.min.js',
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
+    												  'js/jquery.sceditor.bbcode.min.js',
     												  'js/summernote.min.js',
     												  'js/bootstrap.min.js', 
     											      'js/chosen.jquery.min.js',
@@ -161,7 +162,7 @@ class Auth_Controller extends Controller
                                         '//cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
                                         'css/loadingbar.css'=>'screen', 
                                         'css/icon-picker.min.css'=>'screen', 
-                                        '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'=>'screen', 
+                                        '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'=>'screen', 
                                         '//cdn.jsdelivr.net/summernote/0.5.1/summernote.css'=>'screen', 
                                         '//cdn.jsdelivr.net/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css'=>'screen',
                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css'=>'screen',

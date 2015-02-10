@@ -32,9 +32,10 @@ class Controller_New extends Controller
 		$this->template->meta_description	= __('Publish new advertisement');
 		
 		
-		$this->template->styles = array('//cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
+		$this->template->styles = array('css/jquery.sceditor.default.min.css' => 'screen',
 										'css/jasny-bootstrap.min.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
+        $this->template->scripts['footer'][] = 'js/jquery.sceditor.bbcode.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.validate.min.js';
 		$this->template->scripts['footer'][] = Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate'));
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';

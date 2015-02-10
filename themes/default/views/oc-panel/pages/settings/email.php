@@ -21,8 +21,8 @@
                     <?endforeach?>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['notify_email']['key'], __('Notify email'), array('class'=>'control-label col-sm-3', 'for'=>$forms['notify_email']['key']))?>
-                        <div class="col-sm-4">
+                        <?= FORM::label($forms['notify_email']['key'], __('Notify email'), array('class'=>'control-label col-sm-4', 'for'=>$forms['notify_email']['key']))?>
+                        <div class="col-sm-8">
                             <?= FORM::input($forms['notify_email']['key'], $forms['notify_email']['value'], array(
                             'placeholder' => "youremail@mail.com", 
                             'class' => 'tips form-control', 
@@ -38,8 +38,8 @@
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['new_ad_notify']['key'], __('Notify me on new ad'), array('class'=>'control-label col-sm-3', 'for'=>$forms['new_ad_notify']['key']))?>
-                        <div class="col-sm-4">
+                        <?= FORM::label($forms['new_ad_notify']['key'], __('Notify me on new ad'), array('class'=>'control-label col-sm-4', 'for'=>$forms['new_ad_notify']['key']))?>
+                        <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= FORM::hidden($forms['new_ad_notify']['key'], 0);?>
                                 <?= Form::checkbox($forms['new_ad_notify']['key'], 1, (bool) $forms['new_ad_notify']['value'], array(
