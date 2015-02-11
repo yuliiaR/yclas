@@ -176,3 +176,20 @@
             }
         });
     }
+    
+    $(function(){
+        $(".img-delete").click(function(e) {
+            var href = $(this).attr('href');
+            var confirm = $(this).data('confirm');
+            var img_id = $(this).attr('value');
+            $.ajax({
+                type: "POST",
+                url: href,
+                data: {img_delete: img_id},
+                cache: false
+            }).done(function(result) {
+                $('#img' + img_id).toggle('slide');
+            });
+            e.preventDefault();
+        }); 
+    });
