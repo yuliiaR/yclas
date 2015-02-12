@@ -26,6 +26,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         );
         
         Model_Config::config_array($configs);
+        
+        //locations latitude/longitude
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `latitude` DOUBLE NULL , ADD `longitude` DOUBLE NULL ;")->execute();
+        }catch (exception $e) {}
     
         
     }

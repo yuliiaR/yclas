@@ -154,7 +154,7 @@ function listPlaces(jData)
 
     for(var i=0;i<counts;i++) {
         who.options[who.options.length] = new Option(jData.geonames[i].name,jData.geonames[i].geonameId);
-        import_items.push(jData.geonames[i].name);
+        import_items.push(jData.geonames[i].name + ';' + jData.geonames[i].lat + ';' + jData.geonames[i].lng);
         $('#auto_locations').val(import_items.join(","));
         $("#auto_locations_import").html($('label[for='+ whos +']').data('action'));
     }

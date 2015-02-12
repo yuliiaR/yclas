@@ -79,7 +79,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations'.'?id_location='.Core::get('id_location', 1))), array('id'=>'auto_locations_form', 'class'=>'form-horizontal', 'role'=>'form','enctype'=>'multipart/form-data'))?>
+                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'geonames_locations'.'?id_location='.Core::get('id_location', 1))), array('id'=>'auto_locations_form', 'class'=>'form-horizontal', 'role'=>'form','enctype'=>'multipart/form-data'))?>
                             <div class="form-group" id="group-continent">
                                 <label for="continent" class="col-sm-3 control-label" data-action="<?=__('Import continents')?>"><?=__('Continent')?></label>
                                 <div class="col-sm-8">
@@ -122,9 +122,9 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-8">
-                                    <input type="hidden" id="auto_locations" value="" name="multy_locations">
+                                    <input type="hidden" id="auto_locations" value="" name="geonames_locations">
                                     <input type="hidden" id="auto_locations_lang" value="<?=substr(Core::config('i18n.locale'), 0, -3)?>" name="auto_locations_lang">
-                                    <?= FORM::button('submit', __('Import'), array('type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'auto_locations_import', 'action'=>Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations')).'?id_location='.Core::get('id_location', 1)))?>
+                                    <?= FORM::button('submit', __('Import'), array('type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'auto_locations_import', 'action'=>Route::url('oc-panel',array('controller'=>'location','action'=>'geonames_locations')).'?id_location='.Core::get('id_location', 1)))?>
                                     <?= FORM::button('reset', __('Reset'), array('type'=>'button', 'class'=>'btn btn-default', 'id'=>'auto_locations_import_reset'))?>
                                 </div>
                             </div>
