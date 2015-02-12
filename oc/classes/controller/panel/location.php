@@ -65,8 +65,6 @@ class Controller_Panel_Location extends Auth_Crud {
         
         $form = new FormOrm($this->_orm_model);
         
-        $form->object->id_location_parent = "324";
-        
         if ($this->request->post())
         {
             if ( $success = $form->submit() )
@@ -115,7 +113,7 @@ class Controller_Panel_Location extends Auth_Crud {
         $this->template->title = __('Update').' '.__($this->_orm_model).' '.$this->request->param('id');
     
         $form = new FormOrm($this->_orm_model,$this->request->param('id'));
-		$location = new Model_Location($this->request->param('id'));
+        $location = new Model_Location($this->request->param('id'));
         
         if ($this->request->post())
         {
