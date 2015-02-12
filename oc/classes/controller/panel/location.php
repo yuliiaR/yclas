@@ -157,7 +157,7 @@ class Controller_Panel_Location extends Auth_Crud {
         $loc = new Model_Location(core::get('id_location'));
 
         //check if the parent is loaded/exists avoiding errors
-        $parent_loc = new Model_Category(core::get('id_location_parent'));
+        $parent_loc = new Model_Location(core::get('id_location_parent'));
 
         if ($loc->loaded() AND $parent_loc->loaded())
         {
