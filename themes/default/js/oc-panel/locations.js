@@ -51,14 +51,14 @@ $(function  () {
 })
 
 $(function(){
-    $(".index-delete").click(function() {
+    $("a.index-delete").click(function(e) {
         var href = $(this).attr('href');
         var title = $(this).attr('title');
         var text = $(this).data('text');
         var id = $(this).data('id');
         var confirmButtonText = $(this).data('btnoklabel');
         var cancelButtonText = $(this).data('btncancellabel');
-        event.preventDefault();
+        e.preventDefault();
         swal({
             title: title,
             text: text,
