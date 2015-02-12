@@ -25,17 +25,34 @@ class Controller_Panel_Location extends Auth_Crud {
         //template header
         $this->template->title  = __('Locations');
 
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Locations')));
         $this->template->styles  = array('css/sortable.css' => 'screen', 
                                          '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/locations.js';
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
-
-        $locs  = Model_Location::get_as_array();
-        $order = Model_Location::get_multidimensional();
-
-        $this->template->content = View::factory('oc-panel/pages/locations/index',array('locs' => $locs,'order'=>$order));
+        
+        if (intval(Core::get('id_location', 1)) > 0)
+        {
+            $location = new Model_Location(intval(Core::get('id_location', 1)));
+            
+            if ($location->loaded())
+            {
+                if ($location->parent->loaded() AND $location->parent->id_location != 1)
+                {
+                    Breadcrumbs::add(Breadcrumb::factory()->set_title($location->parent->name)->set_url(Route::url('oc-panel',array('controller'=>'location','action'=>''.'?id_location='.$location->parent->id_location))));
+                }
+                
+                $locs = new Model_Location();
+                $locs = $locs->where('id_location_parent','=',Core::get('id_location', 1))->order_by('order','asc')->find_all()->cached()->as_array('id_location');
+            }
+            else
+            {
+                Alert::set(Alert::ERROR, __('You are selecting a location that does not exist'));
+                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
+            }
+        }
+        
+        $this->template->content = View::factory('oc-panel/pages/locations/index',array('locs' => $locs,'location' => $location));
     }
 
     /**
@@ -47,7 +64,9 @@ class Controller_Panel_Location extends Auth_Crud {
         $this->template->title = __('New').' '.__($this->_orm_model);
         
         $form = new FormOrm($this->_orm_model);
-            
+        
+        $form->object->id_location_parent = "324";
+        
         if ($this->request->post())
         {
             if ( $success = $form->submit() )
@@ -289,7 +308,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent'));
                 foreach ($multy_cats as $name)
                 {
-                    $insert = $insert->values(array($name,$obj_location->gen_seoname($name),1));
+                    $insert = $insert->values(array($name,$obj_location->gen_seoname($name),Core::get('id_location', 1)));
                 }
                 // Insert everything with one query.
                 $insert->execute();
@@ -300,7 +319,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 Alert::set(Alert::INFO, __('Select some locations first.'));
         }
         
-        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index'))); 
+        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index')).'?id_location='.Core::get('id_location', 1));
     }
 
     /**
