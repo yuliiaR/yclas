@@ -13,7 +13,7 @@ class Controller_Ad extends Controller {
 			$this->template->scripts['footer'][] = '//cdn.jsdelivr.net/jquery.infinitescroll/2.0b2/jquery.infinitescroll.js';
 			$this->template->scripts['footer'][] = 'js/listing.js';
 		}
-        $this->template->scripts['footer'][]= 'js/jquery.toolbar.js';
+        $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
 		$this->template->scripts['footer'][] = 'js/sort.js';
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 		
@@ -740,6 +740,9 @@ class Controller_Ad extends Controller {
 
 	public function action_advanced_search()
 	{
+        $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
+        $this->template->scripts['footer'][] = 'js/sort.js';
+
 		//template header
 		$this->template->title           	= __('Advanced Search');
 		$this->template->meta_description	= __('Search in').' '.core::config('general.site_name');
