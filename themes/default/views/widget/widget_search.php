@@ -5,7 +5,7 @@
 <!-- if categories on show selector of categories -->
     <div class="form-group">
         <div class="col-xs-12">  
-            <?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
+            <?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'', 'for'=>'title'))?>
             <input type="text" id="title" name="title" class="form-control" value="" placeholder="<?=__('Search')?>">
         </div>
     </div>
@@ -112,6 +112,6 @@
 <!-- /endcustom fields -->
 <div class="clearfix"></div>
 
-    <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('search')))?> 
+    <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary'))?> 
 <?= FORM::close()?>
 </div>
