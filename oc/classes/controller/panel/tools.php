@@ -74,7 +74,7 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
                     
                     $query = DB::query(Database::UPDATE,"INSERT INTO `".$prefix.$type."`
                         (`name` ,`id_".$t."_parent`,`seoname`)
-                        VALUES $array ON DUPLICATE KEY UPDATE `id_".$t."_parent`=1;"); 
+                        VALUES $array ON DUPLICATE KEY UPDATE `id_".$t."_parent`=".Core::get('id_parent', 1).";"); 
 
                     try 
                     {

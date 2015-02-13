@@ -293,6 +293,9 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 .plholder {
     padding: 0;
 }
+.plholder a {
+    color: #FFFFFF;
+}
 .collapse-menu {
     position: absolute;
     bottom: 50px;
