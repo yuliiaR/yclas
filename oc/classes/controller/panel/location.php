@@ -329,27 +329,27 @@ class Controller_Panel_Location extends Auth_Crud {
         $this->auto_render = FALSE;
     
         //update the elements related to that ad
-        if ($_POST)
+        if(core::post('geonames_locations') !== "")
         {
-            if(core::post('geonames_locations') !== "")
+
+            $geonames_locations = json_decode(core::post('geonames_locations'));
+            $obj_location = new Model_Location();
+
+            $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent', 'latitude', 'longitude'));
+            foreach ($geonames_locations as $location)
             {
-                $geonames_locations = explode(',', core::post('geonames_locations'));
-                $obj_location = new Model_Location();
-    
-                $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent', 'latitude', 'longitude'));
-                foreach ($geonames_locations as $cat)
-                {
-                    $cat_values = explode(';', $cat);
-                    $insert = $insert->values(array($cat_values[0],$obj_location->gen_seoname($cat_values[0]),Core::get('id_location', 1),$cat_values[1],$cat_values[2]));
-                }
-                // Insert everything with one query.
-                $insert->execute();
-    
-                Core::delete_cache();
+                $insert = $insert->values(array($location->name,$obj_location->gen_seoname($location->name),Core::get('id_location', 1),
+                                        isset($location->lat)?$location->lat:NULL,
+                                        isset($location->long)?$location->long:NULL));
             }
-            else
-                Alert::set(Alert::INFO, __('Select some locations first.'));
+            // Insert everything with one query.
+            $insert->execute();
+
+            Core::delete_cache();
         }
+        else
+            Alert::set(Alert::INFO, __('Select some locations first.'));
+        
         
         HTTP::redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index')).'?id_location='.Core::get('id_location', 1));
     }
