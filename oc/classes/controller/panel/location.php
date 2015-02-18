@@ -333,19 +333,24 @@ class Controller_Panel_Location extends Auth_Crud {
         {
 
             $geonames_locations = json_decode(core::post('geonames_locations'));
-            $obj_location = new Model_Location();
 
-            $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent', 'latitude', 'longitude'));
-            foreach ($geonames_locations as $location)
+            if (count($geonames_locations)>0)
             {
-                $insert = $insert->values(array($location->name,$obj_location->gen_seoname($location->name),Core::get('id_location', 1),
-                                        isset($location->lat)?$location->lat:NULL,
-                                        isset($location->long)?$location->long:NULL));
-            }
-            // Insert everything with one query.
-            $insert->execute();
+                $obj_location = new Model_Location();
 
-            Core::delete_cache();
+                $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent', 'latitude', 'longitude'));
+                foreach ($geonames_locations as $location)
+                {
+                    $insert = $insert->values(array($location->name,$obj_location->gen_seoname($location->name),Core::get('id_location', 1),
+                                            isset($location->lat)?$location->lat:NULL,
+                                            isset($location->long)?$location->long:NULL));
+                }
+                // Insert everything with one query.
+                $insert->execute();
+
+                Core::delete_cache();
+            }
+
         }
         else
             Alert::set(Alert::INFO, __('Select some locations first.'));
