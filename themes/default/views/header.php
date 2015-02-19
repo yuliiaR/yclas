@@ -70,7 +70,6 @@
                     <?=Theme::nav_link('','map', 'glyphicon glyphicon-globe ', 'index', 'map')?>
                 <?endif?>
                 <?=Theme::nav_link('','contact', 'glyphicon glyphicon-envelope ', 'index', 'contact')?>
-                <?=Theme::nav_link('','rss', 'glyphicon glyphicon-signal ', 'index', 'rss')?>
             <?endif?>
             </ul>
             

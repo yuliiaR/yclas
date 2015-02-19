@@ -68,6 +68,38 @@ class Model_User extends Model_OC_User {
 
         parent::delete();
     }
+    
+    /**
+     * get last 5 user ad contacts
+     * @return array [description]
+     */
+    public function contacts()
+    {
+        if($this->loaded())
+        {
+            //get cookie contact_notification
+            $theme = (isset($_COOKIE['contact_notification']))? $_COOKIE['contact_notification']:0;
+            
+            $query = DB::select('a.id_ad')
+                        ->select('a.title')
+                        ->select('a.seotitle')
+                        ->select('v.id_visit')
+                        ->select('v.created')
+                        ->from(array('ads', 'a'))
+                        ->join(array('visits', 'v'),'INNER')
+                        ->on('a.id_ad','=','v.id_ad')
+                        ->where('a.id_user','=',$this->id_user)
+                        ->where('v.contacted','=','1')
+                        ->where('v.created','>',Date::unix2mysql($theme))
+                        ->order_by('v.created', 'DESC');
+            
+            if (!isset($_COOKIE['contact_notification']))
+                $query->limit(5);
+            
+            return $query->execute();
+        }
+        return FALSE;
+    }
 
 
 } // END Model_User
