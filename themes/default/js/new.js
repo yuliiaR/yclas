@@ -74,7 +74,7 @@ function doneTyping () {
     $params['rules']['title'] = {maxlength: 145};
     $params['rules']['address'] = {maxlength: 145};
     $params['rules']['phone'] = {maxlength: 30};
-    $params['rules']['website'] = {url: true, maxlength: 200};
+    $params['rules']['website'] = {maxlength: 200};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
     var $form = $(".post_new");
