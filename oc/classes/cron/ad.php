@@ -52,6 +52,18 @@ class Cron_Ad {
 
                 $ad->user->email('ad-expired', array('[AD.NAME]'      =>$ad->title,
                                                      '[URL.EDITAD]'   =>$edit_url));
+                
+                //Change status to unavailable
+                $ad->status = Model_Ad::STATUS_UNAVAILABLE;
+                
+                try
+                {
+                    $ad->save();
+                }
+                catch (Exception $e)
+                {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
             }
 
         }
