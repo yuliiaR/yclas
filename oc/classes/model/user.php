@@ -70,7 +70,7 @@ class Model_User extends Model_OC_User {
     }
     
     /**
-     * get last 5 user ad contacts
+     * get user ad contacts
      * @return array [description]
      */
     public function contacts()

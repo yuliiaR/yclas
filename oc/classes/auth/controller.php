@@ -142,6 +142,7 @@ class Auth_Controller extends Controller
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
     											      'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
     											      'js/sweet-alert.min.js',
+    											      'js/favico-0.3.6.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
     			}
@@ -184,6 +185,7 @@ class Auth_Controller extends Controller
                                                       Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
                                                       'js/oc-panel/sidebar.js?v='.Core::VERSION,	
                                                       '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js',
+                                                      'js/favico-0.3.6.min.js',
                                                       'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
