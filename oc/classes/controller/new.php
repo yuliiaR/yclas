@@ -33,13 +33,17 @@ class Controller_New extends Controller
 		
 		
 		$this->template->styles = array('css/jquery.sceditor.default.min.css' => 'screen',
-										'css/jasny-bootstrap.min.css' => 'screen');
+										'css/jasny-bootstrap.min.css' => 'screen',
+										'//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css' => 'screen');
+										
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.bbcode.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.validate.min.js';
 		$this->template->scripts['footer'][] = Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate'));
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.chained.min.js';
+        $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js';
+        $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.10/ouibounce.min.js';
         if(core::config('advertisement.map_pub_new'))
         {
 	        $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';

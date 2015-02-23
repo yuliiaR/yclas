@@ -220,8 +220,7 @@
 				</div>
 				<?endif?>
 				<div class="form-actions">
-					<?= FORM::hidden('leaving_alert',__('It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost.'), array('id' => 'leaving_alert'))?>
-					<?= FORM::button('submit', __('Publish new'), array('type'=>'submit', 'id' => 'publish-new-btn', 'class'=>'btn btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
+					<?= FORM::button('submit', __('Publish new'), array('type'=>'submit', 'id' => 'publish-new-btn', 'data-swaltitle' => __('Are you sure?'), 'data-swaltext' => __('It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost.'), 'class'=>'btn btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 					<?if (!Auth::instance()->get_user()):?>
 					<p class="help-block"><?=__('User account will be created')?></p>
 					<?endif?>
