@@ -23,7 +23,7 @@
         <a class="btn dropdown-toggle btn-success navbar-btn"  data-toggle="dropdown"
             href="#"> <span class="caret"></span>
         </a>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu dropdown-menu-right">
         
             <li><a href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
                 <i class="glyphicon glyphicon-cog"></i> <?=__('Panel')?></a></li>
