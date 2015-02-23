@@ -74,7 +74,7 @@ function doneTyping () {
     $params['rules']['title'] = {maxlength: 145};
     $params['rules']['address'] = {maxlength: 145};
     $params['rules']['phone'] = {maxlength: 30};
-    $params['rules']['website'] = {url: true, maxlength: 200};
+    $params['rules']['website'] = {maxlength: 200};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
     var $form = $(".post_new");
@@ -177,26 +177,24 @@ function doneTyping () {
        $(this).next('.fileinput').removeClass('hidden');
     });
 
-    //publish new processing modal
-    $(function(){
-		$('#publish-new-btn').click(function () {
-			if ($("#publish-new").valid()) {
-				$('#processing-modal').modal('show');
-			}
-		});
-    });
-	
     //sure you want to leave alert
-	$(function(){
-		$('#publish-new').data('serialize',$('#publish-new').serialize());
-		$("#publish-new-btn").click(function(){
-            if ($("#publish-new").valid()) {
-                $(this).data('clicked', true);
+    $(function(){
+        var _ouibounce = ouibounce(false, {
+            aggressive: true,
+            callback: function() {
+                swal({
+                    title: $('#publish-new-btn').data('swaltitle'),
+                    text: $('#publish-new-btn').data('swaltext'),
+                    type: "warning",
+                    allowOutsideClick: true
+                });
             }
-		});
-		$(window).bind('beforeunload', function(){
-			if($('#publish-new').serialize()!=$('#publish-new').data('serialize') && !$('#publish-new-btn').data('clicked') ) {
-				return $('#leaving_alert').val();
-			}
-		});
+        });
+        
+        $('#publish-new-btn').click(function(){
+            if ($('#publish-new').valid()) {
+                _ouibounce.disable();
+                $('#processing-modal').modal('show');
+            }
+        });
     });
