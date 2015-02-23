@@ -241,7 +241,7 @@ border:0;}
 .chosen-container.chosen-container-multi ul.chosen-choices li.search-field input{height: 27px !important;}
 .chosen-container { min-width: 220px !important; }
 
-.ml-20{margin-left: 20px;}
+.ml-20{margin-left: 15px;}
 .edit_ad_form{}
 .ml-10{margin-left: 10px!important;}
 /*bbcode style fix*/
@@ -340,5 +340,7 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 	.popover-title {font-size: 11px; max-width:220px;}
 	.popover-content .btn-sm {font-size: 11px;}
 	.navbar-default {background-color: #000;}
+	.navbar-default .navbar-brand {width: 105px;}
+
 }
 

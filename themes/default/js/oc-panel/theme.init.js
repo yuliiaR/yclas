@@ -143,6 +143,32 @@ function init_panel()
 	    });
 
 	});
+	
+	//notification system
+	var favicon = new Favico({
+	    animation : 'popFade'
+	});
+	
+	$('#contact-notification').click(function(event) {
+	    setCookie("contact_notification", Math.round(+new Date()/1000), 365);
+	    $(document).mouseup(function (e)
+	    {
+	        var contact = $("#contact-notification");
+	    
+	        if (!contact.is(e.target) // if the target of the click isn't the container...
+	            && contact.has(e.target).length === 0) // ... nor a descendant of the container
+	        {
+	            //$("#contact-notification").slideUp();
+	            $("#contact-notification span").hide();
+	            $("#contact-notification i").removeClass('fa-bell').addClass('fa-bell-o');
+	            $("#contact-notification-dd" ).remove();
+	            favicon.badge(0);
+	        }
+	    });
+	});
+	
+	//intial value
+	favicon.badge($('#contact-notification span').text());
 }
 
 $(function (){
