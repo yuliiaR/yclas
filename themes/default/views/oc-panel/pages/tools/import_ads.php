@@ -1,0 +1,57 @@
+<?php defined('SYSPATH') or die('No direct script access.');?>
+
+<div class="page-header">
+    <h1><?=__('Import tool for ads')?></h1>
+</div>
+<div class="row">
+    
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?=__('Upload CSV file')?></h3>
+                <p>
+                    <?=__('Please use the correct CSV format')?> <a href=""><?=__('download example')?>.</a>
+                    <br>
+                    <span class="label label-info"><?=__('Hosting limit')?></span> 
+                    upload_max_filesize: <?=ini_get('upload_max_filesize')?>, max_execution_time: <?=ini_get('max_execution_time')?><?=__('seconds')?>
+                </p>
+            </div>
+            <div class="panel-body">
+                <?= FORM::open(Route::url('oc-panel',array('controller'=>'import','action'=>'csv')), array('class'=>'', 'enctype'=>'multipart/form-data'))?>
+                    <div class="form-group">
+                        <label for=""> <?=__('Import Ads')?></label>
+                        <input type="file" name="csv_file_ads" id="csv_file_ads" class="form-control"/>
+                    </div>
+                        <?= FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'import','action'=>'csv'))))?>
+                <?= FORM::close()?>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?=__('Process Queue')?></h3>
+            </div>
+            <div class="panel-heading">
+                <p>
+                <?if($ads_import>0):?>
+                    <?=sprintf(__('You got %d ads to get processed'),$ads_import)?>
+                    <p>
+                    <a class="btn btn-success" href="<?=Route::url('oc-panel',array('controller'=>'import','action'=>'process'))?>">
+                        <?=__('Process')?>
+                    </a>
+                    <a class="btn btn-danger btn-xs" href="<?=Route::url('oc-panel',array('controller'=>'import','action'=>'deletequeue'))?>">
+                        <?=__('Delete')?>
+                    </a>
+                    <p>
+                <?else:?>
+                    <?=__('Not any ad to be processed')?>
+                <?endif?>
+                </p>
+            </div>
+            
+        </div>
+    </div>
+
+</div>

@@ -307,12 +307,6 @@ class Model_Ad extends ORM {
 
         $seotitle = $this->seotitle;
         
-        if(core::config('image.aws_s3_active'))
-        {
-            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
-            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
-        }
-
         if ( 
         ! Upload::valid($image) OR
         ! Upload::not_empty($image) OR
@@ -339,19 +333,6 @@ class Model_Ad extends ORM {
         
         if ($image !== NULL)
         {
-            $path           = $this->image_path();
-            if ($path === FALSE)
-            {
-                Alert::set(Alert::ERROR, 'model\ad.php:save_image(): '.__('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.'));
-                return FALSE;
-            }
-            $directory      = DOCROOT.$path;
-            $image_quality  = core::config('image.quality');
-            $width          = core::config('image.width');
-            $width_thumb    = core::config('image.width_thumb');
-            $height_thumb   = core::config('image.height_thumb');
-            $height         = core::config('image.height');
-
             if( ! is_numeric($height)) // when installing this field is empty, to avoid crash we check here
                 $height         = NULL;
             if( ! is_numeric($height_thumb))
@@ -359,95 +340,7 @@ class Model_Ad extends ORM {
             
             if ($file = Upload::save($image, NULL, $directory))
             {
-                $filename_thumb     = 'thumb_'.$seotitle.'_'.($this->has_images+1).'.jpg';
-                $filename_original  = $seotitle.'_'.($this->has_images+1).'.jpg';
-                 
-                /*WATERMARK*/
-                if(core::config('image.watermark')==TRUE AND is_readable(core::config('image.watermark_path')))
-                {
-                    $mark = Image::factory(core::config('image.watermark_path')); // watermark image object
-                    $size_watermark = getimagesize(core::config('image.watermark_path')); // size of watermark
-                  
-                    if(core::config('image.watermark_position') == 0) // position center
-                    {
-                        $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
-                        $wm_top_y = $height/2-$size_watermark[1]/2; // y axis , from top
-                    }
-                    elseif (core::config('image.watermark_position') == 1) // position bottom
-                    {
-                        $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
-                        $wm_top_y = $height-10; // y axis , from top
-                    }
-                    elseif(core::config('image.watermark_position') == 2) // position top
-                    {
-                        $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
-                        $wm_top_y = 10; // y axis , from top
-                    }
-                }   
-                /*end WATERMARK variables*/
-
-                //if original image is bigger that our constants we resize
-                $image_size_orig = getimagesize($file);
-                
-                    if($image_size_orig[0] > $width || $image_size_orig[1] > $height)
-                    {
-                        if(core::config('image.watermark') AND is_readable(core::config('image.watermark_path'))) // watermark ON
-                        {
-                            Image::factory($file)
-                                ->resize($width, $height, Image::AUTO)
-                                ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
-                                ->save($directory.$filename_original,$image_quality);
-                        }
-                        else 
-                        {
-                            Image::factory($file)
-                                ->resize($width, $height, Image::AUTO)
-                                ->save($directory.$filename_original,$image_quality);
-                        }
-                    }
-                    //we just save the image changing the quality and different name
-                    else
-                    {
-                        if(core::config('image.watermark') AND is_readable(core::config('image.watermark_path')))
-                        {
-                            Image::factory($file)
-                                ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
-                                ->save($directory.$filename_original,$image_quality);
-                        }
-                        else
-                        {
-                            Image::factory($file)
-                                ->save($directory.$filename_original,$image_quality);
-                        }
-                    }
-                
-                //creating the thumb and resizing using the the biggest side INVERSE
-                Image::factory($file)
-                    ->resize($width_thumb, $height_thumb, Image::INVERSE)
-                    ->save($directory.$filename_thumb,$image_quality);
-                    
-                //check if the height or width of the thumb is bigger than default then crop
-                if ($height_thumb!==NULL)
-                {
-                    $image_size_orig = getimagesize($directory.$filename_thumb);
-                    if ($image_size_orig[1] > $height_thumb || $image_size_orig[0] > $width_thumb)
-                    {
-                        Image::factory($directory.$filename_thumb)
-                                    ->crop($width_thumb, $height_thumb)
-                                    ->save($directory.$filename_thumb);
-                    }
-                }
-                
-                // put image and thumb to Amazon S3
-                if(core::config('image.aws_s3_active'))
-                {
-                    $s3->putObject($s3->inputFile($directory.$filename_original), core::config('image.aws_s3_bucket'), $path.$filename_original, S3::ACL_PUBLIC_READ);
-                    $s3->putObject($s3->inputFile($directory.$filename_thumb), core::config('image.aws_s3_bucket'), $path.$filename_thumb, S3::ACL_PUBLIC_READ);
-                }
-                
-                // Delete the temporary file
-                @unlink($file);
-                return TRUE;
+                return $this->save_image_file($file,$this->has_images+1);
             }
             else 
             {
@@ -455,6 +348,126 @@ class Model_Ad extends ORM {
                 return FALSE;
             }
         }   
+    }
+
+    public function save_image_file($file,$num=0)
+    {
+        if(core::config('image.aws_s3_active'))
+        {
+            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+        }
+
+        $path    = $this->image_path();
+
+        if ($path === FALSE)
+        {
+            Alert::set(Alert::ERROR, 'model\ad.php:save_image(): '.__('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.'));
+            return FALSE;
+        }
+
+        $directory      = DOCROOT.$path;
+        $image_quality  = core::config('image.quality');
+        $width          = core::config('image.width');
+        $width_thumb    = core::config('image.width_thumb');
+        $height_thumb   = core::config('image.height_thumb');
+        $height         = core::config('image.height');
+
+        $filename_thumb     = 'thumb_'.$this->seotitle.'_'.$num.'.jpg';
+        $filename_original  = $this->seotitle.'_'.$num.'.jpg';
+         
+        /*WATERMARK*/
+        if(core::config('image.watermark')==TRUE AND is_readable(core::config('image.watermark_path')))
+        {
+            $mark = Image::factory(core::config('image.watermark_path')); // watermark image object
+            $size_watermark = getimagesize(core::config('image.watermark_path')); // size of watermark
+          
+            if(core::config('image.watermark_position') == 0) // position center
+            {
+                $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
+                $wm_top_y = $height/2-$size_watermark[1]/2; // y axis , from top
+            }
+            elseif (core::config('image.watermark_position') == 1) // position bottom
+            {
+                $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
+                $wm_top_y = $height-10; // y axis , from top
+            }
+            elseif(core::config('image.watermark_position') == 2) // position top
+            {
+                $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
+                $wm_top_y = 10; // y axis , from top
+            }
+        }   
+        /*end WATERMARK variables*/
+
+d($file);
+        //if original image is bigger that our constants we resize
+        try {
+            $image_size_orig = getimagesize($file);
+        } catch (Exception $e) {
+            return FALSE;
+        }
+        
+        
+        if($image_size_orig[0] > $width || $image_size_orig[1] > $height)
+        {
+            if(core::config('image.watermark') AND is_readable(core::config('image.watermark_path'))) // watermark ON
+            {
+                Image::factory($file)
+                    ->resize($width, $height, Image::AUTO)
+                    ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
+                    ->save($directory.$filename_original,$image_quality);
+            }
+            else 
+            {
+                Image::factory($file)
+                    ->resize($width, $height, Image::AUTO)
+                    ->save($directory.$filename_original,$image_quality);
+            }
+        }
+        //we just save the image changing the quality and different name
+        else
+        {
+            if(core::config('image.watermark') AND is_readable(core::config('image.watermark_path')))
+            {
+                Image::factory($file)
+                    ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
+                    ->save($directory.$filename_original,$image_quality);
+            }
+            else
+            {
+                Image::factory($file)
+                    ->save($directory.$filename_original,$image_quality);
+            }
+        }
+        
+        //creating the thumb and resizing using the the biggest side INVERSE
+        Image::factory($file)
+            ->resize($width_thumb, $height_thumb, Image::INVERSE)
+            ->save($directory.$filename_thumb,$image_quality);
+            
+        //check if the height or width of the thumb is bigger than default then crop
+        if ($height_thumb!==NULL)
+        {
+            $image_size_orig = getimagesize($directory.$filename_thumb);
+            if ($image_size_orig[1] > $height_thumb || $image_size_orig[0] > $width_thumb)
+            {
+                Image::factory($directory.$filename_thumb)
+                            ->crop($width_thumb, $height_thumb)
+                            ->save($directory.$filename_thumb);
+            }
+        }
+        
+        // put image and thumb to Amazon S3
+        if(core::config('image.aws_s3_active'))
+        {
+            $s3->putObject($s3->inputFile($directory.$filename_original), core::config('image.aws_s3_bucket'), $path.$filename_original, S3::ACL_PUBLIC_READ);
+            $s3->putObject($s3->inputFile($directory.$filename_thumb), core::config('image.aws_s3_bucket'), $path.$filename_thumb, S3::ACL_PUBLIC_READ);
+        }
+        
+        // Delete the temporary file
+        @unlink($file);
+        return TRUE;
     }
 
     /**
