@@ -41,6 +41,7 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
     {
         $this->template->title = __('Import tool for ads');
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
+        $this->template->scripts['footer'][] = 'js/oc-panel/import.js';
 
         $this->template->content = View::factory('oc-panel/pages/tools/import_ads',array('ads_import'=>$this->amount_ads_import()));
 
@@ -80,11 +81,15 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
 
     public function action_process()
     {
+        $this->auto_render = FALSE;
+        $this->template = View::factory('js');
+
         //finished?
         if ($this->amount_ads_import()===0)
         {
-            Alert::set(Alert::SUCCESS,__('All ads are processed! Congrats!'));
-            $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'index')));
+            /*Alert::set(Alert::SUCCESS,__('All ads are processed! Congrats!'));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'index')));*/
+            $this->template->content = json_encode('OK');
         }
         //keep going!
         else
@@ -106,7 +111,12 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
                     $i++;
             }
 
-            $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'process')));
+            $todo  = $this->amount_ads_import();
+            $done  = $this->amount_ads_import(1); 
+            $total = $todo + $done;
+
+            $this->template->content = json_encode(round(100-($todo*100/$total)));
+            //$this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'process')));
 
         }
         
@@ -278,7 +288,7 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
         //how many images has the ad, return
         $ad_images  = 0;
 
-        for ($i=1; $i <$num_images ; $i++) 
+        for ($i=1; $i <=$num_images ; $i++) 
         { 
             $image = $adi->{$image_pattern.$i};
             //trying save image
@@ -296,7 +306,7 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
         //from URL
         if (Valid::URL($image))
         {
-            //download it
+            //download it, if takes more than 10 seconds...bad deal!
             $image_content = Core::curl_get_contents($image);
 
             //store if retrieved
@@ -313,10 +323,17 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
         //already in server
         elseif(file_exists(DOCROOT.$image))
         {
-            $file = file_exists(DOCROOT.$image);
+            $file = DOCROOT.$image;
         }
 
-        return $ad->save_image_file($file,$num);
+        try {
+            $is_image = getimagesize($file);
+        } catch (Exception $e) {
+            $is_image = FALSE;
+        }
+
+        //only if its image will be returned
+        return ($is_image!==FALSE)? $ad->save_image_file($file,$num):FALSE;
     }
 
     /**
@@ -383,13 +400,13 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
      * amount of ads left to iport
      * @return integer 
      */
-    private function amount_ads_import()
+    private function amount_ads_import($processed = 0)
     {
         //how many ads left to import?
         try {
             $ads_import =  DB::select(array(DB::expr('COUNT(`id_import`)'), 'total'))
                             ->from('adsimport')
-                            ->where('processed','=','0')
+                            ->where('processed','=',$processed)
                             ->execute()->as_array('total');
             $ads_import = key($ads_import);
 
@@ -405,7 +422,9 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
 
     /*FROM OC DB to CSV
         
-        SELECT u.name user_name,u.email user_email,a.title,a.description,a.published `date`,c.name category, l.name location,a.price,a.address,a.phone,a.website 
+        SELECT u.name user_name,u.email user_email,a.title,a.description,a.published `date`,
+                c.name category, l.name location,a.price,a.address,a.phone,a.website,
+                '' image_1, '' image_2, '' image_3, '' image_4
         FROM `oc2_ads` as a
         INNER JOIN oc2_users u
         USING(id_user)
@@ -413,6 +432,7 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
         USING (id_category)
         INNER JOIN oc2_locations l
         ON l.id_location=a.id_location
+        WHERE a.status=1
 
     */
         

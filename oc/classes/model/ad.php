@@ -400,7 +400,7 @@ class Model_Ad extends ORM {
         }   
         /*end WATERMARK variables*/
 
-d($file);
+
         //if original image is bigger that our constants we resize
         try {
             $image_size_orig = getimagesize($file);

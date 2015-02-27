@@ -36,12 +36,12 @@
             <div class="panel-heading">
                 <p>
                 <?if($ads_import>0):?>
-                    <?=sprintf(__('You got %d ads to get processed'),$ads_import)?>
+                    <div id="count_import"><?=sprintf(__('You got %d ads to get processed'),$ads_import)?></div>
                     <p>
-                    <a class="btn btn-success" href="<?=Route::url('oc-panel',array('controller'=>'import','action'=>'process'))?>">
+                    <a class="btn btn-success" id="import_process" href="<?=Route::url('oc-panel',array('controller'=>'import','action'=>'process'))?>">
                         <?=__('Process')?>
                     </a>
-                    <a class="btn btn-danger btn-xs" href="<?=Route::url('oc-panel',array('controller'=>'import','action'=>'deletequeue'))?>">
+                    <a class="btn btn-danger btn-xs" id="delete_queue" href="<?=Route::url('oc-panel',array('controller'=>'import','action'=>'deletequeue'))?>">
                         <?=__('Delete')?>
                     </a>
                     <p>
