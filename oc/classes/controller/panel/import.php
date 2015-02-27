@@ -95,7 +95,7 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
         else
         {
             //how many ads we process in each request? pass get/post
-            $limit_process = Core::request('limit',10);
+            $limit_process = Core::request('limit',5);
 
             $ads_import = DB::select()
                             ->from('adsimport')

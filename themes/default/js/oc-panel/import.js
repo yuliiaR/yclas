@@ -19,7 +19,8 @@ function process(href)
             if (isNumeric(data) && data < 100)
                 process(href);
             else
-                $("#import_process").text("Ready");
+                $("#import_process").hide();
+            
     });
 }
 
