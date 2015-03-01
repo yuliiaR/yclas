@@ -333,10 +333,6 @@ class Model_Ad extends ORM {
         
         if ($image !== NULL)
         {
-            if( ! is_numeric($height)) // when installing this field is empty, to avoid crash we check here
-                $height         = NULL;
-            if( ! is_numeric($height_thumb))
-                $height_thumb   = NULL;    
             
             if ($file = Upload::save($image, NULL, $directory))
             {
@@ -378,6 +374,11 @@ class Model_Ad extends ORM {
         $width_thumb    = core::config('image.width_thumb');
         $height_thumb   = core::config('image.height_thumb');
         $height         = core::config('image.height');
+
+        if( ! is_numeric($height)) // when installing this field is empty, to avoid crash we check here
+            $height         = NULL;
+        if( ! is_numeric($height_thumb))
+            $height_thumb   = NULL;    
 
         $filename_thumb     = 'thumb_'.$this->seotitle.'_'.$num.'.jpg';
         $filename_original  = $this->seotitle.'_'.$num.'.jpg';
