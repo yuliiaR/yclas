@@ -350,6 +350,12 @@ class Model_Ad extends ORM {
         }   
     }
 
+    /**
+     * saves image in the disk
+     * @param  string  $file 
+     * @param  integer $num  number of the image
+     * @return bool        success?
+     */
     public function save_image_file($file,$num=0)
     {
         if(core::config('image.aws_s3_active'))
