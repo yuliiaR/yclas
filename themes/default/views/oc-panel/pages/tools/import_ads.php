@@ -2,6 +2,7 @@
 
 <div class="page-header">
     <h1><?=__('Import tool for ads')?></h1>
+    <p><a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'))?>"><?=__('Import categories and locations')?></a> </p>
 </div>
 <div class="row">
     
@@ -10,7 +11,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title"><?=__('Upload CSV file')?></h3>
                 <p>
-                    <?=__('Please use the correct CSV format')?> <a href=""><?=__('download example')?>.</a>
+                    <?=__('Please use the correct CSV format')?> <a href="http://j.mp/185WfAR"><?=__('download example')?>.</a>
                     <br>
                     <span class="label label-info"><?=__('Hosting limit')?></span> 
                     upload_max_filesize: <?=ini_get('upload_max_filesize')?>, max_execution_time: <?=ini_get('max_execution_time')?><?=__('seconds')?>
