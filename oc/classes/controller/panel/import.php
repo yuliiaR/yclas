@@ -272,7 +272,7 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
         image_2
         image_3
         image_4
-        - image_3 needs to be a varchar. 
+        - image_X needs to be a varchar. 
         - If has protocol will download image,
         - if its a route will read formt he path
         - once we have the image, we change size and create thumb
@@ -283,7 +283,10 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
         //pattern in row CSV
         $image_pattern = 'image_';
         //amount images in CSV
-        $num_images = 4;
+        $num_images = core::config('advertisement.num_images');
+
+        if ($num_images>4)
+            $num_images = 4;
 
         //how many images has the ad, return
         $ad_images  = 0;
@@ -292,7 +295,7 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
         { 
             $image = $adi->{$image_pattern.$i};
             //trying save image
-            if ($this->process_image($ad,$image,$i)===TRUE)
+            if ($this->process_image($ad,$image,$ad_images+1)===TRUE)
                 $ad_images++;
 
         }

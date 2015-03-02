@@ -333,7 +333,8 @@ class Model_Ad extends ORM {
         
         if ($image !== NULL)
         {
-            
+            $path           = $this->image_path();
+            $directory      = DOCROOT.$path;
             if ($file = Upload::save($image, NULL, $directory))
             {
                 return $this->save_image_file($file,$this->has_images+1);
