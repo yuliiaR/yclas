@@ -58,7 +58,42 @@ class Model_Location extends ORM {
 
         return self::$_current;
     }
-        
+    
+    /**
+     * creates a location by name
+     * @param  string  $name               
+     * @param  integer $id_location_parent 
+     * @param  string  $description        
+     * @return Model_Location                      
+     */
+    public static function create_name($name,$order=0, $id_location_parent = 1, $parent_deep=0, $description = NULL)
+    {
+        $loc = new self();
+        $loc->where('name','=',$name)->limit(1)->find();
+
+        //if doesnt exists create
+        if (!$loc->loaded())
+        {
+            $loc->name        = $name;
+            $loc->seoname     = $loc->gen_seoname($name);
+            $loc->id_location_parent = $id_location_parent;
+            $loc->order       = $order;
+            $loc->parent_deep = $parent_deep;
+            $loc->description = $description;
+
+            try
+            {
+                $loc->save();
+            }
+            catch (ORM_Validation_Exception $e)
+            {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+
+        return $loc;
+    }
+
 	/**
 	 * Rule definitions for validation
 	 *

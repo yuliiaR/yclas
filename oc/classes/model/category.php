@@ -70,6 +70,43 @@ class Model_Category extends ORM {
     }
 
 
+    /**
+     * creates a category by name
+     * @param  string  $name               
+     * @param  integer $id_category_parent 
+     * @param  string  $description        
+     * @return Model_Category                      
+     */
+    public static function create_name($name,$order=0, $id_category_parent = 1, $parent_deep=0, $price=0, $description = NULL)
+    {
+        $cat = new self();
+        $cat->where('name','=',$name)->limit(1)->find();
+
+        //if doesnt exists create
+        if (!$cat->loaded())
+        {
+            $cat->name        = $name;
+            $cat->seoname     = $cat->gen_seoname($name);
+            $cat->id_category_parent = $id_category_parent;
+            $cat->order       = $order;
+            $cat->parent_deep = $parent_deep;
+            $cat->price       = $price;
+            $cat->description = $description;
+
+            try
+            {
+                $cat->save();
+            }
+            catch (ORM_Validation_Exception $e)
+            {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+
+        return $cat;
+    }
+
+
 	/**
 	 * Rule definitions for validation
 	 *

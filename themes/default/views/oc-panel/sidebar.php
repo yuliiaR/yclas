@@ -174,7 +174,7 @@
                             <div id="collapseTools" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <table class="table">
-                                        <tr><td class="br"><?=Theme::admin_link(__('Import tool'), 'tools','import_tool','oc-panel','glyphicon  glyphicon-import')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Import tool'), 'import','index','oc-panel','glyphicon  glyphicon-import')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Updates'), 'update','index','oc-panel','glyphicon  glyphicon-refresh')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Crontab'), 'crontab','index','oc-panel','glyphicon  glyphicon-calendar')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Sitemap'), 'tools','sitemap','oc-panel','glyphicon  glyphicon-list-alt')?></td></tr>
