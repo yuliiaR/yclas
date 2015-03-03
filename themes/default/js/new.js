@@ -191,8 +191,8 @@ function doneTyping () {
             }
         });
         
-        $('#publish-new-btn').click(function(){
-            if ($('#publish-new').valid()) {
+        $('.post_new').submit(function(){
+            if ($(this).valid()) {
                 _ouibounce.disable();
                 $('#processing-modal').modal('show');
             }
