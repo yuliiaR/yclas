@@ -216,7 +216,7 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
             } catch (Exception $e) {}
 
             //set id user to the new ad
-            $ad->id_category = $loc->id_location;
+            $ad->id_location = $loc->id_location;
             
         }
         //user was already in the import DB
