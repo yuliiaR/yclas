@@ -440,7 +440,7 @@ class Controller_New extends Controller
                     $replace = array('[URL.AD]'        =>$url_ad,
                                      '[AD.TITLE]'      =>$new_ad->title);
 
-                    Email::content(core::config('email.notify_email'),
+                    Email::content(Email::get_notification_emails(),
                                         core::config('general.site_name'),
                                         core::config('email.notify_email'),
                                         core::config('general.site_name'),
