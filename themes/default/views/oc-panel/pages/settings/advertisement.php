@@ -554,6 +554,26 @@
                     </div>
                     
                     <div class="form-group">
+                        <?= FORM::label($forms['sharing']['key'], __('Show sharing buttons'), array('class'=>'control-label col-sm-4', 'for'=>$forms['sharing']['key']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= FORM::hidden($forms['sharing']['key'], 0);?>
+                                <?= FORM::checkbox($forms['sharing']['key'], 1, (bool) $forms['sharing']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['sharing']['key'], 
+                                'data-original-title'=> __("Show sharing buttons"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-content'=>__("You can choose if you wish to display sharing buttons at each advertisement."),
+                                ))?>
+                                <?= FORM::label($forms['sharing']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['sharing']['key']))?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
                         <?= FORM::label($forms['related']['key'], __('Related ads'), array('class'=>'control-label col-sm-4', 'for'=>$forms['related']['key']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['related']['key'], $forms['related']['value'], array(

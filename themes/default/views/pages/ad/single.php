@@ -186,8 +186,12 @@
         <?endif?>
 
         <div class="clearfix"></div><br>
-<?=$ad->qr()?>
-<?=$ad->map()?>
+        <?if(core::config('advertisement.count_visits')==1):?>
+            <?=View::factory('share')?>
+            <div class="clearfix"></div><br>
+        <?endif?>
+        <?=$ad->qr()?>
+        <?=$ad->map()?>
         <?=$ad->related()?>
 
 	<?endif?>

@@ -193,3 +193,12 @@
             e.preventDefault();
         }); 
     });
+    
+    //publish new processing modal
+    $(function(){
+        $('.edit_ad_form').submit(function(){
+            if ($(this).valid()) {
+                $('#processing-modal').modal('show');
+            }
+        });
+    });
