@@ -27,6 +27,19 @@
 			break;
 	}?>
 	<p><span class="label label-warning label-as-badge"><?=$str?></span></p>
+
+    <? if( $ad->status == Model_Ad::STATUS_UNAVAILABLE AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  
+            ):?>
+            <a
+                href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
+                class="btn btn-success" 
+                title="<?=__('Activate?')?>" 
+                data-toggle="confirmation" 
+                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                data-btnCancelLabel="<?=__('No way!')?>">
+                <i class="glyphicon glyphicon-ok"></i> <?=__('Activate')?>
+            </a>
+    <?endif?>
 </div>
 <div class="row">
 	<div class="col-md-8">
@@ -304,7 +317,7 @@
 							<?endif?>
 						</div>
 						<div class="page-header"></div>
-							<?= FORM::button('submit', 'update', array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))))?>
+							<?= FORM::button('submit', (in_array(core::config('general.moderation'), Model_Ad::$moderation_status))?__('Publish'):__('Update'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))))?>
 			
 					</fieldset>
 				<?= FORM::close()?>

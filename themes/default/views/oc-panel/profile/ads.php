@@ -72,7 +72,7 @@
         
                     </td>
         
-                    <td><?= Date::format($ad->created, core::config('general.date_format'))?></td>
+                    <td><?= Date::format($ad->published, core::config('general.date_format'))?></td>
         
                     <?if( core::config('payment.to_featured')):?>
                     <td>
@@ -108,7 +108,9 @@
                             rel="tooltip" title="<?=__('Update')?>">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        <? if(($user->id_role == Model_Role::ROLE_ADMIN) AND $ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
+                        <? if( $ad->status == Model_Ad::STATUS_UNAVAILABLE 
+                                    AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  
+                            ):?>
                             <a
                                 href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
                                 class="btn btn-success" 
