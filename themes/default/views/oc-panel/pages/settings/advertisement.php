@@ -622,6 +622,26 @@
                             ))?> 
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['logbee']['key'], "<a target='_blank' href='http://www.logbee.com/'>Logbee</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['logbee']['key']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= FORM::hidden($forms['logbee']['key'], 0);?>
+                                <?= FORM::checkbox($forms['logbee']['key'], 1, (bool) $forms['logbee']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['logbee']['key'], 
+                                'data-original-title'=> "Logbee",
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-content'=> "Integrates your site with Logbee",
+                                ))?>
+                                <?= FORM::label($forms['logbee']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['count_visits']['key']))?>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
             </div>

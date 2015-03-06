@@ -67,6 +67,36 @@ class Model_Ad extends ORM {
     public static $moderation_status = array(self::MODERATION_ON,
                                             self::EMAIL_MODERATION , 
                                             self::PAYMENT_MODERATION);
+
+    /**
+     * global Model Ad instance get from controller so we can access from anywhere like Model_Ad::current()
+     * @var Model_Ad
+     */
+    protected static $_current = NULL;
+
+    /**
+     * returns the current ad
+     * @return Model_Ad
+     */
+    public static function current()
+    {
+        //we don't have so let's retrieve
+        if (self::$_current === NULL)
+        {
+            self::$_current = new self();
+
+            if( strtolower(Request::current()->controller()=='Ad')  
+                AND strtolower(Request::current()->action()) == 'view' 
+                AND Request::current()->param('seotitle')!==NULL )
+            {
+                self::$_current = self::$_current->where('seotitle', '=', Request::current()->param('seotitle'))
+                                                    ->limit(1)->cached()->find();
+            }
+        }
+
+        return self::$_current;
+    }
+
     /**
      * Rule definitions for validation
      *

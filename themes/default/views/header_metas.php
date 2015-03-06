@@ -1,11 +1,15 @@
 <meta charset="<?=Kohana::$charset?>">
+<?if (isset($_SERVER['HTTP_USER_AGENT']) and (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) : ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<?endif?>
 
 <title><?=$title?></title>
 <meta name="keywords" content="<?=$meta_keywords?>" >
 <meta name="description" content="<?=HTML::chars($meta_description)?>" >
 <meta name="copyright" content="<?=HTML::chars($meta_copyright)?>" >
-<?if (Theme::get('premium')!=1):?>
+<?if (Theme::get('premium')==1):?>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<?else:?>
 <meta name="author" content="open-classifieds.com">
 <?endif?>
 
@@ -46,5 +50,17 @@
 <?elseif (Model_Category::current()->loaded()):?>
 <link rel="alternate" type="application/atom+xml"  title="RSS <?=HTML::chars(Core::config('general.site_name').' - '.Model_Category::current()->name)?>"  href="<?=Route::url('rss',array('category'=>Model_Category::current()->seoname))?>" />
 <?endif?>    
+
+<?if (core::config('advertisement.logbee')==1 AND Model_Ad::current()!==NULL AND Model_Ad::current()->loaded()):?>
+<meta property="logbee:type" content="various"/>
+<meta property="logbee:title" content="<?=Model_Ad::current()->title?>"/>
+<meta property="logbee:url" content="<?=URL::current()?>"/>
+<meta property="logbee:desc" content="<?=Model_Ad::current()->description?>"/>
+<meta property="logbee:addr" content="<?=Model_Ad::current()->address?>"/>
+<meta property="logbee:email" content="<?=Model_Ad::current()->user->email?>"/>
+<meta property="logbee:phone" content="<?=Model_Ad::current()->phone?>"/>
+<meta property="logbee:price" content="<?=i18n::money_format(Model_Ad::current()->price)?>"/>
+<meta property="logbee:imgurl" content="<?=Core::S3_domain().'/'.Controller::$image?>"/>
+<?endif?> 
 
 <link rel="shortcut icon" href="<?=(Theme::get('favicon_url')!='') ? Theme::get('favicon_url') : core::config('general.base_url').'images/favicon.ico'?>">
