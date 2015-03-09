@@ -49,6 +49,8 @@ Theme::$scripts['footer']	= array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2
                                     '//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js',
                                     '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
+                                    'js/jquery.validate.min.js',
+                                    Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
                                     '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js',
                                     '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.min.js',
                                     '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',

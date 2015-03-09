@@ -38,8 +38,6 @@ class Controller_New extends Controller
 										
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.bbcode.min.js';
-        $this->template->scripts['footer'][] = 'js/jquery.validate.min.js';
-		$this->template->scripts['footer'][] = Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate'));
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.chained.min.js';
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js';
