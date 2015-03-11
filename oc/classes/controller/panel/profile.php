@@ -699,6 +699,23 @@ class Controller_Panel_Profile extends Auth_Controller {
                     OR $moderation == Model_Ad::EMAIL_MODERATION
                     OR $moderation == Model_Ad::PAYMENT_MODERATION) AND Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN ) 
                 {
+                    //NOTIFY ADMIN
+                    // updated ad notification email to admin (notify_email), if set to TRUE 
+                    if(core::config('email.new_ad_notify') == TRUE)
+                    {
+                        $url_ad = Route::url('ad', array('category'=>$form->category->seoname,'seotitle'=>$form->seotitle));
+                        
+                        $replace = array('[URL.AD]'        =>$url_ad,
+                                         '[AD.TITLE]'      =>$form->title);
+
+                        Email::content(Email::get_notification_emails(),
+                                            core::config('general.site_name'),
+                                            core::config('email.notify_email'),
+                                            core::config('general.site_name'),
+                                            'ads-to-admin',
+                                            $replace);
+                    }
+                    
                     Alert::set(Alert::INFO, __('Advertisement is updated, but first administrator needs to validate. Thank you for being patient!'));
                     $form->status = Model_Ad::STATUS_NOPUBLISHED;
                 }
