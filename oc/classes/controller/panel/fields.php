@@ -24,9 +24,13 @@ class Controller_Panel_Fields extends Auth_Controller {
         $this->template->styles              = array('css/sortable.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/fields.js';
+        
         //retrieve fields
+        $fields = Model_Field::get_all();
+        if ( count($fields) > 80 ) //upper bound for custom fields
+            Alert::set(Alert::WARNING,__('You have reached the maximum number of custom fields allowed.'));
 
-		$this->template->content = View::factory('oc-panel/pages/fields/index',array('fields'=>Model_Field::get_all(), 'categories' => $categories,'order_categories' => $order_categories));
+		$this->template->content = View::factory('oc-panel/pages/fields/index',array('fields' => $fields, 'categories' => $categories,'order_categories' => $order_categories));
 	}
     
 
@@ -42,6 +46,12 @@ class Controller_Panel_Fields extends Auth_Controller {
 
         if ($_POST)
         {
+            if ( count(Model_Field::get_all()) > 80 ) //upper bound for custom fields
+            {
+                Alert::set(Alert::ERROR,__('You have reached the maximum number of custom fields allowed.'));
+                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
+            }
+            
             $name   = URL::title(Core::post('name'));
 
             $field = new Model_Field();
