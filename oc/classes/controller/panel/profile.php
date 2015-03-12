@@ -249,7 +249,7 @@ class Controller_Panel_Profile extends Auth_Controller {
     	    ));
 
     	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__("My Advertisement page ").$pagination->current_page));
-    	    $ads = $my_adverts->order_by('created','desc')
+    	    $ads = $my_adverts->order_by('published','desc')
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
                 	            ->find_all();
@@ -295,9 +295,9 @@ class Controller_Panel_Profile extends Auth_Controller {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
                     HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
                 }
-                elseif ($deact_ad->status != 50)
+                elseif ($deact_ad->status != Model_Ad::STATUS_UNAVAILABLE)
 				{
-					$deact_ad->status = 50;
+					$deact_ad->status = Model_Ad::STATUS_UNAVAILABLE;
 					
 					try
 					{
@@ -331,7 +331,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 	
 	public function action_activate()
 	{
-
+        $user = Auth::instance()->get_user();
 		$id = $this->request->param('id');
 		
 		if (isset($id))
@@ -340,31 +340,52 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 			if ($active_ad->loaded())
 			{
-				if(Auth::instance()->get_user()->id_user !== $active_ad->id_user OR 
-				   Auth::instance()->get_user()->id_role !== Model_Role::ROLE_ADMIN)
+                $activate = FALSE;
+
+                //admin whatever he wants
+                if ($user->id_role == Model_Role::ROLE_ADMIN )
+                {
+                    $activate = TRUE;
+                }
+                //chekc user owner and if not moderation
+                elseif ($user->id_user == $active_ad->id_user AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status) )
+                {
+                    $activate = TRUE;
+                }
+                else
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
+                }
+
+                //its not published
+                if ($active_ad->status == Model_Ad::STATUS_PUBLISHED)
+                {
+                    $activate = FALSE;
+                    Alert::set(Alert::ALERT, __("Advertisement is already marked as 'active'"));
+                }
+
+
+                //activate the ad
+                if ($activate === TRUE)
+                {
+                    $active_ad->published  = Date::unix2mysql(time());
+                    $active_ad->status     = Model_Ad::STATUS_PUBLISHED;
+                    
+                    try
+                    {
+                        $active_ad->save();
+                    }
+                    catch (Exception $e)
+                    {
+                        throw HTTP_Exception::factory(500,$e->getMessage());
+                    }
+                }
+                //we dont activate something happened
+                else
+                {
                     HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
                 }
-				elseif ($active_ad->status != 1)
-				{
-					$active_ad->published = Date::unix2mysql(time());
-					$active_ad->status = 1;
-					
-					try
-					{
-						$active_ad->save();
-					}
-						catch (Exception $e)
-					{
-						throw HTTP_Exception::factory(500,$e->getMessage());
-					}
-				}
-				else
-				{				
-					Alert::set(Alert::ALERT, __("Advertisement is already marked as 'active'"));
-					HTTP::redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')));
-				} 
+
 			}
 			else
 			{
@@ -678,6 +699,23 @@ class Controller_Panel_Profile extends Auth_Controller {
                     OR $moderation == Model_Ad::EMAIL_MODERATION
                     OR $moderation == Model_Ad::PAYMENT_MODERATION) AND Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN ) 
                 {
+                    //NOTIFY ADMIN
+                    // updated ad notification email to admin (notify_email), if set to TRUE 
+                    if(core::config('email.new_ad_notify') == TRUE)
+                    {
+                        $url_ad = Route::url('ad', array('category'=>$form->category->seoname,'seotitle'=>$form->seotitle));
+                        
+                        $replace = array('[URL.AD]'        =>$url_ad,
+                                         '[AD.TITLE]'      =>$form->title);
+
+                        Email::content(Email::get_notification_emails(),
+                                            core::config('general.site_name'),
+                                            core::config('email.notify_email'),
+                                            core::config('general.site_name'),
+                                            'ads-to-admin',
+                                            $replace);
+                    }
+                    
                     Alert::set(Alert::INFO, __('Advertisement is updated, but first administrator needs to validate. Thank you for being patient!'));
                     $form->status = Model_Ad::STATUS_NOPUBLISHED;
                 }
