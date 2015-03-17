@@ -11,18 +11,47 @@ class Controller_Map extends Controller {
         $this->template->height = Core::get('height','100%');
         $this->template->width  = Core::get('width','100%');
         $this->template->zoom   = Core::get('zoom',core::config('advertisement.map_zoom'));
+        $this->template->height_thumb = Core::config('image.height_thumb')/4;
+        $this->template->width_thumb = Core::config('image.width_thumb')/4;
 
-        $this->template->center_lon = Core::get('lon',core::config('advertisement.center_lon'));
-        $this->template->center_lat = Core::get('lat',core::config('advertisement.center_lat'));
+        if (isset($_COOKIE['mylat'])
+            AND is_numeric($_COOKIE['mylat'])
+            AND isset($_COOKIE['mylng'])
+            AND is_numeric($_COOKIE['mylng']))
+        {
+            $this->template->center_lon = $_COOKIE['mylng'];
+            $this->template->center_lat = $_COOKIE['mylat'];            
+        }
+        else
+        {
+            $this->template->center_lon = Core::get('lon',core::config('advertisement.center_lon'));
+            $this->template->center_lat = Core::get('lat',core::config('advertisement.center_lat'));            
+        }
         
-        //last ads, you can modify this value at: advertisement.feed_elements
-        $ads = DB::select('a.seotitle')
-                ->select(array('c.seoname','category'),'a.title','a.description','a.published','a.address',array('id_ad','lat'),array('id_ad','lon'))
-                ->from(array('ads', 'a'))
-                ->join(array('categories', 'c'),'INNER')    
-                ->on('a.id_category','=','c.id_category')
-                ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
-                ->where('a.address','IS NOT',NULL);
+        $ads = new Model_Ad();
+        
+        $ads->where('status','=',Model_Ad::STATUS_PUBLISHED)
+            ->where('address','IS NOT',NULL)
+            ->where('latitude','IS NOT',NULL)
+            ->where('longitude','IS NOT',NULL);
+            
+        //filter by category 
+        if (core::get('category')!==NULL)
+        {
+            $category = new Model_Category();
+            $category->where('seoname','=',core::get('category'))->cached()->limit(1)->find();
+            if ($category->loaded())
+                $ads->where('id_category', 'IN', $category->get_siblings_ids());
+        }
+        
+        //filter by location 
+        if (core::get('location')!==NULL)
+        {
+            $location = new Model_location();
+            $location->where('seoname','=',core::get('location'))->cached()->limit(1)->find();
+            if ($location->loaded())
+                $ads->where('id_location', 'IN', $location->get_siblings_ids());
+        }
 
         //if only 1 ad
         if (is_numeric(core::get('id_ad')))
@@ -30,31 +59,9 @@ class Controller_Map extends Controller {
 
         $ads = $ads->order_by('published','desc')
                 ->limit(Core::config('advertisement.map_elements'))
-                ->as_object()
-                ->cached()
-                ->execute();
+                ->find_all();
 
-        //ads to return
-        $advertisements = array();
-
-        foreach($ads as $a)
-        {
-            if (strlen($a->address)>5)
-            {
-                //only add ads we could find the location
-                if (($coords  = self::address_coords($a->address))!==FALSE)
-                {
-                    $a->lat  = $coords['lat'];
-                    $a->lon  = $coords['lon'];
-                    //adding only those we found a coord
-                    $advertisements[] = $a;
-                }
-            }
-        }
-
-
-
-        $this->template->ads = $advertisements;
+        $this->template->ads = $ads;
 	
 	}
 

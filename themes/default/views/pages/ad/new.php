@@ -132,9 +132,18 @@
 				<?if($form_show['address'] != FALSE):?>
 				<div class="form-group">
 					
-					<div class="col-md-4">
+					<div class="col-md-8">
 						<?= FORM::label('address', __('Address'), array('class'=>'control-label', 'for'=>'address'))?>
-						<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+						<?if(core::config('advertisement.map_pub_new')):?>
+							<div class="input-group">
+								<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+								<span class="input-group-btn">
+									<button class="btn btn-default locateme" type="button"><?=__('Locate me')?></button>
+								</span>
+							</div>
+						<?else:?>
+							<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+						<?endif?>
 					</div>
 				</div>
 					<?if(core::config('advertisement.map_pub_new')):?>
@@ -143,9 +152,11 @@
 								data-lat="<?=core::config('advertisement.center_lat')?>" 
 								data-lon="<?=core::config('advertisement.center_lon')?>"
 								data-zoom="<?=core::config('advertisement.map_zoom')?>" 
-								style="height:200px;max-width:400px">
+								style="height:200px;max-width:400px;">
 							</div>
 						</div>
+						<input type="hidden" name="latitude" id="publish-latitude" value="">
+						<input type="hidden" name="longitude" id="publish-longitude" value="">
 					<?endif?>
 				<?endif?>
 				<?if($form_show['price'] != FALSE):?>

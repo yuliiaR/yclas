@@ -53,5 +53,26 @@
                 </form>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?=sprintf(__('Find %s‘s latitude & longitude'), $location->name)?></h3>
+            </div>
+            <div class="panel-body">
+                <?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Type address')))?>
+                <div class="popin-map-container">
+                    <div class="map-inner" id="map" 
+                        data-lat="<?=($location->latitude)?$location->latitude:core::config('advertisement.center_lat')?>" 
+                        data-lon="<?=($location->latitude)?$location->longitude:core::config('advertisement.center_lon')?>"
+                        data-zoom="<?=core::config('advertisement.map_zoom')?>" 
+                        style="height:200px;width:100%">
+                    </div>
+                </div>
+                <ul class="list-inline">
+                    <li><?=__('Latitude')?>: <span id="preview_lat"><?=$location->latitude?></span></li>
+                    <li><?=__('Longitude')?>: <span id="preview_lon"><?=$location->longitude?></span></li>
+                </ul>
+                <button type="submit" class="btn btn-primary gmap-submit"><?=__('Submit')?></button> 
+            </div>
+        </div>
     </div>
 </div>

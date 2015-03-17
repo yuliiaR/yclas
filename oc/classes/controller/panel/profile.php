@@ -437,6 +437,8 @@ class Controller_Panel_Profile extends Auth_Controller {
                                                        'js/jquery.validate.min.js',
                                                        Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
                                                        'js/jquery.chained.min.js',
+                                                       '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
+                                                       '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
 	                                                   'js/oc-panel/edit_ad.js');
         }
         else
@@ -446,6 +448,8 @@ class Controller_Panel_Profile extends Auth_Controller {
 	                                                   'js/jquery.validate.min.js',
 	                                                   Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
 	                                                   'js/jquery.chained.min.js',
+                                                       '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
+                                                       '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
 	                                                   'js/oc-panel/edit_ad.js');
         }
 
@@ -558,7 +562,9 @@ class Controller_Panel_Profile extends Auth_Controller {
 								'stock'			=> $stock 		= 	core::post('stock'),
 								'phone'			=> $phone 		= 	core::post('phone'),
 								'has_images'	=> 0,
-								'user'			=> $user 		= new Model_User()
+								'user'			=> $user 		= new Model_User(),
+								'latitude'		=> $latitude 	= 	core::post('latitude'),
+								'longitude'		=> $latitude 	= 	core::post('longitude')
 								); 
 
 				// append to $data new custom values
@@ -590,7 +596,9 @@ class Controller_Panel_Profile extends Auth_Controller {
 				$form->price 			= $data['price']; 								
 				$form->address 			= $data['address'];
 				$form->website 			= $data['website'];
-				$form->phone			= $data['phone'];
+				$form->phone 			= $data['phone'];
+				$form->latitude 			= $data['latitude'];
+				$form->longitude 		= $data['longitude'];
 
 				// set custom values
 				foreach ($data as $key => $value) 

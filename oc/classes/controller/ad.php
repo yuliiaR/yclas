@@ -230,6 +230,19 @@ class Controller_Ad extends Controller {
                 case 'rating':
                     $ads->order_by('rate','desc')->order_by('published','desc');
                     break;
+                //distance
+                case 'distance':
+                    if (core::request('sort') == 'distance'
+                        AND isset($_COOKIE['mylat'])
+                        AND is_numeric($_COOKIE['mylat'])
+                        AND isset($_COOKIE['mylng'])
+                        AND is_numeric($_COOKIE['mylng']))
+                    $ads->select(array(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 69.172'), 'distance'))
+                    ->where('latitude','IS NOT',NULL)
+                    ->where('longitude','IS NOT',NULL)
+                    ->order_by('distance','desc')
+                    ->order_by('published','asc');
+                    break;
                 //oldest first
                 case 'published-asc':
                     $ads->order_by('published','asc');
