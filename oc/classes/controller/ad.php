@@ -633,13 +633,25 @@ class Controller_Ad extends Controller {
 
         //check ad exists
         $id_ad  = $this->request->param('id');
+
+        //how many days
+        if (!is_numeric($days = Core::request('featured_days')))
+        {
+            $plans = Model_Order::get_featured_plans();
+            $days  = array_keys($plans);
+            $days  = reset($days);
+        }
+
+        //get price for the days
+        $amount = Model_Order::get_featured_price($days);
+
         $ad     = new Model_Ad($id_ad);
         if ($ad->loaded())
         {
             //case when payment is set to 0,gets featured for free...
-            if(core::config('payment.pay_to_go_on_feature') <= 0)
+            if($amount <= 0)
             {
-                $ad->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
+                $ad->featured = Date::unix2mysql(time() + ($days * 24 * 60 * 60));
                 try {
                     $ad->save();
                 } catch (Exception $e) {
@@ -649,10 +661,9 @@ class Controller_Ad extends Controller {
                 $this->redirect(Route::url('list')); 
             }
 
-            $amount     = core::config('payment.pay_to_go_on_feature');
             $currency   = core::config('payment.paypal_currency');
 
-            $order = Model_Order::new_order($ad, $ad->user, $id_product, $amount, $currency);
+            $order = Model_Order::new_order($ad, $ad->user, $id_product, $amount, $currency, NULL, $days);
 
             // redirect to payment
             $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
@@ -720,6 +731,15 @@ class Controller_Ad extends Controller {
             {
                 Alert::set(Alert::INFO, __('This order was already paid.'));
                 $this->redirect(Route::url('default'));
+            }
+
+            //update order based on the price and the amount of 
+            $days = core::get('featured_days');
+            if (is_numeric($days) AND ($price = Model_Order::get_featured_price($days)) !==FALSE )
+            {
+                $order->amount        = $price; //get price from config
+                $order->featured_days = $days;
+                $order->save();
             }
 
             //template header

@@ -142,7 +142,7 @@ class Model_Order extends ORM {
                         $ad->sale($this->user);
                     break;
                 case Model_Order::PRODUCT_TO_TOP:
-                        $ad->to_top();
+                        $ad->to_top($this->featured_days);
                     break;
                 case Model_Order::PRODUCT_TO_FEATURED:
                         $ad->to_feature();
@@ -166,7 +166,7 @@ class Model_Order extends ORM {
      * @param  string   $description 
      * @return Model_Order                
      */
-    public static function new_order(Model_Ad $ad, Model_User $user, $id_product, $amount, $currency = NULL, $description = NULL)
+    public static function new_order(Model_Ad $ad, Model_User $user, $id_product, $amount, $currency = NULL, $description = NULL, $featured_days = NULL)
     {
         if ($currency === NULL)
             $currency = core::config('payment.paypal_currency');
@@ -195,6 +195,10 @@ class Model_Order extends ORM {
             $order->currency      = $currency;
             $order->amount        = $amount;
             $order->description   = $description;
+
+            //store how many days the ad is featured
+            if ($featured_days!==NULL AND is_numeric($featured_days))
+                $order->featured_days = $featured_days;
 
             try {
                 $order->save();
@@ -258,5 +262,66 @@ class Model_Order extends ORM {
         return FALSE;
     }
 
+    /**
+     * returns the featured plancs
+     * @return array
+     */
+    public static function get_featured_plans()
+    {
+        return json_decode(Core::config('payment.featured_plans'),TRUE);
+    }
+
+    /**
+     * returns price for  plan
+     * @param  integer $days 
+     * @return integer / false if not found
+     */
+    public static function get_featured_price($days=NULL)
+    {
+        $plans = self::get_featured_plans();
+
+        //no days so return first price
+        if ($days===NULL)
+            return reset($plans);
+        
+        //normal lets check
+        return (isset($plans[$days]))?$plans[$days]:FALSE;
+    }
+
+    /**
+     * deletes a featured planplan
+     * @param  integer $days 
+     */
+    public static function delete_featured_plan($days)
+    {
+        $plans = self::get_featured_plans();
+
+        if (isset($plans[$days]))
+        {
+            unset($plans[$days]);
+
+            Model_Config::set_value('payment','featured_plans',json_encode($plans));
+        }
+
+    }
+
+    /**
+     * sets/creates a new plan
+     * @param integer $days  
+     * @param integer $price
+     */
+    public static function set_featured_plan($days,$price)
+    {
+        $plans = self::get_featured_plans();
+
+        //this updates a current plan
+        //if (isset($plans[$days]))
+            $plans[$days] = $price;
+
+        //order from lowest to highest number of days
+        ksort($plans);
+
+        Model_Config::set_value('payment','featured_plans',json_encode($plans));
+    }
 
 }

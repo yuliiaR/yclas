@@ -3,11 +3,13 @@
 <?if($widget->ad != FALSE):?>
 <div>		
     <?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE):?>	
-	<a class="btn btn-danger center-block" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$widget->ad->id_ad))?>"><?=__('Go Top!')?> <?=i18n::money_format(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'))?></a>
+	<a class="btn btn-danger center-block" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$widget->ad->id_ad))?>">
+    <?=__('Go Top!')?> <?=i18n::money_format(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'))?></a>
     <?endif?>
     
-    <?if(core::config('payment.pay_to_go_on_feature') > 0 AND core::config('payment.to_featured') != FALSE):?>
-	<a class="btn btn-danger center-block" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$widget->ad->id_ad))?>"><?=__('Go Featured!')?> <?=i18n::money_format(core::config('payment.pay_to_go_on_feature'),core::config('payment.paypal_currency'))?></a>
+    <?if(core::config('payment.to_featured') != FALSE AND $widget->ad->featured < Date::unix2mysql()):?>
+	<a class="btn btn-danger center-block" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$widget->ad->id_ad))?>">
+    <?=__('Go Featured!')?> <?=i18n::money_format(Model_Order::get_featured_price(),core::config('payment.paypal_currency'))?></a>
 	<?endif?>
 
     <div class="clearfix"></div><br>

@@ -167,6 +167,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `description` varchar(145) DEFAULT NULL,
   `txn_id` varchar(255) DEFAULT NULL,
+  `featured_days` int(10) unsigned NULL,
   PRIMARY KEY (`id_order`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_status` (`status`)
@@ -468,8 +469,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'sandbox', 0),
 ('payment', 'to_featured', 0),
 ('payment', 'to_top', 0),
-('payment', 'featured_days', '5'),
-('payment', 'pay_to_go_on_feature', '10'),
+('payment', 'pay_to_go_on_feature', '1'),
+('payment', 'featured_plans', '{\"5\":\"10\"}'),
 ('payment', 'pay_to_go_on_top', '5'),
 ('payment', 'paypal_account', ''),
 ('payment', 'paypal_seller', '0'),

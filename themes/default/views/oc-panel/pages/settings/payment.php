@@ -1,5 +1,27 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
+
+<div class="modal fade" id="modalplan" tabindex="-1" role="dialog" aria-labelledby="modalplan" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><?=__('Featured Plan')?></h4>
+      </div>
+      <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config'))?>
+      <div class="modal-body">
+        <input type="text" name="featured_days" placeholder="<?=__('Days')?>">
+        <input type="text" name="featured_price" placeholder="<?=i18n::money_format(0)?>">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Close')?></button>
+        <input type="submit" class="btn btn-primary" value="<?=__('Save plan')?>" >
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 	
 <?=Form::errors()?>
 <div class="page-header">
@@ -12,6 +34,7 @@
         </p>
     <?endif?>
 </div>
+
 
 <div class="row">
     <div class="col-md-8">
@@ -61,46 +84,24 @@
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['pay_to_go_on_feature']['key'], __('Price for featuring the Ad'), array('class'=>'control-label col-sm-4', 'for'=>$forms['pay_to_go_on_feature']['key']))?>
+                        <?= FORM::label($forms['to_top']['key'], __('Featured Plans'), array('class'=>'control-label col-sm-4', 'for'=>$forms['to_top']['key']))?>
                         <div class="col-sm-8">
-                            <div class="input-group">
-                                <?= FORM::hidden($forms['to_top']['key'], 0);?>
-                                <?= FORM::input($forms['pay_to_go_on_feature']['key'], $forms['pay_to_go_on_feature']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control col-sm-3', 
-                                'id' => $forms['pay_to_go_on_feature']['key'],
-                                'data-original-title'=> __("Pricing"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-content'=>__("How much the user needs to pay to feature an Ad"),  
-                                'data-rule-number' => 'true',
-                                ));?> 
-                            
-                            <span class="input-group-addon"><?=core::config('payment.paypal_currency')?></span></div>
-                        </div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalplan">
+                              <?=__('Add a plan')?>
+                            </button>
+                            <?if (is_array($featured_plans)):?>
+                            <ul>
+                            <?foreach ($featured_plans as $days => $price):?>
+                                <li>
+                                <a class="btn btn-xs btn-danger" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>?delete_plan=<?=$days?>"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
+                                <?=$days?> <?=__('Days')?> - <?=i18n::money_format($price)?> 
+                                </li>
+                            <?endforeach?>
+                            </ul>
+                            <?endif?>
+                     </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <?= FORM::label($forms['featured_days']['key'], __('Days Featured'), array('class'=>'control-label col-sm-4', 'for'=>$forms['featured_days']['key']))?>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                <?= FORM::input($forms['featured_days']['key'], $forms['featured_days']['value'], array(
-                                'placeholder' => $forms['featured_days']['value'], 
-                                'class' => 'tips form-control col-sm-3', 
-                                'id' => $forms['featured_days']['key'], 
-                                'data-original-title'=> __("Featured length"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-content'=>__("How many days an ad will be featured after paying."),
-                                'data-rule-digits' => 'true',
-                                ));?>
-                                <span class="input-group-addon"><?=__("Days")?></span>
-                            </div> 
-                        </div>
-                    </div>
-                    
+
                     <div class="form-group">
                         <?= FORM::label($forms['to_top']['key'], __('Bring to top Ad'), array('class'=>'control-label col-sm-4', 'for'=>$forms['to_top']['key']))?>
                         <div class="col-sm-8">
