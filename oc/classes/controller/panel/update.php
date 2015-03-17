@@ -32,6 +32,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'auto_locate',
                                'group_name'     =>'general', 
                                'config_value'   => 0),
+                        array( 'config_key'     =>'featured_plans',
+                               'group_name'     =>'payment', 
+                               'config_value'   => '{"5":"10"}'),
                         );
         
         Model_Config::config_array($configs);
@@ -47,7 +50,21 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` ADD `latitude` DOUBLE NULL , ADD `longitude` DOUBLE NULL ;")->execute();
         }catch (exception $e) {}
+        
+        //featured days on orders
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `featured_days` int(10) unsigned DEFAULT 0")->execute();
+        }catch (exception $e) {}
     
+        //update pay as feature, create one in the array
+        $price = core::config('payment.pay_to_go_on_feature');
+        $days  = core::config('payment.featured_days');
+
+        Model_Order::set_featured_plan($days,$price);
+
+        Model_Config::set_value('payment','pay_to_go_on_feature',1);
+
         
     }
     

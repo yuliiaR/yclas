@@ -53,16 +53,15 @@
 			
 				<!-- PAYPAL buttons to featured and to top -->
 				<?if((core::config('payment.pay_to_go_on_top') > 0  
-						&& core::config('payment.to_top') != FALSE )
-						OR (core::config('payment.pay_to_go_on_feature') > 0 
-						&& core::config('payment.to_featured') != FALSE)):?>
+						AND core::config('payment.to_top') != FALSE )
+						OR (core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql() )):?>
 					<div id="recomentadion" class="well recomentadion clearfix">
 						<?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE):?>
 							<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
 							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
 						<?endif?>
-						<?if(core::config('payment.pay_to_go_on_feature') > 0 AND core::config('payment.to_featured') != FALSE):?>
-							<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_feature'),core::config('payment.paypal_currency'));?></p>
+						<?if(core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql()):?>
+							<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
 							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
 						<?endif?>
 					</div>

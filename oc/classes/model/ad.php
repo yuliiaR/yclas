@@ -848,13 +848,14 @@ class Model_Ad extends ORM {
 
     /**
      * features an advertisement
+     * @param $days days to be featured
      * @return void 
      */
-    public function to_feature()
+    public function to_feature($days = 1)
     {
         if($this->loaded())
         {    
-            $this->featured = Date::unix2mysql(time() + (core::config('payment.featured_days') * 24 * 60 * 60));
+            $this->featured = Date::unix2mysql(time() + ($days * 24 * 60 * 60));
             try {
                 $this->save();
             } catch (Exception $e) {

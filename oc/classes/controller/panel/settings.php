@@ -261,6 +261,14 @@ class Controller_Panel_Settings extends Auth_Controller {
      */
     public function action_payment()
     {
+
+        //delete featured plan
+        if (is_numeric(Core::get('delete_plan')))
+        {
+            Model_Order::delete_featured_plan(Core::get('delete_plan'));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
+        }
+
         // validation active 
         $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
         $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
@@ -275,9 +283,15 @@ class Controller_Panel_Settings extends Auth_Controller {
         // save only changed values
         if($this->request->post())
         {
+            if (is_numeric(Core::request('featured_days')) AND is_numeric(Core::request('featured_price')))
+            {
+                Model_Order::set_featured_plan(Core::request('featured_days'),Core::request('featured_price'));
+
+                Alert::set(Alert::SUCCESS, __('Featured plan updated'));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
+            }
+
             $validation =   Validation::factory($this->request->post())
-            ->rule('pay_to_go_on_feature', 'numeric')
-            ->rule('featured_days', 'digit')
             ->rule('pay_to_go_on_top', 'numeric')
             ->rule('to_featured', 'range', array(':value', 0, 1))
             ->rule('to_top', 'range', array(':value', 0, 1))
@@ -287,12 +301,15 @@ class Controller_Panel_Settings extends Auth_Controller {
             ->rule('authorize_sandbox', 'range', array(':value', 0, 1))
             ->rule('stripe_address', 'range', array(':value', 0, 1));
             
+            //not updatable fields
+            $do_nothing = array('featured_days','pay_to_go_on_feature','featured_plans');
+
             if ($validation->check()) {
                 foreach ($config as $c) 
                 {
                     $config_res = $this->request->post($c->config_key); 
-    
-                    if($config_res != $c->config_value)
+                    
+                    if(!in_array($c->config_key, $do_nothing) AND $config_res != $c->config_value)
                     {
                         $c->config_value = $config_res;
                         try {
@@ -321,7 +338,8 @@ class Controller_Panel_Settings extends Auth_Controller {
             $pages[$value->seotitle] = $value->title;
 
         $this->template->content = View::factory('oc-panel/pages/settings/payment', array('config'          => $config,
-                                                                                           'pages'          => $pages));
+                                                                                           'pages'          => $pages,
+                                                                                           'featured_plans' => Model_Order::get_featured_plans()));
     }
 
     /**
