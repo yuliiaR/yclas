@@ -7,9 +7,10 @@
  *
  */
 .slider {
-  display: inline-block;
+  display: block;
   vertical-align: middle;
   position: relative;
+  margin-left:10px;
 }
 .slider.slider-horizontal {
   width: 210px;
