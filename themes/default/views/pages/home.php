@@ -66,3 +66,25 @@
         <?endforeach?>
     </div>
 </div>
+<?if(core::config('general.auto_locate')):?>
+    <input type="hidden" name="auto_locate" value="<?=core::config('general.auto_locate')?>">
+    <?if(count($auto_locats) > 0):?>
+        <div class="modal fade" id="auto-locations" tabindex="-1" role="dialog" aria-labelledby="autoLocations" aria-hidden="true">
+            <div class="modal-dialog	modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 id="autoLocations" class="modal-title text-center"><?=__('Please choose your closest location')?></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="list-group">
+                            <?foreach($auto_locats as $loc):?>
+                                <a href="<?=Route::url('list', array('location'=>$loc->seoname))?>" class="list-group-item"><span class="pull-right"><span class="glyphicon glyphicon-chevron-right"></span></span> <?=$loc->name?></a>
+                            <?endforeach?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?endif?>
+<?endif?>

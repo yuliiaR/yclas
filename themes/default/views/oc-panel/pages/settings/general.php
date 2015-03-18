@@ -381,6 +381,26 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <?= FORM::label($forms['auto_locate']['id'], __("Auto Locate Visitors"), array('class'=>'control-label col-sm-4', 'for'=>$forms['auto_locate']['id']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= Form::checkbox($forms['auto_locate']['key'], 1, (bool) $forms['auto_locate']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['auto_locate']['id'], 
+                                'data-content'=> __("Once set to TRUE, enables auto locate visitors"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>__("Include auto locate visitors"),
+                                ))?>
+                                <?= FORM::label($forms['auto_locate']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['auto_locate']['id']))?>
+                                <?= FORM::hidden($forms['auto_locate']['key'], 0);?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

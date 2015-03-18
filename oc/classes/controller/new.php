@@ -45,7 +45,7 @@ class Controller_New extends Controller
         if(core::config('advertisement.map_pub_new'))
         {
 	        $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
-	        $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.4/gmaps.js';
+	        $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
         }
         $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
 
@@ -149,7 +149,9 @@ class Controller_New extends Controller
                 ->rule('price', 'numeric')
                 ->rule('address', 'max_length', array(':value', 145))
                 ->rule('phone', 'max_length', array(':value', 30))
-                ->rule('website', 'max_length', array(':value', 200));
+                ->rule('website', 'max_length', array(':value', 200))
+                ->rule('latitude', 'numeric')
+                ->rule('longitude', 'numeric');
 
             if(!Auth::instance()->logged_in())
     		{
@@ -180,7 +182,9 @@ class Controller_New extends Controller
 	                            'address'       => $address     =   Core::post('address'),
 	                            'phone'         => $phone       =   Core::post('phone'),
 	                            'website'       => $website     =   Core::post('website'),
-	                            'stock'       	=> $stock     	=   Core::post('stock')
+	                            'stock'         => $stock       =   Core::post('stock'),
+	                            'latitude'      => $stock       =   Core::post('latitude'),
+	                            'longitude'     => $stock       =   Core::post('longitude')
 	                            ); 
 	            
 	            // append to $data new custom values
@@ -264,6 +268,8 @@ class Controller_New extends Controller
 				$new_ad->website		= $data['website'];
 				$new_ad->stock			= $data['stock']; 
 				$new_ad->has_images 		= 0;
+				$new_ad->latitude 		= $data['latitude'];
+				$new_ad->longitude 		= $data['longitude'];
 				
 				// set custom values
 				foreach ($data as $name => $field) 

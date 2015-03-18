@@ -62,3 +62,43 @@ $(function(){
     });
     
 });
+
+function readCookie(name) {
+    var nameEQ = encodeURIComponent(name) + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name, "", -1);
+}
+
+$(function(){
+    if ($('input[name="auto_locate"]').length) {
+        $('#auto-locations').modal('show');
+        if(!readCookie('mylat') || !readCookie('mylng')) {
+            var lat;
+            var lng;
+            GMaps.geolocate({
+                success: function(position) {
+                    lat = position.coords.latitude;
+                    lng = position.coords.longitude
+                    setCookie('mylat',lat);
+                    setCookie('mylng',lng);
+                    location.reload();
+                },
+                error: function(error) {
+                    alert('Geolocation failed: '+error.message);
+                },
+                not_supported: function() {
+                    alert("Your browser does not support geolocation");
+                },
+            });
+        }
+    }
+});

@@ -30,8 +30,13 @@
     </div><!--end of recomentadion-->
 
 <div class="btn-group pull-right">
+    <?if (core::config('advertisement.map')==1):?>
+        <a href="<?=Route::url('map')?>?category=<?=Model_Category::current()->loaded()?Model_Category::current()->seoname:NULL?>&location=<?=Model_Location::current()->loaded()?Model_Location::current()->seoname:NULL?>" class="btn btn-default btn-sm <?=(core::cookie('list/grid')==0)?'active':''?>">
+            <span class="glyphicon glyphicon-globe"></span> <?=__('Map')?>
+        </a>
+    <?endif?>
     <button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
-        <span class="glyphicon glyphicon-list-alt"></span><?=__('Sort')?> <span class="caret"></span>
+        <span class="glyphicon glyphicon-list-alt"></span> <?=__('Sort')?> <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu" id="sort-list">
         <li><a href="?sort=title-asc"><?=__('Name (A-Z)')?></a></li>
@@ -41,6 +46,9 @@
         <li><a href="?sort=price-desc"><?=__('Price (High)')?></a></li>
         <?endif?>
         <li><a href="?sort=featured"><?=__('Featured')?></a></li>
+        <?if(core::config('general.auto_locate')):?>
+            <li><a href="?sort=distance" id="sort-distance"><?=__('Distance')?></a></li>
+        <?endif?>
         <li><a href="?sort=published-desc"><?=__('Newest')?></a></li>
         <li><a href="?sort=published-asc"><?=__('Oldest')?></a></li>
     </ul>

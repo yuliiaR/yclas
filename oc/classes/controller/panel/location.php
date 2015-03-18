@@ -63,6 +63,10 @@ class Controller_Panel_Location extends Auth_Crud {
 
         $this->template->title = __('New').' '.__($this->_orm_model);
         
+        $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
+        $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
+        $this->template->scripts['footer'][] = 'js/oc-panel/locations-gmap.js';
+
         $form = new FormOrm($this->_orm_model);
         
         if ($this->request->post())
@@ -103,7 +107,8 @@ class Controller_Panel_Location extends Auth_Crud {
             }
         }
     
-        return $this->render('oc-panel/crud/create', array('form' => $form));
+        return $this->render('oc-panel/pages/locations/create', array('form' => $form));
+
     }
     /**
      * CRUD controller: UPDATE
@@ -112,6 +117,10 @@ class Controller_Panel_Location extends Auth_Crud {
     {
         $this->template->title = __('Update').' '.__($this->_orm_model).' '.$this->request->param('id');
     
+        $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
+        $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
+        $this->template->scripts['footer'][] = 'js/oc-panel/locations-gmap.js';
+
         $form = new FormOrm($this->_orm_model,$this->request->param('id'));
         $location = new Model_Location($this->request->param('id'));
         

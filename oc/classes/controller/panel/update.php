@@ -29,6 +29,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'logbee',
                                'group_name'     =>'advertisement', 
                                'config_value'   => 0),
+                        array( 'config_key'     =>'auto_locate',
+                               'group_name'     =>'general', 
+                               'config_value'   => 0),
                         array( 'config_key'     =>'featured_plans',
                                'group_name'     =>'payment', 
                                'config_value'   => '{"5":"10"}'),
@@ -42,6 +45,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `latitude` DOUBLE NULL , ADD `longitude` DOUBLE NULL ;")->execute();
         }catch (exception $e) {}
 
+        //ads latitude/longitude
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` ADD `latitude` DOUBLE NULL , ADD `longitude` DOUBLE NULL ;")->execute();
+        }catch (exception $e) {}
+        
         //featured days on orders
         try 
         {
