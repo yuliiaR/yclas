@@ -24,3 +24,18 @@ jQuery.validator.setDefaults({
 });
 
 $('.config').validate();
+
+$('.plan-add').click(function() {
+    $("#modalplan input[name='featured_days']").val('');
+    $("#modalplan input[name='featured_price']").val('');
+});
+$('.plan-edit').click(function() {
+    $('#modalplan').modal('show');
+    $("#modalplan input[name='featured_days']").val($(this).data('days'));
+    $("#modalplan input[name='featured_price']").val($(this).data('price'));
+});
+$('.plan-delete').click(function(e) {
+    e.preventDefault();
+    $(this).closest('li').slideUp();
+    $.ajax({url: $(this).attr('href')});
+});

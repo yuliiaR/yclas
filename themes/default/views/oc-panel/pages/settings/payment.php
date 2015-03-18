@@ -2,24 +2,28 @@
 
 
 <div class="modal fade" id="modalplan" tabindex="-1" role="dialog" aria-labelledby="modalplan" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><?=__('Featured Plan')?></h4>
-      </div>
-      <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config'))?>
-      <div class="modal-body">
-        <input type="text" name="featured_days" placeholder="<?=__('Days')?>">
-        <input type="text" name="featured_price" placeholder="<?=i18n::money_format(0)?>">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Close')?></button>
-        <input type="submit" class="btn btn-primary" value="<?=__('Save plan')?>" >
-      </div>
-      </form>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title text-center"><?=__('Featured Plan')?></h5>
+            </div>
+            <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config'))?>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="featured_days" placeholder="<?=__('Days')?>">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="featured_price" placeholder="<?=i18n::money_format(0)?>">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Close')?></button>
+                    <button type="submit" class="btn btn-primary"><?=__('Save plan')?></button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 	
@@ -86,20 +90,25 @@
                     <div class="form-group">
                         <?= FORM::label($forms['to_top']['key'], __('Featured Plans'), array('class'=>'control-label col-sm-4', 'for'=>$forms['to_top']['key']))?>
                         <div class="col-sm-8">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalplan">
-                              <?=__('Add a plan')?>
-                            </button>
                             <?if (is_array($featured_plans)):?>
-                            <ul>
-                            <?foreach ($featured_plans as $days => $price):?>
-                                <li>
-                                <a class="btn btn-xs btn-danger" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>?delete_plan=<?=$days?>"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
-                                <?=$days?> <?=__('Days')?> - <?=i18n::money_format($price)?> 
-                                </li>
-                            <?endforeach?>
-                            </ul>
+                                <ul class="list-unstyled">
+                                    <?$i=0;foreach ($featured_plans as $days => $price):?>
+                                        <li>
+                                            <div class="btn-group" style="margin-right:10px;">
+                                                <button type="button" class="btn btn-xs btn-warning plan-edit" data-days="<?=$days?>" data-price="<?=$price?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                                                <?if($i>0):?>
+                                                    <a class="btn btn-xs btn-danger plan-delete" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>?delete_plan=<?=$days?>"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
+                                                <?endif?>
+                                            </div>
+                                            <?=$days?> <?=__('Days')?> - <?=i18n::money_format($price)?>
+                                        </li>
+                                    <?$i++;endforeach?>
+                                </ul>
                             <?endif?>
-                     </div>
+                            <button type="button" class="btn btn-primary plan-add" data-toggle="modal" data-target="#modalplan">
+                                <?=__('Add a plan')?>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="form-group">
