@@ -490,6 +490,50 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
         
             
     }
-
+    
+    /**
+     * get geocode lat/lon points for given address from google
+     * 
+     * @param string $address
+     * @return bool|array false if can't be geocoded, array or geocdoes if successful
+     */
+    public function action_get_ads_latlgn()
+    {
+        $ads = new Model_Ad();
+        $ads = $ads->where('latitude','IS', NULL)
+                   ->where('longitude','IS', NULL)
+                   ->where('address','IS NOT',NULL)
+                   ->where('address','!=','')
+                   ->find_all();
+                
+        foreach ($ads as $ad)
+        {
+            $url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address='.$ad->address;
+            
+            //get contents from google
+            if($result = core::curl_get_contents($url)) 
+            {
+                $result = json_decode($result);
+            
+                if($result AND $result->status=="OK") {
+                    $ad->latitude  = $result->results[0]->geometry->location->lat;
+                    $ad->longitude = $result->results[0]->geometry->location->lng;
+                    
+                    try 
+                    {
+                        $ad->save();
+                    } 
+                    catch (Exception $e) 
+                    {
+                        throw HTTP_Exception::factory(500,$e->getMessage());
+                    }
+                }
+            }
+        }
+        
+        Alert::set(Alert::SUCCESS, __('Successfully imported latitude and longitude info from your ads.'));
+        
+        $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'csv')));
+    }
 
 }

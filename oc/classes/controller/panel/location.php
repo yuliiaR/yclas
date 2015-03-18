@@ -117,8 +117,6 @@ class Controller_Panel_Location extends Auth_Crud {
     {
         $this->template->title = __('Update').' '.__($this->_orm_model).' '.$this->request->param('id');
     
-        $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
-        $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/locations-gmap.js';
 
         $form = new FormOrm($this->_orm_model,$this->request->param('id'));
