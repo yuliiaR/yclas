@@ -437,8 +437,6 @@ class Controller_Panel_Profile extends Auth_Controller {
                                                        'js/jquery.validate.min.js',
                                                        Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
                                                        'js/jquery.chained.min.js',
-                                                       '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
-                                                       '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
 	                                                   'js/oc-panel/edit_ad.js');
         }
         else

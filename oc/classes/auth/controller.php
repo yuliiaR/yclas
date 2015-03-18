@@ -143,6 +143,8 @@ class Auth_Controller extends Controller
     											      'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
     											      'js/sweet-alert.min.js',
     											      'js/favico-0.3.6.min.js',
+    											      '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
+    											      '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
     			}
@@ -186,6 +188,8 @@ class Auth_Controller extends Controller
                                                       'js/oc-panel/sidebar.js?v='.Core::VERSION,	
                                                       '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js',
                                                       'js/favico-0.3.6.min.js',
+                                                      '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
+                                                      '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                                       'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );

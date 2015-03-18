@@ -56,3 +56,18 @@
     </div>
 
 </div>
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?=__('Get Latitude and Longitude')?></h3>
+            </div>
+            <div class="panel-body">
+                <p><?=__('Gets Ads Latitude and Longitude from Google Maps API using advertisements address')?></p>
+                <a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'get_ads_latlgn'))?>" class="btn btn-primary"><?=__('Process')?><a/>
+            </div>
+        </div>
+    </div>
+    
+</div>
