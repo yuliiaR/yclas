@@ -101,6 +101,9 @@
                 </div>
                 
                 <ul>
+                    <?if (core::request('sort') == 'distance') :?>
+                        <li><b><?=__('Distance');?>:</b> <?=i18n::format_measurement($ad->distance)?></li>
+                    <?endif?>
                     <?if ($ad->published!=0){?>
                         <li><b><?=__('Publish Date');?>:</b> <?=Date::format($ad->published, core::config('general.date_format'))?></li>
                     <? }?>
