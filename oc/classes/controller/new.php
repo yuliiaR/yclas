@@ -42,6 +42,11 @@ class Controller_New extends Controller
         $this->template->scripts['footer'][] = 'js/jquery.chained.min.js';
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js';
         $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.10/ouibounce.min.js';
+        if(core::config('advertisement.map_pub_new'))
+        {
+            $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
+            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
+        }
         $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
 
         // redirect to login, if conditions are met 
