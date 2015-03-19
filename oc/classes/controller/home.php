@@ -4,7 +4,12 @@ class Controller_Home extends Controller {
 
 	public function action_index()
 	{
-
+        if(core::config('general.auto_locate'))
+        {
+            Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
+            Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
+        }
+        
 	    //template header
 	    $this->template->title            = '';
 	    // $this->template->meta_keywords    = 'keywords';
