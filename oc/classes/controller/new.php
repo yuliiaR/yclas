@@ -452,8 +452,13 @@ class Controller_New extends Controller
                                         $replace);
                 }
 
+                //redirect to feature! only if post directly
+                if ($moderation == Model_Ad::POST_DIRECTLY AND core::config('payment.to_featured') != FALSE)
+                {
+                    $this->redirect(Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$new_ad->id_ad)));
+                }
                 //if post directly redirect him to the ad
-                if ($moderation == Model_Ad::POST_DIRECTLY)
+                elseif ($moderation == Model_Ad::POST_DIRECTLY)
                     $this->redirect(Route::url('ad', array('controller'=>'ad','category'=>$new_ad->category->seoname,'seotitle'=>$new_ad->seotitle)));
                 else
                     $this->redirect(Route::url('default'));
