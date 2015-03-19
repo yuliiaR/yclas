@@ -132,9 +132,9 @@ class install{
                                     'mandatory' => TRUE,
                                     'result'    => (is_dir(APPPATH) AND is_file(APPPATH.'bootstrap'.EXT))
                                     ),
-                'PHP'   =>array('message'   => 'PHP 5.3 or newer required, this version is '. PHP_VERSION,
+                'PHP'   =>array('message'   => 'PHP 5.5 or newer required, this version is '. PHP_VERSION,
                                     'mandatory' => TRUE,
-                                    'result'    => version_compare(PHP_VERSION, '5.3', '>=')
+                                    'result'    => version_compare(PHP_VERSION, '5.5', '>=')
                                     ),
                 'mod_rewrite'=>array('message'  => $mod_msg,
                                     'mandatory' => FALSE,

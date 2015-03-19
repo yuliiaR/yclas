@@ -95,9 +95,9 @@ class install{
                                         'mandatory' => TRUE,
                                         'result'    => (is_writable(DOCROOT))
                                         ),
-                'PHP'   =>array('message'   => 'PHP 5.3 or newer is required, this version is '. PHP_VERSION,
+                'PHP'   =>array('message'   => 'PHP 5.5 or newer is required, this version is '. PHP_VERSION,
                                     'mandatory' => TRUE,
-                                    'result'    => version_compare(PHP_VERSION, '5.3', '>=')
+                                    'result'    => version_compare(PHP_VERSION, '5.5', '>=')
                                     ),
                 'mod_rewrite'=>array('message'  => $mod_msg,
                                     'mandatory' => FALSE,
