@@ -56,11 +56,15 @@ Theme::$scripts['footer']	= array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2
                                     '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
                                     'js/bootstrap-slider.js',
                                     'js/favico-0.3.6.min.js',
-                                    '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
-                                    '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                     'js/default.init.js?v='.Core::VERSION,
                                     'js/theme.init.js?v='.Core::VERSION,
                                     );
+
+if(core::config('advertisement.map_pub_new'))
+{
+    Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
+    Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
+}
 
 /**
  * custom error alerts
