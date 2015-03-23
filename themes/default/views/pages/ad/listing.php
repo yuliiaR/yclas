@@ -94,7 +94,7 @@
                             <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
                                 <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
                             <?else:?>
-                                <img src="//www.placehold.it/200x200&text=<?=urlencode($ad->category->name)?>" width="200" height="200" />
+                                <img src="//www.placehold.it/200x200&text=<?=HTML::entities($ad->category->name)?>" width="200" height="200" />
                             <?endif?>
                         </figure>
                     </a>
