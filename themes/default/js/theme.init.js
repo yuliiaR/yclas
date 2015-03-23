@@ -56,3 +56,12 @@ function setCookie(c_name,value,exdays)
     var c_value = escape(value) + ((exdays==null) ? "" : ";path=/; expires="+exdate.toUTCString());
     document.cookie=c_name + "=" + c_value;
 }
+
+$(function(){
+    var maxHeight = 0;
+    $(".latest_ads").each(function() {
+        if ($(this).outerHeight() > maxHeight) {
+            maxHeight = $(this).outerHeight();
+        }
+    }).height(maxHeight);
+});
