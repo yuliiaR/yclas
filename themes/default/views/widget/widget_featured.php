@@ -18,7 +18,7 @@
 			<div class="picture pull-right">
 				<a class="pull-right" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
 					<figure>
-						<img src="//www.placehold.it/200x200&text=<?=$ad->category->name?>" width="100%">
+						<img src="//www.placehold.it/200x200&text=<?=HTML::entities($ad->category->name)?>" width="100%">
 					</figure>
 				</a>
 			</div>
