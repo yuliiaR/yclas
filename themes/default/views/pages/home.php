@@ -13,23 +13,21 @@
                 <div class="col-md-3">
                     <div class="thumbnail latest_ads">
                         <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"  class="min-h">
-                        <?if($ad->get_first_image()!== NULL):?>
-                            <img src="<?=Core::S3_domain().$ad->get_first_image()?>" alt="<?=HTML::chars($ad->title)?>">
-                        <?else:?>
-                            <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                        <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
-                            <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                        <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
-                                    <?else:?>
-                                        <img src="//www.placehold.it/200x200&text=<?=HTML::entities($ad->category->name)?>" alt="<?=HTML::chars($ad->title)?>"> 
-                                    <?endif?> 
-                        <?endif?>
+                            <?if($ad->get_first_image()!== NULL):?>
+                                <img src="<?=Core::S3_domain().$ad->get_first_image()?>" alt="<?=HTML::chars($ad->title)?>">
+                            <?else:?>
+                                <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
+                                    <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
+                                <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
+                                    <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
+                                <?else:?>
+                                    <img src="//www.placehold.it/200x200&text=<?=HTML::entities($ad->category->name)?>" alt="<?=HTML::chars($ad->title)?>"> 
+                                <?endif?> 
+                            <?endif?>
                         </a>
                         <div class="caption">
                             <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h5>
-        
                             <p ><?=Text::limit_chars(Text::removebbcode($ad->description), 30, NULL, TRUE)?></p>
-        
                         </div>
                     </div>
                 </div>     
@@ -43,17 +41,21 @@
         <?$i=0; foreach($categs as $c):?>
             <?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
                 <div class="col-md-4">
-                    <div class="category_box_title">
-                        <p><a title="<?=HTML::chars($c['name'])?>" href="<?=Route::url('list', array('category'=>$c['seoname']))?>"><?=mb_strtoupper($c['name']);?></a></p>
-                    </div>  
-                    <div class="well custom_box_content" style="padding: 8px 0;">
-                        <ul class="nav nav-list">
-                            <?foreach($categs as $chi):?>
-                                <?if($chi['id_category_parent'] == $c['id_category']):?>
-                                <li><a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><?=$chi['name'];?> <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span></a></li>
-                                <?endif?>
-                             <?endforeach?>
-                        </ul>
+                    <div class="panel panel-home-categories">
+                        <div class="panel-heading">
+                            <a title="<?=HTML::chars($c['name'])?>" href="<?=Route::url('list', array('category'=>$c['seoname']))?>"><?=mb_strtoupper($c['name']);?></a>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <?foreach($categs as $chi):?>
+                                    <?if($chi['id_category_parent'] == $c['id_category']):?>
+                                        <li class="list-group-item">
+                                            <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><?=$chi['name'];?> <span class="pull-right badge badge-success"><?=$chi['count']?></span></a>
+                                        </li>
+                                    <?endif?>
+                                 <?endforeach?>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <? $i++; if ($i%3 == 0) echo '<div class="clear"></div>';?>
