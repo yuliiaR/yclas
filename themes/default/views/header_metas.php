@@ -12,7 +12,12 @@
 <?else:?>
 <meta name="author" content="open-classifieds.com">
 <?endif?>
-
+<?if (core::config('general.landing_page')!=NULL 
+    AND strtolower(Request::current()->controller())=='ad' 
+    AND strtolower(Request::current()->action())=='listing' 
+    AND Request::current()->param('category') == URL::title(__('all'))):?>
+<link rel="canonical" href="<?=Route::url('default')?>" />
+<?endif?>
 <?if (Controller::$image!==NULL):?>
 <meta property="og:image"   content="<?=core::config('general.base_url').Controller::$image?>"/>
 <?elseif(Theme::get('logo_url')!=NULL):?>
