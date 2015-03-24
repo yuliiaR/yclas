@@ -782,6 +782,36 @@ class Controller_Ad extends Controller {
         }
     }
 
+
+    /**
+     * thanks for publish
+     * @return [type] [description]
+     */
+    public function action_thanks()
+    {
+        $ad = new Model_Ad($this->request->param('id'));
+
+        if ($ad->loaded())
+        {
+            $page = Model_Content::get_by_title(Core::config('advertisement.thanks_page'));
+
+            //template header
+            $this->template->title              = ($page->loaded())?$page->title:__('Thanks');
+            Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+            Breadcrumbs::add(Breadcrumb::factory()->set_title($ad->title)->set_url(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))));
+            Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
+
+            $this->template->bind('content', $content);
+
+            $this->template->content = View::factory('pages/ad/thanks',array('ad' => $ad,'page'=>$page)); 
+        }
+        else
+        {
+            //throw 404
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+    }
+
 	public function action_advanced_search()
 	{
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
