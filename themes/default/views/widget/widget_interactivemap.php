@@ -1,4 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<h3><?=$widget->text_title?></h3>
-<?=Core::Config('appearance.map_jscode')?>
+<?if ($widget->text_title!=''):?>
+    <div class="panel-heading">
+        <h3 class="panel-title"><?=$widget->text_title?></h3>
+    </div>
+<?endif?>
+
+<div class="panel-body">
+    <?=Core::Config('appearance.map_jscode')?>
+</div>

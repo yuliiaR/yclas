@@ -1,9 +1,19 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<h3><?=$widget->ads_title?></h3>
-<ul>
-<?foreach($widget->ads as $ad):?>
-    <li><a href="<?=Route::url('ad',array('seotitle'=>$ad->seotitle,'category'=>$ad->category->seoname))?>" title="<?=HTML::chars($ad->title)?>">
-        <?=$ad->title?></a>
-    </li>
-<?endforeach?>
-</ul>
+
+<?if ($widget->ads_title!=''):?>
+    <div class="panel-heading">
+        <h3 class="panel-title"><?=$widget->ads_title?></h3>
+    </div>
+<?endif?>
+
+<div class="panel-body">
+    <ul>
+        <?foreach($widget->ads as $ad):?>
+            <li>
+                <a href="<?=Route::url('ad',array('seotitle'=>$ad->seotitle,'category'=>$ad->category->seoname))?>" title="<?=HTML::chars($ad->title)?>">
+                    <?=$ad->title?>
+                </a>
+            </li>
+        <?endforeach?>
+    </ul>
+</div>

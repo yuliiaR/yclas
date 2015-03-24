@@ -77,12 +77,6 @@ li{
 	color: rgb(192, 79, 79);
 }
 
-.latest_ads a img{
-	max-width: 163px;
-	width: 95%;
-	margin-left: 5px;
-}
-
 .latest_ads{
     word-wrap:break-word;
 }
@@ -165,6 +159,42 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 
 .min-h{min-height: 119px!important; display:block;}
 
+.panel-home-categories {
+    border: 1px solid #e3e3e3;
+}
+.panel-home-categories > .panel-heading {
+    background-color: #2fa3e6;
+    color: #FFFFFF;
+    font-size: 17px;
+    padding: 5px 15px;
+}
+.panel-home-categories > .panel-heading a {
+    color: #FFFFFF;
+}
+.panel-home-categories > .panel-body > .list-group {
+    margin-bottom: 0;
+}
+.panel-home-categories > .panel-body > .list-group > .list-group-item {
+    padding: 10px 0;
+    border: none;
+}
+.panel-home-categories > .panel-body > .list-group > .list-group-item:first-child {
+    padding-top: 0;
+}
+.panel-sidebar {
+    border: 1px solid #e3e3e3;
+}
+.panel-sidebar > .panel-heading {
+    padding-bottom: 0;
+    border-top: 8px #2FA3E6 solid;
+}
+.panel-sidebar.Widget_Categories > .panel-body > ul,
+.panel-sidebar.Widget_Locations > .panel-body > ul,
+.panel-sidebar.Widget_Forum > .panel-body > ul,
+.panel-sidebar.Widget_RSS > .panel-body > ul {
+    padding-left: 0;
+    margin-bottom: 0;
+}
 /*Media screens*/
 @media screen and (max-width: 1199px) {
 	.header-search{display: none;}
