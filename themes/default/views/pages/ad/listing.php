@@ -1,37 +1,41 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-     
 
-    <div class="page-header">
-        <?if ($category!==NULL):?>
-	       <h1><?=$category->name?></h1>
-        <?elseif ($location!==NULL):?>
-           <h1><?=$location->name?></h1>
-        <?else:?>
-           <h1><?=__('Listings')?></h1>
-	    <?endif?>
-	</div>
+<div class="page-header">
+    <?if ($category!==NULL):?>
+        <h1><?=$category->name?></h1>
+    <?elseif ($location!==NULL):?>
+        <h1><?=$location->name?></h1>
+    <?else:?>
+        <h1><?=__('Listings')?></h1>
+    <?endif?>
+</div>
 
-    <div class="well" id="recomentadion">
-        <?if (Controller::$image!==NULL):?>
-            <img src="<?=Controller::$image?>" class="img-responsive" alt="<?=($category!==NULL) ? HTML::chars($category->name) : (($location!==NULL AND $category===NULL) ? HTML::chars($location->name) : NULL)?>">
-        <?endif?>
+<div class="well" id="recomentadion">
+    <?if (Controller::$image!==NULL):?>
+        <img src="<?=Controller::$image?>" class="img-responsive" alt="<?=($category!==NULL) ? HTML::chars($category->name) : (($location!==NULL AND $category===NULL) ? HTML::chars($location->name) : NULL)?>">
+    <?endif?>
 
-        <p>
+    <p>
         <?if ($category!==NULL):?>
             <?=$category->description?> 
         <?elseif ($location!==NULL):?>
             <?=$location->description?>
         <?endif?>
-        </p>
-        <?if (Core::config('advertisement.only_admin_post')!=1):?>
-        <i class="glyphicon glyphicon-pencil"></i> <a title="<?=__('New Advertisement')?>" 
-            href="<?=Route::url('post_new')?>?category=<?=($category!==NULL)?$category->seoname:''?>&location=<?=($location!==NULL)?$location->seoname:''?>"><?=__('Publish new advertisement')?></a>
-        <?endif?>
-    </div><!--end of recomentadion-->
+    </p>
+    
+    <?if (Core::config('advertisement.only_admin_post')!=1):?>
+        <i class="glyphicon glyphicon-pencil"></i> 
+        <a title="<?=__('New Advertisement')?>" 
+            href="<?=Route::url('post_new')?>?category=<?=($category!==NULL)?$category->seoname:''?>&location=<?=($location!==NULL)?$location->seoname:''?>">
+            <?=__('Publish new advertisement')?>
+        </a>
+    <?endif?>
+</div><!--end of recomentadion-->
 
 <div class="btn-group pull-right">
     <?if (core::config('advertisement.map')==1):?>
-        <a href="<?=Route::url('map')?>?category=<?=Model_Category::current()->loaded()?Model_Category::current()->seoname:NULL?>&location=<?=Model_Location::current()->loaded()?Model_Location::current()->seoname:NULL?>" class="btn btn-default btn-sm <?=(core::cookie('list/grid')==0)?'active':''?>">
+        <a href="<?=Route::url('map')?>?category=<?=Model_Category::current()->loaded()?Model_Category::current()->seoname:NULL?>&location=<?=Model_Location::current()->loaded()?Model_Location::current()->seoname:NULL?>" 
+            class="btn btn-default btn-sm <?=(core::cookie('list/grid')==0)?'active':''?>">
             <span class="glyphicon glyphicon-globe"></span> <?=__('Map')?>
         </a>
     <?endif?>
@@ -42,8 +46,8 @@
         <li><a href="?sort=title-asc"><?=__('Name (A-Z)')?></a></li>
         <li><a href="?sort=title-desc"><?=__('Name (Z-A)')?></a></li>
         <?if(core::config('advertisement.price')!=FALSE):?>
-        <li><a href="?sort=price-asc"><?=__('Price (Low)')?></a></li>
-        <li><a href="?sort=price-desc"><?=__('Price (High)')?></a></li>
+            <li><a href="?sort=price-asc"><?=__('Price (Low)')?></a></li>
+            <li><a href="?sort=price-desc"><?=__('Price (High)')?></a></li>
         <?endif?>
         <li><a href="?sort=featured"><?=__('Featured')?></a></li>
         <?if(core::config('general.auto_locate')):?>
@@ -66,23 +70,26 @@
                     <?if (Auth::instance()->logged_in()):?>
                         <?$fav = Model_Favorite::is_favorite($user,$ad);?>
                         <a data-id="fav-<?=$ad->id_ad?>" class="add-favorite <?=($fav)?'remove-favorite':''?>" title="<?=__('Add to Favorites')?>" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'favorites','id'=>$ad->id_ad))?>">
-                        	<i class="glyphicon glyphicon-heart<?=($fav)?'':'-empty'?>"></i>
-						</a>
+                            <i class="glyphicon glyphicon-heart<?=($fav)?'':'-empty'?>"></i>
+                        </a>
                     <?else:?>
                         <a data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
-                        	<i class="glyphicon glyphicon-heart-empty"></i>
-						</a>
+                            <i class="glyphicon glyphicon-heart-empty"></i>
+                        </a>
                     <?endif?>
                 </div>
+                
                 <?if($ad->id_location != 1):?>
                     <a href="<?=Route::url('list',array('location'=>$ad->location->seoname))?>" title="<?=HTML::chars($ad->location->name)?>">
                         <span class="label label-default"><?=$ad->location->name?></span>
                     </a>
                 <?endif?>
-                <h2>
-                    <a title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title?></a>
-                </h2>
                 
+                <h2>
+                    <a title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+                        <?=$ad->title?>
+                    </a>
+                </h2>
                 
                 <div class="picture">
                     <a class="pull-left" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">

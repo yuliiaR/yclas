@@ -22,7 +22,6 @@
         <div class="text-center">
             <h1><?=__('Checkout')?></h1>
         </div>
-        </span>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -32,7 +31,6 @@
                 </tr>
             </thead>
             <tbody>
-                
                 <tr>
                     <td class="col-md-1" style="text-align: center"><?=$order->id_product?></td>
                     <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
@@ -53,16 +51,16 @@
         </table>
 
         <?if (Core::config('payment.paypal_account')!=''):?>
-        <a class="btn btn-success btn-lg pull-right" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
-        <?=__('Pay with Paypal')?>   <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-        <div class="clearfix"></div>
+            <a class="btn btn-success btn-lg pull-right" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
+                <?=__('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+            <div class="clearfix"></div>
         <?endif?>
         
         <?if ($order->id_product!==Model_Order::PRODUCT_AD_SELL):?>
-        <div class="pull-right">
-            <?=$order->alternative_pay_button()?>
-        </div>
+            <div class="pull-right">
+                <?=$order->alternative_pay_button()?>
+            </div>
         <?endif?>
 
     </div>
