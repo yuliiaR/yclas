@@ -271,6 +271,22 @@
                             ))?> 
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['thanks_page']['key'], __('Thanks page'), array('class'=>'control-label col-sm-4', 'for'=>$forms['thanks_page']['key']))?>
+                        <div class="col-sm-8">
+                            <?= FORM::select($forms['thanks_page']['key'], $pages, $forms['thanks_page']['value'], array(
+                            'placeholder' => "", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['tos']['key'], 
+                            'data-content'=> __('Content that will be displayed to the user after he publishes an ad'),
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"right",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>__("Thanks page"),
+                            ))?> 
+                        </div>
+                    </div>
                     
                     <div class="form-group">
                         <?= FORM::label($forms['banned_words']['key'], __('Banned words'), array('class'=>'control-label col-sm-4', 'for'=>$forms['banned_words']['key']))?>

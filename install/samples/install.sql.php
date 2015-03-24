@@ -544,6 +544,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'price', 1),
 ('advertisement', 'contact', 1),
 ('advertisement', 'tos', ''),
+('advertisement', 'thanks_page', ''),
 ('advertisement', 'disqus', ''),
 ('advertisement', 'fbcomments', ''),
 ('advertisement', 'map', 0),
