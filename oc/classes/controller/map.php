@@ -14,10 +14,7 @@ class Controller_Map extends Controller {
         $this->template->height_thumb = Core::config('image.height_thumb')/4;
         $this->template->width_thumb = Core::config('image.width_thumb')/4;
 
-        if (isset($_COOKIE['mylat'])
-            AND is_numeric($_COOKIE['mylat'])
-            AND isset($_COOKIE['mylng'])
-            AND is_numeric($_COOKIE['mylng']))
+        if (Model_User::get_userlatlng())
         {
             $this->template->center_lon = $_COOKIE['mylng'];
             $this->template->center_lat = $_COOKIE['mylat'];            

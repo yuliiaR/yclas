@@ -67,11 +67,7 @@ class Controller_Home extends Controller {
         $locats = Model_Location::get_location_count();
         
         $auto_locats = NULL;
-        if(core::config('general.auto_locate')
-            AND isset($_COOKIE['mylat'])
-            AND is_numeric($_COOKIE['mylat'])
-            AND isset($_COOKIE['mylng'])
-            AND is_numeric($_COOKIE['mylng'])) {
+        if(core::config('general.auto_locate') AND Model_User::get_userlatlng()) {
                 $auto_locats = new Model_Location();
                 $auto_locats = $auto_locats ->select(array(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'), 'distance'))
                                             ->where('latitude','IS NOT',NULL)

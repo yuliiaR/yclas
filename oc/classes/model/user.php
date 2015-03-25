@@ -100,6 +100,24 @@ class Model_User extends Model_OC_User {
         }
         return FALSE;
     }
+    
+    /**
+     * checks if we have stored user's lat/lng
+     * @return array/boolean
+     */
+    public static function get_userlatlng()
+    {
+        if (isset($_COOKIE['mylat'])
+            AND is_numeric($_COOKIE['mylat'])
+            AND isset($_COOKIE['mylng'])
+            AND is_numeric($_COOKIE['mylng']))
+        {
+            return array(   "lat" => $_COOKIE['mylat'],
+                            "lng" => $_COOKIE['mylng'],
+                        );
+        }
+        else return FALSE;
+    }
 
 
 } // END Model_User

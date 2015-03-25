@@ -165,11 +165,7 @@ class Controller_Ad extends Controller {
         }
         
         //if sort by distance
-        if (core::request('sort') == 'distance'
-            AND isset($_COOKIE['mylat'])
-            AND is_numeric($_COOKIE['mylat'])
-            AND isset($_COOKIE['mylng'])
-            AND is_numeric($_COOKIE['mylng']))
+        if (core::request('sort') == 'distance' AND Model_User::get_userlatlng())
         {
             $ads->select(array(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 69.172'), 'distance'))
             ->where('latitude','IS NOT',NULL)
@@ -248,10 +244,7 @@ class Controller_Ad extends Controller {
                     break;
                 //distance
                 case 'distance':
-                    if (isset($_COOKIE['mylat'])
-                        AND is_numeric($_COOKIE['mylat'])
-                        AND isset($_COOKIE['mylng'])
-                        AND is_numeric($_COOKIE['mylng']))
+                    if (Model_User::get_userlatlng())
                     $ads->order_by('distance','asc')->order_by('published','asc');
                     break;
                 //oldest first

@@ -4,7 +4,7 @@
     <div class="panel-heading">
         <h3 class="panel-title"><?=$widget->subscribe_title?></h3>
     </div>
-<endif?>
+<?endif?>
 
 <div class="panel-body">
     <?= FORM::open(Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id)), array('class'=>'form-horizontal ', 'enctype'=>'multipart/form-data'))?>

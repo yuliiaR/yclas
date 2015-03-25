@@ -108,7 +108,7 @@
                 </div>
                 
                 <ul>
-                    <?if (core::request('sort') == 'distance') :?>
+                    <?if (core::request('sort') == 'distance' AND Model_User::get_userlatlng()) :?>
                         <li><b><?=__('Distance');?>:</b> <?=i18n::format_measurement($ad->distance)?></li>
                     <?endif?>
                     <?if ($ad->published!=0){?>
