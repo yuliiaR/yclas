@@ -266,7 +266,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-4"><?=__("Time Zone")?>:</label>                
+                        <label class="control-label col-sm-4"><?="<a target='_blank' href='http://open-classifieds.com/2015/03/23/how-to-change-time-zone/'>".__("Time Zone")."</a>"?>:</label>                
                         <div class="col-sm-8">
                         <?= FORM::select($forms['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
                                 'placeholder' => "Madrid [+1:00]", 
