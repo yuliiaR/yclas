@@ -11,7 +11,7 @@
     <div class="col-md-8">
         <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__("Listing Options")?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='http://open-classifieds.com/2015/03/24/how-to-change-settings-for-ads/'>".__("Listing Options")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <?foreach ($config as $c):?>
@@ -325,7 +325,7 @@
         </div>
             
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__("Advertisement Fields")?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='http://open-classifieds.com/2015/03/24/how-to-manage-advertisement-fields/'>".__("Advertisement Fields")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
