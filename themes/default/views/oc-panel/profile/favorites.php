@@ -1,7 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="page-header">
-	<h1><?=__('My Favorites')?></h1>		
+	<h1><?=__('My Favorites')?></h1>
+	<small><a target='_blank' href='http://open-classifieds.com/2015/03/18/how-to-edit-your-profile/'><?=__('Read more')?></a></small>		
 </div>
 
 <div class="panel panel-default">
