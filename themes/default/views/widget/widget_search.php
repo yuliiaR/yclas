@@ -87,29 +87,33 @@
         <!-- Fields coming from custom fields feature -->
         <?if($widget->custom != FALSE AND Theme::get('premium')==1):?>
             <?if (is_array($widget->custom_fields)):?>
-                <?$i=0; foreach($widget->custom_fields as $name=>$field):?>
-                <div class="form-group control-group " id="cf_search">
-                    <div class="col-xs-12">
-                    <?if($field['searchable']):?>
-                        <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
-                            $select = array(''=>'');
-                            foreach ($field['values'] as $select_name) {
-                                $select[$select_name] = $select_name;
-                            }
-                        }?>
-                        <?if($field['type'] == 'checkbox' OR $field['type'] == 'radio'):?><div class="mt-10"></div><?endif?>
-                            <?=Form::cf_form_tag('cf_'.$name, array(    
-                                'display'   => $field['type'],
-                                'label'     => $field['label'],
-                                'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
-                                'options'   => (!is_array($field['values']))? $field['values'] : $select,
-                                'categories'=> (isset($field['categories']))? $field['categories'] : "",
-                                ),NULL,TRUE,TRUE)?>
-                                <div class="clear"></div> 
-                    <?endif?>
-                    </div>
+                <div id="widget-adv-cfs" style="position: absolute; left: -999em;">
+                    <?$i=0; foreach($widget->custom_fields as $name=>$field):?>
+                        <div class="form-group control-group" id="cf_search">
+                            <div class="col-xs-12">
+                                <?if($field['searchable']):?>
+                                    <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
+                                        $select = array(''=>(!empty($field['label'])) ? $field['label']:$name);
+                                        foreach ($field['values'] as $select_name) {
+                                            $select[$select_name] = $select_name;
+                                        }
+                                    }?>
+                                    <?if($field['type'] == 'checkbox' OR $field['type'] == 'radio'):?><div class="mt-10"></div><?endif?>
+                                        <?=Form::cf_form_tag(   'cf_'.$name, array(    
+                                                                'display'   => $field['type'],
+                                                                'label'     => $field['label'],
+                                                                'placeholder'     => (!empty($field['label'])) ? $field['label']:$name,
+                                                                'data-placeholder' => $field['label'],
+                                                                'categories'=> (isset($field['categories']))? $field['categories'] : "",
+                                                                'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
+                                                                'options'   => (!is_array($field['values']))? $field['values'] : $select,
+                                                                ),core::get('cf_'.$name),FALSE,TRUE)?> 
+                                        <div class="clear"></div> 
+                                <?endif?>
+                            </div>
+                        </div>
+                    <?$i++ ;endforeach?>
                 </div>
-                <?$i++ ;endforeach?>
             <?endif?>
         <?endif?>
         <!-- /endcustom fields -->
