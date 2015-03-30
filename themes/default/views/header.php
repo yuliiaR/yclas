@@ -30,48 +30,48 @@
                         </li>
                     <?endforeach?>
                 <?else:?>
-                <?=Theme::nav_link(__('Listing'),'ad', 'glyphicon glyphicon-list' ,'listing', 'list')?>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Categories')?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <?foreach($cats as $c ):?>
-                            <?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
-                                <li class="dropdown-submenu">
-                                    <a tabindex="-1" title="<?=HTML::chars($c['seoname'])?>" href="<?=Route::url('list', array('category'=>$c['seoname'],'location'=>$loc_seoname))?>">
-                                        <?=$c['name']?>
-                                    </a>
-                                    <?if($c['has_siblings'] AND $c['id_category_parent'] == 1):?>
-                                        <ul class="dropdown-menu">							
-                                            <?foreach($cats as $chi):?>
-                                                <?if($chi['id_category_parent'] == $c['id_category']):?>
-                                                    <li>
-                                                        <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname'],'location'=>$loc_seoname))?>">
-                                                            <span class="header_cat_list"><?=$chi['name']?></span> 
-                                                            <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span>
-                                                        </a>
-                                                    </li>
-                                                <?endif?>
-                                            <?endforeach?>
-                                        </ul>
-                                    <?endif?>
-                                </li>
-                            <?endif?>
-                        <?endforeach?>
-                    </ul>
-                </li>
-                <?if (core::config('general.blog')==1):?>
-                    <?=Theme::nav_link(__('Blog'),'blog','','index','blog')?>
-                <?endif?>
-                <?if (core::config('general.faq')==1):?>
-                    <?=Theme::nav_link(__('FAQ'),'faq','','index','faq')?>
-                <?endif?>
-                <?if (core::config('general.forums')==1):?>
-                    <?=Theme::nav_link('','forum','glyphicon glyphicon-tag','index','forum-home')?>
-                <?endif?>
-                <?=Theme::nav_link('','ad', 'glyphicon glyphicon-search ', 'advanced_search', 'search')?>
-                <?if (core::config('advertisement.map')==1):?>
-                    <?=Theme::nav_link('','map', 'glyphicon glyphicon-globe ', 'index', 'map')?>
-                <?endif?>
+                    <?=Theme::nav_link(__('Listing'),'ad', 'glyphicon glyphicon-list' ,'listing', 'list')?>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Categories')?> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <?foreach($cats as $c ):?>
+                                <?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" title="<?=HTML::chars($c['seoname'])?>" href="<?=Route::url('list', array('category'=>$c['seoname'],'location'=>$loc_seoname))?>">
+                                            <?=$c['name']?>
+                                        </a>
+                                        <?if($c['has_siblings'] AND $c['id_category_parent'] == 1):?>
+                                            <ul class="dropdown-menu">							
+                                                <?foreach($cats as $chi):?>
+                                                    <?if($chi['id_category_parent'] == $c['id_category']):?>
+                                                        <li>
+                                                            <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname'],'location'=>$loc_seoname))?>">
+                                                                <span class="header_cat_list"><?=$chi['name']?></span> 
+                                                                <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span>
+                                                            </a>
+                                                        </li>
+                                                    <?endif?>
+                                                <?endforeach?>
+                                            </ul>
+                                        <?endif?>
+                                    </li>
+                                <?endif?>
+                            <?endforeach?>
+                        </ul>
+                    </li>
+                    <?if (core::config('general.blog')==1):?>
+                        <?=Theme::nav_link(__('Blog'),'blog','','index','blog')?>
+                    <?endif?>
+                    <?if (core::config('general.faq')==1):?>
+                        <?=Theme::nav_link(__('FAQ'),'faq','','index','faq')?>
+                    <?endif?>
+                    <?if (core::config('general.forums')==1):?>
+                        <?=Theme::nav_link('','forum','glyphicon glyphicon-tag','index','forum-home')?>
+                    <?endif?>
+                    <?=Theme::nav_link('','ad', 'glyphicon glyphicon-search ', 'advanced_search', 'search')?>
+                    <?if (core::config('advertisement.map')==1):?>
+                        <?=Theme::nav_link('','map', 'glyphicon glyphicon-globe ', 'index', 'map')?>
+                    <?endif?>
                     <?=Theme::nav_link('','contact', 'glyphicon glyphicon-envelope ', 'index', 'contact')?>
                 <?endif?>
             </ul>

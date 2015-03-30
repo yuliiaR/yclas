@@ -562,7 +562,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 								'has_images'	=> 0,
 								'user'			=> $user 		= new Model_User(),
 								'latitude'		=> $latitude 	= 	core::post('latitude'),
-								'longitude'		=> $latitude 	= 	core::post('longitude')
+								'longitude'		=> $longitude 	= 	core::post('longitude')
 								); 
 
 				// append to $data new custom values

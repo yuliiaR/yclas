@@ -49,17 +49,17 @@
     <?if($images):?>
         <div class="row">
             <div id="gallery" class="col-md-9">
-                
+                <div class="row">
                     <?foreach ($images as $path => $value):?>
-                    <?if( isset($value['thumb']) AND isset($value['image']) ):?>
-                        <div class="col-md-3">
-                        <a href="<?=$value['base'].$value['image']?>" class="thumbnail gallery-item" data-gallery>
-                            <img src="<?=$value['base'].$value['thumb']?>" class="img-rounded" alt="<?=HTML::chars($ad->title)?>">
-                        </a>
-                        </div>
-                    <?endif?>	
+                        <?if( isset($value['thumb']) AND isset($value['image']) ):?>
+                            <div class="col-md-3">
+                                <a href="<?=$value['base'].$value['image']?>" class="thumbnail gallery-item" data-gallery>
+                                    <img src="<?=$value['base'].$value['thumb']?>" class="img-rounded" alt="<?=HTML::chars($ad->title)?>">
+                                </a>
+                            </div>
+                        <?endif?>
                     <?endforeach?>
-                
+                </div>
             </div>
         </div>
     <?endif?>
