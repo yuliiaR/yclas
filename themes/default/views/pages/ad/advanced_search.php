@@ -15,7 +15,7 @@
                 <div class="form-group">
                 <?= FORM::label('category', __('Category'), array('class'=>'', 'for'=>'category' ))?>
                     <div class="control mr-30">
-                        <select name="category" id="category" class="form-control " value="<?=core::get('category')?>" data-placeholder="<?=__('Category')?>">
+                        <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category" class="form-control" data-placeholder="<?=__('Category')?>">
                         <option></option>
                         <?function lili($item, $key,$cats){?>
                         <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <?= FORM::label('location', __('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
                         <div class="control mr-30">
-                            <select name="location" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
+                            <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
                             <option></option>
                             <?function lolo($item, $key,$locs){?>
                             <option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
