@@ -870,23 +870,67 @@ class Controller_Ad extends Controller {
         	}
 
 	        $category = NULL;
-            //filter by category 
-            if (core::get('category')!==NULL)
-            {
-                $category = new Model_Category();
-                $category->where('seoname','=',core::get('category'))->cached()->limit(1)->find();
-                if ($category->loaded())
-                    $ads->where('id_category', 'IN', $category->get_siblings_ids());
-            }
-
 	        $location = NULL;
-            //filter by location 
-            if (core::get('location')!==NULL)
+	        
+            if (core::config('general.search_multi_catloc'))
             {
-                $location = new Model_location();
-                $location->where('seoname','=',core::get('location'))->cached()->limit(1)->find();
-                if ($location->loaded())
-                    $ads->where('id_location', 'IN', $location->get_siblings_ids());
+                //filter by category
+                if (is_array(core::get('category')))
+                {
+                    $cat_siblings_ids = array();
+                    
+                    foreach (core::get('category') as $cat)
+                    {
+                        if ($cat!==NULL)
+                        {
+                            $category = new Model_Category();
+                            $category->where('seoname','=',$cat)->cached()->limit(1)->find();
+                            $cat_siblings_ids = array_merge($cat_siblings_ids,$category->get_siblings_ids());
+                        }
+                    }
+
+                    if ($cat_siblings_ids > 0)
+                        $ads->where('id_category', 'IN', $cat_siblings_ids);
+                }
+                
+                //filter by location 
+                if (is_array(core::get('location')))
+                {
+                    $loc_siblings_ids = array();
+                    
+                    foreach (core::get('location') as $loc)
+                    {
+                        if ($loc!==NULL)
+                        {
+                            $location = new Model_location();
+                            $location->where('seoname','=',$loc)->cached()->limit(1)->find();
+                            $loc_siblings_ids = array_merge($loc_siblings_ids,$location->get_siblings_ids());
+                        }
+                    }
+                    
+                    if ($loc_siblings_ids > 0)
+                        $ads->where('id_location', 'IN', $loc_siblings_ids);
+                }
+            }
+            else
+            {
+                if (core::get('category')!==NULL)
+                {
+                    $category = new Model_Category();
+                    $category->where('seoname','=',core::get('category'))->cached()->limit(1)->find();
+                    if ($category->loaded())
+                        $ads->where('id_category', 'IN', $category->get_siblings_ids());
+                }
+                
+                $location = NULL;
+                //filter by location 
+                if (core::get('location')!==NULL)
+                {
+                    $location = new Model_location();
+                    $location->where('seoname','=',core::get('location'))->cached()->limit(1)->find();
+                    if ($location->loaded())
+                        $ads->where('id_location', 'IN', $location->get_siblings_ids());
+                }
             }
 
             //filter by price(s)

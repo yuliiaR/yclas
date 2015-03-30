@@ -12,13 +12,13 @@
 	
 			<?if (!Auth::instance()->logged_in()):?>
 			<div class="form-group">
-				<div class="col-xs-10">
+				<div class="col-xs-12">
 				<?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
 					<?= FORM::input('name', '', array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-xs-10">
+				<div class="col-xs-12">
 				<?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?>
 					<?= FORM::input('email', '', array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
 				</div>
@@ -26,13 +26,13 @@
 			<?endif?>
 	
 			<div class="form-group">
-				<div class="col-xs-10">
+				<div class="col-xs-12">
 				<?= FORM::label('subject', __('Subject'), array('class'=>'control-label', 'for'=>'subject'))?>
 					<?= FORM::input('subject', "", array('placeholder' => __('Subject'), 'class' => 'form-control', 'id' => 'subject'))?>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-xs-10">
+				<div class="col-xs-12">
 				<?= FORM::label('message', __('Message'), array('class'=>'control-label', 'for'=>'message'))?>
 					<?= FORM::textarea('message', "", array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>	
 					</div>
@@ -40,7 +40,7 @@
 			<!-- file to be sent-->
 			<?if(core::config('advertisement.upload_file')):?>
 			<div class="form-group">
-				<div class="col-xs-10">
+				<div class="col-xs-12">
 					<?= FORM::label('file', __('File'), array('class'=>'control-label', 'for'=>'file'))?>
 					<?= FORM::file('file', array('placeholder' => __('File'), 'class' => 'input-xlarge', 'id' => 'file'))?>
 				</div>
@@ -49,7 +49,7 @@
 	
 			<?if (core::config('advertisement.captcha') != FALSE):?>
 			<div class="form-group">
-				<div class="col-xs-10">
+				<div class="col-xs-12">
 					<?if (Core::config('general.recaptcha_active')):?>
 						<?=Captcha::recaptcha_display()?>
 					<?else:?>

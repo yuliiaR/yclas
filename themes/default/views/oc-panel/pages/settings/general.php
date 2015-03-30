@@ -383,6 +383,26 @@
                     </div>
                     
                     <div class="form-group">
+                        <?= FORM::label($forms['search_multi_catloc']['id'], __("Multi select category and location search"), array('class'=>'control-label col-sm-4', 'for'=>$forms['search_multi_catloc']['id']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= Form::checkbox($forms['search_multi_catloc']['key'], 1, (bool) $forms['search_multi_catloc']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['search_multi_catloc']['id'], 
+                                'data-content'=> __("Once set to TRUE, enables multi select category and location search"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>__("Multi select category and location search"),
+                                ))?>
+                                <?= FORM::label($forms['search_multi_catloc']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['search_multi_catloc']['id']))?>
+                                <?= FORM::hidden($forms['search_multi_catloc']['key'], 0);?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
                         <?= FORM::label($forms['auto_locate']['id'], __("Auto Locate Visitors"), array('class'=>'control-label col-sm-4', 'for'=>$forms['auto_locate']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">

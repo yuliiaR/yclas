@@ -278,7 +278,7 @@ function editPlace(placeid){
 		
 		
 		
-	   var jscodetxt = "<script type='text/javascript' src='http://www.google.com/jsapi'></script>\n";	
+	   var jscodetxt = "<script type='text/javascript' src='//www.google.com/jsapi'></script>\n";	
 	   
 	  jscodetxt = jscodetxt + 	"<script type='text/javascript'>";
 	    jscodetxt = jscodetxt + 	"google.load('visualization', '1', {'packages': ['geochart']});\n";
