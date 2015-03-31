@@ -225,14 +225,11 @@ class Controller_Panel_Location extends Auth_Crud {
     /**
      * CRUD controller: DELETE
      */
-    public function action_delete($id_location = NULL)
+    public function action_delete()
     {
         $this->auto_render = FALSE;
-        
-        if($this->request->param('id'))
-            $id_location = $this->request->param('id');
 
-        $location = new Model_Location($id_location);
+        $location = new Model_Location($this->request->param('id'));
 
         //update the elements related to that ad
         if ($location->loaded())
