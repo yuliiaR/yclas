@@ -44,6 +44,13 @@
                     if(is_array($order))
                         array_walk($order, 'lili',$cats);?>
                 </ol><!--ol_1-->
+                <?if(count($cats) > 1) :?>
+                    <p>
+                        <button data-toggle="modal" data-target="#delete-all" class="btn btn-danger pull-right">
+                            <?=__('Delete all categories')?>
+                        </button>
+                    </p>
+                <?endif?>
             </div>
         </div>
     </div>
@@ -66,6 +73,27 @@
                     <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories'))))?>
                 <?= FORM::close()?>
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="delete-all" tabindex="-1" role="dialog" aria-labelledby="deleteCategories" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <?= FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'delete_all'), array('class'=>'form-horizontal', 'role'=>'form')))?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
+                    <h4 id="deleteCategories" class="modal-title"><?=__('Are you sure you want to delete all the categories?')?></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <p><?=__('We will move all the ads to home category.')?> <?=__('This is permanent! No backups, no restores, no magic undo button. We warned you, ok?')?></p>
+                    </div>
+                </div>
+                <div class="modal-body text-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
+                    <button type="submit" class="btn btn-danger" name="confirmation" value="1"><?=__('Delete')?></button>
+                </div>
+            <?= FORM::close()?>
         </div>
     </div>
 </div>

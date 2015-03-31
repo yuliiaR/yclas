@@ -48,7 +48,14 @@
                 </ol><!--ol_1-->
                 
                 <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'location','action'=>'saveorder'))?>'></span>
-
+                
+                <?if(count($locs) > 0) :?>
+                    <p>
+                        <button data-toggle="modal" data-target="#delete-all" class="btn btn-danger pull-right">
+                            <?=__('Delete all locations')?>
+                        </button>
+                    </p>
+                <?endif?>
             </div>
         </div>
     </div>
@@ -175,6 +182,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="delete-all" tabindex="-1" role="dialog" aria-labelledby="deleteLocations" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <?= FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'delete_all'), array('class'=>'form-horizontal', 'role'=>'form')))?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
+                    <h4 id="deleteLocations" class="modal-title"><?=__('Are you sure you want to delete all the locations?')?></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <p><?=__('We will move all the ads to home location.')?> <?=__('This is permanent! No backups, no restores, no magic undo button. We warned you, ok?')?></p>
+                    </div>
+                </div>
+                <div class="modal-body text-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
+                    <button type="submit" class="btn btn-danger" name="confirmation" value="1"><?=__('Delete')?></button>
+                </div>
+            <?= FORM::close()?>
         </div>
     </div>
 </div>

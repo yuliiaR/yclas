@@ -480,5 +480,49 @@ class Controller_Panel_Location extends Auth_Crud {
             
         }
 	}   
-
+    
+    /**
+     * deletes all the locations
+     * @return void 
+     */
+    public function action_delete_all()
+    {
+        if(core::post('confirmation'))
+        {
+            //delete location icons
+            $locations = new Model_Location();
+            $locations = $locations->where('id_location','!=','1')->find_all();
+            
+            foreach ($locations as $location)
+            {
+                $root = DOCROOT.'images/locations/'; //root folder
+                if (is_dir($root))
+                {
+                    @unlink($root.$location->seoname.'.png');
+                    
+                    // delete icon from Amazon S3
+                    if(core::config('image.aws_s3_active'))
+                        $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$location->seoname.'.png');
+                }
+            }
+            
+            //set home location to all the ads
+            $query = DB::update('ads')
+                        ->set(array('id_location' => '1'))
+                        ->execute();
+            
+            //delete all locations
+            $query = DB::delete('locations')
+                        ->where('id_location','!=','1')
+                        ->execute();
+            
+            Alert::set(Alert::SUCCESS, __('All locations were deleted.'));
+            
+        }
+        else {
+            Alert::set(Alert::ERROR, __('You did not confirmed your delete action.'));
+        }
+        
+        HTTP::redirect(Route::url('oc-panel',array('controller'=>'location', 'action'=>'index')));
+    }
 }
