@@ -420,6 +420,50 @@ class Controller_Panel_Category extends Auth_Crud {
             }
             
         }
-	}   
-
+    }
+    
+    /**
+    * deletes all the categories
+    * @return void 
+    */
+    public function action_delete_all()
+    {
+        if(core::post('confirmation'))
+        {
+            //delete categories icons
+            $categories = new Model_Category();
+            $categories = $categories->where('id_category','!=','1')->find_all();
+            
+            foreach ($categories as $category)
+            {
+                $root = DOCROOT.'images/categories/'; //root folder
+                if (is_dir($root))
+                {
+                    @unlink($root.$category->seoname.'.png');
+                    
+                    // delete icon from Amazon S3
+                    if(core::config('image.aws_s3_active'))
+                        $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$category->seoname.'.png');
+                }
+            }
+            
+            //set home category to all the ads
+            $query = DB::update('ads')
+                        ->set(array('id_category' => '1'))
+                        ->execute();
+            
+            //delete all categories
+            $query = DB::delete('categories')
+                        ->where('id_category','!=','1')
+                        ->execute();
+            
+            Alert::set(Alert::SUCCESS, __('All categories were deleted.'));
+            
+        }
+        else {
+            Alert::set(Alert::ERROR, __('You did not confirmed your delete action.'));
+        }
+        
+        HTTP::redirect(Route::url('oc-panel',array('controller'=>'category', 'action'=>'index')));
+    }
 }
