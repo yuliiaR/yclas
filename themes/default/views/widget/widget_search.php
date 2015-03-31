@@ -39,6 +39,23 @@
                                 array_walk($cat_order , 'lili_search', $widget->cat_items);?>
                         </select> 
                     </div>
+                    <div class="col-xs-12">
+                        <?= FORM::label('category', __('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
+                        <select data-placeholder="<?=__('Categories')?>" name="category" id="category_widget_search" class="form-control disable-chosen">
+                            <option></option>
+                            <?function lili_search($item, $key,$cats){?>
+                            <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
+                                <?if (count($item)>0):?>
+                                    <optgroup label="<?=$cats[$key]['name']?>">  
+                                    <? if (is_array($item)) array_walk($item, 'lili_search', $cats);?>
+                                    </optgroup>
+                                <?endif?>
+                            <?}
+                            $cat_order = $widget->cat_order_items; 
+                            if (is_array($cat_order))
+                                array_walk($cat_order , 'lili_search', $widget->cat_items);?>
+                        </select> 
+                    </div>
                 </div>
             <?endif?>
             <!-- end categories/ -->
@@ -89,9 +106,9 @@
             <?if (is_array($widget->custom_fields)):?>
                 <div id="widget-adv-cfs" style="position: absolute; left: -999em;">
                     <?$i=0; foreach($widget->custom_fields as $name=>$field):?>
-                        <div class="form-group control-group" id="cf_search">
-                            <div class="col-xs-12">
-                                <?if($field['searchable']):?>
+                        <?if($field['searchable']):?>
+                            <div class="form-group control-group" id="cf_search">
+                                <div class="col-xs-12">
                                     <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
                                         $select = array(''=>(!empty($field['label'])) ? $field['label']:$name);
                                         foreach ($field['values'] as $select_name) {
@@ -108,10 +125,10 @@
                                                                 'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
                                                                 'options'   => (!is_array($field['values']))? $field['values'] : $select,
                                                                 ),core::get('cf_'.$name),FALSE,TRUE)?> 
-                                        <div class="clear"></div> 
-                                <?endif?>
+                                    <div class="clear"></div>
+                                </div>
                             </div>
-                        </div>
+                        <?endif?>
                     <?$i++ ;endforeach?>
                 </div>
             <?endif?>
