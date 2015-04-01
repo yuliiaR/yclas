@@ -106,7 +106,18 @@ $( ".locateme" ).click(function() {
     if($('.cf_integer_fields').length != 0)
         var $integer = $(".cf_integer_fields").attr("name");
     
-    var $params = {rules:{}, messages:{}};
+    var $params = {
+        rules:{},
+        messages:{},
+        focusInvalid: false,
+        invalidHandler: function(form, validator) {
+            if (!validator.numberOfInvalids())
+                return;
+            $('html, body').animate({
+                scrollTop: $(validator.errorList[0].element).offset().top
+            }, 500);
+        }
+    };
     $params['rules'][$integer] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
     $params['rules'][$decimal] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
     $params['rules']['price'] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
