@@ -7,36 +7,17 @@
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
-            <div class="panel-body">
-                <span class="label label-info"><?=__('Heads Up!')?></span> 
-                <?=__('Select .csv file to upload categories or locations. Valid format must be:')?>
-                <table class="table table-striped ">
-                      <thead>
-                    <tr>
-                          <th>Name</th>
-                          <th>Seoname</th>
-                    </tr>
-                      </thead>
-                      <tbody>
-                    <tr>
-                      <td>Category 1</td>
-                      <td>category-seoname</td>
-                    </tr>
-                    <tr>
-                          <td>Category 2</td>
-                          <td></td>
-                    </tr>
-                </table>
-                <?=__('Name is mandatory. But seoname is not, if not provided it is automatically generated')?>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?=__('Upload CSV file')?></h3>
             </div>
             <div class="panel-body">
+                <p>
+                    <?=__('Please use the correct CSV format')?>
+                    <br>
+                    <?=__('Categories')?>: <a href="https://mega.co.nz/#!4wZQVCzA"><?=__('download example')?>.</a>
+                    <?=__('Locations')?>: <a href="https://mega.co.nz/#!BxZDzDCC"><?=__('download example')?>.</a>
+                </p>
+                <hr>
                 <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('class'=>'', 'enctype'=>'multipart/form-data'))?>
                     <div class="form-group">
                         <label for=""> <?=__('import Categories')?></label>
