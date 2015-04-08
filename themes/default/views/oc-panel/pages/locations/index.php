@@ -144,27 +144,8 @@
                     <div class="panel-heading"><?=_('Upload CSV file')?></div>
                     <div class="panel-body">
                         <p>
-                            <span class="label label-info"><?=__('Heads Up!')?></span> <?=__('Select .csv file to upload locations. Valid format must be:')?>
+                            <?=__('Please use the correct CSV format')?> <a href="https://mega.co.nz/#!BxZDzDCC"><?=__('download example')?>.</a>
                         </p>
-                        <table class="table table-striped ">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Seoname</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Location 1</td>
-                                    <td>location-seoname</td>
-                                </tr>
-                                <tr>
-                                    <td>Location 2</td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p><?=__('Name is mandatory. But seoname is not, if not provided it is automatically generated')?></p>
                         <hr>
                         <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'.'?id_parent='.Core::get('id_location', 1))), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
                             <div class="form-group">

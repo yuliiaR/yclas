@@ -16,85 +16,84 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
         $this->template->title = __('Import tool for locations and categories');
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
 
+        //sending a CSV
         if($_POST)
         {
-            $bool_csv_parse_error = FALSE;
-            $prefix = Database::instance()->table_prefix();
-
             foreach($_FILES as $file => $path) 
             {
-
                 $csv = $path["tmp_name"];
-                if ($csv!=="" AND ($handle = fopen($csv, "r")) !== FALSE) 
+                $csv_2[] = $file;
+                if($file=='csv_file_categories' AND $csv != FALSE)
                 {
-                    if($file=='csv_file_categories')
+                    $expected_header = array('name','category_parent','price');
+                    
+                    $cat_array = Core::csv_to_array($csv,$expected_header);
+                    
+                    if ($cat_array===FALSE)
                     {
-                        $type = 'categories';
-                        $t = 'category';
-                        $obj_model_imported = new Model_Category();
+                        Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
                     }
-                    elseif($file=='csv_file_locations')
+                    else
                     {
-                        $type = 'locations';
-                        $t = 'location';
-                        $obj_model_imported = new Model_Location();
-                    }
-
-                    $i = -1;
-                    $array='';
-                    while(($data = fgetcsv($handle, 0, ",")) !== FALSE)
-                    {
-                        $i++;
-                        //avoid first line and blank lines (fgetcsv() returns blank lines found in a CSV file as an array comprising a single NULL field)
-                        if ($i==0 OR empty($data[0]))
-                            continue; // next line
-
-                        $name = $data[0];
-                        $seoname = (isset($data[1])) ? $data[1] : '';
-
-                        if (empty($seoname))
-                        {
-                            $seoname = $obj_model_imported->gen_seoname($name);
+                        foreach ($cat_array as $cat) {
+                            
+                            //category parent was sent?
+                            if($cat[1])
+                            {
+                                $category_parent = new Model_Category();
+                                $category_parent->where('name','=',$cat[1])->limit(1)->find();
+                                
+                                if ($category_parent->loaded())
+                                    $cat[1] = $category_parent->id_category;
+                                else
+                                    $cat[1] = 1;
+                            }
+                            else
+                                $cat[1] = 1;
+                            
+                            Model_Category::create_name($cat[0], 0, $cat[1], 0, $cat[2]);
                         }
                         
-                        $array .= '('.Database::instance()->quote($name).',1,'.Database::instance()->quote($seoname).'),';
-                        $i++;
+                        Core::delete_cache();
+                        Alert::set(Alert::SUCCESS, __('Categories successfully imported.'));
                     }
-                    fclose($handle); 
-                    unset($obj_model_imported);
-
-                    if (empty($array))
-                    {
-                        Alert::set(Alert::INFO, sprintf(__('File %s contains invalid parsing format!'),$path['name']));
-                        $bool_csv_parse_error = TRUE;
-                        continue; // next $_FILES if any
-                    }
-                   
-                    $array = rtrim($array, ',');
-                    
-                    $query = DB::query(Database::UPDATE,"INSERT INTO `".$prefix.$type."`
-                        (`name` ,`id_".$t."_parent`,`seoname`)
-                        VALUES $array ON DUPLICATE KEY UPDATE `id_".$t."_parent`=".Core::get('id_parent', 1).";"); 
-
-                    try 
-                    {
-                       $query->execute();
-                    } 
-                    catch (Exception $e) 
-                    {
-                        $bool_csv_parse_error = TRUE;
-                    }
-
-                    if($query == FALSE)
-                        $bool_csv_parse_error = TRUE;
-                    else
-                        Alert::set(Alert::SUCCESS, sprintf(__('%u %s have been created'),$i,__(ucfirst($type))));
                 }
-            }
-            if ($bool_csv_parse_error)
-            {
-                Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
-                $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                elseif($file=='csv_file_locations' AND $csv != FALSE)
+                {
+                    $expected_header = array('name','location_parent','latitude','longitude');
+                    
+                    $loc_array = Core::csv_to_array($csv,$expected_header);
+                    
+                    if ($loc_array===FALSE)
+                    {
+                        Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
+                    }
+                    else
+                    {
+                        foreach ($loc_array as $loc) {
+                            
+                            //location parent was sent?
+                            if($loc[1])
+                            {
+                                $location_parent = new Model_Location();
+                                $location_parent->where('name','=',$loc[1])->limit(1)->find();
+                                
+                                if ($location_parent->loaded())
+                                    $loc[1] = $location_parent->id_location;
+                                else
+                                    $loc[1] = 1;
+                            }
+                            else
+                                $loc[1] = 1;
+                            
+                            Model_Location::create_name($loc[0], 0, $loc[1], 0, $loc[2], $loc[3]);
+                        }
+                        
+                        Core::delete_cache();
+                        Alert::set(Alert::SUCCESS, __('Locations successfully imported.'));
+                    }
+                }
+                
             }
         } 
 

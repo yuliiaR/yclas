@@ -55,23 +55,50 @@
         </div>
     </div>
     <div class="col-md-5">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <span class="label label-info"><?=__('Heads Up!')?> <?=__('Quick category creator.')?></span>
-                <div class="clearfix"></div> 
-                <?=__('Add names for multiple categories, for each one push enter.')?>
-                <div class="clearfix"></div><br>
-
-                <?= FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('class'=>'form-inline', 'role'=>'form','enctype'=>'multipart/form-data'))?>
-                    <div class="form-group">
-                        <div class="">
-                        <?= FORM::label('multy_categories', __('Name').':', array('class'=>'control-label', 'for'=>'multy_categories'))?>
-                        <?= FORM::input('multy_categories', '', array('placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_categories', 'type' => 'text','data-role'=>'tagsinput'))?>
-                        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <span class="label label-info"><?=__('Heads Up!')?> <?=__('Quick category creator.')?></span>
+                        <div class="clearfix"></div> 
+                        <?=__('Add names for multiple categories, for each one push enter.')?>
+                        <div class="clearfix"></div><br>
+                        
+                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('class'=>'form-inline', 'role'=>'form','enctype'=>'multipart/form-data'))?>
+                            <div class="form-group">
+                                <div class="">
+                                <?= FORM::label('multy_categories', __('Name').':', array('class'=>'control-label', 'for'=>'multy_categories'))?>
+                                <?= FORM::input('multy_categories', '', array('placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_categories', 'type' => 'text','data-role'=>'tagsinput'))?>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories'))))?>
+                        <?= FORM::close()?>
                     </div>
-                    <div class="clearfix"></div>
-                    <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories'))))?>
-                <?= FORM::close()?>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>
+                            <?=__('Please use the correct CSV format')?> <a href="https://mega.co.nz/#!4wZQVCzA"><?=__('download example')?>.</a>
+                        </p>
+                        <hr>
+                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="csv_file_categories"><?=__('Import Categories')?></label>
+                                <div class="col-sm-8">
+                                    <input type="file" name="csv_file_categories" id="csv_file_categories" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-8">
+                                    <?= FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'))))?>
+                                </div>
+                            </div>
+                        <?= FORM::close()?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

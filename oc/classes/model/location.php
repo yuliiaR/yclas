@@ -66,7 +66,7 @@ class Model_Location extends ORM {
      * @param  string  $description        
      * @return Model_Location                      
      */
-    public static function create_name($name,$order=0, $id_location_parent = 1, $parent_deep=0, $description = NULL)
+    public static function create_name($name,$order=0, $id_location_parent = 1, $parent_deep=0, $latitude=NULL, $longitude=NULL, $description = NULL)
     {
         $loc = new self();
         $loc->where('name','=',$name)->limit(1)->find();
@@ -79,6 +79,8 @@ class Model_Location extends ORM {
             $loc->id_location_parent = $id_location_parent;
             $loc->order       = $order;
             $loc->parent_deep = $parent_deep;
+            $loc->latitude    = $latitude;
+            $loc->longitude   = $longitude;
             $loc->description = $description;
 
             try
