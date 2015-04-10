@@ -183,8 +183,8 @@ class Controller_New extends Controller
 	                            'phone'         => $phone       =   Core::post('phone'),
 	                            'website'       => $website     =   Core::post('website'),
 	                            'stock'         => $stock       =   Core::post('stock'),
-	                            'latitude'      => $stock       =   Core::post('latitude'),
-	                            'longitude'     => $stock       =   Core::post('longitude')
+	                            'latitude'      => $latitude    =   Core::post('latitude'),
+	                            'longitude'     => $longitude   =   Core::post('longitude')
 	                            ); 
 	            
 	            // append to $data new custom values

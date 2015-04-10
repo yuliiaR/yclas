@@ -10,6 +10,7 @@
 <div class="row">
     <div class="col-md-7">
         <div class="panel panel-default">
+            <div class="panel-heading"><?=_('Home')?></div>
             <div class="panel-body">
                 <ol class='plholder' id="ol_1" data-id="1">
                     <?function lili($item, $key,$cats){?>
@@ -44,6 +45,7 @@
                     if(is_array($order))
                         array_walk($order, 'lili',$cats);?>
                 </ol><!--ol_1-->
+                <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'category','action'=>'saveorder'))?>'></span>
                 <?if(count($cats) > 1) :?>
                     <p>
                         <button data-toggle="modal" data-target="#delete-all" class="btn btn-danger pull-right">
