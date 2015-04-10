@@ -18,10 +18,6 @@
     AND Request::current()->param('category') == URL::title(__('all'))):?>
 <link rel="canonical" href="<?=Route::url('default')?>" />
 <?endif?>
-<<<<<<< HEAD
-
-=======
->>>>>>> 7121b98139a17d062ad2b236369aa83a130c4bae
 <?if (Controller::$image!==NULL):?>
 <meta property="og:image"   content="<?=core::config('general.base_url').Controller::$image?>"/>
 <?elseif(Theme::get('logo_url')!=NULL):?>
