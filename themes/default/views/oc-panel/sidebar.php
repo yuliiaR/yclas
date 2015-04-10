@@ -143,7 +143,8 @@
                                     <table class="table no-hide">
                                         <tr><td class="br"><?=Theme::admin_link(__('Users'),'user','index','oc-panel','glyphicon  glyphicon-user')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Roles'),'role','index','oc-panel','glyphicon  glyphicon-retweet')?></td></tr>
-                                       <?if(core::config('general.black_list')):?>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Custom Fields'), 'userfields','index','oc-panel','glyphicon  glyphicon-plus-sign')?></td></tr>
+                                        <?if(core::config('general.black_list')):?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Black list'),'pool','index','oc-panel','glyphicon  glyphicon-fire')?></td></tr>
                                         <?endif?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Edit profile'), 'profile','edit','oc-panel','glyphicon glyphicon-edit')?></td></tr>

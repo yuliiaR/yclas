@@ -41,6 +41,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'featured_plans',
                                'group_name'     =>'payment', 
                                'config_value'   => '{"5":"10"}'),
+                        array( 'config_key'     =>'user_fields',
+                               'group_name'     =>'user', 
+                               'config_value'   => ''),
                         );
         
         Model_Config::config_array($configs);

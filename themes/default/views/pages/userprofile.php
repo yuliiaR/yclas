@@ -30,6 +30,19 @@
             <?endif?>
             <li><strong><?=__('Created')?>:</strong> <?= Date::format($user->created, core::config('general.date_format')) ?></li>
             <li><strong><?=__('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
+
+            <?foreach ($user->custom_columns(TRUE) as $name => $value):?>
+                <li>
+                    <strong><?=$name?>:</strong>
+                    <?if($value=='checkbox_1'):?>
+                        <i class="fa fa-check"></i>
+                    <?elseif($value=='checkbox_0'):?>
+                        <i class="fa fa-times"></i>
+                    <?else:?>
+                        <?=$value?>
+                    <?endif?>
+                </li>
+            <?endforeach?>
         </ul>
 
         <!-- Popup contact form -->

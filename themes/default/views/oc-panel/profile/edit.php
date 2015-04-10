@@ -26,6 +26,10 @@
                             <?= FORM::input('description', $user->description, array('class'=>'form-control', 'id'=>'description', 'type'=>'description' ,'placeholder'=>__('Description')))?>
                         </div>
                     </div>
+
+                    <?var_dump($user->custom_columns())?>
+                    <?var_dump($custom_fields)?>
+
                     <div class="form-group">
                         <div class="col-md-offset-4 col-md-8">
                             <div class="checkbox">

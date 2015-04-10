@@ -120,4 +120,77 @@ class Model_User extends Model_OC_User {
     }
 
 
+    /**
+    * returns a list with custom field values of this user
+    * @param  boolean $show_profile only those fields that needs to be displayed on the user profile show_profile===TRUE
+    * @return array else false 
+    */
+    public function custom_columns($show_profile = FALSE)
+    {
+        if($this->loaded())
+        {
+            //custom fields config, label, name and order
+            $cf_config = Model_UserField::get_all(FALSE);
+
+            if(!isset($cf_config))
+                return array();
+            
+            //getting the custom fields this uaser has and his value          
+            $active_custom_fields = array();
+            foreach($this->_table_columns as $value)
+            {   
+                //we want only those that are custom fields
+                if(strpos($value['column_name'],'cf_') !== FALSE) 
+                {
+                    $cf_name  = str_replace('cf_', '', $value['column_name']);
+                    $cf_value = $this->$value['column_name'];
+
+                    if(isset($cf_value))
+                    {   
+                        //formating the value depending on the type
+                        switch ($cf_config->$cf_name->type) 
+                        {   
+                            case 'checkbox':
+                                $cf_value = ($cf_value)?'checkbox_'.$cf_value:NULL;
+                                break;
+                            case 'radio':
+                                $cf_value = $cf_config->$cf_name->values[$cf_value-1];
+                                break;
+                            case 'date':
+                                $cf_value = Date::format($cf_value, core::config('general.date_format'));
+                                break;
+                        }      
+                        
+                        //should it be added to the profile?
+                        if ($show_profile == TRUE AND isset($cf_config->$cf_name->show_profile)) 
+                        {
+                            //only to the profile
+                            if ($cf_config->$cf_name->show_profile==TRUE)
+                            {
+                                $active_custom_fields[$cf_name] = $cf_value;
+                            }                            
+                        }
+                        else
+                            $active_custom_fields[$cf_name] = $cf_value;
+                    }
+       
+                }
+            }
+
+            // sorting using json order
+            $user_custom_vals = array();
+            foreach ($cf_config as $name => $value) 
+            {
+                if(isset($active_custom_fields[$name]))
+                    $user_custom_vals[$value->label] = $active_custom_fields[$name];
+            }
+
+
+            return $user_custom_vals;
+            
+        }
+        return array();
+    }
+
+
 } // END Model_User
