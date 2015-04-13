@@ -27,8 +27,27 @@
                         </div>
                     </div>
 
-                    <?var_dump($user->custom_columns())?>
-                    <?var_dump($custom_fields)?>
+
+                    <?foreach($custom_fields as $name=>$field):?>
+                    <div class="form-group" id="cf_new">
+                    <?$cf_name = 'cf_'.$name?>
+                    <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
+                        $select = array(''=>'');
+                        foreach ($field['values'] as $select_name) {
+                            $select[$select_name] = $select_name;
+                        }
+                    } else $select = $field['values']?>
+                            <?=Form::cf_form_tag('cf_'.$name, array(    
+                                'display'   => $field['type'],
+                                'label'     => $field['label'],
+                                'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
+                                'default'   => $user->$cf_name,
+                                'options'   => (!is_array($field['values']))? $field['values'] : $select,
+                                'required'  => $field['required'],
+                                ))?>
+
+                    </div>     
+                    <?endforeach?>
 
                     <div class="form-group">
                         <div class="col-md-offset-4 col-md-8">

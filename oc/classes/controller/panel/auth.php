@@ -245,6 +245,20 @@ class Controller_Panel_Auth extends Controller {
                     {
                         //creating the user
                         $user = Model_User::create_email($email,core::post('name'),core::post('password1'));
+
+                        //add custom fields
+                        $save_cf = FALSE;
+                        foreach ($this->request->post() as $custom_field => $value) 
+                        {
+                            if (strpos($custom_field,'cf_')!==FALSE)
+                            {
+                                $user->$custom_field = $value;
+                                $save_cf = TRUE;
+                            }
+                        }
+                        //saves the user only if there was CF
+                        if($save_cf === TRUE)
+                            $user->save();
                     
                         //login the user
                         Auth::instance()->login(core::post('email'), core::post('password1'));

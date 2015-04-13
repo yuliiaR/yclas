@@ -174,6 +174,15 @@ class Controller_Panel_Profile extends Auth_Controller {
 			//$user->seoname = $user->gen_seo_title(core::post('name'));
             $user->last_modified = Date::unix2mysql();
 
+            //modify custom fields
+            foreach ($this->request->post() as $custom_field => $value) 
+            {
+                if (strpos($custom_field,'cf_')!==FALSE)
+                {
+                    $user->$custom_field = $value;
+                }
+            }
+
 			try {
 				$user->save();
 				Alert::set(Alert::SUCCESS, __('You have successfuly changed your data'));				
