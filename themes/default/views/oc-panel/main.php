@@ -52,12 +52,8 @@
                    <div class="alert alert-warning fade in">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick='setCookie("donation_alert",1,7)'>×</button>
                     <h4><?=__('Help us improve!')?></h4>
-                    <p><?=__('Open Classifieds is an amazing free Open Source Software. With a small donation you are helping us keep the project alive and updated. Thanks!')?></p>
+                    <p><?=__('Open Classifieds is an amazing free Open Source Software. By buying a theme you help us keep the project alive and updated. Thanks!')?></p>
                     <p>
-                      <a href="http://j.mp/thanksdonate" onclick='setCookie("donation_alert",1,30)'>
-                            <img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="">
-                      </a>
-                      <?=__('Or')?>
                       <a href="<?=Route::url('oc-panel',array('controller'=>'market'))?>" class="btn btn-success">
                         <i class="glyphicon glyphicon-gift"></i> <?=__('Buy a Theme')?>
                        </a>

@@ -12,8 +12,5 @@
         <?if(core::request('ADMIN_EMAIL')):?>
             <span class="help-block">user: <?=core::request('ADMIN_EMAIL')?> pass: <?=core::request('ADMIN_PWD')?></span>
         <?endif?>
-        <hr>
-        <a class="btn btn-primary btn-large" href="http://j.mp/thanksdonate"><?=__('Make a donation')?></a>
-        <?=__('We really appreciate it')?>.
     </p>
 </div>
