@@ -432,7 +432,7 @@ msgstr "Verbotene Wörter bitte mit Koma (,) trennen."
 
 #: String 108
 msgid "Banned words replacement"
-msgstr "Ersatzwort für gebannte Wörter"
+msgstr "Ersatzwort für verbotene Wörter"
 
 #: String 109
 msgid "Replacement of a banned word"
