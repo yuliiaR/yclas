@@ -424,7 +424,7 @@ msgstr "Allgemeine Geschäftsbedingungen"
 
 #: String 106
 msgid "You need to write your banned words to enable the service."
-msgstr "Sie müssen hier Ihren verbotenen Wörter eingeben, um den Dienst zu aktivieren."
+msgstr "Sie müssen hier Ihre verbotenen Wörter eingeben, um den Dienst zu aktivieren."
 
 #: String 107
 msgid "Banned words are separated with coma (,)"
