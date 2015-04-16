@@ -720,7 +720,7 @@ msgstr "Möchten Sie diese beworbene Anzeige wirklich deaktivieren?"
 
 #: String 181
 msgid "Roles"
-msgstr "Roles"
+msgstr "Rollen"
 
 #: String 182
 msgid "Users"
@@ -748,7 +748,7 @@ msgstr "Bezahlung"
 
 #: String 188
 msgid "Appearance"
-msgstr "Appearance"
+msgstr "Aussehen"
 
 #: String 189
 msgid "Views and Contacts statistic"
@@ -756,7 +756,7 @@ msgstr "Besucher- und Kontaktstatistik"
 
 #: String 190
 msgid "Filter"
-msgstr "Filtern"
+msgstr "Filter"
 
 #: String 191
 msgid "Content"
@@ -776,7 +776,7 @@ msgstr "Abonnements"
 
 #: String 195
 msgid "Collapse menu"
-msgstr "Menü Einblenden/Ausblenden"
+msgstr "Menü Ausblenden"
 
 #: String 196
 msgid "Limited Offer!"
@@ -820,7 +820,7 @@ msgstr "Wie man das entfernt"
 
 #: String 206
 msgid "Search FAQs"
-msgstr "Suche FAQs"
+msgstr "Durchsuche FAQs"
 
 #: String 207
 msgid "Check for updates"
@@ -1176,7 +1176,7 @@ msgstr "Debug Mode"
 
 #: String 295
 msgid "Browse Themes"
-msgstr "Browse Designs"
+msgstr "Designs durchblättern"
 
 #: String 296
 msgid "Key"
@@ -1200,7 +1200,7 @@ msgstr "Webseitenstatistik"
 
 #: String 301
 msgid "Login to reply"
-msgstr "Um zu antworten müssen Sie eingelogt sein"
+msgstr "Um zu antworten, müssen Sie angemeldet sein"
 
 #: String 302
 msgid "Reply here"
@@ -1212,7 +1212,7 @@ msgstr "Wähle ein Forum aus"
 
 #: String 304
 msgid "Publish new topic"
-msgstr "Veröffentlichen neues Thema"
+msgstr "Veröffentliche neues Thema"
 
 #: String 305
 msgid "Forum topic"
@@ -1276,7 +1276,7 @@ msgstr "Wenn Sie zur Startseite möchten, klicken Sie hier."
 
 #: String 320
 msgid "Requirements checks we do before we install."
-msgstr "Wir prüfen die Voraussetzungen, bevor wir zu installieren."
+msgstr "Wir prüfen die Voraussetzungen, vor dem installieren."
 
 #: String 321
 msgid "URL to your Logo. Recommended size W:200px x H:120px. Leave blank for none."
@@ -1496,7 +1496,7 @@ msgstr "Sortieren nach in der Auflistung"
 
 #: String 375
 msgid "Black List"
-msgstr "Black List"
+msgstr "Sperrliste"
 
 #: String 376
 msgid "created"
