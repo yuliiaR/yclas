@@ -452,7 +452,7 @@ msgstr "Verbotenes Wort eingeben - dann Enter drücken."
 
 #: String 113
 msgid "Banned words"
-msgstr "Gebannte Wörter (Wörter sperren)"
+msgstr "Verbotene Wörter"
 
 #: String 114
 msgid "Facebook Comments"
