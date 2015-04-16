@@ -224,7 +224,7 @@ msgstr "Paypal Währung"
 
 #: String 56
 msgid "Please be sure you are using a currency that paypal supports."
-msgstr "Benutzen Sie bitte eine Währung, die von Paypal unterstätzt wird."
+msgstr "Benutzen Sie bitte eine Währung, die von Paypal unterstützt wird."
 
 #: String 57
 msgid "Featured ads"
@@ -332,7 +332,7 @@ msgstr "Anzeigen in der Sitemap"
 
 #: String 83
 msgid "How many ads are going to appear in the RSS of your site."
-msgstr "Geben Sie an, wie viele Anzeige im RSS-Feed angezeigt werden sollen."
+msgstr "Geben Sie an, wie viele Anzeigen im RSS-Feed angezeigt werden sollen."
 
 #: String 84
 msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
@@ -424,7 +424,7 @@ msgstr "Allgemeine Geschäftsbedingungen"
 
 #: String 106
 msgid "You need to write your banned words to enable the service."
-msgstr "Sie müssen hier Ihren verbotenen Wörter eingeben, um den Dienst zu aktivieren."
+msgstr "Sie müssen hier Ihre verbotenen Wörter eingeben, um den Dienst zu aktivieren."
 
 #: String 107
 msgid "Banned words are separated with coma (,)"
@@ -432,7 +432,7 @@ msgstr "Verbotene Wörter bitte mit Koma (,) trennen."
 
 #: String 108
 msgid "Banned words replacement"
-msgstr "Ersatzwort für gebannte Wörter"
+msgstr "Ersatzwort für verbotene Wörter"
 
 #: String 109
 msgid "Replacement of a banned word"
@@ -452,7 +452,7 @@ msgstr "Verbotenes Wort eingeben - dann Enter drücken."
 
 #: String 113
 msgid "Banned words"
-msgstr "Gebannte Wörter (Wörter sperren)"
+msgstr "Verbotene Wörter"
 
 #: String 114
 msgid "Facebook Comments"
@@ -720,7 +720,7 @@ msgstr "Möchten Sie diese beworbene Anzeige wirklich deaktivieren?"
 
 #: String 181
 msgid "Roles"
-msgstr "Roles"
+msgstr "Rollen"
 
 #: String 182
 msgid "Users"
@@ -748,7 +748,7 @@ msgstr "Bezahlung"
 
 #: String 188
 msgid "Appearance"
-msgstr "Appearance"
+msgstr "Aussehen"
 
 #: String 189
 msgid "Views and Contacts statistic"
@@ -756,7 +756,7 @@ msgstr "Besucher- und Kontaktstatistik"
 
 #: String 190
 msgid "Filter"
-msgstr "Filtern"
+msgstr "Filter"
 
 #: String 191
 msgid "Content"
@@ -776,7 +776,7 @@ msgstr "Abonnements"
 
 #: String 195
 msgid "Collapse menu"
-msgstr "Menü Einblenden/Ausblenden"
+msgstr "Menü Ausblenden"
 
 #: String 196
 msgid "Limited Offer!"
@@ -820,7 +820,7 @@ msgstr "Wie man das entfernt"
 
 #: String 206
 msgid "Search FAQs"
-msgstr "Suche FAQs"
+msgstr "Durchsuche FAQs"
 
 #: String 207
 msgid "Check for updates"
@@ -1176,7 +1176,7 @@ msgstr "Debug Mode"
 
 #: String 295
 msgid "Browse Themes"
-msgstr "Browse Designs"
+msgstr "Designs durchblättern"
 
 #: String 296
 msgid "Key"
@@ -1200,7 +1200,7 @@ msgstr "Webseitenstatistik"
 
 #: String 301
 msgid "Login to reply"
-msgstr "Um zu antworten müssen Sie eingelogt sein"
+msgstr "Um zu antworten, müssen Sie angemeldet sein"
 
 #: String 302
 msgid "Reply here"
@@ -1212,7 +1212,7 @@ msgstr "Wähle ein Forum aus"
 
 #: String 304
 msgid "Publish new topic"
-msgstr "Veröffentlichen neues Thema"
+msgstr "Veröffentliche neues Thema"
 
 #: String 305
 msgid "Forum topic"
@@ -1276,7 +1276,7 @@ msgstr "Wenn Sie zur Startseite möchten, klicken Sie hier."
 
 #: String 320
 msgid "Requirements checks we do before we install."
-msgstr "Wir prüfen die Voraussetzungen, bevor wir zu installieren."
+msgstr "Wir prüfen die Voraussetzungen, vor dem installieren."
 
 #: String 321
 msgid "URL to your Logo. Recommended size W:200px x H:120px. Leave blank for none."
@@ -1496,7 +1496,7 @@ msgstr "Sortieren nach in der Auflistung"
 
 #: String 375
 msgid "Black List"
-msgstr "Black List"
+msgstr "Sperrliste"
 
 #: String 376
 msgid "created"
