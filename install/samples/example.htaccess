@@ -153,19 +153,19 @@ RewriteBase [SITE_FOLDER]
 # RewriteRule ^(?:oc|languages|install)\b.* index.php/$0 [L]
 RewriteRule ^(?:oc|languages|install)\b.* index.php [PT,QSA,L]
 
-# Redirects from 1.x to 2.0.x structure
+# Redirects from 1.x to 2.0.x structure, uncomment if you are migrating
 # cat_parent/category/seotitle-numitem.htm -> category/seotitle.html
-RewriteRule ^(.+)/(.+)/(.+)-([0-9]+).htm$  $2/$3.html [R=301,L]
+# RewriteRule ^(.+)/(.+)/(.+)-([0-9]+).htm$  $2/$3.html [R=301,L]
 # category/seotitle-numitem.htm -> category/seotitle.html
-RewriteRule ^(.+)/(.+)-([0-9]+).htm$  $1/$2.html [R=301,L]
+# RewriteRule ^(.+)/(.+)-([0-9]+).htm$  $1/$2.html [R=301,L]
 # cat_parent/category/location/pagenum -> category/location?page=
-RewriteRule ^(.+)/(.+)/(.+)/([0-9]+)$ $2/$3?page=$4 [R=301,L]
+# RewriteRule ^(.+)/(.+)/(.+)/([0-9]+)$ $2/$3?page=$4 [R=301,L]
 # map.html to map.html
-RewriteRule ^map.htm$ map.html [R=301,L]
+# RewriteRule ^map.htm$ map.html [R=301,L]
 # contact.html to contact.html
-RewriteRule ^contact.htm$ contact.html [R=301,L]
+# RewriteRule ^contact.htm$ contact.html [R=301,L]
 # rss/ to rss.xml
-RewriteRule ^rss/$ rss.xml [R=301,L]
+# RewriteRule ^rss/$ rss.xml [R=301,L]
 # rss/?category=seocategory to rss/seocategory.xml wont work no access to querystring
 # RewriteRule ^rss/?category=(.+)$ rss/$1.xml [R=301,L]
 # End redirects
