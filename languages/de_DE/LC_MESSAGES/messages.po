@@ -1764,7 +1764,7 @@ msgstr "Spam sortieren"
 
 #: String 442
 msgid "Latest"
-msgstr "Neuste"
+msgstr "Neueste"
 
 #: String 443
 msgid "Version"
@@ -3092,7 +3092,7 @@ msgstr "Erweiterte Optionen"
 
 #: String 774
 msgid "Latest News"
-msgstr "Neuste Nachrichten"
+msgstr "Neueste Nachrichten"
 
 #: String 775
 msgid "In this page you can see the requirements checks we do before we install."
@@ -3472,7 +3472,7 @@ msgstr "Anzeigentypen zum Anzeigen"
 
 #: String 869
 msgid "Latest Ads"
-msgstr "Neuste Anzeigen"
+msgstr "Neueste Anzeigen"
 
 #: String 870
 msgid "TRUE"
