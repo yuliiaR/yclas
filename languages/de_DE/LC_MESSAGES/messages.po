@@ -36,7 +36,7 @@ msgstr "Paypal-Link des Benutzers"
 
 #: String 9
 msgid "How much the user needs to pay to top up an Ad"
-msgstr "Wie viel muß ein Benutzer zahlen, um seine Anzige ganz nach vorn zu bringen(Top)"
+msgstr "Wie viel muß ein Benutzer zahlen, um seine Anzeige ganz nach vorn zu bringen(Top)"
 
 #: String 10
 msgid "Paypal link stock control"
