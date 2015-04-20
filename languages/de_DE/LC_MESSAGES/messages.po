@@ -1,6 +1,6 @@
 #: String 0
 msgid "Ad expiration date"
-msgstr "Ablauf der Anzeigen in Tagen"
+msgstr "Ablaufdatum der Anzeige"
 
 #: String 1
 msgid "Use parent categories"
@@ -28,7 +28,7 @@ msgstr "parent_category field"
 
 #: String 7
 msgid "Parent category"
-msgstr "Anzeige in der Hauptkategorie erlauben"
+msgstr "Hauptkategorie"
 
 #: String 8
 msgid "User paypal link"
@@ -36,7 +36,7 @@ msgstr "Paypal-Link des Benutzers"
 
 #: String 9
 msgid "How much the user needs to pay to top up an Ad"
-msgstr "Zeigt an, wie viel der Benutzer bezahlen muss, um seine Anzeige auf die vorderen Listenplätze zu schieben."
+msgstr "Wie viel muß ein Benutzer zahlen, um seine Anzige ganz nach vorn zu bringen(Top)"
 
 #: String 10
 msgid "Paypal link stock control"
@@ -188,19 +188,19 @@ msgstr "Tage der Hervorhebung"
 
 #: String 47
 msgid "How much the user needs to pay to feature an Ad"
-msgstr "Zeigt an, wie viel der Benutzer für das Hervorheben seiner Anzeige bezahlen muss."
+msgstr "Wie viel muß ein Benutzer zahlen, um eine Anzeige hervor zu heben."
 
 #: String 48
 msgid "Featured length"
-msgstr "Dauer"
+msgstr "Dauer der Hervorhebung"
 
 #: String 49
 msgid "How many days an ad will be featured after paying."
-msgstr "Zeigt an, wieviele Tage die Anzeige hervorgehoben wird."
+msgstr "Wie viele Tage wird eine Anzeige nach dem bezahlen hervorgehoben."
 
 #: String 50
 msgid "Bring to top Ad"
-msgstr "Bringen Sie Ihre Anzeige nach oben"
+msgstr "Anzeige ganz nach vorn bringen(Top)"
 
 #: String 51
 msgid "Days"
@@ -212,7 +212,7 @@ msgstr "Preisliste"
 
 #: String 53
 msgid "Price for featuring the Ad"
-msgstr "Preis zum hervorheben Ihrer Anzeige"
+msgstr "Preis für das hervorheben dieser Anzeige"
 
 #: String 54
 msgid "Currency"
