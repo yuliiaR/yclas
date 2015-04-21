@@ -228,11 +228,11 @@ msgstr "Benutzen Sie bitte eine Währung, die von Paypal unterstützt wird."
 
 #: String 57
 msgid "Featured ads"
-msgstr "Besondere Angebote"
+msgst "Hervorgehobene Angebote"
 
 #: String 58
 msgid "Featured ads will be highlighted for a defined number of days."
-msgstr "Beworbene Anzeigen werden für eine bestimmte Dauer besonders auf der Webseite hervorgehoben."
+msgstr "Besondere Anzeigen werden für eine bestimmte Dauer auf der Webseite hervorgehoben."
 
 #: String 59
 msgid "Longitude coordinates"
@@ -240,11 +240,11 @@ msgstr "Längenkoordinaten"
 
 #: String 60
 msgid "Google map default longitude coordinates"
-msgstr "Google map benutzerdefinierte Längenkoordinaten."
+msgstr "Google map Standard Längenkoordinaten."
 
 #: String 61
 msgid "Here you can declare your display name. This is seen by everyone!"
-msgstr "Hier können Sie den angezeigten Namen Ihrer Webseite angeben. Dieser Name wird veröffentlicht!"
+msgstr "Hier können sie Ihren Anzeigennamen vergeben. Diesen kann jeder sehen!"
 
 #: String 62
 msgid "Site name"
@@ -256,7 +256,7 @@ msgstr "Webseitenbeschreibung"
 
 #: String 64
 msgid "Description of your site in no more than 160 characters."
-msgstr "Beschreibung Ihrer Seite darf nicht mehr als 160 Zeichen haben."
+msgstr "Beschreibung Ihrer Seite.(max 160 Zeichen)"
 
 #: String 65
 msgid "Base URL"
@@ -264,7 +264,7 @@ msgstr "Basis-URL"
 
 #: String 66
 msgid "Site Description"
-msgstr "Seiten Beschreibung"
+msgstr "Webseitenbeschreibung"
 
 #: String 67
 msgid "It changes landing page of website"
@@ -304,11 +304,11 @@ msgstr "Basis-URL Pfad"
 
 #: String 76
 msgid "Money format"
-msgstr "Zahlungsmittel"
+msgs "Währungssysmbol"
 
 #: String 77
 msgid "How many ads are going to appear in the map of your site."
-msgstr "Geben Sie an, wie viele Anzeigen in der Sitemap der Webseite erscheinen."
+msgstr "Wie viele Anzeigen werden auf der Sitemap Ihrer Webseite angezeigt."
 
 #: String 78
 msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
@@ -320,7 +320,7 @@ msgstr "Dezimaldarstellung"
 
 #: String 80
 msgid "Each advertisement has a publish date. By selecting format, you can change how it is shown on your website."
-msgstr "Jede Anzeige hat ein Veröffentlichungsdatum. Durch die Auswahl-Format können Sie einstellen, wie es auf Ihrer Website angezeigt wird."
+msgstr "Jede Anzeige hat ein Veröffentlichungsdatum. Durch die auswählen von Formatierung können Sie einstellen, wie es auf Ihrer Website angezeigt wird."
 
 #: String 81
 msgid "Date format"
@@ -332,11 +332,11 @@ msgstr "Anzeigen in der Sitemap"
 
 #: String 83
 msgid "How many ads are going to appear in the RSS of your site."
-msgstr "Geben Sie an, wie viele Anzeigen im RSS-Feed angezeigt werden sollen."
+msgstr "Wie viele Anzeigen sollen im RSS-Feed Ihrer Webseite angezeigt werden."
 
 #: String 84
 msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
-msgstr "Kontrollieren Sie hier, wie viele Anzeigen auf einer Seite angezeigt werden. Geben Sie eine ganze Zahl als Obergrenze an."
+msgstr "Kontrollieren Sie hier, wie viele Anzeigen auf einer Seite angezeigt werden. Geben Sie eine Ganzzahl als Obergrenze an."
 
 #: String 85
 msgid "Advertisements per page"
@@ -404,7 +404,7 @@ msgstr "Telefonfeld"
 
 #: String 101
 msgid "Website field"
-msgstr "Webseite-Feld"
+msgstr "Webseiten-Feld"
 
 #: String 102
 msgid "Displays the field Website in the Ad form."
@@ -428,7 +428,7 @@ msgstr "Sie müssen hier Ihre verbotenen Wörter eingeben, um den Dienst zu akti
 
 #: String 107
 msgid "Banned words are separated with coma (,)"
-msgstr "Verbotene Wörter bitte mit Koma (,) trennen."
+msgstr "Verbotene Wörter durch Koma (,) trennen."
 
 #: String 108
 msgid "Banned words replacement"
