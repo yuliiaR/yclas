@@ -43,7 +43,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                'config_value'   => '{"5":"10"}'),
                         array( 'config_key'     =>'user_fields',
                                'group_name'     =>'user', 
-                               'config_value'   => ''),
+                               'config_value'   => '{}'),
                         );
         
         Model_Config::config_array($configs);
