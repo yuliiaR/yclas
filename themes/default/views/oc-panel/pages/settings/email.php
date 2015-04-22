@@ -7,7 +7,7 @@
 <div class="page-header">
     <h1><?=__('Email Configuration')?></h1>
     <p><?=__('Email Setup and emails configuration values. Replace input fields with new desired values')?></p>
-    <p><?=sprintf(__('How to configure %s'),'<a href="http://open-classifieds.com/2014/02/12/configure-elasticemail-open-classifieds/" target="_blank">ElasticEmail</a>')?></p>
+    <p><?=sprintf(__('How to configure %s'),'<a href="http://docs.yclas.com/configure-elasticemail-open-classifieds/" target="_blank">ElasticEmail</a>')?></p>
 </div>
 
 <div class="row">

@@ -16,7 +16,7 @@
 		<h1><?=__('Spam')?></h1>
 	<?else:?>
 		<? $current_url = Model_Ad::STATUS_PUBLISHED?>
-		<h1><?=__('Advertisements')?> <small><a target='_blank' href='http://open-classifieds.com/2013/08/29/how-to-manage-advertisements/'><?=__('Read more')?></a></small></h1>
+		<h1><?=__('Advertisements')?> <small><a target='_blank' href='http://docs.yclas.com/how-to-manage-advertisements/'><?=__('Read more')?></a></small></h1>
 	<?endif?>
 </div>		
 

@@ -5,7 +5,7 @@
         <?=__('New Category')?>
     </a>
     <h1><?=__('Categories')?></h1>
-    <p><?=__("Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")." <a target='_blank' href='http://open-classifieds.com/2013/08/12/how-to-add-categories/'>".__('Read more')."</a>"?></p>
+    <p><?=__("Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")." <a target='_blank' href='http://docs.yclas.com/how-to-add-categories/'>".__('Read more')."</a>"?></p>
 </div>
 <div class="row">
     <div class="col-md-7">

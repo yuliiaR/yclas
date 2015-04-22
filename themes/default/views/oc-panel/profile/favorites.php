@@ -2,7 +2,7 @@
 
 <div class="page-header">
 	<h1><?=__('My Favorites')?></h1>
-	<small><a target='_blank' href='http://open-classifieds.com/2014/08/12/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>		
+	<small><a target='_blank' href='http://docs.yclas.com/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>		
 </div>
 
 <div class="panel panel-default">

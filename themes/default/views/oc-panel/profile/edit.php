@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="row">
     <div class="col-md-8">
-    <h5><a target='_blank' href='http://open-classifieds.com/2015/03/18/how-to-edit-your-profile/'><?=__('Read more')?></a></h5>
+    <h5><a target='_blank' href='http://docs.yclas.com/how-to-edit-your-profile/'><?=__('Read more')?></a></h5>
         <div class="panel panel-default">
             <div class="panel-heading" id="page-edit-profile">
                 <h3 class="panel-title"><?=__('Edit Profile')?></h3>

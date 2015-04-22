@@ -13,7 +13,7 @@
     <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'email'))?>?force=1" title="<?=__('Email Settings')?>">
         <?=__('Email Settings')?>
     </a>
-    <h1><?=__('Newsletter')?> <small><a href="http://open-classifieds.com/2013/08/23/how-to-send-the-newsletter/" target="_blank"><?=__('Read more')?></a></small></h1>
+    <h1><?=__('Newsletter')?> <small><a href="http://docs.yclas.com/how-to-send-the-newsletter/" target="_blank"><?=__('Read more')?></a></small></h1>
 </div>
 
 <div class="row">
