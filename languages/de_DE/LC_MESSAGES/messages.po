@@ -468,11 +468,11 @@ msgstr "Sie müssen Ihre Facebook App-ID hier eintragen, um den Dienst zu aktivi
 
 #: String 117
 msgid "Disqus Comments"
-msgstr "Diskutiere Kommentare"
+msgstr "Disqus Kommentare"
 
 #: String 118
 msgid "You need to write your disqus ID to enable the service."
-msgstr "Sie müssen Ihre ID hier eingeben, um den Dienst zu aktivieren."
+msgstr "Sie müssen Ihre disqus ID hier eingeben, um den Dienst zu aktivieren."
 
 #: String 119
 msgid "Email from where we send the emails, also used for software communications."
@@ -544,7 +544,7 @@ msgstr "Kaufen Sie ein Design"
 
 #: String 136
 msgid "Go to top"
-msgstr "Anzeige wieder nach vor reihen, PayPal Direktzahlung"
+msgstr "Zum Seitenanfang"
 
 #: String 137
 msgid "Refresh listing, go to top?"
@@ -552,7 +552,7 @@ msgstr "Aktualisieren und zum Seitenanfang?"
 
 #: String 138
 msgid "Are you sure you want to refresh listing and go to top?"
-msgstr "Sind Sie sicher, dass Sie aktualisieren möchten?"
+msgstr "Sind Sie sicher, dass Sie aktualisieren und zum Seitenanfang gehen möchten?"
 
 #: String 139
 msgid "Make featured?"
@@ -604,7 +604,7 @@ msgstr "Kontaktieren Sie uns"
 
 #: String 151
 msgid "HTML code for footer banner"
-msgstr "HTML-Code für Banner Fußzeile"
+msgstr "HTML-Code für Banner in Fußzeile"
 
 #: String 153
 msgid "We do not have any blog post"
@@ -635,7 +635,7 @@ msgid "Hide"
 msgstr "verbergen"
 
 #: String 160
-msgid "Turn of sidebar in advetrisement page"
+msgid "Turn off sidebar in advertisement page"
 msgstr "Die Seitenleiste in der Anzeigenseite ausschalten "
 
 #: String 161
