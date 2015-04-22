@@ -15,7 +15,7 @@
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <?= FORM::label($forms['maintenance']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/10/15/how-to-activate-maintenance-mode/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['maintenance']['id']))?>
+                        <?= FORM::label($forms['maintenance']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-activate-maintenance-mode/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['maintenance']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['maintenance']['key'], 1, (bool) $forms['maintenance']['value'], array(
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['disallowbots']['id'], "<a target='_blank' href='http://open-classifieds.com/2015/01/22/allowdisallow-bots-crawlers/'>".__("Disallows (blocks) Bots and Crawlers on this website")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['disallowbots']['id']))?>
+                        <?= FORM::label($forms['disallowbots']['id'], "<a target='_blank' href='http://docs.yclas.com/allowdisallow-bots-crawlers/'>".__("Disallows (blocks) Bots and Crawlers on this website")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['disallowbots']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['disallowbots']['key'], 1, (bool) $forms['disallowbots']['value'], array(
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['site_name']['id'], "<a target='_blank' href='http://open-classifieds.com/2015/01/21/change-site-name-site-description/'>".__('Site name')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_name']['id']))?>
+                        <?= FORM::label($forms['site_name']['id'], "<a target='_blank' href='http://docs.yclas.com/change-site-name-site-description/'>".__('Site name')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_name']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
                             'placeholder' => 'Open-classifieds', 
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['site_description']['id'], "<a target='_blank' href='http://open-classifieds.com/2015/01/21/change-site-name-site-description/'>".__('Site description')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_description']['id']))?>
+                        <?= FORM::label($forms['site_description']['id'], "<a target='_blank' href='http://docs.yclas.com/change-site-name-site-description/'>".__('Site description')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_description']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::textarea($forms['site_description']['key'], $forms['site_description']['value'], array(
                             'placeholder' => __('Description of your site in no more than 160 characters.'),
@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['moderation']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/06/16/how-ads-moderation-works/'>".__('Moderation')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['moderation']['id']))?>
+                        <?= FORM::label($forms['moderation']['id'], "<a target='_blank' href='http://docs.yclas.com/how-ads-moderation-works/'>".__('Moderation')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['moderation']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['moderation']['key'], array(0=>__("Post directly"),1=>__("Moderation on"),2=>__("Payment on"),3=>__("Email confirmation on"),4=>__("Email confirmation with Moderation"),5=>__("Payment with Moderation")), $forms['moderation']['value'], array(
                             'placeholder' => $forms['moderation']['value'], 
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['landing_page']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/09/20/home-or-listing/'>".__('Landing page')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['landing_page']['id']))?>
+                        <?= FORM::label($forms['landing_page']['id'], "<a target='_blank' href='http://docs.yclas.com/home-or-listing/'>".__('Landing page')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['landing_page']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['landing_page']['key'], array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING'), $forms['landing_page']['value'], array(
                             'class' => 'tips form-control input-sm', 
@@ -126,7 +126,7 @@
                         $pages[$value->seotitle] = $value->title;
                     }?>
                     <div class="form-group">
-                        <?= FORM::label($forms['alert_terms']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/10/14/activate-access-terms-alert/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['alert_terms']['id']))?>
+                        <?= FORM::label($forms['alert_terms']['id'], "<a target='_blank' href='http://docs.yclas.com/activate-access-terms-alert/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['alert_terms']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array( 
                             'class' => 'tips form-control input-sm', 
@@ -161,7 +161,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['analytics']['id'], "<a target='_blank' href='http://open-classifieds.com/2015/03/06/how-to-add-tracking-codes/'>".__('Analytics Tracking ID')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['analytics']['id']))?>
+                        <?= FORM::label($forms['analytics']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-add-tracking-codes/'>".__('Analytics Tracking ID')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['analytics']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
                             'placeholder' => 'UA-XXXXX-YY', 
@@ -234,7 +234,7 @@
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <?= FORM::label($forms['number_format']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/08/06/how-to-currency-format/'>".__('Money format')."</a>", array('class'=>'control-label col-sm-4','for'=>$forms['number_format']['id']))?>
+                        <?= FORM::label($forms['number_format']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-currency-format/'>".__('Money format')."</a>", array('class'=>'control-label col-sm-4','for'=>$forms['number_format']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
                             'placeholder' => "20", 
@@ -250,7 +250,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['date_format']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/03/22/change-date-format/'>".__('Date format')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['date_format']['id']))?>
+                        <?= FORM::label($forms['date_format']['id'], "<a target='_blank' href='http://docs.yclas.com/change-date-format/'>".__('Date format')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['date_format']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['date_format']['key'], $forms['date_format']['value'], array(
                             'placeholder' => "d/m/Y", 
@@ -266,7 +266,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-4"><?="<a target='_blank' href='http://open-classifieds.com/2015/03/23/how-to-change-time-zone/'>".__("Time Zone")."</a>"?>:</label>                
+                        <label class="control-label col-sm-4"><?="<a target='_blank' href='http://docs.yclas.com/how-to-change-time-zone/'>".__("Time Zone")."</a>"?>:</label>                
                         <div class="col-sm-8">
                         <?= FORM::select($forms['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
                                 'placeholder' => "Madrid [+1:00]", 
@@ -284,7 +284,7 @@
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <?= FORM::label($forms['blog']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/01/22/how-to-create-a-blog/'>".__("Activates Blog posting")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['blog']['id']))?>
+                        <?= FORM::label($forms['blog']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-create-a-blog/'>".__("Activates Blog posting")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['blog']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['blog']['key'], 1, (bool) $forms['blog']['value'], array(
@@ -304,7 +304,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['forums']['id'], "<a target='_blank' href='http://open-classifieds.com/2013/06/20/showcase-how-to-build-a-forum-with-oc/'>".__("Activates Forums")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['forums']['id']))?>
+                        <?= FORM::label($forms['forums']['id'], "<a target='_blank' href='http://docs.yclas.com/showcase-how-to-build-a-forum-with-oc/'>".__("Activates Forums")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['forums']['id']))?>
                         <div class="col-md-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['forums']['key'], 1, (bool) $forms['forums']['value'], array(
@@ -323,7 +323,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <?= FORM::label($forms['faq']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/01/21/create-frequent-asked-questions-faq/'>".__("Activates FAQ")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['faq']['id']))?>
+                        <?= FORM::label($forms['faq']['id'], "<a target='_blank' href='http://docs.yclas.com/create-frequent-asked-questions-faq/'>".__("Activates FAQ")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['faq']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['faq']['key'], 1, (bool) $forms['faq']['value'], array(
@@ -343,7 +343,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['black_list']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/05/08/activate-blacklist-works/'>".__("Black List")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['black_list']['id']))?>
+                        <?= FORM::label($forms['black_list']['id'], "<a target='_blank' href='http://docs.yclas.com/activate-blacklist-works/'>".__("Black List")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['black_list']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['black_list']['key'], 1, (bool) $forms['black_list']['value'], array(
@@ -430,7 +430,7 @@
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <?= FORM::label($forms['blog_disqus']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/01/22/how-to-create-a-blog/'>".__('Disqus for blog')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['blog_disqus']['id']))?>
+                        <?= FORM::label($forms['blog_disqus']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-create-a-blog/'>".__('Disqus for blog')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['blog_disqus']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['blog_disqus']['key'], $forms['blog_disqus']['value'], array(
                             'placeholder' => "", 
@@ -446,7 +446,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['faq_disqus']['id'], "<a target='_blank' href='http://open-classifieds.com/2014/01/21/create-frequent-asked-questions-faq/'>".__('Disqus for FAQ')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['faq_disqus']['id']))?>
+                        <?= FORM::label($forms['faq_disqus']['id'], "<a target='_blank' href='http://docs.yclas.com/create-frequent-asked-questions-faq/'>".__('Disqus for FAQ')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['faq_disqus']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
                             'placeholder' => "", 

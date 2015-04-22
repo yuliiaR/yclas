@@ -3,7 +3,7 @@
 <div class="page-header">
     <h1><?=__('Migration')?></h1>
     <p><?=__("Your PHP time limit is")?> <?=ini_get('max_execution_time')?> <?=__("seconds")?>
-        <a href="http://open-classifieds.com/2013/12/09/how-to-upgrade-1-7-x1-8-x-to-2-x/" target="_blank">How to 1.7.x/1.8.x to 2.x</a>
+        <a href="http://docs.yclas.com/how-to-upgrade-1-7-x1-8-x-to-2-x/" target="_blank">How to 1.7.x/1.8.x to 2.x</a>
     </p>
 </div>
 

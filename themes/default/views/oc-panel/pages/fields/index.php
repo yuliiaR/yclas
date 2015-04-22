@@ -11,7 +11,7 @@
             <a class="btn btn-success pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>" title="<?=__('Browse Themes')?>"><?=__('Browse Themes')?></a>
         </p>
     <?endif?>
-    <a target='_blank' href='http://open-classifieds.com/2013/10/13/how-to-create-custom-fields/'><?=__('Advertisement Custom Fields')?></a>
+    <a target='_blank' href='http://docs.yclas.com/how-to-create-custom-fields/'><?=__('Advertisement Custom Fields')?></a>
 </div>
 
 <div class="row">
