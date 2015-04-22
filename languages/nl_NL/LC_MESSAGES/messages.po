@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.3.1\n"
+"Project-Id-Version: 2.4.0\n"
 "POT-Creation-Date: 2015-02-04 11:39:22\n"
 "PO-Revision-Date: 2015-02-04 11:39:22\n"
 "Last-Translator: admin <info@vindeenklusje.nl>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Open Classifieds 2.3.1\n"
+"X-Generator: Open Classifieds 2.4.0\n"
 
 #: String 0
 msgid "100"
