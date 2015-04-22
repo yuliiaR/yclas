@@ -27,17 +27,18 @@
                         </div>
                     </div>
 
-
                     <?foreach($custom_fields as $name=>$field):?>
-                    <div class="form-group" id="cf_new">
-                    <?$cf_name = 'cf_'.$name?>
-                    <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
-                        $select = array(''=>'');
-                        foreach ($field['values'] as $select_name) {
-                            $select[$select_name] = $select_name;
-                        }
-                    } else $select = $field['values']?>
-                            <?=Form::cf_form_tag('cf_'.$name, array(    
+                        <div class="form-group" id="cf_new">
+                            <?$cf_name = 'cf_'.$name?>
+                            <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
+                                $select = array(''=>'');
+                                foreach ($field['values'] as $select_name) {
+                                    $select[$select_name] = $select_name;
+                                }
+                            } else $select = $field['values']?>
+                            <?= FORM::label('cf_'.$name, $field['label'], array('class'=>'col-xs-4 control-label', 'for'=>'cf_'.$name))?>
+                            <div class="col-sm-8">
+                                <?=Form::cf_form_field('cf_'.$name, array(
                                 'display'   => $field['type'],
                                 'label'     => $field['label'],
                                 'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
@@ -45,8 +46,8 @@
                                 'options'   => (!is_array($field['values']))? $field['values'] : $select,
                                 'required'  => $field['required'],
                                 ))?>
-
-                    </div>     
+                            </div>
+                        </div>
                     <?endforeach?>
 
                     <div class="form-group">
