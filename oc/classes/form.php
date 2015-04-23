@@ -117,5 +117,91 @@ class Form extends OC_Form {
 
         return $out;
     }
+    
+    /**
+     * get field html code for a custom field
+     * @param  string $name input name
+     * @param  array  $options as defined
+     * @param  mixed $value value of the field, optional.
+     * @return string        HTML
+     */
+    public static function cf_form_field($name, $options, $value = NULL)
+    {
+        if ($value === NULL)
+            $value = (isset($options['default'])) ? $options['default']:NULL;
+        
+        // dependent classes on type
+        $class = 'form-control '.'cf_'.$options['display'].'_fields data-custom ';
+        
+        switch ($options['display']) {
+            case 'checkbox':
+                $class = 'cf_'.$options['display'].'_fields data-custom';
+                break;
+            case 'radio':
+                $class = 'cf_'.$options['display'].'fields data-custom';
+                $required = (isset($options['required']) AND $options['required']== TRUE)?'required':NULL;
+                $data_categories = (isset($options['categories'])) ? json_encode($options['categories']):NULL;
+                $title = (isset($options['tooltip'])) ? $options['tooltip']:NULL;
+                break;
+            default:
+                $class .= " ";
+                break;
+        }
+        $attributes = array('placeholder'       => (isset($options['placeholder'])) ? $options['placeholder'] : ((isset($options['label'])) ? $options['label'] : $name),
+                            'data-placeholder'  => (isset($options['data-placeholder'])) ? $options['data-placeholder'] : ((isset($options['label'])) ? $options['label'] : $name),
+                            'title'             => (isset($options['tooltip'])) ? $options['tooltip']:NULL, 
+                            'data-categories'   => (isset($options['categories'])) ? json_encode($options['categories']):NULL,
+                            'class'             => $class, 
+                            'id'                => $name,
+                            (isset($options['required']) AND $options['required']== TRUE)?'required':NULL
+                    );
+    
+        switch ($options['display']) 
+        {
+            case 'select':
+                $input = FORM::select($name, $options['options'], (!is_array($value))?$value:NULL, $attributes);
+                break;
+            case 'text':
+                $input = FORM::input($name, $value, $attributes);
+                break;
+            case 'textarea':
+                $input = FORM::textarea($name, $value, $attributes);
+                break;
+            case 'hidden':
+                $input = FORM::hidden($name, $value, $attributes);
+                break;
+            case 'date':
+                $attributes['data-date'] = "data-date";
+                $attributes['data-date-format'] = "yyyy-mm-dd";
+    
+                $input = FORM::input($name, $value, $attributes);
+                break;
+            case 'checkbox':
+                $checked = isset($value); // value can be 1 or 'on'
+    
+                $input = '<div class="checkbox"><label>'.FORM::checkbox($name, NULL, $checked, $attributes).'</label></div>';
+                
+                break;
+            case 'radio':
+                $input = '';
+                $index = 0;
+                
+                foreach($options['options'] as $id => $radio_name)
+                {
+                    $checked = ($value == $index) ? TRUE : FALSE ;
+                    if($id !== "")
+                        $input .= '<div class="radio"><label>'.Form::radio($name, $index, $checked, $attributes).' '.$radio_name.'</label></div>';
+                    
+                    $index++;
+                }
+                break;
+            case 'string':
+            default:
+                $input = FORM::input($name, $value, $attributes);
+                break;
+        }
+    
+        return $input;
+    }
 
 } // End OC_Form

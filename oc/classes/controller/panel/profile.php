@@ -156,6 +156,18 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 	public function action_edit()
 	{
+        //local files
+        if (Theme::get('cdn_files') == FALSE)
+        {
+            $this->template->styles = array('css/datepicker.css' => 'screen');
+            $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js', 'js/oc-panel/edit_profile.js');
+        }
+        else
+        {
+            $this->template->styles = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
+            $this->template->scripts['footer'] = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js', 'js/oc-panel/edit_profile.js');
+        }
+
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit profile')));
 		// $this->template->title = $user->name;
 		//$this->template->meta_description = $user->name;//@todo phpseo
