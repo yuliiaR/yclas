@@ -210,7 +210,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/09/02/pay-directly-from-ad/'>".__('User paypal link')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_seller']['key']))?>
+                        <?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='http://docs.yclas.com/pay-directly-from-ad/'>".__('User paypal link')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_seller']['key']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= FORM::hidden($forms['paypal_seller']['key'], 0);?>
@@ -230,7 +230,7 @@
                     </div>
                         
                     <div class="form-group">
-                        <?= FORM::label($forms['stock']['key'], "<a target='_blank' href='http://open-classifieds.com/2013/09/02/pay-directly-from-ad/'>".__('Paypal link stock control')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['stock']['key']))?>
+                        <?= FORM::label($forms['stock']['key'], "<a target='_blank' href='http://docs.yclas.com/pay-directly-from-ad/'>".__('Paypal link stock control')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['stock']['key']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= FORM::hidden($forms['stock']['key'], 0);?>

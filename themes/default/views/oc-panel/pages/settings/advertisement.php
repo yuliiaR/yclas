@@ -127,7 +127,7 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__("Publish Options")?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/how-to-change-settings-for-ads/'>".__("Publish Options")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
