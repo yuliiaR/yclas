@@ -40,19 +40,23 @@
                                         <a tabindex="-1" title="<?=HTML::chars($c['seoname'])?>" href="<?=Route::url('list', array('category'=>$c['seoname'],'location'=>$loc_seoname))?>">
                                             <?=$c['name']?>
                                         </a>
-                                        <?if($c['has_siblings'] AND $c['id_category_parent'] == 1):?>
-                                            <ul class="dropdown-menu">							
-                                                <?foreach($cats as $chi):?>
-                                                    <?if($chi['id_category_parent'] == $c['id_category']):?>
-                                                        <li>
-                                                            <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname'],'location'=>$loc_seoname))?>">
-                                                                <span class="header_cat_list"><?=$chi['name']?></span> 
-                                                                <span class="count_ads"><span class="badge badge-success"><?=$chi['count']?></span></span>
-                                                            </a>
-                                                        </li>
+                                        <?if($c['id_category_parent'] == 1):?>
+                                            <?$i = 0; foreach($cats as $chi):?>
+                                                <?if($chi['id_category_parent'] == $c['id_category']):?>
+                                                    <?$i++; if($i == 1):?>
+                                                        <ul class="dropdown-menu">
                                                     <?endif?>
-                                                <?endforeach?>
-                                            </ul>
+                                                    <li>
+                                                        <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname'],'location'=>$loc_seoname))?>">
+                                                            <span class="pull-right badge badge-success"><?=$chi['count']?></span>
+                                                            <?=$chi['name']?>
+                                                        </a>
+                                                    </li>
+                                                <?endif?>
+                                            <?endforeach?>
+                                            <?if($i > 0):?>
+                                                </ul>
+                                            <?endif?>
                                         <?endif?>
                                     </li>
                                 <?endif?>
