@@ -680,11 +680,11 @@ msgstr "von"
 
 #: String 171
 msgid "Allow uploading images in publish new."
-msgstr "Lassen Sie das Hochladen von Bildern bei neuen Veröffentlichungen zu."
+msgstr "Hochladen von Bildern bei neuen Veröffentlichungen erlauben."
 
 #: String 172
 msgid "Change the main color scheme and style of the theme"
-msgstr "Ändern Sie den Hauptfarbschema und den Stil des Designs"
+msgstr "Ändern Sie das Hauptfarbschema und den Stil des Designs"
 
 #: String 173
 msgid "Visit Site"
@@ -712,7 +712,7 @@ msgstr "Ausloggen"
 
 #: String 179
 msgid "Deactivate featured"
-msgstr "Bewerbung einstellen"
+msgstr "Bewerben einstellen"
 
 #: String 180
 msgid "Are you sure you want to deactivate featured advertisement?"
@@ -752,7 +752,7 @@ msgstr "Aussehen"
 
 #: String 189
 msgid "Views and Contacts statistic"
-msgstr "Besucher- und Kontaktstatistik"
+msgstr "Besuch- und Kontaktstatistik"
 
 #: String 190
 msgid "Filter"
@@ -880,7 +880,7 @@ msgstr "Profil bearbeiten"
 
 #: String 221
 msgid "Type your password twice to change"
-msgstr "Geben Sie Ihr Passwort zweimal ein"
+msgstr "Zum ändern geben Sie Ihr Passwort zweimal ein"
 
 #: String 222
 msgid "Profile picture"
