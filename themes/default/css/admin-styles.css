@@ -307,6 +307,52 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 .mini-col .collapse-menu {
     width: 45px;
 }
+/* Google CSE */
+.gsc-control-cse,
+.gsc-control-cse * {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+.cse .gsc-control-cse, .gsc-control-cse {
+    padding: 0!important;
+    background: transparent!important;
+    border: none!important;
+}
+.gsc-input-box {
+    border: none!important;
+}
+.gsib_a {
+    padding: 0!important;
+}
+.gsib_b {
+    display: none!important;
+}
+.gsc-search-button {
+    display: none!important;
+}
+.gsc-results-wrapper-overlay {
+    top: 15%!important;
+    margin-left: 150px!important;
+    width: 60%!important;
+}
+#docModal .post-content h1 {
+    font-size: 25px;
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+#docModal .post-content h2,
+#docModal .post-content h3,
+#docModal .post-content h4,
+#docModal .post-content h5,
+#docModal .post-content h6 {
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 2em 0 0.5em;
+  color: #666666;
+}
 /*col-md*/
 @media screen and (max-width: 979px) {
 	.navbar .nav{float: left!important;}

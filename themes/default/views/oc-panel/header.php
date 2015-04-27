@@ -81,9 +81,25 @@
 
 <?if (Auth::instance()->get_user()->id_role != Model_Role::ROLE_USER):?>
 <div class="col-sm-3 col-md-3 hidden-xs pull-right search-container-oc-faq">
-    <form id="oc-faq" class="navbar-form pull-right p_m0" role="search" action="http://open-classifieds.com/" target="_blank">
     <div class="input-group">
-        <input type="text" class="form-control header-oc-faq" placeholder="<?=__('Search FAQs')?>" name="s" style="display: none;">
+        <div id="cse" class="header-oc-faq" style="display: none;">Loading</div>
+        <script src='//www.google.com/jsapi' type='text/javascript'></script>
+        <script type='text/javascript'>
+        google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
+        google.setOnLoadCallback(function() {
+          var customSearchOptions = {};
+          var orderByOptions = {};
+          orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
+          customSearchOptions['enableOrderBy'] = true;
+          customSearchOptions['orderByOptions'] = orderByOptions;
+          customSearchOptions['overlayResults'] = true;
+          var customSearchControl =   new google.search.CustomSearchControl('005338858194192804375:pwxtag7ahsm', customSearchOptions);
+          customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+          var options = new google.search.DrawOptions();
+          options.setAutoComplete(true);
+          customSearchControl.draw('cse', options);
+        }, true);
+        </script>
         <input name="category_name" type="hidden" value="howto"/>
         <div class="input-group-btn">
             <button type="button" class="btn btn-default pull-right oc-faq-btn">
@@ -91,6 +107,5 @@
             </button>
         </div>
     </div>
-    </form>
 </div> 
 <?endif?>
