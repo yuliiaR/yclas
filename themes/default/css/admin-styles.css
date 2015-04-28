@@ -307,6 +307,9 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
 .mini-col .collapse-menu {
     width: 45px;
 }
+.modal-backdrop {
+    z-index: -1;
+}
 /* Google CSE */
 .gsc-control-cse,
 .gsc-control-cse * {
