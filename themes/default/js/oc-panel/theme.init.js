@@ -127,7 +127,8 @@ function init_panel()
 	$('#subscribe-cancel').click(function() {
 	    $.ajax({ url: $(this).data('url'),
 	        }).done(function ( data ) {
-	            $('#subscribeModal').modal('hide')
+	            $('#subscribeModal').modal('hide');
+	            window.location.reload();
 	    });
 	});
 	
