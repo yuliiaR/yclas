@@ -178,6 +178,7 @@ class Auth_Controller extends Controller
     	            								  'js/iconPicker.min.js',
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.min.js',
+    												  'js/jquery.sceditor.bbcode.min.js',
     											      '//cdn.jsdelivr.net/summernote/0.5.1/summernote.min.js',
     												  '//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js', 
     											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
