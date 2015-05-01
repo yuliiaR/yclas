@@ -11,7 +11,7 @@ class Controller_New extends Controller
 	 * 
 	 */
 	public function action_index()
-	{
+    {
         //Detect early spam users, show him alert
         if (core::config('general.black_list') == TRUE AND Model_User::is_spam(Core::post('email')) === TRUE)
         {
@@ -144,14 +144,14 @@ class Controller_New extends Controller
                 ->rule('description', 'min_length', array(':value', 5))
     
                 ->rule('category', 'not_empty')
-                ->rule('category', 'numeric')
+                ->rule('category', 'digit')
 
                 ->rule('price', 'numeric')
                 ->rule('address', 'max_length', array(':value', 145))
                 ->rule('phone', 'max_length', array(':value', 30))
                 ->rule('website', 'max_length', array(':value', 200))
-                ->rule('latitude', 'numeric')
-                ->rule('longitude', 'numeric');
+                ->rule('latitude', 'regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))//validate float number
+                ->rule('longitude', 'regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'));
 
             if(!Auth::instance()->logged_in())
     		{
@@ -167,7 +167,7 @@ class Controller_New extends Controller
             {
             	if(count($locations) > 1)
 	            	$validation = $validation->rule('location', 'not_empty')
-	            	->rule('location', 'numeric');
+	            	->rule('location', 'digit');
             }
 	        
 	        if($validation->check())
