@@ -11,6 +11,13 @@
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
     /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.4.1
+     */
+    public function action_241()
+    {
+    }
+
+    /**
      * This function will upgrade DB that didn't existed in versions prior to 2.4.0
      */
     public function action_240()

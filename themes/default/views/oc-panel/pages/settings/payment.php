@@ -88,7 +88,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['to_top']['key'], __('Featured Plans'), array('class'=>'control-label col-sm-4', 'for'=>$forms['to_top']['key']))?>
+                        <?= FORM::label($forms['to_top']['key'], "<a target='_blank' href='http://docs.yclas.com/how-to-create-featured-plan/'>".__('Featured Plans')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['to_top']['key']))?>
                         <div class="col-sm-8">
                             <?if (is_array($featured_plans)):?>
                                 <ul class="list-unstyled">
