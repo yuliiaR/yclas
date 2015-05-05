@@ -2,7 +2,7 @@
 
 <div class="page-header">
   <h1>
-    <?=__('Interactive Map')?>
+    <?=__('Interactive Map')?> <small><a target='_blank' href='http://docs.yclas.com/how-to-add-interactive-map/'><?=__('Read more')?></a></small>
   </h1>
   <p>
     <?=__("Generate an interactive map for your classifieds website")?>
