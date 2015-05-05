@@ -74,8 +74,8 @@ class Controller_Panel_Settings extends Auth_Controller {
             ->rule('related', 'not_empty')
             ->rule('related', 'digit')
             ->rule('map_zoom', 'digit')
-            ->rule('center_lat', 'numeric')
-            ->rule('center_lon', 'numeric')
+            ->rule('center_lat', 'regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))
+            ->rule('center_lon', 'regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))
             ->rule('reviews', 'range', array(':value', 0, 1))
             ->rule('reviews_paid', 'range', array(':value', 0, 1));
             
