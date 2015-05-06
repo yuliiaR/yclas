@@ -480,7 +480,9 @@ class Controller_Panel_Profile extends Auth_Controller {
 		$form = new Model_Ad($this->request->param('id'));
 		
 	
-		if(Auth::instance()->get_user()->id_user == $form->id_user OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
+		if(Auth::instance()->get_user()->id_user == $form->id_user 
+            OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN
+            OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_MODERATOR)
 		{
             $original_category = $form->category;
 
