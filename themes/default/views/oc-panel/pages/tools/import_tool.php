@@ -14,8 +14,8 @@
                 <p>
                     <?=__('Please use the correct CSV format')?>
                     <br>
-                    <?=__('Categories')?>: <a href="https://mega.co.nz/#!4wZQVCzA"><?=__('download example')?>.</a>
-                    <?=__('Locations')?>: <a href="https://mega.co.nz/#!BxZDzDCC"><?=__('download example')?>.</a>
+                    <?=__('Categories')?>: <a href="https://mega.co.nz/#!4wZQVCzA!EHYk1TdDgBr6U600eS28rtgbTfIYzONwmzpb7o3pIhg"><?=__('download example')?>.</a>
+                    <?=__('Locations')?>: <a href="https://mega.co.nz/#!BxZDzDCC!ANjH-uKxKhcaYwI2_xy0QQWVtvWK510ObGLAaUp_rWQ"><?=__('download example')?>.</a>
                 </p>
                 <hr>
                 <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('class'=>'', 'enctype'=>'multipart/form-data'))?>

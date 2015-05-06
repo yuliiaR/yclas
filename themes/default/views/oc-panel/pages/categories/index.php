@@ -83,7 +83,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <p>
-                            <?=__('Please use the correct CSV format')?> <a href="https://mega.co.nz/#!4wZQVCzA"><?=__('download example')?>.</a>
+                            <?=__('Please use the correct CSV format')?> <a href="https://mega.co.nz/#!4wZQVCzA!EHYk1TdDgBr6U600eS28rtgbTfIYzONwmzpb7o3pIhg"><?=__('download example')?>.</a>
                         </p>
                         <hr>
                         <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>

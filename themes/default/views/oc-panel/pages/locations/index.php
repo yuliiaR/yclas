@@ -144,7 +144,7 @@
                     <div class="panel-heading"><?=_('Upload CSV file')?></div>
                     <div class="panel-body">
                         <p>
-                            <?=__('Please use the correct CSV format')?> <a href="https://mega.co.nz/#!BxZDzDCC"><?=__('download example')?>.</a>
+                            <?=__('Please use the correct CSV format')?> <a href="https://mega.co.nz/#!BxZDzDCC!ANjH-uKxKhcaYwI2_xy0QQWVtvWK510ObGLAaUp_rWQ"><?=__('download example')?>.</a>
                         </p>
                         <hr>
                         <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'.'?id_parent='.Core::get('id_location', 1))), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
