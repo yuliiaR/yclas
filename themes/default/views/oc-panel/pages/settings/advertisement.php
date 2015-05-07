@@ -466,7 +466,7 @@
         </div>
             
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__("Advertisement Display Options")?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/how-to-configure-advertisement-display-options/'>".__("Advertisement Display Options")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
