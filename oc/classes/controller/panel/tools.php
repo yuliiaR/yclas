@@ -507,7 +507,7 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
                 
         foreach ($ads as $ad)
         {
-            $url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address='.$ad->address;
+            $url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address='.urlencode($ad->address);
             
             //get contents from google
             if($result = core::curl_get_contents($url)) 
