@@ -101,8 +101,8 @@ class Controller_Contact extends Controller {
                         $file = NULL;
                     
                     //contact email is set use that one
-                    if(core::post('contactemail'))
-                        $to = core::post('contactemail');
+                    if( isset($ad->cf_contactemail) AND Valid::email($ad->cf_contactemail))
+                        $to = $ad->cf_contactemail;
                     else
                         $to = NULL;
 
