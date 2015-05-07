@@ -70,6 +70,7 @@ class Controller_Feed extends Controller {
 
         $posts = new Model_Post();
         $posts = $posts->where('status','=', 1)
+                ->where('id_forum', '=', NULL)
                 ->order_by('created','desc')
                 ->limit(Core::config('advertisement.feed_elements'))
                 ->cached()
