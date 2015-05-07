@@ -299,7 +299,6 @@ class Model_Order extends ORM {
         if (isset($plans[$days]))
         {
             unset($plans[$days]);
-
             Model_Config::set_value('payment','featured_plans',json_encode($plans));
         }
 
@@ -309,14 +308,18 @@ class Model_Order extends ORM {
      * sets/creates a new plan
      * @param integer $days  
      * @param integer $price
+     * @param integer $days_key key to be deleted...
      */
-    public static function set_featured_plan($days,$price)
+    public static function set_featured_plan($days,$price,$days_key=NULL)
     {
         $plans = self::get_featured_plans();
 
+        //this deletes the previous key in case is a set. we do it here since calling delete_featured was cached...ugly as hell.
+        if (is_numeric($days_key) AND isset($plans[$days_key]))
+            unset($plans[$days_key]);
+
         //this updates a current plan
-        //if (isset($plans[$days]))
-            $plans[$days] = $price;
+        $plans[$days] = $price;
 
         //order from lowest to highest number of days
         ksort($plans);

@@ -285,7 +285,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         {
             if (is_numeric(Core::request('featured_days')) AND is_numeric(Core::request('featured_price')))
             {
-                Model_Order::set_featured_plan(Core::request('featured_days'),Core::request('featured_price'));
+                Model_Order::set_featured_plan(Core::request('featured_days'),Core::request('featured_price'),Core::request('featured_days_key'));
 
                 Alert::set(Alert::SUCCESS, __('Featured plan updated'));
                 $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));

@@ -28,10 +28,12 @@ $('.config').validate();
 $('.plan-add').click(function() {
     $("#modalplan input[name='featured_days']").val('');
     $("#modalplan input[name='featured_price']").val('');
+    $("#modalplan input[name='featured_days_key']").val('');
 });
 $('.plan-edit').click(function() {
     $('#modalplan').modal('show');
     $("#modalplan input[name='featured_days']").val($(this).data('days'));
+    $("#modalplan input[name='featured_days_key']").val($(this).data('days'));
     $("#modalplan input[name='featured_price']").val($(this).data('price'));
 });
 $('.plan-delete').click(function(e) {
