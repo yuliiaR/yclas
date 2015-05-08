@@ -2,7 +2,7 @@
 
 <div class="page-header">
     <h1><?=__('Import tool for ads')?></h1>
-    <p><a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'))?>"><?=__('Import categories and locations')?></a> </p>
+    <p><a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'))?>"><?="<a target='_blank' href='http://docs.yclas.com/how-to-import-ads/'>".__('Read More')."</a>"?></a> </p>
 </div>
 <div class="row">
     
