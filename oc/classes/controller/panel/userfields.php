@@ -23,7 +23,7 @@ class Controller_Panel_UserFields extends Auth_Controller {
         $this->template->scripts['footer'][] = 'js/oc-panel/fields.js';
         
         //retrieve fields
-        $fields = Model_UserField::get_all();
+        $fields = Model_UserField::get_all(FALSE);
         if ( count($fields) > 65 ) //upper bound for custom fields
             Alert::set(Alert::WARNING,__('You have reached the maximum number of custom fields allowed.'));
 
@@ -40,7 +40,7 @@ class Controller_Panel_UserFields extends Auth_Controller {
 
         if ($_POST)
         {
-            if ( count(Model_UserField::get_all()) > 65 ) //upper bound for custom fields
+            if ( count(Model_UserField::get_all(FALSE)) > 65 ) //upper bound for custom fields
             {
                 Alert::set(Alert::ERROR,__('You have reached the maximum number of custom fields allowed.'));
                 HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));  
@@ -58,6 +58,7 @@ class Controller_Panel_UserFields extends Auth_Controller {
                                 'required'          => (Core::post('required')=='on')?TRUE:FALSE,
                                 'show_profile'      => (Core::post('show_profile')=='on')?TRUE:FALSE,
                                 'show_register'     => (Core::post('show_register')=='on')?TRUE:FALSE,
+                                'admin_privilege'   => (Core::post('admin_privilege')=='on')?TRUE:FALSE,
                                 );
 
                 if ($field->create($name,Core::post('type'),Core::post('values'),$options))
@@ -99,6 +100,7 @@ class Controller_Panel_UserFields extends Auth_Controller {
                                 'required'          => (Core::post('required')=='on')?TRUE:FALSE,
                                 'show_profile'      => (Core::post('show_profile')=='on')?TRUE:FALSE,
                                 'show_register'     => (Core::post('show_register')=='on')?TRUE:FALSE,
+                                'admin_privilege'   => (Core::post('admin_privilege')=='on')?TRUE:FALSE,
                                 );
 
                 if ($field->update($name,Core::post('values'),$options))

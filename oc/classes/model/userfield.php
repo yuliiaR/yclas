@@ -112,7 +112,8 @@ class Model_UserField {
                                 'values'    => $values,
                                 'required'  => $options['required'],
                                 'show_profile'      => $options['show_profile'],
-                                'show_register'     => $options['show_register']
+                                'show_register'     => $options['show_register'],
+                                'admin_privilege'   => $options['admin_privilege'],
                                 );
 
                 $conf->config_value = json_encode($fields);
@@ -166,7 +167,8 @@ class Model_UserField {
                                 'values'    => $values,
                                 'required'  => $options['required'],
                                 'show_profile'    => $options['show_profile'],
-                                'show_register'   => $options['show_register']
+                                'show_register'   => $options['show_register'],
+                                'admin_privilege'   => $options['admin_privilege'],
                                 );
 
                 $conf->config_value = json_encode($fields);
@@ -225,7 +227,7 @@ class Model_UserField {
      */
     public function change_order(array $order)
     {        
-        $fields = self::get_all();
+        $fields = self::get_all(FALSE);
 
         $new_fields =  array();
 
@@ -264,7 +266,7 @@ class Model_UserField {
     {
         if ($this->field_exists($name))
         {
-            $fields = self::get_all();
+            $fields = self::get_all(FALSE);
             return $fields[$name];
         }
         else
@@ -272,13 +274,38 @@ class Model_UserField {
     }
 
     /**
-     * get the custom fields for an ad
+     * get the custom fields for a user
+     * 
      * @return array/class
      */
-    public static function get_all($as_array = TRUE)
+    public static function get_all($hide_admin = TRUE,$as_array = TRUE)
     {
-        return json_decode(core::config('user.user_fields'),$as_array);
+        $user_fields = json_decode(core::config('user.user_fields'),TRUE);
+
+        //remove only admin values
+        if ($hide_admin === TRUE)
+        {
+            foreach ($user_fields as $field => $options) 
+            {
+                if (isset($options['admin_privilege']) AND $options['admin_privilege'] == TRUE)
+                {
+                    unset($user_fields[$field]);
+                }
+            }
+        }
+        
+        //convert to a class
+        if ($as_array  === FALSE)
+        {
+            foreach ($user_fields as $field=>$values) 
+                $user_fields[$field] = (object) $user_fields[$field];
+           
+            $user_fields = (object) $user_fields;
+        }
+
+        return $user_fields;
     }
+
 
     /**
      * says if a field exists int he table ads
