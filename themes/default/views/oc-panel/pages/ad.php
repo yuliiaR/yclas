@@ -46,6 +46,19 @@
     </a>
     <?endif?>
 </div>
+
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <?=Core::get('order','Sort')?> - <?=Core::get('sort')?> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <?foreach($fields as $field):?>
+        <li><a class="ajax-load" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?order=<?=$field?>&sort=desc&status=<?=Core::get('status')?>"><?=$field?> - Desc</a></li>
+        <li><a class="ajax-load" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?order=<?=$field?>&sort=asc&status=<?=Core::get('status')?>"><?=$field?> - Asc</a></li>
+    <?endforeach?>
+  </ul>
+</div>  
+
 <br>
 <br>
 <div class="clearfix"></div>
