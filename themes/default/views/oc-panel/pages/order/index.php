@@ -46,7 +46,8 @@
     </form>
     
     <div class="page-header">    
-        <h1><?=__('Orders')?></h1>  
+        <h1><?=__('Orders')?></h1> 
+        <p><?="<a target='_blank' href='http://docs.yclas.com/how-to-manage-orders/'>".__('Read more')."</a>"?></p>
     </div>
 <?endif?>
 
