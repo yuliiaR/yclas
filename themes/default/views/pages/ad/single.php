@@ -184,7 +184,7 @@
     <?endif?>
 
     <div class="clearfix"></div><br>
-    <?if(core::config('advertisement.count_visits')==1):?>
+    <?if(core::config('advertisement.sharing')==1):?>
         <?=View::factory('share')?>
         <div class="clearfix"></div><br>
     <?endif?>
