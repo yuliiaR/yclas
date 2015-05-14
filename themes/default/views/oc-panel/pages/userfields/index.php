@@ -29,6 +29,7 @@
                                     <span class="label label-info "><?=($field['required'])?__('required'):NULL?></span>
                                     <span class="label label-info "><?=(isset($field['show_profile']) AND $field['show_profile'])?__('Show profile'):NULL?></span>
                                     <span class="label label-info "><?=(isset($field['show_register']) AND $field['show_register'])?__('Show register'):NULL?></span>
+                                    <span class="label label-info "><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>
                                 </div>
                                 <a class="drag-action ajax-load" title="<?=__('Edit')?>"
                                     href="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'update','id'=>$name))?>">

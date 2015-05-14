@@ -82,6 +82,15 @@
                 </label>
             <div class="help-block col-xs-offset-4"><?=__('Appears when user registers.')?></div></div>
         </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label class="checkbox col-xs-offset-4">
+                  <input type="checkbox" name="admin_privilege"> 
+                   <?=__('Admin Privileged')?>
+                </label>
+            <div class="help-block col-xs-offset-4"><?=__('Can be seen and edited only by admin.')?></div></div>
+        </div>
       
       <div class="form-actions">
         <a href="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'index'))?>" class="btn btn-default ajax-load" title="<?=__('Cancel')?>"><?=__('Cancel')?></a>

@@ -23,7 +23,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 		$user = Auth::instance()->get_user();
 
 		$this->template->bind('content', $content);
-		$this->template->content = View::factory('oc-panel/profile/edit',array('user'=>$user));
+		$this->template->content = View::factory('oc-panel/profile/edit',array('user'=>$user,'custom_fields'=>Model_UserField::get_all()));
 		$this->template->content->msg ='';
 
 		if ($this->request->post())

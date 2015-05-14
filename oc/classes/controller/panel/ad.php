@@ -24,10 +24,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 		 
 		
 		$ads = new Model_Ad();
+
+        $fields = array('title','id_ad','created','id_category', 'id_location','status');
 		
         //filter ads by status
-        $ads = $ads->where('status', '=', Core::get('status',Model_Ad::STATUS_PUBLISHED));
-		
+        $status = is_numeric(Core::get('status'))?Core::get('status'):Model_Ad::STATUS_PUBLISHED;
+        $ads = $ads->where('status', '=', $status);
 		
 		// sort ads by search value
 		if($q = $this->request->query('search'))
@@ -51,20 +53,21 @@ class Controller_Panel_Ad extends Auth_Controller {
                     'action'      		=> $this->request->action(),
                  
     	    ));
-    	    $ads = $ads->order_by('created','desc')
+    	    $ads = $ads->order_by(core::get('order','created'),core::get('sort','desc'))
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
                 	            ->find_all();
 		
 
 			$this->template->content = View::factory('oc-panel/pages/ad',array('res'			=> $ads,
-																				'pagination'	=> $pagination
+																				'pagination'	=> $pagination,
+                                                                                'fields'        => $fields
                                                                                 )); 
 
 		}
 		else
 		{
-			$this->template->content = View::factory('oc-panel/pages/ad', array('ads' => NULL));
+			$this->template->content = View::factory('oc-panel/pages/ad', array('res' => NULL,'fields'        => $fields));
 		}		
 	}
 

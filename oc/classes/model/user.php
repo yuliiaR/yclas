@@ -130,7 +130,7 @@ class Model_User extends Model_OC_User {
         if($this->loaded())
         {
             //custom fields config, label, name and order
-            $cf_config = Model_UserField::get_all(FALSE);
+            $cf_config = Model_UserField::get_all(TRUE,FALSE);
 
             if(!isset($cf_config))
                 return array();
@@ -145,7 +145,7 @@ class Model_User extends Model_OC_User {
                     $cf_name  = str_replace('cf_', '', $value['column_name']);
                     $cf_value = $this->$value['column_name'];
 
-                    if(isset($cf_value))
+                    if(isset($cf_value) AND isset($cf_config->$cf_name))
                     {   
                         //formating the value depending on the type
                         switch ($cf_config->$cf_name->type) 
