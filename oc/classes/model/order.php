@@ -214,7 +214,7 @@ class Model_Order extends ORM {
                              '[ORDER.DESC]'  => $order->description,
                              '[URL.CHECKOUT]'=> $url_checkout);
 
-            $user->email('new-order',$replace);
+            //$user->email('new-order',$replace);
         }     
 
         return $order;
