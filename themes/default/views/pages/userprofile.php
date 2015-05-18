@@ -29,7 +29,9 @@
                 </li>
             <?endif?>
             <li><strong><?=__('Created')?>:</strong> <?= Date::format($user->created, core::config('general.date_format')) ?></li>
+            <?if ($user->last_login!=NULL):?>
             <li><strong><?=__('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
+            <?endif?>
 
             <?foreach ($user->custom_columns(TRUE) as $name => $value):?>
                 <li>
