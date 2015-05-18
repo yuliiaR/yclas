@@ -1,6 +1,5 @@
+<!doctype html>
 <html>
-<body>
-
 <head>
     <title><?=$title?></title>
 </head>
@@ -8,8 +7,6 @@
 <body>
 
     <div id="gmap" style="height:<?=$height?>;width:<?=$width?>;"></div>
-
-</body>
 
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7"></script>
@@ -48,4 +45,6 @@
   </script>
 
 <?=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
+
+</body>
 </html>
