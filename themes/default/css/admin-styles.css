@@ -308,7 +308,7 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
     width: 45px;
 }
 .modal-backdrop {
-    z-index: -1;
+    z-index: 1040;
 }
 /* Google CSE */
 .gsc-control-cse,
