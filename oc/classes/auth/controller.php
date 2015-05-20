@@ -153,19 +153,19 @@ class Auth_Controller extends Controller
     	            //other color
     	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
     	            {
-    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.2/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
+    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.4/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
     	            }
     	            //default theme
     	            else
     	            {
-    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.2/paper/bootstrap.min.css' => 'screen');
+    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.4/paper/bootstrap.min.css' => 'screen');
     	            }
 
                 	$common_css = array('//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
                                         '//cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
                                         'css/loadingbar.css'=>'screen', 
                                         'css/icon-picker.min.css'=>'screen', 
-                                        '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'=>'screen', 
+                                        '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'=>'screen', 
                                         '//cdn.jsdelivr.net/summernote/0.5.1/summernote.css'=>'screen', 
                                         '//cdn.jsdelivr.net/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css'=>'screen',
                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css'=>'screen',
@@ -180,7 +180,7 @@ class Auth_Controller extends Controller
     												  'js/jquery.sceditor.min.js',
     												  'js/jquery.sceditor.bbcode.min.js',
     											      '//cdn.jsdelivr.net/summernote/0.5.1/summernote.min.js',
-    												  '//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js', 
+    												  '//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js', 
     											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                                       'js/bootstrap-tour.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'bstour')),

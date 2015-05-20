@@ -232,6 +232,26 @@
                     </div>
                     
                     <div class="form-group">
+                        <?= FORM::label($forms['description_bbcode']['key'], __('BBCODE editor on description field'), array('class'=>'control-label col-sm-4', 'for'=>$forms['description_bbcode']['key']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= FORM::hidden($forms['description_bbcode']['key'], 0);?>
+                                <?= FORM::checkbox($forms['description_bbcode']['key'], 1, (bool) $forms['description_bbcode']['value'], array(
+                                'placeholder' => __('BBCODE editor on description field'), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['description_bbcode']['key'], 
+                                'data-original-title'=> __("BBCODE editor on description field"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-content'=>__("BBCODE editor appears in description field."),
+                                ))?>
+                                <?= FORM::label($forms['description_bbcode']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['description_bbcode']['key']))?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
                         <?= FORM::label($forms['captcha']['key'], __('Captcha'), array('class'=>'control-label col-sm-4', 'for'=>$forms['captcha']['key']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">

@@ -1,4 +1,4 @@
-$('textarea[name=description]').sceditorBBCodePlugin({
+$('textarea[name=description]:not(.disable-bbcode)').sceditorBBCodePlugin({
     toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
     "bulletlist,orderedlist|link,unlink,youtube|source",
     resizeEnabled: "true"

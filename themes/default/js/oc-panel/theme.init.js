@@ -13,7 +13,7 @@ function init_panel()
 	}
     else
     {   
-        $('#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields').sceditorBBCodePlugin({
+        $('#formorm_description, textarea[name=description]:not(.disable-bbcode), textarea[name=email_purchase_notes], .cf_textarea_fields').sceditorBBCodePlugin({
             toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
             "bulletlist,orderedlist|link,unlink,image,youtube|source",
             resizeEnabled: "true",

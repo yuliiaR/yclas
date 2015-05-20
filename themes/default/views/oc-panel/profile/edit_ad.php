@@ -203,7 +203,7 @@
 						<div class="form-group">
 							<div class="col-sm-12">
 								<?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description', 'spellcheck'=>TRUE))?>
-								<?= FORM::textarea('description', $ad->description, array('class'=>'col-md-9 col-sm-9 col-xs-12', 'name'=>'description', 'id'=>'description', 'rows'=>8, 'required'))?>
+								<?= FORM::textarea('description', $ad->description, array('class'=>'form-control col-md-9 col-sm-9 col-xs-12'.((Core::config("advertisement.description_bbcode"))?' disable-bbcode':NULL), 'name'=>'description', 'id'=>'description', 'rows'=>8, 'required'))?>
 							</div>
 						</div>
 						<?if(core::config('advertisement.phone') != FALSE):?>
