@@ -4,8 +4,8 @@
   '2.4.1' => 
   array (
     'codename' => 'Puerto Plata',
-    'released' => '2015-05-25',
-    'blog' => 'http://open-classifieds.com/2015/05/25/open-classifieds-2-4-1/',
+    'released' => '2015-05-19',
+    'blog' => 'http://open-classifieds.com/2015/05/19/open-classifieds-2-4-1/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.4.0...2.4.1',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.4.1+is%3Aclosed',
     'download' => 'http://j.mp/oc_241',
