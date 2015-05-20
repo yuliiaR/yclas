@@ -4324,7 +4324,7 @@ msgid "Updates"
 msgstr "Ενημερώσεις"
 
 #: String 1078
-msgid "Updating, do not close tihs window."
+msgid "Updating, do not close this window."
 msgstr "Αναβάθμιση, μην κλείσετε αυτό το παράθυρο."
 
 #: String 1079

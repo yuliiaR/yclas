@@ -4408,7 +4408,7 @@ msgid "Update Topic"
 msgstr ""
 
 #: String 1099
-msgid "Updating, do not close tihs window."
+msgid "Updating, do not close this window."
 msgstr ""
 
 #: String 1100
