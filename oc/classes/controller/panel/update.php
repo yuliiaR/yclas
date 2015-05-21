@@ -13,6 +13,31 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
     /**
      * This function will upgrade DB that didn't existed in versions prior to 2.4.1
      */
+    public function action_250()
+    {
+        //new configs
+        $configs = array(
+                        array( 'config_key'     =>'api_key',
+                               'group_name'     =>'general', 
+                               'config_value'   => Text::random('alnum', 32)),
+                        );
+        
+        Model_Config::config_array($configs);
+        
+
+        //api token
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `api_token` varchar(40) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+    
+
+    }
+
+
+    /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.4.1
+     */
     public function action_241()
     {
     }

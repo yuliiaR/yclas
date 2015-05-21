@@ -230,6 +230,19 @@ array('action' => '[0-9]++','message' => '.+'))
     'action'     => 'index'
 ));
 
+
+Route::set('api', 'api/<version>/<controller>(/<action>(/<id>))(.<format>)',
+    array(
+        'version' => 'v1',
+        'format'  => '(json|xml|csv|html)',
+    ))
+    ->defaults(array(
+        'directory'  => 'api',
+        'format'     => 'json',
+        'action'     => 'index',
+));
+
+
 /**
  * Default route
  */
