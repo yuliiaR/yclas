@@ -231,6 +231,9 @@ array('action' => '[0-9]++','message' => '.+'))
 ));
 
 
+/**
+ * API V1 REST route, if action is a numeric its swaped with ID
+ */
 Route::set('api', 'api/<version>/<controller>(/<action>(/<id>))(.<format>)',
     array(
         'version' => 'v1',

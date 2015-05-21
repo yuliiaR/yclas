@@ -11,18 +11,6 @@
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 2.5.0
-     */
-    public function action_250()
-    {
-        $configs = array(
-                        array( 'config_key'     =>'description_bbcode',
-                               'group_name'     =>'advertisement',
-                               'config_value'   => 1)
-                        );
-    }
-    
-    /**
      * This function will upgrade DB that didn't existed in versions prior to 2.4.1
      */
     public function action_250()

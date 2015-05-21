@@ -53,23 +53,4 @@ class Controller_Api_Category extends Api_Controller {
        
     }
 
-
-    /**
-     * Handle PUT requests.
-     */
-    public function action_update()
-    {
-        try
-        {
-            $this->rest_output( 'ok'.print_r( Core::request('description2'),1 ));
-        }
-        catch (Kohana_HTTP_Exception $khe)
-        {
-            $this->_error($khe);
-            return;
-        }
-       
-    }
-
-
 } // END
