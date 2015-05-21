@@ -123,14 +123,15 @@ class Model_User extends Model_OC_User {
     /**
     * returns a list with custom field values of this user
     * @param  boolean $show_profile only those fields that needs to be displayed on the user profile show_profile===TRUE
+    * @param  boolean $hide_admin hide those fields that are reserved for the admin hide_admin===TRUE
     * @return array else false 
     */
-    public function custom_columns($show_profile = FALSE)
+    public function custom_columns($show_profile = FALSE, $hide_admin = TRUE)
     {
         if($this->loaded())
         {
             //custom fields config, label, name and order
-            $cf_config = Model_UserField::get_all(TRUE,FALSE);
+            $cf_config = Model_UserField::get_all(($hide_admin === TRUE)? TRUE:FALSE,FALSE);
 
             if(!isset($cf_config))
                 return array();

@@ -543,6 +543,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'phone', 1),
 ('advertisement', 'upload_file', 0),
 ('advertisement', 'location', 1),
+('advertisement', 'description_bbcode', 1),
 ('advertisement', 'captcha', 1),
 ('advertisement', 'website', 1),
 ('advertisement', 'price', 1),
