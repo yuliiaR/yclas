@@ -193,5 +193,4 @@ class Model_User extends Model_OC_User {
         return array();
     }
 
-
 } // END Model_User
