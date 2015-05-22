@@ -1,5 +1,5 @@
 $(function(){
-    $("#import_process").click(function() {
+    $("#import_process").click(function(event) {
         var href = $(this).attr('href');
         event.preventDefault();
         $(this).text("Processing...");
