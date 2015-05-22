@@ -105,7 +105,7 @@ function check_all(){
 }
 
 $(function(){
-    $(".index-moderation").click(function() {
+    $(".index-moderation").click(function(event) {
         var href = $(this).attr('href');
         var title = $(this).attr('title');
         var text = $(this).data('text');

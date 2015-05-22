@@ -50,7 +50,7 @@ $(function  () {
 })
 
 $(function(){
-    $(".index-delete").click(function() {
+    $(".index-delete").click(function(event) {
         var href = $(this).attr('href');
         var title = $(this).attr('title');
         var text = $(this).data('text');
