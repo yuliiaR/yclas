@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Api_Category extends Api_Controller {
+class Controller_Api_Categories extends Api_Controller {
 
 
     /**
