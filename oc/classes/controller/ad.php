@@ -990,6 +990,10 @@ class Controller_Ad extends Controller {
 			        	       ->offset($pagination->offset)
 			        	       ->find_all();
 			}
+            else
+            {
+                $ads = NULL;
+            }
 				
 		}
 
