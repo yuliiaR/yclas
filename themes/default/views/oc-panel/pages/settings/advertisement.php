@@ -684,7 +684,7 @@
         </div>
             
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__("Google Maps Settings")?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/how-to-configure-Google-Map-Settings'>".__("Google Maps Settings")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
