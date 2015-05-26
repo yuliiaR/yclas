@@ -217,7 +217,7 @@ class install{
                 $compatible = FALSE;
 
             if ($values['result'] == FALSE)
-                self::$msg .= $values['message'].'<br>';
+                self::$msg[] = $values['message'];
         }
 
         return $compatible;
