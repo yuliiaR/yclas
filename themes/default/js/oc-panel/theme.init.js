@@ -151,7 +151,7 @@ function init_panel()
 	});
 	
 	$('#contact-notification').click(function(event) {
-	    setCookie("contact_notification", Math.round(+new Date()/1000), 365);
+	    $.get($(this).data('url'));
 	    $(document).mouseup(function (e)
 	    {
 	        var contact = $("#contact-notification");

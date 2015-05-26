@@ -3,7 +3,7 @@
     <?if(count(Auth::instance()->get_user()->contacts()) > 0):?>
         <div class="btn-group navbar-btn" role="group">
             <a class="btn dropdown-toggle btn-success" data-toggle="dropdown"
-                href="#" id="contact-notification"> <i class="fa fa-bell"></i> <span class="badge"><?=count(Auth::instance()->get_user()->contacts())?></span>
+                href="#" id="contact-notification" data-url="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'notifications'))?>"> <i class="fa fa-bell"></i> <span class="badge"><?=count(Auth::instance()->get_user()->contacts())?></span>
             </a>
             <ul id="contact-notification-dd" class="dropdown-menu">
                 <li class="dropdown-header"><?=__('Please check your email')?></li>

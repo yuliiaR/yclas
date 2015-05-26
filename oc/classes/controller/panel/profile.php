@@ -1200,6 +1200,18 @@ class Controller_Panel_Profile extends Auth_Controller {
             $this->template->content = View::factory('oc-panel/profile/favorites', array('favorites' => $favorites));
         }
     }
+    
+    public function action_notifications()
+    {
+        $this->auto_render = FALSE;
+        $this->template = View::factory('js');
+        
+        $user = Auth::instance()->get_user();
+        $user->notification_date = Date::unix2mysql();
+        $user->save();
+        
+        $this->template->content = __('Saved');
+    }
 
    /**
     * redirects to public profile, we use it so we can cache the view and redirect them

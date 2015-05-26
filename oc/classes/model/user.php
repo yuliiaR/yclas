@@ -75,11 +75,8 @@ class Model_User extends Model_OC_User {
      */
     public function contacts()
     {
-        if($this->loaded())
+        if ($this->loaded())
         {
-            //get cookie contact_notification
-            $theme = (isset($_COOKIE['contact_notification']))? $_COOKIE['contact_notification']:0;
-            
             $query = DB::select('a.id_ad')
                         ->select('a.title')
                         ->select('a.seotitle')
@@ -90,14 +87,15 @@ class Model_User extends Model_OC_User {
                         ->on('a.id_ad','=','v.id_ad')
                         ->where('a.id_user','=',$this->id_user)
                         ->where('v.contacted','=','1')
-                        ->where('v.created','>',Date::unix2mysql($theme))
+                        ->where('v.created','>', (is_null($this->notification_date))? 0:$this->notification_date)
                         ->order_by('v.created', 'DESC');
             
-            if (!isset($_COOKIE['contact_notification']))
+            if (is_null($this->notification_date))
                 $query->limit(5);
             
             return $query->execute();
         }
+        
         return FALSE;
     }
     

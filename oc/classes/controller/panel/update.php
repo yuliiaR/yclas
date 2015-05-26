@@ -34,7 +34,13 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         try 
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD CONSTRAINT `oc2_users_UK_api_token` UNIQUE (`api_token`)")->execute();
-        }catch (exception $e) {}    
+        }catch (exception $e) {}
+        
+        //notification date
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `notification_date` DATETIME NULL DEFAULT NULL ;")->execute();
+        }catch (exception $e) {}
 
     }
 
