@@ -77,7 +77,11 @@
     <?= FORM::close()?>
 </div>
 
-<?if (count($ads)>0):?>
-    <h3><?=__('Search results')?></h3>
-    <?=View::factory('pages/ad/listing',array('pagination'=>$pagination,'ads'=>$ads,'category'=>NULL, 'location'=>NULL, 'user'=>$user, 'featured'=>NULL))?>
+<?if (Request::current()->query()):?>
+    <?if (count($ads)>0):?>
+        <h3><?=__('Search results')?></h3>
+        <?=View::factory('pages/ad/listing',array('pagination'=>$pagination,'ads'=>$ads,'category'=>NULL, 'location'=>NULL, 'user'=>$user, 'featured'=>NULL))?>
+    <?else:?>
+        <h3><?=__('Your search did not match any advertisement.')?></h3>
+    <?endif?>
 <?endif?>
