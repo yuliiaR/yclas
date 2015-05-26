@@ -14,7 +14,7 @@ class Controller_Api_Auth extends Api_Auth {
         {
             if ($user->loaded())
             {
-                $this->rest_output(array('apikey'=>$user->api_token()));
+                $this->rest_output(array('user_token'=>$user->api_token()));
             }
         }
         else

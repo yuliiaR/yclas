@@ -40,7 +40,11 @@ class Controller_Api_Categories extends Api_Controller {
                                     'siblings' => $category->get_siblings_ids(),
                                     );
                 }
+                else
+                    $this->_error(__('Category not found'),404);
             }
+            else
+                $this->_error(__('Category not found'),404);
            
 
             $this->rest_output($result);
