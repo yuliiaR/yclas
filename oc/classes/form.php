@@ -101,6 +101,10 @@ class Form extends OC_Form {
                     $index++;
                 }
                 break;
+            case 'email':
+                $attributes['type'] = 'email';
+                $input = FORM::input($name, $value, $attributes);
+                break;
             case 'string':
             default:
                 $input = FORM::input($name, $value, $attributes);
@@ -194,6 +198,10 @@ class Form extends OC_Form {
                     
                     $index++;
                 }
+                break;
+            case 'email':
+                $attributes['type'] = 'email';
+                $input = FORM::input($name, $value, $attributes);
                 break;
             case 'string':
             default:
