@@ -81,6 +81,11 @@ class Model_Field {
                         ->tiny_int($this->_name_prefix.$name,1);
                     break;
 
+                case 'email':
+                    $table->add_column()
+                        ->string($this->_name_prefix.$name, 145);
+                    break;
+
                 case 'string':            
                 default:
                     $table->add_column()

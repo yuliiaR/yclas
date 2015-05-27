@@ -336,21 +336,28 @@ class Controller_Panel_Location extends Auth_Crud {
         $this->auto_render = FALSE;
     
         //update the elements related to that ad
-        if(core::post('geonames_locations') !== "")
+        if (core::post('geonames_locations') !== "")
         {
 
             $geonames_locations = json_decode(core::post('geonames_locations'));
-
-            if (count($geonames_locations)>0)
+            
+            if (count($geonames_locations) > 0)
             {
                 $obj_location = new Model_Location();
+                $locations_array = array();
 
                 $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent', 'latitude', 'longitude'));
                 foreach ($geonames_locations as $location)
-                {
-                    $insert = $insert->values(array($location->name,$obj_location->gen_seoname($location->name),Core::get('id_location', 1),
-                                            isset($location->lat)?$location->lat:NULL,
-                                            isset($location->long)?$location->long:NULL));
+                {                    
+                    if ( ! in_array($location->name,$locations_array))
+                    {
+                        $insert = $insert->values(array($location->name,$obj_location->gen_seoname($location->name),
+                                                        Core::get('id_location', 1),
+                                                        isset($location->lat)?$location->lat:NULL,
+                                                        isset($location->long)?$location->long:NULL));
+                        
+                        $locations_array[] = $location->name;
+                    }
                 }
                 // Insert everything with one query.
                 $insert->execute();

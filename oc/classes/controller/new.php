@@ -27,6 +27,19 @@ class Controller_New extends Controller
             $this->redirect('default');
         }
         
+        if (Core::post('ajaxValidateCaptcha'))
+        {
+            $this->auto_render = FALSE;
+            $this->template = View::factory('js');
+
+            if (captcha::check('publish_new', TRUE))
+                $this->template->content = 'true';
+            else
+                $this->template->content = 'false';
+            
+            return;
+        }
+        
 		//template header
 		$this->template->title           	= __('Publish new advertisement');
 		$this->template->meta_description	= __('Publish new advertisement');
