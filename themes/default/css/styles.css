@@ -200,6 +200,12 @@ div.sceditor-group{padding: 1px 15px 5px 5px!important;}
     padding-left: 0;
     margin-bottom: 0;
 }
+img#captcha_img_publish_new {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
 /*Media screens*/
 @media screen and (max-width: 1199px) {
 	.header-search{display: none;}

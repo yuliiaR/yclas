@@ -110,6 +110,7 @@ $( ".locateme" ).click(function() {
         rules:{},
         messages:{},
         focusInvalid: false,
+        onkeyup: false,
         invalidHandler: function(form, validator) {
             if (!validator.numberOfInvalids())
                 return;
@@ -125,6 +126,18 @@ $( ".locateme" ).click(function() {
     $params['rules']['address'] = {maxlength: 145};
     $params['rules']['phone'] = {maxlength: 30};
     $params['rules']['website'] = {maxlength: 200};
+    $params['rules']['captcha'] =   {
+                                        "remote" :
+                                        {
+                                            url: $(".post_new").attr('action'),
+                                            type: "post",
+                                            data:
+                                            {
+                                                ajaxValidateCaptcha: true
+                                            }
+                                        }
+                                    };
+    $params['messages']['captcha'] =   {"remote" : $('.post_new :input[name="captcha"]').data('error')};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
     var $form = $(".post_new");

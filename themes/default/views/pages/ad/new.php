@@ -217,9 +217,9 @@
 						<?if (Core::config('general.recaptcha_active')):?>
 							<?=Captcha::recaptcha_display()?>
 						<?else:?>
-							Captcha*:<br />
-							<?= captcha::image_tag('publish_new');?><br />
-							<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
+							<?= FORM::label('captcha', __('Captcha'), array('for'=>'captcha'))?>
+							<span id="helpBlock" class="help-block"><?=captcha::image_tag('publish_new')?></span>
+							<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required', 'data-error' => __('Captcha is not correct')))?>
 						<?endif?>
 					</div>
 				</div>
