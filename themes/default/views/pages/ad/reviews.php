@@ -50,7 +50,7 @@
                     <?=Form::errors()?>
                     <form action="" method="post">
                     <fieldset>
-                        <div id="review_raty"></div>
+                        <div id="review_raty" data-baseurl="<?=Route::url('default')?>"></div>
 
                         <div class="control-group">
                             <?= FORM::label('description', __('Review'), array('class'=>'control-label', 'for'=>'description'))?>
