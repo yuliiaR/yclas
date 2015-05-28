@@ -92,7 +92,7 @@
 			<div class="form-group">
 				<div class="col-md-9">
 					<?= FORM::label('description', __('Description'), array('for'=>'description', 'spellcheck'=>TRUE))?>
-					<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))?' disable-bbcode':NULL), 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
+					<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
 				</div>
 			</div>
 			<div class="form-group">
