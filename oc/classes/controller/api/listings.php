@@ -20,6 +20,14 @@ class Controller_Api_Listings extends Api_Auth {
 
                 $ads = new Model_Ad();
 
+                $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
+
+                //if ad have passed expiration time dont show 
+                if(core::config('advertisement.expire_date') > 0)
+                {
+                    $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
+                }
+
                 //make a search with q? param
                 if (isset($this->_params['q']) AND strlen($this->_params['q']))
                 {
@@ -48,8 +56,9 @@ class Controller_Api_Listings extends Api_Auth {
                 //as array
                 foreach ($ads as $ad)
                 {
-                    //@todo include the images!!
                     $output[$ad->id_ad] = $ad->as_array();
+                    $output[$ad->id_ad]['thumb'] = ($ad->get_first_image()!==NULL)?Core::S3_domain().$ad->get_first_image():FALSE;
+                    $output[$ad->id_ad]['customfields'] = Model_Field::get_by_category($ad->id_category);
                 }
 
                 $this->rest_output($output,200,$count,($pagination!==FALSE)?$pagination:NULL);
@@ -72,7 +81,10 @@ class Controller_Api_Listings extends Api_Auth {
                 $ad = new Model_Ad($id_ad);
                 if ($ad->loaded())
                 {
-                    $this->rest_output(array($ad->as_array()));
+                    $a = $ad->as_array();
+                    $a['images'] = $ad->get_images();
+                    $a['customfields'] = Model_Field::get_by_category($ad->id_category);
+                    $this->rest_output($a);
                 }
                 else
                     $this->_error(__('Advertisement not found'),404);

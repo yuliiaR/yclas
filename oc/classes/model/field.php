@@ -290,6 +290,24 @@ class Model_Field {
     }
 
     /**
+     * get the custom fields for a category
+     * @return array/class
+     */
+    public static function get_by_category($id_category)
+    {
+        $fields = array();
+        $all_fields = self::get_all();
+
+        foreach ($all_fields as $field => $values) 
+        {
+            if (is_array($values['categories']) AND in_array($id_category,$values['categories']))
+                $fields['cf_'.$field] = $values;
+        }
+
+        return $fields;
+    }
+
+    /**
      * says if a field exists int he table ads
      * @param  string $name 
      * @return bool      
