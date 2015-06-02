@@ -452,6 +452,7 @@ class Model_Ad extends ORM {
             if(core::config('image.watermark') AND is_readable(core::config('image.watermark_path'))) // watermark ON
             {
                 Image::factory($file)
+                    ->orientate()
                     ->resize($width, $height, Image::AUTO)
                     ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
                     ->save($directory.$filename_original,$image_quality);
@@ -459,6 +460,7 @@ class Model_Ad extends ORM {
             else 
             {
                 Image::factory($file)
+                    ->orientate()
                     ->resize($width, $height, Image::AUTO)
                     ->save($directory.$filename_original,$image_quality);
             }
@@ -469,18 +471,21 @@ class Model_Ad extends ORM {
             if(core::config('image.watermark') AND is_readable(core::config('image.watermark_path')))
             {
                 Image::factory($file)
+                    ->orientate()
                     ->watermark( $mark, $wm_left_x, $wm_top_y) // CUSTOM FUNCTION (kohana)
                     ->save($directory.$filename_original,$image_quality);
             }
             else
             {
                 Image::factory($file)
+                    ->orientate()
                     ->save($directory.$filename_original,$image_quality);
             }
         }
         
         //creating the thumb and resizing using the the biggest side INVERSE
         Image::factory($file)
+            ->orientate()
             ->resize($width_thumb, $height_thumb, Image::INVERSE)
             ->save($directory.$filename_thumb,$image_quality);
             
