@@ -885,11 +885,12 @@ class Controller_Ad extends Controller {
                         {
                             $category = new Model_Category();
                             $category->where('seoname','=',$cat)->cached()->limit(1)->find();
-                            $cat_siblings_ids = array_merge($cat_siblings_ids,$category->get_siblings_ids());
+                            if ($category->loaded())
+                                $cat_siblings_ids = array_merge($cat_siblings_ids,$category->get_siblings_ids());
                         }
                     }
 
-                    if ($cat_siblings_ids > 0)
+                    if (count($cat_siblings_ids) > 0)
                         $ads->where('id_category', 'IN', $cat_siblings_ids);
                 }
                 
@@ -904,11 +905,12 @@ class Controller_Ad extends Controller {
                         {
                             $location = new Model_location();
                             $location->where('seoname','=',$loc)->cached()->limit(1)->find();
-                            $loc_siblings_ids = array_merge($loc_siblings_ids,$location->get_siblings_ids());
+                            if ($location->loaded())
+                                $loc_siblings_ids = array_merge($loc_siblings_ids,$location->get_siblings_ids());
                         }
                     }
                     
-                    if ($loc_siblings_ids > 0)
+                    if (count($loc_siblings_ids) > 0)
                         $ads->where('id_location', 'IN', $loc_siblings_ids);
                 }
             }
