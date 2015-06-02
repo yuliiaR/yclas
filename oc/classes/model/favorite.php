@@ -56,4 +56,63 @@ class Model_Favorite extends ORM {
         return FALSE;
     }
 
+    /**
+     * favorite an ad
+     * @param  integer $id_user user
+     * @param  integer   $id_ad   ad
+     * @return boolean          
+     */
+    public static function favorite($id_user, $id_ad)
+    {
+        //try to find the fav
+        $fav = new Model_Favorite();
+        $fav->where('id_user', '=', $id_user)
+                    ->where('id_ad', '=', $id_ad)
+                    ->find();
+
+        if (!$fav->loaded())
+        {
+            //create the fav
+            $fav = new Model_Favorite();
+            $fav->id_user = $id_user;
+            $fav->id_ad   = $id_ad;
+
+            try {
+                $fav->save();
+            } catch (Exception $e) {
+                return FALSE;
+            }
+
+        }
+        
+        return TRUE;
+        
+    }
+
+
+    /**
+     * favorite an ad
+     * @param  integer $id_user user
+     * @param  integer   $id_ad   ad
+     * @return boolean          
+     */
+    public static function unfavorite($id_user, $id_ad)
+    {
+        //try to find the fav
+        $fav = new Model_Favorite();
+        $fav->where('id_user', '=', $id_user)
+                    ->where('id_ad', '=', $id_ad)
+                    ->find();
+
+        if ($fav->loaded())
+        {
+            $fav->delete();
+            return TRUE;
+        }
+        else
+            return FALSE;
+
+    }
+
+
 }

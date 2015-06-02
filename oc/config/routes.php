@@ -240,6 +240,7 @@ Route::set('api', 'api/<version>/<controller>(/<action>(/<id>))(.<format>)',
         'format'  => '(json|xml|csv|html)',
     ))
     ->defaults(array(
+        'version'    => 'v1',
         'directory'  => 'api',
         'format'     => 'json',
         'action'     => 'index',

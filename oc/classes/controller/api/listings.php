@@ -75,7 +75,6 @@ class Controller_Api_Listings extends Api_Auth {
     {
         try
         {
-            $result = array();
             if (is_numeric($id_ad = $this->request->param('id')))
             {
                 $ad = new Model_Ad($id_ad);
