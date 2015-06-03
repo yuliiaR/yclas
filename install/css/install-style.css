@@ -91,8 +91,19 @@ a:hover {
     background-color: #32AF0A;
     border-color: #32AF0A;
 }
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+    outline: 0;
+}
 .text-success {
     color: #41bb19;
+}
+.btn-default.action {
+    letter-spacing: 0px;
 }
 .list-requirements {
     margin-bottom: 10px;
@@ -176,8 +187,26 @@ a:hover {
     color: #676a6c;
 }
 .alert-danger {
-    background-color: #f05050;
+    background-color: rgba(240, 80, 80, 0.15);
     color: #676a6c;
+}
+.alert-services {
+    background-color: #41BB19;
+    color: #ffffff;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+.alert-services:hover {
+    background-color: #32AF0A;
+}
+.alert-services a {
+    color: #FFFFFF;
+}
+.alert-services a:hover {
+    text-decoration: none;
 }
 .alerts {
     margin-top: -60px;

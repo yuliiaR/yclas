@@ -100,7 +100,9 @@ else
                         <h2><a target="_blank" href="http://open-classifieds.com/"><img class="logo" src="http://open-classifieds.com/wp-content/uploads/2015/05/oc-logo-hd.png"></a></h2>
                         <p><strong><?=__("Welcome to the super easy and fast installation")?></strong></p>
                         <p>Open Classifieds is an open source powerful PHP classifieds script that can help you start a website and turn it into a fully customizable classifieds site within a few minutes.</p>
-                        <p><a target="_blank" href="http://open-classifieds.com/market/"><?=__("If you need any help please check our professional services")?></a>.</p>
+                        <div class="alert alert-services text-center">
+                            <p><a target="_blank" href="http://open-classifieds.com/market/"><?=__("If you need any help please check our professional services")?></a></p>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="off-canvas animated">
@@ -141,12 +143,12 @@ else
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="SAMPLE_DB" checked> <?=__("Sample data")?>
+                                                    <input type="checkbox" name="SAMPLE_DB" <?=(core::request('DB_CREATE'))?NULL:'checked'?>> <?=__("Sample data")?>
                                                 </label>
                                             </div>
                                             <div class="checkbox hidden animated db-adv">
                                                 <label>
-                                                    <input type="checkbox" name="DB_CREATE"> <?=__("Create DB")?>
+                                                    <input type="checkbox" name="DB_CREATE" <?=(core::request('DB_CREATE'))?'checked':NULL?>> <?=__("Create DB")?>
                                                 </label>
                                             </div>
                                             <div class="form-group hidden animated db-adv">
