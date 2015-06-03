@@ -1,6 +1,6 @@
     //sceditorBBCodePlugin for validation, updates iframe on submit 
     $("button[name=submit]").click(function(){
-        $("textarea[name=description]").data("sceditor").updateTextareaValue();
+        $("textarea[name=description]").data("sceditor").updateOriginal();
     });
     
     // VALIDATION with chosen fix
@@ -119,7 +119,9 @@
                 
     });
 
-    showCustomFieldsByCategory($("input[name=category]"));
+    $(function(){
+        showCustomFieldsByCategory($("input[name=category]"));
+    });
 
     // hide CATEGORY if selected by POST
     $('.category_edit a').click(function(){
