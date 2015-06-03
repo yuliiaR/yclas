@@ -69,6 +69,24 @@ class Model_Ad extends ORM {
                                             self::PAYMENT_MODERATION);
 
     /**
+     * Updates a single record or multiple records
+     *
+     * @chainable
+     * @param  Validation $validation Validation object
+     * @throws Kohana_Exception
+     * @return ORM
+     */
+    public function update(Validation $validation = NULL)
+    {
+
+        //add the value, forcing it so wont use the DB default ;), so everytime and ad is modifieds we get the time.
+        $this->set('last_modified',Date::unix2mysql());
+        
+        return parent::update($validation);
+    }
+
+
+    /**
      * global Model Ad instance get from controller so we can access from anywhere like Model_Ad::current()
      * @var Model_Ad
      */
