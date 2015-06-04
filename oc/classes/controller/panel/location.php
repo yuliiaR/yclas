@@ -96,6 +96,7 @@ class Controller_Panel_Location extends Auth_Crud {
                     throw HTTP_Exception::factory(500,$e->getMessage());  
                 }
 
+                $this->action_deep();
                 Core::delete_cache();
                 Alert::set(Alert::SUCCESS, __('Location created'));
             
@@ -156,6 +157,7 @@ class Controller_Panel_Location extends Auth_Crud {
                     throw HTTP_Exception::factory(500,$e->getMessage());  
                 }
 
+                $this->action_deep();
                 Core::delete_cache();
                 Alert::set(Alert::SUCCESS, __('Item updated'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
