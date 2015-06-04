@@ -72,6 +72,34 @@ class Cron_Ad {
 
 
     /**
+     * remember the user his ad is about to expire
+     * @param integer days num of days before to notify
+     * @return void
+     */
+    public static function to_expire($days = 2)
+    {
+        //feature expire ads from yesterday
+        if(core::config('advertisement.expire_date') > 0)
+        {
+            $ads = new Model_Ad();
+            $ads = $ads ->where('status','=',Model_Ad::STATUS_PUBLISHED)
+                        ->where(DB::expr('DATE(DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY))'),'=', Date::format('+'.$days.' days','Y-m-d'))
+                        ->find_all();
+
+            foreach ($ads as $ad) 
+            {
+                $edit_url = $ad->user->ql('oc-panel',array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad));
+
+                $ad->user->email('ad-to-expire', array('[AD.NAME]'      =>$ad->title,
+                                                       '[URL.EDITAD]'   =>$edit_url));
+            }
+
+        }
+
+    }
+
+
+    /**
      * unpaid orders for ads 2 days ago reminder
      * @param integer $days, how many days after created
      * @return void

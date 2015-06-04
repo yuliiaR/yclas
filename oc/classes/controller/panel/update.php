@@ -42,6 +42,26 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `notification_date` DATETIME NULL DEFAULT NULL ;")->execute();
         }catch (exception $e) {}
 
+
+        //crontab ad to expire
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
+                                    ('About to Expire Ad', '05 9 * * *', 'Cron_Ad::to_expire', NULL, 'Notify by email your ad is about to expire', 1);")->execute();
+        }catch (exception $e) {}
+
+
+        //new mails
+        $contents = array(array('order'=>0,
+                                'title'=>'Your ad [AD.NAME] is going to expire',
+                               'seotitle'=>'ad-to-expire',
+                               'description'=>"Hello [USER.NAME],Your ad [AD.NAME] will expire soon \n\nPlease check your ad here [URL.EDITAD]",
+                               'from_email'=>core::config('email.notify_email'),
+                               'type'=>'email',
+                               'status'=>'1'),
+                        );
+
+        Model_Content::content_array($contents);
     }
 
 

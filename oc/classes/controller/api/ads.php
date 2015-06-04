@@ -134,6 +134,7 @@ class Controller_Api_Ads extends Api_User {
 
                         try
                         {
+                            $ad->last_modified = Date::unix2mysql();
                             $ad->save();
                             $this->rest_output('Ad updated');
                         }
