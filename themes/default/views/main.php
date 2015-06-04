@@ -28,17 +28,25 @@
     <div class="container">
         <div class="alert alert-warning off-line" style="display:none;"><strong><?=__('Warning')?>!</strong> <?=__('We detected you are currently off-line, please connect to gain full experience.')?></div>
         <div class="row">
-            <div class="col-xs-9">
-                <?=Breadcrumbs::render('breadcrumbs')?>
-                <?=Alert::show()?>
-                <?=$content?>
-            </div>
-            <?= FORM::open(Route::url('search'), array('class'=>'col-xs-3', 'method'=>'GET', 'action'=>''))?>
-                <div class="form-group">
-                    <input type="text" name="search" class="search-query form-control" placeholder="<?=__('Search')?>">
-                </div>  
-            <?= FORM::close()?>
-            <?=View::fragment('sidebar_front','sidebar')?>
+            <?if(Controller::$full_width):?>
+                <div class="col-xs-12">
+                    <?=Breadcrumbs::render('breadcrumbs')?>
+                    <?=Alert::show()?>
+                    <?=$content?>
+                </div>
+            <?else:?>
+                <div class="col-xs-9">
+                    <?=Breadcrumbs::render('breadcrumbs')?>
+                    <?=Alert::show()?>
+                    <?=$content?>
+                </div>
+                <?= FORM::open(Route::url('search'), array('class'=>'col-xs-3', 'method'=>'GET', 'action'=>''))?>
+                    <div class="form-group">
+                        <input type="text" name="search" class="search-query form-control" placeholder="<?=__('Search')?>">
+                    </div>  
+                <?= FORM::close()?>
+                <?=View::fragment('sidebar_front','sidebar')?>
+            <?endif?>
         </div>
         <?=$footer?>
     </div>

@@ -764,6 +764,8 @@ class Controller_Ad extends Controller {
             Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
             Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
 
+            Controller::$full_width = TRUE;
+
             $this->template->bind('content', $content);
 
             $this->template->content = View::factory('pages/ad/checkout',array('order' => $order)); 

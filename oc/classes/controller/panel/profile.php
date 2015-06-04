@@ -204,6 +204,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
         $this->template->title = __('My payments');
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My payments')));
+        Controller::$full_width = TRUE;
 
         $orders = new Model_Order();
         $orders = $orders->where('id_user', '=', $user->id_user);
@@ -242,6 +243,8 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
 		$user = Auth::instance()->get_user();
 		$ads = new Model_Ad();
+
+		Controller::$full_width = TRUE;
 
 		$my_adverts = $ads->where('id_user', '=', $user->id_user);
 
@@ -440,6 +443,8 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 		//template header
 		$this->template->title           	= __('Edit advertisement');
 		$this->template->meta_description	= __('Edit advertisement');
+		
+		Controller::$full_width = TRUE;
 		
 		//local files
         if (Theme::get('cdn_files') == FALSE)
@@ -849,6 +854,8 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 	public function action_stats()
    	{
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats')));
+        
+        Controller::$full_width = TRUE;
 
         $this->template->scripts['footer'] = array('js/oc-panel/stats/dashboard.js');
         
@@ -1064,6 +1071,8 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
     */ 
    public function action_subscriptions()
    {
+   		Controller::$full_width = TRUE;
+
    		$subscriptions = new Model_Subscribe();
 
    		$user = Auth::instance()->get_user()->id_user;
@@ -1170,6 +1179,11 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
         {
             $this->template->title = __('My Favorites');
             Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
+            Controller::$full_width = TRUE;
+            
+            $this->template->styles = array('//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css' => 'screen');
+            
+            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js';
             $this->template->scripts['footer'][] = 'js/oc-panel/favorite.js';
 
             $favorites = new Model_Favorite();

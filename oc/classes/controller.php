@@ -34,7 +34,11 @@ class Controller extends Kohana_Controller
      * global image get from controller so we can access from anywhere like Controller::$image; used for facebook metas
      */
     public static $image = NULL;
-    
+
+    /**
+     * global full width get from controller so we can access from anywhere like Controller::$full_width; used to render full width pages
+     */
+    public static $full_width = FALSE;
 
     /**
      * Initialize properties before running the controller methods (actions),
