@@ -43,7 +43,7 @@ function init_panel()
             toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
             "bulletlist,orderedlist|link,unlink,image,youtube|source",
             resizeEnabled: "true",
-			emoticonsEnabled: false
+            emoticonsEnabled: false,            
             enablePasteFiltering: "true"});
     }
 	// paste plain text in sceditor
