@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Panel_Profile extends Auth_Controller {
+class Controller_Panel_Profile extends Auth_Frontcontroller {
 
     
 
@@ -157,17 +157,7 @@ class Controller_Panel_Profile extends Auth_Controller {
 
 	public function action_edit()
 	{
-        //local files
-        if (Theme::get('cdn_files') == FALSE)
-        {
-            $this->template->styles = array('css/datepicker.css' => 'screen');
-            $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js', 'js/oc-panel/edit_profile.js');
-        }
-        else
-        {
-            $this->template->styles = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
-            $this->template->scripts['footer'] = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js', 'js/oc-panel/edit_profile.js');
-        }
+        $this->template->scripts['footer'] = array('js/oc-panel/edit_profile.js');
 
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit profile')));
 		// $this->template->title = $user->name;
@@ -454,23 +444,25 @@ class Controller_Panel_Profile extends Auth_Controller {
 		//local files
         if (Theme::get('cdn_files') == FALSE)
         {
-            $this->template->styles = array('css/datepicker.css' => 'screen');
-            $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js', 
-                                                       'js/jquery.validate.min.js',
-                                                       Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
-                                                       'js/jquery.chained.min.js',
-	                                                   'js/oc-panel/edit_ad.js');
+            $this->template->styles = array('css/jquery.sceditor.default.min.css' => 'screen');
+            
+            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.min.js',
+                                                        'js/jquery.sceditor.bbcode.min.js',
+                                                        'js/jquery.chained.min.js',
+                                                        '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
+                                                        '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
+                                                        'js/oc-panel/edit_ad.js');
         }
         else
         {
-			$this->template->styles = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
-	        $this->template->scripts['footer'] = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-	                                                   'js/jquery.validate.min.js',
-	                                                   Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
-	                                                   'js/jquery.chained.min.js',
-                                                       '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
-                                                       '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
-	                                                   'js/oc-panel/edit_ad.js');
+            $this->template->styles = array('css/jquery.sceditor.default.min.css' => 'screen');
+            
+            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.min.js',
+                                                        'js/jquery.sceditor.bbcode.min.js',
+                                                        'js/jquery.chained.min.js',
+                                                        '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
+                                                        '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
+                                                        'js/oc-panel/edit_ad.js');
         }
 
 
@@ -858,19 +850,7 @@ class Controller_Panel_Profile extends Auth_Controller {
    	{
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats')));
 
-        //local files
-        if (Theme::get('cdn_files') == FALSE)
-        {
-            $this->template->styles = array('css/datepicker.css' => 'screen');
-            $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js', 
-                                                       'js/oc-panel/stats/dashboard.js');
-        }
-        else
-        {
-            $this->template->styles = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
-            $this->template->scripts['footer'] = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                                        'js/oc-panel/stats/dashboard.js');
-        }
+        $this->template->scripts['footer'] = array('js/oc-panel/stats/dashboard.js');
         
         $this->template->title = __('Stats');
         $this->template->bind('content', $content);        

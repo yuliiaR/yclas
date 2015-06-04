@@ -1,7 +1,8 @@
 $('textarea[name=description]:not(.disable-bbcode)').sceditorBBCodePlugin({
     toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
     "bulletlist,orderedlist|link,unlink,youtube|source",
-    resizeEnabled: "true"
+    resizeEnabled: "true",
+	emoticonsEnabled: false
 });
 	
 // paste plain text in sceditor
