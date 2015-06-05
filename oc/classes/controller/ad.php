@@ -721,6 +721,9 @@ class Controller_Ad extends Controller {
             {
                 $amount     = $ad->price;
                 $currency   = core::config('payment.paypal_currency');
+                
+                if (isset($ad->cf_shipping) AND Valid::numeric($ad->cf_shipping) AND $ad->cf_shipping > 0)
+                    $amount = $ad->price + $ad->cf_shipping;
 
                 $order = Model_Order::new_order($ad, $payer_user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
 
