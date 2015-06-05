@@ -142,10 +142,10 @@ class Model_Order extends ORM {
                         $ad->sale($this->user);
                     break;
                 case Model_Order::PRODUCT_TO_TOP:
-                        $ad->to_top($this->featured_days);
+                        $ad->to_top();
                     break;
                 case Model_Order::PRODUCT_TO_FEATURED:
-                        $ad->to_feature();
+                        $ad->to_feature($this->featured_days);
                     break;
                 case Model_Order::PRODUCT_CATEGORY:
                         $ad->paid_category();

@@ -1149,25 +1149,16 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
             //ad exists
             if ($ad->loaded())
             {   
-                //try to find the fav
-                $fav = new Model_Favorite();
-                $fav->where('id_user', '=', $user->id_user)
-                                ->where('id_ad', '=', $id_ad)
-                                ->find();
-
-                if ($fav->loaded())
+                //if fav exists we delete
+                if (Model_Favorite::unfavorite($user->id_user,$id_ad)===TRUE)
                 {
                     //fav existed deleting
-                    $fav->delete();
                     $this->template->content = __('Deleted');
                 }
                 else
                 {
                     //create the fav
-                    $fav = new Model_Favorite();
-                    $fav->id_user = $user->id_user;
-                    $fav->id_ad   = $id_ad;
-                    $fav->save();
+                    Model_Favorite::favorite($user->id_user,$id_ad);
                     $this->template->content = __('Saved');
                 }
             }

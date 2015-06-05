@@ -69,6 +69,8 @@ class Controller_Api_Ads extends Api_User {
                     {
                         $a = $ad->as_array();
                         $a['images'] = $ad->get_images();
+                        $a['category'] = $ad->category->as_array();
+                        $a['location'] = $ad->location->as_array();
                         $a['customfields'] = Model_Field::get_by_category($ad->id_category);
                         $this->rest_output($a);
                     }
@@ -90,6 +92,24 @@ class Controller_Api_Ads extends Api_User {
        
     }
 
+    /**
+     * Handle POST requests.
+     */
+    public function action_create()
+    {
+        try
+        {
+            //TODO
+            $this->rest_output($this->_params);
+        }
+        catch (Kohana_HTTP_Exception $khe)
+        {
+            $this->_error($khe);
+            return;
+        }
+       
+    }
+
 
     /**
      * Handle PUT requests.
@@ -98,7 +118,6 @@ class Controller_Api_Ads extends Api_User {
     {
         try
         {
-            $result = array();
             if (is_numeric($id_ad = $this->request->param('id')))
             {
                 $ad = new Model_Ad($id_ad);
@@ -106,7 +125,29 @@ class Controller_Api_Ads extends Api_User {
                 {
                     if ($ad->id_user == $this->user->id_user)
                     {
-                        $this->rest_output($this->_params);
+                        //TODO WORK with images, how we do that? new controllers? maybe /ads/image/5 delete you pass which image, if post we upload?
+                        
+                        //TODO how we set the status? check controller profile update to avoif duplicated code.
+                        
+                        //set values of the ad
+                        $ad->values($this->_post_params);
+
+                        try
+                        {
+                            $ad->last_modified = Date::unix2mysql();
+                            $ad->save();
+                            $this->rest_output('Ad updated');
+                        }
+                        catch (ORM_Validation_Exception $e)
+                        {
+                            $errors = '';
+                            $e = $e->errors('ad');
+
+                            foreach ($e as $f => $err) 
+                                $errors.=$err.' - ';
+
+                            $this->_error($errors,400);
+                        }
                     }
                     else
                         $this->_error(__('Not your advertisement'),401);
