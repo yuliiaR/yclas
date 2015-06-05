@@ -11,7 +11,7 @@
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 2.4.1
+     * This function will upgrade DB that didn't existed in versions prior to 2.5.0
      */
     public function action_250()
     {
@@ -62,6 +62,27 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         );
 
         Model_Content::content_array($contents);
+
+        //messages
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS ".self::$db_prefix."messages (
+                                      `id_message` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                      `id_ad` int(10) unsigned DEFAULT NULL,
+                                      `id_message_parent` int(10) unsigned DEFAULT NULL,
+                                      `id_user_from` int(10) unsigned NOT NULL,
+                                      `id_user_to` int(10) unsigned NOT NULL,
+                                      `message` text NOT NULL,
+                                      `price` decimal(14,3) NOT NULL DEFAULT '0',
+                                      `date_read` datetime  DEFAULT NULL,
+                                      `updated` datetime  DEFAULT NULL,
+                                      `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                      `status` tinyint(1) NOT NULL DEFAULT 0,
+                                      PRIMARY KEY (id_message) USING BTREE
+                                    ) ENGINE=MyISAM ;")->execute();
+        }catch (exception $e) {}
+
+
     }
 
 
