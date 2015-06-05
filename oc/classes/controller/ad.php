@@ -721,6 +721,9 @@ class Controller_Ad extends Controller {
             {
                 $amount     = $ad->price;
                 $currency   = core::config('payment.paypal_currency');
+                
+                if (isset($ad->cf_shipping) AND Valid::numeric($ad->cf_shipping) AND $ad->cf_shipping > 0)
+                    $amount = $ad->price + $ad->cf_shipping;
 
                 $order = Model_Order::new_order($ad, $payer_user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
 
@@ -763,6 +766,8 @@ class Controller_Ad extends Controller {
             $this->template->title              = __('Checkout').' '.Model_Order::product_desc($order->id_product);
             Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
             Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
+
+            Controller::$full_width = TRUE;
 
             $this->template->bind('content', $content);
 

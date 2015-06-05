@@ -1,7 +1,7 @@
 $(function(){
     $(".index-delete").click(function(event) {
         var href = $(this).attr('href');
-        var title = $(this).attr('title');
+        var title = $(this).data('title');
         var text = $(this).data('text');
         var id = $(this).data('id');
         var confirmButtonText = $(this).data('btnoklabel');
