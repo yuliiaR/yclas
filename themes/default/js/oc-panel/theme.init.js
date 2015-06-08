@@ -44,7 +44,7 @@ function init_panel()
             "bulletlist,orderedlist|link,unlink,image,youtube|source",
             resizeEnabled: "true",
             emoticonsEnabled: false,
-            style: $('base').attr("href") + "themes/default/css/jquery.sceditor.default.min.css",
+            style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
             enablePasteFiltering: "true"});
     }
 	// paste plain text in sceditor

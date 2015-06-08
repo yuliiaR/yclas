@@ -1,4 +1,3 @@
-<base href="<?=core::config('general.base_url')?>">
 <meta charset="<?=Kohana::$charset?>">
 <?if (isset($_SERVER['HTTP_USER_AGENT']) and (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) : ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,6 +12,7 @@
 <?else:?>
 <meta name="author" content="open-classifieds.com">
 <?endif?>
+<meta name="application-name" content="<?=core::config('general.site_name')?>" data-baseurl="<?=core::config('general.base_url')?>">
 <?if (core::config('general.landing_page')!=NULL 
     AND strtolower(Request::current()->controller())=='ad' 
     AND strtolower(Request::current()->action())=='listing' 

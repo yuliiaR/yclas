@@ -5,7 +5,6 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="<?=i18n::html_lang()?>"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="<?=i18n::html_lang()?>"> <!--<![endif]-->
 <head>
-    <base href="<?=core::config('general.base_url')?>">
 	<meta charset="<?=Kohana::$charset?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
@@ -19,6 +18,7 @@
     <?else:?>
     <meta name="copyright" content="<?=$meta_copyright?>" >
     <?endif?>
+    <meta name="application-name" content="<?=core::config('general.site_name')?>" data-baseurl="<?=core::config('general.base_url')?>">
 	
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	
