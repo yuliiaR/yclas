@@ -60,16 +60,11 @@ class Controller_Api_Listings extends Api_Auth {
                 $ads->api_sort($this->_sort);
 
                 //we add the order by in case was specified, this is not a column so we need to do it manually
-                if (isset($this->_sort['distance']))
+                if (isset($this->_sort['distance']) AND isset($this->_params['latitude']) AND isset($this->_params['longitude']))
                     $ads->order_by('distance',$this->_sort['distance']);
 
                 //pagination with headers
-                $pagination = $ads->api_pagination( $this->_params, $count,
-                                                    array(
-                                                                'controller' => $this->request->controller(),
-                                                                'action'     => $this->request->action(),
-                                                                'version'    => 'v1',
-                                                    ));
+                $pagination = $ads->api_pagination($count,$this->_params['items_per_page']);
 
                 $ads = $ads->cached()->find_all();
 
