@@ -280,6 +280,21 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."
     KEY ".core::request('TABLE_PREFIX')."favorites_IK_id_user_AND_id_ad (id_user,id_ad)
     ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."messages (
+  `id_message` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_ad` int(10) unsigned DEFAULT NULL,
+  `id_message_parent` int(10) unsigned DEFAULT NULL,
+  `id_user_from` int(10) unsigned NOT NULL,
+  `id_user_to` int(10) unsigned NOT NULL,
+  `message` text NOT NULL,
+  `price` decimal(14,3) NOT NULL DEFAULT '0',
+  `read_date` datetime  DEFAULT NULL,
+  `updated` datetime  DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (id_message) USING BTREE
+) ENGINE=MyISAM  DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+
 /**
  * add basic content like emails
  */
