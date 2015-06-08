@@ -1,3 +1,4 @@
+<base href="<?=core::config('general.base_url')?>">
 <meta charset="<?=Kohana::$charset?>">
 <?if (isset($_SERVER['HTTP_USER_AGENT']) and (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) : ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

@@ -2,6 +2,7 @@ $('textarea[name=description]:not(.disable-bbcode)').sceditorBBCodePlugin({
     toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
     "bulletlist,orderedlist|link,unlink,youtube|source",
     resizeEnabled: "true",
+    style: $('base').attr("href") + "themes/default/css/jquery.sceditor.default.min.css",
 	emoticonsEnabled: false
 });
 	

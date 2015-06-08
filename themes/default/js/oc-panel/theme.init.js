@@ -43,7 +43,8 @@ function init_panel()
             toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
             "bulletlist,orderedlist|link,unlink,image,youtube|source",
             resizeEnabled: "true",
-            emoticonsEnabled: false,            
+            emoticonsEnabled: false,
+            style: $('base').attr("href") + "themes/default/css/jquery.sceditor.default.min.css",
             enablePasteFiltering: "true"});
     }
 	// paste plain text in sceditor

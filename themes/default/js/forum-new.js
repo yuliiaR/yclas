@@ -5,6 +5,7 @@ $(function(){
             resizeEnabled: "true",
             emoticonsEnabled: "false",
             emoticonsCompat: "false",
+            style: $('base').attr("href") + "themes/default/css/jquery.sceditor.default.min.css",
             enablePasteFiltering: "true"});
 
     //sceditorBBCodePlugin for validation, updates iframe on submit 
