@@ -105,12 +105,12 @@ class Controller_Api_Ads extends Api_User {
             //set values of the ad
             $ad->values($this->_post_params);
 
-            $ad->id_user == $this->user->id_user;
+            $ad->id_user = $this->user->id_user;
 
             try
             {
                 $ad->save();
-                $this->rest_output($ad);
+                $this->rest_output($ad->id_ad);
             }
             catch (ORM_Validation_Exception $e)
             {
@@ -142,37 +142,36 @@ class Controller_Api_Ads extends Api_User {
         {
             if (is_numeric($id_ad = $this->request->param('id')))
             {
-                $ad = new Model_Ad($id_ad);
+                $ad = new Model_Ad();
+                $ad->where('id_ad','=',$id_ad)->where('id_user','=',$this->user->id_user)->find();
+
                 if ($ad->loaded())
                 {
-                    if ($ad->id_user == $this->user->id_user)
+                    
+                    //TODO WORK with images, how we do that? new controllers? maybe /ads/image/5 delete you pass which image, if post we upload?
+                    
+                    //TODO how we set the status? check controller profile update to avoif duplicated code.
+                    
+                    //set values of the ad
+                    $ad->values($this->_post_params);
+
+                    try
                     {
-                        //TODO WORK with images, how we do that? new controllers? maybe /ads/image/5 delete you pass which image, if post we upload?
-                        
-                        //TODO how we set the status? check controller profile update to avoif duplicated code.
-                        
-                        //set values of the ad
-                        $ad->values($this->_post_params);
-
-                        try
-                        {
-                            $ad->last_modified = Date::unix2mysql();
-                            $ad->save();
-                            $this->rest_output(TRUE);
-                        }
-                        catch (ORM_Validation_Exception $e)
-                        {
-                            $errors = '';
-                            $e = $e->errors('ad');
-
-                            foreach ($e as $f => $err) 
-                                $errors.=$err.' - ';
-
-                            $this->_error($errors);
-                        }
+                        $ad->last_modified = Date::unix2mysql();
+                        $ad->save();
+                        $this->rest_output(TRUE);
                     }
-                    else
-                        $this->_error(__('Not your advertisement'),401);
+                    catch (ORM_Validation_Exception $e)
+                    {
+                        $errors = '';
+                        $e = $e->errors('ad');
+
+                        foreach ($e as $f => $err) 
+                            $errors.=$err.' - ';
+
+                        $this->_error($errors);
+                    }
+         
                 }
                 else
                     $this->_error(__('Advertisement not found'),404);

@@ -14,7 +14,25 @@ class Controller_Api_Auth extends Api_Auth {
         {
             if ($user->loaded())
             {
-                $this->rest_output(array('user_token'=>$user->api_token()));
+                $res = $user->as_array();
+                $res['image']     = $user->get_profile_image();
+
+                //I do not want to return this fields...
+                $hidden_fields =  array('password','token',
+                                        'hybridauth_provider_uid','token_created','token_expires',
+                                        'user_agent');
+
+                //all fields
+                $this->_return_fields = array_keys($user->table_columns());
+
+                //remove the hidden fields
+                foreach ($this->_return_fields as $key => $value) 
+                {
+                    if(in_array($value,$hidden_fields))
+                        unset($this->_return_fields[$key]);
+                }
+
+                $this->rest_output($res);
             }
         }
         else
