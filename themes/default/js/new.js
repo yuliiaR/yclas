@@ -2,7 +2,7 @@ $('textarea[name=description]:not(.disable-bbcode)').sceditorBBCodePlugin({
     toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
     "bulletlist,orderedlist|link,unlink,youtube|source",
     resizeEnabled: "true",
-    style: $('base').attr("href") + "themes/default/css/jquery.sceditor.default.min.css",
+    style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
 	emoticonsEnabled: false
 });
 	
@@ -113,6 +113,13 @@ $( ".locateme" ).click(function() {
         messages:{},
         focusInvalid: false,
         onkeyup: false,
+        submitHandler: function(form) {
+            _ouibounce.disable();
+            $('#processing-modal').modal('show');
+            //form.submit();
+            alert('enviado');
+            return true;
+        },
         invalidHandler: function(form, validator) {
             if (!validator.numberOfInvalids())
                 return;
@@ -140,6 +147,7 @@ $( ".locateme" ).click(function() {
                                         }
                                     };
     $params['messages']['captcha'] =   {"remote" : $('.post_new :input[name="captcha"]').data('error')};
+    
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
     var $form = $(".post_new");
@@ -256,10 +264,7 @@ $( ".locateme" ).click(function() {
             }
         });
         
-        $('.post_new').submit(function(){
-            if ($(this).valid()) {
-                _ouibounce.disable();
-                $('#processing-modal').modal('show');
-            }
+        $('.post_new').submit(function(e){
+            return false;
         });
     });
