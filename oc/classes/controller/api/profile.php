@@ -54,7 +54,26 @@ class Controller_Api_Profile extends Api_User {
 
     public function action_picture()
     {
-        
+        //get image
+        $image = $_FILES['profile_image']; //file post
+
+        $result = $this->user->upload_image($image);
+
+        if ($result === TRUE)
+            $this->rest_output(TRUE);
+        else 
+            $this->_error($result);
     }
+
+
+    //deletes a picture
+    public function action_picture_delete()
+    {
+        if ($this->user->delete_image()==TRUE )
+            $this->rest_output(TRUE);
+        else
+            $this->_error(FALSE);
+    }
+
 
 } // END

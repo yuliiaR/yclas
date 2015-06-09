@@ -70,89 +70,24 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
 	public function action_image()
 	{
-		//get image
-		$image = $_FILES['profile_image']; //file post
-		
-		if(core::config('image.aws_s3_active'))
-		{
-		    require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
-		    $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
-		}
-        
-        if (Core::post('photo_delete') AND Auth::instance()->get_user()->delete_image()==TRUE )
-        {
+        $user = Auth::instance()->get_user();
 
+        if (Core::post('photo_delete') AND $user->delete_image()==TRUE )
             Alert::set(Alert::SUCCESS, __('Photo deleted.'));
-            $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
-
-        }// end of photo delete
-        
-        if ( 
-            ! Upload::valid($image) OR
-            ! Upload::not_empty($image) OR
-            ! Upload::type($image, explode(',',core::config('image.allowed_formats'))) OR
-            ! Upload::size($image, core::config('image.max_image_size').'M'))
-        {
-        	if ( Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats'))))
-            {
-                Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not valid format, please use one of this formats "%s"'),core::config('image.allowed_formats')));
-                $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
-            } 
-            if( ! Upload::size($image, core::config('image.max_image_size').'M'))
-            {
-                Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('general.max_image_size')));
-                $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
-            }
-            Alert::set(Alert::ALERT, $image['name'].' '.__('Image is not valid. Please try again.'));
-            $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
-        }
         else
         {
-            if($image != NULL) // sanity check 
-            {
-            	$user = Auth::instance()->get_user();
-            	// saving/uploading zip file to dir.
-            	$path = 'images/users/'; //root folder
-            	$root = DOCROOT.$path; //root folder
-            	$image_name = $user->id_user.'.png';
-            	$width = core::config('image.width'); // @TODO dynamic !?
-            	$height = core::config('image.height');// @TODO dynamic !?
-            	$image_quality = core::config('image.quality');
-                
-                // if folder does not exist, try to make it
-               	if ( ! file_exists($root) AND ! @mkdir($root, 0775, true)) { // mkdir not successful ?
-                        Alert::set(Alert::ERROR, __('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.'));
-                        return; // exit function
-                };
+            //get image
+            $image = $_FILES['profile_image']; //file post
 
-                // save file to root folder, file, name, dir
-                if($file = Upload::save($image, $image_name, $root))
-                {
-                    // resize uploaded image 
-                    Image::factory($file)
-                        ->orientate()
-                        ->resize($width, $height, Image::AUTO)
-                        ->save($root.$image_name,$image_quality);
-                    
-                    // put image to Amazon S3
-                    if(core::config('image.aws_s3_active'))
-                        $s3->putObject($s3->inputFile($file), core::config('image.aws_s3_bucket'), $path.$image_name, S3::ACL_PUBLIC_READ);
-                    
-                    // update category info
-                    $user->has_image = 1;
-                    $user->last_modified = Date::unix2mysql();
-                    $user->save();
-                    
-                    Alert::set(Alert::SUCCESS, $image['name'].' '.__('Image is uploaded.'));   
-                }
-                else
-                    Alert::set(Alert::ERROR, $image['name'].' '.__('Icon file could not been saved.'));
-                
-                
-                $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
-            }
-            
+            $result = $user->upload_image($image);
+
+            if ($result === TRUE)
+                Alert::set(Alert::SUCCESS, $image['name'].' '.__('Image is uploaded.'));
+            else 
+                Alert::set(Alert::ALERT,$result);
         }
+
+        $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
 	}
 
 	public function action_edit()

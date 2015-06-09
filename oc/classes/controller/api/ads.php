@@ -94,8 +94,35 @@ class Controller_Api_Ads extends Api_User {
     {
         try
         {
-            //TODO
-            $this->rest_output($this->_params);
+            $ad = new Model_Ad();
+                        
+            
+        
+            //TODO WORK with images, how we do that? new controllers? maybe /ads/image/5 delete you pass which image, if post we upload?
+            
+            //TODO how we set the status? check controller profile update to avoif duplicated code.
+            
+            //set values of the ad
+            $ad->values($this->_post_params);
+
+            $ad->id_user == $this->user->id_user;
+
+            try
+            {
+                $ad->save();
+                $this->rest_output($ad);
+            }
+            catch (ORM_Validation_Exception $e)
+            {
+                $errors = '';
+                $e = $e->errors('ad');
+
+                foreach ($e as $f => $err) 
+                    $errors.=$err.' - ';
+
+                $this->_error($errors);
+            }
+                    
         }
         catch (Kohana_HTTP_Exception $khe)
         {
@@ -131,7 +158,7 @@ class Controller_Api_Ads extends Api_User {
                         {
                             $ad->last_modified = Date::unix2mysql();
                             $ad->save();
-                            $this->rest_output('Ad updated');
+                            $this->rest_output(TRUE);
                         }
                         catch (ORM_Validation_Exception $e)
                         {
@@ -141,7 +168,7 @@ class Controller_Api_Ads extends Api_User {
                             foreach ($e as $f => $err) 
                                 $errors.=$err.' - ';
 
-                            $this->_error($errors,400);
+                            $this->_error($errors);
                         }
                     }
                     else

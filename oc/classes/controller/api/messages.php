@@ -135,7 +135,7 @@ class Controller_Api_Messages extends Api_User {
             if (isset($this->_post_params['message']))
                 $message = $this->_post_params['message'];
             else
-                $this->_error(__('Message not sent'),500);
+                $this->_error(__('Message not sent'));
 
             //price?
             $price = (isset($this->_post_params['price']) AND is_numeric($this->_post_params['price']))?$this->_post_params['price']:NULL;
@@ -155,7 +155,7 @@ class Controller_Api_Messages extends Api_User {
                 $this->rest_output($ret->as_array());
             }
             else
-                $this->_error(__('Message not sent'),500);
+                $this->_error(__('Message not sent'));
 
             
         }
