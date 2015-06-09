@@ -29,12 +29,7 @@ class Controller_Api_Ads extends Api_User {
                 $count = $ads->count_all();
 
                 //pagination with headers
-                $pagination = $ads->api_pagination( $this->_params, $count,
-                                                    array(
-                                                                'controller' => $this->request->controller(),
-                                                                'action'     => $this->request->action(),
-                                                                'version'    => 'v1',
-                                                    ));
+                $pagination = $ads->api_pagination($count,$this->_params['items_per_page']);
 
                 $ads = $ads->cached()->find_all();
 

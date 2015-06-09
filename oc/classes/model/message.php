@@ -80,7 +80,6 @@ class Model_Message extends ORM {
             //we trust this since comes fom a function where we validate tihs user can post in that thread
             if (is_numeric($id_message_parent))
                 $message->id_message_parent = $id_message_parent;
-            
 
             //has some price?
             if (is_numeric($price))
@@ -88,6 +87,13 @@ class Model_Message extends ORM {
 
             try {
                 $message->save();
+
+                //didnt have a parent so we set the parent for the same
+                if (!is_numeric($id_message_parent))
+                {
+                    $message->id_message_parent = $message->id_message;
+                    $message->save();
+                }
 
                 return $message;
                 //send email?
@@ -147,7 +153,7 @@ class Model_Message extends ORM {
         $msg_thread = new Model_Message();
 
         $msg_thread->where('id_message','=',$id_message_parent)
-                    ->where('id_message_parent','IS',NULL)
+                    ->where('id_message_parent','=',$id_message_parent)
                     ->where_open()
                     ->where('id_user_from', '=',$id_user_from)
                     ->or_where('id_user_to','=',$id_user_from)
@@ -160,24 +166,7 @@ class Model_Message extends ORM {
             //to who? if from is the same then send to TO, else to from
             $id_user_to = ($msg_thread->id_user_from == $id_user_from)? $msg_thread->id_user_to:$msg_thread->id_user_from;
 
-            //message was sent succesfully
-            if (($msg = self::send($message, $id_user_from, $id_user_to, $msg_thread->id_ad, $id_message_parent, $price))!==FALSE)
-            {
-                //we update the parent so later we can sort the threads by last updated
-                $msg_thread->updated = Date::unix2mysql();
-
-                //in case theres a new message in the thread we mark it as unread, but only if its not the creator of the thread
-                if ($msg_thread->id_user_from != $id_user_to)
-                    $msg_thread->status  = Model_Message::STATUS_NOTREAD;
-
-                try {
-                    $msg_thread->save();
-                    return $msg;
-                } catch (Exception $e) {
-                    return FALSE;
-                }
-            }
-
+            return self::send($message, $id_user_from, $id_user_to, $msg_thread->id_ad, $id_message_parent, $price);
         }
 
         return FALSE;
@@ -194,7 +183,7 @@ class Model_Message extends ORM {
         $msg_thread = new Model_Message();
 
         $msg_thread->where('id_message','=',$id_message_thread)
-                    ->where('id_message_parent','IS',NULL)
+                    ->where('id_message_parent','=',$id_message_thread)
                     ->where_open()
                     ->where('id_user_from','=',$id_user)
                     ->or_where('id_user_to','=',$id_user)
@@ -204,12 +193,6 @@ class Model_Message extends ORM {
 
         if ($msg_thread->loaded())
         {
-            //mark initial thread as read if wasnt
-            $msg_thread = $msg_thread->mark_read($id_user);
-
-            //addig the first message
-            $m[$id_message_thread] = $msg_thread;
-
             //get all the messages where parent = $is_msg order by created asc
             $messages = new Model_Message();
             $messages = $messages->where('id_message_parent','=',$id_message_thread)
@@ -232,18 +215,75 @@ class Model_Message extends ORM {
      */
     public static function get_threads($id_user)
     {
+
+        //get the model ;)
         $messages = new Model_Message();
 
-        $messages->where('id_message_parent','IS',NULL)
-                 ->where_open()
-                 ->where('id_user_from','=',$id_user)
-                 ->or_where('id_user_to','=',$id_user)
-                 ->where_close();
+        //I get first the last message grouped by parent.
+        
+        /*SELECT m1.id_message FROM oc2_messages m1 
+        LEFT JOIN oc2_messages m2 
+        ON ( m1.id_message<m2.id_message and m1.id_message_parent=m2.id_message_parent )
+        WHERE m2.id_message IS NULL AND (m1.id_user_from = 1 OR m1.id_user_to = 1)*/
 
+        //I get first the last message grouped by parent.
+        //we do this since I need to know if was written, the text and the creation date
+        $query = DB::select('m1.id_message')
+                ->from(array('messages','m1'))
+                    ->join(array('messages','m2'),'LEFT')
+                        ->on('m1.id_message','<','m2.id_message')
+                        ->on('m1.id_message_parent','=','m2.id_message_parent')
+                ->where('m2.id_message','IS',NULL)
+                ->where_open()
+                ->where('m1.id_user_from','=',$id_user)
+                ->or_where('m1.id_user_to','=',$id_user)
+                ->where_close()
+                ->execute();
+
+        $ids = $query->as_array();
+        
+        //filter only if theres results
+        if (count($ids)>0)
+            $messages->where('id_message','IN',$ids);
+        else
+            $messages->where('id_message','=',0);
+                 
         return $messages;
-
     }
 
+    /**
+     * returns all the unread threads for a user
+     * @param  integer $id_user           
+     * @return Model_Message                    
+     */
+    public static function get_unread_threads($id_user)
+    {      
+        //get the model ;)
+        $messages = new Model_Message();
+
+
+        //I get first the last message grouped by parent.
+        //we do this since I need to know if was written, the text and the creation date
+        $query = DB::select('m1.id_message')
+                ->from(array('messages','m1'))
+                    ->join(array('messages','m2'),'LEFT')
+                        ->on('m1.id_message','<','m2.id_message')
+                        ->on('m1.id_message_parent','=','m2.id_message_parent')
+                ->where('m2.id_message','IS',NULL)
+                ->where('m1.id_user_to','=',$id_user)
+                ->where('m1.status','=',Model_Message::STATUS_NOTREAD)
+                ->execute();
+
+        $ids = $query->as_array();
+
+        //filter only if theres results
+        if (count($ids)>0)
+            $messages->where('id_message','IN',$ids);
+        else
+            $messages->where('id_message','=',0);
+                 
+        return $messages;
+    }
 
 
     /**

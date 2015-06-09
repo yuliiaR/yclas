@@ -289,7 +289,6 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."
   `message` text NOT NULL,
   `price` decimal(14,3) NOT NULL DEFAULT '0',
   `read_date` datetime  DEFAULT NULL,
-  `updated` datetime  DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (id_message) USING BTREE

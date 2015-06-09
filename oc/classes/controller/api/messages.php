@@ -28,32 +28,62 @@ class Controller_Api_Messages extends Api_User {
             //how many? used in header X-Total-Count
             $count = $messages->count_all();
 
-            //by default sort by updated
+            //by default sort by status not read and when was created
             if(empty($this->_sort))
-                $this->_sort['updated'] = 'desc';
+            {
+                $this->_sort['status']  = 'asc';
+                $this->_sort['created'] = 'desc';
+            }
 
             //after counting sort values
             $messages->api_sort($this->_sort);
 
             //pagination with headers
-            $pagination = $messages->api_pagination( $this->_params, $count,
-                                                array(
-                                                            'controller' => $this->request->controller(),
-                                                            'action'     => $this->request->action(),
-                                                            'version'    => 'v1',
-                                                ));
+                $pagination = $messages->api_pagination($count,$this->_params['items_per_page']);
 
             $messages = $messages->cached()->find_all();
-
 
             $m = array();     
             //convert it to array                   
             foreach ($messages as $message)
                 $m[$message->id_message] = $message->as_array();
 
-
             $this->rest_output($m,200,$count,($pagination!==FALSE)?$pagination:NULL);
         }
+    }
+
+    /**
+     * get all unread messages forthe loged in user
+     * @return [type] [description]
+     */
+    public function action_unread()
+    {
+        $messages = Model_Message::get_unread_threads($this->user->id_user);
+
+        //filter results by param, verify field exists and has a value
+        $messages->api_filter($this->_filter_params);
+
+        //how many? used in header X-Total-Count
+        $count = $messages->count_all();
+
+        //by default sort by status not read and when was created
+        if(empty($this->_sort))
+            $this->_sort['created'] = 'desc';
+        
+        //after counting sort values
+        $messages->api_sort($this->_sort);
+
+        //pagination with headers
+            $pagination = $messages->api_pagination($count,$this->_params['items_per_page']);
+
+        $messages = $messages->cached()->find_all();
+
+        $m = array();     
+        //convert it to array                   
+        foreach ($messages as $message)
+            $m[$message->id_message] = $message->as_array();
+
+        $this->rest_output($m,200,$count,($pagination!==FALSE)?$pagination:NULL);
     }
 
     /**
