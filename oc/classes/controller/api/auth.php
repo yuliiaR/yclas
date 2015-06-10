@@ -7,15 +7,16 @@ class Controller_Api_Auth extends Api_Auth {
     /**
      * Handle GET requests.
      */
-    public function action_index()
+    public function action_login()
     {
         // If the passwords match, perform a login
         if ( ($user = Auth::instance()->email_login(Core::request('email'), Core::request('password'))) !== FALSE)
         {
             if ($user->loaded())
-            {
+            {   
                 $res = $user->as_array();
-                $res['image']     = $user->get_profile_image();
+                $res['user_token'] = $user->api_token();
+                $res['image']      = $user->get_profile_image();
 
                 //I do not want to return this fields...
                 $hidden_fields =  array('password','token',
@@ -32,7 +33,7 @@ class Controller_Api_Auth extends Api_Auth {
                         unset($this->_return_fields[$key]);
                 }
 
-                $this->rest_output($res);
+                $this->rest_output(array('user' => $res));
             }
         }
         else
@@ -40,10 +41,71 @@ class Controller_Api_Auth extends Api_Auth {
     }
 
 
+    public function action_index()
+    {   
+        $this->action_login();
+    }
+
 
     public function action_create()
     {
-        $this->action_index();
+        $validation =   Validation::factory($this->request->post())
+                            ->rule('name', 'not_empty')
+                            ->rule('email', 'not_empty')
+                            ->rule('email', 'email');
+
+        if ($validation->check())
+        {
+            $email = $this->_post_params['email'];
+                    
+            //check we have this email in the DB
+            $user = new Model_User();
+            $user = $user->where('email', '=', $email)
+                    ->limit(1)
+                    ->find();
+            
+            if ($user->loaded())
+            {
+                $this->_error(__('User already exists'));
+            }
+            else
+            {
+                //creating the user
+                $user = Model_User::create_email($this->_post_params['email'],$this->_post_params['name'],isset($this->_post_params['password'])?$this->_post_params['password']:NULL);
+
+                //add custom fields
+                $save_cf = FALSE;
+                foreach ($this->_post_params as $custom_field => $value) 
+                {
+                    if (strpos($custom_field,'cf_')!==FALSE)
+                    {
+                        $user->$custom_field = $value;
+                        $save_cf = TRUE;
+                    }
+                }
+                //saves the user only if there was CF
+                if($save_cf === TRUE)
+                    $user->save();
+
+                //create the API token since he registered int he app
+                $res = $user->as_array();
+                $res['user_token'] = $user->api_token();
+            
+                $this->rest_output(array('user' => $res));
+            }
+
+        }
+        else
+        {
+            $errors = '';
+            $e = $validation->errors('auth');
+                
+            foreach ($e as $error) 
+                $errors.=$error.' - ';
+                
+            $this->_error($errors);
+        }
+
     }
 
 } // END

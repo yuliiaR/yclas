@@ -21,9 +21,10 @@ class Controller_Api_Customfields extends Api_Controller {
             $fields = array();
             foreach (Model_Field::get_all() as $field => $values) 
             {
-                $fields['cf_'.$field] = $values;
+                $values['name'] = $field;
+                $fields[] = $values;
             }
-            $this->rest_output($fields);
+            $this->rest_output(array('fields' => $fields));
         }
         catch (Kohana_HTTP_Exception $khe)
         {
@@ -41,7 +42,13 @@ class Controller_Api_Customfields extends Api_Controller {
         {
             if (is_numeric($this->request->param('id')))
             {
-                $this->rest_output(Model_Field::get_by_category($this->request->param('id')));
+                $fields = array();
+                foreach (Model_Field::get_by_category($this->request->param('id')) as $field => $values) 
+                {
+                    $values['name'] = $field;
+                    $fields[] = $values;
+                }
+                $this->rest_output(array('fields' => $fields));
             }
             else
                 $this->_error(__('Category not found'));
@@ -63,9 +70,10 @@ class Controller_Api_Customfields extends Api_Controller {
             $fields = array();
             foreach (Model_Userfield::get_all() as $field => $values) 
             {
-                $fields['cf_'.$field] = $values;
+                $values['name'] = $field;
+                $fields[] = $values;
             }
-            $this->rest_output($fields);
+            $this->rest_output(array('fields' => $fields));
         }
         catch (Kohana_HTTP_Exception $khe)
         {

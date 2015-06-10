@@ -21,11 +21,13 @@ class Controller_Api_Favorites extends Api_User {
             $output = array();
             foreach ($favs as $fav)
             {
-                $output[$fav->id_favorite] = $fav->as_array();
-                $output[$fav->id_favorite]['ad_title'] = $fav->ad->title;
+                $title = $fav->ad->title;
+                $fav = $fav->as_array();
+                $fav['ad'] = $title;
+                $output[] = $fav;
             }
 
-            $this->rest_output($output);
+            $this->rest_output(array('favorites' => $output));
            
         }
         catch (Kohana_HTTP_Exception $khe)

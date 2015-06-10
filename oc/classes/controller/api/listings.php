@@ -71,16 +71,19 @@ class Controller_Api_Listings extends Api_Auth {
                 //as array
                 foreach ($ads as $ad)
                 {
-                    $output[$ad->id_ad] = $ad->as_array();
-                    $output[$ad->id_ad]['thumb'] = ($ad->get_first_image()!==NULL)?Core::S3_domain().$ad->get_first_image():FALSE;
-                    $output[$ad->id_ad]['customfields'] = Model_Field::get_by_category($ad->id_category);
+                    $a = $ad->as_array();
+                    $a['price'] = i18n::money_format($ad->price);
+                    $a['thumb'] = ($ad->get_first_image()!==NULL)?Core::S3_domain().$ad->get_first_image():FALSE;
+                    $a['customfields'] = Model_Field::get_by_category($ad->id_category);
 
                     //sorting by distance, lets add it!
                     if (isset($ad->distance))
-                        $output[$ad->id_ad]['distance'] = i18n::format_measurement($ad->distance);
+                        $a['distance'] = i18n::format_measurement($ad->distance);
+
+                    $output[] = $a;
                 }
 
-                $this->rest_output($output,200,$count,($pagination!==FALSE)?$pagination:NULL);
+                $this->rest_output(array('ads' => $output),200,$count,($pagination!==FALSE)?$pagination:NULL);
             }
         }
         catch (Kohana_HTTP_Exception $khe)
@@ -110,6 +113,7 @@ class Controller_Api_Listings extends Api_Auth {
                 if ($ad->loaded())
                 {
                     $a = $ad->as_array();
+                    $a['price']  = i18n::money_format($ad->price);
                     $a['images'] = $ad->get_images();
                     $a['category'] = $ad->category->as_array();
                     $a['location'] = $ad->location->as_array();
@@ -118,7 +122,7 @@ class Controller_Api_Listings extends Api_Auth {
                     if (isset($ad->distance))
                         $a['distance'] = i18n::format_measurement($ad->distance);
 
-                    $this->rest_output($a);
+                    $this->rest_output(array('ad' => $a));
                 }
                 else
                     $this->_error(__('Advertisement not found'),404);

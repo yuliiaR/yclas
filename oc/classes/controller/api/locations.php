@@ -45,10 +45,10 @@ class Controller_Api_Locations extends Api_Controller {
                     //$loc['siblings'] = $location->get_siblings_ids();
                     $loc['icon']     = $location->get_icon();
 
-                    $output[$location->id_location] = $loc;
+                    $output[] = $loc;
                 }
 
-                $this->rest_output($output,200,$count);
+                $this->rest_output(array('locations' => $output),200,$count);
             }
         }
         catch (Kohana_HTTP_Exception $khe)
@@ -94,7 +94,7 @@ class Controller_Api_Locations extends Api_Controller {
                     $loc['siblings'] = $location->get_siblings_ids();
                     $loc['icon']     = $location->get_icon();
 
-                    $this->rest_output($loc);
+                    $this->rest_output(array('location' => $loc));
                 }
                 else
                     $this->_error(__('Location not found'),404);

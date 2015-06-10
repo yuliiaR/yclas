@@ -46,9 +46,9 @@ class Controller_Api_Messages extends Api_User {
             $m = array();     
             //convert it to array                   
             foreach ($messages as $message)
-                $m[$message->id_message] = $message->as_array();
+                $m[] = $message->as_array();
 
-            $this->rest_output($m,200,$count,($pagination!==FALSE)?$pagination:NULL);
+            $this->rest_output(array('messages' => $m),200,$count,($pagination!==FALSE)?$pagination:NULL);
         }
     }
 
@@ -81,9 +81,9 @@ class Controller_Api_Messages extends Api_User {
         $m = array();     
         //convert it to array                   
         foreach ($messages as $message)
-            $m[$message->id_message] = $message->as_array();
+            $m[] = $message->as_array();
 
-        $this->rest_output($m,200,$count,($pagination!==FALSE)?$pagination:NULL);
+        $this->rest_output(array('messages' => $m),200,$count,($pagination!==FALSE)?$pagination:NULL);
     }
 
     /**
@@ -103,9 +103,9 @@ class Controller_Api_Messages extends Api_User {
                     $m = array();     
                     //convert it to array                   
                     foreach ($messages as $message)
-                        $m[$message->id_message] = $message->as_array();
+                        $m[] = $message->as_array();
 
-                    $this->rest_output($m);
+                    $this->rest_output(array('messages' => $m));
                 }
                 else
                     $this->_error(__('Message not found'),404);
@@ -151,9 +151,8 @@ class Controller_Api_Messages extends Api_User {
                 $ret = Model_Message::reply($message, $user->id_user, $id_message_parent,$price);
             
             //good response!
-            if ($ret !== FALSE){
-                $this->rest_output($ret->as_array());
-            }
+            if ($ret !== FALSE)
+                $this->rest_output(array('message' => $ret->as_array()));
             else
                 $this->_error(__('Message not sent'));
 

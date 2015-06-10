@@ -45,11 +45,12 @@ class Controller_Api_Categories extends Api_Controller {
                     //$cat['parents']  = $category->get_parents_ids();
                     //$cat['siblings'] = $category->get_siblings_ids();
                     $cat['icon']     = $category->get_icon();
+                    $cat['price']    = i18n::money_format($category->price);
 
-                    $output[$category->id_category] = $cat;
+                    $output[] = $cat;
                 }
 
-                $this->rest_output($output,200,$count);
+                $this->rest_output(array('categories' => $output),200,$count);
             }
         }
         catch (Kohana_HTTP_Exception $khe)
@@ -88,16 +89,18 @@ class Controller_Api_Categories extends Api_Controller {
         {
             if (is_numeric($id_category = $this->request->param('id')))
             {
+                $cat = array();
                 $category = new Model_Category($id_category);
                 if ($category->loaded())
                 {
                     $cat = $category->as_array();
+                    $cat['price']    = i18n::money_format($category->price);
                     $cat['parents']  = $category->get_parents_ids();
                     $cat['siblings'] = $category->get_siblings_ids();
                     $cat['customfields']   = Model_Field::get_by_category($category->id_category);
                     $cat['icon']     = $category->get_icon();
 
-                    $this->rest_output($cat);
+                    $this->rest_output(array('category' => $cat));
                 }
                 else
                     $this->_error(__('Category not found'),404);
