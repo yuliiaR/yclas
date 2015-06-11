@@ -74,8 +74,10 @@ class Controller_Panel_Category extends Auth_Crud {
                 } catch (Exception $e) {
                     throw HTTP_Exception::factory(500,$e->getMessage());  
                 }
+
                 $this->action_deep();
                 Core::delete_cache();
+
                 Alert::set(Alert::SUCCESS, __('Category created'));
             
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
@@ -136,6 +138,7 @@ class Controller_Panel_Category extends Auth_Crud {
                 
                 $this->action_deep();
                 Core::delete_cache();
+
                 Alert::set(Alert::SUCCESS, __('Item updated'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
             }
@@ -314,6 +317,8 @@ class Controller_Panel_Category extends Auth_Crud {
      */
     public function action_deep()
     {
+        Core::delete_cache();
+
         //getting all the cats as array
         $cats_arr = Model_Category::get_as_array();  
 
