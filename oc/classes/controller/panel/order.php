@@ -41,7 +41,6 @@ class Controller_Panel_Order extends Auth_Crud {
                                                     'js/oc-panel/crud/index.js','js/oc-panel/stats/dashboard.js');
 
         $orders = new Model_Order();
-        $orders = $orders->where('status', '=', Model_Order::STATUS_PAID);
 
         //filter email
         if (core::request('email')!==NULL)

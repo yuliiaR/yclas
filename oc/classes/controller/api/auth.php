@@ -24,7 +24,7 @@ class Controller_Api_Auth extends Api_Auth {
                                         'user_agent');
 
                 //all fields
-                $this->_return_fields = array_keys($user->table_columns());
+                $this->_return_fields = array_keys($res);
 
                 //remove the hidden fields
                 foreach ($this->_return_fields as $key => $value) 

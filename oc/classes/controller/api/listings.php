@@ -20,6 +20,8 @@ class Controller_Api_Listings extends Api_Auth {
 
                 $ads = new Model_Ad();
 
+                $ads->where('status','=',Model_Ad::STATUS_PUBLISHED);
+
                 //search with lat and long!! nice!
                 if (isset($this->_params['latitude']) AND isset($this->_params['longitude']))
                 {

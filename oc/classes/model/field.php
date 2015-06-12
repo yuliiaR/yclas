@@ -297,11 +297,13 @@ class Model_Field {
     {
         $fields = array();
         $all_fields = self::get_all();
-
-        foreach ($all_fields as $field => $values) 
+        if (is_array($all_fields))
         {
-            if (is_array($values['categories']) AND in_array($id_category,$values['categories']))
-                $fields['cf_'.$field] = $values;
+            foreach ($all_fields as $field => $values) 
+            {
+                if (is_array($values['categories']) AND in_array($id_category,$values['categories']))
+                    $fields['cf_'.$field] = $values;
+            }
         }
 
         return $fields;
