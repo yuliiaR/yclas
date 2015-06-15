@@ -451,7 +451,7 @@ class Controller_Panel_Ad extends Auth_Controller {
                     $cat        = $ad->category;
                     $usr        = $ad->user;
 
-					$edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad));
+					$edit_url   = Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad));
                     $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad));
 
 					//we get the QL, and force the regen of token for security

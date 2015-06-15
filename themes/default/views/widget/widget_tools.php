@@ -17,7 +17,7 @@
         
             <div class="clearfix"></div><br>
         
-            <a class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$widget->ad->id_ad))?>">
+            <a class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$widget->ad->id_ad))?>">
                 <i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?>
             </a> 
             <a class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$widget->ad->id_ad))?>" 

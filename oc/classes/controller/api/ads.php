@@ -97,33 +97,25 @@ class Controller_Api_Ads extends Api_User {
     {
         try
         {
-            $ad = new Model_Ad();
-                        
+            $return = Model_Ad::save_ad($this->_post_params,$this->user);
             
-        
-            //TODO WORK with images, how we do that? new controllers? maybe /ads/image/5 delete you pass which image, if post we upload?
-            
-            //TODO how we set the status? check controller profile update to avoif duplicated code.
-            
-            //set values of the ad
-            $ad->values($this->_post_params);
-
-            $ad->id_user = $this->user->id_user;
-
-            try
-            {
-                $ad->save();
-                $this->rest_output(array('ad' => $ad->id_ad));
-            }
-            catch (ORM_Validation_Exception $e)
+            //there was an error on the validation
+            if (isset($return['validation_errors']) AND is_array($return['validation_errors']))
             {
                 $errors = '';
-                $e = $e->errors('ad');
 
-                foreach ($e as $f => $err) 
+                foreach ($return['validation_errors'] as $f => $err) 
                     $errors.=$err.' - ';
 
                 $this->_error($errors);
+            }
+            elseif (isset($return['error']))
+            {
+                $this->_error($return['error']);
+            }
+            elseif (isset($return['message']) AND isset($return['ad']))
+            {
+                $this->rest_output($return);
             }
                     
         }

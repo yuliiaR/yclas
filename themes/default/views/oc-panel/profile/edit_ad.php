@@ -31,7 +31,7 @@
     <? if( $ad->status == Model_Ad::STATUS_UNAVAILABLE AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  
             ):?>
             <a
-                href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
+                href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>" 
                 class="btn btn-success" 
                 title="<?=__('Activate?')?>" 
                 data-toggle="confirmation" 
@@ -116,7 +116,7 @@
                     </div>
                 <?endif?>
 
-                <?= FORM::open(Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal edit_ad_form', 'enctype'=>'multipart/form-data'))?>
+                <?= FORM::open(Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad)), array('class'=>'form-horizontal edit_ad_form', 'enctype'=>'multipart/form-data'))?>
                     <fieldset>
                         <?if(Auth::instance()->get_user()->id_role == 10):?>
 
@@ -318,7 +318,7 @@
                                                           type="submit" 
                                                           name="img_delete"
                                                           value="<?=$key?>" 
-                                                          href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
+                                                          href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
                                                           rel="tooltip" 
                                                           title="<?=__('Delete image')?>">
                                                           <?=__('Delete')?>
@@ -339,7 +339,7 @@
                             <?endif?>
                         </div>
                         <div class="page-header"></div>
-                            <?= FORM::button('submit', (in_array(core::config('general.moderation'), Model_Ad::$moderation_status))?__('Publish'):__('Update'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))))?>
+                            <?= FORM::button('submit', (in_array(core::config('general.moderation'), Model_Ad::$moderation_status))?__('Publish'):__('Update'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))))?>
 
                     </fieldset>
                 <?= FORM::close()?>

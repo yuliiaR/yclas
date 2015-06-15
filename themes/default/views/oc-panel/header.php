@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand ajax-load" href="<?=(Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN) ? Route::url('oc-panel',array('controller'=>'profile','action'=>'ads')) : Route::url('oc-panel',array('controller'=>'home'))?>" title="<?=__('Panel')?>">
+            <a class="navbar-brand ajax-load" href="<?=(Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN) ? Route::url('oc-panel',array(array('controller'=>'myads','action'=>'ads'))) : Route::url('oc-panel',array('controller'=>'home'))?>" title="<?=__('Panel')?>">
                 <i class="glyphicon glyphicon-th-large"></i> <?=__('Panel')?>
             </a>
             <div class="btn-group pull-right ml-20">

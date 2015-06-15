@@ -93,12 +93,12 @@
     
                 <td>
                     <a class="btn btn-primary" 
-                        href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'stats','id'=>$ad->id_ad))?>" 
+                        href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>" 
                         rel="tooltip" title="<?=__('Stats')?>">
                         <i class="glyphicon glyphicon-align-left"></i>
                     </a>
                     <a class="btn btn-primary" 
-                        href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
+                        href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
                         rel="tooltip" title="<?=__('Update')?>">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
@@ -106,7 +106,7 @@
                                 AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  
                         ):?>
                         <a
-                            href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'activate','id'=>$ad->id_ad))?>" 
+                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>" 
                             class="btn btn-success" 
                             title="<?=__('Activate?')?>" 
                             data-toggle="confirmation" 
@@ -116,7 +116,7 @@
                         </a>
                     <?elseif($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
                         <a
-                            href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
+                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>" 
                             class="btn btn-warning" 
                             title="<?=__('Deactivate?')?>" 
                             data-toggle="confirmation" 

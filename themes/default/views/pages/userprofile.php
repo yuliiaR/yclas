@@ -129,7 +129,7 @@
                 
                 <?if ($visitor != FALSE && $visitor->id_role == 10):?>
                     <br>
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?=__("Edit");?></a> |
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ads->id_ad))?>"><?=__("Edit");?></a> |
                     <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ads->id_ad))?>" 
                         onclick="return confirm('<?=__('Deactivate?')?>');"><?=__("Deactivate");?>
                     </a> |
@@ -141,7 +141,7 @@
                     </a>
                 <?elseif($visitor != FALSE && $visitor->id_user == $ads->id_user):?>
                     <br>
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ads->id_ad))?>"><?=__("Edit");?></a> 
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ads->id_ad))?>"><?=__("Edit");?></a> 
                 <?endif?>
             </article>
         <?endforeach?>

@@ -76,7 +76,7 @@
                             <td><a href="<?=Route::url('oc-panel', array('controller'=> 'user', 'action'=>'update','id'=>$order->user->pk())) ?>">
                                 <?=$order->user->name?></a> - <?=$order->user->email?>
                             </td>
-                            <td><a href="<?=Route::url('oc-panel', array('controller'=> 'profile', 'action'=>'update','id'=>$order->ad->pk())) ?>" title="<?=HTML::chars($order->ad->title)?>">
+                            <td><a href="<?=Route::url('oc-panel', array('controller'=> 'myads', 'action'=>'update','id'=>$order->ad->pk())) ?>" title="<?=HTML::chars($order->ad->title)?>">
                                 <?=Text::limit_chars($order->ad->title, 30, NULL, TRUE)?></a></td>
 
                             <td><?=Model_Order::product_desc($order->id_product)?></td>

@@ -200,7 +200,7 @@
 	    	</td>
 			<td width="120" style="width:120px">
 				<a class="btn btn-primary ajax-load" 
-					href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>" 
+					href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
 					rel="tooltip" title="<?=__('Update')?>">
 					<i class="glyphicon   glyphicon-edit"></i>
 				</a>

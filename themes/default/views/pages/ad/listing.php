@@ -126,7 +126,7 @@
               <br />
               <div class="toolbar btn btn-primary btn-xs"><i class="glyphicon glyphicon-cog"></i>
                   <div id="user-toolbar-options<?=$ad->id_ad?>" class="hide user-toolbar-options">
-                      <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a> |
+                      <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a> |
                       <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
                           onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i><?=__("Deactivate");?>
                       </a> |
@@ -144,8 +144,8 @@
           <br/>
           <div class="toolbar btn btn-primary btn-xs"><i class="glyphicon glyphicon-cog"></i>
               <div id="user-toolbar-options<?=$ad->id_ad?>" class="hide user-toolbar-options">
-                  <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i><?=__("Edit");?></a> |
-                  <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'profile','action'=>'deactivate','id'=>$ad->id_ad))?>" 
+                  <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i><?=__("Edit");?></a> |
+                  <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>" 
                       onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i><?=__("Deactivate");?>
                   </a>
               </div>

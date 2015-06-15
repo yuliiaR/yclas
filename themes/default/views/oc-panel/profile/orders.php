@@ -38,7 +38,7 @@
     
                         <td><?=i18n::format_currency($order->amount, $order->currency)?></td>
     
-                        <td><a href="<?=Route::url('oc-panel', array('controller'=> 'profile', 'action'=>'update','id'=>$order->ad->pk())) ?>" title="<?=HTML::chars($order->ad->title)?>">
+                        <td><a href="<?=Route::url('oc-panel', array('controller'=> 'myads', 'action'=>'update','id'=>$order->ad->pk())) ?>" title="<?=HTML::chars($order->ad->title)?>">
                             <?=Text::limit_chars($order->ad->title, 30, NULL, TRUE)?></a></td>
     
                         <td><?=$order->created?></td>

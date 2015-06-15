@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'ads'))?>">
+                    <a href="<?=Route::url('oc-panel',array(array('controller'=>'myads','action'=>'ads')))?>">
                         <i class="glyphicon glyphicon-edit"></i> <?=__('My Advertisements')?>
                     </a>
                 </li>

@@ -105,19 +105,23 @@ class Model_Ad extends ORM {
     public function rules()
     {
     	return array(
-				        'id_ad'		=> array(array('numeric')),
+				        'id_ad'		    => array(array('numeric')),
 				        'id_user'		=> array(array('numeric')),
-				        'id_category'	=> array(array('numeric')),
-				        'id_location'	=> array(),
+				        'id_category'	=> array(array('not_empty'),array('digit')),
+				        'id_category'   => array(array('digit')),
 				        'type'			=> array(),
-				        'title'			=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
+				        'title'			=> array(array('not_empty'), array('min_length', array(':value', 2)), array('max_length', array(':value', 145))),
 				        'seotitle'		=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
-				        'description'	=> array(array('not_empty'), array('max_length', array(':value', 65535)), ),
+				        'description'	=> array(array('not_empty'), array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), ),
 				        'address'		=> array(array('max_length', array(':value', 145)), ),
+                        'website'       => array(array('max_length', array(':value', 145)), ),
 				        'phone'			=> array(array('max_length', array(':value', 30)), ),
 				        'status'		=> array(array('numeric')),
 				        'has_images'	=> array(array('numeric')),
 				        'last_modified'	=> array(),
+                        'price'         => array(array('numeric')),
+                        'latitude'      => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
+                        'longitude'     => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
 				    );
     }
 
@@ -129,7 +133,7 @@ class Model_Ad extends ORM {
     public function labels()
     {
     	return array(
-			        'id_ad'		=> 'Id ad',
+			        'id_ad'		    => 'Id ad',
 			        'id_user'		=> __('User'),
 			        'id_category'	=> __('Category'),
 			        'id_location'	=> __('Location'),
@@ -796,7 +800,7 @@ class Model_Ad extends ORM {
                     $this->status = Model_Ad::STATUS_UNAVAILABLE;
                     
                     //send email to owner that the he run out of stock
-                    $url_edit = $user->ql('oc-panel',array( 'controller'=> 'profile', 
+                    $url_edit = $user->ql('oc-panel',array( 'controller'=> 'myads', 
                                                             'action'    => 'update',
                                                             'id'        => $this->id_ad),TRUE);
 
@@ -879,7 +883,7 @@ class Model_Ad extends ORM {
         {    
             $moderation = core::config('general.moderation');
 
-            $edit_url   = Route::url('oc-panel', array('controller'=>'profile','action'=>'update','id'=>$this->id_ad));
+            $edit_url   = Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$this->id_ad));
             $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$this->id_ad));
 
             if($moderation == Model_Ad::PAYMENT_ON)
@@ -908,7 +912,7 @@ class Model_Ad extends ORM {
             elseif($moderation == Model_Ad::PAYMENT_MODERATION)
             {
                 //he paid but stays in moderation
-                $url_ql = $this->user->ql('oc-panel',array( 'controller'=> 'profile', 
+                $url_ql = $this->user->ql('oc-panel',array( 'controller'=> 'myads', 
                                                       'action'    => 'update',
                                                       'id'        => $this->id_ad));
 
@@ -986,6 +990,204 @@ class Model_Ad extends ORM {
 
 
         parent::delete();
+    }
+
+
+    public static function save_ad($data,Model_User $user, Model_Ad $ad = NULL)
+    {
+        $return_message = '';
+        $checkout_url   = '';
+
+        //akismet spam filter
+        if(core::akismet($data['title'], $user->email, $data['description']) == TRUE)
+        {
+            // is user marked as spammer? Make him one :)
+            if(core::config('general.black_list'))
+               $user->user_spam();
+            
+            return array('error' => __('This post has been considered as spam! We are sorry but we can not publish this advertisement.'),'error_type'=>Alert::ALERT);
+        }//akismet
+
+
+        //some work on the data ;)
+        if (isset($data['title']))
+            $data['title']          = Text::banned_words($data['title']);
+        if (isset($data['description']))
+            $data['description']    = Text::banned_words($data['description']);
+        if (isset($data['price']))
+            $data['price']          = floatval(str_replace(',', '.', $data['price']));   
+
+
+        // append to $data new custom values
+        foreach ($data as $name => $field) 
+        {
+            // get by prefix
+            if (strpos($name,'cf_') !== false) 
+            {
+                //checkbox when selected return string 'on' as a value
+                if($field == 'on')
+                    $data[$name] = 1;
+                if($field == '0000-00-00' OR $field == "" OR $field == NULL OR empty($field))
+                    $data[$name] = NULL;
+            }
+        } 
+
+        //its a new ad
+        if ($ad===NULL)
+        {
+            $ad = new Model_Ad();
+            $ad->id_user = $user->id_user;
+            //we generate the seo title only once...if not loses all the seo!
+            $data['seotitle']   = $ad->gen_seo_title($data['title']); 
+            $ad->created        = Date::unix2mysql();
+            $ad->published      = $ad->created;
+        }   
+        //editing the ad 
+        elseif ($ad->loaded())
+        {
+            $ad->last_modified = Date::unix2mysql();
+            // update status on re-stock
+            if(isset($data['stock']) AND is_numeric($data['stock']))
+            {
+                //not really sure of this lines...
+                if($ad->stock == 0 OR $data['stock'] == 0)
+                    $ad->status = Model_Ad::STATUS_UNAVAILABLE;
+                elseif($data['stock'] > 0 AND $ad->status == Model_Ad::STATUS_UNAVAILABLE)
+                    $ad->status = Model_Ad::STATUS_PUBLISHED;
+            }
+        }
+
+        $ad->values($data);
+        
+        try {
+            $ad->save();
+        }
+        catch (ORM_Validation_Exception $e)
+        {
+            return array('validation_errors' => $e->errors('ad'));
+        }
+        catch (Exception $e) 
+        {
+            return array('error' => $e->getMessage(),'error_type'=>Alert::ALERT);
+        }
+
+        /////////// NOTIFICATION Emails,messages to user and Status of the ad
+        
+        // depending on user flow (moderation mode), change usecase
+        $moderation = core::config('general.moderation'); 
+
+        //url to edit/delete the ad
+        $edit_url   = Route::url('oc-panel', array('controller'=>'myads', 'action'=>'update','id'=>$ad->id_ad));
+        $delete_url = Route::url('oc-panel', array('controller'=>'ad',      'action'=>'delete','id'=>$ad->id_ad));
+
+        //calculate how much he needs to pay in case we have payment on
+        if ($moderation == Model_Ad::PAYMENT_ON OR $moderation == Model_Ad::PAYMENT_MODERATION)
+        {
+            // check category price, if 0 check parent
+            if($ad->category->price == 0)
+            {
+                $cat_parent = new Model_Category($ad->category->id_category_parent);
+
+                //category without price
+                if($cat_parent->price == 0)
+                {
+                    //swapping moderation since theres no price :(
+                    if ($moderation == Model_Ad::PAYMENT_ON)
+                        $moderation = Model_Ad::POST_DIRECTLY;
+                    elseif($moderation == Model_Ad::PAYMENT_MODERATION)
+                        $moderation = Model_Ad::MODERATION_ON;
+                }
+                else
+                    $amount = $cat_parent->price;
+            }
+            else
+                $amount = $ad->category->price;
+        }
+
+        //where and what we say to the user depending ont he moderation
+        switch ($moderation) 
+        {
+            case Model_Ad::PAYMENT_ON:
+            case Model_Ad::PAYMENT_MODERATION:
+
+                    $ad->status = Model_Ad::STATUS_NOPUBLISHED;
+                    $order = Model_Order::new_order($ad, $user, Model_Order::PRODUCT_CATEGORY, $amount, NULL, Model_Order::product_desc(Model_Order::PRODUCT_CATEGORY).' '.$ad->category->name);
+                    // redirect to invoice
+                    $return_message = __('Please pay before we publish your advertisement.');
+                    $checkout_url = Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order));
+                break;
+
+            case Model_Ad::EMAIL_MODERATION:
+            case Model_Ad::EMAIL_CONFIRMATION:
+
+                    $ad->status = Model_Ad::STATUS_UNCONFIRMED;
+                    $url_ql = $user->ql('oc-panel',array( 'controller'=> 'myads', 
+                                                  'action'    => 'confirm',
+                                                  'id'        => $ad->id_ad));
+            
+                    $user->email('ads-confirm',array('[URL.QL]'=>$url_ql,
+                                                    '[AD.NAME]'=>$ad->title,
+                                                    '[URL.EDITAD]'=>$edit_url,
+                                                    '[URL.DELETEAD]'=>$delete_url));
+                    $return_message = __('Advertisement is posted but first you need to activate. Please check your email!');
+                break;
+
+            case Model_Ad::MODERATION_ON:
+
+                    $ad->status = Model_Ad::STATUS_NOPUBLISHED;
+                    $url_ql = $user->ql('oc-panel',array( 'controller'=> 'myads', 
+                                                  'action'    => 'update',
+                                                  'id'        => $ad->id_ad));
+
+                    $user->email('ads-notify',array('[URL.QL]'       =>$url_ql,
+                                                   '[AD.NAME]'      =>$ad->title,
+                                                   '[URL.EDITAD]'   =>$edit_url,
+                                                   '[URL.DELETEAD]' =>$delete_url)); // email to notify user of creating, but it is in moderation currently 
+                    $return_message = __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!');
+                break;
+            
+            case Model_Ad::POST_DIRECTLY:
+            default:
+                    
+                    $ad->status = Model_Ad::STATUS_PUBLISHED;
+                    $ad->published = $ad->created;
+
+                    $url_cont = $user->ql('contact');
+                    $url_ad = $user->ql('ad', array('category'=>$ad->category->seoname,
+                                                    'seotitle'=>$ad->seotitle));
+
+                    $user->email('ads-user-check',array('[URL.CONTACT]'  =>$url_cont,
+                                                                '[URL.AD]'      =>$url_ad,
+                                                                '[AD.NAME]'     =>$ad->title,
+                                                                '[URL.EDITAD]'  =>$edit_url,
+                                                                '[URL.DELETEAD]'=>$delete_url));
+
+                    //Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $ad->price)), $ad->seotitle);
+                    $return_message = __('Advertisement is posted. Congratulations!');
+                break;
+        }
+   
+        //save the last changes on status
+        $ad->save();
+
+        //NOTIFY ADMIN
+        // new ad notification email to admin (notify_email), if set to TRUE 
+        if(core::config('email.new_ad_notify') == TRUE)
+        {
+            $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
+            
+            $replace = array('[URL.AD]'        =>$url_ad,
+                             '[AD.TITLE]'      =>$ad->title);
+
+            Email::content(Email::get_notification_emails(),
+                                core::config('general.site_name'),
+                                core::config('email.notify_email'),
+                                core::config('general.site_name'),
+                                'ads-to-admin',
+                                $replace);
+        }
+
+        return array('message'=>$return_message,'checkout_url'=>$checkout_url,'ad'=>$ad);
     }
 
 } // END Model_ad
