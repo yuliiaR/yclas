@@ -82,6 +82,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         }catch (exception $e) {}
 
 
+        //myads access
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES 
+                                                                         (1, 'myads.*'),(5, 'myads.*'),(7, 'myads.*')")->execute();
+        }catch (exception $e) {}
     }
 
 

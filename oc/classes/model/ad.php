@@ -992,22 +992,11 @@ class Model_Ad extends ORM {
         parent::delete();
     }
 
-
-    public static function save_ad($data,Model_User $user, Model_Ad $ad = NULL)
+    
+    public static function save_ad($data,$user, Model_Ad $ad = NULL)
     {
         $return_message = '';
         $checkout_url   = '';
-
-        //akismet spam filter
-        if(core::akismet($data['title'], $user->email, $data['description']) == TRUE)
-        {
-            // is user marked as spammer? Make him one :)
-            if(core::config('general.black_list'))
-               $user->user_spam();
-            
-            return array('error' => __('This post has been considered as spam! We are sorry but we can not publish this advertisement.'),'error_type'=>Alert::ALERT);
-        }//akismet
-
 
         //some work on the data ;)
         if (isset($data['title']))
@@ -1034,13 +1023,25 @@ class Model_Ad extends ORM {
 
         //its a new ad
         if ($ad===NULL)
-        {
+        {   
+            //akismet spam filter
+            if(core::akismet($data['title'], $user->email, $data['description']) == TRUE)
+            {
+                // is user marked as spammer? Make him one :)
+                if(core::config('general.black_list'))
+                   $user->user_spam();
+                
+                return array('error' => __('This post has been considered as spam! We are sorry but we can not publish this advertisement.'),'error_type'=>Alert::ALERT);
+            }//akismet
+
             $ad = new Model_Ad();
             $ad->id_user = $user->id_user;
             //we generate the seo title only once...if not loses all the seo!
             $data['seotitle']   = $ad->gen_seo_title($data['title']); 
             $ad->created        = Date::unix2mysql();
             $ad->published      = $ad->created;
+
+            $is_new = TRUE;
         }   
         //editing the ad 
         elseif ($ad->loaded())
@@ -1049,12 +1050,13 @@ class Model_Ad extends ORM {
             // update status on re-stock
             if(isset($data['stock']) AND is_numeric($data['stock']))
             {
-                //not really sure of this lines...
-                if($ad->stock == 0 OR $data['stock'] == 0)
+                if($data['stock'] == 0)
                     $ad->status = Model_Ad::STATUS_UNAVAILABLE;
                 elseif($data['stock'] > 0 AND $ad->status == Model_Ad::STATUS_UNAVAILABLE)
                     $ad->status = Model_Ad::STATUS_PUBLISHED;
             }
+
+            $is_new = FALSE;
         }
 
         $ad->values($data);
@@ -1071,6 +1073,8 @@ class Model_Ad extends ORM {
             return array('error' => $e->getMessage(),'error_type'=>Alert::ALERT);
         }
 
+        if ($is_new == TRUE)
+        {
         /////////// NOTIFICATION Emails,messages to user and Status of the ad
         
         // depending on user flow (moderation mode), change usecase
@@ -1186,6 +1190,8 @@ class Model_Ad extends ORM {
                                 'ads-to-admin',
                                 $replace);
         }
+
+        }//end $is_new
 
         return array('message'=>$return_message,'checkout_url'=>$checkout_url,'ad'=>$ad);
     }

@@ -28,7 +28,7 @@
             <li><a href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
                 <i class="glyphicon glyphicon-cog"></i> <?=__('Panel')?></a></li>
         
-            <li><a href="<?=Route::url('oc-panel',array(array('controller'=>'myads','action'=>'ads')))?>"><i
+            <li><a href="<?=Route::url('oc-panel',array(array('controller'=>'myads','action'=>'index')))?>"><i
                    class="glyphicon glyphicon-edit"></i> <?=__('My Advertisements')?></a></li>
         
             <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'favorites'))?>"><i

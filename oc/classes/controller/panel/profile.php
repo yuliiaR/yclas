@@ -318,7 +318,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
    
     public function action_ads()
     {
-        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'ads')).'?rel=ajax');
+        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')).'?rel=ajax');
     }
 
     public function action_deactivate()

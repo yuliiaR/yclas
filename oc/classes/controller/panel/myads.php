@@ -78,7 +78,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
-                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'ads')));
+                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
                 }
                 elseif ($deact_ad->status != Model_Ad::STATUS_UNAVAILABLE)
 				{
@@ -96,7 +96,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 				else
 				{				
 					Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
-					HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'ads')));
+					HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
 				} 
 			}
 			else
@@ -107,7 +107,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		}
 		
 		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
-		HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'ads')));
+		HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
 	}
 
 	/**
@@ -168,7 +168,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 //we dont activate something happened
                 else
                 {
-                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'ads')));
+                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
                 }
 
 			}
@@ -200,7 +200,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		}	
 
 		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
-		HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'ads')));
+		HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
 	}
 
 	/**
@@ -398,8 +398,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 						$form->$key = $value;
 					}
 	        	}
-	        	// d($data['cf_radio']);
-				$obj_ad = new Model_Ad();
+
 
 	        	// IMAGE UPLOAD 
 				// in case something wrong happens user is redirected to edit advert. 
@@ -574,7 +573,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             if(Auth::instance()->get_user()->id_user !== $advert->id_user)
             {
                 Alert::set(Alert::ALERT, __("This is not your advertisement."));
-                HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'ads')));
+                HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
             }
 
             if(core::config('general.moderation') == Model_Ad::EMAIL_CONFIRMATION)
@@ -648,7 +647,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 if($user->id_user !== $advert->id_user)
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
-                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'ads')));
+                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
                 }
 
                 Breadcrumbs::add(Breadcrumb::factory()->set_title($advert->title));
