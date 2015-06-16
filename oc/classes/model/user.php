@@ -66,6 +66,9 @@ class Model_User extends Model_OC_User {
         //delete posts
         DB::delete('posts')->where('id_user', '=',$this->id_user)->execute();
 
+        //delete messages
+        DB::delete('messages')->where('id_user_from', '=',$this->id_user)->or_where('id_user_to', '=',$this->id_user)->execute();
+
         parent::delete();
     }
     

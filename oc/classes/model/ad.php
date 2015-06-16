@@ -980,6 +980,9 @@ class Model_Ad extends ORM {
         //remove visits ads
         DB::update('visits')->set(array('id_ad' => NULL))->where('id_ad', '=',$this->id_ad)->execute();
 
+        //remove messages ads
+        DB::update('messages')->set(array('id_ad' => NULL))->where('id_ad', '=',$this->id_ad)->execute();
+
 
         parent::delete();
     }
