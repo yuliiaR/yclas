@@ -237,25 +237,10 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 		foreach ($format_id as $id) 
 		{
-			if (isset($id) AND $id !== '')
+			if (isset($id) AND is_numeric($id))
 			{
 				$deact_ad = new Model_Ad($id);
-
-				if ($deact_ad->loaded())
-				{
-					if ($deact_ad->status != Model_Ad::STATUS_UNAVAILABLE)
-					{
-						$deact_ad->status = Model_Ad::STATUS_UNAVAILABLE;
-						
-						try{
-							$deact_ad->save();
-						}
-						catch (Exception $e){
-							throw HTTP_Exception::factory(500,$e->getMessage());
-						}
-					}
-				}
-				
+				$deact_ad->deactivate();
 			}
 		}
 		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));

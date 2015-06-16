@@ -108,10 +108,9 @@ class Model_Ad extends ORM {
 				        'id_ad'		    => array(array('numeric')),
 				        'id_user'		=> array(array('numeric')),
 				        'id_category'	=> array(array('not_empty'),array('digit')),
-				        'id_category'   => array(array('digit')),
+				        'id_location'   => array(array('digit')),
 				        'type'			=> array(),
 				        'title'			=> array(array('not_empty'), array('min_length', array(':value', 2)), array('max_length', array(':value', 145))),
-				        'seotitle'		=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
 				        'description'	=> array(array('not_empty'), array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), ),
 				        'address'		=> array(array('max_length', array(':value', 145)), ),
                         'website'       => array(array('max_length', array(':value', 145)), ),
@@ -1112,7 +1111,7 @@ class Model_Ad extends ORM {
         $checkout_url   = '';
 
         //akismet spam filter
-        if(core::akismet($data['title'], $user->email, $data['description']) == TRUE)
+        if( isset($data['title']) AND  isset($data['description']) AND core::akismet($data['title'], $user->email, $data['description']) == TRUE)
         {
             // is user marked as spammer? Make him one :)
             if(core::config('general.black_list'))
@@ -1362,6 +1361,31 @@ class Model_Ad extends ORM {
         {
             throw HTTP_Exception::factory(500,$e->getMessage());
         }
+    }
+
+    /**
+     * changes the status of an ad to deactivated
+     * @return bool 
+     */ 
+    public function deactivate()
+    {
+        if ($this->loaded() AND $this->status != Model_Ad::STATUS_UNAVAILABLE)
+        {
+            try
+            {
+                $this->status = Model_Ad::STATUS_UNAVAILABLE;
+                $this->save();
+                
+                return TRUE;
+            }
+            catch (Exception $e)
+            {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+
+        return FALSE;
+
     }
 
 } // END Model_ad

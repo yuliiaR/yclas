@@ -62,52 +62,34 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 	 */
 	public function action_deactivate()
 	{
+		
+		$deact_ad = new Model_Ad($this->request->param('id'));
 
-		$id = $this->request->param('id');
-		
-		
-		if (isset($id))
+		if ($deact_ad->loaded())
 		{
+			if(Auth::instance()->get_user()->id_user != $deact_ad->id_user)
+            {
+                Alert::set(Alert::ALERT, __("This is not your advertisement."));
+                HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
+            }
 
-			$deact_ad = new Model_Ad($id);
-
-			if ($deact_ad->loaded())
+            if ($deact_ad->deactivate())
 			{
-				if(Auth::instance()->get_user()->id_user != $deact_ad->id_user AND 
-				   Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN)
-
-                {
-                    Alert::set(Alert::ALERT, __("This is not your advertisement."));
-                    HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
-                }
-                elseif ($deact_ad->status != Model_Ad::STATUS_UNAVAILABLE)
-				{
-					$deact_ad->status = Model_Ad::STATUS_UNAVAILABLE;
-					
-					try
-					{
-						$deact_ad->save();
-					}
-						catch (Exception $e)
-					{
-						throw HTTP_Exception::factory(500,$e->getMessage());
-					}
-				}
-				else
-				{				
-					Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
-					HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
-				} 
+				Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
+                HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
 			}
 			else
-			{
-				//throw 404
-				throw HTTP_Exception::factory(404,__('Page not found'));
-			}
+			{				
+				Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
+				HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
+			} 
 		}
-		
-		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
-		HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
+		else
+		{
+			//throw 404
+			throw HTTP_Exception::factory(404,__('Page not found'));
+		}
+				
 	}
 
 	/**
