@@ -311,7 +311,7 @@
                                         <?if(isset($value['thumb'])): // only formated images (not originals)?>
                                             <div id="img<?=$key?>" class="col-md-4 col-sm-4 col-md-4 edit-image">
                                                 <a class="">
-                                                    <img src="<?=$value['base'].$value['thumb']?>" class="img-rounded thumbnail" alt="">
+                                                    <img src="<?=$value['thumb']?>" class="img-rounded thumbnail" alt="">
                                                 </a>
                                                 <button class="btn btn-danger index-delete img-delete"
                                                           data-confirm="<?=__('Delete?')?>" 

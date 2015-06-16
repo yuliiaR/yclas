@@ -53,8 +53,8 @@
                     <?foreach ($images as $path => $value):?>
                         <?if( isset($value['thumb']) AND isset($value['image']) ):?>
                             <div class="col-md-3">
-                                <a href="<?=$value['base'].$value['image']?>" class="thumbnail gallery-item" data-gallery>
-                                    <img src="<?=$value['base'].$value['thumb']?>" class="img-rounded" alt="<?=HTML::chars($ad->title)?>">
+                                <a href="<?=$value['image']?>" class="thumbnail gallery-item" data-gallery>
+                                    <img src="<?=$value['thumb']?>" class="img-rounded" alt="<?=HTML::chars($ad->title)?>">
                                 </a>
                             </div>
                         <?endif?>

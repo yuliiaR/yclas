@@ -6,9 +6,9 @@
         <div class="media">
             <?if($ad->get_first_image() !== NULL):?>
                 <div class="media-left">
-                    <?$images_base = (core::config('image.aws_s3_active')) ? ((Core::is_HTTPS()) ? 'https://' : 'http://').core::config('image.aws_s3_domain') : URL::base()?>
+                    
                     <a title="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-                        <img class="media-object" style="width: 64px; height: 64px;" src="<?=$images_base?><?=$ad->get_first_image()?>" alt="<?= HTML::chars($ad->title)?>">
+                        <img class="media-object" style="width: 64px; height: 64px;" src="<?=$ad->get_first_image()?>" alt="<?= HTML::chars($ad->title)?>">
                     </a>
                 </div>
             <?endif?>

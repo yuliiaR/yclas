@@ -249,14 +249,8 @@ class Model_Ad extends ORM {
        
         if($this->loaded() AND $this->has_images > 0)
         {              
-            if (core::config('image.aws_s3_active'))
-            {
-                $protocol = Core::is_HTTPS() ? 'https://' : 'http://';
-                $base = $protocol.core::config('image.aws_s3_domain');
-            }
-            else
-                $base = URL::base();
-            
+           
+            $base = Core::S3_domain();
             $route      = $this->image_path();
             $folder     = DOCROOT.$route;
             $seotitle   = $this->seotitle;
@@ -266,9 +260,8 @@ class Model_Ad extends ORM {
             {
                 $filename_thumb = 'thumb_'.$seotitle.'_'.$i.'.jpg';
                 $filename_original = $seotitle.'_'.$i.'.jpg';
-                $image_path[$i]['image'] = $route.$filename_original.$version;
-                $image_path[$i]['thumb'] = $route.$filename_thumb.$version;
-                $image_path[$i]['base'] = $base;
+                $image_path[$i]['image'] = $base.$route.$filename_original.$version;
+                $image_path[$i]['thumb'] = $base.$route.$filename_thumb.$version;
             }
         }
         

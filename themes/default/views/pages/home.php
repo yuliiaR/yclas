@@ -14,7 +14,7 @@
                     <div class="thumbnail latest_ads">
                         <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"  class="min-h">
                             <?if($ad->get_first_image()!== NULL):?>
-                                <img src="<?=Core::S3_domain().$ad->get_first_image()?>" alt="<?=HTML::chars($ad->title)?>">
+                                <img src="<?=$ad->get_first_image()?>" alt="<?=HTML::chars($ad->title)?>">
                             <?else:?>
                                 <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
                                     <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
