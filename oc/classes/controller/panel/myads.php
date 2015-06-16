@@ -275,259 +275,84 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 			{
 				
 				// deleting single image by path 
-				$deleted_image = core::post('img_delete');
-				if(is_numeric($deleted_image))
+				if(is_numeric($deleted_image = core::post('img_delete')))
 				{
-					$img_path = $form->image_path();
-					$img_seoname = $form->seotitle;
-					
-					// delete image from Amazon S3
-					if (core::config('image.aws_s3_active'))
-					{
-						require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
-						$s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
-						
-						//delete original image
-						$s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.$deleted_image.'.jpg');
-						//delete formated image
-						$s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.$deleted_image.'.jpg');
-						
-						//re-ordering image file names
-						for($i = $deleted_image; $i < $form->has_images; $i++)
-						{
-							//rename original image
-							$s3->copyObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.($i+1).'.jpg', core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.$i.'.jpg', S3::ACL_PUBLIC_READ);
-							$s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.($i+1).'.jpg');
-							//rename formated image
-							$s3->copyObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg', S3::ACL_PUBLIC_READ);
-							$s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg');
-						}
-					}
-					
-					//delte image from local filesystem
-					if (!is_dir($img_path)) 
-						return FALSE;
-					else
-					{	
-						//delete original image
-						@unlink($img_path.$img_seoname.'_'.$deleted_image.'.jpg');
-						//delete formated image
-						@unlink($img_path.'thumb_'.$img_seoname.'_'.$deleted_image.'.jpg');
-						
-						//re-ordering image file names
-						for($i = $deleted_image; $i < $form->has_images; $i++)
-						{
-							rename($img_path.$img_seoname.'_'.($i+1).'.jpg', $img_path.$img_seoname.'_'.$i.'.jpg');
-							rename($img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg');
-						}
-					}
-					
-					$form->has_images = ($form->has_images > 0) ? $form->has_images-1 : 0;
-					$form->last_modified = Date::unix2mysql();
-					try 
-					{
-						$form->save();
-					} 
-					catch (Exception $e) 
-					{
-						throw HTTP_Exception::factory(500,$e->getMessage());
-					}
-					
-					$this->redirect(Route::url('oc-panel', array('controller'	=>'myads',
-																		  'action'		=>'update',
-																		  'id'			=>$form->id_ad)));
+					$form->delete_image($deleted_image);
+                    //TODO! usage of the api?
+					die();
 				}// end of img delete
 
-				$data = array(	'_auth' 		=> $auth 		= 	Auth::instance(),
-								'title' 		=> $title 		= 	Text::banned_words(core::post('title')),
-								//'seotitle' 		=> $seotitle 	= 	core::post('title'),
-								'cat'			=> $category 	= 	core::post('category'),
-								'loc'			=> $loc 		= 	core::post('location'),
-								'description'	=> $description = 	Text::banned_words(core::post('description')),
-								'price'			=> $price 		= 	floatval(str_replace(',', '.', core::post('price'))),
-								// 'status'		=> $status		= 	core::post('status'),
-								'address'		=> $address 	= 	core::post('address'),
-								'website'		=> $website 	= 	core::post('website'),
-								'stock'			=> $stock 		= 	core::post('stock'),
-								'phone'			=> $phone 		= 	core::post('phone'),
-								'has_images'	=> 0,
-								'user'			=> $user 		= new Model_User(),
-								'latitude'		=> $latitude 	= 	core::post('latitude'),
-								'longitude'		=> $longitude 	= 	core::post('longitude')
-								); 
 
-				// append to $data new custom values
-	            foreach ($_POST as $name => $field) 
-	            {
-	            	// get by prefix
-					if (strpos($name,'cf_') !== false) 
-					{
-						$data[$name] = $field;
-						
-						if($field == '0000-00-00' OR $field == "" OR $field == NULL )
-							$data[$name] = NULL;
+                $data = $this->request->post();
 
-						//checkbox when selected return string 'on' as a value
-						if($field == 'on')
-						{
-							$data[$name] = 1;
-						}
-					}
-	        	}
-
-				//update stock, if non numeric to NULL
-				$form->stock = (is_numeric($data['stock']))?$data['stock']:NULL;
-				
-				$form->title 			= $data['title'];
-				$form->id_location 		= $data['loc'];
-				$form->id_category 		= $data['cat'];
-				$form->description 		= $data['description'];
-				$form->price 			= $data['price']; 								
-				$form->address 			= $data['address'];
-				$form->website 			= $data['website'];
-				$form->phone 			= $data['phone'];
-				$form->latitude 			= $data['latitude'];
-				$form->longitude 		= $data['longitude'];
-
-				// set custom values
-				foreach ($data as $key => $value) 
-	            {
-	            	// get only custom values with prefix
-					if (strpos($key,'cf_') !== false) 
-					{
-						$form->$key = $value;
-					}
-	        	}
-
-
-	        	// IMAGE UPLOAD 
-				// in case something wrong happens user is redirected to edit advert. 
-	    		$filename = NULL;
-	    		$counter = 0;
-
-	    		for ($i=0; $i < core::config("advertisement.num_images"); $i++) 
-	    		{ 
-	    			$counter++;
-
-	    			if (isset($_FILES['image'.$i]))
-	        		{
-		            	$filename = $form->save_image($_FILES['image'.$i]);
-	        		}
-	        		
-	        		if ($filename){
-			        	$form->has_images++;
-			        	$form->last_modified = Date::unix2mysql();
-			        	try 
-						{
-							$form->save();
-						} 
-						catch (Exception $e) 
-						{
-							throw HTTP_Exception::factory(500,$e->getMessage());
-						}
-	        		}
-		        	
-		        	if($filename = FALSE)
-		        		$this->redirect(Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$form->id_ad)));
-		        }
-
-                // update status on re-stock
-                if(is_numeric($data['stock']))
+                //to make it backward compatible with older themes: UGLY!!
+                if (isset($data['category']) AND is_numeric($data['category']))
                 {
-                    //not really sure of this lines...
-                    if($form->stock == 0 OR $data['stock'] == 0)
-                        $form->status = Model_Ad::STATUS_UNAVAILABLE;
-                    elseif($data['stock'] > 0 AND $form->status == Model_Ad::STATUS_UNAVAILABLE)
-                        $form->status = Model_Ad::STATUS_PUBLISHED;
+                    $data['id_category'] = $data['category'];
+                    unset($data['category']);
                 }
 
-	        	$moderation = core::config('general.moderation');
+                if (isset($data['location']) AND is_numeric($data['location']))
+                {
+                    $data['id_location'] = $data['location'];
+                    unset($data['location']);
+                }
 
-                //payment for category only if category changed
-        		if( ($moderation == Model_Ad::PAYMENT_ON OR $moderation == Model_Ad::PAYMENT_MODERATION) AND $data['cat'] !== $original_category->id_category )
-        		{
-                    $amount = 0;
-                    $new_cat = new Model_Category($data['cat']);
+                $return = $form->save_ad($data);
+        
+                //there was an error on the validation
+                if (isset($return['validation_errors']) AND is_array($return['validation_errors']))
+                {
+                    foreach ($return['validation_errors'] as $f => $err) 
+                        Alert::set(Alert::ALERT, $err);
+                }
+                //another error
+                elseif (isset($return['error']))
+                {
+                    Alert::set($return['error_type'], $return['error']);
+                }
+                //success!!!
+                elseif (isset($return['message']))
+                {
+                    // IMAGE UPLOAD 
+                    // in case something wrong happens user is redirected to edit advert. 
+                    $counter = 0;
 
-                    // check category price, if 0 check parent
-                    if($new_cat->price == 0)
-                    {
-                        $cat_parent = new Model_Category($new_cat->id_category_parent);
+                    for ($i=0; $i < core::config("advertisement.num_images"); $i++) 
+                    { 
+                        $filename = NULL;
+                        $counter++;
 
-                        //category without price
-                        if($cat_parent->price == 0)
+                        if (isset($_FILES['image'.$i]))
                         {
-                            //swapping moderation since theres no price :(
-                            if ($moderation == Model_Ad::PAYMENT_ON)
-                                $moderation = Model_Ad::POST_DIRECTLY;
-                            elseif($moderation == Model_Ad::PAYMENT_MODERATION)
-                                $moderation = Model_Ad::MODERATION_ON;
+                            $filename = $form->save_image($_FILES['image'.$i]);
                         }
-                        else
-                            $amount = $cat_parent->price;
-                    }
-                    else
-                        $amount = $new_cat->price;
-        			
-                    //only process apyment if you need to pay
-                    if ($amount > 0)
-                    {
-                        try {
-                            //put the ad into moderation since we want payment + moderation
-                            if($moderation == Model_Ad::PAYMENT_MODERATION)
-                                $form->status = Model_Ad::STATUS_NOPUBLISHED;
-
-                            $form->save();
-                        } 
-                        catch (Exception $e){
-                            throw HTTP_Exception::factory(500,$e->getMessage());
-                        }
-
-                        $order = Model_Order::new_order($form, $form->user, Model_Order::PRODUCT_CATEGORY, $amount, NULL, Model_Order::product_desc($id_product).' '.$new_ad->category->name);
-                        // redirect to invoice
-                        $this->redirect(Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order)));
-                    }
-
-        		}
-        		
-                // ad edited but we have moderation on, so goes to moderation queue unless you are admin
-        		if( ($moderation == Model_Ad::MODERATION_ON 
-                    OR $moderation == Model_Ad::EMAIL_MODERATION
-                    OR $moderation == Model_Ad::PAYMENT_MODERATION) AND Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN ) 
-                {
-                    //NOTIFY ADMIN
-                    // updated ad notification email to admin (notify_email), if set to TRUE 
-                    if(core::config('email.new_ad_notify') == TRUE)
-                    {
-                        $url_ad = Route::url('ad', array('category'=>$form->category->seoname,'seotitle'=>$form->seotitle));
                         
-                        $replace = array('[URL.AD]'        =>$url_ad,
-                                         '[AD.TITLE]'      =>$form->title);
-
-                        Email::content(Email::get_notification_emails(),
-                                            core::config('general.site_name'),
-                                            core::config('email.notify_email'),
-                                            core::config('general.site_name'),
-                                            'ads-to-admin',
-                                            $replace);
+                        if ($filename)
+                        {
+                            $form->has_images++;
+                            $form->last_modified = Date::unix2mysql();
+                            try 
+                            {
+                                $form->save();
+                            } 
+                            catch (Exception $e) 
+                            {
+                                throw HTTP_Exception::factory(500,$e->getMessage());
+                            }
+                        }
+                        //TODO
+                        //if($filename == FALSE)
+                            //$this->redirect(Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$form->id_ad)));
                     }
-                    
-                    Alert::set(Alert::INFO, __('Advertisement is updated, but first administrator needs to validate. Thank you for being patient!'));
-                    $form->status = Model_Ad::STATUS_NOPUBLISHED;
+
+                    Alert::set(Alert::SUCCESS, $return['message']);
+
+                    //redirect user to pay
+                    if (isset($return['checkout_url']) AND !empty($return['checkout_url']))
+                        $this->redirect($return['checkout_url']);
                 }
-                else
-                {
-                    Alert::set(Alert::SUCCESS, __('Advertisement is updated'));
-                }
-                    
-                // save ad
-        		try {
-                    $form->save();
-                } 
-                catch (Exception $e){
-                    throw HTTP_Exception::factory(500,$e->getMessage());
-                }
-        		
+
 
         		$this->redirect(Route::url('oc-panel', array('controller'	=>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
 	        	

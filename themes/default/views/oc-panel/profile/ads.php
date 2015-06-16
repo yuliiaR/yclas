@@ -80,14 +80,6 @@
                     <?else:?>
                         <?= Date::format($ad->featured, core::config('general.date_format'))?>
                     <?endif?>
-                    <?if ($ad->featured != NULL AND $user->id_role == Model_Role::ROLE_ADMIN):?>
-                    <a class="btn btn-info" 
-                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad))?>" 
-                        onclick="return confirm('<?=__('Deactivate featured?')?>');"
-                        rel="tooltip" title="<?=__('Deactivate featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to deactivate featured advertisement?')?>">
-                        <i class="glyphicon glyphicon-bookmark"></i>
-                    </a>
-                    <?endif?>
                 </td>
                 <?endif?>
     

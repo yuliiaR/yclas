@@ -97,7 +97,7 @@ class Controller_Api_Ads extends Api_User {
     {
         try
         {
-            $return = Model_Ad::save_ad($this->_post_params,$this->user);
+            $return = Model_Ad::new_ad($this->_post_params,$this->user);
             
             //there was an error on the validation
             if (isset($return['validation_errors']) AND is_array($return['validation_errors']))
@@ -142,29 +142,25 @@ class Controller_Api_Ads extends Api_User {
 
                 if ($ad->loaded())
                 {
-                    
-                    //TODO WORK with images, how we do that? new controllers? maybe /ads/image/5 delete you pass which image, if post we upload?
-                    
-                    //TODO how we set the status? check controller profile update to avoif duplicated code.
-                    
-                    //set values of the ad
-                    $ad->values($this->_post_params);
-
-                    try
-                    {
-                        $ad->last_modified = Date::unix2mysql();
-                        $ad->save();
-                        $this->rest_output(TRUE);
-                    }
-                    catch (ORM_Validation_Exception $e)
+                    $return = $ad->save_ad($this->_post_params);
+            
+                    //there was an error on the validation
+                    if (isset($return['validation_errors']) AND is_array($return['validation_errors']))
                     {
                         $errors = '';
-                        $e = $e->errors('ad');
 
-                        foreach ($e as $f => $err) 
+                        foreach ($return['validation_errors'] as $f => $err) 
                             $errors.=$err.' - ';
 
                         $this->_error($errors);
+                    }
+                    elseif (isset($return['error']))
+                    {
+                        $this->_error($return['error']);
+                    }
+                    elseif (isset($return['message']))
+                    {
+                        $this->rest_output($return);
                     }
          
                 }

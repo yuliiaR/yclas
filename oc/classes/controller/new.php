@@ -195,7 +195,7 @@ class Controller_New extends Controller
                     }
                     
                     //lets create!!
-                    $return = Model_Ad::save_ad($data,$user);
+                    $return = Model_Ad::new_ad($data,$user);
 
             
                     //there was an error on the validation
@@ -241,7 +241,7 @@ class Controller_New extends Controller
                         Alert::set(Alert::SUCCESS, $return['message']);
 
                         //redirect user
-                        if (isset($return['checkout_url']))
+                        if (isset($return['checkout_url']) AND !empty($return['checkout_url']))
                             $this->redirect($return['checkout_url']);
                         else
                             $this->redirect(Route::url('default', array('action'=>'thanks','controller'=>'ad','id'=>$ad->id_ad)));

@@ -318,36 +318,36 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
    
     public function action_ads()
     {
-        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')).'?rel=ajax');
+        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
     }
 
     public function action_deactivate()
     {
-        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'deactivate','id'=>$this->request->param('id'))).'?rel=ajax');
+        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'deactivate','id'=>$this->request->param('id'))));
     }
 
 
     public function action_activate()
     {
-        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'activate','id'=>$this->request->param('id'))).'?rel=ajax');
+        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'activate','id'=>$this->request->param('id'))));
     }
 
     public function action_update()
     {
-        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'update','id'=>$this->request->param('id'))).'?rel=ajax');
+        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'update','id'=>$this->request->param('id'))));
     }
 
     public function action_confirm()
     {
-        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'confirm','id'=>$this->request->param('id'))).'?rel=ajax');
+        $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'confirm','id'=>$this->request->param('id'))));
     }
 
     public function action_stats()
     {
         if (is_numeric($id_ad = $this->request->param('id')))
-            $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'stats','id'=>$id_ad)).'?rel=ajax');           
+            $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'stats','id'=>$id_ad)));           
         else
-            $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'stats')).'?rel=ajax');
+            $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'stats')));
     }
 
 

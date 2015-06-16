@@ -992,74 +992,148 @@ class Model_Ad extends ORM {
         parent::delete();
     }
 
-    
-    public static function save_ad($data,$user, Model_Ad $ad = NULL)
+
+    /**
+     * saves an ad changes status etc...
+     * @param  array $data 
+     * @return array       
+     */
+    public function save_ad($data)
     {
         $return_message = '';
         $checkout_url   = '';
 
-        //some work on the data ;)
-        if (isset($data['title']))
-            $data['title']          = Text::banned_words($data['title']);
-        if (isset($data['description']))
-            $data['description']    = Text::banned_words($data['description']);
-        if (isset($data['price']))
-            $data['price']          = floatval(str_replace(',', '.', $data['price']));   
-
-
-        // append to $data new custom values
-        foreach ($data as $name => $field) 
+        if ($this->loaded())
         {
-            // get by prefix
-            if (strpos($name,'cf_') !== false) 
-            {
-                //checkbox when selected return string 'on' as a value
-                if($field == 'on')
-                    $data[$name] = 1;
-                if($field == '0000-00-00' OR $field == "" OR $field == NULL OR empty($field))
-                    $data[$name] = NULL;
-            }
-        } 
+            //save original category to see if was changed
+            $original_category = $this->category;
 
-        //its a new ad
-        if ($ad===NULL)
-        {   
-            //akismet spam filter
-            if(core::akismet($data['title'], $user->email, $data['description']) == TRUE)
-            {
-                // is user marked as spammer? Make him one :)
-                if(core::config('general.black_list'))
-                   $user->user_spam();
-                
-                return array('error' => __('This post has been considered as spam! We are sorry but we can not publish this advertisement.'),'error_type'=>Alert::ALERT);
-            }//akismet
+            //$this->last_modified = Date::unix2mysql(); //TODO review doesnt break anything
+            
+            $this->values($data);
 
-            $ad = new Model_Ad();
-            $ad->id_user = $user->id_user;
-            //we generate the seo title only once...if not loses all the seo!
-            $data['seotitle']   = $ad->gen_seo_title($data['title']); 
-            $ad->created        = Date::unix2mysql();
-            $ad->published      = $ad->created;
-
-            $is_new = TRUE;
-        }   
-        //editing the ad 
-        elseif ($ad->loaded())
-        {
-            $ad->last_modified = Date::unix2mysql();
-            // update status on re-stock
+             // update status on re-stock
             if(isset($data['stock']) AND is_numeric($data['stock']))
             {
                 if($data['stock'] == 0)
-                    $ad->status = Model_Ad::STATUS_UNAVAILABLE;
-                elseif($data['stock'] > 0 AND $ad->status == Model_Ad::STATUS_UNAVAILABLE)
-                    $ad->status = Model_Ad::STATUS_PUBLISHED;
+                    $this->status = Model_Ad::STATUS_UNAVAILABLE;
+                elseif($data['stock'] > 0 AND $this->status == Model_Ad::STATUS_UNAVAILABLE)
+                    $this->status = Model_Ad::STATUS_PUBLISHED;
+            }
+        
+            try {
+                $this->save();
+            }
+            catch (ORM_Validation_Exception $e)
+            {
+                return array('validation_errors' => $e->errors('ad'));
+            }
+            catch (Exception $e) 
+            {
+                return array('error' => $e->getMessage(),'error_type'=>Alert::ALERT);
             }
 
-            $is_new = FALSE;
+            $moderation = core::config('general.moderation');
+
+            //payment for category only if category changed
+            if( (   $moderation == Model_Ad::PAYMENT_ON 
+                    OR $moderation == Model_Ad::PAYMENT_MODERATION 
+                ) 
+                AND isset ($data['id_category']) AND $data['id_category'] !== $original_category->id_category )
+            {
+                $amount = 0;
+                $new_cat = new Model_Category($data['id_category']);
+
+                // check category price, if 0 check parent
+                if($new_cat->price == 0)
+                {
+                    $cat_parent = new Model_Category($new_cat->id_category_parent);
+
+                    //category without price
+                    if($cat_parent->price == 0)
+                    {
+                        //swapping moderation since theres no price :(
+                        if ($moderation == Model_Ad::PAYMENT_ON)
+                            $moderation = Model_Ad::POST_DIRECTLY;
+                        elseif($moderation == Model_Ad::PAYMENT_MODERATION)
+                            $moderation = Model_Ad::MODERATION_ON;
+                    }
+                    else
+                        $amount = $cat_parent->price;
+                }
+                else
+                    $amount = $new_cat->price;
+                
+                //only process apyment if you need to pay
+                if ($amount > 0)
+                {
+                    try {
+                        $this->status = Model_Ad::STATUS_NOPUBLISHED;
+
+                        $this->save();
+                    } 
+                    catch (Exception $e){
+                        throw HTTP_Exception::factory(500,$e->getMessage());
+                    }
+
+                    $order = Model_Order::new_order($this, $this->user, Model_Order::PRODUCT_CATEGORY, $amount, NULL, Model_Order::product_desc(Model_Order::PRODUCT_CATEGORY).' '.$new_cat->name);
+                    // redirect to invoice
+                    $checkout_url = Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order));
+                }
+
+            }
+            
+            // ad edited but we have moderation on, so goes to moderation queue unless you are admin
+            if( ($moderation == Model_Ad::MODERATION_ON 
+                OR $moderation == Model_Ad::EMAIL_MODERATION
+                OR $moderation == Model_Ad::PAYMENT_MODERATION) AND Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN ) 
+            {
+                //notify admins new ad
+                $this->notify_admins();
+                
+                $return_message =  __('Advertisement is updated, but first administrator needs to validate. Thank you for being patient!');
+                $this->status = Model_Ad::STATUS_NOPUBLISHED;
+                $this->save();
+            }
+            else
+            {
+                $return_message =  __('Advertisement is updated');
+            }
+
         }
 
+        return array('message'=>$return_message,'checkout_url'=>$checkout_url);
+        
+    }
+
+    
+    /**
+     * creates a new ad
+     * @param  array $data 
+     * @param  model_user $user 
+     * @return array       
+     */
+    public static function new_ad($data,$user)
+    {
+        $return_message = '';
+        $checkout_url   = '';
+
+        //akismet spam filter
+        if(core::akismet($data['title'], $user->email, $data['description']) == TRUE)
+        {
+            // is user marked as spammer? Make him one :)
+            if(core::config('general.black_list'))
+               $user->user_spam();
+            
+            return array('error' => __('This post has been considered as spam! We are sorry but we can not publish this advertisement.'),
+                         'error_type' => Alert::ALERT);
+        }//akismet
+
+        $ad = new Model_Ad();
+        $ad->id_user = $user->id_user;
         $ad->values($data);
+        $ad->seotitle   = $ad->gen_seo_title($ad->title); 
+        $ad->created    = Date::unix2mysql();
         
         try {
             $ad->save();
@@ -1070,19 +1144,15 @@ class Model_Ad extends ORM {
         }
         catch (Exception $e) 
         {
-            return array('error' => $e->getMessage(),'error_type'=>Alert::ALERT);
+            return array('error'        => $e->getMessage(),
+                         'error_type'   => Alert::ALERT);
         }
 
-        if ($is_new == TRUE)
-        {
+
         /////////// NOTIFICATION Emails,messages to user and Status of the ad
         
         // depending on user flow (moderation mode), change usecase
         $moderation = core::config('general.moderation'); 
-
-        //url to edit/delete the ad
-        $edit_url   = Route::url('oc-panel', array('controller'=>'myads', 'action'=>'update','id'=>$ad->id_ad));
-        $delete_url = Route::url('oc-panel', array('controller'=>'ad',      'action'=>'delete','id'=>$ad->id_ad));
 
         //calculate how much he needs to pay in case we have payment on
         if ($moderation == Model_Ad::PAYMENT_ON OR $moderation == Model_Ad::PAYMENT_MODERATION)
@@ -1130,9 +1200,7 @@ class Model_Ad extends ORM {
                                                   'id'        => $ad->id_ad));
             
                     $user->email('ads-confirm',array('[URL.QL]'=>$url_ql,
-                                                    '[AD.NAME]'=>$ad->title,
-                                                    '[URL.EDITAD]'=>$edit_url,
-                                                    '[URL.DELETEAD]'=>$delete_url));
+                                                    '[AD.NAME]'=>$ad->title));
                     $return_message = __('Advertisement is posted but first you need to activate. Please check your email!');
                 break;
 
@@ -1144,9 +1212,7 @@ class Model_Ad extends ORM {
                                                   'id'        => $ad->id_ad));
 
                     $user->email('ads-notify',array('[URL.QL]'       =>$url_ql,
-                                                   '[AD.NAME]'      =>$ad->title,
-                                                   '[URL.EDITAD]'   =>$edit_url,
-                                                   '[URL.DELETEAD]' =>$delete_url)); // email to notify user of creating, but it is in moderation currently 
+                                                   '[AD.NAME]'      =>$ad->title,)); // email to notify user of creating, but it is in moderation currently 
                     $return_message = __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!');
                 break;
             
@@ -1163,8 +1229,7 @@ class Model_Ad extends ORM {
                     $user->email('ads-user-check',array('[URL.CONTACT]'  =>$url_cont,
                                                                 '[URL.AD]'      =>$url_ad,
                                                                 '[AD.NAME]'     =>$ad->title,
-                                                                '[URL.EDITAD]'  =>$edit_url,
-                                                                '[URL.DELETEAD]'=>$delete_url));
+                                                                ));
 
                     //Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $ad->price)), $ad->seotitle);
                     $return_message = __('Advertisement is posted. Congratulations!');
@@ -1174,14 +1239,28 @@ class Model_Ad extends ORM {
         //save the last changes on status
         $ad->save();
 
+        //notify admins new ad
+        $ad->notify_admins();
+
+
+        return array('message'=>$return_message,'checkout_url'=>$checkout_url,'ad'=>$ad);
+    }
+
+
+    /**
+     * notify admins of new ad
+     * @return void 
+     */
+    public function notify_admins()
+    {
         //NOTIFY ADMIN
         // new ad notification email to admin (notify_email), if set to TRUE 
         if(core::config('email.new_ad_notify') == TRUE)
         {
-            $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
+            $url_ad = Route::url('ad', array('category'=>$this->category->seoname,'seotitle'=>$this->seotitle));
             
             $replace = array('[URL.AD]'        =>$url_ad,
-                             '[AD.TITLE]'      =>$ad->title);
+                             '[AD.TITLE]'      =>$this->title);
 
             Email::content(Email::get_notification_emails(),
                                 core::config('general.site_name'),
@@ -1190,10 +1269,106 @@ class Model_Ad extends ORM {
                                 'ads-to-admin',
                                 $replace);
         }
+    }
 
-        }//end $is_new
+    /**
+     * Set values from an array with support for one-one relationships.  This method should be used
+     * for loading in post data, etc.
+     *
+     * @param  array $values   Array of column => val
+     * @param  array $expected Array of keys to take from $values
+     * @return ORM
+     */
+    public function values(array $values, array $expected = NULL)
+    {
+        //some work on the data ;)
+        if (isset($values['title']))
+            $values['title']          = Text::banned_words($values['title']);
+        if (isset($values['description']))
+            $values['description']    = Text::banned_words($values['description']);
+        if (isset($values['price']))
+            $values['price']          = floatval(str_replace(',', '.', $values['price']));   //TODO this is ugly as hell!
 
-        return array('message'=>$return_message,'checkout_url'=>$checkout_url,'ad'=>$ad);
+
+        // append to $values new custom values
+        foreach ($values as $name => $field) 
+        {
+            // get by prefix
+            if (strpos($name,'cf_') !== false) 
+            {
+                //checkbox when selected return string 'on' as a value
+                if($field == 'on')
+                    $values[$name] = 1;
+                if($field == '0000-00-00' OR $field == "" OR $field == NULL OR empty($field))
+                    $values[$name] = NULL;
+            }
+        }
+
+        return parent::values($values, $expected);
+    }
+
+
+    /**
+     * [delete_image description]
+     * @param  integer $deleted_image 
+     * @return void                
+     */
+    public function delete_image($deleted_image)
+    {
+        $img_path = $this->image_path();
+        $img_seoname = $this->seotitle;
+        
+        // delete image from Amazon S3
+        if (core::config('image.aws_s3_active'))
+        {
+            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+            
+            //delete original image
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.$deleted_image.'.jpg');
+            //delete formated image
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.$deleted_image.'.jpg');
+            
+            //re-ordering image file names
+            for($i = $deleted_image; $i < $this->has_images; $i++)
+            {
+                //rename original image
+                $s3->copyObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.($i+1).'.jpg', core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.$i.'.jpg', S3::ACL_PUBLIC_READ);
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.($i+1).'.jpg');
+                //rename formated image
+                $s3->copyObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg', S3::ACL_PUBLIC_READ);
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg');
+            }
+        }
+        
+        //delte image from local filesystem
+        if (!is_dir($img_path)) 
+            return FALSE;
+        else
+        {   
+            //delete original image
+            @unlink($img_path.$img_seoname.'_'.$deleted_image.'.jpg');
+            //delete formated image
+            @unlink($img_path.'thumb_'.$img_seoname.'_'.$deleted_image.'.jpg');
+            
+            //re-ordering image file names
+            for($i = $deleted_image; $i < $this->has_images; $i++)
+            {
+                @rename($img_path.$img_seoname.'_'.($i+1).'.jpg', $img_path.$img_seoname.'_'.$i.'.jpg');
+                @rename($img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg');
+            }
+        }
+        
+        $this->has_images = ($this->has_images > 0) ? $this->has_images-1 : 0;
+        $this->last_modified = Date::unix2mysql();
+        try 
+        {
+            $this->save();
+        } 
+        catch (Exception $e) 
+        {
+            throw HTTP_Exception::factory(500,$e->getMessage());
+        }
     }
 
 } // END Model_ad
