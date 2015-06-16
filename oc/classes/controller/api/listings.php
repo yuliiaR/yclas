@@ -58,6 +58,10 @@ class Controller_Api_Listings extends Api_Auth {
                 //how many? used in header X-Total-Count
                 $count = $ads->count_all();
 
+                //by default sort by published date
+                if(empty($this->_sort))
+                    $this->_sort['published'] = 'desc';
+
                 //after counting sort values
                 $ads->api_sort($this->_sort);
 
@@ -75,7 +79,7 @@ class Controller_Api_Listings extends Api_Auth {
                 {
                     $a = $ad->as_array();
                     $a['price'] = i18n::money_format($ad->price);
-                    $a['thumb'] = ($ad->get_first_image()!==NULL)?Core::S3_domain().$ad->get_first_image():FALSE;
+                    $a['thumb'] = $ad->get_first_image();
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
 
                     //sorting by distance, lets add it!
@@ -116,7 +120,7 @@ class Controller_Api_Listings extends Api_Auth {
                 {
                     $a = $ad->as_array();
                     $a['price']  = i18n::money_format($ad->price);
-                    $a['images'] = $ad->get_images();
+                    $a['images'] = array_values($ad->get_images());
                     $a['category'] = $ad->category->as_array();
                     $a['location'] = $ad->location->as_array();
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
