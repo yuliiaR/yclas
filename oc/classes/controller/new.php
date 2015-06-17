@@ -244,7 +244,7 @@ class Controller_New extends Controller
                         if (isset($return['checkout_url']) AND !empty($return['checkout_url']))
                             $this->redirect($return['checkout_url']);
                         else
-                            $this->redirect(Route::url('default', array('action'=>'thanks','controller'=>'ad','id'=>$ad->id_ad)));
+                            $this->redirect(Route::url('default', array('action'=>'thanks','controller'=>'ad','id'=>$new_ad->id_ad)));
                     }
                 }
                 else

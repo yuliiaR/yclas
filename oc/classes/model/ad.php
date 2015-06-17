@@ -1073,7 +1073,9 @@ class Model_Ad extends ORM {
 
                     $order = Model_Order::new_order($this, $this->user, Model_Order::PRODUCT_CATEGORY, $amount, NULL, Model_Order::product_desc(Model_Order::PRODUCT_CATEGORY).' '.$new_cat->name);
                     // redirect to invoice
+                    $return_message = __('Please pay before we publish your advertisement.');
                     $checkout_url = Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order));
+                    return array('message'=>$return_message,'checkout_url'=>$checkout_url);
                 }
 
             }
