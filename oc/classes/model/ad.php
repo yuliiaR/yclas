@@ -875,9 +875,6 @@ class Model_Ad extends ORM {
         {    
             $moderation = core::config('general.moderation');
 
-            $edit_url   = Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$this->id_ad));
-            $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$this->id_ad));
-
             if($moderation == Model_Ad::PAYMENT_ON)
             {
                 $this->published = Date::unix2mysql();
@@ -896,9 +893,7 @@ class Model_Ad extends ORM {
 
                 $ret = $this->user->email('ads-user-check',array('[URL.CONTACT]'  =>$url_cont,
                                                             '[URL.AD]'      =>$url_ad,
-                                                            '[AD.NAME]'     =>$this->title,
-                                                            '[URL.EDITAD]'  =>$edit_url,
-                                                            '[URL.DELETEAD]'=>$delete_url));
+                                                            '[AD.NAME]'     =>$this->title));
                 
             }
             elseif($moderation == Model_Ad::PAYMENT_MODERATION)
@@ -909,9 +904,7 @@ class Model_Ad extends ORM {
                                                       'id'        => $this->id_ad));
 
                 $ret = $this->user->email('ads-notify',array('[URL.QL]'=>$url_ql,
-                                                       '[AD.NAME]'=>$this->title,
-                                                       '[URL.EDITAD]'=>$edit_url,
-                                                       '[URL.DELETEAD]'=>$delete_url));     
+                                                       '[AD.NAME]'=>$this->title));     
             }
         }
     }

@@ -432,12 +432,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 				$ad 		= new Model_Ad($receiver_id);
 				if($ad->loaded())
 				{
-
                     $cat        = $ad->category;
                     $usr        = $ad->user;
-
-					$edit_url   = Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad));
-                    $delete_url = Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad));
 
 					//we get the QL, and force the regen of token for security
 					$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
@@ -445,9 +441,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 					$ret = $usr->email('ads-activated',array('[USER.OWNER]'=>$usr->name,
 															 '[URL.QL]'=>$url_ql,
-															 '[AD.NAME]'=>$ad->title,
-															 '[URL.EDITAD]'=>$edit_url,
-                    										 '[URL.DELETEAD]'=>$delete_url));
+															 '[AD.NAME]'=>$ad->title));
 					
 				}	
 			}
