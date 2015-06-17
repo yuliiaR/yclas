@@ -16,7 +16,6 @@ class Auth_Frontcontroller extends Controller
     *
     * Contruct that checks you are loged in before nothing else happens!
     */
-    
     function __construct(Request $request, Response $response)
     {
         //the user was loged in and with the right permissions
@@ -43,5 +42,6 @@ class Auth_Frontcontroller extends Controller
               $this->redirect($url);
             }
         }
+
     }
 }

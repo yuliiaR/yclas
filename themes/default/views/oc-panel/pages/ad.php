@@ -117,20 +117,6 @@
 				    rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
 					<i class="glyphicon   glyphicon-remove"></i>
 				</a>
-				<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
-				<a class="featured btn btn-primary " 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured'))?>"
-					onclick="return confirm('<?=__('Are you sure you want to make it featured?')?>');"
-				    rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
-					<i class="glyphicon   glyphicon-bookmark"></i>
-				</a>
-				<a class="to_top btn btn-info" 
-					href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'to_top'))?>"
-					onclick="return confirm('<?=__('Are you sure you want to make it to top?')?>');"
-				    rel="tooltip" title="<?=__('To top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it to top?')?>">
-					<i class="glyphicon   glyphicon-circle-arrow-up"></i>
-				</a>
-				<?endif?>
 			</div>
 			</div>
 		</th>
@@ -180,7 +166,7 @@
 
             <?if( ($order = $ad->get_order())!==FALSE ):?>
                 <a class="label <?=($order->status==Model_Order::STATUS_PAID)?'label-success':'label-warning'?> " 
-                    href="<?=Route::url('oc-panel', array('controller'=> 'order','action'=>'update','id' => $order->id_order))?>">
+                    href="<?=Route::url('oc-panel', array('controller'=> 'order','action'=>'index'))?>?email=<?=$order->user->email?>">
                 <?if ($order->status==Model_Order::STATUS_CREATED):?>
                     <?=__('Not paid')?>
                 <?elseif ($order->status==Model_Order::STATUS_PAID):?>
@@ -240,23 +226,14 @@
 						<i class="glyphicon   glyphicon-remove"></i>
 					</a>
 					<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
-					<?if($ad->featured == NULL):?>
 					<a class="btn btn-primary " 
-						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
+						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 
 						onclick="return confirm('<?=__('Make featured?')?>');"
 					    rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
 						<i class="glyphicon   glyphicon-bookmark"></i>
 					</a>
-					<?else:?>
-					<a class="btn btn-default " 
-						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'featured','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-						onclick="return confirm('<?=__('Deactivate featured?')?>');"
-					    rel="tooltip" title="<?=__('Deactivate Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to deactivate featured advertisement?')?>">
-						<i class="glyphicon   glyphicon-bookmark"></i>
-					</a>
-					<?endif?>
 					<a class="btn btn-info" 
-						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
+						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
 						onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
 					    rel="tooltip" title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
 						<i class="glyphicon   glyphicon-circle-arrow-up"></i>

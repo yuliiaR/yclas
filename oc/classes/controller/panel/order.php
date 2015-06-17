@@ -27,7 +27,7 @@ class Controller_Panel_Order extends Auth_Crud {
     }
 
 
-        /**
+    /**
      *
      * Loads a basic list info
      * @param string $view template to render 
@@ -65,7 +65,13 @@ class Controller_Panel_Order extends Auth_Crud {
         if (is_numeric(core::request('status')))
         {
             $orders = $orders->where('status', '=', core::request('status'));
-        }        
+        }
+
+        //order by paid if we are filtering paid....
+        if (core::request('status')==Model_Order::STATUS_PAID)
+            $orders->order_by('pay_date','desc');  
+        else
+            $orders->order_by('id_order','desc');        
 
         $items_per_page = core::request('items_per_page',10);
 
@@ -80,10 +86,10 @@ class Controller_Panel_Order extends Auth_Crud {
 
         $pagination->title($this->template->title);
 
-        $orders = $orders->order_by('id_order','desc')
-        ->limit($items_per_page)
-        ->offset($pagination->offset)
-        ->find_all();
+        $orders = $orders
+                    ->limit($items_per_page)
+                    ->offset($pagination->offset)
+                    ->find_all();
 
         $pagination = $pagination->render();
 
@@ -92,5 +98,34 @@ class Controller_Panel_Order extends Auth_Crud {
             'pagination'=>$pagination));
     }    
 
+    /**
+     * marks an order as paid.
+     */
+    public function action_pay()
+    { 
+        $this->auto_render = FALSE;
+
+        $id_order = $this->request->param('id');
+
+        //retrieve info for the item in DB
+        $order = new Model_Order();
+        $order = $order->where('id_order', '=', $id_order)
+                       ->where('status', '=', Model_Order::STATUS_CREATED)
+                       ->limit(1)->find();
+
+        if ($order->loaded())
+        {
+            //mark as paid
+            $order->confirm_payment('cash',sprintf('Done by user %d - %s',$this->user->id_user,$this->user->email));
+            //redirect him to his ads
+            Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
+        }
+        else
+        {
+            Alert::set(Alert::INFO, __('Order could not be loaded'));
+        }
+
+        $this->redirect(Route::url('oc-panel', array('controller'=>'order','action'=>'index')));
+    }
 
 }

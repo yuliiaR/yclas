@@ -14,6 +14,12 @@ class Controller extends Kohana_Controller
     public $template = 'main';
 
     /**
+     * user if its loged in
+     * @var Model_User
+     */
+    public $user = NULL;
+
+    /**
      * @var  boolean  auto render template
      */
     public $auto_render = TRUE;
@@ -39,6 +45,19 @@ class Controller extends Kohana_Controller
      * global full width get from controller so we can access from anywhere like Controller::$full_width; used to render full width pages
      */
     public static $full_width = FALSE;
+
+
+    /**
+     *
+     * Contruct that checks you are loged in before nothing else happens!
+     */
+    function __construct(Request $request, Response $response)
+    {
+        //setting the user
+        $this->user = Auth::instance()->get_user();
+
+        parent::__construct($request,$response);
+    }
 
     /**
      * Initialize properties before running the controller methods (actions),
@@ -158,9 +177,7 @@ class Controller extends Kohana_Controller
         //maintenance mode
         if (core::config('general.maintenance')==1 AND strtolower($this->request->controller())!='auth')
         {
-            $user = Auth::instance()->get_user();
-
-            if (isset($user->id_role) AND ($user->id_role==Model_Role::ROLE_ADMIN OR $user->id_role==Model_Role::ROLE_MODERATOR))
+            if ($this->user!=FALSE  AND ($this->user->id_role==Model_Role::ROLE_ADMIN OR $this->user->id_role==Model_Role::ROLE_MODERATOR))
             {
                 Alert::set(Alert::INFO, __('You are in maintenance mode, only you can see the website'));
             }

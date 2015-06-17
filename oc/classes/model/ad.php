@@ -852,10 +852,18 @@ class Model_Ad extends ORM {
      * @param $days days to be featured
      * @return void 
      */
-    public function to_feature($days = 1)
+    public function to_feature($days = NULL)
     {
+
         if($this->loaded())
         {    
+            if (!is_numeric($days))
+            {
+                $plans = Model_Order::get_featured_plans();
+                $days  = array_keys($plans);
+                $days  = reset($days);
+            }
+
             $this->featured = Date::unix2mysql(time() + ($days * 24 * 60 * 60));
             try {
                 $this->save();

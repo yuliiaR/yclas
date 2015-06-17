@@ -23,11 +23,12 @@
         </div>
 
         <select name="status" id="status" class="form-control disable-chosen" >
-            <option><?=__('Status')?></option>
+            <option value="none" <?=(core::request('status')==NULL OR core::request('status')=='none')?'SELECTED':''?>><?=__('Status')?></option>
             <?foreach (Model_Order::$statuses as $value=>$status):?>
-                <option value="<?=$value?>" <?=(core::request('status',1)==$value)?'SELECTED':''?> ><?=$status?></option>
+                <option value="<?=$value?>" <?=(core::request('status')==$value AND core::request('status')!=NULL AND core::request('status')!='none')?'SELECTED':''?> ><?=$status?></option>
             <?endforeach?>
         </select>
+
         <div class="form-group">
             <select name="items_per_page" id="items_per_page" class="form-control" >
                 <option value="10"><?=__('Items per page')?></option>
@@ -83,7 +84,16 @@
                             <td><?=i18n::format_currency($order->amount, $order->currency)?></td>
 
                             <td><?=$order->paymethod?></td>
-                            <td><?=$order->pay_date?></td>
+                            <td>
+                                <?if($order->pay_date==NULL):?>
+                                    <a title="<?=__('Mark as paid')?>" class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'order', 'action'=>'pay','id'=>$order->id_order))?>">
+                                    <i class="glyphicon glyphicon-usd"></i> <?=__('Mark as paid')?>
+                                </a>
+                                <?else:?>
+                                    <?=$order->pay_date?>
+                                <?endif?>
+                            </td>
+
                             <?if (Core::get('print')!=1):?>
                             <td width="80" style="width:80px;">
                                 <?if ($controller->allowed_crud_action('update')):?>

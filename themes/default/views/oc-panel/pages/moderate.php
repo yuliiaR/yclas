@@ -91,7 +91,7 @@
         
                     <?if( ($order = $ad->get_order())!==FALSE ):?>
                         <a class="label <?=($order->status==Model_Order::STATUS_PAID)?'label-success':'label-warning'?> " 
-                            href="<?=Route::url('oc-panel', array('controller'=> 'order','action'=>'update','id' => $order->id_order))?>">
+                            href="<?=Route::url('oc-panel', array('controller'=> 'order','action'=>'index'))?>?email=<?=$order->user->email?>">
                         <?if ($order->status==Model_Order::STATUS_CREATED):?>
                             <?=__('Not paid')?>
                         <?elseif ($order->status==Model_Order::STATUS_PAID):?>
