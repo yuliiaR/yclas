@@ -4,7 +4,7 @@ class Controller_Subscribe extends Controller {
 
 	public function action_index()
 	{
-		$email = $this->request->post('email_subscribe');
+		$email = Core::post('email_subscribe');
 
 		if (Valid::email($email,TRUE))
 		{
@@ -23,12 +23,12 @@ class Controller_Subscribe extends Controller {
 			}
 			/* save this user to data base as subscriber */
 			
-			$arr_cat = $this->request->post('category_subscribe');
+			$arr_cat = Core::post('category_subscribe');
 			
 			// string in this case is returned as "int,int" so we need to format min/max price
-			$price = $this->request->post('price_subscribe');
+			$price = Core::post('price_subscribe');
 			
-			if($price = $this->request->post('price_subscribe'))
+			if($price = Core::post('price_subscribe'))
 			{
 				$min_price = substr($price, '0', stripos($price, ',')); 
 				$max_price = substr($price, strrpos($price, ',')+1);
@@ -37,23 +37,15 @@ class Controller_Subscribe extends Controller {
 			{
 				//in case of mobile version
 				// jquery mobile have different slider, so we need to get data differently
-				$min_price = $this->request->post('price_subscribe-1');
-				$max_price = $this->request->post('price_subscribe-2');
+				$min_price = Core::post('price_subscribe-1');
+				$max_price = Core::post('price_subscribe-2');
 			}
 			
 			
-			//if categry is not selected, subscribe them for all 
-			$obj_category = new Model_Category(); 
-			if($arr_cat === NULL)
-			{
-				$all_cats = $obj_category->get_all();
-				$arr_cat = array();
-				foreach ($all_cats as $ac) 
-				{
-					foreach ($ac as $key => $v) 
-						$arr_cat[] = $key;
-				}
-			}	 
+			//if categry is not selected, subscribe them for al, set category to 0 thats all...
+            if($arr_cat === NULL)
+			    $arr_cat[] = 0; 
+
 
 			// create entry table subscriber for each category selected
 			foreach ($arr_cat as $c => $id_value) 
@@ -62,7 +54,7 @@ class Controller_Subscribe extends Controller {
 
 				$obj_subscribe->id_user = $user->id_user;
 				$obj_subscribe->id_category = $id_value;
-				$obj_subscribe->id_location = $this->request->post('location_subscribe');
+				$obj_subscribe->id_location = Core::post('location_subscribe');
 				$obj_subscribe->min_price = $min_price;
 				$obj_subscribe->max_price = $max_price;
 
@@ -87,9 +79,7 @@ class Controller_Subscribe extends Controller {
 	{
         if (Auth::instance()->logged_in()) 
         {
-            $user = Auth::instance()->get_user();
-
-            DB::delete('subscribers')->where('id_user', '=', $user->id_user)->execute();
+            DB::delete('subscribers')->where('id_user', '=', $this->user->id_user)->execute();
 
     		Alert::set(Alert::SUCCESS, __('You are unsubscribed'));
         }

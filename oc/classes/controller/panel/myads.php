@@ -386,16 +386,8 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 try 
                 {
                     $advert->save();
-
-                    //subscription is on
-                    $data = array(  'title'         => $advert->title,
-                                    'cat'           => $advert->category,
-                                    'loc'           => $advert->location,  
-                                 );
-
-                    Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $advert->price)), $advert->seotitle); // if subscription is on
+                    Model_Subscribe::notify($advert);
                     Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
-                        
                 } 
                 catch (Exception $e) 
                 {

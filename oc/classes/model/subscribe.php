@@ -21,69 +21,32 @@ class Model_Subscribe extends ORM {
     protected $_primary_key = 'id_subscribe';
 
 
-    public function form_setup($form)
-    {
-       
-    }
+    public function form_setup($form){}
 
-    public function exclude_fields()
-    {
-    
-    }
+    public function exclude_fields(){}
+
 
     /**
-     * subscriber mode
-     * if subscriber mode is on, publish new renders subscribe.html instead of publish-new.html
+     * Function to notify subscribers
      */
-    const SUBSCRIBER_OFF  = 0; // subscriber mode of
-    const SUBSCRIBER_DEFAULT = 1; // subscriber mode for default template on
-    const SUBSCRIBER_MOBILE = 2; // subscriber mode for mobile template on
-    const SUBSCRIBER_DEFAULT_MOBILE = 3; // subscriber mode for default template and mobile template on
-
-    /**
-     * Function for saving emails to subscribers
-     */
-    public static function find_subscribers($data, $price, $seotitle)
+    public static function notify(Model_Ad $ad)
     {
-        // if widget active, get his real name from config. Else NULL
-        $widget_name = NULL;
-        foreach (Widgets::get_placeholders() as $placeholder => $widgets) 
-        {
-            foreach ($widgets as $widget) 
-            {
-                $array_widget = (array) $widget;
-                if($array_widget['placeholder'] != 'inactive' AND strpos($array_widget['widget_name'],'Widget_Subscribers') !== false)
-                    $widget_name = $array_widget['widget_name'];
-            }
-        }
-
-        // locations are optional , get wiget settings for locations and categories
-        $jsonObj = json_decode(core::config('widget.'.$widget_name), true);
-
         $subscribers = new Model_Subscribe();
-        $category = new Model_Category($data['cat']);
-
-        if($category->loaded())
+        
+        if($ad->price > 0)
         {
-            if($category->id_category_parent !== 1)
-                $cat_parent = $category->id_category_parent;
+            $subscribers->where_open()
+                        ->where($ad->price,'BETWEEN',array('min_price','max_price'))
+                        ->or_where('min_price', 'IS', NULL)
+                        ->where_close();            
         }
-
-        //only min/max price is required in widget settings
-        if($price !== '0')
-            $subscribers->where('min_price', '<=', $price)
-                        ->where('max_price', '>=', $price);
-        else
-            $subscribers->where('min_price', '<=', 0)
-                        ->where('max_price', '>=', 0);
 
         //location is set     
-        if($data['loc'] != NULL AND $jsonObj['data']['locations'] !== '0')
-            $subscribers =  $subscribers->where('id_location', '=', $data['loc']);
+        if(is_numeric($ad->id_location)) 
+            $subscribers->where('id_location', '=', $ad->id_location);
 
-        //category is set
-        if($jsonObj['data']['categories'] !== '0')
-            $subscribers =  $subscribers->where('id_category', 'IN', array($data['cat'], $cat_parent));
+        //filter by category, 0 means all the cats, in case was not set
+        $subscribers->where('id_category', 'in', array($ad->id_category,0));
 
         $subscribers = $subscribers->find_all();
 
@@ -108,14 +71,14 @@ class Model_Subscribe extends ORM {
             $users = $query->as_array();
 
 
-            // Send mails like in newsletter, to multiple users simultaneously @TODO NOT YET READY 
+            // Send mails like in newsletter, to multiple users simultaneously
             if (count($users)>0)
             {
 
-                $url_ad = Route::url('ad', array('category'=>$data['cat'],'seotitle'=>$seotitle));
+                $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
                         
                 $replace = array('[URL.AD]'        =>$url_ad,
-                                 '[AD.TITLE]'      =>$data['title']);
+                                 '[AD.TITLE]'      =>$ad->title);
 
                 Email::content($users,'',
                                     core::config('email.notify_email'),

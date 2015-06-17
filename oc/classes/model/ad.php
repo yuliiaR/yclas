@@ -1229,7 +1229,7 @@ class Model_Ad extends ORM {
                                                                 '[AD.NAME]'     =>$ad->title,
                                                                 ));
 
-                    //Model_Subscribe::find_subscribers($data, floatval(str_replace(',', '.', $ad->price)), $ad->seotitle);
+                    Model_Subscribe::notify($ad);
                     $return_message = __('Advertisement is posted. Congratulations!');
                 break;
         }
