@@ -20,6 +20,15 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'api_key',
                                'group_name'     =>'general', 
                                'config_value'   => Text::random('alnum', 32)),
+                        array( 'config_key'     =>'twocheckout_sid',
+                               'group_name'     =>'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     =>'twocheckout_secretword',
+                               'group_name'     =>'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     =>'twocheckout_sandbox',
+                               'group_name'     =>'payment', 
+                               'config_value'   => 0),
                         );
         
         Model_Config::config_array($configs);

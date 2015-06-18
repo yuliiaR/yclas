@@ -457,7 +457,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_a
             (1, 10, '*.*'),
             (2, 1, 'profile.*'),(3, 1, 'stats.user'),
             (4, 5, 'translations.*'),(5, 5, 'profile.*'),(6, 5, 'stats.user'),(7, 5, 'content.*'),
-            (8, 7, 'profile.*'),(9, 7, 'content.*'),(10, 7, 'stats.user'),(11, 7, 'blog.*'),(12, 7, 'translations.*'),(13, 7, 'ad.*'),(14, 7, 'widgets.*'),(15, 7, 'menu.*'),(16, 7, 'category.*'),(17, 7, 'location.*')
+            (8, 7, 'profile.*'),(9, 7, 'content.*'),(10, 7, 'stats.user'),(11, 7, 'blog.*'),(12, 7, 'translations.*'),(13, 7, 'ad.*'),(14, 7, 'widgets.*'),(15, 7, 'menu.*'),(16, 7, 'category.*'),(17, 7, 'location.*'),
             (18, 1, 'myads.*'),(19, 5, 'myads.*'),(20, 7, 'myads.*');");
 
 /**
@@ -506,6 +506,9 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'authorize_sandbox', '0'),
 ('payment', 'authorize_login', ''),
 ('payment', 'authorize_key', ''),
+('payment', 'twocheckout_sid', ''),
+('payment', 'twocheckout_secretword', ''),
+('payment', 'twocheckout_sandbox', 0),
 ('general', 'api_key', '".core::generate_password(32)."'),
 ('general', 'number_format', '%n'),
 ('general', 'date_format', 'd-m-y'),

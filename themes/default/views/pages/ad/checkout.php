@@ -74,7 +74,7 @@
             <div class="pull-right">
                 <?=$order->alternative_pay_button()?>
 
-                <?if ($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_role == Model_Role::ROLE_MODERATOR):?>
+                <?if (($user = Auth::instance()->get_user())!=FALSE AND ($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_role == Model_Role::ROLE_MODERATOR)):?>
                 <a title="<?=__('Mark as paid')?>" class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'order', 'action'=>'pay','id'=>$order->id_order))?>">
                     <i class="glyphicon glyphicon-usd"></i> <?=__('Mark as paid')?>
                 </a>
