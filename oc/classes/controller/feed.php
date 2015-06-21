@@ -41,7 +41,7 @@ class Controller_Feed extends Controller {
                           );
             if($a->get_first_image() !== NULL)
             {
-                $item['description'] = '<img src="'.Core::S3_domain().$a->get_first_image().'" />'.$item['description'];
+                $item['description'] = '<img src="'.$a->get_first_image().'" />'.$item['description'];
             }
 
             $items[] = $item;
