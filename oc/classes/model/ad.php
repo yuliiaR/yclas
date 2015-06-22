@@ -506,7 +506,20 @@ class Model_Ad extends ORM {
         
         // Delete the temporary file
         @unlink($file);
-        return TRUE;
+
+
+        $this->has_images++;
+
+        try 
+        {
+            $this->save();
+            return TRUE;
+        } 
+        catch (Exception $e) 
+        {
+            return FALSE;
+        }
+        
     }
 
     /**
@@ -1356,17 +1369,20 @@ class Model_Ad extends ORM {
                 @rename($img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg');
             }
         }
-        
         $this->has_images = ($this->has_images > 0) ? $this->has_images-1 : 0;
         $this->last_modified = Date::unix2mysql();
+
         try 
         {
             $this->save();
+            return TRUE;
         } 
         catch (Exception $e) 
         {
             throw HTTP_Exception::factory(500,$e->getMessage());
         }
+        
+        return FALSE;
     }
 
     /**
