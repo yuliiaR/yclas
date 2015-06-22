@@ -20,7 +20,7 @@
 <link rel="canonical" href="<?=Route::url('default')?>" />
 <?endif?>
 <?if (Controller::$image!==NULL):?>
-<meta property="og:image"   content="<?=core::config('general.base_url').Controller::$image?>"/>
+<meta property="og:image"   content="<?=Controller::$image?>"/>
 <?elseif(Theme::get('logo_url')!=NULL):?>
 <meta property="og:image"   content="<?=Theme::get('logo_url')?>"/>
 <?endif?>
@@ -66,7 +66,7 @@
 <meta property="logbee:email" content="<?=Model_Ad::current()->user->email?>"/>
 <meta property="logbee:phone" content="<?=Model_Ad::current()->phone?>"/>
 <meta property="logbee:price" content="<?=i18n::money_format(Model_Ad::current()->price)?>"/>
-<meta property="logbee:imgurl" content="<?=Core::S3_domain().'/'.Controller::$image?>"/>
+<meta property="logbee:imgurl" content="<?=Controller::$image?>"/>
 <?endif?> 
 
 <link rel="shortcut icon" href="<?=(Theme::get('favicon_url')!='') ? Theme::get('favicon_url') : core::config('general.base_url').'images/favicon.ico'?>">

@@ -295,32 +295,27 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     // in case something wrong happens user is redirected to edit advert. 
                     $counter = 0;
 
+                    $filename = NULL;
                     for ($i=0; $i < core::config("advertisement.num_images"); $i++) 
                     { 
-                        $filename = NULL;
                         $counter++;
 
                         if (isset($_FILES['image'.$i]))
                         {
                             $filename = $form->save_image($_FILES['image'.$i]);
                         }
-                        
-                        if ($filename)
+                    }
+                    if ($filename!==NULL)
+                    {
+                        $form->last_modified = Date::unix2mysql();
+                        try 
                         {
-                            $form->has_images++;
-                            $form->last_modified = Date::unix2mysql();
-                            try 
-                            {
-                                $form->save();
-                            } 
-                            catch (Exception $e) 
-                            {
-                                throw HTTP_Exception::factory(500,$e->getMessage());
-                            }
+                            $form->save();
+                        } 
+                        catch (Exception $e) 
+                        {
+                            throw HTTP_Exception::factory(500,$e->getMessage());
                         }
-                        //TODO
-                        //if($filename == FALSE)
-                            //$this->redirect(Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$form->id_ad)));
                     }
 
                     Alert::set(Alert::SUCCESS, $return['message']);
