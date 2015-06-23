@@ -197,10 +197,9 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		//local files
         if (Theme::get('cdn_files') == FALSE)
         {
-            $this->template->styles = array('css/jquery.sceditor.default.min.css' => 'screen');
+            $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen');
             
-            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.min.js',
-                                                        'js/jquery.sceditor.bbcode.min.js',
+            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
                                                         'js/jquery.chained.min.js',
                                                         '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
@@ -208,10 +207,9 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         }
         else
         {
-            $this->template->styles = array('css/jquery.sceditor.default.min.css' => 'screen');
+            $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen');
             
-            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.min.js',
-                                                        'js/jquery.sceditor.bbcode.min.js',
+            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
                                                         'js/jquery.chained.min.js',
                                                         '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
