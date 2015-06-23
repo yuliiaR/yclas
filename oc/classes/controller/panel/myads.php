@@ -33,7 +33,8 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                  
     	    ));
 
-    	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__("My Advertisement page ").$pagination->current_page));
+    	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My ads'))->set_url(Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))));
+    	    Breadcrumbs::add(Breadcrumb::factory()->set_title(sprintf(__("Page %d"), $pagination->current_page)));
     	    $ads = $my_adverts->order_by('published','desc')
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
@@ -196,10 +197,9 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		//local files
         if (Theme::get('cdn_files') == FALSE)
         {
-            $this->template->styles = array('css/jquery.sceditor.default.min.css' => 'screen');
+            $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen');
             
-            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.min.js',
-                                                        'js/jquery.sceditor.bbcode.min.js',
+            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
                                                         'js/jquery.chained.min.js',
                                                         '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
@@ -207,10 +207,9 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         }
         else
         {
-            $this->template->styles = array('css/jquery.sceditor.default.min.css' => 'screen');
+            $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen');
             
-            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.min.js',
-                                                        'js/jquery.sceditor.bbcode.min.js',
+            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
                                                         'js/jquery.chained.min.js',
                                                         '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
@@ -219,8 +218,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
 
 
-		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
-		 	
+		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My ads'))->set_url(Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))));
 
 		$form = new Model_Ad($this->request->param('id'));
 		
@@ -411,6 +409,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
 	public function action_stats()
    	{
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My ads'))->set_url(Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))));
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats')));
         
         Controller::$full_width = TRUE;

@@ -68,6 +68,9 @@
         <?if ($ad->price>0):?>
             <span class="label label-danger"><?= __('Price');?> : <?=i18n::money_format( $ad->price)?></span>
         <?endif?>
+        <?if ($ad->id_location != 1):?>
+            <span class="label label-default"><?=$ad->location->name?></span>
+        <?endif?>
         <a class="label label-default" href="<?=Route::url('profile',  array('seoname'=>$ad->user->seoname))?>"><?=$ad->user->name?></a>
         <div class="pull-right">
             <span class="label label-info"><?= Date::format($ad->published, core::config('general.date_format'))?></span>
