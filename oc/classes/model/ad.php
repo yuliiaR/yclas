@@ -561,6 +561,72 @@ class Model_Ad extends ORM {
     }
 
     /**
+     * [delete_image description]
+     * @param  integer $deleted_image 
+     * @return void                
+     */
+    public function delete_image($deleted_image)
+    {
+        $img_path = $this->image_path();
+        $img_seoname = $this->seotitle;
+        
+        // delete image from Amazon S3
+        if (core::config('image.aws_s3_active'))
+        {
+            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+            
+            //delete original image
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.$deleted_image.'.jpg');
+            //delete formated image
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.$deleted_image.'.jpg');
+            
+            //re-ordering image file names
+            for($i = $deleted_image; $i < $this->has_images; $i++)
+            {
+                //rename original image
+                $s3->copyObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.($i+1).'.jpg', core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.$i.'.jpg', S3::ACL_PUBLIC_READ);
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.($i+1).'.jpg');
+                //rename formated image
+                $s3->copyObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg', S3::ACL_PUBLIC_READ);
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg');
+            }
+        }
+        
+        //delte image from local filesystem
+        if (!is_dir($img_path)) 
+            return FALSE;
+        else
+        {   
+            //delete original image
+            @unlink($img_path.$img_seoname.'_'.$deleted_image.'.jpg');
+            //delete formated image
+            @unlink($img_path.'thumb_'.$img_seoname.'_'.$deleted_image.'.jpg');
+            
+            //re-ordering image file names
+            for($i = $deleted_image; $i < $this->has_images; $i++)
+            {
+                @rename($img_path.$img_seoname.'_'.($i+1).'.jpg', $img_path.$img_seoname.'_'.$i.'.jpg');
+                @rename($img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg');
+            }
+        }
+        $this->has_images = ($this->has_images > 0) ? $this->has_images-1 : 0;
+        $this->last_modified = Date::unix2mysql();
+
+        try 
+        {
+            $this->save();
+            return TRUE;
+        } 
+        catch (Exception $e) 
+        {
+            throw HTTP_Exception::factory(500,$e->getMessage());
+        }
+        
+        return FALSE;
+    }
+
+    /**
      * tells us if this ad can be contacted
      * @return bool 
      */
@@ -1017,7 +1083,7 @@ class Model_Ad extends ORM {
             //save original category to see if was changed
             $original_category = $this->category;
 
-            //$this->last_modified = Date::unix2mysql(); //TODO review doesnt break anything
+            $this->last_modified = Date::unix2mysql(); //TODO review doesnt break anything
             
             $this->values($data);
 
@@ -1316,73 +1382,6 @@ class Model_Ad extends ORM {
         }
 
         return parent::values($values, $expected);
-    }
-
-
-    /**
-     * [delete_image description]
-     * @param  integer $deleted_image 
-     * @return void                
-     */
-    public function delete_image($deleted_image)
-    {
-        $img_path = $this->image_path();
-        $img_seoname = $this->seotitle;
-        
-        // delete image from Amazon S3
-        if (core::config('image.aws_s3_active'))
-        {
-            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
-            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
-            
-            //delete original image
-            $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.$deleted_image.'.jpg');
-            //delete formated image
-            $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.$deleted_image.'.jpg');
-            
-            //re-ordering image file names
-            for($i = $deleted_image; $i < $this->has_images; $i++)
-            {
-                //rename original image
-                $s3->copyObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.($i+1).'.jpg', core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.$i.'.jpg', S3::ACL_PUBLIC_READ);
-                $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.($i+1).'.jpg');
-                //rename formated image
-                $s3->copyObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg', S3::ACL_PUBLIC_READ);
-                $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg');
-            }
-        }
-        
-        //delte image from local filesystem
-        if (!is_dir($img_path)) 
-            return FALSE;
-        else
-        {   
-            //delete original image
-            @unlink($img_path.$img_seoname.'_'.$deleted_image.'.jpg');
-            //delete formated image
-            @unlink($img_path.'thumb_'.$img_seoname.'_'.$deleted_image.'.jpg');
-            
-            //re-ordering image file names
-            for($i = $deleted_image; $i < $this->has_images; $i++)
-            {
-                @rename($img_path.$img_seoname.'_'.($i+1).'.jpg', $img_path.$img_seoname.'_'.$i.'.jpg');
-                @rename($img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg');
-            }
-        }
-        $this->has_images = ($this->has_images > 0) ? $this->has_images-1 : 0;
-        $this->last_modified = Date::unix2mysql();
-
-        try 
-        {
-            $this->save();
-            return TRUE;
-        } 
-        catch (Exception $e) 
-        {
-            throw HTTP_Exception::factory(500,$e->getMessage());
-        }
-        
-        return FALSE;
     }
 
     /**

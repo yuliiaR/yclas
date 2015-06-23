@@ -293,13 +293,9 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 {
                     // IMAGE UPLOAD 
                     // in case something wrong happens user is redirected to edit advert. 
-                    $counter = 0;
-
                     $filename = NULL;
                     for ($i=0; $i < core::config("advertisement.num_images"); $i++) 
                     { 
-                        $counter++;
-
                         if (isset($_FILES['image'.$i]))
                         {
                             $filename = $form->save_image($_FILES['image'.$i]);
