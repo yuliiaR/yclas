@@ -188,6 +188,17 @@ Route::set('jslocalization', 'jslocalization/<action>')
         'action'     => 'validate',
 ));
 
+
+/*
+    user profile route 
+ */
+Route::set('profile', 'user/<seoname>(/<action>)')
+->defaults(array(
+        'controller' => 'user',
+        'action'     => 'index',
+));
+
+
 /**
  * Item / ad view (public)
  */
@@ -207,16 +218,6 @@ Route::set('list', '<category>(/<location>)')
 		'category'	 => URL::title(__('all')),
 		'controller' => 'ad',    
 		'action'     => 'listing',
-));
-
-/*
-	user profile route 
- */
- 
-Route::set('profile', 'user/<seoname>/<action>')
-->defaults(array(
-		'controller' => 'user',
-		'action'     => 'index',
 ));
 
 
