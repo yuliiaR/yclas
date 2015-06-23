@@ -232,12 +232,12 @@
                             <div id="collapseFive" class="panel-collapse collapse <?=(Auth::instance()->get_user()->id_role == Model_Role::ROLE_USER ? "in" : NULL)?>">
                                 <div class="panel-body">
                                     <table class="table">
-                                        <tr><td class="br"><?=Theme::admin_link(__('Edit profile'), 'profile','edit','oc-panel','glyphicon glyphicon-edit')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('My Advertisements'), 'myads','index','oc-panel','glyphicon glyphicon-bullhorn')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('My Payments'), 'profile','orders','oc-panel','glyphicon glyphicon-shopping-cart')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('My Favorites'), 'profile','favorites','oc-panel','glyphicon glyphicon-heart')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Stats'),'myads','stats','oc-panel','glyphicon glyphicon-align-left')?></td></tr>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Subscriptions'),'profile','subscriptions','oc-panel','glyphicon glyphicon-envelope')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Edit profile'), 'profile','edit','oc-panel','glyphicon glyphicon-edit', NULL, FALSE)?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('My Advertisements'), 'myads','index','oc-panel','glyphicon glyphicon-bullhorn', NULL, FALSE)?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('My Payments'), 'profile','orders','oc-panel','glyphicon glyphicon-shopping-cart', NULL, FALSE)?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('My Favorites'), 'profile','favorites','oc-panel','glyphicon glyphicon-heart', NULL, FALSE)?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Stats'),'myads','stats','oc-panel','glyphicon glyphicon-align-left', NULL, FALSE)?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Subscriptions'),'profile','subscriptions','oc-panel','glyphicon glyphicon-envelope', NULL, FALSE)?></td></tr>
                                         <tr><td class="br">
                                             <li>
                                                 <a href="<?=Route::url('profile',array('seoname'=>$user->seoname))?>">

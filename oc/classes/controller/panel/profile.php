@@ -173,6 +173,9 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
     */ 
    public function action_subscriptions()
    {
+        $this->template->title = __('My subscriptions');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My subscriptions')));
+
    		Controller::$full_width = TRUE;
 
    		$subscriptions = new Model_Subscribe();

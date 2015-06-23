@@ -116,7 +116,7 @@ class Auth_Controller extends Controller
     	            }
 
                 	$common_css = array('css/chosen.min.css' => 'screen',
-                						'css/jquery.sceditor.default.min.css'=>'screen', 
+                						'css/jquery.sceditor.default.theme.min.css' => 'screen',
                                         'css/loadingbar.css'=>'screen', 
                 						'css/icon-picker.min.css'=>'screen', 
                 						'css/font-awesome.min.css'=>'screen', 
@@ -131,7 +131,6 @@ class Auth_Controller extends Controller
     	            								  'js/jquery.cookie.min.js',	
     	            								  'js/iconPicker.min.js',
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
-    												  'js/jquery.sceditor.min.js',
     												  'js/jquery.sceditor.bbcode.min.js',
     												  'js/summernote.min.js',
     												  'js/summernote-ext-video.js',
@@ -163,7 +162,7 @@ class Auth_Controller extends Controller
     	            }
 
                 	$common_css = array('//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
-                                        '//cdn.jsdelivr.net/sceditor/1.4.3/themes/default.min.css' => 'screen',
+                                        'css/jquery.sceditor.default.theme.min.css' => 'screen',
                                         'css/loadingbar.css'=>'screen', 
                                         'css/icon-picker.min.css'=>'screen', 
                                         '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'=>'screen', 
@@ -178,7 +177,6 @@ class Auth_Controller extends Controller
     											      '//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js',
     	            								  'js/iconPicker.min.js',
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
-    												  'js/jquery.sceditor.min.js',
     												  'js/jquery.sceditor.bbcode.min.js',
     											      '//cdn.jsdelivr.net/summernote/0.6.7/summernote.min.js',
     											      'js/summernote-ext-video.js',

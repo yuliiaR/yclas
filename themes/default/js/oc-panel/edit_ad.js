@@ -3,6 +3,7 @@
         toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
         "bulletlist,orderedlist|link,unlink,youtube|source",
         resizeEnabled: "true",
+        style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
         emoticonsEnabled: false
     });
     

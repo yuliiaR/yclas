@@ -45,11 +45,10 @@ class Controller_New extends Controller
         $this->template->meta_description   = __('Publish new advertisement');
         
         
-        $this->template->styles = array('css/jquery.sceditor.default.min.css' => 'screen',
+        $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
                                         'css/jasny-bootstrap.min.css' => 'screen',
                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css' => 'screen');
                                         
-        $this->template->scripts['footer'][] = 'js/jquery.sceditor.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.bbcode.min.js';
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
         $this->template->scripts['footer'][] = 'js/jquery.chained.min.js';
