@@ -109,6 +109,20 @@ class Model_Field {
                 if (!is_array($fields))
                     $fields = array();
                 
+                //add child categories of selected categories
+                if (is_array($categories))
+                {
+                    // get category siblings
+                    foreach ($categories as $category)
+                    {
+                        $category = new Model_Category($category);
+                        $categories = array_merge($categories, $category->get_siblings_ids());
+                    }
+                    
+                    // remove duplicated categories
+                    $categories = array_unique($categories);
+                }
+                
                 //save at config
                 $fields[$name] = array(
                                 'type'      => $type, 
@@ -165,6 +179,21 @@ class Model_Field {
                         $values;
                         break;
                 }
+                
+                //add child categories of selected categories
+                if (is_array($categories))
+                {
+                    // get category siblings
+                    foreach ($categories as $category)
+                    {
+                        $category = new Model_Category($category);
+                        $categories = array_merge($categories, $category->get_siblings_ids());
+                    }
+                    
+                    // remove duplicated categories
+                    $categories = array_unique($categories);
+                }
+                
                 //save at config
                 $fields[$name] = array(
                                 'type'      => $fields[$name]['type'], 
