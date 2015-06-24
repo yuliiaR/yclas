@@ -68,6 +68,13 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
+                          array('order'=>0,
+                                'title'=>'Password Changed [SITE.NAME]',
+                                'seotitle'=>'password-changed',
+                                'description'=>"Hello [USER.NAME],\n\nYour password has been changed.\n\nThese are now your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!",
+                                'from_email'=>core::config('email.notify_email'),
+                                'type'=>'email',
+                                'status'=>'1'),
                         );
 
         Model_Content::content_array($contents);
