@@ -25,7 +25,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		
 		$ads = new Model_Ad();
 
-        $fields = array('title','id_ad','created','id_category', 'id_location','status');
+        $fields = array('title','id_ad','published','created','id_category', 'id_location','status');
 		
         //filter ads by status
         $status = is_numeric(Core::get('status'))?Core::get('status'):Model_Ad::STATUS_PUBLISHED;
@@ -47,13 +47,13 @@ class Controller_Panel_Ad extends Auth_Controller {
 			$pagination = Pagination::factory(array(
                     'view'           	=> 'oc-panel/crud/pagination',
                     'total_items'    	=> $res_count,
-                    'items_per_page' 	=> core::config('advertisement.advertisements_per_page')
+                    'items_per_page' 	=> 50
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
                  
     	    ));
-    	    $ads = $ads->order_by(core::get('order','created'),core::get('sort','desc'))
+    	    $ads = $ads->order_by(core::get('order','published'),core::get('sort','desc'))
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
                 	            ->find_all();
