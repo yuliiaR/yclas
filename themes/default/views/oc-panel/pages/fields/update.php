@@ -59,6 +59,8 @@
                         <?endif?>
                     <?endforeach?>
                 </select>
+                
+                <p class="help-block"><?=('Selecting parent category also selects child categories.')?></p>
             </div>
         </div>
 

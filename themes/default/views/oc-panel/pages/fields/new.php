@@ -72,6 +72,8 @@
                             <?endif?>
                         <?}array_walk($order_categories, 'lili12',$categories);?>
 				</select>
+				
+				<p class="help-block"><?=('Selecting parent category also selects child categories.')?></p>
 			</div>
 		</div>
 

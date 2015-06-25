@@ -32,15 +32,19 @@ class Auth_Frontcontroller extends Controller
         {
             $url_bread = Route::url('oc-panel',array('controller'  => 'profile', 'action'  => 'public'));
             Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My Profile'))->set_url($url_bread));
-              
+            
             //check if user is login
             if (!Auth::instance()->logged_in( $request->controller(), $request->action(), $request->directory()))
             {
-              Alert::set(Alert::ERROR, __('You do not have permissions to access '.$request->controller().' '.$request->action()));
-              $url = Route::url('oc-panel',array(   'controller' => 'auth',
+                Alert::set(Alert::ERROR, __('You do not have permissions to access '.$request->controller().' '.$request->action()));
+                $url = Route::url('oc-panel',array(   'controller' => 'auth',
                                                     'action'     => 'login'));
-              $this->redirect($url);
+                $this->redirect($url);
             }
+            
+            // Force configured theme in case mobile theme is selected
+            if (Theme::$is_mobile)
+                Theme::initialize(Core::config('appearance.theme'));
         }
 
     }
