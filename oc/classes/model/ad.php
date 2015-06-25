@@ -1409,4 +1409,26 @@ class Model_Ad extends ORM {
 
     }
 
+    /**
+     * returns the paypal account of the ad, used in controller paypal
+     * @return string email
+     */
+    public function paypal_account()
+    {
+        if ($this->loaded())
+        {
+            //1st if paypal custom field set on the ad
+            if (isset($this->cf_paypalaccount) AND Valid::email($this->cf_paypalaccount))
+                return $this->cf_paypalaccount;
+            //2nd paypal custom field from user
+            elseif(isset($this->user->cf_paypalaccount) AND Valid::email($this->user->cf_paypalaccount))
+                return $this->user->cf_paypalaccount;
+            //3rd and default use the email of the user
+            else
+                return $this->user->email;
+        }
+
+        return NULL;
+    }
+
 } // END Model_ad

@@ -43,9 +43,9 @@ class Controller_Paypal extends Controller{
             //order is from a payment done to the owner of the ad
             if ($order->id_product == Model_Order::PRODUCT_AD_SELL)
             {
-                $user_paid = $order->ad->user;
+                $paypal_account = $order->ad->paypal_account();
 
-                $receiver_correct = (Core::post('receiver_email') == $user_paid->email  OR Core::post('business')  == $user_paid->email);
+                $receiver_correct = (Core::post('receiver_email') == $paypal_account  OR Core::post('business')  == $paypal_account);
             }
             //any other payment goes to classifieds site payment
             else
@@ -104,7 +104,7 @@ class Controller_Paypal extends Controller{
         {
         	// case when selling advert
         	if($order->id_product == Model_Order::PRODUCT_AD_SELL)
-        		$paypal_account = $order->ad->user->email;
+        		$paypal_account = $order->ad->paypal_account();
         	else
         		$paypal_account = core::config('payment.paypal_account');
 

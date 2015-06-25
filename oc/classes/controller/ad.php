@@ -705,30 +705,26 @@ class Controller_Ad extends Controller {
             Alert::set(Alert::INFO, __('To buy this product you first need to register'));
             $this->redirect(Route::url('oc-panel'));
         }
-
-        $payer_user = Auth::instance()->get_user();
         
         $id_product = Model_Order::PRODUCT_AD_SELL;
 
         //check ad exists
         $id_ad  = $this->request->param('id');
         $ad     = new Model_Ad($id_ad);
-            
-        if($ad->loaded())
+
+        //loaded published and with stock if we control the stock.
+        if($ad->loaded() AND $ad->status==Model_Ad::STATUS_PUBLISHED
+            AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)) )
         {
-            //do not allow selling if it already 0
-            if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
-            {
-                $amount     = $ad->price;
-                $currency   = core::config('payment.paypal_currency');
-                
-                if (isset($ad->cf_shipping) AND Valid::numeric($ad->cf_shipping) AND $ad->cf_shipping > 0)
-                    $amount = $ad->price + $ad->cf_shipping;
+            $amount     = $ad->price;
+            $currency   = core::config('payment.paypal_currency');
+            
+            if (isset($ad->cf_shipping) AND Valid::numeric($ad->cf_shipping) AND $ad->cf_shipping > 0)
+                $amount = $ad->price + $ad->cf_shipping;
 
-                $order = Model_Order::new_order($ad, $payer_user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
+            $order = Model_Order::new_order($ad, $this->user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
 
-                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
-            }
+            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
         }
         else
             throw HTTP_Exception::factory(404,__('Page not found'));
