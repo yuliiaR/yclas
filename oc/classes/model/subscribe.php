@@ -36,7 +36,7 @@ class Model_Subscribe extends ORM {
         if($ad->price > 0)
         {
             $subscribers->where_open()
-                        ->where(DB::EXPR($ad->price),'BETWEEN',array('min_price','max_price'))
+                        ->where(DB::EXPR((int)$ad->price),'BETWEEN',array('min_price','max_price'))
                         ->or_where('min_price', 'IS', NULL)
                         ->where_close();            
         }

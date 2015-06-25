@@ -311,6 +311,9 @@ class Controller_Panel_Settings extends Auth_Controller {
                     
                     if(!in_array($c->config_key, $do_nothing) AND $config_res != $c->config_value)
                     {
+                        if ($c->config_key == 'pay_to_go_on_top')
+                            $config_res = str_replace(',', '.', $config_res);
+
                         $c->config_value = $config_res;
                         try {
                             $c->save();

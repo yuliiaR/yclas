@@ -118,7 +118,7 @@ class Model_Ad extends ORM {
 				        'status'		=> array(array('numeric')),
 				        'has_images'	=> array(array('numeric')),
 				        'last_modified'	=> array(),
-                        'price'         => array(array('numeric')),
+                        'price'         => array(array('price')),
                         'latitude'      => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
                         'longitude'     => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
 				    );
