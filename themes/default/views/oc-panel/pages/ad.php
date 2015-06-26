@@ -241,6 +241,11 @@
 					    rel="tooltip" title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
 						<i class="glyphicon   glyphicon-circle-arrow-up"></i>
 					</a>
+                    <a class="btn btn-primary" 
+                        href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>" 
+                        rel="tooltip" title="<?=__('Stats')?>">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </a>
 					<?endif?>
 				</div>
 				</div>

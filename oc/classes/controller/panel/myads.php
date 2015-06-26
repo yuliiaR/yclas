@@ -415,9 +415,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         $this->template->title = __('Stats');
         $this->template->bind('content', $content);        
         $content = View::factory('oc-panel/profile/stats');
-
-
-        $user    = Auth::instance()->get_user();
+        
         $list_ad = array();
         $advert  = new Model_Ad();
 
@@ -428,6 +426,12 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
             if($advert->loaded())
             {
+                //if admin or moderator user is the advert user ;) hack!!
+                if($this->user->id_role == Model_Role::ROLE_ADMIN OR $this->user->id_role == Model_Role::ROLE_MODERATOR)
+                    $user = $advert->user;
+                else
+                    $user  = $this->user;
+
                 if($user->id_user !== $advert->id_user)
                 {
                     Alert::set(Alert::ALERT, __("This is not your advertisement."));
