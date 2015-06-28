@@ -48,7 +48,14 @@
         </ul>
 
         <!-- Popup contact form -->
-        <button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=__('Send Message')?></button>
+        <?if (core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in()) :?>
+            <a class="btn btn-success" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+                <i class="glyphicon glyphicon-envelope"></i>
+                <?=__('Send Message')?>
+            </a>
+        <?else :?>
+            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=__('Send Message')?></button>
+        <?endif?>
         <div id="contact-modal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -62,28 +69,32 @@
                         
                         <?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact', 'id'=>$user->id_user)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
                             <fieldset>
-                                <div class="form-group">
-                                    <?= FORM::label('name', __('Name'), array('class'=>'col-md-2 control-label', 'for'=>'name'))?>
-                                    <div class="col-md-4 ">
-                                        <?= FORM::input('name', Core::post('name'), array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
+                                <?if (!Auth::instance()->get_user()):?>
+                                    <div class="form-group">
+                                        <?= FORM::label('name', __('Name'), array('class'=>'col-md-2 control-label', 'for'=>'name'))?>
+                                        <div class="col-md-4 ">
+                                            <?= FORM::input('name', Core::post('name'), array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <?= FORM::label('email', __('Email'), array('class'=>'col-md-2 control-label', 'for'=>'email'))?>
-                                    <div class="col-md-4 ">
-                                        <?= FORM::input('email', Core::post('email'), array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
+                                    <div class="form-group">
+                                        <?= FORM::label('email', __('Email'), array('class'=>'col-md-2 control-label', 'for'=>'email'))?>
+                                        <div class="col-md-4 ">
+                                            <?= FORM::input('email', Core::post('email'), array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <?= FORM::label('subject', __('Subject'), array('class'=>'col-md-2 control-label', 'for'=>'subject'))?>
-                                    <div class="col-md-4 ">
-                                        <?= FORM::input('subject', Core::post('subject'), array('placeholder' => __('Subject'), 'class' => 'form-control', 'id' => 'subject'))?>
+                                <?endif?>
+                                <?if(core::config('general.messaging') != TRUE):?>
+                                    <div class="form-group">
+                                        <?= FORM::label('subject', __('Subject'), array('class'=>'col-md-2 control-label', 'for'=>'subject'))?>
+                                        <div class="col-md-4 ">
+                                            <?= FORM::input('subject', Core::post('subject'), array('placeholder' => __('Subject'), 'class' => 'form-control', 'id' => 'subject'))?>
+                                        </div>
                                     </div>
-                                </div>
+                                <?endif?>
                                 <div class="form-group">
                                     <?= FORM::label('message', __('Message'), array('class'=>'col-md-2 control-label', 'for'=>'message'))?>
                                     <div class="col-md-6">
-                                        <?= FORM::textarea('message', Core::post('subject'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>	
+                                        <?= FORM::textarea('message', Core::post('subject'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>
                                         </div>
                                 </div>
                                 <?if (core::config('advertisement.captcha') != FALSE):?>

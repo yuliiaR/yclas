@@ -39,6 +39,14 @@
         
             <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'subscriptions'))?>"><i
                    class="glyphicon glyphicon-envelope"></i> <?=__('Subscriptions')?></a></li>
+
+            <?if (core::config('general.messaging') == TRUE):?>
+                <li>
+                    <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>">
+                        <i class="fa fa-inbox"></i> <?=__('Messages')?>
+                    </a>
+                </li>
+            <?endif?>
         
             <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))?>"><i
                    class="glyphicon glyphicon-lock"></i> <?=__('Edit profile')?></a></li>

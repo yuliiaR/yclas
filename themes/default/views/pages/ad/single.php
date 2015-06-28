@@ -103,7 +103,7 @@
     <hr />
     
     <?if ($ad->can_contact()):?>
-        <?if (core::config('advertisement.login_to_contact') == TRUE AND !Auth::instance()->logged_in()) :?>
+        <?if ((core::config('advertisement.login_to_contact') == TRUE OR core::config('general.messaging') == TRUE) AND !Auth::instance()->logged_in()) :?>
             <a class="btn btn-success" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
                 <i class="glyphicon glyphicon-envelope"></i> 
                 <?=__('Send Message')?>
@@ -128,33 +128,43 @@
                         <?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'user_contact', 'id'=>$ad->id_ad)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
                             <fieldset>
                                 <?if (!Auth::instance()->get_user()):?>
-                                <div class="form-group">
-                                    <?= FORM::label('name', __('Name'), array('class'=>'col-sm-2 control-label', 'for'=>'name'))?>
-                                    <div class="col-md-4 ">
-                                        <?= FORM::input('name', Core::post('name'), array('placeholder' => __('Name'), 'class'=>'form-control', 'id' => 'name', 'required'))?>
+                                    <div class="form-group">
+                                        <?= FORM::label('name', __('Name'), array('class'=>'col-sm-2 control-label', 'for'=>'name'))?>
+                                        <div class="col-md-4 ">
+                                            <?= FORM::input('name', Core::post('name'), array('placeholder' => __('Name'), 'class'=>'form-control', 'id' => 'name', 'required'))?>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <?= FORM::label('email', __('Email'), array('class'=>'col-sm-2 control-label', 'for'=>'email'))?>
-                                    <div class="col-md-4 ">
-                                        <?= FORM::input('email', Core::post('email'), array('placeholder' => __('Email'), 'class'=>'form-control', 'id' => 'email', 'type'=>'email','required'))?>
+                                    <div class="form-group">
+                                        <?= FORM::label('email', __('Email'), array('class'=>'col-sm-2 control-label', 'for'=>'email'))?>
+                                        <div class="col-md-4 ">
+                                            <?= FORM::input('email', Core::post('email'), array('placeholder' => __('Email'), 'class'=>'form-control', 'id' => 'email', 'type'=>'email','required'))?>
+                                        </div>
                                     </div>
-                                </div>
                                 <?endif?>
-                                <div class="form-group">
-                                    <?= FORM::label('subject', __('Subject'), array('class'=>'col-sm-2 control-label', 'for'=>'subject'))?>
-                                    <div class="col-md-4 ">
-                                        <?= FORM::input('subject', Core::post('subject'), array('placeholder' => __('Subject'), 'class'=>'form-control', 'id' => 'subject'))?>
+                                <?if(core::config('general.messaging') != TRUE):?>
+                                    <div class="form-group">
+                                        <?= FORM::label('subject', __('Subject'), array('class'=>'col-sm-2 control-label', 'for'=>'subject'))?>
+                                        <div class="col-md-4 ">
+                                            <?= FORM::input('subject', Core::post('subject'), array('placeholder' => __('Subject'), 'class'=>'form-control', 'id' => 'subject'))?>
+                                        </div>
                                     </div>
-                                </div>
+                                <?endif?>
                                 <div class="form-group">
                                     <?= FORM::label('message', __('Message'), array('class'=>'col-sm-2 control-label', 'for'=>'message'))?>
                                     <div class="col-md-6">
-                                        <?= FORM::textarea('message', Core::post('message'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>	
+                                        <?= FORM::textarea('message', Core::post('message'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>
                                     </div>
                                 </div>
+                                <?if(core::config('general.messaging')):?>
+                                    <div class="form-group">
+                                        <?= FORM::label('price', __('Price'), array('class'=>'col-sm-2 control-label', 'for'=>'price'))?>
+                                        <div class="col-md-6">
+                                            <?= FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?>
+                                        </div>
+                                    </div>
+                                <?endif?>
                                 <!-- file to be sent-->
-                                <?if(core::config('advertisement.upload_file')):?>
+                                <?if(core::config('advertisement.upload_file') AND core::config('general.messaging') != TRUE):?>
                                     <div class="form-group">
                                         <?= FORM::label('file', __('File'), array('class'=>'col-sm-2 control-label', 'for'=>'file'))?>
                                         <div class="col-md-6">

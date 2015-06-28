@@ -317,6 +317,9 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`ord
 (0, 'Your ad [AD.NAME] has expired', 'ad-expired', 'Hello [USER.NAME],Your ad [AD.NAME] has expired \n\nPlease check your ad here [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Your ad [AD.NAME] is going to expire', 'ad-to-expire', 'Hello [USER.NAME],Your ad [AD.NAME] will expire soon \n\nPlease check your ad here [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Password Changed [SITE.NAME]', 'password-changed', 'Hello [USER.NAME],\n\nYour password has been changed.\n\nThese are now your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+(0, 'New reply: [TITLE]', 'messaging-reply', '[URL.QL]\n\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+(0, '[FROM.NAME] sent you a direct message', 'messaging-user-contact', 'Hello [TO.NAME],\n\n[FROM.NAME] have a message for you:\n\n[DESCRIPTION]\n\n[URL.QL]\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+(0, 'Hello [TO.NAME]!', 'messaging-ad-contact', 'You have been contacted regarding your advertisement:\n\n`[AD.NAME]`.\n\nUser [FROM.NAME], have a message for you:\n\n[DESCRIPTION]\n\n[URL.QL]\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'New review for [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\n\n[RATE]\n\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1);");
 
 /**
@@ -459,7 +462,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_a
             (2, 1, 'profile.*'),(3, 1, 'stats.user'),
             (4, 5, 'translations.*'),(5, 5, 'profile.*'),(6, 5, 'stats.user'),(7, 5, 'content.*'),
             (8, 7, 'profile.*'),(9, 7, 'content.*'),(10, 7, 'stats.user'),(11, 7, 'blog.*'),(12, 7, 'translations.*'),(13, 7, 'ad.*'),(14, 7, 'widgets.*'),(15, 7, 'menu.*'),(16, 7, 'category.*'),(17, 7, 'location.*'),
-            (18, 1, 'myads.*'),(19, 5, 'myads.*'),(20, 7, 'myads.*');");
+            (18, 1, 'myads.*'),(19, 5, 'myads.*'),(20, 7, 'myads.*'),
+            (18, 1, 'messages.*'),(19, 5, 'messages.*'),(20, 7, 'messages.*');");
 
 /**
  * Create user God/Admin 
@@ -530,6 +534,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'faq', 0),
 ('general', 'faq_disqus', ''),
 ('general', 'forums', '0'),
+('general', 'messaging', 0),
 ('general', 'black_list', '1'),
 ('general', 'ocacu', '0'),
 ('general', 'landing_page', '{\"controller\":\"home\",\"action\":\"index\"}'),
