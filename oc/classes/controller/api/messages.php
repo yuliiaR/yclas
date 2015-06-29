@@ -20,7 +20,7 @@ class Controller_Api_Messages extends Api_User {
 
             //by default all except spam
             if (empty($this->_filter_params))
-                $this->_filter_params['status'] = array('field'=>'status','operator'=>'!=','value'=>5);
+                $this->_filter_params['status'] = array('field'=>'status','operator'=>'!=','value'=>Model_Message::STATUS_SPAM);
 
             //filter results by param, verify field exists and has a value
             $messages->api_filter($this->_filter_params);

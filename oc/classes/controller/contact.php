@@ -72,84 +72,107 @@ class Controller_Contact extends Controller {
             $user = new Model_User($ad->id_user);
         
             //require login to contact
-            if (core::config('advertisement.login_to_contact') == TRUE AND !Auth::instance()->logged_in())
+            if ( (core::config('advertisement.login_to_contact') == TRUE OR core::config('general.messaging') == TRUE)
+				AND !Auth::instance()->logged_in())
             {
                 Alert::set(Alert::INFO, __('Please, login before contacting'));
                 HTTP::redirect(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
             }
 
             if(captcha::check('contact'))
-            { 
-                //check if user is loged in
-                if (Auth::instance()->logged_in())
-                {
-                    $email_from = Auth::instance()->get_user()->email;
-                    $name_from  = Auth::instance()->get_user()->name;
-                }
-                else
-                {
-                    $email_from = core::post('email');
-                    $name_from  = core::post('name');
-                }
+            {
+				//check if user is loged in
+				if (Auth::instance()->logged_in())
+				{
+					$email_from = $this->user->email;
+					$name_from  = $this->user->name;
+				}
+				else
+				{
+					$email_from = core::post('email');
+					$name_from  = core::post('name');
+				}
 
-                //akismet spam filter
-                if(!core::akismet($name_from, $email_from,core::post('message')))
-                {
-                    if(isset($_FILES['file']))
-                        $file = $_FILES['file'];
-                    else 
-                        $file = NULL;
-                    
-                    //contact email is set use that one
-                    if( isset($ad->cf_contactemail) AND Valid::email($ad->cf_contactemail))
-                        $to = $ad->cf_contactemail;
-                    else
-                        $to = NULL;
+				//akismet spam filter
+				if(!core::akismet($name_from, $email_from,core::post('message')))
+				{
+					if(core::config('general.messaging'))
+					{
+						//price?
+						$price	= (core::post('price') !== NULL AND is_numeric(core::post('price'))) ? core::post('price') : NULL;
 
-                    $ret = $user->email('user-contact',array('[EMAIL.BODY]'		=>core::post('message'),
-                                                             '[AD.NAME]'        =>$ad->title,
-                        									 '[EMAIL.SENDER]'	=>$name_from,
-                        									 '[EMAIL.FROM]'		=>$email_from,
-                                                             '[URL.AD]'         =>Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))
-                                                             ),
-                                                        $email_from,
-                                                        $name_from,
-                                                        $file, $to);
-                    
-                    //if succesfully sent
-                    if ($ret)
-                    {
-                        Alert::set(Alert::SUCCESS, __('Your message has been sent'));
-
-                        // we are updating field of visit table (contact)
-                        $visit = new Model_Visit();
-
-                        $visit->where('id_ad', '=', $this->request->param('id'))
-                                          ->where('ip_address', '=',ip2long(Request::$client_ip))
-                                          ->order_by('created', 'desc')
-                                          ->limit(1)->find();
-                        if ($visit->loaded())
+						$ret	= Model_Message::send_ad(core::post('message'), $this->user->name, $ad->id_ad, $price);
+						
+						if ($ret !== FALSE)
                         {
-                            $visit->contacted = 1;
-                            try {
-                                $visit->save();
-                            } catch (Exception $e) {
-                                //throw 500
-                                throw HTTP_Exception::factory(500,$e->getMessage());
-                            }
-                        }
+							$ad->user->email('messaging-ad-contact', array(	'[AD.NAME]'		=> $ad->title,
+																			'[FROM.NAME]'	=> $this->user->name,
+																			'[TO.NAME]'		=> $ad->user->name,
+																			'[DESCRIPTION]'	=> core::post('message'),
+																			'[URL.QL]'		=> $ad->user->ql('oc-panel', array(	'controller'	=> 'messages',
+																																'action'		=> 'message',
+																																'id'			=> $ret->id_message)))
+												);
+						}
+					}
+					else
+					{
+	                    if(isset($_FILES['file']))
+	                        $file = $_FILES['file'];
+	                    else
+	                        $file = NULL;
 
-                    }
-                    else
-                        Alert::set(Alert::ERROR, __('Message not sent'));
+	                    //contact email is set use that one
+	                    if( isset($ad->cf_contactemail) AND Valid::email($ad->cf_contactemail))
+	                        $to = $ad->cf_contactemail;
+	                    else
+	                        $to = NULL;
 
-                    
-                    HTTP::redirect(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
-			    }
-                else
-                {
-                    Alert::set(Alert::SUCCESS, __('This email has been considered as spam! We are sorry but we can not send this email.'));
-                }
+	                    $ret = $user->email('user-contact',array('[EMAIL.BODY]'		=> core::post('message'),
+	                                                             '[AD.NAME]'        => $ad->title,
+	                        									 '[EMAIL.SENDER]'	=> $name_from,
+	                        									 '[EMAIL.FROM]'		=> $email_from,
+	                                                             '[URL.AD]'         => Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))
+	                                                             ),
+	                                                        $email_from,
+	                                                        $name_from,
+	                                                        $file, $to);
+					}
+
+					//if succesfully sent
+					if ($ret)
+					{
+						Alert::set(Alert::SUCCESS, __('Your message has been sent'));
+
+						// we are updating field of visit table (contact)
+						$visit = new Model_Visit();
+
+						$visit->where('id_ad', '=', $this->request->param('id'))
+										->where('ip_address', '=',ip2long(Request::$client_ip))
+										->order_by('created', 'desc')
+										->limit(1)->find();
+						if ($visit->loaded())
+						{
+							$visit->contacted = 1;
+							try {
+								$visit->save();
+							} catch (Exception $e) {
+								//throw 500
+								throw HTTP_Exception::factory(500,$e->getMessage());
+							}
+						}
+
+					}
+					else
+						Alert::set(Alert::ERROR, __('Message not sent'));
+
+
+					HTTP::redirect(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
+				}
+				else
+				{
+					Alert::set(Alert::SUCCESS, __('This email has been considered as spam! We are sorry but we can not send this email.'));
+				}
             }
 			else
 			{
@@ -188,11 +211,30 @@ class Controller_Contact extends Controller {
                 //akismet spam filter
                 if(!core::akismet($name_from, $email_from,core::post('message')))
                 {
-                    $ret = $user->email('user-profile-contact',array('[EMAIL.BODY]'     =>core::post('message'),
-                                                                    '[EMAIL.SENDER]'   =>$name_from,
-                                                                    '[EMAIL.SUBJECT]'   =>core::post('subject'),
-                                                                    '[EMAIL.FROM]'     =>$email_from),$email_from,core::post('name'));
-                    
+					if(core::config('general.messaging'))
+					{
+						$ret = Model_Message::send_user(core::post('message'), $this->user->id_user, $user->id_user);
+						
+						if ($ret !== FALSE)
+                        {
+							$user->email('messaging-user-contact', array(	'[FROM.NAME]'	=> $this->user->name,
+																			'[TO.NAME]'		=> $user->name,
+																			'[DESCRIPTION]'	=> core::post('message'),
+																			'[URL.QL]'		=> $user->ql('oc-panel', array( 'controller'	=> 'messages',
+																															'action'		=> 'message',
+																															'id'			=> $ret->id_message)))
+										);
+						}
+					}
+					else
+					{
+	                    $ret = $user->email('user-profile-contact',	array(	'[EMAIL.BODY]'		=> core::post('message'),
+																			'[EMAIL.SENDER]'	=> $name_from,
+	                                                                    	'[EMAIL.SUBJECT]'	=> core::post('subject'),
+	                                                                    	'[EMAIL.FROM]'		=> $email_from),
+																	$email_from, core::post('name'));
+					}
+
                     //if succesfully sent
                     if ($ret)
                         Alert::set(Alert::SUCCESS, __('Your message has been sent'));

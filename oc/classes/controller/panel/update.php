@@ -29,6 +29,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'twocheckout_sandbox',
                                'group_name'     =>'payment', 
                                'config_value'   => 0),
+                        array( 'config_key'     =>'messaging',
+                               'group_name'     =>'general', 
+                               'config_value'   => 0),
                         );
         
         Model_Config::config_array($configs);
@@ -75,6 +78,27 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                 'from_email'=>core::config('email.notify_email'),
                                 'type'=>'email',
                                 'status'=>'1'),
+                          array('order'=>0,
+                                'title'=>'New reply: [TITLE]',
+                                'seotitle'=>'messaging-reply',
+                                'description'=>'[URL.QL]\n\n[DESCRIPTION]',
+                                'from_email'=>core::config('email.notify_email'),
+                                'type'=>'email',
+                                'status'=>'1'),
+                          array('order'=>0,
+                                'title'=>'[FROM.NAME] sent you a direct message',
+                                'seotitle'=>'messaging-user-contact',
+                                'description'=>'Hello [TO.NAME],\n\n[FROM.NAME] have a message for you:\n\n[DESCRIPTION]\n\n[URL.QL]\n\nRegards!',
+                                'from_email'=>core::config('email.notify_email'),
+                                'type'=>'email',
+                                'status'=>'1'),
+                          array('order'=>0,
+                                'title'=>'Hello [TO.NAME]!',
+                                'seotitle'=>'messaging-ad-contact',
+                                'description'=>'You have been contacted regarding your advertisement:\n\n`[AD.NAME]`.\n\nUser [FROM.NAME], have a message for you:\n\n[DESCRIPTION]\n\n[URL.QL]\n\nRegards!',
+                                'from_email'=>core::config('email.notify_email'),
+                                'type'=>'email',
+                                'status'=>'1'),
                         );
 
         Model_Content::content_array($contents);
@@ -103,6 +127,13 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         {
             DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES 
                                                                          (1, 'myads.*'),(5, 'myads.*'),(7, 'myads.*')")->execute();
+        }catch (exception $e) {}
+            
+        //messages access
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES 
+                                                                         (1, 'messages.*'),(5, 'messages.*'),(7, 'messages.*')")->execute();
         }catch (exception $e) {}
     }
 

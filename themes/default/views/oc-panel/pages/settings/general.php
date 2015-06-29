@@ -343,6 +343,26 @@
                     </div>
 
                     <div class="form-group">
+                        <?= FORM::label($forms['messaging']['id'], __("Activates Messaging System"), array('class'=>'control-label col-sm-4', 'for'=>$forms['messaging']['id']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= Form::checkbox($forms['messaging']['key'], 1, (bool) $forms['messaging']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"),
+                                'class' => 'onoffswitch-checkbox',
+                                'id' => $forms['messaging']['id'],
+                                'data-content'=> __("Once set to TRUE, enables Messaging System"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>__("Activates Messaging System"),
+                                ))?>
+                                <?= FORM::label($forms['messaging']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['messaging']['id']))?>
+                                <?= FORM::hidden($forms['messaging']['key'], 0);?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <?= FORM::label($forms['black_list']['id'], "<a target='_blank' href='http://docs.yclas.com/activate-blacklist-works/'>".__("Black List")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['black_list']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
