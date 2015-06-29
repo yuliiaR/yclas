@@ -101,7 +101,7 @@ class Controller_Contact extends Controller {
 						//price?
 						$price	= (core::post('price') !== NULL AND is_numeric(core::post('price'))) ? core::post('price') : NULL;
 
-						$ret	= Model_Message::send_ad(core::post('message'), $this->user->name, $ad->id_ad, $price);
+						$ret	= Model_Message::send_ad(core::post('message'), $this->user->id_user, $ad->id_ad, $price);
 						
 						if ($ret !== FALSE)
                         {

@@ -46,7 +46,7 @@
                                     <span class="label label-warning"><?=__('Unread')?></span>
                                 <?endif?>
                                 <br>
-                                <a href="<?=Route::url('profile',  array('seoname'=>$message->from->seoname))?>"><?=$message->from->name?></a>
+                                <a href="<?=Route::url('profile', array('seoname' => $message->from->seoname))?>"><?=$message->from->name?></a>
                             </p>
                         </td>
                         <td><?=$message->parent->created?></td>

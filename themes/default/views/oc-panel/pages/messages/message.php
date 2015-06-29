@@ -18,7 +18,7 @@
             <?foreach ($messages as $message):?>
                 <tr>
                     <td class="text-center">
-                        <strong><?=$message->from->name?></strong>
+                        <strong><a href="<?=Route::url('profile', array('seoname' => $message->from->seoname))?>"><?=$message->from->name?></a></strong>
                     </td>
                     <td>
                         <em>
