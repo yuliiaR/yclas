@@ -298,7 +298,7 @@ class Model_Message extends ORM {
 
         if ($this->id_user_to == $id_user AND $this->status == Model_Message::STATUS_NOTREAD)
         {
-            $this->date_read = Date::unix2mysql();
+            $this->read_date = Date::unix2mysql();
             $this->status = Model_Message::STATUS_READ;
             try {
                 $this->save();
