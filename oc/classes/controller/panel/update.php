@@ -114,7 +114,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                       `id_user_to` int(10) unsigned NOT NULL,
                                       `message` text NOT NULL,
                                       `price` decimal(14,3) NOT NULL DEFAULT '0',
-                                      `date_read` datetime  DEFAULT NULL,
+                                      `read_date` datetime  DEFAULT NULL,
                                       `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                       `status` tinyint(1) NOT NULL DEFAULT 0,
                                       PRIMARY KEY (id_message) USING BTREE
