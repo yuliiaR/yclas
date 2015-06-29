@@ -37,7 +37,12 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                                     ->limit($pagination->items_per_page)
                                     ->offset($pagination->offset)
                                     ->find_all();
-
+            
+            $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen');
+                                    
+            $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
+                                                        'js/messages.js');
+                                                                                
             $this->template->content = View::factory('oc-panel/pages/messages/index', array('messages'      => $messages,
                                                                                             'pagination'    => $pagination,
                                                                                             'user'          => $this->user));

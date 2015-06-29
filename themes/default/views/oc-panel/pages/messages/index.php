@@ -34,7 +34,10 @@
             </thead>
             <tbody>
                 <?foreach ($messages as $message):?>
-                    <tr style="<?=($message->status == Model_Message::STATUS_NOTREAD AND $message->from->id_user != Auth::instance()->get_user()->id_user) ? 'font-weight: bold;' : NULL?>">
+                    <tr class="message" 
+                        data-url="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>($message->id_message_parent != NULL) ? $message->id_message_parent : $message->id_message))?>"
+                        style="<?=($message->status == Model_Message::STATUS_NOTREAD AND $message->from->id_user != Auth::instance()->get_user()->id_user) ? 'font-weight: bold;' : NULL?>"
+                    >
                         <td>
                             <p>
                                 <?if(isset($message->ad->title)):?>
@@ -50,7 +53,7 @@
                             </p>
                         </td>
                         <td><?=$message->parent->created?></td>
-                        <td><?=(empty($message->parent->date_read))?__('None'):$message->created?></td>
+                        <td><?=(empty($message->parent->read_date))?__('None'):$message->created?></td>
                         <td class="text-right">
                             <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>($message->id_message_parent != NULL) ? $message->id_message_parent : $message->id_message))?>" 
                                 class="btn btn-xs <?=($message->status == Model_Message::STATUS_NOTREAD AND $message->from->id_user != Auth::instance()->get_user()->id_user) ? 'btn-warning' : 'btn-default'?>"
