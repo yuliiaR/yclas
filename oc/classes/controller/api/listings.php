@@ -85,7 +85,7 @@ class Controller_Api_Listings extends Api_Auth {
                     //sorting by distance, lets add it!
                     if (isset($ad->distance))
                         $a['distance'] = i18n::format_measurement($ad->distance);
-
+                    $a['url'] = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
                     $output[] = $a;
                 }
 
@@ -123,11 +123,12 @@ class Controller_Api_Listings extends Api_Auth {
                     $a['images'] = array_values($ad->get_images());
                     $a['category'] = $ad->category->as_array();
                     $a['location'] = $ad->location->as_array();
+                    $a['user']     = Controller_Api_Users::get_user_array($ad->user);
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
                     //sorting by distance, lets add it!
                     if (isset($ad->distance))
                         $a['distance'] = i18n::format_measurement($ad->distance);
-
+                    $a['url'] = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
                     $this->rest_output(array('ad' => $a));
                 }
                 else
