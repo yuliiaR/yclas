@@ -139,7 +139,7 @@ class Model_Order extends ORM {
             //depending on the product different actions
             switch ($this->id_product) {
                 case Model_Order::PRODUCT_AD_SELL:
-                        $ad->sale($this->user);
+                        $ad->sale($this);
                     break;
                 case Model_Order::PRODUCT_TO_TOP:
                         $ad->to_top();
