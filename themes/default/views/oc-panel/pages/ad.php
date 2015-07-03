@@ -188,7 +188,7 @@
             </td>
             
 			<td width="120" style="width:120px">
-				<a class="btn btn-primary ajax-load" 
+				<a class="btn btn-primary" 
 					href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
 					rel="tooltip" title="<?=__('Update')?>">
 					<i class="glyphicon   glyphicon-edit"></i>
