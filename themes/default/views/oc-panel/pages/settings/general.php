@@ -193,7 +193,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['html_head']['id'], __('HTML in HEAD element'), array('class'=>'control-label col-sm-4', 'for'=>$forms['html_head']['id']))?>
+                        <?= FORM::label($forms['html_head']['id'], "<a target='_blank' href='http://docs.yclas.com/html-in-head-element/'>".__('HTML in HEAD element')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['html_head']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::textarea($forms['html_head']['key'], $forms['html_head']['value'], array(
                             'placeholder' => '',
@@ -210,7 +210,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['html_footer']['id'], __('HTML in footer'), array('class'=>'control-label col-sm-4', 'for'=>$forms['html_footer']['id']))?>
+                        <?= FORM::label($forms['html_footer']['id'], "<a target='_blank' href='http://docs.yclas.com/html-in-footer/'>".__('HTML in footer')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['html_footer']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::textarea($forms['html_footer']['key'], $forms['html_footer']['value'], array(
                             'placeholder' => '',

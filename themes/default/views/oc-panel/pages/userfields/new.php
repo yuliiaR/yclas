@@ -2,6 +2,7 @@
 
 <div class="page-header">
 	<h1><?=__('New Custom Field')?></h1>
+	<a target='_blank' href='http://docs.yclas.com/users-custom-fields/'><?=__('Read more')?></a>
 </div>
         
 <form class="well form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'new'))?>">         
