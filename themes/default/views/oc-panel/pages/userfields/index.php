@@ -11,6 +11,7 @@
             <a class="btn btn-success pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>" title="<?=__('Browse Themes')?>"><?=__('Browse Themes')?></a>
         </p>
     <?endif?>
+    <a target='_blank' href='http://docs.yclas.com/users-custom-fields/'><?=__('Read more')?></a>
 </div>
 
 <div class="row">
