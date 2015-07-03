@@ -3,12 +3,6 @@
 
 class Controller_Api_Users extends Api_Auth {
 
-
-    //I do not want to return this fields...
-     private    $_hidden_fields =  array('password','token','api_token',
-                                            'hybridauth_provider_uid','token_created','token_expires',
-                                            'user_agent');
-
     /**
      * Handle GET requests.
      */
@@ -41,20 +35,8 @@ class Controller_Api_Users extends Api_Auth {
 
                 //as array
                 foreach ($users as $user)
-                {
-                    $u = $user->as_array();
-                    $u['image'] = $user->get_profile_image();
-
-                    //remove the hidden fields
-                    foreach ($u as $key => $value) 
-                    {
-                        if(in_array($key,$this->_hidden_fields))
-                            unset($u[$key]);
-                    }
-
-                    $output[] = $u;
-                }
-
+                    $output[] = self::get_user_array($user);
+                
                 $this->rest_output(array('users' => $output),200,$count,($pagination!==FALSE)?$pagination:NULL);
             }
         }
@@ -76,19 +58,7 @@ class Controller_Api_Users extends Api_Auth {
             {
                 $user = new Model_User($id_user);
                 if ($user->loaded() AND $user->status == Model_User::STATUS_ACTIVE)
-                {
-                    $res = $user->as_array();
-                    $res['image']     = $user->get_profile_image();
-
-                    //remove the hidden fields
-                    foreach ($res as $key => $value) 
-                    {
-                        if(in_array($key,$this->_hidden_fields))
-                            unset($res[$key]);
-                    }
-
-                    $this->rest_output(array('user' => $res));
-                }
+                    $this->rest_output(array('user' => self::get_user_array($user)));
                 else
                     $this->_error(__('User not found'),404);
             }
@@ -101,6 +71,26 @@ class Controller_Api_Users extends Api_Auth {
             $this->_error($khe);
             return;
         }
+    }
+
+    public static function get_user_array($user)
+    {
+        //I do not want to return this fields...
+        $hidden_fields =  array('password','token','api_token',
+                                            'hybridauth_provider_uid','token_created','token_expires',
+                                            'user_agent');
+
+        $res = $user->as_array();
+        $res['image']     = $user->get_profile_image();
+
+        //remove the hidden fields
+        foreach ($res as $key => $value) 
+        {
+            if(in_array($key,$hidden_fields))
+                unset($res[$key]);
+        }
+
+        return $res;
     }
 
 
