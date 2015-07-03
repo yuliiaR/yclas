@@ -856,30 +856,30 @@ class Model_Ad extends ORM {
 
 
   
-    public function sale( Model_User $user_buyer )
+    public function sale (Model_Order $order)
     {
-        if($this->loaded())
+        if ($this->loaded())
         {    
             // decrease limit of ads, if 0 deactivate
-            if($this->stock >0)
+            if ($this->stock > 0)
             {
-                $stock = $this->stock-1;
+                $this->stock = $this->stock - 1;
 
                 //deactivate the ad
-                if($stock == 0)
+                if ($this->stock == 0)
                 {
                     $this->status = Model_Ad::STATUS_UNAVAILABLE;
                     
-                    //send email to owner that the he run out of stock
-                    $url_edit = $user->ql('oc-panel',array( 'controller'=> 'myads', 
-                                                            'action'    => 'update',
-                                                            'id'        => $this->id_ad),TRUE);
+                    //send email to owner that he run out of stock
+                    $url_edit = $this->user->ql('oc-panel', array( 'controller' => 'myads', 
+                                                                   'action'     => 'update',
+                                                                   'id'         => $this->id_ad), TRUE);
 
-                    $email_content = array( '[URL.EDIT]'        =>$url_edit,
-                                            '[AD.TITLE]'        =>$this->title);
+                    $email_content = array( '[URL.EDIT]' => $url_edit,
+                                            '[AD.TITLE]' => $this->title);
 
                     // send email to ad OWNER
-                    $this->user->email('out-of-stock',$email_content);
+                    $this->user->email('out-of-stock', $email_content);
                 }
             
             }
@@ -893,15 +893,15 @@ class Model_Ad extends ORM {
                 
             $url_ad = Route::url('ad', array('category'=>$this->category->seoname,'seotitle'=>$this->seotitle));
 
-            $email_content = array('[URL.AD]'      =>$url_ad,
-                                    '[AD.TITLE]'     =>$this->title,
-                                    '[ORDER.ID]'      =>$this->id_order,
-                                    '[PRODUCT.ID]'    =>$this->id_product);
+            $email_content = array( '[URL.AD]'     => $url_ad,
+                                    '[AD.TITLE]'   => $this->title,
+                                    '[ORDER.ID]'   => $order->id_order,
+                                    '[PRODUCT.ID]' => $order->id_product);
             // send email to BUYER
-            $user_buyer->email('ads-purchased',$email_content);
+            $order->user->email('ads-purchased', $email_content);
 
             // send email to ad OWNER
-            $this->user->email('ads-sold',$email_content);
+            $this->user->email('ads-sold', $email_content);
 
             
         }
