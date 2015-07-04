@@ -119,9 +119,11 @@ class Controller_Api_Ads extends Api_User {
             {
                 $this->_error($return['error']);
             }
+            //all went good!
             elseif (isset($return['message']) AND isset($return['ad']))
             {
-                $this->rest_output($return);
+                $ad = $return['ad']->as_array();
+                $this->rest_output(array('message'=>$return['message'],'checkout_url'=>$return['checkout_url'],'ad'=>$ad));
             }
                     
         }
