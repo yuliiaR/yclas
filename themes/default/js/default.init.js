@@ -90,7 +90,11 @@ $(function(){
                     lng = position.coords.longitude
                     setCookie('mylat',lat);
                     setCookie('mylng',lng);
-                    location.reload();
+                    // show modal
+                    $.get($('meta[name="application-name"]').data('baseurl'), function(data) {
+                        $('input[name="auto_locate"]').after($(data).find("#auto-locations"));
+                        $('#auto-locations').modal('show');
+                    })
                 },
                 error: function(error) {
                     alert('Geolocation failed: '+error.message);
