@@ -453,17 +453,22 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`id_
 (153, 'es_ES', 0, 'Opinión nueva para [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\r\n\r\n[RATE]\r\n\r\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:15', 'email', 1);");
 
 
+
 /**
  * Access
  */
-mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."roles` (`id_role`, `name`, `description`) VALUES (1, 'user', 'Normal user'), (5, 'translator', 'User + Translations'), (7, 'moderator', 'Limited access'), (10, 'admin', 'Full access');");
-mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_access`, `id_role`, `access`) VALUES 
-            (1, 10, '*.*'),
-            (2, 1, 'profile.*'),(3, 1, 'stats.user'),
-            (4, 5, 'translations.*'),(5, 5, 'profile.*'),(6, 5, 'stats.user'),(7, 5, 'content.*'),
-            (8, 7, 'profile.*'),(9, 7, 'content.*'),(10, 7, 'stats.user'),(11, 7, 'blog.*'),(12, 7, 'translations.*'),(13, 7, 'ad.*'),(14, 7, 'widgets.*'),(15, 7, 'menu.*'),(16, 7, 'category.*'),(17, 7, 'location.*'),
-            (18, 1, 'myads.*'),(19, 5, 'myads.*'),(20, 7, 'myads.*'),
-            (18, 1, 'messages.*'),(19, 5, 'messages.*'),(20, 7, 'messages.*');");
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."roles` (`id_role`, `name`, `description`) VALUES 
+    (1, 'user', 'Normal user'), 
+    (5, 'translator', 'User + Translations'), 
+    (7, 'moderator', 'Moderator'), 
+    (10, 'admin', 'Full access');");
+
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_role`, `access`) VALUES 
+            (10, '*.*'),
+            (1, 'profile.*'),(1, 'stats.user'),(1, 'myads.*'),(1, 'messages.*'),
+            (5, 'translations.*'),(5, 'profile.*'),(5, 'stats.user'),(5, 'content.*'),(5, 'myads.*'),(5, 'messages.*'),
+            (7, 'profile.*'),(7, 'content.*'),(7, 'stats.user'),(7, 'blog.*'),(7, 'translations.*'),(7, 'ad.*'),
+            (7, 'widgets.*'),(7, 'menu.*'),(7, 'category.*'),(7, 'location.*'),(7, 'myads.*'),(7, 'messages.*');");
 
 /**
  * Create user God/Admin 
