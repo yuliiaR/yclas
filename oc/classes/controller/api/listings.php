@@ -95,7 +95,6 @@ class Controller_Api_Listings extends Api_Auth {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
     }
 
@@ -141,7 +140,6 @@ class Controller_Api_Listings extends Api_Auth {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
        
     }

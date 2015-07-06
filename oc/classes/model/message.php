@@ -95,8 +95,15 @@ class Model_Message extends ORM {
                     $message->save();
                 }
 
-                return $message;
                 //send email?
+                
+                //notify user
+                $data = array('id_message' => $message->id_message_parent,
+                              'title'      => sprintf(__('New Message from %s'),$user->from->name));
+                $message->to->push_notification($message_text,$data);
+
+                return $message;
+
             } catch (Exception $e) {
                 return FALSE;
             }

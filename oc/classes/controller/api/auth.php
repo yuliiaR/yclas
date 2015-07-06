@@ -14,6 +14,18 @@ class Controller_Api_Auth extends Api_Auth {
         {
             if ($user->loaded())
             {   
+                //save device id only if its different
+                if (Core::request('device_id')!==NULL AND $user->device_id!=Core::request('device_id'))
+                {
+                    $user->device_id = Core::request('device_id');
+                    try 
+                    {
+                        $user->save();
+                    }
+                    catch (Kohana_HTTP_Exception $khe)
+                    {}
+                }
+
                 $res = $user->as_array();
                 $res['user_token'] = $user->api_token();
                 $res['image']      = $user->get_profile_image();

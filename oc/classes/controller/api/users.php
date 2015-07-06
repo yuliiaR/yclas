@@ -43,7 +43,6 @@ class Controller_Api_Users extends Api_Auth {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
     }
 
@@ -69,7 +68,6 @@ class Controller_Api_Users extends Api_Auth {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
     }
 
@@ -78,7 +76,7 @@ class Controller_Api_Users extends Api_Auth {
         //I do not want to return this fields...
         $hidden_fields =  array('password','token','api_token',
                                             'hybridauth_provider_uid','token_created','token_expires',
-                                            'user_agent');
+                                            'user_agent','device_id');
 
         $res = $user->as_array();
         $res['image']     = $user->get_profile_image();
