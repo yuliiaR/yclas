@@ -29,7 +29,6 @@ class Controller_Api_Customfields extends Api_Controller {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
     }
 
@@ -56,7 +55,6 @@ class Controller_Api_Customfields extends Api_Controller {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
     }
 
@@ -78,7 +76,6 @@ class Controller_Api_Customfields extends Api_Controller {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
     }
 

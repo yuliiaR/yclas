@@ -47,7 +47,6 @@ class Controller_Api_Profile extends Api_User {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
        
     }

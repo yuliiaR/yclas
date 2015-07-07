@@ -87,6 +87,27 @@ class Model_Subscribe extends ORM {
                                     $replace);
 
             }
+
+            //notifications
+            if (core::config('general.gcm_apikey')!=NULL )
+            {
+                $query = DB::select('device_id')
+                            ->from('users')
+                            ->where('id_user', 'IN', $subscribers_id)
+                            ->where('status','=',Model_User::STATUS_ACTIVE)
+                            ->where('device_id', 'IS NOT', NULL)
+                            ->execute();
+
+                $devices = $query->as_array();
+
+                if (count($devices)>0)
+                {
+                    $data = array('id_ad' => $ad->id_ad,
+                                  'title' => $ad->title);
+
+                    Core::push_notification($devices,__('New advertisement matching your preferences'),$data);
+                }
+            }
         }
 
     }

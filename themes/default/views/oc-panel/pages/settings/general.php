@@ -193,6 +193,22 @@
                     </div>
 
                     <div class="form-group">
+                        <?= FORM::label($forms['gcm_apikey']['id'], "<a target='_blank' href='http://docs.yclas.com/native-apps/#push-notifications'>".__('GCM API Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['gcm_apikey']['id']))?>
+                        <div class="col-sm-8">
+                            <?= FORM::input($forms['gcm_apikey']['key'], $forms['gcm_apikey']['value'], array(
+                            'placeholder' => "", 
+                            'class' => 'tips form-control input-sm', 
+                            'id' => $forms['gcm_apikey']['id'],
+                            'data-content'=> __("Push notifications for your native app. Using Google Cloud Messaging, insert your API Key here."),
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"bottom",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>__("Push notifications"), 
+                            ))?> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <?= FORM::label($forms['html_head']['id'], "<a target='_blank' href='http://docs.yclas.com/html-in-head-element/'>".__('HTML in HEAD element')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['html_head']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::textarea($forms['html_head']['key'], $forms['html_head']['value'], array(

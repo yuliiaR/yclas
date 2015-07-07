@@ -32,6 +32,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'messaging',
                                'group_name'     =>'general', 
                                'config_value'   => 0),
+                        array( 'config_key'     =>'gcm_apikey',
+                               'group_name'     =>'general', 
+                               'config_value'   => ''),
                         );
         
         Model_Config::config_array($configs);
@@ -54,6 +57,11 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `notification_date` DATETIME NULL DEFAULT NULL ;")->execute();
         }catch (exception $e) {}
 
+        //device ID
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `device_id` varchar(255) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
 
         //crontab ad to expire
         try

@@ -33,7 +33,6 @@ class Controller_Api_Favorites extends Api_User {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
     }
 
@@ -55,7 +54,6 @@ class Controller_Api_Favorites extends Api_User {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
     }
 
@@ -79,7 +77,6 @@ class Controller_Api_Favorites extends Api_User {
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
-            return;
         }
     }
 
