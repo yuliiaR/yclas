@@ -88,6 +88,12 @@ function createCategorySelect () {
                     }
                 });
             }
+            else
+            {
+                // set empty value
+                $('#category-selected').attr('value', '');
+                $('#paid-category').addClass('hidden');
+            }
             
             // get current category level
             current_level = $('#category-chained .option[data-value="'+ value +'"]').closest('.selectize-control').prev().data('level');
