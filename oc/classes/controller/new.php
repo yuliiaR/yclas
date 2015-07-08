@@ -47,12 +47,13 @@ class Controller_New extends Controller
         
         $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
                                         'css/jasny-bootstrap.min.css' => 'screen',
+                                        '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css' => 'screen');
                                         
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.bbcode.min.js';
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
-        $this->template->scripts['footer'][] = 'js/jquery.chained.min.js';
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js';
+        $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js';
         $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.10/ouibounce.min.js';
         if(core::config('advertisement.map_pub_new'))
         {
@@ -68,13 +69,11 @@ class Controller_New extends Controller
             HTTP::redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
         }
 
-        //find all, for populating form select fields 
-        $categories         = Model_Category::get_as_array();  
-        $order_categories   = Model_Category::get_multidimensional();
-        $order_parent_deep  = Model_Category::get_by_deep();
+        $categories = new Model_Category;
+        $categories = $categories->where('id_category_parent', '=', '1');
 
         // NO categories redirect ADMIN to categories panel
-        if(count($order_categories) == 0)
+        if ($categories->count_all() == 0)
         {
             if(Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
             {
@@ -89,9 +88,8 @@ class Controller_New extends Controller
         }
 
         //get locations
-        $locations         = Model_Location::get_as_array();  
-        $order_locations   = Model_Location::get_multidimensional();
-        $loc_parent_deep   = Model_Location::get_by_deep();
+        $locations = new Model_Location;
+        $locations = $locations->where('id_location', '!=', '1');
         
         // bool values from DB, to show or hide this fields in view
         $form_show = array('captcha'    =>core::config('advertisement.captcha'),
@@ -131,13 +129,7 @@ class Controller_New extends Controller
         }
 
         //render view publish new
-        $this->template->content = View::factory('pages/ad/new', array('categories'         => $categories,
-                                                                       'order_categories'   => $order_categories,
-                                                                       'order_parent_deep'  => $order_parent_deep,
-                                                                       'locations'          => $locations,
-                                                                       'order_locations'    => $order_locations,
-                                                                       'loc_parent_deep'    => $loc_parent_deep,
-                                                                       'form_show'          => $form_show,
+        $this->template->content = View::factory('pages/ad/new', array('form_show'          => $form_show,
                                                                        'id_category'        => $id_category,
                                                                        'selected_category'  => $selected_category,
                                                                        'id_location'        => $id_location,
@@ -154,7 +146,7 @@ class Controller_New extends Controller
                 //validate location since its optional
                 if(core::config('advertisement.location'))
                 {
-                    if(count($locations) > 1)
+                    if ($locations->count_all() > 1)
                         $validation = $validation->rule('location', 'not_empty')
                         ->rule('location', 'digit');
                 }
