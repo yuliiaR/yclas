@@ -166,7 +166,7 @@ class Model_Order extends ORM {
      * @param  string   $description 
      * @return Model_Order                
      */
-    public static function new_order(Model_Ad $ad, Model_User $user, $id_product, $amount, $currency = NULL, $description = NULL, $featured_days = NULL)
+    public static function new_order(Model_Ad $ad, $user, $id_product, $amount, $currency = NULL, $description = NULL, $featured_days = NULL)
     {
         if ($currency === NULL)
             $currency = core::config('payment.paypal_currency');

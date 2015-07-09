@@ -99,7 +99,7 @@ class Model_Message extends ORM {
                 
                 //notify user
                 $data = array('id_message' => $message->id_message_parent,
-                              'title'      => sprintf(__('New Message from %s'),$user->from->name));
+                              'title'      => sprintf(__('New Message from %s'),$message->from->name));
                 $message->to->push_notification($message_text,$data);
 
                 return $message;
