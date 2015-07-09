@@ -198,17 +198,36 @@
     $(function(){
         $(".img-delete").click(function(e) {
             var href = $(this).attr('href');
-            var confirm = $(this).data('confirm');
+            var title = $(this).data('title');
+            var text = $(this).data('text');
             var img_id = $(this).attr('value');
-            $.ajax({
-                type: "POST",
-                url: href,
-                data: {img_delete: img_id},
-                cache: false
-            }).done(function(result) {
-                $('#img' + img_id).toggle('slide');
-            });
+            var confirmButtonText = $(this).data('btnoklabel');
+            var cancelButtonText = $(this).data('btncancellabel');
             e.preventDefault();
+            swal({
+                title: title,
+                text: text,
+                type: "info",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: confirmButtonText,
+                cancelButtonText: cancelButtonText,
+                allowOutsideClick: true,
+            },
+            function(){
+                $('#processing-modal').modal('show');
+                $.ajax({
+                    type: "POST",
+                    url: href,
+                    data: {img_delete: img_id},
+                    cache: false
+                }).done(function(result) {
+                    $('#img' + img_id).toggle('slide');
+                    $('#processing-modal').modal('hide');
+                }).fail(function() {
+                    $('#processing-modal').modal('hide');
+                });
+            });
         }); 
     });
     
