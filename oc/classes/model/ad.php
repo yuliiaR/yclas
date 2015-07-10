@@ -529,7 +529,7 @@ class Model_Ad extends ORM {
      * @param  string  $version 
      * @return string           
      */
-    public function image_name($id = 1, $type='',$version=NULL)
+    public function image_name($id = 1, $type='')
     {
         if (!$this->loaded())
             return FALSE;
