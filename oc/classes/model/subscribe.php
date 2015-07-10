@@ -89,6 +89,7 @@ class Model_Subscribe extends ORM {
             }
 
             //notifications
+            /*
             if (core::config('general.gcm_apikey')!=NULL )
             {
                 $query = DB::select('device_id')
@@ -107,7 +108,7 @@ class Model_Subscribe extends ORM {
 
                     Core::push_notification($devices,__('New advertisement matching your preferences'),$data);
                 }
-            }
+            }*/
         }
 
     }

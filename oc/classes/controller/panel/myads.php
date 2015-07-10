@@ -223,10 +223,10 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		$form = new Model_Ad($this->request->param('id'));
 		
 	
-		if(Auth::instance()->get_user()->id_user == $form->id_user 
+		if($form->loaded() AND (Auth::instance()->get_user()->id_user == $form->id_user 
             OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN
-            OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_MODERATOR)
-		{
+            OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_MODERATOR))
+        {
             $original_category = $form->category;
 
 			$extra_payment = core::config('payment');
@@ -449,7 +449,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         if (empty($list_ad))
         {
             $ads = new Model_Ad();
-            $collection_of_user_ads = $ads->where('id_user', '=', $user->id_user)->find_all();
+            $collection_of_user_ads = $ads->where('id_user', '=', $this->user->id_user)->find_all();
 
             $list_ad = array();
             foreach ($collection_of_user_ads as $key) {
