@@ -198,23 +198,27 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         if (Theme::get('cdn_files') == FALSE)
         {
             $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
+                                            '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
                                             '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css' => 'screen');
             
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
-                                                        'js/jquery.chained.min.js',
                                                         '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js',
+                                                        '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
                                                         'js/oc-panel/edit_ad.js');
         }
         else
         {
-            $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen');
+            $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
+                                            '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
+                                            '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css' => 'screen');
             
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
-                                                        'js/jquery.chained.min.js',
                                                         '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
+                                                        '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js',
+                                                        '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
                                                         'js/oc-panel/edit_ad.js');
         }
 
@@ -239,19 +243,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             $original_category = $form->category;
 
 			$extra_payment = core::config('payment');
-
-            $cat = new Model_Category();
-            $loc = new Model_Location();
-			
-            //find all, for populating form select fields 
-            $categories         = Model_Category::get_as_array();  
-            $order_categories   = Model_Category::get_multidimensional();
-            $parent_category    = Model_Category::get_by_deep();
-
-            //get locations
-            $locations         = Model_Location::get_as_array();  
-            $order_locations   = Model_Location::get_multidimensional();
-            $loc_parent_deep   = Model_Location::get_by_deep();
 
 			if ($this->request->post())
 			{
@@ -329,12 +320,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
             Breadcrumbs::add(Breadcrumb::factory()->set_title("Update"));
             $this->template->content = View::factory('oc-panel/profile/edit_ad', array('ad'                 =>$form, 
-                                                                                       'locations'          =>$locations,
-                                                                                       'order_locations'    =>$order_locations, 
-                                                                                       'categories'         =>$categories,
-                                                                                       'order_categories'   =>$order_categories,
-                                                                                       'order_parent_deep'  =>$parent_category,
-                                                                                       'loc_parent_deep'    =>$loc_parent_deep,
                                                                                        'extra_payment'      =>$extra_payment,
                                                                                        'orders'             =>$orders,
                                                                                        'fields'             => Model_Field::get_all()));

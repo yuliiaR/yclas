@@ -120,69 +120,55 @@
                     <fieldset>
                     
                         <!-- category select -->
-                        <div class="category_edit">
-                            <label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"><?=$ad->category->name?></label></label>  
-                            <br>
-                            <a class=" btn btn-default"><?=__('Edit category')?></a>
-                            <br><br>
-                        </div>
-                        <div class="category_chained hide">
-                            <label for="category"><span class="pull-left"><?=__('Category')?></span>
-                                <span class="label label-warning category-price ml-10"></span>
-                                <input value="<?=$ad->id_category?>" class="invisible pull-left" id="category-selected" name="category" style="height: 0; padding:0; width:0;" required ></input>
-                            </label>
-                            <div class="form-group">
-                                <?foreach ($order_parent_deep as $level => $categ):?>
-                                    <div class="col-md-4">
-                                    <select id="level-<?=$level?>" data-level="<?=$level?>" 
-                                            class="disable-chosen category_chained_select <?=(core::config('advertisement.parent_category') AND $level == 0)?'is_parent':NULL?> form-control">
-                                        <option value=""></option>
-                                        <?foreach ($categ as $c):?>
-                                            <?if($c['id']>1):?>
-                                            <option data-price="<?=($c['price']>0)?$c['price']:NULL?>" value="<?=$c['id']?>" class="<?=$c['id_category_parent']?>"><?=$c['name']?></option>
-                                            <?endif?>
-                                        <?endforeach?>
-                                    </select>
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <?= FORM::label('category', __('Category'), array('for'=>'category'))?>
+                                <div id="category-chained" class="row hidden"
+                                    data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" 
+                                    data-price0="<?=i18n::money_format(0)?>" 
+                                    <?=(core::config('advertisement.parent_category')) ? 'data-isparent' : NULL?>
+                                >
+                                    <div id="select-category-template" class="col-md-6 hidden">
+                                        <select class="disable-chosen select-category" placeholder="<?=__('Pick a category...')?>"></select>
                                     </div>
-                                <?endforeach?>
-
-                                <div class="clearfix"></div>
-                                <div class="col-md-4">
-                                    <label for="category"><?=__('Selected Category')?>: <label for="category" class="selected-category"><?=$ad->category->name?></label></label>  
+                                    <div id="paid-category" class="col-md-12 hidden">
+                                        <span class="help-block" data-title="<?=__('Category %s is a paid category: %d')?>"><span class="text-warning"></span></span>
+                                    </div>
                                 </div>
+                                <div id="category-edit" class="row">
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" placeholder="<?=$ad->category->name?>" disabled>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button"><?=__('Edit category')?></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input id="category-selected" name="category" value="<?=$ad->id_category?>" class="form-control invisible" style="height: 0; padding:0; width:1px; border:0;" required></input>
                             </div>
                         </div>
-                        <div class="location_edit">
-                            <label for="location"><?=__('Selected location')?>: <label for="location" class="selected-location"><?=$ad->location->name?></label></label>  
-                            <br>
-                            <a class=" btn btn-default"><?=__('Edit location')?></a>
-                            <br><br>
-                        </div>
-                        <div class="location_chained hide">
-                            <label for="location"><span class="pull-left"><?=__('Location')?></span>
-                                <span class="label label-warning ml-10"></span>
-                                <input value="<?=$ad->id_location?>" class="invisible pull-left" id="location-selected" name="location" style="height: 0; padding:0; width:0;" required></input>
-                            </label>
-
-                            <div class="form-group">
-                                <?foreach ($loc_parent_deep as $level => $locat):?>
-                                    <div class="col-md-4">
-                                    <select id="level-loc-<?=$level?>" data-level="<?=$level?>" 
-                                            class="disable-chosen location_chained_select form-control <?=($level != 0)?'hide':NULL?>">
-                                        <option value=""></option>
-                                        <?foreach ($locat as $l):?>
-                                            <?if($l['id']>1):?>
-                                            <option value="<?=$l['id']?>" class="<?=$l['id_location_parent']?>"><?=$l['name']?></option>
-                                            <?endif?>
-                                        <?endforeach?>
-                                    </select>
+                        
+                        <!-- location select -->
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <?= FORM::label('locations', __('Location'), array('for'=>'location'))?>
+                                <div id="location-chained" class="row hidden" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
+                                    <div id="select-location-template" class="col-md-6 hidden">
+                                        <select class="disable-chosen select-location" placeholder="<?=__('Pick a location...')?>"></select>
                                     </div>
-                                <?endforeach?>
-
-                                <div class="clearfix"></div>
-                                <div class="col-md-4">
-                                    <label for="location"><?=__('Selected location')?>: <label for="location" class="selected-location"></label></label>  
                                 </div>
+                                <div id="location-edit" class="row">
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" placeholder="<?=$ad->location->name?>" disabled>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button"><?=__('Edit location')?></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input id="location-selected" name="location" value="<?=$ad->id_location?>" class="form-control invisible" style="height: 0; padding:0; width:1px; border:0;" required></input>
                             </div>
                         </div>
 
