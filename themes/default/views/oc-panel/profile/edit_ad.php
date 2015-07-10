@@ -304,14 +304,15 @@
                                                     <img src="<?=$value['thumb']?>" class="img-rounded thumbnail" alt="">
                                                 </a>
                                                 <button class="btn btn-danger index-delete img-delete"
-                                                          data-confirm="<?=__('Delete?')?>" 
-                                                          type="submit" 
-                                                          name="img_delete"
-                                                          value="<?=$key?>" 
-                                                          href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
-                                                          rel="tooltip" 
-                                                          title="<?=__('Delete image')?>">
-                                                          <?=__('Delete')?>
+                                                        data-title="<?=__('Are you sure you want to delete?')?>" 
+                                                        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                        data-btnCancelLabel="<?=__('No way!')?>"
+                                                        type="submit" 
+                                                        name="img_delete"
+                                                        value="<?=$key?>" 
+                                                        href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
+                                                        title="<?=__('Delete image')?>">
+                                                        <?=__('Delete')?>
                                                 </button>
                                             </div>
                                         <?endif?>

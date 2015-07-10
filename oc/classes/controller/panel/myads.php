@@ -197,12 +197,14 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		//local files
         if (Theme::get('cdn_files') == FALSE)
         {
-            $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen');
+            $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
+                                            '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css' => 'screen');
             
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
                                                         'js/jquery.chained.min.js',
                                                         '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
+                                                        '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js',
                                                         'js/oc-panel/edit_ad.js');
         }
         else
@@ -223,10 +225,18 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		$form = new Model_Ad($this->request->param('id'));
 		
 	
-		if(Auth::instance()->get_user()->id_user == $form->id_user 
+        if($form->loaded() AND (Auth::instance()->get_user()->id_user == $form->id_user
             OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN
-            OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_MODERATOR)
+            OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_MODERATOR))
 		{
+            // deleting single image by path 
+            if(is_numeric($deleted_image = core::request('img_delete')))
+            {
+                $form->delete_image($deleted_image);
+                
+                $this->redirect(Route::url('oc-panel', array('controller'	=>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
+            }// end of img delete
+            
             $original_category = $form->category;
 
 			$extra_payment = core::config('payment');
@@ -244,20 +254,8 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             $order_locations   = Model_Location::get_multidimensional();
             $loc_parent_deep   = Model_Location::get_by_deep();
 
-			
-		
 			if ($this->request->post())
 			{
-				
-				// deleting single image by path 
-				if(is_numeric($deleted_image = core::post('img_delete')))
-				{
-					$form->delete_image($deleted_image);
-                    //TODO! usage of the api?
-					die();
-				}// end of img delete
-
-
                 $data = $this->request->post();
 
                 //to make it backward compatible with older themes: UGLY!!

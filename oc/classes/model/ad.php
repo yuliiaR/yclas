@@ -523,6 +523,28 @@ class Model_Ad extends ORM {
     }
 
     /**
+     * returns the images path name
+     * @param  integer $id      
+     * @param  string  $type    
+     * @param  string  $version 
+     * @return string           
+     */
+    public function image_name($id = 1, $type='',$version=NULL)
+    {
+        if (!$this->loaded())
+            return FALSE;
+
+        // image variables
+        $img_path    = $this->image_path();
+        $img_seoname = $this->seotitle;
+
+        if ($type=='thumb')
+            $type = 'thumb_';
+
+        return $img_path.$type.$img_seoname.'_'.$id.'.jpg';
+    }
+
+    /**
      * Deletes image from edit ad
      * @return bool
      */
@@ -539,16 +561,10 @@ class Model_Ad extends ORM {
             require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
             $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
             
-            $route = $this->image_path();
-            $seotitle = $this->seotitle;
-            
             for ($i=1; $i <= $this->has_images; $i++) 
             {
-                $filename_original = $seotitle.'_'.$i.'.jpg';
-                $filename_thumb = 'thumb_'.$seotitle.'_'.$i.'.jpg';
-                
-                $s3->deleteObject(core::config('image.aws_s3_bucket'), $route.$filename_thumb);
-                $s3->deleteObject(core::config('image.aws_s3_bucket'), $route.$filename_original);
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name($i));
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name($i, 'thumb'));
             }
         }
 
@@ -568,7 +584,6 @@ class Model_Ad extends ORM {
     public function delete_image($deleted_image)
     {
         $img_path = $this->image_path();
-        $img_seoname = $this->seotitle;
         
         // delete image from Amazon S3
         if (core::config('image.aws_s3_active'))
@@ -577,37 +592,37 @@ class Model_Ad extends ORM {
             $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
             
             //delete original image
-            $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.$deleted_image.'.jpg');
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name($deleted_image));
             //delete formated image
-            $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.$deleted_image.'.jpg');
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name($deleted_image,'thumb'));
             
             //re-ordering image file names
             for($i = $deleted_image; $i < $this->has_images; $i++)
             {
                 //rename original image
-                $s3->copyObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.($i+1).'.jpg', core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.$i.'.jpg', S3::ACL_PUBLIC_READ);
-                $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.$img_seoname.'_'.($i+1).'.jpg');
+                $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name(($i+1)), core::config('image.aws_s3_bucket'), $this->image_name($i), S3::ACL_PUBLIC_READ);
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name(($i+1)));
                 //rename formated image
-                $s3->copyObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg', S3::ACL_PUBLIC_READ);
-                $s3->deleteObject(core::config('image.aws_s3_bucket'), $img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg');
+                $s3->copyObject(core::config('image.aws_s3_bucket'), $this->image_name(($i+1),'thumb'), core::config('image.aws_s3_bucket'), $this->image_name($i,'thumb'), S3::ACL_PUBLIC_READ);
+                $s3->deleteObject(core::config('image.aws_s3_bucket'), $this->image_name(($i+1),'thumb'));
             }
         }
         
-        //delte image from local filesystem
+        //delete image from local filesystem
         if (!is_dir($img_path)) 
             return FALSE;
         else
-        {   
+        {
             //delete original image
-            @unlink($img_path.$img_seoname.'_'.$deleted_image.'.jpg');
+            @unlink($this->image_name($deleted_image));
             //delete formated image
-            @unlink($img_path.'thumb_'.$img_seoname.'_'.$deleted_image.'.jpg');
+            @unlink($this->image_name($deleted_image,'thumb'));
             
             //re-ordering image file names
             for($i = $deleted_image; $i < $this->has_images; $i++)
             {
-                @rename($img_path.$img_seoname.'_'.($i+1).'.jpg', $img_path.$img_seoname.'_'.$i.'.jpg');
-                @rename($img_path.'thumb_'.$img_seoname.'_'.($i+1).'.jpg', $img_path.'thumb_'.$img_seoname.'_'.$i.'.jpg');
+                @rename($this->image_name(($i+1)), $this->image_name($i));
+                @rename($this->image_name(($i+1),'thumb'), $this->image_name($i,'thumb'));
             }
         }
         $this->has_images = ($this->has_images > 0) ? $this->has_images-1 : 0;
