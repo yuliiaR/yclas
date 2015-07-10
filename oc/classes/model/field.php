@@ -315,7 +315,10 @@ class Model_Field {
      */
     public static function get_all($as_array = TRUE)
     {
-        return json_decode(core::config('advertisement.fields'),$as_array);
+        if ( ! is_null($fields = json_decode(core::config('advertisement.fields'),$as_array)) )
+            return $fields;
+        else
+            return array();
     }
 
     /**
