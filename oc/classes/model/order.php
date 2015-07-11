@@ -92,6 +92,10 @@ class Model_Order extends ORM {
                 'model'       => 'user',
                 'foreign_key' => 'id_user',
             ),
+        'coupon' => array(
+                'model'       => 'coupon',
+                'foreign_key' => 'id_coupon',
+            ),
     );
 
     /**
@@ -118,6 +122,9 @@ class Model_Order extends ORM {
             } catch (Exception $e) {
                 throw HTTP_Exception::factory(500,$e->getMessage());  
             }
+
+            //if saved delete coupon from session and -- number of coupons.
+            Model_Coupon::sale($this->coupon);
 
             //send email to site owner! new sale!! 
             if(core::config('email.new_ad_notify') == TRUE)
@@ -187,6 +194,13 @@ class Model_Order extends ORM {
         //if no unpaid create order
         if (!$order->loaded())
         {
+            //add coupon ID and discount only if not AD_SELL
+            if (Model_Coupon::valid($id_product))
+            {
+                $amount = Model_Coupon::price($id_product,$amount); 
+                $order->id_coupon = Model_Coupon::current()->id_coupon;
+            }
+
             //create order      
             $order = new Model_Order;
             $order->id_user       = $user->id_user;
@@ -327,4 +341,79 @@ class Model_Order extends ORM {
         Model_Config::set_value('payment','featured_plans',json_encode($plans));
     }
 
+
+    /**
+     * verifies pricing in an existing order
+     * @return void
+     */
+    public function check_pricing()
+    {
+
+        //update order based on the price and the amount of 
+        $days = core::get('featured_days');
+        if (is_numeric($days) AND ($price = Model_Order::get_featured_price($days)) !==FALSE )
+        {
+            $this->amount        = $price; //get price from config
+            $this->featured_days = $days;
+            $this->save();
+        }
+
+        //original coupon so we dont lose it while we do operations
+        $orig_coupon = $this->id_coupon;
+
+        //remove the coupon forced by get/post
+        if(core::request('coupon_delete') != NULL)
+            $this->id_coupon = NULL;
+        //maybe changed the coupon? from the form
+        elseif (Model_Coupon::valid($this->id_product) AND $this->id_coupon != Model_Coupon::current()->id_coupon )              
+            $this->id_coupon = Model_Coupon::current()->id_coupon;
+        //not valid coupon anymore, this can happen if they add a coupon now but they pay days later.
+        elseif($this->coupon->loaded() AND (
+                                            Date::mysql2unix($this->coupon->valid_date) < time()  OR
+                                            $this->coupon->status == 0 OR
+                                            $this->coupon->number_coupons == 0 
+                                            ))
+        {
+            Alert::set(Alert::INFO, __('Coupon not valid, expired or already used.'));
+            $this->coupon->clear();
+            $this->id_coupon = NULL;
+        }
+        
+        //recalculate price since it change the coupon
+        if ($orig_coupon != $this->id_coupon)
+        {
+            //add new discount
+            $this->amount = Model_Coupon::price($this->id_product,$this->original_price());
+
+            try {
+                $this->save();
+            } 
+            catch (Exception $e){
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+
+    }
+
+
+    public function original_price()
+    {
+        //get original price for the product
+        switch ($this->id_product) {
+            case self::PRODUCT_CATEGORY:
+                    $amount = $this->ad->category->price;
+                break;
+            case self::PRODUCT_TO_TOP:
+                    $amount = core::config('payment.pay_to_go_on_top');
+                break;
+            case self::PRODUCT_TO_FEATURED:
+                    $amount = Model_Order::get_featured_price($this->featured_days);
+                break;
+            case self::PRODUCT_AD_SELL:
+                    $amount =$this->ad->price;
+                break;
+        }
+
+        return $amount;
+    }
 }
