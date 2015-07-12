@@ -165,6 +165,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `id_user` int(10) unsigned NOT NULL,
   `id_ad` int(10) unsigned NULL,
   `id_product` varchar(20) NOT NULL, 
+  `id_coupon` int(10) unsigned DEFAULT NULL,
   `paymethod` varchar(20) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `pay_date` DATETIME  NULL,
@@ -294,6 +295,22 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."
   `status` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (id_message) USING BTREE
 ) ENGINE=MyISAM  DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+
+
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."coupons` (
+  `id_coupon` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product` int(10) unsigned NULL DEFAULT NULL,
+  `name` varchar(145) NOT NULL,
+  `notes` varchar(245) DEFAULT NULL,
+  `discount_amount` decimal(14,3) NOT NULL DEFAULT '0',
+  `discount_percentage` decimal(14,3) NOT NULL DEFAULT '0',
+  `number_coupons` int(10) DEFAULT NULL,
+  `valid_date` DATETIME  NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_coupon`),
+  UNIQUE KEY `".core::request('TABLE_PREFIX')."coupons_UK_name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 /**
  * add basic content like emails

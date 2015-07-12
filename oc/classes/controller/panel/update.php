@@ -130,6 +130,32 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         }catch (exception $e) {}
 
 
+        //coupons
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS `".self::$db_prefix."coupons` (
+                                      `id_coupon` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                      `id_product` int(10) unsigned NULL DEFAULT NULL,
+                                      `name` varchar(145) NOT NULL,
+                                      `notes` varchar(245) DEFAULT NULL,
+                                      `discount_amount` decimal(14,3) NOT NULL DEFAULT '0',
+                                      `discount_percentage` decimal(14,3) NOT NULL DEFAULT '0',
+                                      `number_coupons` int(10) DEFAULT NULL,
+                                      `valid_date` DATETIME  NULL,
+                                      `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                      `status` tinyint(1) NOT NULL DEFAULT '0',
+                                      PRIMARY KEY (`id_coupon`),
+                                      UNIQUE KEY `".self::$db_prefix."coupons_UK_name` (`name`)
+                                    ) ENGINE=MyISAM")->execute();
+        }catch (exception $e) {}
+
+        try
+        {    
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `id_coupon` INT NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+        //end coupons
+
+
         //myads access
         try
         {

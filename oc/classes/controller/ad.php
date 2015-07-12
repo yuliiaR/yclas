@@ -749,14 +749,8 @@ class Controller_Ad extends Controller {
                 $this->redirect(Route::url('default'));
             }
 
-            //update order based on the price and the amount of 
-            $days = core::get('featured_days');
-            if (is_numeric($days) AND ($price = Model_Order::get_featured_price($days)) !==FALSE )
-            {
-                $order->amount        = $price; //get price from config
-                $order->featured_days = $days;
-                $order->save();
-            }
+            //checks coupons or amount of featured days
+            $order->check_pricing();
 
             //template header
             $this->template->title              = __('Checkout').' '.Model_Order::product_desc($order->id_product);

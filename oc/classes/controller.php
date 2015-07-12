@@ -81,6 +81,9 @@ class Controller extends Kohana_Controller
          */
         self::$location = Model_Location::current();
 
+        //Gets a coupon if selected
+        Model_Coupon::current();
+
 
         if($this->auto_render===TRUE)
         {
