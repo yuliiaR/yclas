@@ -395,7 +395,10 @@ class Model_Order extends ORM {
 
     }
 
-
+    /**
+     * returns the original price of the order
+     * @return float 
+     */
     public function original_price()
     {
         //get original price for the product
