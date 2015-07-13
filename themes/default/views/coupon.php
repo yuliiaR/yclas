@@ -14,9 +14,13 @@
         </p>
     <?else:?>
     <div class="form-group">
-        <input class="form-control" type="text" name="coupon" value="<?=Core::get('coupon')?><?=Core::get('coupon')?>" placeholder="<?=__('Coupon Name')?>">          
+        <div class="input-group">
+            <input class="form-control" type="text" name="coupon" value="<?=Core::get('coupon')?><?=Core::get('coupon')?>" placeholder="<?=__('Coupon Name')?>">
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default locateme"><?=__('Add')?></button>
+            </span>
+        </div>
     </div>
-        <button type="submit" class="btn btn-primary"><?=__('Add')?></button>
-    <?endif?>      	
+    <?endif?>
 </form>
 <?endif?>
