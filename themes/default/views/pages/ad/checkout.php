@@ -115,6 +115,8 @@
                 </a>
             </p>
         <?endif?>
+
+        <?if ($order->amount>0):?>
         
         <?if ($order->id_product!=Model_Order::PRODUCT_AD_SELL):?>
             <?if ( ($user = Auth::instance()->get_user())!=FALSE AND ($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_role == Model_Role::ROLE_MODERATOR)):?>
@@ -159,6 +161,16 @@
                     </ul>
                 </div>
             <?endif?>
+        <?endif?>
+
+        <?else:?>
+            <ul class="list-inline text-right">
+                <li>
+                    <a title="<?=__('Click to proceed')?>" class="btn btn-succcess" href="<?=Route::url('default', array('controller'=> 'ad', 'action'=>'checkoutfree','id'=>$order->id_order))?>">
+                        <?=__('Click to proceed')?>
+                    </a>
+                </li>
+            </ul>
         <?endif?>
 
     </div>

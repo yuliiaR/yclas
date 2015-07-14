@@ -772,6 +772,46 @@ class Controller_Ad extends Controller {
 
 
     /**
+     * confirms a checkout when its a free order
+     * @return [type] [description]
+     */
+    public function action_checkoutfree()
+    {
+        $order = new Model_Order($this->request->param('id'));
+
+        if ($order->loaded())
+        {
+            //if paid...no way jose
+            if ($order->status != Model_Order::STATUS_CREATED)
+            {
+                Alert::set(Alert::INFO, __('This order was already paid.'));
+                $this->redirect(Route::url('default'));
+            }
+
+            //checks coupons or amount of featured days
+            $order->check_pricing();
+
+            //he needs to pay...little prick
+            if ($order->amount > 0)
+            {
+                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
+            }
+            else//mark as paid
+            {
+                $order->confirm_payment('cash');
+                $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')));
+            }
+
+        }
+        else
+        {
+            //throw 404
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+    }
+
+
+    /**
      * thanks for publish
      * @return [type] [description]
      */
