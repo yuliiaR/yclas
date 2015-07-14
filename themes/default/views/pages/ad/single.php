@@ -83,10 +83,13 @@
     <br/>
 
     <div>
-         <?= Text::bb2html($ad->description,TRUE)?>
-         <?if (Valid::url($ad->website)):?>
-         <p><a href="<?=$ad->website?>" rel="nofollow" target="_blank">><?=$ad->website?></a></p>
-         <?endif?>
+        <p><?= Text::bb2html($ad->description,TRUE)?></p>
+        <?if (Valid::url($ad->website)):?>
+            <p><a href="<?=$ad->website?>" rel="nofollow" target="_blank">><?=$ad->website?></a></p>
+        <?endif?>
+        <?if (core::config('advertisement.address')):?>
+            <p><?=$ad->address?></p>
+        <?endif?>
      </div>
 
     <?if(core::config('payment.paypal_seller')==1 AND $ad->price != NULL AND $ad->price > 0):?>

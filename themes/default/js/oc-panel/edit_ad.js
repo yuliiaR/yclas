@@ -46,6 +46,24 @@ $(function(){
             }
         });
     });
+    
+    // show custom fields
+    if ($('#category-selected').val().length > 0) {
+        $.ajax({
+            url: $('#category-chained').data('apiurl') + '/' + $('#category-selected').val(),
+            success: function(results) {
+                createCustomFieldsByCategory(results.category.customfields);
+            }
+        });
+    }
+    else {
+        $.ajax({
+            url: $('#category-chained').data('apiurl') + '/' + 1,
+            success: function(results) {
+                createCustomFieldsByCategory(results.category.customfields);
+            }
+        });
+    }
 });
 
 function createCategorySelect () {
@@ -74,9 +92,6 @@ function createCategorySelect () {
                 // update #category-selected input value
                 $('#category-selected').attr('value', value);
                 
-                // show custom fields for this category
-                showCustomFieldsByCategory($('#category-selected'));
-                
                 //get category price
                 $.ajax({
                     url: $('#category-chained').data('apiurl') + '/' + value,
@@ -88,6 +103,8 @@ function createCategorySelect () {
                         else {
                             $('#paid-category').addClass('hidden');
                         }
+                        // show custom fields for this category
+                        createCustomFieldsByCategory(results.category.customfields);
                     }
                 });
             }
@@ -96,7 +113,13 @@ function createCategorySelect () {
                 // set empty value
                 $('#category-selected').attr('value', '');
                 $('#paid-category').addClass('hidden');
-                showCustomFieldsByCategory($('#category-selected'));
+                // show custom fields
+                $.ajax({
+                    url: $('#category-chained').data('apiurl') + '/' + 1,
+                    success: function(results) {
+                        createCustomFieldsByCategory(results.category.customfields);
+                    }
+                });
             }
             
             // get current category level
@@ -341,23 +364,14 @@ $(function(){
         function(value, element, regexp) {
             var re = new RegExp(regexp);
             return this.optional(element) || re.test(value);
-        },
-        "Please check your input."
+        }
     );
 
-    // some extra rules for custom fields
-    if ($('.cf_decimal_fields').length !== 0)
-        var $decimal = $(".cf_decimal_fields").attr("name");
-    if ($('.cf_integer_fields').length !== 0)
-        var $integer = $(".cf_integer_fields").attr("name");
-
     var $params = {rules:{}, messages:{}};
-    $params['rules'][$integer] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
-    $params['messages'][$integer] = "Format is incorect";
-    $params['rules'][$decimal] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
-    $params['messages'][$decimal] = "Format is incorect";
     $params['rules']['price'] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
-    $params['messages']['price'] = "Format is incorect";
+    $params['rules']['title'] = {maxlength: 145};
+    $params['rules']['address'] = {maxlength: 145};
+    $params['rules']['phone'] = {maxlength: 30};
     $params['rules']['website'] = {maxlength: 200};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
@@ -380,60 +394,128 @@ $(function(){
     });
 });
 
-//datepicker in case date field exists
-if ($('.cf_date_fields').length !== 0){
-    $('.cf_date_fields').datepicker();
-}
-
-$(function(){
-    showCustomFieldsByCategory($('#category-selected'));
-});
-
-function showCustomFieldsByCategory(element){
-    id_categ = $(element).val();
-    // only custom fields have class data-custom
-    $(".data-custom").each(function(){
-        // get data-category, contains json array of set categories
-        field = $(this);
-        dataCategories = field.attr('data-categories');
-        if(dataCategories)
-        {
-            // show if cf fields if they dont have categories set
-            if(dataCategories.length != 2){
-                field.closest('#cf_new').css('display','none');
-                field.prop('disabled', true);
-            }
-            else{
-                field.closest('#cf_new').css('display','block');
-                field.prop('disabled', false);
-                $(".cf_select_fields").chosen('destroy'); // refresh chosen
-                $(".cf_select_fields").chosen({
-                    no_results_text: getChosenLocalization("no_results_text"),
-                    placeholder_text_multiple: getChosenLocalization("placeholder_text_multiple"),
-                    placeholder_text_single: getChosenLocalization("placeholder_text_single")
-                }); // refresh chosen
-            }
-            if(dataCategories !== undefined)  
-            {   
-                if(dataCategories != "")
-                {
-                    // apply if they have equal id_category 
-                    $.each($.parseJSON(dataCategories), function (index, value) { 
-                        if(id_categ == value){
-                            field.closest('#cf_new').css('display','block');
-                            field.prop('disabled', false);
-                            $(".cf_select_fields").chosen('destroy'); // refresh chosen
-                            $(".cf_select_fields").chosen({
-                                no_results_text: getChosenLocalization("no_results_text"),
-                                placeholder_text_multiple: getChosenLocalization("placeholder_text_multiple"),
-                                placeholder_text_single: getChosenLocalization("placeholder_text_single")
-                            }); // refresh chosen
-                        }
-                    });
+function createCustomFieldsByCategory (customfields) {
+    $('#custom-fields > div').not("#custom-field-template").remove();
+    $.each(customfields, function (idx, customfield) {
+        // clone custom field from template
+        var $template = $('#custom-field-template').clone().attr('id', '').removeClass('hidden').appendTo('#custom-fields');
+        $template.find('div[data-label]').replaceWith($('<label/>').attr({'for' : idx}).html(customfield.label));
+        
+        switch (customfield.type) {
+            case 'string':
+                $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'text',
+                                                                                    'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'class'       : 'form-control',
+                                                                                    'placeholder' : customfield.label,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'required'    : customfield.required,
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
+                                                                                }));
+                break;
+            case 'textarea':
+                $template.find('div[data-input]').replaceWith($('<textarea/>').attr({   'id'          : idx,
+                                                                                        'name'        : idx,
+                                                                                        'class'       : 'form-control',
+                                                                                        'placeholder' : customfield.label,
+                                                                                        'rows'        : 10,
+                                                                                        'cols'        : 50,
+                                                                                        'data-type'   : customfield.type,
+                                                                                        'required'    : customfield.required,
+                                                                                    }).append($('#custom-fields').data('customfield-values')[customfield.label]));
+                break;
+            case 'integer':
+                $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'text',
+                                                                                    'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'class'       : 'form-control',
+                                                                                    'placeholder' : customfield.label,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'required'    : customfield.required,
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
+                                                                                }));
+                $('#custom-fields input[name="' + idx + '"]').rules('add', {
+                                                                                regex: '^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$'
+                                                                            });
+                break;
+            case 'decimal':
+                $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'text',
+                                                                                    'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'class'       : 'form-control',
+                                                                                    'placeholder' : customfield.label,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'required'    : customfield.required,
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
+                                                                                }));
+                $('#custom-fields input[name="' + idx + '"]').rules('add', {
+                                                                                regex: '^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$'
+                                                                            });
+                break;
+            case 'date':
+                $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'             : 'text',
+                                                                                    'id'               : idx,
+                                                                                    'name'             : idx,
+                                                                                    'class'            : 'form-control',
+                                                                                    'placeholder'      : customfield.label,
+                                                                                    'data-type'        : customfield.type,
+                                                                                    'data-date-format' : 'yyyy-mm-dd',
+                                                                                    'required'         : customfield.required,
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
+                                                                                }));
+                $('#custom-fields input[name="' + idx + '"]').datepicker()
+                break;
+            case 'email':
+                $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'email',
+                                                                                    'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'class'       : 'form-control',
+                                                                                    'placeholder' : customfield.label,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'required'    : customfield.required,
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
+                                                                                }));
+                break;
+            case 'select':
+                $template.find('div[data-input]').replaceWith($('<select/>').attr({ 'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'class'       : 'form-control',
+                                                                                    'placeholder' : customfield.label,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'required'    : customfield.required,
+                                                                                }));
+                $('#custom-fields select[name="' + idx + '"]').append($('<option/>'));
+                for (var val in customfield.values) {
+                    $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(customfield.values[val]).html(customfield.values[val]));
                 }
-            }
+                $('#custom-fields select[name="' + idx + '"] option[value="' + $('#custom-fields').data('customfield-values')[customfield.label] +'"]').attr('selected', true);
+                $('#custom-fields select[name="' + idx + '"]').selectize();
+                break;
+            case 'radio':
+                $.each(customfield.values, function (radioidx, value) {
+                    $('<div/>').attr('class', 'radio').append($('<label/>').append($('<input/>').attr({ 'type'        : 'radio',
+                                                                                                        'id'          : idx,
+                                                                                                        'name'        : idx,
+                                                                                                        'data-type'   : customfield.type,
+                                                                                                        'required'    : customfield.required,
+                                                                                                        'value'       : radioidx + 1,
+                                                                                                        'checked'     : (value == $('#custom-fields').data('customfield-values')[customfield.label]) ? true:false,
+                                                                                                    })).append(value)).insertBefore($template.find('div[data-input]'));
+                });
+                $template.find('div[data-input]').remove();
+                break;
+            case 'checkbox':
+                $template.find('div[data-input]').wrap('<div class="checkbox"></div>').wrap('<label></label>');
+                $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'checkbox',
+                                                                                    'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'required'    : customfield.required,
+                                                                                    'checked'     : $('#custom-fields').data('customfield-values')[customfield.label],
+                                                                                }));
+                break;
         }
-    });
+    })
 }
 
 $(function(){

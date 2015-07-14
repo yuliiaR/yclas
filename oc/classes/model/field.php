@@ -333,7 +333,8 @@ class Model_Field {
         {
             foreach ($all_fields as $field => $values) 
             {
-                if (is_array($values['categories']) AND in_array($id_category,$values['categories']))
+                if ((is_array($values['categories']) AND in_array($id_category,$values['categories']))
+                    OR $values['categories'] === NULL)
                     $fields['cf_'.$field] = $values;
             }
         }

@@ -45,9 +45,54 @@
                 <?else:?>
                     <tr>
                         <td class="col-md-1" style="text-align: center"><?=$order->id_product?></td>
-                        <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
-                        <td class="col-md-2 text-center"><?=i18n::format_currency($order->amount, $order->currency)?></td>
+                        <?if (Theme::get('premium')==1):?>
+                            <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
+                        <?else :?>
+                            <td class="col-md-9">
+                                <?=$order->description?> 
+                                <em>(<?=Model_Order::product_desc($order->id_product)?> 
+                                    <?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED):?>
+                                        <?=$order->featured_days?> <?=__('Days')?>
+                                    <?endif?>
+                                    )
+                                </em>
+                                <div class="dropdown" style="display:inline-block;">
+                                <?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED AND is_array($featured_plans=Model_Order::get_featured_plans()) AND count($featured_plans) > 1):?>
+                                    <button class="btn btn-xs btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                        <?=__('Change plan')?> 
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <?foreach ($featured_plans as $days => $price):?>
+                                            <?if ($order->featured_days != $days):?>
+                                                <li>
+                                                    <a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>?featured_days=<?=$days?>">
+                                                        <small><?=$days?> <?=__('Days')?> - <?=i18n::money_format($price)?></small>
+                                                    </a>
+                                                </li>
+                                            <?endif?>
+                                        <?endforeach?>
+                                    </ul>
+                                <?endif?>
+                            </td>
+                        <?endif?>
+                        <td class="col-md-2 text-center"><?=i18n::format_currency(($order->coupon->loaded())?$order->original_price():$order->amount, $order->currency)?></td>
                     </tr>
+                    <?if (Theme::get('premium')==1 AND $order->coupon->loaded()):?>
+                        <?$discount = ($order->coupon->discount_amount==0)?($order->original_price() * $order->coupon->discount_percentage/100):$order->coupon->discount_amount;?>
+                        <tr>
+                            <td class="col-md-1" style="text-align: center">
+                                <?=$order->id_coupon?>
+                            </td>
+                            <td class="col-md-9">
+                                <?=__('Coupon')?> '<?=$order->coupon->name?>'
+                                <?=__('valid until')?> <?=Date::format($order->coupon->valid_date)?>.
+                            </td>
+                            <td class="col-md-2 text-center text-danger">
+                                -<?=i18n::format_currency($discount, $order->currency)?>
+                            </td>
+                        </tr>  
+                    <?endif?>
                 <?endif?>
                 <tr>
                     <td class="col-md-1" style="text-align: center"><?=$order->ad->id_ad?></td>
@@ -64,22 +109,56 @@
         </table>
 
         <?if (Core::config('payment.paypal_account')!=''):?>
-            <a class="btn btn-success btn-lg pull-right" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
-                <?=__('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-            <div class="clearfix"></div>
+            <p class="text-right">
+                <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
+                    <?=__('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </p>
         <?endif?>
         
         <?if ($order->id_product!=Model_Order::PRODUCT_AD_SELL):?>
-            <div class="pull-right">
-                <?=$order->alternative_pay_button()?>
-
-                <?if (($user = Auth::instance()->get_user())!=FALSE AND ($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_role == Model_Role::ROLE_MODERATOR)):?>
-                <a title="<?=__('Mark as paid')?>" class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'order', 'action'=>'pay','id'=>$order->id_order))?>">
-                    <i class="glyphicon glyphicon-usd"></i> <?=__('Mark as paid')?>
-                </a>
-                <?endif?>
-            </div>
+            <?if ( ($user = Auth::instance()->get_user())!=FALSE AND ($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_role == Model_Role::ROLE_MODERATOR)):?>
+                <ul class="list-inline text-right">
+                    <li>
+                        <a title="<?=__('Mark as paid')?>" class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'order', 'action'=>'pay','id'=>$order->id_order))?>">
+                            <i class="glyphicon glyphicon-usd"></i> <?=__('Mark as paid')?>
+                        </a>
+                    </li>
+                </ul>
+            <?endif?>
+            <?if (Theme::get('premium')==1) :?>
+                <?=Controller_Authorize::form($order)?>
+                <div class="text-right">
+                    <ul class="list-inline">
+                        <?if(($pm = Paymill::button($order)) != ''):?>
+                            <li class="text-right"><?=$pm?></li>
+                        <?endif?>
+                    </ul>
+                </div>
+                <div class="text-right">
+                    <ul class="list-inline">
+                        <?if(($sk = StripeKO::button($order)) != ''):?>
+                            <li class="text-right"><?=$sk?></li>
+                        <?endif?>
+                        <?if(($bp = Bitpay::button($order)) != ''):?>
+                            <li class="text-right"><?=$bp?></li>
+                        <?endif?>
+                        <?if(($two = twocheckout::form($order)) != ''):?>
+                            <li class="text-right"><?=$two?></li>
+                        <?endif?>
+                        <?if( ($alt = $order->alternative_pay_button()) != ''):?>
+                            <li class="text-right"><?=$alt?></li>
+                        <?endif?>
+                    </ul>
+                    <?=View::factory('coupon')?>
+                </div>
+            <?elseif ( ($alt = $order->alternative_pay_button()) != '') :?>
+                <div class="text-right">
+                    <ul class="list-inline">
+                        <li class="text-right"><?=$alt?></li>
+                    </ul>
+                </div>
+            <?endif?>
         <?endif?>
 
     </div>

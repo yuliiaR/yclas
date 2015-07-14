@@ -251,31 +251,14 @@
                         <?endif?>
                         <!-- Fields coming from custom fields feature -->
                         <?if (Theme::get('premium')==1):?>
-                            <?if(isset($fields)):?>
-                                <?if (is_array($fields)):?>
-                                    <?foreach($fields as $name=>$field):?>
-                                    <div class="form-group" id="cf_new">
-                                    <?$cf_name = 'cf_'.$name?>
-                                    <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
-                                        $select = array(''=>'');
-                                        foreach ($field['values'] as $select_name) {
-                                            $select[$select_name] = $select_name;
-                                        }
-                                    } else $select = $field['values']?>
-
-                                            <?=Form::cf_form_tag('cf_'.$name, array(    
-                                                'display'   => $field['type'],
-                                                'label'     => $field['label'],
-                                                'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
-                                                'default'   => $ad->$cf_name,
-                                                'options'	=> (!is_array($field['values']))? $field['values'] : $select,
-                                                'required'	=> $field['required'],
-                                                'categories'=> (isset($field['categories']))? $field['categories'] : "",))?>
-
-                                    </div>     
-                                    <?endforeach?>
-                                <?endif?>
-                            <?endif?>
+                            <div id="custom-fields" data-customfield-values='<?=json_encode($ad->custom_columns())?>'>
+                                <div id="custom-field-template" class="form-group hidden">
+                                    <div class="col-sm-8">
+                                        <div data-label></div>
+                                        <div data-input></div>
+                                    </div>
+                                </div>
+                            </div>
                         <?endif?>
                         <!-- /endcustom fields -->
                         <div class="form-group">
