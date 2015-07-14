@@ -69,7 +69,7 @@
         <?else:?>
             <div class="form-group">
                 <div class="col-xs-10">
-                    <?= FORM::input('email_subscribe', $widget->user_email, array('class'=>'form-control', 'id'=>'email_subscribe', 'type'=>'hidden' ,'required','placeholder'=>__('Email')))?>
+                    <?= FORM::input('email_subscribe', $widget->user_email, array('class'=>'form-control', 'id'=>'email_subscribe', 'type'=>'hidden', 'placeholder'=>__('Email')))?>
                 </div>
             </div>
         <?endif?>
