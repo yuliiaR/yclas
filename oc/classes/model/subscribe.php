@@ -37,14 +37,14 @@ class Model_Subscribe extends ORM {
         {
             $subscribers->where_open()
                         ->where(DB::EXPR((int)$ad->price),'BETWEEN',array('min_price','max_price'))
-                        ->or_where('min_price', 'IS', NULL)
-                        ->where_close();            
+                        ->or_where('max_price', '=', 0)
+                        ->where_close();    
         }
 
         //location is set     
         if(is_numeric($ad->id_location)) 
-            $subscribers->where('id_location', '=', $ad->id_location);
-
+            $subscribers->where('id_location', 'in', array($ad->id_location,0));  
+        
         //filter by category, 0 means all the cats, in case was not set
         $subscribers->where('id_category', 'in', array($ad->id_category,0));
 
@@ -57,7 +57,7 @@ class Model_Subscribe extends ORM {
             if(!in_array($subs->id_user, $subscribers_id))
                 $subscribers_id[] = $subs->id_user;
         }
-      
+
         // query for getting users, transform it to array and pass to email function 
         if(count($subscribers_id) > 0)
         {  
@@ -87,28 +87,6 @@ class Model_Subscribe extends ORM {
                                     $replace);
 
             }
-
-            //notifications
-            /*
-            if (core::config('general.gcm_apikey')!=NULL )
-            {
-                $query = DB::select('device_id')
-                            ->from('users')
-                            ->where('id_user', 'IN', $subscribers_id)
-                            ->where('status','=',Model_User::STATUS_ACTIVE)
-                            ->where('device_id', 'IS NOT', NULL)
-                            ->execute();
-
-                $devices = $query->as_array();
-
-                if (count($devices)>0)
-                {
-                    $data = array('id_ad' => $ad->id_ad,
-                                  'title' => $ad->title);
-
-                    Core::push_notification($devices,__('New advertisement matching your preferences'),$data);
-                }
-            }*/
         }
 
     }
