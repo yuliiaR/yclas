@@ -74,13 +74,13 @@
                 
                 <?=Chart::column($stats_daily,array('title'=>__('Views and Ads statistics'),
                                                     'height'=>400,
-                                                    'width'=>800,
+                                                    'width'=>'100%',
                                                     'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>          
                 
                 
                 <?=Chart::column($stats_orders,array('title'=>__('Sales statistics'),
                                                     'height'=>400,
-                                                    'width'=>800,
+                                                    'width'=>'100%',
                                                     'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>                                                              
             </div>
         </div>
