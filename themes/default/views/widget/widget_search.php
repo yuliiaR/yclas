@@ -90,37 +90,14 @@
             <?endif?>
         <?endif?>
         <!-- Fields coming from custom fields feature -->
-        <?if($widget->custom != FALSE AND Theme::get('premium')==1):?>
-            <?if (is_array($widget->custom_fields)):?>
-                <div id="widget-adv-cfs" style="position: absolute; left: -999em;">
-                    <?$i=0; foreach($widget->custom_fields as $name=>$field):?>
-                        <?if($field['searchable']):?>
-                            <div class="form-group control-group" id="cf_search">
-                                <div class="col-xs-12">
-                                    <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
-                                        $select = array(''=>(!empty($field['label'])) ? $field['label']:$name);
-                                        foreach ($field['values'] as $select_name) {
-                                            $select[$select_name] = $select_name;
-                                        }
-                                    }?>
-                                    <?if($field['type'] == 'checkbox' OR $field['type'] == 'radio'):?><div class="mt-10"></div><?endif?>
-                                        <?=Form::cf_form_tag(   'cf_'.$name, array(    
-                                                                'display'   => $field['type'],
-                                                                'label'     => $field['label'],
-                                                                'placeholder'     => (!empty($field['label'])) ? $field['label']:$name,
-                                                                'data-placeholder' => $field['label'],
-                                                                'categories'=> (isset($field['categories']))? $field['categories'] : "",
-                                                                'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
-                                                                'options'   => (!is_array($field['values']))? $field['values'] : $select,
-                                                                ),core::get('cf_'.$name),FALSE,TRUE)?> 
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        <?endif?>
-                    <?$i++ ;endforeach?>
+        <div id="widget-custom-fields" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" data-customfield-values='<?=json_encode(Request::current()->query())?>'>
+            <div id="widget-custom-field-template" class="form-group hidden">
+                <div class="col-xs-12">
+                    <div data-label></div>
+                    <div data-input></div>
                 </div>
-            <?endif?>
-        <?endif?>
+            </div>
+        </div>
         <!-- /endcustom fields -->
         <div class="clearfix"></div>
     
