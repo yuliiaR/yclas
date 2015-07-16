@@ -46,8 +46,6 @@
                     <tr>
                         <td class="col-md-1" style="text-align: center"><?=$order->id_product?></td>
                         <?if (Theme::get('premium')==1):?>
-                            <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
-                        <?else :?>
                             <td class="col-md-9">
                                 <?=$order->description?> 
                                 <em>(<?=Model_Order::product_desc($order->id_product)?> 
@@ -75,6 +73,8 @@
                                     </ul>
                                 <?endif?>
                             </td>
+                        <?else :?>
+                            <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
                         <?endif?>
                         <td class="col-md-2 text-center"><?=i18n::format_currency(($order->coupon->loaded())?$order->original_price():$order->amount, $order->currency)?></td>
                     </tr>
