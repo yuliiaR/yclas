@@ -101,7 +101,7 @@
                       <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
                           <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
                       <?else:?>
-                          <img src="//www.placehold.it/200x200&text=<?=HTML::entities($ad->category->name)?>" width="200" height="200" />
+                          <img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?text=<?=HTML::entities($ad->category->name)?>&amp;size=14&amp;auto=yes" class="img-responsive" alt="<?=HTML::chars($ad->title)?>"> 
                       <?endif?>
                   </figure>
               </a>

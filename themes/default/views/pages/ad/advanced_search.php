@@ -71,8 +71,13 @@
                     </div>
                 </div>
                 <?endif?>
-            <div class="clear"></div> 
-            <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary pull-right', 'action'=>Route::url('search')))?> 
+                
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <div>
+                        <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary pull-right', 'action'=>Route::url('search')))?>
+                    </div>
+                </div>
     </fieldset>
     <?= FORM::close()?>
 </div>
