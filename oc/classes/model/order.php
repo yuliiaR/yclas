@@ -379,11 +379,13 @@ class Model_Order extends ORM {
             $this->id_coupon = NULL;
         }
         
+        //add new discount
+        $new_amount = Model_Coupon::price($this->id_product,$this->original_price());
+
         //recalculate price since it change the coupon
-        if ($orig_coupon != $this->id_coupon)
+        if ($orig_coupon != $this->id_coupon OR $this->amount!=$new_amount)
         {
-            //add new discount
-            $this->amount = Model_Coupon::price($this->id_product,$this->original_price());
+            $this->amount = $new_amount;
 
             try {
                 $this->save();
