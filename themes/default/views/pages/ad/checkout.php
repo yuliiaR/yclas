@@ -108,6 +108,8 @@
             </tbody>
         </table>
 
+        <?if ($order->amount>0):?>
+
         <?if (Core::config('payment.paypal_account')!=''):?>
             <p class="text-right">
                 <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
@@ -115,8 +117,6 @@
                 </a>
             </p>
         <?endif?>
-
-        <?if ($order->amount>0):?>
         
         <?if ($order->id_product!=Model_Order::PRODUCT_AD_SELL):?>
             <?if ( ($user = Auth::instance()->get_user())!=FALSE AND ($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_role == Model_Role::ROLE_MODERATOR)):?>
@@ -166,7 +166,7 @@
         <?else:?>
             <ul class="list-inline text-right">
                 <li>
-                    <a title="<?=__('Click to proceed')?>" class="btn btn-succcess" href="<?=Route::url('default', array('controller'=> 'ad', 'action'=>'checkoutfree','id'=>$order->id_order))?>">
+                    <a title="<?=__('Click to proceed')?>" class="btn btn-success" href="<?=Route::url('default', array('controller'=> 'ad', 'action'=>'checkoutfree','id'=>$order->id_order))?>">
                         <?=__('Click to proceed')?>
                     </a>
                 </li>
