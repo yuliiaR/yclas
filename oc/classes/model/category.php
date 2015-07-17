@@ -347,7 +347,10 @@ class Model_Category extends ORM {
             {
                 //adding himself if doesnt exists
                 if (!isset($parents_count[$category->id_category]))
+                {
                     $parents_count[$category->id_category] = $count_ads[$category->id_category];
+                    $parents_count[$category->id_category]['has_siblings'] = FALSE;
+                }
 
                 //for each parent of this category add the count
                 foreach ($category->get_parents_ids() as $id ) 
@@ -356,6 +359,8 @@ class Model_Category extends ORM {
                         $parents_count[$id]['count']+= $count_ads[$category->id_category]['count'];
                     else
                         $parents_count[$id]['count'] = $count_ads[$category->id_category]['count'];
+
+                    $parents_count[$id]['has_siblings'] = TRUE;
                 }
             }
         }
@@ -371,7 +376,7 @@ class Model_Category extends ORM {
                                                             'parent_deep'   => $category->parent_deep,
                                                             'order'         => $category->order,
                                                             'price'         => $category->price,
-                                                            'has_siblings'  => isset($parents_count[$category->id_category]),
+                                                            'has_siblings'  => isset($parents_count[$category->id_category])?$parents_count[$category->id_category]['has_siblings']:FALSE,
                                                             'count'         => isset($parents_count[$category->id_category])?$parents_count[$category->id_category]['count']:0,
                                                 );
         }
