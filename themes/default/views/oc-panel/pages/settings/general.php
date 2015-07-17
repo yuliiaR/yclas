@@ -359,7 +359,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['messaging']['id'], __("Activates Messaging System"), array('class'=>'control-label col-sm-4', 'for'=>$forms['messaging']['id']))?>
+                        <?= FORM::label($forms['messaging']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-use-messaging-system/'>".__("Activates Messaging System")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['messaging']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['messaging']['key'], 1, (bool) $forms['messaging']['value'], array(
