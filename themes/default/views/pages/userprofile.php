@@ -9,6 +9,8 @@
         <a class="thumbnail">
             <img src="<?=$user->get_profile_image()?>" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
         </a>
+    </div>
+    <div class="col-md-9">
         <p>
             <?=$user->description?>
         </p>
