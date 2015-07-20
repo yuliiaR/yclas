@@ -484,7 +484,7 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'data-type'   : customfield.type,
                                                                                     'required'    : customfield.required,
                                                                                 }));
-                $('#custom-fields select[name="' + idx + '"]').append($('<option/>'));
+                $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(' ').html('&nbsp;'));
                 for (var val in customfield.values) {
                     $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(customfield.values[val]).html(customfield.values[val]));
                 }
