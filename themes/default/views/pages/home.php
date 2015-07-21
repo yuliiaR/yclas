@@ -50,7 +50,11 @@
                                 <?foreach($categs as $chi):?>
                                     <?if($chi['id_category_parent'] == $c['id_category']):?>
                                         <li class="list-group-item">
-                                            <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><?=$chi['name'];?> <span class="pull-right badge badge-success"><?=$chi['count']?></span></a>
+                                            <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname']))?>"><?=$chi['name'];?> 
+                                                <?if (Theme::get('category_badge')!=1) : ?>
+                                                    <span class="pull-right badge badge-success"><?=$chi['count']?></span>
+                                                <?endif?>
+                                            </a>
                                         </li>
                                     <?endif?>
                                  <?endforeach?>
