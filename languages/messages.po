@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OfficeGate Language Pack\n"
-"POT-Creation-Date: 2015-07-16 11:33+0200\n"
+"POT-Creation-Date: 2015-07-21 07:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -748,7 +748,7 @@ msgstr ""
 #: themes/responsive3/views/pages/ad/single.php:30
 #: themes/reclassifieds3/views/pages/ad/single.php:33
 #: themes/ocean/views/pages/ad/single.php:33
-#: themes/splash/views/pages/ad/single.php:178
+#: themes/splash/views/pages/ad/single.php:200
 #: themes/moderndeluxe3/views/pages/ad/single.php:33
 #: themes/newspaper/views/pages/ad/single.php:33
 #: themes/czsale/views/pages/ad/single.php:31
@@ -760,6 +760,7 @@ msgstr ""
 #: themes/responsive3/views/pages/ad/single.php:46
 #: themes/reclassifieds3/views/pages/ad/single.php:49
 #: themes/ocean/views/pages/ad/single.php:49
+#: themes/splash/views/pages/ad/single.php:40
 #: themes/splash/views/oc-panel/profile/edit_ad.php:72
 #: themes/moderndeluxe3/views/pages/ad/single.php:49
 #: themes/newspaper/views/pages/ad/single.php:49
@@ -774,6 +775,7 @@ msgstr ""
 #: themes/responsive3/views/pages/ad/single.php:47
 #: themes/reclassifieds3/views/pages/ad/single.php:50
 #: themes/ocean/views/pages/ad/single.php:50
+#: themes/splash/views/pages/ad/single.php:41
 #: themes/splash/views/oc-panel/profile/edit_ad.php:73
 #: themes/moderndeluxe3/views/pages/ad/single.php:50
 #: themes/newspaper/views/pages/ad/single.php:50
@@ -789,6 +791,7 @@ msgstr ""
 #: themes/responsive3/views/pages/ad/single.php:50
 #: themes/reclassifieds3/views/pages/ad/single.php:53
 #: themes/ocean/views/pages/ad/single.php:53
+#: themes/splash/views/pages/ad/single.php:46
 #: themes/splash/views/oc-panel/profile/edit_ad.php:76
 #: themes/moderndeluxe3/views/pages/ad/single.php:53
 #: themes/newspaper/views/pages/ad/single.php:53
@@ -804,6 +807,7 @@ msgstr ""
 #: themes/reclassifieds3/views/pages/ad/single.php:54
 #: themes/ocean/views/pages/ad/single.php:54
 #: themes/splash/views/pages/ad/thanks.php:32
+#: themes/splash/views/pages/ad/single.php:47
 #: themes/splash/views/oc-panel/profile/edit_ad.php:77
 #: themes/moderndeluxe3/views/pages/ad/single.php:54
 #: themes/newspaper/views/pages/ad/single.php:54
@@ -831,7 +835,7 @@ msgstr ""
 #: themes/ocean/views/pages/ad/single.php:188
 #: themes/ocean/views/pages/ad/new.php:164
 #: themes/ocean/views/pages/ad/listing.php:176
-#: themes/splash/views/pages/ad/single.php:129
+#: themes/splash/views/pages/ad/single.php:151
 #: themes/splash/views/pages/ad/new.php:144
 #: themes/splash/views/pages/ad/checkout.php:49
 #: themes/splash/views/widget/widget_subscribers.php:72
@@ -877,7 +881,7 @@ msgstr ""
 #: themes/responsive3/views/pages/ad/single.php:85
 #: themes/reclassifieds3/views/pages/ad/single.php:91
 #: themes/ocean/views/pages/ad/single.php:91
-#: themes/splash/views/pages/ad/single.php:162
+#: themes/splash/views/pages/ad/single.php:184
 #: themes/moderndeluxe3/views/pages/ad/single.php:91
 #: themes/mobile/views/pages/ad/single.php:34
 #: themes/default/views/pages/ad/single.php:78
@@ -896,8 +900,8 @@ msgstr ""
 #: themes/reclassifieds3/views/pages/ad/single.php:124
 #: themes/ocean/views/pages/ad/single.php:122
 #: themes/ocean/views/pages/ad/single.php:124
-#: themes/splash/views/pages/ad/single.php:85
-#: themes/splash/views/pages/ad/single.php:87
+#: themes/splash/views/pages/ad/single.php:107
+#: themes/splash/views/pages/ad/single.php:109
 #: themes/moderndeluxe3/views/pages/ad/single.php:122
 #: themes/moderndeluxe3/views/pages/ad/single.php:124
 #: themes/mobile/views/pages/ad/single.php:62
@@ -924,11 +928,11 @@ msgstr ""
 #: themes/reclassifieds3/views/pages/ad/single.php:139
 #: themes/ocean/views/pages/ad/single.php:136
 #: themes/ocean/views/pages/ad/single.php:139
-#: themes/splash/views/pages/ad/single.php:97
-#: themes/splash/views/pages/ad/single.php:100
-#: themes/splash/views/pages/userprofile.php:70
-#: themes/splash/views/pages/userprofile.php:73
-#: themes/splash/views/pages/userprofile.php:133
+#: themes/splash/views/pages/ad/single.php:119
+#: themes/splash/views/pages/ad/single.php:122
+#: themes/splash/views/pages/userprofile.php:72
+#: themes/splash/views/pages/userprofile.php:75
+#: themes/splash/views/pages/userprofile.php:135
 #: themes/splash/views/widget/widget_contact.php:58
 #: themes/moderndeluxe3/views/pages/ad/single.php:136
 #: themes/moderndeluxe3/views/pages/ad/single.php:139
@@ -969,8 +973,8 @@ msgstr ""
 #: themes/responsive3/views/header.php:47
 #: themes/reclassifieds3/views/pages/ad/single.php:151
 #: themes/ocean/views/pages/ad/single.php:151
-#: themes/splash/views/pages/ad/single.php:111
-#: themes/splash/views/pages/userprofile.php:80
+#: themes/splash/views/pages/ad/single.php:133
+#: themes/splash/views/pages/userprofile.php:82
 #: themes/splash/views/pages/contact.php:7
 #: themes/splash/views/header.php:59
 #: themes/moderndeluxe3/views/pages/ad/single.php:151
@@ -1018,12 +1022,12 @@ msgstr ""
 #: themes/ocean/views/pages/ad/new.php:196
 #: themes/ocean/views/pages/auth/register-form.php:5
 #: themes/ocean/views/pages/auth/register-form.php:7
-#: themes/splash/views/pages/ad/single.php:117
-#: themes/splash/views/pages/ad/single.php:118
+#: themes/splash/views/pages/ad/single.php:139
+#: themes/splash/views/pages/ad/single.php:140
 #: themes/splash/views/pages/ad/new.php:160
 #: themes/splash/views/pages/ad/new.php:161
-#: themes/splash/views/pages/userprofile.php:91
 #: themes/splash/views/pages/userprofile.php:93
+#: themes/splash/views/pages/userprofile.php:95
 #: themes/splash/views/pages/auth/register-form.php:5
 #: themes/splash/views/pages/auth/register-form.php:7
 #: themes/splash/views/pages/contact.php:30
@@ -1112,7 +1116,7 @@ msgstr ""
 #: oc/common/views/pages/auth/register-social.php:9
 #: oc/common/views/pages/auth/register-form.php:6
 #: oc/common/views/pages/auth/register-form.php:8
-#: oc/common/views/oc-panel/pages/coupon/index.php:35
+#: oc/common/views/oc-panel/pages/coupon/index.php:36
 #: oc/common/views/oc-panel/pages/update/index.php:36
 #: oc/common/views/oc-panel/pages/role/update.php:14
 #: oc/common/views/oc-panel/pages/forum/create.php:12
@@ -1163,12 +1167,12 @@ msgstr ""
 #: themes/ocean/views/pages/ad/new.php:202
 #: themes/ocean/views/pages/auth/register-form.php:12
 #: themes/ocean/views/pages/auth/register-form.php:14
-#: themes/splash/views/pages/ad/single.php:119
-#: themes/splash/views/pages/ad/single.php:120
+#: themes/splash/views/pages/ad/single.php:141
+#: themes/splash/views/pages/ad/single.php:142
 #: themes/splash/views/pages/ad/new.php:162
 #: themes/splash/views/pages/ad/new.php:163
-#: themes/splash/views/pages/userprofile.php:97
 #: themes/splash/views/pages/userprofile.php:99
+#: themes/splash/views/pages/userprofile.php:101
 #: themes/splash/views/pages/auth/register-form.php:12
 #: themes/splash/views/pages/auth/register-form.php:14
 #: themes/splash/views/pages/contact.php:32
@@ -1295,10 +1299,10 @@ msgstr ""
 #: themes/reclassifieds3/views/pages/ad/single.php:176
 #: themes/ocean/views/pages/ad/single.php:174
 #: themes/ocean/views/pages/ad/single.php:176
-#: themes/splash/views/pages/ad/single.php:123
-#: themes/splash/views/pages/ad/single.php:124
-#: themes/splash/views/pages/userprofile.php:105
+#: themes/splash/views/pages/ad/single.php:145
+#: themes/splash/views/pages/ad/single.php:146
 #: themes/splash/views/pages/userprofile.php:107
+#: themes/splash/views/pages/userprofile.php:109
 #: themes/splash/views/pages/contact.php:35
 #: themes/splash/views/pages/contact.php:36
 #: themes/splash/views/widget/widget_contact.php:23
@@ -1347,10 +1351,10 @@ msgstr ""
 #: themes/reclassifieds3/views/pages/ad/single.php:183
 #: themes/ocean/views/pages/ad/single.php:181
 #: themes/ocean/views/pages/ad/single.php:183
-#: themes/splash/views/pages/ad/single.php:126
-#: themes/splash/views/pages/ad/single.php:127
-#: themes/splash/views/pages/userprofile.php:112
+#: themes/splash/views/pages/ad/single.php:148
+#: themes/splash/views/pages/ad/single.php:149
 #: themes/splash/views/pages/userprofile.php:114
+#: themes/splash/views/pages/userprofile.php:116
 #: themes/splash/views/pages/contact.php:37
 #: themes/splash/views/pages/contact.php:38
 #: themes/splash/views/widget/widget_contact.php:29
@@ -1395,8 +1399,8 @@ msgstr ""
 #: themes/reclassifieds3/views/pages/ad/single.php:199
 #: themes/ocean/views/pages/ad/single.php:197
 #: themes/ocean/views/pages/ad/single.php:199
-#: themes/splash/views/pages/ad/single.php:134
-#: themes/splash/views/pages/ad/single.php:135
+#: themes/splash/views/pages/ad/single.php:156
+#: themes/splash/views/pages/ad/single.php:157
 #: themes/splash/views/widget/widget_contact.php:37
 #: themes/splash/views/widget/widget_contact.php:38
 #: themes/moderndeluxe3/views/pages/ad/single.php:197
@@ -1427,9 +1431,9 @@ msgstr ""
 #: themes/ocean/views/pages/ad/single.php:205
 #: themes/ocean/views/pages/ad/new.php:234
 #: themes/splash/views/pages/ad/reviews.php:80
-#: themes/splash/views/pages/ad/single.php:141
+#: themes/splash/views/pages/ad/single.php:163
 #: themes/splash/views/pages/ad/new.php:186
-#: themes/splash/views/pages/userprofile.php:124
+#: themes/splash/views/pages/userprofile.php:126
 #: themes/splash/views/pages/forum/topic.php:115
 #: themes/splash/views/pages/forum/new.php:70
 #: themes/splash/views/pages/contact.php:43
@@ -1472,8 +1476,8 @@ msgstr ""
 #: themes/reclassifieds3/views/pages/ad/listing.php:77
 #: themes/ocean/views/pages/ad/single.php:234
 #: themes/ocean/views/pages/ad/listing.php:78
-#: themes/splash/views/pages/ad/single.php:198
-#: themes/splash/views/pages/ad/single.php:200
+#: themes/splash/views/pages/ad/single.php:220
+#: themes/splash/views/pages/ad/single.php:222
 #: themes/moderndeluxe3/views/pages/ad/single.php:233
 #: themes/moderndeluxe3/views/pages/ad/listing.php:78
 #: themes/newspaper/views/pages/ad/single.php:280
@@ -1497,7 +1501,7 @@ msgstr ""
 #: themes/responsive3/views/pages/ad/single.php:231
 #: themes/reclassifieds3/views/pages/ad/single.php:235
 #: themes/ocean/views/pages/ad/single.php:235
-#: themes/splash/views/pages/ad/single.php:201
+#: themes/splash/views/pages/ad/single.php:223
 #: themes/moderndeluxe3/views/pages/ad/single.php:234
 #: themes/newspaper/views/pages/ad/single.php:281
 #: themes/default/views/pages/ad/single.php:210
@@ -1603,7 +1607,7 @@ msgstr ""
 #: themes/reclassifieds3/views/pages/ad/new.php:89
 #: themes/ocean/views/pages/ad/new.php:89
 #: themes/splash/views/pages/ad/new.php:96
-#: themes/splash/views/pages/userprofile.php:155
+#: themes/splash/views/pages/userprofile.php:157
 #: themes/splash/views/pages/forum/new.php:58
 #: themes/splash/views/pages/forum/new.php:60
 #: themes/splash/views/oc-panel/profile/edit_ad.php:195
@@ -1676,8 +1680,8 @@ msgstr ""
 #: themes/splash/views/pages/ad/listing.php:119
 #: themes/splash/views/pages/ad/listing.php:136
 #: themes/splash/views/pages/blog/listing.php:51
-#: themes/splash/views/pages/userprofile.php:163
-#: themes/splash/views/pages/userprofile.php:176
+#: themes/splash/views/pages/userprofile.php:165
+#: themes/splash/views/pages/userprofile.php:178
 #: themes/splash/views/pages/forum/list.php:42
 #: themes/moderndeluxe3/views/pages/ad/new.php:105
 #: themes/moderndeluxe3/views/pages/ad/listing.php:200
@@ -1715,7 +1719,7 @@ msgstr ""
 #: oc/common/views/pages/forum/list.php:25
 #: oc/common/views/oc-panel/pages/blog/update.php:44
 #: oc/common/views/oc-panel/pages/blog/index.php:58
-#: oc/common/views/oc-panel/pages/coupon/index.php:69
+#: oc/common/views/oc-panel/pages/coupon/index.php:70
 #: oc/common/views/oc-panel/pages/menu/index.php:197
 #: oc/common/views/oc-panel/pages/widgets/form_widget.php:13
 #: oc/common/views/oc-panel/pages/cron/index.php:43
@@ -1742,7 +1746,7 @@ msgstr ""
 #: themes/splash/views/pages/ad/new.php:108
 #: themes/splash/views/pages/ad/listing.php:127
 #: themes/splash/views/pages/blog/listing.php:52
-#: themes/splash/views/pages/userprofile.php:171
+#: themes/splash/views/pages/userprofile.php:173
 #: themes/splash/views/oc-panel/profile/edit_ad.php:296
 #: themes/moderndeluxe3/views/pages/ad/new.php:108
 #: themes/moderndeluxe3/views/pages/ad/listing.php:208
@@ -1854,7 +1858,7 @@ msgstr ""
 #: themes/ocean/views/pages/ad/single.php:143
 #: themes/ocean/views/pages/ad/new.php:121
 #: themes/ocean/views/pages/ad/new.php:122
-#: themes/splash/views/pages/ad/single.php:104
+#: themes/splash/views/pages/ad/single.php:126
 #: themes/splash/views/pages/ad/new.php:114
 #: themes/splash/views/pages/ad/new.php:115
 #: themes/splash/views/oc-panel/profile/edit_ad.php:202
@@ -2039,7 +2043,7 @@ msgstr ""
 #: themes/reclassifieds3/views/pages/ad/new.php:245
 #: themes/reclassifieds3/views/header.php:31
 #: themes/ocean/views/pages/ad/new.php:244
-#: themes/splash/views/pages/ad/new.php:192
+#: themes/splash/views/pages/ad/new.php:191
 #: themes/splash/views/header.php:63
 #: themes/moderndeluxe3/views/pages/ad/new.php:245
 #: themes/mobile/views/pages/ad/new.php:198
@@ -2059,6 +2063,7 @@ msgstr ""
 #: themes/responsive3/views/pages/ad/new.php:220
 #: themes/reclassifieds3/views/pages/ad/new.php:245
 #: themes/ocean/views/pages/ad/new.php:244
+#: themes/splash/views/pages/ad/new.php:191
 #: themes/moderndeluxe3/views/pages/ad/new.php:245
 #: themes/newspaper/views/pages/ad/new.php:218
 #: themes/default/views/pages/ad/new.php:210
@@ -2086,7 +2091,7 @@ msgstr ""
 #: themes/responsive3/views/pages/ad/new.php:222
 #: themes/reclassifieds3/views/pages/ad/new.php:247
 #: themes/ocean/views/pages/ad/new.php:246
-#: themes/splash/views/pages/ad/new.php:194
+#: themes/splash/views/pages/ad/new.php:193
 #: themes/moderndeluxe3/views/pages/ad/new.php:247
 #: themes/newspaper/views/pages/ad/new.php:220
 #: themes/default/views/pages/ad/new.php:212
@@ -2099,7 +2104,7 @@ msgstr ""
 #: themes/responsive3/views/pages/ad/new.php:236
 #: themes/reclassifieds3/views/pages/ad/new.php:263
 #: themes/ocean/views/pages/ad/new.php:262
-#: themes/splash/views/pages/ad/new.php:210
+#: themes/splash/views/pages/ad/new.php:209
 #: themes/splash/views/oc-panel/profile/edit_ad.php:331
 #: themes/moderndeluxe3/views/pages/ad/new.php:263
 #: themes/newspaper/views/pages/ad/new.php:233
@@ -2327,7 +2332,7 @@ msgstr ""
 #: themes/splash/views/pages/ad/advanced_search.php:195
 #: themes/splash/views/pages/ad/listing.php:121
 #: themes/splash/views/pages/ad/listing.php:138
-#: themes/splash/views/pages/userprofile.php:165
+#: themes/splash/views/pages/userprofile.php:167
 #: themes/splash/views/oc-panel/profile/ads.php:137
 #: themes/moderndeluxe3/views/pages/ad/listing.php:202
 #: themes/moderndeluxe3/views/pages/ad/listing.php:217
@@ -2360,7 +2365,7 @@ msgstr ""
 #: themes/splash/views/pages/ad/advanced_search.php:195
 #: themes/splash/views/pages/ad/listing.php:121
 #: themes/splash/views/pages/ad/listing.php:138
-#: themes/splash/views/pages/userprofile.php:165
+#: themes/splash/views/pages/userprofile.php:167
 #: themes/moderndeluxe3/views/pages/ad/listing.php:202
 #: themes/moderndeluxe3/views/pages/ad/listing.php:217
 #: themes/newspaper/views/pages/ad/listing.php:183
@@ -2385,7 +2390,7 @@ msgstr ""
 #: themes/ocean/views/pages/ad/listing.php:198
 #: themes/splash/views/pages/ad/advanced_search.php:181
 #: themes/splash/views/pages/ad/listing.php:124
-#: themes/splash/views/pages/userprofile.php:168
+#: themes/splash/views/pages/userprofile.php:170
 #: themes/moderndeluxe3/views/pages/ad/listing.php:205
 #: themes/newspaper/views/pages/ad/listing.php:185
 #: themes/newspaper/views/pages/userprofile.php:156
@@ -2407,7 +2412,7 @@ msgstr ""
 #: themes/ocean/views/pages/ad/listing.php:198
 #: themes/splash/views/pages/ad/advanced_search.php:181
 #: themes/splash/views/pages/ad/listing.php:124
-#: themes/splash/views/pages/userprofile.php:168
+#: themes/splash/views/pages/userprofile.php:170
 #: themes/splash/views/oc-panel/pages/messages/index.php:36
 #: themes/splash/views/oc-panel/profile/ads.php:68
 #: themes/moderndeluxe3/views/pages/ad/listing.php:205
@@ -2437,7 +2442,7 @@ msgstr ""
 #: themes/splash/views/pages/ad/advanced_search.php:184
 #: themes/splash/views/pages/ad/listing.php:127
 #: themes/splash/views/pages/blog/listing.php:52
-#: themes/splash/views/pages/userprofile.php:171
+#: themes/splash/views/pages/userprofile.php:173
 #: themes/moderndeluxe3/views/pages/ad/listing.php:208
 #: themes/mobile/views/pages/blog/listing.php:23
 #: themes/newspaper/views/pages/ad/listing.php:188
@@ -3517,7 +3522,7 @@ msgstr ""
 #: themes/reclassifieds3/views/pages/ad/listing.php:172
 #: themes/ocean/views/pages/ad/listing.php:173
 #: themes/splash/views/pages/blog/listing.php:43
-#: themes/splash/views/pages/userprofile.php:156
+#: themes/splash/views/pages/userprofile.php:158
 #: themes/moderndeluxe3/views/pages/ad/listing.php:179
 #: themes/mobile/views/pages/userprofile.php:100
 #: themes/mobile/views/pages/userprofile.php:102
@@ -3557,6 +3562,7 @@ msgstr ""
 #: oc/common/views/oc-panel/pages/blog/index.php:11
 #: oc/common/views/oc-panel/pages/tools/sitemap.php:5
 #: oc/common/views/oc-panel/pages/tools/cache.php:9
+#: oc/common/views/oc-panel/pages/coupon/index.php:27
 #: oc/common/views/oc-panel/pages/social_auth/index.php:4
 #: oc/common/views/oc-panel/pages/update/confirm.php:25
 #: oc/common/views/oc-panel/pages/menu/index.php:5
@@ -3704,7 +3710,7 @@ msgid "Short description that appears after the site name."
 msgstr ""
 
 #: themes/splash/views/pages/ad/advanced_search.php:161
-#: themes/splash/views/pages/ad/single.php:165
+#: themes/splash/views/pages/ad/single.php:187
 #: themes/splash/views/pages/ad/listing.php:104
 msgid "Posted by"
 msgstr ""
@@ -3778,15 +3784,15 @@ msgstr ""
 msgid "Thanks for submitting your advertisement"
 msgstr ""
 
-#: themes/splash/views/pages/ad/single.php:147
+#: themes/splash/views/pages/ad/single.php:169
 msgid "Send message"
 msgstr ""
 
-#: themes/splash/views/pages/ad/single.php:164
+#: themes/splash/views/pages/ad/single.php:186
 msgid "Since"
 msgstr ""
 
-#: themes/splash/views/pages/ad/single.php:185
+#: themes/splash/views/pages/ad/single.php:207
 #: themes/newspaper/views/pages/ad/single.php:85
 #: themes/czsale/views/pages/ad/single.php:97
 msgid "Details"
@@ -3830,7 +3836,7 @@ msgstr ""
 #: themes/default/views/pages/ad/checkout.php:29
 #: themes/default/views/oc-panel/pages/order/index.php:64
 #: themes/default/views/oc-panel/profile/orders.php:14
-#: oc/common/views/oc-panel/pages/coupon/index.php:36
+#: oc/common/views/oc-panel/pages/coupon/index.php:37
 msgid "Product"
 msgstr ""
 
@@ -3839,18 +3845,18 @@ msgstr ""
 msgid "Shipping"
 msgstr ""
 
-#: themes/splash/views/pages/ad/checkout.php:74
-#: themes/splash/views/pages/ad/checkout.php:89
-#: themes/default/views/pages/ad/checkout.php:55
-#: themes/default/views/pages/ad/checkout.php:70
+#: themes/splash/views/pages/ad/checkout.php:72
+#: themes/splash/views/pages/ad/checkout.php:87
+#: themes/default/views/pages/ad/checkout.php:53
+#: themes/default/views/pages/ad/checkout.php:68
 #: themes/default/views/oc-panel/pages/settings/payment.php:14
 #: themes/default/views/oc-panel/pages/settings/payment.php:104
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:189
 msgid "Days"
 msgstr ""
 
-#: themes/splash/views/pages/ad/checkout.php:81
-#: themes/default/views/pages/ad/checkout.php:62
+#: themes/splash/views/pages/ad/checkout.php:79
+#: themes/default/views/pages/ad/checkout.php:60
 msgid "Change plan"
 msgstr ""
 
@@ -3878,16 +3884,16 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: themes/splash/views/pages/ad/checkout.php:133
-#: themes/mobile/views/pages/ad/checkout.php:57
-#: themes/default/views/pages/ad/checkout.php:114
+#: themes/splash/views/pages/ad/checkout.php:135
+#: themes/mobile/views/pages/ad/checkout.php:59
+#: themes/default/views/pages/ad/checkout.php:116
 msgid "Pay with Paypal"
 msgstr ""
 
-#: themes/splash/views/pages/ad/checkout.php:143
 #: themes/splash/views/pages/ad/checkout.php:144
-#: themes/mobile/views/pages/ad/checkout.php:77
+#: themes/splash/views/pages/ad/checkout.php:145
 #: themes/mobile/views/pages/ad/checkout.php:78
+#: themes/mobile/views/pages/ad/checkout.php:79
 #: themes/default/views/pages/ad/checkout.php:125
 #: themes/default/views/pages/ad/checkout.php:126
 #: themes/default/views/oc-panel/pages/order/index.php:89
@@ -3895,10 +3901,10 @@ msgstr ""
 msgid "Mark as paid"
 msgstr ""
 
-#: themes/splash/views/pages/ad/checkout.php:187
 #: themes/splash/views/pages/ad/checkout.php:188
-#: themes/mobile/views/pages/ad/checkout.php:85
+#: themes/splash/views/pages/ad/checkout.php:189
 #: themes/mobile/views/pages/ad/checkout.php:86
+#: themes/mobile/views/pages/ad/checkout.php:87
 #: themes/default/views/pages/ad/checkout.php:169
 #: themes/default/views/pages/ad/checkout.php:170
 msgid "Click to proceed"
@@ -3945,7 +3951,7 @@ msgstr ""
 msgid "Profile Picture"
 msgstr ""
 
-#: themes/splash/views/pages/userprofile.php:48
+#: themes/splash/views/pages/userprofile.php:50
 #: themes/splash/views/pages/forum/list.php:37
 #: themes/splash/views/oc-panel/profile/subscriptions.php:32
 #: themes/mobile/views/pages/userprofile.php:21
@@ -3957,19 +3963,19 @@ msgstr ""
 #: oc/classes/model/ad.php:147
 #: oc/common/views/pages/forum/list.php:20
 #: oc/common/views/oc-panel/pages/blog/index.php:32
-#: oc/common/views/oc-panel/pages/coupon/index.php:40
+#: oc/common/views/oc-panel/pages/coupon/index.php:41
 #: oc/common/classes/model/oc/user.php:111
 msgid "Created"
 msgstr ""
 
-#: themes/splash/views/pages/userprofile.php:50
+#: themes/splash/views/pages/userprofile.php:52
 #: themes/mobile/views/pages/userprofile.php:23
 #: themes/newspaper/views/pages/userprofile.php:24
 #: themes/default/views/pages/userprofile.php:33
 msgid "Last Login"
 msgstr ""
 
-#: themes/splash/views/pages/userprofile.php:144
+#: themes/splash/views/pages/userprofile.php:146
 #: themes/newspaper/views/pages/userprofile.php:109
 #: themes/default/views/pages/userprofile.php:125
 msgid " advertisements"
@@ -4203,7 +4209,7 @@ msgstr ""
 #: themes/default/views/oc-panel/profile/favorites.php:27
 #: themes/default/views/oc-panel/profile/edit_ad.php:276
 #: oc/common/views/oc-panel/pages/blog/index.php:64
-#: oc/common/views/oc-panel/pages/coupon/index.php:77
+#: oc/common/views/oc-panel/pages/coupon/index.php:78
 #: oc/common/views/oc-panel/pages/menu/index.php:204
 #: oc/common/views/oc-panel/pages/cron/index.php:51
 #: oc/common/views/oc-panel/pages/forum/topic.php:59
@@ -4240,7 +4246,7 @@ msgstr ""
 #: themes/default/views/oc-panel/profile/subscriptions.php:21
 #: themes/default/views/oc-panel/profile/subscriptions.php:59
 #: oc/common/views/oc-panel/pages/blog/index.php:66
-#: oc/common/views/oc-panel/pages/coupon/index.php:79
+#: oc/common/views/oc-panel/pages/coupon/index.php:80
 #: oc/common/views/oc-panel/pages/update/confirm.php:35
 #: oc/common/views/oc-panel/pages/menu/index.php:206
 #: oc/common/views/oc-panel/pages/widgets/form_widget.php:60
@@ -4280,7 +4286,7 @@ msgstr ""
 #: themes/default/views/oc-panel/profile/subscriptions.php:22
 #: themes/default/views/oc-panel/profile/subscriptions.php:60
 #: oc/common/views/oc-panel/pages/blog/index.php:67
-#: oc/common/views/oc-panel/pages/coupon/index.php:80
+#: oc/common/views/oc-panel/pages/coupon/index.php:81
 #: oc/common/views/oc-panel/pages/update/confirm.php:36
 #: oc/common/views/oc-panel/pages/menu/index.php:207
 #: oc/common/views/oc-panel/pages/widgets/form_widget.php:61
@@ -4966,7 +4972,7 @@ msgid "Moderation"
 msgstr ""
 
 #: themes/default/views/oc-panel/sidebar.php:31
-#: oc/common/views/oc-panel/pages/coupon/index.php:113
+#: oc/common/views/oc-panel/pages/coupon/index.php:114
 #: oc/common/classes/controller/panel/coupon.php:23
 msgid "Coupons"
 msgstr ""
@@ -5164,7 +5170,7 @@ msgstr ""
 
 #: themes/default/views/oc-panel/pages/tools/import_ads.php:12
 #: themes/default/views/oc-panel/pages/tools/import_tool.php:11
-#: oc/common/views/oc-panel/pages/coupon/index.php:107
+#: oc/common/views/oc-panel/pages/coupon/index.php:108
 msgid "Upload CSV file"
 msgstr ""
 
@@ -5172,7 +5178,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/tools/import_tool.php:15
 #: themes/default/views/oc-panel/pages/locations/index.php:147
 #: themes/default/views/oc-panel/pages/categories/index.php:87
-#: oc/common/views/oc-panel/pages/coupon/index.php:111
+#: oc/common/views/oc-panel/pages/coupon/index.php:112
 msgid "Please use the correct CSV format"
 msgstr ""
 
@@ -5181,7 +5187,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/tools/import_tool.php:18
 #: themes/default/views/oc-panel/pages/locations/index.php:147
 #: themes/default/views/oc-panel/pages/categories/index.php:87
-#: oc/common/views/oc-panel/pages/coupon/index.php:113
+#: oc/common/views/oc-panel/pages/coupon/index.php:114
 msgid "download example"
 msgstr ""
 
@@ -5197,7 +5203,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/tools/import_tool.php:30
 #: themes/default/views/oc-panel/pages/locations/index.php:159
 #: themes/default/views/oc-panel/pages/categories/index.php:99
-#: oc/common/views/oc-panel/pages/coupon/index.php:121
+#: oc/common/views/oc-panel/pages/coupon/index.php:122
 #: oc/common/views/oc-panel/pages/themes/theme.php:72
 msgid "Upload"
 msgstr ""
@@ -6674,7 +6680,7 @@ msgid "Paymethod"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/order/index.php:69
-#: oc/common/views/oc-panel/pages/coupon/index.php:42
+#: oc/common/views/oc-panel/pages/coupon/index.php:43
 #: oc/common/views/oc-panel/pages/cron/index.php:30
 #: oc/common/views/oc-panel/pages/content/list.php:35
 #: oc/common/views/oc-panel/crud/index.php:36
@@ -7487,7 +7493,7 @@ msgid "Buy product"
 msgstr ""
 
 #: oc/classes/model/order.php:377
-#: oc/common/classes/model/oc/coupon.php:151
+#: oc/common/classes/model/oc/coupon.php:160
 msgid "Coupon not valid, expired or already used."
 msgstr ""
 
@@ -8718,7 +8724,7 @@ msgstr ""
 #: oc/common/views/oc-panel/pages/coupon/create.php:27
 #: oc/common/views/oc-panel/pages/coupon/update.php:20
 #: oc/common/views/oc-panel/pages/coupon/bulk.php:19
-#: oc/common/views/oc-panel/pages/coupon/index.php:54
+#: oc/common/views/oc-panel/pages/coupon/index.php:55
 msgid "Any"
 msgstr ""
 
@@ -8770,29 +8776,29 @@ msgstr ""
 msgid "Coupon name"
 msgstr ""
 
-#: oc/common/views/oc-panel/pages/coupon/index.php:37
+#: oc/common/views/oc-panel/pages/coupon/index.php:38
 msgid "Discount"
 msgstr ""
 
-#: oc/common/views/oc-panel/pages/coupon/index.php:38
+#: oc/common/views/oc-panel/pages/coupon/index.php:39
 msgid "Number Coupons"
 msgstr ""
 
-#: oc/common/views/oc-panel/pages/coupon/index.php:39
+#: oc/common/views/oc-panel/pages/coupon/index.php:40
 msgid "Valid until"
 msgstr ""
 
-#: oc/common/views/oc-panel/pages/coupon/index.php:101
+#: oc/common/views/oc-panel/pages/coupon/index.php:102
 #: oc/common/views/oc-panel/crud/index.php:78
 msgid "Export"
 msgstr ""
 
-#: oc/common/views/oc-panel/pages/coupon/index.php:103
+#: oc/common/views/oc-panel/pages/coupon/index.php:104
 #: oc/common/views/oc-panel/crud/index.php:80
 msgid "Export all"
 msgstr ""
 
-#: oc/common/views/oc-panel/pages/coupon/index.php:118
+#: oc/common/views/oc-panel/pages/coupon/index.php:119
 msgid "import coupons"
 msgstr ""
 
@@ -9364,11 +9370,11 @@ msgstr ""
 msgid "# items to display"
 msgstr ""
 
-#: oc/common/classes/model/oc/coupon.php:128
+#: oc/common/classes/model/oc/coupon.php:137
 msgid "Coupon deleted."
 msgstr ""
 
-#: oc/common/classes/model/oc/coupon.php:144
+#: oc/common/classes/model/oc/coupon.php:153
 msgid "Coupon added!"
 msgstr ""
 
@@ -9850,7 +9856,7 @@ msgstr ""
 msgid "We can not copy the %s since the locale %s already has existing %s"
 msgstr ""
 
-#: oc/common/classes/api/user.php:17
+#: oc/common/classes/api/user.php:20
 msgid "Wrong Api User Token"
 msgstr ""
 
@@ -9858,7 +9864,7 @@ msgstr ""
 msgid "Method not found "
 msgstr ""
 
-#: oc/common/classes/api/auth.php:15
+#: oc/common/classes/api/auth.php:18
 msgid "Wrong Api Key"
 msgstr ""
 
