@@ -180,7 +180,7 @@ class install{
                 $compatible = FALSE;
 
             if ($values['result'] == FALSE)
-                self::$msg .= $values['message'].'<br>';
+                self::$msg[] = $values['message'];
         }
 
         return $compatible;
@@ -307,6 +307,8 @@ class core{
         curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($c, CURLOPT_URL, $url);
         curl_setopt($c, CURLOPT_TIMEOUT,30); 
+        curl_setopt($c, CURLOPT_NOPROGRESS, false);
+        curl_setopt($c, CURLOPT_PROGRESSFUNCTION, array(new core, 'progressCallback'));
         // curl_setopt($c, CURLOPT_FOLLOWLOCATION, TRUE);
         // $contents = curl_exec($c);
         $contents = core::curl_exec_follow($c);
@@ -428,6 +430,24 @@ class core{
     {
         return (core::post($key)!==NULL)?core::post($key):core::get($key,$default);
     }
+    
+    public static function progressCallback($resource, $download_size, $downloaded, $upload_size, $uploaded )
+    {
+        static $previousProgress = 0;
+        
+        if ($download_size == 0)
+            $progress = 0;
+        else
+            $progress = round($downloaded * 100 / $download_size);
+        
+        if ($progress > $previousProgress)
+        {
+            $previousProgress = $progress;
+            $fp = fopen('progress.json', 'wa+');
+            fputs($fp, json_encode(array('progress' => array($progress))));
+            fclose($fp);
+        }
+    }
 }
 
 /**
@@ -460,231 +480,286 @@ function __($msgid)
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script type="text/javascript" src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>    <![endif]-->
-       
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/animatecss/3.3.0/animate.min.css" rel="stylesheet">
+    
     <style type="text/css">
     body {
-        padding-top: 60px;
-        padding-bottom: 40px;
+        background-color: #f3f3f4;
+        padding-top: 80px;
+        padding-bottom: 15px;
+        color: #676a6c;
     }
-
-    .sidebar-nav {
-        padding: 9px 0;
+    a {
+        color: #0072A6;
     }
-    .chosen-single{padding: 4px 0px 27px 8px!important;}
-    .chosen-single b{margin: 4px!important;}
-    .navbar-brand{padding: 4px 50px 0px 0px!important;}
-    .we-install{padding: 11px!important;margin-top: 7px;}
-    .adv{display: none;}
-    .logo img {margin-top: 10px;}
-    .page-header{margin: 25px 0 21px!important;}
-    .mb-10{margin-bottom: 10px!important;}
-    #myTab{margin-top: 14px;}
+    a:hover {
+        color: #00587F;
+    }
+    .logo {
+        height: 45px;
+    }
+    .off-canvas {
+        background-color: #ffffff;
+        padding: 5px 20px 20px;
+        -webkit-border-radius: 4px;
+           -moz-border-radius: 4px;
+                border-radius: 4px;
+        -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+           -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+                box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+        -webkit-transition: max-height 0.8s;
+           -moz-transition: max-height 0.8s;
+                transition: max-height 0.8s;
+    }
+    .off-canvas h3 {
+        margin-top: 0;
+        font-size: 13px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 400;
+        padding: 15px 0;
+        letter-spacing: 2px;
+        border-bottom: 1px solid #EDEDEE;
+        margin-bottom: 15px;
+    }
+    .copyright {
+        font-size: 12px;
+    }
+    .copyright a {
+        color: #676a6c;
+    }
+    .btn-default {
+        background-color: #41bb19;
+        border-color: #41bb19;
+        color: #FFFFFF;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .btn-default:hover,
+    .btn-default:focus,
+    .btn-default.focus,
+    .btn-default:active,
+    .btn-default.active,
+    .open > .dropdown-toggle.btn-default {
+        color: #FFFFFF;
+        background-color: #32AF0A;
+        border-color: #32AF0A;
+    }
+    .btn-default.disabled,
+    .btn-default.disabled.active,
+    .btn-default.disabled.focus,
+    .btn-default.disabled:active,
+    .btn-default.disabled:focus,
+    .btn-default.disabled:hover,
+    .btn-default[disabled],
+    .btn-default.active[disabled],
+    .btn-default.focus[disabled],
+    .btn-default[disabled]:active,
+    .btn-default[disabled]:focus,
+    .btn-default[disabled]:hover {
+        background-color: #32AF0A;
+        border-color: #32AF0A;
+    }
+    .btn.active.focus,
+    .btn.active:focus,
+    .btn.focus,
+    .btn:active.focus,
+    .btn:active:focus,
+    .btn:focus {
+        outline: 0;
+    }
+    .text-success {
+        color: #41bb19;
+    }
+    .btn-default.action {
+        letter-spacing: 0px;
+    }
+    .list-requirements {
+        margin-bottom: 10px;
+        font-size: 12px;
+        line-height: 25px;
+        padding-bottom: 10px;
+        -webkit-column-count: 2;
+           -moz-column-count: 2;
+                column-count: 2;
+        -webkit-column-gap: 15px;
+           -moz-column-gap: 15px;
+                column-gap: 15px;
+    }
+    .list-requirements .check {
+        vertical-align: 4%;
+    }
+    .list-requirements .check .fa-spinner {
+        width: 20px;
+    }
+    .alert {
+        background-color: #FFFFFF;
+        color: #676a6c;
+        border-width: 0;
+        -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+           -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+                box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+    }
+    .alert-success {
+        background-color: rgba(39, 194, 76, 0.15);
+        color: #676a6c;
+    }
+    .alert-info {
+        background-color: rgba(35, 183, 229, 0.15);
+        color: #676a6c;
+    }
+    .alert-warning {
+        background-color: rgba(255, 144, 43, 0.15);
+        color: #676a6c;
+    }
+    .alert-danger {
+        background-color: rgba(240, 80, 80, 0.15);
+        color: #676a6c;
+    }
+    .alert-services {
+        background-color: #41BB19;
+        color: #ffffff;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 12px;
+    }
+    .alert-services:hover {
+        background-color: #32AF0A;
+    }
+    .alert-services a {
+        color: #FFFFFF;
+    }
+    .alert-services a:hover {
+        text-decoration: none;
+    }
+    .alerts {
+        margin-top: -60px;
+    }
 
     </style>
-        
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/chosen/1.1.0/chosen.min.css">
 
 </head>
 
 <body>
     <div class="container">
-        <div class="navbar navbar-fixed-top navbar-inverse">
-
-            <div class="navbar-inner">
-                <div class="container">
-                    <button class="navbar-toggle pull-left" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-collapse bs-navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#home" data-toggle="tab">Install</a></li>
-                            <li><a href="http://open-classifieds.com/support/" target="_blank">Support</a></li>
-                            <li><a href="#home" data-toggle="tab">Requirements</a></li>
-                            <li><a href="#about" data-toggle="tab">About</a></li>
-                        </ul>
-
-                        <div class="btn-group pull-right">
-                            <a class="btn btn-primary we-install" href="http://open-classifieds.com/market/">
-                                <i class="glyphicon-shopping-cart glyphicon"></i> <?=__("We install it for you, Buy now!")?>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-         <a class="logo" target="_blank" href="http://open-classifieds.com">
-            <img src="http://open-classifieds.com/wp-content/uploads/2012/04/OC_noTagline_286x52.png" alt="Open Classifieds <?=__("Installation")?>">
-        </a>    
-        <div class="tab-content">
-
-            <div class="tab-pane fade in active" id="home">
-                <?
-                //choosing what to display
-                //execute installation since they are posting data
-                if ( $_POST  AND $is_compatible === TRUE)
+        <div class="row">
+            <?
+            //choosing what to display
+            //execute installation since they are posting data
+            if ( $_POST  AND $is_compatible === TRUE)
+            {
+                //theres post, download latest version, unzip and rediret to install
+                //download file
+                file_put_contents('progress.json', '');
+                $file_content = core::curl_get_contents($versions[$last_version]['download']);
+                file_put_contents('oc.zip', $file_content);
+                
+                $zip = new ZipArchive;
+                // open zip file, extract to dir
+                if ($zip_open = $zip->open('oc.zip')) 
                 {
-                    //theres post, download latest version, unzip and rediret to install
-                    //download file
-                    $file_content = core::curl_get_contents($versions[$last_version]['download']);
-                    file_put_contents('oc.zip', $file_content);
-                    
-                    $zip = new ZipArchive;
-                    // open zip file, extract to dir
-                    if ($zip_open = $zip->open('oc.zip')) 
+                    if ( !($folder_update = $zip->getNameIndex(0)) )
                     {
-                        if ( !($folder_update = $zip->getNameIndex(0)) )
-                        {
-                            hosting_view();
-                            exit;
-                        }
-
-                        $zip->extractTo(DOCROOT);
-                        $zip->close();  
-                        
-                        core::copy($folder_update, DOCROOT);
-                        
-                        // delete downloaded zip file
-                        core::delete($folder_update);
-                        @unlink('oc.zip');
-                        @unlink($_SERVER['SCRIPT_FILENAME']);
-                        
-                        // redirect to install
-                        header("Location: index.php");    
-                    }   
-                    else 
                         hosting_view();
-                }
-                //normally if compatible just display the form
-                elseif ($is_compatible === TRUE)
-                {?>
-                    <?if (!empty(install::$msg) OR !empty(install::$error_msg)) 
-                            hosting_view();?>
-                    <div class="page-header">
-                        <h1>Install Open Classifieds v.<?=$last_version;?></h1>
-                        <p>We will download last stable version of Open Classifieds and redirect you to the installation form. <br>
-                            Once you click in the install button can take few seconds until downloaded, please do not close this window.</p>
-                        <div class="clearfix"></div>
-                    </div>
-                    <form method="post" action="" class="" >
-                        <fieldset>
-                            <div class="form-action">
-                            <input type="submit" name="action" id="submit" value="Download and Install" class="btn btn-primary btn-large" />
-                            </div>
-                        </fieldset>
-                    </form>
-                <?}
-                //not compatible
-                else
-                    hosting_view();
-                ?>
-                    <hr>
-                    <h3><?=__("Software Requirements")?>  v.<?=$last_version;?></h3>
-                    <p><?=__('Requirements checks we do before we install.')?> 
-                        <span class="label label-info" id="phpinfobutton" >phpinfo()</span>
-                    </p>
+                        exit;
+                    }
 
-                    <?foreach (install::requirements() as $name => $values):
-                        $color = ($values['result'])?'success':'danger';?>
-                        <div class="pull-left <?=$color?>" style=" width: 100px; height: 56px; text-align: center;">
-                            <h4><i class="glyphicon glyphicon-<?=($values['result'])?"ok":"remove"?>"></i>
-                            <div class="clearfix"></div> 
-                            <?printf ('<span class="label label-%s">%s</span>',$color,$name);?> </h4>
-                        </div>   
-                    <?endforeach?>
-        
-                    <div class="clearfix"></div><br>
-
-                    <div class="hidden" id="phpinfo">
-                        <?=str_replace('<table', '<table class="table table-striped table-bordered"', install::phpinfo())?>
-                    </div>
-            </div>
-
-            <div class="tab-pane fade" id="about">
-                <div class="page-header">
-                    <h1><?=__('Welcome')?> </h1>
-                    <p><?=__('Thanks for using Open Classifieds.')?> 
-                        <?=__('Your installation version is')?> <span class="label label-info"><?=install::VERSION?></span> 
-                    </p>
+                    $zip->extractTo(DOCROOT);
+                    $zip->close();  
                     
-                    <div class="clearfix"></div>
-                    <p><?=__('You need help or you have some questions')?>
-                        <a class="btn btn-info btn-xs" target="_blank" href="http://forums.open-classifieds.com/"><i class="glyphicon glyphicon-wrench"></i> <?=__('Forum')?></a>
-                        <a class="btn btn-info btn-xs" target="_blank" href="http://open-classifieds.com/support/"><i class="glyphicon glyphicon-question-sign"></i> <?=__('FAQ')?></a>
-                        <a class="btn btn-info btn-xs" target="_blank" href="http://open-classifieds.com/blog/"><i class="glyphicon glyphicon-pencil"></i> <?=__('Blog')?></a>
-                    </p>
-                </div>
-
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="panel panel-info">
-                    <div class="panel-heading"><h3>Open-Classifieds <?=__('Latest News')?></h3>
+                    core::copy($folder_update, DOCROOT);
+                    
+                    // delete downloaded zip file
+                    core::delete($folder_update);
+                    @unlink('oc.zip');
+                    @unlink($_SERVER['SCRIPT_FILENAME']);
+                    
+                    // redirect to install
+                    header("Location: index.php");    
+                }   
+                else 
+                    hosting_view();
+            }
+            //normally if compatible just display the form
+            elseif ($is_compatible === TRUE)
+            {?>
+                <?if (!empty(install::$msg) OR !empty(install::$error_msg)) 
+                        hosting_view();?>
+            <?}
+            //not compatible
+            else
+                hosting_view();
+            ?>
+            <div class="col-md-8 col-md-offset-2 animated fadeIn">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><a target="_blank" href="http://open-classifieds.com/"><img class="logo" src="http://open-classifieds.com/wp-content/uploads/2015/05/oc-logo-hd.png"></a></h2>
+                        <p><strong><?=__("Welcome to the super easy and fast installation")?></strong></p>
+                        <p>Open Classifieds is an open source powerful PHP classifieds script that can help you start a website and turn it into a fully customizable classifieds site within a few minutes.</p>
+                        <div class="alert alert-services text-center">
+                            <p><a target="_blank" href="http://open-classifieds.com/market/"><?=__("If you need any help please check our professional services")?></a></p>
+                        </div>
                     </div>
-                        <div class="panel-body">
-                            <ul>
-                                <?foreach (core::rss('http://feeds.feedburner.com/OpenClassifieds')  as $item):?>
-                                    <li><a target="_blank" href="<?=$item->link?>" title="<?=$item->title?>"><?=$item->title?></a></li>
-                                    <div class="divider"></div>
-                                <?endforeach?>
-                            </ul>
+                    <div class="col-md-6">
+                        <div class="off-canvas animated">
+                            <form method="post" action="">
+                                <div class="panel-1">
+                                    <h3><?=__("Software Requirements")?>  v.<?=$last_version;?></h3>
+                                    <ul class="list-unstyled list-requirements">
+                                        <?foreach (install::requirements() as $name => $values):
+                                            $color = ($values['result'])?'success':'danger';?>
+                                            <li data-color="<?=$color?>" data-result="<?=($values['result'])?"check":"times"?>">
+                                                <span class="check">
+                                                    <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                                                </span>
+                                                <?=$name?>
+                                            </li>
+                                        <?endforeach?>
+                                    </ul>
+                                    <?if ($is_compatible === TRUE):?>
+                                        <form method="post" action="">
+                                            <p>
+                                                <input type="hidden" name="dummy">
+                                                <button class="btn btn-default btn-block submit" type="button">Download and Install</button>
+                                            </p>
+                                            <div class="progress hidden">
+                                                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                                            </div>
+                                            <p>
+                                                <small>
+                                                    We will download Open Classifieds <?=$last_version?> and redirect you to the installation form.
+                                                </small>
+                                            </p>
+                                        </form>
+                                    <?endif?>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <a class="twitter-timeline" href="https://twitter.com/openclassifieds" data-widget-id="428842439499997185">Tweets by @openclassifieds</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fopenclassifieds&amp;width=350&amp;height=600&amp;colorscheme=dark&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=181472118540903" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:350px; height:600px;" allowTransparency="true"></iframe>    
+                <hr>
+                <div class="row copyright">
+                    <div class="col-md-6">
+                        <p>Copyright <a target="_blank" href="http://open-classifieds.com/">Open Classifieds</a></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-right">&copy; 2009-<?=date('Y')?></p>
+                    </div>
                 </div>
             </div>
         </div>
-           
-        <hr>
-
-        <footer>
-            <p>
-            &copy;  <a href="http://open-classifieds.com" title="Open Source PHP Classifieds">Open Classifieds</a> 2009 - <?=date('Y')?>
-            </p>
-        </footer>
     </div> 
     
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/jquery.bootstrapvalidation/1.3.7/jqBootstrapValidation.min.js"></script>
-    <script src="//cdn.jsdelivr.net/chosen/1.1.0/chosen.jquery.min.js"></script>
 
     <script>
-        $(function () { 
-            $("select").chosen();
-            $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); 
-            $('input, select').tooltip(); 
-        });
-
-        $('#advanced-options').click(function(){
-            if($(this).hasClass('btn-primary'))
-            {
-                $(this).removeClass('btn-primary');
-                $(this).addClass('btn-default');
-                $('.adv').each(function(){
-                    $(this).hide();
-                });
-                $('#myTab').css('display','none');
-            }
-            else
-            {
-                $(this).removeClass('btn-default');
-                $(this).addClass('btn-primary');
-                $('.adv').each(function(){
-                    $(this).show();
-                });
-                $('#myTab').css('display','block');  
-            }
-        });
-
         $('#phpinfobutton').click(function(){
             if($('#phpinfo').hasClass('hidden'))
             {
@@ -698,6 +773,41 @@ function __($msgid)
                 $(this).addClass('label-info');
                 $('#phpinfo').addClass('hidden');
             }
+        });
+        
+        $('.list-requirements li').each(function(i){
+            var l = $(this);
+            var color = $(this).data('color');
+            var result = $(this).data('result');
+            setTimeout(function(){
+                //l.show().addClass('animated fadeInRight');
+                l.find('.check').html('<small><span class="animated bounceIn fa-stack text-' + color +'"><i class="fa fa-circle-o fa-stack-2x"></i><i class="fa fa-' + result + ' fa-stack-1x"></i></span></small>');
+            }, (i+1) * 200);
+        });
+        
+        $(".submit").click(function(event) {
+            var btn = $(this)
+            $(".progress").removeClass('hidden');
+            btn.attr('disabled', 'disabled').addClass('hidden');
+            setInterval(function(){ 
+                $.get( 'progress.json', function(data) {
+                    if (data.progress == 100)
+                    {
+                        $(".progress > div").width(data.progress + '%').html('Uncompressing...');
+                        return;
+                    }
+                    
+                    $(".progress > div").width(data.progress + '%').html(data.progress + '%');
+                });
+            }, 1500);
+            $.ajax({
+                url: $(location).attr('href'),
+                type: 'post',
+                data: $('form').serialize(),
+                success: function() {
+                    window.location.href = 'index.php';
+                }
+            });
         });
 
     </script>
@@ -713,31 +823,55 @@ function __($msgid)
 function hosting_view()
 {
     ?>
-    <?if (!empty(install::$error_msg)):?>
-    <br>
-    <div class="alert alert-danger"><?=install::$error_msg?></div>
-    <?endif?>
+    <div class="col-md-8 col-md-offset-2">
+        <div class="row alerts">
+            <div class="col-md-12">
+                <?if (!empty(install::$error_msg)):?>
+                    <div class="alert alert-danger animated fadeInDown">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <?=install::$error_msg?>
+                    </div>
+                <?endif?>
 
-    <?if(!empty(install::$msg)):?>
-        <br>
-        <div class="alert alert-warning">
-            <?=__("We have detected some incompatibilities, installation may not work as expected but you can try.")?> <br>
-            <?=install::$msg?>
+                <?if(!empty(install::$msg)):?>
+                    <?if(install::is_compatible()):?>
+                        <div class="alert alert-info animated fadeInDown">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <?=__("We have detected some incompatibilities, installation may not work as expected but you can try.")?>
+                        </div>
+                    <?endif?>
+                    <?foreach(install::$msg as $msg):?>
+                        <div class="alert alert-warning animated fadeInDown">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <?=$msg?>
+                        </div>
+                    <?endforeach?>
+                <?endif?>
+
+                <div class="alert animated fadeInDown">
+                    <p class="text-danger"><strong>Your hosting seems to be not compatible. Check your settings.</strong></p>
+                    <p>We have partnership with hosting companies to assure compatibility. And we include:</p>
+                    <br>
+                    <ul>
+                        <li>100% Compatible High Speed Hosting</li>
+                        <li>1 Premium Theme, of your choice worth $185</li>
+                        <li>Professional Installation and Support for 3 months</li>
+                    </ul>
+                    <br>
+                    <p>
+                        <a class="btn btn-default btn-large" href="http://open-classifieds.com/hosting/">
+                            <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $4 Month
+                        </a>
+                    </p>
+                </div>
+            </div>
         </div>
-    <?endif?>
-
-    <div class="jumbotron well">
-        <h2>Oops! You need a compatible Hosting</h2>
-        <p class="text-danger">Your hosting seems to be not compatible. Check your settings.<p>
-        <p>We have partnership with hosting companies to assure compatibility. And we include:
-            <ul>
-                <li>100% Compatible High Speed Hosting</li>
-                <li>1 Premium Theme, of your choice worth $185</li>
-                <li>Professional Installation and Support for 3 months</li>
-                <div class="clearfix"></div><br>
-            <a class="btn btn-primary btn-large" href="http://open-classifieds.com/hosting/">
-                <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $4 Month</a>
-        </p>
     </div>
     <?
 }
