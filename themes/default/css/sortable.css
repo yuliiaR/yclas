@@ -19,6 +19,10 @@ ol.plholder li {
     width: 100%;
 }
 
+ol.plholder li.inactive {
+    cursor: auto !important;
+}
+
 ol.plholder ol {
     padding-left: 26px;
 }

@@ -1044,6 +1044,7 @@ class Controller_Ad extends Controller {
         																		   'pagination'	      => $pagination, 
         																		   'user'		      => $user,
         																		   'fields' 		  => Model_Field::get_all(),
+																				   'total_ads' 		  => $res_count
         																		   ));
                 
 		

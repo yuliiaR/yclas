@@ -84,7 +84,13 @@
 
 <?if (Request::current()->query()):?>
     <?if (count($ads)>0):?>
-        <h3><?=__('Search results')?></h3>
+        <h3>
+            <?if (core::get('title')) :?>
+                <?=($total_ads == 1) ? sprintf(__('%d advertisement for %s'), $total_ads, core::get('title')) : sprintf(__('%d advertisements for %s'), $total_ads, core::get('title'))?>
+            <?else:?>
+                <?=__('Search results')?>
+            <?endif?>
+        </h3>
         <?=View::factory('pages/ad/listing',array('pagination'=>$pagination,'ads'=>$ads,'category'=>NULL, 'location'=>NULL, 'user'=>$user, 'featured'=>NULL))?>
     <?else:?>
         <h3><?=__('Your search did not match any advertisement.')?></h3>

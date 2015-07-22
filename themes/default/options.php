@@ -28,4 +28,12 @@ return array(   'theme' => array(	       'type'      => 'text',
                                             'default'   => 'bootstrap',
                                             'required'  => TRUE),
 
+                'category_badge' => array(  'type'      => 'text',
+                                            'display'   => 'select',
+                                            'label'     => __('Disable category counter badge'),
+                                            'options'   => array(   '1' => __('Yes'),
+                                                                    '0'  => __('No'),
+                                                                ), 
+                                            'default'   => '0',
+                                            'required'  => TRUE),
 );
