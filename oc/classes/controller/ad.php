@@ -854,8 +854,8 @@ class Controller_Ad extends Controller {
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
 
 		$pagination = NULL;
-        $ads   = NULL;
-		$user = (Auth::instance()->get_user() == NULL) ? NULL : Auth::instance()->get_user();
+		$ads        = NULL;
+		$res_count  = NULL;
 
 		if($this->request->query()) // after query has detected
 		{			
@@ -1042,7 +1042,7 @@ class Controller_Ad extends Controller {
         																		   'locations'	      => Model_Location::get_as_array(), 
         																		   'order_locations'  => Model_Location::get_multidimensional(),
         																		   'pagination'	      => $pagination, 
-        																		   'user'		      => $user,
+        																		   'user'		      => $this->user,
         																		   'fields' 		  => Model_Field::get_all(),
 																				   'total_ads' 		  => $res_count
         																		   ));
