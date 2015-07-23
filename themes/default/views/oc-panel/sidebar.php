@@ -181,6 +181,7 @@
                                         <tr><td class="br"><?=Theme::admin_link(__('Crontab'), 'crontab','index','oc-panel','glyphicon  glyphicon-calendar')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Sitemap'), 'tools','sitemap','oc-panel','glyphicon  glyphicon-list-alt')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Migration'), 'tools','migration','oc-panel','glyphicon  glyphicon-forward')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Export'), 'tools','export','oc-panel','glyphicon  glyphicon-export',NULL,FALSE)?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Optimize'), 'tools','optimize','oc-panel','glyphicon  glyphicon-compressed')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Cache'), 'tools','cache','oc-panel','glyphicon  glyphicon-cog')?></td></tr>
                                         <tr><td class="br"><?=Theme::admin_link(__('Logs'), 'tools','logs','oc-panel','glyphicon  glyphicon-list-alt')?></td></tr>
