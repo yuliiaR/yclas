@@ -489,7 +489,15 @@ function createCustomFieldsByCategory (customfields) {
                     $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(customfield.values[val]).html(customfield.values[val]));
                 }
                 $('#custom-fields select[name="' + idx + '"] option[value="' + $('#custom-fields').data('customfield-values')[customfield.label] +'"]').attr('selected', true);
-                $('#custom-fields select[name="' + idx + '"]').selectize();
+                // selectize allowEmptyOption bugfix
+                $('#custom-fields select[name="' + idx + '"]').selectize({
+                    allowEmptyOption: 'true',
+                    onChange: function(value) {
+                        if (value == ' ')
+                            $('#custom-fields select[name="' + idx + '"] option[selected]').val(null);
+                    }
+                });
+                $('#custom-fields select[name="' + idx + '"] option[value=" "]').val(null);
                 break;
             case 'radio':
                 $.each(customfield.values, function (radioidx, value) {
