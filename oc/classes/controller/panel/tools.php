@@ -178,7 +178,7 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
             // do migration using iframe this
 
         $this->template->title   = __('Open Classifieds migration');
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(ucfirst(__('Migration'))));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(mb_ucfirst(__('Migration'))));
 
 
         //force clean database from migration, not public, just internal helper
