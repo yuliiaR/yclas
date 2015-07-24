@@ -10,6 +10,71 @@
  */
 class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
 
+    public function action_export()
+    {
+        $csv_header = array('user_name','user_email','title','description','date','category','location',
+                                    'price','address','phone','website','image_1','image_2','image_3','image_4');
+
+        //the name of the file that user will download
+        $file_name = 'export.csv';
+        //name of the TMP file
+        $output_file = tempnam('/tmp', $file_name);
+        
+        //writting
+        $output = fopen($output_file, 'w');
+        //header of the CSV
+        fputcsv($output, $csv_header);
+
+        //model ad
+        $ads = new Model_Ad();
+        $ads->where('status','=',Model_Ad::STATUS_PUBLISHED);
+        $ads = $ads->find_all();
+
+        //each element
+        foreach($ads as $ad) 
+        {
+            $pic1 = NULL;
+            $pic2 = NULL;
+            $pic3 = NULL;
+            $pic4 = NULL;
+            $images = $ad->get_images();
+            if (count($images)>0)
+            {
+                if (isset($images[1]))
+                    $pic1 = $images[1]['image'];
+
+                if (isset($images[2]))
+                    $pic2 = $images[2]['image'];
+
+                if (isset($images[3]))
+                    $pic3 = $images[3]['image'];
+
+                if (isset($images[4]))
+                    $pic4 = $images[4]['image'];
+            }
+
+            $a = array($ad->user->name,
+                       $ad->user->email,
+                       $ad->title,
+                       $ad->description,
+                       $ad->published,
+                       $ad->category->name,
+                       $ad->location->name,
+                       $ad->price,
+                       $ad->address,
+                       $ad->phone,
+                       $ad->website,
+                       $pic1,$pic2,$pic3,$pic4
+                       );
+
+            fputcsv($output, $a);
+        }
+        
+        fclose($output);
+
+        //returns the file to the browser as attachement and deletes the TMP file
+        Response::factory()->send_file($output_file,$file_name,array('delete'=>TRUE));
+    } 
 
     public function action_import_tool()
     {
