@@ -98,7 +98,6 @@ $(function(){
                 dataType: 'json',
                 data: $('form').serialize(),
                 success: function(data) {
-                            console.log(data.admin_email);
                             btn.removeClass('loading');
                             $('p.form-control-static.admin_email').html(data.admin_email);
                             $('p.form-control-static.admin_pwd').html(data.admin_pwd);

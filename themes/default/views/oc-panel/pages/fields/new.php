@@ -65,7 +65,7 @@
 					<option></option>
 					<?function lili12($item, $key,$cats){?>
                         <?if($cats[$key]['id'] != 1):?>
-                        <option value="<?=$cats[$key]['id']?>"><?=$cats[$key]['name']?></option>
+                        <option value="<?=$cats[$key]['id']?>" <?=($cats[$key]['id']) == core::get('id_category') ? 'selected' : NULL?>><?=$cats[$key]['name']?></option>
                         <?endif?>
                             <?if (count($item)>0):?>
                                 <? if (is_array($item)) array_walk($item, 'lili12', $cats);?>

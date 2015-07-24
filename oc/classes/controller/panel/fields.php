@@ -581,6 +581,92 @@ class Controller_Panel_Fields extends Auth_Controller {
         else
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));
     }
-	
+
+    /**
+    * add category to custom field
+    * @return void 
+    */
+    public function action_add_category()
+    {
+        if (Core::get('id_category'))
+        {
+            $name        = $this->request->param('id');
+            $field       = new Model_Field();
+            $field_data  = $field->get($name);
+            $category    = new Model_Category(Core::get('id_category'));
+
+            // category or custom field not found
+            if ( ! $category->loaded() OR ! $field_data)
+                $this->redirect(Route::get('oc-panel')->uri(array('controller'=> Request::current()->controller(), 'action'=>'index')));
+            
+            // append category to custom field categories
+            $field_data['categories'][] = $category->id_category;
+            
+            // format custom field values
+            $field_data['values'] = ( ! is_null($field_data['values']) ? implode($field_data['values'], ',') : NULL);
+
+            try {
+                // update custom field categories
+                if ($field->update($name, $field_data['values'], $field_data['categories'], $field_data))
+                {
+                    Core::delete_cache();
+                    Alert::set(Alert::SUCCESS,sprintf(__('Field %s added'), $name));
+                }
+                else
+                    Alert::set(Alert::ERROR,sprintf(__('Field %s cannot be added'), $name));
+
+            } catch (Exception $e) {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+            
+            $this->redirect(Route::get('oc-panel')->uri(array('controller'=> 'category', 'action'=>'update', 'id'=>$category->id_category)));
+        }
+
+        $this->redirect(Route::get('oc-panel')->uri(array('controller'=> Request::current()->controller(), 'action'=>'index')));
+    }
+
+    /**
+    * remove category from custom field
+    * @return void 
+    */
+    public function action_remove_category()
+    {
+        if (Core::get('id_category'))
+        {
+            $name        = $this->request->param('id');
+            $field       = new Model_Field();
+            $field_data  = $field->get($name);
+            $category    = new Model_Category(Core::get('id_category'));
+
+            // category or custom field not found
+            if ( ! $category->loaded() OR ! $field_data)
+                $this->redirect(Route::get('oc-panel')->uri(array('controller'=> Request::current()->controller(), 'action'=>'index')));
+            
+            // remove current category from custom field categories
+            if ( is_array($field_data['categories']) AND ($key = array_search($category->id_category, $field_data['categories'])) !== FALSE )
+                unset($field_data['categories'][$key]);
+
+            // format custom field values
+            $field_data['values'] = ( ! is_null($field_data['values']) ? implode($field_data['values'], ',') : NULL);
+
+            try {
+                // update custom field categories
+                if ($field->update($name, $field_data['values'], $field_data['categories'], $field_data))
+                {
+                    Core::delete_cache();
+                    Alert::set(Alert::SUCCESS,sprintf(__('Field %s removed'), $name));
+                }
+                else
+                    Alert::set(Alert::ERROR,sprintf(__('Field %s cannot be removed'), $name));
+
+            } catch (Exception $e) {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+            
+            $this->redirect(Route::get('oc-panel')->uri(array('controller'=> 'category', 'action'=>'update', 'id'=>$category->id_category)));
+        }
+
+        $this->redirect(Route::get('oc-panel')->uri(array('controller'=> Request::current()->controller(), 'action'=>'index')));
+    }
 
 }
