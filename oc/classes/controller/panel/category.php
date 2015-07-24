@@ -102,7 +102,21 @@ class Controller_Panel_Category extends Auth_Crud {
     
         $form = new FormOrm($this->_orm_model,$this->request->param('id'));
         $category = new Model_Category($this->request->param('id'));
-        
+
+        $fields = Model_Field::get_all();
+        $category_fields = array();
+        $selectable_fields = array();
+
+        // get selectable fields
+        foreach ($fields as $field => $values) 
+        {
+            if ( ! (is_array($values['categories']) AND in_array($category->id_category,$values['categories'])))
+                $selectable_fields[$field] = $values;
+
+            else
+                $category_fields[$field] = $values;
+        }
+
         if ($this->request->post())
         {
             if ( $success = $form->submit() )
@@ -150,7 +164,7 @@ class Controller_Panel_Category extends Auth_Crud {
             }
         }
     
-        return $this->render('oc-panel/pages/categories/update', array('form' => $form, 'category' => $category));
+        return $this->render('oc-panel/pages/categories/update', compact('form', 'category', 'category_fields', 'selectable_fields'));
     }
 
 
@@ -475,109 +489,4 @@ class Controller_Panel_Category extends Auth_Crud {
         HTTP::redirect(Route::url('oc-panel',array('controller'=>'category', 'action'=>'index')));
     }
 
-    /**
-    * creates a custom field for selected category
-    * @return void 
-    */
-    public function action_create_customfield()
-    {
-        $category = new Model_Category($this->request->param('id'));
-        
-        if ($category->loaded() AND $_POST)
-        {
-            if ( count(Model_Field::get_all()) > 65 ) //upper bound for custom fields
-            {
-                Alert::set(Alert::ERROR,__('You have reached the maximum number of custom fields allowed.'));
-                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(), 'action'=>'update', 'id'=>$category->id_category)));
-            }
-
-            $name  = URL::title(Core::post('name'));
-            $field = new Model_Field();
-
-            try {
-
-                $options = array(
-                                'label'             => Core::post('label'),
-                                'tooltip'           => Core::post('tooltip'),
-                                'required'          => (Core::post('required')=='on') ? TRUE : FALSE,
-                                'searchable'        => (Core::post('searchable')=='on') ? TRUE : FALSE,
-                                'admin_privilege'   => (Core::post('admin_privilege')=='on') ? TRUE : FALSE,
-                                'show_listing'      => (Core::post('show_listing')=='on') ? TRUE : FALSE,
-                                );
-
-                if ($field->create($name, Core::post('type'), Core::post('values'), array($category->id_category), $options))
-                {
-                    Core::delete_cache();
-                    Alert::set(Alert::SUCCESS,sprintf(__('Field %s created'), $name));
-                }
-                else
-                    Alert::set(Alert::ERROR,sprintf(__('Field %s already exists') ,$name));
-
-
-            } catch (Exception $e) {
-                throw HTTP_Exception::factory(500, $e->getMessage());
-            }
-
-        }
-
-        $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(), 'action'=>'update', 'id'=>$category->id_category)));
-    }
-
-    /**
-    * removes a custom field from selected category
-    * @return void 
-    */
-    public function action_remove_customfield()
-    {
-        $category = new Model_Category($this->request->param('id'));
-
-        //update the elements related to that ad
-        if ($category->loaded() AND Core::get('cf'))
-        {
-            $name        = substr(Core::get('cf'), strlen('cf_'));
-            $field       = new Model_Field();
-            $field_data  = $field->get($name);
-            
-            $options     = array('label'           => $field_data['label'],
-                                 'tooltip'         => $field_data['tooltip'],
-                                 'required'        => $field_data['required'],
-                                 'searchable'      => $field_data['searchable'],
-                                 'admin_privilege' => $field_data['admin_privilege'],
-                                 'show_listing'    => $field_data['show_listing'],
-                                );
-            
-            // remove current category from custom field categories
-            if ( is_array($field_data['categories']) AND ($key = array_search($category->id_category, $field_data['categories'])) !== FALSE )
-                unset($field_data['categories'][$key]);
-    
-            try {
-                // update custom field categories or delete custom field if no categories left
-                if (count($field_data['categories']) > 0)
-                {
-                    if ($field->update($name, $field_data['values'], $field_data['categories'], $options))
-                    {
-                        Core::delete_cache();
-                        Alert::set(Alert::SUCCESS,sprintf(__('Field %s removed'), $name));
-                    }
-                    else
-                        Alert::set(Alert::ERROR,sprintf(__('Field %s cannot be removed'), $name));
-                }
-                else
-                {
-                    if ($field->delete($name))
-                    {
-                        Core::delete_cache();
-                        Alert::set(Alert::SUCCESS,sprintf(__('Field %s deleted'), $name));
-                    }
-                    else 
-                        Alert::set(Alert::ERROR,sprintf(__('Field %s does not exists'), $name));
-                }
-
-            } catch (Exception $e) {
-                throw HTTP_Exception::factory(500,$e->getMessage());
-            }
-        }
-
-        $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(), 'action'=>'update', 'id'=>$category->id_category)));
-    }
 }
