@@ -242,6 +242,10 @@ class Controller_Ad extends Controller {
                 case 'rating':
                     $ads->order_by('rate','desc')->order_by('published','desc');
                     break;
+                //favorited
+                case 'favorited':
+                    $ads->order_by('favorited','desc')->order_by('published','desc');
+                    break;
                 //distance
                 case 'distance':
                     if (Model_User::get_userlatlng())

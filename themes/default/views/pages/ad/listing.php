@@ -50,6 +50,7 @@
             <li><a href="<?=Request::current()->url()?>?sort=price-desc"><?=__('Price (High)')?></a></li>
         <?endif?>
         <li><a href="<?=Request::current()->url()?>?sort=featured"><?=__('Featured')?></a></li>
+        <li><a href="<?=Request::current()->url()?>?sort=favorited"><?=__('Favorited')?></a></li>
         <?if(core::config('general.auto_locate')):?>
             <li><a href="<?=Request::current()->url()?>?sort=distance" id="sort-distance"><?=__('Distance')?></a></li>
         <?endif?>

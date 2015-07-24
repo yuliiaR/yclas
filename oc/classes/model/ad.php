@@ -41,6 +41,10 @@ class Model_Ad extends ORM {
             'model'       => 'visit',
             'foreign_key' => 'id_ad',
         ),
+        'favorites' => array(
+            'model'       => 'favorite',
+            'foreign_key' => 'id_ad',
+        ),
     );
 
     /**
