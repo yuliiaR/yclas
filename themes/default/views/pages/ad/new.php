@@ -77,7 +77,7 @@
 					<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group images" data-max-image-size="<?=core::config('image.max_image_size')?>" data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>">
 				<div class="col-md-12">
 					<label><?=__('Images')?></label>
 					<div class="row">
@@ -89,7 +89,7 @@
 									<span class="btn btn-default btn-file">
 										<span class="fileinput-new"><?=__('Select')?></span>
 										<span class="fileinput-exists"><?=__('Edit')?></span>
-										<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>">
+										<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" accept="<?='image/'.str_replace(',', ', image/', rtrim(core::config('image.allowed_formats'),','))?>">
 									</span>
 									<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=__('Delete')?></a>
 								  </div>
