@@ -82,6 +82,20 @@ class Model_Favorite extends ORM {
             } catch (Exception $e) {
                 return FALSE;
             }
+            
+            // update ad favorite counter
+            $ad = new Model_Ad($id_ad);
+            
+            if ($ad->loaded())
+            {
+                $ad->favorited++;
+                
+                try {
+                    $ad->save();
+                } catch (Exception $e) {
+                    return FALSE;
+                }
+            }
 
         }
         
@@ -91,7 +105,7 @@ class Model_Favorite extends ORM {
 
 
     /**
-     * favorite an ad
+     * unfavorite an ad
      * @param  integer $id_user user
      * @param  integer   $id_ad   ad
      * @return boolean          
@@ -107,6 +121,21 @@ class Model_Favorite extends ORM {
         if ($fav->loaded())
         {
             $fav->delete();
+            
+            // update ad favorite counter
+            $ad = new Model_Ad($id_ad);
+            
+            if ($ad->loaded())
+            {
+                $ad->favorited--;
+                
+                try {
+                    $ad->save();
+                } catch (Exception $e) {
+                    return FALSE;
+                }
+            }
+            
             return TRUE;
         }
         else

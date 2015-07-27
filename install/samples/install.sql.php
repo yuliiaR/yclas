@@ -127,6 +127,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `has_images` tinyint(1) NOT NULL DEFAULT '0',
   `stock` int(10) unsigned DEFAULT NULL,
   `rate` FLOAT( 4, 2 ) NULL DEFAULT NULL,
+  `favorited` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_ad`) USING BTREE,
   KEY `".core::request('TABLE_PREFIX')."ads_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."ads_IK_id_category` (`id_category`),

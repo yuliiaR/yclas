@@ -326,6 +326,29 @@ $('.fileinput').on('change.bs.fileinput', function() {
    $(this).next('.fileinput').removeClass('hidden');
 });
 
+// validate image size
+$('input[name^="image"]').on('change', function() {
+    //check whether browser fully supports all File API
+    if (window.File && window.FileReader && window.FileList && window.Blob)
+    {
+        //get the file size and file type from file input field
+        var image = $(this)[0].files[0];
+        var max_size = $('.images').data('max-image-size')*1048576 // max size in bites
+
+        if (image && image.size > max_size)
+        {
+            swal({
+                title: '',
+                text: $('.images').data('swaltext'),
+                type: "warning",
+                allowOutsideClick: true
+            });
+            
+            $(this).closest('.fileinput').fileinput('clear');
+        }
+    }
+});
+
 // VALIDATION with chosen fix
 $(function(){
     $.validator.addMethod(

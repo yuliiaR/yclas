@@ -80,6 +80,8 @@
                                                                              'price-asc'=>"Price (Low)",
                                                                              'price-desc'=>"Price (High)",
                                                                              'featured'=>"Featured",
+                                                                             'rating'=>"Rating",
+                                                                             'favorited'=>"Favorited",
                                                                              'published-desc'=>"Newest",
                                                                              'published-asc'=>"Oldest"), 
                             $forms['sort_by']['value'], array(

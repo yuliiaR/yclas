@@ -261,7 +261,7 @@
                             </div>
                         <?endif?>
                         <!-- /endcustom fields -->
-                        <div class="form-group">
+                        <div class="form-group images" data-max-image-size="<?=core::config('image.max_image_size')?>" data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>">
                             <div class="col-md-12">
                                 <div class="row">
                                 <?$images = $ad->get_images()?>
@@ -294,7 +294,7 @@
                             <?if (core::config('advertisement.num_images') > count($images)):?> <!-- permition to add more images-->
                                 <div class="col-sm-8">
                                     <?= FORM::label('images', __('Images'), array('class'=>'', 'for'=>'images0'))?>
-                                    <input type="file" name='image0' id='fileInput0' />
+                                    <input type="file" name="image0" id="fileInput0" accept="<?='image/'.str_replace(',', ', image/', rtrim(core::config('image.allowed_formats'),','))?>">
                                 </div>
                             <?endif?>
                         </div>

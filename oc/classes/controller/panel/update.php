@@ -63,6 +63,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `device_id` varchar(255) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
+        //favorited counter
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` ADD `favorited` INT(10) UNSIGNED NOT NULL DEFAULT '0'")->execute();
+        }catch (exception $e) {}
+
         //crontab ad to expire
         try
         {
@@ -169,8 +175,28 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES 
                                                                          (1, 'messages.*'),(5, 'messages.*'),(7, 'messages.*')")->execute();
         }catch (exception $e) {}
-    }
 
+        //set favorites count
+        $ads = new Model_Ad();
+        $ads = $ads->find_all();
+            
+        if (count($ads))
+        {
+            foreach ($ads as $ad) 
+            {
+                $ad->favorited = $ad->favorites->count_all();
+                
+                try 
+                {
+                    $ad->save();
+                } 
+                catch (Exception $e)
+                {
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
+            }
+        }
+    }
 
     /**
      * This function will upgrade DB that didn't existed in versions prior to 2.4.1
