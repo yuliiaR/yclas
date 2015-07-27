@@ -400,7 +400,7 @@ class Controller_Panel_Category extends Auth_Crud {
             } 
             if( ! Upload::size($icon, core::config('image.max_image_size').'M'))
             {
-                Alert::set(Alert::ALERT, $icon['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('general.max_image_size')));
+                Alert::set(Alert::ALERT, $icon['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size')));
             $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'update','id'=>$category->id_category)));
             }
             Alert::set(Alert::ALERT, $icon['name'].' '.__('Image is not valid. Please try again.'));

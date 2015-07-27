@@ -348,7 +348,7 @@ class Model_Ad extends ORM {
                 return FALSE;
             }
             if( ! Upload::size($image, core::config('image.max_image_size').'M')){
-                Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('general.max_image_size')));
+                Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size')));
                 return FALSE;
             }
             if( ! Upload::not_empty($image))
