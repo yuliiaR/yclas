@@ -366,7 +366,7 @@ $('input[name^="image"]').on('change', function() {
         var image = $(this)[0].files[0];
         var max_size = $('.images').data('max-image-size')*1048576 // max size in bites
 
-        if (image && image.size > 1)
+        if (image && image.size > max_size)
         {
             swal({
                 title: '',
