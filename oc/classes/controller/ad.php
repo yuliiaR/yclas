@@ -860,6 +860,7 @@ class Controller_Ad extends Controller {
 		$pagination = NULL;
 		$ads        = NULL;
 		$res_count  = NULL;
+		$user       = $this->user ? $this->user : NULL;
 
 		if($this->request->query()) // after query has detected
 		{			
@@ -1046,7 +1047,7 @@ class Controller_Ad extends Controller {
         																		   'locations'	      => Model_Location::get_as_array(), 
         																		   'order_locations'  => Model_Location::get_multidimensional(),
         																		   'pagination'	      => $pagination, 
-        																		   'user'		      => $this->user,
+        																		   'user'		      => $user,
         																		   'fields' 		  => Model_Field::get_all(),
 																				   'total_ads' 		  => $res_count
         																		   ));
