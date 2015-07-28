@@ -654,6 +654,28 @@ class Model_Category extends ORM {
     }
 
     /**
+     * rename category icon
+     * @param string $new_name
+     * @return boolean 
+    */
+    public function rename_icon($new_name)
+    {
+        if ( ! $this->_loaded)
+            throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
+
+        @rename('images/categories/'.$this->seoname.'.png', 'images/categories/'.$new_name.'.png');
+
+        if (core::config('image.aws_s3_active'))
+        {
+            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+
+            $s3->copyObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$this->seoname.'.png', core::config('image.aws_s3_bucket'), 'images/categories/'.$new_name.'.png', S3::ACL_PUBLIC_READ);
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$this->seoname.'.png');
+        }
+    }
+
+    /**
      * Deletes a single record while ignoring relationships.
      *
      * @chainable

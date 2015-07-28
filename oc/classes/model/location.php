@@ -560,7 +560,7 @@ class Model_Location extends ORM {
     }
 
     /**
-     * deletes the icon of the category
+     * deletes the icon of the location
      * @return boolean 
      */
     public function delete_icon()
@@ -590,7 +590,7 @@ class Model_Location extends ORM {
             if(core::config('image.aws_s3_active'))
                 $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$this->seoname.'.png');
             
-            // update category info
+            // update location info
             $this->has_image = 0;
             $this->last_modified = Date::unix2mysql();
             $this->save();
@@ -598,6 +598,28 @@ class Model_Location extends ORM {
         }
 
         return TRUE;
+    }
+
+    /**
+     * rename location icon
+     * @param string $new_name
+     * @return boolean 
+    */
+    public function rename_icon($new_name)
+    {
+        if ( ! $this->_loaded)
+            throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
+
+        @rename('images/locations/'.$this->seoname.'.png', 'images/locations/'.$new_name.'.png');
+
+        if (core::config('image.aws_s3_active'))
+        {
+            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+
+            $s3->copyObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$this->seoname.'.png', core::config('image.aws_s3_bucket'), 'images/locations/'.$new_name.'.png', S3::ACL_PUBLIC_READ);
+            $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$this->seoname.'.png');
+        }
     }
 
     /**

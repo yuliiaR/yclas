@@ -121,7 +121,7 @@ class Controller_Panel_Category extends Auth_Crud {
         {
             if ( $success = $form->submit() )
             {
-                //category is different than himself, cant be his ow father!!!
+                //category is different than himself, cant be his own father!!!
                 if ($form->object->id_category == $form->object->id_category_parent)
                 {
                     Alert::set(Alert::INFO, __('You can not set as parent the same category'));
@@ -153,6 +153,11 @@ class Controller_Panel_Category extends Auth_Crud {
                 }
                 
                 $this->action_deep();
+
+                //rename icon name
+                if($category->has_image AND ($category->seoname != $form->object->seoname))
+                    $category->rename_icon($form->object->seoname);
+
                 Core::delete_cache();
 
                 Alert::set(Alert::SUCCESS, __('Item updated'));
