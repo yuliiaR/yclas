@@ -36,4 +36,14 @@ return array(   'theme' => array(	       'type'      => 'text',
                                                                 ), 
                                             'default'   => '0',
                                             'required'  => TRUE),
+
+                'hide_description_icon' => array(   'type'      => 'text',
+                                                    'display'   => 'select',
+                                                    'label'     => __('Hide icon on category/location description'),
+                                                    'options'   => array(   '1' => __('Yes'),
+                                                                            '0' => __('No'),
+                                                                            ), 
+                                                    'default'   => '0',
+                                                    'required'  => TRUE),
+
 );

@@ -40,6 +40,8 @@ $(function(){
             },
             success: function(results) {
                 callback(results.locations);
+                if (results.locations.length === 0)
+                    $('#location-chained').closest('.form-group').hide();
             },
             error: function() {
                 callback();

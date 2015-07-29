@@ -98,11 +98,12 @@ else
                 <div class="row">
                     <div class="col-md-6">
                         <h2><a target="_blank" href="http://open-classifieds.com/"><img class="logo" src="http://open-classifieds.com/wp-content/uploads/2015/05/oc-logo-hd.png"></a></h2>
+                        <br>
                         <p><strong><?=__("Welcome to the super easy and fast installation")?></strong></p>
                         <p>Open Classifieds is an open source powerful PHP classifieds script that can help you start a website and turn it into a fully customizable classifieds site within a few minutes.</p>
-                        <div class="alert alert-services text-center">
-                            <p><a target="_blank" href="http://open-classifieds.com/market/"><?=__("If you need any help please check our professional services")?></a></p>
-                        </div>
+                        <br>
+                        <p class="text-center"><strong><?=__('Can’t get it to work?')?></strong></p>
+                        <p><a target="_blank" href="http://open-classifieds.com/market/" class="btn btn-default btn-large btn-block"><?=__("Get our professional services")?></a></p>
                     </div>
                     <div class="col-md-6">
                         <div class="off-canvas animated">
@@ -229,7 +230,11 @@ else
                                                     <div class="scotch-panel-wrapper" style="position: relative; overflow: hidden; width: 100%;">
                                                         <h3><?=__('Congratulations');?></h3>
                                                         <div class="alert alert-success">
-                                                            <strong><?=__('Installation done');?></strong>. <?=__('Please now erase the folder');?> <code>/install/</code>
+                                                            <p><strong><?=__('You thought there was more?')?></strong></p>
+                                                            <p><?=__('Sorry there isn’t. Go to your website now!')?></p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p class="form-control-static text-warning"><small><?=__('Please now erase the folder');?> <code>/install/</code></small></p>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">user</label>

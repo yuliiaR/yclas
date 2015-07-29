@@ -159,6 +159,11 @@ class Controller_Panel_Location extends Auth_Crud {
                 }
 
                 $this->action_deep();
+
+                //rename icon name
+                if($location->has_image AND ($location->seoname != $form->object->seoname))
+                    $location->rename_icon($form->object->seoname);
+
                 Core::delete_cache();
                 
                 Alert::set(Alert::SUCCESS, __('Item updated'));
