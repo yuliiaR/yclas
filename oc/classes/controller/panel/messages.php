@@ -70,7 +70,7 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                 $msg_thread = $msg_thread->where('id_message', '=' , $this->request->param('id'))->find();
                 
                 // send reply message
-                if($this->request->post() AND Form::token('reply_message', TRUE))
+                if ($this->request->post() AND Form::token('reply_message', TRUE))
                 {
                     $validation = Validation::factory($this->request->post())->rule('message', 'not_empty');
 
@@ -105,6 +105,28 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                                                                                                                             'id'            => $this->request->param('id'))))
                                             );
                             
+                            // we are updating field of visit table (contact)
+                            if ($msg_thread->id_ad !== NULL)
+                            {
+                                $visit = new Model_Visit();
+
+                                $visit->where('id_ad', '=', $msg_thread->id_ad)
+                                                ->where('id_user', '=', $user_from->id_user)
+                                                ->order_by('created', 'desc')
+                                                ->limit(1)->find();
+                                if ($visit->loaded())
+                                {
+                                    $visit->contacted = 1;
+                                    $visit->created = Date::unix2mysql();
+                                    try {
+                                        $visit->save();
+                                    } catch (Exception $e) {
+                                        //throw 500
+                                        throw HTTP_Exception::factory(500,$e->getMessage());
+                                    }
+                                }
+                            }
+
                             Alert::set(Alert::SUCCESS, __('Reply created.'));
                             $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'message', 'id' => Request::current()->param('id'))));
                         }

@@ -6,7 +6,7 @@
                     <i class="fa fa-bell"></i> <span class="badge"><?=count(Auth::instance()->get_user()->contacts())?></span>
                 </a>
                 <ul id="contact-notification-dd" class="dropdown-menu">
-                    <li class="dropdown-header"><?=__('Please check your email')?></li>
+                    <li class="dropdown-header"><?=(core::config('general.messaging') == TRUE) ? __('Please check your messages') : __('Please check your email')?></li>
                     <li class="divider"></li>
                     <li class="dropdown-header"><?=__('You have been contacted for these ads')?></li>
                     <?foreach (Auth::instance()->get_user()->contacts() as $ad ):?>
