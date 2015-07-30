@@ -212,21 +212,6 @@ class Controller_New extends Controller
                         { 
                             if (isset($_FILES['image'.$i]))
                                 $filename = $new_ad->save_image($_FILES['image'.$i]);
-
-                            if ($filename)
-                                $new_ad->has_images++;
-                        }
-                        //since theres images save the ad again...
-                        if ($new_ad->has_images > 0)
-                        {
-                            try 
-                            {
-                                $new_ad->save();
-                            } 
-                            catch (Exception $e) 
-                            {
-                                throw HTTP_Exception::factory(500,$e->getMessage());
-                            }
                         }
 
                         Alert::set(Alert::SUCCESS, $return['message']);
