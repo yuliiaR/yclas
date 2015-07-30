@@ -323,18 +323,14 @@ $('.locateme').click(function() {
     });
 });
 
-// unhide next box image after selecting first
 $('.fileinput').on('change.bs.fileinput', function() {
-   $(this).next('.fileinput').removeClass('hidden');
-});
 
-// validate image size
-$('input[name^="image"]').on('change', function() {
     //check whether browser fully supports all File API
     if (window.File && window.FileReader && window.FileList && window.Blob)
     {
         //get the file size and file type from file input field
-        var image = $(this)[0].files[0];
+        var $input = $(this).find('input[name^="image"]');
+        var image = $input[0].files[0];
         var max_size = $('.images').data('max-image-size')*1048576 // max size in bites
 
         if (image && image.size > max_size)
@@ -348,7 +344,33 @@ $('input[name^="image"]').on('change', function() {
             
             $(this).closest('.fileinput').fileinput('clear');
         }
+        else
+        {
+            //resize image
+            canvasResize(image, {
+                width: $('.images').data('image-width'),
+                height: $('.images').data('image-height'),
+                crop: false,
+                quality: $('.images').data('image-quality'),
+                callback: function(data, width, height) {
+                    $('<input>').attr({
+                        type: 'hidden',
+                        name: 'base64_' + $input.attr('name'),
+                        value: data
+                        }).appendTo('#publish-new');
+                    $input.replaceWith($input.val('').clone(true));
+                }
+            });
+        }
     }
+
+    //unhide next box image after selecting first
+    $(this).next('.fileinput').removeClass('hidden');
+});
+
+$('.fileinput').on('clear.bs.fileinput', function() {
+    var $input = $(this).find('input[name^="image"]');
+    $('input[name="base64_' + $input.attr('name') + '"]').remove();
 });
 
 // VALIDATION with chosen fix

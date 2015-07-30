@@ -261,7 +261,12 @@
                             </div>
                         <?endif?>
                         <!-- /endcustom fields -->
-                        <div class="form-group images" data-max-image-size="<?=core::config('image.max_image_size')?>" data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>">
+                        <div class="form-group images" 
+                            data-max-image-size="<?=core::config('image.max_image_size')?>" 
+                            data-image-width="<?=core::config('image.width')?>" 
+                            data-image-height="<?=core::config('image.height') ? core::config('image.height') : 0?>" 
+                            data-image-quality="<?=core::config('image.quality')?>" 
+                            data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>">
                             <div class="col-md-12">
                                 <div class="row">
                                 <?$images = $ad->get_images()?>
@@ -299,7 +304,7 @@
                             <?endif?>
                         </div>
                         <div class="page-header"></div>
-                            <?= FORM::button('submit', (in_array(core::config('general.moderation'), Model_Ad::$moderation_status))?__('Publish'):__('Update'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))))?>
+                            <?= FORM::button('submit_btn', (in_array(core::config('general.moderation'), Model_Ad::$moderation_status))?__('Publish'):__('Update'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))))?>
 
                     </fieldset>
                 <?= FORM::close()?>

@@ -361,11 +361,13 @@ $('.locateme').click(function() {
 
 // validate image size
 $('input[name^="image"]').on('change', function() {
+
     //check whether browser fully supports all File API
     if (window.File && window.FileReader && window.FileList && window.Blob)
     {
         //get the file size and file type from file input field
-        var image = $(this)[0].files[0];
+        var $input = $(this);
+        var image = $input[0].files[0];
         var max_size = $('.images').data('max-image-size')*1048576 // max size in bites
 
         if (image && image.size > max_size)
@@ -378,6 +380,23 @@ $('input[name^="image"]').on('change', function() {
             });
             
             $(this).replaceWith($(this).val('').clone(true));
+        }
+        else
+        {
+            //resize image
+            canvasResize(image, {
+                width: $('.images').data('image-width'),
+                height: $('.images').data('image-height'),
+                crop: false,
+                quality: $('.images').data('image-quality'),
+                callback: function(data, width, height) {
+                    $('<input>').attr({
+                        type: 'hidden',
+                        name: 'base64_' + $input.attr('name'),
+                        value: data
+                        }).appendTo('.edit_ad_form');
+                }
+            });
         }
     }
 });
@@ -392,7 +411,17 @@ $(function(){
         }
     );
 
-    var $params = {rules:{}, messages:{}};
+    var $params = {
+        rules:{},
+        messages:{},
+        submitHandler: function(form) {
+            $('#processing-modal').on('shown.bs.modal', function() {
+                $('input[name="image0"]').replaceWith($('input[name="image0"]').val('').clone(true));
+                form.submit();
+            });
+            $('#processing-modal').modal('show');
+        },
+    };
     $params['rules']['price'] = {regex: "^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$"};
     $params['rules']['title'] = {maxlength: 145};
     $params['rules']['address'] = {maxlength: 145};
@@ -408,15 +437,6 @@ $(function(){
     settings.ignore += ':not(.cf_select_fields)'; // post_new location(any chosen) texarea
     // settings.ignore += ':not(.sceditor-container)'; // post_new description texarea
     settings.ignore += ':not(#description)'; // post_new description texarea
-});
-
-// processing modal
-$(function(){
-    $('.edit_ad_form').submit(function(){
-        if ($(this).valid()) {
-            $('#processing-modal').modal('show');
-        }
-    });
 });
 
 function createCustomFieldsByCategory (customfields) {

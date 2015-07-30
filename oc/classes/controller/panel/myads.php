@@ -206,6 +206,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
+                                                        'js/canvasResize.js',
                                                         'js/oc-panel/edit_ad.js');
         }
         else
@@ -219,6 +220,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
+                                                        'js/canvasResize.js',
                                                         'js/oc-panel/edit_ad.js');
         }
 
@@ -282,10 +284,10 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     $filename = NULL;
                     for ($i=0; $i < core::config("advertisement.num_images"); $i++) 
                     { 
-                        if (isset($_FILES['image'.$i]))
-                        {
-                            $filename = $form->save_image($_FILES['image'.$i]);
-                        }
+                        if (Core::post('base64_image'.$i))
+                                $filename = $form->save_base64_image(Core::post('base64_image'.$i));
+                        elseif (isset($_FILES['image'.$i]))
+                                $filename = $form->save_image($_FILES['image'.$i]);
                     }
                     if ($filename!==NULL)
                     {
