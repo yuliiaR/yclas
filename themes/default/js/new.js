@@ -373,11 +373,10 @@ $(function(){
         focusInvalid: false,
         onkeyup: false,
         submitHandler: function(form) {
-            _ouibounce.disable();
+            $('#processing-modal').on('shown.bs.modal', function() {
+                form.submit();
+            });
             $('#processing-modal').modal('show');
-            //form.submit();
-            alert('enviado');
-            return true;
         },
         invalidHandler: function(form, validator) {
             if (!validator.numberOfInvalids())
@@ -429,9 +428,5 @@ $(function(){
                 allowOutsideClick: true
             });
         }
-    });
-    
-    $('.post_new').submit(function(e){
-        return false;
     });
 });
