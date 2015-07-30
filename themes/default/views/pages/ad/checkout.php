@@ -182,6 +182,7 @@ catch(e){}
                         <?=__('Click to proceed')?>
                     </a>
                 </li>
+                <?=View::factory('coupon')?>
             </ul>
         <?endif?>
 
