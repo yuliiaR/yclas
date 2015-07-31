@@ -77,7 +77,13 @@
 					<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
 				</div>
 			</div>
-			<div class="form-group images" data-max-image-size="<?=core::config('image.max_image_size')?>" data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>">
+			<div class="form-group images" 
+				data-max-image-size="<?=core::config('image.max_image_size')?>" 
+				data-image-width="<?=core::config('image.width')?>" 
+				data-image-height="<?=core::config('image.height') ? core::config('image.height') : 0?>" 
+				data-image-quality="<?=core::config('image.quality')?>" 
+				data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>"
+			>
 				<div class="col-md-12">
 					<label><?=__('Images')?></label>
 					<div class="row">
@@ -207,7 +213,7 @@
 				</div>
 			<?endif?>
 			<div class="form-actions">
-				<?= FORM::button('submit', __('Publish new'), array('type'=>'submit', 'id' => 'publish-new-btn', 'data-swaltitle' => __('Are you sure?'), 'data-swaltext' => __('It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost.'), 'class'=>'btn btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
+				<?= FORM::button('submit_btn', __('Publish new'), array('type'=>'submit', 'id' => 'publish-new-btn', 'data-swaltitle' => __('Are you sure?'), 'data-swaltext' => __('It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost.'), 'class'=>'btn btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 				<?if (!Auth::instance()->get_user()):?>
 					<p class="help-block"><?=__('User account will be created')?></p>
 				<?endif?>

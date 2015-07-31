@@ -148,7 +148,7 @@
                                         <?if(core::config('general.black_list')):?>
                                         <tr><td class="br"><?=Theme::admin_link(__('Black list'),'pool','index','oc-panel','glyphicon  glyphicon-fire')?></td></tr>
                                         <?endif?>
-                                        <tr><td class="br"><?=Theme::admin_link(__('Edit profile'), 'profile','edit','oc-panel','glyphicon glyphicon-edit')?></td></tr>
+                                        <tr><td class="br"><?=Theme::admin_link(__('Edit profile'), 'profile','edit','oc-panel','glyphicon glyphicon-edit', NULL, FALSE)?></td></tr>
                                         <tr><td class="br">
                                             <li>
                                                 <a href="<?=Route::url('profile',array('seoname'=>$user->seoname))?>">
