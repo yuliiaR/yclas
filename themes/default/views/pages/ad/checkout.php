@@ -1,5 +1,17 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-
+<?if (core::config('payment.fraudlabspro')!=''): ?>
+<script type="text/javascript">
+document.write(unescape("%3Cscript src='" + ('https:' == document.location.protocol ? 'https://' : 'http://') + "static.fraudlabspro.com/agent.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+ 
+<script type="text/javascript">
+try{
+    var flp = new FraudLabsPro;
+    flp.start({session_id: '<?php echo session_id(); ?>'});
+}
+catch(e){}
+</script>
+<?endif?>
 
 <div class="well col-xs-12 col-sm-12 col-md-12">
     <div class="row">
@@ -170,6 +182,7 @@
                         <?=__('Click to proceed')?>
                     </a>
                 </li>
+                <?=View::factory('coupon')?>
             </ul>
         <?endif?>
 
