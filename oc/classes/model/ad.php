@@ -398,13 +398,19 @@ class Model_Ad extends ORM {
 
         if ( ! in_array($image->mime, explode(',','image/'.str_replace(",", ",image/", core::config('image.allowed_formats')))))
         {
-            Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not valid format, please use one of this formats "%s"'),core::config('image.allowed_formats')));
+            Alert::set(Alert::ALERT, $image->mime.' '.sprintf(__('Is not valid format, please use one of this formats "%s"'),core::config('image.allowed_formats')));
             return FALSE;
         }
         
         if (filesize($image_tmp_uri) > Num::bytes(core::config('image.max_image_size').'M'))
         {
-            Alert::set(Alert::ALERT, $image['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size')));
+            Alert::set(Alert::ALERT, $image->mime.' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size')));
+            return FALSE;
+        }
+
+        if (core::config('image.disallow_nudes') AND $image->is_nude_image())
+        {
+            Alert::set(Alert::ALERT, $image->mime.' '.__('Seems a nude picture so you cannot upload it'));
             return FALSE;
         }
 

@@ -880,6 +880,14 @@ class Controller_Ad extends Controller {
 	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
 	        }
 
+            //if sort by distance
+            if (core::request('sort') == 'distance' AND Model_User::get_userlatlng())
+            {
+                $ads->select(array(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 69.172'), 'distance'))
+                ->where('latitude','IS NOT',NULL)
+                ->where('longitude','IS NOT',NULL);
+            }
+
 	        if(!empty($search_advert) OR (core::get('search')!==NULL AND strlen(core::get('search'))>=3))
 	        {	
 	        	// if user is using search from header
@@ -1027,10 +1035,59 @@ class Controller_Ad extends Controller {
 
 		        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
 				
-				$ads = $ads->order_by('published','desc')
-							   ->limit($pagination->items_per_page)
-			        	       ->offset($pagination->offset)
-			        	       ->find_all();
+                /**
+                 * order depending on the sort parameter
+                 */
+                switch (core::request('sort',core::config('advertisement.sort_by'))) 
+                {
+                    //title z->a
+                    case 'title-asc':
+                        $ads->order_by('title','asc')->order_by('published','desc');
+                        break;
+                    //title a->z
+                    case 'title-desc':
+                        $ads->order_by('title','desc')->order_by('published','desc');
+                        break;
+                    //cheaper first
+                    case 'price-asc':
+                        $ads->order_by('price','asc')->order_by('published','desc');
+                        break;
+                    //expensive first
+                    case 'price-desc':
+                        $ads->order_by('price','desc')->order_by('published','desc');
+                        break;
+                    //featured
+                    case 'featured':
+                        $ads->order_by('featured','desc')->order_by('published','desc');
+                        break;
+                    //rating
+                    case 'rating':
+                        $ads->order_by('rate','desc')->order_by('published','desc');
+                        break;
+                    //favorited
+                    case 'favorited':
+                        $ads->order_by('favorited','desc')->order_by('published','desc');
+                        break;
+                    //distance
+                    case 'distance':
+                        if (Model_User::get_userlatlng())
+                        $ads->order_by('distance','asc')->order_by('published','asc');
+                        break;
+                    //oldest first
+                    case 'published-asc':
+                        $ads->order_by('published','asc');
+                        break;
+                    //newest first
+                    case 'published-desc':
+                    default:
+                        $ads->order_by('published','desc');
+                        break;
+                }
+
+                //we sort all ads with few parameters
+                $ads = $ads ->limit($pagination->items_per_page)
+                            ->offset($pagination->offset)
+                            ->find_all();
 			}
             else
             {
