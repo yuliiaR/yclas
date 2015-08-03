@@ -57,6 +57,12 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
         //sending a CSV
         if($_POST AND isset($_FILES['csv_file_ads']))
         {
+            if ($_FILES['csv_file_ads']['size'] > 1048576)
+            {
+                Alert::set(Alert::ERROR, __('1 MB file'));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'index')));
+            }
+
             //header that I expect
             $expected_header = array('user_name','user_email','title','description','date','category','location',
                                         'price','address','phone','website','image_1','image_2','image_3','image_4');
@@ -64,6 +70,12 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
             $csv = $_FILES['csv_file_ads']["tmp_name"];
 
             $ads_array = Core::csv_to_array($csv,$expected_header);
+
+            if (count($ads_array) > 10000)
+            {
+                Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
+                $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'index')));
+            }
 
             if ( $ads_array===FALSE OR count($ads_array)<=0 OR ($ads_imported = $this->insert_into_import($ads_array,$expected_header))===FALSE )
             {
