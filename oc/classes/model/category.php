@@ -329,7 +329,7 @@ class Model_Category extends ORM {
                     ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', Date::unix2mysql())
                     ->where('a.status','=',Model_Ad::STATUS_PUBLISHED);
 
-        if (Model_Location::current()->loaded())
+        if ($location_filter AND Model_Location::current()->loaded())
         {
             $location = Model_Location::current();
             $count_ads = $count_ads->where('a.id_location', 'in', $location->get_siblings_ids());
