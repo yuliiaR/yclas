@@ -141,6 +141,21 @@
                     </div>
 
                     <div class="form-group">
+                        <?= FORM::label($forms['contact_page']['id'], __('Contact page content'), array('class'=>'control-label col-sm-4', 'for'=>$forms['contact_page']['id']))?>
+                        <div class="col-sm-8">
+                            <?= FORM::select($forms['contact_page']['key'], $pages, $forms['contact_page']['value'], array( 
+                            'class' => 'tips form-control input-sm', 
+                            'id' => $forms['contact_page']['id'], 
+                            'data-content'=> __("Adds content to contact page"),
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"bottom",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>__("Contact page content"),
+                            ))?> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label col-sm-4', 'for'=>$forms['cookie_consent']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">

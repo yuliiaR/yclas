@@ -1,7 +1,19 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+
+<?if(core::config('general.contact_page') != ''):?>
+	<?$content = Model_Content::get_by_title(core::config('general.contact_page'))?>
+	<div class="page-header">
+		<h1><?=$content->title?></h1>
+	</div>
+	<?=$content->description?>
+	<br>
+<?else:?>
+	<div class="page-header">
+		<h1><?=__('Contact Us')?></h1>
+	</div>
+<?endif?>
 <div class="well">
 	<?=Form::errors()?>
-	<h1><?=__('Contact Us')?></h1>
 	<?= FORM::open(Route::url('contact'), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
 	<fieldset>
 		<?if (!Auth::instance()->logged_in()):?>
