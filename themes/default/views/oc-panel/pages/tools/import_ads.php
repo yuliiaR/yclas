@@ -2,7 +2,7 @@
 
 <div class="page-header">
     <h1><?=__('Import tool for ads')?></h1>
-    <p><a href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'))?>"><?="<a target='_blank' href='http://docs.yclas.com/how-to-import-ads/'>".__('Read More')."</a>"?></a> </p>
+    <p><a target='_blank' href='http://docs.yclas.com/how-to-import-ads/'><?=__('Read More')?></a></p>
 </div>
 <div class="row">
     
@@ -14,7 +14,7 @@
                     <?=__('Please use the correct CSV format')?> <a href="http://j.mp/185WfAR"><?=__('download example')?>.</a>
                     <br>
                     <span class="label label-info"><?=__('Hosting limit')?></span> 
-                    upload_max_filesize: <?=ini_get('upload_max_filesize')?>, max_execution_time: <?=ini_get('max_execution_time')?><?=__('seconds')?>
+                    upload_max_filesize: <?=ini_get('upload_max_filesize')?>, max_execution_time: <?=ini_get('max_execution_time')?><?=__('seconds')?> <?=__('limited to 10.000 at a time')?>, <?=__('1 MB file')?>.
                 </p>
             </div>
             <div class="panel-body">
@@ -23,7 +23,7 @@
                         <label for=""> <?=__('Import Ads')?></label>
                         <input type="file" name="csv_file_ads" id="csv_file_ads" class="form-control"/>
                     </div>
-                        <?= FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'import','action'=>'csv'))))?>
+                        <?= FORM::button('submit', __('Upload'), array('type'=>'submit','id'=>'csv_upload', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'import','action'=>'csv'))))?>
                 <?= FORM::close()?>
             </div>
         </div>

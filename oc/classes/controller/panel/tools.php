@@ -88,11 +88,24 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
             {
                 $csv = $path["tmp_name"];
                 $csv_2[] = $file;
+
+                if ($path['size'] > 1048576)
+                {
+                    Alert::set(Alert::ERROR, __('1 MB file'));
+                    $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                }
+
                 if($file=='csv_file_categories' AND $csv != FALSE)
                 {
                     $expected_header = array('name','category_parent','price');
                     
                     $cat_array = Core::csv_to_array($csv,$expected_header);
+
+                    if (count($cat_array) > 10000)
+                    {
+                        Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
+                        $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                    }
                     
                     if ($cat_array===FALSE)
                     {
@@ -128,6 +141,12 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
                     $expected_header = array('name','location_parent','latitude','longitude');
                     
                     $loc_array = Core::csv_to_array($csv,$expected_header);
+
+                    if (count($loc_array) > 10000)
+                    {
+                        Alert::set(Alert::ERROR, __('limited to 10.000 at a time'));
+                        $this->redirect(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')));
+                    }
                     
                     if ($loc_array===FALSE)
                     {
@@ -178,7 +197,7 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
             // do migration using iframe this
 
         $this->template->title   = __('Open Classifieds migration');
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(mb_ucfirst(__('Migration'))));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(Text::ucfirst(__('Migration'))));
 
 
         //force clean database from migration, not public, just internal helper
