@@ -80,7 +80,7 @@
                     <div class="modal-body">
                         <div class="list-group">
                             <?foreach($auto_locats as $loc):?>
-                                <a href="<?=Route::url('list', array('location'=>$loc->seoname))?>" class="list-group-item"><span class="pull-right"><span class="glyphicon glyphicon-chevron-right"></span></span> <?=$loc->name?> (<?=i18n::format_measurement($loc->distance)?>)</a>
+                                <a href="<?=Route::url('list', array('location'=>$loc->seoname))?>" class="list-group-item" data-id="<?=$loc->id_location?>"><span class="pull-right"><span class="glyphicon glyphicon-chevron-right"></span></span> <?=$loc->name?> (<?=i18n::format_measurement($loc->distance)?>)</a>
                             <?endforeach?>
                         </div>
                     </div>

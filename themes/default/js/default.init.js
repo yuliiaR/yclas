@@ -105,4 +105,15 @@ $(function(){
             });
         }
     }
+
+    $('#auto-locations .list-group-item').click(function(event) {
+        event.preventDefault();
+        $this = $(this);
+        $.post($('meta[name="application-name"]').data('baseurl'), {
+            user_location: $this.data('id')
+        })
+        .done(function( data ) {
+            window.location.href = $this.attr('href');
+        });
+    });
 });

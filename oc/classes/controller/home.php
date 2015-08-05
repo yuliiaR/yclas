@@ -4,8 +4,31 @@ class Controller_Home extends Controller {
 
 	public function action_index()
 	{
-        if(core::config('general.auto_locate'))
+        if (core::config('general.auto_locate'))
         {
+            if ($user_location = Core::post('user_location'))
+            {
+                Cookie::set('user_location', $user_location);
+
+                $this->auto_render = FALSE;
+                $this->template = View::factory('js');
+                $this->template->content = TRUE;
+
+                return;
+            }
+            elseif (Core::get('user_location') == '0')
+            {
+                Cookie::delete('user_location');
+            }
+
+            if (is_numeric($user_id_location = Cookie::get('user_location')))
+            {
+                $user_location = new Model_Location($user_id_location);
+
+                if ($user_location->loaded())
+                    $this->redirect(Route::url('list', array('location'=>$user_location->seoname)));
+            }
+
             Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
             Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
         }
@@ -73,7 +96,7 @@ class Controller_Home extends Controller {
                                             ->where('latitude','IS NOT',NULL)
                                             ->where('longitude','IS NOT',NULL)
                                             ->having('distance','<=','100')
-                                            ->order_by('distance','desc')
+                                            ->order_by('distance','asc')
                                             ->find_all()
                                             ->as_array();
         }

@@ -21,6 +21,9 @@
             <?if(Core::config('appearance.theme_mobile')!=''):?>
                 - <a href="<?=Route::url('default')?>?theme=<?=Core::config('appearance.theme_mobile')?>"><?=__('Mobile Version')?></a>
             <?endif?>
+            <?if(Cookie::get('user_location')):?>
+                - <a href="<?=Route::url('default')?>?user_location=0"><?=__('Change Location')?></a>
+            <?endif?>
         </p>
     </div>
 </footer>
