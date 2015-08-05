@@ -38,6 +38,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     =>'fraudlabspro',
                                'group_name'     =>'payment', 
                                'config_value'   => ''),
+                        array( 'config_key'     =>'contact_page',
+                               'group_name'     =>'general', 
+                               'config_value'   => ''),
                         );
         
         Model_Config::config_array($configs);

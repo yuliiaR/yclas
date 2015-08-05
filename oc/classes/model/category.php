@@ -312,9 +312,10 @@ class Model_Category extends ORM {
 
     /**
      * counts how many ads have each category
+     * @param boolean $location_filter filters by location 
      * @return array
      */
-    public static function get_category_count()
+    public static function get_category_count($location_filter = TRUE)
     {
         $expr_date = (is_numeric(core::config('advertisement.expire_date')))?core::config('advertisement.expire_date'):0;
         $db_prefix = Database::instance('default')->table_prefix();
@@ -324,13 +325,21 @@ class Model_Category extends ORM {
                     ->from(array('categories', 'c'))
                     ->join(array('ads','a'))
                     ->using('id_category')
-                        ->where('a.id_category','=',DB::expr($db_prefix.'c.id_category'))
-                        ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', Date::unix2mysql())
-                        ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
-                    ->group_by('c.id_category')
-                    ->order_by('c.order','asc')
-                    ->cached()
-                    ->execute();
+                    ->where('a.id_category','=',DB::expr($db_prefix.'c.id_category'))
+                    ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', Date::unix2mysql())
+                    ->where('a.status','=',Model_Ad::STATUS_PUBLISHED);
+
+        if ($location_filter AND Model_Location::current()->loaded())
+        {
+            $location = Model_Location::current();
+            $count_ads = $count_ads->where('a.id_location', 'in', $location->get_siblings_ids());
+        }
+
+        $count_ads = $count_ads->group_by('c.id_category')
+                               ->order_by('c.order','asc')
+                               ->cached()
+                               ->execute();
+
         $count_ads = $count_ads->as_array('id_category');
 
         //get all the categories ORM so we can use the functions, do not use root category
