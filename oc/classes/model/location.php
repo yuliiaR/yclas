@@ -49,7 +49,12 @@ class Model_Location extends ORM {
         if (self::$_current === NULL)
         {
             self::$_current = new self();
-            if(Request::current()->param('location') != NULL || Request::current()->param('location') != URL::title(__('all')))
+            
+            if (Model_Ad::current()!=NULL AND Model_Ad::current()->loaded() AND Model_Ad::current()->location->loaded())
+            {
+                self::$_current = Model_Ad::current()->location;
+            }
+            elseif(Request::current()->param('location') != NULL || Request::current()->param('location') != URL::title(__('all')))
             {
                 self::$_current = self::$_current->where('seoname', '=', Request::current()->param('location'))
                                                     ->limit(1)->cached()->find();
