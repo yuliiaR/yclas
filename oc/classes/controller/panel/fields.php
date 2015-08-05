@@ -602,9 +602,6 @@ class Controller_Panel_Fields extends Auth_Controller {
             // append category to custom field categories
             $field_data['categories'][] = $category->id_category;
             
-            // format custom field values
-            $field_data['values'] = ( ! is_null($field_data['values']) ? implode($field_data['values'], ',') : NULL);
-
             try {
                 // update custom field categories
                 if ($field->update($name, $field_data['values'], $field_data['categories'], $field_data))
@@ -645,9 +642,6 @@ class Controller_Panel_Fields extends Auth_Controller {
             // remove current category from custom field categories
             if ( is_array($field_data['categories']) AND ($key = array_search($category->id_category, $field_data['categories'])) !== FALSE )
                 unset($field_data['categories'][$key]);
-
-            // format custom field values
-            $field_data['values'] = ( ! is_null($field_data['values']) ? implode($field_data['values'], ',') : NULL);
 
             try {
                 // update custom field categories
