@@ -227,7 +227,11 @@ class Controller_Panel_Settings extends Auth_Controller {
                 foreach ($config as $c) 
                 {   
                     $config_res = $this->request->post();
-                if(!in_array($c->config_key, $do_nothing) AND $config_res[$c->group_name][$c->config_key][0] != $c->config_value)
+
+                    if ( ! in_array($c->config_key, $do_nothing)
+                        AND ($config_res[$c->group_name][$c->config_key][0] != $c->config_value
+                            OR Kohana::$_POST_ORIG['general']['html_head'][0] != $c->config_value
+                            OR Kohana::$_POST_ORIG['general']['html_footer'][0] != $c->config_value))
                     {
                         if ($c->config_key == 'html_head' OR $c->config_key == 'html_footer')
                             $c->config_value = Kohana::$_POST_ORIG[$c->group_name][$c->config_key][0];
