@@ -24,30 +24,34 @@ $(function(){
         });
     });
     
-    // create 1st location select
-    location_select = createLocationSelect();
-    // remove hidden class
-    $('#location-chained .select-location[data-level="0"]').parent('div').removeClass('hidden');
-    
-    // load options for 1st location select
-    location_select.load(function(callback) {
-        $.ajax({
-            url: $('#location-chained').data('apiurl'),
-            type: 'GET',
-            data: { 
-                "id_location_parent": 1,
-                "sort": 'order',
-            },
-            success: function(results) {
-                callback(results.locations);
-                if (results.locations.length === 0)
-                    $('#location-chained').closest('.form-group').remove();
-            },
-            error: function() {
-                callback();
-            }
+    // advertisement location is enabled?
+    if ($('#location-chained').length ) {
+
+        // create 1st location select
+        location_select = createLocationSelect();
+        // remove hidden class
+        $('#location-chained .select-location[data-level="0"]').parent('div').removeClass('hidden');
+        
+        // load options for 1st location select
+        location_select.load(function(callback) {
+            $.ajax({
+                url: $('#location-chained').data('apiurl'),
+                type: 'GET',
+                data: { 
+                    "id_location_parent": 1,
+                    "sort": 'order',
+                },
+                success: function(results) {
+                    callback(results.locations);
+                    if (results.locations.length === 0)
+                        $('#location-chained').closest('.form-group').remove();
+                },
+                error: function() {
+                    callback();
+                }
+            });
         });
-    });
+    }
 });
 
 function createCategorySelect () {
