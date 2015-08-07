@@ -3,7 +3,7 @@
     <title><?=$title?></title>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/maplace.js/0.1.2c/maplace.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/maplace.js/0.1.3/maplace.min.js"></script>
     
     <script type="text/javascript">
       var locations = [
@@ -12,7 +12,7 @@
               lat: <?=$ad->latitude?>,
               lon: <?=$ad->longitude?>,
     
-              title: '<?=htmlentities(json_encode($ad->title),ENT_QUOTES)?>',
+              title: '<?=htmlentities($ad->title,ENT_QUOTES)?>',
               <?if(( $icon_src = $ad->category->get_icon() )!==FALSE AND !is_numeric(core::get('id_ad'))):?>
                 <?if(Kohana::$environment === Kohana::DEVELOPMENT):?>
                     icon: '<?=$icon_src?>',
@@ -32,11 +32,7 @@
           new Maplace({
               locations: locations,
               controls_on_map: false,
-              map_options: {
-                  set_center: [<?=$center_lat?>,<?=$center_lon?>],
-                  zoom: <?=$zoom?>
-              }
-    
+              pan_on_click: false,
           }).Load();
       });
     </script>
