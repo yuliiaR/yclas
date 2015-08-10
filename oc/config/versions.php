@@ -3,8 +3,8 @@
   '2.5.0' => 
   array (
     'codename' => 'Las Galeras',
-    'released' => '2015-07-24',
-    'blog' => 'http://open-classifieds.com/2015/07/24/open-classifieds-2-5-0/',
+    'released' => '2015-08-10',
+    'blog' => 'http://open-classifieds.com/2015/08/10/open-classifieds-2-5-0/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.4.1...2.5.0',
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.5.0+is%3Aclosed',
     'download' => 'http://j.mp/oc_250',

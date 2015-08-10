@@ -15,6 +15,43 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
      */
     public function action_250()
     {
+        //htaccess remove old redirects for API
+        if (is_writable($htaccess_file = DOCROOT.'.htaccess'))
+        {
+            //get the entire htaccess
+            $htaccess = file_get_contents($htaccess_file);
+
+            //get from and to we want to delete form the file
+            $search_header  = '# Redirects from 1.x to 2.0.x structure';
+            $search_footer  = '# End redirects';
+
+            //its in the file?
+            if (strpos($htaccess,$search_header)!==FALSE AND strpos($htaccess,$search_footer)!==FALSE)
+            {
+                //get unique lines in an array
+                $lines = explode(PHP_EOL,$htaccess);
+
+                //we remove lines between header and footer
+                if (is_array($lines) AND count($lines)>5) 
+                {
+                    //which KEY int he array is its of the items?
+                    $header_line = array_search($search_header, $lines);
+                    $footer_line = array_search($search_footer, $lines);
+
+                    //remove each line....
+                    foreach (range($header_line,$footer_line) as $key => $number) 
+                        unset($lines[$number]);
+                    
+                    //generate the new file from the array
+                    File::write($htaccess_file,implode(PHP_EOL,$lines));
+
+                }//we could get the lines as array
+
+            }//end found strings
+
+        }//end if is_writable
+
+
         //new configs
         $configs = array(
                         array( 'config_key'     =>'api_key',
@@ -205,6 +242,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                 }
             }
         }
+
     }
 
     /**
