@@ -229,6 +229,9 @@ img#captcha_img_publish_new {
     border-radius: 4px;
     border: 1px solid #ccc;
 }
+.badged-name {
+  padding-right: 50px
+}
 /*Media screens*/
 @media screen and (max-width: 1199px) {
 	.header-search{display: none;}
