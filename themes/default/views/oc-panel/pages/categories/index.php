@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-7">
         <div class="panel panel-default">
-            <div class="panel-heading"><?=_('Home')?></div>
+            <div class="panel-heading"><?=__('Home')?></div>
             <div class="panel-body">
                 <ol class='plholder' id="ol_1" data-id="1">
                     <?function lili($item, $key,$cats){?>

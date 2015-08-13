@@ -73,7 +73,7 @@
                         <?}array_walk($order_categories, 'lili12',$categories);?>
 				</select>
 				
-				<p class="help-block"><?=('Selecting parent category also selects child categories.')?></p>
+				<p class="help-block"><?=__('Selecting parent category also selects child categories.')?></p>
 			</div>
 		</div>
 
