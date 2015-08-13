@@ -184,7 +184,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                             {
                                 "cars": [
                                     {
-                                        "name": "for-sale-by",
+                                        "name": "forsaleby",
                                         "type": "select",
                                         "label": "For sale by",
                                         "tooltip": "For sale by",
@@ -195,7 +195,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": "Owner,Dealer"
                                     },
                                     {
-                                        "name": "ad-type",
+                                        "name": "adtype",
                                         "type": "select",
                                         "label": "Ad type",
                                         "tooltip": "Ad type",
@@ -217,7 +217,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": "Acura,Alfa Romeo,AM General,AMC,Aston Martin,Audi,Austin-Healey,Bently,BMW,Bricklin,Bugatti,Buick,Cadillac,Chevrolet,Chrysler,Daewoo,Datsun,Diahatsu,Dodge,Eagle,Ferrari,Fiat,Ford,Geo,GMC,Honda,HUMMER,Hyundai,Infiniti,International Harvester,Isuzu,Jaguar,Jeep,Kia,Lamborghini,Land Rover,Lexus,Lincoln,Lotus,Maserati,Maybach,Mazda,Mercedes-Benz,Mercury,MG,MINI,Mitsubishi,Nissan,Oldsmobile,Opel,Peugeot,Plymouth,Pontiac,Porsche,Ram,Renault,Rolls-Royce,Saab,Saturn,Scion,Shelby,Smart,Subaru,Suzuki,Toyota,Triumph,Volkswagen,Volvo,Other"
                                     },
                                     {
-                                        "name": "other-make",
+                                        "name": "othermake",
                                         "type": "string",
                                         "label": "Other make",
                                         "tooltip": "Other make",
@@ -261,7 +261,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": ""
                                     },
                                     {
-                                        "name": "body-type",
+                                        "name": "bodytype",
                                         "type": "select",
                                         "label": "Body type",
                                         "tooltip": "Body type",
@@ -305,7 +305,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": "Black,Blue,Brown,Burgundy,Gold,Green,Grey,Orange,Pink,Purple,Red,Silver,Tan,Teal,White,Yellow,Other"
                                     },
                                     {
-                                        "name": "fuel-type",
+                                        "name": "fueltype",
                                         "type": "select",
                                         "label": "Fuel Type",
                                         "tooltip": "Fuel Type",
@@ -373,7 +373,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": "yes,No"
                                     },
                                     {
-                                        "name": "agencybroker-fee",
+                                        "name": "agencybrokerfee",
                                         "type": "select",
                                         "label": "Agency\/broker fee",
                                         "tooltip": "Agency\/broker fee",
@@ -384,7 +384,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": "Yes,No"
                                     },
                                     {
-                                        "name": "square-meters",
+                                        "name": "squaremeters",
                                         "type": "string",
                                         "label": "Square meters",
                                         "tooltip": "Square meters",
@@ -395,7 +395,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": ""
                                     },
                                     {
-                                        "name": "price-negotiable",
+                                        "name": "pricenegotiable",
                                         "type": "checkbox",
                                         "label": "Price negotiable",
                                         "tooltip": "Price negotiable",
@@ -408,7 +408,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                 ],
                                 "jobs": [
                                     {
-                                        "name": "job-type",
+                                        "name": "jobtype",
                                         "type": "select",
                                         "label": "Job type",
                                         "tooltip": "Job type",
@@ -419,7 +419,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": "Full-time,Part-time"
                                     },
                                     {
-                                        "name": "experience-in-years",
+                                        "name": "experienceinyears",
                                         "type": "select",
                                         "label": "Experience in Years",
                                         "tooltip": "Experience in Years",
@@ -441,7 +441,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": ""
                                     },
                                     {
-                                        "name": "salary-type",
+                                        "name": "salarytype",
                                         "type": "select",
                                         "label": "Salary type",
                                         "tooltip": "Salary type",
@@ -452,12 +452,34 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": "Hourly,Daily,Weekly,Monthly,Quarterly,Yearly"
                                     },
                                     {
-                                        "name": "extra-information",
+                                        "name": "extrainformation",
                                         "type": "textarea",
                                         "label": "Extra information",
                                         "tooltip": "Extra information",
                                         "required": false,
                                         "searchable": true,
+                                        "admin_privilege": false,
+                                        "show_listing": false,
+                                        "values": ""
+                                    },
+                                    {
+                                        "name": "company",
+                                        "type": "string",
+                                        "label": "Company",
+                                        "tooltip": "Company name",
+                                        "required": true,
+                                        "searchable": true,
+                                        "admin_privilege": false,
+                                        "show_listing": true,
+                                        "values": ""
+                                    },
+                                    {
+                                        "name": "companydescription",
+                                        "type": "textarea",
+                                        "label": "Company description",
+                                        "tooltip": "Company description",
+                                        "required": false,
+                                        "searchable": false,
                                         "admin_privilege": false,
                                         "show_listing": false,
                                         "values": ""
@@ -531,7 +553,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                         "values": ""
                                     },
                                     {
-                                        "name": "eye-color",
+                                        "name": "eyecolor",
                                         "type": "string",
                                         "label": "Eye color",
                                         "tooltip": "Eye color",
