@@ -84,7 +84,7 @@ function createCategorySelect () {
                 $.ajax({
                     url: $('#category-chained').data('apiurl') + '/' + value,
                     success: function(results) {
-                        if (results.category.price != $('#category-chained').data('price0')) {
+                        if (decodeHtml(results.category.price) != $('#category-chained').data('price0')) {
                             price_txt = $('#paid-category .help-block').data('title').replace(/%s/g, results.category.name).replace(/%d/g, results.category.price);
                             $('#paid-category').removeClass('hidden').find('.help-block span').text(price_txt);
                         }
