@@ -78,6 +78,12 @@ function eraseCookie(name) {
     createCookie(name, "", -1);
 }
 
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
+
 $(function(){
     if ($('input[name="auto_locate"]').length) {
         $('#auto-locations').modal('show');
