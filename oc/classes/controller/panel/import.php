@@ -216,7 +216,7 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
         }
 
         //create location?
-        if (isset($adi->location) AND ($adi->id_location==NULL OR !is_numeric($adi->id_location)))
+        if (isset($adi->location) AND !empty($adi->location) AND ($adi->id_location==NULL OR !is_numeric($adi->id_location)))
         {
             //create the location
             $loc = Model_Location::create_name($adi->location);
