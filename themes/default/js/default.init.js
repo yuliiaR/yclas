@@ -6,6 +6,18 @@ $(function(){
 		  $this = $(this);
 		  $.ajax({ url: $this.attr('href'),
 				}).done(function ( data ) {
+
+                    //favorites counter
+                    countname = 'count'+$this.data('id');
+                    if(document.getElementById(countname))
+                    {
+                        currentvalue = parseInt($('#'+countname).html(),10);
+                        if($('#'+$this.data('id')+' a').hasClass('add-favorite remove-favorite'))
+                            $('#'+countname).html(currentvalue-1);
+                        else
+                            $('#'+countname).html(currentvalue+1);
+                    }
+                    
 					$('#'+$this.data('id')+' a').toggleClass('add-favorite remove-favorite');
 					$('#'+$this.data('id')+' a i').toggleClass('glyphicon-heart-empty glyphicon-heart');
 				});
