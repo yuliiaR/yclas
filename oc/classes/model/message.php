@@ -122,7 +122,20 @@ class Model_Message extends ORM {
      */
     public static function send_user($message, $id_user_from, $id_user_to)
     {
-        return self::send($message, $id_user_from, $id_user_to);
+        //check if we already have a thread for that user...then its a reply not a new message.
+        $msg_thread = new Model_Message();
+
+        $msg_thread ->where('id_message','=',DB::expr('id_message_parent'))
+                    ->where('id_ad','is',NULL)
+                    ->where('id_user_to','=',$id_user_to)
+                    ->where('status','!=',Model_Message::STATUS_SPAM)
+                    ->limit(1)->find();
+
+        //actually reply not new thread....
+        if ($msg_thread->loaded())
+            return self::reply($message, $id_user_from, $msg_thread->id_message);
+        else
+            return self::send($message, $id_user_from, $id_user_to);
     }
 
     /**
@@ -141,8 +154,22 @@ class Model_Message extends ORM {
             ->where('status','=',Model_Ad::STATUS_PUBLISHED)->find();
         //ad loaded and is not your ad....
         if ($ad->loaded() == TRUE AND $id_user_from!=$ad->id_user)
-            return self::send($message, $id_user_from, $ad->id_user,$id_ad,NULL,$price);
+        {
+            //check if we already have a thread for that ad and user...then its a reply not a new message.
+            $msg_thread = new Model_Message();
+
+            $msg_thread ->where('id_message','=',DB::expr('id_message_parent'))
+                        ->where('id_ad','=',$id_ad)
+                        ->where('id_user_from', '=',$id_user_from)
+                        ->where('status','!=',Model_Message::STATUS_SPAM)->limit(1)->find();
+
+            //actually reply not new thread....
+            if ($msg_thread->loaded())
+                return self::reply($message, $id_user_from, $msg_thread->id_message, $price);
+            else
+                return self::send($message, $id_user_from, $ad->id_user,$id_ad,NULL,$price);
         
+        }
         return FALSE;
         
     }
