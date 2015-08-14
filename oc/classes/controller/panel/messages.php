@@ -100,6 +100,9 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                             
                             $user_to->email('messaging-reply', array(   '[TITLE]'       => $email_title,
                                                                         '[DESCRIPTION]' => core::post('message'),
+                                                                        '[AD.NAME]'     => isset($msg_thread->ad->title) ? $msg_thread->ad->title : NULL,
+                                                                        '[FROM.NAME]'   => $user_from->name,
+                                                                        '[TO.NAME]'     => $user_to->name,
                                                                         '[URL.QL]'      => $user_to->ql('oc-panel', array(  'controller'    => 'messages',
                                                                                                                             'action'        => 'message',
                                                                                                                             'id'            => $this->request->param('id'))))
