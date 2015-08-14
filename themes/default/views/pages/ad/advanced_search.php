@@ -16,7 +16,9 @@
                 <?= FORM::label('category', __('Category'), array('class'=>'', 'for'=>'category' ))?>
                     <div class="control mr-30">
                         <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category" class="form-control" data-placeholder="<?=__('Category')?>">
-                        <option></option>
+                        <?if ( ! core::config('general.search_multi_catloc')) :?>
+                            <option value=""><?=__('Category')?></option>
+                        <?endif?>
                         <?function lili($item, $key,$cats){?>
                             <?if (core::config('general.search_multi_catloc')):?>
                                 <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(is_array(core::request('category')) AND in_array($cats[$key]['seoname'], core::request('category')))?"selected":''?> ><?=$cats[$key]['name']?></option>
@@ -38,7 +40,9 @@
                         <?= FORM::label('location', __('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
                         <div class="control mr-30">
                             <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
-                            <option></option>
+                            <?if ( ! core::config('general.search_multi_catloc')) :?>
+                                <option value=""><?=__('Location')?></option>
+                            <?endif?>
                             <?function lolo($item, $key,$locs){?>
                                 <?if (core::config('general.search_multi_catloc')):?>
                                     <option value="<?=$locs[$key]['seoname']?>" <?=(is_array(core::request('location')) AND in_array($locs[$key]['seoname'], core::request('location')))?"selected":''?> ><?=$locs[$key]['name']?></option>
