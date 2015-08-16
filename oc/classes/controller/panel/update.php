@@ -11,6 +11,33 @@
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
     /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.4.1
+     */
+    public function action_251()
+    {
+        //change latitude/longitude data type length
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` CHANGE `latitude` `latitude` FLOAT(10, 6) NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` CHANGE `longitude` `longitude` FLOAT(10, 6) NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` CHANGE `latitude` `latitude` FLOAT(10, 6) NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` CHANGE `longitude` `longitude` FLOAT(10, 6) NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+    }
+
+    /**
      * This function will upgrade DB that didn't existed in versions prior to 2.5.0
      */
     public function action_250()
