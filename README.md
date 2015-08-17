@@ -28,7 +28,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 * jsmin-php https://github.com/rgrove/jsmin-php/
 * Minify https://github.com/mrclay/minify
 * Mobile Detect https://github.com/serbanghita/Mobile-Detect
-* Twitter Bootstrap http://twitter.github.com/bootstrap/
+* Bootstrap http://twitter.github.com/bootstrap/
 * Bootswatch http://bootswatch.com/
 * Chosen https://github.com/harvesthq/chosen
 * SCEditor https://github.com/samclarke/SCEditor
@@ -39,3 +39,4 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 * Hybrid Auth http://hybridauth.sourceforge.net/
 * MySQLi Kohana https://github.com/Azuka/Kohana-Database-MySQLi
 * JS Loading Bar https://github.com/peachananr/loading-bar
+* Slugifier https://github.com/keyvanakbary/slugifier/
