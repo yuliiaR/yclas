@@ -121,6 +121,7 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->select(DB::expr('COUNT(id_visit) count'))
                         ->from('visits')
                         ->where('created','between',array($my_from_date,$my_to_date))
+                        ->where('status','=',Model_Order::STATUS_PAID)
                         ->group_by(DB::expr('DATE( created )'))
                         ->order_by('date','asc')
                         ->execute();
