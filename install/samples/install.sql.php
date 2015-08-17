@@ -97,8 +97,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `description` text NULL DEFAULT NULL,
   `last_modified` DATETIME  NULL,
   `has_image` tinyint(1) NOT NULL DEFAULT '0',
-  `latitude` DOUBLE NULL DEFAULT NULL,
-  `longitude` DOUBLE NULL DEFAULT NULL,
+  `latitude` float(10,6) NULL DEFAULT NULL,
+  `longitude` float(10,6) NULL DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
@@ -113,8 +113,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `seotitle` varchar(145) NOT NULL,
   `description` text NOT NULL,
   `address` varchar(145) DEFAULT '0',
-  `latitude` DOUBLE NULL DEFAULT NULL,
-  `longitude` DOUBLE NULL DEFAULT NULL,
+  `latitude` float(10,6) NULL DEFAULT NULL,
+  `longitude` float(10,6) NULL DEFAULT NULL,
   `price` decimal(14,3) NOT NULL DEFAULT '0',
   `phone` varchar(30) DEFAULT NULL,
   `website` varchar(200) DEFAULT NULL,
