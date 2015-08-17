@@ -39,50 +39,51 @@
     </div>
 
     <?if (Auth::instance()->logged_in()):?>    
-    <div id="review-modal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
-                    <h3><?=__('Add New Review')?></h3>
-                </div>
-                <div class="modal-body">
-                    <?=Form::errors()?>
-                    <form action="" method="post">
-                    <fieldset>
-                        <div id="review_raty" data-baseurl="<?=Route::url('default')?>"></div>
-
-                        <div class="control-group">
-                            <?= FORM::label('description', __('Review'), array('class'=>'control-label', 'for'=>'description'))?>
-                            <div class="controls">
-                                <?= FORM::textarea('description', core::post('description',''), array('placeholder' => __('Review'), 'class' => 'span6', 'name'=>'description', 'id'=>'description', 'required'))?>   
+        <div id="review-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+                        <h3 class="modal-title"><?=__('Add New Review')?></h3>
+                    </div>
+                    <div class="modal-body">
+                        <?=Form::errors()?>
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <div id="review_raty" data-baseurl="<?=Route::url('default')?>"></div>
                             </div>
-                        </div>
 
-                        <?if (core::config('advertisement.captcha') != FALSE):?>
-                        <div class="form-group">
-                            <div class="col-md-4">
-                                <?if (Core::config('general.recaptcha_active')):?>
-                                    <?=Captcha::recaptcha_display()?>
-                                <?else:?>
-                                    <?=__('Captcha')?>*:<br />
-                                    <?=captcha::image_tag('review')?><br />
-                                    <?= FORM::input('captcha', "", array('class'=>'form-control', 'id' => 'captcha', 'required'))?>
-                                <?endif?>
+                            <div class="form-group">
+                                <?=FORM::label('description', __('Review'), array('for'=>'description'))?>
+                                <div class="controls">
+                                    <?=FORM::textarea('description', core::post('description',''), array('placeholder' => __('Review'), 'class' => 'form-control', 'name'=>'description', 'id'=>'description', 'required'))?>   
+                                </div>
                             </div>
-                        </div>
-                        <?endif?>
 
-                        <div class="modal-footer">  
-                            <input type="submit" class="btn btn-success" value="<?=__('Post Review')?>" />
-                        </div>
-
-                    </fieldset>
-                    </form>
+                            <?if (core::config('advertisement.captcha') != FALSE):?>
+                                <div class="form-group">
+                                    <?if (Core::config('general.recaptcha_active')):?>
+                                        <?=Captcha::recaptcha_display()?>
+                                    <?else:?>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <?=FORM::label('captcha', __('Captcha'), array('for'=>'captcha'))?>
+                                                <span id="helpBlock" class="help-block"><?=captcha::image_tag('review')?></span>
+                                                <?=FORM::input('captcha', "", array('class'=>'form-control', 'id' => 'captcha', 'required'))?>
+                                            </div>
+                                        </div>
+                                    <?endif?>
+                                </div>
+                                <div class="clearfix"></div>
+                            <?endif?>
+                        </form>
+                    </div>
+                    <div class="modal-footer">  
+                        <input type="submit" class="btn btn-success" value="<?=__('Post Review')?>" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     <?endif?>
     
     <hgroup class="mb20"></hgroup>
