@@ -33,7 +33,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             if ($modified === TRUE)
             {
                 $field  = new Model_UserField();
-                $field->update($name,implode(',',$options['values']),$options);
+                $field->update($name, ($options['values'] ? implode(',',$options['values']) : null), $options);
             }
         }
 
