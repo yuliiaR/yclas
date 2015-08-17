@@ -532,6 +532,8 @@ class Controller_Panel_Location extends Auth_Crud {
                         ->where('id_location','!=','1')
                         ->execute();
             
+            Core::delete_cache();
+            
             Alert::set(Alert::SUCCESS, __('All locations were deleted.'));
             
         }

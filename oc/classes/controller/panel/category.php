@@ -484,6 +484,8 @@ class Controller_Panel_Category extends Auth_Crud {
                         ->where('id_category','!=','1')
                         ->execute();
             
+            Core::delete_cache();
+            
             Alert::set(Alert::SUCCESS, __('All categories were deleted.'));
             
         }
