@@ -28,6 +28,7 @@
                                     <?=$name?>
                                     <span class="label label-info "><?=$field['type']?></span>
                                     <span class="label label-info "><?=($field['required'])?__('required'):NULL?></span>
+                                    <span class="label label-info "><?=(isset($field['searchable']) AND $field['searchable'])?__('Searchable'):NULL?></span>
                                     <span class="label label-info "><?=(isset($field['show_profile']) AND $field['show_profile'])?__('Show profile'):NULL?></span>
                                     <span class="label label-info "><?=(isset($field['show_register']) AND $field['show_register'])?__('Show register'):NULL?></span>
                                     <span class="label label-info "><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>

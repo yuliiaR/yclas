@@ -54,6 +54,15 @@
         <div class="form-group">
             <div class="col-sm-4">
                 <label class="checkbox col-xs-offset-4">
+                  <input type="checkbox" name="searchable" <?=(isset($field_data['searchable']) AND $field_data['searchable']==TRUE)?'checked':''?>> 
+                   <?=__('Searchable')?>
+                </label>
+            <div class="help-block col-xs-offset-4"><?=__('Search in ads will include this field as well.')?></div></div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label class="checkbox col-xs-offset-4">
                   <input type="checkbox" name="show_profile" <?=(isset($field_data['show_profile']) AND $field_data['show_profile']==TRUE)?'checked':''?>> 
                    <?=__('Show Profile')?>
                 </label>

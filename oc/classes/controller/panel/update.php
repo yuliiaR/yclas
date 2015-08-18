@@ -11,10 +11,32 @@
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 2.4.1
+     * This function will upgrade DB that didn't existed in versions prior to 2.5.1
      */
     public function action_251()
     {
+        //CF users searchable admin privilege option to false if didnt exists
+        $cf_users = Model_UserField::get_all();
+        foreach ($cf_users as $name => $options) 
+        {
+            $modified = FALSE;
+            if(!isset($options['searchable']))
+            {
+                $options['searchable'] = FALSE;
+                $modified = TRUE;
+            }
+            if(!isset($options['admin_privilege']))
+            {
+                $options['admin_privilege'] = FALSE;
+                $modified = TRUE;
+            }
+            if ($modified === TRUE)
+            {
+                $field  = new Model_UserField();
+                $field->update($name, ($options['values'] ? implode(',',$options['values']) : null), $options);
+            }
+        }
+
         //change latitude/longitude data type length
         try 
         {

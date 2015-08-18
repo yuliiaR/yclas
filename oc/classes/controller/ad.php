@@ -901,20 +901,40 @@ class Controller_Ad extends Controller {
                 	->where_close();
 	        }
 
-        	$cf_fields = array();
+            //cf filter arrays
+        	$cf_fields      = array();
+            $cf_user_fields = array();
             foreach ($this->request->query() as $name => $field) 
             {
-            	// get by prefix
-				if (strpos($name,'cf_') !== false) 
-				{
-					$cf_fields[$name] = $field;
-					//checkbox when selected return string 'on' as a value
-					if($field == 'on')
-						$cf_fields[$name] = 1;
-					elseif(empty($field)){
-						$cf_fields[$name] = NULL;
-					}
-				}
+                if (isset($field) AND $field != NULL)
+                {
+                	// get by prefix cf
+    				if (strpos($name,'cf_') !== FALSE 
+                        AND array_key_exists(str_replace('cf_','',$name), Model_Field::get_all()) )
+    				{
+    					$cf_fields[$name] = $field;
+    					//checkbox when selected return string 'on' as a value
+    					if($field == 'on')
+    						$cf_fields[$name] = 1;
+    					elseif(empty($field)){
+    						$cf_fields[$name] = NULL;
+    					}
+    				}
+                    // get by prefix user cf
+                    elseif (strpos($name,'cfuser_') !== FALSE 
+                        AND array_key_exists(str_replace('cfuser_','',$name), Model_UserField::get_all()) ) 
+                    {
+                        $name = str_replace('cfuser_','cf_',$name);
+                        $cf_user_fields[$name] = $field;
+                        //checkbox when selected return string 'on' as a value
+                        if($field == 'on')
+                            $cf_user_fields[$name] = 1;
+                        elseif(empty($field)){
+                            $cf_user_fields[$name] = NULL;
+                        }
+                        
+                    }
+                }
         	}
 
 	        $category = NULL;
@@ -1005,16 +1025,37 @@ class Controller_Ad extends Controller {
                 $ads->where('price', '<=', $price_max);
             }
 
-	        foreach ($cf_fields as $key => $value) 
-	        {	
-	        	if(isset($value) AND $value != NULL)
-	        	{
-		        	if(is_numeric($value))
-		        		$ads->where($key, '=', $value);
-		        	elseif(is_string($value))
-		        		$ads->where($key, 'like', '%'.$value.'%');
-		        }
-	        }
+            //filter by CF ads
+	        if (count($cf_fields)>0)
+            {
+                foreach ($cf_fields as $key => $value) 
+    	        {	
+    	        	if(is_numeric($value))
+    	        		$ads->where($key, '=', $value);
+    	        	elseif(is_string($value))
+    	        		$ads->where($key, 'like', '%'.$value.'%');
+    	        }
+            }
+
+            //filter by user
+            if (count($cf_user_fields)>0)
+            {
+                $users = new Model_User();
+
+                foreach ($cf_user_fields as $key => $value) 
+                {   
+                    if(is_numeric($value))
+                        $users->where($key, '=', $value);
+                    elseif(is_string($value))
+                        $users->where($key, 'like', '%'.$value.'%');
+                }
+
+                $users = $users->find_all();
+                if ($users->count()>0)
+                    $ads->where('id_user','in',$users->as_array());
+                else
+                    $ads->where('id_user','=',0);
+            }
 
 	        // count them for pagination
 			$res_count = $ads->count_all();
