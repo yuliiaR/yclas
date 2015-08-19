@@ -89,16 +89,42 @@
                 </div>
             <?endif?>
         <?endif?>
-        <!-- Fields coming from custom fields feature -->
-        <div id="widget-custom-fields" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" data-customfield-values='<?=json_encode(Request::current()->query())?>'>
-            <div id="widget-custom-field-template" class="form-group hidden">
-                <div class="col-xs-12">
-                    <div data-label></div>
-                    <div data-input></div>
+        <?if (Theme::get('premium')==1) :?>
+            <!-- Fields coming from custom fields feature -->
+            <div id="widget-custom-fields" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" data-customfield-values='<?=json_encode(Request::current()->query())?>'>
+                <div id="widget-custom-field-template" class="form-group hidden">
+                    <div class="col-xs-12">
+                        <div data-label></div>
+                        <div data-input></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- /endcustom fields -->
+            <!-- Fields coming from user custom fields feature -->
+            <?foreach(Model_UserField::get_all() as $name=>$field):?>
+                <?if (isset($field['searchable']) AND $field['searchable']):?>
+                    <div class="form-group">
+                        <?$cf_name = 'cfuser_'.$name?>
+                        <?if($field['type'] == 'select' OR $field['type'] == 'radio') {
+                            $select = array('' => $field['label']);
+                            foreach ($field['values'] as $select_name) {
+                                $select[$select_name] = $select_name;
+                            }
+                        } else $select = $field['values']?>
+                        <div class="col-xs-12">
+                            <?= FORM::label('cfuser_'.$name, $field['label'], array('for'=>'cfuser_'.$name))?>
+                            <?=Form::cf_form_field('cfuser_'.$name, array(
+                            'display'   => $field['type'],
+                            'label'     => $field['label'],
+                            'tooltip'   => (isset($field['tooltip']))? $field['tooltip'] : "",
+                            'default'   => $field['values'],
+                            'options'   => (!is_array($field['values']))? $field['values'] : $select,
+                            ),core::get('cfuser_'.$name), FALSE, TRUE)?> 
+                        </div>
+                    </div>
+                <?endif?>
+            <?endforeach?>
+            <!-- /endcustom fields -->
+        <?endif?>
         <div class="clearfix"></div>
     
         <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary'))?> 
