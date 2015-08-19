@@ -42,13 +42,13 @@
         <div id="review-modal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
-                        <h3 class="modal-title"><?=__('Add New Review')?></h3>
-                    </div>
-                    <div class="modal-body">
-                        <?=Form::errors()?>
-                        <form action="" method="post">
+                    <form action="" method="post">
+                        <div class="modal-header">
+                            <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+                            <h3 class="modal-title"><?=__('Add New Review')?></h3>
+                        </div>
+                        <div class="modal-body">
+                            <?=Form::errors()?>
                             <div class="form-group">
                                 <div id="review_raty" data-baseurl="<?=Route::url('default')?>"></div>
                             </div>
@@ -76,11 +76,11 @@
                                 </div>
                                 <div class="clearfix"></div>
                             <?endif?>
-                        </form>
-                    </div>
-                    <div class="modal-footer">  
-                        <input type="submit" class="btn btn-success" value="<?=__('Post Review')?>" />
-                    </div>
+                        </div>
+                        <div class="modal-footer">  
+                            <input type="submit" class="btn btn-success" value="<?=__('Post Review')?>" />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
