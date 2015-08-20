@@ -88,7 +88,7 @@ class Widget_Search extends Widget
             {
                 $this->selected_location = core::request('location');
             }
-            elseif (Model_Category::current()->loaded())
+            elseif (Model_Location::current()->loaded())
             {
                 $this->selected_location = core::config('general.search_multi_catloc') ? array(Model_Location::current()->seoname) : Model_Location::current()->seoname;
             }
