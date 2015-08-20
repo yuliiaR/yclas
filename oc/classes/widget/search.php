@@ -66,12 +66,32 @@ class Widget_Search extends Widget
         if ($this->advanced != FALSE)
         {
             
-            $this->cat_items        = Model_Category::get_as_array();
-            $this->cat_order_items  = Model_Category::get_multidimensional();
+            $this->cat_items         = Model_Category::get_as_array();
+            $this->cat_order_items   = Model_Category::get_multidimensional();
+            $this->selected_category = NULL;
+
+            if (core::request('category'))
+            {
+                $this->selected_category = core::request('category');
+            }
+            elseif (Model_Category::current()->loaded())
+            {
+                $this->selected_category = core::config('general.search_multi_catloc') ? array(Model_Category::current()->seoname) : Model_Category::current()->seoname;
+            }
 
             // get all locations
-            $this->loc_items       = Model_Location::get_as_array();
-            $this->loc_order_items = Model_Location::get_multidimensional();
+            $this->loc_items         = Model_Location::get_as_array();
+            $this->loc_order_items   = Model_Location::get_multidimensional();
+            $this->selected_location = NULL;
+
+            if (core::request('location'))
+            {
+                $this->selected_location = core::request('location');
+            }
+            elseif (Model_Location::current()->loaded())
+            {
+                $this->selected_location = core::config('general.search_multi_catloc') ? array(Model_Location::current()->seoname) : Model_Location::current()->seoname;
+            }
 
         }
 
