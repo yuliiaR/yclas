@@ -312,8 +312,8 @@ if($('#map').length !== 0){
                         lat: latlng.lat(),
                         lng: latlng.lng(),
                     });
-                    $('#publish-latitude').val(latlng.lat());
-                    $('#publish-longitude').val(latlng.lng());
+                    $('#publish-latitude').val(latlng.lat()).removeAttr("disabled");
+                    $('#publish-longitude').val(latlng.lng()).removeAttr("disabled");
                 }
             }
         });
@@ -338,8 +338,8 @@ $('.locateme').click(function() {
                 lat: lat,
                 lng: lng,
             });
-            $('#publish-latitude').val(lat);
-            $('#publish-longitude').val(lng);
+            $('#publish-latitude').val(lat).removeAttr("disabled");
+            $('#publish-longitude').val(lng).removeAttr("disabled");
             GMaps.geocode({
                 lat: lat,
                 lng: lng,
