@@ -11,16 +11,18 @@ $("button[name=submit]").click(function(){
         placeholder_text_multiple: getChosenLocalization("placeholder_text_multiple"),
         placeholder_text_single: getChosenLocalization("placeholder_text_single")
     });
-    $("#category_subscribe").chosen({
-        no_results_text: getChosenLocalization("no_results_text"),
-        placeholder_text_multiple: getChosenLocalization("placeholder_text_multiple"),
-        placeholder_text_single: getChosenLocalization("placeholder_text_single")
-    }); 
     $('select').each(function(){
         if($(this).hasClass('disable-chosen')){
             $(this).chosen('destroy');      
         } 
     });
+    //chosen responsive width
+    $(window).on('resize.chosen', function() {
+        $('select').each(function(){
+            var width = $(this).parent().width();
+            $(this).siblings('.chosen-container').css({'width':width});
+        });
+    }).triggerHandler('resize.chosen');
     
     $('input, select, textarea, .btn').tooltip();
 
