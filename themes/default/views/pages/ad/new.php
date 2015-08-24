@@ -66,7 +66,7 @@
 								</div>
 							</div>
 						<?endif?>
-						<input id="location-selected" name="location" value="<?=$id_category?>" class="form-control invisible" style="height: 0; padding:0; width:1px; border:0;" required></input>
+						<input id="location-selected" name="location" value="<?=$id_location?>" class="form-control invisible" style="height: 0; padding:0; width:1px; border:0;" required></input>
 					</div>
 				</div>
 			<?endif?>
