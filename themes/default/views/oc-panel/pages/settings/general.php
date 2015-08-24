@@ -141,7 +141,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['contact_page']['id'], __('Contact page content'), array('class'=>'control-label col-sm-4', 'for'=>$forms['contact_page']['id']))?>
+                        <?= FORM::label($forms['contact_page']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-add-text-contact-page/'>".__('Contact page content')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['contact_page']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['contact_page']['key'], $pages, $forms['contact_page']['value'], array( 
                             'class' => 'tips form-control input-sm', 
