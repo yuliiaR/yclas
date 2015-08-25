@@ -57,6 +57,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` CHANGE `longitude` `longitude` FLOAT(10, 6) NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
+
+        // set to NULL latitude and longitude ads with longitude and longitude equal to 0
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."ads SET latitude=NULL, longitude=NULL WHERE latitude='0' AND longitude='0'")->execute();
+        }catch (exception $e) {}
     }
 
     /**

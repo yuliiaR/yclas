@@ -141,8 +141,8 @@
 							style="height:200px;max-width:400px;">
 						</div>
 					</div>
-					<input type="hidden" name="latitude" id="publish-latitude" value="">
-					<input type="hidden" name="longitude" id="publish-longitude" value="">
+					<input type="hidden" name="latitude" id="publish-latitude" value="" disabled>
+					<input type="hidden" name="longitude" id="publish-longitude" value="" disabled>
 				<?endif?>
 			<?endif?>
 			<?if($form_show['price'] != FALSE):?>

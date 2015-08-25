@@ -217,8 +217,8 @@
                                     style="height:200px;max-width:400px;margin-bottom:5px;">
                                 </div>
                             </div>
-                            <input type="hidden" name="latitude" id="publish-latitude" value="<?=$ad->latitude?>">
-                            <input type="hidden" name="longitude" id="publish-longitude" value="<?=$ad->longitude?>">
+                            <input type="hidden" name="latitude" id="publish-latitude" value="<?=$ad->latitude?>" <?=is_null($ad->latitude) ? 'disabled': NULL?>>
+                            <input type="hidden" name="longitude" id="publish-longitude" value="<?=$ad->longitude?>" <?=is_null($ad->longitude) ? 'disabled': NULL?>>
                         <?endif?>
                         <?endif?>
                         <?if(core::config('payment.stock')):?>
