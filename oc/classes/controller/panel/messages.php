@@ -4,7 +4,7 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
 
     public function action_index()
     {
-        $messages   = Model_Message::get_threads($this->user->id_user);
+        $messages   = Model_Message::get_threads($this->user);
         $res_count  = $messages->count_all();
         
         //filter by status
@@ -62,7 +62,7 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
         
         if ($this->request->param('id') !== NULL AND is_numeric($id_msg_thread = $this->request->param('id')))
         {
-            $messages = Model_Message::get_thread($id_msg_thread, $this->user->id_user);
+            $messages = Model_Message::get_thread($id_msg_thread, $this->user);
 
             if ($messages !== FALSE)
             {
@@ -76,60 +76,10 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
 
                     if ($validation->check())
                     {
-                        $ret = Model_Message::reply(core::post('message'), $this->user->id_user, $id_msg_thread, NULL);
+                        $ret = Model_Message::reply(core::post('message'), $this->user, $id_msg_thread, NULL);
                         
                         if ($ret !== FALSE)
                         {
-                            //who is who? if from is the same then send to TO, else to from
-                            if ($msg_thread->id_user_from == $this->user->id_user)
-                            {
-                                $user_to    = $msg_thread->to;
-                                $user_from  = $msg_thread->from;
-                            }
-                            else
-                            {
-                                $user_to    = $msg_thread->from;
-                                $user_from  = $msg_thread->to;
-                            }
-
-                            //email title
-                            if ($msg_thread->id_ad !== NULL)
-                                $email_title = $msg_thread->ad->title;
-                            else
-                                $email_title = sprintf(__('Direct message from %s'), $user_from->name);
-                            
-                            $user_to->email('messaging-reply', array(   '[TITLE]'       => $email_title,
-                                                                        '[DESCRIPTION]' => core::post('message'),
-                                                                        '[AD.NAME]'     => isset($msg_thread->ad->title) ? $msg_thread->ad->title : NULL,
-                                                                        '[FROM.NAME]'   => $user_from->name,
-                                                                        '[TO.NAME]'     => $user_to->name,
-                                                                        '[URL.QL]'      => $user_to->ql('oc-panel', array(  'controller'    => 'messages',
-                                                                                                                            'action'        => 'message',
-                                                                                                                            'id'            => $this->request->param('id'))))
-                                            );
-                            
-                            // we are updating field of visit table (contact)
-                            if ($msg_thread->id_ad !== NULL)
-                            {
-                                $visit = new Model_Visit();
-
-                                $visit->where('id_ad', '=', $msg_thread->id_ad)
-                                                ->where('id_user', '=', $user_from->id_user)
-                                                ->order_by('created', 'desc')
-                                                ->limit(1)->find();
-                                if ($visit->loaded())
-                                {
-                                    $visit->contacted = 1;
-                                    $visit->created = Date::unix2mysql();
-                                    try {
-                                        $visit->save();
-                                    } catch (Exception $e) {
-                                        //throw 500
-                                        throw HTTP_Exception::factory(500,$e->getMessage());
-                                    }
-                                }
-                            }
-
                             Alert::set(Alert::SUCCESS, __('Reply created.'));
                             $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'message', 'id' => Request::current()->param('id'))));
                         }

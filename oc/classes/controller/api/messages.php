@@ -16,7 +16,7 @@ class Controller_Api_Messages extends Api_User {
         }
         else
         {
-            $messages = Model_Message::get_threads($this->user->id_user);
+            $messages = Model_Message::get_threads($this->user);
 
             //by default all except spam
             if (empty($this->_filter_params))
@@ -58,7 +58,7 @@ class Controller_Api_Messages extends Api_User {
      */
     public function action_unread()
     {
-        $messages = Model_Message::get_unread_threads($this->user->id_user);
+        $messages = Model_Message::get_unread_threads($this->user);
 
         //filter results by param, verify field exists and has a value
         $messages->api_filter($this->_filter_params);
@@ -96,7 +96,7 @@ class Controller_Api_Messages extends Api_User {
         {
             if (is_numeric($id_msg_thread = $this->request->param('id')))
             {
-                $messages = Model_Message::get_thread($id_msg_thread,$this->user->id_user);
+                $messages = Model_Message::get_thread($id_msg_thread,$this->user);
 
                 if ($messages!==FALSE)
                 {
@@ -128,8 +128,6 @@ class Controller_Api_Messages extends Api_User {
     {
         try
         {
-            $user = $this->user;
-
             //get message
             if (isset($this->_post_params['message']))
                 $message = $this->_post_params['message'];
@@ -141,13 +139,13 @@ class Controller_Api_Messages extends Api_User {
 
             //message to the user
             if (isset($this->_post_params['id_user']) AND is_numeric($id_user_to = $this->_post_params['id_user']))
-                $ret = Model_Message::send_user($message, $user->id_user, $id_user_to);
+                $ret = Model_Message::send_user($message, $this->user, new Model_User($id_user_to));
             //message advertisement
             elseif (isset($this->_post_params['id_ad']) AND is_numeric($id_ad = $this->_post_params['id_ad']))
-                $ret = Model_Message::send_ad($message, $user->id_user, $id_ad,$price);
+                $ret = Model_Message::send_ad($message, $this->user, $id_ad,$price);
             //reply thread
             elseif (isset($this->_post_params['id_message_parent']) AND is_numeric($id_message_parent = $this->_post_params['id_message_parent']))
-                $ret = Model_Message::reply($message, $user->id_user, $id_message_parent,$price);
+                $ret = Model_Message::reply($message, $this->user, $id_message_parent,$price);
             
             //good response!
             if ($ret !== FALSE)
