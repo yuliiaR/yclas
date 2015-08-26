@@ -10,7 +10,7 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
         //filter by status
         if (is_numeric(core::get('status')))
         {
-            $messages->where('status', '=', core::get('status'));
+            $messages->where('status_to', '=', core::get('status'));
         }
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Messaging'))->set_url(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index'))));
@@ -32,8 +32,7 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
 
             Breadcrumbs::add(Breadcrumb::factory()->set_title(sprintf(__("Page %d"), $pagination->current_page)));
 
-            $messages = $messages   ->order_by('status','asc')
-                                    ->order_by('created','desc')
+            $messages = $messages   ->order_by('created','desc')
                                     ->limit($pagination->items_per_page)
                                     ->offset($pagination->offset)
                                     ->find_all();

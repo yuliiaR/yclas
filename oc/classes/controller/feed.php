@@ -2,20 +2,20 @@
 
 class Controller_Feed extends Controller {
 
-	public function action_index()
-	{
+    public function action_index()
+    {
         $this->auto_render = FALSE;
 
-		$info = array(
-						'title' 	=> 'RSS '.htmlspecialchars(Core::config('general.site_name')),
-						'pubDate' => date("D, d M Y H:i:s T"),
-						'description' => __('Latest published'),
-						'generator' 	=> 'Open Classifieds',
-		); 
-  		
-  		$items = array();
+        $info = array(
+                        'title'       => 'RSS '.htmlspecialchars(Core::config('general.site_name')),
+                        'pubDate'     => date("r"),
+                        'description' => __('Latest published'),
+                        'generator'   => 'Open Classifieds',
+        ); 
+        
+        $items = array();
 
-  		//last ads, you can modify this value at: advertisement.feed_elements
+        //last ads, you can modify this value at: advertisement.feed_elements
         $ads = new Model_Ad();
         $ads    ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                 ->order_by('published','desc')
@@ -38,6 +38,7 @@ class Controller_Feed extends Controller {
                                 'link'          => $url,
                                 'pubDate'       => Date::mysql2unix($a->published),
                                 'description'   => htmlspecialchars(Text::removebbcode($a->description),ENT_QUOTES),
+                                'guid'          => $url,
                           );
             if($a->get_first_image() !== NULL)
             {
@@ -47,12 +48,12 @@ class Controller_Feed extends Controller {
             $items[] = $item;
         }
   
-  		$xml = Feed::create($info, $items);
+        $xml = Feed::create($info, $items);
 
-  		$this->response->headers('Content-type','text/xml');
+        $this->response->headers('Content-type','text/xml');
         $this->response->body($xml);
-	
-	}
+    
+    }
 
 
     public function action_blog()
@@ -60,9 +61,9 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
         $info = array(
-                        'title'     => 'RSS Blog '.Core::config('general.site_name'),
-                        'pubDate' => date("D, d M Y H:i:s T"),
-                        'description' => __('Latest post published'),
+                        'title'         => 'RSS Blog '.Core::config('general.site_name'),
+                        'pubDate'       => date("r"),
+                        'description'   => __('Latest post published'),
                         'generator'     => 'Open Classifieds',
         ); 
         
@@ -82,10 +83,11 @@ class Controller_Feed extends Controller {
             $url= Route::url('blog',  array('seotitle'=>$post->seotitle));
 
             $items[] = array(
-                                'title'         => preg_replace('/&(?!\w+;)/', '&amp;', $post->title),
+                                'title'         => htmlspecialchars($post->title,ENT_QUOTES),
                                 'link'          => $url,
                                 'pubDate'       => Date::mysql2unix($post->created),
-                                'description'   => Text::removebbcode(preg_replace('/&(?!\w+;)/', '&amp;',$post->description)),
+                                'description'   => htmlspecialchars(Text::removebbcode($post->description),ENT_QUOTES),
+                                'guid'          => $url,
                           );
         }
   
@@ -101,9 +103,9 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
         $info = array(
-                        'title'     => 'RSS Forum '.Core::config('general.site_name'),
-                        'pubDate' => date("D, d M Y H:i:s T"),
-                        'description' => __('Latest post published'),
+                        'title'         => 'RSS Forum '.Core::config('general.site_name'),
+                        'pubDate'       => date("r"),
+                        'description'   => __('Latest post published'),
                         'generator'     => 'Open Classifieds',
         ); 
         
@@ -128,10 +130,11 @@ class Controller_Feed extends Controller {
             $url= Route::url('forum-topic',  array('seotitle'=>$topic->seotitle,'forum'=>$topic->forum->seoname));
 
             $items[] = array(
-                                'title'         => preg_replace('/&(?!\w+;)/', '&amp;', $topic->title),
+                                'title'         => htmlspecialchars($topic->title,ENT_QUOTES),
                                 'link'          => $url,
                                 'pubDate'       => Date::mysql2unix($topic->created),
-                                'description'   => Text::removebbcode(preg_replace('/&(?!\w+;)/', '&amp;',$topic->description)),
+                                'description'   => htmlspecialchars(Text::removebbcode($topic->description),ENT_QUOTES),
+                                'guid'          => $url,
                           );
         }
   

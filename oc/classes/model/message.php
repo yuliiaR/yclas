@@ -15,8 +15,10 @@ class Model_Message extends ORM {
      * status constants
      */
     const STATUS_NOTREAD = 0; 
-    const STATUS_READ   = 1; 
-    const STATUS_SPAM   = 5;
+    const STATUS_READ    = 1; 
+    const STATUS_ARCHIVED= 2;
+    const STATUS_SPAM    = 5;
+    const STATUS_DELETED = 7;
 
     
     /**
@@ -126,7 +128,6 @@ class Model_Message extends ORM {
         $msg_thread ->where('id_message','=',DB::expr('id_message_parent'))
                     ->where('id_ad','is',NULL)
                     ->where('id_user_to','=',$user_to->id_user)
-                    ->where('status','!=',Model_Message::STATUS_SPAM)
                     ->limit(1)->find();
 
         //actually reply not new thread....
@@ -173,7 +174,7 @@ class Model_Message extends ORM {
             $msg_thread ->where('id_message','=',DB::expr('id_message_parent'))
                         ->where('id_ad','=',$id_ad)
                         ->where('id_user_from', '=',$user_from->id_user)
-                        ->where('status','!=',Model_Message::STATUS_SPAM)->limit(1)->find();
+                        ->limit(1)->find();
 
             //actually reply not new thread....
             if ($msg_thread->loaded())
@@ -273,7 +274,6 @@ class Model_Message extends ORM {
                     ->where('id_user_from','=', $user->id_user)
                     ->or_where('id_user_to','=',$user->id_user)
                     ->where_close()
-                    ->where('status','!=',Model_Message::STATUS_SPAM)
                     ->find();
 
         if ($msg_thread->loaded())
@@ -281,7 +281,6 @@ class Model_Message extends ORM {
             //get all the messages where parent = $is_msg order by created asc
             $messages = new Model_Message();
             $messages = $messages->where('id_message_parent','=',$id_message_thread)
-                                ->where('status','!=',Model_Message::STATUS_SPAM)
                                 ->order_by('created','asc')->find_all();
             
             foreach ($messages as $message)
@@ -346,7 +345,6 @@ class Model_Message extends ORM {
         //get the model ;)
         $messages = new Model_Message();
 
-
         //I get first the last message grouped by parent.
         //we do this since I need to know if was written, the text and the creation date
         $query = DB::select('m1.id_message')
@@ -356,7 +354,7 @@ class Model_Message extends ORM {
                         ->on('m1.id_message_parent','=','m2.id_message_parent')
                 ->where('m2.id_message','IS',NULL)
                 ->where('m1.id_user_to','=',$user->id_user)
-                ->where('m1.status','=',Model_Message::STATUS_NOTREAD)
+                ->where('m1.status_to','=',Model_Message::STATUS_NOTREAD)
                 ->execute();
 
         $ids = $query->as_array();
@@ -381,14 +379,13 @@ class Model_Message extends ORM {
         if (!$this->loaded())
             return FALSE;
 
-        if ($this->id_user_to == $user->id_user AND $this->status == Model_Message::STATUS_NOTREAD)
+        if ($this->id_user_to == $user->id_user AND $this->status_to == Model_Message::STATUS_NOTREAD)
         {
             $this->read_date = Date::unix2mysql();
-            $this->status    = Model_Message::STATUS_READ;
+            $this->status_to = Model_Message::STATUS_READ;
             try {
                 $this->save();
             } catch (Exception $e) {}
-            
         }
 
         return $this;

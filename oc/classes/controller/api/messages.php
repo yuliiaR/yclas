@@ -20,7 +20,7 @@ class Controller_Api_Messages extends Api_User {
 
             //by default all except spam
             if (empty($this->_filter_params))
-                $this->_filter_params['status'] = array('field'=>'status','operator'=>'!=','value'=>Model_Message::STATUS_SPAM);
+                $this->_filter_params['status_to'] = array('field'=>'status_to','operator'=>'!=','value'=>Model_Message::STATUS_SPAM);
 
             //filter results by param, verify field exists and has a value
             $messages->api_filter($this->_filter_params);
@@ -31,7 +31,7 @@ class Controller_Api_Messages extends Api_User {
             //by default sort by status not read and when was created
             if(empty($this->_sort))
             {
-                $this->_sort['status']  = 'asc';
+                $this->_sort['status_to']  = 'asc';
                 $this->_sort['created'] = 'desc';
             }
 
