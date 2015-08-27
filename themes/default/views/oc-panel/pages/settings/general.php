@@ -306,6 +306,22 @@
                                 ))?> 
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4"><?=__("Measurement Units")?>:</label>                
+                        <div class="col-sm-8">
+                            <?= FORM::select($forms['measurement']['key'], array('metric' => __("Metric"), 'imperial' => __("Imperial")), $forms['measurement']['value'], array(
+                                'placeholder' => $forms['measurement']['value'], 
+                                'class' => 'tips form-control input-sm ', 
+                                'id' => $forms['measurement']['id'],
+                                'data-content'=> __("Measurement units used by the system."),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"bottom",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>__("Measurement"), 
+                            ))?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
