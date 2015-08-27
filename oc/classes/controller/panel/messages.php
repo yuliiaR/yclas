@@ -4,14 +4,8 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
 
     public function action_index()
     {
-        $messages   = Model_Message::get_threads($this->user);
+        $messages   = Model_Message::get_threads($this->user,core::get('status'));
         $res_count  = $messages->count_all();
-        
-        //filter by status
-        if (is_numeric(core::get('status')))
-        {
-            $messages->where('status_to', '=', core::get('status'));
-        }
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Messaging'))->set_url(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index'))));
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Inbox')));
@@ -66,7 +60,8 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
             if ($messages !== FALSE)
             {
                 $msg_thread = new Model_Message();
-                $msg_thread = $msg_thread->where('id_message', '=' , $this->request->param('id'))->find();
+                $msg_thread = $msg_thread->where('id_message','=',$id_msg_thread)
+                                            ->where('id_message_parent','=',$id_msg_thread)->find();
                 
                 // send reply message
                 if ($this->request->post() AND Form::token('reply_message', TRUE))
@@ -119,4 +114,19 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
         }
     }
 
+
+    public function action_status()
+    {
+        if ($this->request->param('id') !== NULL AND is_numeric($id_msg_thread = $this->request->param('id')) AND is_numeric(Core::get('status')))
+        {
+            if (Model_Message::status_thread($id_msg_thread, $this->user, Core::get('status')))
+            {
+                Alert::set(Alert::SUCCESS,__('Done'));
+            }
+        }
+        else
+            Alert::set(Alert::ERROR, __('Message not found'));
+        
+        $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index')));
+    }
 }

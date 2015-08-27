@@ -16,11 +16,7 @@ class Controller_Api_Messages extends Api_User {
         }
         else
         {
-            $messages = Model_Message::get_threads($this->user);
-
-            //by default all except spam
-            if (empty($this->_filter_params))
-                $this->_filter_params['status_to'] = array('field'=>'status_to','operator'=>'!=','value'=>Model_Message::STATUS_SPAM);
+            $messages = Model_Message::get_threads($this->user, (isset($this->_filter_params['status'])?$this->_filter_params['status']:NULL));
 
             //filter results by param, verify field exists and has a value
             $messages->api_filter($this->_filter_params);
@@ -28,10 +24,9 @@ class Controller_Api_Messages extends Api_User {
             //how many? used in header X-Total-Count
             $count = $messages->count_all();
 
-            //by default sort by status not read and when was created
+            //by default sort by status not read and when was created TODO
             if(empty($this->_sort))
             {
-                $this->_sort['status_to']  = 'asc';
                 $this->_sort['created'] = 'desc';
             }
 

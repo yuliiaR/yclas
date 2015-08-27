@@ -6,22 +6,25 @@
 </div>
 
 <div class="panel">
-    <?if (count($messages) > 0):?>
-        <div class="btn-toolbar">
-            <div class="btn-group">
-                <a href="?status=" class="btn btn-cta <?=(!is_numeric(core::get('status')))?'btn-primary':'btn-default'?>">
-                    <?=__('All')?>
-                </a>
-                <a href="?status=<?=Model_Message::STATUS_NOTREAD?>" class="btn btn-cta <?=(core::get('status',-1)==Model_Message::STATUS_NOTREAD)?'btn-primary':'btn-default'?>">
-                    <?=__('Unread')?>
-                </a>
-            </div>
-            <div class="btn-group">
-                <a href="?status=<?=Model_Message::STATUS_SPAM?>" class="btn btn-cta <?=(core::get('status',-1)==Model_Message::STATUS_SPAM)?'btn-primary':'btn-default'?>">
-                    <?=__('Spam')?>
-                </a>
-            </div>
+    
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-cta <?=(!is_numeric(core::get('status')))?'btn-primary':'btn-default'?>">
+                <?=__('All')?>
+            </a>
+            <a href="?status=<?=Model_Message::STATUS_NOTREAD?>" class="btn btn-cta <?=(core::get('status',-1)==Model_Message::STATUS_NOTREAD)?'btn-primary':'btn-default'?>">
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"> <?=__('Unread')?>
+            </a>
+            <a href="?status=<?=Model_Message::STATUS_ARCHIVED?>" class="btn btn-cta <?=(core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'btn-primary':'btn-default'?>">
+                <span class="glyphicon glyphicon-folder-close" aria-hidden="true"> <?=__('Archieved')?>
+            </a>
+            <a href="?status=<?=Model_Message::STATUS_SPAM?>" class="btn btn-cta <?=(core::get('status',-1)==Model_Message::STATUS_SPAM)?'btn-primary':'btn-default'?>">
+                <span class="glyphicon glyphicon-fire" aria-hidden="true"> <?=__('Spam')?>
+            </a>
         </div>
+    </div>
+    
+    <?if (count($messages) > 0):?>
         <br>
         <table class="table table-striped">
             <thead>
@@ -36,7 +39,7 @@
                 <?foreach ($messages as $message):?>
                     <tr class="message" 
                         data-url="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>($message->id_message_parent != NULL) ? $message->id_message_parent : $message->id_message))?>"
-                        style="<?=($message->status == Model_Message::STATUS_NOTREAD AND $message->from->id_user != Auth::instance()->get_user()->id_user) ? 'font-weight: bold;' : NULL?>"
+                        style="<?=($message->status_to == Model_Message::STATUS_NOTREAD AND $message->id_user_from != $user->id_user) ? 'font-weight: bold;' : NULL?>"
                     >
                         <td>
                             <p>
@@ -45,7 +48,7 @@
                                 <?else:?>
                                     <?=__('Direct Message')?>
                                 <?endif?>
-                                <?if ($message->status == Model_Message::STATUS_NOTREAD AND $message->from->id_user != Auth::instance()->get_user()->id_user) :?>
+                                <?if ($message->status_to == Model_Message::STATUS_NOTREAD AND $message->id_user_from != $user->id_user) :?>
                                     <span class="label label-warning"><?=__('Unread')?></span>
                                 <?endif?>
                                 <br>
@@ -56,7 +59,7 @@
                         <td><?=(empty($message->parent->read_date))?__('None'):$message->created?></td>
                         <td class="text-right">
                             <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>($message->id_message_parent != NULL) ? $message->id_message_parent : $message->id_message))?>" 
-                                class="btn btn-xs <?=($message->status == Model_Message::STATUS_NOTREAD AND $message->from->id_user != Auth::instance()->get_user()->id_user) ? 'btn-warning' : 'btn-default'?>"
+                                class="btn btn-xs <?=($message->status_to == Model_Message::STATUS_NOTREAD AND $message->id_user_from != $user->id_user) ? 'btn-warning' : 'btn-default'?>"
                             >
                                 <i class="fa fa-envelope"></i>
                             </a>
