@@ -13,19 +13,34 @@
 </div>
 
 <div class="panel">
-    <div class="btn-toolbar pull-right">
-        <div class="btn-group">
+    <div class="btn-toolbar">
+        <div class="btn-group pull-right">
             <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_ARCHIVED?>" class="btn btn-primary">
                 <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <?=__('Archive')?>
             </a>
-            <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_SPAM?>" class="btn btn-warning">
+            <a 
+                href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_SPAM?>"
+                class="btn btn-warning"
+                data-toggle="confirmation"
+                data-text="<?=__('Are you sure you want to marke it as Spam?')?>" 
+                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                data-btnCancelLabel="<?=__('No way!')?>"
+            >
                 <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> <?=__('Spam')?>
             </a>
-             <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_DELETED?>" class="btn btn-danger">
+            <a 
+                href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_DELETED?>"
+                class="btn btn-danger"
+                data-toggle="confirmation"
+                data-text="<?=__('Are you sure you want to delete?')?>" 
+                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                data-btnCancelLabel="<?=__('No way!')?>"
+            >
                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> <?=__('Delete')?>
             </a>
         </div>
     </div>
+    <br>
     <table class="table table-striped">
         <tbody>
             <?foreach ($messages as $message):?>
