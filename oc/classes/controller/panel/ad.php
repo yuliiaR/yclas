@@ -254,6 +254,30 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	}
 
+    /**
+     * removes featred ad
+     */
+    public function action_unfeature()
+    {
+        $id = $this->request->param('id');
+        $param_current_url = Core::get('current_url');
+        if (isset($id) AND is_numeric($id))
+        {
+            $ad = new Model_Ad($id);
+            $ad->unfeature();
+        }
+        
+        Alert::set(Alert::SUCCESS, __('Removed featured ad'));
+        
+        if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
+            HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+        elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+            HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+        else
+            HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
+
+    }
+
 	/**
 	 * Mark advertisement as active : STATUS = 1
 	 */

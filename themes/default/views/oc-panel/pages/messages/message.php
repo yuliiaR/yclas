@@ -13,6 +13,19 @@
 </div>
 
 <div class="panel">
+    <div class="btn-toolbar pull-right">
+        <div class="btn-group">
+            <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_ARCHIVED?>" class="btn btn-primary">
+                <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <?=__('Archive')?>
+            </a>
+            <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_SPAM?>" class="btn btn-warning">
+                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> <?=__('Spam')?>
+            </a>
+             <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_DELETED?>" class="btn btn-danger">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> <?=__('Delete')?>
+            </a>
+        </div>
+    </div>
     <table class="table table-striped">
         <tbody>
             <?foreach ($messages as $message):?>
@@ -44,7 +57,7 @@
             <?endforeach?>
             <tr>
                 <td style="width: 12%;" class="text-center">
-                    <img src="<?=Auth::instance()->get_user()->get_profile_image()?>" class="img-rounded" width="50" height="50" title="<?=HTML::chars(Auth::instance()->get_user()->name)?>">
+                    <img src="<?=$user->get_profile_image()?>" class="img-rounded" width="50" height="50" title="<?=HTML::chars($user->name)?>">
                 </td>
                 <td>
                     <form class="form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>Request::current()->param('id')))?>"> 

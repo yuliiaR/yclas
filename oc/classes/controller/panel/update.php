@@ -64,6 +64,29 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."ads SET latitude=NULL, longitude=NULL WHERE latitude='0' AND longitude='0'")->execute();
         }catch (exception $e) {}
 
+        //messages status
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."messages` ADD `status_to` tinyint(1) NOT NULL DEFAULT '0'")->execute();
+        }catch (exception $e) {}
+
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."messages` ADD `status_from` tinyint(1) NOT NULL DEFAULT '0'")->execute();
+        }catch (exception $e) {}
+
+        //do something with status to migrate to status_from
+        
+        try 
+        {
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."messages` SET `status_from`=`status` , `status_to`=`status`")->execute();
+        }catch (exception $e) {}
+
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."messages` DROP `status`")->execute();
+        }catch (exception $e) {}
+
         //new configs
         $configs = array(
                         array( 'config_key'     => 'measurement',

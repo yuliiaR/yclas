@@ -229,23 +229,36 @@
 						<i class="glyphicon   glyphicon-remove"></i>
 					</a>
 					<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
-					<a class="btn btn-primary " 
-						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 
-						onclick="return confirm('<?=__('Make featured?')?>');"
-					    rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
-						<i class="glyphicon   glyphicon-bookmark"></i>
-					</a>
-					<a class="btn btn-info" 
-						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
-						onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
-					    rel="tooltip" title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
-						<i class="glyphicon   glyphicon-circle-arrow-up"></i>
-					</a>
-                    <a class="btn btn-primary" 
-                        href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>" 
-                        rel="tooltip" title="<?=__('Stats')?>">
-                        <i class="glyphicon glyphicon-align-left"></i>
-                    </a>
+                        <?if(core::config('payment.to_featured') != FALSE):?>
+                            <?if($ad->featured==NULL OR Date::mysql2unix($ad->featured) < time()):?>
+                            <a class="btn btn-primary " 
+                                href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 
+                                onclick="return confirm('<?=__('Make featured?')?>');"
+                                rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
+                                <i class="glyphicon   glyphicon-bookmark"></i>
+                            </a>
+                            <?elseif(Date::mysql2unix($ad->featured) > time()):?>
+                            <a class="btn btn-primary " 
+                                href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'unfeature','id'=>$ad->id_ad))?>" 
+                                onclick="return confirm('<?=__('Remove featured?')?>');"
+                                rel="tooltip" title="<?=__('Remove Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to remove featured ad?')?>">
+                                <i class="glyphicon   glyphicon-minus"></i> <i class="glyphicon   glyphicon-bookmark"></i>
+                            </a>
+                            <?endif?>
+                        <?endif?>
+                        <?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE):?>
+    					<a class="btn btn-info" 
+    						href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
+    						onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
+    					    rel="tooltip" title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
+    						<i class="glyphicon   glyphicon-circle-arrow-up"></i>
+    					</a>
+                        <?endif?>
+                        <a class="btn btn-primary" 
+                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>" 
+                            rel="tooltip" title="<?=__('Stats')?>">
+                            <i class="glyphicon glyphicon-align-left"></i>
+                        </a>
 					<?endif?>
 				</div>
 				</div>

@@ -293,7 +293,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."
   `price` decimal(14,3) NOT NULL DEFAULT '0',
   `read_date` datetime  DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `status_to` tinyint(1) NOT NULL DEFAULT 0,
+  `status_from` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (id_message) USING BTREE
 ) ENGINE=MyISAM  DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 

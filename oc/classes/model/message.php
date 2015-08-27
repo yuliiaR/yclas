@@ -15,8 +15,10 @@ class Model_Message extends ORM {
      * status constants
      */
     const STATUS_NOTREAD = 0; 
-    const STATUS_READ   = 1; 
-    const STATUS_SPAM   = 5;
+    const STATUS_READ    = 1; 
+    const STATUS_ARCHIVED= 2;
+    const STATUS_SPAM    = 5;
+    const STATUS_DELETED = 7;
 
     
     /**
@@ -64,7 +66,7 @@ class Model_Message extends ORM {
     private static function send($message_text, $user_from, $user_to, $id_ad = NULL, $id_message_parent = NULL, $price = NULL)
     {
         //cant be the same...
-        if ($id_user_to!==$id_user_from)
+        if ($user_to->id_user!==$user_from->id_user)
         {
             $message = new Model_Message();
 
@@ -126,7 +128,6 @@ class Model_Message extends ORM {
         $msg_thread ->where('id_message','=',DB::expr('id_message_parent'))
                     ->where('id_ad','is',NULL)
                     ->where('id_user_to','=',$user_to->id_user)
-                    ->where('status','!=',Model_Message::STATUS_SPAM)
                     ->limit(1)->find();
 
         //actually reply not new thread....
@@ -136,9 +137,9 @@ class Model_Message extends ORM {
         {
             $ret = self::send($message, $user_from, $user_to);
             //send email only if no device ID since he got the push notification already
-            if ($ret !== FALSE AND !isset($this->device_id))
+            if ($ret !== FALSE AND !isset($user_to->device_id))
             {
-                $user->email('messaging-user-contact', array(   '[FROM.NAME]'   => $user_from->name,
+                $user_to->email('messaging-user-contact', array(   '[FROM.NAME]'   => $user_from->name,
                                                                 '[TO.NAME]'     => $user_to->name,
                                                                 '[DESCRIPTION]' => $message,
                                                                 '[URL.QL]'      => $user_to->ql('oc-panel', array( 'controller'    => 'messages',
@@ -173,7 +174,7 @@ class Model_Message extends ORM {
             $msg_thread ->where('id_message','=',DB::expr('id_message_parent'))
                         ->where('id_ad','=',$id_ad)
                         ->where('id_user_from', '=',$user_from->id_user)
-                        ->where('status','!=',Model_Message::STATUS_SPAM)->limit(1)->find();
+                        ->limit(1)->find();
 
             //actually reply not new thread....
             if ($msg_thread->loaded())
@@ -183,7 +184,7 @@ class Model_Message extends ORM {
                 $ret = self::send($message, $user_from, $ad,$id_ad,NULL,$price);
 
                 //send email only if no device ID since he got the push notification already
-                if ($ret !== FALSE AND !isset($this->device_id))
+                if ($ret !== FALSE AND !isset($ad->user->device_id))
                 {
                     $ad->user->email('messaging-ad-contact', array( '[AD.NAME]'     => $ad->title,
                                                                     '[FROM.NAME]'   => $user_from->name,
@@ -220,7 +221,6 @@ class Model_Message extends ORM {
                     ->where('id_user_from', '=',$user_from->id_user)
                     ->or_where('id_user_to','=',$user_from->id_user)
                     ->where_close()
-                    ->where('status','!=',Model_Message::STATUS_SPAM)
                     ->find();
 
         if ($msg_thread->loaded())
@@ -232,7 +232,7 @@ class Model_Message extends ORM {
             $ret = self::send($message, $user_from, $user_to, $msg_thread->id_ad, $id_message_parent, $price);
 
             //send email only if no device ID since he got the push notification already
-            if ($ret !== FALSE AND !isset($this->device_id))
+            if ($ret !== FALSE AND !isset($user_to->device_id))
             {                
                 //email title
                 if ($msg_thread->id_ad !== NULL)
@@ -247,7 +247,7 @@ class Model_Message extends ORM {
                                                             '[TO.NAME]'     => $user_to->name,
                                                             '[URL.QL]'      => $user_to->ql('oc-panel', array(  'controller'    => 'messages',
                                                                                                                 'action'        => 'message',
-                                                                                                                'id'            => $this->request->param('id'))))
+                                                                                                                'id'            => $id_message_parent)))
                                 );
             }
 
@@ -273,7 +273,6 @@ class Model_Message extends ORM {
                     ->where('id_user_from','=', $user->id_user)
                     ->or_where('id_user_to','=',$user->id_user)
                     ->where_close()
-                    ->where('status','!=',Model_Message::STATUS_SPAM)
                     ->find();
 
         if ($msg_thread->loaded())
@@ -281,7 +280,6 @@ class Model_Message extends ORM {
             //get all the messages where parent = $is_msg order by created asc
             $messages = new Model_Message();
             $messages = $messages->where('id_message_parent','=',$id_message_thread)
-                                ->where('status','!=',Model_Message::STATUS_SPAM)
                                 ->order_by('created','asc')->find_all();
             
             foreach ($messages as $message)
@@ -294,15 +292,50 @@ class Model_Message extends ORM {
     }
 
     /**
+     * returns all the messages from a parent
+     * @param  integer $id_message_thread 
+     * @param  Model_User $user    
+     * @param integer $status       
+     * @return bool / array                    
+     */
+    public static function status_thread($id_message_thread,$user, $status)
+    {
+        $msg_thread = new Model_Message();
+
+        $msg_thread->where('id_message','=',$id_message_thread)
+                    ->where('id_message_parent','=',$id_message_thread)
+                    ->where_open()
+                    ->where('id_user_from','=', $user->id_user)
+                    ->or_where('id_user_to','=',$user->id_user)
+                    ->where_close()
+                    ->find();
+
+        if ($msg_thread->loaded() AND is_numeric($status))
+        {
+            //get all the messages where parent = $is_msg order by created asc
+            $messages = new Model_Message();
+            $messages = $messages->where('id_message_parent','=',$id_message_thread)
+                                ->order_by('created','asc')->find_all();
+            
+            foreach ($messages as $message)
+                $message->status($user,$status);
+
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
+    /**
      * returns all the threads for a user
      * @param  Model_User $user 
+     * @param  integer $status
      * @return Model_Message                    
      */
-    public static function get_threads($user)
+    public static function get_threads($user, $status = NULL)
     {
 
-        //get the model ;)
-        $messages = new Model_Message();
+        
 
         //I get first the last message grouped by parent.
         
@@ -318,15 +351,53 @@ class Model_Message extends ORM {
                     ->join(array('messages','m2'),'LEFT')
                         ->on('m1.id_message','<','m2.id_message')
                         ->on('m1.id_message_parent','=','m2.id_message_parent')
-                ->where('m2.id_message','IS',NULL)
-                ->where_open()
-                ->where('m1.id_user_from','=', $user->id_user)
-                ->or_where('m1.id_user_to','=',$user->id_user)
-                ->where_close()
-                ->execute();
+                ->where('m2.id_message','IS',NULL);
 
-        $ids = $query->as_array();
+        //filter by status
+        if ($status!==NULL AND is_numeric($status))
+        {
+            switch ($status) {
+                case Model_Message::STATUS_NOTREAD:
+                    $query  ->where('m1.id_user_to','=',$user->id_user)
+                            ->where('m1.status_to','=',Model_Message::STATUS_NOTREAD);
+                    break;
+                
+                default:
+                    $query  ->where_open()
+                            ->where_open()
+                            ->where('m1.id_user_to','=',$user->id_user)
+                            ->where('m1.status_to','=',$status)
+                            ->where_close()
+                            ->or_where_open()
+                            ->where('m1.id_user_from','=',$user->id_user)
+                            ->where('m1.status_from','=',$status)
+                            ->where_close()
+                            ->where_close();
+
+                    break;
+            }
+        }
+        //all your messages
+        else
+        {
+            $query  ->where_open()
+                    ->where_open()
+                    ->where('m1.id_user_to','=',$user->id_user)
+                    ->where('m1.status_to','in',array(Model_Message::STATUS_NOTREAD,Model_Message::STATUS_READ))
+                    ->where_close()
+                    ->or_where_open()
+                    ->where('m1.id_user_from','=',$user->id_user)
+                    ->where('m1.status_from','in',array(Model_Message::STATUS_NOTREAD,Model_Message::STATUS_READ))
+                    ->where_close()
+                    ->where_close();
+        }
+            
         
+        $ids = $query->execute()->as_array();
+        
+        //get the model ;)
+        $messages = new Model_Message();
+
         //filter only if theres results
         if (count($ids)>0)
             $messages->where('id_message','IN',$ids);
@@ -343,31 +414,7 @@ class Model_Message extends ORM {
      */
     public static function get_unread_threads($user)
     {      
-        //get the model ;)
-        $messages = new Model_Message();
-
-
-        //I get first the last message grouped by parent.
-        //we do this since I need to know if was written, the text and the creation date
-        $query = DB::select('m1.id_message')
-                ->from(array('messages','m1'))
-                    ->join(array('messages','m2'),'LEFT')
-                        ->on('m1.id_message','<','m2.id_message')
-                        ->on('m1.id_message_parent','=','m2.id_message_parent')
-                ->where('m2.id_message','IS',NULL)
-                ->where('m1.id_user_to','=',$user->id_user)
-                ->where('m1.status','=',Model_Message::STATUS_NOTREAD)
-                ->execute();
-
-        $ids = $query->as_array();
-
-        //filter only if theres results
-        if (count($ids)>0)
-            $messages->where('id_message','IN',$ids);
-        else
-            $messages->where('id_message','=',0);
-                 
-        return $messages;
+        return Model_Message::get_threads($user, Model_Message::STATUS_NOTREAD);
     }
 
 
@@ -381,15 +428,50 @@ class Model_Message extends ORM {
         if (!$this->loaded())
             return FALSE;
 
-        if ($this->id_user_to == $user->id_user AND $this->status == Model_Message::STATUS_NOTREAD)
+        if ($this->id_user_to == $user->id_user AND $this->status_to == Model_Message::STATUS_NOTREAD)
         {
-            $this->read_date = Date::unix2mysql();
-            $this->status    = Model_Message::STATUS_READ;
+            $this->read_date   = Date::unix2mysql();
+            $this->status_to   = Model_Message::STATUS_READ;
             try {
                 $this->save();
             } catch (Exception $e) {}
-            
         }
+
+        return $this;
+    }
+
+
+    /**
+     * mark message as read if user is the receiver and not read
+     * @param  Model_User $user
+     * @param integer $status that the message gets
+     * @return Model_Message
+     */
+    public function status($user,$status)
+    {
+        if (!$this->loaded())
+            return FALSE;
+
+        $save = FALSE;
+
+        if ($this->id_user_to == $user->id_user AND $this->status_to != $status)
+        {
+            $this->status_to   = $status;
+            $save = TRUE;
+        }
+        elseif ($this->id_user_from == $user->id_user AND $this->status_from != $status)
+        {
+            $this->status_from   = $status;
+            $save = TRUE;
+        }
+
+        if ($save === TRUE)
+        {
+            try {
+            $this->save();
+            } catch (Exception $e) {}
+        }
+        
 
         return $this;
     }
