@@ -101,19 +101,7 @@ class Controller_Contact extends Controller {
 						//price?
 						$price	= (core::post('price') !== NULL AND is_numeric(core::post('price'))) ? core::post('price') : NULL;
 
-						$ret	= Model_Message::send_ad(core::post('message'), $this->user->id_user, $ad->id_ad, $price);
-						
-						if ($ret !== FALSE)
-                        {
-							$ad->user->email('messaging-ad-contact', array(	'[AD.NAME]'		=> $ad->title,
-																			'[FROM.NAME]'	=> $this->user->name,
-																			'[TO.NAME]'		=> $ad->user->name,
-																			'[DESCRIPTION]'	=> core::post('message'),
-																			'[URL.QL]'		=> $ad->user->ql('oc-panel', array(	'controller'	=> 'messages',
-																																'action'		=> 'message',
-																																'id'			=> $ret->id_message)))
-												);
-						}
+						$ret	= Model_Message::send_ad(core::post('message'), $this->user, $ad->id_ad, $price);
 					}
 					else
 					{
@@ -188,10 +176,10 @@ class Controller_Contact extends Controller {
     //email message generating, for single profile.   
     public function action_userprofile_contact()
     {
-        $user = new Model_User($this->request->param('id'));
+        $user_to = new Model_User($this->request->param('id'));
 
         //message to user
-        if($user->loaded() AND $this->request->post() )
+        if($user_to->loaded() AND $this->request->post() )
         {
 
             if(captcha::check('contact'))
@@ -208,31 +196,27 @@ class Controller_Contact extends Controller {
                     $name_from  = core::post('name');
                 }
 
+                //require login to contact
+                if (core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in())
+                {
+                    Alert::set(Alert::INFO, __('Please, login before contacting'));
+                    HTTP::redirect(Route::url('oc-panel'));
+                }
+
                 //akismet spam filter
                 if(!core::akismet($name_from, $email_from,core::post('message')))
                 {
 					if(core::config('general.messaging'))
 					{
-						$ret = Model_Message::send_user(core::post('message'), $this->user->id_user, $user->id_user);
-						
-						if ($ret !== FALSE)
-                        {
-							$user->email('messaging-user-contact', array(	'[FROM.NAME]'	=> $this->user->name,
-																			'[TO.NAME]'		=> $user->name,
-																			'[DESCRIPTION]'	=> core::post('message'),
-																			'[URL.QL]'		=> $user->ql('oc-panel', array( 'controller'	=> 'messages',
-																															'action'		=> 'message',
-																															'id'			=> $ret->id_message)))
-										);
-						}
+						$ret = Model_Message::send_user(core::post('message'), $this->user, $user_to);						
 					}
 					else
 					{
-	                    $ret = $user->email('user-profile-contact',	array(	'[EMAIL.BODY]'		=> core::post('message'),
-																			'[EMAIL.SENDER]'	=> $name_from,
-	                                                                    	'[EMAIL.SUBJECT]'	=> core::post('subject'),
-	                                                                    	'[EMAIL.FROM]'		=> $email_from),
-																	$email_from, core::post('name'));
+	                    $ret = $user_to->email('user-profile-contact',	array(	  '[EMAIL.BODY]'	  => core::post('message'),
+																			      '[EMAIL.SENDER]'	  => $name_from,
+	                                                                    	      '[EMAIL.SUBJECT]'	  => core::post('subject'),
+	                                                                    	      '[EMAIL.FROM]'      => $email_from),
+																	               $email_from, $name_from);
 					}
 
                     //if succesfully sent
@@ -250,7 +234,7 @@ class Controller_Contact extends Controller {
             else
                 Alert::set(Alert::ERROR, __('Captcha is not correct'));
 
-            HTTP::redirect(Route::url('profile',array('seoname'=>$user->seoname)));
+            HTTP::redirect(Route::url('profile',array('seoname'=>$user_to->seoname)));
         }
     
     }
