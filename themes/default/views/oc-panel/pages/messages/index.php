@@ -13,13 +13,13 @@
                 <?=__('All')?>
             </a>
             <a href="?status=<?=Model_Message::STATUS_NOTREAD?>" class="btn btn-cta <?=(core::get('status',-1)==Model_Message::STATUS_NOTREAD)?'btn-primary':'btn-default'?>">
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"> <?=__('Unread')?>
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <?=__('Unread')?>
             </a>
             <a href="?status=<?=Model_Message::STATUS_ARCHIVED?>" class="btn btn-cta <?=(core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'btn-primary':'btn-default'?>">
-                <span class="glyphicon glyphicon-folder-close" aria-hidden="true"> <?=__('Archived')?>
+                <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <?=__('Archived')?>
             </a>
             <a href="?status=<?=Model_Message::STATUS_SPAM?>" class="btn btn-cta <?=(core::get('status',-1)==Model_Message::STATUS_SPAM)?'btn-primary':'btn-default'?>">
-                <span class="glyphicon glyphicon-fire" aria-hidden="true"> <?=__('Spam')?>
+                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> <?=__('Spam')?>
             </a>
         </div>
     </div>
