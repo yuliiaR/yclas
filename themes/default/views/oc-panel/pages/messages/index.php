@@ -16,7 +16,7 @@
                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"> <?=__('Unread')?>
             </a>
             <a href="?status=<?=Model_Message::STATUS_ARCHIVED?>" class="btn btn-cta <?=(core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'btn-primary':'btn-default'?>">
-                <span class="glyphicon glyphicon-folder-close" aria-hidden="true"> <?=__('Archieved')?>
+                <span class="glyphicon glyphicon-folder-close" aria-hidden="true"> <?=__('Archived')?>
             </a>
             <a href="?status=<?=Model_Message::STATUS_SPAM?>" class="btn btn-cta <?=(core::get('status',-1)==Model_Message::STATUS_SPAM)?'btn-primary':'btn-default'?>">
                 <span class="glyphicon glyphicon-fire" aria-hidden="true"> <?=__('Spam')?>
