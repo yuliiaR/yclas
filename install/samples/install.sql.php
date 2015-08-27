@@ -542,6 +542,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'api_key', '".core::generate_password(32)."'),
 ('general', 'number_format', '%n'),
 ('general', 'date_format', 'd-m-y'),
+('general', 'measurement', 'metric'),
 ('general', 'base_url', '".core::request('SITE_URL')."'),
 ('general', 'moderation', 0),
 ('general', 'maintenance', 0),
