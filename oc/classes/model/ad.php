@@ -1012,6 +1012,23 @@ class Model_Ad extends ORM {
     }
 
     /**
+     * unfeatures an advertisement
+     * @return void 
+     */
+    public function unfeature()
+    {
+        if($this->loaded())
+        {    
+            $this->featured = NULL;
+            try {
+                $this->save();
+            } catch (Exception $e) {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+    }
+
+    /**
      * paid for a category, notify user and publish ad if needed
      * @return void 
      */
