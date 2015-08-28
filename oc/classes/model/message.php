@@ -68,6 +68,8 @@ class Model_Message extends ORM {
         //cant be the same...
         if ($user_to->id_user!==$user_from->id_user)
         {
+            $notify = TRUE;
+
             $message = new Model_Message();
 
             $message->message      = $message_text;
@@ -78,10 +80,23 @@ class Model_Message extends ORM {
             if (is_numeric($id_ad))
                 $message->id_ad = $id_ad;
 
-            //set current message the correct thread, 
+            
             //we trust this since comes fom a function where we validate tihs user can post in that thread
             if (is_numeric($id_message_parent))
+            {
+                //set current message the correct thread, 
                 $message->id_message_parent = $id_message_parent;
+
+                //if user is the TO check status of first message to and if its deleted or spam do not mark it as unread, no email and no notification
+                $message_parent = new Model_Message($id_message_parent);
+                if ($user_to->id_user == $message_parent->id_user_to AND 
+                    ($message_parent->status_to == Model_Message::STATUS_SPAM OR $message_parent->status_to == Model_Message::STATUS_DELETED) )
+                {
+                    $message->status_to = $message_parent->status_to;
+                    $notify = FALSE;
+                }
+                
+            }
 
             //has some price?
             if (is_numeric($price))
@@ -97,11 +112,14 @@ class Model_Message extends ORM {
                     $message->save();
                 }
                 
-                //notify user
-                $data = array('id_message' => $message->id_message_parent,
-                              'title'      => sprintf(__('New Message from %s'),$message->from->name));
-                $message->to->push_notification($message_text,$data);
-
+                if ($notify === TRUE)
+                {
+                    //notify user
+                    $data = array('id_message' => $message->id_message_parent,
+                                  'title'      => sprintf(__('New Message from %s'),$message->from->name));
+                    $message->to->push_notification($message_text,$data);
+                }
+                
                 return $message;
 
             } catch (Exception $e) {
@@ -213,6 +231,8 @@ class Model_Message extends ORM {
      */
     public static function reply($message, $user_from, $id_message_parent, $price = NULL)
     {
+        $notify = TRUE;
+
         $msg_thread = new Model_Message();
 
         $msg_thread->where('id_message','=',$id_message_parent)
@@ -231,8 +251,14 @@ class Model_Message extends ORM {
 
             $ret = self::send($message, $user_from, $user_to, $msg_thread->id_ad, $id_message_parent, $price);
 
+            //do not notify!
+            if ($user_to->id_user == $msg_thread->id_user_to AND 
+                ($msg_thread->status_to == Model_Message::STATUS_SPAM OR $msg_thread->status_to == Model_Message::STATUS_DELETED) )
+                $notify = FALSE;
+            
+
             //send email only if no device ID since he got the push notification already
-            if ($ret !== FALSE AND !isset($user_to->device_id))
+            if ($ret !== FALSE AND !isset($user_to->device_id) AND $notify === TRUE)
             {                
                 //email title
                 if ($msg_thread->id_ad !== NULL)
