@@ -272,6 +272,25 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['leave_alert']['key'], __('Leave alert before submitting form'), array('class'=>'control-label col-sm-4', 'for'=>$forms['leave_alert']['key']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= FORM::hidden($forms['leave_alert']['key'], 0);?>
+                                <?= FORM::checkbox($forms['leave_alert']['key'], 1, (bool) $forms['leave_alert']['value'], array(
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['leave_alert']['key'], 
+                                'data-original-title'=> __("Enables leave alert before submitting publish new form"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-content'=>__("Leave alert before submitting publish new form"),
+                                ))?>
+                                <?= FORM::label($forms['leave_alert']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['leave_alert']['key']))?>
+                            </div>
+                        </div>
+                    </div>
                     
                     <?$pages = array(''=>__('Deactivated'))?>
                     <?foreach (Model_Content::get_pages() as $key => $value) {
