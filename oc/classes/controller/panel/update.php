@@ -64,7 +64,6 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."ads SET latitude=NULL, longitude=NULL WHERE latitude='0' AND longitude='0'")->execute();
         }catch (exception $e) {}
 
-
         //messages status
         try 
         {
@@ -87,6 +86,15 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."messages` DROP `status`")->execute();
         }catch (exception $e) {}
+
+        //new configs
+        $configs = array(
+                        array( 'config_key'     => 'measurement',
+                               'group_name'     => 'general', 
+                               'config_value'   => 'metric'),
+                        );
+        
+        Model_Config::config_array($configs);
     }
 
     /**
