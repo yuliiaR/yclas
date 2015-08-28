@@ -33,6 +33,7 @@ class Controller_Contact extends Controller {
                 if(!core::akismet($name_from, $email_from,core::post('message')))
                 {
                     $replace = array('[EMAIL.BODY]'     =>core::post('message'),
+                                     '[EMAIL.SUBJECT]'  =>core::post('subject'),
                                       '[EMAIL.SENDER]'  =>$name_from,
                                       '[EMAIL.FROM]'    =>$email_from);
 
