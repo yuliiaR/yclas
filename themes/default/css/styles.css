@@ -248,3 +248,16 @@ img#captcha_img_publish_new {
     /* phones */
     .featured-posts{display: none;}
 }
+
+/* minimum height for content div */
+@media only screen and (min-width : 320px) {
+  #main-content {
+    min-height: 540px;
+  }
+}
+
+@media only screen and (min-width : 768px) {
+  #main-content {
+    min-height: 800px;
+  }
+}

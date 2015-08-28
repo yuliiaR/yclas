@@ -25,20 +25,24 @@
     <?=View::factory('alert_terms')?>
 
     <?=$header?>
-    <div class="container">
+    <div id="content" class="container">
         <div class="alert alert-warning off-line" style="display:none;"><strong><?=__('Warning')?>!</strong> <?=__('We detected you are currently off-line, please connect to gain full experience.')?></div>
         <div class="row">
             <?if(Controller::$full_width):?>
                 <div class="col-xs-12">
                     <?=Breadcrumbs::render('breadcrumbs')?>
                     <?=Alert::show()?>
-                    <?=$content?>
+                    <div id="main-content">
+                      <?=$content?>
+                    </div>
                 </div>
             <?else:?>
                 <div class="col-xs-9">
                     <?=Breadcrumbs::render('breadcrumbs')?>
                     <?=Alert::show()?>
-                    <?=$content?>
+                    <div id="main-content">
+                      <?=$content?>
+                    </div>
                 </div>
                 <?= FORM::open(Route::url('search'), array('class'=>'col-xs-3', 'method'=>'GET', 'action'=>''))?>
                     <div class="form-group">
