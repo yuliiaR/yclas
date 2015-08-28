@@ -217,6 +217,9 @@
 				<?if (!Auth::instance()->get_user()):?>
 					<p class="help-block"><?=__('User account will be created')?></p>
 				<?endif?>
+				<?if ( ! Core::config('advertisement.leave_alert')):?>
+					<input type="hidden" name="leave_alert" value="0" disabled>
+				<?endif?>
 			</div>
 		</fieldset>
 	<?= FORM::close()?>

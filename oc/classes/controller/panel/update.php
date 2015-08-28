@@ -92,6 +92,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'measurement',
                                'group_name'     => 'general', 
                                'config_value'   => 'metric'),
+                        array( 'config_key'     => 'leave_alert',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => '1'),
                         );
         
         Model_Config::config_array($configs);

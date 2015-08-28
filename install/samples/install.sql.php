@@ -631,6 +631,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'only_admin_post', 0),
 ('advertisement', 'sharing', '0'),
 ('advertisement', 'logbee', 0),
+('advertisement', 'leave_alert', 1),
 ('email', 'notify_email', '".core::request('ADMIN_EMAIL')."'),
 ('email', 'smtp_active', 0),
 ('email', 'new_ad_notify', 0),

@@ -444,15 +444,17 @@ $(function(){
 
 // sure you want to leave alert and processing modal
 $(function(){
-    var _ouibounce = ouibounce(false, {
-        aggressive: true,
-        callback: function() {
-            swal({
-                title: $('#publish-new-btn').data('swaltitle'),
-                text: $('#publish-new-btn').data('swaltext'),
-                type: "warning",
-                allowOutsideClick: true
-            });
-        }
-    });
+    if ($('input[name=leave_alert]').length === 0) {
+        var _ouibounce = ouibounce(false, {
+            aggressive: true,
+            callback: function() {
+                swal({
+                    title: $('#publish-new-btn').data('swaltitle'),
+                    text: $('#publish-new-btn').data('swaltext'),
+                    type: "warning",
+                    allowOutsideClick: true
+                });
+            }
+        });
+    }
 });

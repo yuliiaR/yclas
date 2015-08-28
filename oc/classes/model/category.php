@@ -312,19 +312,22 @@ class Model_Category extends ORM {
 
     /**
      * counts how many ads have each category
-     * @param boolean $location_filter filters by location 
+     * @param  boolean $location_filter filters by location 
+     * @param  Model_Location $location 
      * @return array
      */
-    public static function get_category_count($location_filter = TRUE)
+    public static function get_category_count($location_filter = TRUE, $location = NULL)
     {
-        //cache by lcoation
-        if ($location_filter === TRUE AND Model_Location::current()->loaded())
-            $location =  Model_Location::current()->id_location;
+        //cache by location
+        if ($location_filter === TRUE AND $location AND $location->loaded())
+            $id_location = $location->id_location;
+        elseif ($location_filter === TRUE AND Model_Location::current()->loaded())
+            $id_location =  Model_Location::current()->id_location;
         else
-            $location = 'all';
+            $id_location = 'all';
 
         //name used in the cache for storage
-        $cache_name = 'get_category_count_'.$location;
+        $cache_name = 'get_category_count_'.$id_location;
 
         if ( ($cats_count = Core::cache($cache_name))===NULL)
         {
@@ -342,7 +345,9 @@ class Model_Category extends ORM {
                         ->where('a.status','=',Model_Ad::STATUS_PUBLISHED);
 
             //filter the count by location
-            if ($location_filter === TRUE AND Model_Location::current()->loaded())
+            if ($location_filter === TRUE AND $location AND $location->loaded())
+                $count_ads = $count_ads->where('a.id_location', 'in', $location->get_siblings_ids());
+            elseif ($location_filter === TRUE AND Model_Location::current()->loaded())
                 $count_ads = $count_ads->where('a.id_location', 'in', Model_Location::current()->get_siblings_ids());
             
 

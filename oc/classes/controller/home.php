@@ -21,14 +21,6 @@ class Controller_Home extends Controller {
                 Cookie::delete('user_location');
             }
 
-            if (is_numeric($user_id_location = Cookie::get('user_location')))
-            {
-                $user_location = new Model_Location($user_id_location);
-
-                if ($user_location->loaded())
-                    $this->redirect(Route::url('list', array('location'=>$user_location->seoname)));
-            }
-
             Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
             Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
         }
@@ -43,9 +35,22 @@ class Controller_Home extends Controller {
 
 	    //setting main view/template and render pages  
 
+        // get user location if any
+        $user_location = NULL;
+        if (is_numeric($user_id_location = Cookie::get('user_location')))
+        {
+            $user_location = new Model_Location($user_id_location);
+
+            if ( ! $user_location->loaded())
+                $user_location = NULL;
+        }
+
 	    // swith to decide on ads_in_home
 	    $ads = new Model_Ad();
         $ads->where('status','=', Model_Ad::STATUS_PUBLISHED);
+
+        if ($user_location)
+            $ads->where('id_location', 'in', $user_location->get_siblings_ids());
 
         $ads_in_home = core::config('advertisement.ads_in_home');
 
@@ -85,12 +90,12 @@ class Controller_Home extends Controller {
 
         $ads = $ads->limit(Theme::get('num_home_latest_ads', 4))->cached()->find_all();
 
-		$categs = Model_Category::get_category_count();
+		$categs = Model_Category::get_category_count(TRUE, $user_location);
 
         $locats = Model_Location::get_location_count();
-        
+
         $auto_locats = NULL;
-        if(core::config('general.auto_locate') AND Model_User::get_userlatlng()) {
+        if(core::config('general.auto_locate') AND !isset($_COOKIE['cancel_auto_locate']) AND Model_User::get_userlatlng()) {
                 $auto_locats = new Model_Location();
                 $auto_locats = $auto_locats ->select(array(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'), 'distance'))
                                             ->where('latitude','IS NOT',NULL)
@@ -103,11 +108,7 @@ class Controller_Home extends Controller {
 	
         $this->template->bind('content', $content);
         
-        $this->template->content = View::factory('pages/home',array('ads'=>$ads, 
-                                                                    'categs'=>$categs,
-                                                                    'locats'=>$locats,
-                                                                    'auto_locats'=>$auto_locats
-        															));
+        $this->template->content = View::factory('pages/home', compact('ads', 'categs', 'locats', 'auto_locats', 'user_location'));
 		
 	}
 

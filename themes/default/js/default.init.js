@@ -75,6 +75,16 @@ $(function(){
     
 });
 
+function createCookie(name,value,seconds) {
+    if (seconds) {
+        var date = new Date();
+        date.setTime(date.getTime()+(seconds*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
 function readCookie(name) {
     var nameEQ = encodeURIComponent(name) + "=";
     var ca = document.cookie.split(';');
@@ -99,15 +109,16 @@ function decodeHtml(html) {
 $(function(){
     if ($('input[name="auto_locate"]').length) {
         $('#auto-locations').modal('show');
-        if(!readCookie('mylat') || !readCookie('mylng')) {
+        if (!readCookie('cancel_auto_locate') && (!readCookie('mylat') || !readCookie('mylng'))) {
             var lat;
             var lng;
             GMaps.geolocate({
                 success: function(position) {
                     lat = position.coords.latitude;
                     lng = position.coords.longitude
-                    setCookie('mylat',lat);
-                    setCookie('mylng',lng);
+                    // 30 minutes cookie
+                    createCookie('mylat',lat,1800);
+                    createCookie('mylng',lng,1800);
                     // show modal
                     $.get($('meta[name="application-name"]').data('baseurl'), function(data) {
                         $('input[name="auto_locate"]').after($(data).find("#auto-locations"));
@@ -115,10 +126,12 @@ $(function(){
                     })
                 },
                 error: function(error) {
-                    alert('Geolocation failed: '+error.message);
+                    console.log('Geolocation failed: '+error.message);
+                    createCookie('cancel_auto_locate',1,1800);
                 },
                 not_supported: function() {
-                    alert("Your browser does not support geolocation");
+                    console.log("Your browser does not support geolocation");
+                    createCookie('cancel_auto_locate',1,1800);
                 },
             });
         }
@@ -133,5 +146,9 @@ $(function(){
         .done(function( data ) {
             window.location.href = $this.attr('href');
         });
+    });
+
+    $('#auto-locations .close').click( function(){
+        createCookie('cancel_auto_locate',1,1800);
     });
 });
