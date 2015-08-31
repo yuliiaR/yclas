@@ -168,17 +168,8 @@ class Model_Field {
             {
                 $fields = json_decode($conf->config_value,TRUE);
                 
-                switch ($fields[$name]['type']) {
-                    case 'select':
-                        $values = array_map('trim', explode(',', $values));
-                        break;
-                    case 'radio':
-                        $values = array_map('trim', explode(',', $values));
-                        break;
-                    default:
-                        $values;
-                        break;
-                }
+                if (!empty($values) AND !is_array($values) AND ($fields[$name]['type'] == 'select' OR $fields[$name]['type'] == 'radio') )
+                    $values = array_map('trim', explode(',', $values));
                 
                 //add child categories of selected categories
                 if (is_array($categories))
