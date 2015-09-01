@@ -442,6 +442,9 @@ $(function(){
 function createCustomFieldsByCategory (customfields) {
     $('#custom-fields > div').not("#custom-field-template").remove();
     $.each(customfields, function (idx, customfield) {
+        // don't create admin privilege custom fields if user is not moderator or admin
+        if (customfield.admin_privilege && $('#custom-fields').data("admin-privilege") === undefined)
+            return;
         // clone custom field from template
         var $template = $('#custom-field-template').clone().attr('id', '').removeClass('hidden').appendTo('#custom-fields');
         $template.find('div[data-label]').replaceWith($('<label/>').attr({'for' : idx}).html(customfield.label));

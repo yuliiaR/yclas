@@ -251,7 +251,10 @@
                         <?endif?>
                         <!-- Fields coming from custom fields feature -->
                         <?if (Theme::get('premium')==1):?>
-                            <div id="custom-fields" data-customfield-values='<?=json_encode($ad->custom_columns(), JSON_HEX_APOS | JSON_HEX_QUOT)?>'>
+                            <div id="custom-fields"
+                                data-customfield-values='<?=json_encode($ad->custom_columns(), JSON_HEX_APOS | JSON_HEX_QUOT)?>'
+                                <?=(Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_MODERATOR) ? 'data-admin-privilege': NULL?>
+                            >
                                 <div id="custom-field-template" class="form-group hidden">
                                     <div class="col-sm-8">
                                         <div data-label></div>
