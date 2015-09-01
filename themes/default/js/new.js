@@ -330,7 +330,7 @@ $('.locateme').click(function() {
 $('.fileinput').on('change.bs.fileinput', function() {
 
     //check whether browser fully supports all File API
-    if (window.File && window.FileReader && window.FileList && window.Blob)
+    if (FileApiSupported())
     {
         //get the file size and file type from file input field
         var $input = $(this).find('input[name^="image"]');
@@ -362,7 +362,6 @@ $('.fileinput').on('change.bs.fileinput', function() {
                         name: 'base64_' + $input.attr('name'),
                         value: data
                         }).appendTo('#publish-new');
-                    $input.replaceWith($input.val('').clone(true));
                 }
             });
         }
@@ -400,7 +399,10 @@ $(function(){
         onkeyup: false,
         submitHandler: function(form) {
             $('#processing-modal').on('shown.bs.modal', function() {
-                form.submit();
+                if (FileApiSupported())
+                    $.when(clearFileInput($('input[name^="image"]'))).then(form.submit());
+                else
+                    form.submit()
             });
             $('#processing-modal').modal('show');
         },
@@ -458,3 +460,32 @@ $(function(){
         });
     }
 });
+
+function clearFileInput($input) {
+    if ($input.val() == '') {
+        return;
+    }
+    // Fix for IE ver < 11, that does not clear file inputs
+    if (/MSIE/.test(navigator.userAgent)) {
+        var $frm1 = $input.closest('form');
+        if ($frm1.length) {
+            $input.wrap('<form>');
+            var $frm2 = $input.closest('form'),
+                $tmpEl = $(document.createElement('div'));
+            $frm2.before($tmpEl).after($frm1).trigger('reset');
+            $input.unwrap().appendTo($tmpEl).unwrap();
+        } else {
+            $input.wrap('<form>').closest('form').trigger('reset').unwrap();
+        }   
+    } else {
+        $input.val('');
+    }
+}
+
+// check whether browser fully supports all File API
+function FileApiSupported() {
+    if (window.File && window.FileReader && window.FileList && window.Blob)
+        return true;
+
+    return false;
+}
