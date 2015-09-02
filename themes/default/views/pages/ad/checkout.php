@@ -26,7 +26,7 @@ catch(e){}
             <p>
                 <em><?=__('Date')?>: <?= Date::format($order->created, core::config('general.date_format'))?></em>
                 <br>
-                <em><?=__('Checkout')?> #: <?=$order->id_order?></em>
+                <em><?=__('Checkout')?> :# <?=$order->id_order?></em>
             </p>
         </div>
     </div>
