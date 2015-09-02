@@ -1,5 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+  '2.5.1' => 
+  array (
+    'codename' => 'Punta Cana',
+    'released' => '2015-09-10',
+    'blog' => 'http://open-classifieds.com/2015/00/10/open-classifieds-2-5-1/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.5.0...2.5.1',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.5.1+is%3Aclosed',
+    'download' => 'http://j.mp/oc_251',
+  ),
+
   '2.5.0' => 
   array (
     'codename' => 'Las Galeras',
