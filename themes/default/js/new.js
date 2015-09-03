@@ -489,3 +489,10 @@ function FileApiSupported() {
 
     return false;
 }
+
+
+$(document).on('keyup', '#price', function(event) {
+   if($.isNumeric(this.value) === false) {
+        this.value = this.value.slice(0,-1);
+   }
+});
