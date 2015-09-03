@@ -432,6 +432,7 @@ $(function(){
                                             }
                                         }
                                     };
+    $params['messages']['price'] =   {"regex" : $('.post_new :input[name="price"]').data('error')};
     $params['messages']['captcha'] =   {"remote" : $('.post_new :input[name="captcha"]').data('error')};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
@@ -489,3 +490,7 @@ function FileApiSupported() {
 
     return false;
 }
+
+$("#price").keyup(function() {
+    $(this).val($(this).val().replace(/[^\d.,]/g, ''));
+});

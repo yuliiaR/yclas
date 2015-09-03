@@ -151,7 +151,7 @@
 					<div class="col-md-4">
 						<?= FORM::label('price', __('Price'), array('for'=>'price'))?>
 						<div class="input-prepend">
-						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?>
+						<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text', 'data-error' => __('Please enter only numbers.')))?>
 						</div>
 					</div>
 				</div>
