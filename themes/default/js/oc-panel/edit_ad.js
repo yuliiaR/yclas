@@ -429,6 +429,7 @@ $(function(){
     $params['rules']['address'] = {maxlength: 145};
     $params['rules']['phone'] = {maxlength: 30};
     $params['rules']['website'] = {maxlength: 200};
+    $params['messages']['price'] =   {"regex" : $('.edit_ad_form :input[name="price"]').data('error')};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
     var $form = $(".edit_ad_form");
@@ -640,3 +641,7 @@ function FileApiSupported() {
 
     return false;
 }
+
+$("#price").keyup(function() {
+    $(this).val($(this).val().replace(/[^\d.,]/g, ''));
+});
