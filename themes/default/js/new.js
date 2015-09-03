@@ -432,6 +432,7 @@ $(function(){
                                             }
                                         }
                                     };
+    $params['messages']['price'] =   {"regex" : $('.post_new :input[name="price"]').data('error')};
     $params['messages']['captcha'] =   {"remote" : $('.post_new :input[name="captcha"]').data('error')};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
@@ -490,9 +491,6 @@ function FileApiSupported() {
     return false;
 }
 
-
-$(document).on('keyup', '#price', function(event) {
-   if($.isNumeric(this.value) === false) {
-        this.value = this.value.slice(0,-1);
-   }
+$("#price").keyup(function() {
+    $(this).val($(this).val().replace(/[^\d.,]/g, ''));
 });
