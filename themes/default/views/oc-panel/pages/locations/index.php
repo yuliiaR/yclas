@@ -183,6 +183,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
                     <button type="submit" class="btn btn-danger" name="confirmation" value="1"><?=__('Delete')?></button>
                 </div>
+            <input type="hidden" name="id_location" value="<?=Core::get('id_location')?>"></div>
             <?= FORM::close()?>
         </div>
     </div>
