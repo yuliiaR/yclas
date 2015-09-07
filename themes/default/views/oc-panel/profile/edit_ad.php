@@ -291,6 +291,17 @@
                                                         title="<?=__('Delete image')?>">
                                                         <?=__('Delete')?>
                                                 </button>
+                                                <?if ($key > 1) :?>
+                                                    <button class="btn btn-info img-primary"
+                                                            type="submit" 
+                                                            name="primary_image"
+                                                            value="<?=$key?>" 
+                                                            title="<?=__('Set image as primary')?>"
+                                                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
+                                                            action="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>">
+                                                            <?=__('Primary image')?>
+                                                    </button>
+                                                <?endif?>
                                             </div>
                                         <?endif?>
                                     <?endforeach?>
