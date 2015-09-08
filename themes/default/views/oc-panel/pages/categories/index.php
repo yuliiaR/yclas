@@ -84,7 +84,7 @@
 		    <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/use-import-tool-categories-locations/'>"._('Upload CSV file')."</a>"?></div>
                     <div class="panel-body">
                         <p>
-                            <?=__('Please use the correct CSV format')?> <a href="https://mega.co.nz/#!4wZQVCzA!EHYk1TdDgBr6U600eS28rtgbTfIYzONwmzpb7o3pIhg"><?=__('download example')?>.</a>
+                            <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwTm1NRGlqcEZwdGM&export=download"><?=__('download example')?>.</a>
                         </p>
                         <hr>
                         <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
