@@ -102,7 +102,7 @@
         </script>
         <input name="category_name" type="hidden" value="howto"/>
         <div class="input-group-btn">
-            <button type="button" class="btn btn-default pull-right oc-faq-btn">
+            <button id="oc-faq" type="button" class="btn btn-default pull-right oc-faq-btn">
                 <i class="glyphicon glyphicon-question-sign"></i>
             </button>
         </div>
