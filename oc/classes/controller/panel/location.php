@@ -507,7 +507,17 @@ class Controller_Panel_Location extends Auth_Crud {
         {
             //delete location icons
             $locations = new Model_Location();
-            $locations = $locations->where('id_location','!=','1')->find_all();
+
+            if ($id_location = intval(Core::post('id_location')) AND $id_location > 0)
+            {
+                $selected_location = new Model_Location($id_location);
+                $locations->where('id_location', 'in', $selected_location->get_siblings_ids())
+                    ->where('id_location','!=',$selected_location->id_location);
+            }
+            else
+                $locations->where('id_location','!=','1')->find_all();
+
+            $locations = $locations->find_all();
             
             foreach ($locations as $location)
             {
@@ -522,15 +532,23 @@ class Controller_Panel_Location extends Auth_Crud {
                 }
             }
             
-            //set home location to all the ads
-            $query = DB::update('ads')
-                        ->set(array('id_location' => '1'))
-                        ->execute();
-            
-            //delete all locations
-            $query = DB::delete('locations')
-                        ->where('id_location','!=','1')
-                        ->execute();
+            $query_update = DB::update('ads');
+            $query_delete = DB::delete('locations');
+
+            if ($id_location = intval(Core::post('id_location')) AND $id_location > 0)
+            {
+                $query_update->set(array('id_location' => $selected_location->id_location));
+                $query_delete->where('id_location', 'in', $selected_location->get_siblings_ids())
+                    ->where('id_location','!=',$selected_location->id_location);
+            }
+            else
+            {
+                $query_update->set(array('id_location' => '1'));
+                $query_delete->where('id_location','!=','1');
+            }
+
+            $query_update->execute();
+            $query_delete->execute();
             
             Core::delete_cache();
             

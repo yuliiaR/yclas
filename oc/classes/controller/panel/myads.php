@@ -241,6 +241,14 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 
                 $this->redirect(Route::url('oc-panel', array('controller'	=>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
             }// end of img delete
+
+            // set primary image
+            if(is_numeric($primary_image = core::request('primary_image')))
+            {
+                $form->set_primary_image($primary_image);
+
+                $this->redirect(Route::url('oc-panel', array('controller'   =>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
+            }
             
             $original_category = $form->category;
 

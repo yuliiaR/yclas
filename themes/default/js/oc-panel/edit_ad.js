@@ -610,6 +610,28 @@ $(function(){
                 $('#processing-modal').modal('hide');
             });
         });
+    });
+
+    $(".img-primary").click(function(e) {
+        e.preventDefault();
+        var href = $(this).attr('href');
+        var title = $(this).data('title');
+        var text = $(this).data('text');
+        var img_id = $(this).attr('value');
+        
+        $('#processing-modal').modal('show');
+        $.ajax({
+            type: "POST",
+            url: href,
+            data: {primary_image: img_id},
+            cache: false
+        }).done(function(result) {
+            $('#processing-modal').modal('hide');
+            window.location.href = href;
+        }).fail(function() {
+            $('#processing-modal').modal('hide');
+            window.location.href = href;
+        });
     }); 
 });
 
