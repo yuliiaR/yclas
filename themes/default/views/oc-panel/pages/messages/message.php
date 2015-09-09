@@ -20,7 +20,7 @@
             href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_SPAM?>"
             class="btn btn-warning"
             data-toggle="confirmation"
-            data-text="<?=__('Are you sure you want to marke it as Spam?')?>" 
+            data-text="<?=__('Are you sure you want to mark it as Spam?')?>" 
             data-btnOkLabel="<?=__('Yes, definitely!')?>" 
             data-btnCancelLabel="<?=__('No way!')?>"
         >
