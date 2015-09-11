@@ -357,15 +357,16 @@ class Controller_Panel_Location extends Auth_Crud {
 
                 $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent', 'latitude', 'longitude'));
                 foreach ($geonames_locations as $location)
-                {                    
-                    if ( ! in_array($location->name,$locations_array))
+                {
+                    if ( ! in_array($location->seoname = $obj_location->gen_seoname($location->name), $locations_array))
                     {
-                        $insert = $insert->values(array($location->name,$obj_location->gen_seoname($location->name),
+                        $insert = $insert->values(array($location->name,
+                                                        $location->seoname,
                                                         Core::get('id_location', 1),
                                                         isset($location->lat)?$location->lat:NULL,
                                                         isset($location->long)?$location->long:NULL));
                         
-                        $locations_array[] = $location->name;
+                        $locations_array[] = $location->seoname;
                     }
                 }
                 // Insert everything with one query.
