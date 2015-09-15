@@ -121,7 +121,9 @@
               <?}?>  
           </ul>
        
-          <p><?=Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE);?></p>
+          <?if(core::config('advertisement.description')!=FALSE):?>
+            <p><?=Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE);?></p>
+          <?endif?>
           
           <a title="<?=HTML::chars($ad->seotitle);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="glyphicon glyphicon-share"></i><?=__('Read more')?></a>
           <?if ($user !== NULL && $user->id_role == Model_Role::ROLE_ADMIN):?>

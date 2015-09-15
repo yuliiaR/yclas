@@ -370,6 +370,26 @@
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
+                        <?= FORM::label($forms['description']['key'], __('Description'), array('class'=>'control-label col-sm-4', 'for'=>$forms['description']['key']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= FORM::hidden($forms['description']['key'], 0);?>
+                                <?= FORM::checkbox($forms['description']['key'], 1, (bool) $forms['description']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['description']['key'], 
+                                'data-original-title'=> __("Description field"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-content'=>__("Displays the field Description in the Ad form."),
+                                ))?>
+                                <?= FORM::label($forms['description']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['description']['key']))?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <?= FORM::label($forms['address']['key'], __('Address'), array('class'=>'control-label col-sm-4', 'for'=>$forms['address']['key']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">

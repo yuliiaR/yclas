@@ -71,12 +71,15 @@
 				</div>
 			<?endif?>
 	
-			<div class="form-group">
-				<div class="col-md-9">
-					<?= FORM::label('description', __('Description'), array('for'=>'description', 'spellcheck'=>TRUE))?>
-					<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
+			<?if($form_show['description'] != FALSE):?>
+				<div class="form-group">
+					<div class="col-md-9">
+						<?= FORM::label('description', __('Description'), array('for'=>'description', 'spellcheck'=>TRUE))?>
+						<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
+					</div>
 				</div>
-			</div>
+			<?endif?>
+
 			<div class="form-group images" 
 				data-max-image-size="<?=core::config('image.max_image_size')?>" 
 				data-image-width="<?=core::config('image.width')?>" 

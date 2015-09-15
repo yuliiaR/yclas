@@ -108,7 +108,7 @@ class Model_Ad extends ORM {
      */
     public function rules()
     {
-    	return array(
+    	$rules = array(
 				        'id_ad'		    => array(array('numeric')),
 				        'id_user'		=> array(array('numeric')),
 				        'id_category'	=> array(array('not_empty'),array('digit')),
@@ -126,6 +126,11 @@ class Model_Ad extends ORM {
                         'latitude'      => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
                         'longitude'     => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
 				    );
+
+        if (core::config('advertisement.description') == FALSE)
+            $rules['description'] = array(array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), );
+        
+        return $rules;
     }
 
     /**
