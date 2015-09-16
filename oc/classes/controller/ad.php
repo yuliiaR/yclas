@@ -846,6 +846,11 @@ class Controller_Ad extends Controller {
 
 	public function action_advanced_search()
 	{
+        if (Theme::get('infinite_scroll'))
+        {
+            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/jquery.infinitescroll/2.0b2/jquery.infinitescroll.js';
+            $this->template->scripts['footer'][] = 'js/listing.js';
+        }
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
         $this->template->scripts['footer'][] = 'js/sort.js';
 

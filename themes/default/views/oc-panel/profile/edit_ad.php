@@ -183,12 +183,15 @@
                             <input id="location-selected" name="location" value="<?=$ad->id_location?>" class="form-control invisible" style="height: 0; padding:0; width:1px; border:0;" required></input>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-8">
-                            <?= FORM::label('description', __('Description'), array('class'=>'', 'for'=>'description', 'spellcheck'=>TRUE))?>
-                            <?= FORM::textarea('description', $ad->description, array('class'=>'form-control col-md-9 col-sm-9 col-xs-12'.((Core::config("advertisement.description_bbcode"))?NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description', 'rows'=>8, 'required'))?>
+
+                    <?if(core::config('advertisement.description') != FALSE):?>
+                        <div class="form-group">
+                            <div class="col-sm-8">
+                                <?= FORM::label('description', __('Description'), array('class'=>'', 'for'=>'description', 'spellcheck'=>TRUE))?>
+                                <?= FORM::textarea('description', $ad->description, array('class'=>'form-control col-md-9 col-sm-9 col-xs-12'.((Core::config("advertisement.description_bbcode"))?NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description', 'rows'=>8, 'required'))?>
+                            </div>
                         </div>
-                    </div>
+                    <?endif?>
                     <?if(core::config('advertisement.phone') != FALSE):?>
                         <div class="form-group">
                             <div class="col-sm-8">
