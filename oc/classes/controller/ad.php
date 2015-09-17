@@ -207,7 +207,7 @@ class Controller_Ad extends Controller {
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
-                    'category' 			=> ($category!==NULL)?$category->seoname:NULL,
+                    'category' 			=> ($category!==NULL)?$category->seoname:URL::title(__('all')),
                     'location'			=> ($location!==NULL)?$location->seoname:NULL, 
     	    ));
     	   
