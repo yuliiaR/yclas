@@ -15,6 +15,13 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
      */
     public function action_260()
     {
+        //Cron update
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."crontab` SET period='30 */1 * * *' WHERE callback='Cron_Ad::expired_featured' LIMIT 1")->execute();
+        }catch (exception $e) {}
+
+
         //new configs
         $configs = array(
                         array( 'config_key'     => 'description',
