@@ -124,6 +124,10 @@ class Controller_Ad extends Controller {
 
 
         $data = $this->list_logic($category, $location);
+
+        //if home page is the listing and we have site description lets use that ;)
+        if(core::config('general.landing_page') != NULL AND core::config('general.site_description') != '' AND $data['pagination']->current_page == 1)
+            $this->template->meta_description = core::config('general.site_description');
    		
 		$this->template->bind('content', $content);
 		$this->template->content = View::factory('pages/ad/listing',$data);
