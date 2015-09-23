@@ -126,7 +126,7 @@ class Controller_Ad extends Controller {
         $data = $this->list_logic($category, $location);
 
         //if home page is the listing and we have site description lets use that ;)
-        if(core::config('general.landing_page') != NULL AND core::config('general.site_description') != '' AND $data['pagination']->current_page == 1)
+        if(core::config('general.landing_page') != NULL AND core::config('general.site_description') != '' AND (isset($data['pagination']) AND $data['pagination']->current_page == 1))
             $this->template->meta_description = core::config('general.site_description');
    		
 		$this->template->bind('content', $content);
@@ -208,9 +208,8 @@ class Controller_Ad extends Controller {
                     'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
                     'items_per_page' 	=> core::config('advertisement.advertisements_per_page'),
-     	    ))->route_params(array(
-                    'controller' 		=> $this->request->controller(),
-                    'action'      		=> $this->request->action(),
+     	    ))->route(Route::get('list'))
+              ->route_params(array(
                     'category' 			=> ($category!==NULL)?$category->seoname:URL::title(__('all')),
                     'location'			=> ($location!==NULL)?$location->seoname:NULL, 
     	    ));
