@@ -132,6 +132,12 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     Alert::set(Alert::ALERT, __("Advertisement is already marked as 'active'"));
                 }
 
+                //pending payment
+                if ($activate === TRUE AND ($order = $active_ad->get_order()) !== FALSE AND $order->status == Model_Order::STATUS_CREATED )
+                {
+                    $activate = FALSE;
+                    Alert::set(Alert::ALERT, __("Advertisement can not be marked as “active”. There is a pending payment."));
+                }
 
                 //activate the ad
                 if ($activate === TRUE)
