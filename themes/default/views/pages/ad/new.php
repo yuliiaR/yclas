@@ -80,6 +80,7 @@
 				</div>
 			<?endif?>
 
+     <?if(core::config("advertisement.num_images") > 0 ):?>
 			<div class="form-group images" 
 				data-max-image-size="<?=core::config('image.max_image_size')?>" 
 				data-image-width="<?=core::config('image.width')?>" 
@@ -111,6 +112,7 @@
 					<p class="help-block"><?=__('Maximum file size of')?> <?=core::config('image.max_image_size')?>MB.</p>
 				</div>
 			</div>
+		<?endif?>
 			<?if($form_show['phone'] != FALSE):?>
 				<div class="form-group">
 					<div class="col-md-4">
