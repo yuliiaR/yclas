@@ -574,6 +574,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'recaptcha_sitekey', ''),
 ('general', 'cookie_consent', 0),
 ('general', 'auto_locate', 0),
+('general', 'social_auth', 0),
 ('general', 'search_multi_catloc', 0),
 ('general', 'gcm_apikey', ''),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
