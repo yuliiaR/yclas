@@ -200,7 +200,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         }
         
         //not updatable fields
-        $do_nothing = array('menu','locale','allow_query_language','charset','translate','ocacu','minify','subscribe','api_key');
+        $do_nothing = array('menu','locale','allow_query_language','charset','translate','ocacu','minify','subscribe','api_key', 'blog', 'faq', 'forums', 'messaging', 'black_list', 'auto_locate', 'social_auth');
 
         // save only changed values
         if($this->request->post())
