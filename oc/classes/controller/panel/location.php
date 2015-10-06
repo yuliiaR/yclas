@@ -238,66 +238,61 @@ class Controller_Panel_Location extends Auth_Crud {
     {
         $this->auto_render = FALSE;
 
-        $location = new Model_Location($this->request->param('id'));
+        $locations = array();
 
-        //update the elements related to that ad
-        if ($location->loaded())
+        if ($id_location = $this->request->param('id'))
+            $locations[] = $id_location;
+        elseif (core::post('locations'))
+            $locations = core::post('locations');
+
+        if (count($locations) > 0)
         {
-            //check if the parent is loaded/exists avoiding errors, if doesnt exist to the root
-            $parent_loc = new Model_Location($location->id_location_parent);
-            if ($parent_loc->loaded())
-                $id_location_parent = $location->id_location_parent;
-            else
-                $id_location_parent = 1;
-
-            //update all the siblings this location has and set the location parent
-            $query = DB::update('locations')
-                        ->set(array('id_location_parent' => $id_location_parent))
-                        ->where('id_location_parent','=',$location->id_location)
-                        ->execute();
-
-            //update all the ads this location has and set the location parent
-            $query = DB::update('ads')
-                        ->set(array('id_location' => $id_location_parent))
-                        ->where('id_location','=',$location->id_location)
-                        ->execute();
-                        
-            //delete icon_delete
-            $root = DOCROOT.'images/locations/'; //root folder
-            if (is_dir($root))
+            foreach ($locations as $id_location)
             {
-                @unlink($root.$location->seoname.'.png');
-            
-                // delete icon from Amazon S3
-                if(core::config('image.aws_s3_active'))
-                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$location->seoname.'.png');
-            
-                // update location info
-                $location->has_image = 0;
-                $location->last_modified = Date::unix2mysql();
-                $location->save();            
-            }
+                $location = new Model_Location($id_location);
 
-            try
-            {
-                $location->delete();
+                //update the elements related to that ad
+                if ($location->loaded())
+                {
+                    //check if the parent is loaded/exists avoiding errors, if doesnt exist to the root
+                    $parent_loc = new Model_Location($location->id_location_parent);
+                    if ($parent_loc->loaded())
+                        $id_location_parent = $location->id_location_parent;
+                    else
+                        $id_location_parent = 1;
 
-                $this->template->content = 'OK';
+                    //update all the siblings this location has and set the location parent
+                    $query = DB::update('locations')
+                                ->set(array('id_location_parent' => $id_location_parent))
+                                ->where('id_location_parent','=',$location->id_location)
+                                ->execute();
 
-                //recalculating the deep of all the categories
-                $this->action_deep();
-                Core::delete_cache();
-                Alert::set(Alert::SUCCESS, __('Location deleted'));
-                
-            }
-            catch (Exception $e)
-            {
-                 Alert::set(Alert::ERROR, $e->getMessage());
+                    //update all the ads this location has and set the location parent
+                    $query = DB::update('ads')
+                                ->set(array('id_location' => $id_location_parent))
+                                ->where('id_location','=',$location->id_location)
+                                ->execute();
+                    
+                    try
+                    {
+                        $location_name = $location->name;
+                        $location->delete();
+                        $this->template->content = 'OK';
+
+                        //recalculating the deep of all the categories
+                        $this->action_deep();
+                        Core::delete_cache();
+                        Alert::set(Alert::SUCCESS, sprintf(__('Location %s deleted'), $location_name));                        
+                    }
+                    catch (Exception $e)
+                    {
+                         Alert::set(Alert::ERROR, $e->getMessage());
+                    }
+                }
+                else
+                     Alert::set(Alert::SUCCESS, __('Location not deleted'));
             }
         }
-        else
-             Alert::set(Alert::SUCCESS, __('Location not deleted'));
-
         
         HTTP::redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index')));  
 
