@@ -30,6 +30,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'social_auth',
                                'group_name'     => 'general', 
                                'config_value'   => '1'),
+                        array( 'config_key'     => 'map_style',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
                         );
         
         Model_Config::config_array($configs);
