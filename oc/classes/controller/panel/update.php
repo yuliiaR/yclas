@@ -21,6 +21,15 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."crontab` SET period='30 */1 * * *' WHERE callback='Cron_Ad::expired_featured' LIMIT 1")->execute();
         }catch (exception $e) {}
 
+        //improve performance table visits
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."visits` DROP `ip_address`")->execute();
+        }catch (exception $e) {}
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."visits` DROP INDEX oc2_visits_IK_id_user")->execute();
+        }catch (exception $e) {}
 
         //new configs
         $configs = array(

@@ -235,8 +235,8 @@ class Model_Ad extends ORM {
 
             //insert new visit
             if ($this->id_user!=$visitor_id)
-                $new_hit = DB::insert('visits', array('id_ad', 'id_user', 'ip_address'))
-                                    ->values(array($this->id_ad, $visitor_id, ip2long(Request::$client_ip)))
+                $new_hit = DB::insert('visits', array('id_ad', 'id_user'))
+                                    ->values(array($this->id_ad, $visitor_id))
                                     ->execute();
 
             //count how many matches are found 

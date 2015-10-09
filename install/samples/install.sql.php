@@ -145,9 +145,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `id_user` int(10) unsigned DEFAULT NULL,
   `contacted` tinyint(1) NOT NULL DEFAULT '0',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ip_address` bigint DEFAULT NULL,
   PRIMARY KEY (`id_visit`),
-  KEY `".core::request('TABLE_PREFIX')."visits_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."visits_IK_id_ad` (`id_ad`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
