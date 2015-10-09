@@ -18,7 +18,7 @@
 
 4. Go to the /oc/ directory to download codecept.phar and run the first test:
 
-        cd oc/
+		cd oc/
 		wget http://codeception.com/codecept.phar
         php codecept.phar run acceptance admin/SetUsersPasswordsCept
 
