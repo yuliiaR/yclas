@@ -16,8 +16,10 @@
 3. Download [this file](https://mega.nz/#!A41ghCJL!dDIXPWZ9NOvRscw0STOsYNoOMGH6dAtk6Atcc1pD2LI) and upload it On panel, Tools -> Import. Then, click PROCESS. 
 
 
-4. Go to the /oc/ directory, to run the first test:
+4. Go to the /oc/ directory to download codecept.phar and run the first test:
 
+        cd oc/
+		wget http://codeception.com/codecept.phar
         php codecept.phar run acceptance admin/SetUsersPasswordsCept
 
 
