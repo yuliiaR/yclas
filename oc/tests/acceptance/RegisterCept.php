@@ -51,7 +51,7 @@ $I->fillField('password1','');
 $I->fillField('password2','123456');
 $I->click(".register button[type=submit]");
 $I->expectTo('see error message');
-$I->see('password  must not be empty');
+$I->see('password1  must not be empty');
 
 $I->amGoingTo('register without repeating the Password');
 $I->fillField('name','user');
@@ -60,6 +60,6 @@ $I->fillField('password1','123456');
 $I->fillField('password2','');
 $I->click(".register button[type=submit]");
 $I->expectTo('see error message');
-$I->see('password  must not be empty');
+$I->see('password2  must not be empty');
 
 ?>
