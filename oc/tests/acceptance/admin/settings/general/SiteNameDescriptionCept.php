@@ -22,7 +22,7 @@ $I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/');
 $I->see('Site Name','h1');
-$I->see('Site Description');
+//$I->see('Site Description');
 
 $I->click('Logout');
 

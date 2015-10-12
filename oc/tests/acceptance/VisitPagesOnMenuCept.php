@@ -11,9 +11,9 @@ $I->see('Login');
 $I->see('Publish New');
 
 $I->wantTo('visit listings page');
-$I->lookForwardTo('see the keyword "postings"');
+$I->lookForwardTo('see the title "Listings"');
 $I->click("//a[@href='http://reoc.lo/all']");
-$I->see("postings");
+$I->see("Listings","h1");
 
 $I->click("//a[@href='http://reoc.lo/']");
 

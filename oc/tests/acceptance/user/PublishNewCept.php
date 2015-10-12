@@ -14,7 +14,7 @@ $I->see('Publish new advertisement','h1');
 $I->fillField('#title',"User ad");
 $I->click('.select-category');
 $I->fillField('category','18');
-$I->fillField('location','57');
+$I->fillField('location','4');
 $I->fillField('#description','This is a new user ad');
 $I->attachFile('input[type="file"]', 'photo.jpg');
 $I->fillField('#phone','99885522');
