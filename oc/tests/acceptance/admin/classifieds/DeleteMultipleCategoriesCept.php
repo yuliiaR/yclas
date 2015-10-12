@@ -1,7 +1,7 @@
 <?php 
 $I = new AcceptanceTester($scenario);
 $I->am('the administrator');
-$I->wantTo('crud a category');
+$I->wantTo('delete multiple categories');
 
 $I->amOnPage('/oc-panel/auth/login');
 $I->fillField('email','admin@reoc.lo');
