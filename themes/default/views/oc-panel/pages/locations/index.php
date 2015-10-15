@@ -99,7 +99,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'geonames_locations'.'?id_location='.Core::get('id_location', 1))), array('id'=>'auto_locations_form', 'class'=>'form-horizontal', 'role'=>'form','enctype'=>'multipart/form-data'))?>
+                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'geonames_locations')).'?id_location='.Core::get('id_location', 1), array('id'=>'auto_locations_form', 'class'=>'form-horizontal', 'role'=>'form','enctype'=>'multipart/form-data'))?>
                             <div class="form-group" id="group-continent">
                                 <label for="continent" class="col-sm-3 control-label" data-action="<?=__('Import continents')?>"><?=__('Continent')?></label>
                                 <div class="col-sm-8">
