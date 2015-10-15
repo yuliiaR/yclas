@@ -1,3 +1,16 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: chema <chema@open-classifieds.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
+"X-Generator: Poedit 1.7.5\n"
+
 #: String 0
 msgid "After how many days an Ad will expire. 0 for never"
 msgstr "بعد كم يوم تنتهي صلاحية الاعلان. ضع 0 في حال عدم وجود حد"
@@ -3049,4 +3062,3 @@ msgstr "عرض الإعلانات المميزة"
 #: String 819
 msgid "Hello, world"
 msgstr "أهلاً"
-

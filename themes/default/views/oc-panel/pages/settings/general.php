@@ -119,7 +119,21 @@
                         </div>
                     </div>
 
-                    <?=FORM::hidden($forms['base_url']['key'], $forms['base_url']['value'])?>
+                    <div class="form-group">
+                            <?= FORM::label($forms['api_key']['id'], "<a target='_blank' href='http://docs.yclas.com/api-documentation/'>".__('API Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['api_key']['id']))?>
+                            <div class="col-sm-8">
+                                <?= FORM::input($forms['api_key']['key'], $forms['api_key']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control input-sm', 
+                                'id' => $forms['api_key']['id'],
+                                'data-content'=> __("Integrate anything using your site API Key."),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"bottom",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>__("Installation API Key"), 
+                                ))?> 
+                            </div>
+                    </div>
 
                     <?$pages = array(''=>__('Deactivated'))?>
                     <?foreach (Model_Content::get_pages() as $key => $value) {
