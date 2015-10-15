@@ -39,6 +39,8 @@ class Controller_New extends Controller
             
             return;
         }
+
+        Controller::$full_width = TRUE;
         
         //template header
         $this->template->title              = __('Publish new advertisement');

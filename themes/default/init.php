@@ -12,7 +12,7 @@
 /**
  * placeholders for this theme
  */
-Widgets::$theme_placeholders	= array('footer', 'sidebar');
+Widgets::$theme_placeholders	= array('footer', 'sidebar', 'publish_new');
 
 /**
  * custom options for the theme
