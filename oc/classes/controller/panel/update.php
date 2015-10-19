@@ -31,6 +31,17 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."visits` DROP INDEX oc2_visits_IK_id_user")->execute();
         }catch (exception $e) {}
 
+        //redo users rates
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."users u SET rate=(SELECT AVG(".self::$db_prefix."reviews.rate) rates 
+                                                                                            FROM ".self::$db_prefix."reviews 
+                                                                                            RIGHT JOIN ".self::$db_prefix."ads 
+                                                                                            USING (id_ad) 
+                                                                                            WHERE ".self::$db_prefix."ads.id_user = u.id_user AND ".self::$db_prefix."reviews.status = 1 
+                                                                                            GROUP BY ".self::$db_prefix."reviews.id_ad);")->execute();
+        }catch (exception $e) {}
+
         //new configs
         $configs = array(
                         array( 'config_key'     => 'description',
@@ -44,7 +55,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                'config_value'   => ''),
                         );
         
-        Model_Config::config_array($configs);
+        Model_Config::config_array($configs);        
     }
 
     /**
