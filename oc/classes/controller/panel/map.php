@@ -12,7 +12,7 @@ class Controller_Panel_Map extends Auth_Controller {
         $this->template->styles              = array('css/map-generator.css' => 'screen');
         $this->template->scripts['footer'][] = '//www.google.com/jsapi';
         $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false';
-        $this->template->scripts['footer'][] = 'js/oc-panel/map/jscolor.js';
+        $this->template->scripts['footer'][] = 'js/jscolor/jscolor.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/map/map-generator.js';
 
         $map_active   = Core::post('map_active',Core::Config('appearance.map_active'));
