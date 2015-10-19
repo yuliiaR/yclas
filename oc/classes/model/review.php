@@ -69,9 +69,7 @@ class Model_Review extends ORM {
      */
     public static function get_ad_rate(Model_Ad $ad)
     {
-        //visits created last XX days
-        $query = DB::select(DB::expr('SUM(rate) rate'))
-                        ->select(DB::expr('COUNT(id_ad) total'))
+        $query = DB::select(DB::expr('AVG(rate) rate'))
                         ->from('reviews')
                         ->where('id_ad','=',$ad->id_ad)
                         ->where('status','=',Model_Review::STATUS_ACTIVE)
@@ -80,7 +78,7 @@ class Model_Review extends ORM {
 
         $rates = $query->as_array();
 
-        return (isset($rates[0]))?round($rates[0]['rate']/$rates[0]['total'],2):FALSE;
+        return (isset($rates[0]))?round($rates[0]['rate'],2):FALSE;
 
     }
 
@@ -91,19 +89,20 @@ class Model_Review extends ORM {
      */
     public static function get_user_rate(Model_User $user)
     {
-        //visits created last XX days
-        $query = DB::select(DB::expr('SUM(rate) rate'))
-                        ->select(DB::expr('COUNT(id_ad) total'))
-                        ->from('reviews')
-                        ->where('id_user','=',$user->id_user)
-                        ->where('status','=',Model_Review::STATUS_ACTIVE)
-                        ->group_by('id_ad')
+        $db_prefix  = Database::instance('default')->table_prefix();
+
+        $query = DB::select(DB::expr('AVG('.$db_prefix.'reviews.rate) rates'))
+                            ->from('reviews')
+                            ->join('ads','RIGHT')
+                        ->using('id_ad')
+                            ->where('ads.id_user','=',$user->id_user)
+                            ->where('reviews.status','=',Model_Review::STATUS_ACTIVE)
+                        ->group_by('reviews.id_ad')
                         ->execute();
 
         $rates = $query->as_array();
 
-        return (isset($rates[0]))?round($rates[0]['rate']/$rates[0]['total'],2):FALSE;
-
+        return (isset($rates[0]))?round($rates[0]['rates'],2):FALSE;
     }
 
     /**
@@ -112,10 +111,10 @@ class Model_Review extends ORM {
      */
     public static function best_rated()
     {
-        $query = DB::select('id_ad',DB::expr('ROUND(SUM(rate)/COUNT(id_ad)) rate'))
+        $query = DB::select('id_ad',DB::expr('AVG(rate) rate'))
                         ->from('reviews')
                         ->where('status','=',Model_Review::STATUS_ACTIVE)
-                        ->group_by(DB::expr('id_ad'))
+                        ->group_by('id_ad')
                         ->order_by('rate','desc')
                         ->cached()
                         ->execute();
