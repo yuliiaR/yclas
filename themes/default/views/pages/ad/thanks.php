@@ -9,10 +9,14 @@
     <?endif?>
 </div>
 
-<?if(core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql()):?>
-    <p>
+<p class="text-center">
+    <?if(core::config('general.moderation') == Model_Ad::POST_DIRECTLY) :?>
+        <a class="btn btn-success" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=__('Go to Your Ad')?></a>
+    <?endif?>
+
+    <?if(core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql()):?>
         <a class="btn btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>">
             <?=__('Go Featured!')?> <?=i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'))?>
         </a>
-    </p>
-<?endif?>
+    <?endif?>
+</p>
