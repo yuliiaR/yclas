@@ -105,24 +105,4 @@ class Model_Review extends ORM {
         return (isset($rates[0]))?round($rates[0]['rates'],2):FALSE;
     }
 
-    /**
-     * returns best rated ads
-     * @return [type]                 [id]
-     */
-    public static function best_rated()
-    {
-        $query = DB::select('id_ad',DB::expr('AVG(rate) rate'))
-                        ->from('reviews')
-                        ->where('status','=',Model_Review::STATUS_ACTIVE)
-                        ->group_by('id_ad')
-                        ->order_by('rate','desc')
-                        ->cached()
-                        ->execute();
-
-        return $rates = $query->as_array();
-    }
-
-
-
-
 }
