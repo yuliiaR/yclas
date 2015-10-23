@@ -60,6 +60,25 @@ $I->seeElement('.breadcrumb');
 
 
 
+// See on responsive theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','responsive3');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/oc-panel/theme/options');
+$I->selectOption('listing_slider','1');
+$I->click('submit');
+$I->amOnPage('/all');
+$I->seeElement('.well.featured-posts');
+$I->seeElement('.glyphicon.glyphicon-chevron-right');
+$I->seeElement('.glyphicon.glyphicon-chevron-left');
+$I->amOnPage('/oc-panel/theme/options');
+$I->selectOption('listing_slider','0');
+$I->click('submit');
+
+
+
+
 $I->wantTo('activate Newspaper theme');
 $I->amOnPage('/oc-panel/Config/update/theme');
 $I->fillField('#formorm_config_value','newspaper');
@@ -232,6 +251,26 @@ $I->click('submit');
 $I->see('Theme configuration updated');
 $I->amOnPage('/housing');
 $I->dontSeeElement('.breadcrumb');
+
+
+
+
+$I->wantTo('activate Yummo theme');
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','yummo');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/oc-panel/theme/options');
+$I->selectOption('listing_slider','1');
+$I->click('submit');
+$I->amOnPage('/all');
+$I->seeElement('.featured-posts');
+$I->seeElement('.glyphicon.glyphicon-chevron-right');
+$I->seeElement('.glyphicon.glyphicon-chevron-left');
+$I->amOnPage('/oc-panel/theme/options');
+$I->selectOption('listing_slider','0');
+$I->click('submit');
+
 
 
 
