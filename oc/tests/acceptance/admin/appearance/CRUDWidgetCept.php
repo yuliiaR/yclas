@@ -12,19 +12,124 @@ $I->see('welcome admin');
 
 
 // Categories
-$I->wantTo('create a "Categories" widget');
+$I->wantTo('create a widget');
 $I->amOnPage('/oc-panel/widget');
-$I->click('//button[@data-target="#modal_Widget_Categories"]');
+$I->click('Create');
 $I->selectOption('placeholder','sidebar');
 $I->click('Save changes');
 
-// See
+// See on default theme
 $I->amOnPage('/');
-$I->seeElement('.panel.panel-sidebar.Widget_Categories');
+$I->seeElement('.col-md-3.col-sm-12.col-xs-12');
+
+// See on splash theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','splash');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->seeElement('.col-md-3.col-sm-12.col-xs-12');
+
+// See on moderndeluxe3 theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','moderndeluxe3');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->seeElement('.col-md-3.col-sm-12.col-xs-12');
+
+// See on olson theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','olson');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/all');
+$I->seeElement('.col-md-3.col-sm-12.col-xs-12');
+
+// See on reclassifieds3 theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','reclassifieds3');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->seeElement('.col-md-3.col-sm-12.col-xs-12');
+
+// See on kamaleon theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','kamaleon');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->seeElement('.col-md-3.col-sm-12.col-xs-12');
+
+// See on responsive theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','responsive3');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->seeElement('.widget-header');
+
+// See on czsale theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','czsale');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->seeElement('.col-md-3.col-sm-12.col-xs-12');
+
+// See on jobdrop theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','jobdrop');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/oc-panel/theme/options');
+$I->selectOption('sidebar_position','right');
+$I->click('submit');
+$I->amOnPage('/all');
+$I->seeElement('.col-md-3.col-sm-12.col-xs-12');
+$I->amOnPage('/oc-panel/theme/options');
+$I->selectOption('sidebar_position','none');
+$I->click('submit');
+
+// See on ocean theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','ocean');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->seeElement('.col-md-3.col-sm-12.col-xs-12');
+
+// See on yummo theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','yummo');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->seeElement('.col-md-3.col-sm-12.col-xs-12');
+
+// See on newspaper theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','newspaper');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->seeElement('#sidebar');
+
+
+// Back to default theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','default');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+
 
 // Delete
 $I->amOnPage('/oc-panel/widget');
-$I->click('//a[@class="btn btn-danger pull-left"]');
+$I->click('button[class="btn btn-primary btn-xs pull-right"]');
+$I->seeElement('.glyphicon.glyphicon-trash');
+$I->click('a[class="btn btn-danger pull-left"]');
+
 
 
 
