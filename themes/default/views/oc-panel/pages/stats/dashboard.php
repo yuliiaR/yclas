@@ -71,17 +71,20 @@
                 </form>
 
                 <br>
+
+                <div>
+                    <h6 class="text-center"><?=__('Views and Ads statistics')?></h6>
+                    <?=Chart::line($stats_daily, array('height'  => 400,
+                                                       'width'   => 400,
+                                                       'options' => array('responsive' => true, 'maintainAspectRatio' => false, 'scaleShowVerticalLines' => false, 'multiTooltipTemplate' => '<%= datasetLabel %> - <%= value %>')))?>
+                </div>     
                 
-                <?=Chart::column($stats_daily,array('title'=>__('Views and Ads statistics'),
-                                                    'height'=>400,
-                                                    'width'=>'100%',
-                                                    'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>          
-                
-                
-                <?=Chart::column($stats_orders,array('title'=>__('Sales statistics'),
-                                                    'height'=>400,
-                                                    'width'=>'100%',
-                                                    'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>                                                              
+                <div>
+                    <h6 class="text-center"><?=__('Sales statistics')?></h6>
+                    <?=Chart::line($stats_orders, array('height'  => 400,
+                                                        'width'   => 400,
+                                                        'options' => array('responsive' => true, 'maintainAspectRatio' => false, 'scaleShowVerticalLines' => false, 'multiTooltipTemplate' => '<%= datasetLabel %> - <%= value %>')))?>
+                </div>     
             </div>
         </div>
     </div> <!-- /.col-md-9 -->

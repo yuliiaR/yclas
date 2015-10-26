@@ -65,10 +65,13 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary"><?=__('Filter')?></button>
-                    <?=Chart::column($stats_daily,array('title'=>__('Views and Contacts statistic'),
-                    'height'=>400,
-                    'width'=>'100%',
-                    'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>
+                    <div>
+                        <br>
+                        <strong class="text-center"><?=__('Views and Contacts statistic')?></strong>
+                        <?=Chart::line($stats_daily, array('height'  => 400,
+                                                           'width'   => 400,
+                                                           'options' => array('responsive' => true, 'maintainAspectRatio' => false, 'scaleShowVerticalLines' => false, 'multiTooltipTemplate' => '<%= datasetLabel %> - <%= value %>')))?>
+                    </div>
                 </form>
             </div>
         </div>

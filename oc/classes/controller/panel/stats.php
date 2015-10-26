@@ -18,14 +18,18 @@ class Controller_Panel_Stats extends Auth_Controller {
         if (Theme::get('cdn_files') == FALSE)
         {
             $this->template->styles = array('css/datepicker.css' => 'screen');
-            $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js', 
+            $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
+                                                       'js/chart.min.js',
+                                                       'js/chart.js-php.js',
                                                        'js/oc-panel/stats/dashboard.js');
         }
         else
         {
             $this->template->styles = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
             $this->template->scripts['footer'] = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                                        'js/oc-panel/stats/dashboard.js');
+                                                       '//cdn.rawgit.com/nnnick/Chart.js/master/Chart.min.js',
+                                                       'js/chart.js-php.js',
+                                                       'js/oc-panel/stats/dashboard.js');
         }
 
         $this->template->title = __('Stats');
