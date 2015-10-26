@@ -163,19 +163,6 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'ip_address' => 
-  array (
-    'type' => 'float',
-    'column_name' => 'ip_address',
-    'column_default' => NULL,
-    'data_type' => 'float',
-    'is_nullable' => true,
-    'ordinal_position' => 5,
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
   'contacted' => 
   array (
     'type' => 'int',
