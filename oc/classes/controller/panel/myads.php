@@ -407,7 +407,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         
         Controller::$full_width = TRUE;
 
-        $this->template->scripts['footer'] = array('js/oc-panel/stats/dashboard.js');
+        $this->template->scripts['footer'] = array('js/chart.min.js', 'js/chart.js-php.js', 'js/oc-panel/stats/dashboard.js');
         
         $this->template->title = __('Stats');
         $this->template->bind('content', $content);        

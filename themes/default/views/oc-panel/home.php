@@ -73,17 +73,21 @@
                 <div class="tab-content" >
                     <!-- VIEWS TAB -->
                     <div class="tab-pane fade in active" id="views">
-                        <?=Chart::column($stats_daily,array('title'=>__('Views and Ads statistics'),
-                                                            'height'=>500,
-                                                            'width'=>'100%',
-                                                            'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>
+                        <h6 class="text-center"><?=__('Views and Ads statistics')?></h6>
+                        <div>
+                            <?=Chart::line($stats_daily, array('height'  => 300,
+                                                               'width'   => 400,
+                                                               'options' => array('responsive' => true, 'maintainAspectRatio' => false, 'scaleShowVerticalLines' => false, 'multiTooltipTemplate' => '<%= datasetLabel %> - <%= value %>')))?>
+                        </div>
                     </div>
                     <!-- SALES TAB -->
                     <div class="tab-pane fade in" id="sales">
-                        <?=Chart::column($stats_orders,array('title'=>__('Sales statistics'),
-                                                            'height'=>500,
-                                                            'width'=>'100%',
-                                                            'series'=>'{0:{targetAxisIndex:1, visibleInLegend: true}}'))?>
+                        <h6 class="text-center"><?=__('Sales statistics')?></h6>
+                        <div>
+                            <?=Chart::line($stats_orders, array('height'  => 300,
+                                                                'width'   => 400,
+                                                                'options' => array('responsive' => true, 'maintainAspectRatio' => false, 'scaleShowVerticalLines' => false, 'multiTooltipTemplate' => '<%= datasetLabel %> - <%= value %>')))?>
+                        </div>
                     </div>
                 </div>
             </div>
