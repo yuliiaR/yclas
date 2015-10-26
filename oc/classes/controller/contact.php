@@ -137,7 +137,7 @@ class Controller_Contact extends Controller {
 						$visit = new Model_Visit();
 
 						$visit->where('id_ad', '=', $this->request->param('id'))
-										->where('ip_address', '=',ip2long(Request::$client_ip))
+										->where('contacted', '=',0)
 										->order_by('created', 'desc')
 										->limit(1)->find();
 						if ($visit->loaded())

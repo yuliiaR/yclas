@@ -126,9 +126,28 @@ $I->amOnPage('/oc-panel/Config/update/theme');
 $I->fillField('#formorm_config_value','jobdrop');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
-
 $I->amOnPage('/');
-//$I->see('Map', 'h2');
+$I->see('Map', 'h2');
+
+
+
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','responsive3');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->see('Map', 'h2');
+
+
+
+$I->wantTo('activate Yummo theme');
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','yummo');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->see('Map', 'h2');
+
 
 
 $I->wantTo('activate Default theme again');

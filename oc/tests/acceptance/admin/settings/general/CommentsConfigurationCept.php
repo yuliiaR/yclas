@@ -107,6 +107,11 @@ $I->fillField("#formorm_config_value",'0');
 $I->click("//button[@type='submit']"); //click save
 $I->see('Item updated. Please to see the changes delete the cache');
 
+$I->amOnPage('/oc-panel/Config/update/faq_disqus');
+$I->fillField('#formorm_config_value','');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+
 $I->amOnPage('/');
 $I->dontSeeElement('a', ['href' => 'http://reoc.lo/faq']);
 

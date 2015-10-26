@@ -49,5 +49,10 @@ $I->fillField('#formorm_config_value','default');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 
+$I->amOnPage('/oc-panel/Config/update/config');
+$I->fillField('#formorm_config_value','{"debug_mode":"0","providers":{"OpenID":{"enabled":"0"},"Yahoo":{"enabled":"0","keys":{"id":"--","secret":""}},"AOL":{"enabled":"0"},"Google":{"enabled":"0","keys":{"id":"","secret":""}},"Facebook":{"enabled":"0","keys":{"id":"","secret":""}},"Twitter":{"enabled":"0","keys":{"key":"","secret":""}},"Live":{"enabled":"0","keys":{"id":"","secret":""}},"MySpace":{"enabled":"0","keys":{"key":"","secret":""}},"LinkedIn":{"enabled":"0","keys":{"key":"","secret":""}},"Foursquare":{"enabled":"0","keys":{"id":"","secret":""}}},"base_url":"http:\/\/reoc.lo\/social\/login\/1","debug_file":"\/var\/www\/reoc\/oc\/vendor\/hybridauth\/logs.txt"}');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+
 $I->amOnPage('/info.json');
 $I->dontSee('Splash');

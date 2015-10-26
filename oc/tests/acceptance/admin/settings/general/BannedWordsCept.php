@@ -39,3 +39,12 @@ $I->amOnPage('/oc-panel/myads/update/1');
 $I->fillField('#description','description allows bbcode');
 $I->click('submit_btn');
 $I->see('Advertisement is updated');
+
+$I->amOnPage('/oc-panel/Config/update/banned_words_replacement');
+$I->fillField('#formorm_config_value','');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/oc-panel/Config/update/banned_words');
+$I->fillField('#formorm_config_value','');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
