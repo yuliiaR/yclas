@@ -145,7 +145,8 @@ class Model_User extends Model_OC_User {
                 if(strpos($value['column_name'],'cf_') !== FALSE) 
                 {
                     $cf_name  = str_replace('cf_', '', $value['column_name']);
-                    $cf_value = $this->$value['column_name'];
+                    $cf_column_name = $value['column_name'];
+                    $cf_value = $this->$cf_column_name;
 
                     if(isset($cf_value) AND isset($cf_config->$cf_name))
                     {   

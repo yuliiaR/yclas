@@ -885,7 +885,8 @@ class Model_Ad extends ORM {
                 if(strpos($value['column_name'],'cf_') !== FALSE) 
                 {
                     $cf_name  = str_replace('cf_', '', $value['column_name']);
-                    $cf_value = $this->$value['column_name'];
+                    $cf_column_name = $value['column_name'];
+                    $cf_value = $this->$cf_column_name;
 
                     //if the CF has value need to be only seen by admin
                     $display = FALSE;
