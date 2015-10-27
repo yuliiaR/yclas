@@ -138,7 +138,16 @@ class Controller extends Kohana_Controller
                 $this->template->scripts['footer'][] = 'js/jquery.cookiebar.js';
                 $this->template->scripts['footer'][] = Route::url('default',array('controller'=>'jslocalization','action'=>'cookieconsent'));
             }
-            
+
+            //adblock detection
+            if (Core::config('general.adblock')==1)
+            {
+                Theme::$styles = array_merge(Theme::$styles, array('css/adi.js/jquery.adi.css' => 'screen',));
+
+                Theme::$scripts['footer'] [] = 'js/advertisement.js';
+                Theme::$scripts['footer'] [] = 'js/jquery.adi.js';
+                $this->template->scripts['footer'][] = Route::url('default',array('controller'=>'jslocalization','action'=>'adi'));
+            }            
 
     		// Add defaults to template variables.
     		$this->template->styles  = array_merge_recursive(Theme::$styles, $this->template->styles);

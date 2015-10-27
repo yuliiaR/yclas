@@ -151,6 +151,26 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <?= FORM::label($forms['adblock']['id'], __('Adblock Detection'), array('class'=>'control-label col-sm-4', 'for'=>$forms['adblock']['id']))?>
+                            <div class="col-sm-8">
+                                <div class="onoffswitch">
+                                    <?= Form::checkbox($forms['adblock']['key'], 1, (bool) $forms['adblock']['value'], array(
+                                    'placeholder' => __("TRUE or FALSE"), 
+                                    'class' => 'onoffswitch-checkbox', 
+                                    'id' => $forms['adblock']['id'], 
+                                    'data-content'=> __("Once set to TRUE, enables adblock detection"),
+                                    'data-trigger'=>"hover",
+                                    'data-placement'=>"right",
+                                    'data-toggle'=>"popover",
+                                    'data-original-title'=>__("Adblock Detection"),
+                                    ))?>
+                                    <?= FORM::label($forms['adblock']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['adblock']['id']))?>
+                                    <?= FORM::hidden($forms['adblock']['key'], 0);?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
