@@ -1,3064 +1,6277 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: chema <chema@open-classifieds.com>\n"
-"Language-Team: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: 2.5.1\n"
+"POT-Creation-Date: 2015-10-26 10:14:04\n"
+"PO-Revision-Date: 2015-10-26 10:14:04\n"
+"Last-Translator: Translator <translator@open-classifieds.com>\n"
+"Language-Team: en\n"
 "Language: ar\n"
-"X-Generator: Poedit 1.7.5\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Open Classifieds 2.5.1\n"
 
 #: String 0
-msgid "After how many days an Ad will expire. 0 for never"
-msgstr "بعد كم يوم تنتهي صلاحية الاعلان. ضع 0 في حال عدم وجود حد"
-
-#: String 1
-msgid "Expire days"
-msgstr "أيام انتهاء الصلاحية"
-
-#: String 2
-msgid "Advertisements in home"
-msgstr "الاعلانات في الصفحة الاساسية"
-
-#: String 3
-msgid "You can choose what ads you want to display in home."
-msgstr "يمكنك اختيار أي اعلانات تريد عرضها في الصفحة الاساسية"
-
-#: String 4
-msgid "You can choose if tehres random related ads displayed at the advertisement"
-msgstr "إن كنت تريد عرض اعلانات عشوائية متعلقة بالاعلان"
-
-#: String 5
-msgid "Ad expiration date"
-msgstr "تاريخ انتهاء صلاحية الاعلان"
-
-#: String 6
-msgid "Use parent categories"
-msgstr "استخدام الفئة الأصل"
-
-#: String 7
-msgid "Number of images"
-msgstr "عدد الصور"
-
-#: String 8
-msgid "Number of images displayed"
-msgstr "عدد الصور المعروضة"
-
-#: String 9
-msgid "Parent category"
-msgstr "الفئة الأصل"
-
-#: String 10
-msgid "parent_category field"
-msgstr "حقل الفئة الأصل"
-
-#: String 11
-msgid "Address field"
-msgstr "حقل العنوان"
-
-#: String 12
-msgid "Displays the field Address in the Ad form."
-msgstr "يكون حقل العنوان ظاهراً في استمارة الاعلان الجديد"
-
-#: String 13
-msgid "Google map default latitude coordinates"
-msgstr "Google map  إحداثيات خط العرض الاساسية العائدة لـ "
-
-#: String 14
-msgid "Latitude coordinates"
-msgstr "إحداثيات خط العرض"
-
-#: String 15
-msgid "Map longitude coordinates"
-msgstr "إحداثيات طول الخريطة"
-
-#: String 16
-msgid "Longitude coordinates"
-msgstr "إحداثيات الطول"
-
-#: String 17
-msgid "Google map default longitude coordinates"
-msgstr "Google map  إحداثيات الطول الاساسية لـ "
-
-#: String 18
-msgid "Map latitude coordinates"
-msgstr "إحداثيات خطوط العرض بالخريطة"
-
-#: String 19
-msgid "Google map default zoom level "
-msgstr "Google map مدى التقريب الأساسي"
-
-#: String 20
-msgid "Google Maps in Ad"
-msgstr "خرائط جوجل في الإعلان"
-
-#: String 21
-msgid "Displays the google maps in the Ad."
-msgstr "عرض خرائط جوجل في الإعلان."
-
-#: String 22
-msgid "Google map zoom level"
-msgstr "Google map مدى تقريب"
-
-#: String 23
-msgid "Zoom level"
-msgstr "مدى التقريب"
-
-#: String 24
-msgid "Advertisement Configuration"
-msgstr "اعدادات الإعلان"
-
-#: String 25
-msgid "User paypal link"
-msgstr "العائدة للمستخدم paypal وصلة"
-
-#: String 26
-msgid "Sandbox"
-msgstr "Sandbox"
-
-#: String 27
-msgid "The paypal email address where the payments will be sent"
-msgstr "الذي ستتم عليه الدفعات paypal حساب"
-
-#: String 28
-msgid "Paypal currency"
-msgstr "Paypal عملة"
-
-#: String 29
-msgid "Currency"
-msgstr "العملة"
-
-#: String 30
-msgid "Please be sure you are using a currency that paypal supports."
-msgstr "Paypal الرجاء تأكد من أنك تستخدم عملة يدعمها "
-
-#: String 31
-msgid "Paypal mail address"
-msgstr "Paypal ايمايل"
-
-#: String 32
-msgid "Paypal account"
-msgstr "Paypal حساب"
-
-#: String 33
-msgid "Smtp password"
-msgstr "Smtp password"
-
-#: String 34
-msgid "Notify me on new ad"
-msgstr "أبلغني عند نشر اعلان جديد"
-
-#: String 35
-msgid "Payments Configuration"
-msgstr "اعدادات المدفوعات"
-
-#: String 36
-msgid "List of payment configuration values. Replace input fields with new desired values."
-msgstr "قائمة قيم إعدادات الدفع. استبدل حقول الإدخال مع القيم الجديدة المرغوبة."
-
-#: String 37
-msgid "Featured ads"
-msgstr "الإعلانات المميزة"
-
-#: String 38
-msgid "Featured ads will be highlighted for a defined number of days."
-msgstr "سيتم إبراز الإعلانات المميزة لعدد محدد من الأيام."
-
-#: String 39
-msgid "Bring to top Ad"
-msgstr "ضع الاعلان بأعلى القائمة"
-
-#: String 40
-msgid "Days"
-msgstr "الايام"
-
-#: String 41
-msgid "Brings your Ad to the top of the listing."
-msgstr "تضع اعلانك بأعلى القائمة"
-
-#: String 42
-msgid "To top price"
-msgstr "سعر وضع الاعلان بالأعلى"
-
-#: String 43
-msgid "How much the user needs to pay to top up an Ad"
-msgstr "كم يدفع المستخدم لوضع اعلانه بالأعلى"
-
-#: String 44
-msgid "How many days an ad will be featured after paying."
-msgstr "عدد ايام تمييز الاعلان بعد الدفع"
-
-#: String 45
-msgid "Featured length"
-msgstr "مدة التمييز"
-
-#: String 46
-msgid "Price for featuring the Ad"
-msgstr "سعر تمييز الاعلان"
-
-#: String 47
-msgid "Pricing"
-msgstr "التسعير"
-
-#: String 48
-msgid "How much the user needs to pay to feature an Ad"
-msgstr "كم يدفع المستخدم لتمييز اعلانه"
-
-#: String 49
-msgid "Days Featured"
-msgstr "عدد ايام التمييز"
-
-#: String 50
-msgid "Phone field"
-msgstr "حقل الهاتف"
-
-#: String 51
-msgid "Displays the field Phone in the Ad form."
-msgstr "يكون حقل الهاتف ظاهراً في استمارة الاعلان الجديد"
-
-#: String 52
-msgid "Site Description"
-msgstr "وصف الموقع"
-
-#: String 53
-msgid "Description of your site in no more than 160 characters."
-msgstr "ضع وصف لموقعك بما لا يزيد عن 160 حرف"
-
-#: String 54
-msgid "Base URL"
-msgstr "Base URL"
-
-#: String 55
-msgid "Is a base path of your site (e.g. http://open-classifieds.com/). Everything else is built based on this field."
-msgstr "Is a base path of your site (e.g. http://open-classifieds.com/). Everything else is built based on this field."
-
-#: String 56
-msgid "Base URL path"
-msgstr "Base URL path"
-
-#: String 57
-msgid "Site description"
-msgstr "وصف الموقع"
-
-#: String 58
-msgid "Here you can declare your display name. This is seen by everyone!"
-msgstr "هنا يمكنك وضع اسمك كما تريده أن يظهر أمام الجميع"
-
-#: String 59
-msgid "Enables the site to maintenance"
-msgstr "تجعل الموقع بحالة صيانة"
-
-#: String 60
-msgid "Landing page"
-msgstr "صفحة الدخول"
-
-#: String 61
-msgid "It changes landing page of website"
-msgstr "هذا يغير صفحة دخول الموقع"
-
-#: String 62
-msgid "Site name"
-msgstr "اسم الموقع"
-
-#: String 63
-msgid "Advertisements per page"
-msgstr "عدد الاعلانات بالصفحة"
-
-#: String 64
-msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
-msgstr "هذا العدد يحدد عدد الاعلانات المعروضة بالصفحة. ضع رقم صحيح"
-
-#: String 65
-msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
-msgstr "تنسيق الرقم هو كيف تريد عرض الأرقام المتعلقة بالإعلانات. كل بلد لها طريقة معينة في التعامل مع الأرقام العشرية."
-
-#: String 66
-msgid "Money format"
-msgstr "تنسيق المال"
-
-#: String 67
-msgid "Decimal representation"
-msgstr "تمثيل المنازل العشرية"
-
-#: String 68
-msgid "Date format"
-msgstr "تنسيق التاريخ"
-
-#: String 69
-msgid "Each advertisement have a publish date. By selecting format, you can change how it is shown on your website."
-msgstr "لكل إعلان تاريخ نشر. عن طريق اختيار التنسيق، يمكنك تغيير كيفية ظهوره على موقعك."
-
-#: String 70
-msgid "How many ads are going to appear in the map of your site."
-msgstr "كم عدد الإعلانات التي سوف تظهر في خريطة موقعك."
-
-#: String 71
-msgid "Advertisements in Map"
-msgstr "الإعلانات في الخريطة"
-
-#: String 72
-msgid "Number of ads per page"
-msgstr "عدد الاعلانات بالصفحة"
-
-#: String 73
-msgid "Advertisements in RSS"
-msgstr "RSS الإعلانات في"
-
-#: String 74
-msgid "Number of Ads"
-msgstr "عدد الإعلانات"
-
-#: String 75
-msgid "How many ads are going to appear in the RSS of your site."
-msgstr "موقعك RSS كم عدد الإعلانات التي سوف تظهر في ."
-
-#: String 76
-msgid "Maintenance Mode"
-msgstr "وضع الصيانة"
-
-#: String 77
-msgid "All configurations"
-msgstr "جميع الإعدادات"
-
-#: String 78
-msgid "Enables Captcha"
-msgstr " Captcha تفعيل"
-
-#: String 79
-msgid "Upload file"
-msgstr "تحميل الملف"
-
-#: String 80
-msgid "Captcha appears in the form."
-msgstr "في استمارة الاعلان الجديد Captcha ظهور"
-
-#: String 81
-msgid "Enables Contact Form"
-msgstr "تفعيل استمارة الاتصال"
-
-#: String 82
-msgid "Contact form appears int he ad."
-msgstr "استمارة الاتصال تظهر في الإعلان."
-
-#: String 83
-msgid "Displays the field Price in the Ad form."
-msgstr "يكون حقل السعر ظاهراً في استمارة الاعلان الجديد"
-
-#: String 84
-msgid "Price field"
-msgstr "حقل السعر"
-
-#: String 85
-msgid "Website field"
-msgstr "حقل الموقع"
-
-#: String 86
-msgid "Displays the field Website in the Ad form."
-msgstr "يكون حقل الموقع ظاهراً في استمارة الاعلان الجديد"
-
-#: String 87
-msgid "Displays location select"
-msgstr "إظهار اختيار الموقع"
-
-#: String 88
-msgid "Displays the Select Location in the Ad form."
-msgstr "يكون حقل اختيار الموقع ظاهراً في استمارة الاعلان الجديد"
-
-#: String 89
-msgid "Deactivated"
-msgstr "غير فعال"
-
-#: String 90
-msgid "Terms of Service"
-msgstr "شروط الخدمة"
-
-#: String 91
-msgid "Replacement of a banedword"
-msgstr " بديل  الكلمات المحظورة"
-
-#: String 92
-msgid "Baned word replacement replaces selected array with string that you provided."
-msgstr "يستبدل مجموعة الكلمات المحظورة التي قمت بتزويدها سابقاً"
-
-#: String 93
-msgid "General Configuration"
-msgstr "الاعدادات العامة"
-
-#: String 94
-msgid "General site settings."
-msgstr "إعدادات الموقع العامة."
-
-#: String 95
-msgid "Banned words replacement"
-msgstr " بديل  الكلمات المحظورة"
-
-#: String 96
-msgid "You need to write your baned words enable the service."
-msgstr "تحتاج إلى كتابة كلماتك المحظورة لتمكين الخدمة."
-
-#: String 97
-msgid "Disqus Comments"
-msgstr "Disqus تعليقات"
-
-#: String 98
-msgid "You need to write your disqus ID to enable the service."
-msgstr "لتفعيل الخدمة disqus ID يجب كتابة"
-
-#: String 99
-msgid "Banned words"
-msgstr "الكلمات المحظورة"
-
-#: String 100
-msgid "Baned words are separated with coma (,)"
-msgstr "يتم فصل الكلمات المحظورة بفاصلة (،)"
-
-#: String 101
-msgid "Smtp user"
-msgstr "Smtp user"
-
-#: String 102
-msgid "Smtp auth"
-msgstr "Smtp auth"
-
-#: String 103
-msgid " New"
-msgstr "جديد"
-
-#: String 104
-msgid "Buy a Theme"
-msgstr "شراء "
-
-#: String 105
-msgid "Date"
-msgstr "تاريخ"
-
-#: String 106
-msgid "Not published"
-msgstr "لم تنشر"
-
-#: String 107
-msgid "Unavailable"
-msgstr "غير متاح"
-
-#: String 108
-msgid "Or"
-msgstr "أو"
-
-#: String 109
-msgid "Open Classifieds is an amazing free Open Source Software. With a small donation you are helping us keep the project alive and updated. Thanks!"
-msgstr "هو برنامج رائع ولكن بدعم مادي صغير تساعدنا على ابقاء المشروع قائم  Open Classifieds"
-
-#: String 110
-msgid "Automatic emails sent to users"
-msgstr "تلقائيا إرسال رسائل بريد إلكتروني إلى المستخدمين"
-
-#: String 111
-msgid "Actions"
-msgstr "الإجراءات"
-
-#: String 112
-msgid "Are you sure you want to delete?"
-msgstr "هل أنت متأكد أنك تريد حذف؟"
-
-#: String 113
-msgid "Help us improve!"
-msgstr "ساعدنا لتحسين البرنامج"
-
-#: String 114
-msgid "Unconfirmed"
-msgstr "الإعلانات"
-
-#: String 115
-msgid "Activate?"
-msgstr "تفعيل؟"
-
-#: String 116
-msgid "Deactivate featured"
-msgstr "توقيف مميزة"
-
-#: String 117
-msgid "Deactivate featured?"
-msgstr "إلغاء المميز؟"
-
-#: String 118
-msgid "Are you sure you want to deactivate featured advertisement?"
-msgstr "هل أنت متأكد أنك تريد إلغاء الإعلان المميز؟"
-
-#: String 119
-msgid "Edit Profile"
-msgstr "تعديل ملف التعريف "
-
-#: String 120
-msgid "Type your password twice to change"
-msgstr "يرجى كتابة كلمة السر مرتين للتغيير"
-
-#: String 121
-msgid "Are you sure you want to make it featured?"
-msgstr "هل أنت متأكد أنك تريد أن تجعلها مميزة؟"
-
-#: String 122
-msgid "Make featured?"
-msgstr "جعل مميزة؟"
-
-#: String 123
-msgid "Activate"
-msgstr "تفعيل"
-
-#: String 124
-msgid "Refresh listing, go to top?"
-msgstr "تحديث القائمة، انتقل إلى أعلى؟"
-
-#: String 125
-msgid "Go to top"
-msgstr "الإنتقال للأعلى"
-
-#: String 126
-msgid "Are you sure you want to refresh listing and go to top?"
-msgstr "هل أنت متأكد أنك تريد تحديث القائمة والانتقال إلى الأعلى؟"
-
-#: String 127
-msgid " advertisements"
-msgstr "الإعلانات"
-
-#: String 140
-msgid "Profile"
-msgstr "ملف التعريف"
-
-#: String 141
-msgid "Logout"
-msgstr "تسجيل الخروج"
-
-#: String 142
-msgid "My Advertisements"
-msgstr "الإعلانات الخاصة بي"
-
-#: String 143
-msgid "Related ads"
-msgstr "الإعلانات ذات الصلة"
-
-#: String 144
-msgid "Public profile"
-msgstr "ملفك الشخصي العام"
-
-#: String 145
-msgid "Visit Site"
-msgstr "زيارة الموقع"
-
-#: String 149
-msgid "Profile Picture"
-msgstr "الصورة الشخصية"
-
-#: String 150
-msgid "Last Login"
-msgstr "آخر تسجيل دخول"
-
-#: String 153
-msgid "Profile picture"
-msgstr "الصورة الشخصية"
-
-#: String 154
-msgid "Edit Advertisement"
-msgstr "تعديل الإعلان "
-
-#: String 155
-msgid "Blog post"
-msgstr "مشاركة بالمدونة"
-
-#: String 156
-msgid "How to remove this"
-msgstr "كيف أزيل هذا"
-
-#: String 157
-msgid "Check for updates"
-msgstr "التحقق من وجود تحديثات"
-
-#: String 158
-msgid "Support"
-msgstr "دعم"
-
-#: String 159
-msgid "Selection of nice extras for your installation."
-msgstr "خيارات يمكنك اضافتها للتنصيب"
-
-#: String 160
-msgid "Collapse menu"
-msgstr "طي القائمة "
-
-#: String 161
-msgid "Subscriptions"
-msgstr "الاشتراكات"
-
-#: String 162
-msgid "Roles access"
-msgstr "Roles access"
-
-#: String 163
-msgid "Optimize"
-msgstr "تحسين"
-
-#: String 164
-msgid "Logs"
-msgstr "سجل"
-
-#: String 166
-msgid "Limited Offer!"
-msgstr "عرض محدود"
-
-#: String 167
-msgid "Valid Until"
-msgstr "صالح حتى"
-
-#: String 168
-msgid "Smtp active"
-msgstr "Smtp فعال"
-
-#: String 169
-msgid "Email From"
-msgstr "بريد الكتروني من"
-
-#: String 170
-msgid "Smtp ssl"
-msgstr "Smtp ssl"
-
-#: String 171
-msgid "Smtp host"
-msgstr "Smtp host"
-
-#: String 172
-msgid "Smtp port"
-msgstr "Smtp port"
-
-#: String 173
-msgid "Email from where we send the emails, also used for software communications."
-msgstr "البريد الإلكتروني من حيث نرسل رسائل البريد الإلكتروني و يمكن استعماله للاتصالات المتعلقة بالسوفتوير"
-
-#: String 174
-msgid "Notify email"
-msgstr "البريد الالكتروني للإخطار"
-
-#: String 175
-msgid "Preview"
-msgstr "عرض مسبق"
-
-#: String 176
-msgid "Email Configuration"
-msgstr "اعدادات البريد الالكتروني"
-
-#: String 177
-msgid "List of general configuration values. Replace input fields with new desired values"
-msgstr "قائمة لقيم الإعدادات العامة. استبدال حقول الإدخال مع القيم الجديدة المرغوبة"
-
-#: String 178
-msgid "If you need to send many emails with a high delivery rate check"
-msgstr "ضع إشارة إذا كنت تريد ارسال العديد من الرسائل الالكترونية بمعدل وصول عالي"
-
-#: String 179
-msgid "User Roles"
-msgstr "أدوار المستخدم"
-
-#: String 180
-msgid "Users"
-msgstr "مستخدمين"
-
-#: String 181
-msgid "Unsubscribe?"
-msgstr "إلغاء الاشتراك؟"
-
-#: String 182
-msgid "Unsubscribe to all"
-msgstr "إلغاء الاشتراك للجميع؟"
-
-#: String 183
-msgid "Statistics"
-msgstr "إحصائيات"
-
-#: String 184
-msgid "Today"
-msgstr "اليوم"
-
-#: String 185
-msgid "Yesterday"
-msgstr "البارحة"
-
-#: String 186
-msgid "Unsubscribe to all?"
-msgstr "إلغاء الاشتراك للجميع؟"
-
-#: String 187
-msgid "Max Price"
-msgstr "السعر الاقصى"
-
-#: String 188
-msgid "Id_User"
-msgstr "Id_User"
-
-#: String 189
-msgid "Delete image"
-msgstr "حذف صورة"
-
-#: String 190
-msgid "View"
-msgstr "عرض"
-
-#: String 191
-msgid "Min Price"
-msgstr "الحد الأدنى للسعر"
-
-#: String 192
-msgid "Last 30 days"
-msgstr "اخر 30 يوم"
-
-#: String 193
-msgid "Total"
-msgstr "المجموع"
-
-#: String 194
-msgid "Views and Contacts statistic"
-msgstr "إحصائيات مرات العرض و "
-
-#: String 195
-msgid "Orders"
-msgstr "الطلبات"
-
-#: String 196
-msgid "Newsletters"
-msgstr "رسائل إخبارية"
-
-#: String 197
-msgid "Payment"
-msgstr "دفع"
-
-#: String 198
-msgid "Filter"
-msgstr "فلتر"
-
-#: String 199
-msgid "To"
-msgstr "إلى"
-
-#: String 200
-msgid "Contacts"
-msgstr "معارف"
-
-#: String 201
-msgid "Visits"
-msgstr "الزيارات"
-
-#: String 202
-msgid "Charts"
-msgstr "الرسوم البيانية"
-
-#: String 203
-msgid "From"
-msgstr "من"
-
-#: String 204
-msgid "Analytics Tracking ID"
-msgstr "Analytics Tracking ID"
-
-#: String 206
-msgid "To install new theme choose zip file."
-msgstr "لتنصيب تصميم جديد يرجى اختيار ملف مضغوط."
-
-#: String 207
-msgid "license"
-msgstr "الرخصة"
-
-#: String 208
-msgid "Upload"
-msgstr "تحميل"
-
-#: String 209
-msgid "Available Themes"
-msgstr "التصاميم المتاحة"
-
-#: String 210
-msgid "Available Mobile Themes"
-msgstr "تصاميم الموبايل المتاحة"
-
-#: String 211
-msgid "Install theme from license."
-msgstr "تنصيب التصميم من الرخصة."
-
-#: String 212
-msgid "Install theme"
-msgstr "تنصيب التصميم"
-
-#: String 213
-msgid "Current Theme"
-msgstr "التصميم الحالي"
-
-#: String 214
-msgid "Using mobile theme"
-msgstr "استعمال تصميم الموبايل"
-
-#: String 215
-msgid "Disable"
-msgstr "تعطيل"
-
-#: String 216
-msgid "Options"
-msgstr "خيارات"
-
-#: String 217
-msgid "Themes Market"
-msgstr "سوق التصاميم"
-
-#: String 218
-msgid "Here you can find a selection of our premium themes."
-msgstr "هنا يمكنك العثور على مجموعة من تصاميمنا"
-
-#: String 219
-msgid "Are you sure you want to delete? All data contained in this field will be deleted."
-msgstr "هل أنت متأكد أنك تريد حذف؟ سيتم حذف جميع البيانات الواردة في هذا الحقل"
-
-#: String 220
-msgid "Custom menu"
-msgstr "قائمة مخصصة"
-
-#: String 221
-msgid "Menu type"
-msgstr "نوع القائمة"
-
-#: String 222
-msgid "Custom"
-msgstr "مخصص"
-
-#: String 223
-msgid "Default"
-msgstr "اساسي"
-
-#: String 224
-msgid "Here are listed specific theme configuration values. Replace input fields with new desired values for the theme."
-msgstr "هنا يتم سرد قيم اعدادات التصميم. استبدل حقول الإدخال مع القيم المرغوبة."
-
-#: String 225
-msgid "Check"
-msgstr "تحقق"
-
-#: String 226
-msgid "All themes include support, updates and 1 site license."
-msgstr "تشمل جميع التصاميم الدعم والتحديثات و ترخيص لموقع واحد"
-
-#: String 228
-msgid "Please insert here the license for your theme."
-msgstr "يرجى ادخال رخصة التصميم هنا"
-
-#: String 229
-msgid "License"
-msgstr "رخصة"
-
-#: String 230
-msgid "You can change the look and feel of your website here."
-msgstr "يمكنك تغيير مظهر الموقع هنا"
-
-#: String 231
-msgid "From Email"
-msgstr "من الايمايل"
-
-#: String 232
-msgid "Delete All Unconfirmed"
-msgstr "حذف جميع غير المؤكدة"
-
-#: String 233
-msgid "Delete All Unconfirmed?"
-msgstr "حذف جميع غير المؤكدة؟"
-
-#: String 234
-msgid "Delete All Spam?"
-msgstr "حذف جميع الرسائل غير المرغوب فيها؟"
-
-#: String 235
-msgid "Delete All Spam"
-msgstr "حذف جميع الرسائل غير المرغوب فيها"
-
-#: String 236
-msgid "Are you sure you want to make it to_top?"
-msgstr "؟to_top  هل أنت متأكد أنك تريد أن تجعلها  "
-
-#: String 237
-msgid "Delete All Unavailable"
-msgstr "حذف جميع غير المتوفر"
-
-#: String 238
-msgid "Delete All Unavailable?"
-msgstr "حذف جميع غير المتوفر؟"
-
-#: String 239
-msgid "Unavailable Sort"
-msgstr "الترتيب غير متوفر"
-
-#: String 240
-msgid " Unavailable"
-msgstr "غير متاح"
-
-#: String 241
-msgid "Unconfirmed Sort"
-msgstr "ترتيب غير مؤكد"
-
-#: String 242
-msgid " Unconfirmed"
-msgstr "غير مؤكد"
-
-#: String 244
-msgid "Are you sure you want to make it to top?"
-msgstr "هل أنت متأكد أنك تريد أن تجعلها أعلى الصفحة؟"
-
-#: String 245
-msgid "Key"
-msgstr "مفتاح"
-
-#: String 246
-msgid "Debug Mode"
-msgstr "وضع التصحيح"
-
-#: String 247
-msgid "secret"
-msgstr "سر"
-
-#: String 248
-msgid "Email Settings"
-msgstr "اعدادات الايمايل"
-
-#: String 249
-msgid "You can send a mass email to all active users."
-msgstr "يمكنك إرسال البريد الإلكتروني لكافة المستخدمين ."
-
-#: String 250
-msgid "Browse Themes"
-msgstr "استعراض التصاميم"
-
-#: String 251
-msgid "Upgrade your Open Classifieds site to activate this feature."
-msgstr " لتفعيل هذه الميزة Open Classifieds يرجى تحديث "
-
-#: String 252
-msgid "Deactivate Featured"
-msgstr "إلغاء المميزة"
-
-#: String 253
-msgid "Social Authentication Settings"
-msgstr "اعدادات تسجيل الدخول الاجتماعي"
-
-#: String 254
-msgid "Heads Up!"
-msgstr "تنبيه!"
-
-#: String 255
-msgid "Social authentication is only available with premium themes!"
-msgstr "الدخول عبر شبكات التواصل الاجتماعي متاح فقط للتصاميم الممتازة"
-
-#: String 256
-msgid "Create Menu Item"
-msgstr "إنشاء عنصر القائمة"
-
-#: String 257
-msgid "Default links"
-msgstr "الروابط الاساسية"
-
-#: String 258
-msgid "Where do you want the widget displayed?"
-msgstr "أين تريد عرض الويدجت؟"
-
-#: String 259
-msgid "Available widgets"
-msgstr "الاضافات المتاحة"
-
-#: String 260
-msgid "Close"
-msgstr "أغلق"
-
-#: String 261
-msgid "Sure you want to delete the widget? You can move it to the inactive placeholder"
-msgstr "متأكد أنك تريد حذف الويدجت؟ يمكنك نقله إلى وضع غير نشط"
-
-#: String 262
-msgid "Save changes"
-msgstr "حفظ التغييرات"
-
-#: String 263
-msgid "Optional Advertisement Fields"
-msgstr "حقول اعلانات اختيارية"
-
-#: String 264
-msgid "Optional Fields"
-msgstr "حقول اختيارية"
-
-#: String 265
-msgid "Advertisement Custom Fields"
-msgstr "الحقول المخصصة للإعلان"
-
-#: String 266
-msgid "New field"
-msgstr "حقل جديد"
-
-#: String 267
-msgid "searchable"
-msgstr "قابل للبحث"
-
-#: String 268
-msgid "required"
-msgstr "مطلوب"
-
-#: String 269
-msgid "Thanks for using our website."
-msgstr "شكراً لزيارة موقعنا"
-
-#: String 270
-msgid "Frequently Asked Questions"
-msgstr "أسئلة وأجوبة"
-
-#: String 272
-msgid "If you wanted to go to the main page instead, click here."
-msgstr "إذا أردت الذهاب إلى الصفحة الرئيسية ، انقر هنا."
-
-#: String 276
-msgid "To go back to the previous page, click the Back button."
-msgstr "للعودة إلى الصفحة السابقة، انقر فوق زر السابق."
-
-#: String 277
-msgid "It is either not existing, moved or deleted. Make sure the URL is correct."
-msgstr "أنها إما غير موجودة، أو تم نقلها أو حذفها. تأكد من أن العنوان  صحيح."
-
-#: String 278
-msgid "We do not have any FAQ"
-msgstr "ليس لدينا أي أسئلة متكررة"
-
-#: String 279
-msgid "Page Not Found"
-msgstr "لم يتم العثور على الصفحة"
-
-#: String 280
-msgid "The requested page"
-msgstr "الصفحة المطلوبة"
-
-#: String 281
-msgid "is not found"
-msgstr "غير موجود"
-
-#: String 282
-msgid "Custom fields are only available with premium themes!"
-msgstr "ميزة الحقول المخصصة موجودة فقط ضمن التصاميم المدفوعة"
-
-#: String 283
-msgid "Checkbox"
-msgstr "خانة الاختيار"
-
-#: String 284
-msgid "Views and Ads statistics"
-msgstr "احصائيات الاعلان"
-
-#: String 285
-msgid "Sales"
-msgstr "المبيعات"
-
-#: String 286
-msgid "Sales statistics"
-msgstr "إحصاءات المبيعات"
-
-#: String 287
-msgid "Edit Custom Field"
-msgstr "تعديل الحقل مخصص"
-
-#: String 288
-msgid "Label"
-msgstr "تسمية"
-
-#: String 289
-msgid "Site Usage Statistics"
-msgstr "  إحصائيات استخدام الموقع "
-
-#: String 291
-msgid "listing"
-msgstr "قائمة"
-
-#: String 292
-msgid "rss"
-msgstr "rss"
-
-#: String 293
-msgid "Url"
-msgstr "Url"
-
-#: String 294
-msgid "Icon"
-msgstr "ايقونة"
-
-#: String 295
-msgid "Tooltip"
-msgstr "تلميح الأداة"
-
-#: String 296
-msgid "Values"
-msgstr "قيم"
-
-#: String 297
-msgid "Number"
-msgstr "رقم"
-
-#: String 298
-msgid "Number Decimal"
-msgstr "عدد عشري"
-
-#: String 299
-msgid "Select"
-msgstr "اختيار"
-
-#: String 301
-msgid "Text Long"
-msgstr "النص الطويل"
-
-#: String 302
-msgid "Text 256 Chars"
-msgstr "النص 256 حرف"
-
-#: String 303
-msgid "Comma separated for select"
-msgstr "مفصولة بفواصل للاختيار"
-
-#: String 304
-msgid "Required"
-msgstr "مطلوب"
-
-#: String 305
-msgid "Searchable"
-msgstr "قابل للبحث"
-
-#: String 306
-msgid "New Custom Field"
-msgstr "حقل مخصص جديد"
-
-#: String 307
-msgid "Spam Sort"
-msgstr "ترتيب الرسائل غير المرغوب فيها"
-
-#: String 308
-msgid "Log"
-msgstr "سجل"
-
-#: String 309
-msgid "Disqus for blog"
-msgstr "Disqus  المدونة مع  "
-
-#: String 310
-msgid "Once set to TRUE, enables blog posts"
-msgstr "   يتم تفعيل المدونة TRUE عندما تكون القيمة "
-
-#: String 311
-msgid "Disqus for Blog Comments"
-msgstr "Disqus تعليقات المدونة مع  "
-
-#: String 312
-msgid "Activates FAQ"
-msgstr "تفعيل الأسئلة المتكررة"
-
-#: String 313
-msgid "Once set to TRUE, enables FAQ"
-msgstr "   يتم تفعيل الأسئلة المتكررة TRUE عندما تكون القيمة "
-
-#: String 314
-msgid "Activates Blog posting"
-msgstr "تفعيل المدونة"
-
-#: String 315
-msgid "Once set to TRUE, enables search to look for key words in description"
-msgstr "   يتم تفعيل البحث عن الكلمة المفتاحية في محتوى الاعلان TRUE عندما تكون القيمة "
-
-#: String 316
-msgid "Akismet Key"
-msgstr "Akismet  مفتاح "
-
-#: String 317
-msgid "Providing akismet key will activate this feature. This feature deals with spam posts and emails."
-msgstr "يفعل هذه الميزة التي تتعامل مع المشاركات و الايميلات المزعجة Akismet ادخال  مفتاح "
-
-#: String 318
-msgid "Accept Terms Alert"
-msgstr "إنذار قبول الشروط"
-
-#: String 319
-msgid "Include search by description"
-msgstr "إدراج البحث بالاعتماد على محتوى الاعلان"
-
-#: String 320
-msgid "Disqus for FAQ"
-msgstr "Disqus  الأسئلة المتكررة مع"
-
-#: String 321
-msgid "Disqus for FAQ Comments"
-msgstr "Disqus تعليقات الأسئلة المتكررة مع  "
-
-#: String 323
-msgid "From email"
-msgstr "من البريد الإلكتروني"
-
-#: String 324
-msgid "Seotitle"
-msgstr "Seotitle"
-
-#: String 325
-msgid "seotitle"
-msgstr "Seotitle"
-
-#: String 326
-msgid "title"
-msgstr "عنوان"
-
-#: String 327
-msgid "description"
-msgstr "وصف"
-
-#: String 328
-msgid "locale"
-msgstr "الإعدادات المحلية"
-
-#: String 329
-msgid "Minify CSS/JS"
-msgstr " CSS / JS تصغير"
-
-#: String 330
-msgid "Once set to TRUE, enables minify CSS and JS to speed up your site"
-msgstr " لزيادة سرعة الموقع CSS / JS  يتم تفعيل تصغير TRUE عندما تكون القيمة"
-
-#: String 331
-msgid "Activates Minify CSS/JS"
-msgstr "لزيادة سرعة الموقع CSS / JS   تفعيل تصغير"
-
-#: String 332
-msgid "Locale"
-msgstr "الإعدادات المحلية"
-
-#: String 333
-msgid "Watermark position"
-msgstr "موقع العلامة المائية"
-
-#: String 334
-msgid "Relative path to the image to use as watermark"
-msgstr "المسار النسبي إلى الصورة التي تريد استخدامها كعلامة مائية"
-
-#: String 335
-msgid "Image height in pixels(px)"
-msgstr "ارتفاع الصورة بالبكسل "
-
-#: String 336
-msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
-msgstr "يتم تغيير حجم كل صورة عند تحميلها. هذا هو ارتفاع الصورة الكبيرة. ملاحظة: يمكنك ترك هذا الحقل فارغاً ليحدد اوتوماتيكياً"
-
-#: String 337
-msgid "Image width"
-msgstr "عرض الصورة"
-
-#: String 338
-msgid "Each image is resized when uploaded. This is the width of big image."
-msgstr "يتم تغيير حجم كل صورة عند تحميلها. هذا هو عرض صورة كبيرة."
-
-#: String 339
-msgid "Image width in pixels(px)"
-msgstr "عرض الصورة بالبكسل"
-
-#: String 340
-msgid "Image height"
-msgstr "ارتفاع الصورة"
-
-#: String 341
-msgid "Image size in mega bites(Mb)"
-msgstr "حجم الصورة في ميجا بايت"
-
-#: String 342
-msgid "Allowed image formats"
-msgstr "تنسيقات الصور المسموح بها"
-
-#: String 343
-msgid "Set this up to restrict image formats that are being uploaded to your server."
-msgstr "وضع هذا الأمر لتقييد تنسيقات الصور التي يتم تحميلها إلى الخادم الخاص بك."
-
-#: String 344
-msgid "Max image size"
-msgstr "الحد الأقصى لحجم الصورة"
-
-#: String 345
-msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
-msgstr "التحكم في حجم الصور التي يتم تحميلها. إدخال قيمة عددية لتعيين الحد الأقصى لحجم الصورة في  ميجا بايت."
-
-#: String 346
-msgid "Thumb height"
-msgstr "ارتفاع الصورة المصغرة"
-
-#: String 347
-msgid "Thumb is a small image resized to fit certain elements. This is height of this image."
-msgstr "الصورة المصغرة هي نسحة مصغرة لتناسب حجم أماكن محددة. و هذه القيمة تحدد علو الصورة المصغرة"
-
-#: String 348
-msgid "Image Quality"
-msgstr "جودة الصورة"
-
-#: String 349
-msgid "Watermark"
-msgstr "العلامة المائية"
-
-#: String 350
-msgid "Appends watermark to images"
-msgstr "إلحاق علامة مائية على الصور"
-
-#: String 351
-msgid "Watermark path"
-msgstr "مسار العلامة المائية"
-
-#: String 352
-msgid "Choose the quality of the stored images (1-100% of the original)."
-msgstr "اختيار نوعية الصور المخزنة (1-100٪) من الأصلي"
-
-#: String 353
-msgid "Image quality"
-msgstr "جودة الصورة"
-
-#: String 354
-msgid "Thumb height in pixels(px)"
-msgstr "ارتفاع الصورة المصغرة بالبكسل"
-
-#: String 355
-msgid "Thumb width"
-msgstr "عرض الصورة المصغرة"
-
-#: String 356
-msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
-msgstr "الصورة المصغرة هي نسحة مصغرة لتناسب حجم أماكن محددة. و هذه القيمة تحدد عرض الصورة المصغرة"
-
-#: String 357
-msgid "Thumb width in pixels(px)"
-msgstr "عرض الصورة المصغرة بالبكسل "
-
-#: String 358
-msgid "created"
-msgstr "تم إنشاؤها"
-
-#: String 359
-msgid "status"
-msgstr "الوضع"
-
-#: String 360
-msgid "Config file"
-msgstr "ملف التهيئة"
-
-#: String 361
-msgid "Delete expired"
-msgstr "حذف المنتهية صلاحيتها"
-
-#: String 362
-msgid "Optimize Database"
-msgstr "تحسين قاعدة البيانات"
-
-#: String 363
-msgid "Database space"
-msgstr "مساحة قاعدة البيانات"
-
-#: String 364
-msgid "Space to optimize"
-msgstr "مساحة التحسين"
-
-#: String 365
-msgid "Delete all"
-msgstr "احذف الكل"
-
-#: String 366
-msgid "Cache configuration information"
-msgstr "معلومات تكوين ذاكرة التخزين المؤقت"
-
-#: String 367
-msgid "Expire time"
-msgstr "وقت انتهاء الصلاحية"
-
-#: String 368
-msgid "Update on publish"
-msgstr "تحديث عند النشر"
-
-#: String 371
-msgid "Table"
-msgstr "جدول"
-
-#: String 372
-msgid "Rows"
-msgstr "الصفوف"
-
-#: String 373
-msgid "Latest"
-msgstr "آخر"
-
-#: String 374
-msgid "Information"
-msgstr "معلومات"
-
-#: String 375
-msgid "Current"
-msgstr "الحالي"
-
-#: String 376
-msgid "System Logs"
-msgstr "سجلات النظام"
-
-#: String 377
-msgid "Reading log file"
-msgstr "قراءة ملف السجل"
-
-#: String 378
-msgid "Version"
-msgstr "الإصدار"
-
-#: String 379
-msgid "Your Hash Key for this installation is"
-msgstr "المفتاح الخاص بك لهذا التثبيت"
-
-#: String 380
-msgid "Size"
-msgstr "حجم"
-
-#: String 381
-msgid "Save size"
-msgstr "حفظ الحجم"
-
-#: String 382
-msgid "Versions"
-msgstr "إصدارات"
-
-#: String 383
-msgid "Open Classifieds release history information."
-msgstr "Open Classifieds تاريخ معلومات الإصدار."
-
-#: String 384
-msgid "Generate"
-msgstr "إنشاء"
-
-#: String 385
-msgid "Next sitemap"
-msgstr "خريطة الموقع التالية"
-
-#: String 386
-msgid "Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location."
-msgstr "هل أنت متأكد أنك تريد حذف؟ سوف نقوم بنقل المواقع الأشقاء والإعلانات للوالد من هذا الموقع."
-
-#: String 387
-msgid "Add names for multiple locations, for each one push enter."
-msgstr "إضافة أسماء لمواقع متعددة، لكل واحد اضغط دخول."
-
-#: String 388
-msgid "Translations files available in the system."
-msgstr "ملفات الترجمات  المتاحة في النظام."
-
-#: String 389
-msgid "Scan"
-msgstr "فحص"
-
-#: String 390
-msgid "New translation"
-msgstr "ترجمة جديدة"
-
-#: String 391
-msgid "New location"
-msgstr "موقع جديد"
-
-#: String 392
-msgid "Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "تغيير ترتيب المواقع الخاصة بك. ضع في اعتبارك أن أكثر من 2 مستويات متداخلة ربما لن يتم عرضها و هذا لا ينصح به"
-
-#: String 393
-msgid "Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "تغيير ترتيب الفئات الخاصة بك. ضع في الاعتبار أن المستويات أكثر من 2 متداخلة من المحتمل ألا يتم عرضها في التصميم (لا ينصح به)."
-
-#: String 394
-msgid "New category"
-msgstr "فئة جديدة"
-
-#: String 395
-msgid "Add names for multiple categories, for each one push enter."
-msgstr "Enter إضافة أسماء لفئات متعددة، لكل واحدة اضغط زر "
-
-#: String 396
-msgid "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
-msgstr "هل أنت متأكد أنك تريد الحذف؟ سوف ننقل فئات الأشقاء والإعلانات إلى الأصل من هذه الفئة."
-
-#: String 397
-msgid "Language"
-msgstr "لغة"
-
-#: String 398
-msgid "Active"
-msgstr "فعال"
-
-#: String 399
-msgid "Your PHP time limit is"
-msgstr "هي  PHP لديك مهلة زمنية"
-
-#: String 400
-msgid "Cancel"
-msgstr "إلغاء"
-
-#: String 401
-msgid "Migrate"
-msgstr "الهجرة"
-
-#: String 402
-msgid "Last time generated"
-msgstr "آخر مرة تم إنشاؤها"
-
-#: String 403
-msgid "Save"
-msgstr "حفظ"
-
-#: String 404
-msgid "Translation"
-msgstr "ترجمة"
-
-#: String 405
-msgid "Here you can modify any text you find in your web."
-msgstr "هنا يمكنك تعديل أي نص تجده في الويب."
-
-#: String 406
-msgid "Original Translation"
-msgstr "الترجمة الأصلية"
-
-#: String 407
-msgid "Copy all?, Be aware this will replace all your texts."
-msgstr " نسخ الكل؟ كن على علم هذا سوف يحل محل كل ما لديك من النصوص"
-
-#: String 408
-msgid "Translate all?, Be aware this will replace all your texts."
-msgstr "ترجمة جميع؟، كن على علم هذا سوف يحل محل كل ما لديك من النصوص."
-
-#: String 409
-msgid "Download"
-msgstr "تحميل"
-
-#: String 410
-msgid "Slideshow"
-msgstr "عرض"
-
-#: String 411
-msgid "Edit advertisement"
-msgstr "تحرير الاعلان"
-
-#: String 412
-msgid "Advertisement is active and published"
-msgstr "الإعلان نشطو تم نشره"
-
-#: String 413
-msgid "Advertisement is updated!"
-msgstr "تم تحديث الاعلان"
-
-#: String 414
-msgid "Advertisement is updated"
-msgstr "تم تحديث الاعلان"
-
-#: String 415
-msgid "You dont have permission to access this link"
-msgstr "لا تملك الصلاحية للدخول"
-
-#: String 416
-msgid "Advertisement is deactivated"
-msgstr "تم إلغاء تنشيط الإعلان"
-
-#: String 417
-msgid "This is not your advertisement."
-msgstr "هذا ليس الإعلان الخاص بك."
-
-#: String 418
-msgid "Image is uploaded."
-msgstr "تم تحميل الصورة"
-
-#: String 419
-msgid "Edit profile"
-msgstr "تعديل الملف الشخصي"
-
-#: String 420
-msgid "You have successfuly changed your data"
-msgstr "قمت بتغيير البيانات الخاصة بك بنجاح"
-
-#: String 421
-msgid "My Advertisement page "
-msgstr "صفحة الاعلان الخاص بي"
-
-#: String 422
-msgid "Stats"
-msgstr "احصائيات"
-
-#: String 423
-msgid "No Subscriptions"
-msgstr "لا توجد اشتراكات"
-
-#: String 424
-msgid "Advertisement is deleted"
-msgstr "تم حذف الإعلان"
-
-#: String 425
-msgid "Warning, something went wrong while deleting"
-msgstr "تحذير، حصل خطأ أثناء حذف"
-
-#: String 426
-msgid "Warning, Advertisement is already marked as spam"
-msgstr "تحذير، اتسم مسبقا الإعلان كرسالة غير مرغوب فيها"
-
-#: String 427
-msgid "Advertisement is marked as spam"
-msgstr "اتسم الإعلان كرسالة غير مرغوب فيها"
-
-#: String 428
-msgid "Advertisement is featured"
-msgstr "أصبح الإعلان مميز"
-
-#: String 429
-msgid "You do not have any advertisements waiting to be published"
-msgstr " ليس لديك أي اعلان لم يتم نشره"
-
-#: String 430
-msgid "Moderation"
-msgstr "التحكم"
-
-#: String 431
-msgid "Welcome"
-msgstr "أهلا بك"
-
-#: String 432
-msgid "Social Auth"
-msgstr "الدخول عبر شبكات التواصل الاجتماعي"
-
-#: String 433
-msgid "Social Authentication for login"
-msgstr "تسجيل الدخول عبر شبكات التواصل الاجتماعي"
-
-#: String 434
-msgid "Advertisements"
-msgstr "الإعلانات"
-
-#: String 435
-msgid "Image is not valid. Please try again."
-msgstr "الصورة غير صالحة، يرجى المحاولة مرة اخرى"
-
-#: String 436
-msgid "Nothing is provided"
-msgstr "لم يتم ادخال أي شيء"
-
-#: String 437
-msgid "Market"
-msgstr "سوق"
-
-#: String 438
-msgid "Saved"
-msgstr "تم الحفظ"
-
-#: String 439
-msgid "Page"
-msgstr "صفحة"
-
-#: String 440
-msgid "contents"
-msgstr "محتويات"
-
-#: String 441
-msgid "You dont have any "
-msgstr "أنت لا تملك أي"
-
-#: String 442
-msgid "Widget parameter missing"
-msgstr "  محدد ويدجت مفقود "
-
-#: String 443
-msgid "Widgets"
-msgstr "إضافات"
-
-#: String 444
-msgid "Update"
-msgstr "تحديث"
-
-#: String 445
-msgid "Software Updated to latest version!"
-msgstr "تم تحديث البرنامج لأحدث إصدار!"
-
-#: String 446
-msgid "We had a problem downloading latest version, try later please."
-msgstr "كان لدينا مشكلة تنزيل أحدث إصدار، يرجى المحاولة لاحقا."
-
-#: String 447
-msgid "Themes Updated"
-msgstr "تم تحديث التصميم"
-
-#: String 448
-msgid "Create"
-msgstr "خلق"
-
-#: String 449
-msgid "is created"
-msgstr "تم الإنشاء"
-
-#: String 450
-msgid "Category not deleted"
-msgstr "لم يتم حذف الفئة"
-
-#: String 451
-msgid "Category deleted"
-msgstr "تم حذف الفئة"
-
-#: String 452
-msgid "Select some categories first."
-msgstr "يرجى تحديد بعض الفئات أولاً"
-
-#: String 453
-msgid "Change password"
-msgstr "تغيير كلمة السر"
-
-#: String 454
-msgid "Password is changed"
-msgstr "تم تغيير كلمة المرور"
-
-#: String 455
-msgid "Categories"
-msgstr "التصنيفات"
-
-#: String 456
-msgid "Content is not deleted"
-msgstr "لم يتم حذف المحتوى"
-
-#: String 457
-msgid "Edit"
-msgstr "تحرير"
-
-#: String 458
-msgid "is edited"
-msgstr "تم التحرير"
-
-#: String 459
-msgid "Failed to load content"
-msgstr "فشل في تحميل المحتوى"
-
-#: String 460
-msgid "Content is deleted"
-msgstr "تم حذف المحتوى"
-
-#: String 461
-msgid "Advertisement is to top"
-msgstr "أصبح الإعلان في الجزء العلوي"
-
-#: String 462
-msgid "Newsletter"
-msgstr "الرسالة الإخبارية"
-
-#: String 463
-msgid "Select some locations first."
-msgstr "يرجى تحديد بعض المواقع أولاً"
-
-#: String 464
-msgid "Location not deleted"
-msgstr "لم يتم حذف الموقع"
-
-#: String 465
-msgid "Settings"
-msgstr "إعدادات"
-
-#: String 466
-msgid "Advertisement"
-msgstr "إعلان"
-
-#: String 467
-msgid "Email Configuration updated"
-msgstr "تم تحديث إعدادات البريد الإلكتروني"
-
-#: String 468
-msgid "Location deleted"
-msgstr "تم حذف الموقع"
-
-#: String 469
-msgid "Locations"
-msgstr "المواقع"
-
-#: String 470
-msgid "Migration"
-msgstr "هجرة"
-
-#: String 471
-msgid "Database cleaned"
-msgstr "تم تنظيف قاعدة بيانات"
-
-#: String 472
-msgid "Review database connection parameters"
-msgstr "Review database connection parameters"
-
-#: String 473
-msgid "seconds"
-msgstr "ثواني"
-
-#: String 474
-msgid "General"
-msgstr "عام"
-
-#: String 475
-msgid "General Configuration updated"
-msgstr "تم تحديث الاعدادات العامة"
-
-#: String 476
-msgid "User Profile"
-msgstr "الملف الشخصي للمستخدم"
-
-#: String 477
-msgid "Blog"
-msgstr "مدونة"
-
-#: String 478
-msgid "Some errors in the form"
-msgstr "يوجد أخطاء بالنموذج"
-
-#: String 479
-msgid "You are in maintenance mode, only you can see the website"
-msgstr " وضع الصيانة، فقط أنت يمكنك الاطلاع على الموقع"
-
-#: String 480
-msgid "Item created"
-msgstr "تم إنشاء البند"
-
-#: String 481
-msgid "Edit Custom Field for Advertisement"
-msgstr "تحرير حقل مخصص للإعلان"
-
-#: String 482
-msgid "New Custom Field for Advertisement"
-msgstr "حقل مخصص جديد للإعلان"
-
-#: String 483
-msgid "Payments"
-msgstr "المدفوعات"
-
-#: String 484
-msgid "Custom Fields"
-msgstr "الحقول المخصصة"
-
-#: String 485
-msgid "Custom Fields for Advertisements"
-msgstr "الحقول المخصصة للإعلانات"
-
-#: String 486
-msgid "New"
-msgstr "جديد"
-
-#: String 487
-msgid "Open Classifieds migration"
-msgstr "Open Classifieds migration"
-
-#: String 488
-msgid "Sitemap Configuration updated"
-msgstr "تم تحديث اعدادات خريطة الموقع"
-
-#: String 489
-msgid "List"
-msgstr "لائحة"
-
-#: String 490
-msgid "Translations"
-msgstr "ترجمات"
-
-#: String 491
-msgid "Edit Translation"
-msgstr "تحرير الترجمة"
-
-#: String 492
-msgid "Language saved"
-msgstr "تم حفظ اللغة"
-
-#: String 493
-msgid "Tools"
-msgstr "أدوات"
-
-#: String 494
-msgid "Menu not created"
-msgstr "  لم يتم  انشاء القائمة"
-
-#: String 495
-msgid "Menu created"
-msgstr "تم انشاء القائمة"
-
-#: String 496
-msgid "Email sent to all the users"
-msgstr "تم إرسال البريد الإلكتروني لجميع المستخدمين"
-
-#: String 497
-msgid "Mail not sent"
-msgstr "البريد لم برسل"
-
-#: String 498
-msgid "Menu"
-msgstr "القائمة"
-
-#: String 499
-msgid "Menu deleted"
-msgstr "تم محو القائمة"
-
-#: String 500
-msgid "Optimize DB"
-msgstr "تحسين DB"
-
-#: String 501
-msgid "Database Optimized"
-msgstr "تم تحسين قاعدة البيانات"
-
-#: String 505
-msgid "Sitemap"
-msgstr "خريطة الموقع"
-
-#: String 507
-msgid "System logs"
-msgstr "سجلات النظام"
-
-#: String 508
-msgid "Cache"
-msgstr "الكاش"
-
-#: String 509
-msgid "All cache deleted"
-msgstr "تم محو الكاش"
-
-#: String 510
-msgid "Deleted expired cache"
-msgstr "حذف ذاكرة التخزين المؤقت منتهية الصلاحية"
-
-#: String 511
-msgid "PHP Info"
-msgstr "PHP معلومات"
-
-#: String 512
-msgid "You are not using latest version of OC, please update."
-msgstr "يرجى التحديث. OC لا تستخدم أحدث إصدار من "
-
-#: String 513
-msgid "Updates"
-msgstr "تحديثات"
-
-#: String 514
-msgid "Phone"
-msgstr "هاتف"
-
-#: String 515
-msgid "Address"
-msgstr "العنوان"
-
-#: String 516
-msgid "Ip address"
-msgstr "عنوان بروتوكول الإنترنت"
-
-#: String 517
-msgid "Published"
-msgstr "تاريخ النشر"
-
-#: String 518
-msgid "Status"
-msgstr "الوضع"
-
-#: String 519
-msgid "SEO title"
-msgstr "SEO عنوان"
-
-#: String 520
-msgid "Title"
-msgstr "عنوان"
-
-#: String 521
-msgid "User"
-msgstr "المستخدم"
-
-#: String 522
-msgid "Category"
-msgstr "فئة"
-
-#: String 523
-msgid "Location"
-msgstr "موقع"
-
-#: String 524
-msgid "Type"
-msgstr "نوع"
-
-#: String 525
-msgid "Has images"
-msgstr "يحوي صور"
-
-#: String 526
-msgid "Something went wrong with uploading pictures, please check format"
-msgstr "حصل خطأ أثناء تحميل الصور، يرجى مراجعة تنسيق الصور"
-
-#: String 527
-msgid "Home"
-msgstr "الصفحة الأساسية"
-
-#: String 528
-msgid "Invalid Email"
-msgstr "البريد الالكتروني غير صالح"
-
-#: String 529
-msgid "FAQ"
-msgstr "أسئلة متكررة"
-
-#: String 530
-msgid " Frequently Asked Questions - FAQ"
-msgstr "الأسئلة المتكررة"
-
-#: String 531
-msgid "Publish new advertisement"
-msgstr "نشر إعلان جديد"
-
-#: String 532
-msgid "New profile has been created. Welcome "
-msgstr "تم إنشاء الصفحة الشخصية. أهلاً و سهلاً"
-
-#: String 533
-msgid "Last login"
-msgstr "آخر دخول"
-
-#: String 534
-msgid "Email"
-msgstr "البريد الإلكتروني"
-
-#: String 535
-msgid "Password"
-msgstr "كلمة السر"
-
-#: String 536
-msgid "Role"
-msgstr "الدور"
-
-#: String 537
-msgid "Last modified"
-msgstr "تاريخ آخر تعديل"
-
-#: String 538
-msgid "Error on mail delivery, not sent"
-msgstr "خطأ في تسليم البريد، لم يتم الارسال"
-
-#: String 539
-msgid "category"
-msgstr "فئة"
-
-#: String 540
-msgid "Success"
-msgstr "تم بنجاح"
-
-#: String 541
-msgid "Error"
-msgstr "خطأ"
-
-#: String 542
-msgid "search"
-msgstr "بحث"
-
-#: String 543
-msgid "contact"
-msgstr "اتصال"
-
-#: String 544
-msgid "maintenance"
-msgstr "صيانة"
-
-#: String 545
-msgid "Warning"
-msgstr "تحذير"
-
-#: String 546
-msgid "Info"
-msgstr "معلومات"
-
-#: String 547
-msgid "Benchmark"
-msgstr "المؤشر"
-
-#: String 548
-msgid "Application Execution"
-msgstr "تنفيذ التطبيق"
-
-#: String 549
-msgid "# items to display"
-msgstr "عدد البنود المعروضة"
-
-#: String 550
-msgid "No sitemap generated"
-msgstr "لم يتم تكوين خريطة الموقع"
-
-#: String 551
-msgid "publish new"
-msgstr "اعلان جديد"
-
-#: String 552
-msgid "map"
-msgstr "خريطة"
-
-#: String 553
-msgid "Parent deep"
-msgstr "عمق الأب"
-
-#: String 554
-msgid "Seoname"
-msgstr "Seo اسم"
-
-#: String 555
-msgid "Description"
-msgstr "تفصيل"
-
-#: String 556
-msgid "Price"
-msgstr "السعر"
-
-#: String 557
-msgid "Parent"
-msgstr "أب"
-
-#: String 558
-msgid "Created"
-msgstr "أنشئت"
-
-#: String 559
-msgid "page"
-msgstr "صفحة"
-
-#: String 560
-msgid "Id"
-msgstr "Id"
-
-#: String 561
-msgid "Name"
-msgstr "الاسم"
-
-#: String 562
-msgid "Order"
-msgstr "الترتيب"
-
-#: String 563
-msgid "This post has been considered as spam! We are sorry but we cant publish this advertisement."
-msgstr "اعتبرت هذه المشاركة كرسالة غير مرغوب فيها! نحن نأسف ولكن نحن غير قادرين على نشر هذا الإعلان."
-
-#: String 564
-msgid "Advertisement is published. Congratulations!"
-msgstr "تهانينا! تم نشر الاعلان"
-
-#: String 565
-msgid "Email to recover password sent"
-msgstr "تم ارسال البريد الإلكتروني لاستعادة كلمة السر "
-
-#: String 566
-msgid "Remember password"
-msgstr "تذكر كلمة المرور"
-
-#: String 567
-msgid "User not in database"
-msgstr "المستخدم ليس في قاعدة البيانات"
-
-#: String 568
-msgid "User already exists"
-msgstr "المستخدم موجود مسبقا"
-
-#: String 569
-msgid "Passwords do not match"
-msgstr "لا تتطابق كلمات المرور"
-
-#: String 570
-msgid "Login"
-msgstr "تسجيل الدخول"
-
-#: String 571
-msgid "Wrong email or password"
-msgstr "البريد الإلكتروني غير صحيح أو كلمة المرور"
-
-#: String 572
-msgid "all"
-msgstr "الجميع"
-
-#: String 573
-msgid "Page "
-msgstr "صفحة"
-
-#: String 574
-msgid "Your advertisement is successfully activated! Thank you!"
-msgstr "تم تنشيط الإعلان الخاص بك بنجاح! شكرا لك!"
-
-#: String 575
-msgid "Advanced Search"
-msgstr "البحث بالتفصيل"
-
-#: String 576
-msgid "Themes"
-msgstr "تصاميم"
-
-#: String 577
-msgid "Theme Options"
-msgstr "خيارات التصميم"
-
-#: String 578
-msgid "Zip file faild to extract, please try again."
-msgstr "لم تتم محاولة استخراج الملف المضغوط، يرجى المحاولة مرة اخرى"
-
-#: String 579
-msgid "Is not valid format, please use ZIP format"
-msgstr "هذا ليس تنسيق صحيح، يرجى استخدام تنسيق ZIP"
-
-#: String 580
-msgid "You have succesfully installed the theme!"
-msgstr "تم تثبيت التصميم الجديد بنجاح"
-
-#: String 581
-msgid "Theme downloaded"
-msgstr "تحميل التصميم"
-
-#: String 582
-msgid "Theme could not be downloaded"
-msgstr "لم يتم تحميل التصميم"
-
-#: String 583
-msgid "Theme License"
-msgstr "رخصة التصميم"
-
-#: String 584
-msgid "There was an error activating your license."
-msgstr "كان هناك خطأ في تفعيل الترخيص الخاص بك."
-
-#: String 585
-msgid "Theme configuration updated"
-msgstr "تم تحديث اعدادات التصميم"
-
-#: String 586
-msgid "Mobile Theme updated"
-msgstr "تم تحديث تصميم الموبايل"
-
-#: String 587
-msgid "Appearance configuration updated"
-msgstr "تم تحديث اعدادات المظهر"
-
-#: String 588
-msgid "Theme activated, thanks."
-msgstr "تم تفعيل التصميم"
-
-#: String 589
-msgid "Latest post published"
-msgstr "آخر ما لم يتم نشرىه"
-
-#: String 590
-msgid "Latest published"
-msgstr "آخر ما تم نشره"
-
-#: String 591
-msgid "Advertisement to top"
-msgstr "وضع الاعلان في الاعلى"
-
-#: String 592
-msgid "Advertisement to featured"
-msgstr "سيتم تمييز الاعلان"
-
-#: String 593
-msgid " category"
-msgstr "فئة"
-
-#: String 594
-msgid "Order could not be loaded"
-msgstr "لم نتمكن من تفعيل الطلب"
-
-#: String 595
-msgid "Contact Us"
-msgstr "الاتصال بنا"
-
-#: String 596
-msgid "Map"
-msgstr "خريطة"
-
-#: String 597
-msgid "Captcha is not correct"
-msgstr "غير صحيحة Captcha "
-
-#: String 598
-msgid "Advertisement is created but needs to be validated first before it is published."
-msgstr "تم انشاء الاعلان، يرجى انتظار موافقة المشرف"
-
-#: String 599
-msgid "Advertisement is posted but first you need to activate. Please check your email!"
-msgstr "يجب تفعيل الاعلان قبل النشر، يرجى مراجعة بريدك الالكتروني"
-
-#: String 600
-msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
-msgstr "تم انشاء الاعلان، يرجى انتظار موافقة المشرف"
-
-#: String 601
-msgid "Advertisement is posted. Congratulations!"
-msgstr "تهانينا! تم نشر الاعلان"
-
-#: String 602
-msgid "Your message has been sent"
-msgstr "تم ارسال رسالتك"
-
-#: String 603
-msgid "Message not sent"
-msgstr "لم يتم ارسال الرسالة"
-
-#: String 604
-msgid "We need your email address to complete"
-msgstr "نحتاج عنوان البريد الإلكتروني الخاص بك"
-
-#: String 605
-msgid "Welcome!"
-msgstr "أهلا وسهلا!"
-
-#: String 606
-msgid "Error: please try again!"
-msgstr "خطأ: الرجاء المحاولة مرة أخرى"
-
-#: String 607
-msgid "Register new user"
-msgstr "تسجيل مستخدم جديد"
-
-#: String 608
-msgid "Default theme seted"
-msgstr "تم اختيار التصميم الأساسي"
-
-#: String 609
-msgid "You are unsubscribed"
-msgstr "لقد تم إلغاء اشتراكك"
-
-#: String 610
-msgid "This email has been considered as spam! We are sorry but we can not send this email."
-msgstr "اعتبرت هذه الرسالة كرسالة غير مرغوب فيها! نحن نأسف ولكن نحن غير قادرين على ارسال الرسالة"
-
-#: String 611
-msgid "Check the form for errors"
-msgstr "تحقق النموذج عن الأخطاء"
-
-#: String 612
-msgid "You made some mistake"
-msgstr "حصل خطأ ما"
-
-#: String 613
-msgid "Thank you for subscribing"
-msgstr "شكرا لاشتراكك"
-
-#: String 614
-msgid "Please to see the changes delete the cache"
-msgstr " لمشاهدة التغييرات يرجى حذف ذاكرة التخزين المؤقت"
-
-#: String 615
-msgid "Delete All"
-msgstr "حذف الجميع"
-
-#: String 616
-msgid "User name"
-msgstr "اسم المستخدم"
-
-#: String 617
-msgid "Host name"
-msgstr "اسم المستضيف"
-
-#: String 619
-msgid "Database charset"
-msgstr "مجموعة أحرف قاعدة البيانات"
-
-#: String 620
-msgid "Table prefix"
-msgstr "بادئة الجدول"
-
-#: String 621
-msgid "Database Configuration"
-msgstr "إعداد قاعدة بيانات"
-
-#: String 622
-msgid "You need the Hash Key to re-install. You can find this value if you lost it at"
-msgstr "You need the Hash Key to re-install. You can find this value if you lost it at"
-
-#: String 623
-msgid "Admin Password"
-msgstr "كلمة سر المشرف"
-
-#: String 624
-msgid "Sample data"
-msgstr "بيانات العينة"
-
-#: String 625
-msgid "Creates few sample categories to start with"
-msgstr "يخلق عينة من الفئات لتساعدك على البدء"
-
-#: String 626
-msgid "Hash Key"
-msgstr "Hash Key"
-
-#: String 627
-msgid "Allows multiple installations in one database if you give each one a unique prefix"
-msgstr "السماح بالعديد من عمليات التنصيب بقاعدة بيانات واحدة في حال إعطاء بادئة مختلفة لكل واحدة"
-
-#: String 628
-msgid "Only numbers, letters, and underscores"
-msgstr " أرقام، أحرف و شرطات سفلية فقط"
-
-#: String 629
-msgid "No"
-msgstr "لا"
-
-#: String 636
-msgid "Install"
-msgstr "تنصيب"
-
-#: String 637
-msgid "Ocacu classifieds community registration"
-msgstr "Ocacu classifieds تسحيل في"
-
-#: String 638
-msgid "Terms"
-msgstr "شروط"
-
-#: String 639
-msgid "We have detected some incompatibilities, installation may not work as expected but you can try."
-msgstr "لقد تم الكشف عن بعض حالات عدم التوافق، قد لا يعمل بالشكل المتوقع ولكن يمكنك المحاولة."
-
-#: String 640
-msgid "Administrator email"
-msgstr "ايمايل المشرف"
-
-#: String 643
-msgid "Software Requirements"
-msgstr "متطلبات البرنامج"
-
-#: String 644
-msgid "Thanks for using Open Classifieds."
-msgstr " Open Classifieds  شكراً لاستاخدام"
-
-#: String 645
-msgid "Your installation version is"
-msgstr "إصدار التثبيت الخاص بك هو"
-
-#: String 646
-msgid "You need help or you have some questions"
-msgstr "إن كنت بحاجة إلى مساعدة أو لديك بعض الأسئلة"
-
-#: String 647
-msgid "We really appreciate it"
-msgstr "شكراً جزيلاً"
-
-#: String 648
-msgid "Make a donation"
-msgstr "التبرع"
-
-#: String 649
-msgid "Congratulations"
-msgstr "تهانينا"
-
-#: String 650
-msgid "Installation done"
-msgstr "تم تحميل البرنامج"
-
-#: String 651
-msgid "Please now erase the folder"
-msgstr "يرجى محو المجلد"
-
-#: String 652
-msgid "Go to Your Website"
-msgstr "اذهب إلى موقعك"
-
-#: String 653
-msgid "Forum"
-msgstr "المنتدى"
-
-#: String 654
-msgid "Latest News"
-msgstr "آخر الأخبار"
-
-#: String 656
-msgid "Site URL"
-msgstr "وصلة الموقع"
-
-#: String 657
-msgid "Site Name"
-msgstr "اسم الموقع"
-
-#: String 658
-msgid "Time Zone"
-msgstr "منطقة زمنية"
-
-#: String 659
-msgid "New Install"
-msgstr "تنصيب جديد"
-
-#: String 660
-msgid "Site Language"
-msgstr "لغة الموقع"
-
-#: String 661
-msgid "Site Configuration"
-msgstr "إعدادات الموقع"
-
-#: String 662
-msgid "Welcome to"
-msgstr "أهلاً بكم في"
-
-#: String 663
-msgid "installation"
-msgstr "تنصيب"
-
-#: String 664
-msgid "Welcome to the super easy and fast installation"
-msgstr "أهلاً بك مع عملية تنصيب البرنامج السهلة و السريعة"
-
-#: String 665
-msgid "If you need any help please check our professional services"
-msgstr "إذا كنت بحاجة إلى أي مساعدة يرجى مراجعة خدماتنا "
-
-#: String 668
-msgid "Go Top!"
-msgstr "ضع اعلانك بأعلى القائمة"
-
-#: String 669
-msgid "Your Advertisement can go on top again! For only "
-msgstr "يمكنك وضع اعلانك بأعلى القائمة فقط بـ"
-
-#: String 670
-msgid "Your Advertisement can go to featured! For only "
-msgstr "يمكنك تمييز اعلانك فقط بـ"
-
-#: String 671
-msgid "Go Featured!"
-msgstr "اجعل اعلانك مميز"
-
-#: String 672
-msgid "Hits"
-msgstr "مشاهدات"
-
-#: String 673
-msgid "We do not have any advertisements in this category"
-msgstr "لا يوجد أي اعلان بهذه الفئة"
-
-#: String 674
-msgid "Spam"
-msgstr "رسائل غير مرغوب بها"
-
-#: String 675
-msgid "Publish Date"
-msgstr "تاريخ النشر"
-
-#: String 676
-msgid "Deactivate?"
-msgstr "تعطيل؟"
-
-#: String 677
-msgid "Deactivate"
-msgstr "تعطيل"
-
-#: String 678
-msgid "Spam?"
-msgstr "رسائل غير مرغوب بها؟"
-
-#: String 679
-msgid "Buy Now"
-msgstr "إشتري الآن"
-
-#: String 680
-msgid "New password"
-msgstr "كلمة مرور جديدة"
-
-#: String 681
-msgid "Mobile Version"
-msgstr "نسخة الموبايل"
-
-#: String 682
-msgid "We are working on our site, please visit later. Thanks"
-msgstr "نحن نعمل على موقعنا، الرجاء الزيارة في وقت لاحق. شكرا"
-
-#: String 684
-msgid "Publish new "
-msgstr "إعلان جديد"
-
-#: String 685
-msgid "This advertisement doesn´t exist, or is not yet published!"
-msgstr "هذا الاعلان غير موجود أو لم يتم نشره بعد"
-
-#: String 686
-msgid "Remember me"
-msgstr "تذكرني"
-
-#: String 687
-msgid "Forgot password?"
-msgstr "نسيت كلمة المرور؟"
-
-#: String 688
-msgid "Repeat password"
-msgstr "كرر كلمة السر"
-
-#: String 689
-msgid "Type your password twice"
-msgstr "اكتب كلمة المرور مرتين"
-
-#: String 690
-msgid "Social Login"
-msgstr "تسجيل الدخول الاجتماعي"
-
-#: String 691
-msgid "Send"
-msgstr "إرسال"
-
-#: String 692
-msgid "New Advertisement"
-msgstr "إعلان جديد"
-
-#: String 693
-msgid "User account will be created"
-msgstr "سيتم إنشاء حساب المستخدم"
-
-#: String 694
-msgid "We detected you are currently off-line, please connect to gain full experience."
-msgstr "تبين لنا أنك غير متصل بالانترنت، يرجى الاتصال بالانترنت للاستمتاع بالبرنامج بشكل كامل"
-
-#: String 696
-msgid "Please wait while we transfer you to Paypal"
-msgstr "يرجى الانتظار ريثما نقوم بتحويلك إلى  Paypal"
-
-#: String 697
-msgid "Click here if you are not redirected"
-msgstr "ال"
-
-#: String 698
-msgid "I accept"
-msgstr "أنا أقبل"
-
-#: String 705
-msgid "Publish new"
-msgstr "اعلان جديد"
-
-#: String 706
-msgid "Listing"
-msgstr "لائحة الاعلانات"
-
-#: String 707
-msgid "Search results"
-msgstr "نتائج البحث"
-
-#: String 708
-msgid "Images"
-msgstr "صور"
-
-#: String 709
-msgid "Website"
-msgstr "الموقع"
-
-#: String 710
-msgid "Terms of service"
-msgstr "شروط الخدمة"
-
-#: String 711
-msgid "We do not have any blog post"
-msgstr "ليس لدينا أي اعلان مدونة"
-
-#: String 712
-msgid "Delete"
-msgstr "حذف"
-
-#: String 713
-msgid "Forgot password"
-msgstr "نسيت كلمة المرور"
-
-#: String 714
-msgid "Register"
-msgstr "تسجيل"
-
-#: String 715
-msgid "Read more"
-msgstr "اقرأ المزيد"
-
-#: String 716
-msgid "Delete?"
-msgstr "حذف؟"
-
-#: String 717
-msgid "We install it for you, Buy now!"
-msgstr "نحن نقوم بتثبيته لك، إشتري الآن!"
-
-#: String 718
-msgid "Installation"
-msgstr "تنصيب البرنامج"
-
-#: String 719
-msgid "Earn money from your site"
-msgstr "اكسب المال من موقعك"
-
-#: String 720
-msgid "HTML/text content here"
-msgstr " هنا HTML نص أو"
-
-#: String 721
-msgid "Banner Format"
-msgstr "تنسيق بانر"
-
-#: String 723
-msgid "Title displayed"
-msgstr "العنوان المعروض"
-
-#: String 724
-msgid "Text title displayed"
-msgstr "عنوان النص المعروض"
-
-#: String 725
-msgid "HTML textarea"
-msgstr " HTML مكان لإدخال نص أو  "
-
-#: String 726
-msgid "Map title displayed"
-msgstr "عنوان الخريطة المعروض"
-
-#: String 727
-msgid "Map height in pixels"
-msgstr "علو الخريطة "
-
-#: String 728
-msgid "Zoom in the map"
-msgstr "تكبير الخريطة"
-
-#: String 729
-msgid "Text"
-msgstr "نص"
-
-#: String 730
-msgid "Display categories"
-msgstr "عرض الفئات"
-
-#: String 731
-msgid "Categories title displayed"
-msgstr "عنوان الفئات المعروض"
-
-#: String 732
-msgid "Ads title displayed"
-msgstr "عناوين الاعلانات المعروضة"
-
-#: String 733
-msgid "Number of ads to display"
-msgstr "عدد الإعلانات التي سيتم عرضها"
-
-#: String 734
-msgid "Display Locations"
-msgstr "عرض المواقع"
-
-#: String 735
-msgid "Locations title displayed"
-msgstr "عنوان المواقع"
-
-#: String 736
-msgid "Contact"
-msgstr "اتصال"
-
-#: String 737
-msgid "Featured Ads"
-msgstr "الإعلانات المميزة"
-
-#: String 738
-msgid "Popular Ads last month"
-msgstr "الإعلانات الأكثر شعبية الشهر الماضي"
-
-#: String 739
-msgid "Ads"
-msgstr "إعلانات"
-
-#: String 740
-msgid "Ads reader"
-msgstr "قارئ الاعلانات"
-
-#: String 741
-msgid "Type ads to display"
-msgstr "أدخل الاعلانات التي ترغب بعرضها"
-
-#: String 742
-msgid "Latest Ads"
-msgstr "أحدث الإعلانات"
-
-#: String 743
-msgid "Google Maps with ads"
-msgstr " خرائط Google مع الإعلانات"
-
-#: String 744
 msgid "100"
 msgstr "100"
 
-#: String 745
-msgid "Last"
-msgstr "الأخير"
-
-#: String 746
-msgid "Next"
-msgstr "التالي"
-
-#: String 747
-msgid "Submit"
-msgstr "ادخال"
-
-#: String 748
-msgid "Other"
-msgstr "غير"
-
-#: String 749
-msgid "Pages"
-msgstr "صفحات"
-
-#: String 750
-msgid "Previous"
-msgstr "السابق"
-
-#: String 751
-msgid "First"
-msgstr "الأول"
-
-#: String 752
-msgid "Check form for errors"
-msgstr "تحقق من النموذج من وجود أخطاء"
-
-#: String 753
-msgid "Item updated"
-msgstr "تم تحديث البند"
-
-#: String 754
-msgid "Access not allowed"
-msgstr "الدخول غير مسموح"
-
-#: String 755
-msgid "Panel"
-msgstr "لوحة"
-
-#: String 756
-msgid "Display CMS pages"
-msgstr "CMS عرض صفحات"
-
-#: String 757
-msgid "Page title displayed"
-msgstr "عنوان الصفحة المعروض"
-
-#: String 758
-msgid "0"
-msgstr "0"
-
-#: String 759
-msgid "Maximum Price"
-msgstr "الحد الأقصى لالسعر"
-
-#: String 760
+#: String 1
 msgid "1000"
 msgstr "1000"
 
-#: String 762
-msgid "Minimum Price"
-msgstr "الحد الأدنى للسعر"
+#: String 2
+msgid "1 MB file"
+msgstr "ملف 1 م ب "
 
-#: String 763
-msgid "Subscribe title displayed"
-msgstr " عنوان الاشتراك المعروض"
+#: String 3
+msgid "About"
+msgstr "حول"
 
-#: String 764
-msgid "Subscribe"
-msgstr "اشترك"
+#: String 4
+msgid "about a day"
+msgstr "تقريبا يوم"
 
-#: String 765
-msgid "Subscribe for categories"
-msgstr "الاشتراك بفئات"
+#: String 5
+msgid "about a decade"
+msgstr "تقريبا قرن"
 
-#: String 766
-msgid "FALSE"
-msgstr "خاطئ"
+#: String 6
+msgid "about a month"
+msgstr "تقريبا شهر"
 
-#: String 767
-msgid "TRUE"
-msgstr "صحيح"
+#: String 7
+msgid "about a week"
+msgstr "تقريبا اسبوع"
 
-#: String 768
-msgid "Contact form"
-msgstr "استمارة الاتصال"
+#: String 8
+msgid "about a year"
+msgstr "تقريبا سنة"
 
-#: String 769
-msgid "Share"
-msgstr "مشاركة "
+#: String 9
+msgid "A button with the page title appears next to other pay button, onclick model opens with description."
+msgstr "زر مع عنوان الصفحة سيظهر بجانب زر الدفع الاخر، عند النقر يفتح النموذج مع الوصف."
 
-#: String 770
-msgid "Send Message"
-msgstr "إرسال رسالة"
+#: String 10
+msgid "Accept Terms Alert"
+msgstr "إنذار قبول الشروط"
 
-#: String 771
-msgid "Captcha"
-msgstr "Captcha"
+#: String 11
+msgid "Access not allowed"
+msgstr "الدخول غير مسموح"
 
-#: String 772
-msgid "views"
-msgstr "مرات العرض"
+#: String 12
+msgid "Account Number"
+msgstr "رقم الحساب"
 
-#: String 773
-msgid "ads"
-msgstr "إعلانات"
+#: String 13
+msgid "a couple of days"
+msgstr "بضعة ايام"
 
-#: String 774
-msgid "users"
-msgstr "مستخدمين"
+#: String 14
+msgid "a couple of decades"
+msgstr "بضعة قرون"
 
-#: String 775
-msgid "File"
-msgstr "ملف"
+#: String 15
+msgid "a couple of hours"
+msgstr "بضعة ساعات"
 
-#: String 776
-msgid "Message"
-msgstr "الرسالة"
+#: String 16
+msgid "a couple of months"
+msgstr "بضعة أشهر"
 
-#: String 777
-msgid "Add latest comments"
-msgstr "إضافة آخر التعليقات"
+#: String 17
+msgid "a couple of years"
+msgstr "بضعة سنين"
 
-#: String 778
-msgid "Comments"
-msgstr "تعليقات"
+#: String 18
+msgid "Action"
+msgstr "إجراء"
 
-#: String 779
-msgid "Number of comments to display"
-msgstr "عدد التعليقات التي يتم عرضها"
+#: String 19
+msgid "Actions"
+msgstr "الإجراءات"
 
-#: String 780
-msgid "Subject"
-msgstr "موضوع"
+#: String 20
+msgid "Action Value:"
+msgstr "قيمة العمل"
 
-#: String 781
-msgid "Unsubscribe"
-msgstr "إلغاء الاشتراك"
+#: String 21
+msgid "Activate"
+msgstr "تفعيل"
 
-#: String 782
-msgid "Advertisement Title"
-msgstr "عنوان الإعلان"
+#: String 22
+msgid "Activate?"
+msgstr "تفعيل؟"
 
-#: String 783
-msgid "Database name"
-msgstr "اسم قاعدة البيانات"
+#: String 23
+msgid "Activates Blog posting"
+msgstr "تفعيل المدونة"
 
-#: String 784
-msgid "Cannot connect to server"
-msgstr "لا يمكن الاتصال بالمخدم"
+#: String 24
+msgid "Activates FAQ"
+msgstr "تفعيل الأسئلة المتكررة"
 
-#: String 785
-msgid "No database name was given"
-msgstr "لم يحدد أي اسم لقاعدة البيانات"
+#: String 25
+msgid "Activates Forums"
+msgstr "تفعيل المنتدى"
 
-#: String 786
-msgid "Available databases"
-msgstr "قواعد البيانات المتاحة"
+#: String 26
+msgid "Activates Messaging System"
+msgstr "تفعيل نظام الرسائل"
 
-#: String 787
-msgid "Invalid query"
-msgstr "الاستعلام غير صالح"
+#: String 27
+msgid "Active"
+msgstr "فعال"
 
-#: String 788
-msgid "Loaded extensions"
-msgstr "الملحقات المحملة"
+#: String 28
+msgid "Active Region Action"
+msgstr "تفعيل منطقة العمل"
 
-#: String 789
-msgid "Included files"
-msgstr "الملفات المدرجة"
+#: String 29
+msgid "Ad"
+msgstr "اعلان"
 
-#: String 790
-msgid "Price from"
-msgstr "السعر من"
+#: String 30
+msgid "Add"
+msgstr "إضافة"
 
-#: String 791
-msgid "Price to"
-msgstr "السعر إلى"
-
-#: String 792
-msgid "to"
-msgstr "حتى"
-
-#: String 793
-msgid "Environment"
-msgstr "بيئة"
-
-#: String 794
-msgid "Disqus"
-msgstr "Disqus"
-
-#: String 795
-msgid "Parent frame"
-msgstr "الإطار الأصل"
-
-#: String 796
-msgid "Chat"
-msgstr "الدردشة"
-
-#: String 797
-msgid "RSS title displayed"
-msgstr "RSS عنوان"
-
-#: String 798
+#: String 31
 msgid "Add a chat room"
 msgstr "إضافة غرفة دردشة"
 
-#: String 799
-msgid "Chat room"
-msgstr "غرفة دردشة"
+#: String 32
+msgid "Add a plan"
+msgstr "إضافة خطة"
 
-#: String 800
-msgid "Name of your chat room/channel"
-msgstr "اسم غرفة الدردشة"
+#: String 33
+msgid "Add custom field"
+msgstr "إضافة حقل مخصص"
 
-#: String 801
-msgid "RSS url address"
-msgstr "RSS url عنوان"
+#: String 34
+msgid "Add Custom Fields"
+msgstr "إضافة الحقول المخصصة"
 
-#: String 802
-msgid "How often we refresh the RSS, in seconds"
-msgstr "بالثواني RSS مدى تكرار تحديث "
+#: String 35
+msgid "Added Custom Fields"
+msgstr "الحقول المخصصة المضافة"
 
-#: String 803
-msgid "Share on social networks."
-msgstr "مشاركة على الشبكات الاجتماعية"
+#: String 36
+msgid "Add latest comments"
+msgstr "إضافة آخر التعليقات"
 
-#: String 804
-msgid "RSS"
-msgstr "RSS"
+#: String 37
+msgid "Add names for multiple categories, for each one push enter."
+msgstr "Enter إضافة أسماء لفئات متعددة، لكل واحدة اضغط زر "
 
-#: String 805
-msgid "RSS reader with cache"
-msgstr "مع كاش RSS قارئ "
+#: String 38
+msgid "Add names for multiple locations, for each one push enter."
+msgstr " Enter إضافة أسماء لمواقع متعددة، لكل واحد اضغط زر"
 
-#: String 806
-msgid "Number items to display"
-msgstr "عدد البنود المرغوب بعرضها"
+#: String 39
+msgid "Add New Review"
+msgstr "أضف تقييم جديد"
 
-#: String 807
+#: String 40
+msgid "Address"
+msgstr "العنوان"
+
+#: String 41
+msgid "Address field"
+msgstr "حقل العنوان"
+
+#: String 42
+msgid "Adds content to contact page"
+msgstr "يضيف محتوى في صفحة الاتصال "
+
+#: String 43
+msgid "Add to Favorites"
+msgstr "أضف الى المفضلة"
+
+#: String 44
+msgid "Ad expiration date"
+msgstr "تاريخ انتهاء صلاحية الاعلان"
+
+#: String 45
+msgid "Administrator email"
+msgstr "ايمايل المشرف"
+
+#: String 46
+msgid "Admin Password"
+msgstr "كلمة سر المشرف"
+
+#: String 47
+msgid "Admin Privileged"
+msgstr ""
+
+#: String 48
+msgid "Admin Role can not be modified!"
+msgstr "لا يمكن تعديل دور المشرف "
+
+#: String 49
+msgid "Admin Tools to editing ads"
+msgstr ""
+
+#: String 50
+msgid "Ad Not Found"
+msgstr " لم يتم العثور على الاعلان"
+
+#: String 51
+msgid "Ad not provided"
+msgstr "الاعلان غير متوفر"
+
+#: String 52
+msgid "ads"
+msgstr "إعلانات"
+
+#: String 53
+msgid "Ads"
+msgstr "إعلانات"
+
+#: String 54
+msgid "Ads deleted"
+msgstr "تم حذف الاعلانات "
+
+#: String 55
+msgid "Ads reader"
+msgstr "قارئ الاعلانات"
+
+#: String 56
+msgid "Ads title displayed"
+msgstr "عناوين الاعلانات المعروضة"
+
+#: String 57
+msgid "Ad Tools"
+msgstr "أدوات الإعلانات"
+
+#: String 58
+msgid "Advanced option"
+msgstr "خيار متقدم"
+
+#: String 59
+msgid "Advanced options"
+msgstr "خيارات متقدمة"
+
+#: String 60
+msgid "Advanced search"
+msgstr "بحث متقدم"
+
+#: String 61
+msgid "Advanced Search"
+msgstr "البحث بالتفصيل"
+
+#: String 62
+msgid "Advertisement"
+msgstr "إعلان"
+
+#: String 63
+msgid "Advertisement Configuration"
+msgstr "اعدادات الإعلان"
+
+#: String 64
+msgid "Advertisement Custom Fields"
+msgstr "الحقول المخصصة للإعلان"
+
+#: String 65
+msgid "Advertisement Display Options"
+msgstr "خيارات عرض الإعلان"
+
+#: String 66
+msgid "Advertisement Fields"
+msgstr "حقول الإعلان"
+
+#: String 67
+msgid "Advertisement has been permanently deleted"
+msgstr "لقد تم حذف الإعلان بشكل دائم"
+
+#: String 68
+msgid "Advertisement is active and published"
+msgstr "الإعلان نشط وتم نشر"
+
+#: String 69
+msgid "Advertisement is deactivated"
+msgstr "تم إلغاء تنشيط الإعلان"
+
+#: String 70
+msgid "Advertisement is marked as spam"
+msgstr "الاعلان غيرمرغوب "
+
+#: String 71
+msgid "Advertisement is posted but first you need to activate. Please check your email!"
+msgstr "يجب تفعيل الاعلان قبل النشر، يرجى مراجعة بريدك الالكتروني"
+
+#: String 72
+msgid "Advertisement is posted. Congratulations!"
+msgstr "تهانينا! تم نشر الاعلان"
+
+#: String 73
+msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
+msgstr "تم انشاء الاعلان، يرجى انتظار موافقة المشرف"
+
+#: String 74
+msgid "Advertisement is updated"
+msgstr "تم تحديث الاعلان"
+
+#: String 75
+msgid "Advertisement is updated, but first administrator needs to validate. Thank you for being patient!"
+msgstr "تم تحديث الإعلان، ولكن يحتاج المسؤول الأول للتحقق من صحة. شكرا لك "
+
+#: String 76
+msgid "Advertisement not found"
+msgstr " لم يتم العثور على الاعلان"
+
+#: String 77
+msgid "advertisements"
+msgstr "الإعلانات"
+
+#: String 78
+msgid " advertisements"
+msgstr "الإعلانات"
+
+#: String 79
+msgid "Advertisements"
+msgstr "الإعلانات"
+
+#: String 80
+msgid "Advertisements in home"
+msgstr "الاعلانات في الصفحة الاساسية"
+
+#: String 81
+msgid "Advertisements in Map"
+msgstr "الإعلانات في الخريطة"
+
+#: String 82
+msgid "Advertisements in RSS"
+msgstr "RSS الإعلانات في"
+
+#: String 83
+msgid "Advertisements per page"
+msgstr "عدد الاعلانات بالصفحة"
+
+#: String 84
+msgid "Advertisement Title"
+msgstr "عنوان الإعلان"
+
+#: String 85
+msgid "a few minutes"
+msgstr "بضعة  دقائق"
+
+#: String 86
+msgid "a few years"
+msgstr "بضعة سنين"
+
+#: String 87
+msgid "After how many days an Ad will expire. 0 for never"
+msgstr "بعد كم يوم تنتهي صلاحية الاعلان. ضع 0 في حال عدم وجود حد"
+
+#: String 88
+msgid "Akismet Key"
+msgstr "Akismet  مفتاح "
+
+#: String 89
+msgid "all"
+msgstr "الجميع"
+
+#: String 90
+msgid "All"
+msgstr "الجميع"
+
+#: String 91
+msgid "All active users."
+msgstr "جميع الأعضاء النشيطين"
+
+#: String 92
+msgid "All ads"
+msgstr "جميع الاعلانات"
+
+#: String 93
+msgid "All ads are processed! Congrats!"
+msgstr "!تم تجهيز جميع الإعلانات! مبروك"
+
+#: String 94
+msgid "All cache deleted"
+msgstr "تم حذف الكاش"
+
+#: String 95
+msgid "All categories were deleted."
+msgstr "تم حذف جميع الفئات"
+
+#: String 96
+msgid "All configurations"
+msgstr "جميع الإعدادات"
+
+#: String 97
+msgid "All data contained will be deleted."
+msgstr "سيتم حذف كافة البيانات الموجودة"
+
+#: String 98
+msgid "All locations were deleted."
+msgstr "تم حذف جميع المواقع"
+
+#: String 99
+msgid "Allowed image formats"
+msgstr "صيغة الصور المسموح بها"
+
+#: String 100
+msgid "Allows multiple installations in one database if you give each one a unique prefix"
+msgstr "يسمح للعديد من عمليات التنصيب بقاعدة بيانات واحدة في حال إعطاء بادئة مختلفة لكل واحدة"
+
+#: String 101
+msgid "Allow uploading images in publish new."
+msgstr "السماح بتحميل الصور في نشر جديد."
+
+#: String 102
+msgid "All rights reserved"
+msgstr "جميع الحقوق محفوظة"
+
+#: String 103
+msgid "All themes include support, updates and 1 site license."
+msgstr "تشمل جميع التصاميم الدعم والتحديثات و ترخيص لموقع واحد"
+
+#: String 104
+msgid "a long time"
+msgstr "وقت طويل"
+
+#: String 105
+msgid "Also white labeled and free of ads"
+msgstr ""
+
+#: String 106
+msgid "Alternative Payment"
+msgstr "الدفع البديل"
+
+#: String 107
+msgid "Amazon S3 active"
+msgstr ""
+
+#: String 108
+msgid "Amazon S3 Bucket Name"
+msgstr ""
+
+#: String 109
+msgid "Amazon S3 Configuration"
+msgstr "S3 تكوين الأمازون"
+
+#: String 110
+msgid "Amount"
+msgstr "كمية"
+
+#: String 111
+msgid "Analytics Tracking ID"
+msgstr "Analytics Tracking ID"
+
+#: String 112
+msgid "Any"
+msgstr "اي"
+
+#: String 113
+msgid "API Password"
+msgstr "API كلمة المرور"
+
+#: String 114
+msgid "API Username"
+msgstr "اسم  المستخدم API"
+
+#: String 115
+msgid "Appearance"
+msgstr "المظهر"
+
+#: String 116
+msgid "Appearance configuration updated"
+msgstr "تم تحديث اعدادات المظهر"
+
+#: String 117
+msgid "Appears when user registers."
+msgstr "يظهر عندما يسجل المستخدم."
+
+#: String 118
+msgid "Appends watermark to images"
+msgstr "إلحاق علامة مائية على الصور"
+
+#: String 119
+msgid "Application Execution"
+msgstr "تنفيذ التطبيق"
+
+#: String 120
+msgid "Apply discounts."
+msgstr "تطبيق الخصومات"
+
+#: String 121
+msgid "Archive"
+msgstr "أرشيف"
+
+#: String 122
+msgid "Archived"
+msgstr "أرشفة"
+
+#: String 123
+msgid "Are you sure?"
+msgstr "هل أنت متأكد؟"
+
+#: String 124
+msgid "Are you sure you want to deactivate featured advertisement?"
+msgstr "هل أنت متأكد أنك تريد إلغاء الإعلان المميز؟"
+
+#: String 125
+msgid "Are you sure you want to delete?"
+msgstr "هل أنت متأكد أنك تريد الحذف؟"
+
+#: String 126
+msgid "Are you sure you want to delete? All data contained in this field will be deleted."
+msgstr "هل أنت متأكد أنك تريد الحذف؟ سيتم حذف جميع البيانات الواردة في هذا الحقل"
+
+#: String 127
+msgid "Are you sure you want to delete all the categories?"
+msgstr "هل أنت متأكد أنك تريد حذف جميع الفئات؟"
+
+#: String 128
+msgid "Are you sure you want to delete all the locations?"
+msgstr "هل أنت متأكد أنك تريد حذف جميع المواقع؟"
+
+#: String 129
+msgid "Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location."
+msgstr "ثهل أنت متأكد أنك تريد حذف؟سوف نقوم بنقل المواقع التابعة و الاعلانات الى التابع  الرئيسي"
+
+#: String 130
+msgid "Are you sure you want to make it featured?"
+msgstr "هل أنت متأكد أنك تريد أن تجعلها مميزة؟"
+
+#: String 131
+msgid "Are you sure you want to refresh listing and go to top?"
+msgstr "هل أنت متأكد أنك تريد تحديث القائمة والانتقال إلى الأعلى؟"
+
+#: String 132
+msgid "Are you sure you want to remove featured ad?"
+msgstr "هل أنت متأكد أنك تريد إزالة الاعلان المميز؟"
+
+#: String 133
+msgid "Are you sure you want to remove it?"
+msgstr "هل أنت متأكد أنك تريد إزالته؟"
+
+#: String 134
+msgid "Are you sure you want to update?"
+msgstr "هل أنت متأكد أنك تريد تحديث؟"
+
+#: String 135
+msgid "arguments"
+msgstr "جدالات"
+
+#: String 136
+msgid "At least one image format should be allowed."
+msgstr "وينبغي أن يسمح بتنسيق صورة واحدة على الأقل"
+
+#: String 137
+msgid "A user with the email you specified already exists"
+msgstr "البريد الإلكتروني الذي حددته موجود مسبقا"
+
+#: String 138
+msgid "Authorize API Login"
+msgstr "تخويل API بالدخول"
+
+#: String 139
+msgid "Authorize transaction Key"
+msgstr "تخويل مفتاح الصفقة"
+
+#: String 140
+msgid "Auto Locate Visitors"
+msgstr " حدد موقع الزوار تلقائيا"
+
+#: String 141
+msgid "Available databases"
+msgstr "قواعد البيانات المتاحة"
+
+#: String 142
+msgid "Available Mobile Themes"
+msgstr "تصاميم الموبايل المتاحة"
+
+#: String 143
+msgid "Available Themes"
+msgstr "التصاميم المتاحة"
+
+#: String 144
+msgid "Available widgets"
+msgstr "الاضافات المتاحة"
+
+#: String 145
+msgid "AWS Access Key"
+msgstr "AWS مفتاح الوصول"
+
+#: String 146
+msgid "AWS Secret Key"
+msgstr "AWS المفتاح السري "
+
+#: String 147
+msgid "Background Color"
+msgstr "لون الخلفية"
+
+#: String 148
+msgid "Backup all your files and database"
+msgstr "احتياطية لجميع الملفات وقواعد البيانات"
+
+#: String 149
+msgid "Banned word replacement replaces selected array with the string you provided."
+msgstr "استبدال الكلملت المظورة يستبدل المجموعة المختارة مع السلسلة التي قدمتها."
+
+#: String 150
+msgid "Banned words"
+msgstr "الكلمات المحظورة"
+
+#: String 151
+msgid "Banned words are separated with coma (,)"
+msgstr "يتم فصل الكلمات المحظورة مع (،)"
+
+#: String 152
+msgid "Banned words replacement"
+msgstr " بديل  الكلمات المحظورة"
+
+#: String 153
+msgid "BBCODE editor appears in description field."
+msgstr ""
+
+#: String 154
+msgid "BBCODE editor on description field"
+msgstr ""
+
+#: String 155
+msgid "Benchmark"
+msgstr "المؤشر"
+
+#: String 156
+msgid "Bitpay api key"
+msgstr ""
+
+#: String 157
+msgid "Black list"
+msgstr "القائمة السوداء"
+
+#: String 158
+msgid "Black List"
+msgstr "اللائحة السوداء "
+
+#: String 159
+msgid "Blog"
+msgstr "مدونة"
+
+#: String 160
+msgid "Blog post"
+msgstr "مشاركة بالمدونة"
+
+#: String 161
+msgid "Blog post created"
+msgstr "تم إنشاء بوست المدونة "
+
+#: String 162
+msgid "Blog post updated"
+msgstr "تم تحديث بوست المدونة "
+
+#: String 163
+msgid "blog section."
+msgstr "قسم المدونة"
+
+#: String 164
+msgid "Bring to top Ad"
+msgstr "ضع الاعلان بأعلى القائمة"
+
+#: String 165
+msgid "Browse"
+msgstr "تصفح"
+
+#: String 166
+msgid "Browse childs"
+msgstr ""
+
+#: String 167
+msgid "Browse Themes"
+msgstr "استعراض التصاميم"
+
+#: String 168
+msgid "Bulk"
+msgstr "الجزء الأكبر من"
+
+#: String 169
+msgid "Bulk coupon generator"
+msgstr ""
+
+#: String 170
+msgid "Buy a Theme"
+msgstr "شراء موضوع"
+
+#: String 171
+msgid "Buy Now"
+msgstr "إشتري الآن"
+
+#: String 172
+msgid "Buy product"
+msgstr "شراء المنتج"
+
+#: String 173
+msgid "buy your SSL certificate here"
+msgstr ""
+
+#: String 174
+msgid "Cache"
+msgstr "الكاش"
+
+#: String 175
+msgid "Cache configuration information"
+msgstr "معلومات تكوين ذاكرة التخزين المؤقت"
+
+#: String 176
+msgid "Can be seen and edited only by admin."
+msgstr "لا يمكن أن ينظر إليها وتعديلها إلا من قبل المشرف."
+
+#: String 177
+msgid "Can be seen in the list of ads while browsing."
+msgstr "متوفر في قائمة الإعلانات أثناء التصفح"
+
+#: String 178
+msgid "Can be seen in the user profile."
+msgstr "متوفر  في ملف تعريف المستخدم."
+
+#: String 179
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: String 180
+msgid "Cannot connect to server"
+msgstr "لا يمكن الاتصال بالمخدم"
+
+#: String 181
+msgid "Cannot delete widget %s"
+msgstr "لا يمكن حذف القطعة"
+
+#: String 182
+msgid "Can’t get it to work?"
+msgstr "انها لا تعمل؟"
+
+#: String 183
+msgid "Captcha"
+msgstr "Captcha"
+
+#: String 184
+msgid "Captcha appears in the form."
+msgstr "في استمارة الاعلان الجديد Captcha ظهور"
+
+#: String 185
+msgid "Captcha is not correct"
+msgstr "غير صحيحة Captcha "
+
+#: String 186
+msgid "Card Number"
+msgstr "رقم البطاقة "
+
+#: String 187
+msgid "Cars"
+msgstr "سيارات"
+
+#: String 188
+msgid "Categories"
+msgstr "التصنيفات"
+
+#: String 189
+msgid "Categories successfully imported."
+msgstr "تم استيراد االفئات بنجاح"
+
+#: String 190
+msgid "Categories title displayed"
+msgstr "عنوان الفئات المعروض"
+
+#: String 191
+msgid "category"
+msgstr "فئة"
+
+#: String 192
+msgid "Category"
+msgstr "فئة"
+
+#: String 193
+msgid "Category created"
+msgstr "تم انشاء الفئة "
+
+#: String 194
+msgid "Category deleted"
+msgstr "تم حذف الفئة"
+
+#: String 195
+msgid "Category details"
+msgstr "تفاصيل الفئة "
+
+#: String 196
+msgid "Category icon"
+msgstr "رمز الفئة "
+
+#: String 197
+msgid "Category not deleted"
+msgstr "لم يتم حذف الفئة"
+
+#: String 198
+msgid "Category not found"
+msgstr " لم يتم العثور على الفئة"
+
+#: String 199
+msgid "Category %s is a paid category: %d"
+msgstr ""
+
+#: String 200
+msgid "Change Location"
+msgstr "تغيير الموقع"
+
+#: String 201
+msgid "Changelog"
+msgstr "التغيير"
+
+#: String 202
+msgid "Change password"
+msgstr "تغيير كلمة السر"
+
+#: String 203
+msgid "Change plan"
+msgstr "تغيير الخطة"
+
+#: String 204
+msgid "Change the admin color theme"
+msgstr "تغيير لون موضوع المشرف"
+
+#: String 205
+msgid "Change the color scheme and style of the theme"
+msgstr "تغيير نظام الألوان وأسلوب الموضوع"
+
+#: String 206
+msgid "Change the color theme"
+msgstr "تغيير لون المظهر"
+
+#: String 207
+msgid "Change the header color scheme and style of the theme"
+msgstr ""
+
+#: String 208
+msgid "Change the main color scheme and style of the theme"
+msgstr "تغيير نظام الألوان والأسلوب الرئيسي للمظهر"
+
+#: String 209
+msgid "Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr "تغيير ترتيب الفئات الخاصة بك. ضع في الاعتبار أن المستويات أكثر من 2 متداخلة من المحتمل ألا يتم عرضها في التصميم (لا ينصح به)."
+
+#: String 210
+msgid "Change the order of your forums. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr ""
+
+#: String 211
+msgid "Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr "تغيير ترتيب المواقع الخاصة بك. ضع في اعتبارك أن أكثر من 2 مستويات متداخلة ربما لن يتم عرضها و هذا لا ينصح به"
+
+#: String 212
+msgid "Change the theme of Featured Elements"
+msgstr "تغيير مظهر العناصر مميزة"
+
+#: String 213
+msgid "Change the theme of List Elements"
+msgstr "تغيير موضوع قائمة العناصر"
+
+#: String 214
+msgid "Charts"
+msgstr "الرسوم البيانية"
+
+#: String 215
+msgid "Chat"
+msgstr "الدردشة"
+
+#: String 216
 msgid "Chat height in PX"
 msgstr " PX ارتفاع الدردشة في"
 
-#: String 808
-msgid "Search"
-msgstr "بحث"
+#: String 217
+msgid "Chat room"
+msgstr "غرفة دردشة"
 
-#: String 809
-msgid "Links"
-msgstr "روابط"
+#: String 218
+msgid "Check"
+msgstr "تحقق"
 
-#: String 810
-msgid "Links title displayed"
-msgstr "عنوان الروابط التي سيتم عرضها"
+#: String 219
+msgid "Checkbox"
+msgstr "خانة الاختيار"
 
-#: String 812
-msgid "New tab or window"
-msgstr "نافذة جديدة"
+#: String 220
+msgid "Checked for new versions."
+msgstr "تم التحقق من الإصدارات الجديدة."
 
-#: String 813
-msgid "Featured"
-msgstr "متميز"
+#: String 221
+msgid "Check form for errors"
+msgstr "تحقق من النموذج من وجود أخطاء"
 
-#: String 814
-msgid "Featured title displayed"
-msgstr "العنوان المميز المعروض"
+#: String 222
+msgid "Check for updates"
+msgstr "التحقق من وجود تحديثات"
 
-#: String 815
-msgid "Advanced option"
-msgstr "خيارات متقدمة"
+#: String 223
+msgid "Checkout"
+msgstr "الخروج"
 
-#: String 816
+#: String 224
+msgid "Check the form for errors"
+msgstr "تحقق النموذج عن الأخطاء"
+
+#: String 225
+msgid "Choose 1 or several categories"
+msgstr "اختيار 1 أو عدة فئات"
+
+#: String 226
+msgid "Choose the quality of the stored images (1-100% of the original)."
+msgstr "اختيار نوعية الصور المخزنة (1-100٪) من الأصلي"
+
+#: String 227
+msgid "City"
+msgstr "المدينة"
+
+#: String 228
+msgid "Classifieds"
+msgstr "مصنف "
+
+#: String 229
+msgid "Click here if you are not redirected"
+msgstr "اضغط هنا إذا لم يتم إعادة توجيهك"
+
+#: String 230
+msgid "Click to proceed"
+msgstr "انقر للشروع"
+
+#: String 231
+msgid "Close"
+msgstr "أغلق"
+
+#: String 232
+msgid "Collapse menu"
+msgstr "طي القائمة "
+
+#: String 233
+msgid "Color:"
+msgstr "اللون"
+
+#: String 234
+msgid "Comma separated for select"
+msgstr "مفصولة بفواصل للاختيار"
+
+#: String 235
+msgid "Comments"
+msgstr "تعليقات"
+
+#: String 236
+msgid "Comments Configuration"
+msgstr " تكوين التعليقات"
+
+#: String 237
+msgid "community forums."
+msgstr "منتديات المجتمع"
+
+#: String 238
+msgid "Config file"
+msgstr "ملف التهيئة"
+
+#: String 239
+msgid "Congratulations"
+msgstr "تهانينا"
+
+#: String 240
+msgid "contact"
+msgstr "اتصال"
+
+#: String 241
+msgid "Contact"
+msgstr "اتصال"
+
+#: String 242
+msgid "Contact form"
+msgstr "استمارة الاتصال"
+
+#: String 243
+msgid "Contact form appears in the ad."
+msgstr "استمارة الاتصال تظهر في الاعلان"
+
+#: String 244
+msgid "Contact page content"
+msgstr "محتوى صفحة الاتصال "
+
+#: String 245
+msgid "Contacts"
+msgstr "معارف"
+
+#: String 246
+msgid "Contact us"
+msgstr "اتصل بنا "
+
+#: String 247
+msgid "Contact Us"
+msgstr "اتصل بنا"
+
+#: String 248
+msgid "Content"
+msgstr "محتويات"
+
+#: String 249
+msgid "Content shift right to left"
+msgstr " تحويل المحتوى من اليمين إلى اليسار"
+
+#: String 250
+msgid "Content that will be displayed to the user after he publishes an ad"
+msgstr "المحتوى الذي سيظهر بعد نشر الاعلان "
+
+#: String 251
+msgid "Continent"
+msgstr "قارة"
+
+#: String 252
+msgid "Continue"
+msgstr "واصل "
+
+#: String 253
+msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
+msgstr "التحكم في حجم الصور التي يتم تحميلها. إدخال قيمة عددية لتعيين الحد الأقصى لحجم الصورة في  ميجا بايت."
+
+#: String 254
+msgid "Convert"
+msgstr "تحويل"
+
+#: String 255
+msgid "Convert Address into Lat/Lon:"
+msgstr ""
+
+#: String 256
+msgid "Cookie consent"
+msgstr "موافقة الكوكي"
+
+#: String 257
+msgid "Copy all?, Be aware this will replace all your texts."
+msgstr " نسخ الكل؟ كن على علم هذا سوف يحل محل كل ما لديك من النصوص"
+
+#: String 258
+msgid "Could not create bitpay invoice"
+msgstr "لم نتمكن رمن إنشاء فاتورة ال bitpay"
+
+#: String 259
+msgid "Country"
+msgstr "البلد "
+
+#: String 260
+msgid "Count visits"
+msgstr "عدد الزوار "
+
+#: String 261
+msgid "Count visits ads"
+msgstr ""
+
+#: String 262
+msgid "County"
+msgstr "محافظة"
+
+#: String 263
+msgid "Coupon"
+msgstr "قسيمة"
+
+#: String 264
+msgid "Coupon added!"
+msgstr "تم اضافة القسيمة "
+
+#: String 265
+msgid "Coupon deleted."
+msgstr "تم حذف القسيمة "
+
+#: String 266
+msgid "Coupon name"
+msgstr "اسم القسيمة "
+
+#: String 267
+msgid "Coupon Name"
+msgstr "اسم القسيمة"
+
+#: String 268
+msgid "Coupon not valid, expired or already used."
+msgstr "القسيمة غير متوفرة , منتهية الصلاحية أو مستعملة مسبقا"
+
+#: String 269
+msgid "Coupons"
+msgstr "قسائم"
+
+#: String 270
+msgid "Coupon %s created"
+msgstr "تم انشاء القسيمة بنجاح"
+
+#: String 271
+msgid "coupons left"
+msgstr "القسائم المتبقية "
+
+#: String 272
+msgid "Coupon %s not created"
+msgstr "لم يتم انشاء القسيمة "
+
+#: String 273
+msgid "Coupon %s not created, errors: %s"
+msgstr ""
+
+#: String 274
+msgid "Coupon %s not imported"
+msgstr "لم يتم استيراد القسيمة "
+
+#: String 275
+msgid "Coupon %s not imported, errors: %s"
+msgstr ""
+
+#: String 276
+msgid "Coupon %s not updated"
+msgstr "لم يتم تحديث القسيمة"
+
+#: String 277
+msgid "Coupon %s not updated, errors: %s"
+msgstr ""
+
+#: String 278
+msgid "Coupons successfully imported."
+msgstr "تم استيراد القسيمة بنجاح "
+
+#: String 279
+msgid "Coupon %s updated"
+msgstr "تم تحديث القسيمة "
+
+#: String 280
+msgid "Create"
+msgstr "إنشاء"
+
+#: String 281
+msgid "Create all new %s from original"
+msgstr "إنشاء كل شئ جديد من الأصلي "
+
+#: String 282
+msgid "Create a new profile at"
+msgstr "إنشاء ملف تعريف جديد في"
+
+#: String 283
+msgid "Create Blog Post"
+msgstr "إنشاء مدونة للنشر"
+
+#: String 284
+msgid "Create coupon"
+msgstr "إنشاء قسيمة "
+
+#: String 285
+msgid "Create custom fields among predefined templates."
+msgstr "إنشاء حقول مخصصة بين قوالب معدة مسبقا"
+
+#: String 286
+msgid "Created"
+msgstr "أنشئت"
+
+#: String 287
+msgid "Create DB"
+msgstr ""
+
+#: String 288
+msgid "Create DB."
+msgstr ""
+
+#: String 289
+msgid "Create Menu Item"
+msgstr "إنشاء عنصر القائمة"
+
+#: String 290
+msgid "Create new forum"
+msgstr "إنشاء منتدى جديد"
+
+#: String 291
+msgid "Creates few sample categories to start with"
+msgstr "يخلق عينة من الفئات لتساعدك على البدء"
+
+#: String 292
+msgid "Crontab"
+msgstr ""
+
+#: String 293
+msgid "CSS"
+msgstr ""
+
+#: String 294
+msgid "CSS file not saved"
+msgstr ""
+
+#: String 295
+msgid "CSS file saved"
+msgstr ""
+
+#: String 296
+msgid "Currency"
+msgstr "العملة"
+
+#: String 297
+msgid "Current"
+msgstr "الحالي"
+
+#: String 298
+msgid "Current CSS file"
+msgstr ""
+
+#: String 299
+msgid "Current Theme"
+msgstr "التصميم الحالي"
+
+#: String 300
+msgid "Custom"
+msgstr "مخصص"
+
+#: String 301
+msgid "Custom CSS"
+msgstr ""
+
+#: String 302
+msgid "Custom Fields"
+msgstr "الحقول المخصصة"
+
+#: String 303
+msgid "Custom fields are only available with premium themes!"
+msgstr "ميزة الحقول المخصصة موجودة فقط ضمن التصاميم المدفوعة"
+
+#: String 304
+msgid "Custom Fields for Advertisements"
+msgstr "الحقول المخصصة للإعلانات"
+
+#: String 305
+msgid "Custom Fields for users"
+msgstr "الحقول المخصصة للمستخدمين"
+
+#: String 306
+msgid "Custom Fields for Users"
+msgstr "الحقول المخصصة للمستخدمين"
+
+#: String 307
 msgid "Custom fields in search"
 msgstr "الحقول المخصصة في البحث"
 
-#: String 817
-msgid "Display site stats"
-msgstr "عرض إحصائيات الموقع "
+#: String 308
+msgid "Custom Fields Templates"
+msgstr "قوالب الحقول المخصصة"
 
-#: String 818
+#: String 309
+msgid "Custom info"
+msgstr "معلومات مخصصة"
+
+#: String 310
+msgid "Customize your profile, upload a photo, description and change your password."
+msgstr "خصص ملف التعريف الخاص بك، وتحميل صورة والوصف وتغيير كلمة المرور الخاصة بك."
+
+#: String 311
+msgid "Customize your website look and feel by choosing one of the many available themes and changing theme options."
+msgstr "خصص شكل ومظهر موقع الويب الخاص بك عن طريق اختيار واحدة من العديد من الموضوعات المتاحة وتغيير خيارات الموضوع"
+
+#: String 312
+msgid "Custom menu"
+msgstr "قائمة مخصصة"
+
+#: String 313
+msgid "%d Ads imported, click process to start migration"
+msgstr "تم استيراد الاعلانات، انقر سير العملية لبدء الهجرة"
+
+#: String 314
+msgid "%d advertisement for %s"
+msgstr ""
+
+#: String 315
+msgid "%d advertisements for %s"
+msgstr ""
+
+#: String 316
+msgid "Database charset"
+msgstr "مجموعة أحرف قاعدة البيانات"
+
+#: String 317
+msgid "Database cleaned"
+msgstr "تم تنظيف قاعدة بيانات"
+
+#: String 318
+msgid "Database Configuration"
+msgstr "إعداد قاعدة بيانات"
+
+#: String 319
+msgid "Database name"
+msgstr "اسم قاعدة البيانات"
+
+#: String 320
+msgid "Database Optimized"
+msgstr "تم تحسين قاعدة البيانات"
+
+#: String 321
+msgid "Database space"
+msgstr "مساحة قاعدة البيانات"
+
+#: String 322
+msgid "Date"
+msgstr "تاريخ"
+
+#: String 323
+msgid "Date format"
+msgstr "تنسيق التاريخ"
+
+#: String 324
+msgid "Date Paid"
+msgstr "تاريخ الدفعة "
+
+#: String 325
+msgid "Days"
+msgstr "الايام"
+
+#: String 326
+msgid "DB Configuration"
+msgstr ""
+
+#: String 327
+msgid "Deactivate"
+msgstr "الغاء التنشيط "
+
+#: String 328
+msgid "Deactivate?"
+msgstr "الغاء التنشيط "
+
+#: String 329
+msgid "Deactivated"
+msgstr "غير فعال"
+
+#: String 330
+msgid "Deactivate featured"
+msgstr "توقيف مميزة"
+
+#: String 331
+msgid "Deactivate featured?"
+msgstr "إلغاء المميز؟"
+
+#: String 332
+msgid "Debug Mode"
+msgstr "وضع التصحيح"
+
+#: String 333
+msgid "Decimal representation"
+msgstr "تمثيل المنازل العشرية"
+
+#: String 334
+msgid "Default"
+msgstr "اساسي"
+
+#: String 335
+msgid "Default links"
+msgstr "الروابط الاساسية"
+
+#: String 336
+msgid "Default state for list/grid in listing"
+msgstr "الحالة الافتراضية للقائمة / الشبكة في القائمة"
+
+#: String 337
+msgid "Default value:"
+msgstr "القيمة الافتراضية:"
+
+#: String 338
+msgid "Delete"
+msgstr "حذف"
+
+#: String 339
+msgid "Delete?"
+msgstr "حذف؟"
+
+#: String 340
+msgid "Delete all"
+msgstr "احذف الكل"
+
+#: String 341
+msgid "Delete All"
+msgstr "حذف الجميع"
+
+#: String 342
+msgid "Delete All?"
+msgstr "حذف الكل؟"
+
+#: String 343
+msgid "Delete all categories"
+msgstr "حذف جميع الفئات"
+
+#: String 344
+msgid "Delete all locations"
+msgstr "حذف جميع المواقع"
+
+#: String 345
+msgid "Deleted"
+msgstr "حذف"
+
+#: String 346
+msgid "Deleted expired cache"
+msgstr "حذف ذاكرة التخزين المؤقت منتهية الصلاحية"
+
+#: String 347
+msgid "Delete expired"
+msgstr "حذف المنتهية صلاحيتها"
+
+#: String 348
+msgid "Delete icon"
+msgstr "حذف الرمو"
+
+#: String 349
+msgid "Delete icon?"
+msgstr "حذف الرمز "
+
+#: String 350
+msgid "Delete image"
+msgstr "حذف صورة"
+
+#: String 351
+msgid "Delete photo"
+msgstr "حذف الصورة"
+
+#: String 352
+msgid "Delete photo?"
+msgstr "حذف الصور؟"
+
+#: String 353
+msgid "Description"
+msgstr "تفصيل"
+
+#: String 354
+msgid "Description of your site in no more than 160 characters."
+msgstr "ضع وصف لموقعك بما لا يزيد عن 160 حرف"
+
+#: String 355
+msgid "Desktop Version"
+msgstr "نسخة الديسك توب "
+
+#: String 356
+msgid "Details"
+msgstr "تفاصيل "
+
+#: String 357
+msgid "Direct Message"
+msgstr "رسالة مباشرة"
+
+#: String 358
+msgid "Direct message from %s"
+msgstr "رسالة مباشرة من "
+
+#: String 359
+msgid "Direct message from %s to %s"
+msgstr "رسالة مباشرة من"
+
+#: String 360
+msgid "Disable"
+msgstr "أيقاف "
+
+#: String 361
+msgid "Disable category counter badge"
+msgstr "ايقاف  فئة شعار العد "
+
+#: String 362
+msgid "Disables generated map on homepage"
+msgstr "تعطل الخريطة التي تم إنشاؤها في الصفحة الرئيسية على موقع"
+
+#: String 363
+msgid "Disallow nude pictures"
+msgstr "عدم السماح للصور العارية"
+
+#: String 364
+msgid "disallow_nudes"
+msgstr "عدم سماح صور عارية"
+
+#: String 365
+msgid "Disallows (blocks) Bots and Crawlers"
+msgstr ""
+
+#: String 366
+msgid "Disallows (blocks) Bots and Crawlers on this website"
+msgstr ""
+
+#: String 367
+msgid "Disallows Bots and Crawlers on the website"
+msgstr ""
+
+#: String 368
+msgid "Discount"
+msgstr "خصم"
+
+#: String 369
+msgid "Discount Amount"
+msgstr "قيمة الخصم "
+
+#: String 370
+msgid "Discount off"
+msgstr "خصم"
+
+#: String 371
+msgid "Discount Percentage"
+msgstr "نسبة الخصم"
+
+#: String 372
+msgid "Display breadcrumb"
+msgstr ""
+
+#: String 373
+msgid "Display categories"
+msgstr "عرض الفئات"
+
+#: String 374
+msgid "Display CMS pages"
+msgstr "CMS عرض صفحات"
+
+#: String 375
 msgid "Display Featured Ads"
 msgstr "عرض الإعلانات المميزة"
 
-#: String 819
+#: String 376
+msgid "Display footer visual"
+msgstr "عرض تذييل الصفحة البصري"
+
+#: String 377
+msgid "Display Interactive Map"
+msgstr "عرض الخريطة التفاعلية"
+
+#: String 378
+msgid "Display Locations"
+msgstr "عرض المواقع"
+
+#: String 379
+msgid "Display Mode"
+msgstr "وضع العرض"
+
+#: String 380
+msgid "Display site stats"
+msgstr "عرض إحصائيات الموقع "
+
+#: String 381
+msgid "Display slider in home"
+msgstr "عرض شريط التمرير في الصفحة الرئيسية "
+
+#: String 382
+msgid "Display slider in listing"
+msgstr ""
+
+#: String 383
+msgid "Displays location select"
+msgstr "إظهار اختيار الموقع"
+
+#: String 384
+msgid "Displays the field Address in the Ad form."
+msgstr "يكون حقل العنوان ظاهراً في استمارة الاعلان الجديد"
+
+#: String 385
+msgid "Displays the field Phone in the Ad form."
+msgstr "يكون حقل الهاتف ظاهراً في استمارة الاعلان الجديد"
+
+#: String 386
+msgid "Displays the field Price in the Ad form."
+msgstr "يكون حقل السعر ظاهراً في استمارة الاعلان الجديد"
+
+#: String 387
+msgid "Displays the field Website in the Ad form."
+msgstr "يكون حقل الموقع ظاهراً في استمارة الاعلان الجديد"
+
+#: String 388
+msgid "Displays the google maps in the Ad."
+msgstr "عرض خرائط جوجل في الإعلان."
+
+#: String 389
+msgid "Displays the google maps in the Publish new form."
+msgstr "يعرض خرائط جوجل في استمارة الاعلان الجديد"
+
+#: String 390
+msgid "Displays the Select Location in the Ad form."
+msgstr "يكون حقل اختيار الموقع ظاهراً في استمارة الاعلان الجديد"
+
+#: String 391
+msgid "Display top banner"
+msgstr "عرض أعلى راية"
+
+#: String 392
+msgid "Disqus"
+msgstr "Disqus"
+
+#: String 393
+msgid "Disqus Comments"
+msgstr "Disqus تعليقات"
+
+#: String 394
+msgid "Disqus for blog"
+msgstr "Disqus  المدونة مع  "
+
+#: String 395
+msgid "Disqus for Blog Comments"
+msgstr "Disqus تعليقات المدونة مع  "
+
+#: String 396
+msgid "Disqus for FAQ"
+msgstr "Disqus  الأسئلة المتكررة مع"
+
+#: String 397
+msgid "Disqus for FAQ Comments"
+msgstr "Disqus تعليقات الأسئلة المتكررة مع  "
+
+#: String 398
+msgid "Distance"
+msgstr "مسافة "
+
+#: String 399
+msgid "Done"
+msgstr "تم"
+
+#: String 400
+msgid "Download"
+msgstr "تحميل"
+
+#: String 401
+msgid "download example"
+msgstr "تحميل المثال"
+
+#: String 402
+msgid "Each advertisement has a publish date. By selecting format, you can change how it is shown on your website."
+msgstr "كل إعلان لديه تاريخ نشر. عن طريق اختيار الشكل، يمكنك تغيير طريقة ظهوره على موقع الويب الخاص بك"
+
+#: String 403
+msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
+msgstr "يتم تغيير حجم كل صورة عند تحميلها. هذا هو ارتفاع الصورة الكبيرة. ملاحظة: يمكنك ترك هذا الحقل فارغاً ليحدد اوتوماتيكياً"
+
+#: String 404
+msgid "Each image is resized when uploaded. This is the width of big image."
+msgstr "يتم تغيير حجم كل صورة عند تحميلها. هذا هو عرض صورة كبيرة."
+
+#: String 405
+msgid "Edit"
+msgstr "تحرير"
+
+#: String 406
+msgid "Edit advertisement"
+msgstr "تحرير الاعلان"
+
+#: String 407
+msgid "Edit Advertisement"
+msgstr "تعديل الإعلان "
+
+#: String 408
+msgid "Edit Blog Post"
+msgstr "تعديل محتوى المدونة"
+
+#: String 409
+msgid "Edit category"
+msgstr "تعديل الفئة"
+
+#: String 410
+msgid "Edit Custom Field"
+msgstr "تعديل الحقل مخصص"
+
+#: String 411
+msgid "Edit Custom Field for Advertisement"
+msgstr "تحرير حقل مخصص للإعلان"
+
+#: String 412
+msgid "Edit forum"
+msgstr "تعديل المنتدى"
+
+#: String 413
+msgid "Edit Forum"
+msgstr "تعديل المنتدى"
+
+#: String 414
+msgid "Edit location"
+msgstr "تعديل الموقع"
+
+#: String 415
+msgid "Edit Menu"
+msgstr "تعديل القائمة"
+
+#: String 416
+msgid "Edit profile"
+msgstr "تعديل الملف الشخصي"
+
+#: String 417
+msgid "Edit Profile"
+msgstr "تعديل ملف التعريف "
+
+#: String 418
+msgid "Edit Topic"
+msgstr "تعديل الموضوع"
+
+#: String 419
+msgid "Edit Translation"
+msgstr "تعديل الترجمة"
+
+#: String 420
+msgid "ElasticEmail active"
+msgstr " البريد الإلكتروني المرن نشط"
+
+#: String 421
+msgid "ElasticEmail Configuration"
+msgstr "تكوين البريد الإلكتروني المرن"
+
+#: String 422
+msgid "email"
+msgstr " البريد الإلكتروني"
+
+#: String 423
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: String 424
+msgid "Email Configuration"
+msgstr "اعدادات البريد الالكتروني"
+
+#: String 425
+msgid "Email Configuration updated"
+msgstr "تم تحديث إعدادات البريد الإلكتروني"
+
+#: String 426
+msgid "Email confirmation on"
+msgstr "تأكيد البريد الإلكتروني على"
+
+#: String 427
+msgid "Email confirmation with Moderation"
+msgstr "تأكيد البريد الإلكتروني باعتدال"
+
+#: String 428
+msgid "Email From"
+msgstr "بريد الكتروني من"
+
+#: String 429
+msgid "Email from where we send the emails, also used for software communications."
+msgstr "البريد الإلكتروني من حيث نرسل رسائل البريد الإلكتروني و يمكن استعماله للاتصالات المتعلقة بالسوفتوير"
+
+#: String 430
+msgid "Email sent"
+msgstr "تم ارسال البريد الإلكتروني "
+
+#: String 431
+msgid "Email Settings"
+msgstr "اعدادات الايمايل"
+
+#: String 432
+msgid "Email Setup and emails configuration values. Replace input fields with new desired values"
+msgstr "إعداد البريد الإلكتروني وقيم التكوين الرسائل  . استبدال حقول الإدخال مع القيم الجديدة المطلوب"
+
+#: String 433
+msgid "Email to recover password sent"
+msgstr "تم ارسال البريد الإلكتروني لاستعادة كلمة السر "
+
+#: String 434
+msgid "Enable"
+msgstr "تمكين"
+
+#: String 435
+msgid "Enable Additional Features"
+msgstr "تمكين الميزات الإضافية"
+
+#: String 436
+msgid "Enabled"
+msgstr "تم التمكين "
+
+#: String 437
+msgid "Enable reCAPTCHA as captcha provider"
+msgstr ""
+
+#: String 438
+msgid "Enable reviews"
+msgstr "تمكين الآراء"
+
+#: String 439
+msgid "Enables an alert to accept cookies"
+msgstr "تمكن منبه لقبول ملفات الكوكيز "
+
+#: String 440
+msgid "Enables Captcha"
+msgstr " Captcha تفعيل"
+
+#: String 441
+msgid "Enables Contact Form"
+msgstr "تفعيل استمارة الاتصال"
+
+#: String 442
+msgid "Enables reviews for ads and the users."
+msgstr "تمكن المشاركات متعلقة بالإعلانات والمستخدمين"
+
+#: String 443
+msgid "Enables the site to maintenance"
+msgstr "تجعل الموقع بحالة صيانة"
+
+#: String 444
+msgid "Enter keyword..."
+msgstr "أدخل الكلمة ..."
+
+#: String 445
+msgid "Environment"
+msgstr "بيئة"
+
+#: String 446
+msgid "Error"
+msgstr "خطأ"
+
+#: String 447
+msgid "Error on mail delivery, not sent"
+msgstr "خطأ في تسليم البريد، لم يتم الارسال"
+
+#: String 448
+msgid "Error: please try again!"
+msgstr "خطأ: الرجاء المحاولة مرة أخرى"
+
+#: String 449
+msgid "Expiration Date"
+msgstr "تاريخ إنتهاء الصلاحية"
+
+#: String 450
+msgid "Expire days"
+msgstr "أيام انتهاء الصلاحية"
+
+#: String 451
+msgid "Export"
+msgstr "تصدير"
+
+#: String 452
+msgid "Export all"
+msgstr "تصدير جميع"
+
+#: String 453
+msgid "Extra Info"
+msgstr "معلومات اضافية"
+
+#: String 454
+msgid "Ex. Url for Open Url Action."
+msgstr ""
+
+#: String 455
+msgid "Facebook comments"
+msgstr "تعليقات الفيسبوك"
+
+#: String 456
+msgid "Facebook Comments"
+msgstr "تعليقات الفيسبوك"
+
+#: String 457
+msgid "Failed to load content"
+msgstr "فشل في تحميل المحتوى"
+
+#: String 458
+msgid "FALSE"
+msgstr "خاطئ"
+
+#: String 459
+msgid "FAQ"
+msgstr "أسئلة متكررة"
+
+#: String 460
+msgid "Favorite"
+msgstr "مفضل "
+
+#: String 461
+msgid "Favorited"
+msgstr "في المفضلة"
+
+#: String 462
+msgid "Favorite not found"
+msgstr " لم يتم العثور على المفضلة "
+
+#: String 463
+msgid "Feature ad"
+msgstr "إعلان مميز"
+
+#: String 464
+msgid "Featured"
+msgstr "متميز"
+
+#: String 465
+msgid "Featured ads"
+msgstr "الإعلانات المميزة"
+
+#: String 466
+msgid "Featured Ads"
+msgstr "الإعلانات المميزة"
+
+#: String 467
+msgid "Featured Ads Random"
+msgstr " اعلانات مميزة عشوائية "
+
+#: String 468
+msgid "Featured ads will be highlighted for a defined number of days."
+msgstr "سيتم إبراز الإعلانات المميزة لعدد محدد من الأيام."
+
+#: String 469
+msgid "Featured Plan"
+msgstr "خطة مميزة"
+
+#: String 470
+msgid "Featured Plans"
+msgstr "خطط مميزة"
+
+#: String 471
+msgid "Featured plan updated"
+msgstr "تم تحديث الخطة المميزة "
+
+#: String 472
+msgid "Featured Random"
+msgstr ""
+
+#: String 473
+msgid "Featured title displayed"
+msgstr "العنوان المميز المعروض"
+
+#: String 474
+msgid ":field does not match the required format"
+msgstr " الحقل لا تتناسب مع الشكل المطلوب"
+
+#: String 475
+msgid ":field must be a color"
+msgstr "يجب أن يكون الحقل لون"
+
+#: String 476
+msgid ":field must be a credit card number"
+msgstr "يجب أن يكون الحقل رقم البطاقة الائتمانية "
+
+#: String 477
+msgid ":field must be a date"
+msgstr "يجب أن يكون الحقل التاريخ"
+
+#: String 478
+msgid ":field must be a decimal with :param2 places"
+msgstr ""
+
+#: String 479
+msgid ":field must be a digit"
+msgstr "يجب أن يكون الحقل رقما"
+
+#: String 480
+msgid ":field must be an email address"
+msgstr "يجب أن يكون الحقل البريد الالكتروني "
+
+#: String 481
+msgid ":field must be an ip address"
+msgstr " يجب أن يكون الحقل عنوان بروتوكول الإنترنت  "
+
+#: String 482
+msgid ":field must be a phone number"
+msgstr "يجب أن يكون الحقل رقم الهاتف "
+
+#: String 483
+msgid ":field must be at least :param2 characters long"
+msgstr ""
+
+#: String 484
+msgid ":field must be a url"
+msgstr ""
+
+#: String 485
+msgid ":field must be exactly :param2 characters long"
+msgstr ""
+
+#: String 486
+msgid ":field must be numeric"
+msgstr "يجب أن يكون حقل رقمي:"
+
+#: String 487
+msgid ":field must be one of the available options"
+msgstr "الحقل يجب أن يكون واحدا من الخيارات المتاحة:"
+
+#: String 488
+msgid ":field must be the same as :param3"
+msgstr ""
+
+#: String 489
+msgid ":field must be within the range of :param2 to :param3"
+msgstr ""
+
+#: String 490
+msgid ":field must contain a valid email domain"
+msgstr "يجب أن يحتوي الحقل على نطاق بريد إلكتروني صالح:"
+
+#: String 491
+msgid ":field must contain only letters"
+msgstr "الحقل يجب أن يحتوي على حروف فقط:"
+
+#: String 492
+msgid ":field must contain only letters and numbers"
+msgstr "الحقل يجب أن يحتوي على أحرف وأرقام فقط:"
+
+#: String 493
+msgid ":field must contain only numbers, letters and dashes"
+msgstr " الحقل يجب أن يحتوي على الأرقام والأحرف وشرطات:"
+
+#: String 494
+msgid ":field must equal :param2"
+msgstr ""
+
+#: String 495
+msgid ":field must not be empty"
+msgstr ": يجب أن لا يكون الحقل فارغ "
+
+#: String 496
+msgid ":field must not exceed :param2 characters long"
+msgstr ""
+
+#: String 497
+msgid "Field %s added"
+msgstr ""
+
+#: String 498
+msgid "Field %s already exists"
+msgstr ""
+
+#: String 499
+msgid "Field %s cannot be added"
+msgstr "لا يمكن إضافة حقول"
+
+#: String 500
+msgid "Field %s cannot be edited"
+msgstr " لا يمكن تعديل الحقول"
+
+#: String 501
+msgid "Field %s cannot be removed"
+msgstr "لا يمكن إزالة الحقول"
+
+#: String 502
+msgid "Field %s created"
+msgstr "تم انشاء الحقول "
+
+#: String 503
+msgid "Field %s deleted"
+msgstr "تم  إزالة الحقول"
+
+#: String 504
+msgid "Field %s does not exists"
+msgstr ""
+
+#: String 505
+msgid "Field %s edited"
+msgstr ""
+
+#: String 506
+msgid "Field %s removed"
+msgstr ""
+
+#: String 507
+msgid "File"
+msgstr "ملف"
+
+#: String 508
+msgid "Filter"
+msgstr "فلتر"
+
+#: String 509
+msgid "Filter categories"
+msgstr "فلتر الفئات"
+
+#: String 510
+msgid "Filter locations"
+msgstr "فلترالمناطق "
+
+#: String 511
+msgid "Find latitude & longitude"
+msgstr "البحث عن خطوط العرض وخطوط الطول"
+
+#: String 512
+msgid "Find %s‘s latitude & longitude"
+msgstr ""
+
+#: String 513
+msgid "First"
+msgstr "الأول"
+
+#: String 514
+msgid "Fixed Discount"
+msgstr "خصم ثابت"
+
+#: String 515
+msgid "Follow the suggestions above."
+msgstr "اتبع الاقتراحات المذكورة أعلاه."
+
+#: String 516
+msgid "Footer banner, allows HTML"
+msgstr ""
+
+#: String 517
+msgid "For banned word push enter."
+msgstr "للكلمات المحظورة اضغط على زر انتر"
+
+#: String 518
+msgid "Forgot password"
+msgstr "نسيت كلمة المرور"
+
+#: String 519
+msgid "Forgot password?"
+msgstr "نسيت كلمة المرور؟"
+
+#: String 520
+msgid "formats only"
+msgstr ""
+
+#: String 521
+msgid "Forum"
+msgstr "المنتدى"
+
+#: String 522
+msgid "Forum deleted"
+msgstr "المنتدى حذف"
+
+#: String 523
+msgid "Forum is created."
+msgstr "تم إنشاء المنتدى."
+
+#: String 524
+msgid "Forum is updated."
+msgstr "تم تحديث المنتدى."
+
+#: String 525
+msgid "Forum Limit, if none display all"
+msgstr ""
+
+#: String 526
+msgid "Forum not deleted"
+msgstr " لم يتم حذف المنتدى"
+
+#: String 527
+msgid "Forum parent"
+msgstr ""
+
+#: String 528
+msgid "forums"
+msgstr "المنتديات"
+
+#: String 529
+msgid "Forums"
+msgstr "المنتديات"
+
+#: String 530
+msgid "Forum Search"
+msgstr "إبحث في هذا المنتدى"
+
+#: String 531
+msgid "forum title displayed"
+msgstr "عنوان المنتدى المعروض"
+
+#: String 532
+msgid "Forum topic"
+msgstr "موضوع المنتدى "
+
+#: String 533
+msgid "Forum topic reader"
+msgstr "قارئ موضوع المنتدى"
+
+#: String 534
+msgid "Forum Topics"
+msgstr "مواضيع المنتدى"
+
+#: String 535
+msgid "FraudLabsPro api key"
+msgstr ""
+
+#: String 536
+msgid "frequently asked questions."
+msgstr "الأسئلة الشائعة"
+
+#: String 537
+msgid "Frequently asked questions"
+msgstr "الأسئلة الشائعة"
+
+#: String 538
+msgid "Frequently Asked Questions"
+msgstr "أسئلة وأجوبة"
+
+#: String 539
+msgid " Frequently Asked Questions - FAQ"
+msgstr "الأسئلة المتكررة"
+
+#: String 540
+msgid "Friendship and Dating"
+msgstr "الصداقة والتعارف"
+
+#: String 541
+msgid "From"
+msgstr "من"
+
+#: String 542
+msgid "from_email"
+msgstr ""
+
+#: String 543
+msgid "From email"
+msgstr "من البريد الإلكتروني"
+
+#: String 544
+msgid "From Email"
+msgstr "من الايمايل"
+
+#: String 545
+msgid "from %s"
+msgstr ""
+
+#: String 546
+msgid "GCM API Key"
+msgstr ""
+
+#: String 547
+msgid "General"
+msgstr "عام"
+
+#: String 548
+msgid "General Configuration"
+msgstr "الاعدادات العامة"
+
+#: String 549
+msgid "General Configuration updated"
+msgstr "تم تحديث الاعدادات العامة"
+
+#: String 550
+msgid "General site settings."
+msgstr "إعدادات الموقع العامة."
+
+#: String 551
+msgid "Generate"
+msgstr "إنشاء"
+
+#: String 552
+msgid "Generate an interactive map for your classifieds website"
+msgstr "إنشاء خريطة تفاعلية لموقع الاعلانات المصنفة الخاص بك "
+
+#: String 553
+msgid "Get Latitude and Longitude"
+msgstr "احصل على خط العرض والطول"
+
+#: String 554
+msgid "Get our professional services"
+msgstr "احصل على خدماتنا المهنية"
+
+#: String 555
+msgid "Gets Ads Latitude and Longitude from Google Maps API using advertisements address"
+msgstr "يحصل على خطوط طول وعرض الإعلانات من خرائط جوجل API باستخدام عنوان الإعلان"
+
+#: String 556
+msgid "Get started by creating and editing categories and locations for your site here."
+msgstr "ابدأ من خلال انشاء و تحرير الفئات والمناطق لموقعك هنا"
+
+#: String 557
+msgid "Go back"
+msgstr "ارجع"
+
+#: String 558
+msgid "Go Featured!"
+msgstr "اجعل اعلانك مميز"
+
+#: String 559
+msgid "Google map default latitude coordinates"
+msgstr "Google map  إحداثيات خط العرض الاساسية العائدة لـ "
+
+#: String 560
+msgid "Google map default longitude coordinates"
+msgstr "Google map  إحداثيات الطول الاساسية لـ "
+
+#: String 561
+msgid "Google map default zoom level "
+msgstr "Google map مدى التقريب الأساسي"
+
+#: String 562
+msgid "Google Maps"
+msgstr "خرائط جوجل"
+
+#: String 563
+msgid "Google Maps in Ad"
+msgstr "خرائط جوجل في الإعلان"
+
+#: String 564
+msgid "Google Maps in Publish New"
+msgstr "خرائط جوجل في نشر الجديد"
+
+#: String 565
+msgid "Google Maps Settings"
+msgstr "إعدادات خرائط جوجل "
+
+#: String 566
+msgid "Google Maps with ads"
+msgstr " خرائط Google مع الإعلانات"
+
+#: String 567
+msgid "Google map zoom level"
+msgstr "Google map مدى تقريب"
+
+#: String 568
+msgid "Go Top!"
+msgstr "ضع اعلانك بأعلى القائمة"
+
+#: String 569
+msgid "Go to top"
+msgstr "الإنتقال للأعلى"
+
+#: String 570
+msgid "Go to Website"
+msgstr "الذهاب إلى موقع الويب"
+
+#: String 571
+msgid "Go to Your Website"
+msgstr "اذهب إلى موقعك"
+
+#: String 572
+msgid "Grid"
+msgstr "شبكة"
+
+#: String 573
+msgid "has been disable for posting, due to recent spam content!"
+msgstr ""
+
+#: String 574
+msgid "Hash Key"
+msgstr "Hash Key"
+
+#: String 575
+msgid "Has image"
+msgstr "تحتوي صورة"
+
+#: String 576
+msgid "Has images"
+msgstr "يحوي صور"
+
+#: String 577
+msgid "Have you forgotten your password?"
+msgstr "هل نسيت كلمة المرور؟"
+
+#: String 578
+msgid "Header banner, allows HTML"
+msgstr ""
+
+#: String 579
+msgid "Header tool bar gets fixed in the top"
+msgstr ""
+
+#: String 580
+msgid "Heads Up!"
+msgstr "تنبيه!"
+
+#: String 581
+msgid "Height (px)"
+msgstr "الطول"
+
+#: String 582
 msgid "Hello, world"
 msgstr "أهلاً"
+
+#: String 583
+msgid "Help prevent card fraud with FraudLabsPro, for Stripe, 2co, Paymill and Authorize."
+msgstr "تساعد على منع تزوير البطاقات مع FraudLabs برو، الشريط، 2CO، باي بال والتخويل."
+
+#: String 584
+msgid "Help us improve!"
+msgstr "ساعدنا لتحسين البرنامج"
+
+#: String 585
+msgid "Here are listed specific theme configuration values. Replace input fields with new desired values for the theme."
+msgstr "هنا يتم سرد قيم اعدادات التصميم. استبدل حقول الإدخال مع القيم المرغوبة."
+
+#: String 586
+msgid "Here you can declare your display name. This is seen by everyone!"
+msgstr "هنا يمكنك وضع اسمك كما تريده أن يظهر أمام الجميع"
+
+#: String 587
+msgid "Here you can find a selection of our premium themes."
+msgstr "هنا يمكنك العثور على مجموعة من تصاميمنا"
+
+#: String 588
+msgid "Here you can modify any text you find in your web."
+msgstr "هنا يمكنك تعديل أي نص تجده في الويب."
+
+#: String 589
+msgid "Here you can reset your password if you forgot it."
+msgstr "هنا يمكنك إعادة تعيين كلمة المرور الخاصة بك إذا كنت قد نسيتها"
+
+#: String 590
+msgid "Hey!"
+msgstr "مرحبا!"
+
+#: String 591
+msgid "Hide"
+msgstr "إخفاء"
+
+#: String 592
+msgid "Hide icon on category/location description"
+msgstr "إخفاء أيقونة وصف الفئة /الموقع"
+
+#: String 593
+msgid "Hide page links on footer"
+msgstr ""
+
+#: String 594
+msgid "Hide translated texts"
+msgstr "إخفاء النصوص المترجمة"
+
+#: String 595
+msgid "Hit enter to confirm"
+msgstr "اضغط على زر انتر للتأكيد"
+
+#: String 596
+msgid "Hits"
+msgstr "مشاهدات"
+
+#: String 597
+msgid "Home"
+msgstr "الصفحة الأساسية"
+
+#: String 598
+msgid "Homepage background image URL"
+msgstr ""
+
+#: String 599
+msgid "Homepage CTA button 1 Title"
+msgstr ""
+
+#: String 600
+msgid "Homepage CTA button 1 URL"
+msgstr ""
+
+#: String 601
+msgid "Homepage CTA button 2 Title"
+msgstr ""
+
+#: String 602
+msgid "Homepage CTA button 2 URL"
+msgstr ""
+
+#: String 603
+msgid "Homepage CTA Title"
+msgstr ""
+
+#: String 604
+msgid "Homepage Header Slider CTA Title 1"
+msgstr ""
+
+#: String 605
+msgid "Homepage Header Slider CTA Title 2"
+msgstr ""
+
+#: String 606
+msgid "Homepage Header Slider CTA Title 3"
+msgstr ""
+
+#: String 607
+msgid "Homepage Header Slider CTA URL 1"
+msgstr ""
+
+#: String 608
+msgid "Homepage Header Slider CTA URL 2"
+msgstr ""
+
+#: String 609
+msgid "Homepage Header Slider CTA URL 3"
+msgstr ""
+
+#: String 610
+msgid "Homepage Header Slider Image 1"
+msgstr ""
+
+#: String 611
+msgid "Homepage Header Slider Image 2"
+msgstr ""
+
+#: String 612
+msgid "Homepage Header Slider Image 3"
+msgstr ""
+
+#: String 613
+msgid "Homepage Header Slider Subtitle 1"
+msgstr ""
+
+#: String 614
+msgid "Homepage Header Slider Subtitle 2"
+msgstr ""
+
+#: String 615
+msgid "Homepage Header Slider Subtitle 3"
+msgstr ""
+
+#: String 616
+msgid "Homepage Header Slider Title 1"
+msgstr ""
+
+#: String 617
+msgid "Homepage Header Slider Title 2"
+msgstr ""
+
+#: String 618
+msgid "Homepage Header Slider Title 3"
+msgstr ""
+
+#: String 619
+msgid "Homepage Hero Description"
+msgstr ""
+
+#: String 620
+msgid "Homepage Hero Title"
+msgstr ""
+
+#: String 621
+msgid "Homepage Only Header, allows HTML"
+msgstr ""
+
+#: String 622
+msgid "Homepage site description"
+msgstr " وصف الصفحة الرئيسية للموقع"
+
+#: String 623
+msgid "Homepage site slogan"
+msgstr "شعارالصفحة الرئيسية "
+
+#: String 624
+msgid "Hosting limit"
+msgstr " حد الاستضافة"
+
+#: String 625
+msgid "Host name"
+msgstr "اسم المستضيف"
+
+#: String 626
+msgid "How many ads are going to appear in the map of your site."
+msgstr "كم عدد الإعلانات التي سوف تظهر في خريطة موقعك."
+
+#: String 627
+msgid "How many ads are going to appear in the RSS of your site."
+msgstr "موقعك RSS كم عدد الإعلانات التي سوف تظهر في ."
+
+#: String 628
+msgid "How much the user needs to pay to top up an Ad"
+msgstr "كم يدفع المستخدم لوضع اعلانه بالأعلى"
+
+#: String 629
+msgid "How often we refresh the RSS, in seconds"
+msgstr "بالثواني RSS مدى تكرار تحديث "
+
+#: String 630
+msgid "How to configure %s"
+msgstr "كيفية التكوين %s"
+
+#: String 631
+msgid "How to create a MySQL database?"
+msgstr ""
+
+#: String 632
+msgid "HTML code for footer banner"
+msgstr ""
+
+#: String 633
+msgid "HTML code for header banner"
+msgstr ""
+
+#: String 634
+msgid "HTML in footer"
+msgstr ""
+
+#: String 635
+msgid "HTML in HEAD element"
+msgstr ""
+
+#: String 636
+msgid "HTML text area"
+msgstr ""
+
+#: String 637
+msgid "HTML/text content here"
+msgstr " هنا HTML نص أو"
+
+#: String 638
+msgid "I accept"
+msgstr "أنا أقبل"
+
+#: String 639
+msgid "Icon"
+msgstr "ايقونة"
+
+#: String 640
+msgid "Icon deleted."
+msgstr "تم حذف الأيقونة"
+
+#: String 641
+msgid "Icon file could not been saved."
+msgstr "لم نتمكن على حفظ ايقونه الملف"
+
+#: String 642
+msgid "Icon is uploaded."
+msgstr "تم تحميل الأيقونة"
+
+#: String 643
+msgid "Id"
+msgstr "Id"
+
+#: String 644
+msgid "Id Product"
+msgstr ""
+
+#: String 645
+msgid "Id_User"
+msgstr "Id_User"
+
+#: String 646
+msgid "If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register."
+msgstr "إذا تم وضع الإعلان على أنه غير مرغوب، يتم وضع العلامة أيضا على المستخدم ولن يتمكن من نشر إعلانات جديدة أو التسجيل حتى يتم إزالتها من القائمة السوداء! كما لن تسمح للمستخدمين من عناوين البريد الإلكتروني المتاح للتسجيل."
+
+#: String 647
+msgid "If you have doubts check the release notes for this version"
+msgstr "إذا كان لديك شكوك  تحقق من ملاحظات الإصدار لهذه النسخة "
+
+#: String 648
+msgid "If you need any help please check our professional services"
+msgstr "إذا كنت بحاجة إلى أي مساعدة يرجى مراجعة خدماتنا "
+
+#: String 649
+msgid "If your locale is not listed, be sure your hosting has your locale installed."
+msgstr "إذا لم يتم سرد الإعدادات المحلية، تأكد من ان الاستضافة تشمل اعداداتك المحلية المثبتة"
+
+#: String 650
+msgid "If you wanted to go to the main page instead, click here."
+msgstr "إذا أردت الذهاب إلى الصفحة الرئيسية ، انقر هنا."
+
+#: String 651
+msgid "Image"
+msgstr "صورة"
+
+#: String 652
+msgid "Image configuration"
+msgstr "تكوين الصور"
+
+#: String 653
+msgid "Image Configuration"
+msgstr "تكوين الصور"
+
+#: String 654
+msgid "Image Configuration updated"
+msgstr "تم تحديث تكوين الصور"
+
+#: String 655
+msgid "Image configuration values. Replace input fields with new desired values"
+msgstr "قيم تكوين الصورة. استبدال حقول الإدخال مع القيم الجديدة المطلوبة"
+
+#: String 656
+msgid "Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images."
+msgstr ""
+
+#: String 657
+msgid "Image height"
+msgstr "ارتفاع الصورة"
+
+#: String 658
+msgid "Image height in pixels(px)"
+msgstr "ارتفاع الصورة بالبكسل "
+
+#: String 659
+msgid "Image is not valid. Please try again."
+msgstr "الصورة غير صالحة، يرجى المحاولة مرة اخرى"
+
+#: String 660
+msgid "Image is uploaded."
+msgstr "تم تحميل الصورة"
+
+#: String 661
+msgid "Image quality"
+msgstr "جودة الصورة"
+
+#: String 662
+msgid "Image Quality"
+msgstr "جودة الصورة"
+
+#: String 663
+msgid "Images"
+msgstr "صور"
+
+#: String 664
+msgid "images allowed."
+msgstr "الصور المسموح بها."
+
+#: String 665
+msgid "Image size in mega bites(Mb)"
+msgstr "حجم الصورة في ميجا بايت"
+
+#: String 666
+msgid "Image type is not supported"
+msgstr " نوع الصورة غير معتمد"
+
+#: String 667
+msgid "Image width"
+msgstr "عرض الصورة"
+
+#: String 668
+msgid "Image width in pixels(px)"
+msgstr "عرض الصورة بالبكسل"
+
+#: String 669
+msgid "Import"
+msgstr "استيراد "
+
+#: String 670
+msgid "Import Ads"
+msgstr "استيراد الاعلانات "
+
+#: String 671
+msgid "import Categories"
+msgstr "استيراد الفئات"
+
+#: String 672
+msgid "Import Categories"
+msgstr "استيراد الفئات"
+
+#: String 673
+msgid "Import cities"
+msgstr "استيراد المدن "
+
+#: String 674
+msgid "Import continents"
+msgstr "استيراد القارات"
+
+#: String 675
+msgid "Import counties/regions"
+msgstr "استيراد المقاطعات/المناطق"
+
+#: String 676
+msgid "Import countries"
+msgstr "استيراد الدول"
+
+#: String 677
+msgid "import coupons"
+msgstr "استيراد القسائم الشرائية "
+
+#: String 678
+msgid "import Locations"
+msgstr "استيراد المواقع"
+
+#: String 679
+msgid "Import Locations"
+msgstr " استيراد المواقع"
+
+#: String 680
+msgid "Import states/provinces"
+msgstr "استيراد الولايات/المحافظات"
+
+#: String 681
+msgid "Import tool"
+msgstr " استيراد الأداة"
+
+#: String 682
+msgid "Import tool for ads"
+msgstr " استيراد الأداة الخاصة بالاعلانات"
+
+#: String 683
+msgid "Import tool for locations and categories"
+msgstr "استيراد الأدوات للمواقع والفئات"
+
+#: String 684
+msgid "in"
+msgstr "في "
+
+#: String 685
+msgid "Inactive Region Color"
+msgstr ""
+
+#: String 686
+msgid "Inbox"
+msgstr "البريد الوارد"
+
+#: String 687
+msgid "Include auto locate visitors"
+msgstr "تشمل تحديد موقع الزوار"
+
+#: String 688
+msgid "Included files"
+msgstr "الملفات المدرجة"
+
+#: String 689
+msgid "Include search by description"
+msgstr "إدراج البحث بالاعتماد على محتوى الاعلان"
+
+#: String 690
+msgid "Increment Step"
+msgstr ""
+
+#: String 691
+msgid "Infinite scroll"
+msgstr ""
+
+#: String 692
+msgid "Info"
+msgstr "معلومات"
+
+#: String 693
+msgid "in %s"
+msgstr ""
+
+#: String 694
+msgid "Install"
+msgstr "تنصيب"
+
+#: String 695
+msgid "installation"
+msgstr "تنصيب"
+
+#: String 696
+msgid "Installation"
+msgstr "تنصيب البرنامج"
+
+#: String 697
+msgid "Installation done"
+msgstr "تم تحميل البرنامج"
+
+#: String 698
+msgid "Installation Folder"
+msgstr "ملف التثبيت"
+
+#: String 699
+msgid "Install theme"
+msgstr "تنصيب التصميم"
+
+#: String 700
+msgid "Install theme from license."
+msgstr "تنصيب التصميم من الرخصة."
+
+#: String 701
+msgid "In Stock"
+msgstr "الكمية المتوفرة"
+
+#: String 702
+msgid "Interactive map"
+msgstr "الخريطة التفاعلية"
+
+#: String 703
+msgid "Interactive Map"
+msgstr "الخريطة التفاعلية"
+
+#: String 704
+msgid "Interactive map is only available with premium themes!"
+msgstr "الخريطة التفاعلية متاحة فقط لفئة المواضيع المميزة "
+
+#: String 705
+msgid "Interactive Regions"
+msgstr "المناطق المتفاعلة "
+
+#: String 706
+msgid "Interactivity"
+msgstr "التفاعل"
+
+#: String 707
+msgid "In this page you can see the requirements checks we do before we install."
+msgstr "في هذه الصفحة يمكنك ان ترى تحقيق المتطلبات الدي نقوم به قبل أن نثبت"
+
+#: String 708
+msgid "Invalid Email"
+msgstr "البريد الالكتروني غير صالح"
+
+#: String 709
+msgid "Invalid query"
+msgstr "الاستعلام غير صالح"
+
+#: String 710
+msgid "Ip address"
+msgstr "عنوان بروتوكول الإنترنت"
+
+#: String 711
+msgid "is created"
+msgstr "تم الإنشاء"
+
+#: String 712
+msgid "is edited"
+msgstr "تم التحرير"
+
+#: String 713
+msgid "is not found"
+msgstr "غير موجود"
+
+#: String 714
+msgid "Is not of valid size. Size is limited to %s MB per image"
+msgstr ""
+
+#: String 715
+msgid "Is not valid format, please use ZIP format"
+msgstr "هذا ليس تنسيق صحيح، يرجى استخدام تنسيق ZIP"
+
+#: String 716
+msgid "It changes landing page of website"
+msgstr "هذا يغير صفحة دخول الموقع"
+
+#: String 717
+msgid "Item created"
+msgstr "تم إنشاء البند"
+
+#: String 718
+msgid "Items per page"
+msgstr "العناصر لكل صفحة"
+
+#: String 719
+msgid "# items to display"
+msgstr "عدد البنود المعروضة"
+
+#: String 720
+msgid "Item updated"
+msgstr "تم تحديث البند"
+
+#: String 721
+msgid "It is either not existing, moved or deleted. Make sure the URL is correct."
+msgstr "أنها إما غير موجودة، أو تم نقلها أو حذفها. تأكد من أن العنوان  صحيح."
+
+#: String 722
+msgid "It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost."
+msgstr ""
+
+#: String 723
+msgid "It will be the first line of the tooltip."
+msgstr ""
+
+#: String 724
+msgid "It will be the second line of the tooltip."
+msgstr ""
+
+#: String 725
+msgid "I Understand"
+msgstr "أنا أفهم"
+
+#: String 726
+msgid "Jobs"
+msgstr "فرص عمل"
+
+#: String 727
+msgid "Keep Aspect Ratio"
+msgstr "الحفاظ على نسبة الارتفاع"
+
+#: String 728
+msgid "Key"
+msgstr "مفتاح"
+
+#: String 729
+msgid "Label"
+msgstr "تسمية"
+
+#: String 730
+msgid "Landing page"
+msgstr "صفحة الدخول"
+
+#: String 731
+msgid "Language"
+msgstr "لغة"
+
+#: String 732
+msgid "Language folder cannot be created with mkdir. Please correct to be able to create new translation."
+msgstr ""
+
+#: String 733
+msgid "Language saved"
+msgstr "تم حفظ اللغة"
+
+#: String 734
+msgid "Last"
+msgstr "الأخير"
+
+#: String 735
+msgid "Last 30 days"
+msgstr "اخر 30 يوم"
+
+#: String 736
+msgid "Last Answer"
+msgstr "اخر إجابة"
+
+#: String 737
+msgid "Last login"
+msgstr "آخر دخول"
+
+#: String 738
+msgid "Last Login"
+msgstr "آخر تسجيل دخول"
+
+#: String 739
+msgid "Last Message"
+msgstr "آخر رسالة"
+
+#: String 740
+msgid "Last modified"
+msgstr "تاريخ آخر تعديل"
+
+#: String 741
+msgid "Last time generated"
+msgstr "آخر مرة تم إنشاؤها"
+
+#: String 742
+msgid "Latest"
+msgstr "آخر"
+
+#: String 743
+msgid "Latest Ads"
+msgstr "أحدث الإعلانات"
+
+#: String 744
+msgid "Latest News"
+msgstr "آخر الأخبار"
+
+#: String 745
+msgid "Latest post published"
+msgstr "آخر ما لم يتم نشرىه"
+
+#: String 746
+msgid "Latest published"
+msgstr "آخر ما تم نشره"
+
+#: String 747
+msgid "Latest Published Ads"
+msgstr "أحدث الإعلانات المنشورة"
+
+#: String 748
+msgid "Latitude"
+msgstr "خط العرض"
+
+#: String 749
+msgid "Latitude coordinates"
+msgstr "إحداثيات خط العرض"
+
+#: String 750
+msgid "Leave a review"
+msgstr "اترك تعليق"
+
+#: String 751
+msgid "Left side"
+msgstr "الجانب الأيسر"
+
+#: String 752
+msgid "less than a day"
+msgstr "أقل من يوم واحد"
+
+#: String 753
+msgid "less than a month"
+msgstr "أقل من شهر"
+
+#: String 754
+msgid "less than an hour"
+msgstr "أقل من ساعة"
+
+#: String 755
+msgid "less than a week"
+msgstr "أقل من أسبوع"
+
+#: String 756
+msgid "less than a year"
+msgstr "أقل من سنة"
+
+#: String 757
+msgid "license"
+msgstr "الرخصة"
+
+#: String 758
+msgid "License"
+msgstr "رخصة"
+
+#: String 759
+msgid "License validation error, please insert again."
+msgstr "حدث خطأ في التحقق من صحة الرخصة,يرجى الادخال مرة أخرى."
+
+#: String 760
+msgid "License will be activated in %s domain."
+msgstr ""
+
+#: String 761
+msgid "Limited Offer!"
+msgstr "عرض محدود"
+
+#: String 762
+msgid "limited to 10.000 at a time"
+msgstr ""
+
+#: String 763
+msgid "Links"
+msgstr "روابط"
+
+#: String 764
+msgid "Links title displayed"
+msgstr "عنوان الروابط التي سيتم عرضها"
+
+#: String 765
+msgid "List"
+msgstr "لائحة"
+
+#: String 766
+msgid "listing"
+msgstr "قائمة"
+
+#: String 767
+msgid "Listing"
+msgstr "لائحة الاعلانات"
+
+#: String 768
+msgid "Listing Options"
+msgstr "خيارات القائمة"
+
+#: String 769
+msgid "Listing random position banner, allows HTML"
+msgstr ""
+
+#: String 770
+msgid "Listings"
+msgstr "قوائم"
+
+#: String 771
+msgid "List of all postings in"
+msgstr ""
+
+#: String 772
+msgid "List of payment configuration values. Replace input fields with new desired values."
+msgstr "قائمة قيم إعدادات الدفع. استبدل حقول الإدخال مع القيم الجديدة المرغوبة."
+
+#: String 773
+msgid "Loaded extensions"
+msgstr "الملحقات المحملة"
+
+#: String 774
+msgid "locale"
+msgstr "الإعدادات المحلية"
+
+#: String 775
+msgid "Locale"
+msgstr "الإعدادات المحلية"
+
+#: String 776
+msgid "Locate me"
+msgstr "حدد موقعي"
+
+#: String 777
+msgid "location"
+msgstr "موقع"
+
+#: String 778
+msgid "Location"
+msgstr "موقع"
+
+#: String 779
+msgid "Location created"
+msgstr "تم انشاء الموقع "
+
+#: String 780
+msgid "Location deleted"
+msgstr "تم حذف الموقع"
+
+#: String 781
+msgid "Location details"
+msgstr "تفاصيل الموقع"
+
+#: String 782
+msgid "Location icon"
+msgstr "ايقونة الموقع "
+
+#: String 783
+msgid "Location not deleted"
+msgstr "لم يتم حذف الموقع"
+
+#: String 784
+msgid "Location not found"
+msgstr " لم يتم العثور على الموقع"
+
+#: String 785
+msgid "Locations"
+msgstr "المواقع"
+
+#: String 786
+msgid "Locations successfully imported."
+msgstr "استوردت المواقع بنجاح"
+
+#: String 787
+msgid "Locations title displayed"
+msgstr "عنوان المواقع"
+
+#: String 788
+msgid "Log"
+msgstr "سجل"
+
+#: String 789
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: String 790
+msgid "Login has been temporarily disabled due to too many unsuccessful login attempts. Please try again in 24 hours."
+msgstr "تم تعطيل  تسجيل الدخول مؤقتا نظرا لعدد كبير  من محاولات الدخول الغير ناجحة. يرجى المحاولة مرة أخرى خلال 24 ساعة "
+
+#: String 791
+msgid "Login has been temporarily disabled due to too many unsuccessful login attempts. Please try again in a minute."
+msgstr "تم تعطيل  تسجيل الدخول مؤقتا نظرا لعدد كبير  من محاولات الدخول الغير ناجحة. يرجى المحاولة مرة أخرى"
+
+#: String 792
+msgid "Login to"
+msgstr "الرجاء تسجيل الدخول لل"
+
+#: String 793
+msgid "Login to reply"
+msgstr "الرجاء تسجيل الدخول للرد"
+
+#: String 794
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+#: String 795
+msgid "Logs"
+msgstr "سجل"
+
+#: String 796
+msgid "Longitude"
+msgstr "خط الطول"
+
+#: String 797
+msgid "Longitude coordinates"
+msgstr "إحداثيات الطول"
+
+#: String 798
+msgid "Mail not sent"
+msgstr "البريد لم برسل"
+
+#: String 799
+msgid "maintenance"
+msgstr "صيانة"
+
+#: String 800
+msgid "Maintenance"
+msgstr "صيانة"
+
+#: String 801
+msgid "Maintenance Mode"
+msgstr "وضع الصيانة"
+
+#: String 802
+msgid "Make featured?"
+msgstr "جعل مميزة؟"
+
+#: String 803
+msgid "Manage ads you published and edit them through this tab, you can also ask to feature or place your ad to top here."
+msgstr " قم بإدارة و تحرير الإعلانات التي نشرها من خلال هذا التبويب، يمكنك أيضا أن تطلب إلى الميزة أو وضع إعلانك إلى أعلى الصفحة هنا."
+
+#: String 804
+msgid "MANDATORY"
+msgstr "إلزامي"
+
+#: String 805
+msgid "map"
+msgstr "خريطة"
+
+#: String 806
+msgid "Map"
+msgstr "خريطة"
+
+#: String 807
+msgid "Map Border Color"
+msgstr " لون إطارالخريطة"
+
+#: String 808
+msgid "Map Border Width (px)"
+msgstr ""
+
+#: String 809
+msgid "Map height in pixels"
+msgstr "علو الخريطة "
+
+#: String 810
+msgid "Map latitude coordinates"
+msgstr "إحداثيات خطوط العرض بالخريطة"
+
+#: String 811
+msgid "Map longitude coordinates"
+msgstr "إحداثيات طول الخريطة"
+
+#: String 812
+msgid "Map on homepage"
+msgstr "الحريطة في الصفحة الرئيسية "
+
+#: String 813
+msgid "Map saved."
+msgstr "تم حفظ الخريطة"
+
+#: String 814
+msgid "Map Settings"
+msgstr "إعدادات الخريطة "
+
+#: String 815
+msgid "Map title displayed"
+msgstr "عنوان الخريطة المعروض"
+
+#: String 816
+msgid "Map View"
+msgstr "عرض الخريطة"
+
+#: String 817
+msgid "Mark as paid"
+msgstr ""
+
+#: String 818
+msgid "Markers (Coordinates)"
+msgstr "علامات (ينسق)"
+
+#: String 819
+msgid "Markers (Text Location)"
+msgstr "علامات (نص الموقع)"
+
+#: String 820
+msgid "Market"
+msgstr "سوق"
+
+#: String 821
+msgid "Max image size"
+msgstr "الحد الأقصى لحجم الصورة"
+
+#: String 822
+msgid "Maximum file size of"
+msgstr "حجم الملف الأقصى من"
+
+#: String 823
+msgid "Maximum Price"
+msgstr "الحد الأقصى لالسعر"
+
+#: String 824
+msgid "Max Price"
+msgstr "السعر الاقصى"
+
+#: String 825
+msgid "Menu"
+msgstr "القائمة"
+
+#: String 826
+msgid "Menu created"
+msgstr "تم انشاء القائمة"
+
+#: String 827
+msgid "Menu deleted"
+msgstr "تم محو القائمة"
+
+#: String 828
+msgid "Menu not created"
+msgstr "  لم يتم  انشاء القائمة"
+
+#: String 829
+msgid "Menu not updated"
+msgstr "لم يتم تحديث القائمة"
+
+#: String 830
+msgid "Menu type"
+msgstr "نوع القائمة"
+
+#: String 831
+msgid "Menu updated"
+msgstr " تم تحديث القائمة"
+
+#: String 832
+msgid "Message"
+msgstr "الرسالة"
+
+#: String 833
+msgid "Message not found"
+msgstr " لم يتم العثور على الرسالة"
+
+#: String 834
+msgid "Message not sent"
+msgstr "لم يتم ارسال الرسالة"
+
+#: String 835
+msgid "Messages"
+msgstr "الرسائل "
+
+#: String 836
+msgid "Messaging"
+msgstr "التراسل"
+
+#: String 837
+msgid "Method not found "
+msgstr "لم يتم العثور على طريقة "
+
+#: String 838
+msgid "Migrate"
+msgstr "الهجرة"
+
+#: String 839
+msgid "Migration"
+msgstr "هجرة"
+
+#: String 840
+msgid "Minimum Price"
+msgstr "الحد الأدنى للسعر"
+
+#: String 841
+msgid "Min Price"
+msgstr "الحد الأدنى للسعر"
+
+#: String 842
+msgid "Mobile Theme updated"
+msgstr "تم تحديث تصميم الموبايل"
+
+#: String 843
+msgid "Mobile Version"
+msgstr "نسخة الموبايل"
+
+#: String 844
+msgid "Moderation"
+msgstr "التحكم"
+
+#: String 845
+msgid "Moderation on"
+msgstr "الإعتدال في"
+
+#: String 846
+msgid "moments"
+msgstr "لحظات"
+
+#: String 847
+msgid "Money format"
+msgstr "تنسيق المال"
+
+#: String 848
+msgid "More"
+msgstr "أكثر"
+
+#: String 849
+msgid "More ads"
+msgstr "المزيد من الإعلانات"
+
+#: String 850
+msgid "Multi select category and location search"
+msgstr " فئة تعدد الاختيار والبحث عن موقع"
+
+#: String 851
+msgid "My ads"
+msgstr "إعلاناتي"
+
+#: String 852
+msgid "My Advertisements"
+msgstr "الإعلانات الخاصة بي"
+
+#: String 853
+msgid "My Favorites"
+msgstr "المفضلة"
+
+#: String 854
+msgid "My payments"
+msgstr "دفعاتي"
+
+#: String 855
+msgid "My Payments"
+msgstr "دفعاتي"
+
+#: String 856
+msgid "My Profile"
+msgstr "ملفي الشخصي"
+
+#: String 857
+msgid "My subscriptions"
+msgstr "اشتراكاتي"
+
+#: String 858
+msgid "Name"
+msgstr "الاسم"
+
+#: String 859
+msgid "Name (A-Z)"
+msgstr "اسم (A-Z)"
+
+#: String 860
+msgid "Name of your chat room/channel"
+msgstr "اسم غرفة الدردشة"
+
+#: String 861
+msgid "Name (Z-A)"
+msgstr "اسم (Z-A)"
+
+#: String 862
+msgid "New"
+msgstr "جديد"
+
+#: String 863
+msgid "New Advertisement"
+msgstr "إعلان جديد"
+
+#: String 864
+msgid "New Category"
+msgstr "فئة جديدة"
+
+#: String 865
+msgid "New Custom Field"
+msgstr "حقل مخصص جديد"
+
+#: String 866
+msgid "New Custom Field for Advertisement"
+msgstr "حقل مخصص جديد للإعلان"
+
+#: String 867
+msgid "New Custom Field for Users"
+msgstr "حقل جديد مخصص للمستخدمين"
+
+#: String 868
+msgid "Newest"
+msgstr "أحدث"
+
+#: String 869
+msgid "New field"
+msgstr "حقل جديد"
+
+#: String 870
+msgid "New forum"
+msgstr "منتدى جديد"
+
+#: String 871
+msgid "New Forum"
+msgstr "منتدى جديد"
+
+#: String 872
+msgid "New forum topic"
+msgstr "موضوع منتدى جديد"
+
+#: String 873
+msgid "New Forum Topic"
+msgstr "موضوع منتدى جديد"
+
+#: String 874
+msgid "New Install"
+msgstr "تنصيب جديد"
+
+#: String 875
+msgid "New Location"
+msgstr "موقع جديد"
+
+#: String 876
+msgid "New Message from %s"
+msgstr "رسالة جديدة من"
+
+#: String 877
+msgid "New password"
+msgstr "كلمة مرور جديدة"
+
+#: String 878
+msgid "Newsletter"
+msgstr "الرسالة الإخبارية"
+
+#: String 879
+msgid "Newsletters"
+msgstr "رسائل إخبارية"
+
+#: String 880
+msgid "New tab or window"
+msgstr "نافذة جديدة"
+
+#: String 881
+msgid "new topic"
+msgstr "موضوع جديد"
+
+#: String 882
+msgid "New Topic"
+msgstr "موضوع جديد"
+
+#: String 883
+msgid "New Topic is not available as a feature."
+msgstr "الموضوع الجديد غير متاح كميزة."
+
+#: String 884
+msgid "New translation"
+msgstr "ترجمة جديدة"
+
+#: String 885
+msgid "Next"
+msgstr "التالي"
+
+#: String 886
+msgid "No"
+msgstr "لا"
+
+#: String 887
+msgid "No database name was given"
+msgstr "لم يحدد أي اسم لقاعدة البيانات"
+
+#: String 888
+msgid "None"
+msgstr "لا شيء"
+
+#: String 889
+msgid "None (0) advertisement has been deleted"
+msgstr "لا شيء قد تم حذفه (0) الإعلان"
+
+#: String 890
+msgid "NOPUBLISHED"
+msgstr ""
+
+#: String 891
+msgid "No results match"
+msgstr "لا يوجد نتائج متطابقة "
+
+#: String 892
+msgid "No Subscriptions"
+msgstr "لا توجد اشتراكات"
+
+#: String 893
+msgid "Not any ad to be processed"
+msgstr ""
+
+#: String 894
+msgid "Nothing found, sorry!"
+msgstr "غذرا, لم يتم العثور على أي شيء"
+
+#: String 895
+msgid "Nothing is provided"
+msgstr "لم يتم ادخال أي شيء"
+
+#: String 896
+msgid "Notify email"
+msgstr "البريد الالكتروني للإخطار"
+
+#: String 897
+msgid "Notify me on new ad"
+msgstr "أبلغني عند نشر اعلان جديد"
+
+#: String 898
+msgid "Not paid"
+msgstr "غير مدفوع"
+
+#: String 899
+msgid "Not possible to auto update"
+msgstr "ليس من الممكن التحديث التلقائي"
+
+#: String 900
+msgid "Not published"
+msgstr "لم تنشر"
+
+#: String 901
+msgid "Not valid email."
+msgstr "البريد الإلكتروني غير صالح "
+
+#: String 902
+msgid "Not yet published"
+msgstr "لم تنشر بعد"
+
+#: String 903
+msgid "Not your advertisement"
+msgstr " الإعلان ليس لك"
+
+#: String 904
+msgid "No way!"
+msgstr "لا يمكن!"
+
+#: String 905
+msgid "Number"
+msgstr "رقم"
+
+#: String 906
+msgid "Number Coupons"
+msgstr ""
+
+#: String 907
+msgid "Number Decimal"
+msgstr "عدد عشري"
+
+#: String 908
+msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
+msgstr "تنسيق الرقم هو كيف تريد عرض الأرقام المتعلقة بالإعلانات. كل بلد لها طريقة معينة في التعامل مع الأرقام العشرية."
+
+#: String 909
+msgid "Number of Ads"
+msgstr "عدد الإعلانات"
+
+#: String 910
+msgid "Number of ads per page"
+msgstr "عدد الاعلانات بالصفحة"
+
+#: String 911
+msgid "Number of ads to display"
+msgstr "عدد الإعلانات التي سيتم عرضها"
+
+#: String 912
+msgid "Number of advertisements in listing slider"
+msgstr ""
+
+#: String 913
+msgid "Number of comments to display"
+msgstr "عدد التعليقات التي يتم عرضها"
+
+#: String 914
+msgid "Number of coupons"
+msgstr "عدد القسائم"
+
+#: String 915
+msgid "Number of images"
+msgstr "عدد الصور"
+
+#: String 916
+msgid "Number of images displayed"
+msgstr "عدد الصور المعروضة"
+
+#: String 917
+msgid "Number of items to display"
+msgstr "عدد العناصر المراد عرضها"
+
+#: String 918
+msgid "Number of unique coupons to generate"
+msgstr "عدد من القسائم الفريدة للإنشاء"
+
+#: String 919
+msgid "Numbers of ads to display in home slider"
+msgstr ""
+
+#: String 920
+msgid "Numbers of ads to display on homepage. Recommended 5."
+msgstr "عدد الإعلانات للعرض على الصفحة الرئيسية. يفضل 5."
+
+#: String 921
+msgid " of "
+msgstr ""
+
+#: String 922
+msgid "official homepage, get your post listed now."
+msgstr ""
+
+#: String 923
+msgid "OK"
+msgstr "حسنا"
+
+#: String 924
+msgid "Oldest"
+msgstr "اقدم"
+
+#: String 925
+msgid "on"
+msgstr ""
+
+#: String 926
+msgid "Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings"
+msgstr "بمجرد تسجيل الدخول لحسابك في Google Analytics، يمكنك العثور على ID تتبع في قائمة الحسابات أو في إعدادات الملكية"
+
+#: String 927
+msgid "Once set to TRUE, enables auto locate visitors"
+msgstr ""
+
+#: String 928
+msgid "Once set to TRUE, enables blog posts"
+msgstr "   يتم تفعيل المدونة TRUE عندما تكون القيمة "
+
+#: String 929
+msgid "Once set to TRUE, enables FAQ"
+msgstr "   يتم تفعيل الأسئلة المتكررة TRUE عندما تكون القيمة "
+
+#: String 930
+msgid "Once set to TRUE, enables forums posts"
+msgstr ""
+
+#: String 931
+msgid "Once set to TRUE, enables Messaging System"
+msgstr ""
+
+#: String 932
+msgid "Once set to TRUE, enables multi select category and location search"
+msgstr ""
+
+#: String 933
+msgid "Once set to TRUE, enables search to look for key words in description"
+msgstr "   يتم تفعيل البحث عن الكلمة المفتاحية في محتوى الاعلان TRUE عندما تكون القيمة "
+
+#: String 934
+msgid "Only Admin"
+msgstr "فقط المسؤول"
+
+#: String 935
+msgid "Only administrators can publish"
+msgstr "يمكن فقط للمسؤولين النشر"
+
+#: String 936
+msgid "only available with premium themes!"
+msgstr "متوفرة فقط لمستخدمين فئة المواضيع المميزة                    "
+
+#: String 937
+msgid "Only for paid transactions"
+msgstr "فقط للمعاملات المدفوعة"
+
+#: String 938
+msgid "Only if you have a premium theme you will be able to filter by users!"
+msgstr " لا يمكنك على التصفية من قبل المستخدمين إلا إذا كان لديك فئة الموضوع المميز"
+
+#: String 939
+msgid "Only numbers, letters, and underscores"
+msgstr " أرقام، أحرف و شرطات سفلية فقط"
+
+#: String 940
+msgid "only valid for"
+msgstr "صالحة فقط ل"
+
+#: String 941
+msgid "Open Classifieds is an amazing free Open Source Software. By buying a theme you help us keep the project alive and updated. Thanks!"
+msgstr ""
+
+#: String 942
+msgid "Open Classifieds migration"
+msgstr "Open Classifieds migration"
+
+#: String 943
+msgid "Open URL (new window)"
+msgstr ""
+
+#: String 944
+msgid "Open URL (same window)"
+msgstr ""
+
+#: String 945
+msgid "Optimize"
+msgstr "تحسين"
+
+#: String 946
+msgid "Optimize Database"
+msgstr "تحسين قاعدة البيانات"
+
+#: String 947
+msgid "Optimize DB"
+msgstr "تحسين DB"
+
+#: String 948
+msgid "Optional Advertisement Fields"
+msgstr "حقول اعلانات اختيارية"
+
+#: String 949
+msgid "Optional Fields"
+msgstr "حقول اختيارية"
+
+#: String 950
+msgid "Options"
+msgstr "خيارات"
+
+#: String 951
+msgid "or"
+msgstr ""
+
+#: String 952
+msgid "Or"
+msgstr "أو"
+
+#: String 953
+msgid "Order"
+msgstr "الترتيب"
+
+#: String 954
+msgid "Order could not be loaded"
+msgstr "لم نتمكن من تفعيل الطلب"
+
+#: String 955
+msgid "Orders"
+msgstr "الطلبات"
+
+#: String 956
+msgid "Original Translation"
+msgstr "الترجمة الأصلية"
+
+#: String 957
+msgid "Other"
+msgstr "غير"
+
+#: String 958
+msgid "page"
+msgstr "صفحة"
+
+#: String 959
+msgid "Page"
+msgstr "صفحة"
+
+#: String 960
+msgid "Page "
+msgstr "صفحة"
+
+#: String 961
+msgid "Page %d"
+msgstr ""
+
+#: String 962
+msgid "Page not found"
+msgstr "الصفحة غير موجودة"
+
+#: String 963
+msgid "Page Not Found"
+msgstr "لم يتم العثور على الصفحة"
+
+#: String 964
+msgid "Pages"
+msgstr "صفحات"
+
+#: String 965
+msgid "Page title displayed"
+msgstr "عنوان الصفحة المعروض"
+
+#: String 966
+msgid "Paid"
+msgstr "مدفوع"
+
+#: String 967
+msgid "Panel"
+msgstr "لوحة"
+
+#: String 968
+msgid "Paramater for the action."
+msgstr ""
+
+#: String 969
+msgid "Parent"
+msgstr "أب"
+
+#: String 970
+msgid "Parent category"
+msgstr "الفئة الأصل"
+
+#: String 971
+msgid "parent_category field"
+msgstr "حقل الفئة الأصل"
+
+#: String 972
+msgid "Parent deep"
+msgstr "عمق الأب"
+
+#: String 973
+msgid "Parent frame"
+msgstr "الإطار الأصل"
+
+#: String 974
+msgid "Password"
+msgstr "كلمة السر"
+
+#: String 975
+msgid "Password is changed"
+msgstr "تم تغيير كلمة المرور"
+
+#: String 976
+msgid "Passwords do not match"
+msgstr "لا تتطابق كلمات المرور"
+
+#: String 977
+msgid "Pay"
+msgstr "ادفع"
+
+#: String 978
+msgid "Payment"
+msgstr "دفع"
+
+#: String 979
+msgid "Payment on"
+msgstr "الدفع في "
+
+#: String 980
+msgid "Payments"
+msgstr "المدفوعات"
+
+#: String 981
+msgid "Payments Configuration"
+msgstr "اعدادات المدفوعات"
+
+#: String 982
+msgid "Payments Configuration updated"
+msgstr "تم تحديث تكوين المدفوعات "
+
+#: String 983
+msgid "Payment with Moderation"
+msgstr "الدفع في إعتدال"
+
+#: String 984
+msgid "Paymethod"
+msgstr ""
+
+#: String 985
+msgid "Paymill private key"
+msgstr "Paymill المفتاح الخاص"
+
+#: String 986
+msgid "Paymill public key"
+msgstr "Paymill المفتاح العمومي"
+
+#: String 987
+msgid "Paypal account"
+msgstr "Paypal حساب"
+
+#: String 988
+msgid "Paypal Email"
+msgstr " بريد باي بال الإلكتروني"
+
+#: String 989
+msgid "Paypal link stock control"
+msgstr "رابط مراقبة مخزون باي بال"
+
+#: String 990
+msgid "Paypal mail address"
+msgstr "Paypal ايمايل"
+
+#: String 991
+msgid "Pay with Bitcoin"
+msgstr "ادفع عن طريق بيتكوين"
+
+#: String 992
+msgid "Pay with Card"
+msgstr "ادفع عن طريق البطاقة"
+
+#: String 993
+msgid "Pay With Card"
+msgstr "ادفع عن طريق البطاقة"
+
+#: String 994
+msgid "Pay with Credit Card"
+msgstr "ادفع عن طريق بطاقة الائتمان"
+
+#: String 995
+msgid "Pay with Paypal"
+msgstr "ادفع عن طريق الباي بال"
+
+#: String 996
+msgid "Percentage Discount"
+msgstr "نسبة الخصم"
+
+#: String 997
+msgid "Phone"
+msgstr "هاتف"
+
+#: String 998
+msgid "Phone field"
+msgstr "حقل الهاتف"
+
+#: String 999
+msgid "Photo deleted."
+msgstr "تم حذف الصورة."
+
+#: String 1000
+msgid "PHP Info"
+msgstr "PHP معلومات"
+
+#: String 1001
+msgid "PHP internal call"
+msgstr ""
+
+#: String 1002
+msgid "Pick a category..."
+msgstr "اختر فئة ..."
+
+#: String 1003
+msgid "Pick a location..."
+msgstr "اختيار موقع ..."
+
+#: String 1004
+msgid "Please be sure you are using a currency that your payment gateway supports."
+msgstr "يرجى التأكد ان كنت تستخدم العملة التي تدعم من بوابة الدفع الخاصة بك."
+
+#: String 1005
+msgid "Please check your email"
+msgstr "يرجى التحقق من بريدك الالكتروني"
+
+#: String 1006
+msgid "Please check your messages"
+msgstr "يرجى قراءة الرسائل الخاصة بك"
+
+#: String 1007
+msgid "Please choose your closest location"
+msgstr "يرجى اختيار أقرب موقع"
+
+#: String 1008
+msgid "Please enter at least {0} characters."
+msgstr "الرجاء إدخال ما لا يقل عن {0} حرفا."
+
+#: String 1009
+msgid "Please enter a valid credit card number."
+msgstr "الرجاء إدخال رقم بطاقة ائتمان صالحة."
+
+#: String 1010
+msgid "Please enter a valid date."
+msgstr "يرجى إدخال تاريخ صالح"
+
+#: String 1011
+msgid "Please enter a valid date (ISO)."
+msgstr "يرجى إدخال تاريخ صالح (ISO)."
+
+#: String 1012
+msgid "Please enter a valid email address."
+msgstr "يرجى إدخال عنوان بريد إلكتروني صالح"
+
+#: String 1013
+msgid "Please enter a valid format."
+msgstr "الرجاء إدخال صيغة صالحة"
+
+#: String 1014
+msgid "Please enter a valid number."
+msgstr "الرجاء إدخال رقم صحيح"
+
+#: String 1015
+msgid "Please enter a valid URL."
+msgstr "الرجاء إدخال URL صالح."
+
+#: String 1016
+msgid "Please enter a value between {0} and {1}."
+msgstr "الرجاء إدخال قيمة بين {0} و {1 "
+
+#: String 1017
+msgid "Please enter a value between {0} and {1} characters long."
+msgstr "الرجاء إدخال قيمة بين {0} و {1} حرفا."
+
+#: String 1018
+msgid "Please enter a value greater than or equal to {0}."
+msgstr "يرجى إدخال قيمة أكبر من أو تساوي {0}"
+
+#: String 1019
+msgid "Please enter a value less than or equal to {0}."
+msgstr "الرجاء إدخال قيمة أقل من أو يساوي {0}."
+
+#: String 1020
+msgid "Please enter a value with a valid extension."
+msgstr "يرجى إدخال قيمة بملحق صالح."
+
+#: String 1021
+msgid "Please enter no more than {0} characters."
+msgstr "الرجاء إدخال ما لا يزيد عن {0} حرفا."
+
+#: String 1022
+msgid "Please enter only digits."
+msgstr "يرجى إدخال الأرقام فقط."
+
+#: String 1023
+msgid "Please enter the same value again."
+msgstr "الرجاء إدخال نفس القيمة مرة أخرى."
+
+#: String 1024
+msgid "Please fill your card details."
+msgstr "يرجى ملء تفاصيل بطاقتك."
+
+#: String 1025
+msgid "Please, first create some categories."
+msgstr "من فضلك، أنشئ أولا بعض الفئات"
+
+#: String 1026
+msgid "Please, first create some Forums."
+msgstr "من فضلك، أنشئ أولا بعض المنتديات"
+
+#: String 1027
+msgid "Please fix this field."
+msgstr "يرجى تصحيح هذا الحقل"
+
+#: String 1028
+msgid "Please insert here the license for your theme."
+msgstr "يرجى ادخال رخصة التصميم هنا"
+
+#: String 1029
+msgid "Please insert here your custom CSS."
+msgstr ""
+
+#: String 1030
+msgid "Please, login before contacting"
+msgstr "يرجى تسجيل الدخول قبل الاتصال"
+
+#: String 1031
+msgid "Please login before posting"
+msgstr "الرجاء تسجيل الدخول قبل النشر"
+
+#: String 1032
+msgid "Please, login before posting advertisement!"
+msgstr "يرجى تسجيل الدخول قبل نشر الإعلان    "
+
+#: String 1033
+msgid "Please login to unsubscribe."
+msgstr "الرجاء تسجيل الدخول لإلغاء الاشتراك"
+
+#: String 1034
+msgid "Please now erase the folder"
+msgstr "يرجى محو المجلد"
+
+#: String 1035
+msgid "Please pay before we publish your advertisement."
+msgstr "يرجى الدفع قبل نشر الإعلان الخاص بك"
+
+#: String 1036
+msgid "Please to see the changes delete the cache"
+msgstr " لمشاهدة التغييرات يرجى حذف ذاكرة التخزين المؤقت"
+
+#: String 1037
+msgid "Please use the correct CSV format"
+msgstr ""
+
+#: String 1038
+msgid "Please wait while we transfer you to Paypal"
+msgstr "يرجى الانتظار ريثما نقوم بتحويلك إلى  Paypal"
+
+#: String 1039
+msgid "Popular Ads last month"
+msgstr "الإعلانات الأكثر شعبية الشهر الماضي"
+
+#: String 1040
+msgid "Post directly"
+msgstr "بوست بشكل مباشر"
+
+#: String 1041
+msgid "Posted by"
+msgstr "أرسلت بواسطة"
+
+#: String 1042
+msgid "Posted on"
+msgstr "نشرت على"
+
+#: String 1043
+msgid "Posted on "
+msgstr "نشرت على"
+
+#: String 1044
+msgid "Posting advertisements is not yet available."
+msgstr "نشر الإعلانات غير متاح حتى الآن"
+
+#: String 1045
+msgid "Post in paid category"
+msgstr "بوست في فئة المدفوعة"
+
+#: String 1046
+msgid "Post Review"
+msgstr ""
+
+#: String 1047
+msgid "Preview"
+msgstr "عرض مسبق"
+
+#: String 1048
+msgid "Previous"
+msgstr "السابق"
+
+#: String 1049
+msgid "Price"
+msgstr "السعر"
+
+#: String 1050
+msgid "Price field"
+msgstr "حقل السعر"
+
+#: String 1051
+msgid "Price from"
+msgstr "السعر من"
+
+#: String 1052
+msgid "Price (High)"
+msgstr "السعر (الأعلى)"
+
+#: String 1053
+msgid "Price (Low)"
+msgstr "السعر (منخفض)"
+
+#: String 1054
+msgid "Price to"
+msgstr "السعر إلى"
+
+#: String 1055
+msgid "Pricing"
+msgstr "التسعير"
+
+#: String 1056
+msgid "Print this"
+msgstr "طباعة هذا"
+
+#: String 1057
+msgid "Proceed with Update"
+msgstr "ابدء في تحديث"
+
+#: String 1058
+msgid "Process"
+msgstr "عملية"
+
+#: String 1059
+msgid "Processing..."
+msgstr "على قيد العمل..."
+
+#: String 1060
+msgid "Process Queue"
+msgstr "قائمة انتظار العمليات"
+
+#: String 1061
+msgid "Product"
+msgstr "المنتج"
+
+#: String 1062
+msgid "Product could not be loaded"
+msgstr "لم نتمكن من تحميل المنتج"
+
+#: String 1063
+msgid "Profile"
+msgstr "ملف التعريف"
+
+#: String 1064
+msgid "Profile image"
+msgstr "صورة الملف الشخصي"
+
+#: String 1065
+msgid "Profile Options"
+msgstr "خيارات الملف الشخصي"
+
+#: String 1066
+msgid "Profile picture"
+msgstr "الصورة الشخصية"
+
+#: String 1067
+msgid "Profile Picture"
+msgstr "الصورة الشخصية"
+
+#: String 1068
+msgid "Providing akismet key will activate this feature. This feature deals with spam posts and emails."
+msgstr "يفعل هذه الميزة التي تتعامل مع المشاركات و الايميلات المزعجة Akismet ادخال  مفتاح "
+
+#: String 1069
+msgid "Province"
+msgstr "محافظة "
+
+#: String 1070
+msgid "Public profile"
+msgstr "ملفك الشخصي العام"
+
+#: String 1071
+msgid "Public Profile"
+msgstr " ملف شخصي عام "
+
+#: String 1072
+msgid "Publish"
+msgstr "نشر"
+
+#: String 1073
+msgid "Publish Date"
+msgstr "تاريخ النشر"
+
+#: String 1074
+msgid "Published"
+msgstr "تاريخ النشر"
+
+#: String 1075
+msgid "PUBLISHED"
+msgstr "نشرت"
+
+#: String 1076
+msgid "Publisher"
+msgstr "الناشر"
+
+#: String 1077
+msgid "publish new"
+msgstr "اعلان جديد"
+
+#: String 1078
+msgid "Publish new"
+msgstr "اعلان جديد"
+
+#: String 1079
+msgid "Publish new "
+msgstr "إعلان جديد"
+
+#: String 1080
+msgid "Publish new advertisement"
+msgstr "نشر إعلان جديد"
+
+#: String 1081
+msgid "Publish new topic"
+msgstr "نشر موضوع جديد"
+
+#: String 1082
+msgid "Publish Options"
+msgstr " خيارات النشر"
+
+#: String 1083
+msgid "Purchase"
+msgstr "شراء"
+
+#: String 1084
+msgid "Push notifications"
+msgstr ""
+
+#: String 1085
+msgid "Push notifications for your native app. Using Google Cloud Messaging, insert your API Key here."
+msgstr ""
+
+#: String 1086
+msgid "Put your website on maintenance mode until you want to launch it, manage other general settings and create custom fields through this tab."
+msgstr "ضع موقعك على وضع الصيانة حتى تريد لإطلاقه. يمكنك إدارة إعدادات عامة أخرى وإنشاء حقول مخصصة من خلال هذا التبويب"
+
+#: String 1087
+msgid "QR code"
+msgstr ""
+
+#: String 1088
+msgid "Queue cleaned"
+msgstr "تم تنظيف الطابور"
+
+#: String 1089
+msgid "Quick category creator."
+msgstr "منشئ الفئات السريع"
+
+#: String 1090
+msgid "Quick location creator."
+msgstr " منشئ المواقع السريع"
+
+#: String 1091
+msgid "Radio"
+msgstr "راديو"
+
+#: String 1092
+msgid "Rate"
+msgstr "تقييم"
+
+#: String 1093
+msgid "Rating"
+msgstr "التقييم"
+
+#: String 1094
+msgid "Read carefully"
+msgstr "اقرأ بعناية"
+
+#: String 1095
+msgid "Reading log file"
+msgstr "قراءة ملف السجل"
+
+#: String 1096
+msgid "Read more"
+msgstr "اقرأ المزيد"
+
+#: String 1097
+msgid "Read More"
+msgstr "اقرأ المزيد"
+
+#: String 1098
+msgid "Real State"
+msgstr "العقارات"
+
+#: String 1099
+msgid "reCAPTCHA Configuration"
+msgstr ""
+
+#: String 1100
+msgid "reCaptcha Secret Key"
+msgstr ""
+
+#: String 1101
+msgid "reCAPTCHA Secret Key"
+msgstr ""
+
+#: String 1102
+msgid "reCaptcha Site Key"
+msgstr ""
+
+#: String 1103
+msgid "reCAPTCHA Site Key"
+msgstr ""
+
+#: String 1104
+msgid "Refresh listing, go to top?"
+msgstr "تحديث القائمة، انتقل إلى أعلى؟"
+
+#: String 1105
+msgid "Region"
+msgstr "المنطقة"
+
+#: String 1106
+msgid "Regional Settings"
+msgstr "الإعدادات الإقليمية"
+
+#: String 1107
+msgid "Region Code:"
+msgstr "رمز المنطقة:"
+
+#: String 1108
+msgid "Regions"
+msgstr "المناطق"
+
+#: String 1109
+msgid "Region to Display"
+msgstr "المنطقة العرض"
+
+#: String 1110
+msgid "Register"
+msgstr "تسجيل"
+
+#: String 1111
+msgid "Register for free at %s"
+msgstr ""
+
+#: String 1112
+msgid "Register new user"
+msgstr "تسجيل مستخدم جديد"
+
+#: String 1113
+msgid "Reinstall System"
+msgstr "إعادة تثبيت النظام"
+
+#: String 1114
+msgid "Related ads"
+msgstr "الإعلانات ذات الصلة"
+
+#: String 1115
+msgid "Relative path to the image to use as watermark"
+msgstr "المسار النسبي إلى الصورة التي تريد استخدامها كعلامة مائية"
+
+#: String 1116
+msgid "Release Date"
+msgstr "تاريخ الإصدار"
+
+#: String 1117
+msgid "Release Notes"
+msgstr "ملاحظات الإصدار"
+
+#: String 1118
+msgid "Remember me"
+msgstr "تذكرني"
+
+#: String 1119
+msgid "Remember password"
+msgstr "تذكر كلمة المرور"
+
+#: String 1120
+msgid "Remember Password"
+msgstr "تذكر كلمة السر"
+
+#: String 1121
+msgid "Remove"
+msgstr "إزالة"
+
+#: String 1122
+msgid "Removed featured ad"
+msgstr "الاعلانات المميزة التي تم ازالتها"
+
+#: String 1123
+msgid "Remove featured?"
+msgstr "إزالة المميز؟"
+
+#: String 1124
+msgid "Remove Featured"
+msgstr "إزالة المميز"
+
+#: String 1125
+msgid "Repeat password"
+msgstr "كرر كلمة السر"
+
+#: String 1126
+msgid "replace"
+msgstr "استبدل"
+
+#: String 1127
+msgid "Replace"
+msgstr "استبدل"
+
+#: String 1128
+msgid "Replacement of a banned word"
+msgstr "استبدال لكلمة محظورة"
+
+#: String 1129
+msgid "Replace Original"
+msgstr "استبدل الأصلي"
+
+#: String 1130
+msgid "Replace Translation"
+msgstr "استبدل الترجمة"
+
+#: String 1131
+msgid "Replies"
+msgstr "ردود"
+
+#: String 1132
+msgid "Reply"
+msgstr "رد"
+
+#: String 1133
+msgid "Reply added, thanks!"
+msgstr "تم اضافة الرد, شكرا!"
+
+#: String 1134
+msgid "Reply created."
+msgstr "تم انشاء الرد "
+
+#: String 1135
+msgid "Reply here"
+msgstr "رد هنا"
+
+#: String 1136
+msgid "required"
+msgstr "مطلوب"
+
+#: String 1137
+msgid "Required"
+msgstr "مطلوب"
+
+#: String 1138
+msgid "Required field to register."
+msgstr "الحقل مطلوب للتسجيل."
+
+#: String 1139
+msgid "Required field to submit a new ad."
+msgstr "الحقل مطلوب لتقديم إعلانا جديدا."
+
+#: String 1140
+msgid "Require login to contact"
+msgstr "تتطلب تسجيل الدخول للاتصال"
+
+#: String 1141
+msgid "Require login to post"
+msgstr "تتطلب الدخول إلى حسابك للنشر "
+
+#: String 1142
+msgid "Require only the logged in users to contact."
+msgstr ""
+
+#: String 1143
+msgid "Require only the logged in users to post."
+msgstr ""
+
+#: String 1144
+msgid "Requires address to pay for extra security"
+msgstr "يتطلب عنوان للدفع للمزيد من الامان "
+
+#: String 1145
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+#: String 1146
+msgid "Restricts likely nude pictures that are being uploaded to your server."
+msgstr "يقيد الصور العارية  التي يتم تحميلها على الخادم الخاص بك."
+
+#: String 1147
+msgid "Review"
+msgstr "رأي "
+
+#: String 1148
+msgid "Review database connection parameters"
+msgstr "Review database connection parameters"
+
+#: String 1149
+msgid "reviews"
+msgstr ""
+
+#: String 1150
+msgid "Reviews"
+msgstr "التعليقات"
+
+#: String 1151
+msgid "Reviews are only available with premium themes!"
+msgstr "الاراء فقط متوفرة مع فئة المواضيع المميزة "
+
+#: String 1152
+msgid "Reviews Configuration"
+msgstr "تكوين التعليقات "
+
+#: String 1153
+msgid "Reviews for paid transactions"
+msgstr "تعليقات بشأن المعاملات المدفوعة"
+
+#: String 1154
+msgid "Right side"
+msgstr "الجانب الأيمن"
+
+#: String 1155
+msgid "Role"
+msgstr "الدور"
+
+#: String 1156
+msgid "Roles"
+msgstr "الأدوار"
+
+#: String 1157
+msgid "Rows"
+msgstr "الصفوف"
+
+#: String 1158
+msgid "rss"
+msgstr "rss"
+
+#: String 1159
+msgid "RSS"
+msgstr "RSS"
+
+#: String 1160
+msgid "RSS reader with cache"
+msgstr "مع كاش RSS قارئ "
+
+#: String 1161
+msgid "RSS title displayed"
+msgstr "RSS عنوان"
+
+#: String 1162
+msgid "RSS url address"
+msgstr "RSS url عنوان"
+
+#: String 1163
+msgid "S3 Domain Name"
+msgstr ""
+
+#: String 1164
+msgid "%s ago"
+msgstr ""
+
+#: String 1165
+msgid "Sales"
+msgstr "المبيعات"
+
+#: String 1166
+msgid "Sales statistics"
+msgstr "إحصاءات المبيعات"
+
+#: String 1167
+msgid "Sample data"
+msgstr "بيانات العينة"
+
+#: String 1168
+msgid "Sandbox"
+msgstr "Sandbox"
+
+#: String 1169
+msgid "Save"
+msgstr "حفظ"
+
+#: String 1170
+msgid "Save changes"
+msgstr "حفظ التغييرات"
+
+#: String 1171
+msgid "Saved"
+msgstr "تم الحفظ"
+
+#: String 1172
+msgid "Save plan"
+msgstr "حفظ الخطة"
+
+#: String 1173
+msgid "Save size"
+msgstr "حفظ الحجم"
+
+#: String 1174
+msgid "Scan"
+msgstr "فحص"
+
+#: String 1175
+msgid "%s copied from %s to %s"
+msgstr ""
+
+#: String 1176
+msgid "search"
+msgstr "بحث"
+
+#: String 1177
+msgid "Search"
+msgstr "بحث"
+
+#: String 1178
+msgid "searchable"
+msgstr "قابل للبحث"
+
+#: String 1179
+msgid "Searchable"
+msgstr "قابل للبحث"
+
+#: String 1180
+msgid "Search in"
+msgstr "بحث في"
+
+#: String 1181
+msgid "Search in ads will include this field as well."
+msgstr "البحث في الإعلانات يشمل هذا المجال أيضا"
+
+#: String 1182
+msgid "Search results"
+msgstr "نتائج البحث"
+
+#: String 1183
+msgid "Search users by name or email"
+msgstr "البحث عن المستخدمين حسب الاسم أو البريد الإلكتروني"
+
+#: String 1184
+msgid "seconds"
+msgstr "ثواني"
+
+#: String 1185
+msgid "secret"
+msgstr "سر"
+
+#: String 1186
+msgid "Secret Word"
+msgstr "كلمة السر "
+
+#: String 1187
+msgid "Seems a nude picture so you cannot upload it"
+msgstr "تبدو صورة عارية لذلك لا يمكن تحميله"
+
+#: String 1188
+msgid "Select"
+msgstr "اختيار"
+
+#: String 1189
+msgid "Select a color scheme"
+msgstr "حدد نظام الألوان"
+
+#: String 1190
+msgid "Select a forum"
+msgstr "اختر منتدى"
+
+#: String 1191
+msgid "Select an Option"
+msgstr "حدد الخيار"
+
+#: String 1192
+msgid "Select another"
+msgstr "حدد آخر"
+
+#: String 1193
+msgid "Select from files"
+msgstr "اختر من الملفات"
+
+#: String 1194
+msgid "Selecting parent category also selects child categories."
+msgstr ""
+
+#: String 1195
+msgid "Selection of nice extras for your installation."
+msgstr "خيارات يمكنك اضافتها للتنصيب"
+
+#: String 1196
+msgid "Select some categories first."
+msgstr "يرجى تحديد بعض الفئات أولاً"
+
+#: String 1197
+msgid "Select some locations first."
+msgstr "يرجى تحديد بعض المواقع أولاً"
+
+#: String 1198
+msgid "Select Some Options"
+msgstr "حدد بعض الخيارات"
+
+#: String 1199
+msgid "Send"
+msgstr "إرسال"
+
+#: String 1200
+msgid "Send message"
+msgstr "أرسل رسالة"
+
+#: String 1201
+msgid "Send Message"
+msgstr "إرسال رسالة"
+
+#: String 1202
+msgid "Seoname"
+msgstr "Seo اسم"
+
+#: String 1203
+msgid "seotitle"
+msgstr "Seotitle"
+
+#: String 1204
+msgid "Seotitle"
+msgstr "Seotitle"
+
+#: String 1205
+msgid "Seo Title"
+msgstr ""
+
+#: String 1206
+msgid "SEO title"
+msgstr "SEO عنوان"
+
+#: String 1207
+msgid "Set max layout width in pixels"
+msgstr "تعيين عرض التخطيط كحد أقصى بالبكسلات"
+
+#: String 1208
+msgid "Set query slogan for home search"
+msgstr "ضع شعار الاستعلام للبحث الرئيسي"
+
+#: String 1209
+msgid "Set the subtitle for the banner"
+msgstr "تعيين العنوان الفرعي لللافتة"
+
+#: String 1210
+msgid "Set the title for the banner"
+msgstr "تعيين عنوان اللافتة"
+
+#: String 1211
+msgid "Set this up to restrict image formats that are being uploaded to your server."
+msgstr "وضع هذا الأمر لتقييد تنسيقات الصور التي يتم تحميلها إلى الخادم الخاص بك."
+
+#: String 1212
+msgid "Settings"
+msgstr "إعدادات"
+
+#: String 1213
+msgid "Set up your cron at your hosting / cPanel, every minute"
+msgstr ""
+
+#: String 1214
+msgid "several decades"
+msgstr "عدة عقود"
+
+#: String 1215
+msgid "Share"
+msgstr "مشاركة "
+
+#: String 1216
+msgid "Share on social networks."
+msgstr "مشاركة على الشبكات الاجتماعية"
+
+#: String 1217
+msgid "Shipping"
+msgstr "الشحن"
+
+#: String 1218
+msgid "Short description that appears after the site name."
+msgstr "وصف قصير يظهر بعد اسم الموقع."
+
+#: String 1219
+msgid "Show"
+msgstr "عرض"
+
+#: String 1220
+msgid "Show advanced options"
+msgstr "عرض الخيارات المتقدمة"
+
+#: String 1221
+msgid "Show big query search in HOME"
+msgstr "عرض استعلام البحث كبيرة في الصفحة الرئيسية "
+
+#: String 1222
+msgid "Show listing"
+msgstr "عرض الإدراج"
+
+#: String 1223
+msgid "Show Listing"
+msgstr "عرض القائمة"
+
+#: String 1224
+msgid "Show locations in HOME"
+msgstr ""
+
+#: String 1225
+msgid "Show profile"
+msgstr "عرض الملف الشخصي"
+
+#: String 1226
+msgid "Show Profile"
+msgstr "عرض الملف الشخصي"
+
+#: String 1227
+msgid "Show QR code"
+msgstr ""
+
+#: String 1228
+msgid "Show register"
+msgstr "عرض التسجيل"
+
+#: String 1229
+msgid "Show Register"
+msgstr "عرض التسجيل"
+
+#: String 1230
+msgid "Show sharing buttons"
+msgstr "عرض أزرار التقاسم"
+
+#: String 1231
+msgid "Show Tooltip"
+msgstr "عرض تعريف الأداة"
+
+#: String 1232
+msgid "Show translated texts"
+msgstr "عرض النصوص المترجمة "
+
+#: String 1233
+msgid "Since"
+msgstr "منذ"
+
+#: String 1234
+msgid "Site Configuration"
+msgstr "إعدادات الموقع"
+
+#: String 1235
+msgid "Site currency"
+msgstr "عملة الموقع"
+
+#: String 1236
+msgid "Site description"
+msgstr "وصف الموقع"
+
+#: String 1237
+msgid "Site Description"
+msgstr "وصف الموقع"
+
+#: String 1238
+msgid "Site Language"
+msgstr "لغة الموقع"
+
+#: String 1239
+msgid "Sitemap"
+msgstr "خريطة الموقع"
+
+#: String 1240
+msgid "Sitemap Configuration updated"
+msgstr "تم تحديث اعدادات خريطة الموقع"
+
+#: String 1241
+msgid "Site name"
+msgstr "اسم الموقع"
+
+#: String 1242
+msgid "Site Name"
+msgstr "اسم الموقع"
+
+#: String 1243
+msgid "Site Statistics"
+msgstr "إحصائيات الموقع "
+
+#: String 1244
+msgid "Site URL"
+msgstr "وصلة الموقع"
+
+#: String 1245
+msgid "Site Usage Statistics"
+msgstr "  إحصائيات استخدام الموقع "
+
+#: String 1246
+msgid "Size"
+msgstr "حجم"
+
+#: String 1247
+msgid "Slideshow"
+msgstr "عرض"
+
+#: String 1248
+msgid "Smtp active"
+msgstr "Smtp فعال"
+
+#: String 1249
+msgid "Smtp auth"
+msgstr "Smtp auth"
+
+#: String 1250
+msgid "SMTP Configuration"
+msgstr ""
+
+#: String 1251
+msgid "Smtp host"
+msgstr "Smtp host"
+
+#: String 1252
+msgid "Smtp password"
+msgstr "Smtp password"
+
+#: String 1253
+msgid "Smtp port"
+msgstr "Smtp port"
+
+#: String 1254
+msgid "Smtp ssl"
+msgstr "Smtp ssl"
+
+#: String 1255
+msgid "Smtp user"
+msgstr "Smtp user"
+
+#: String 1256
+msgid "Social Auth"
+msgstr "الدخول عبر شبكات التواصل الاجتماعي"
+
+#: String 1257
+msgid "Social Authentication for login"
+msgstr "تسجيل الدخول عبر شبكات التواصل الاجتماعي"
+
+#: String 1258
+msgid "Social authentication is only available with premium themes!"
+msgstr "الدخول عبر شبكات التواصل الاجتماعي متاح فقط للتصاميم الممتازة"
+
+#: String 1259
+msgid "Social Authentication Settings"
+msgstr "اعدادات تسجيل الدخول الاجتماعي"
+
+#: String 1260
+msgid "Social Auth updated"
+msgstr " تحديث المصادقة الاجتماعية"
+
+#: String 1261
+msgid "Social Login"
+msgstr "تسجيل الدخول الاجتماعي"
+
+#: String 1262
+msgid "Software DB Updated to latest version!"
+msgstr ""
+
+#: String 1263
+msgid "Software Requirements"
+msgstr "متطلبات البرنامج"
+
+#: String 1264
+msgid "Some errors in the form"
+msgstr "يوجد أخطاء بالنموذج"
+
+#: String 1265
+msgid "Some errors were encountered, please check the details you entered."
+msgstr "وجهت بعض الأخطاء، يرجى التحقق من التفاصيل التي أدخلتها"
+
+#: String 1266
+msgid "Something went worng"
+msgstr "حدث خطأ ما"
+
+#: String 1267
+msgid "Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any."
+msgstr "حدث خطا ما ، يرجى مراجعة تنسيق الملف و إزالة علامات الاقتباس المفردة أو أحرف غريبة، في حال كان لديك أي"
+
+#: String 1268
+msgid "Something went wrong uploading your logo"
+msgstr "حدث خطأ ما في تحميل شعارك"
+
+#: String 1269
+msgid "Something went wrong with uploading pictures, please check format"
+msgstr "حصل خطأ أثناء تحميل الصور، يرجى مراجعة تنسيق الصور"
+
+#: String 1270
+msgid "Sorry, deleting %s locale emails is not allowed"
+msgstr ""
+
+#: String 1271
+msgid "Sorry there isn’t. Go to your website now!"
+msgstr ""
+
+#: String 1272
+msgid "Sort"
+msgstr "نوع"
+
+#: String 1273
+msgid "Sort by in listing"
+msgstr "الترتيب حسب القائمة"
+
+#: String 1274
+msgid "Space to optimize"
+msgstr "مساحة التحسين"
+
+#: String 1275
+msgid "Spam"
+msgstr "رسائل غير مرغوب بها"
+
+#: String 1276
+msgid "Spam?"
+msgstr "رسائل غير مرغوب بها؟"
+
+#: String 1277
+msgid "SPAM"
+msgstr "غير مرغوب"
+
+#: String 1278
+msgid "Spam Sort"
+msgstr "ترتيب الرسائل غير المرغوب فيها"
+
+#: String 1279
+msgid "Start installation"
+msgstr "ابدأ التثبيت"
+
+#: String 1280
+msgid "State"
+msgstr ""
+
+#: String 1281
+msgid "Statistics"
+msgstr "إحصائيات"
+
+#: String 1282
+msgid "Stats"
+msgstr "احصائيات"
+
+#: String 1283
+msgid "Status"
+msgstr "الوضع"
+
+#: String 1284
+msgid "Stripe private key"
+msgstr "مفتاح الشريط الخاص "
+
+#: String 1285
+msgid "Stripe public key"
+msgstr "مفتاح الشريط العام "
+
+#: String 1286
+msgid "Subject"
+msgstr "موضوع"
+
+#: String 1287
+msgid "Submit"
+msgstr "ادخال"
+
+#: String 1288
+msgid "Subscribe"
+msgstr "اشترك"
+
+#: String 1289
+msgid "Subscribed to emails"
+msgstr "اشتركت في رسائل البريد الإلكتروني"
+
+#: String 1290
+msgid "Subscribe for categories"
+msgstr "الاشتراك بفئات"
+
+#: String 1291
+msgid "Subscribe title displayed"
+msgstr " عنوان الاشتراك المعروض"
+
+#: String 1292
+msgid "Subscriptions"
+msgstr "الاشتراكات"
+
+#: String 1293
+msgid "Success"
+msgstr "تم بنجاح"
+
+#: String 1294
+msgid "Successfully imported latitude and longitude info from your ads."
+msgstr "تم استيراد خطوط الطول والعرض من إعلاناتك بنجاح"
+
+#: String 1295
+msgid "Support"
+msgstr "دعم"
+
+#: String 1296
+msgid "Sure you want to delete the widget?"
+msgstr "هل أنت متأكد أنك تريد حذف القطعة؟"
+
+#: String 1297
+msgid "Switch off custom CSS"
+msgstr ""
+
+#: String 1298
+msgid "System Check"
+msgstr " تحقيق النظام"
+
+#: String 1299
+msgid "System logs"
+msgstr "سجلات النظام"
+
+#: String 1300
+msgid "System Logs"
+msgstr "سجلات النظام"
+
+#: String 1301
+msgid "Table"
+msgstr "جدول"
+
+#: String 1302
+msgid "Table prefix"
+msgstr "بادئة الجدول"
+
+#: String 1303
+msgid "Table %s not found"
+msgstr ""
+
+#: String 1304
+msgid "Target"
+msgstr "الهدف"
+
+#: String 1305
+msgid "Terms of service"
+msgstr "شروط الخدمة"
+
+#: String 1306
+msgid "Terms of Service"
+msgstr "شروط الخدمة"
+
+#: String 1307
+msgid "Text"
+msgstr "نص"
+
+#: String 1308
+msgid "Text 256 Chars"
+msgstr "النص 256 حرف"
+
+#: String 1309
+msgid "Text Long"
+msgstr "النص الطويل"
+
+#: String 1310
+msgid "Text title displayed"
+msgstr "عنوان النص المعروض"
+
+#: String 1311
+msgid "Thanks"
+msgstr "شكرا"
+
+#: String 1312
+msgid "Thanks for submitting your advertisement"
+msgstr "شكرا لتقديم إعلانك"
+
+#: String 1313
+msgid "Thanks for using Open Classifieds."
+msgstr " Open Classifieds  شكراً لاستاخدام"
+
+#: String 1314
+msgid "Thanks for using our website."
+msgstr "شكراً لزيارة موقعنا"
+
+#: String 1315
+msgid "Thanks for your payment!"
+msgstr "شكراعلى دفع!"
+
+#: String 1316
+msgid "Thanks for your review!"
+msgstr "شكرا لرأيك!"
+
+#: String 1317
+msgid "Thanks page"
+msgstr "صفحة الشكر "
+
+#: String 1318
+msgid "Thank you for subscribing"
+msgstr "شكرا لاشتراكك"
+
+#: String 1319
+msgid "Theme activated, thanks."
+msgstr "تم تفعيل التصميم"
+
+#: String 1320
+msgid "Theme configuration updated"
+msgstr "تم تحديث اعدادات التصميم"
+
+#: String 1321
+msgid "Theme could not be downloaded"
+msgstr "لم يتم تحميل التصميم"
+
+#: String 1322
+msgid "Theme downloaded"
+msgstr "تحميل التصميم"
+
+#: String 1323
+msgid "Theme License"
+msgstr "رخصة التصميم"
+
+#: String 1324
+msgid "Theme Options"
+msgstr "خيارات التصميم"
+
+#: String 1325
+msgid "Themes"
+msgstr "تصاميم"
+
+#: String 1326
+msgid "Themes Market"
+msgstr "سوق التصاميم"
+
+#: String 1327
+msgid "Themes Updated"
+msgstr "تم تحديث التصميم"
+
+#: String 1328
+msgid "The paypal email address where the payments will be sent"
+msgstr "الذي ستتم عليه الدفعات paypal حساب"
+
+#: String 1329
+msgid "The requested page"
+msgstr "الصفحة المطلوبة"
+
+#: String 1330
+msgid "There was an error activating your license."
+msgstr "كان هناك خطأ في تفعيل الترخيص الخاص بك."
+
+#: String 1331
+msgid "This advertisement doesn´t exist, or is not yet published!"
+msgstr "هذا الاعلان غير موجود أو لم يتم نشره بعد"
+
+#: String 1332
+msgid "This email has been considered as spam! We are sorry but we can not send this email."
+msgstr "اعتبرت هذه الرسالة كرسالة غير مرغوب فيها! نحن نأسف ولكن نحن غير قادرين على ارسال الرسالة"
+
+#: String 1333
+msgid "This field is required."
+msgstr "هذه الخانة مطلوبه."
+
+#: String 1334
+msgid "This is a list of users marked as spammers. To understand how this feature works, please read this article"
+msgstr "هذه قائمة مستخدمين غير مرغوبين. لفهم كيفية عمل هذه الميزة، يرجى قراءة هذا المقال"
+
+#: String 1335
+msgid "This is not your advertisement."
+msgstr "هذا ليس الإعلان الخاص بك."
+
+#: String 1336
+msgid "This is permanent! No backups, no restores, no magic undo button. We warned you, ok?"
+msgstr ""
+
+#: String 1337
+msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
+msgstr "هذا العدد يحدد عدد الاعلانات المعروضة بالصفحة. ضع رقم صحيح"
+
+#: String 1338
+msgid "This license is in use in the theme %s"
+msgstr "هذا الترخيص على قيد الاستخدام في الموضوع"
+
+#: String 1339
+msgid "This order was already paid."
+msgstr "قد تم  دفع هذا الطلب"
+
+#: String 1340
+msgid "This post has been considered as spam! We are sorry but we can not publish this advertisement."
+msgstr "قد اعتبر هذا المنصب كغير مرغوب, نحن نأسف لكننا لا يمكن نشر هذا الإعلان."
+
+#: String 1341
+msgid "This process can take few minutes DO NOT interrupt it"
+msgstr "قد تستغرق هذه العملية عدة دقائق, لا تقاطع"
+
+#: String 1342
+msgid "Thumb height"
+msgstr "ارتفاع الصورة المصغرة"
+
+#: String 1343
+msgid "Thumb height in pixels(px)"
+msgstr "ارتفاع الصورة المصغرة بالبكسل"
+
+#: String 1344
+msgid "Thumb is a small image resized to fit certain elements. This is the height for this image."
+msgstr ""
+
+#: String 1345
+msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
+msgstr "الصورة المصغرة هي نسحة مصغرة لتناسب حجم أماكن محددة. و هذه القيمة تحدد عرض الصورة المصغرة"
+
+#: String 1346
+msgid "Thumb width"
+msgstr "عرض الصورة المصغرة"
+
+#: String 1347
+msgid "Thumb width in pixels(px)"
+msgstr "عرض الصورة المصغرة بالبكسل "
+
+#: String 1348
+msgid "Tickets"
+msgstr "تذاكر"
+
+#: String 1349
+msgid "Time Zone"
+msgstr "منطقة زمنية"
+
+#: String 1350
+msgid "title"
+msgstr "عنوان"
+
+#: String 1351
+msgid "Title"
+msgstr "عنوان"
+
+#: String 1352
+msgid "Title *"
+msgstr "عنوان *"
+
+#: String 1353
+msgid "Title:"
+msgstr "عنوان:"
+
+#: String 1354
+msgid "Title displayed"
+msgstr "العنوان المعروض"
+
+#: String 1355
+msgid "to"
+msgstr "حتى"
+
+#: String 1356
+msgid "To"
+msgstr "إلى"
+
+#: String 1357
+msgid "To buy this product you first need to register"
+msgstr "لشراء هذا المنتج تحتاج أولا إلى التسجيل"
+
+#: String 1358
+msgid "To continue your experience with %s you can get back to the main website by clicking here."
+msgstr ""
+
+#: String 1359
+msgid "Today"
+msgstr "اليوم"
+
+#: String 1360
+msgid "To get paid via Credit card you need a %s account"
+msgstr ""
+
+#: String 1361
+msgid "Toggle navigation"
+msgstr "تبديل الملاحة "
+
+#: String 1362
+msgid "To go back to the previous page, click the Back button."
+msgstr "للعودة إلى الصفحة السابقة، انقر فوق زر السابق."
+
+#: String 1363
+msgid "To include your custom HTML code (reference to JS or CSS files, etc.) in the footer of the rendered page."
+msgstr ""
+
+#: String 1364
+msgid "To include your custom HTML code (validation metadata, reference to JS/CSS files, etc.) in the HEAD element of the rendered page."
+msgstr ""
+
+#: String 1365
+msgid "To install new theme choose zip file."
+msgstr "لتنصيب تصميم جديد يرجى اختيار ملف مضغوط."
+
+#: String 1366
+msgid "Tools"
+msgstr "أدوات"
+
+#: String 1367
+msgid "Tools title displayed"
+msgstr " عناوين الأدوات المعروضة"
+
+#: String 1368
+msgid "Tooltip"
+msgstr "تلميح الأداة"
+
+#: String 1369
+msgid "Tooltip:"
+msgstr "تلميح:"
+
+#: String 1370
+msgid "Tooltip Text Color"
+msgstr "تعريف الأدوات لون الخط"
+
+#: String 1371
+msgid "Top banner background image URL"
+msgstr ""
+
+#: String 1372
+msgid "Topic"
+msgstr "موضوع"
+
+#: String 1373
+msgid "Topic is updated."
+msgstr "تم تحديث الموضوع."
+
+#: String 1374
+msgid "Topics"
+msgstr "المواضيع"
+
+#: String 1375
+msgid "Top up ad"
+msgstr ""
+
+#: String 1376
+msgid "Total"
+msgstr "المجموع"
+
+#: String 1377
+msgid "To top price"
+msgstr "سعر وضع الاعلان بالأعلى"
+
+#: String 1378
+msgid "Transaction not successful!"
+msgstr "لم تتم العملية بنجاح "
+
+#: String 1379
+msgid "Translate all?, Be aware this will replace all your texts."
+msgstr "ترجمة جميع؟، كن على علم هذا سوف يحل محل كل ما لديك من النصوص."
+
+#: String 1380
+msgid "Translation"
+msgstr "ترجمة"
+
+#: String 1381
+msgid "Translations"
+msgstr "ترجمات"
+
+#: String 1382
+msgid "Translations files available in the system."
+msgstr "ملفات الترجمات  المتاحة في النظام."
+
+#: String 1383
+msgid "Translations regenarated"
+msgstr "تم تجديد الترجمة "
+
+#: String 1384
+msgid "TRUE"
+msgstr "صحيح"
+
+#: String 1385
+msgid "TRUE or FALSE"
+msgstr "صحيحة أو خاطئة"
+
+#: String 1386
+msgid "Turn off sidebar in advertisement page"
+msgstr "إيقاف الشريط الجانبي في صفحة الإعلان"
+
+#: String 1387
+msgid "Type"
+msgstr "نوع"
+
+#: String 1388
+msgid "Type address"
+msgstr " اكتب العنوان"
+
+#: String 1389
+msgid "Type ads to display"
+msgstr "أدخل الاعلانات التي ترغب بعرضها"
+
+#: String 1390
+msgid "Type your password twice"
+msgstr "اكتب كلمة المرور مرتين"
+
+#: String 1391
+msgid "Type your password twice to change"
+msgstr "يرجى كتابة كلمة السر مرتين للتغيير"
+
+#: String 1392
+msgid "%u advertisements have been permanently deleted"
+msgstr " تم حذف الإعلانات نهائيا"
+
+#: String 1393
+msgid "Unavailable"
+msgstr "غير متاح"
+
+#: String 1394
+msgid " Unavailable"
+msgstr "غير متاح"
+
+#: String 1395
+msgid "UNAVAILABLE"
+msgstr "غير متوفره"
+
+#: String 1396
+msgid "Unavailable Sort"
+msgstr "الترتيب غير متوفر"
+
+#: String 1397
+msgid "Unconfirmed"
+msgstr "الإعلانات"
+
+#: String 1398
+msgid " Unconfirmed"
+msgstr "غير مؤكد"
+
+#: String 1399
+msgid "UNCONFIRMED"
+msgstr "غير مؤكد"
+
+#: String 1400
+msgid "Unconfirmed Sort"
+msgstr "ترتيب غير مؤكد"
+
+#: String 1401
+msgid "Unread"
+msgstr "غير مقروء"
+
+#: String 1402
+msgid "Unsubscribe"
+msgstr "إلغاء الاشتراك"
+
+#: String 1403
+msgid "Unsubscribe?"
+msgstr "إلغاء الاشتراك؟"
+
+#: String 1404
+msgid "Unsubscribe to all?"
+msgstr "إلغاء الاشتراك للجميع؟"
+
+#: String 1405
+msgid "Update"
+msgstr "تحديث"
+
+#: String 1406
+msgid "Update coupon"
+msgstr "تحديث القسيمة"
+
+#: String 1407
+msgid "Updated to "
+msgstr "المحدثة إلى"
+
+#: String 1408
+msgid "Update folder `%s` not found."
+msgstr ""
+
+#: String 1409
+msgid "Updates"
+msgstr "تحديثات"
+
+#: String 1410
+msgid "Update Topic"
+msgstr "تحديث الموضوع"
+
+#: String 1411
+msgid "Updating, do not close this window."
+msgstr "جاري التحديث، لا تغلق هذه النافذة."
+
+#: String 1412
+msgid "Upgrade your Open Classifieds site to activate this feature."
+msgstr " لتفعيل هذه الميزة Open Classifieds يرجى تحديث "
+
+#: String 1413
+msgid "Upload"
+msgstr "تحميل"
+
+#: String 1414
+msgid "Upload category icon"
+msgstr "تحميل فئة الأيقونة"
+
+#: String 1415
+msgid "Upload CSV file"
+msgstr ""
+
+#: String 1416
+msgid "Upload file"
+msgstr "تحميل الملف"
+
+#: String 1417
+msgid "Upload image logo"
+msgstr "تحميل صورة الشعار"
+
+#: String 1418
+msgid "Upload location icon"
+msgstr "تحميل رمز الموقع "
+
+#: String 1419
+msgid "Upload your favicon. Leave blank for none."
+msgstr "اضيف ايقونتكة المفضلة,اتركه فارغا للا شيء."
+
+#: String 1420
+msgid "Upload your logo. Recommended size 250px x 40px. Leave blank for none."
+msgstr "تحميل الشعار الخاص بك. أوصى حجم 250px X 40px. اتركه فارغا للا شيء."
+
+#: String 1421
+msgid "Upload your Logo. Recommended size 250px x 40px. Leave blank for none."
+msgstr ""
+
+#: String 1422
+msgid "Upload your Logo. Recommended size W:200px x H:120px. Leave blank for none."
+msgstr ""
+
+#: String 1423
+msgid "Up to"
+msgstr "حتى"
+
+#: String 1424
+msgid "Url"
+msgstr "Url"
+
+#: String 1425
+msgid "Use parent categories"
+msgstr "استخدام الفئة الأصل"
+
+#: String 1426
+msgid "user"
+msgstr "المستخدم"
+
+#: String 1427
+msgid "User"
+msgstr "المستخدم"
+
+#: String 1428
+msgid "User account will be created"
+msgstr "سيتم إنشاء حساب المستخدم"
+
+#: String 1429
+msgid "User already exists"
+msgstr "المستخدم موجود مسبقا"
+
+#: String 1430
+msgid "User name"
+msgstr "اسم المستخدم"
+
+#: String 1431
+msgid "User not found"
+msgstr "لم يتم العثور على المستخدم "
+
+#: String 1432
+msgid "User not in database"
+msgstr "المستخدم ليس في قاعدة البيانات"
+
+#: String 1433
+msgid "User paypal link"
+msgstr "العائدة للمستخدم paypal وصلة"
+
+#: String 1434
+msgid "User Profile"
+msgstr "الملف الشخصي للمستخدم"
+
+#: String 1435
+msgid "users"
+msgstr "مستخدمين"
+
+#: String 1436
+msgid "Users"
+msgstr "مستخدمين"
+
+#: String 1437
+msgid "User %s has been removed from black list."
+msgstr ""
+
+#: String 1438
+msgid "Users marked a spam"
+msgstr " المستخدمين الرسائل الغير مرغوب فيهم "
+
+#: String 1439
+msgid "Users not logged last 3 months"
+msgstr ""
+
+#: String 1440
+msgid "Users with featured ads."
+msgstr "المستخدمين مع الإعلانات المميزة"
+
+#: String 1441
+msgid "Users with featured ads expired."
+msgstr ""
+
+#: String 1442
+msgid "Users without published ads."
+msgstr "المستخدمين دون إعلانات منشورة."
+
+#: String 1443
+msgid "Uses CDN for CSS/JS"
+msgstr ""
+
+#: String 1444
+msgid "Use the form below to help you get the coordinates values"
+msgstr "استخدم النموذج أدناه لمساعدتك في الحصول على قيم الإحداثيات"
+
+#: String 1445
+msgid "Using mobile theme"
+msgstr "استعمال تصميم الموبايل"
+
+#: String 1446
+msgid "Valid Date"
+msgstr ""
+
+#: String 1447
+msgid "valid until"
+msgstr "ساري المفعول حتى"
+
+#: String 1448
+msgid "Valid until"
+msgstr "ساري المفعول حتى"
+
+#: String 1449
+msgid "Valid Until"
+msgstr "صالح حتى"
+
+#: String 1450
+msgid "Values"
+msgstr "قيم"
+
+#: String 1451
+msgid "Version"
+msgstr "الإصدار"
+
+#: String 1452
+msgid "View Advertisement"
+msgstr "عرض الإعلان"
+
+#: String 1453
+msgid "views"
+msgstr "مرات العرض"
+
+#: String 1454
+msgid "Views and Ads"
+msgstr "الاعلانات و عدد المشاهدات"
+
+#: String 1455
+msgid "Views and Ads statistics"
+msgstr "احصائيات الاعلان"
+
+#: String 1456
+msgid "Views and Contacts statistic"
+msgstr "إحصائيات مرات العرض و "
+
+#: String 1457
+msgid "Visits"
+msgstr "الزيارات"
+
+#: String 1458
+msgid "Visit Site"
+msgstr "زيارة الموقع"
+
+#: String 1459
+msgid "Warning"
+msgstr "تحذير"
+
+#: String 1460
+msgid "Warning, something went wrong while deleting"
+msgstr "تحذير، حصل خطأ أثناء حذف"
+
+#: String 1461
+msgid "Warning, something went wrong while deleting Ad with id %u"
+msgstr "تحذير، حدث خطأ ما أثناء حذف الإعلان"
+
+#: String 1462
+msgid "Watermark"
+msgstr "العلامة المائية"
+
+#: String 1463
+msgid "Watermark path"
+msgstr "مسار العلامة المائية"
+
+#: String 1464
+msgid "Watermark position"
+msgstr "موقع العلامة المائية"
+
+#: String 1465
+msgid "We are working on our site, please visit later. Thanks"
+msgstr "نحن نعمل على موقعنا، الرجاء الزيارة في وقت لاحق. شكرا"
+
+#: String 1466
+msgid "Website"
+msgstr "الموقع"
+
+#: String 1467
+msgid "Website field"
+msgstr "حقل الموقع"
+
+#: String 1468
+msgid "Web site slogan"
+msgstr "شعار الموقع"
+
+#: String 1469
+msgid "We can not copy the %s since the locale %s already has existing %s"
+msgstr ""
+
+#: String 1470
+msgid "We can not read file %s"
+msgstr " لا يمكن قراءة الملف"
+
+#: String 1471
+msgid "We detected you are currently off-line, please connect to gain full experience."
+msgstr "تبين لنا أنك غير متصل بالانترنت، يرجى الاتصال بالانترنت للاستمتاع بالبرنامج بشكل كامل"
+
+#: String 1472
+msgid "We do not have any advertisements in this category"
+msgstr "لا يوجد أي اعلان بهذه الفئة"
+
+#: String 1473
+msgid "We do not have any blog post"
+msgstr "ليس لدينا أي اعلان مدونة"
+
+#: String 1474
+msgid "We do not have any blog posts"
+msgstr "لا يوجد أي بوست للمدونة "
+
+#: String 1475
+msgid "We do not have any FAQ-s"
+msgstr "ليس لدينا أي أسئلة متكررة"
+
+#: String 1476
+msgid "We do not have any reviews for this product"
+msgstr "ليس لدينا أي ملاحظات لهذا المنتج"
+
+#: String 1477
+msgid "We had a problem downloading latest version, try later please."
+msgstr "كان لدينا مشكلة تنزيل أحدث إصدار، يرجى المحاولة لاحقا."
+
+#: String 1478
+msgid "We had, issues with your transaction. Please try paying with another paymethod."
+msgstr ""
+
+#: String 1479
+msgid "We have detected some incompatibilities, installation may not work as expected but you can try."
+msgstr "لقد تم الكشف عن بعض حالات عدم التوافق، قد لا يعمل بالشكل المتوقع ولكن يمكنك المحاولة."
+
+#: String 1480
+msgid "Welcome"
+msgstr "أهلا بك"
+
+#: String 1481
+msgid "Welcome!"
+msgstr "أهلا وسهلا!"
+
+#: String 1482
+msgid "Welcome to"
+msgstr "أهلاً بكم في"
+
+#: String 1483
+msgid "Welcome to the super easy and fast installation"
+msgstr "أهلاً بك مع عملية تنصيب البرنامج السهلة و السريعة"
+
+#: String 1484
+msgid "We need your email address to complete"
+msgstr "نحتاج عنوان البريد الإلكتروني الخاص بك"
+
+#: String 1485
+msgid "We use cookies to track usage and preferences"
+msgstr "نحن نستخدم ملفات الكوكيز لتعقب الاستخدام والتفضيلات"
+
+#: String 1486
+msgid "We will move all the ads to home category."
+msgstr "سنقوم بنقل جميع الإعلانات للفئة الرئيسية"
+
+#: String 1487
+msgid "We will move all the ads to home location."
+msgstr "سنقوم بنقل جميع الإعلانات للموقع الرئيسي"
+
+#: String 1488
+msgid "We will move the siblings categories and ads to the parent of this category."
+msgstr ""
+
+#: String 1489
+msgid "We will remove all the forum posts and answers."
+msgstr "سنقوم بإزالة جميع المشاركات والأجوبة بالمنتدى."
+
+#: String 1490
+msgid "Where do you want the widget displayed?"
+msgstr "أين تريد عرض الويدجت؟"
+
+#: String 1491
+msgid "Where you want the sidebar to appear"
+msgstr "حيث تريد أن تظهر في الشريط الجانبي"
+
+#: String 1492
+msgid "Widget created in %s"
+msgstr "أنشئت القطعة في "
+
+#: String 1493
+msgid "Widget parameter missing"
+msgstr "  محدد ويدجت مفقود "
+
+#: String 1494
+msgid "Widgets"
+msgstr "إضافات"
+
+#: String 1495
+msgid "Widget %s deleted"
+msgstr ""
+
+#: String 1496
+msgid "Widget %s saved in %s"
+msgstr ""
+
+#: String 1497
+msgid "Width (px)"
+msgstr "العرض"
+
+#: String 1498
+msgid "Work environment"
+msgstr "بيئة العمل"
+
+#: String 1499
+msgid "Wrong Api Key"
+msgstr ""
+
+#: String 1500
+msgid "Wrong Api User Token"
+msgstr ""
+
+#: String 1501
+msgid "Wrong Captcha"
+msgstr ""
+
+#: String 1502
+msgid "Wrong email or password"
+msgstr "البريد الإلكتروني غير صحيح أو كلمة المرور"
+
+#: String 1503
+msgid "Wrong user name or password"
+msgstr "اسم المستخدم أو كلمة المرور خاطئة"
+
+#: String 1504
+msgid "Yes"
+msgstr "نعم "
+
+#: String 1505
+msgid "Yes, definitely!"
+msgstr "نعم بالتأكيد"
+
+#: String 1506
+msgid "Yes, Keep me updated!"
+msgstr "نعم، إبقني على اطلاع"
+
+#: String 1507
+msgid "Yesterday"
+msgstr "البارحة"
+
+#: String 1508
+msgid "You already added a review"
+msgstr "أنك أضفت مراجعة مسبقا"
+
+#: String 1509
+msgid "You are assigning a parent category that does not exist"
+msgstr ""
+
+#: String 1510
+msgid "You are assigning a parent location that does not exist"
+msgstr ""
+
+#: String 1511
+msgid "You are in maintenance mode, only you can see the website"
+msgstr " وضع الصيانة، فقط أنت يمكنك الاطلاع على الموقع"
+
+#: String 1512
+msgid "You are not using latest version, please update."
+msgstr "انك  لست  تستخدم الإصدار الأحدث , الرجاء تحديث"
+
+#: String 1513
+msgid "You are now viewing the back panel at %s here you can manage your ads, favorites, payments and more."
+msgstr ""
+
+#: String 1514
+msgid "You are now viewing your admin panel, where you can control almost everything in your classifieds site."
+msgstr "أنت الآن تعرض لوحة المشرف، حيث يمكنك التحكم في كل شيء تقريبا في موقع الإعلانات المصنفة الخاص بك "
+
+#: String 1515
+msgid "You are responsible for any damages or down time at your site"
+msgstr "أنت مسؤول عن أي أضرار أو عطل في موقعك"
+
+#: String 1516
+msgid "You are selecting a location that does not exist"
+msgstr "إنك قمت باختيار موقع لا وجود له"
+
+#: String 1517
+msgid "You are unsubscribed"
+msgstr "لقد تم إلغاء اشتراكك"
+
+#: String 1518
+msgid "You can change the look and feel of your website here."
+msgstr "يمكنك تغيير مظهر الموقع هنا"
+
+#: String 1519
+msgid "You can check payments you made and see your favorites list here"
+msgstr "يمكنك التحقق من المدفوعات التي أجريتها والنظرالى القائمة المفضلة هنا"
+
+#: String 1520
+msgid "You can choose if you wish to display amount of visits at each advertisement."
+msgstr "يمكنك اختيار ما إذا كنت ترغب في عرض كمية الزيارات في كل إعلان."
+
+#: String 1521
+msgid "You can choose if you wish to display random related ads at each advertisement"
+msgstr "يمكنك اختيار ما إذا كنت ترغب في عرض إعلانات عشوائية ذات صلة في كل إعلان"
+
+#: String 1522
+msgid "You can choose if you wish to display sharing buttons at each advertisement."
+msgstr "يمكنك اختيار ما إذا كنت ترغب في عرض أزرار تقاسم في كل إعلان."
+
+#: String 1523
+msgid "You can choose what ads you want to display in home."
+msgstr "يمكنك اختيار أي اعلانات تريد عرضها في الصفحة الاساسية"
+
+#: String 1524
+msgid "You can leave it blank for no action."
+msgstr "يمكنك تركه فارغا لعدم اتخاذ أي إجراء."
+
+#: String 1525
+msgid "You can move it to the inactive placeholder"
+msgstr "يمكنك نقله إلى العنصر النائب الغير فعال"
+
+#: String 1526
+msgid "You can not review yourself."
+msgstr "لا يمكنك المراجعة بنفسك"
+
+#: String 1527
+msgid "You can not set as parent the same category"
+msgstr ""
+
+#: String 1528
+msgid "You can not set as parent the same location"
+msgstr ""
+
+#: String 1529
+msgid "You can only add a review if you bought this product"
+msgstr "يمكنك فقط إضافة الاستعراض إذا قمت بشراء هذا المنتج"
+
+#: String 1530
+msgid "You can try a new search or publish a new topic ;)"
+msgstr "يمكنك محاولة البحث من جديد أو نشر أي موضوع جديد"
+
+#: String 1531
+msgid "You did not confirmed your delete action."
+msgstr "أنت لم تؤكد إجراء الحذف الخاص بك."
+
+#: String 1532
+msgid "You do not have any advertisements waiting to be published"
+msgstr " ليس لديك أي اعلان لم يتم نشره"
+
+#: String 1533
+msgid "You do not have permissions to access %s"
+msgstr "ليس لديك صلاحية الدخول إلى"
+
+#: String 1534
+msgid "You don’t have any messages yet."
+msgstr "ليس لديك أي رسائل"
+
+#: String 1535
+msgid "You dont have permission to access this link"
+msgstr "لا تملك الصلاحية للدخول"
+
+#: String 1536
+msgid "You got %d ads to get processed"
+msgstr ""
+
+#: String 1537
+msgid "You have an old version and automatic update is not possible. Please read the release notes and the manual update instructions."
+msgstr "لديك إصدار قديم والتحديث التلقائي غير ممكن. يرجى قراءة ملاحظات الإصدار وتعليمات التحديث اليدوي."
+
+#: String 1538
+msgid "You have been contacted for these ads"
+msgstr "قد تم الاتصال بك لهذه الإعلانات"
+
+#: String 1539
+msgid "You have reached the maximum number of custom fields allowed."
+msgstr "لقد وصلت إلى الحد الأقصى لعدد الحقول المخصصة المسموح بها"
+
+#: String 1540
+msgid "You have succesfully installed the theme!"
+msgstr "تم تثبيت التصميم الجديد بنجاح"
+
+#: String 1541
+msgid "You have successfuly changed your data"
+msgstr "قمت بتغيير البيانات الخاصة بك بنجاح"
+
+#: String 1542
+msgid "You have successfuly unsubscribed"
+msgstr "لقد تم إلغاء اشتراكك بنجاح"
+
+#: String 1543
+msgid "You need help or you have some questions"
+msgstr "إن كنت بحاجة إلى مساعدة أو لديك بعض الأسئلة"
+
+#: String 1544
+msgid "You need the Hash Key to re-install. You can find this value if you lost it at"
+msgstr "You need the Hash Key to re-install. You can find this value if you lost it at"
+
+#: String 1545
+msgid "You need to enable paypal link to allow only reviews on purchases."
+msgstr "تحتاج إلى تمكين صلة باي بال للسماح بالاستعراض على المشتريات فقط"
+
+#: String 1546
+msgid "You need to write reCAPTCHA Site Key to enable the service."
+msgstr ""
+
+#: String 1547
+msgid "You need to write your banned words to enable the service."
+msgstr "تحتاج إلى كتابة كلماتك المحظورة لتمكين الخدمة"
+
+#: String 1548
+msgid "You need to write your disqus ID to enable the service."
+msgstr "لتفعيل الخدمة disqus ID يجب كتابة"
+
+#: String 1549
+msgid "You need to write your Facebook APP ID to enable the service."
+msgstr "تحتاج إلى كتابة  اسم الفيسبوك الخاص بك  لتمكين الخدمة."
+
+#: String 1550
+msgid "You need to write your reCAPTCHA Secret Key to enable the service."
+msgstr ""
+
+#: String 1551
+msgid "Your Advertisement can go on top again! For only "
+msgstr "يمكنك وضع اعلانك بأعلى القائمة فقط بـ"
+
+#: String 1552
+msgid "Your Advertisement can go to featured! For only "
+msgstr "يمكنك تمييز اعلانك فقط بـ"
+
+#: String 1553
+msgid "Your advertisement is successfully activated! Thank you!"
+msgstr "تم تنشيط الإعلان الخاص بك بنجاح! شكرا لك!"
+
+#: String 1554
+msgid "Your Hash Key for this installation is"
+msgstr "المفتاح الخاص بك لهذا التثبيت"
+
+#: String 1555
+msgid "Your installation version is"
+msgstr "إصدار التثبيت الخاص بك هو"
+
+#: String 1556
+msgid "Your message has been sent"
+msgstr "تم ارسال رسالتك"
+
+#: String 1557
+msgid "Your PHP time limit is"
+msgstr "هي  PHP لديك مهلة زمنية"
+
+#: String 1558
+msgid "Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us."
+msgstr ""
+
+#: String 1559
+msgid "Your search did not match any advertisement."
+msgstr "البحث لم يطابق أي إعلان"
+
+#: String 1560
+msgid "Your sitemap XML to submit to engines"
+msgstr ""
+
+#: String 1561
+msgid "You thought there was more?"
+msgstr "كنت تعتقد كان هناك أكثر من ذلك؟"
+
+#: String 1562
+msgid "You will need also a SSL certificate"
+msgstr ""
+
+#: String 1563
+msgid "Zip file failed to extract, please try again."
+msgstr "فشل الملف المضغوط على الاستخراج، يرجى المحاولة مرة أخرى"
+
+#: String 1564
+msgid "Zoom in the map"
+msgstr "تكبير الخريطة"
+
+#: String 1565
+msgid "Zoom level"
+msgstr "مدى التقريب"
+
