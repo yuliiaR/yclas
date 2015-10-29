@@ -784,6 +784,7 @@ class Model_Ad extends ORM {
     
         return FALSE;
     }
+
     /**
      * prints the QR code script from the view
      * @return string HTML or false in case not loaded
@@ -799,6 +800,18 @@ class Model_Ad extends ORM {
         }
     
         return FALSE;
+    }
+
+    /**
+     * return button to flag/report the ad
+     * @return string html
+     */
+    public function flagad()
+    {
+        if($this->loaded() AND $this->status == self::STATUS_PUBLISHED )
+        {
+            return View::factory('pages/ad/flag',array('ad'=>$this))->render();
+        }
     }
 
 

@@ -136,13 +136,13 @@
                                     <div class="form-group">
                                         <?= FORM::label('name', __('Name'), array('class'=>'col-sm-2 control-label', 'for'=>'name'))?>
                                         <div class="col-md-4 ">
-                                            <?= FORM::input('name', Core::post('name'), array('placeholder' => __('Name'), 'class'=>'form-control', 'id' => 'name', 'required'))?>
+                                            <?= FORM::input('name', Core::request('name'), array('placeholder' => __('Name'), 'class'=>'form-control', 'id' => 'name', 'required'))?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <?= FORM::label('email', __('Email'), array('class'=>'col-sm-2 control-label', 'for'=>'email'))?>
                                         <div class="col-md-4 ">
-                                            <?= FORM::input('email', Core::post('email'), array('placeholder' => __('Email'), 'class'=>'form-control', 'id' => 'email', 'type'=>'email','required'))?>
+                                            <?= FORM::input('email', Core::request('email'), array('placeholder' => __('Email'), 'class'=>'form-control', 'id' => 'email', 'type'=>'email','required'))?>
                                         </div>
                                     </div>
                                 <?endif?>
@@ -150,14 +150,14 @@
                                     <div class="form-group">
                                         <?= FORM::label('subject', __('Subject'), array('class'=>'col-sm-2 control-label', 'for'=>'subject'))?>
                                         <div class="col-md-4 ">
-                                            <?= FORM::input('subject', Core::post('subject'), array('placeholder' => __('Subject'), 'class'=>'form-control', 'id' => 'subject'))?>
+                                            <?= FORM::input('subject', Core::request('subject'), array('placeholder' => __('Subject'), 'class'=>'form-control', 'id' => 'subject'))?>
                                         </div>
                                     </div>
                                 <?endif?>
                                 <div class="form-group">
                                     <?= FORM::label('message', __('Message'), array('class'=>'col-sm-2 control-label', 'for'=>'message'))?>
                                     <div class="col-md-6">
-                                        <?= FORM::textarea('message', Core::post('message'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>
+                                        <?= FORM::textarea('message', Core::request('message'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>
                                     </div>
                                 </div>
                                 <?if(core::config('general.messaging')):?>
@@ -213,6 +213,7 @@
     <?endif?>
     <?=$ad->related()?>
     <?=$ad->comments()?>
+    <?=$ad->flagad()?>
     
     <!-- modal-gallery is the modal dialog used for the image gallery -->
     <div class="modal fade" id="modal-gallery">
