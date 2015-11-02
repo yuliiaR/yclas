@@ -148,31 +148,6 @@ function init_panel()
 	    });
 	});
 	
-	if($("#subscribeModal").length !== 0) {
-	   $('#subscribeModal').modal('show');
-	}
-	
-	$('#subscribe-cancel').click(function() {
-	    $.ajax({ url: $(this).data('url'),
-	        }).done(function ( data ) {
-	            $('#subscribeModal').modal('hide');
-	            window.location.reload();
-	    });
-	});
-	
-	$('#subscribe-accept').click(function() {
-	    var email = $(this).data('email');
-
-        $.post( "http://sendy.open-classifieds.com/subscribe", { email: email, list:'xaDN6Z763vL0P2JBtbJzUuYg' } );
-
-	    $.ajax({ url: $(this).data('url'),
-	        }).done(function ( data ) {
-	            $('#subscribeModal').modal('hide');
-                window.location.href = window.location.href;
-	    });
-
-	});
-	
 	//notification system
 	var favicon = new Favico({
 	    animation : 'popFade'
