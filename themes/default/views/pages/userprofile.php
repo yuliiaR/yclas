@@ -75,13 +75,13 @@
                                     <div class="form-group">
                                         <?= FORM::label('name', __('Name'), array('class'=>'col-md-2 control-label', 'for'=>'name'))?>
                                         <div class="col-md-4 ">
-                                            <?= FORM::input('name', Core::post('name'), array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
+                                            <?= FORM::input('name', Core::request('name'), array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <?= FORM::label('email', __('Email'), array('class'=>'col-md-2 control-label', 'for'=>'email'))?>
                                         <div class="col-md-4 ">
-                                            <?= FORM::input('email', Core::post('email'), array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
+                                            <?= FORM::input('email', Core::request('email'), array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
                                         </div>
                                     </div>
                                 <?endif?>
@@ -89,7 +89,7 @@
                                     <div class="form-group">
                                         <?= FORM::label('subject', __('Subject'), array('class'=>'col-md-2 control-label', 'for'=>'subject'))?>
                                         <div class="col-md-4 ">
-                                            <?= FORM::input('subject', Core::post('subject'), array('placeholder' => __('Subject'), 'class' => 'form-control', 'id' => 'subject'))?>
+                                            <?= FORM::input('subject', Core::request('subject'), array('placeholder' => __('Subject'), 'class' => 'form-control', 'id' => 'subject'))?>
                                         </div>
                                     </div>
                                 <?endif?>
