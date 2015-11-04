@@ -763,6 +763,9 @@ class Controller_Ad extends Controller {
 
         if ($order->loaded())
         {
+            //hack jquery paymill
+            Paymill::jquery();
+
             //if paid...no way jose
             if ($order->status != Model_Order::STATUS_CREATED)
             {
