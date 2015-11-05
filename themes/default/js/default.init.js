@@ -108,8 +108,15 @@ function decodeHtml(html) {
 
 $(function(){
     if ($('input[name="auto_locate"]').length) {
+
+        $('#auto-locations').on('show.bs.modal', function () {
+            $('.modal .modal-body').css('overflow-y', 'auto'); 
+            $('.modal .modal-body').css('max-height', $(window).height() * 0.8);
+        });
+
         $('#auto-locations').modal('show');
-        if (!readCookie('cancel_auto_locate') && (!readCookie('mylat') || !readCookie('mylng'))) {
+
+        if ( ! readCookie('cancel_auto_locate') && ( ! readCookie('mylat') || ! readCookie('mylng'))) {
             var lat;
             var lng;
             GMaps.geolocate({
