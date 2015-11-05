@@ -320,6 +320,10 @@ class Controller_Ad extends Controller {
 
 			if ($ad->loaded())
 			{
+                //throw 404
+                if ($ad->status == Model_Ad::STATUS_UNAVAILABLE OR $ad->status == Model_Ad::STATUS_NOPUBLISHED)
+                    throw HTTP_Exception::factory(404,__("This advertisement doesn't exist, or is not yet published!"));
+
                 Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
 
                 $location = NULL;
@@ -759,6 +763,9 @@ class Controller_Ad extends Controller {
 
         if ($order->loaded())
         {
+            //hack jquery paymill
+            Paymill::jquery();
+
             //if paid...no way jose
             if ($order->status != Model_Order::STATUS_CREATED)
             {
