@@ -22,16 +22,18 @@ function loadChartJsPhp() {
         var id = canvas.id;
 
         // Getting ctx from canvas
-        var ctx = canvas.getContext('2d');
+        if (typeof canvas.getContext == 'function')
+        {
+            var ctx = canvas.getContext('2d');
+            // Getting values in data attributes
+            var htmldata = canvas.dataset;
+            var data = JSON.parse(htmldata.data);
+            var type = htmldata.chartjs;
+            var options = JSON.parse(htmldata.options);
 
-        // Getting values in data attributes
-        var htmldata = canvas.dataset;
-        var data = JSON.parse(htmldata.data);
-        var type = htmldata.chartjs;
-        var options = JSON.parse(htmldata.options);
-
-        // Creating chart and saving for later use
-        ChartJSPHP[id] = new Chart(ctx)[type](data, options);
+            // Creating chart and saving for later use
+            ChartJSPHP[id] = new Chart(ctx)[type](data, options);
+        }
     }
 };
 
