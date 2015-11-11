@@ -166,7 +166,7 @@ class Auth_Controller extends Controller
                                         'css/loadingbar.css'=>'screen', 
                                         'css/icon-picker.min.css'=>'screen', 
                                         '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'=>'screen', 
-                                        '//cdn.jsdelivr.net/summernote/0.6.7/summernote.css'=>'screen', 
+                                        '//cdn.jsdelivr.net/summernote/0.6.16/summernote.css'=>'screen', 
                                         '//cdn.jsdelivr.net/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css'=>'screen',
                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css'=>'screen',
                                         'css/admin-styles.css?v='.Core::VERSION => 'screen');
@@ -178,7 +178,7 @@ class Auth_Controller extends Controller
     	            								  'js/iconPicker.min.js',
     	            								  'js/oc-panel/sidebar.js?v='.Core::VERSION,	
     												  'js/jquery.sceditor.bbcode.min.js',
-    											      '//cdn.jsdelivr.net/summernote/0.6.7/summernote.min.js',
+    											      '//cdn.jsdelivr.net/summernote/0.6.16/summernote.min.js',
     											      'js/summernote-ext-video.js',
     												  '//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js', 
     											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
