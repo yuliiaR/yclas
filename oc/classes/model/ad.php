@@ -130,6 +130,9 @@ class Model_Ad extends ORM {
         if (core::config('advertisement.description') == FALSE)
             $rules['description'] = array(array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), );
         
+        if (core::config('payment.stock')==1)
+            $rules['stock'] =  array(array('not_empty'),array('numeric'));
+        
         return $rules;
     }
 
