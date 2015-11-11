@@ -16,7 +16,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 # OC works thanks to other GPL software
 
-* Kohana 3.3.2 http://kohanaframework.org/
+* Kohana 3.3.4 http://kohanaframework.org/
 * KO Formmanager https://github.com/colinbm/kohana-formmanager
 * PHP-Gettext https://launchpad.net/php-gettext/
 * Pear File_Gettext http://pear.php.net/package/File_Gettext
@@ -40,3 +40,4 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 * MySQLi Kohana https://github.com/Azuka/Kohana-Database-MySQLi
 * JS Loading Bar https://github.com/peachananr/loading-bar
 * Slugifier https://github.com/keyvanakbary/slugifier/
+* Bootgrid http://www.jquery-bootgrid.com/
