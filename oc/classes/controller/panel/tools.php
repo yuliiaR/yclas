@@ -154,10 +154,10 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
                     }
                     else
                     {
-                        foreach ($loc_array as $loc) {
-                            
+                        foreach ($loc_array as $loc) 
+                        {
                             //location parent was sent?
-                            if($loc[1])
+                            if(isset($loc[1]))
                             {
                                 $location_parent = new Model_Location();
                                 $location_parent->where('name','=',$loc[1])->limit(1)->find();
