@@ -424,7 +424,10 @@ class Controller_Panel_Location extends Auth_Crud {
 	public function action_icon()
 	{
         //get icon
-        $icon = $_FILES['location_icon']; //file post
+        if (isset($_FILES['location_icon']))
+            $icon = $_FILES['location_icon']; //file post
+        else
+            $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'index')));
         
         $location = new Model_Location($this->request->param('id'));
         
