@@ -42,6 +42,23 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                                                                             GROUP BY ".self::$db_prefix."reviews.id_ad);")->execute();
         }catch (exception $e) {}
 
+        //make posts bigger description
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."posts` CHANGE `description` `description` LONGTEXT;")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."content` CHANGE `description` `description` LONGTEXT;")->execute();
+        }catch (exception $e) {}
+
+        //bigger configs
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."config` CHANGE `config_value` `config_value` LONGTEXT;")->execute();
+        }catch (exception $e) {}
+
         //new configs
         $configs = array(
                         array( 'config_key'     => 'description',
