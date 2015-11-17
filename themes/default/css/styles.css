@@ -232,6 +232,9 @@ img#captcha_img_publish_new {
 .badged-name {
   padding-right: 50px
 }
+.social-providers.list-inline > li {
+  padding: 5px;
+}
 /*Media screens*/
 @media screen and (max-width: 1199px) {
 	.header-search{display: none;}
