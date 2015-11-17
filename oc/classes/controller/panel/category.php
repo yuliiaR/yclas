@@ -372,7 +372,10 @@ class Controller_Panel_Category extends Auth_Crud {
 	public function action_icon()
 	{
 		//get icon
-		$icon = $_FILES['category_icon']; //file post
+        if (isset($_FILES['category_icon']))
+            $icon = $_FILES['category_icon']; //file post
+        else
+            $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'index')));
 		
 		$category = new Model_Category($this->request->param('id'));
 		

@@ -61,7 +61,7 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
         $info = array(
-                        'title'         => 'RSS Blog '.Core::config('general.site_name'),
+                        'title'         => 'RSS Blog '.htmlspecialchars(Core::config('general.site_name')),
                         'pubDate'       => date("r"),
                         'description'   => __('Latest post published'),
                         'generator'     => 'Open Classifieds',
@@ -103,7 +103,7 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
         $info = array(
-                        'title'         => 'RSS Forum '.Core::config('general.site_name'),
+                        'title'         => 'RSS Forum '.htmlspecialchars(Core::config('general.site_name')),
                         'pubDate'       => date("r"),
                         'description'   => __('Latest post published'),
                         'generator'     => 'Open Classifieds',
