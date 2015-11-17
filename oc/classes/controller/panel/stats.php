@@ -10,35 +10,109 @@
  */
 class Controller_Panel_Stats extends Auth_Controller {
 
+    public function before($template = NULL)
+    {   
+        parent::before();
+
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats'))->set_url(Route::url('oc-panel',array('controller'  => 'stats'))));
+
+        $this->template->styles = array('css/datepicker.css' => 'screen');
+        $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
+                                                   'js/chart.min.js',
+                                                   'js/chart.js-php.js',
+                                                   'js/oc-panel/stats/dashboard.js');
+    }
 
     public function action_index()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats')));
-        //local files
-        if (Theme::get('cdn_files') == FALSE)
-        {
-            $this->template->styles = array('css/datepicker.css' => 'screen');
-            $this->template->scripts['footer'] = array('js/bootstrap-datepicker.js',
-                                                       'js/chart.min.js',
-                                                       'js/chart.js-php.js',
-                                                       'js/oc-panel/stats/dashboard.js');
-        }
-        else
-        {
-            $this->template->styles = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen');
-            $this->template->scripts['footer'] = array('//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
-                                                       '//cdn.rawgit.com/nnnick/Chart.js/master/Chart.min.js',
-                                                       'js/chart.js-php.js',
-                                                       'js/oc-panel/stats/dashboard.js');
-        }
-
         $this->template->title = __('Stats');
+
         $this->template->bind('content', $content);        
         $content = View::factory('oc-panel/pages/stats/dashboard');
+        $content->title = $this->template->title;
 
-        //Getting the dates and range
-        $from_date = Core::post('from_date',strtotime('-1 month'));
-        $to_date   = Core::post('to_date',time());
+        // Getting the dates and range
+        $from_date = Core::post('from_date', Core::get('from_date', strtotime('-1 month')));
+        $to_date   = Core::post('to_date', Core::get('to_date', time()));
+
+        // We assure is a proper time stamp if not we transform it
+        if (is_string($from_date) === TRUE) 
+            $from_date = strtotime($from_date);
+        if (is_string($to_date) === TRUE) 
+            $to_date   = strtotime($to_date);
+
+        $from_datetime = new DateTime();
+        $to_datetime   = new DateTime();
+
+        // Dates displayed
+        $content->from_date              = date('Y-m-d', $from_date);
+        $content->to_date                = date('Y-m-d', $to_date);
+        $content->days_ago               = $from_datetime->setTimestamp($from_date)->diff($to_datetime->setTimestamp($to_date))->format("%a");
+
+        // Ads
+        $content->ads                    = $this->ads_by_date($from_date, $to_date);
+        $content->ads_total              = $this->ads_total($from_date, $to_date);
+        $content->ads_total_past         = $this->ads_total($from_date, $to_date, TRUE);
+
+        // Users
+        $content->users                  = $this->users_by_date($from_date, $to_date);
+        $content->users_total            = $this->users_total($from_date, $to_date);
+        $content->users_total_past       = $this->users_total($from_date, $to_date, TRUE);
+
+        // Visits
+        $content->visits                 = $this->visits_by_date($from_date, $to_date);
+        $content->visits_total           = $this->visits_total($from_date, $to_date);
+        $content->visits_total_past      = $this->visits_total($from_date, $to_date, TRUE);
+
+        // Contacts
+        $content->contacts               = $this->contacts_by_date($from_date, $to_date);
+        $content->contacts_total         = $this->contacts_total($from_date, $to_date);
+        $content->contacts_total_past    = $this->contacts_total($from_date, $to_date, TRUE);
+
+        // Paid Orders
+        $content->paid_orders            = $this->paid_orders_by_date($from_date, $to_date);
+        $content->paid_orders_total      = $this->paid_orders_total($from_date, $to_date);
+        $content->paid_orders_total_past = $this->paid_orders_total($from_date, $to_date, TRUE);
+
+        // Sales
+        $content->sales                  = $this->sales_by_date($from_date, $to_date);
+        $content->sales_total            = $this->sales_total($from_date, $to_date);
+        $content->sales_total_past       = $this->sales_total($from_date, $to_date, TRUE);
+
+        $content->chart_config           = array('height'  => 94,
+                                                 'width'   => 378,
+                                                 'options' => array('animation'           => false,
+                                                                    'responsive'          => true,
+                                                                    'bezierCurve'         => true,
+                                                                    'bezierCurveTension'  => '.25',
+                                                                    'showScale'           => false,
+                                                                    'pointDotRadius'      => 0,
+                                                                    'pointDotStrokeWidth' => 0,
+                                                                    'pointDot'            => false,
+                                                                    'showTooltips'        => false));
+        $content->chart_colors           = array(array('fill'        => 'rgba(33,150,243,.1)',
+                                                       'stroke'      => 'rgba(33,150,243,.8)',
+                                                       'point'       => 'rgba(33,150,243,.8)',
+                                                       'pointStroke' => 'rgba(33,150,243,.8)'));
+
+    }
+
+    /**
+     * Ads Stats
+     * 
+     */
+    public function action_ads()
+    {
+        $this->template->title = __('Ads');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'ads'))));
+
+        $this->template->bind('content', $content);        
+        $content = View::factory('oc-panel/pages/stats/details');
+        $content->title = $this->template->title;
+
+        // Getting the dates and range
+        $from_date = Core::post('from_date', Core::get('from_date', strtotime('-1 month')));
+        $to_date   = Core::post('to_date', Core::get('to_date', time()));
 
         //we assure is a proper time stamp if not we transform it
         if (is_string($from_date) === TRUE) 
@@ -46,216 +120,669 @@ class Controller_Panel_Stats extends Auth_Controller {
         if (is_string($to_date) === TRUE) 
             $to_date   = strtotime($to_date);
 
-        //mysql formated dates
-        $my_from_date = Date::unix2mysql($from_date);
-        $my_to_date   = Date::unix2mysql($to_date);
+        $from_datetime = new DateTime();
+        $to_datetime   = new DateTime();
 
-        //dates range we are filtering
-        $dates     = Date::range($from_date, $to_date,'+1 day','Y-m-d',array('date'=>0,'count'=> 0),'date');
-        
-        //dates displayed in the form
-        $content->from_date = date('Y-m-d',$from_date);
-        $content->to_date   = date('Y-m-d',$to_date) ;
+        // Dates displayed
+        $content->from_date                    = date('Y-m-d', $from_date);
+        $content->to_date                      = date('Y-m-d', $to_date);
+        $content->days_ago                     = $from_datetime->setTimestamp($from_date)->diff($to_datetime->setTimestamp($to_date))->format("%a");
 
+        $content->current_by_date              = $this->ads_by_date($from_date, $to_date);
 
-        //ads published last XX days
-        $query = DB::select(DB::expr('DATE(published) date'))
-                        ->select(DB::expr('COUNT(id_ad) count'))
-                        ->from('ads')
-                        ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        //->where(DB::expr('TIMESTAMPDIFF( DAY , published, NOW() )') ,'<=','30')
-                        ->where('published','between',array($my_from_date,$my_to_date))
-                        ->group_by(DB::expr('DATE( published )'))
-                        ->order_by('date','asc')
-                        ->execute();
+        $content->current_total                = $this->ads_total($from_date, $to_date);
+        $content->past_total                   = $this->ads_total($from_date, $to_date, TRUE);
 
-        $ads_dates = $query->as_array('date');
+        $content->month_ago_total              = $this->ads_total(strtotime('-1 months'), time());
+        $content->past_month_ago_total         = $this->ads_total(strtotime('-1 months'), time(), TRUE);
 
+        $content->three_months_ago_total       = $this->ads_total(strtotime('-3 months'), time());
+        $content->past_three_months_ago_total  = $this->ads_total(strtotime('-3 months'), time(), TRUE);
 
-        //Today 
-        $query = DB::select(DB::expr('COUNT(id_ad) count'))
-                        ->from('ads')
-                        ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
-                        ->group_by(DB::expr('DATE( published )'))
-                        ->order_by('published','asc')
-                        ->execute();
+        $content->six_months_ago_total         = $this->ads_total(strtotime('-6 months'), time());
+        $content->past_six_months_ago_total    = $this->ads_total(strtotime('-6 months'), time(), TRUE);
 
-        $ads = $query->as_array();
-        $content->ads_today     = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        $content->twelve_months_ago_total      = $this->ads_total(strtotime('-12 months'), time());
+        $content->twelve_six_months_ago_total  = $this->ads_total(strtotime('-12 months'), time(), TRUE);
 
-        //Yesterday
-        $query = DB::select(DB::expr('COUNT(id_ad) count'))
-                        ->from('ads')
-                        ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
-                        ->group_by(DB::expr('DATE( published )'))
-                        ->order_by('published','asc')
-                        ->execute();
-
-        $ads = $query->as_array();
-        $content->ads_yesterday = (isset($ads[0]['count']))?$ads[0]['count']:0;
-
-
-        //Last 30 days ads
-        $query = DB::select(DB::expr('COUNT(id_ad) count'))
-                        ->from('ads')
-                        ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->where('published','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
-                        ->execute();
-
-        $ads = $query->as_array();
-        $content->ads_month = (isset($ads[0]['count']))?$ads[0]['count']:0;
-
-        //total ads
-        $query = DB::select(DB::expr('COUNT(id_ad) count'))
-                        ->from('ads')
-                        ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->execute();
-
-        $ads = $query->as_array();
-        $content->ads_total = (isset($ads[0]['count']))?$ads[0]['count']:0;
-
-        /////////////////////VISITS STATS////////////////////////////////
-
-        //visits created last XX days
-        $query = DB::select(DB::expr('DATE(created) date'))
-                        ->select(DB::expr('COUNT(id_visit) count'))
-                        ->from('visits')
-                        ->where('created','between',array($my_from_date,$my_to_date))
-                        ->group_by(DB::expr('DATE( created )'))
-                        ->order_by('date','asc')
-                        ->execute();
-
-        $visits = $query->as_array('date');
-
-
-        $stats_daily = array();
-        foreach ($dates as $date) 
-        {
-            $count_views = (isset($visits[$date['date']]['count']))?$visits[$date['date']]['count']:0;
-            $count_ads = (isset($ads_dates[$date['date']]['count']))?$ads_dates[$date['date']]['count']:0;
-            
-            $stats_daily[] = array('date'=>$date['date'],'views'=> $count_views,'ads'=>$count_ads);
-        } 
-
-        $content->stats_daily =  $stats_daily;
-
-
-         //Today 
-        $query = DB::select(DB::expr('COUNT(id_visit) count'))
-                        ->from('visits')
-                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
-                        ->group_by(DB::expr('DATE( created )'))
-                        ->order_by('created','asc')
-                        ->execute();
-
-        $ads = $query->as_array();
-        $content->visits_today     = (isset($ads[0]['count']))?$ads[0]['count']:0;
-
-        //Yesterday
-        $query = DB::select(DB::expr('COUNT(id_visit) count'))
-                        ->from('visits')
-                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
-                        ->group_by(DB::expr('DATE( created )'))
-                        ->order_by('created','asc')
-                        ->execute();
-
-        $ads = $query->as_array();
-        $content->visits_yesterday= (isset($ads[0]['count']))?$ads[0]['count']:0;
-
-
-        //Last 30 days visits
-        $query = DB::select(DB::expr('COUNT(id_visit) count'))
-                        ->from('visits')
-                        ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
-                        ->execute();
-
-        $visits = $query->as_array();
-        $content->visits_month = (isset($visits[0]['count']))?$visits[0]['count']:0;
-
-        //total visits
-        $query = DB::select(DB::expr('COUNT(id_visit) count'))
-                        ->from('visits')
-                        ->execute();
-
-        $visits = $query->as_array();
-        $content->visits_total = (isset($visits[0]['count']))?$visits[0]['count']:0;
-
-
-        /////////////////////ORDERS STATS////////////////////////////////
-
-        //orders created last XX days
-        $query = DB::select(DB::expr('DATE(created) date'))
-                        ->select(DB::expr('COUNT(id_order) count'))
-                        ->select(DB::expr('SUM(amount) total'))
-                        ->from('orders')
-                        ->where('created','between',array($my_from_date,$my_to_date))
-                        ->group_by(DB::expr('DATE( created )'))
-                        ->order_by('date','asc')
-                        ->execute();
-
-        $orders = $query->as_array('date');
-
-
-        $stats_orders = array();
-        foreach ($dates as $date) 
-        {
-            $count_orders = (isset($orders[$date['date']]['count']))?$orders[$date['date']]['count']:0;
-            $count_sum = (isset($orders[$date['date']]['total']))?$orders[$date['date']]['total']:0;
-            
-            $stats_orders[] = array('date'=>$date['date'],'#orders'=> $count_orders,'$'=>$count_sum);
-        } 
-
-        $content->stats_orders =  $stats_orders;
-
-
-         //Today 
-        $query = DB::select(DB::expr('COUNT(id_order) count'))
-                        ->from('orders')
-                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
-                        ->where('status','=',Model_Order::STATUS_PAID)
-                        ->group_by(DB::expr('DATE( created )'))
-                        ->order_by('created','asc')
-                        ->execute();
-
-        $ads = $query->as_array();
-        $content->orders_yesterday     = (isset($ads[0]['count']))?$ads[0]['count']:0;
-
-        //Yesterday
-        $query = DB::select(DB::expr('COUNT(id_order) count'))
-                        ->from('orders')
-                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
-                        ->where('status','=',Model_Order::STATUS_PAID)
-                        ->group_by(DB::expr('DATE( created )'))
-                        ->order_by('created','asc')
-                        ->execute();
-
-        $ads = $query->as_array();
-        $content->orders_today = (isset($ads[0]['count']))?$ads[0]['count']:0;
-
-
-        //Last 30 days orders
-        $query = DB::select(DB::expr('COUNT(id_order) count'))
-                        ->from('orders')
-                        ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
-                        ->where('status','=',Model_Order::STATUS_PAID)
-                        ->execute();
-
-        $orders = $query->as_array();
-        $content->orders_month = (isset($orders[0]['count']))?$orders[0]['count']:0;
-
-        //total orders
-        $query = DB::select(DB::expr('COUNT(id_order) count'))
-                        ->from('orders')
-                        ->where('status','=',Model_Order::STATUS_PAID)
-                        ->execute();
-
-        $orders = $query->as_array();
-        $content->orders_total = (isset($orders[0]['count']))?$orders[0]['count']:0;
-        
     }
 
+    /**
+     * Users Stats
+     * 
+     */
+    public function action_users()
+    {
+        $this->template->title = __('Users');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'users'))));
+
+        $this->template->bind('content', $content);        
+        $content = View::factory('oc-panel/pages/stats/details');
+        $content->title = $this->template->title;
+
+        // Getting the dates and range
+        $from_date = Core::post('from_date', Core::get('from_date', strtotime('-1 month')));
+        $to_date   = Core::post('to_date', Core::get('to_date', time()));
+
+        //we assure is a proper time stamp if not we transform it
+        if (is_string($from_date) === TRUE) 
+            $from_date = strtotime($from_date);
+        if (is_string($to_date) === TRUE) 
+            $to_date   = strtotime($to_date);
+
+        $from_datetime = new DateTime();
+        $to_datetime   = new DateTime();
+
+        // Dates displayed
+        $content->from_date                    = date('Y-m-d', $from_date);
+        $content->to_date                      = date('Y-m-d', $to_date);
+        $content->days_ago                     = $from_datetime->setTimestamp($from_date)->diff($to_datetime->setTimestamp($to_date))->format("%a");
+
+        $content->current_by_date              = $this->users_by_date($from_date, $to_date);
+
+        $content->current_total                = $this->users_total($from_date, $to_date);
+        $content->past_total                   = $this->users_total($from_date, $to_date, TRUE);
+
+        $content->month_ago_total              = $this->users_total(strtotime('-1 months'), time());
+        $content->past_month_ago_total         = $this->users_total(strtotime('-1 months'), time(), TRUE);
+
+        $content->three_months_ago_total       = $this->users_total(strtotime('-3 months'), time());
+        $content->past_three_months_ago_total  = $this->users_total(strtotime('-3 months'), time(), TRUE);
+
+        $content->six_months_ago_total         = $this->users_total(strtotime('-6 months'), time());
+        $content->past_six_months_ago_total    = $this->users_total(strtotime('-6 months'), time(), TRUE);
+
+        $content->twelve_months_ago_total      = $this->users_total(strtotime('-12 months'), time());
+        $content->twelve_six_months_ago_total  = $this->users_total(strtotime('-12 months'), time(), TRUE);
+
+    }
+
+    /**
+     * Visits Stats
+     * 
+     */
+    public function action_visits()
+    {
+        $this->template->title = __('Visits');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'visits'))));
+
+        $this->template->bind('content', $content);        
+        $content = View::factory('oc-panel/pages/stats/details');
+        $content->title = $this->template->title;
+
+        // Getting the dates and range
+        $from_date = Core::post('from_date', Core::get('from_date', strtotime('-1 month')));
+        $to_date   = Core::post('to_date', Core::get('to_date', time()));
+
+        //we assure is a proper time stamp if not we transform it
+        if (is_string($from_date) === TRUE) 
+            $from_date = strtotime($from_date);
+        if (is_string($to_date) === TRUE) 
+            $to_date   = strtotime($to_date);
+
+        $from_datetime = new DateTime();
+        $to_datetime   = new DateTime();
+
+        // Dates displayed
+        $content->from_date                    = date('Y-m-d', $from_date);
+        $content->to_date                      = date('Y-m-d', $to_date);
+        $content->days_ago                     = $from_datetime->setTimestamp($from_date)->diff($to_datetime->setTimestamp($to_date))->format("%a");
+
+        $content->current_by_date              = $this->visits_by_date($from_date, $to_date);
+
+        $content->current_total                = $this->visits_total($from_date, $to_date);
+        $content->past_total                   = $this->visits_total($from_date, $to_date, TRUE);
+
+        $content->month_ago_total              = $this->visits_total(strtotime('-1 months'), time());
+        $content->past_month_ago_total         = $this->visits_total(strtotime('-1 months'), time(), TRUE);
+
+        $content->three_months_ago_total       = $this->visits_total(strtotime('-3 months'), time());
+        $content->past_three_months_ago_total  = $this->visits_total(strtotime('-3 months'), time(), TRUE);
+
+        $content->six_months_ago_total         = $this->visits_total(strtotime('-6 months'), time());
+        $content->past_six_months_ago_total    = $this->visits_total(strtotime('-6 months'), time(), TRUE);
+
+        $content->twelve_months_ago_total      = $this->visits_total(strtotime('-12 months'), time());
+        $content->twelve_six_months_ago_total  = $this->visits_total(strtotime('-12 months'), time(), TRUE);
+
+    }
+
+    /**
+     * Contacts Stats
+     * 
+     */
+    public function action_contacts()
+    {
+        $this->template->title = __('Contacts');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'contacts'))));
+
+        $this->template->bind('content', $content);        
+        $content = View::factory('oc-panel/pages/stats/details');
+        $content->title = $this->template->title;
+
+        // Getting the dates and range
+        $from_date = Core::post('from_date', Core::get('from_date', strtotime('-1 month')));
+        $to_date   = Core::post('to_date', Core::get('to_date', time()));
+
+        //we assure is a proper time stamp if not we transform it
+        if (is_string($from_date) === TRUE) 
+            $from_date = strtotime($from_date);
+        if (is_string($to_date) === TRUE) 
+            $to_date   = strtotime($to_date);
+
+        $from_datetime = new DateTime();
+        $to_datetime   = new DateTime();
+
+        // Dates displayed
+        $content->from_date                    = date('Y-m-d', $from_date);
+        $content->to_date                      = date('Y-m-d', $to_date);
+        $content->days_ago                     = $from_datetime->setTimestamp($from_date)->diff($to_datetime->setTimestamp($to_date))->format("%a");
+
+        $content->current_by_date              = $this->contacts_by_date($from_date, $to_date);
+
+        $content->current_total                = $this->contacts_total($from_date, $to_date);
+        $content->past_total                   = $this->contacts_total($from_date, $to_date, TRUE);
+
+        $content->month_ago_total              = $this->contacts_total(strtotime('-1 months'), time());
+        $content->past_month_ago_total         = $this->contacts_total(strtotime('-1 months'), time(), TRUE);
+
+        $content->three_months_ago_total       = $this->contacts_total(strtotime('-3 months'), time());
+        $content->past_three_months_ago_total  = $this->contacts_total(strtotime('-3 months'), time(), TRUE);
+
+        $content->six_months_ago_total         = $this->contacts_total(strtotime('-6 months'), time());
+        $content->past_six_months_ago_total    = $this->contacts_total(strtotime('-6 months'), time(), TRUE);
+
+        $content->twelve_months_ago_total      = $this->contacts_total(strtotime('-12 months'), time());
+        $content->twelve_six_months_ago_total  = $this->contacts_total(strtotime('-12 months'), time(), TRUE);
+
+    }
+
+    /**
+     * Paid Orders Stats
+     * 
+     */
+    public function action_paid_orders()
+    {
+        $this->template->title = __('Paid Orders');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'paid_orders'))));
+
+        $this->template->bind('content', $content);        
+        $content = View::factory('oc-panel/pages/stats/details');
+        $content->title = $this->template->title;
+
+        // Getting the dates and range
+        $from_date = Core::post('from_date', Core::get('from_date', strtotime('-1 month')));
+        $to_date   = Core::post('to_date', Core::get('to_date', time()));
+
+        //we assure is a proper time stamp if not we transform it
+        if (is_string($from_date) === TRUE) 
+            $from_date = strtotime($from_date);
+        if (is_string($to_date) === TRUE) 
+            $to_date   = strtotime($to_date);
+
+        $from_datetime = new DateTime();
+        $to_datetime   = new DateTime();
+
+        // Dates displayed
+        $content->from_date                    = date('Y-m-d', $from_date);
+        $content->to_date                      = date('Y-m-d', $to_date);
+        $content->days_ago                     = $from_datetime->setTimestamp($from_date)->diff($to_datetime->setTimestamp($to_date))->format("%a");
+
+        $content->current_by_date              = $this->paid_orders_by_date($from_date, $to_date);
+
+        $content->current_total                = $this->paid_orders_total($from_date, $to_date);
+        $content->past_total                   = $this->paid_orders_total($from_date, $to_date, TRUE);
+
+        $content->month_ago_total              = $this->paid_orders_total(strtotime('-1 months'), time());
+        $content->past_month_ago_total         = $this->paid_orders_total(strtotime('-1 months'), time(), TRUE);
+
+        $content->three_months_ago_total       = $this->paid_orders_total(strtotime('-3 months'), time());
+        $content->past_three_months_ago_total  = $this->paid_orders_total(strtotime('-3 months'), time(), TRUE);
+
+        $content->six_months_ago_total         = $this->paid_orders_total(strtotime('-6 months'), time());
+        $content->past_six_months_ago_total    = $this->paid_orders_total(strtotime('-6 months'), time(), TRUE);
+
+        $content->twelve_months_ago_total      = $this->paid_orders_total(strtotime('-12 months'), time());
+        $content->twelve_six_months_ago_total  = $this->paid_orders_total(strtotime('-12 months'), time(), TRUE);
+
+    }
+
+    /**
+     * Sales Stats
+     * 
+     */
+    public function action_sales()
+    {
+        $this->template->title = __('Sales');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title)->set_url(Route::url('oc-panel',array('controller'  => 'stats', 'action' => 'sales'))));
+
+        $this->template->bind('content', $content);        
+        $content = View::factory('oc-panel/pages/stats/details');
+        $content->title = $this->template->title;
+
+        // Getting the dates and range
+        $from_date = Core::post('from_date', Core::get('from_date', strtotime('-1 month')));
+        $to_date   = Core::post('to_date', Core::get('to_date', time()));
+
+        //we assure is a proper time stamp if not we transform it
+        if (is_string($from_date) === TRUE) 
+            $from_date = strtotime($from_date);
+        if (is_string($to_date) === TRUE) 
+            $to_date   = strtotime($to_date);
+
+        $from_datetime = new DateTime();
+        $to_datetime   = new DateTime();
+
+        // Dates displayed
+        $content->from_date                    = date('Y-m-d', $from_date);
+        $content->to_date                      = date('Y-m-d', $to_date);
+        $content->days_ago                     = $from_datetime->setTimestamp($from_date)->diff($to_datetime->setTimestamp($to_date))->format("%a");
+
+        $content->current_by_date              = $this->sales_by_date($from_date, $to_date);
+
+        $content->current_total                = $this->sales_total($from_date, $to_date);
+        $content->past_total                   = $this->sales_total($from_date, $to_date, TRUE);
+
+        $content->month_ago_total              = $this->sales_total(strtotime('-1 months'), time());
+        $content->past_month_ago_total         = $this->sales_total(strtotime('-1 months'), time(), TRUE);
+
+        $content->three_months_ago_total       = $this->sales_total(strtotime('-3 months'), time());
+        $content->past_three_months_ago_total  = $this->sales_total(strtotime('-3 months'), time(), TRUE);
+
+        $content->six_months_ago_total         = $this->sales_total(strtotime('-6 months'), time());
+        $content->past_six_months_ago_total    = $this->sales_total(strtotime('-6 months'), time(), TRUE);
+
+        $content->twelve_months_ago_total      = $this->sales_total(strtotime('-12 months'), time());
+        $content->twelve_six_months_ago_total  = $this->sales_total(strtotime('-12 months'), time(), TRUE);
+
+    }
+
+    /**
+     * Total Ads value between two dates
+     * @param  timestamp  $from_date
+     * @param  timestamp  $to_date
+     * @param  boolean    $past_period Calculate past period (period = $to_date - $from_date)
+     * @return integer
+     */
+    private function ads_total($from_date, $to_date, $past_period = FALSE)
+    {
+        if ($past_period)
+        {
+            $original_from_date = $from_date;
+            $original_to_date   = $to_date;
+            $from_date          = $original_from_date - ($original_to_date - $original_from_date);
+            $to_date            = $original_to_date - ($original_to_date - $original_from_date);
+        }
+
+        $query = DB::select(DB::expr('COUNT(id_ad) total'))
+            ->from('ads')
+            ->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+            ->where('published', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->execute();
+
+        $result = $query->as_array();
+
+        return (isset($result[0]['total'])) ? $result[0]['total'] : 0;
+    }
+
+    /**
+     * Returns array with Ads by date formatted to generate charts
+     * @param  timestamp $from_date
+     * @param  timestamp $to_date
+     * @return array
+     */
+    private function ads_by_date($from_date, $to_date)
+    {
+        // Dates range we are filtering
+        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+
+        $query = DB::select(DB::expr('DATE(published) date'))
+            ->select(DB::expr('COUNT(id_ad) total'))
+            ->from('ads')
+            ->where('status', '=', Model_Ad::STATUS_PUBLISHED)
+            //->where(DB::expr('TIMESTAMPDIFF( DAY , published, NOW() )') ,'<=','30')
+            ->where('published', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->group_by(DB::expr('DATE( published )'))
+            ->order_by('date','asc')
+            ->execute();
+
+        $result = $query->as_array('date');
+
+        $ret = array();
+
+        foreach ($dates as $k => $date) 
+        {
+            $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
+            
+            $ret[] = array('date' => $date['date'], '#' => $count_sum);
+        }
+
+        return $ret;
+
+    }
+
+    /**
+     * Total Users value between two dates
+     * @param  timestamp  $from_date
+     * @param  timestamp  $to_date
+     * @param  boolean    $past_period Calculate past period (period = $to_date - $from_date)
+     * @return integer
+     */
+    private function users_total($from_date, $to_date, $past_period = FALSE)
+    {
+        if ($past_period)
+        {
+            $original_from_date = $from_date;
+            $original_to_date   = $to_date;
+            $from_date          = $original_from_date - ($original_to_date - $original_from_date);
+            $to_date            = $original_to_date - ($original_to_date - $original_from_date);
+        }
+
+        $query = DB::select(DB::expr('COUNT(id_user) total'))
+            ->from('users')
+            ->where('status', '=', Model_User::STATUS_ACTIVE)
+            ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->execute();
+
+        $result = $query->as_array();
+
+        return (isset($result[0]['total'])) ? $result[0]['total'] : 0;
+    }
+
+    /**
+     * Returns array with Users by date formatted to generate charts
+     * @param  timestamp $from_date
+     * @param  timestamp $to_date
+     * @return array
+     */
+    private function users_by_date($from_date, $to_date)
+    {
+        // Dates range we are filtering
+        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+
+        $query = DB::select(DB::expr('DATE(created) date'))
+            ->select(DB::expr('COUNT(id_user) total'))
+            ->from('users')
+            ->where('status', '=', Model_User::STATUS_ACTIVE)
+            ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->group_by(DB::expr('DATE(created)'))
+            ->order_by('date', 'asc')
+            ->execute();
+
+        $result = $query->as_array('date');
+
+        $ret = array();
+
+        foreach ($dates as $k => $date) 
+        {
+            $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
+            
+            $ret[] = array('date' => $date['date'], '#' => $count_sum);
+        }
+
+        return $ret;
+
+    }
+
+    /**
+     * Total Visits value between two dates
+     * @param  timestamp  $from_date
+     * @param  timestamp  $to_date
+     * @param  boolean    $past_period Calculate past period (period = $to_date - $from_date)
+     * @return integer
+     */
+    private function visits_total($from_date, $to_date, $past_period = FALSE)
+    {
+        if ($past_period)
+        {
+            $original_from_date = $from_date;
+            $original_to_date   = $to_date;
+            $from_date          = $original_from_date - ($original_to_date - $original_from_date);
+            $to_date            = $original_to_date - ($original_to_date - $original_from_date);
+        }
+
+        $query = DB::select(DB::expr('COUNT(id_visit) total'))
+            ->from('visits')
+            ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->execute();
+
+        $result = $query->as_array();
+
+        return (isset($result[0]['total'])) ? $result[0]['total'] : 0;
+    }
+
+    /**
+     * Returns array with Visits by date formatted to generate charts
+     * @param  timestamp $from_date
+     * @param  timestamp $to_date
+     * @return array
+     */
+    private function visits_by_date($from_date, $to_date)
+    {
+        // Dates range we are filtering
+        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+
+        $query = DB::select(DB::expr('DATE(created) date'))
+            ->select(DB::expr('COUNT(id_visit) total'))
+            ->from('visits')
+            ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->group_by(DB::expr('DATE(created)'))
+            ->order_by('date', 'asc')
+            ->execute();
+
+        $result = $query->as_array('date');
+
+        $ret = array();
+
+        foreach ($dates as $k => $date) 
+        {
+            $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
+            
+            $ret[] = array('date' => $date['date'], '#' => $count_sum);
+        }
+
+        return $ret;
+
+    }
+
+    /**
+     * Total Contacts value between two dates
+     * @param  timestamp  $from_date
+     * @param  timestamp  $to_date
+     * @param  boolean    $past_period Calculate past period (period = $to_date - $from_date)
+     * @return integer
+     */
+    private function contacts_total($from_date, $to_date, $past_period = FALSE)
+    {
+        if ($past_period)
+        {
+            $original_from_date = $from_date;
+            $original_to_date   = $to_date;
+            $from_date          = $original_from_date - ($original_to_date - $original_from_date);
+            $to_date            = $original_to_date - ($original_to_date - $original_from_date);
+        }
+
+        $query = DB::select(DB::expr('COUNT(id_visit) total'))
+            ->from('visits')
+            ->where('contacted', '=', 1)
+            ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->execute();
+
+        $result = $query->as_array();
+
+        return (isset($result[0]['total'])) ? $result[0]['total'] : 0;
+    }
+
+    /**
+     * Returns array with Contacts by date formatted to generate charts
+     * @param  timestamp $from_date
+     * @param  timestamp $to_date
+     * @return array
+     */
+    private function contacts_by_date($from_date, $to_date)
+    {
+        // Dates range we are filtering
+        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+
+        $query = DB::select(DB::expr('DATE(created) date'))
+            ->select(DB::expr('COUNT(id_visit) total'))
+            ->from('visits')
+            ->where('contacted', '=', 1)
+            ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->group_by(DB::expr('DATE(created)'))
+            ->order_by('date', 'asc')
+            ->execute();
+
+        $result = $query->as_array('date');
+
+        $ret = array();
+
+        foreach ($dates as $k => $date) 
+        {
+            $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
+            
+            $ret[] = array('date' => $date['date'], '#' => $count_sum);
+        }
+
+        return $ret;
+
+    }
+
+    /**
+     * Total Paid Orders value between two dates
+     * @param  timestamp  $from_date
+     * @param  timestamp  $to_date
+     * @param  boolean    $past_period Calculate past period (period = $to_date - $from_date)
+     * @return integer
+     */
+    private function paid_orders_total($from_date, $to_date, $past_period = FALSE)
+    {
+        if ($past_period)
+        {
+            $original_from_date = $from_date;
+            $original_to_date   = $to_date;
+            $from_date          = $original_from_date - ($original_to_date - $original_from_date);
+            $to_date            = $original_to_date - ($original_to_date - $original_from_date);
+        }
+
+        $query = DB::select(DB::expr('COUNT(id_order) total'))
+            ->from('orders')
+            ->where('status', '=', Model_Order::STATUS_PAID)
+            ->where('pay_date', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->execute();
+
+        $result = $query->as_array();
+
+        return (isset($result[0]['total'])) ? $result[0]['total'] : 0;
+    }
+
+    /**
+     * Returns array with Paid Orders by date formatted to generate charts
+     * @param  timestamp $from_date
+     * @param  timestamp $to_date
+     * @return array
+     */
+    private function paid_orders_by_date($from_date, $to_date)
+    {
+        // Dates range we are filtering
+        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+
+        $query = DB::select(DB::expr('DATE(pay_date) date'))
+            ->select(DB::expr('COUNT(id_order) total'))
+            ->from('orders')
+            ->where('status', '=', Model_Order::STATUS_PAID)
+            ->where('pay_date', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->group_by(DB::expr('DATE(pay_date)'))
+            ->order_by('date', 'asc')
+            ->execute();
+
+        $result = $query->as_array('date');
+
+        $ret = array();
+
+        foreach ($dates as $k => $date) 
+        {
+            $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
+            
+            $ret[] = array('date' => $date['date'], '#' => $count_sum);
+        }
+
+        return $ret;
+
+    }
+
+    /**
+     * Total Sales value between two dates
+     * @param  timestamp  $from_date
+     * @param  timestamp  $to_date
+     * @param  boolean    $past_period Calculate past period (period = $to_date - $from_date)
+     * @return integer
+     */
+    private function sales_total($from_date, $to_date, $past_period = FALSE)
+    {
+        if ($past_period)
+        {
+            $original_from_date = $from_date;
+            $original_to_date   = $to_date;
+            $from_date          = $original_from_date - ($original_to_date - $original_from_date);
+            $to_date            = $original_to_date - ($original_to_date - $original_from_date);
+        }
+
+        $query = DB::select(DB::expr('SUM(amount) total'))
+            ->from('orders')
+            ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->execute();
+
+        $result = $query->as_array();
+
+        return (isset($result[0]['total'])) ? $result[0]['total'] : 0;
+    }
+
+    /**
+     * Returns array with Sales by date formatted to generate charts
+     * @param  timestamp $from_date
+     * @param  timestamp $to_date
+     * @return array
+     */
+    private function sales_by_date($from_date, $to_date)
+    {
+        // Dates range we are filtering
+        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+
+        $query = DB::select(DB::expr('DATE(created) date'))
+            ->select(DB::expr('SUM(amount) total'))
+            ->from('orders')
+            ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
+
+        $query = $query->group_by(DB::expr('DATE(created)'))
+            ->order_by('date', 'asc')
+            ->execute();
+
+        $result = $query->as_array('date');
+
+        $ret = array();
+
+        foreach ($dates as $k => $date) 
+        {
+            $count_sum = (isset($result[$date['date']]['total'])) ? $result[$date['date']]['total'] : 0;
+            
+            $ret[] = array('date' => $date['date'], '$' => $count_sum);
+        }
+
+        return $ret;
+
+    }
 
 
 
