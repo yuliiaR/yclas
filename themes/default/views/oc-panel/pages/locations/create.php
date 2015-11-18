@@ -9,7 +9,51 @@
                 <h3 class="panel-title"><?=__('Location details')?></h3>
             </div>
             <div class="panel-body">
-                <?=$form->render()?>
+                <?= FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'create')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?>
+                                <?= FORM::input('name', core::request('name'), array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <?= FORM::label('id_location_parent', __('Parent'), array('class'=>'control-label', 'for'=>'id_location_parent'))?>
+                                <?= FORM::select('id_location_parent', $locations, core::request('id_location_parent'), array('placeholder' => __('Parent'), 'class' => 'form-control', 'id' => 'id_location_parent'))?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <?= FORM::label('seoname', __('Seoname'), array('class'=>'control-label', 'for'=>'seoname'))?>
+                                <?= FORM::input('seoname', core::request('seoname'), array('placeholder' => __('Seoname'), 'class' => 'form-control', 'id' => 'seoname'))?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>
+                                <?= FORM::textarea('description', __('Description'), array('class'=>'form-control','id' => 'description','data-editor'=>'html'))?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <?= FORM::label('latitude', __('Latitude'), array('class'=>'control-label', 'for'=>'latitude'))?>
+                                <?= FORM::input('latitude', core::request('latitude'), array('placeholder' => __('Longitude'), 'class' => 'form-control', 'id' => 'latitude'))?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <?= FORM::label('longitude', __('Longitude'), array('class'=>'control-label', 'for'=>'longitude'))?>
+                                <?= FORM::input('longitude', core::request('longitude'), array('placeholder' => __('Longitude'), 'class' => 'form-control', 'id' => 'longitude'))?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <?= FORM::button('submit', __('Create'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'location','action'=>'create'))))?>
+                            </div>
+                        </div>
+                    </fieldset>
+                <?= FORM::close()?>
             </div>
         </div>
     </div>
