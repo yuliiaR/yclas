@@ -41,10 +41,33 @@
           }).Load();
       });
     </script>
+    <style type="text/css">
+      .close {
+        color: #000;
+        float: right;
+        font-size: 25px;
+        line-height: 1;
+        opacity: 0.2;
+        padding: 0;
+        cursor: pointer;
+        border: 0 none;
+        background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+        position: relative;
+        right: -20px;
+        top: 0px;
+      }
+      .close:after {
+        content: '✖';
+      }
+    </style>
 </head>
 
-<body>
-
+<body style="padding:0 20px 20px;">
+    <div>
+      <button class="close" onclick="window.history.back();">
+        <span>&nbsp;</span>
+      </button>
+    </div>
     <div id="gmap" style="height:<?=$height?>;width:<?=$width?>;"></div>
 
     <?=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
