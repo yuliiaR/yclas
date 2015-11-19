@@ -125,7 +125,7 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__('SMTP Configuration')?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/smtp-configuration/'>".__('SMTP Configuration')."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">

@@ -126,7 +126,7 @@
           <?endif?>
           
           <a title="<?=HTML::chars($ad->seotitle);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="glyphicon glyphicon-share"></i><?=__('Read more')?></a>
-          <?if ($user !== NULL && $user->id_role == Model_Role::ROLE_ADMIN):?>
+          <?if ($user !== NULL AND ($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_role == Model_Role::ROLE_MODERATOR )):?>
               <br />
               <div class="toolbar btn btn-primary btn-xs"><i class="glyphicon glyphicon-cog"></i>
                   <div id="user-toolbar-options<?=$ad->id_ad?>" class="hide user-toolbar-options">
