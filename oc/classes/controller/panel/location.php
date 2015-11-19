@@ -65,49 +65,67 @@ class Controller_Panel_Location extends Auth_Crud {
         
         $this->template->scripts['footer'][] = 'js/oc-panel/locations-gmap.js';
 
-        $form = new FormOrm($this->_orm_model);
+        $location = new Model_Location();
         
-        if ($this->request->post())
+        if ($post = $this->request->post())
         {
-            if ( $success = $form->submit() )
+            //check if the parent is loaded/exists avoiding errors
+            $post['id_location_parent'] = $post['id_location_parent'] != '' ? $post['id_location_parent'] : 1;
+            $parent_loc = new Model_Location($post['id_location_parent']);
+            if ( ! $parent_loc->loaded())
             {
-                //location is different than himself, cant be his ow father!!!
-                if ($form->object->id_location == $form->object->id_location_parent)
+                Alert::set(Alert::INFO, __('You are assigning a parent location that does not exist'));
+                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'create')));
+            }
+
+            foreach ($post as $name => $value) 
+            {
+                //for description we accept the HTML as comes...a bit risky but only admin can
+                if ($name=='description')
                 {
-                    Alert::set(Alert::INFO, __('You can not set as parent the same location'));
-                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'create')));
+                    $location->description = Kohana::$_POST_ORIG['description'];
                 }
-
-                //check if the parent is loaded/exists avoiding errors
-                $parent_loc = new Model_Location($form->object->id_location_parent);
-                if (!$parent_loc->loaded())
+                elseif($name != 'submit')
                 {
-                    Alert::set(Alert::INFO, __('You are assigning a parent location that does not exist'));
-                    $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller(),'action'=>'create')));
+                    $location->$name = $value;
                 }
+            }
 
-                $form->object->description = Kohana::$_POST_ORIG['formorm']['description'];
-                
-                try {
-                    $form->object->save();
-                } catch (Exception $e) {
-                    throw HTTP_Exception::factory(500,$e->getMessage());  
-                }
+            if( ! isset($post['seoname']))
+            {
+                $location->seoname = $location->gen_seotitle($post['seoname']);
+            }
+            else
+            {
+                $location->seoname = $post['seoname'];
+            }
 
-                $this->action_deep();
-                Core::delete_cache();
+            try 
+            {
+                $location->save();
+            } 
+            catch (Exception $e) 
+            {
+                throw HTTP_Exception::factory(500,$e->getMessage());  
+            }
 
-                Alert::set(Alert::SUCCESS, __('Location created'));
+            $this->action_deep();
+            Core::delete_cache();
+
+            Alert::set(Alert::SUCCESS, __('Location created'));
             
-                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
-            }
-            else 
-            {
-                Alert::set(Alert::ERROR, __('Check form for errors'));
-            }
+            $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())).(Core::post('id_location_parent') ? '?id_location='.Core::post('id_location_parent') : NULL));
+
+       }
+
+        $locations = array('' => '');
+
+        foreach (Model_Location::get_as_array() as $location)
+        {
+            $locations[$location['id']] = $location['name'];
         }
     
-        return $this->render('oc-panel/pages/locations/create', array('form' => $form));
+        return $this->render('oc-panel/pages/locations/create', compact('locations'));
 
     }
     /**
