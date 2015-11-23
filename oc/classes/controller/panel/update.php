@@ -73,6 +73,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'adblock',
                                'group_name'     => 'general', 
                                'config_value'   => '0'),
+                        array( 'config_key'     => 'stripe_alipay',
+                               'group_name'     => 'payment', 
+                               'config_value'   => '0'),
                         );
         
         Model_Config::config_array($configs);        
