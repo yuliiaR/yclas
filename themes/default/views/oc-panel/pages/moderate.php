@@ -16,7 +16,7 @@
                         </label>
                     </div>
                 </th>
-                <th>#</th>
+                <th><?=__('Activate')?></th>
                 <th><?=__('Name')?></th>
                 <th><?=__('Category')?></th>
                 <th><?=__('Location')?></th>
@@ -60,9 +60,19 @@
                             </label>
                         </div>
                     </td>
-                    <td><?=$ad->id_ad?>
+                    <td>
+                        <a
+                            href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+                            class="btn btn-success index-moderation" 
+                            title="<?=__('Activate?')?>" 
+                            data-id="tr<?=$ad->id_ad?>" 
+                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                            data-btnCancelLabel="<?=__('No way!')?>">
+                            <i class="glyphicon glyphicon-ok-sign"></i> <?=$ad->id_ad?>
+                        </a>
+                    </td>
                     
-                    <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
+                    <td><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?= wordwrap($ad->title, 45, "<br />\n"); ?></a>
                     </td>
         
                     <td><?= wordwrap($ad->category->name, 15, "<br />\n"); ?>
@@ -107,20 +117,10 @@
                         
                         <a class="btn btn-primary" 
                             href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
-                            rel="tooltip" title="<?=__('Update')?>">
+                            rel="tooltip" title="<?=__('Edit')?>">
                             <i class="glyphicon   glyphicon-edit"></i>
                         </a>
-                        
-                        <a
-                            href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                            class="btn btn-success index-moderation" 
-                            title="<?=__('Activate?')?>" 
-                            data-id="tr<?=$ad->id_ad?>" 
-                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
-                            data-btnCancelLabel="<?=__('No way!')?>">
-                            <i class="glyphicon glyphicon-ok-sign"></i>
-                        </a>
-                       
+
                         <a
                             href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
                             class="btn btn-warning index-moderation" 
