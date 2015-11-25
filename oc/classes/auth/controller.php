@@ -165,7 +165,7 @@ class Auth_Controller extends Controller
                                         'css/jquery.sceditor.default.theme.min.css' => 'screen',
                                         'css/loadingbar.css'=>'screen', 
                                         'css/icon-picker.min.css'=>'screen', 
-                                        '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'=>'screen', 
+                                        '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'=>'screen', 
                                         '//cdn.jsdelivr.net/summernote/0.6.16/summernote.css'=>'screen', 
                                         '//cdn.jsdelivr.net/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css'=>'screen',
                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css'=>'screen',
