@@ -34,7 +34,7 @@
             <?if ($user->last_login!=NULL):?>
             <li><strong><?=__('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
             <?endif?>
-
+            <?if (Theme::get('premium')==1):?>
             <?foreach ($user->custom_columns(TRUE) as $name => $value):?>
                 <li>
                     <strong><?=$name?>:</strong>
@@ -47,6 +47,7 @@
                     <?endif?>
                 </li>
             <?endforeach?>
+            <?endif?>
         </ul>
 
         <!-- Popup contact form -->
@@ -158,6 +159,7 @@
                 <?endif?>
             </article>
         <?endforeach?>
+        <?=$pagination?>
     <?endif?>
 </div>
 	

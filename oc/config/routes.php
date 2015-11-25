@@ -192,10 +192,19 @@ Route::set('jslocalization', 'jslocalization/<action>')
 /*
     user profile route 
  */
-Route::set('profile', 'user/<seoname>(/<action>)')
+Route::set('profiles', 'user')
 ->defaults(array(
         'controller' => 'user',
         'action'     => 'index',
+));
+
+/*
+    user profile route 
+ */
+Route::set('profile', 'user/<seoname>')
+->defaults(array(
+        'controller' => 'user',
+        'action'     => 'profile',
 ));
 
 

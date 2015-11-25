@@ -107,7 +107,8 @@
                     <div class="form-group">
                         <?= FORM::label($forms['landing_page']['id'], "<a target='_blank' href='http://docs.yclas.com/home-or-listing/'>".__('Landing page')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['landing_page']['id']))?>
                         <div class="col-sm-8">
-                            <?= FORM::select($forms['landing_page']['key'], array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING'), $forms['landing_page']['value'], array(
+                            <?= FORM::select($forms['landing_page']['key'], 
+                                array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING','{"controller":"user","action":"index"}'=>'USERS'), $forms['landing_page']['value'], array(
                             'class' => 'tips form-control input-sm', 
                             'id' => $forms['landing_page']['id'], 
                             'data-content'=> __("It changes landing page of website"),
