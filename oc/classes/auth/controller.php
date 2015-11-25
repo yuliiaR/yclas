@@ -153,12 +153,12 @@ class Auth_Controller extends Controller
     	            //other color
     	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
     	            {
-    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.5/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
+    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.6/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
     	            }
     	            //default theme
     	            else
     	            {
-    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css' => 'screen');
+    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css' => 'screen');
     	            }
 
                 	$common_css = array('//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 

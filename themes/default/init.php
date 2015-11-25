@@ -46,7 +46,7 @@ if (Theme::$skin!='default')
     Theme::$styles = array_merge(Theme::$styles, array('css/color-'.Theme::$skin.'.css' => 'screen'));
 
 Theme::$scripts['footer']	= array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
-                                    '//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js',
+                                    '//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
                                     '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
                                     'js/jquery.validate.min.js',
