@@ -113,14 +113,6 @@ $modules = array(
 	'blacksmith'	=> MODPATH.'blacksmith', // used to handle custom fields
 );
 
-//modules for development environment, not included in distribution KO with OC, so you need to place them in your environment
-//also we did a cleaning in KO removing all the tests and documentation to make it lighter
-// if (Kohana::$environment == Kohana::DEVELOPMENT)
-// {
-//     @FIXME @TOFIX possible integration w/ PHPUnit ?
-//     $modules['unittest'] =  MODPATH.'unittest';   // Unit testing
-//     //$modules['userguide'] = MODPATH.'userguide';  // User guide and API documentation
-// }
 
 Kohana::modules($modules);
 unset($modules);

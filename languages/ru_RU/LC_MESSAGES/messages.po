@@ -1,2228 +1,5813 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.5.1\n"
+"POT-Creation-Date: 2015-11-22 23:26:10\n"
+"PO-Revision-Date: 2015-11-22 23:26:10\n"
+"Last-Translator: nima <admin@dribno.com>\n"
+"Language-Team: en\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Open Classifieds 2.5.1\n"
+
 #: String 0
-msgid "Listing"
-msgstr "Список"
+msgid "100"
+msgstr "100"
 
 #: String 1
-msgid "Categories"
-msgstr "Категории"
+msgid "1000"
+msgstr "1000"
 
 #: String 2
-msgid "Search"
-msgstr "Поиск"
+msgid "1 MB file"
+msgstr "1 МБ файл"
 
 #: String 3
-msgid "Publish new "
-msgstr "Опубликовать новое"
+msgid "about a day"
+msgstr "около суток"
 
 #: String 4
-msgid "Login"
-msgstr "Войти"
+msgid "about a decade"
+msgstr "около десяти лет"
 
 #: String 5
-msgid "Forgot password"
-msgstr "Забыли пароль"
+msgid "about a month"
+msgstr "около месяца"
 
 #: String 6
-msgid "Register"
-msgstr "Регистрация"
+msgid "about a week"
+msgstr "about a week"
 
 #: String 7
-msgid "Change the admin color theme"
-msgstr "Изменить цвет темы Администратора"
+msgid "about a year"
+msgstr "около года"
 
 #: String 8
-msgid "Mobile Version"
-msgstr "Мобильная версия"
+msgid "A button with the page title appears next to other pay button, onclick model opens with description."
+msgstr "Кнопка с названием страницы появляется рядом с другой кнопки оплаты, OnClick модальный открывается описанием."
 
 #: String 9
-msgid "Publish new"
-msgstr "Опубликовать новое"
+msgid "Accept Terms Alert"
+msgstr "Принять Условия оповещений"
 
 #: String 10
-msgid "Map"
-msgstr "Карта"
-
-#: String 11
-msgid "Contact"
-msgstr "Контакты"
-
-#: String 12
-msgid "Latest Ads"
-msgstr "Последние объявления"
-
-#: String 13
-msgid "New Advertisement"
-msgstr "Новое объявление"
-
-#: String 14
-msgid "Publish new advertisement"
-msgstr "Опубликовать новое объявление"
-
-#: String 15
-msgid "Featured"
-msgstr "Рекомендуемые"
-
-#: String 16
-msgid "Publish Date"
-msgstr "Дата Публикации"
-
-#: String 17
-msgid "Price"
-msgstr "Цена"
-
-#: String 18
-msgid "Read more"
-msgstr "Подробнее"
-
-#: String 19
-msgid "Edit"
-msgstr "Редактировать"
-
-#: String 20
-msgid "Deactivate?"
-msgstr "Отключить?"
-
-#: String 21
-msgid "Deactivate"
-msgstr "Отключить"
-
-#: String 22
-msgid "Spam?"
-msgstr "Спам?"
-
-#: String 23
-msgid "Spam"
-msgstr "Спам"
-
-#: String 24
-msgid "Delete?"
-msgstr "Удалить?"
-
-#: String 25
-msgid "Delete"
-msgstr "Удалить"
-
-#: String 26
-msgid "We do not have any advertisements in this category"
-msgstr "В этой категории пока нет объявлений"
-
-#: String 27
-msgid "Hits"
-msgstr "Просмотров"
-
-#: String 28
-msgid "Send Message"
-msgstr "Отправить сообщение"
-
-#: String 29
-msgid "Name"
-msgstr "Имя"
-
-#: String 30
-msgid "Email"
-msgstr "E-mail"
-
-#: String 31
-msgid "Subject"
-msgstr "Тема"
-
-#: String 32
-msgid "Message"
-msgstr "Сообщение"
-
-#: String 33
-msgid "Captcha"
-msgstr "Код"
-
-#: String 34
-msgid "Number of latest ads to display in the home page"
-msgstr "Количество показываемых на главной странице новых объявлений"
-
-#: String 35
-msgid "Change the color scheme and style of the theme"
-msgstr "Изменение цветовой гаммы и стиля темы"
-
-#: String 36
-msgid "Header banner, allows HTML"
-msgstr "Баннер заголовка, HTML-редактируемый"
-
-#: String 37
-msgid "Please wait while we transfer you to Paypal"
-msgstr "Подождите, пока мы перенаправим вас в Paypal"
-
-#: String 38
-msgid "Click here if you are not redirected"
-msgstr "Нажмите здесь, если переадресация не произошла"
-
-#: String 39
-msgid "First"
-msgstr "Первый"
-
-#: String 40
-msgid "Previous"
-msgstr "Предыдущий"
-
-#: String 41
-msgid "Page"
-msgstr "Страница"
-
-#: String 42
-msgid "Next"
-msgstr "Следующий"
-
-#: String 43
-msgid "Last"
-msgstr "Последний"
-
-#: String 44
-msgid "Edit Profile"
-msgstr "Редактировать профиль"
-
-#: String 45
-msgid "Change password"
-msgstr "Изменить пароль"
-
-#: String 46
-msgid "Old password"
-msgstr "Старый пароль"
-
-#: String 47
-msgid "Password"
-msgstr "Пароль"
-
-#: String 48
-msgid "New password"
-msgstr "Новый пароль"
-
-#: String 49
-msgid "Repeat password"
-msgstr "Повторите пароль"
-
-#: String 50
-msgid "Type your password twice to change"
-msgstr "Для изменения введите пароль дважды"
-
-#: String 51
-msgid "Cancel"
-msgstr "Отменить"
-
-#: String 52
-msgid "Send"
-msgstr "Отправить"
-
-#: String 53
-msgid "My Advertisements"
-msgstr "Мои объявления"
-
-#: String 54
-msgid " New"
-msgstr "Новое"
-
-#: String 55
-msgid "Category"
-msgstr "Категория"
-
-#: String 56
-msgid "Location"
-msgstr "Расположение"
-
-#: String 57
-msgid "Status"
-msgstr "Статус"
-
-#: String 58
-msgid "Date"
-msgstr "Дата"
-
-#: String 59
-msgid "Not published"
-msgstr "Не опубликовано"
-
-#: String 60
-msgid "Published"
-msgstr "Опубликовано"
-
-#: String 61
-msgid "Unavailable"
-msgstr "Недоступно"
-
-#: String 62
-msgid "Update"
-msgstr "Обновить"
-
-#: String 63
-msgid "Activate?"
-msgstr "Активировать?"
-
-#: String 64
-msgid "Activate"
-msgstr "Активировать"
-
-#: String 65
-msgid "Refresh listing, go to top?"
-msgstr "Обновить список и перейти наверх?"
-
-#: String 66
-msgid "Go to top"
-msgstr "Перейти к началу"
-
-#: String 67
-msgid "Are you sure you want to refresh listing and go to top?"
-msgstr "Вы уверены, что хотите обновить список и перейти наверх?"
-
-#: String 68
-msgid "Make featured?"
-msgstr "Выделить?"
-
-#: String 69
-msgid "Are you sure you want to make it featured?"
-msgstr "Вы уверены, что хотите выделить это?"
-
-#: String 70
-msgid "Deactivate featured?"
-msgstr "Отключить выделение?"
-
-#: String 71
-msgid "Deactivate featured"
-msgstr "Отключить выделение"
-
-#: String 72
-msgid "Are you sure you want to deactivate featured advertisement?"
-msgstr "Вы уверены, что хотите отключить выделение объявления?"
-
-#: String 73
-msgid "Statistics"
-msgstr "Статистика"
-
-#: String 74
-msgid "Today"
-msgstr "Сегодня"
-
-#: String 75
-msgid "Yesterday"
-msgstr "Вчера"
-
-#: String 76
-msgid "Last 30 days"
-msgstr "Последние 30 дней"
-
-#: String 77
-msgid "Total"
-msgstr "Всего"
-
-#: String 78
-msgid "Contacts"
-msgstr "Контакты"
-
-#: String 79
-msgid "Visits"
-msgstr "Просмотров"
-
-#: String 80
-msgid "Charts"
-msgstr "Чарты"
-
-#: String 81
-msgid "From"
-msgstr "От"
-
-#: String 82
-msgid "To"
-msgstr "До"
-
-#: String 83
-msgid "Filter"
-msgstr "Фильтр"
-
-#: String 84
-msgid "Views and Contacts statistic"
-msgstr "Статистика просмотров и контактов"
-
-#: String 85
-msgid "Edit Advertisement"
-msgstr "Редактировать объявление"
-
-#: String 86
-msgid "Id_User"
-msgstr "Код Пользователя"
-
-#: String 87
-msgid "Profile"
-msgstr "Профиль"
-
-#: String 88
-msgid "Unpublished"
-msgstr "Неопубликовано"
-
-#: String 89
-msgid "spam"
-msgstr "спам"
-
-#: String 90
-msgid "Title"
-msgstr "Название"
-
-#: String 91
-msgid "Description"
-msgstr "Описание"
-
-#: String 92
-msgid "Delete image"
-msgstr "Удалить изображения"
-
-#: String 93
-msgid "Images"
-msgstr "Изображения"
-
-#: String 94
-msgid "Phone"
-msgstr "Телефон"
-
-#: String 95
-msgid "Address"
-msgstr "Адрес"
-
-#: String 96
-msgid "Website"
-msgstr "Сайт"
-
-#: String 97
-msgid "Panel"
-msgstr "Панель"
-
-#: String 98
-msgid "Market"
-msgstr "Магазин"
-
-#: String 99
-msgid "Moderation"
-msgstr "Проверка"
-
-#: String 100
-msgid "Stats"
-msgstr "Состояние"
-
-#: String 101
-msgid "Widgets"
-msgstr "Виджеты"
-
-#: String 102
-msgid "New"
-msgstr "Новое"
-
-#: String 103
-msgid "Welcome"
-msgstr "Добро пожаловать"
-
-#: String 104
-msgid "Thanks for using our website."
-msgstr "Спасибо за использование нашего сайта."
-
-#: String 105
-msgid "Advertisements"
-msgstr "Объявления"
-
-#: String 106
-msgid "Locations"
-msgstr "Места"
-
-#: String 107
-msgid "Orders"
-msgstr "Заказы"
-
-#: String 108
-msgid "Content"
-msgstr "Содержание"
-
-#: String 109
-msgid "Translations"
-msgstr "Переводы"
-
-#: String 110
-msgid "Newsletters"
-msgstr "Рассылки"
-
-#: String 111
-msgid "Themes"
-msgstr "Темы"
-
-#: String 112
-msgid "Theme Options"
-msgstr "Настройки темы"
-
-#: String 113
-msgid "Settings"
-msgstr "Настройки"
-
-#: String 114
-msgid "General"
-msgstr "Общие"
-
-#: String 115
-msgid "Payment"
-msgstr "Оплата"
-
-#: String 116
-msgid "Advertisement"
-msgstr "Реклама"
-
-#: String 117
-msgid "Users"
-msgstr "Пользователи"
-
-#: String 118
-msgid "User Roles"
-msgstr "Категории пользователей"
-
-#: String 119
-msgid "Roles access"
-msgstr "Доступ по категориям"
-
-#: String 120
-msgid "Tools"
-msgstr "Инструментарий"
-
-#: String 121
-msgid "Updates"
-msgstr "Обновления"
-
-#: String 122
-msgid "Sitemap"
-msgstr "Карта сайта"
-
-#: String 123
-msgid "Migration"
-msgstr "Миграция"
-
-#: String 124
-msgid "Optimize"
-msgstr "Оптимизировать"
-
-#: String 125
-msgid "Cache"
-msgstr "Кэш"
-
-#: String 126
-msgid "Logs"
-msgstr "Журналы"
-
-#: String 127
-msgid "PHP Info"
-msgstr "Информация PHP"
-
-#: String 128
-msgid "Edit profile"
-msgstr "Редактировать профиль"
-
-#: String 129
-msgid "Public profile"
-msgstr "Публичный профиль"
-
-#: String 130
-msgid "Home"
-msgstr "Домой"
-
-#: String 131
-msgid "Actions"
-msgstr "Действия"
-
-#: String 132
-msgid "Are you sure you want to delete?"
-msgstr "Вы уверены, что хотите удалить?"
-
-#: String 133
-msgid "Logout"
-msgstr "Выход"
-
-#: String 134
-msgid "Visit Site"
-msgstr "Посетить сайт"
-
-#: String 135
-msgid "Here are listed specific theme configuration values. Replace input fields with new desired values for the theme."
-msgstr "Здесь перечислены специальные значения конфигурации темы. Введите новые значения в соответствующие поля ввода."
-
-#: String 136
-msgid "Using mobile theme"
-msgstr "Использовать мобильную тему"
-
-#: String 137
-msgid "Disable"
-msgstr "Отключено"
-
-#: String 138
-msgid "Options"
-msgstr "Опции"
-
-#: String 139
-msgid "You can change the look and feel of your website here."
-msgstr "Вы можете изменить внешний вид вашего сайта здесь."
-
-#: String 140
-msgid "Current Theme"
-msgstr "Текущая тема"
-
-#: String 141
-msgid "Available Themes"
-msgstr "Доступные темы"
-
-#: String 142
-msgid "Preview"
-msgstr "Предварительный просмотр"
-
-#: String 143
-msgid "Available Mobile Themes"
-msgstr "Доступные мобильные Темы"
-
-#: String 144
-msgid "Themes Market"
-msgstr "Магазин тем"
-
-#: String 145
-msgid "Here you can find a selection of our premium themes."
-msgstr "Здесь вы можете найти некоторые из наших премиальных тем."
-
-#: String 146
-msgid "All themes include support, updates and 1 site license."
-msgstr "Все темы включают в себя поддержку, обновления и лицензию на 1 сайт."
-
-#: String 147
-msgid "Site Usage Statistics"
-msgstr "Статистика посещаемости сайта"
-
-#: String 148
-msgid "Ads"
-msgstr "Объявления"
-
-#: String 149
-msgid "Sales"
-msgstr "Продажи"
-
-#: String 150
-msgid "Views and Ads statistics"
-msgstr "Статистика просмотров и объявлений"
-
-#: String 151
-msgid "Sales statistics"
-msgstr "Статистика продаж"
-
-#: String 152
-msgid "Available widgets"
-msgstr "Доступные виджеты"
-
-#: String 153
-msgid "Create"
-msgstr "Создать"
-
-#: String 154
-msgid "Where do you want the widget displayed?"
-msgstr "Где Вы хотите разместить виджет?"
-
-#: String 155
-msgid "Close"
-msgstr "Закрыть"
-
-#: String 156
-msgid "Sure you want to delete the widget? You can move it to the inactive placeholder"
-msgstr "Уверены, что хотите удалить виджет? Вы можете переместить его в неактивное поле"
-
-#: String 157
-msgid "Save changes"
-msgstr "Сохранить изменения"
-
-#: String 158
-msgid "Limited Offer!"
-msgstr "Ограниченное предложение!"
-
-#: String 159
-msgid "Valid Until"
-msgstr "Действительно до"
-
-#: String 160
-msgid "Buy Now"
-msgstr "Купить сейчас"
-
-#: String 161
-msgid "More info"
-msgstr "Подробнее"
-
-#: String 162
-msgid "Selection of nice extras for your installation."
-msgstr "Выбор приятных дополнений для установки."
-
-#: String 163
-msgid "Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "Изменить порядок категорий. Имейте в виду, что вложенность более 2 уровней, скорее всего, не будет отображаться в теме (не рекомендуется)."
-
-#: String 164
-msgid "New category"
-msgstr "Новая категория"
-
-#: String 165
-msgid "Are you sure you want to delete? We will move the siblings categories and ads to the parent of this category."
-msgstr "Вы уверены, что хотите удалить? Подчиненные категории будут перемещены в родительскую папку этой категории."
-
-#: String 166
-msgid "Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
-msgstr "Изменить порядок мест. Имейте в виду, что вложенность более 2 уровней, вероятно, не будет отображаться в теме (не рекомендуется)."
-
-#: String 167
-msgid "New location"
-msgstr "Новое место"
-
-#: String 168
-msgid "Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location."
-msgstr "Вы уверены, что хотите удалить? Подчиненные места будут перемещены в родительскую папку."
-
-#: String 169
-msgid "Newsletter"
-msgstr "Новости"
-
-#: String 170
-msgid "Email Settings"
-msgstr "Настройки электронной почты"
-
-#: String 171
-msgid "You can send a mass email to all active users."
-msgstr "Вы можете отправить массовую электронную рассылку для всех активных пользователей."
-
-#: String 172
-msgid "From Email"
-msgstr "С электронной почты"
-
-#: String 173
-msgid "Optimize Database"
-msgstr "Оптимизация базы данных"
-
-#: String 174
-msgid "Database space"
-msgstr "Пространство базы данных"
-
-#: String 175
-msgid "Space to optimize"
-msgstr "Пространство для оптимизации"
-
-#: String 176
-msgid "Table"
-msgstr "Таблица"
-
-#: String 177
-msgid "Rows"
-msgstr "Строки"
-
-#: String 178
-msgid "Size"
-msgstr "Размер"
-
-#: String 179
-msgid "Save size"
-msgstr "Сохранить размер"
-
-#: String 180
-msgid "Cache configuration information"
-msgstr "Информация конфигурации кэша "
-
-#: String 181
-msgid "Delete all"
-msgstr "Удалить все"
-
-#: String 182
-msgid "Delete expired"
-msgstr "Удалить просроченные"
-
-#: String 183
-msgid "Config file"
-msgstr "Конфигурационный файл"
-
-#: String 184
-msgid "System Logs"
-msgstr "Системный журнал"
-
-#: String 185
-msgid "Reading log file"
-msgstr "Чтение файла журнала"
-
-#: String 186
-msgid "Log"
-msgstr "Журнал"
-
-#: String 187
-msgid "Your PHP time limit is"
-msgstr "Ваш лимит времени для PHP -- "
-
-#: String 188
-msgid "seconds"
-msgstr "секунд"
-
-#: String 189
-msgid "Host name"
-msgstr "Имя хоста"
-
-#: String 190
-msgid "User name"
-msgstr "Имя пользователя"
-
-#: String 191
-msgid "Database name"
-msgstr "Имя базы данных"
-
-#: String 192
-msgid "Database charset"
-msgstr "Кодировка Базы данных "
-
-#: String 193
-msgid "Table prefix"
-msgstr "Таблица префиксов"
-
-#: String 194
-msgid "Migrate"
-msgstr "Мигрировать"
-
-#: String 195
-msgid "Last time generated"
-msgstr "Последний раз сгенерировано "
-
-#: String 196
-msgid "Generate"
-msgstr "Генерировать"
-
-#: String 197
-msgid "Expire time"
-msgstr "Время ограничено до"
-
-#: String 198
-msgid "Update on publish"
-msgstr "Обновить публикацию"
-
-#: String 199
-msgid "Save"
-msgstr "Сохранить"
-
-#: String 200
-msgid "Versions"
-msgstr "Версии"
-
-#: String 201
-msgid "Open Classifieds release history information."
-msgstr "Информация о релизе Open Classifieds."
-
-#: String 202
-msgid "Your installation version is"
-msgstr "Ваша установочная версия -- "
-
-#: String 203
-msgid "Your Hash Key for this installation is"
-msgstr "Ваш хэш-ключ для установки,"
-
-#: String 204
-msgid "Check for updates"
-msgstr "Проверить наличие обновлений"
-
-#: String 205
-msgid "Version"
-msgstr "Версия"
-
-#: String 206
-msgid "Information"
-msgstr "Информация"
-
-#: String 207
-msgid "Latest"
-msgstr "Последний"
-
-#: String 208
-msgid "Current"
-msgstr "Текущий"
-
-#: String 209
-msgid "Email Configuration"
-msgstr "Настройки электронной почты"
-
-#: String 210
-msgid "List of general configuration values. Replace input fields with new desired values"
-msgstr "Список значений конфигурации. Введите новые значения в соответствующие поля."
-
-#: String 211
-msgid "If you need to send many emails with a high delivery rate check"
-msgstr "Отметьте, если вам нужно отправить много писем с высокой скоростью "
-
-#: String 212
-msgid "Notify email"
-msgstr "Сообщить по E-mail"
-
-#: String 213
-msgid "Email from where we send the emails, also used for software communications."
-msgstr "E-mail для отправки электронных писем также используется для связи ПО."
-
-#: String 214
-msgid "Email From"
-msgstr "E-mail от "
-
-#: String 215
-msgid "Smtp active"
-msgstr "Smtp активный"
-
-#: String 216
-msgid "Smtp ssl"
-msgstr "Smtp SSL"
-
-#: String 217
-msgid "Smtp host"
-msgstr "SMTP Хоста,"
-
-#: String 218
-msgid "Smtp port"
-msgstr "Порт SMTP"
-
-#: String 219
-msgid "Smtp auth"
-msgstr "SMTP AUTH"
-
-#: String 220
-msgid "Smtp user"
-msgstr "Smtp пользователя"
-
-#: String 221
-msgid "Smtp password"
-msgstr "Пароль SMTP"
-
-#: String 222
-msgid "Advertisement Configuration"
-msgstr "Конфигурация объявлений"
-
-#: String 223
-msgid "Number of images"
-msgstr "Количество изображений"
-
-#: String 224
-msgid "Number of images displayed"
-msgstr "Количество отображаемых изображений"
-
-#: String 225
-msgid "Ad expiration date"
-msgstr "Хранение объявления до даты: "
-
-#: String 226
-msgid "Expire days"
-msgstr "Срок хранения, дней: "
-
-#: String 227
-msgid "After how many days an Ad will expire. 0 for never"
-msgstr "Сколько дней будет показываться объявление. 0 -- всегда"
-
-#: String 228
-msgid "Days"
-msgstr "Дней"
-
-#: String 229
-msgid "Address field"
-msgstr "Поле для адреса"
-
-#: String 230
-msgid "Displays the field Address in the Ad form."
-msgstr "Отображает поле "Адрес" в форме объявления."
-
-#: String 231
-msgid "Google Maps in Ad"
-msgstr "Карты Google в объявлении"
-
-#: String 232
-msgid "Displays the google maps in the Ad."
-msgstr "Отображает Google Maps в объявлении."
-
-#: String 233
-msgid "Phone field"
-msgstr "Поле для телефона"
-
-#: String 234
-msgid "Displays the field Phone in the Ad form."
-msgstr "Отображает поле "Телефон" в форме объявления."
-
-#: String 235
-msgid "Website field"
-msgstr "Поле для сайта"
-
-#: String 236
-msgid "Displays the field Website in the Ad form."
-msgstr "Отображает поле "Сайт" в форме объявления."
-
-#: String 237
-msgid "Displays location select"
-msgstr "Отображает выбор места"
-
-#: String 238
-msgid "Displays the Select Location in the Ad form."
-msgstr "Отображает "Выберите место" в форме объявления."
-
-#: String 239
-msgid "Price field"
-msgstr "Поле "Цена""
-
-#: String 240
-msgid "Displays the field Price in the Ad form."
-msgstr "Отображает поле Цена в форме объявления."
-
-#: String 241
-msgid "Upload file"
-msgstr "Загрузить файл"
-
-#: String 242
-msgid "Enables Captcha"
-msgstr "Включает проверочный код"
-
-#: String 243
-msgid "Captcha appears in the form."
-msgstr "В форме появляется проверочный код "
-
-#: String 244
-msgid "Deactivated"
-msgstr "Деактивировано"
-
-#: String 245
-msgid "Terms of Service"
-msgstr "Условия предоставления услуг"
-
-#: String 246
-msgid "Disqus"
-msgstr "Обсудить"
-
-#: String 247
-msgid "Disqus Comments"
-msgstr "Обсудить Комментарии"
-
-#: String 248
-msgid "You need to write your disqus ID to enable the service."
-msgstr "Напишите ID Обсуждения, чтобы  включить эту услугу."
-
-#: String 249
-msgid "Payments Configuration"
-msgstr "Конфигурация оплаты"
-
-#: String 250
-msgid "List of payment configuration values. Replace input fields with new desired values."
-msgstr "Значения конфигурации оплаты. Введите новые значения в соответствующие поля."
-
-#: String 251
-msgid "Paypal account"
-msgstr "Счет в Paypal "
-
-#: String 252
-msgid "Paypal mail address"
-msgstr "Адрес электронной почты в Paypal "
-
-#: String 253
-msgid "The paypal email address where the payments will be sent"
-msgstr "Адрес электронной почты в PayPal, куда будут направляться платежи "
-
-#: String 254
-msgid "Sandbox"
-msgstr "Песочница (Sandbox)"
-
-#: String 255
-msgid "Paypal currency"
-msgstr "Валюта в Paypal"
-
-#: String 256
-msgid "Currency"
-msgstr "Валюта"
-
-#: String 257
-msgid "Please be sure you are using a currency that paypal supports."
-msgstr "Пожалуйста, убедитесь, что PayPal поддерживает эту валюту."
-
-#: String 258
-msgid "Featured Ads"
-msgstr "VIP-объявления"
-
-#: String 259
-msgid "Featured ads"
-msgstr "VIP-объявления"
-
-#: String 260
-msgid "Featured ads will be highlighted for a defined number of days."
-msgstr "VIP-Объявления будут выделены в течение определенного количества дней."
-
-#: String 261
-msgid "Price for featuring the Ad"
-msgstr "Цена за выделение объявлений"
-
-#: String 262
-msgid "Pricing"
-msgstr "Ценообразование"
-
-#: String 263
-msgid "How much the user needs to pay to feature an Ad"
-msgstr "Сколько пользователь должен заплатить за выделение объявления"
-
-#: String 264
-msgid "Days Featured"
-msgstr "Срок выделения"
-
-#: String 265
-msgid "Featured length"
-msgstr "Рекомендуемый срок"
-
-#: String 266
-msgid "How many days an ad will be featured after paying."
-msgstr "Сколько дней после оплаты объявление будет выделено."
-
-#: String 267
-msgid "Bring to top Ad"
-msgstr "Поднять объявление"
-
-#: String 268
-msgid "Brings your Ad to the top of the listing."
-msgstr "Перемещает ваше объявление в начало списка."
-
-#: String 269
-msgid "To top price"
-msgstr "Цена за поднятие вверх"
-
-#: String 270
-msgid "How much the user needs to pay to top up an Ad"
-msgstr "Сколько пользователь должен заплатить, чтобы поднять объявление"
-
-#: String 271
-msgid "General Configuration"
-msgstr "Общая конфигурация"
-
-#: String 272
-msgid "General site settings."
-msgstr "Общие настройки сайта."
-
-#: String 273
-msgid "All configurations"
-msgstr "Все конфигурации"
-
-#: String 274
-msgid "Maintenance Mode"
-msgstr "Режим обслуживания"
-
-#: String 275
-msgid "Enables the site to maintenance"
-msgstr "Включает режим обслуживания сайта."
-
-#: String 276
-msgid "Site name"
-msgstr "Название сайта"
-
-#: String 277
-msgid "Here you can declare your display name. This is seen by everyone!"
-msgstr "Здесь вы можете ввести ваше имя для отображения. Его видят все."
-
-#: String 278
-msgid "Site Name"
-msgstr "Название сайта"
-
-#: String 279
-msgid "Site description"
-msgstr "Описание сайта"
-
-#: String 280
-msgid "Base URL"
-msgstr "Основной URL"
-
-#: String 281
-msgid "Is a base path of your site (e.g. http://open-classifieds.com/). Everything else is built based on this field."
-msgstr "Это основной путь вашего сайта (например, http://open-classifieds.com/). Все остальное строится на его базе"
-
-#: String 282
-msgid "Base URL path"
-msgstr "Базовый путь URL"
-
-#: String 283
-msgid "Moderation controls"
-msgstr "Инструменты модерации"
-
-#: String 284
-msgid "Global currency"
-msgstr "Мировые валюты"
-
-#: String 285
-msgid "Global currency is country specific. There are no restrictions, this is only to declare currency for advertisements. Note: This is different from payment currencies. "
-msgstr "Мировые валюты зависят от конкретной страны. Нет никаких ограничений, используется лишь для указания валюты объявления. PS: может не совпадать с валютой платежа"
-
-#: String 286
-msgid "Country specific currency"
-msgstr "Национальная валюта"
-
-#: String 287
-msgid "Advertisements per page"
-msgstr "Объявлений на страницу"
-
-#: String 288
-msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
-msgstr "Устанавливает, сколько объявлений отображается на странице. Введите целое число."
-
-#: String 289
-msgid "Number of ads per page"
-msgstr "Количество объявлений на странице"
-
-#: String 290
-msgid "Advertisements in RSS"
-msgstr "Объявления в RSS"
-
-#: String 291
-msgid "Number of Ads"
-msgstr "Количество объявлений"
-
-#: String 292
-msgid "How many ads are going to appear in the RSS of your site."
-msgstr "Сколько объявлений будут появляться в RSS вашего сайта."
-
-#: String 293
-msgid "Advertisements in Map"
-msgstr "Объявления на карте"
-
-#: String 294
-msgid "How many ads are going to appear in the map of your site."
-msgstr "Сколько объявлений будут появляться на карте вашего сайта."
-
-#: String 295
-msgid "Number format"
-msgstr "Формат числа"
-
-#: String 296
-msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
-msgstr "Формат числа -- как вы хотите отображать числа в объявлении. В каждой стране приняты свои нормы отображения десятичных знаков"
-
-#: String 297
-msgid "Decimal representation"
-msgstr "Представление десятичных знаков"
-
-#: String 298
-msgid "Date format"
-msgstr "Формат даты"
-
-#: String 299
-msgid "Each advertisement have a publish date. By selecting format, you can change how it is shown on your website."
-msgstr "У каждого объявления есть дата публикации. Вы можете выбрать, как она будет отображаться на сайте."
-
-#: String 300
-msgid "Analytics"
-msgstr "Аналитика"
-
-#: String 301
-msgid "Allowed image formats"
-msgstr "Допустимые форматы изображений"
-
-#: String 302
-msgid "Set this up to restrict image formats that are being uploaded to your server."
-msgstr "Установите ограничения для изображений, загружаемых на сервер"
-
-#: String 303
-msgid "Max image size"
-msgstr "Максимальный размер "
-
-#: String 304
-msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
-msgstr "Контролируйте размер загружаемого изображения. Введите целое значение для максимального размера в мегабайтах (Мб)."
-
-#: String 305
-msgid "Image size in mega bites(Mb)"
-msgstr "Размер изображения в мегабайтах (Мб)"
-
-#: String 306
-msgid "Image height"
-msgstr "Высота изображения"
-
-#: String 307
-msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
-msgstr "Все изображения при загрузке сжимаются. Это -- высота большой картинки. PS: вы можете оставить это поле пустым. Тогда будет установлено автоматическое сжатие"
-
-#: String 308
-msgid "Image height in pixels(px)"
-msgstr "Высота изображения в пикселях (PX)"
-
-#: String 309
-msgid "Image width"
-msgstr "Ширина изображения"
-
-#: String 310
-msgid "Each image is resized when uploaded. This is the width of big image."
-msgstr "Все изображения при загрузке сжимаются. Это -- ширина большой картинки. "
-
-#: String 311
-msgid "Image width in pixels(px)"
-msgstr "Ширина изображения в пикселях (PX)"
-
-#: String 312
-msgid "Thumb height"
-msgstr "Высота Thumb"
-
-#: String 313
-msgid "Thumb is a small image resized to fit certain elements. This is height of this image."
-msgstr "Thumb -- это маленькое изображение, соответствующее определенным элементам. Это -- высота этого изображения."
-
-#: String 314
-msgid "Thumb height in pixels(px)"
-msgstr "Высота Thumb в пикселях (PX)"
-
-#: String 315
-msgid "Thumb width"
-msgstr "Ширина Thumb "
-
-#: String 316
-msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
-msgstr "Thumb -- это маленькое изображение, соответствующее определенным элементам. Это -- ширина этого изображения."
-
-#: String 317
-msgid "Thumb width in pixels(px)"
-msgstr "Ширина Thumb в пикселях (PX)"
-
-#: String 318
-msgid "Image quality"
-msgstr "Качество изображения"
-
-#: String 319
-msgid "Choose the quality of the stored images (1-100% of the original)."
-msgstr "Выбрать качество изображения (1-100% от исходного)."
-
-#: String 320
-msgid "Image Quality"
-msgstr "Качество изображения"
-
-#: String 321
-msgid "Here you can modify any text you find in your web."
-msgstr "Здесь вы можете изменить любой текст на вашем сайте"
-
-#: String 322
-msgid "Original Translation"
-msgstr "Исходный перевод"
-
-#: String 323
-msgid "Copy all?, Be aware this will replace all your texts."
-msgstr "Копировать все? Имейте в виду, что  все ваши тексты будут заменены"
-
-#: String 324
-msgid "Translate all?, Be aware this will replace all your texts."
-msgstr "Перевести все? Имейте в виду, что  все ваши тексты будут заменены"
-
-#: String 325
-msgid "Translation"
-msgstr "Перевод"
-
-#: String 326
-msgid "Translations files available in the system."
-msgstr "Перевод доступных файлов"
-
-#: String 327
-msgid "Scan"
-msgstr "Сканирование"
-
-#: String 328
-msgid "New translation"
-msgstr "Новый перевод"
-
-#: String 329
-msgid "Language"
-msgstr "Язык"
-
-#: String 330
-msgid "Active"
-msgstr "Активный"
-
-#: String 331
-msgid "Spam Sort"
-msgstr "Сортировка спама"
-
-#: String 332
-msgid "Unavailable Sort"
-msgstr "Недоступная сортировка"
-
-#: String 333
-msgid " Unavailable"
-msgstr "Недоступно"
-
-#: String 334
-msgid "General configurations are set. Replace input fields with new desired values."
-msgstr "Общая конфигурация установлена. Замените значения полей на нужные."
-
-#: String 335
-msgid "Deactivate Featured"
-msgstr "Отключить выделение"
-
-#: String 336
-msgid "Thanks for using Open Classifieds."
-msgstr "Спасибо за использование Open Classifieds"
-
-#: String 337
-msgid "Latest News"
-msgstr "Последние новости"
-
-#: String 338
-msgid "Contact Us"
-msgstr "Связаться с Нами"
-
-#: String 339
-msgid "User Profile"
-msgstr "Профиль пользователя"
-
-#: String 340
-msgid "Created"
-msgstr "Создано"
-
-#: String 341
-msgid "Last Login"
-msgstr "Последний вход"
-
-#: String 342
-msgid " advertisements"
-msgstr "объявления"
-
-#: String 343
-msgid "Not yet published"
-msgstr "Еще не опубликовано"
-
-#: String 344
-msgid "Remember password"
-msgstr "Запомнить пароль"
-
-#: String 345
-msgid "Forgot password?"
-msgstr "Забыли пароль?"
-
-#: String 346
-msgid "Remember me"
-msgstr "Запомнить меня"
-
-#: String 347
-msgid "Type your password twice"
-msgstr "Введите пароль дважды"
-
-#: String 348
-msgid "Terms of service"
-msgstr "Условия предоставления услуг"
-
-#: String 349
-msgid "User account will be created"
-msgstr "Будет создана учетная запись пользователя"
-
-#: String 350
-msgid "Advanced Search"
-msgstr "Расширенный поиск"
-
-#: String 351
-msgid "Advertisement Title"
-msgstr "Название Объявления"
-
-#: String 352
-msgid "Slideshow"
-msgstr "Слайд-шоу"
-
-#: String 353
-msgid "Download"
-msgstr "Скачать"
-
-#: String 354
-msgid "Header tool bar gets fixed in the top"
-msgstr "Панель инструментов заголовка фиксируется сверху"
-
-#: String 355
-msgid "Yes"
-msgstr "Да"
-
-#: String 356
-msgid "No"
-msgstr "Нет"
-
-#: String 357
-msgid "Display breadcrumb"
-msgstr "Показать путь"
-
-#: String 358
-msgid "URL to your Logo. Recommended size 250px x 40px. Leave blank for none."
-msgstr "URL с Вашим логотипом. Рекомендуемый размер 250px х 40px. Оставьте поле пустым."
-
-#: String 359
-msgid "Short description that appears after the site name."
-msgstr "Краткое описание, которое появляется после названия сайта."
-
-#: String 360
-msgid "Numbers of ads to display in home slider"
-msgstr "Количество объявлений в слайд-шоу главной страницы"
-
-#: String 361
-msgid "Where you want the sidebar to appear"
-msgstr "Где вы хотите размесить боковую панель."
-
-#: String 362
-msgid "Right side"
-msgstr "Справа"
-
-#: String 363
-msgid "Left side"
-msgstr "Слева"
-
-#: String 364
-msgid "Menu"
-msgstr "Меню"
-
-#: String 365
-msgid "Contact us"
-msgstr "Связаться с нами"
-
-#: String 366
-msgid "Advanced search"
-msgstr "Расширенный поиск"
-
-#: String 367
-msgid "Desktop Version"
-msgstr "Настольные версии"
-
-#: String 368
-msgid "Public Profile"
-msgstr "Публичный профиль"
-
-#: String 369
-msgid "advertisements"
-msgstr "объявления"
-
-#: String 370
-msgid "Change the main color scheme and style of the theme"
-msgstr "Изменить основную цветовую схему и стиль темы"
-
-#: String 371
-msgid "Change the header color scheme and style of the theme"
-msgstr "Изменить цветовую схему и стиль темы заголовка "
-
-#: String 372
-msgid "Change the theme of List Elements"
-msgstr "Изменить тему элементов списка"
-
-#: String 373
-msgid "Change the theme of Featured Elements"
-msgstr "Изменить тему выделенных элементов"
-
-#: String 374
-msgid "Installation"
-msgstr "Установка"
-
-#: String 375
-msgid "Requirements"
-msgstr "Требования"
-
-#: String 376
-msgid "Congratulations"
-msgstr "Поздравления"
-
-#: String 377
-msgid "Installation done"
-msgstr "Установка окончена"
-
-#: String 378
-msgid "Please now erase the folder"
-msgstr "Пожалуйста, теперь удалите папку"
-
-#: String 379
-msgid "Go to Your Website"
-msgstr "Перейти на ваш сайт"
-
-#: String 380
-msgid "Make a donation"
-msgstr "Сделать пожертвование"
-
-#: String 381
-msgid "We really appreciate it"
-msgstr "Мы очень ценим это"
-
-#: String 382
-msgid "Welcome to"
-msgstr "Добро пожаловать на"
-
-#: String 383
-msgid "installation"
-msgstr "установка"
-
-#: String 384
-msgid "Welcome to the super easy and fast installation"
-msgstr "Приступим к супер легкой и быстрой установке"
-
-#: String 385
-msgid "If you need any help please check our professional services"
-msgstr "Если вам нужна помощь, пожалуйста, обратитесь за нашими профессиональными услугами"
-
-#: String 386
-msgid "Site Configuration"
-msgstr "Конфигурация сайта"
-
-#: String 387
-msgid "Site Language"
-msgstr "Язык сайта"
-
-#: String 388
-msgid "Site URL"
-msgstr "URL сайта"
-
-#: String 389
-msgid "Time Zone"
-msgstr "Часовой пояс"
-
-#: String 390
-msgid "New Install"
-msgstr "Новая установка"
-
-#: String 391
-msgid "Upgrade System"
-msgstr "Обновления системы"
-
-#: String 392
-msgid "Administrator email"
-msgstr "Электронная почта администратора"
-
-#: String 393
-msgid "Admin Password"
-msgstr "Пароль администратора"
-
-#: String 394
-msgid "Sample data"
-msgstr "Образец"
-
-#: String 395
-msgid "Creates few sample categories to start with"
-msgstr "Создает несколько категорий как образец для начала работы"
-
-#: String 396
-msgid "Hash Key"
-msgstr "Хэш-ключ"
-
-#: String 397
-msgid "You need the Hash Key to re-install. You can find this value if you lost it at"
-msgstr "Для переустановки вам нужен хэш-ключ. Вы можете найти его значение, если вы его потеряли."
-
-#: String 398
-msgid "Database Configuration"
-msgstr "Конфигурация базы данных"
-
-#: String 399
-msgid "Allows multiple installations in one database if you give each one a unique prefix"
-msgstr "Если вы присвоите каждой базе данных уникальный префикс, вы можете установить несколько сайтов с одной базой."
-
-#: String 400
-msgid "Only numbers, letters, and underscores"
-msgstr "Только цифры, буквы и символы подчеркивания"
-
-#: String 401
-msgid "Install"
-msgstr "Установить."
-
-#: String 402
-msgid "Ocacu classifieds community registration"
-msgstr "Регистрация в сообществе Open  classifieds  "
-
-#: String 403
-msgid "Terms"
-msgstr "Условия"
-
-#: String 404
-msgid "Cannot connect to server"
-msgstr "Не удается подключиться к серверу"
-
-#: String 405
-msgid "No database name was given"
-msgstr "Не присвоено Имя базы данных "
-
-#: String 406
-msgid "Available databases"
-msgstr "Доступные базы данных"
-
-#: String 407
-msgid "Invalid query"
-msgstr "Неверный запрос"
-
-#: String 408
-msgid "Benchmark"
-msgstr "Анализ"
-
-#: String 409
-msgid "Application Execution"
-msgstr "Запуск приложения"
-
-#: String 410
-msgid "Hello, world"
-msgstr "Привет, мир"
-
-#: String 411
-msgid "Environment"
-msgstr "Окружающая среда"
-
-#: String 412
-msgid "Included files"
-msgstr "Включенные файлы"
-
-#: String 413
-msgid "Loaded extensions"
-msgstr "Загруженные расширения"
-
-#: String 414
-msgid "publish new"
-msgstr "опубликовать новое"
-
-#: String 415
-msgid "search"
-msgstr "поиск"
-
-#: String 416
-msgid "contact"
-msgstr "контакты"
-
-#: String 417
-msgid "map"
-msgstr "карта"
-
-#: String 418
-msgid "maintenance"
-msgstr "обслуживание и поддержка"
-
-#: String 419
-msgid "views"
-msgstr "Просмотров"
-
-#: String 420
-msgid "ads"
-msgstr "Объявлений"
-
-#: String 421
-msgid "users"
-msgstr "пользователей"
-
-#: String 422
-msgid "# items to display"
-msgstr "показать # объектов"
-
-#: String 423
-msgid "RSS"
-msgstr "RSS"
-
-#: String 424
-msgid "RSS reader with cache"
-msgstr "RSS Reader с кэшем"
-
-#: String 425
-msgid "Number items to display"
-msgstr "Количество объектов для отображения"
-
-#: String 426
-msgid "How often we refresh the RSS, in seconds"
-msgstr "Как часто мы обновляем RSS, в секундах"
-
-#: String 427
-msgid "RSS url address"
-msgstr "URL адрес RSS "
-
-#: String 428
-msgid "RSS title displayed"
-msgstr "Отображаемый RSS заголовок"
-
-#: String 429
-msgid "Share"
-msgstr "Поделиться"
-
-#: String 430
-msgid "Share on social networks."
-msgstr "Поделиться в социальных сетях."
-
-#: String 431
-msgid "Title displayed"
-msgstr "Отображаемое Название"
-
-#: String 432
-msgid "Add latest comments"
-msgstr "Добавить Последние комментарии"
-
-#: String 433
-msgid "Comments"
-msgstr "Комментарии"
-
-#: String 434
-msgid "Number of comments to display"
-msgstr "Количество комментариев для отображения"
-
-#: String 435
-msgid "Google Maps with ads"
-msgstr "Карты Google с объявлениями"
-
-#: String 436
-msgid "Map title displayed"
-msgstr "Отображаемое название карты"
-
-#: String 437
-msgid "Map height in pixels"
-msgstr "Высота карты в пикселях"
-
-#: String 438
-msgid "Zoom in the map"
-msgstr "Увеличить карту"
-
-#: String 439
-msgid "Display categories"
-msgstr "Показать категории"
-
-#: String 440
-msgid "Categories title displayed"
-msgstr "Отображаемое название категорий"
-
-#: String 441
-msgid "Display Locations"
-msgstr "Показать Расположение"
-
-#: String 442
-msgid "Locations title displayed"
-msgstr "Отображаемое название мест"
-
-#: String 443
-msgid "Text"
-msgstr "Текст"
-
-#: String 444
-msgid "HTML textarea"
-msgstr "место HTML текста"
-
-#: String 445
-msgid "Text title displayed"
-msgstr "Отображаемый Текст заголовка"
-
-#: String 446
-msgid "HTML/text content here"
-msgstr "Здесь -- содержание HTML / Text "
-
-#: String 447
-msgid "Ads reader"
-msgstr "Читатель объявлений"
-
-#: String 448
-msgid "Type ads to display"
-msgstr "Введите объявление для отображения"
-
-#: String 449
-msgid "Popular Ads last month"
-msgstr "Популярные объявления в прошлом месяце"
-
-#: String 450
-msgid "Number of ads to display"
-msgstr "Количество объявлений для отображения"
-
-#: String 451
-msgid "Ads title displayed"
-msgstr "отображаемый заголовок Объявления "
-
-#: String 452
-msgid "Pages"
-msgstr "Страницы"
-
-#: String 453
-msgid "Display CMS pages"
-msgstr "Отобразить страницы CMS"
-
-#: String 454
-msgid "Page title displayed"
-msgstr "Отображаемый Заголовок страницы "
-
-#: String 455
-msgid "Display site stats"
-msgstr "Показать Статистику сайта"
-
-#: String 456
-msgid "Submit"
-msgstr "Подтвердить"
-
-#: String 457
-msgid "Other"
-msgstr "Другой"
-
-#: String 458
-msgid "Role"
-msgstr "Роль"
-
-#: String 459
-msgid "Last modified"
-msgstr "Последние измененения"
-
-#: String 460
-msgid "Last login"
-msgstr "Последний вход"
-
-#: String 461
-msgid "User"
-msgstr "Пользователь"
-
-#: String 462
-msgid "Type"
-msgstr "Тип"
-
-#: String 463
-msgid "SEO title"
-msgstr "SEO название"
-
-#: String 464
-msgid "Ip address"
-msgstr "IP-адрес"
-
-#: String 465
-msgid "Has images"
-msgstr "Есть изображения"
-
-#: String 466
-msgid "Parent"
-msgstr "Родитель"
-
-#: String 467
-msgid "Parent deep"
-msgstr "Глубина вложений родителя"
-
-#: String 468
-msgid "Seoname"
-msgstr "SEO имя"
-
-#: String 469
-msgid "Id"
-msgstr "Id"
-
-#: String 470
-msgid "Order"
-msgstr "Заказ"
-
-#: String 471
-msgid "Info"
-msgstr "Информация"
-
-#: String 472
-msgid "Warning"
-msgstr "Предупреждение"
-
-#: String 473
-msgid "Error"
-msgstr "Ошибка"
-
-#: String 474
-msgid "Success"
-msgstr "Успешно"
-
-#: String 475
-msgid "New profile has been created. Welcome "
-msgstr "Новый профиль создан. Добро пожаловать"
-
-#: String 476
-msgid "Something went wrong with uploading pictures, please check format"
-msgstr "Что-то пошло не так с загрузкой фотографий, пожалуйста, проверьте формат"
-
-#: String 477
-msgid "Something went wrong with uploading pictures"
-msgstr "Что-то пошло не так с загрузкой фотографий"
-
-#: String 478
-msgid "Advertisement is posted but first you need to activate. Please check your email!"
-msgstr "Объявление размещено, ожидает активации. Пожалуйста, проверьте свою электронную почту!"
-
-#: String 479
-msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
-msgstr "Объявление получено, ожидает проверки администратором. Спасибо за понимание!"
-
-#: String 480
-msgid "Advertisement is posted. Congratulations!"
-msgstr "Объявление опубликовано. Поздравляем!"
-
-#: String 481
-msgid "Captcha is not correct"
-msgstr "Код введен неправильно"
-
-#: String 482
-msgid "We are working on our site, please visit later. Thanks"
-msgstr "На сайте ведутся работы. Зайдите позже, пожалуйста. Спасибо"
-
-#: String 483
-msgid "Latest published"
-msgstr "Последние опубликованные"
-
-#: String 484
-msgid "Email Configuration updated"
-msgstr "Настройки электронной почты обновлены"
-
-#: String 485
-msgid "General Configuration updated"
-msgstr "Общая конфигурация обновлена"
-
-#: String 486
-msgid "Payments"
-msgstr "Платежи"
-
-#: String 487
-msgid "Widget parameter missing"
-msgstr "Параметр виджета отсутствует"
-
-#: String 488
-msgid "Saved"
-msgstr "Сохранено"
-
-#: String 489
-msgid "Password is changed"
-msgstr "Пароль изменен"
-
-#: String 490
-msgid "Nothing is provided"
-msgstr "Ничего не предусмотрено"
-
-#: String 491
-msgid "Passwords do not match"
-msgstr "Пароли не совпадают"
-
-#: String 492
-msgid "New password is invalid, or they do not match! Please try again."
-msgstr "Неверный новый пароль или пароли не совпадают! Пожалуйста, попробуйте еще раз."
-
-#: String 493
-msgid "You have successfuly changed your data"
-msgstr "Вы успешно изменили ваши данные"
-
-#: String 494
-msgid "My Advertisement page "
-msgstr "Страница моего объявления"
-
-#: String 495
-msgid "This is not your advertisement."
-msgstr "Это не ваше объявление"
-
-#: String 496
-msgid "Advertisement is deactivated"
-msgstr "Объявление отключено"
-
-#: String 497
-msgid "Advertisement is active and published"
-msgstr "Объявление активно и опубликовано"
-
-#: String 498
-msgid "Edit advertisement"
-msgstr "Редактировать объявление"
-
-#: String 499
-msgid "Advertisement is updated!"
-msgstr "Объявление обновлено!"
-
-#: String 500
-msgid "Advertisement is updated"
-msgstr "Объявление обновлено!"
-
-#: String 501
-msgid "You dont have permission to access this link"
-msgstr "У вас нет доступа к этой ссылке"
-
-#: String 502
-msgid "List"
-msgstr "Список"
-
-#: String 503
-msgid "Edit Translation"
-msgstr "Редактировать перевод"
-
-#: String 504
-msgid "Language saved"
-msgstr "Язык сохранен"
-
-#: String 505
-msgid "Error on mail delivery, not sent"
-msgstr "Ошибка доставки почты. Не отправлено"
-
-#: String 506
-msgid "Email sent to all the users"
-msgstr "Сообщения, отправленные всем пользователям"
-
-#: String 507
-msgid "Mail not sent"
-msgstr "Почта не отправлена"
-
-#: String 508
-msgid "Theme configuration updated"
-msgstr "Конфигурация темы обновлена"
-
-#: String 509
-msgid "Appearance configuration updated"
-msgstr "Конфигурация оболочки обновлена"
-
-#: String 510
-msgid "Mobile Theme updated"
-msgstr "Мобильная тема обновлена"
-
-#: String 511
-msgid "Optimize DB"
-msgstr "Оптимизировать БД"
-
-#: String 512
-msgid "Database Optimized"
-msgstr "База данных оптимизирована"
-
-#: String 513
-msgid "All cache deleted"
-msgstr "Весь кэш удален"
-
-#: String 514
-msgid "Deleted expired cache"
-msgstr "Удаленный старый кэш"
-
-#: String 515
-msgid "You are not using latest version of OC, please update."
-msgstr "Вы используете устаревшую версию OC, пожалуйста, обновите."
-
-#: String 516
-msgid "System logs"
-msgstr "Системный журнал"
-
-#: String 517
-msgid "Sitemap Configuration updated"
-msgstr "Конфигурация карты сайта обновлена"
-
-#: String 518
-msgid "Open Classifieds migration"
-msgstr "Перенос  Open Classifieds"
-
-#: String 519
-msgid "Database cleaned"
-msgstr "База данных очищена"
-
-#: String 520
-msgid "Review database connection parameters"
-msgstr "Проверьте параметры подключения к базе данных"
-
-#: String 521
-msgid "Wrong email or password"
-msgstr "Неправильное имя пользователя или пароль"
-
-#: String 522
-msgid "Email to recover password sent"
-msgstr "Письмо для восстановления пароля отправлено"
-
-#: String 523
-msgid "User not in database"
-msgstr "Такого пользователя нет в  базе данных"
-
-#: String 524
-msgid "Email required"
-msgstr "Адрес электронной почты обязателен"
-
-#: String 525
-msgid "User already exists"
-msgstr "Пользователь уже существует"
-
-#: String 526
-msgid "Welcome!"
-msgstr "Добро пожаловать!"
-
-#: String 527
-msgid "Register new user"
-msgstr "Регистрация нового пользователя"
-
-#: String 528
-msgid "You do not have any published Advertisement"
-msgstr "У вас нет опубликованных объявлений"
-
-#: String 529
-msgid "You do not have any advertisements waiting to be published"
-msgstr "У вас нет ожидающих публикации объявлений"
-
-#: String 530
-msgid "Warning, something went wrong while deleting"
-msgstr "Предупреждение: что-то пошло не так при удалении"
-
-#: String 531
-msgid "Advertisement is deleted"
-msgstr "Реклама будет удалена"
-
-#: String 532
-msgid "Warning, Advertisement is already marked as spam"
-msgstr "Предупреждение: объявление уже помечено как спам"
-
-#: String 533
-msgid "Advertisement is marked as spam"
-msgstr "Объявление помечено как спам"
-
-#: String 534
-msgid "Advertisement is featured"
-msgstr "Объявление выделено"
-
-#: String 535
-msgid "Location deleted"
-msgstr "Расположение удалено"
-
-#: String 536
-msgid "Location not deleted"
-msgstr "Расположение не удалено"
-
-#: String 537
-msgid "Category deleted"
-msgstr "Категория удалена"
-
-#: String 538
-msgid "Category not deleted"
-msgstr "Категория не удалена"
-
-#: String 539
-msgid "Your message has been sent"
-msgstr "Ваше сообщение отправлено"
-
-#: String 540
-msgid "Message not sent"
-msgstr "Сообщение не отправлено"
-
-#: String 541
-msgid "Check the form for errors"
-msgstr "Проверьте форму  на наличие ошибок "
-
-#: String 542
-msgid "You made some mistake"
-msgstr "Вы сделали какую-то ошибку"
-
-#: String 543
-msgid "Advertisement to top"
-msgstr "Поднять объявление"
-
-#: String 544
-msgid "Advertisement to featured"
-msgstr "Пометить объявление "
-
-#: String 545
-msgid " category"
-msgstr "категория"
-
-#: String 546
-msgid "Order could not be loaded"
-msgstr "Заказ не может быть загружен"
-
-#: String 547
-msgid "Page "
-msgstr "Страница"
-
-#: String 548
-msgid "Your advertisement is successfully activated! Thank you!"
-msgstr "Ваше объявление успешно активировано! Спасибо!"
-
-#: String 549
-msgid "We did not find any advertisements for your search."
-msgstr "Нет объявлений в этой категории."
-
-#: String 550
-msgid "No sitemap generated"
-msgstr "Нет сгенерированной карты сайта "
-
-#: String 551
-msgid "You are in maintenance mode, only you can see the website"
-msgstr "Вы находитесь в режиме обслуживания, только вы можете видеть веб-сайт"
-
-#: String 552
-msgid "Item created"
-msgstr "Объект добавлен"
-
-#: String 553
-msgid "Check form for errors"
-msgstr "Проверьте форму на ошибки"
-
-#: String 554
-msgid "Item updated"
-msgstr "Объект обновлен"
-
-#: String 555
 msgid "Access not allowed"
 msgstr "Доступ запрещен"
 
+#: String 11
+msgid "Account Number"
+msgstr "Номер аккаунта"
+
+#: String 12
+msgid "a couple of days"
+msgstr "несколько дней"
+
+#: String 13
+msgid "a couple of decades"
+msgstr "пару десятилетий"
+
+#: String 14
+msgid "a couple of hours"
+msgstr "пару часов"
+
+#: String 15
+msgid "a couple of months"
+msgstr "пара месяцев"
+
+#: String 16
+msgid "a couple of years"
+msgstr "Пару лет"
+
+#: String 17
+msgid "Action"
+msgstr "действие"
+
+#: String 18
+msgid "Actions"
+msgstr "Действия"
+
+#: String 19
+msgid "Action Value:"
+msgstr "Действие Значение:"
+
+#: String 20
+msgid "Activate"
+msgstr "Активировать"
+
+#: String 21
+msgid "Activate?"
+msgstr "Активировать?"
+
+#: String 22
+msgid "Activates Blog posting"
+msgstr "Активизирует блоге"
+
+#: String 23
+msgid "Activates FAQ"
+msgstr "Активизирует FAQ"
+
+#: String 24
+msgid "Activates Forums"
+msgstr "Активизирует Форумы"
+
+#: String 25
+msgid "Activates Messaging System"
+msgstr "Система Активированный сообщений"
+
+#: String 26
+msgid "Active"
+msgstr "Активный"
+
+#: String 27
+msgid "Active Region Action"
+msgstr "Активный Регион Действие"
+
+#: String 28
+msgid "Ad"
+msgstr "Объявление"
+
+#: String 29
+msgid "Add"
+msgstr "Добавить"
+
+#: String 30
+msgid "Add a chat room"
+msgstr "Добавить чат"
+
+#: String 31
+msgid "Add a plan"
+msgstr "Добавить план"
+
+#: String 32
+msgid "Add custom field"
+msgstr "Добавить пользовательское поле"
+
+#: String 33
+msgid "Add Custom Fields"
+msgstr "Добавлять пользовательские поля"
+
+#: String 34
+msgid "Added Custom Fields"
+msgstr "Добавлено Пользовательские поля"
+
+#: String 35
+msgid "Add latest comments"
+msgstr "Добавить Последние комментарии"
+
+#: String 36
+msgid "Add names for multiple categories, for each one push enter."
+msgstr "Добавьте имена нескольких категориях, для каждого из толчок войти."
+
+#: String 37
+msgid "Add names for multiple locations, for each one push enter."
+msgstr "Добавьте имена нескольких местах, для каждого из толчок войти."
+
+#: String 38
+msgid "Add New Review"
+msgstr "Добавить отзыв"
+
+#: String 39
+msgid "Address"
+msgstr "Адрес"
+
+#: String 40
+msgid "Address field"
+msgstr "Поле для адреса"
+
+#: String 41
+msgid "Adds content to contact page"
+msgstr "Добавляет содержание в контакт страницу"
+
+#: String 42
+msgid "Add to Favorites"
+msgstr "Добавить в избранное"
+
+#: String 43
+msgid "Ad expiration date"
+msgstr "Хранение объявления до даты: "
+
+#: String 44
+msgid "Administrator email"
+msgstr "Электронная почта администратора"
+
+#: String 45
+msgid "Admin Password"
+msgstr "Пароль администратора"
+
+#: String 46
+msgid "Admin Privileged"
+msgstr "Админ Привилегия"
+
+#: String 47
+msgid "Admin Role can not be modified!"
+msgstr "Админ роль не может быть изменена!"
+
+#: String 48
+msgid "Admin Tools to editing ads"
+msgstr "Инструменты администратора к редактированию объявления"
+
+#: String 49
+msgid "Ad Not Found"
+msgstr "Объявление не найдена"
+
+#: String 50
+msgid "Ad not provided"
+msgstr "Объявление не предусмотрено"
+
+#: String 51
+msgid "ads"
+msgstr "Объявлений"
+
+#: String 52
+msgid "Ads"
+msgstr "Объявления"
+
+#: String 53
+msgid "Ads deleted"
+msgstr "объявления удалены"
+
+#: String 54
+msgid "Ads reader"
+msgstr "Читатель объявлений"
+
+#: String 55
+msgid "Ads title displayed"
+msgstr "отображаемый заголовок Объявления "
+
+#: String 56
+msgid "Ad Tools"
+msgstr "Инструменты объявления"
+
+#: String 57
+msgid "Advanced option"
+msgstr "Расширенный вариант"
+
+#: String 58
+msgid "Advanced Search"
+msgstr "Расширенный поиск"
+
+#: String 59
+msgid "Advertisement"
+msgstr "Реклама"
+
+#: String 60
+msgid "Advertisement Configuration"
+msgstr "Конфигурация объявлений"
+
+#: String 61
+msgid "Advertisement Custom Fields"
+msgstr "Реклама Пользовательские поля"
+
+#: String 62
+msgid "Advertisement Display Options"
+msgstr "Реклама Опции просмотра"
+
+#: String 63
+msgid "Advertisement Fields"
+msgstr "Реклама поля"
+
+#: String 64
+msgid "Advertisement has been permanently deleted"
+msgstr "Реклама была окончательно удалены"
+
+#: String 65
+msgid "Advertisement is active and published"
+msgstr "Объявление активно и опубликовано"
+
+#: String 66
+msgid "Advertisement is deactivated"
+msgstr "Объявление отключено"
+
+#: String 67
+msgid "Advertisement is marked as spam"
+msgstr "Объявление помечено как спам"
+
+#: String 68
+msgid "Advertisement is posted but first you need to activate. Please check your email!"
+msgstr "Объявление размещено, ожидает активации. Пожалуйста, проверьте свою электронную почту!"
+
+#: String 69
+msgid "Advertisement is posted. Congratulations!"
+msgstr "Объявление опубликовано. Поздравляем!"
+
+#: String 70
+msgid "Advertisement is received, but first administrator needs to validate. Thank you for being patient!"
+msgstr "Объявление получено, ожидает проверки администратором. Спасибо за понимание!"
+
+#: String 71
+msgid "Advertisement is updated"
+msgstr "Объявление обновлено!"
+
+#: String 72
+msgid "Advertisement is updated, but first administrator needs to validate. Thank you for being patient!"
+msgstr "Реклама обновляется, но сначала администратор должен проверить. Спасибо за терпение!"
+
+#: String 73
+msgid "Advertisement not found"
+msgstr "Реклама не найдено"
+
+#: String 74
+msgid " advertisements"
+msgstr "объявления"
+
+#: String 75
+msgid "Advertisements"
+msgstr "Объявления"
+
+#: String 76
+msgid "Advertisements in home"
+msgstr "Объявления в доме"
+
+#: String 77
+msgid "Advertisements in Map"
+msgstr "Объявления на карте"
+
+#: String 78
+msgid "Advertisements in RSS"
+msgstr "Объявления в RSS"
+
+#: String 79
+msgid "Advertisements per page"
+msgstr "Объявлений на страницу"
+
+#: String 80
+msgid "Advertisement Title"
+msgstr "Название Объявления"
+
+#: String 81
+msgid "a few minutes"
+msgstr "несколько минут"
+
+#: String 82
+msgid "a few years"
+msgstr "несколько лет"
+
+#: String 83
+msgid "After how many days an Ad will expire. 0 for never"
+msgstr "Сколько дней будет показываться объявление. 0 -- всегда"
+
+#: String 84
+msgid "Akismet Key"
+msgstr "Akismet ключ"
+
+#: String 85
+msgid "all"
+msgstr "все"
+
+#: String 86
+msgid "All"
+msgstr "Все"
+
+#: String 87
+msgid "All active users."
+msgstr "Все активные пользователи."
+
+#: String 88
+msgid "All ads"
+msgstr "Все объявления"
+
+#: String 89
+msgid "All ads are processed! Congrats!"
+msgstr "Все объявления обрабатываются! Поздравляю!"
+
+#: String 90
+msgid "All cache deleted"
+msgstr "Весь кэш удален"
+
+#: String 91
+msgid "All categories were deleted."
+msgstr "Все категории были удалены."
+
+#: String 92
+msgid "All configurations"
+msgstr "Все конфигурации"
+
+#: String 93
+msgid "All data contained will be deleted."
+msgstr "Все данные, содержащиеся будут удалены."
+
+#: String 94
+msgid "All locations were deleted."
+msgstr "Все места были удалены."
+
+#: String 95
+msgid "Allowed image formats"
+msgstr "Допустимые форматы изображений"
+
+#: String 96
+msgid "All themes include support, updates and 1 site license."
+msgstr "Все темы включают в себя поддержку, обновления и лицензию на 1 сайт."
+
+#: String 97
+msgid "a long time"
+msgstr "долго"
+
+#: String 98
+msgid "Also white labeled and free of ads"
+msgstr "Также белый помечены и бесплатно объявлений"
+
+#: String 99
+msgid "Alternative Payment"
+msgstr "Альтернативная Оплата"
+
+#: String 100
+msgid "Amazon S3 active"
+msgstr "Amazon S3 активны"
+
+#: String 101
+msgid "Amazon S3 Bucket Name"
+msgstr "Имя Amazon S3 ковша"
+
+#: String 102
+msgid "Amazon S3 Configuration"
+msgstr "Amazon S3 конфигурации"
+
+#: String 103
+msgid "Amount"
+msgstr "Количество"
+
+#: String 104
+msgid "Analytics Tracking ID"
+msgstr "Аналитика Отслеживание ID"
+
+#: String 105
+msgid "Any"
+msgstr "Любые"
+
+#: String 106
+msgid "API Password"
+msgstr "API Пароль"
+
+#: String 107
+msgid "API Username"
+msgstr "API Имя пользователя"
+
+#: String 108
+msgid "Appearance"
+msgstr "Внешность"
+
+#: String 109
+msgid "Appearance configuration updated"
+msgstr "Конфигурация оболочки обновлена"
+
+#: String 110
+msgid "Appears when user registers."
+msgstr "Появляется, когда пользователь регистрируется."
+
+#: String 111
+msgid "Appends watermark to images"
+msgstr "Добавляет водяной знак на изображение,"
+
+#: String 112
+msgid "Application Execution"
+msgstr "Запуск приложения"
+
+#: String 113
+msgid "Apply discounts."
+msgstr "Применить скидки."
+
+#: String 114
+msgid "Archieved"
+msgstr "Архивные"
+
+#: String 115
+msgid "Archive"
+msgstr "Архив"
+
+#: String 116
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+#: String 117
+msgid "Are you sure you want to delete?"
+msgstr "Вы уверены, что хотите удалить?"
+
+#: String 118
+msgid "Are you sure you want to delete? All data contained in this field will be deleted."
+msgstr "Вы уверены, что хотите удалить? Все данные, содержащиеся в этой области будут удалены."
+
+#: String 119
+msgid "Are you sure you want to delete all the categories?"
+msgstr "Вы уверены, что хотите удалить все категории?"
+
+#: String 120
+msgid "Are you sure you want to delete all the locations?"
+msgstr "Вы уверены, что хотите удалить все места?"
+
+#: String 121
+msgid "Are you sure you want to delete? We will move the siblings locations and ads to the parent of this location."
+msgstr "Вы уверены, что хотите удалить? Подчиненные места будут перемещены в родительскую папку."
+
+#: String 122
+msgid "Are you sure you want to make it featured?"
+msgstr "Вы уверены, что хотите выделить это?"
+
+#: String 123
+msgid "Are you sure you want to marke it as Spam?"
+msgstr "Вы уверены, что хотите помеченны его как спам?"
+
+#: String 124
+msgid "Are you sure you want to refresh listing and go to top?"
+msgstr "Вы уверены, что хотите обновить список и перейти наверх?"
+
+#: String 125
+msgid "Are you sure you want to remove featured ad?"
+msgstr "Вы уверены, что хотите удалить объявление признакам?"
+
+#: String 126
+msgid "Are you sure you want to remove it?"
+msgstr "Вы уверены, что хотите удалить его?"
+
+#: String 127
+msgid "Are you sure you want to update?"
+msgstr "Вы уверены, что хотите обновить?"
+
+#: String 128
+msgid "arguments"
+msgstr "аргументы"
+
+#: String 129
+msgid "At least one image format should be allowed."
+msgstr "По крайней мере, один формат изображения должно быть разрешено."
+
+#: String 130
+msgid "A user with the email you specified already exists"
+msgstr "Пользователь с указанным адресом электронной почты уже существует"
+
+#: String 131
+msgid "Authorize API Login"
+msgstr "Авторизация Логин API"
+
+#: String 132
+msgid "Authorize transaction Key"
+msgstr "Авторизация ключ транзакции"
+
+#: String 133
+msgid "Auto Locate Visitors"
+msgstr "Auto Locate посетители"
+
+#: String 134
+msgid "Available Mobile Themes"
+msgstr "Доступные мобильные Темы"
+
+#: String 135
+msgid "Available Themes"
+msgstr "Доступные темы"
+
+#: String 136
+msgid "Available widgets"
+msgstr "Доступные виджеты"
+
+#: String 137
+msgid "AWS Access Key"
+msgstr "Ключ доступа AWS"
+
+#: String 138
+msgid "AWS Secret Key"
+msgstr "AWS Секретный ключ"
+
+#: String 139
+msgid "Background Color"
+msgstr "Фоновый цвет"
+
+#: String 140
+msgid "Backup all your files and database"
+msgstr "Резервное копирование всех ваших файлов и баз данных"
+
+#: String 141
+msgid "Banned word replacement replaces selected array with the string you provided."
+msgstr "Banned замена слово заменяет выбран массив со строкой вы указали."
+
+#: String 142
+msgid "Banned words"
+msgstr "запрещенные слова"
+
+#: String 143
+msgid "Banned words are separated with coma (,)"
+msgstr "Заблокированные с разделением слов коме (,)"
+
+#: String 144
+msgid "Banned words replacement"
+msgstr "Запрещенных слов замена"
+
+#: String 145
+msgid "BBCODE editor appears in description field."
+msgstr "Редактор BBCODE появляется в поле описания"
+
+#: String 146
+msgid "BBCODE editor on description field"
+msgstr "BBCODE редактор на поле описания"
+
+#: String 147
+msgid "Benchmark"
+msgstr "Анализ"
+
+#: String 148
+msgid "Bitpay api key"
+msgstr "Bitpay ключ API"
+
+#: String 149
+msgid "Black list"
+msgstr "Черный список"
+
+#: String 150
+msgid "Black List"
+msgstr "Черный список"
+
+#: String 151
+msgid "Blog"
+msgstr "Блог"
+
+#: String 152
+msgid "Blog post"
+msgstr "Сообщение блога"
+
+#: String 153
+msgid "Blog post created"
+msgstr "Сообщение в блоге создано"
+
+#: String 154
+msgid "Blog post updated"
+msgstr "Сообщение в блоге обновляются"
+
+#: String 155
+msgid "blog section."
+msgstr "раздел блога."
+
+#: String 156
+msgid "Bring to top Ad"
+msgstr "Поднять объявление"
+
+#: String 157
+msgid "Browse"
+msgstr "Просматривать"
+
+#: String 158
+msgid "Browse childs"
+msgstr "Просмотр Чайлдс"
+
+#: String 159
+msgid "Browse Themes"
+msgstr "Просмотр темы"
+
+#: String 160
+msgid "Bulk"
+msgstr "основная масса"
+
+#: String 161
+msgid "Bulk coupon generator"
+msgstr "Массовая Генератор купона"
+
+#: String 162
+msgid "Buy a Theme"
+msgstr "Купить Стиль"
+
+#: String 163
+msgid "Buy Now"
+msgstr "Купить сейчас"
+
+#: String 164
+msgid "Buy product"
+msgstr "Купить продукт"
+
+#: String 165
+msgid "buy your SSL certificate here"
+msgstr "купить сертификат SSL здесь"
+
+#: String 166
+msgid "Cache"
+msgstr "Кэш"
+
+#: String 167
+msgid "Cache configuration information"
+msgstr "Информация конфигурации кэша "
+
+#: String 168
+msgid "Can be seen and edited only by admin."
+msgstr "Можно увидеть и редактировать только администратор."
+
+#: String 169
+msgid "Can be seen in the list of ads while browsing."
+msgstr "Можно увидеть в списке объявлений во время просмотра."
+
+#: String 170
+msgid "Can be seen in the user profile."
+msgstr "Может быть видно в профиле пользователя."
+
+#: String 171
+msgid "Cancel"
+msgstr "Отменить"
+
+#: String 172
+msgid "Cannot delete widget %s"
+msgstr "Не удается удалить виджеты"
+
+#: String 173
+msgid "Can’t get it to work?"
+msgstr "Не можете заставить его работать?"
+
+#: String 174
+msgid "Captcha"
+msgstr "Код"
+
+#: String 175
+msgid "Captcha appears in the form."
+msgstr "В форме появляется проверочный код "
+
+#: String 176
+msgid "Captcha is not correct"
+msgstr "Код введен неправильно"
+
+#: String 177
+msgid "Card Number"
+msgstr "Номер карты"
+
+#: String 178
+msgid "Cars"
+msgstr "Автомобили"
+
+#: String 179
+msgid "Categories"
+msgstr "Категории"
+
+#: String 180
+msgid "Categories successfully imported."
+msgstr "Категории успешно импортированы."
+
+#: String 181
+msgid "Categories title displayed"
+msgstr "Отображаемое название категорий"
+
+#: String 182
+msgid "category"
+msgstr "категория"
+
+#: String 183
+msgid "Category"
+msgstr "Категория"
+
+#: String 184
+msgid "Category created"
+msgstr "Категория создана"
+
+#: String 185
+msgid "Category deleted"
+msgstr "Категория удалена"
+
+#: String 186
+msgid "Category details"
+msgstr "Категория сведения"
+
+#: String 187
+msgid "Category icon"
+msgstr "значок Категория"
+
+#: String 188
+msgid "Category not deleted"
+msgstr "Категория не удалена"
+
+#: String 189
+msgid "Category not found"
+msgstr "Категория не найдена"
+
+#: String 190
+msgid "Category %s is a paid category: %d"
+msgstr "Категория% s является платной категория:% d"
+
+#: String 191
+msgid "Change Location"
+msgstr "Изменить местоположение"
+
+#: String 192
+msgid "Changelog"
+msgstr "Список изменений"
+
+#: String 193
+msgid "Change password"
+msgstr "Изменить пароль"
+
+#: String 194
+msgid "Change plan"
+msgstr "Изменить план"
+
+#: String 195
+msgid "Change the admin color theme"
+msgstr "Изменить цвет темы Администратора"
+
+#: String 196
+msgid "Change the color theme"
+msgstr "Изменение цвета тему"
+
+#: String 197
+msgid "Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr "Изменить порядок категорий. Имейте в виду, что вложенность более 2 уровней, скорее всего, не будет отображаться в теме (не рекомендуется)."
+
+#: String 198
+msgid "Change the order of your forums. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr "Изменить порядок ваших форумах. Имейте в виду, что более чем на 2 вложенные вероятно won't отображаться в теме (не рекомендуется)."
+
+#: String 199
+msgid "Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended)."
+msgstr "Изменить порядок мест. Имейте в виду, что вложенность более 2 уровней, вероятно, не будет отображаться в теме (не рекомендуется)."
+
+#: String 200
+msgid "Charts"
+msgstr "Чарты"
+
+#: String 201
+msgid "Chat"
+msgstr "чат"
+
+#: String 202
+msgid "Chat height in PX"
+msgstr "Чат высота в PX"
+
+#: String 203
+msgid "Chat room"
+msgstr "чат"
+
+#: String 204
+msgid "Check"
+msgstr "Проверьте"
+
+#: String 205
+msgid "Checkbox"
+msgstr "флажок"
+
+#: String 206
+msgid "Checked for new versions."
+msgstr "Проверено на новые версии."
+
+#: String 207
+msgid "Check form for errors"
+msgstr "Проверьте форму на ошибки"
+
+#: String 208
+msgid "Check for updates"
+msgstr "Проверить наличие обновлений"
+
+#: String 209
+msgid "Checkout"
+msgstr "Проверить"
+
+#: String 210
+msgid "Check the form for errors"
+msgstr "Проверьте форму  на наличие ошибок "
+
+#: String 211
+msgid "Choose 1 or several categories"
+msgstr "Выберите 1 или несколько категорий"
+
+#: String 212
+msgid "Choose the quality of the stored images (1-100% of the original)."
+msgstr "Выбрать качество изображения (1-100% от исходного)."
+
+#: String 213
+msgid "City"
+msgstr "город"
+
+#: String 214
+msgid "Classifieds"
+msgstr "Объявления"
+
+#: String 215
+msgid "Click here if you are not redirected"
+msgstr "Нажмите здесь, если переадресация не произошла"
+
+#: String 216
+msgid "Click to proceed"
+msgstr "Нажмите, чтобы продолжить"
+
+#: String 217
+msgid "Close"
+msgstr "Закрыть"
+
+#: String 218
+msgid "Collapse menu"
+msgstr "Свернуть меню"
+
+#: String 219
+msgid "Color:"
+msgstr "Цвет:"
+
+#: String 220
+msgid "Comma separated for select"
+msgstr "Разделенных запятыми для выбора"
+
+#: String 221
+msgid "Comments"
+msgstr "Комментарии"
+
+#: String 222
+msgid "Comments Configuration"
+msgstr "Комментарии Конфигурация"
+
+#: String 223
+msgid "community forums."
+msgstr "Форум."
+
+#: String 224
+msgid "Config file"
+msgstr "Конфигурационный файл"
+
+#: String 225
+msgid "Congratulations"
+msgstr "Поздравления"
+
+#: String 226
+msgid "contact"
+msgstr "контакты"
+
+#: String 227
+msgid "Contact"
+msgstr "Контакты"
+
+#: String 228
+msgid "Contact form"
+msgstr "Форма обратной связи"
+
+#: String 229
+msgid "Contact form appears in the ad."
+msgstr "Контактная форма появляется в объявлении."
+
+#: String 230
+msgid "Contact page content"
+msgstr "Связаться содержимое страницы"
+
+#: String 231
+msgid "Contacts"
+msgstr "Контакты"
+
+#: String 232
+msgid "Contact Us"
+msgstr "Связаться с Нами"
+
+#: String 233
+msgid "Content"
+msgstr "Содержание"
+
+#: String 234
+msgid "Content that will be displayed to the user after he publishes an ad"
+msgstr "Контент, который будет отображаться для пользователя, когда он публикует объявление"
+
+#: String 235
+msgid "Continent"
+msgstr "континент"
+
+#: String 236
+msgid "Continue"
+msgstr "Продолжать"
+
+#: String 237
+msgid "Control the size of images being uploaded. Enter an integer value to set maximum image size in mega bites(Mb)."
+msgstr "Контролируйте размер загружаемого изображения. Введите целое значение для максимального размера в мегабайтах (Мб)."
+
+#: String 238
+msgid "Convert"
+msgstr "Конвертировать"
+
+#: String 239
+msgid "Convert Address into Lat/Lon:"
+msgstr "Преобразование адреса в Лат / Lon:"
+
+#: String 240
+msgid "Cookie consent"
+msgstr "согласие Cookie"
+
+#: String 241
+msgid "Copy all?, Be aware this will replace all your texts."
+msgstr "Копировать все? Имейте в виду, что  все ваши тексты будут заменены"
+
+#: String 242
+msgid "Could not create bitpay invoice"
+msgstr "Не удалось создать счет-фактуру bitpay"
+
+#: String 243
+msgid "Country"
+msgstr "Страна"
+
+#: String 244
+msgid "Count visits"
+msgstr "граф посещена"
+
+#: String 245
+msgid "Count visits ads"
+msgstr "Граф посещена объявления"
+
+#: String 246
+msgid "County"
+msgstr "округ"
+
+#: String 247
+msgid "Coupon"
+msgstr "Купон"
+
+#: String 248
+msgid "Coupon added!"
+msgstr "Купон добавлен!"
+
+#: String 249
+msgid "Coupon deleted."
+msgstr "Купон удалены."
+
+#: String 250
+msgid "Coupon name"
+msgstr "имя Купон"
+
+#: String 251
+msgid "Coupon Name"
+msgstr "имя Купон"
+
+#: String 252
+msgid "Coupon not valid, expired or already used."
+msgstr "Купон не распространяется, истек или уже используется."
+
+#: String 253
+msgid "Coupons"
+msgstr "купоны"
+
+#: String 254
+msgid "Coupon %s created"
+msgstr "Купон% s создан"
+
+#: String 255
+msgid "coupons left"
+msgstr "купоны оставил"
+
+#: String 256
+msgid "Coupon %s not created"
+msgstr "Купон% S не создается"
+
+#: String 257
+msgid "Coupon %s not created, errors: %s"
+msgstr "Купон% S не создается, ошибки:% s"
+
+#: String 258
+msgid "Coupon %s not imported"
+msgstr "Купон% S не импортируются"
+
+#: String 259
+msgid "Coupon %s not imported, errors: %s"
+msgstr "Купон% S не импортируются, ошибки:% s"
+
+#: String 260
+msgid "Coupon %s not updated"
+msgstr "Купон% S не обновляется"
+
+#: String 261
+msgid "Coupon %s not updated, errors: %s"
+msgstr "Купон% S не обновляется, ошибки:% s"
+
+#: String 262
+msgid "Coupons successfully imported."
+msgstr "Купоны успешно импортированы."
+
+#: String 263
+msgid "Coupon %s updated"
+msgstr "Купон% S обновляются"
+
+#: String 264
+msgid "Create"
+msgstr "Создать"
+
+#: String 265
+msgid "Create all new %s from original"
+msgstr "Создать все новые% S из оригинала"
+
+#: String 266
+msgid "Create a new profile at"
+msgstr "Создать новый профиль на"
+
+#: String 267
+msgid "Create Blog Post"
+msgstr "Создать дневнике Сообщение"
+
+#: String 268
+msgid "Create coupon"
+msgstr "Создать купон"
+
+#: String 269
+msgid "Create custom fields among predefined templates."
+msgstr "Создание пользовательских полей между предопределенных шаблонов."
+
+#: String 270
+msgid "Created"
+msgstr "Создано"
+
+#: String 271
+msgid "Create DB"
+msgstr "Создать БД"
+
+#: String 272
+msgid "Create Menu Item"
+msgstr "Создать пункт меню"
+
+#: String 273
+msgid "Create new forum"
+msgstr "Создать новый форум"
+
+#: String 274
+msgid "Crontab"
+msgstr "Crontab"
+
+#: String 275
+msgid "CSS"
+msgstr "CSS"
+
+#: String 276
+msgid "CSS file not saved"
+msgstr "CSS файл не сохраняется"
+
+#: String 277
+msgid "CSS file saved"
+msgstr "CSS-файл, сохраненный"
+
+#: String 278
+msgid "Currency"
+msgstr "Валюта"
+
+#: String 279
+msgid "Current"
+msgstr "Текущий"
+
+#: String 280
+msgid "Current CSS file"
+msgstr "CSS-файл, сохраненный"
+
+#: String 281
+msgid "Current Theme"
+msgstr "Текущая тема"
+
+#: String 282
+msgid "Custom"
+msgstr "обычай"
+
+#: String 283
+msgid "Custom CSS"
+msgstr "Пользовательские CSS"
+
+#: String 284
+msgid "Custom Fields"
+msgstr "Настраиваемые поля"
+
+#: String 285
+msgid "Custom fields are only available with premium themes!"
+msgstr "Пользовательские поля доступны только премиум-класса темы!"
+
+#: String 286
+msgid "Custom Fields for Advertisements"
+msgstr "Пользовательские поля для рекламы"
+
+#: String 287
+msgid "Custom Fields for users"
+msgstr "Пользовательские поля для пользователей"
+
+#: String 288
+msgid "Custom Fields for Users"
+msgstr "Пользовательские поля для пользователей"
+
+#: String 289
+msgid "Custom fields in search"
+msgstr "Пользовательские поля в поисках"
+
+#: String 290
+msgid "Custom Fields Templates"
+msgstr "Пользовательские шаблоны Поля"
+
+#: String 291
+msgid "Customize your profile, upload a photo, description and change your password."
+msgstr "Настройте свой профиль, загрузить фото, описание и изменить свой пароль."
+
+#: String 292
+msgid "Customize your website look and feel by choosing one of the many available themes and changing theme options."
+msgstr "Настройте свой сайт выглядеть и чувствовать себя, выбрав один из многих доступных тем и изменения параметров темы."
+
+#: String 293
+msgid "Custom menu"
+msgstr "Пользовательское меню"
+
+#: String 294
+msgid "%d Ads imported, click process to start migration"
+msgstr "% d объявления импортированы, нажмите, чтобы начать процесс миграции"
+
+#: String 295
+msgid "%d advertisement for %s"
+msgstr "% d% реклама и"
+
+#: String 296
+msgid "%d advertisements for %s"
+msgstr "% и% объявлений для Ы"
+
+#: String 297
+msgid "Database charset"
+msgstr "Кодировка Базы данных "
+
+#: String 298
+msgid "Database cleaned"
+msgstr "База данных очищена"
+
+#: String 299
+msgid "Database name"
+msgstr "Имя базы данных"
+
+#: String 300
+msgid "Database Optimized"
+msgstr "База данных оптимизирована"
+
+#: String 301
+msgid "Database space"
+msgstr "Пространство базы данных"
+
+#: String 302
+msgid "Date"
+msgstr "Дата"
+
+#: String 303
+msgid "Date format"
+msgstr "Формат даты"
+
+#: String 304
+msgid "Date Paid"
+msgstr "Дата Платные"
+
+#: String 305
+msgid "Days"
+msgstr "Дней"
+
+#: String 306
+msgid "DB Configuration"
+msgstr "Конфигурация БД"
+
+#: String 307
+msgid "Deactivate"
+msgstr "Отключить"
+
+#: String 308
+msgid "Deactivate?"
+msgstr "Отключить?"
+
+#: String 309
+msgid "Deactivated"
+msgstr "Деактивировано"
+
+#: String 310
+msgid "Debug Mode"
+msgstr "Режим отладки"
+
+#: String 311
+msgid "Decimal representation"
+msgstr "Представление десятичных знаков"
+
+#: String 312
+msgid "Default"
+msgstr "По умолчанию"
+
+#: String 313
+msgid "Default links"
+msgstr "По умолчанию ссылки"
+
+#: String 314
+msgid "Default value:"
+msgstr "Значение по умолчанию:"
+
+#: String 315
+msgid "Delete"
+msgstr "Удалить"
+
+#: String 316
+msgid "Delete?"
+msgstr "Удалить?"
+
+#: String 317
+msgid "Delete all"
+msgstr "Удалить все"
+
+#: String 318
+msgid "Delete All"
+msgstr "Удалить все"
+
+#: String 319
+msgid "Delete All?"
+msgstr "Удалить все?"
+
+#: String 320
+msgid "Delete all categories"
+msgstr "Удалить все категории"
+
+#: String 321
+msgid "Delete all locations"
+msgstr "Удалить все места"
+
+#: String 322
+msgid "Deleted"
+msgstr "удаленный"
+
+#: String 323
+msgid "Deleted expired cache"
+msgstr "Удаленный старый кэш"
+
+#: String 324
+msgid "Delete expired"
+msgstr "Удалить просроченные"
+
+#: String 325
+msgid "Delete icon"
+msgstr "Удалить значок"
+
+#: String 326
+msgid "Delete icon?"
+msgstr "Удалить значок?"
+
+#: String 327
+msgid "Delete image"
+msgstr "Удалить изображения"
+
+#: String 328
+msgid "Delete photo"
+msgstr "Удалить фотографию"
+
+#: String 329
+msgid "Delete photo?"
+msgstr "Удалить фотографию?"
+
+#: String 330
+msgid "Description"
+msgstr "Описание"
+
+#: String 331
+msgid "Description of your site in no more than 160 characters."
+msgstr "Описание вашего сайта не более чем в 160 символов."
+
+#: String 332
+msgid "Direct Message"
+msgstr "Личное сообщение"
+
+#: String 333
+msgid "Direct message from %s"
+msgstr "Прямая сообщение от% "
+
+#: String 334
+msgid "Direct message from %s to %s"
+msgstr "Прямая сообщение от%  до% "
+
+#: String 335
+msgid "Disable"
+msgstr "Отключено"
+
+#: String 336
+msgid "Disable category counter badge"
+msgstr "Отключить счетчик жетонов категории"
+
+#: String 337
+msgid "Disables generated map on homepage"
+msgstr "Отключение сгенерированный карту на домашнюю страницу"
+
+#: String 338
+msgid "Disallow nude pictures"
+msgstr "Запретить обнаженные фотографии"
+
+#: String 339
+msgid "disallow_nudes"
+msgstr "Запретить обнаженные "
+
+#: String 340
+msgid "Disallows (blocks) Bots and Crawlers"
+msgstr "Запрещает (блоки) Боты и Сканеры"
+
+#: String 341
+msgid "Disallows (blocks) Bots and Crawlers on this website"
+msgstr "Запрещает (блоки) Боты и Сканеры на этом сайте"
+
+#: String 342
+msgid "Disallows Bots and Crawlers on the website"
+msgstr "Запрещает Поисковые и Сканеры на сайте"
+
+#: String 343
+msgid "Discount"
+msgstr "скидка"
+
+#: String 344
+msgid "Discount Amount"
+msgstr "Сумма скидки"
+
+#: String 345
+msgid "Discount off"
+msgstr "скидка"
+
+#: String 346
+msgid "Discount Percentage"
+msgstr "Скидка в процентах"
+
+#: String 347
+msgid "Display categories"
+msgstr "Показать категории"
+
+#: String 348
+msgid "Display CMS pages"
+msgstr "Отобразить страницы CMS"
+
+#: String 349
+msgid "Display Featured Ads"
+msgstr "Показать Рекомендуемые объявление"
+
+#: String 350
+msgid "Display Interactive Map"
+msgstr "Дисплей Интерактивная карта"
+
+#: String 351
+msgid "Display Locations"
+msgstr "Показать Расположение"
+
+#: String 352
+msgid "Display Mode"
+msgstr "Режим отображения"
+
+#: String 353
+msgid "Display site stats"
+msgstr "Показать Статистику сайта"
+
+#: String 354
+msgid "Displays location select"
+msgstr "Отображает выбор места"
+
+#: String 355
+msgid "Displays the field Address in the Ad form."
+msgstr "Отображает поле "Адрес" в форме объявления."
+
+#: String 356
+msgid "Displays the field Phone in the Ad form."
+msgstr "Отображает поле "Телефон" в форме объявления."
+
+#: String 357
+msgid "Displays the field Price in the Ad form."
+msgstr "Отображает поле Цена в форме объявления."
+
+#: String 358
+msgid "Displays the field Website in the Ad form."
+msgstr "Отображает поле "Сайт" в форме объявления."
+
+#: String 359
+msgid "Displays the google maps in the Ad."
+msgstr "Отображает Google Maps в объявлении."
+
+#: String 360
+msgid "Displays the google maps in the Publish new form."
+msgstr "Отображает Google Maps в публикации новой форме."
+
+#: String 361
+msgid "Displays the Select Location in the Ad form."
+msgstr "Отображает "Выберите место" в форме объявления."
+
+#: String 362
+msgid "Disqus"
+msgstr "Обсудить"
+
+#: String 363
+msgid "Disqus Comments"
+msgstr "Обсудить Комментарии"
+
+#: String 364
+msgid "Disqus for blog"
+msgstr "Disqus для блога"
+
+#: String 365
+msgid "Disqus for Blog Comments"
+msgstr "Disqus для комментариев в блогах"
+
+#: String 366
+msgid "Disqus for FAQ"
+msgstr "Disqus для FAQ"
+
+#: String 367
+msgid "Disqus for FAQ Comments"
+msgstr "Disqus для FAQ Комментарии"
+
+#: String 368
+msgid "Distance"
+msgstr "Расстояние"
+
+#: String 369
+msgid "Done"
+msgstr "Готово"
+
+#: String 370
+msgid "Download"
+msgstr "Скачать"
+
+#: String 371
+msgid "download example"
+msgstr "скачать пример"
+
+#: String 372
+msgid "Each advertisement has a publish date. By selecting format, you can change how it is shown on your website."
+msgstr "Каждый объявление имеет дату публикации. Выбрав формат, вы можете изменить то, как это показано на вашем сайте."
+
+#: String 373
+msgid "Each image is resized when uploaded. This is the height of big image. Note: you can leave this field blank to set AUTO height resize."
+msgstr "Все изображения при загрузке сжимаются. Это -- высота большой картинки. PS: вы можете оставить это поле пустым. Тогда будет установлено автоматическое сжатие"
+
+#: String 374
+msgid "Each image is resized when uploaded. This is the width of big image."
+msgstr "Все изображения при загрузке сжимаются. Это -- ширина большой картинки. "
+
+#: String 375
+msgid "Edit"
+msgstr "Редактировать"
+
+#: String 376
+msgid "Edit advertisement"
+msgstr "Редактировать объявление"
+
+#: String 377
+msgid "Edit Advertisement"
+msgstr "Редактировать объявление"
+
+#: String 378
+msgid "Edit Blog Post"
+msgstr "Редактировать сообщение в блоге"
+
+#: String 379
+msgid "Edit category"
+msgstr "Редактировать категорию"
+
+#: String 380
+msgid "Edit Custom Field"
+msgstr "Редактировать заказ поле"
+
+#: String 381
+msgid "Edit Custom Field for Advertisement"
+msgstr "Редактировать заказ поле для рекламы"
+
+#: String 382
+msgid "Edit forum"
+msgstr "Редактировать форум"
+
+#: String 383
+msgid "Edit Forum"
+msgstr "Редактировать форум"
+
+#: String 384
+msgid "Edit location"
+msgstr "Редактировать расположение"
+
+#: String 385
+msgid "Edit Menu"
+msgstr "редактировать Меню "
+
+#: String 386
+msgid "Edit profile"
+msgstr "Редактировать профиль"
+
+#: String 387
+msgid "Edit Profile"
+msgstr "Редактировать профиль"
+
+#: String 388
+msgid "Edit Topic"
+msgstr "Редактировать тему"
+
+#: String 389
+msgid "Edit Translation"
+msgstr "Редактировать перевод"
+
+#: String 390
+msgid "ElasticEmail active"
+msgstr "Эластичный E-mail активны"
+
+#: String 391
+msgid "ElasticEmail Configuration"
+msgstr "Эластичный Конфигурация E-mail"
+
+#: String 392
+msgid "email"
+msgstr "Эл. адрес"
+
+#: String 393
+msgid "Email"
+msgstr "E-mail"
+
+#: String 394
+msgid "Email Configuration"
+msgstr "Настройки электронной почты"
+
+#: String 395
+msgid "Email Configuration updated"
+msgstr "Настройки электронной почты обновлены"
+
+#: String 396
+msgid "Email confirmation on"
+msgstr "E-mail на подтверждение"
+
+#: String 397
+msgid "Email confirmation with Moderation"
+msgstr "Подтверждение по электронной почте с умеренности"
+
+#: String 398
+msgid "Email From"
+msgstr "E-mail от "
+
+#: String 399
+msgid "Email from where we send the emails, also used for software communications."
+msgstr "E-mail для отправки электронных писем также используется для связи ПО."
+
+#: String 400
+msgid "Email sent"
+msgstr "Письмо отправлено"
+
+#: String 401
+msgid "Email Settings"
+msgstr "Настройки электронной почты"
+
+#: String 402
+msgid "Email Setup and emails configuration values. Replace input fields with new desired values"
+msgstr "E-mail Настройка и письма значения конфигурации. Замените поля ввода с новыми заданными значениями"
+
+#: String 403
+msgid "Email to recover password sent"
+msgstr "Письмо для восстановления пароля отправлено"
+
+#: String 404
+msgid "Enable"
+msgstr "Включить"
+
+#: String 405
+msgid "Enable Additional Features"
+msgstr "Включить дополнительные функции"
+
+#: String 406
+msgid "Enabled"
+msgstr "Включено"
+
+#: String 407
+msgid "Enable reCAPTCHA as captcha provider"
+msgstr "Включить ReCaptcha, как капчи поставщика"
+
+#: String 408
+msgid "Enable reviews"
+msgstr "Включить отзывы"
+
+#: String 409
+msgid "Enables an alert to accept cookies"
+msgstr "Включает оповещение принять печенье"
+
+#: String 410
+msgid "Enables Captcha"
+msgstr "Включает проверочный код"
+
+#: String 411
+msgid "Enables Contact Form"
+msgstr "Позволяет Контактный формуляр"
+
+#: String 412
+msgid "Enables leave alert before submitting publish new form"
+msgstr "Позволяет оставить уведомление перед отправкой публиковать новую форму"
+
+#: String 413
+msgid "Enables reviews for ads and the users."
+msgstr "Включает отзывы для объявлений и пользователей."
+
+#: String 414
+msgid "Enables the site to maintenance"
+msgstr "Включает режим обслуживания сайта."
+
+#: String 415
+msgid "Environment"
+msgstr "Окружающая среда"
+
+#: String 416
+msgid "Error"
+msgstr "Ошибка"
+
+#: String 417
+msgid "Error on mail delivery, not sent"
+msgstr "Ошибка доставки почты. Не отправлено"
+
+#: String 418
+msgid "Error: please try again!"
+msgstr "Ошибка: пожалуйста, попробуйте еще раз!"
+
+#: String 419
+msgid "Expiration Date"
+msgstr "Дата окончания срока"
+
+#: String 420
+msgid "Expire days"
+msgstr "Срок хранения, дней: "
+
+#: String 421
+msgid "Export"
+msgstr "Экспорт"
+
+#: String 422
+msgid "Export all"
+msgstr "Экспорт всего"
+
+#: String 423
+msgid "Ex. Url for Open Url Action."
+msgstr "Экспорт Веб-сайт для открытого Url действий."
+
+#: String 424
+msgid "Facebook comments"
+msgstr "Facebook комментарии"
+
+#: String 425
+msgid "Facebook Comments"
+msgstr "Facebook Комментарии"
+
+#: String 426
+msgid "Failed to load content"
+msgstr "Не удалось загрузить содержимое"
+
+#: String 427
+msgid "FALSE"
+msgstr "ЛОЖНЫЙ"
+
+#: String 428
+msgid "FAQ"
+msgstr "Часто задаваемые вопросы"
+
+#: String 429
+msgid "Favorite"
+msgstr "Избранное"
+
+#: String 430
+msgid "Favorited"
+msgstr "в избранное"
+
+#: String 431
+msgid "Favorite not found"
+msgstr "Избранное не найдены"
+
+#: String 432
+msgid "Feature ad"
+msgstr "Избранное объявления"
+
+#: String 433
+msgid "Featured"
+msgstr "Рекомендуемые"
+
+#: String 434
+msgid "Featured ads"
+msgstr "VIP-объявления"
+
+#: String 435
+msgid "Featured Ads"
+msgstr "VIP-объявления"
+
+#: String 436
+msgid "Featured Ads Random"
+msgstr "Показанный объявление Случайные"
+
+#: String 437
+msgid "Featured ads will be highlighted for a defined number of days."
+msgstr "VIP-Объявления будут выделены в течение определенного количества дней."
+
+#: String 438
+msgid "Featured Plan"
+msgstr "Показанный план"
+
+#: String 439
+msgid "Featured Plans"
+msgstr "Популярные планы"
+
+#: String 440
+msgid "Featured plan updated"
+msgstr "Показанный план обновляются"
+
+#: String 441
+msgid "Featured title displayed"
+msgstr "Рекомендуемые Название отображается"
+
+#: String 442
+msgid ":field does not match the required format"
+msgstr ": поле не соответствует требуемому формату"
+
+#: String 443
+msgid ":field must be a color"
+msgstr ": Поле должно быть цвет"
+
+#: String 444
+msgid ":field must be a credit card number"
+msgstr ": Поле должно быть номер кредитной карты"
+
+#: String 445
+msgid ":field must be a date"
+msgstr ": Поле должно быть дата"
+
+#: String 446
+msgid ":field must be a decimal with :param2 places"
+msgstr ": Поле должно быть десятичным с: param2 мест"
+
+#: String 447
+msgid ":field must be a digit"
+msgstr ": Поле должно быть цифрой"
+
+#: String 448
+msgid ":field must be an email address"
+msgstr ": поле должно быть адрес электронной почты"
+
+#: String 449
+msgid ":field must be an ip address"
+msgstr ": Поле должно быть адресом IP"
+
+#: String 450
+msgid ":field must be a phone number"
+msgstr ": Поле должно быть номер телефона"
+
+#: String 451
+msgid ":field must be at least :param2 characters long"
+msgstr ": поле должно быть по крайней мере: длинные param2 символов"
+
+#: String 452
+msgid ":field must be a url"
+msgstr ": Поле должно быть гиперссылка"
+
+#: String 453
+msgid ":field must be exactly :param2 characters long"
+msgstr ": Поле должно быть точно: долго param2 символов"
+
+#: String 454
+msgid ":field must be numeric"
+msgstr ": Поле должно быть числовым"
+
+#: String 455
+msgid ":field must be one of the available options"
+msgstr ": поле должно быть одним из доступных вариантов"
+
+#: String 456
+msgid ":field must be the same as :param3"
+msgstr ": поле должно быть таким же, как: Param3"
+
+#: String 457
+msgid ":field must be within the range of :param2 to :param3"
+msgstr ": поле должно быть в пределах: param2 на: Param3"
+
+#: String 458
+msgid ":field must contain a valid email domain"
+msgstr ": поле должно содержать корректный домена электронной почты"
+
+#: String 459
+msgid ":field must contain only letters"
+msgstr ": поле должно содержать только буквы"
+
+#: String 460
+msgid ":field must contain only letters and numbers"
+msgstr ": поле должно содержать только буквы и цифры"
+
+#: String 461
+msgid ":field must contain only numbers, letters and dashes"
+msgstr ": поле должно содержать только цифры, буквы и тире"
+
+#: String 462
+msgid ":field must equal :param2"
+msgstr ": поле должно равняться: param2"
+
+#: String 463
+msgid ":field must not be empty"
+msgstr ": поле не должно быть пустым"
+
+#: String 464
+msgid ":field must not exceed :param2 characters long"
+msgstr ": поле не должно превышать: длинные param2 символов"
+
+#: String 465
+msgid "Field %s added"
+msgstr "Поле% s добавил"
+
+#: String 466
+msgid "Field %s already exists"
+msgstr "Поле% s уже существует"
+
+#: String 467
+msgid "Field %s cannot be added"
+msgstr "Поле% s не может быть добавлен"
+
+#: String 468
+msgid "Field %s cannot be edited"
+msgstr "Поле% и не могут быть отредактированы"
+
+#: String 469
+msgid "Field %s cannot be removed"
+msgstr "Поле% и не может быть удален"
+
+#: String 470
+msgid "Field %s created"
+msgstr "Поле% и создан"
+
+#: String 471
+msgid "Field %s deleted"
+msgstr "Поле% и удален"
+
+#: String 472
+msgid "Field %s does not exists"
+msgstr "Поле% и не существует делает"
+
+#: String 473
+msgid "Field %s edited"
+msgstr "Поле% и редактировать"
+
+#: String 474
+msgid "Field %s removed"
+msgstr "Поле% и удалена"
+
+#: String 475
+msgid "File"
+msgstr "файл"
+
+#: String 476
+msgid "Filter"
+msgstr "Фильтр"
+
+#: String 477
+msgid "Find latitude & longitude"
+msgstr "Найти широты  и долготы "
+
+#: String 478
+msgid "Find %s‘s latitude & longitude"
+msgstr "Найти%  в широту и долготу "
+
+#: String 479
+msgid "First"
+msgstr "Первый"
+
+#: String 480
+msgid "Fixed Discount"
+msgstr "Исправлена Скидка"
+
+#: String 481
+msgid "Follow the suggestions above."
+msgstr "Следуйте рекомендациям выше."
+
+#: String 482
+msgid "For banned word push enter."
+msgstr "Для запрещенное слово толчок войти."
+
+#: String 483
+msgid "Forgot password"
+msgstr "Забыли пароль"
+
+#: String 484
+msgid "Forgot password?"
+msgstr "Забыли пароль?"
+
+#: String 485
+msgid "formats only"
+msgstr "только форматы"
+
+#: String 486
+msgid "Forum"
+msgstr "Форум"
+
+#: String 487
+msgid "Forum deleted"
+msgstr "Форум удален"
+
+#: String 488
+msgid "Forum is created."
+msgstr "Форум создан."
+
+#: String 489
+msgid "Forum is updated."
+msgstr "Форум обновлен."
+
+#: String 490
+msgid "Forum Limit, if none display all"
+msgstr "Форум Лимит, если ни один дисплей все"
+
+#: String 491
+msgid "Forum not deleted"
+msgstr "Форум не удаляются"
+
+#: String 492
+msgid "Forum parent"
+msgstr "Форум родитель"
+
+#: String 493
+msgid "forums"
+msgstr "форум"
+
+#: String 494
+msgid "Forums"
+msgstr "Форумы"
+
+#: String 495
+msgid "Forum Search"
+msgstr "Форум Поиск"
+
+#: String 496
+msgid "forum title displayed"
+msgstr "Название форум отображается"
+
+#: String 497
+msgid "Forum topic"
+msgstr "тема на форуме"
+
+#: String 498
+msgid "Forum topic reader"
+msgstr "Тема на форуме читатель"
+
+#: String 499
+msgid "Forum Topics"
+msgstr "Форум Темы"
+
+#: String 500
+msgid "FraudLabsPro api key"
+msgstr "FraudLabsPro api ключ"
+
+#: String 501
+msgid "frequently asked questions."
+msgstr "Часто задаваемые вопросы."
+
+#: String 502
+msgid "Frequently Asked Questions"
+msgstr "Часто задаваемые вопросы"
+
+#: String 503
+msgid " Frequently Asked Questions - FAQ"
+msgstr "Часто задаваемые вопросы -ЧЗВ"
+
+#: String 504
+msgid "Friendship and Dating"
+msgstr "Дружба и знакомств"
+
+#: String 505
+msgid "From"
+msgstr "От"
+
+#: String 506
+msgid "from_email"
+msgstr "от _Эл. адрес"
+
+#: String 507
+msgid "From email"
+msgstr "От Эл. адрес"
+
+#: String 508
+msgid "From Email"
+msgstr "С электронной почты"
+
+#: String 509
+msgid "GCM API Key"
+msgstr "ГКМ  API  ключ "
+
+#: String 510
+msgid "General"
+msgstr "Общие"
+
+#: String 511
+msgid "General Configuration"
+msgstr "Общая конфигурация"
+
+#: String 512
+msgid "General Configuration updated"
+msgstr "Общая конфигурация обновлена"
+
+#: String 513
+msgid "General site settings."
+msgstr "Общие настройки сайта."
+
+#: String 514
+msgid "Generate"
+msgstr "Генерировать"
+
+#: String 515
+msgid "Generate an interactive map for your classifieds website"
+msgstr "Создать интерактивную карту для вашего сайта Объявления"
+
+#: String 516
+msgid "Get Latitude and Longitude"
+msgstr "Получить Широта и долгота"
+
+#: String 517
+msgid "Get our professional services"
+msgstr "Получить наши профессиональные услуги"
+
+#: String 518
+msgid "Gets Ads Latitude and Longitude from Google Maps API using advertisements address"
+msgstr "Получает Объявления о широте и долготе от Google Maps API с помощью рекламных объявлений адрес"
+
+#: String 519
+msgid "Get started by creating and editing categories and locations for your site here."
+msgstr "Начните с создания и редактирования категории и местоположения для Вашего сайта здесь."
+
+#: String 520
+msgid "Go back"
+msgstr "Возвращаться"
+
+#: String 521
+msgid "Go Featured!"
+msgstr "Перейти Рекомендуемые!"
+
+#: String 522
+msgid "Google map default latitude coordinates"
+msgstr "Google координаты широты карту по умолчанию"
+
+#: String 523
+msgid "Google map default longitude coordinates"
+msgstr "Google координаты долготы на карте по умолчанию"
+
+#: String 524
+msgid "Google map default zoom level "
+msgstr "Google Map умолчанию уровень масштабирования"
+
+#: String 525
+msgid "Google Maps"
+msgstr " Google Карты"
+
+#: String 526
+msgid "Google Maps in Ad"
+msgstr "Карты Google в объявлении"
+
+#: String 527
+msgid "Google Maps in Publish New"
+msgstr "Google Maps в публиковать новые"
+
+#: String 528
+msgid "Google Maps Settings"
+msgstr "Карты Google Настройки"
+
+#: String 529
+msgid "Google Maps with ads"
+msgstr "Карты Google с объявлениями"
+
+#: String 530
+msgid "Google map zoom level"
+msgstr "Google уровень масштабирования карты"
+
+#: String 531
+msgid "Go Top!"
+msgstr "Перейти Лучшие!"
+
+#: String 532
+msgid "Go to top"
+msgstr "Перейти к началу"
+
+#: String 533
+msgid "Go to Website"
+msgstr "Перейти на сайт"
+
+#: String 534
+msgid "Go to Your Website"
+msgstr "Перейти на ваш сайт"
+
+#: String 535
+msgid "has been disable for posting, due to recent spam content!"
+msgstr "была отключена для оприходования, из-за недавнего содержания спама!"
+
+#: String 536
+msgid "Hash Key"
+msgstr "Хэш-ключ"
+
+#: String 537
+msgid "Has image"
+msgstr "Имеет изображение"
+
+#: String 538
+msgid "Has images"
+msgstr "Есть изображения"
+
+#: String 539
+msgid "Have you forgotten your password?"
+msgstr "Вы забыли свой пароль?"
+
+#: String 540
+msgid "Heads Up!"
+msgstr "Берегись!"
+
+#: String 541
+msgid "Height (px)"
+msgstr "Высота (пикселей)"
+
+#: String 542
+msgid "Hello, world"
+msgstr "Привет, мир"
+
+#: String 543
+msgid "Help prevent card fraud with FraudLabsPro, for Stripe, 2co, Paymill and Authorize."
+msgstr "Помогите предотвратить мошенничество с карты FraudLabsPro, для Stripe, 2о, Paymill и Авторизоваться."
+
+#: String 544
+msgid "Help us improve!"
+msgstr "Помогите нам улучшить!"
+
+#: String 545
+msgid "Here are listed specific theme configuration values. Replace input fields with new desired values for the theme."
+msgstr "Здесь перечислены специальные значения конфигурации темы. Введите новые значения в соответствующие поля ввода."
+
+#: String 546
+msgid "Here you can declare your display name. This is seen by everyone!"
+msgstr "Здесь вы можете ввести ваше имя для отображения. Его видят все."
+
+#: String 547
+msgid "Here you can find a selection of our premium themes."
+msgstr "Здесь вы можете найти некоторые из наших премиальных тем."
+
+#: String 548
+msgid "Here you can modify any text you find in your web."
+msgstr "Здесь вы можете изменить любой текст на вашем сайте"
+
+#: String 549
+msgid "Here you can reset your password if you forgot it."
+msgstr "Здесь вы можете сбросить пароль, если вы забыли его."
+
+#: String 550
+msgid "Hey!"
+msgstr "Привет!"
+
+#: String 551
+msgid "Hide icon on category/location description"
+msgstr "Скрыть значок категории / описание местоположения"
+
+#: String 552
+msgid "Hide translated texts"
+msgstr "Скрыть переведенных текстов"
+
+#: String 553
+msgid "Hit enter to confirm"
+msgstr "Нажмите Enter, чтобы подтвердить"
+
+#: String 554
+msgid "Hits"
+msgstr "Просмотров"
+
+#: String 555
+msgid "Home"
+msgstr "Домой"
+
 #: String 556
+msgid "Hosting limit"
+msgstr "Хостинг предел"
+
+#: String 557
+msgid "Host name"
+msgstr "Имя хоста"
+
+#: String 558
+msgid "How many ads are going to appear in the map of your site."
+msgstr "Сколько объявлений будут появляться на карте вашего сайта."
+
+#: String 559
+msgid "How many ads are going to appear in the RSS of your site."
+msgstr "Сколько объявлений будут появляться в RSS вашего сайта."
+
+#: String 560
+msgid "How much the user needs to pay to top up an Ad"
+msgstr "Сколько пользователь должен заплатить, чтобы поднять объявление"
+
+#: String 561
+msgid "How often we refresh the RSS, in seconds"
+msgstr "Как часто мы обновляем RSS, в секундах"
+
+#: String 562
+msgid "How to configure %s"
+msgstr "Как настроить% и"
+
+#: String 563
+msgid "How to create a MySQL database?"
+msgstr "Как создать базу данных MySQL ?"
+
+#: String 564
+msgid "HTML in footer"
+msgstr "HTML в колонтитуле"
+
+#: String 565
+msgid "HTML in HEAD element"
+msgstr "HTML в HEAD элемента"
+
+#: String 566
+msgid "HTML text area"
+msgstr "HTML Текстовая область"
+
+#: String 567
+msgid "HTML/text content here"
+msgstr "Здесь -- содержание HTML / Text "
+
+#: String 568
+msgid "I accept"
+msgstr "Я принимаю"
+
+#: String 569
+msgid "Icon"
+msgstr "Значок"
+
+#: String 570
+msgid "Icon deleted."
+msgstr "Иконка удалены."
+
+#: String 571
+msgid "Icon file could not been saved."
+msgstr "Иконка файл не может сохранены."
+
+#: String 572
+msgid "Icon is uploaded."
+msgstr "Иконка загружен."
+
+#: String 573
+msgid "Id"
+msgstr "код"
+
+#: String 574
+msgid "Id Product"
+msgstr "код товаров"
+
+#: String 575
+msgid "Id_User"
+msgstr "Код Пользователя"
+
+#: String 576
+msgid "If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register."
+msgstr "Если реклама отмечены как спам, пользователь также отмечен. Не можете публиковать новые объявления или зарегистрировать до удалены из черного списка! Кроме того, не позволит пользователям из одноразовых адресов электронной почты, чтобы зарегистрироваться."
+
+#: String 577
+msgid "If you have doubts check the release notes for this version"
+msgstr "Если у вас есть сомнения, проверьте примечания к выпуску для данной версии"
+
+#: String 578
+msgid "If your locale is not listed, be sure your hosting has your locale installed."
+msgstr "Если ваш язык не указан, убедитесь, что ваш хостинг локаль установлена."
+
+#: String 579
+msgid "If you wanted to go to the main page instead, click here."
+msgstr "Если вы хотите, чтобы перейти к главной странице, а не, нажмите здесь."
+
+#: String 580
+msgid "Image"
+msgstr "Образ"
+
+#: String 581
+msgid "Image configuration"
+msgstr "конфигурация изображения"
+
+#: String 582
+msgid "Image Configuration"
+msgstr "Конфигурация изображения"
+
+#: String 583
+msgid "Image Configuration updated"
+msgstr "Конфигурация Изображение обновляется"
+
+#: String 584
+msgid "Image configuration values. Replace input fields with new desired values"
+msgstr "Значения конфигурации изображения. Замените поля ввода с новыми заданными значениями"
+
+#: String 585
+msgid "Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images."
+msgstr "Папка Изображение отсутствует и не может быть создана с MKDIR. Пожалуйста, исправьте, чтобы иметь возможность загружать изображения."
+
+#: String 586
+msgid "Image height"
+msgstr "Высота изображения"
+
+#: String 587
+msgid "Image height in pixels(px)"
+msgstr "Высота изображения в пикселях (PX)"
+
+#: String 588
+msgid "Image is not valid. Please try again."
+msgstr "Изображение не является действительным. Пожалуйста, попробуйте еще раз."
+
+#: String 589
+msgid "Image is uploaded."
+msgstr "Изображение загружено."
+
+#: String 590
+msgid "Image quality"
+msgstr "Качество изображения"
+
+#: String 591
+msgid "Image Quality"
+msgstr "Качество изображения"
+
+#: String 592
+msgid "Images"
+msgstr "Изображения"
+
+#: String 593
+msgid "images allowed."
+msgstr "изображения разрешается."
+
+#: String 594
+msgid "Image size in mega bites(Mb)"
+msgstr "Размер изображения в мегабайтах (Мб)"
+
+#: String 595
+msgid "Image type is not supported"
+msgstr "Тип изображения не поддерживается"
+
+#: String 596
+msgid "Image width"
+msgstr "Ширина изображения"
+
+#: String 597
+msgid "Image width in pixels(px)"
+msgstr "Ширина изображения в пикселях (PX)"
+
+#: String 598
+msgid "Imperial"
+msgstr "имперский"
+
+#: String 599
+msgid "Import"
+msgstr "Импортировать"
+
+#: String 600
+msgid "Import Ads"
+msgstr "Импорт объявление"
+
+#: String 601
+msgid "import Categories"
+msgstr "импорт Рубрики"
+
+#: String 602
+msgid "Import Categories"
+msgstr "Импорт Категории"
+
+#: String 603
+msgid "Import cities"
+msgstr "Импорт города"
+
+#: String 604
+msgid "Import continents"
+msgstr "Импорт континенты"
+
+#: String 605
+msgid "Import counties/regions"
+msgstr "Импорт округов / регионы"
+
+#: String 606
+msgid "Import countries"
+msgstr "Импорт страны"
+
+#: String 607
+msgid "import coupons"
+msgstr "импорт купоны"
+
+#: String 608
+msgid "import Locations"
+msgstr "импорт Местоположение"
+
+#: String 609
+msgid "Import Locations"
+msgstr "Импорт Местоположение"
+
+#: String 610
+msgid "Import states/provinces"
+msgstr "Импорт / Провинции"
+
+#: String 611
+msgid "Import tool"
+msgstr "Импорт инструмент"
+
+#: String 612
+msgid "Import tool for ads"
+msgstr "Импорт инструмент для объявлений"
+
+#: String 613
+msgid "Import tool for locations and categories"
+msgstr "Импорт инструмент для местах и категориях"
+
+#: String 614
+msgid "in"
+msgstr "в"
+
+#: String 615
+msgid "Inactive Region Color"
+msgstr "Неактивный Регион Цвет"
+
+#: String 616
+msgid "Inbox"
+msgstr "Входящие"
+
+#: String 617
+msgid "Include auto locate visitors"
+msgstr "Включить авто найти посетителей"
+
+#: String 618
+msgid "Included files"
+msgstr "Включенные файлы"
+
+#: String 619
+msgid "Include search by description"
+msgstr "Включить поиск по описанию"
+
+#: String 620
+msgid "Increment Step"
+msgstr "Прирост Шаг"
+
+#: String 621
+msgid "Info"
+msgstr "Информация"
+
+#: String 622
+msgid "in %s"
+msgstr "В %и"
+
+#: String 623
+msgid "Install"
+msgstr "Установить."
+
+#: String 624
+msgid "Installation"
+msgstr "Установка"
+
+#: String 625
+msgid "Installation Folder"
+msgstr "Папка установки"
+
+#: String 626
+msgid "Install theme"
+msgstr "Установите тему"
+
+#: String 627
+msgid "Install theme from license."
+msgstr "Установите тему из лицензии."
+
+#: String 628
+msgid "In Stock"
+msgstr "На наличии"
+
+#: String 629
+msgid "Interactive map"
+msgstr "Интерактивная карта"
+
+#: String 630
+msgid "Interactive Map"
+msgstr "Интерактивная карта"
+
+#: String 631
+msgid "Interactive map is only available with premium themes!"
+msgstr "Интерактивная карта доступна только премиум-класса темы!"
+
+#: String 632
+msgid "Interactive Regions"
+msgstr "Интерактивные Регионы"
+
+#: String 633
+msgid "Interactivity"
+msgstr "интерактивность"
+
+#: String 634
+msgid "Invalid Email"
+msgstr "Неверный адрес электронной почты"
+
+#: String 635
+msgid "Ip address"
+msgstr "IP-адрес"
+
+#: String 636
+msgid "is created"
+msgstr "создано"
+
+#: String 637
+msgid "is edited"
+msgstr "редактируется"
+
+#: String 638
+msgid "is not found"
+msgstr "не найден"
+
+#: String 639
+msgid "Is not of valid size. Size is limited to %s MB per image"
+msgstr "Не действительного размера. Размер ограничен% и МБ на изображение"
+
+#: String 640
+msgid "Is not valid format, please use ZIP format"
+msgstr "Не допустимый формат, пожалуйста, используйте формат ZIP"
+
+#: String 641
+msgid "It changes landing page of website"
+msgstr "Он изменяет целевую страницу веб-сайта"
+
+#: String 642
+msgid "Item created"
+msgstr "Объект добавлен"
+
+#: String 643
+msgid "Items per page"
+msgstr "Товаров на странице"
+
+#: String 644
+msgid "# items to display"
+msgstr "показать # объектов"
+
+#: String 645
+msgid "Item updated"
+msgstr "Объект обновлен"
+
+#: String 646
+msgid "It is either not existing, moved or deleted. Make sure the URL is correct."
+msgstr "Он либо не существующего, перемещена или удалена. Убедитесь, что адрес верен."
+
+#: String 647
+msgid "It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost."
+msgstr "Похоже, вы были к публикации новое объявление, если вы оставите перед представлять ваши изменения будут потеряны."
+
+#: String 648
+msgid "It will be the first line of the tooltip."
+msgstr "Это будет первая строка подсказки."
+
+#: String 649
+msgid "It will be the second line of the tooltip."
+msgstr "Это будет вторая линия подсказке."
+
+#: String 650
+msgid "I Understand"
+msgstr "Я понимаю"
+
+#: String 651
+msgid "Jobs"
+msgstr "Я понимаю"
+
+#: String 652
+msgid "Keep Aspect Ratio"
+msgstr "Сохранять пропорции"
+
+#: String 653
+msgid "Key"
+msgstr "ключ"
+
+#: String 654
+msgid "Label"
+msgstr "метка"
+
+#: String 655
+msgid "Landing page"
+msgstr "Целевая страница"
+
+#: String 656
+msgid "Language"
+msgstr "Язык"
+
+#: String 657
+msgid "Language folder cannot be created with mkdir. Please correct to be able to create new translation."
+msgstr "Язык папка не может быть создана с MKDIR. Пожалуйста, исправьте, чтобы быть в состоянии создать новый перевод."
+
+#: String 658
+msgid "Language saved"
+msgstr "Язык сохранен"
+
+#: String 659
+msgid "Last"
+msgstr "Последний"
+
+#: String 660
+msgid "Last 30 days"
+msgstr "Последние 30 дней"
+
+#: String 661
+msgid "Last Answer"
+msgstr "последний ответ"
+
+#: String 662
+msgid "Last login"
+msgstr "Последний вход"
+
+#: String 663
+msgid "Last Login"
+msgstr "Последний вход"
+
+#: String 664
+msgid "Last Message"
+msgstr "Последнее сообщение"
+
+#: String 665
+msgid "Last modified"
+msgstr "Последние измененения"
+
+#: String 666
+msgid "Last time generated"
+msgstr "Последний раз сгенерировано "
+
+#: String 667
+msgid "Latest"
+msgstr "Последний"
+
+#: String 668
+msgid "Latest Ads"
+msgstr "Последние объявления"
+
+#: String 669
+msgid "Latest News"
+msgstr "Последние новости"
+
+#: String 670
+msgid "Latest post published"
+msgstr "Последнее сообщение опубликовано"
+
+#: String 671
+msgid "Latest published"
+msgstr "Последние опубликованные"
+
+#: String 672
+msgid "Latest Published Ads"
+msgstr "Последние опубликованные объявления"
+
+#: String 673
+msgid "Latitude"
+msgstr "Широта"
+
+#: String 674
+msgid "Latitude coordinates"
+msgstr "Широта координаты"
+
+#: String 675
+msgid "Leave alert before submitting form"
+msgstr "Оставить уведомление перед отправкой формы"
+
+#: String 676
+msgid "Leave alert before submitting publish new form"
+msgstr "Оставить уведомление перед отправкой публиковать новую форму"
+
+#: String 677
+msgid "less than a day"
+msgstr "меньше, чем день"
+
+#: String 678
+msgid "less than a month"
+msgstr "меньше, чем месяц"
+
+#: String 679
+msgid "less than an hour"
+msgstr "менее часа"
+
+#: String 680
+msgid "less than a week"
+msgstr "меньше, чем неделю"
+
+#: String 681
+msgid "less than a year"
+msgstr "меньше, чем год"
+
+#: String 682
+msgid "license"
+msgstr "лицензия"
+
+#: String 683
+msgid "License"
+msgstr "Лицензия"
+
+#: String 684
+msgid "License validation error, please insert again."
+msgstr "Лицензия ошибка проверки, пожалуйста, вставьте ее снова."
+
+#: String 685
+msgid "License will be activated in %s domain."
+msgstr "Лицензия будет активирована домена% S."
+
+#: String 686
+msgid "Limited Offer!"
+msgstr "Ограниченное предложение!"
+
+#: String 687
+msgid "limited to 10.000 at a time"
+msgstr "ограничивается 10.000 в то время,"
+
+#: String 688
+msgid "Links"
+msgstr "Связи"
+
+#: String 689
+msgid "Links title displayed"
+msgstr "Ссылки Название отображается"
+
+#: String 690
+msgid "List"
+msgstr "Список"
+
+#: String 691
+msgid "listing"
+msgstr "Листинг "
+
+#: String 692
+msgid "Listing"
+msgstr "Список"
+
+#: String 693
+msgid "Listing Options"
+msgstr "Опции каталог"
+
+#: String 694
+msgid "Listings"
+msgstr "Объявления"
+
+#: String 695
+msgid "List of all postings in"
+msgstr "Список всех проводок в"
+
+#: String 696
+msgid "List of payment configuration values. Replace input fields with new desired values."
+msgstr "Значения конфигурации оплаты. Введите новые значения в соответствующие поля."
+
+#: String 697
+msgid "Loaded extensions"
+msgstr "Загруженные расширения"
+
+#: String 698
+msgid "locale"
+msgstr "место действия"
+
+#: String 699
+msgid "Locale"
+msgstr "Место действия"
+
+#: String 700
+msgid "Locate me"
+msgstr "Найдите мне"
+
+#: String 701
+msgid "location"
+msgstr "место нахождения"
+
+#: String 702
+msgid "Location"
+msgstr "Расположение"
+
+#: String 703
+msgid "Location created"
+msgstr "Местоположение создано"
+
+#: String 704
+msgid "Location deleted"
+msgstr "Расположение удалено"
+
+#: String 705
+msgid "Location details"
+msgstr "Особое расположение"
+
+#: String 706
+msgid "Location icon"
+msgstr "Расположение иконок"
+
+#: String 707
+msgid "Location not deleted"
+msgstr "Расположение не удалено"
+
+#: String 708
+msgid "Location not found"
+msgstr "Расположение не найдены"
+
+#: String 709
+msgid "Locations"
+msgstr "Места"
+
+#: String 710
+msgid "Locations successfully imported."
+msgstr "Местоположение успешно импортированы."
+
+#: String 711
+msgid "Locations title displayed"
+msgstr "Отображаемое название мест"
+
+#: String 712
+msgid "Log"
+msgstr "Журнал"
+
+#: String 713
+msgid "Login"
+msgstr "Войти"
+
+#: String 714
+msgid "Login has been temporarily disabled due to too many unsuccessful login attempts. Please try again in 24 hours."
+msgstr "Войти был временно отключен из-за слишком многих неудачных попыток входа. Пожалуйста, попробуй"
+
+#: String 715
+msgid "Login has been temporarily disabled due to too many unsuccessful login attempts. Please try again in a minute."
+msgstr "Войти был временно отключен из-за слишком многих неудачных попыток входа. Пожалуйста, попробуй"
+
+#: String 716
+msgid "Login to"
+msgstr "Авторизоваться"
+
+#: String 717
+msgid "Login to reply"
+msgstr "Вход ответить"
+
+#: String 718
+msgid "Logout"
+msgstr "Выход"
+
+#: String 719
+msgid "Logs"
+msgstr "Журналы"
+
+#: String 720
+msgid "Longitude"
+msgstr "долгота"
+
+#: String 721
+msgid "Longitude coordinates"
+msgstr "долготы"
+
+#: String 722
+msgid "Mail not sent"
+msgstr "Почта не отправлена"
+
+#: String 723
+msgid "maintenance"
+msgstr "обслуживание и поддержка"
+
+#: String 724
+msgid "Maintenance"
+msgstr "Обслуживание"
+
+#: String 725
+msgid "Maintenance Mode"
+msgstr "Режим обслуживания"
+
+#: String 726
+msgid "Make featured?"
+msgstr "Выделить?"
+
+#: String 727
+msgid "Manage ads you published and edit them through this tab, you can also ask to feature or place your ad to top here."
+msgstr "Управление объявления, публикации и редактировать их с помощью этой вкладки, вы также можете попросить, чтобы показать или поместить свое объявление к началу здесь."
+
+#: String 728
+msgid "MANDATORY"
+msgstr "ОБЯЗАТЕЛЬНОЕ"
+
+#: String 729
+msgid "map"
+msgstr "карта"
+
+#: String 730
+msgid "Map"
+msgstr "Карта"
+
+#: String 731
+msgid "Map Border Color"
+msgstr "Карта Цвет рамки"
+
+#: String 732
+msgid "Map Border Width (px)"
+msgstr "Карта пограничной Ширина (пикселей)"
+
+#: String 733
+msgid "Map height in pixels"
+msgstr "Высота карты в пикселях"
+
+#: String 734
+msgid "Map latitude coordinates"
+msgstr "Карта координаты широты"
+
+#: String 735
+msgid "Map longitude coordinates"
+msgstr "Карта долготы"
+
+#: String 736
+msgid "Map on homepage"
+msgstr "Карта на домашнюю страницу"
+
+#: String 737
+msgid "Map saved."
+msgstr "Карта сохранены."
+
+#: String 738
+msgid "Map Settings"
+msgstr "Настройки карты"
+
+#: String 739
+msgid "Map title displayed"
+msgstr "Отображаемое название карты"
+
+#: String 740
+msgid "Map View"
+msgstr "Карта Посмотреть"
+
+#: String 741
+msgid "Mark as paid"
+msgstr "Отметить как оплачивается"
+
+#: String 742
+msgid "Markers (Coordinates)"
+msgstr "Маркеры (Координаты)"
+
+#: String 743
+msgid "Markers (Text Location)"
+msgstr "Маркеры (расположение текста)"
+
+#: String 744
+msgid "Market"
+msgstr "Магазин"
+
+#: String 745
+msgid "Max image size"
+msgstr "Максимальный размер "
+
+#: String 746
+msgid "Maximum file size of"
+msgstr "Максимальный размер файла"
+
+#: String 747
+msgid "Maximum Price"
+msgstr "максимальная цена"
+
+#: String 748
+msgid "Max Price"
+msgstr "Макс цена"
+
+#: String 749
+msgid "Measurement"
+msgstr "измерение"
+
+#: String 750
+msgid "Measurement Units"
+msgstr "Единицы измерения"
+
+#: String 751
+msgid "Measurement units used by the system."
+msgstr "Единицы измерения, используемые системой."
+
+#: String 752
+msgid "Menu"
+msgstr "Меню"
+
+#: String 753
+msgid "Menu created"
+msgstr "Меню создано"
+
+#: String 754
+msgid "Menu deleted"
+msgstr "Меню удален"
+
+#: String 755
+msgid "Menu not created"
+msgstr "Меню не создается"
+
+#: String 756
+msgid "Menu not updated"
+msgstr "Меню не обновляется"
+
+#: String 757
+msgid "Menu type"
+msgstr "Тип меню"
+
+#: String 758
+msgid "Menu updated"
+msgstr "Меню обновляется"
+
+#: String 759
+msgid "Message"
+msgstr "Сообщение"
+
+#: String 760
+msgid "Message not found"
+msgstr "Сообщение не найдено"
+
+#: String 761
+msgid "Message not sent"
+msgstr "Сообщение не отправлено"
+
+#: String 762
+msgid "Messages"
+msgstr "Сообщения"
+
+#: String 763
+msgid "Messaging"
+msgstr "обмен сообщениями"
+
+#: String 764
+msgid "Method not found "
+msgstr "Метод не нашел"
+
+#: String 765
+msgid "Metric"
+msgstr "Метрика"
+
+#: String 766
+msgid "Migrate"
+msgstr "Мигрировать"
+
+#: String 767
+msgid "Migration"
+msgstr "Миграция"
+
+#: String 768
+msgid "Minimum Price"
+msgstr "Минимальная цена"
+
+#: String 769
+msgid "Min Price"
+msgstr "мин-цена"
+
+#: String 770
+msgid "Mobile Theme updated"
+msgstr "Мобильная тема обновлена"
+
+#: String 771
+msgid "Mobile Version"
+msgstr "Мобильная версия"
+
+#: String 772
+msgid "Moderation"
+msgstr "Проверка"
+
+#: String 773
+msgid "Moderation on"
+msgstr "Модерация на"
+
+#: String 774
+msgid "moments"
+msgstr "моменты"
+
+#: String 775
+msgid "Money format"
+msgstr "деньги формат"
+
+#: String 776
+msgid "Multi select category and location search"
+msgstr "Мульти выберите категорию и место поиска"
+
+#: String 777
+msgid "My ads"
+msgstr "Мои объявления"
+
+#: String 778
+msgid "My Advertisements"
+msgstr "Мои объявления"
+
+#: String 779
+msgid "My Favorites"
+msgstr "Мои любимые"
+
+#: String 780
+msgid "My payments"
+msgstr "Мои платежи"
+
+#: String 781
+msgid "My Payments"
+msgstr "Мои платежи"
+
+#: String 782
+msgid "My Profile"
+msgstr "Мой профайл"
+
+#: String 783
+msgid "My subscriptions"
+msgstr "Мои подписки"
+
+#: String 784
+msgid "Name"
+msgstr "Имя"
+
+#: String 785
+msgid "Name (A-Z)"
+msgstr "Имя (А-Я)"
+
+#: String 786
+msgid "Name of your chat room/channel"
+msgstr "Название вашего чата / канал"
+
+#: String 787
+msgid "Name (Z-A)"
+msgstr "Имя (Я-А)"
+
+#: String 788
+msgid "New"
+msgstr "Новое"
+
+#: String 789
+msgid "New Advertisement"
+msgstr "Новое объявление"
+
+#: String 790
+msgid "New Category"
+msgstr "Новая категория"
+
+#: String 791
+msgid "New Custom Field"
+msgstr "Новый пользовательский поле"
+
+#: String 792
+msgid "New Custom Field for Advertisement"
+msgstr "Новый пользовательский поле для рекламы"
+
+#: String 793
+msgid "New Custom Field for Users"
+msgstr "Новый пользовательский поле для пользователей"
+
+#: String 794
+msgid "Newest"
+msgstr "Новейший"
+
+#: String 795
+msgid "New field"
+msgstr "Новое поле"
+
+#: String 796
+msgid "New forum"
+msgstr "Новый форум"
+
+#: String 797
+msgid "New Forum"
+msgstr "Новый Форум"
+
+#: String 798
+msgid "New Forum Topic"
+msgstr "Новый Форум Тема"
+
+#: String 799
+msgid "New Location"
+msgstr "Новое место"
+
+#: String 800
+msgid "New Message from %s"
+msgstr "Новое сообщение от% и"
+
+#: String 801
+msgid "New password"
+msgstr "Новый пароль"
+
+#: String 802
+msgid "Newsletter"
+msgstr "Новости"
+
+#: String 803
+msgid "Newsletters"
+msgstr "Рассылки"
+
+#: String 804
+msgid "New tab or window"
+msgstr "Новая вкладка или окно"
+
+#: String 805
+msgid "new topic"
+msgstr "новая тема"
+
+#: String 806
+msgid "New Topic"
+msgstr "Новая Тема"
+
+#: String 807
+msgid "New Topic is not available as a feature."
+msgstr "Новая тема не доступна в качестве признака."
+
+#: String 808
+msgid "New translation"
+msgstr "Новый перевод"
+
+#: String 809
+msgid "Next"
+msgstr "Следующий"
+
+#: String 810
+msgid "No"
+msgstr "Нет"
+
+#: String 811
+msgid "None"
+msgstr "Ни одной"
+
+#: String 812
+msgid "None (0) advertisement has been deleted"
+msgstr "Ни (0) не была удалена"
+
+#: String 813
+msgid "NOPUBLISHED"
+msgstr "НЕТ ОПУБЛИКОВАННЫХ"
+
+#: String 814
+msgid "No results match"
+msgstr "Нет результатов матча"
+
+#: String 815
+msgid "No Subscriptions"
+msgstr "Нет Подписки"
+
+#: String 816
+msgid "Not any ad to be processed"
+msgstr "Не объявление будет обработан"
+
+#: String 817
+msgid "Nothing found, sorry!"
+msgstr "Ничего не найдено, извините!"
+
+#: String 818
+msgid "Nothing is provided"
+msgstr "Ничего не предусмотрено"
+
+#: String 819
+msgid "Notify email"
+msgstr "Сообщить по E-mail"
+
+#: String 820
+msgid "Notify me on new ad"
+msgstr "Сообщите мне о новых объявлением"
+
+#: String 821
+msgid "Not paid"
+msgstr "Не оплачен"
+
+#: String 822
+msgid "Not possible to auto update"
+msgstr "Не возможно, чтобы автоматическое обновление"
+
+#: String 823
+msgid "Not published"
+msgstr "Не опубликовано"
+
+#: String 824
+msgid "Not valid email."
+msgstr "Не действительный адрес эл-почты."
+
+#: String 825
+msgid "Not your advertisement"
+msgstr "Не ваша реклама"
+
+#: String 826
+msgid "No way!"
+msgstr "Ни за что!"
+
+#: String 827
+msgid "Number"
+msgstr "Номер"
+
+#: String 828
+msgid "Number Coupons"
+msgstr "Купоны Количество"
+
+#: String 829
+msgid "Number Decimal"
+msgstr "Количество Десятичное"
+
+#: String 830
+msgid "Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."
+msgstr "Формат числа -- как вы хотите отображать числа в объявлении. В каждой стране приняты свои нормы отображения десятичных знаков"
+
+#: String 831
+msgid "Number of Ads"
+msgstr "Количество объявлений"
+
+#: String 832
+msgid "Number of ads per page"
+msgstr "Количество объявлений на странице"
+
+#: String 833
+msgid "Number of ads to display"
+msgstr "Количество объявлений для отображения"
+
+#: String 834
+msgid "Number of comments to display"
+msgstr "Количество комментариев для отображения"
+
+#: String 835
+msgid "Number of coupons"
+msgstr "Количество купонов"
+
+#: String 836
+msgid "Number of images"
+msgstr "Количество изображений"
+
+#: String 837
+msgid "Number of images displayed"
+msgstr "Количество отображаемых изображений"
+
+#: String 838
+msgid "Number of items to display"
+msgstr "Количество элементов для отображения"
+
+#: String 839
+msgid "Number of unique coupons to generate"
+msgstr "Количество уникальных купонов для генерации"
+
+#: String 840
+msgid "official homepage, get your post listed now."
+msgstr "официальный сайт, получить ваше сообщение в списке в настоящее время."
+
+#: String 841
+msgid "OK"
+msgstr "OK"
+
+#: String 842
+msgid "Oldest"
+msgstr "самый старший"
+
+#: String 843
+msgid "on"
+msgstr "на"
+
+#: String 844
+msgid "Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings"
+msgstr "После входа в Google Analytics, вы можете найти идентификатор отслеживания в список счетов или в настройках собственности"
+
+#: String 845
+msgid "Once set to TRUE, enables auto locate visitors"
+msgstr "После того, как установлено в TRUE, позволяет автоматически найти посетителей"
+
+#: String 846
+msgid "Once set to TRUE, enables blog posts"
+msgstr "После того, как установлено в TRUE, позволяет сообщения в блоге"
+
+#: String 847
+msgid "Once set to TRUE, enables FAQ"
+msgstr "После того, как установлено в TRUE, позволяет FAQ"
+
+#: String 848
+msgid "Once set to TRUE, enables forums posts"
+msgstr "После того, как установлено в TRUE, позволяет форумы сообщения"
+
+#: String 849
+msgid "Once set to TRUE, enables Messaging System"
+msgstr "После того, как установлено в TRUE, включен системы обмена сообщениями"
+
+#: String 850
+msgid "Once set to TRUE, enables multi select category and location search"
+msgstr "После того, как установлено в TRUE, позволяет мульти выберите категорию и место поиска"
+
+#: String 851
+msgid "Once set to TRUE, enables search to look for key words in description"
+msgstr "После того, как установлено в TRUE, позволяет поиска для поиска ключевых слов в описании"
+
+#: String 852
+msgid "Only Admin"
+msgstr "только Админ"
+
+#: String 853
+msgid "Only administrators can publish"
+msgstr "Только администраторы могут публиковать"
+
+#: String 854
+msgid "only available with premium themes!"
+msgstr "доступны только премиум-класса темы!"
+
+#: String 855
+msgid "Only for paid transactions"
+msgstr "Только для платных операций"
+
+#: String 856
+msgid "Only if you have a premium theme you will be able to filter by users!"
+msgstr "Только если у вас есть тема премиум вы сможете отфильтровать пользователей!"
+
+#: String 857
+msgid "only valid for"
+msgstr "действительны только для"
+
+#: String 858
+msgid "Open Classifieds is an amazing free Open Source Software. By buying a theme you help us keep the project alive and updated. Thanks!"
+msgstr "Открыть Объявления удивительный свободного программного обеспечения. При покупке тему вы помочь нам сохранить проект жив и обновляется. Спасибо!"
+
+#: String 859
+msgid "Open Classifieds migration"
+msgstr "Перенос  Open Classifieds"
+
+#: String 860
+msgid "Open URL (new window)"
+msgstr "Открыть URL (в новом окне)"
+
+#: String 861
+msgid "Open URL (same window)"
+msgstr "Открыть URL (то же окно)"
+
+#: String 862
+msgid "Optimize"
+msgstr "Оптимизировать"
+
+#: String 863
+msgid "Optimize Database"
+msgstr "Оптимизация базы данных"
+
+#: String 864
+msgid "Optimize DB"
+msgstr "Оптимизировать БД"
+
+#: String 865
+msgid "Optional Advertisement Fields"
+msgstr "Дополнительное Реклама поля"
+
+#: String 866
+msgid "Optional Fields"
+msgstr "Дополнительные поля"
+
+#: String 867
+msgid "Options"
+msgstr "Опции"
+
+#: String 868
+msgid "or"
+msgstr "или"
+
+#: String 869
+msgid "Or"
+msgstr "Или"
+
+#: String 870
+msgid "Order"
+msgstr "Заказ"
+
+#: String 871
+msgid "Order could not be loaded"
+msgstr "Заказ не может быть загружен"
+
+#: String 872
+msgid "Orders"
+msgstr "Заказы"
+
+#: String 873
+msgid "Original Translation"
+msgstr "Исходный перевод"
+
+#: String 874
+msgid "Other"
+msgstr "Другой"
+
+#: String 875
+msgid "page"
+msgstr "страница"
+
+#: String 876
+msgid "Page"
+msgstr "Страница"
+
+#: String 877
+msgid "Page "
+msgstr "Страница"
+
+#: String 878
+msgid "Page %d"
+msgstr "Страница% на"
+
+#: String 879
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: String 880
+msgid "Page Not Found"
+msgstr "Страница не найдена"
+
+#: String 881
+msgid "Pages"
+msgstr "Страницы"
+
+#: String 882
+msgid "Page title displayed"
+msgstr "Отображаемый Заголовок страницы "
+
+#: String 883
+msgid "Paid"
+msgstr "платный"
+
+#: String 884
+msgid "Panel"
+msgstr "Панель"
+
+#: String 885
+msgid "Paramater for the action."
+msgstr "Параметр для действия."
+
+#: String 886
+msgid "Parent"
+msgstr "Родитель"
+
+#: String 887
+msgid "Parent category"
+msgstr "Родительская категория"
+
+#: String 888
+msgid "parent_category field"
+msgstr "родитель поле категория"
+
+#: String 889
+msgid "Parent deep"
+msgstr "Глубина вложений родителя"
+
+#: String 890
+msgid "Parent frame"
+msgstr "родитель кадров"
+
+#: String 891
+msgid "Password"
+msgstr "Пароль"
+
+#: String 892
+msgid "Password is changed"
+msgstr "Пароль изменен"
+
+#: String 893
+msgid "Passwords do not match"
+msgstr "Пароли не совпадают"
+
+#: String 894
+msgid "Pay"
+msgstr "платить"
+
+#: String 895
+msgid "Payment"
+msgstr "Оплата"
+
+#: String 896
+msgid "Payment on"
+msgstr "Оплата по"
+
+#: String 897
+msgid "Payments"
+msgstr "Платежи"
+
+#: String 898
+msgid "Payments Configuration"
+msgstr "Конфигурация оплаты"
+
+#: String 899
+msgid "Payments Configuration updated"
+msgstr "Платежи конфигурации обновляются"
+
+#: String 900
+msgid "Payment with Moderation"
+msgstr "Оплата с умеренности"
+
+#: String 901
+msgid "Paymethod"
+msgstr "Метод Платное"
+
+#: String 902
+msgid "Paymill private key"
+msgstr " Paymill частный ключ"
+
+#: String 903
+msgid "Paymill public key"
+msgstr "Paymill общественного ключ"
+
+#: String 904
+msgid "Paypal account"
+msgstr "Счет в Paypal "
+
+#: String 905
+msgid "Paypal Email"
+msgstr "Paypal Эл. адрес"
+
+#: String 906
+msgid "Paypal link stock control"
+msgstr "Paypal ссылку инвентаризация"
+
+#: String 907
+msgid "Paypal mail address"
+msgstr "Адрес электронной почты в Paypal "
+
+#: String 908
+msgid "Pay with Bitcoin"
+msgstr "Оплата с Bitcoin"
+
+#: String 909
+msgid "Pay with Card"
+msgstr "Оплатить с карты"
+
+#: String 910
+msgid "Pay With Card"
+msgstr "Обратите с картой"
+
+#: String 911
+msgid "Pay with Credit Card"
+msgstr "Оплатить с кредитной карты"
+
+#: String 912
+msgid "Pay with Paypal"
+msgstr "Оплата с PayPal"
+
+#: String 913
+msgid "Percentage Discount"
+msgstr "Процент Скидка"
+
+#: String 914
+msgid "Phone"
+msgstr "Телефон"
+
+#: String 915
+msgid "Phone field"
+msgstr "Поле для телефона"
+
+#: String 916
+msgid "Photo deleted."
+msgstr "Фотография удалена."
+
+#: String 917
+msgid "PHP Info"
+msgstr "Информация PHP"
+
+#: String 918
+msgid "PHP internal call"
+msgstr "PHP внутренний вызов"
+
+#: String 919
+msgid "Pick a category..."
+msgstr "Выберите категорию ..."
+
+#: String 920
+msgid "Pick a location..."
+msgstr "Выберите место ..."
+
+#: String 921
+msgid "Please be sure you are using a currency that your payment gateway supports."
+msgstr "Пожалуйста, убедитесь, что вы используете валюту, которая поддерживает ваш платежный шлюз."
+
+#: String 922
+msgid "Please check your email"
+msgstr "Пожалуйста, проверьте свою электронную почту"
+
+#: String 923
+msgid "Please choose your closest location"
+msgstr "Пожалуйста, выберите ближайший расположение"
+
+#: String 924
+msgid "Please enter at least {0} characters."
+msgstr "Пожалуйста, введите по крайней мере {0} символов."
+
+#: String 925
+msgid "Please enter a valid credit card number."
+msgstr "Пожалуйста, введите действительный номер кредитной карты."
+
+#: String 926
+msgid "Please enter a valid date."
+msgstr "Пожалуйста, введите правильную дату."
+
+#: String 927
+msgid "Please enter a valid date (ISO)."
+msgstr "Пожалуйста, введите дату (ISO)."
+
+#: String 928
+msgid "Please enter a valid email address."
+msgstr "Пожалуйста, введите действительный адрес электронной почты."
+
+#: String 929
+msgid "Please enter a valid format."
+msgstr "Пожалуйста, введите формат."
+
+#: String 930
+msgid "Please enter a valid number."
+msgstr "Пожалуйста, введите корректное число."
+
+#: String 931
+msgid "Please enter a valid URL."
+msgstr "Пожалуйста, введите корректный адрес."
+
+#: String 932
+msgid "Please enter a value between {0} and {1}."
+msgstr "Пожалуйста, введите значение между {0} и {1}."
+
+#: String 933
+msgid "Please enter a value between {0} and {1} characters long."
+msgstr "Пожалуйста, введите значение между {0} и {1} символов."
+
+#: String 934
+msgid "Please enter a value greater than or equal to {0}."
+msgstr "Пожалуйста, введите значение, большее или равное {0}."
+
+#: String 935
+msgid "Please enter a value less than or equal to {0}."
+msgstr "Пожалуйста, введите значение меньше или равное {0}."
+
+#: String 936
+msgid "Please enter a value with a valid extension."
+msgstr "Пожалуйста, введите значение с допустимым расширением."
+
+#: String 937
+msgid "Please enter no more than {0} characters."
+msgstr "Пожалуйста, введите не более {0} символов."
+
+#: String 938
+msgid "Please enter only digits."
+msgstr "Пожалуйста, вводите только цифры."
+
+#: String 939
+msgid "Please enter only numbers."
+msgstr "Пожалуйста, введите только цифры."
+
+#: String 940
+msgid "Please enter the same value again."
+msgstr "Пожалуйста, введите то же значение снова."
+
+#: String 941
+msgid "Please fill your card details."
+msgstr "Пожалуйста, заполните свои данные карты."
+
+#: String 942
+msgid "Please, first create some categories."
+msgstr "Пожалуйста, сначала создайте несколько категорий."
+
+#: String 943
+msgid "Please, first create some Forums."
+msgstr "Пожалуйста, сначала создайте несколько Форумы."
+
+#: String 944
+msgid "Please fix this field."
+msgstr "Пожалуйста, исправьте это поле."
+
+#: String 945
+msgid "Please insert here the license for your theme."
+msgstr "Пожалуйста, перенесите сюда лицензию на вашей теме."
+
+#: String 946
+msgid "Please insert here your custom CSS."
+msgstr "Пожалуйста, перенесите сюда ваш пользовательский CSS."
+
+#: String 947
+msgid "Please, login before contacting"
+msgstr "Пожалуйста, войдите, прежде чем обращаться"
+
+#: String 948
+msgid "Please login before posting"
+msgstr "Пожалуйста, войдите, прежде чем отправлять"
+
+#: String 949
+msgid "Please, login before posting advertisement!"
+msgstr "Пожалуйста, войдите, прежде чем отправлять рекламу!"
+
+#: String 950
+msgid "Please login to unsubscribe."
+msgstr "Пожалуйста, войдите, чтобы отказаться от подписки."
+
+#: String 951
+msgid "Please now erase the folder"
+msgstr "Пожалуйста, теперь удалите папку"
+
+#: String 952
+msgid "Please pay before we publish your advertisement."
+msgstr "Пожалуйста, обратите прежде, чем мы опубликовать объявление."
+
+#: String 953
+msgid "Please to see the changes delete the cache"
+msgstr "Пожалуйста, чтобы увидеть изменения удалить кэш"
+
+#: String 954
+msgid "Please use the correct CSV format"
+msgstr "Пожалуйста, используйте правильный формат CSV"
+
+#: String 955
+msgid "Please wait while we transfer you to Paypal"
+msgstr "Подождите, пока мы перенаправим вас в Paypal"
+
+#: String 956
+msgid "Popular Ads last month"
+msgstr "Популярные объявления в прошлом месяце"
+
+#: String 957
+msgid "Post directly"
+msgstr "сообщение непосредственно"
+
+#: String 958
+msgid "Posting advertisements is not yet available."
+msgstr "Размещение рекламы пока не доступна."
+
+#: String 959
+msgid "Post in paid category"
+msgstr "Начать оплачиваемой категории"
+
+#: String 960
+msgid "Post Review"
+msgstr "Сообщение отзыв"
+
+#: String 961
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+#: String 962
+msgid "Previous"
+msgstr "Предыдущий"
+
+#: String 963
+msgid "Price"
+msgstr "Цена"
+
+#: String 964
+msgid "Price field"
+msgstr "Поле "Цена""
+
+#: String 965
+msgid "Price from"
+msgstr "Цена от"
+
+#: String 966
+msgid "Price (High)"
+msgstr "Цена (высокая)"
+
+#: String 967
+msgid "Price (Low)"
+msgstr "Цена (низкая)"
+
+#: String 968
+msgid "Price to"
+msgstr "Цена до"
+
+#: String 969
+msgid "Pricing"
+msgstr "Ценообразование"
+
+#: String 970
+msgid "Primary image"
+msgstr "Первичная изображения"
+
+#: String 971
+msgid "Print this"
+msgstr "Распечатать эту"
+
+#: String 972
+msgid "Proceed with Update"
+msgstr "Продолжить обновление"
+
+#: String 973
+msgid "Process"
+msgstr "Обработать"
+
+#: String 974
+msgid "Processing..."
+msgstr "Обработка ..."
+
+#: String 975
+msgid "Process Queue"
+msgstr "Процесс очереди"
+
+#: String 976
+msgid "Product"
+msgstr "Продукт"
+
+#: String 977
+msgid "Product could not be loaded"
+msgstr "Товар не может быть загружен"
+
+#: String 978
+msgid "Profile"
+msgstr "Профиль"
+
+#: String 979
+msgid "Profile image"
+msgstr "изображение профиля"
+
+#: String 980
+msgid "Profile Options"
+msgstr "Опции профиля"
+
+#: String 981
+msgid "Profile picture"
+msgstr "Изображение профиля"
+
+#: String 982
+msgid "Profile Picture"
+msgstr "Изображение профиля"
+
+#: String 983
+msgid "Providing akismet key will activate this feature. This feature deals with spam posts and emails."
+msgstr "Предоставление Akismet ключ будет активировать эту функцию. Эта функция имеет дело с спам-сообщений и электронных писем."
+
+#: String 984
+msgid "Province"
+msgstr "Провинция"
+
+#: String 985
+msgid "Public profile"
+msgstr "Публичный профиль"
+
+#: String 986
+msgid "Publish"
+msgstr "Публиковать"
+
+#: String 987
+msgid "Publish Date"
+msgstr "Дата Публикации"
+
+#: String 988
+msgid "Published"
+msgstr "Опубликовано"
+
+#: String 989
+msgid "PUBLISHED"
+msgstr "ОПУБЛИКОВАНО"
+
+#: String 990
+msgid "publish new"
+msgstr "опубликовать новое"
+
+#: String 991
+msgid "Publish new"
+msgstr "Опубликовать новое"
+
+#: String 992
+msgid "Publish new "
+msgstr "Опубликовать новое"
+
+#: String 993
+msgid "Publish new advertisement"
+msgstr "Опубликовать новое объявление"
+
+#: String 994
+msgid "Publish new topic"
+msgstr "Опубликовать новую тему"
+
+#: String 995
+msgid "Publish Options"
+msgstr "Параметры публикации"
+
+#: String 996
+msgid "Purchase"
+msgstr "Покупка"
+
+#: String 997
+msgid "Push notifications"
+msgstr "Всплывающее уведомление"
+
+#: String 998
+msgid "Push notifications for your native app. Using Google Cloud Messaging, insert your API Key here."
+msgstr "Нажмите уведомления о родном приложении. С помощью Google Cloud Messaging, вставьте ключ API здесь."
+
+#: String 999
+msgid "Put your website on maintenance mode until you want to launch it, manage other general settings and create custom fields through this tab."
+msgstr "Положите ваш сайт в режим обслуживания, пока вы хотите, чтобы запустить его, управлять другие общие настройки и создавать пользовательские поля через этот вкладке."
+
+#: String 1000
+msgid "Queue cleaned"
+msgstr "Очередь очистить"
+
+#: String 1001
+msgid "Quick category creator."
+msgstr "Быстрый категория автором."
+
+#: String 1002
+msgid "Quick location creator."
+msgstr "Быстрый расположение автором."
+
+#: String 1003
+msgid "Radio"
+msgstr "Радио"
+
+#: String 1004
+msgid "Rate"
+msgstr "Ставка"
+
+#: String 1005
+msgid "Read carefully"
+msgstr "Внимательно прочитайте"
+
+#: String 1006
+msgid "Reading log file"
+msgstr "Чтение файла журнала"
+
+#: String 1007
+msgid "Read more"
+msgstr "Подробнее"
+
+#: String 1008
+msgid "Read More"
+msgstr "Прочитайте больше"
+
+#: String 1009
+msgid "Real State"
+msgstr "Недвижимость"
+
+#: String 1010
+msgid "reCAPTCHA Configuration"
+msgstr "reCAPTCHA Конфигурация"
+
+#: String 1011
+msgid "reCaptcha Secret Key"
+msgstr "reCaptcha Секретный ключ"
+
+#: String 1012
+msgid "reCAPTCHA Secret Key"
+msgstr "reCAPTCHA Секретный ключ"
+
+#: String 1013
+msgid "reCaptcha Site Key"
+msgstr "reCaptcha сайта Ключ"
+
+#: String 1014
+msgid "reCAPTCHA Site Key"
+msgstr "reCAPTCHA сайта Ключ"
+
+#: String 1015
+msgid "Refresh listing, go to top?"
+msgstr "Обновить список и перейти наверх?"
+
+#: String 1016
+msgid "Region"
+msgstr "регион"
+
+#: String 1017
+msgid "Regional Settings"
+msgstr "Региональные настройки"
+
+#: String 1018
+msgid "Region Code:"
+msgstr "Код региона:"
+
+#: String 1019
+msgid "Regions"
+msgstr "районы"
+
+#: String 1020
+msgid "Region to Display"
+msgstr "Регион для отображения"
+
+#: String 1021
+msgid "Register"
+msgstr "Регистрация"
+
+#: String 1022
+msgid "Register for free at %s"
+msgstr "Регистрация бесплатно на% и"
+
+#: String 1023
+msgid "Register new user"
+msgstr "Регистрация нового пользователя"
+
+#: String 1024
+msgid "Related ads"
+msgstr "Похожие объявления"
+
+#: String 1025
+msgid "Relative path to the image to use as watermark"
+msgstr "Относительный путь к изображению, чтобы использовать в качестве водяного знака"
+
+#: String 1026
+msgid "Release Date"
+msgstr "Дата выпуска"
+
+#: String 1027
+msgid "Release Notes"
+msgstr "Примечания к выпуску"
+
+#: String 1028
+msgid "Remember me"
+msgstr "Запомнить меня"
+
+#: String 1029
+msgid "Remember password"
+msgstr "Запомнить пароль"
+
+#: String 1030
+msgid "Remove"
+msgstr "Удалить"
+
+#: String 1031
+msgid "Removed featured ad"
+msgstr "Удалить объявление признакам"
+
+#: String 1032
+msgid "Remove featured?"
+msgstr "Удалить признакам?"
+
+#: String 1033
+msgid "Remove Featured"
+msgstr "Удалить Популярные"
+
+#: String 1034
+msgid "Repeat password"
+msgstr "Повторите пароль"
+
+#: String 1035
+msgid "replace"
+msgstr "заменять"
+
+#: String 1036
+msgid "Replace"
+msgstr "Заменять"
+
+#: String 1037
+msgid "Replacement of a banned word"
+msgstr "Замена запрещенное слово"
+
+#: String 1038
+msgid "Replace Original"
+msgstr "Замените оригинал"
+
+#: String 1039
+msgid "Replace Translation"
+msgstr "Заменить перевод"
+
+#: String 1040
+msgid "Replies"
+msgstr "Ответов"
+
+#: String 1041
+msgid "Reply"
+msgstr "Ответить"
+
+#: String 1042
+msgid "Reply added, thanks!"
+msgstr "Ответить добавил, спасибо!"
+
+#: String 1043
+msgid "Reply created."
+msgstr "Ответить создан."
+
+#: String 1044
+msgid "Reply here"
+msgstr "Ответить здесь"
+
+#: String 1045
+msgid "required"
+msgstr "обязательный"
+
+#: String 1046
+msgid "Required"
+msgstr "необходимые"
+
+#: String 1047
+msgid "Required field to register."
+msgstr "Обязательное поле, чтобы зарегистрироваться."
+
+#: String 1048
+msgid "Required field to submit a new ad."
+msgstr "Обязательное поле, чтобы представить новое объявление."
+
+#: String 1049
+msgid "Require login to contact"
+msgstr "Запросите пароль нами"
+
+#: String 1050
+msgid "Require login to post"
+msgstr "Требовать авторизироваться, чтобы добавить"
+
+#: String 1051
+msgid "Require only the logged in users to contact."
+msgstr "Требовать только зарегистрированным пользователям связаться."
+
+#: String 1052
+msgid "Require only the logged in users to post."
+msgstr "Требовать только зарегистрированным пользователям чтобы оставлять сообщения."
+
+#: String 1053
+msgid "Requires address to pay for extra security"
+msgstr "Требуется адрес для оплаты дополнительной безопасности"
+
+#: String 1054
+msgid "Reset"
+msgstr "Сброс"
+
+#: String 1055
+msgid "Restricts likely nude pictures that are being uploaded to your server."
+msgstr "Ограничивает живые обнаженные фотографии, которые в настоящее время загружены на ваш сервер."
+
+#: String 1056
+msgid "Review"
+msgstr "Обзор"
+
+#: String 1057
+msgid "Review database connection parameters"
+msgstr "Проверьте параметры подключения к базе данных"
+
+#: String 1058
+msgid "reviews"
+msgstr "отзывы"
+
+#: String 1059
+msgid "Reviews"
+msgstr "Отзывы"
+
+#: String 1060
+msgid "Reviews are only available with premium themes!"
+msgstr "Отзывы доступны только премиум-класса темы!"
+
+#: String 1061
+msgid "Reviews Configuration"
+msgstr "Отзывы конфигурации"
+
+#: String 1062
+msgid "Reviews for paid transactions"
+msgstr "Отзывы на платные сделок"
+
+#: String 1063
+msgid "Role"
+msgstr "Роль"
+
+#: String 1064
+msgid "Roles"
+msgstr "Роли"
+
+#: String 1065
+msgid "Rows"
+msgstr "Строки"
+
+#: String 1066
+msgid "rss"
+msgstr "rss"
+
+#: String 1067
+msgid "RSS"
+msgstr "RSS"
+
+#: String 1068
+msgid "RSS reader with cache"
+msgstr "RSS Reader с кэшем"
+
+#: String 1069
+msgid "RSS title displayed"
+msgstr "Отображаемый RSS заголовок"
+
+#: String 1070
+msgid "RSS url address"
+msgstr "URL адрес RSS "
+
+#: String 1071
+msgid "S3 Domain Name"
+msgstr "Имя домена S3"
+
+#: String 1072
+msgid "%s ago"
+msgstr "%и тому назад"
+
+#: String 1073
+msgid "Sales"
+msgstr "Продажи"
+
+#: String 1074
+msgid "Sales statistics"
+msgstr "Статистика продаж"
+
+#: String 1075
+msgid "Sample data"
+msgstr "Образец"
+
+#: String 1076
+msgid "Sandbox"
+msgstr "Песочница (Sandbox)"
+
+#: String 1077
+msgid "Save"
+msgstr "Сохранить"
+
+#: String 1078
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: String 1079
+msgid "Saved"
+msgstr "Сохранено"
+
+#: String 1080
+msgid "Save plan"
+msgstr "Сохранить план"
+
+#: String 1081
+msgid "Save size"
+msgstr "Сохранить размер"
+
+#: String 1082
+msgid "Scan"
+msgstr "Сканирование"
+
+#: String 1083
+msgid "%s copied from %s to %s"
+msgstr "% и скопированы с % и на% и"
+
+#: String 1084
+msgid "search"
+msgstr "поиск"
+
+#: String 1085
+msgid "Search"
+msgstr "Поиск"
+
+#: String 1086
+msgid "searchable"
+msgstr "поиск"
+
+#: String 1087
+msgid "Searchable"
+msgstr "для поиска"
+
+#: String 1088
+msgid "Search in"
+msgstr "Поиск в"
+
+#: String 1089
+msgid "Search in ads will include this field as well."
+msgstr "Поиск в объявлениях будет включать в себя это поле, а также."
+
+#: String 1090
+msgid "Search results"
+msgstr "Результаты поиска"
+
+#: String 1091
+msgid "Search users by name or email"
+msgstr "Поиск пользователей по имени или по электронной почте"
+
+#: String 1092
+msgid "seconds"
+msgstr "секунд"
+
+#: String 1093
+msgid "secret"
+msgstr "секрет"
+
+#: String 1094
+msgid "Secret Word"
+msgstr "Секретное слово"
+
+#: String 1095
+msgid "Seems a nude picture so you cannot upload it"
+msgstr "Кажется обнаженная картина так вы не можете загрузить его"
+
+#: String 1096
+msgid "Select"
+msgstr "Выбрать"
+
+#: String 1097
+msgid "Select a forum"
+msgstr "Выберите форум"
+
+#: String 1098
+msgid "Select an Option"
+msgstr "Выберите один вариант"
+
+#: String 1099
+msgid "Select another"
+msgstr "Выберите другую"
+
+#: String 1100
+msgid "Select from files"
+msgstr "Выберите из файлов"
+
+#: String 1101
+msgid "Selecting parent category also selects child categories."
+msgstr "Выбор родительской категории также выбирает дочерние категории."
+
+#: String 1102
+msgid "Selection of nice extras for your installation."
+msgstr "Выбор приятных дополнений для установки."
+
+#: String 1103
+msgid "Select some categories first."
+msgstr "Выберите несколько категорий в первую очередь."
+
+#: String 1104
+msgid "Select some locations first."
+msgstr "Выберите несколько мест в первую очередь."
+
+#: String 1105
+msgid "Select Some Options"
+msgstr "Выберите несколько вариантов,"
+
+#: String 1106
+msgid "Send"
+msgstr "Отправить"
+
+#: String 1107
+msgid "Send Message"
+msgstr "Отправить сообщение"
+
+#: String 1108
+msgid "Seoname"
+msgstr "SEO имя"
+
+#: String 1109
+msgid "seotitle"
+msgstr "seotitle"
+
+#: String 1110
+msgid "Seotitle"
+msgstr "Seotitle"
+
+#: String 1111
+msgid "Seo Title"
+msgstr "Seo Title"
+
+#: String 1112
+msgid "SEO title"
+msgstr "SEO название"
+
+#: String 1113
+msgid "Set image as primary"
+msgstr "Установите изображение в качестве основного"
+
+#: String 1114
+msgid "Set this up to restrict image formats that are being uploaded to your server."
+msgstr "Установите ограничения для изображений, загружаемых на сервер"
+
+#: String 1115
+msgid "Settings"
+msgstr "Настройки"
+
+#: String 1116
+msgid "Set up your cron at your hosting / cPanel, every minute"
+msgstr "Настройте Cron на вашем хостинге / Cpanel, каждую минуту"
+
+#: String 1117
+msgid "several decades"
+msgstr "несколько десятилетий"
+
+#: String 1118
+msgid "Share"
+msgstr "Поделиться"
+
+#: String 1119
+msgid "Share on social networks."
+msgstr "Поделиться в социальных сетях."
+
+#: String 1120
+msgid "Shipping"
+msgstr "Перевозка"
+
+#: String 1121
+msgid "Show advanced options"
+msgstr "Показать дополнительные опции"
+
+#: String 1122
+msgid "Show listing"
+msgstr "Показать список"
+
+#: String 1123
+msgid "Show Listing"
+msgstr "Показать Список"
+
+#: String 1124
+msgid "Show profile"
+msgstr "Показать профиль"
+
+#: String 1125
+msgid "Show Profile"
+msgstr "Показать Профиль"
+
+#: String 1126
+msgid "Show QR code"
+msgstr "Показать QR-код"
+
+#: String 1127
+msgid "Show register"
+msgstr "Показать регистр"
+
+#: String 1128
+msgid "Show Register"
+msgstr "Показать Регистрация"
+
+#: String 1129
+msgid "Show sharing buttons"
+msgstr "Показать кнопки обмена"
+
+#: String 1130
+msgid "Show Tooltip"
+msgstr "Показать подсказка"
+
+#: String 1131
+msgid "Show translated texts"
+msgstr "Показать переведенные тексты"
+
+#: String 1132
+msgid "Site Configuration"
+msgstr "Конфигурация сайта"
+
+#: String 1133
+msgid "Site currency"
+msgstr "Валюта сайта"
+
+#: String 1134
+msgid "Site description"
+msgstr "Описание сайта"
+
+#: String 1135
+msgid "Site Description"
+msgstr "Описание сайта"
+
+#: String 1136
+msgid "Site Language"
+msgstr "Язык сайта"
+
+#: String 1137
+msgid "Sitemap"
+msgstr "Карта сайта"
+
+#: String 1138
+msgid "Sitemap Configuration updated"
+msgstr "Конфигурация карты сайта обновлена"
+
+#: String 1139
+msgid "Site name"
+msgstr "Название сайта"
+
+#: String 1140
+msgid "Site Name"
+msgstr "Название сайта"
+
+#: String 1141
+msgid "Site Statistics"
+msgstr "Статистика сайта"
+
+#: String 1142
+msgid "Site URL"
+msgstr "URL сайта"
+
+#: String 1143
+msgid "Site Usage Statistics"
+msgstr "Статистика посещаемости сайта"
+
+#: String 1144
+msgid "Size"
+msgstr "Размер"
+
+#: String 1145
+msgid "Slideshow"
+msgstr "Слайд-шоу"
+
+#: String 1146
+msgid "Smtp active"
+msgstr "Smtp активный"
+
+#: String 1147
+msgid "Smtp auth"
+msgstr "SMTP AUTH"
+
+#: String 1148
+msgid "SMTP Configuration"
+msgstr "Конфигурация SMTP-"
+
+#: String 1149
+msgid "Smtp host"
+msgstr "SMTP Хоста,"
+
+#: String 1150
+msgid "Smtp password"
+msgstr "Пароль SMTP"
+
+#: String 1151
+msgid "Smtp port"
+msgstr "Порт SMTP"
+
+#: String 1152
+msgid "Smtp ssl"
+msgstr "Smtp SSL"
+
+#: String 1153
+msgid "Smtp user"
+msgstr "Smtp пользователя"
+
+#: String 1154
+msgid "Social Auth"
+msgstr "Социальная Авт"
+
+#: String 1155
+msgid "Social Authentication for login"
+msgstr "Социальная аутентификации для входа в систему"
+
+#: String 1156
+msgid "Social authentication is only available with premium themes!"
+msgstr "Социальная аутентификация доступна только премиум-класса темы!"
+
+#: String 1157
+msgid "Social Authentication Settings"
+msgstr "Настройки аутентификации Социальная"
+
+#: String 1158
+msgid "Social Auth updated"
+msgstr "Социальная Авт обновляются"
+
+#: String 1159
+msgid "Social Login"
+msgstr "Социальная Войти"
+
+#: String 1160
+msgid "Software DB Updated to latest version!"
+msgstr "Программное обеспечение БД Обновлено до последней версии!"
+
+#: String 1161
+msgid "Software Requirements"
+msgstr "Требования к программному обеспечению"
+
+#: String 1162
 msgid "Some errors in the form"
 msgstr "Некоторые ошибки в форме"
+
+#: String 1163
+msgid "Some errors were encountered, please check the details you entered."
+msgstr "Некоторые ошибки были обнаружены, пожалуйста, проверьте детали, которые вы ввели."
+
+#: String 1164
+msgid "Something went wrong"
+msgstr "что-то пошло не так"
+
+#: String 1165
+msgid "Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any."
+msgstr "Что-то пошло не так, пожалуйста, проверьте формат файла! Удалить или одиночные кавычки странно"
+
+#: String 1166
+msgid "Something went wrong uploading your logo"
+msgstr "Что-то пошло не так загрузки вашего логотипа"
+
+#: String 1167
+msgid "Something went wrong with uploading pictures, please check format"
+msgstr "Что-то пошло не так с загрузкой фотографий, пожалуйста, проверьте формат"
+
+#: String 1168
+msgid "Sorry, deleting %s locale emails is not allowed"
+msgstr "К сожалению, удаление% S региональные электронные письма не допускается"
+
+#: String 1169
+msgid "Sorry there isn’t. Go to your website now!"
+msgstr "К сожалению это не так. Зайдите на сайт сейчас"
+
+#: String 1170
+msgid "Sort"
+msgstr "Сортировать"
+
+#: String 1171
+msgid "Sort by in listing"
+msgstr "Сортировать по в листинге"
+
+#: String 1172
+msgid "Space to optimize"
+msgstr "Пространство для оптимизации"
+
+#: String 1173
+msgid "Spam"
+msgstr "Спам"
+
+#: String 1174
+msgid "Spam?"
+msgstr "Спам?"
+
+#: String 1175
+msgid "SPAM"
+msgstr "СПАМ"
+
+#: String 1176
+msgid "Spam Sort"
+msgstr "Сортировка спама"
+
+#: String 1177
+msgid "State"
+msgstr "состояние"
+
+#: String 1178
+msgid "Statistics"
+msgstr "Статистика"
+
+#: String 1179
+msgid "Stats"
+msgstr "Состояние"
+
+#: String 1180
+msgid "Status"
+msgstr "Статус"
+
+#: String 1181
+msgid "Stripe private key"
+msgstr "Полоса закрытый ключ"
+
+#: String 1182
+msgid "Stripe public key"
+msgstr "Полоса открытый ключ"
+
+#: String 1183
+msgid "Subject"
+msgstr "Тема"
+
+#: String 1184
+msgid "Submit"
+msgstr "Подтвердить"
+
+#: String 1185
+msgid "Subscribe"
+msgstr "Подписывайся"
+
+#: String 1186
+msgid "Subscribed to emails"
+msgstr "Подписка на электронные письма"
+
+#: String 1187
+msgid "Subscribe for categories"
+msgstr "Подписаться на категории"
+
+#: String 1188
+msgid "Subscribe title displayed"
+msgstr "Подписаться название отображается"
+
+#: String 1189
+msgid "Subscriptions"
+msgstr "Подписки"
+
+#: String 1190
+msgid "Success"
+msgstr "Успешно"
+
+#: String 1191
+msgid "Successfully imported latitude and longitude info from your ads."
+msgstr "Успешно импортированы широта и долгота данные из ваших объявлений."
+
+#: String 1192
+msgid "Support"
+msgstr "Поддержка"
+
+#: String 1193
+msgid "Sure you want to delete the widget?"
+msgstr "Конечно, вы хотите, чтобы удалить виджет?"
+
+#: String 1194
+msgid "Switch off custom CSS"
+msgstr "Выключите пользовательский CSS"
+
+#: String 1195
+msgid "System logs"
+msgstr "Системный журнал"
+
+#: String 1196
+msgid "System Logs"
+msgstr "Системный журнал"
+
+#: String 1197
+msgid "Table"
+msgstr "Таблица"
+
+#: String 1198
+msgid "Table prefix"
+msgstr "Таблица префиксов"
+
+#: String 1199
+msgid "Table %s not found"
+msgstr "Таблица% и не найден"
+
+#: String 1200
+msgid "Target"
+msgstr "цель"
+
+#: String 1201
+msgid "Terms of service"
+msgstr "Условия предоставления услуг"
+
+#: String 1202
+msgid "Terms of Service"
+msgstr "Условия предоставления услуг"
+
+#: String 1203
+msgid "Text"
+msgstr "Текст"
+
+#: String 1204
+msgid "Text 256 Chars"
+msgstr "Текстовые 256 симв"
+
+#: String 1205
+msgid "Text Long"
+msgstr "Текст Длинные"
+
+#: String 1206
+msgid "Text title displayed"
+msgstr "Отображаемый Текст заголовка"
+
+#: String 1207
+msgid "Thanks"
+msgstr "Спасибо"
+
+#: String 1208
+msgid "Thanks for submitting your advertisement"
+msgstr "Благодарим за отправку Вашей рекламы"
+
+#: String 1209
+msgid "Thanks for using Open Classifieds."
+msgstr "Спасибо за использование Open Classifieds"
+
+#: String 1210
+msgid "Thanks for using our website."
+msgstr "Спасибо за использование нашего сайта."
+
+#: String 1211
+msgid "Thanks for your payment!"
+msgstr "Спасибо за ваш платеж!"
+
+#: String 1212
+msgid "Thanks for your review!"
+msgstr "Спасибо за ваш обзор!"
+
+#: String 1213
+msgid "Thanks page"
+msgstr "Благодаря страница"
+
+#: String 1214
+msgid "Thank you for subscribing"
+msgstr "Спасибо за подписку"
+
+#: String 1215
+msgid "Theme activated, thanks."
+msgstr "Тема активирована, спасибо."
+
+#: String 1216
+msgid "Theme configuration updated"
+msgstr "Конфигурация темы обновлена"
+
+#: String 1217
+msgid "Theme could not be downloaded"
+msgstr "Тема не может быть загружен"
+
+#: String 1218
+msgid "Theme downloaded"
+msgstr "тема загруженных"
+
+#: String 1219
+msgid "Theme License"
+msgstr "тема лицензия"
+
+#: String 1220
+msgid "Theme Options"
+msgstr "Настройки темы"
+
+#: String 1221
+msgid "Themes"
+msgstr "Темы"
+
+#: String 1222
+msgid "Themes Market"
+msgstr "Магазин тем"
+
+#: String 1223
+msgid "Themes Updated"
+msgstr "Темы Обновлено"
+
+#: String 1224
+msgid "The paypal email address where the payments will be sent"
+msgstr "Адрес электронной почты в PayPal, куда будут направляться платежи "
+
+#: String 1225
+msgid "The requested page"
+msgstr "Запрошенная страница"
+
+#: String 1226
+msgid "There was an error activating your license."
+msgstr "Был ошибка активации лицензии."
+
+#: String 1227
+msgid "This advertisement doesn´t exist, or is not yet published!"
+msgstr "Это объявление не существует или еще не опубликованы!"
+
+#: String 1228
+msgid "This email has been considered as spam! We are sorry but we can not send this email."
+msgstr "Это письмо было рассматривать как спам! Извините, но мы не можем отправить это письмо."
+
+#: String 1229
+msgid "This field is required."
+msgstr "Это поле обязательно к заполнению."
+
+#: String 1230
+msgid "This is a list of users marked as spammers. To understand how this feature works, please read this article"
+msgstr "Это список пользователей, отмеченных, как спамеры. Чтобы понять, как работает эта функция, пожалуйста, прочтите эту статью"
+
+#: String 1231
+msgid "This is not your advertisement."
+msgstr "Это не ваше объявление"
+
+#: String 1232
+msgid "This is permanent! No backups, no restores, no magic undo button. We warned you, ok?"
+msgstr "Это постоянный! Нет, не резервное копирование восстановления, никакой магии не кнопку отменить. Мы предупреждали вас, хорошо?"
+
+#: String 1233
+msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
+msgstr "Устанавливает, сколько объявлений отображается на странице. Введите целое число."
+
+#: String 1234
+msgid "This license is in use in the theme %s"
+msgstr "Эта лицензия используется в теме% и"
+
+#: String 1235
+msgid "This order was already paid."
+msgstr "Этот приказ был уже оплачен."
+
+#: String 1236
+msgid "This post has been considered as spam! We are sorry but we can not publish this advertisement."
+msgstr "Это сообщение рассматривается как спам! Мы сожалеем, но мы не можем опубликовать это объявление."
+
+#: String 1237
+msgid "This process can take few minutes DO NOT interrupt it"
+msgstr "Этот процесс может занять несколько минут не прерывайте его"
+
+#: String 1238
+msgid "Thumb height"
+msgstr "Высота Thumb"
+
+#: String 1239
+msgid "Thumb height in pixels(px)"
+msgstr "Высота Thumb в пикселях (PX)"
+
+#: String 1240
+msgid "Thumb is a small image resized to fit certain elements. This is the height for this image."
+msgstr "Большой палец находится небольшое изображение изменен, чтобы соответствовать определенные элементы. Это высота для этого изображения."
+
+#: String 1241
+msgid "Thumb is a small image resized to fit certain elements. This is width of this image."
+msgstr "Thumb -- это маленькое изображение, соответствующее определенным элементам. Это -- ширина этого изображения."
+
+#: String 1242
+msgid "Thumb width"
+msgstr "Ширина Thumb "
+
+#: String 1243
+msgid "Thumb width in pixels(px)"
+msgstr "Ширина Thumb в пикселях (PX)"
+
+#: String 1244
+msgid "Tickets"
+msgstr "Билеты"
+
+#: String 1245
+msgid "Time Zone"
+msgstr "Часовой пояс"
+
+#: String 1246
+msgid "title"
+msgstr "заглавие"
+
+#: String 1247
+msgid "Title"
+msgstr "Название"
+
+#: String 1248
+msgid "Title:"
+msgstr "Заглавие:"
+
+#: String 1249
+msgid "Title displayed"
+msgstr "Отображаемое Название"
+
+#: String 1250
+msgid "to"
+msgstr "для"
+
+#: String 1251
+msgid "To"
+msgstr "До"
+
+#: String 1252
+msgid "To buy this product you first need to register"
+msgstr "Чтобы купить этот продукт, вы должны сначала зарегистрироваться"
+
+#: String 1253
+msgid "To continue your experience with %s you can get back to the main website by clicking here."
+msgstr "Чтобы продолжить свой опыт с% S вы можете вернуться к основному сайте, нажав здесь."
+
+#: String 1254
+msgid "Today"
+msgstr "Сегодня"
+
+#: String 1255
+msgid "To get paid via Credit card you need a %s account"
+msgstr "Чтобы оплатить через кредитную карточку вам нужно учетную запись% и"
+
+#: String 1256
+msgid "Toggle navigation"
+msgstr "Переключить навигации"
+
+#: String 1257
+msgid "To go back to the previous page, click the Back button."
+msgstr "Чтобы вернуться к предыдущей странице, нажмите кнопку Back."
+
+#: String 1258
+msgid "To include your custom HTML code (reference to JS or CSS files, etc.) in the footer of the rendered page."
+msgstr "Чтобы включить ваш пользовательский HTML код (ссылка на JS или CSS файлы и т.д.) в сноске отображаемой странице."
+
+#: String 1259
+msgid "To include your custom HTML code (validation metadata, reference to JS/CSS files, etc.) in the HEAD element of the rendered page."
+msgstr "Чтобы включить ваш пользовательский HTML код (метаданные проверки, ссылки на JS файлов / CSS и т.д.) в голове элемента отображаемой странице."
+
+#: String 1260
+msgid "To install new theme choose zip file."
+msgstr "Чтобы установить новую тему выбрать  ZIP файл ."
+
+#: String 1261
+msgid "Tools"
+msgstr "Инструментарий"
+
+#: String 1262
+msgid "Tools title displayed"
+msgstr "Инструменты название отображается"
+
+#: String 1263
+msgid "Tooltip"
+msgstr "Подсказка"
+
+#: String 1264
+msgid "Tooltip:"
+msgstr "Подсказка"
+
+#: String 1265
+msgid "Tooltip Text Color"
+msgstr "Подсказка Цвет текста"
+
+#: String 1266
+msgid "Topic"
+msgstr "тема"
+
+#: String 1267
+msgid "Topic is updated."
+msgstr "Тема обновляется."
+
+#: String 1268
+msgid "Topics"
+msgstr "темы"
+
+#: String 1269
+msgid "Top up ad"
+msgstr "Долить объявления"
+
+#: String 1270
+msgid "Total"
+msgstr "Всего"
+
+#: String 1271
+msgid "To top price"
+msgstr "Цена за поднятие вверх"
+
+#: String 1272
+msgid "Transaction not successful!"
+msgstr "Сделка не удалась!"
+
+#: String 1273
+msgid "Translate all?, Be aware this will replace all your texts."
+msgstr "Перевести все? Имейте в виду, что  все ваши тексты будут заменены"
+
+#: String 1274
+msgid "Translation"
+msgstr "Перевод"
+
+#: String 1275
+msgid "Translations"
+msgstr "Переводы"
+
+#: String 1276
+msgid "Translations files available in the system."
+msgstr "Перевод доступных файлов"
+
+#: String 1277
+msgid "Translations regenarated"
+msgstr "Переводы регенерируется"
+
+#: String 1278
+msgid "TRUE"
+msgstr "ПРАВДА"
+
+#: String 1279
+msgid "TRUE or FALSE"
+msgstr "Правда или ложь"
+
+#: String 1280
+msgid "Type"
+msgstr "Тип"
+
+#: String 1281
+msgid "Type address"
+msgstr "тип адреса"
+
+#: String 1282
+msgid "Type ads to display"
+msgstr "Введите объявление для отображения"
+
+#: String 1283
+msgid "Type your password twice"
+msgstr "Введите пароль дважды"
+
+#: String 1284
+msgid "Type your password twice to change"
+msgstr "Для изменения введите пароль дважды"
+
+#: String 1285
+msgid "%u advertisements have been permanently deleted"
+msgstr "%  объявления были удалены навсегда"
+
+#: String 1286
+msgid "Unavailable"
+msgstr "Недоступно"
+
+#: String 1287
+msgid " Unavailable"
+msgstr "Недоступно"
+
+#: String 1288
+msgid "UNAVAILABLE"
+msgstr "НЕДОСТУПЕН"
+
+#: String 1289
+msgid "Unavailable Sort"
+msgstr "Недоступная сортировка"
+
+#: String 1290
+msgid "Unconfirmed"
+msgstr "неподтвержденный"
+
+#: String 1291
+msgid " Unconfirmed"
+msgstr "неподтвержденный"
+
+#: String 1292
+msgid "UNCONFIRMED"
+msgstr "неподтвержденным"
+
+#: String 1293
+msgid "Unconfirmed Sort"
+msgstr "Сортировать неподтвержденным"
+
+#: String 1294
+msgid "Unread"
+msgstr "Не прочитано"
+
+#: String 1295
+msgid "Unsubscribe"
+msgstr "Отказаться"
+
+#: String 1296
+msgid "Unsubscribe?"
+msgstr "Отказаться от подписки?"
+
+#: String 1297
+msgid "Unsubscribe to all?"
+msgstr "Отменить подписку на все?"
+
+#: String 1298
+msgid "Update"
+msgstr "Обновить"
+
+#: String 1299
+msgid "Update coupon"
+msgstr "Обновление купон"
+
+#: String 1300
+msgid "Updated to "
+msgstr "Обновлен"
+
+#: String 1301
+msgid "Update folder `%s` not found."
+msgstr "Обновление папки `% s` не найден."
+
+#: String 1302
+msgid "Updates"
+msgstr "Обновления"
+
+#: String 1303
+msgid "Update Topic"
+msgstr "Обновление Тема"
+
+#: String 1304
+msgid "Updating, do not close this window."
+msgstr "Обновление, не закрывайте это окно."
+
+#: String 1305
+msgid "Upgrade your Open Classifieds site to activate this feature."
+msgstr "Обновите Открытые Объявления сайт, чтобы активировать эту функцию."
+
+#: String 1306
+msgid "Upload"
+msgstr "Загружать"
+
+#: String 1307
+msgid "Upload category icon"
+msgstr "Загружать значок категории"
+
+#: String 1308
+msgid "Upload CSV file"
+msgstr "Загружать CSV файл"
+
+#: String 1309
+msgid "Upload file"
+msgstr "Загрузить файл"
+
+#: String 1310
+msgid "Upload location icon"
+msgstr "Загружать значок расположение"
+
+#: String 1311
+msgid "Up to"
+msgstr "Вплоть до"
+
+#: String 1312
+msgid "Url"
+msgstr "Веб-сайт"
+
+#: String 1313
+msgid "Use parent categories"
+msgstr "Используйте родительские категории"
+
+#: String 1314
+msgid "user"
+msgstr "Пользователь"
+
+#: String 1315
+msgid "User"
+msgstr "Пользователь"
+
+#: String 1316
+msgid "User account will be created"
+msgstr "Будет создана учетная запись пользователя"
+
+#: String 1317
+msgid "User already exists"
+msgstr "Пользователь уже существует"
+
+#: String 1318
+msgid "User name"
+msgstr "Имя пользователя"
+
+#: String 1319
+msgid "User not found"
+msgstr "Пользователь не найден"
+
+#: String 1320
+msgid "User not in database"
+msgstr "Такого пользователя нет в  базе данных"
+
+#: String 1321
+msgid "User paypal link"
+msgstr "Пользователь PayPal ссылку"
+
+#: String 1322
+msgid "User Profile"
+msgstr "Профиль пользователя"
+
+#: String 1323
+msgid "users"
+msgstr "пользователей"
+
+#: String 1324
+msgid "Users"
+msgstr "Пользователи"
+
+#: String 1325
+msgid "User %s has been removed from black list."
+msgstr "Пользователь% s был удален из черного списка."
+
+#: String 1326
+msgid "Users marked a spam"
+msgstr "Люди помечены как спам"
+
+#: String 1327
+msgid "Users not logged last 3 months"
+msgstr "Люди не вошли последние 3 месяца"
+
+#: String 1328
+msgid "Users with featured ads."
+msgstr "Люди Вит-объявления"
+
+#: String 1329
+msgid "Users with featured ads expired."
+msgstr "Люди с VIP-объявления истек."
+
+#: String 1330
+msgid "Users without published ads."
+msgstr "Люди без опубликованных объявлений."
+
+#: String 1331
+msgid "Use the form below to help you get the coordinates values"
+msgstr "Используйте форму ниже, чтобы помочь вам получить значения координаты"
+
+#: String 1332
+msgid "Using mobile theme"
+msgstr "Использовать мобильную тему"
+
+#: String 1333
+msgid "Valid Date"
+msgstr "Действительной датой"
+
+#: String 1334
+msgid "valid until"
+msgstr "годен до"
+
+#: String 1335
+msgid "Valid until"
+msgstr "Годен до"
+
+#: String 1336
+msgid "Valid Until"
+msgstr "Действительно до"
+
+#: String 1337
+msgid "Values"
+msgstr "Значения"
+
+#: String 1338
+msgid "Version"
+msgstr "Версия"
+
+#: String 1339
+msgid "View Advertisement"
+msgstr "Посмотреть Реклама"
+
+#: String 1340
+msgid "views"
+msgstr "Просмотров"
+
+#: String 1341
+msgid "Views and Ads"
+msgstr "Просмотров объявление и"
+
+#: String 1342
+msgid "Views and Ads statistics"
+msgstr "Статистика просмотров и объявлений"
+
+#: String 1343
+msgid "Views and Contacts statistic"
+msgstr "Статистика просмотров и контактов"
+
+#: String 1344
+msgid "Visits"
+msgstr "Просмотров"
+
+#: String 1345
+msgid "Visit Site"
+msgstr "Посетить сайт"
+
+#: String 1346
+msgid "Warning"
+msgstr "Предупреждение"
+
+#: String 1347
+msgid "Warning, something went wrong while deleting"
+msgstr "Предупреждение: что-то пошло не так при удалении"
+
+#: String 1348
+msgid "Warning, something went wrong while deleting Ad with id %u"
+msgstr "Внимание, что-то случилось во время удаления объявлений с идентификатором% U"
+
+#: String 1349
+msgid "Watermark"
+msgstr "водяной знак"
+
+#: String 1350
+msgid "Watermark path"
+msgstr "Водяной знак путь"
+
+#: String 1351
+msgid "Watermark position"
+msgstr "Watermark position"
+
+#: String 1352
+msgid "We are working on our site, please visit later. Thanks"
+msgstr "На сайте ведутся работы. Зайдите позже, пожалуйста. Спасибо"
+
+#: String 1353
+msgid "Website"
+msgstr "Сайт"
+
+#: String 1354
+msgid "Website field"
+msgstr "Поле для сайта"
+
+#: String 1355
+msgid "We can not copy the %s since the locale %s already has existing %s"
+msgstr "Мы не можем скопировать% S, поскольку языковой% s уже существующий% S"
+
+#: String 1356
+msgid "We can not read file %s"
+msgstr "Мы не можем прочитать файл% s"
+
+#: String 1357
+msgid "We detected you are currently off-line, please connect to gain full experience."
+msgstr "Мы обнаружили, вы в настоящее время в автономном режиме, пожалуйста, подключите, чтобы получить полный опыт."
+
+#: String 1358
+msgid "We do not have any advertisements in this category"
+msgstr "В этой категории пока нет объявлений"
+
+#: String 1359
+msgid "We do not have any blog posts"
+msgstr "We do not have any blog posts"
+
+#: String 1360
+msgid "We do not have any FAQ-s"
+msgstr "Мы не имеем никакого FAQ-е"
+
+#: String 1361
+msgid "We do not have any reviews for this product"
+msgstr "Мы не какие-либо отзывы на этот продукт"
+
+#: String 1362
+msgid "We had a problem downloading latest version, try later please."
+msgstr "У нас была проблема с загрузкой последнюю версию, попробуйте позже, пожалуйста."
+
+#: String 1363
+msgid "We had, issues with your transaction. Please try paying with another paymethod."
+msgstr "Мы были, проблемы с вашей сделки. Пожалуйста, попробуйте платить с другой paymethod."
+
+#: String 1364
+msgid "We have detected some incompatibilities, installation may not work as expected but you can try."
+msgstr "Мы обнаружили некоторые несовместимости, установка может не работать, как ожидалось, но вы можете попробовать."
+
+#: String 1365
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: String 1366
+msgid "Welcome!"
+msgstr "Добро пожаловать!"
+
+#: String 1367
+msgid "Welcome to the super easy and fast installation"
+msgstr "Приступим к супер легкой и быстрой установке"
+
+#: String 1368
+msgid "We need your email address to complete"
+msgstr "Нам нужна ваша адрес электронной почты, чтобы завершить"
+
+#: String 1369
+msgid "We use cookies to track usage and preferences"
+msgstr "Мы используем куки для отслеживания использования и предпочтения"
+
+#: String 1370
+msgid "We will move all the ads to home category."
+msgstr "Мы будем двигаться все объявления на главную категорию."
+
+#: String 1371
+msgid "We will move all the ads to home location."
+msgstr "Мы будем двигаться все объявления на местоположение дома."
+
+#: String 1372
+msgid "We will move the siblings categories and ads to the parent of this category."
+msgstr "Мы будем двигаться категории и объявления братьев и сестер родителей этой категории."
+
+#: String 1373
+msgid "We will remove all the forum posts and answers."
+msgstr "Мы удалим все сообщения и ответы на форуме."
+
+#: String 1374
+msgid "Where do you want the widget displayed?"
+msgstr "Где Вы хотите разместить виджет?"
+
+#: String 1375
+msgid "Widget created in %s"
+msgstr "Виджет создан в% s"
+
+#: String 1376
+msgid "Widget parameter missing"
+msgstr "Параметр виджета отсутствует"
+
+#: String 1377
+msgid "Widgets"
+msgstr "Виджеты"
+
+#: String 1378
+msgid "Widget %s deleted"
+msgstr "Виджет% s удален"
+
+#: String 1379
+msgid "Widget %s saved in %s"
+msgstr "Виджет% спасла в% S"
+
+#: String 1380
+msgid "Width (px)"
+msgstr "Ширина (пикселей)"
+
+#: String 1381
+msgid "Wrong Api Key"
+msgstr "Неправильный ключ API"
+
+#: String 1382
+msgid "Wrong Api User Token"
+msgstr "Неправильный Апи Пользователь маркера"
+
+#: String 1383
+msgid "Wrong Captcha"
+msgstr "Неправильный код"
+
+#: String 1384
+msgid "Wrong email or password"
+msgstr "Неправильное имя пользователя или пароль"
+
+#: String 1385
+msgid "Wrong user name or password"
+msgstr "Неправильный пароль или имя пользователя"
+
+#: String 1386
+msgid "Yes"
+msgstr "Да"
+
+#: String 1387
+msgid "Yes, definitely!"
+msgstr "Да, безусловно!"
+
+#: String 1388
+msgid "Yes, Keep me updated!"
+msgstr "Да, держать меня в курсе!"
+
+#: String 1389
+msgid "Yesterday"
+msgstr "Вчера"
+
+#: String 1390
+msgid "You already added a review"
+msgstr "Вы уже добавили отзыв"
+
+#: String 1391
+msgid "You are assigning a parent category that does not exist"
+msgstr "Вы назначаете, что не существует родительский категорию"
+
+#: String 1392
+msgid "You are assigning a parent location that does not exist"
+msgstr "Вы назначаете, что не существует родительский категорию"
+
+#: String 1393
+msgid "You are in maintenance mode, only you can see the website"
+msgstr "Вы находитесь в режиме обслуживания, только вы можете видеть веб-сайт"
+
+#: String 1394
+msgid "You are not using latest version, please update."
+msgstr "Вы не используете последнюю версию, пожалуйста, обновите."
+
+#: String 1395
+msgid "You are now viewing the back panel at %s here you can manage your ads, favorites, payments and more."
+msgstr "Вы сейчас просматриваете заднюю панель на% S здесь вы можете управлять объявления, избранное, платежи и многое другое."
+
+#: String 1396
+msgid "You are now viewing your admin panel, where you can control almost everything in your classifieds site."
+msgstr "Вы сейчас просматриваете свой админ-панели, где вы можете контролировать почти все в вашей Объявления сайта."
+
+#: String 1397
+msgid "You are responsible for any damages or down time at your site"
+msgstr "Вы несете ответственность за любой ущерб или вниз время на вашем сайте"
+
+#: String 1398
+msgid "You are selecting a location that does not exist"
+msgstr "Вы выборе места, что не существует"
+
+#: String 1399
+msgid "You are unsubscribed"
+msgstr "Вы отписались"
+
+#: String 1400
+msgid "You can change the look and feel of your website here."
+msgstr "Вы можете изменить внешний вид вашего сайта здесь."
+
+#: String 1401
+msgid "You can check payments you made and see your favorites list here"
+msgstr "Вы можете проверить платежи, внесенные увидеть список избранных здесь"
+
+#: String 1402
+msgid "You can choose if you wish to display amount of visits at each advertisement."
+msgstr "Вы можете выбрать, если вы хотите, чтобы отобразить количество посещений на каждом рекламы."
+
+#: String 1403
+msgid "You can choose if you wish to display random related ads at each advertisement"
+msgstr "Вы можете выбрать, если вы хотите, чтобы отобразить случайные объявления на каждом рекламы"
+
+#: String 1404
+msgid "You can choose if you wish to display sharing buttons at each advertisement."
+msgstr "Вы можете выбрать, если вы хотите, чтобы отобразить кнопки на каждом совместного рекламы."
+
+#: String 1405
+msgid "You can choose what ads you want to display in home."
+msgstr "Вы можете выбрать то, что объявления вы хотите отобразить в доме."
+
+#: String 1406
+msgid "You can leave it blank for no action."
+msgstr "Вы можете оставить это поле пустым, для каких-либо действий."
+
+#: String 1407
+msgid "You can move it to the inactive placeholder"
+msgstr "Вы можете переместить его в неактивное заполнителя"
+
+#: String 1408
+msgid "You can not review yourself."
+msgstr "Вы не можете просмотреть самостоятельно."
+
+#: String 1409
+msgid "You can not set as parent the same category"
+msgstr "Вы не можете установить в качестве родителя той же категории"
+
+#: String 1410
+msgid "You can not set as parent the same location"
+msgstr "Вы не можете установить в качестве родителя и том же месте"
+
+#: String 1411
+msgid "You can only add a review if you bought this product"
+msgstr "Вы можете добавить только отзыв, если вы купили этот продукт"
+
+#: String 1412
+msgid "You can try a new search or publish a new topic ;)"
+msgstr "Вы можете попробовать новый поиск или опубликовать новую тему;)"
+
+#: String 1413
+msgid "You did not confirmed your delete action."
+msgstr "Вы не подтвердите свой операции удаления."
+
+#: String 1414
+msgid "You do not have any advertisements waiting to be published"
+msgstr "У вас нет ожидающих публикации объявлений"
+
+#: String 1415
+msgid "You do not have permissions to access %s"
+msgstr "Вы не имеют разрешения на доступ к% S"
+
+#: String 1416
+msgid "You don’t have any messages yet."
+msgstr "Вы не имеет сообщений."
+
+#: String 1417
+msgid "You dont have permission to access this link"
+msgstr "У вас нет доступа к этой ссылке"
+
+#: String 1418
+msgid "You got %d ads to get processed"
+msgstr "Вы получили% D объявления в обрабатываются"
+
+#: String 1419
+msgid "You have an old version and automatic update is not possible. Please read the release notes and the manual update instructions."
+msgstr "У вас есть старая версия и автоматическое обновление невозможно. Пожалуйста, прочтите примечания к выпуску и ручные инструкции по обновлению."
+
+#: String 1420
+msgid "You have been contacted for these ads"
+msgstr "Вы писали эти объявления"
+
+#: String 1421
+msgid "You have no unread messages"
+msgstr "У вас нет непрочитанных сообщений"
+
+#: String 1422
+msgid "You have reached the maximum number of custom fields allowed."
+msgstr "Вы достигли максимального количества пользовательских полей допускается."
+
+#: String 1423
+msgid "You have successfully changed your data"
+msgstr "Вы успешно изменили свои данные"
+
+#: String 1424
+msgid "You have successfully installed the theme!"
+msgstr "Вы успешно установили тему!"
+
+#: String 1425
+msgid "You have successfully unsubscribed"
+msgstr "Вы успешно отписались есть"
+
+#: String 1426
+msgid "You have %s unread messages"
+msgstr "Вы должны% S непрочитанных сообщений"
+
+#: String 1427
+msgid "You need help or you have some questions"
+msgstr "Вам нужна помощь или у вас есть вопросы"
+
+#: String 1428
+msgid "You need the Hash Key to re-install. You can find this value if you lost it at"
+msgstr "Для переустановки вам нужен хэш-ключ. Вы можете найти его значение, если вы его потеряли."
+
+#: String 1429
+msgid "You need to enable paypal link to allow only reviews on purchases."
+msgstr "Вам необходимо включить Paypal ссылку, чтобы только отзывы о покупках."
+
+#: String 1430
+msgid "You need to write reCAPTCHA Site Key to enable the service."
+msgstr "Вы должны написать reCaptcha сайта Key, чтобы включить службу."
+
+#: String 1431
+msgid "You need to write your banned words to enable the service."
+msgstr "Вы должны написать свои запрещенные слова, чтобы включить службу."
+
+#: String 1432
+msgid "You need to write your disqus ID to enable the service."
+msgstr "Напишите ID Обсуждения, чтобы  включить эту услугу."
+
+#: String 1433
+msgid "You need to write your Facebook APP ID to enable the service."
+msgstr "Вы должны написать в Facebook APP ID, чтобы включить службу."
+
+#: String 1434
+msgid "You need to write your reCAPTCHA Secret Key to enable the service."
+msgstr "Вы должны написать reCaptcha Secret Key, чтобы включить службу."
+
+#: String 1435
+msgid "Your Advertisement can go on top again! For only "
+msgstr "Ваша реклама может пойти на вершине снова! Только за"
+
+#: String 1436
+msgid "Your Advertisement can go to featured! For only "
+msgstr "Ваша реклама может пойти на признакам! Только за"
+
+#: String 1437
+msgid "Your advertisement is successfully activated! Thank you!"
+msgstr "Ваше объявление успешно активировано! Спасибо!"
+
+#: String 1438
+msgid "Your Hash Key for this installation is"
+msgstr "Ваш хэш-ключ для установки,"
+
+#: String 1439
+msgid "Your installation version is"
+msgstr "Ваша установочная версия -- "
+
+#: String 1440
+msgid "Your message has been sent"
+msgstr "Ваше сообщение отправлено"
+
+#: String 1441
+msgid "Your PHP time limit is"
+msgstr "Ваш лимит времени для PHP -- "
+
+#: String 1442
+msgid "Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us."
+msgstr "Ваш профиль был отключен для размещения, из-за недавнего содержания спама! Если вы думаете, что это ошибка, пожалуйста, свяжитесь с нами."
+
+#: String 1443
+msgid "Your search did not match any advertisement."
+msgstr "По Вашему запросу ничего не найдено любую рекламу."
+
+#: String 1444
+msgid "Your sitemap XML to submit to engines"
+msgstr "Ваш карта сайта XML представить двигателей"
+
+#: String 1445
+msgid "You thought there was more?"
+msgstr "Вы думали, было больше?"
+
+#: String 1446
+msgid "You will need also a SSL certificate"
+msgstr "Вам нужно будет также сертификат SSL"
+
+#: String 1447
+msgid "Zip file failed to extract, please try again."
+msgstr "Страна файла не удалось извлечь, пожалуйста, попробуйте еще раз."
+
+#: String 1448
+msgid "Zoom in the map"
+msgstr "Увеличить карту"
+
+#: String 1449
+msgid "Zoom level"
+msgstr "уровень масштабирования"
 

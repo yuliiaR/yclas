@@ -11,7 +11,9 @@
     <?endif?>
     data-amount="<?=StripeKO::money_format($order->amount)?>"
     data-currency="<?=$order->currency?>"
+    data-locale="auto"
     <?=(Core::config('payment.stripe_address')==TRUE)?'data-address = "TRUE"':''?>
+    <?=(Core::config('payment.stripe_alipay')==TRUE)?'data-alipay="true"':''?>
     >
   </script>
 </form>
