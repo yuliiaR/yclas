@@ -126,6 +126,12 @@ class Controller_User extends Controller {
             $this->template->title = __('Users search');
         }
 
+        if (Theme::get('infinite_scroll'))
+        {
+            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/jquery.infinitescroll/2.0b2/jquery.infinitescroll.js';
+            $this->template->scripts['footer'][] = 'js/users.js';
+        }
+
         $this->template->content = View::factory('pages/user/list',array('users'     => $users,
                                                                         'pagination' => $pagination,
                                                                         )); 

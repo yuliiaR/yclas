@@ -71,7 +71,7 @@
 <div class="clearfix"></div>
 
 
-<div class="row">
+<div class="row" id="users">
 <?foreach($users as $user ):?>
     <div class="col-sm-6 col-md-4" style="height:350px">
         <div class="thumbnail">
