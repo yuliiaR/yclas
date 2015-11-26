@@ -823,6 +823,30 @@
                             ))?> 
                         </div>
                     </div>
+
+                    <?if (Core::config('general.auto_locate') == 1) :?>
+                        <div class="form-group">
+                            <?= FORM::label($forms['auto_locate_distance']['key'], __('Auto locate distance'), array('class'=>'control-label col-sm-4', 'for'=>$forms['auto_locate_distance']['key']))?>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <?= FORM::input($forms['auto_locate_distance']['key'], $forms['auto_locate_distance']['value'], array(
+                                    'placeholder' => "100", 
+                                    'class' => 'tips form-control', 
+                                    'id' => $forms['auto_locate_distance']['key'], 
+                                    'data-original-title'=> __("Auto locate distance"),
+                                    'data-trigger'=>"hover",
+                                    'data-placement'=>"right",
+                                    'data-toggle'=>"popover",
+                                    'data-content'=>__("Sets maximum distance of closest suggested locations to the visitor."),
+                                    'data-rule-number' => 'true',
+                                    ))?>
+                                    <div class="input-group-addon"><?=Core::config('general.measurement') == 'metric' ? 'Kilometers' : 'Miles'?></div>
+                                </div>
+                            </div>
+                        </div>
+                    <?else :?>
+                        <?= FORM::hidden($forms['auto_locate_distance']['key'], $forms['auto_locate_distance']['value']);?>
+                    <?endif?>
                 </div>
             </div>
         </div>

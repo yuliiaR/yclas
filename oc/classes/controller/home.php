@@ -95,12 +95,13 @@ class Controller_Home extends Controller {
         $locats = Model_Location::get_location_count();
 
         $auto_locats = NULL;
+        $auto_location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
         if(core::config('general.auto_locate') AND !isset($_COOKIE['cancel_auto_locate']) AND Model_User::get_userlatlng()) {
                 $auto_locats = new Model_Location();
                 $auto_locats = $auto_locats ->select(array(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'), 'distance'))
                                             ->where('latitude','IS NOT',NULL)
                                             ->where('longitude','IS NOT',NULL)
-                                            ->having('distance','<=','100')
+                                            ->having('distance','<=',$auto_location_distance)
                                             ->order_by('distance','asc')
                                             ->find_all()
                                             ->as_array();

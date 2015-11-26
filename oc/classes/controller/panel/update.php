@@ -75,7 +75,10 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                'config_value'   => '0'),
                         array( 'config_key'     => 'stripe_alipay',
                                'group_name'     => 'payment', 
-                               'config_value'   => '0'),
+                               'config_value'   => '0')
+                        array( 'config_key'     => 'auto_locate_distance',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => '100'),
                         );
         
         Model_Config::config_array($configs);        
