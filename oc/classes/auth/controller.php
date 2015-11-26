@@ -153,19 +153,19 @@ class Auth_Controller extends Controller
     	            //other color
     	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
     	            {
-    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.6/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
+    	                $theme_css = array('//cdn.jsdelivr.net/bootswatch/3.3.6/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
     	            }
     	            //default theme
     	            else
     	            {
-    	                $theme_css = array('//netdna.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css' => 'screen');
+    	                $theme_css = array('//cdn.jsdelivr.net/bootswatch/3.3.6/paper/bootstrap.min.css' => 'screen');
     	            }
 
                 	$common_css = array('//cdn.jsdelivr.net/chosen/1.0.0/chosen.css' => 'screen', 
                                         'css/jquery.sceditor.default.theme.min.css' => 'screen',
                                         'css/loadingbar.css'=>'screen', 
                                         'css/icon-picker.min.css'=>'screen', 
-                                        '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'=>'screen', 
+                                        '//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css'=>'screen', 
                                         '//cdn.jsdelivr.net/summernote/0.6.16/summernote.css'=>'screen', 
                                         '//cdn.jsdelivr.net/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css'=>'screen',
                                         '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css'=>'screen',

@@ -33,7 +33,7 @@ Theme::$skin = Theme::get('theme');
  */
 
 Theme::$styles = array( '//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' => 'screen',
-                        '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' => 'screen',
+                        '//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css' => 'screen',
                         '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.min.css' => 'screen',
                         '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/css/blueimp-gallery.min.css' => 'screen', 
                         '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
