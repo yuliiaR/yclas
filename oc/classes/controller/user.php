@@ -177,10 +177,10 @@ class Controller_User extends Controller {
                             'total_items'       => $count_all,
                             'items_per_page'    => core::config('advertisement.advertisements_per_page')
                     ));
-                }
 
-                $ads = $ads->limit($pagination->items_per_page)
+                    $ads = $ads->limit($pagination->items_per_page)
                         ->offset($pagination->offset)->cached()->find_all();
+                }
 
 				$this->template->content = View::factory('pages/user/profile',array('user'=>$user, 'profile_ads'=>$ads,'pagination'=>$pagination));
 			}
@@ -201,4 +201,3 @@ class Controller_User extends Controller {
 
 	
 }// End Userprofile Controller
-
