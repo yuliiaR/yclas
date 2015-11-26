@@ -32,8 +32,8 @@ Theme::$skin = Theme::get('theme');
  * styles and themes, loaded in this order
  */
 
-Theme::$styles = array( '//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' => 'screen',
-                        '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' => 'screen',
+Theme::$styles = array( '//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' => 'screen',
+                        '//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css' => 'screen',
                         '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.min.css' => 'screen',
                         '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/css/blueimp-gallery.min.css' => 'screen', 
                         '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
@@ -46,7 +46,7 @@ if (Theme::$skin!='default')
     Theme::$styles = array_merge(Theme::$styles, array('css/color-'.Theme::$skin.'.css' => 'screen'));
 
 Theme::$scripts['footer']	= array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
-                                    '//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js',
+                                    '//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
                                     '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
                                     'js/jquery.validate.min.js',

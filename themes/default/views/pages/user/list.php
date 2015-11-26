@@ -68,35 +68,39 @@
         <li><a href="?<?=http_build_query(['sort' => 'ads-asc'] + Request::current()->query())?>"><?=__('Less Ads')?></a></li>
     </ul>
 </div>
-<div class="clearfix"></div>
-
+<div class="clearfix"></div><br>
 
 <div class="row" id="users">
-<?foreach($users as $user ):?>
-    <div class="col-sm-6 col-md-4" style="height:350px">
-        <div class="thumbnail">
-            <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>">
-                <img style="height: 200px; width: 200px;" src="<?=$user->get_profile_image()?>" class="img-rounded" alt="<?=__('Profile Picture')?>">
-            </a>
-            <div class="caption">
-                <h3>
-                    <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>">
-                        <?=$user->name?> <span class="badge"><?=$user->ads_count?> <?=__('Ads')?></span>
-                    </a>
-                </h3>
-                <?if (Core::config('advertisement.reviews')==1):?>
-                    <?for ($j=0; $j < round($user->rate,1); $j++):?>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <?endfor?>
-                <?endif?>
-                <p><?=Text::limit_chars(Text::removebbcode($user->description), 255, NULL, TRUE);?></p>
-                <p>
-                    <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>" class="btn btn-primary" role="button"><?=__('See profile')?></a>
-                </p>
+    <?$i = 1; foreach($users as $user ):?>
+        <div class="col-sm-6 col-md-4" style="min-height:350px">
+            <div class="thumbnail">
+                <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>">
+                    <img class="img-responsive" style="width: 100%;" src="<?=$user->get_profile_image()?>" alt="<?=__('Profile Picture')?>">
+                </a>
+                <div class="caption">
+                    <h3>
+                        <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>">
+                            <?=$user->name?> <span class="badge"><?=$user->ads_count?> <?=__('Ads')?></span>
+                        </a>
+                    </h3>
+                    <?if (Core::config('advertisement.reviews')==1):?>
+                        <p>
+                            <?for ($j=0; $j < round($user->rate,1); $j++):?>
+                                <span class="glyphicon glyphicon-star"></span>
+                            <?endfor?>
+                        </p>
+                    <?endif?>
+                    <p><?=Text::limit_chars(Text::removebbcode($user->description), 255, NULL, TRUE);?></p>
+                    <p>
+                        <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>" class="btn btn-primary btn-block" role="button"><?=__('See profile')?></a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-<?endforeach?>
+        <?if ($i%3 == 0) :?>
+            <div class="clearfix"></div>
+        <?endif?>
+    <?$i++; endforeach?>
 </div>
 <?=$pagination?>
 
