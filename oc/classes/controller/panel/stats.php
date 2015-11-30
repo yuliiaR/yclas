@@ -435,7 +435,7 @@ class Controller_Panel_Stats extends Auth_Controller {
     private function ads_by_date($from_date, $to_date)
     {
         // Dates range we are filtering
-        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+        $dates = $this->dates_range($from_date, $to_date);
 
         $query = DB::select(DB::expr('DATE(published) date'))
             ->select(DB::expr('COUNT(id_ad) total'))
@@ -501,7 +501,7 @@ class Controller_Panel_Stats extends Auth_Controller {
     private function users_by_date($from_date, $to_date)
     {
         // Dates range we are filtering
-        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+        $dates = $this->dates_range($from_date, $to_date);
 
         $query = DB::select(DB::expr('DATE(created) date'))
             ->select(DB::expr('COUNT(id_user) total'))
@@ -565,7 +565,7 @@ class Controller_Panel_Stats extends Auth_Controller {
     private function visits_by_date($from_date, $to_date)
     {
         // Dates range we are filtering
-        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+        $dates = $this->dates_range($from_date, $to_date);
 
         $query = DB::select(DB::expr('DATE(created) date'))
             ->select(DB::expr('COUNT(id_visit) total'))
@@ -629,7 +629,7 @@ class Controller_Panel_Stats extends Auth_Controller {
     private function contacts_by_date($from_date, $to_date)
     {
         // Dates range we are filtering
-        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+        $dates = $this->dates_range($from_date, $to_date);
 
         $query = DB::select(DB::expr('DATE(created) date'))
             ->select(DB::expr('COUNT(id_visit) total'))
@@ -694,7 +694,7 @@ class Controller_Panel_Stats extends Auth_Controller {
     private function paid_orders_by_date($from_date, $to_date)
     {
         // Dates range we are filtering
-        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+        $dates = $this->dates_range($from_date, $to_date);
 
         $query = DB::select(DB::expr('DATE(pay_date) date'))
             ->select(DB::expr('COUNT(id_order) total'))
@@ -758,7 +758,7 @@ class Controller_Panel_Stats extends Auth_Controller {
     private function sales_by_date($from_date, $to_date)
     {
         // Dates range we are filtering
-        $dates = Date::range($from_date, $to_date, '+1 day','Y-m-d', array('date' => 0, 'count' => 0), 'date');
+        $dates = $this->dates_range($from_date, $to_date);
 
         $query = DB::select(DB::expr('DATE(created) date'))
             ->select(DB::expr('SUM(amount) total'))
@@ -784,6 +784,16 @@ class Controller_Panel_Stats extends Auth_Controller {
 
     }
 
+    /**
+     * Dates range that we will be filtering
+     * @param  integer $from_date
+     * @param  integer $to_date
+     * @return array
+     */
+    private function dates_range($from_date, $to_date)
+    {
+        return Date::range($from_date, $to_date, '+1 day', 'Y-m-d', array('date' => 0, 'total' => 0), 'date');
+    }
 
 
 }
