@@ -180,7 +180,7 @@ class Auth_Controller extends Controller
     												  'js/jquery.sceditor.bbcode.min.js',
     											      '//cdn.jsdelivr.net/summernote/0.6.16/summernote.min.js',
     											      'js/summernote-ext-video.js',
-    												  '//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', 
+    												  '//cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js', 
     											      '//cdn.jsdelivr.net/chosen/1.0.0/chosen.jquery.min.js',
                                                       'js/bootstrap-tour.min.js',
     											      Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'bstour')),
