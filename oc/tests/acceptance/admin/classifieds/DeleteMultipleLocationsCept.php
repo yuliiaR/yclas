@@ -13,9 +13,9 @@ $I->see('welcome admin');
 // Create 1
 $I->amOnPage('/oc-panel/location/create');
 $I->see('New Location');
-$I->fillField('#formorm_name','Location One');
-$I->fillField('#formorm_seoname','delete-location-one');
-$I->fillField('#formorm_description','Location to delete one');
+$I->fillField('#name','Location One');
+$I->fillField('#seoname','delete-location-one');
+$I->fillField('#description','Location to delete one');
 $I->click('button[type="submit"]');
 $I->see('Location created');
 
@@ -27,9 +27,9 @@ $I->see('Location One','h1');
 // Create 2
 $I->amOnPage('/oc-panel/location/create');
 $I->see('New Location');
-$I->fillField('#formorm_name','Location Two');
-$I->fillField('#formorm_seoname','delete-location-two');
-$I->fillField('#formorm_description','Location to delete two');
+$I->fillField('#name','Location Two');
+$I->fillField('#seoname','delete-location-two');
+$I->fillField('#description','Location to delete two');
 $I->click('button[type="submit"]');
 $I->see('Location created');
 

@@ -113,10 +113,10 @@ $I->see('This is my New Updated Topic','p');
 $I->see('This is my reply on the New Topic!','p');
 
 // Delete
-$I->amOnPage('/oc-panel/topic');
-$I->click(".btn.btn-danger.index-delete"); //Delete Reply
+//$I->amOnPage('/oc-panel/topic');
+//$I->click(".btn.btn-danger.index-delete"); //Delete Reply
 
-$I->amOnPage('/oc-panel/forum');
+$I->amOnPage('/oc-panel/forum/index');
 $I->click(".drag-action.index-delete"); //Delete Forum
 
 $I->amOnPage('/forum');
