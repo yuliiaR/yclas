@@ -13,9 +13,9 @@ $I->amOnPage('/oc-panel/location');
 $I->click('a[href="http://reoc.lo/oc-panel/location/create"]');
 $I->see('New Location');
 
-$I->fillField('#formorm_name','Loc');
-$I->fillField('#formorm_seoname','my-new-loc');
-$I->fillField('#formorm_description','This is my new location');
+$I->fillField('#name','Loc');
+$I->fillField('#seoname','my-new-loc');
+$I->fillField('#description','This is my new location');
 $I->click('button[type="submit"]');
 
 $I->see('Location created');
