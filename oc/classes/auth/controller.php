@@ -168,7 +168,7 @@ class Auth_Controller extends Controller
                                         '//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css'=>'screen', 
                                         '//cdn.jsdelivr.net/summernote/0.6.16/summernote.css'=>'screen', 
                                         '//cdn.jsdelivr.net/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css'=>'screen',
-                                        '//cdn.jsdelivr.net/sweetalert/1.1.3/sweet-alert.min.css'=>'screen',
+                                        '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css'=>'screen',
                                         'css/admin-styles.css?v='.Core::VERSION => 'screen');
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
@@ -187,7 +187,7 @@ class Auth_Controller extends Controller
                                                       'js/oc-panel/'.(Auth::instance()->get_user()->id_role!=Model_Role::ROLE_ADMIN) ? 'tour-user.js' : 'tour.js',	
                                                       Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
                                                       'js/oc-panel/sidebar.js?v='.Core::VERSION,	
-                                                      '//cdn.jsdelivr.net/sweetalert/1.1.3/sweet-alert.min.js',
+                                                      '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                       'js/favico-0.3.8.min.js',
                                                       '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                       '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
