@@ -145,6 +145,8 @@ class Auth_Controller extends Controller
     											      'js/favico-0.3.8.min.js',
     											      '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
     											      '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
+                                                      'js/jquery.bootgrid.min.js',
+                                                      'js/query.bootgrid.fa.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
     			}
@@ -191,7 +193,9 @@ class Auth_Controller extends Controller
                                                       'js/favico-0.3.8.min.js',
                                                       '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                       '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
-                                                      'http://'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
+                                                      '//'.((Kohana::$environment!== Kohana::DEVELOPMENT)? 'market.'.Core::DOMAIN.'':'eshop.lo').'/embed.js',
+                                                      'js/jquery.bootgrid.min.js',
+                                                      'js/query.bootgrid.fa.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
                                                       );
     	        }
