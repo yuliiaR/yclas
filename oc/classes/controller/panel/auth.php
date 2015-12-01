@@ -16,7 +16,7 @@ class Controller_Panel_Auth extends Controller {
 	    	Auth::instance()->login_redirect();
 	    }
 	    //posting data so try to login
-	    elseif ($this->request->post() AND CSRF::valid('login'))
+	    elseif ($this->request->post() AND CSRF::valid('login') AND Valid::email(core::post('email')))
 	    {
             $blocked_login = FALSE;
             
@@ -156,7 +156,7 @@ class Controller_Panel_Auth extends Controller {
 		{
 			$email = core::post('email');
 			
-			if (Valid::email($email,TRUE))
+			if (Valid::email($email))
 			{
 				//check we have this email in the DB
 				$user = new Model_User();
@@ -220,6 +220,7 @@ class Controller_Panel_Auth extends Controller {
                             ->rule('name', 'not_empty')
                             ->rule('email', 'not_empty')
                             ->rule('email', 'email')
+                            ->rule('email', 'email_domain')
                             ->rule('password1', 'not_empty')
                             ->rule('password2', 'not_empty')
                             ->rule('password1', 'matches', array(':validation', 'password1', 'password2'));
@@ -317,7 +318,7 @@ class Controller_Panel_Auth extends Controller {
             $encrypt = new Encrypt(Core::config('auth.hash_key'), MCRYPT_MODE_NOFB, MCRYPT_RIJNDAEL_128);
             $email   = $encrypt->decode($email_encoded);
 
-            if (Valid::email($email,TRUE))
+            if (Valid::email($email))
             {
                 //check we have this email in the DB
                 $user = new Model_User();

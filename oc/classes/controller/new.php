@@ -160,7 +160,7 @@ class Controller_New extends Controller
                 {
                     $validation = $validation->rule('email', 'not_empty')
                     ->rule('email', 'email')
-
+                    ->rule('email', 'email_domain')
                     ->rule('name', 'not_empty')
                     ->rule('name', 'min_length', array(':value', 2))
                     ->rule('name', 'max_length', array(':value', 145));
