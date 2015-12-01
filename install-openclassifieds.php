@@ -691,7 +691,7 @@ function __($msgid)
     <!--[if lt IE 9]>
       <script type="text/javascript" src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>    <![endif]-->
     
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/animatecss/3.3.0/animate.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css" rel="stylesheet">
@@ -1058,11 +1058,11 @@ function __($msgid)
                                                 <h3><?=__('Site Configuration')?></h3>
                                                 <div class="form-group">
                                                     <label for="LANGUAGE" class="control-label"><?=__("Site Language")?></label>
-                                                    <select id="LANGUAGE" name="LANGUAGE" class="form-control" onchange="window.location.href='index.php?LANGUAGE='+this.options[this.selectedIndex].value" required>
+                                                    <select id="LANGUAGE" name="LANGUAGE" class="form-control" required>
                                                         <?php
                                                             foreach (install::get_languages() as $language) 
                                                             {
-                                                                $selected = ( strtolower($language)==strtolower(install::$locale)) ? 'selected="selected"' : NULL;
+                                                                $selected = ( strtolower($language)==strtolower(core::request('LANGUAGE', install::$locale))) ? ' selected="selected"' : '';
                                                                 echo "<option $selected value=\"$language\">$language</option>";
                                                             }
                                                         ?>
@@ -1125,10 +1125,10 @@ function __($msgid)
                                                             <p class="form-control-static admin_pwd"></p>
                                                         </div>
                                                         <p>
-                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL')?>"><?=__('Go to Your Website')?></a>
+                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL', install::get_url())?>"><?=__('Go to Your Website')?></a>
                                                         </p>
                                                         <p>
-                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL')?>oc-panel/home/">Admin</a>
+                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL', install::get_url())?>oc-panel/">Admin</a>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1154,7 +1154,7 @@ function __($msgid)
     </div> 
     
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js"></script>
     <script src="//cdn.rawgit.com/scotch-io/scotch-panels/1.0.3/dist/scotchPanels.min.js"></script>

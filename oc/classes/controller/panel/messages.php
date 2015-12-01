@@ -93,10 +93,10 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                     Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Direct Message')));
                 
                 $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
-                                                '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.css' => 'screen');
+                                                '//cdn.jsdelivr.net/sweetalert/1.1.3/sweet-alert.min.css' => 'screen');
 
                 $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
-                                                            '//cdn.jsdelivr.net/sweetalert/0.1.2/sweet-alert.min.js',
+                                                            '//cdn.jsdelivr.net/sweetalert/1.1.3/sweet-alert.min.js',
                                                             'js/messages.js');
                 
                 $this->template->content = View::factory('oc-panel/pages/messages/message', array(  'msg_thread'    => $msg_thread,
