@@ -2,7 +2,7 @@
 
 <div class="page-header">
   <h1><?=__('Black list')?></h1>
-  <p><?=__("This is a list of users marked as spammers. To understand how this feature works, please read this article")." <a target='_blank' href='http://docs.yclas.com/activate-blacklist-works/'>".__('Read more')."</a>"?></p>
+  <p><?=__("This is a list of users marked as spammers. To understand how this feature works, please read this article")." <a target='_blank' href='https://docs.yclas.com/activate-blacklist-works/'>".__('Read more')."</a>"?></p>
 </div>
 
 <div class="panel panel-default">

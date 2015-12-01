@@ -31,7 +31,7 @@
 <?=Form::errors()?>
 <div class="page-header">
     <h1><?=__('Payments Configuration')?></h1>
-    <p class=""><?=__('List of payment configuration values. Replace input fields with new desired values.')?> <a target='_blank' href='http://docs.yclas.com/setup-payment-gateways/'><?=__('Read more')?></a></p>
+    <p class=""><?=__('List of payment configuration values. Replace input fields with new desired values.')?> <a target='_blank' href='https://docs.yclas.com/setup-payment-gateways/'><?=__('Read more')?></a></p>
     <?if (Theme::get('premium')!=1):?>
         <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
             Authorize, Stripe, Paymill and Bitpay <?=__('only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
@@ -89,7 +89,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['to_top']['key'], "<a target='_blank' href='http://docs.yclas.com/how-to-create-featured-plan/'>".__('Featured Plans')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['to_top']['key']))?>
+                        <?= FORM::label($forms['to_top']['key'], "<a target='_blank' href='https://docs.yclas.com/how-to-create-featured-plan/'>".__('Featured Plans')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['to_top']['key']))?>
                         <div class="col-sm-8">
                             <?if (is_array($featured_plans)):?>
                                 <ul class="list-unstyled">
@@ -211,7 +211,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='http://docs.yclas.com/pay-directly-from-ad/'>".__('User paypal link')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_seller']['key']))?>
+                        <?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='https://docs.yclas.com/pay-directly-from-ad/'>".__('User paypal link')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_seller']['key']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= FORM::hidden($forms['paypal_seller']['key'], 0);?>
@@ -231,7 +231,7 @@
                     </div>
                         
                     <div class="form-group">
-                        <?= FORM::label($forms['stock']['key'], "<a target='_blank' href='http://docs.yclas.com/pay-directly-from-ad/'>".__('Paypal link stock control')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['stock']['key']))?>
+                        <?= FORM::label($forms['stock']['key'], "<a target='_blank' href='https://docs.yclas.com/pay-directly-from-ad/'>".__('Paypal link stock control')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['stock']['key']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= FORM::hidden($forms['stock']['key'], 0);?>

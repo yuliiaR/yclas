@@ -15,7 +15,7 @@
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <?= FORM::label($forms['maintenance']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-activate-maintenance-mode/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['maintenance']['id']))?>
+                        <?= FORM::label($forms['maintenance']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-activate-maintenance-mode/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['maintenance']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['maintenance']['key'], 1, (bool) $forms['maintenance']['value'], array(
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['disallowbots']['id'], "<a target='_blank' href='http://docs.yclas.com/allowdisallow-bots-crawlers/'>".__("Disallows (blocks) Bots and Crawlers on this website")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['disallowbots']['id']))?>
+                        <?= FORM::label($forms['disallowbots']['id'], "<a target='_blank' href='https://docs.yclas.com/allowdisallow-bots-crawlers/'>".__("Disallows (blocks) Bots and Crawlers on this website")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['disallowbots']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['disallowbots']['key'], 1, (bool) $forms['disallowbots']['value'], array(
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['site_name']['id'], "<a target='_blank' href='http://docs.yclas.com/change-site-name-site-description/'>".__('Site name')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_name']['id']))?>
+                        <?= FORM::label($forms['site_name']['id'], "<a target='_blank' href='https://docs.yclas.com/change-site-name-site-description/'>".__('Site name')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_name']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
                             'placeholder' => 'Open-classifieds', 
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['site_description']['id'], "<a target='_blank' href='http://docs.yclas.com/change-site-name-site-description/'>".__('Site description')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_description']['id']))?>
+                        <?= FORM::label($forms['site_description']['id'], "<a target='_blank' href='https://docs.yclas.com/change-site-name-site-description/'>".__('Site description')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_description']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::textarea($forms['site_description']['key'], $forms['site_description']['value'], array(
                             'placeholder' => __('Description of your site in no more than 160 characters.'),
@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['moderation']['id'], "<a target='_blank' href='http://docs.yclas.com/how-ads-moderation-works/'>".__('Moderation')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['moderation']['id']))?>
+                        <?= FORM::label($forms['moderation']['id'], "<a target='_blank' href='https://docs.yclas.com/how-ads-moderation-works/'>".__('Moderation')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['moderation']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['moderation']['key'], array(0=>__("Post directly"),1=>__("Moderation on"),2=>__("Payment on"),3=>__("Email confirmation on"),4=>__("Email confirmation with Moderation"),5=>__("Payment with Moderation")), $forms['moderation']['value'], array(
                             'placeholder' => $forms['moderation']['value'], 
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['landing_page']['id'], "<a target='_blank' href='http://docs.yclas.com/home-or-listing/'>".__('Landing page')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['landing_page']['id']))?>
+                        <?= FORM::label($forms['landing_page']['id'], "<a target='_blank' href='https://docs.yclas.com/home-or-listing/'>".__('Landing page')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['landing_page']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['landing_page']['key'], 
                                 array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING','{"controller":"user","action":"index"}'=>'USERS'), $forms['landing_page']['value'], array(
@@ -121,7 +121,7 @@
                     </div>
 
                     <div class="form-group">
-                            <?= FORM::label($forms['api_key']['id'], "<a target='_blank' href='http://docs.yclas.com/api-documentation/'>".__('API Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['api_key']['id']))?>
+                            <?= FORM::label($forms['api_key']['id'], "<a target='_blank' href='https://docs.yclas.com/api-documentation/'>".__('API Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['api_key']['id']))?>
                             <div class="col-sm-8">
                                 <?= FORM::input($forms['api_key']['key'], $forms['api_key']['value'], array(
                                 'placeholder' => "", 
@@ -141,7 +141,7 @@
                         $pages[$value->seotitle] = $value->title;
                     }?>
                     <div class="form-group">
-                        <?= FORM::label($forms['alert_terms']['id'], "<a target='_blank' href='http://docs.yclas.com/activate-access-terms-alert/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['alert_terms']['id']))?>
+                        <?= FORM::label($forms['alert_terms']['id'], "<a target='_blank' href='https://docs.yclas.com/activate-access-terms-alert/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['alert_terms']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array( 
                             'class' => 'tips form-control input-sm', 
@@ -156,7 +156,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['contact_page']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-add-text-contact-page/'>".__('Contact page content')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['contact_page']['id']))?>
+                        <?= FORM::label($forms['contact_page']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-add-text-contact-page/'>".__('Contact page content')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['contact_page']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['contact_page']['key'], $pages, $forms['contact_page']['value'], array( 
                             'class' => 'tips form-control input-sm', 
@@ -191,7 +191,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['analytics']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-add-tracking-codes/'>".__('Analytics Tracking ID')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['analytics']['id']))?>
+                        <?= FORM::label($forms['analytics']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-add-tracking-codes/'>".__('Analytics Tracking ID')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['analytics']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
                             'placeholder' => 'UA-XXXXX-YY', 
@@ -223,7 +223,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['gcm_apikey']['id'], "<a target='_blank' href='http://docs.yclas.com/native-apps/#push-notifications'>".__('GCM API Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['gcm_apikey']['id']))?>
+                        <?= FORM::label($forms['gcm_apikey']['id'], "<a target='_blank' href='https://docs.yclas.com/native-apps/#push-notifications'>".__('GCM API Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['gcm_apikey']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['gcm_apikey']['key'], $forms['gcm_apikey']['value'], array(
                             'placeholder' => "", 
@@ -239,7 +239,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['html_head']['id'], "<a target='_blank' href='http://docs.yclas.com/html-in-head-element/'>".__('HTML in HEAD element')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['html_head']['id']))?>
+                        <?= FORM::label($forms['html_head']['id'], "<a target='_blank' href='https://docs.yclas.com/html-in-head-element/'>".__('HTML in HEAD element')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['html_head']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::textarea($forms['html_head']['key'], $forms['html_head']['value'], array(
                             'placeholder' => '',
@@ -256,7 +256,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['html_footer']['id'], "<a target='_blank' href='http://docs.yclas.com/html-in-footer/'>".__('HTML in footer')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['html_footer']['id']))?>
+                        <?= FORM::label($forms['html_footer']['id'], "<a target='_blank' href='https://docs.yclas.com/html-in-footer/'>".__('HTML in footer')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['html_footer']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::textarea($forms['html_footer']['key'], $forms['html_footer']['value'], array(
                             'placeholder' => '',
@@ -280,7 +280,7 @@
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <?= FORM::label($forms['number_format']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-currency-format/'>".__('Money format')."</a>", array('class'=>'control-label col-sm-4','for'=>$forms['number_format']['id']))?>
+                        <?= FORM::label($forms['number_format']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-currency-format/'>".__('Money format')."</a>", array('class'=>'control-label col-sm-4','for'=>$forms['number_format']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
                             'placeholder' => "20", 
@@ -296,7 +296,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['date_format']['id'], "<a target='_blank' href='http://docs.yclas.com/change-date-format/'>".__('Date format')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['date_format']['id']))?>
+                        <?= FORM::label($forms['date_format']['id'], "<a target='_blank' href='https://docs.yclas.com/change-date-format/'>".__('Date format')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['date_format']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['date_format']['key'], $forms['date_format']['value'], array(
                             'placeholder' => "d/m/Y", 
@@ -312,7 +312,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-4"><?="<a target='_blank' href='http://docs.yclas.com/how-to-change-time-zone/'>".__("Time Zone")."</a>"?>:</label>                
+                        <label class="control-label col-sm-4"><?="<a target='_blank' href='https://docs.yclas.com/how-to-change-time-zone/'>".__("Time Zone")."</a>"?>:</label>                
                         <div class="col-sm-8">
                         <?= FORM::select($forms['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
                                 'placeholder' => "Madrid [+1:00]", 
@@ -393,7 +393,7 @@
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <?= FORM::label($forms['blog_disqus']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-create-a-blog/'>".__('Disqus for blog')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['blog_disqus']['id']))?>
+                        <?= FORM::label($forms['blog_disqus']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-create-a-blog/'>".__('Disqus for blog')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['blog_disqus']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['blog_disqus']['key'], $forms['blog_disqus']['value'], array(
                             'placeholder' => "", 
@@ -409,7 +409,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['faq_disqus']['id'], "<a target='_blank' href='http://docs.yclas.com/create-frequent-asked-questions-faq/'>".__('Disqus for FAQ')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['faq_disqus']['id']))?>
+                        <?= FORM::label($forms['faq_disqus']['id'], "<a target='_blank' href='https://docs.yclas.com/create-frequent-asked-questions-faq/'>".__('Disqus for FAQ')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['faq_disqus']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
                             'placeholder' => "", 

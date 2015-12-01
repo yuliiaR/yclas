@@ -2,7 +2,7 @@
 
 <div class="page-header">
     <h1><?=__('Import tool for ads')?></h1>
-    <p><a target='_blank' href='http://docs.yclas.com/how-to-import-ads/'><?=__('Read More')?></a></p>
+    <p><a target='_blank' href='https://docs.yclas.com/how-to-import-ads/'><?=__('Read More')?></a></p>
 </div>
 <div class="row">
     

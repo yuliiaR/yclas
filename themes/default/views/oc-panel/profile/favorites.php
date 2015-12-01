@@ -2,7 +2,7 @@
 
 <div class="page-header">
     <h1><?=__('My Favorites')?></h1>
-    <a target='_blank' href='http://docs.yclas.com/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>
+    <a target='_blank' href='https://docs.yclas.com/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>
 </div>
 
 <div class="panel panel-default">

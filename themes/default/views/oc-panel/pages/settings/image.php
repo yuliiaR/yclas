@@ -11,7 +11,7 @@
     <div class="col-md-8">
         <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'image')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
         <div class="panel panel-default">
-	    <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/how-to-configure-image-settings/'>".__("Image configuration")."</a>"?></div>
+	    <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-configure-image-settings/'>".__("Image configuration")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <?foreach ($config as $c):?>
@@ -158,7 +158,7 @@
                     </div>
         
                     <div class="form-group">
-                        <?= FORM::label($forms['watermark']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-add-a-watermark/'>".__('Watermark')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['watermark']['id']))?>
+                        <?= FORM::label($forms['watermark']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-add-a-watermark/'>".__('Watermark')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['watermark']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['watermark']['key'], 1, (bool) $forms['watermark']['value'], array(

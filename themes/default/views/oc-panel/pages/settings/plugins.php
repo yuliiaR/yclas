@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <?= FORM::label($forms['blog']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-create-a-blog/'>".__("Blog System")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['blog']['id']))?>
+                            <?= FORM::label($forms['blog']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-create-a-blog/'>".__("Blog System")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['blog']['id']))?>
                             <div class="col-sm-8">
                                 <div class="onoffswitch">
                                     <?= Form::checkbox($forms['blog']['key'], 1, (bool) $forms['blog']['value'], array(
@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="form-group">
-                            <?= FORM::label($forms['forums']['id'], "<a target='_blank' href='http://docs.yclas.com/showcase-how-to-build-a-forum-with-oc/'>".__("Forum System")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['forums']['id']))?>
+                            <?= FORM::label($forms['forums']['id'], "<a target='_blank' href='https://docs.yclas.com/showcase-how-to-build-a-forum-with-oc/'>".__("Forum System")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['forums']['id']))?>
                             <div class="col-md-8">
                                 <div class="onoffswitch">
                                     <?= Form::checkbox($forms['forums']['key'], 1, (bool) $forms['forums']['value'], array(
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <?= FORM::label($forms['faq']['id'], "<a target='_blank' href='http://docs.yclas.com/create-frequent-asked-questions-faq/'>".__("FAQ System")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['faq']['id']))?>
+                            <?= FORM::label($forms['faq']['id'], "<a target='_blank' href='https://docs.yclas.com/create-frequent-asked-questions-faq/'>".__("FAQ System")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['faq']['id']))?>
                             <div class="col-sm-8">
                                 <div class="onoffswitch">
                                     <?= Form::checkbox($forms['faq']['key'], 1, (bool) $forms['faq']['value'], array(
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="form-group">
-                            <?= FORM::label($forms['messaging']['id'], "<a target='_blank' href='http://docs.yclas.com/how-to-use-messaging-system/'>".__("Messaging System")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['messaging']['id']))?>
+                            <?= FORM::label($forms['messaging']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-use-messaging-system/'>".__("Messaging System")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['messaging']['id']))?>
                             <div class="col-sm-8">
                                 <div class="onoffswitch">
                                     <?= Form::checkbox($forms['messaging']['key'], 1, (bool) $forms['messaging']['value'], array(
@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="form-group">
-                            <?= FORM::label($forms['black_list']['id'], "<a target='_blank' href='http://docs.yclas.com/activate-blacklist-works/'>".__("Black List")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['black_list']['id']))?>
+                            <?= FORM::label($forms['black_list']['id'], "<a target='_blank' href='https://docs.yclas.com/activate-blacklist-works/'>".__("Black List")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['black_list']['id']))?>
                             <div class="col-sm-8">
                                 <div class="onoffswitch">
                                     <?= Form::checkbox($forms['black_list']['key'], 1, (bool) $forms['black_list']['value'], array(

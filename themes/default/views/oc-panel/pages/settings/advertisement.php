@@ -11,7 +11,7 @@
     <div class="col-md-8">
         <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')), array('class'=>'form-horizontal config', 'enctype'=>'multipart/form-data'))?>
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/how-to-change-settings-for-ads/'>".__("Listing Options")."</a>"?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-change-settings-for-ads/'>".__("Listing Options")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <?foreach ($config as $c):?>
@@ -109,7 +109,7 @@
                     ?>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['ads_in_home']['key'], "<a target='_blank' href='http://docs.yclas.com/manage-ads-slider/'>".__('Advertisements in home')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['ads_in_home']['key']))?>
+                        <?= FORM::label($forms['ads_in_home']['key'], "<a target='_blank' href='https://docs.yclas.com/manage-ads-slider/'>".__('Advertisements in home')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['ads_in_home']['key']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['ads_in_home']['key'], $ads_in_home
                             , $forms['ads_in_home']['value'], array(
@@ -129,11 +129,11 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/how-to-change-settings-for-ads/'>".__("Publish Options")."</a>"?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-change-settings-for-ads/'>".__("Publish Options")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <?= FORM::label($forms['login_to_post']['key'], "<a target='_blank' href='http://docs.yclas.com/force-registration-posting-new-ad/'>".__('Require login to post')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['login_to_post']['key']))?>
+                        <?= FORM::label($forms['login_to_post']['key'], "<a target='_blank' href='https://docs.yclas.com/force-registration-posting-new-ad/'>".__('Require login to post')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['login_to_post']['key']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= FORM::hidden($forms['login_to_post']['key'], 0);?>
@@ -298,7 +298,7 @@
                     }?>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['tos']['key'], "<a target='_blank' href='http://docs.yclas.com/how_to_add_pages/'>".__('Terms of Service')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['tos']['key']))?>
+                        <?= FORM::label($forms['tos']['key'], "<a target='_blank' href='https://docs.yclas.com/how_to_add_pages/'>".__('Terms of Service')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['tos']['key']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['tos']['key'], $pages, $forms['tos']['value'], array(
                             'placeholder' => "http://foo.com/", 
@@ -366,7 +366,7 @@
         </div>
             
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/how-to-manage-advertisement-fields/'>".__("Advertisement Fields")."</a>"?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-manage-advertisement-fields/'>".__("Advertisement Fields")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -527,7 +527,7 @@
         </div>
             
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/how-to-configure-advertisement-display-option/'>".__("Advertisement Display Options")."</a>"?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-configure-advertisement-display-option/'>".__("Advertisement Display Options")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -669,7 +669,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['fbcomments']['key'], "<a target='_blank' href='http://docs.yclas.com/add-facebook-comments/'>".__('Facebook comments')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['fbcomments']['key']))?>
+                        <?= FORM::label($forms['fbcomments']['key'], "<a target='_blank' href='https://docs.yclas.com/add-facebook-comments/'>".__('Facebook comments')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['fbcomments']['key']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['fbcomments']['key'], $forms['fbcomments']['value'], array(
                             'placeholder' => "", 
@@ -685,7 +685,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['disqus']['key'], "<a target='_blank' href='http://docs.yclas.com/how-to-activate-comments-with-disqus/'>".__('Disqus')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['disqus']['key']))?>
+                        <?= FORM::label($forms['disqus']['key'], "<a target='_blank' href='https://docs.yclas.com/how-to-activate-comments-with-disqus/'>".__('Disqus')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['disqus']['key']))?>
                         <div class="col-sm-8">
                             <?= FORM::input($forms['disqus']['key'], $forms['disqus']['value'], array(
                             'placeholder' => "", 
@@ -725,7 +725,7 @@
         </div>
             
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/how-to-configure-Google-Map-Settings'>".__("Google Maps Settings")."</a>"?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/how-to-configure-Google-Map-Settings'>".__("Google Maps Settings")."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <?  $map_styles = array(
@@ -852,7 +852,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading"><a target='_blank' href='http://docs.yclas.com/review-system-works/'><?=__("Reviews Configuration")?></a></div>
+            <div class="panel-heading"><a target='_blank' href='https://docs.yclas.com/review-system-works/'><?=__("Reviews Configuration")?></a></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">

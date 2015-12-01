@@ -3,7 +3,7 @@
 <div class="page-header">
     <h1><?=__('Migration')?> from OC 1.7.x/1.8.x to 2.x</h1>
     <p><?=__("Your PHP time limit is")?> <?=ini_get('max_execution_time')?> <?=__("seconds")?>
-        <a href="http://docs.yclas.com/how-to-upgrade-1-7-x1-8-x-to-2-x/" target="_blank">How to migrate OC 1.7.x/1.8.x to 2.x</a>
+        <a href="https://docs.yclas.com/how-to-upgrade-1-7-x1-8-x-to-2-x/" target="_blank">How to migrate OC 1.7.x/1.8.x to 2.x</a>
     </p>
 </div>
 

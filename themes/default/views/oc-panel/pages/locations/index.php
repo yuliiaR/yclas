@@ -5,7 +5,7 @@
         <?=__('New Location')?>
     </a>
     <h1><?=($location->id_location > 1) ? $location->name.' – ':NULL?> <?=__('Locations')?></h1>
-    <p><?=__("Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")?> <a href="http://docs.yclas.com/how-to-add-locations/" target="_blank"><?=__('Read more')?></a></p>
+    <p><?=__("Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")?> <a href="https://docs.yclas.com/how-to-add-locations/" target="_blank"><?=__('Read more')?></a></p>
 </div>
 
 <div class="row">
@@ -154,7 +154,7 @@
             </div>
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/use-import-tool-categories-locations/'>"._('Upload CSV file')."</a>"?></div>
+                    <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/use-import-tool-categories-locations/'>"._('Upload CSV file')."</a>"?></div>
                     <div class="panel-body">
                         <p>
                             <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwa2VjRXAtV0FXVlk&export=download"><?=__('download example')?>.</a>

@@ -7,7 +7,7 @@
 <div class="page-header">
     <h1><?=__('Email Configuration')?></h1>
     <p><?=__('Email Setup and emails configuration values. Replace input fields with new desired values')?></p>
-    <p><?=sprintf(__('How to configure %s'),'<a href="http://docs.yclas.com/configure-elasticemail-open-classifieds/" target="_blank">ElasticEmail</a>')?></p>
+    <p><?=sprintf(__('How to configure %s'),'<a href="https://docs.yclas.com/configure-elasticemail-open-classifieds/" target="_blank">ElasticEmail</a>')?></p>
 </div>
 
 <div class="row">
@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/configure-elasticemail-open-classifieds/'>".__('ElasticEmail Configuration')."</a>"?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/configure-elasticemail-open-classifieds/'>".__('ElasticEmail Configuration')."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
 
@@ -125,7 +125,7 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='http://docs.yclas.com/smtp-configuration/'>".__('SMTP Configuration')."</a>"?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/smtp-configuration/'>".__('SMTP Configuration')."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
