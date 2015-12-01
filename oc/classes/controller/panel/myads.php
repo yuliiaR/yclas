@@ -205,12 +205,12 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         {
             $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
                                             '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
-                                            '//cdn.jsdelivr.net/sweetalert/1.1.3/sweet-alert.min.css' => 'screen');
+                                            '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
             
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
                                                         '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
-                                                        '//cdn.jsdelivr.net/sweetalert/1.1.3/sweet-alert.min.js',
+                                                        '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
                                                         'js/canvasResize.js',
                                                         'js/oc-panel/edit_ad.js');
@@ -219,12 +219,12 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         {
             $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
                                             '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
-                                            '//cdn.jsdelivr.net/sweetalert/1.1.3/sweet-alert.min.css' => 'screen');
+                                            '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
             
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
                                                         '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
-                                                        '//cdn.jsdelivr.net/sweetalert/1.1.3/sweet-alert.min.js',
+                                                        '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
                                                         'js/canvasResize.js',
                                                         'js/oc-panel/edit_ad.js');

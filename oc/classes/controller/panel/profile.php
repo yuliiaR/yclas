@@ -277,9 +277,9 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
             Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
             Controller::$full_width = TRUE;
             
-            $this->template->styles = array('//cdn.jsdelivr.net/sweetalert/1.1.3/sweet-alert.min.css' => 'screen');
+            $this->template->styles = array('//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
             
-            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/1.1.3/sweet-alert.min.js';
+            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js';
             $this->template->scripts['footer'][] = 'js/oc-panel/favorite.js';
 
             $favorites = new Model_Favorite();
