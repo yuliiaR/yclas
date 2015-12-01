@@ -179,9 +179,6 @@ else
                                             <p><button type="button" class="btn btn-default btn-block validate-db"><?=__('Continue')?></button></p>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p><button type="button" class="btn btn-link btn-xs toggle-panel-1"><i class="fa fa-long-arrow-left"></i> <?=__('Go back')?></button></p>
-                                                </div>
-                                                <div class="col-md-6">
                                                     <p class="text-right"><button type="button" id="show-adv-db" class="btn btn-link btn-xs"><?=__('Show advanced options')?></button></p>
                                                 </div>
                                             </div>
@@ -245,10 +242,10 @@ else
                                                             <p class="form-control-static admin_pwd"></p>
                                                         </div>
                                                         <p>
-                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL')?>"><?=__('Go to Your Website')?></a>
+                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL', install::$url)?>"><?=__('Go to Your Website')?></a>
                                                         </p>
                                                         <p>
-                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL')?>oc-panel/home/">Admin</a>
+                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL', install::$url)?>oc-panel/">Admin</a>
                                                         </p>
                                                     </div>
                                                 </div>

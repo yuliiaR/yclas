@@ -1058,11 +1058,11 @@ function __($msgid)
                                                 <h3><?=__('Site Configuration')?></h3>
                                                 <div class="form-group">
                                                     <label for="LANGUAGE" class="control-label"><?=__("Site Language")?></label>
-                                                    <select id="LANGUAGE" name="LANGUAGE" class="form-control" onchange="window.location.href='index.php?LANGUAGE='+this.options[this.selectedIndex].value" required>
+                                                    <select id="LANGUAGE" name="LANGUAGE" class="form-control" required>
                                                         <?php
                                                             foreach (install::get_languages() as $language) 
                                                             {
-                                                                $selected = ( strtolower($language)==strtolower(install::$locale)) ? 'selected="selected"' : NULL;
+                                                                $selected = ( strtolower($language)==strtolower(core::request('LANGUAGE', install::$locale))) ? ' selected="selected"' : '';
                                                                 echo "<option $selected value=\"$language\">$language</option>";
                                                             }
                                                         ?>
@@ -1125,10 +1125,10 @@ function __($msgid)
                                                             <p class="form-control-static admin_pwd"></p>
                                                         </div>
                                                         <p>
-                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL')?>"><?=__('Go to Your Website')?></a>
+                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL', install::get_url())?>"><?=__('Go to Your Website')?></a>
                                                         </p>
                                                         <p>
-                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL')?>oc-panel/home/">Admin</a>
+                                                            <a class="btn btn-default btn-block" href="<?=core::request('SITE_URL', install::get_url())?>oc-panel/">Admin</a>
                                                         </p>
                                                     </div>
                                                 </div>
