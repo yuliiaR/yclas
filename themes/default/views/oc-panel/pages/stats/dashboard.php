@@ -40,7 +40,7 @@
 <div class="row">
     <div class="col-sm-6 col-md-3">
         <div class="statcard statcard-success">
-            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'ads'))?>" class="display-block">
+            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'ads'))?>?<?=http_build_query(['rel' => ''] + Request::current()->query())?>" class="display-block">
                 <div class="p-a">
                     <span class="statcard-desc"><?=__('Ads')?></span>
                     <h2 class="statcard-number">
@@ -58,7 +58,7 @@
     </div>
     <div class="col-sm-6 col-md-3">
         <div class="statcard statcard-success">
-            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'users'))?>" class="display-block">
+            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'users'))?>?<?=http_build_query(['rel' => ''] + Request::current()->query())?>" class="display-block">
                 <div class="p-a">
                     <span class="statcard-desc"><?=__('Users')?></span>
                     <h2 class="statcard-number">
@@ -76,7 +76,7 @@
     </div>
     <div class="col-sm-6 col-md-3">
         <div class="statcard statcard-success">
-            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'visits'))?>" class="display-block">
+            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'visits'))?>?<?=http_build_query(['rel' => ''] + Request::current()->query())?>" class="display-block">
                 <div class="p-a">
                     <span class="statcard-desc"><?=__('Visits')?></span>
                     <h2 class="statcard-number">
@@ -94,7 +94,7 @@
     </div>
     <div class="col-sm-6 col-md-3">
         <div class="statcard statcard-success">
-            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'contacts'))?>" class="display-block">
+            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'contacts'))?>?<?=http_build_query(['rel' => ''] + Request::current()->query())?>" class="display-block">
                 <div class="p-a">
                     <span class="statcard-desc"><?=__('Contacts')?></span>
                     <h2 class="statcard-number">
@@ -112,7 +112,7 @@
     </div>
     <div class="col-sm-6 col-md-3">
         <div class="statcard statcard-success">
-            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'paid_orders'))?>" class="display-block">
+            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'paid_orders'))?>?<?=http_build_query(['rel' => ''] + Request::current()->query())?>" class="display-block">
                 <div class="p-a">
                     <span class="statcard-desc"><?=__('Paid Orders')?></span>
                     <h2 class="statcard-number">
@@ -130,7 +130,7 @@
     </div>
     <div class="col-sm-6 col-md-3">
         <div class="statcard statcard-success">
-            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'sales'))?>" class="display-block">
+            <a href="<?=Route::url('oc-panel', array('controller'=> Request::current()->controller(), 'action'=>'sales'))?>?<?=http_build_query(['rel' => ''] + Request::current()->query())?>" class="display-block">
                 <div class="p-a">
                     <span class="statcard-desc"><?=__('Sales')?></span>
                     <h2 class="statcard-number">
