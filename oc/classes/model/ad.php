@@ -131,7 +131,7 @@ class Model_Ad extends ORM {
             $rules['description'] = array(array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), );
         
         if (core::config('payment.stock')==1)
-            $rules['stock'] =  array(array('not_empty'),array('numeric'));
+            $rules['stock'] =  array(array('numeric'));
         
         return $rules;
     }
