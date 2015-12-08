@@ -57,6 +57,22 @@ $(function(){
 //validate auth pages
 $(function(){
     
+    $.validator.addMethod(
+        "emaildomain",
+        function(value, element, domains) {
+            if (domains.length === 0)
+                return true;
+
+            for (var i = 0; i < domains.length; i++) {
+                if (value.indexOf(("@" + domains[i]), value.length - ("@" + domains[i]).length) !== -1) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    );
+
     var $params = {rules:{}, messages:{}};
     $params['rules']['email'] = {required: true, email: true};
 
@@ -65,9 +81,10 @@ $(function(){
     });
 
     var $register_params = {rules:{}, messages:{}};
-    $register_params['rules']['email'] = {required: true, email: true};
+    $register_params['rules']['email'] = {required: true, email: true, emaildomain: $('.register :input[name="email"]').data('domain')};
     $register_params['rules']['password1'] = {required: true};
     $register_params['rules']['password2'] = {required: true};
+    $register_params['messages']['email'] = {"emaildomain" : $('.register :input[name="email"]').data('error')};
 
     $(".register").each(function() {
         $(this).validate($register_params)
