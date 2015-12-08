@@ -48,6 +48,9 @@ class Model_User extends Model_OC_User {
         foreach ($ads as $ad) 
             $ad->delete();
         
+        //bye profile pic
+        $this->delete_image();
+        
         //delete favorites
         DB::delete('favorites')->where('id_user', '=',$this->id_user)->execute();
         
