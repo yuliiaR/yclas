@@ -208,7 +208,7 @@
     <?endif?>
     <?=$ad->qr()?>
     <?if (core::config('advertisement.map')==1 AND $ad->latitude AND $ad->longitude):?>
-        <p><img class="img-responsive" src="//maps.googleapis.com/maps/api/staticmap?zoom=<?=Core::config('advertisement.map_zoom')?>&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:large%7Ccolor:red%7Clabel:·%7C<?=$ad->latitude?>,<?=$ad->longitude?>" alt="<?=$ad->title?> <?=__('Map')?>" style="width:100%;"></p>
+        <p><img class="img-responsive" src="//maps.googleapis.com/maps/api/staticmap?zoom=<?=Core::config('advertisement.map_zoom')?>&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:large%7Ccolor:red%7Clabel:·%7C<?=$ad->latitude?>,<?=$ad->longitude?>" alt="<?=HTML::chars($ad->title)?> <?=__('Map')?>" style="width:100%;"></p>
         <p><a class="btn btn-default btn-sm" href="<?=Route::url('map')?>?category=<?=$ad->category->seoname?>&location=<?=$ad->location->seoname?>"><span class="glyphicon glyphicon-globe"></span> <?=__('Map View')?></a></p>
     <?endif?>
     <?=$ad->related()?>
