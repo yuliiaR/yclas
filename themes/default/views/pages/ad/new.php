@@ -211,6 +211,7 @@
 							<div class="col-md-4">
 								<?if (Core::config('general.recaptcha_active')):?>
 									<?=Captcha::recaptcha_display()?>
+									<div id="recaptcha1"></div>
 								<?else:?>
 									<?= FORM::label('captcha', __('Captcha'), array('for'=>'captcha'))?>
 									<span id="helpBlock" class="help-block"><?=captcha::image_tag('publish_new')?></span>
