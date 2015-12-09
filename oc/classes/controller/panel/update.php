@@ -20,6 +20,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'email_domains',
                                'group_name'     => 'general',
                                'config_value'   => ''),
+                        array( 'config_key'     => 'paysbuy',
+                               'group_name'     => 'payment',
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'paysbuy_sandbox',
+                               'group_name'     => 'payment',
+                               'config_value'   => '0'),
                         );
         
         Model_Config::config_array($configs);  
