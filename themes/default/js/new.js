@@ -432,8 +432,10 @@ $(function(){
                                             }
                                         }
                                     };
-    $params['messages']['price'] =   {"regex" : $('.post_new :input[name="price"]').data('error')};
-    $params['messages']['captcha'] =   {"remote" : $('.post_new :input[name="captcha"]').data('error')};
+    $params['rules']['email'] = {emaildomain: $('.post_new :input[name="email"]').data('domain')};
+    $params['messages']['price'] = {"regex" : $('.post_new :input[name="price"]').data('error')};
+    $params['messages']['captcha'] = {"remote" : $('.post_new :input[name="captcha"]').data('error')};
+    $params['messages']['email'] = {"emaildomain" : $('.post_new :input[name="email"]').data('error')};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
     var $form = $(".post_new");

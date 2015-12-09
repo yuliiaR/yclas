@@ -192,7 +192,14 @@
 						<div class="form-group">
 							<div class="col-md-4">
 								<?= FORM::label('email', (core::config('payment.paypal_seller')==1)?__('Paypal Email'):__('Email'), array('for'=>'email'))?>
-								<?= FORM::input('email', Request::current()->post('email'), array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>(core::config('payment.paypal_seller')==1)?__('Paypal Email'):__('Email')))?>
+								<?= FORM::input('email', Request::current()->post('email'), array('class'=>'form-control',
+									'id'=>'email',
+									'type'=>'email',
+									'required',
+									'placeholder' => (core::config('payment.paypal_seller')==1) ? __('Paypal Email') : __('Email'),
+									'data-domain' => (core::config('general.email_domains') != '') ? json_encode(explode(',', core::config('general.email_domains'))) : '',
+									'data-error' => __('Email must contain a valid email domain')
+									))?>
 							</div>
 						</div>
 					<?endif?>
@@ -211,6 +218,7 @@
 							<div class="col-md-4">
 								<?if (Core::config('general.recaptcha_active')):?>
 									<?=Captcha::recaptcha_display()?>
+									<div id="recaptcha1"></div>
 								<?else:?>
 									<?= FORM::label('captcha', __('Captcha'), array('for'=>'captcha'))?>
 									<span id="helpBlock" class="help-block"><?=captcha::image_tag('publish_new')?></span>

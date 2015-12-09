@@ -183,6 +183,7 @@
                                         <div class="col-md-4">
                                             <?if (Core::config('general.recaptcha_active')):?>
                                                 <?=Captcha::recaptcha_display()?>
+                                                <div id="recaptcha1"></div>
                                             <?else:?>
                                                 <?=captcha::image_tag('contact')?><br />
                                                 <?= FORM::input('captcha', "", array('class'=>'form-control', 'id' => 'captcha', 'required'))?>

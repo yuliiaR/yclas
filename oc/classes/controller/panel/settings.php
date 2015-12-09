@@ -185,6 +185,8 @@ class Controller_Panel_Settings extends Auth_Controller {
     public function action_general()
     {
         // validation active 
+        $this->template->styles  = array('//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
+        $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
         $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
         $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         
