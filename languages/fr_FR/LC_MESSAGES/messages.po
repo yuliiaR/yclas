@@ -609,11 +609,11 @@ msgstr "Sauvegarde tous vos fichiers et la base de données"
 
 #: String 149
 msgid "Banned word replacement replaces selected array with the string you provided."
-msgstr "Tous mot interdit trouvé sera remplacé par le texte que vous voulez."
+msgstr "Tout mot interdit trouvé sera remplacé par le mot que vous indiquez ici."
 
 #: String 150
 msgid "Banned words"
-msgstr "Mot interdits"
+msgstr "Mots interdits"
 
 #: String 151
 msgid "Banned words are separated with coma (,)"
@@ -621,7 +621,7 @@ msgstr "Les mots interdits doivent être séparés par une virgule (,)"
 
 #: String 152
 msgid "Banned words replacement"
-msgstr "Les mots qui remplacent les mots interdits"
+msgstr "Mot qui remplace les mots interdits"
 
 #: String 153
 msgid "BBCODE editor appears in description field."
@@ -1013,7 +1013,7 @@ msgstr "Contenu affiché de droite à gauche"
 
 #: String 250
 msgid "Content that will be displayed to the user after he publishes an ad"
-msgstr "Le contenu a afficher à l'utilisateur après la publication d'une nouvelle annonce"
+msgstr "Le contenu a afficher à l'utilisateur après sa publication d'une nouvelle annonce"
 
 #: String 251
 msgid "Continent"
@@ -1709,11 +1709,11 @@ msgstr "Email"
 
 #: String 424
 msgid "Email Configuration"
-msgstr "Configuration e-mail"
+msgstr "Emails et Paramètres de messagerie"
 
 #: String 425
 msgid "Email Configuration updated"
-msgstr "Configuration des e-mails mise à jour"
+msgstr "La configuration des e-mails  a été mise à jour"
 
 #: String 426
 msgid "Email confirmation on"
@@ -1741,7 +1741,7 @@ msgstr "Paramètres de messagerie"
 
 #: String 432
 msgid "Email Setup and emails configuration values. Replace input fields with new desired values"
-msgstr "Installation des courriers d'email et configuration des valeurs des email de configuration. Remplacer les champs d'entrée avec de nouvelles valeurs souhaitées"
+msgstr "Configuration du service de messagerie d'envoi des courriers d'email et configuration des valeurs des email de configuration. Remplacer les champs d'entrée avec les nouvelles valeurs appropriées"
 
 #: String 433
 msgid "Email to recover password sent"
@@ -1769,7 +1769,7 @@ msgstr "Activer avis"
 
 #: String 439
 msgid "Enables an alert to accept cookies"
-msgstr "Permet une alerte pour accepter les cookies"
+msgstr "Afficher une alerte pour accepter les cookies"
 
 #: String 440
 msgid "Enables Captcha"
@@ -1777,11 +1777,11 @@ msgstr "Active le Captcha"
 
 #: String 441
 msgid "Enables Contact Form"
-msgstr "Autorise le formulaire de contact"
+msgstr "Affiche le formulaire de contact"
 
 #: String 442
 msgid "Enables reviews for ads and the users."
-msgstr "Permet avis pour les annonces et les utilisateurs."
+msgstr "Active le système de notation et appréciations pour les annonces et les utilisateurs."
 
 #: String 443
 msgid "Enables the site to maintenance"
@@ -1801,11 +1801,11 @@ msgstr "Erreur"
 
 #: String 447
 msgid "Error on mail delivery, not sent"
-msgstr "Erreur lors de l'envoi de l'email, pas envoyé"
+msgstr "Erreur lors de l'envoi de l'email, Email pas envoyé"
 
 #: String 448
 msgid "Error: please try again!"
-msgstr "Erreur, essayez à nouveau !"
+msgstr "Erreur, veuillez svp essayer à nouveau"
 
 #: String 449
 msgid "Expiration Date"
@@ -1817,7 +1817,7 @@ msgstr "Jours avant expiration"
 
 #: String 451
 msgid "Export"
-msgstr "Export"
+msgstr "Exporter"
 
 #: String 452
 msgid "Export all"
@@ -1857,11 +1857,11 @@ msgstr "Favoris"
 
 #: String 461
 msgid "Favorited"
-msgstr "En favoris"
+msgstr "Mis dans vos favoris"
 
 #: String 462
 msgid "Favorite not found"
-msgstr "Favoris introuvable"
+msgstr "Favori introuvable"
 
 #: String 463
 msgid "Feature ad"
@@ -1869,7 +1869,7 @@ msgstr "Caractéristique de l'annonce"
 
 #: String 464
 msgid "Featured"
-msgstr "Mis en avant"
+msgstr "Mise en avant"
 
 #: String 465
 msgid "Featured ads"
@@ -1897,7 +1897,7 @@ msgstr "Plans Sélection"
 
 #: String 471
 msgid "Featured plan updated"
-msgstr "Sélection de plan de mise à jour"
+msgstr "Le plan a été mis à jour"
 
 #: String 472
 msgid "Featured Random"
@@ -1925,7 +1925,7 @@ msgstr ":field doit être une date"
 
 #: String 478
 msgid ":field must be a decimal with :param2 places"
-msgstr ":field doit être un nombre décimal avec :param2 place"
+msgstr ":field doit être un nombre décimal avec :param2 places"
 
 #: String 479
 msgid ":field must be a digit"
@@ -1945,7 +1945,7 @@ msgstr ":field doit être un numéro de téléphone"
 
 #: String 483
 msgid ":field must be at least :param2 characters long"
-msgstr ":field doit être au moins :param2 caractères de long"
+msgstr ":field doit avoir au moins :param2 caractères de long"
 
 #: String 484
 msgid ":field must be a url"
@@ -1953,7 +1953,7 @@ msgstr ":field doit être une URL"
 
 #: String 485
 msgid ":field must be exactly :param2 characters long"
-msgstr ":field doit être exactement : param2 caractères de long"
+msgstr ":field doit avoir exactement : param2 caractères de long"
 
 #: String 486
 msgid ":field must be numeric"
@@ -1965,11 +1965,11 @@ msgstr ":field doit être l'une des options disponibles"
 
 #: String 488
 msgid ":field must be the same as :param3"
-msgstr ":field doit être le même que:param3"
+msgstr ":field doit être le même que :param3"
 
 #: String 489
 msgid ":field must be within the range of :param2 to :param3"
-msgstr ":field doit être dans l'interval de :param2 to :param3"
+msgstr ":field doit avoir une valeur comprise dans l'intervalle :param2 à :param3"
 
 #: String 490
 msgid ":field must contain a valid email domain"
@@ -1977,15 +1977,15 @@ msgstr ":field doit contenir un domaine email valide"
 
 #: String 491
 msgid ":field must contain only letters"
-msgstr ":field doivent contenir que des lettres"
+msgstr "::field doit contenir uniquement des lettres"
 
 #: String 492
 msgid ":field must contain only letters and numbers"
-msgstr ":field doit contenir que des lettres et des chiffres"
+msgstr ":field doit contenir que des lettres ou des chiffres"
 
 #: String 493
 msgid ":field must contain only numbers, letters and dashes"
-msgstr ":field doit contenir que des chiffres, des lettres et des tirets"
+msgstr ":field doit contenir que des chiffres, des lettres ou des tirets"
 
 #: String 494
 msgid ":field must equal :param2"
@@ -2197,7 +2197,7 @@ msgstr "de %s"
 
 #: String 546
 msgid "GCM API Key"
-msgstr "GCM clé API"
+msgstr "Clé API GCM"
 
 #: String 547
 msgid "General"
@@ -2277,7 +2277,7 @@ msgstr "Paramètres Google Maps"
 
 #: String 566
 msgid "Google Maps with ads"
-msgstr "Carte Google avec les annonces"
+msgstr "Carte Google dans les annonces"
 
 #: String 567
 msgid "Google map zoom level"
@@ -2289,11 +2289,11 @@ msgstr "En avant !"
 
 #: String 569
 msgid "Go to top"
-msgstr "Vers le haut"
+msgstr "Remonter en haut"
 
 #: String 570
 msgid "Go to Website"
-msgstr "Accédez au site Web"
+msgstr "Accéder au site Web"
 
 #: String 571
 msgid "Go to Your Website"
@@ -2329,7 +2329,7 @@ msgstr "Bannière en-tête, permet le HTML"
 
 #: String 579
 msgid "Header tool bar gets fixed in the top"
-msgstr "Barre d'outils En-tête se fixe au sommet"
+msgstr "Fixer la barre d'outils de l'en-tête en haut de l'écran"
 
 #: String 580
 msgid "Heads Up!"
@@ -3225,7 +3225,7 @@ msgstr "Mettre en avant?"
 
 #: String 803
 msgid "Manage ads you published and edit them through this tab, you can also ask to feature or place your ad to top here."
-msgstr "Gérer les annonces que vous publiez et éditez les icic; vous pouvez également mettre votre annonce en avant ou en favorite; ou placer votre annonce bien visible en haut de page."
+msgstr "Gérer les annonces que vous publiez et éditez les ici; vous pouvez également mettre votre annonce en avant ou en favorite; ou placer votre annonce bien visible en haut de page."
 
 #: String 804
 msgid "MANDATORY"
@@ -3593,7 +3593,7 @@ msgstr "Rien n'a été trouvé, désolé!"
 
 #: String 895
 msgid "Nothing is provided"
-msgstr "Aucune donnée n'a été donné"
+msgstr "Aucune donnée n'a été fournie"
 
 #: String 896
 msgid "Notify email"
@@ -3625,7 +3625,7 @@ msgstr "Pas encore publiée"
 
 #: String 903
 msgid "Not your advertisement"
-msgstr "C'est n'est pas votre annonce"
+msgstr "Ce n'est pas votre annonce"
 
 #: String 904
 msgid "No way!"
@@ -4117,7 +4117,7 @@ msgstr "Veuillez svp d'abord créer des catégories d'annonces."
 
 #: String 1026
 msgid "Please, first create some Forums."
-msgstr "Veuillez svp  d'abord créer un ou des forums."
+msgstr "Veuillez svp d'abord créer un ou des forums."
 
 #: String 1027
 msgid "Please fix this field."
@@ -4373,7 +4373,7 @@ msgstr "Création rapide des catégories"
 
 #: String 1090
 msgid "Quick location creator."
-msgstr "Création rapide de lieux"
+msgstr "Création rapide des lieux"
 
 #: String 1091
 msgid "Radio"
@@ -4581,7 +4581,7 @@ msgstr "Connexion obligatoire pour publier"
 
 #: String 1142
 msgid "Require only the logged in users to contact."
-msgstr "Seuls les utilisateurs connecté peuvent contacter"
+msgstr "Seuls les utilisateurs connectés peuvent contacter"
 
 #: String 1143
 msgid "Require only the logged in users to post."
@@ -5277,7 +5277,7 @@ msgstr "Merci pour votre paiement!"
 
 #: String 1316
 msgid "Thanks for your review!"
-msgstr "Merci pour votre avis!"
+msgstr "Merci pour votre avis et appréciation!"
 
 #: String 1317
 msgid "Thanks page"
@@ -5305,7 +5305,7 @@ msgstr "Le thème a bien été téléchargé"
 
 #: String 1323
 msgid "Theme License"
-msgstr "License du thème"
+msgstr "Licence du thème"
 
 #: String 1324
 msgid "Theme Options"
@@ -5357,7 +5357,7 @@ msgstr "Ce n'est pas votre annonce."
 
 #: String 1336
 msgid "This is permanent! No backups, no restores, no magic undo button. We warned you, ok?"
-msgstr "Ceci est permanent! Aucune sauvegarde, aucune restauration ou de bouton magique d'annulation. Nous vous avons prévenu, ok?"
+msgstr "Ceci est permanent! Aucune sauvegarde, aucune restauration ou bouton magique d'annulation. Nous vous avons prévenu, ok?"
 
 #: String 1337
 msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
@@ -5373,7 +5373,7 @@ msgstr "Cette commande a été déjà été payée."
 
 #: String 1340
 msgid "This post has been considered as spam! We are sorry but we can not publish this advertisement."
-msgstr "Ce message a été considéré comme un spam! Nous sommes désolés mais nous ne pouvons pas publier cette annonce."
+msgstr "Cette annonce a été considérée comme du spam! Nous sommes désolés mais nous ne pouvons pas la publier."
 
 #: String 1341
 msgid "This process can take few minutes DO NOT interrupt it"
@@ -5469,7 +5469,7 @@ msgstr "Permet d'inclure du code HTML spécifique (référence à des JS/CSS, et
 
 #: String 1364
 msgid "To include your custom HTML code (validation metadata, reference to JS/CSS files, etc.) in the HEAD element of the rendered page."
-msgstr "Permet d'inclure du code HTML spécifique (métadonnées de validation, référence à des fichiers JS/CSS, etc.) dans l'entête des pages génerées et affichées."
+msgstr "Permet d'inclure du code HTML spécifique (métadonnées de validation, référence à des JS/CSS, etc.) dans l'entête des pages génerées et affichées."
 
 #: String 1365
 msgid "To install new theme choose zip file."
@@ -5685,7 +5685,7 @@ msgstr "Téléchargez l'image du logo"
 
 #: String 1418
 msgid "Upload location icon"
-msgstr "Téléchargez l'icône de lieu"
+msgstr "Téléchargez l'icône du lieu"
 
 #: String 1419
 msgid "Upload your favicon. Leave blank for none."
@@ -6045,7 +6045,7 @@ msgstr "Hier"
 
 #: String 1508
 msgid "You already added a review"
-msgstr "Vous avez déjà ajouté une appréciation"
+msgstr "Vous avez déjà ajouté votre appréciation ou votre avis"
 
 #: String 1509
 msgid "You are assigning a parent category that does not exist"
