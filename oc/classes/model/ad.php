@@ -924,7 +924,7 @@ class Model_Ad extends ORM {
                                 $cf_value = ($cf_value)?'checkbox_'.$cf_value:NULL;
                                 break;
                             case 'radio':
-                                $cf_value = $cf_config->$cf_name->values[$cf_value-1];
+                                $cf_value = isset($cf_config->$cf_name->values[$cf_value-1]) ? $cf_config->$cf_name->values[$cf_value-1] : NULL;
                                 break;
                             case 'date':
                                 $cf_value = Date::format($cf_value, core::config('general.date_format'));

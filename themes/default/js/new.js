@@ -240,9 +240,31 @@ $('textarea[name=description]:not(.disable-bbcode)').sceditorBBCodePlugin({
 	
 // paste plain text in sceditor
 $(".sceditor-container iframe").contents().find("body").bind('paste', function(e) {
-    e.preventDefault();
-    var text = (e.originalEvent || e).clipboardData.getData('text/plain');
-    $(".sceditor-container iframe")[0].contentWindow.document.execCommand('insertText', false, text);
+    var text = ''; var that = $(this);
+
+    if (e.clipboardData)
+        text = e.clipboardData.getData('text/plain');
+    else if (window.clipboardData)
+        text = window.clipboardData.getData('Text');
+    else if (e.originalEvent.clipboardData)
+        text = $('<div></div>').text(e.originalEvent.clipboardData.getData('text'));
+
+        
+    if (document.queryCommandSupported('insertText')) {
+        document.execCommand('insertHTML', false, $(text).html());
+        return false;
+    }
+    else { // IE > 7
+        that.find('*').each(function () {
+             $(this).addClass('within');
+        });
+
+        setTimeout(function () {
+            that.find('*').each(function () {
+                $(this).not('.within').contents().unwrap();
+            });
+        }, 1);
+    }
 });	
 
 // google map set marker on address
