@@ -67,7 +67,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_api_token` (`api_token`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_seoname` (`seoname`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_provider_AND_uid` (`hybridauth_provider_name`,`hybridauth_provider_uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."categories` (
@@ -84,7 +84,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `has_image` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_IK_seo_name` (`seoname`)
-) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."locations` (
@@ -101,7 +101,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `longitude` float(10,6) NULL DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
-) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."ads` (
@@ -133,10 +133,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   KEY `".core::request('TABLE_PREFIX')."ads_IK_id_category` (`id_category`),
   KEY `".core::request('TABLE_PREFIX')."ads_IK_title` (`title`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."ads_UK_seotitle` (`seotitle`),
-  KEY `".core::request('TABLE_PREFIX')."ads_IK_status` (`status`),
-  CONSTRAINT `".core::request('TABLE_PREFIX')."ads_FK_id_user_AT_users` FOREIGN KEY (`id_user`) REFERENCES `".core::request('TABLE_PREFIX')."users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `".core::request('TABLE_PREFIX')."ads_FK_id_category_AT_categories` FOREIGN KEY (`id_category`) REFERENCES `".core::request('TABLE_PREFIX')."categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+  KEY `".core::request('TABLE_PREFIX')."ads_IK_status` (`status`)
+) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."visits` (
