@@ -595,6 +595,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'search_multi_catloc', 0),
 ('general', 'gcm_apikey', ''),
 ('general', 'email_domains', ''),
+('general', 'cron', 1),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),
