@@ -236,6 +236,12 @@ img#captcha_img_publish_new {
   padding: 5px;
 }
 /*Media screens*/
+@media only screen and (max-width : 480px) {
+  .modal-body{
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+  }
+}
 @media screen and (max-width: 1199px) {
 	.header-search{display: none;}
 	/*header .container{width: 770px;}*/

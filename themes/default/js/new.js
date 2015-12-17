@@ -251,7 +251,7 @@ $(".sceditor-container iframe").contents().find("body").bind('paste', function(e
 
         
     if (document.queryCommandSupported('insertText')) {
-        document.execCommand('insertHTML', false, $(text).html());
+        $(".sceditor-container iframe")[0].contentWindow.document.execCommand('insertHTML', false, $(text).html());
         return false;
     }
     else { // IE > 7
