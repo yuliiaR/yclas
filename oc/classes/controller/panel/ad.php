@@ -200,10 +200,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 					if ($spam_ad->status != Model_Ad::STATUS_SPAM)
 					{
 						//mark user as spamer
-						$user = new Model_User($spam_ad->user->id_user);
-						if($user->loaded())
-							$user->user_spam();
-
+						$spam_ad->user->user_spam();
+                        //mark as as spam
 						$spam_ad->status = Model_Ad::STATUS_SPAM;
 						
 						try{
