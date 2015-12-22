@@ -98,7 +98,7 @@ catch(e){}
                             </td>
                             <td class="col-md-9">
                                 <?=__('Coupon')?> '<?=$order->coupon->name?>'
-                                <?=__('valid until')?> <?=Date::format($order->coupon->valid_date)?>.
+                                <?=sprintf(__('valid until %s'), Date::format($order->coupon->valid_date, core::config('general.date_format')))?>.
                             </td>
                             <td class="col-md-2 text-center text-danger">
                                 -<?=i18n::format_currency($discount, $order->currency)?>
