@@ -254,7 +254,7 @@
         </div>
 
          <div class="panel panel-default">
-            <div class="panel-heading">2checkout</div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/2checkout-configuration/'>".__('2checkout')."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
 
