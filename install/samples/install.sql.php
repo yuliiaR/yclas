@@ -653,6 +653,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'sharing', '0'),
 ('advertisement', 'logbee', 0),
 ('advertisement', 'leave_alert', 1),
+('advertisement', 'validate_banned_words', 0),
 ('email', 'notify_email', '".core::request('ADMIN_EMAIL')."'),
 ('email', 'smtp_active', 0),
 ('email', 'new_ad_notify', 0),
