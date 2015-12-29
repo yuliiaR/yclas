@@ -183,3 +183,65 @@ $(function(){
             $('.off-line').hide();
     }, 250);
 });
+
+$(function(){
+    // Check for LocalStorage support.
+    if (localStorage && $('#Widget_RecentlySearched')) {
+        $('.Widget_RecentlySearched').hide();
+        var recentSearches = [];
+
+        if (localStorage["recentSearches"]) {
+            $('.Widget_RecentlySearched').show();
+            recentSearches = JSON.parse(localStorage['recentSearches']);
+
+            var list = $('ul#Widget_RecentlySearched')
+
+            $.each(recentSearches, function(i) {
+
+                values = JSON.parse(this);
+                var text = '';
+
+                $.each(values, function(j) {
+                    if (jQuery.type(this) === 'string' && this != '' && this != values.serialize)
+                        text = text + this + ' - ';
+                })
+
+                text = text.slice(0,-3)
+
+                var li = $('<li/>')
+                    .appendTo(list);
+                var a = $('<a/>')
+                    .attr('href', $('#Widget_RecentlySearched').data('url') + '?' + values.serialize)
+                    .text(text)
+                    .appendTo(li);
+            })
+        }
+
+        form = 'form[action*="' + $('#Widget_RecentlySearched').data('url') + '"]';
+
+        // Add an event listener for form submissions
+        $(form).on('submit', function() {
+
+            var $inputs = $(form + ':first :input');
+            var values = {};
+
+            $inputs.each(function() {
+                if (this.name) {
+                    values[this.name] = $(this).val();
+                }
+            });
+
+            values['serialize'] = $(form + ':first').serialize();
+
+            values = JSON.stringify(values);
+
+            recentSearches.unshift(values);
+            if (recentSearches.length > $('#Widget_RecentlySearched').data('max-items')) { 
+                recentSearches.pop();
+            }
+
+            localStorage['recentSearches'] = JSON.stringify(recentSearches);
+        });
+
+    }
+});
