@@ -56,7 +56,7 @@ Theme::$scripts['footer']	= array('//ajax.googleapis.com/ajax/libs/jquery/1.10.2
                                     '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/js/bootstrap-datepicker.js',
                                     '//cdn.jsdelivr.net/holder/2.8.1/holder.min.js',
                                     'js/bootstrap-slider.js',
-                                    'js/favico-0.3.8.min.js',
+                                    'js/favico.min.js',
                                     'js/default.init.js?v='.Core::VERSION,
                                     'js/theme.init.js?v='.Core::VERSION,
                                     );
