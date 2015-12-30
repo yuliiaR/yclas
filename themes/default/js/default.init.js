@@ -222,7 +222,7 @@ $(function(){
         // Add an event listener for form submissions
         $(form).on('submit', function() {
 
-            var $inputs = $(form + ':first :input');
+            var $inputs = $(this).find(':input:not(:button):not(:checkbox):not(:radio)');
             var values = {};
 
             $inputs.each(function() {
@@ -231,7 +231,7 @@ $(function(){
                 }
             });
 
-            values['serialize'] = $(form + ':first').serialize();
+            values['serialize'] = $(this).serialize();
 
             values = JSON.stringify(values);
 
