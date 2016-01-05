@@ -501,7 +501,9 @@ function clearFileInput($input) {
             $input.unwrap().appendTo($tmpEl).unwrap();
         } else {
             $input.wrap('<form>').closest('form').trigger('reset').unwrap();
-        }   
+        }
+    } else if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        $input.replaceWith($input.clone());
     } else {
         $input.val('');
     }

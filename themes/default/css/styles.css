@@ -175,11 +175,6 @@ li{
 .caption{word-wrap:break-word;}
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus{background-color: #2fa3e6;}
 
-/*bbcode style fix*/
-div.sceditor-group{padding: 1px 15px 5px 5px!important;}
-.sceditor-button{padding: 0px 0px 0px 2px!important; width: 20px!important;}
-.sceditor-button, .sceditor-button div{margin-top: 3px!important;}
-
 .favorite i {font-size:20px;color:#888888;}
 .favorite .remove-favorite i {color:#C9302C;}
 
