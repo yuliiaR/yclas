@@ -11,6 +11,33 @@
 class Model_User extends Model_OC_User {
 
     /**
+     * global Model User instance get from controller so we can access from anywhere like Model_User::current()
+     * @var Model_User
+     */
+    protected static $_current = NULL;
+
+    /**
+     * returns the current user used when navidating the site, not the current loged user!
+     * @return Model_User
+     */
+    public static function current()
+    {
+        //we don't have so let's retrieve
+        if (self::$_current === NULL AND 
+            Request::current()->param('seoname') != NULL AND  
+            strtolower(Request::current()->action())=='profile' AND  
+            strtolower(Request::current()->controller())=='user' )
+        {
+            self::$_current = new self;
+            self::$_current = self::$_current->where('seoname','=', Request::current()->param('seoname'))
+             ->where('status','=', Model_User::STATUS_ACTIVE)
+             ->limit(1)->cached()->find();
+        }
+
+        return self::$_current;
+    }
+
+    /**
      * saves the user review rates recalculating it
      * @return [type] [description]
      */
