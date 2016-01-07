@@ -2,7 +2,9 @@
 
 <div class="page-header">
     <h1><?=__('My Favorites')?></h1>
-    <a target='_blank' href='https://docs.yclas.com/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>
+    <?if (Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN) :?>
+        <a target='_blank' href='https://docs.yclas.com/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>
+    <?endif?>
 </div>
 
 <div class="panel panel-default">
