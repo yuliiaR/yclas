@@ -77,7 +77,13 @@
 						<div class="form-group">
 							<div class="col-md-9">
 								<?= FORM::label('description', __('Description'), array('for'=>'description', 'spellcheck'=>TRUE))?>
-								<?= FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description' ,  'rows'=>10, 'required'))?>
+								<?=FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 
+									'name'=>'description', 
+									'id'=>'description', 
+									'rows'=>10, 
+									'required',
+									'data-bannedwords' => (core::config('advertisement.banned_words') != '') ? json_encode(explode(',', core::config('advertisement.banned_words'))) : '',
+									'data-error' => __('This field must not contain banned words ({0})')))?>
 							</div>
 						</div>
 					<?endif?>
