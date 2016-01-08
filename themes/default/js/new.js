@@ -455,9 +455,11 @@ $(function(){
                                         }
                                     };
     $params['rules']['email'] = {emaildomain: $('.post_new :input[name="email"]').data('domain')};
+    $params['rules']['description'] = {nobannedwords: $('.post_new :input[name="description"]').data('bannedwords')};
     $params['messages']['price'] = {"regex" : $('.post_new :input[name="price"]').data('error')};
     $params['messages']['captcha'] = {"remote" : $('.post_new :input[name="captcha"]').data('error')};
     $params['messages']['email'] = {"emaildomain" : $('.post_new :input[name="email"]').data('error')};
+    $params['messages']['description'] = {"nobannedwords" : $('.post_new :input[name="description"]').data('error')};
 
     $.validator.setDefaults({ ignore: ":hidden:not(select)" });
     var $form = $(".post_new");

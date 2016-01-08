@@ -73,6 +73,22 @@ $(function(){
         }
     );
 
+    $.validator.addMethod(
+        "nobannedwords",
+        function(value, element, words) {
+            if (words.length === 0)
+                return true;
+
+            for (var i = 0; i < words.length; i++) {
+                if (value.indexOf(words[i]) !== -1) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    );
+
     var $params = {rules:{}, messages:{}};
     $params['rules']['email'] = {required: true, email: true};
 
