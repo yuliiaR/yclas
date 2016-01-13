@@ -114,7 +114,7 @@
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 span6">
-                        <p><?=Text::bb2html($review->description,TRUE)?></p>                        
+                        <div class="text-description"><?=Text::bb2html($review->description,TRUE)?></div>                        
                         <!-- <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span> -->
                     </div>
                     <span class="clearfix borda"></span>

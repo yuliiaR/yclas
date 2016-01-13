@@ -5,7 +5,7 @@
 	<div class="page-header">
 		<h1><?=$content->title?></h1>
 	</div>
-	<?=$content->description?>
+	<div class="text-description"><?=$content->description?></div>
 	<br>
 <?else:?>
 	<div class="page-header">
