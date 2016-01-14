@@ -26,6 +26,11 @@ ol, ul {
 .text-description ol {
     list-style-type: decimal; 
 }
+.blog-description img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
 .resp-header-search {display: none; margin-bottom: 10px;}
 .logo{padding:5px 15px;max-height: 50px;}
 .logo img {max-height: 40px;}
