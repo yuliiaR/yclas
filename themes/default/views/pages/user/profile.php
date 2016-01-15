@@ -11,9 +11,9 @@
         </a>
     </div>
     <div class="col-md-9">
-        <p>
+        <div class="text-description">
             <?=$user->description?>
-        </p>
+        </div>
     </div>
 </div>
 

@@ -3,7 +3,7 @@
 <div class="page-header">
     <h1><?=__('My Favorites')?></h1>
     <?if (Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN) :?>
-        <a target='_blank' href='https://docs.yclas.com/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>
+        <small><a target='_blank' href='https://docs.yclas.com/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>
     <?endif?>
 </div>
 
