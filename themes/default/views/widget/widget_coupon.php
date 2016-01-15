@@ -1,4 +1,4 @@
-<?if(Model_Coupon::available() AND Theme::get('premium')==1):?>
+<?if(Theme::get('premium')==1 AND Model_Coupon::available()):?>
 <h3><?=$widget->text_title?></h3>
 
 <form class=""  method="post" action="<?=URL::current()?>">         

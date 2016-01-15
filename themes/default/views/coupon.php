@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<?if(Model_Coupon::available() AND Theme::get('premium')==1):?>
+<?if(Theme::get('premium')==1 AND Model_Coupon::available()):?>
 <form class="form-inline"  method="post" action="<?=URL::current()?>">         
     <?if (Model_Coupon::current()->loaded()):?>
         <?=Form::hidden('coupon_delete',Model_Coupon::current()->name)?>
