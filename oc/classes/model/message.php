@@ -360,43 +360,30 @@ class Model_Message extends ORM {
      */
     public static function get_threads($user, $status = NULL)
     {
-
-        
-
-        //I get first the last message grouped by parent.
-        
-        /*SELECT m1.id_message FROM oc2_messages m1 
-        LEFT JOIN oc2_messages m2 
-        ON ( m1.id_message<m2.id_message and m1.id_message_parent=m2.id_message_parent )
-        WHERE m2.id_message IS NULL AND (m1.id_user_from = 1 OR m1.id_user_to = 1)*/
-
         //I get first the last message grouped by parent.
         //we do this since I need to know if was written, the text and the creation date
-        $query = DB::select('m1.id_message')
-                ->from(array('messages','m1'))
-                    ->join(array('messages','m2'),'LEFT')
-                        ->on('m1.id_message','<','m2.id_message')
-                        ->on('m1.id_message_parent','=','m2.id_message_parent')
-                ->where('m2.id_message','IS',NULL);
+       
+        $query = DB::select(DB::expr('MAX(`id_message`) as id_message'))
+                ->from('messages');
 
         //filter by status
         if ($status!==NULL AND is_numeric($status))
         {
             switch ($status) {
                 case Model_Message::STATUS_NOTREAD:
-                    $query  ->where('m1.id_user_to','=',$user->id_user)
-                            ->where('m1.status_to','=',Model_Message::STATUS_NOTREAD);
+                    $query  ->where('id_user_to','=',$user->id_user)
+                            ->where('status_to','=',Model_Message::STATUS_NOTREAD);
                     break;
                 
                 default:
                     $query  ->where_open()
                             ->where_open()
-                            ->where('m1.id_user_to','=',$user->id_user)
-                            ->where('m1.status_to','=',$status)
+                            ->where('id_user_to','=',$user->id_user)
+                            ->where('status_to','=',$status)
                             ->where_close()
                             ->or_where_open()
-                            ->where('m1.id_user_from','=',$user->id_user)
-                            ->where('m1.status_from','=',$status)
+                            ->where('id_user_from','=',$user->id_user)
+                            ->where('status_from','=',$status)
                             ->where_close()
                             ->where_close();
 
@@ -408,17 +395,19 @@ class Model_Message extends ORM {
         {
             $query  ->where_open()
                     ->where_open()
-                    ->where('m1.id_user_to','=',$user->id_user)
-                    ->where('m1.status_to','in',array(Model_Message::STATUS_NOTREAD,Model_Message::STATUS_READ))
+                    ->where('id_user_to','=',$user->id_user)
+                    ->where('status_to','in',array(Model_Message::STATUS_NOTREAD,Model_Message::STATUS_READ))
                     ->where_close()
                     ->or_where_open()
-                    ->where('m1.id_user_from','=',$user->id_user)
-                    ->where('m1.status_from','in',array(Model_Message::STATUS_NOTREAD,Model_Message::STATUS_READ))
+                    ->where('id_user_from','=',$user->id_user)
+                    ->where('status_from','in',array(Model_Message::STATUS_NOTREAD,Model_Message::STATUS_READ))
                     ->where_close()
                     ->where_close();
         }
+
+        $query ->group_by('id_message_parent')
+                ->order_by('id_message');
             
-        
         $ids = $query->execute()->as_array();
         
         //get the model ;)
