@@ -1,7 +1,7 @@
 <html>
 <head>
     <title><?=$title?></title>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/maplace.js/0.1.3/maplace.min.js"></script>
     
