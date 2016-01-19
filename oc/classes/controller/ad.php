@@ -223,7 +223,7 @@ class Controller_Ad extends Controller {
        		$pagination = Pagination::factory(array(
                     'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
-                    'items_per_page' 	=> core::config('advertisement.advertisements_per_page'),
+                    'items_per_page'    => core::request('items_per_page',core::config('advertisement.advertisements_per_page')),
      	    ))->route(Route::get('list'))
               ->route_params(array(
                     'category' 			=> ($category!==NULL)?$category->seoname:URL::title(__('all')),
