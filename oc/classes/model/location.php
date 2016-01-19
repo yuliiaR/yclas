@@ -2,29 +2,29 @@
 /**
  * description...
  *
- * @author		Chema <chema@open-classifieds.com>
- * @package		OC
- * @copyright	(c) 2009-2013 Open Classifieds Team
- * @license		GPL v3
+ * @author      Chema <chema@open-classifieds.com>
+ * @package     OC
+ * @copyright   (c) 2009-2013 Open Classifieds Team
+ * @license     GPL v3
  * *
  */
 class Model_Location extends ORM {
 
-	/**
-	 * Table name to use
-	 *
-	 * @access	protected
-	 * @var		string	$_table_name default [singular model name]
-	 */
-	protected $_table_name = 'locations';
+    /**
+     * Table name to use
+     *
+     * @access  protected
+     * @var     string  $_table_name default [singular model name]
+     */
+    protected $_table_name = 'locations';
 
-	/**
-	 * Column to use as primary key
-	 *
-	 * @access	protected
-	 * @var		string	$_primary_key default [id]
-	 */
-	protected $_primary_key = 'id_location';
+    /**
+     * Column to use as primary key
+     *
+     * @access  protected
+     * @var     string  $_primary_key default [id]
+     */
+    protected $_primary_key = 'id_location';
 
 
     protected $_belongs_to = array(
@@ -101,43 +101,43 @@ class Model_Location extends ORM {
         return $loc;
     }
 
-	/**
-	 * Rule definitions for validation
-	 *
-	 * @return array
-	 */
-	public function rules()
-	{
-		return array(
-				        'id_location'		=> array(array('numeric')),
-				        'name'				=> array(array('not_empty'), array('max_length', array(':value', 64)), ),
-				        'id_location_parent'=> array(),
-				        'parent_deep'		=> array(),
-				        'seoname'			=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
-				        'description'		=> array(),
-				        'last_modified'		=> array(),
-				        'has_images'			=> array(array('numeric')),
-		);
-	}
+    /**
+     * Rule definitions for validation
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return array(
+                        'id_location'       => array(array('numeric')),
+                        'name'              => array(array('not_empty'), array('max_length', array(':value', 64)), ),
+                        'id_location_parent'=> array(),
+                        'parent_deep'       => array(),
+                        'seoname'           => array(array('not_empty'), array('max_length', array(':value', 145)), ),
+                        'description'       => array(),
+                        'last_modified'     => array(),
+                        'has_images'            => array(array('numeric')),
+        );
+    }
 
-	/**
-	 * Label definitions for validation
-	 *
-	 * @return array
-	 */
-	public function labels()
-	{
-		return  array(
-	        'id_location'			=> 'Id',
-	        'name'					=> __('Name'),
-	        'id_location_parent'	=> __('Parent'),
-	        'parent_deep'			=> __('Parent deep'),
-	        'seoname'				=> __('Seoname'),
-	        'description'			=> __('Description'),
-	        'last_modified'			=> __('Last modified'),
-	        'has_image'				=> __('Has image'),
-		);
-	}
+    /**
+     * Label definitions for validation
+     *
+     * @return array
+     */
+    public function labels()
+    {
+        return  array(
+            'id_location'           => 'Id',
+            'name'                  => __('Name'),
+            'id_location_parent'    => __('Parent'),
+            'parent_deep'           => __('Parent deep'),
+            'seoname'               => __('Seoname'),
+            'description'           => __('Description'),
+            'last_modified'         => __('Last modified'),
+            'has_image'             => __('Has image'),
+        );
+    }
 
     /**
      * Filters to run when data is set in this model. The password filter
@@ -190,6 +190,7 @@ class Model_Location extends ORM {
     /**
      * we get the locations in an array using as key the deep they are, perfect fro chained selects
      * @return array 
+     * @deprecated function DO NOT use, just here so we do not break the API to old themes
      */
     public static function get_by_deep()
     {
@@ -285,7 +286,7 @@ class Model_Location extends ORM {
 
     /**
      * we get the locations in an array and a multidimensional array to know the deep @todo refactor this, is a mess
-     * @deprecated function not in use, just here so we do not break the API to old themes
+     * @deprecated function DO NOT use, just here so we do not break the API to old themes
      * @return array 
      */
     public static function get_all()
@@ -300,19 +301,6 @@ class Model_Location extends ORM {
         $locs_parent_deep = self::get_by_deep();
         
         return array($locs_arr,$locs_m, $locs_parent_deep);
-    }
-
-    /**
-     * we get the locations in an array and a multidimensional array to know the deep
-     * @param  int ID of location 
-     * @param  string needed attribute to be returned
-     * @return string   
-     */
-    
-    public static function get_location($id, $attr)
-    {
-      $location = new self($id);
-      return $location->$attr;
     }
 
 
@@ -345,27 +333,28 @@ class Model_Location extends ORM {
 
             $count_ads = $count_ads->as_array('id_location');
 
-            //get all the locations ORM so we can use the functions, do not use root location
-            $locations = new self();
-            $locations = $locations->where('id_location','!=',1)->order_by('order','asc')->cached()->find_all();
-
-
             //getting the count of ads into the parents
             $parents_count = array();
-            foreach ($locations as $location) 
+            foreach ($count_ads as $count_ad) 
             {
-                //this one has ads so lets add it to the parents
-                if (isset($count_ads[$location->id_location]))
-                {
-                    //adding himself if doesnt exists
-                    if (!isset($parents_count[$location->id_location]))
-                    {
-                        $parents_count[$location->id_location] = $count_ads[$location->id_location];
-                        $parents_count[$location->id_location]['has_siblings'] = FALSE;
-                    }
+                $id_location = $count_ad['id_location'];    
+                $count = $count_ad['count'];
 
-                    //for each parent of this location add the count
-                    foreach ($location->get_parents_ids() as $id ) 
+                //adding himself if doesnt exists
+                if (!isset($parents_count[$id_location]))
+                {
+                    $parents_count[$id_location] = $count_ad;
+                    $parents_count[$id_location]['has_siblings'] = FALSE;
+                }
+
+                $location = new Model_Location($id_location);
+
+                //for each parent of this location add the count
+                $parents_ids = $location->get_parents_ids();
+
+                if (count($parents_ids)>0)
+                {
+                    foreach ($parents_ids as $id ) 
                     {
                         if (isset($parents_count[$id]))
                             $parents_count[$id]['count']+= $count_ads[$location->id_location]['count'];
@@ -375,7 +364,12 @@ class Model_Location extends ORM {
                         $parents_count[$id]['has_siblings'] = TRUE;
                     }
                 }
+                
             }
+
+            //get all the locations with level 0 and 1
+            $locations = new self();
+            $locations = $locations->where('id_location','!=',1)->where('parent_deep','IN',array(0,1))->order_by('order','asc')->cached()->find_all();
 
             //generating the array
             $locs_count = array();
@@ -384,7 +378,7 @@ class Model_Location extends ORM {
                 $has_siblings = isset($parents_count[$location->id_location])?$parents_count[$location->id_location]['has_siblings']:FALSE;
                 
                 //they may not have counted the siblings since the count was 0 but he actually has siblings...
-                if ($has_siblings===FALSE AND count($location->get_siblings_ids())>0)
+                if ($has_siblings===FALSE AND $location->has_siblings())
                     $has_siblings = TRUE;
 
                 $locs_count[$location->id_location] = array(    'id_location'         => $location->id_location,
@@ -406,10 +400,42 @@ class Model_Location extends ORM {
         return $locs_count;
     }
 
+    /**
+     * has this location siblings?
+     * @return boolean             [description]
+     */
+    public function has_siblings($locations=NULL)
+    {
+        if ($this->loaded())
+        {
+            if ($locations===NULL)
+            {
+                $location = new self();
+                $location->where('id_location_parent','=',$this->id_location)
+                         ->where('id_location','!=',$this->id_location)
+                         ->limit(1)
+                         ->cached()->find();
 
-	public function form_setup($form)
-	{
-		$form->fields['description']['display_as'] = 'textarea';
+                return $location->loaded();
+            }
+            else
+            {
+                foreach ($locations as $key=>$location) 
+                {
+                    //d($location);
+                    if ($location['id_location_parent'] == $this->id_location AND $key != $this->id_location)
+                        return TRUE;
+                }
+            }
+            
+        }
+
+        return FALSE;
+    }
+
+    public function form_setup($form)
+    {
+        $form->fields['description']['display_as'] = 'textarea';
 
         $form->fields['id_location_parent']['display_as']   = 'select';
         $form->fields['id_location_parent']['caption']      = 'name';   
@@ -420,12 +446,12 @@ class Model_Location extends ORM {
         // $form->fields['id_location_parent']['display_as'] = 'hidden';
         // $form->fields['parent_deep']['display_as'] = 'hidden';
         // $form->fields['order']['display_as'] = 'hidden';
-	}
+    }
 
-	public function exclude_fields()
-	{
-	  return array('created','parent_deep','has_image','last_modified');
-	}
+    public function exclude_fields()
+    {
+      return array('created','parent_deep','has_image','last_modified');
+    }
 
      /**
      * returns all the siblings ids+ the idlocation, used to filter the ads
@@ -447,7 +473,9 @@ class Model_Location extends ORM {
                 $ids_siblings[] = $this->id_location;
 
                 $locations = new self();
-                $locations = $locations->where('id_location_parent','=',$this->id_location)->cached()->find_all();
+                $locations = $locations->where('id_location_parent','=',$this->id_location)
+                                        ->where('parent_deep','<',5)//we are limiting the recurrency....5 levels deep should be more than enough.
+                                        ->cached()->find_all();
 
                 foreach ($locations as $location) 
                 {
