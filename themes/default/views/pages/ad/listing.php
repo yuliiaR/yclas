@@ -71,7 +71,6 @@
             <li><a href="?<?=http_build_query(['sort' => 'published-desc'] + Request::current()->query())?>"><?=__('Newest')?></a></li>
             <li><a href="?<?=http_build_query(['sort' => 'published-asc'] + Request::current()->query())?>"><?=__('Oldest')?></a></li>
         </ul>
-
         <div class="btn-group">
           <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <?=__('Items per page')?> <span class="caret"></span>
@@ -83,7 +82,6 @@
             <li><a href="?<?=http_build_query(['items_per_page' => '50'] + Request::current()->query())?>"> 50 </a></li>
           </ul>
         </div>
-
     </div>
     <div class="clearfix"></div>
     
@@ -185,9 +183,7 @@
   
   <?endforeach?>
 
-
   <?=$pagination?>
-  
  <?elseif (count($ads) == 0):?>
     <?if(core::config('general.auto_locate') AND core::request('userpos') == 1):?>
         <div class="btn-group pull-right">
