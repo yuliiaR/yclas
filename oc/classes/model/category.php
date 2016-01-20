@@ -2,41 +2,41 @@
 /**
  * description...
  *
- * @author		Chema <chema@open-classifieds.com>
- * @package		OC
- * @copyright	(c) 2009-2013 Open Classifieds Team
- * @license		GPL v3
+ * @author      Chema <chema@open-classifieds.com>
+ * @package     OC
+ * @copyright   (c) 2009-2013 Open Classifieds Team
+ * @license     GPL v3
  * *
  */
 class Model_Category extends ORM {
 
 
-	/**
-	 * Table name to use
-	 *
-	 * @access	protected
-	 * @var		string	$_table_name default [singular model name]
-	 */
-	protected $_table_name = 'categories';
+    /**
+     * Table name to use
+     *
+     * @access  protected
+     * @var     string  $_table_name default [singular model name]
+     */
+    protected $_table_name = 'categories';
 
-	/**
-	 * Column to use as primary key
-	 *
-	 * @access	protected
-	 * @var		string	$_primary_key default [id]
-	 */
-	protected $_primary_key = 'id_category';
+    /**
+     * Column to use as primary key
+     *
+     * @access  protected
+     * @var     string  $_primary_key default [id]
+     */
+    protected $_primary_key = 'id_category';
 
 
-	/**
-	 * @var  array  ORM Dependency/hirerachy
-	 */
-	protected $_has_many = array(
-		'ads' => array(
-			'model'       => 'Ad',
-			'foreign_key' => 'id_category',
-		),
-	);
+    /**
+     * @var  array  ORM Dependency/hirerachy
+     */
+    protected $_has_many = array(
+        'ads' => array(
+            'model'       => 'Ad',
+            'foreign_key' => 'id_category',
+        ),
+    );
 
     protected $_belongs_to = array(
         'parent'   => array('model'       => 'Category',
@@ -107,47 +107,47 @@ class Model_Category extends ORM {
     }
 
 
-	/**
-	 * Rule definitions for validation
-	 *
-	 * @return array
-	 */
-	public function rules()
-	{
-		return array('id_category'		=> array(array('numeric')),
-			        'name'				=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
-			        'order'				=> array(),
-			        'id_category_parent'=> array(),
-			        'parent_deep'		=> array(),
-			        'seoname'			=> array(array('not_empty'), array('max_length', array(':value', 145)), ),
-			        'description'		=> array(),
-			        'price'				=> array(),
-			        'last_modified'		=> array(),
-			        'has_images'			=> array(array('numeric')),
-			        );
-	}
+    /**
+     * Rule definitions for validation
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return array('id_category'      => array(array('numeric')),
+                    'name'              => array(array('not_empty'), array('max_length', array(':value', 145)), ),
+                    'order'             => array(),
+                    'id_category_parent'=> array(),
+                    'parent_deep'       => array(),
+                    'seoname'           => array(array('not_empty'), array('max_length', array(':value', 145)), ),
+                    'description'       => array(),
+                    'price'             => array(),
+                    'last_modified'     => array(),
+                    'has_images'            => array(array('numeric')),
+                    );
+    }
 
-	/**
-	 * Label definitions for validation
-	 *
-	 * @return array
-	 */
-	public function labels()
-	{
-		return array('id_category'			=> __('Id'),
-			        'name'					=> __('Name'),
-			        'order'					=> __('Order'),
-			        'created'				=> __('Created'),
-			        'id_category_parent'	=> __('Parent'),
-			        'parent_deep'			=> __('Parent deep'),
-			        'seoname'				=> __('Seoname'),
-			        'description'			=> __('Description'),
-			        'price'					=> __('Price'),
-			        'last_modified'			=> __('Last modified'),
-			        'has_image'				=> __('Has image'),
-			        );
-	}
-	
+    /**
+     * Label definitions for validation
+     *
+     * @return array
+     */
+    public function labels()
+    {
+        return array('id_category'          => __('Id'),
+                    'name'                  => __('Name'),
+                    'order'                 => __('Order'),
+                    'created'               => __('Created'),
+                    'id_category_parent'    => __('Parent'),
+                    'parent_deep'           => __('Parent deep'),
+                    'seoname'               => __('Seoname'),
+                    'description'           => __('Description'),
+                    'price'                 => __('Price'),
+                    'last_modified'         => __('Last modified'),
+                    'has_image'             => __('Has image'),
+                    );
+    }
+    
     /**
      * Filters to run when data is set in this model. The password filter
      * automatically hashes the password when it's set in the model.
@@ -199,6 +199,7 @@ class Model_Category extends ORM {
     /**
      * we get the categories in an array using as key the deep they are, perfect fro chained selects
      * @return array 
+     * @deprecated function DO NOT use, just here so we do not break the API to old themes
      */
     public static function get_by_deep()
     {
@@ -293,7 +294,7 @@ class Model_Category extends ORM {
 
     /**
      * we get the categories in an array and a multidimensional array to know the deep @todo refactor this, is a mess
-     * @deprecated function not in use, just here so we do not break the API to old themes
+     * @deprecated function DO NOT use, just here so we do not break the API to old themes
      * @return array 
      */
     public static function get_all()
@@ -358,27 +359,29 @@ class Model_Category extends ORM {
 
             $count_ads = $count_ads->as_array('id_category');
 
-            //get all the categories ORM so we can use the functions, do not use root category
-            $categories = new self();
-            $categories = $categories->where('id_category','!=',1)->order_by('order','asc')->cached()->find_all();
-
 
             //getting the count of ads into the parents
             $parents_count = array();
-            foreach ($categories as $category) 
+            foreach ($count_ads as $count_ad) 
             {
-                //this one has ads so lets add it to the parents
-                if (isset($count_ads[$category->id_category]))
-                {
-                    //adding himself if doesnt exists
-                    if (!isset($parents_count[$category->id_category]))
-                    {
-                        $parents_count[$category->id_category] = $count_ads[$category->id_category];
-                        $parents_count[$category->id_category]['has_siblings'] = FALSE;
-                    }
+                $id_category = $count_ad['id_category'];    
+                $count = $count_ad['count'];
 
-                    //for each parent of this category add the count
-                    foreach ($category->get_parents_ids() as $id ) 
+                //adding himself if doesnt exists
+                if (!isset($parents_count[$id_category]))
+                {
+                    $parents_count[$id_category] = $count_ad;
+                    $parents_count[$id_category]['has_siblings'] = FALSE;
+                }
+
+                $category = new Model_Category($id_category);
+
+                //for each parent of this category add the count
+                $parents_ids = $category->get_parents_ids();
+
+                if (count($parents_ids)>0)
+                {
+                    foreach ($parents_ids as $id ) 
                     {
                         if (isset($parents_count[$id]))
                             $parents_count[$id]['count']+= $count_ads[$category->id_category]['count'];
@@ -388,7 +391,12 @@ class Model_Category extends ORM {
                         $parents_count[$id]['has_siblings'] = TRUE;
                     }
                 }
+                
             }
+
+            //get all the categories with level 0 and 1
+            $categories = new self();
+            $categories = $categories->where('id_category','!=',1)->where('parent_deep','IN',array(0,1))->order_by('order','asc')->cached()->find_all();
 
             //generating the array
             $cats_count = array();
@@ -397,9 +405,10 @@ class Model_Category extends ORM {
                 $has_siblings = isset($parents_count[$category->id_category])?$parents_count[$category->id_category]['has_siblings']:FALSE;
                 
                 //they may not have counted the siblings since the count was 0 but he actually has siblings...
-                if ($has_siblings===FALSE AND count($category->get_siblings_ids())>0)
+                if ($has_siblings===FALSE AND $category->has_siblings())
                     $has_siblings = TRUE;
-                
+
+                $cats_count[$category->id_category] = $category->as_array();
 
                 $cats_count[$category->id_category] = array(   'id_category'   => $category->id_category,
                                                                 'seoname'       => $category->seoname,
@@ -420,12 +429,46 @@ class Model_Category extends ORM {
         return $cats_count;
     }
 
+    /**
+     * has this category siblings?
+     * @return boolean             [description]
+     */
+    public function has_siblings($categories=NULL)
+    {
+        if ($this->loaded())
+        {
+            if ($categories===NULL)
+            {
+                $category = new self();
+                $category->where('id_category_parent','=',$this->id_category)
+                         ->where('id_category','!=',$this->id_category)
+                         ->limit(1)
+                         ->cached()->find();
+
+                return $category->loaded();
+            }
+            else
+            {
+
+                //d($categories);
+                foreach ($categories as $category) 
+                {
+                    //d($category);
+                    if ($category['id_category_parent'] == $this->id_category AND $category['id_category'] != $this->id_category)
+                        return TRUE;
+                }
+            }
+            
+        }
+
+        return FALSE;
+    }
 
     /**
      * returns all the siblings ids+ the idcategory, used to filter the ads
      * @return array
      */
-	public function get_siblings_ids()
+    public function get_siblings_ids()
     {
         if ($this->loaded())
         {
@@ -441,7 +484,9 @@ class Model_Category extends ORM {
                 $ids_siblings[] = $this->id_category;
 
                 $categories = new self();
-                $categories = $categories->where('id_category_parent','=',$this->id_category)->cached()->find_all();
+                $categories = $categories->where('id_category_parent','=',$this->id_category)
+                                        ->where('parent_deep','<',5)//we are limiting the recurrency....5 levels deep should be more than enough.
+                                        ->cached()->find_all();
 
                 foreach ($categories as $category) 
                 {
@@ -506,27 +551,27 @@ class Model_Category extends ORM {
         return NULL;
     }
 
-	/**
-	 * 
-	 * formmanager definitions
-	 * 
-	 */
-	public function form_setup($form)
-	{	
-		$form->fields['description']['display_as'] = 'textarea';
+    /**
+     * 
+     * formmanager definitions
+     * 
+     */
+    public function form_setup($form)
+    {   
+        $form->fields['description']['display_as'] = 'textarea';
 
         $form->fields['id_category_parent']['display_as']   = 'select';
         $form->fields['id_category_parent']['caption']      = 'name';   
 
         $form->fields['order']['display_as']   = 'select';
         $form->fields['order']['options']      = range(1, 100);
-	}
+    }
 
 
-	public function exclude_fields()
-	{
-		return array('created','parent_deep','has_image','last_modified');
-	}
+    public function exclude_fields()
+    {
+        return array('created','parent_deep','has_image','last_modified');
+    }
 
     /**
      * return the title formatted for the URL

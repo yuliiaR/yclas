@@ -71,6 +71,17 @@
             <li><a href="?<?=http_build_query(['sort' => 'published-desc'] + Request::current()->query())?>"><?=__('Newest')?></a></li>
             <li><a href="?<?=http_build_query(['sort' => 'published-asc'] + Request::current()->query())?>"><?=__('Oldest')?></a></li>
         </ul>
+        <div class="btn-group">
+          <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?=__('Items per page')?> <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="?<?=http_build_query(['items_per_page' => '5'] + Request::current()->query())?>"> 5 </a></li>
+            <li><a href="?<?=http_build_query(['items_per_page' => '10'] + Request::current()->query())?>"> 10 </a></li>
+            <li><a href="?<?=http_build_query(['items_per_page' => '20'] + Request::current()->query())?>"> 20 </a></li>
+            <li><a href="?<?=http_build_query(['items_per_page' => '50'] + Request::current()->query())?>"> 50 </a></li>
+          </ul>
+        </div>
     </div>
     <div class="clearfix"></div>
     
