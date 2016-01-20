@@ -988,7 +988,7 @@ class Model_Ad extends ORM {
 
             $ads = $ads->limit(core::config('advertisement.related'))
             ->order_by(DB::expr('RAND()'))
-            ->find_all();
+            ->cached()->find_all();
 
             return View::factory('pages/ad/related',array('ads'=>$ads))->render();
         }
