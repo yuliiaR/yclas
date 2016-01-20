@@ -625,10 +625,11 @@ $(function(){
                 data: {img_delete: img_id},
                 cache: false
             }).done(function(result) {
-                $('#img' + img_id).toggle('slide');
                 $('#processing-modal').modal('hide');
+                window.location.href = href;
             }).fail(function() {
                 $('#processing-modal').modal('hide');
+                window.location.href = href;
             });
         });
     });
