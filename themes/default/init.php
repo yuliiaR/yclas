@@ -45,7 +45,7 @@ Theme::$styles = array( '//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.cs
 if (Theme::$skin!='default')
     Theme::$styles = array_merge(Theme::$styles, array('css/color-'.Theme::$skin.'.css' => 'screen'));
 
-Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.0,bootstrap@3.3.6,bootstrap.datepicker@0.1,chosen@1.0.0,jquery.validation@1.11.1,holder@2.8.1',
+Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.11.3,bootstrap@3.3.6,bootstrap.datepicker@0.1,chosen@1.0.0,jquery.validation@1.11.1,holder@2.8.1',
                                     '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js',
                                     '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
