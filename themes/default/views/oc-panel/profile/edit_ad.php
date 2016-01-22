@@ -319,8 +319,22 @@
                     <div class="form-group">
                         <?if (core::config('advertisement.num_images') > count($images)):?> <!-- permition to add more images-->
                             <div class="col-sm-8">
-                                <?= FORM::label('images', __('Images'), array('class'=>'', 'for'=>'images0'))?>
-                                <input type="file" name="image0" id="fileInput0" accept="<?='image/'.str_replace(',', ', image/', rtrim(core::config('image.allowed_formats'),','))?>">
+                                <?= FORM::label('images', __('Add image'), array('class'=>'', 'for'=>'images0'))?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                            <div>
+                                                <span class="btn btn-default btn-file">
+                                                    <span class="fileinput-new"><?=__('Select')?></span>
+                                                    <span class="fileinput-exists"><?=__('Edit')?></span>
+                                                    <input type="file" name="image0" id="fileInput0" accept="<?='image/'.str_replace(',', ', image/', rtrim(core::config('image.allowed_formats'),','))?>">
+                                                </span>
+                                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=__('Delete')?></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         <?endif?>
                     </div>
