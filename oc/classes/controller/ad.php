@@ -1051,18 +1051,24 @@ class Controller_Ad extends Controller {
             if (is_numeric($price_max = str_replace(',','.',core::get('price-max')))) // handle comma (,) used in some countries for prices
                 $price_max = (float)$price_max; // round((float)$price_max,2)
 
-            if ($price_min AND $price_max)
+            if (is_numeric($price_min) AND is_numeric($price_max))
             {
-                if ($price_min > $price_max) // swap 2 values
-                    $price_min = $price_max + $price_min - ( $price_max = $price_min );
-                
+                // swap 2 values
+                if ($price_min > $price_max) 
+                {
+                    $aux = $price_min;
+                    $price_min = $price_max;
+                    $price_max = $aux;
+                    unset($aux);
+                }               
+
                 $ads->where('price', 'BETWEEN', array($price_min,$price_max));
             }
-            elseif ($price_min) // only min price has been provided
+            elseif (is_numeric($price_min)) // only min price has been provided
             {
                 $ads->where('price', '>=', $price_min);
             }
-            elseif ($price_max) // only max price has been provided
+            elseif (is_numeric($price_max)) // only max price has been provided
             {
                 $ads->where('price', '<=', $price_max);
             }
