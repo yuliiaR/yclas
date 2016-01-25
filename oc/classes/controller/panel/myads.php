@@ -204,10 +204,12 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         if (Theme::get('cdn_files') == FALSE)
         {
             $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
+                                            'css/jasny-bootstrap.min.css' => 'screen',
                                             '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
                                             '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
             
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
+                                                        'js/jasny-bootstrap.min.js',
                                                         '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7',
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',

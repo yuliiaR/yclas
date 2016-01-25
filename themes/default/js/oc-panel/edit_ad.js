@@ -360,13 +360,13 @@ $('.locateme').click(function() {
 });
 
 // validate image size
-$('input[name^="image"]').on('change', function() {
+$('.fileinput').on('change.bs.fileinput', function() {
 
     //check whether browser fully supports all File API
     if (FileApiSupported())
     {
         //get the file size and file type from file input field
-        var $input = $(this);
+        var $input = $(this).find('input[name^="image"]');
         var image = $input[0].files[0];
         var max_size = $('.images').data('max-image-size')*1048576 // max size in bites
 
@@ -379,7 +379,7 @@ $('input[name^="image"]').on('change', function() {
                 allowOutsideClick: true
             });
             
-            $(this).replaceWith($(this).val('').clone(true));
+            $(this).closest('.fileinput').fileinput('clear');
         }
         else
         {
@@ -399,6 +399,11 @@ $('input[name^="image"]').on('change', function() {
             });
         }
     }
+});
+
+$('.fileinput').on('clear.bs.fileinput', function() {
+    var $input = $(this).find('input[name^="image"]');
+    $('input[name="base64_' + $input.attr('name') + '"]').remove();
 });
 
 // VALIDATION with chosen fix
@@ -673,6 +678,8 @@ function clearFileInput($input) {
         } else {
             $input.wrap('<form>').closest('form').trigger('reset').unwrap();
         }   
+    } else if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        $input.replaceWith($input.clone());
     } else {
         $input.val('');
     }
