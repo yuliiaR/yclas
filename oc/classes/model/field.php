@@ -116,7 +116,8 @@ class Model_Field {
                     foreach ($categories as $category)
                     {
                         $category = new Model_Category($category);
-                        $categories = array_merge($categories, $category->get_siblings_ids());
+                        if ( ($siblings = $category->get_siblings_ids())!=NULL )
+                            $categories = array_merge($categories, $siblings);
                     }
                     
                     // remove duplicated categories
@@ -178,7 +179,8 @@ class Model_Field {
                     foreach ($categories as $category)
                     {
                         $category = new Model_Category($category);
-                        $categories = array_merge($categories, $category->get_siblings_ids());
+                        if ( ($siblings = $category->get_siblings_ids())!=NULL )
+                            $categories = array_merge($categories, $siblings);
                     }
                     
                     // remove duplicated categories
