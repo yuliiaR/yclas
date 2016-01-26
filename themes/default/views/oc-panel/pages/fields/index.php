@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?=__('Custom Fields Templates')?></h3>
@@ -66,8 +66,8 @@
                 <p><?=__('Create custom fields among predefined templates.')?></p>
                 <form class="form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'template'))?>">
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="date"><?=__('Type')?></label>      
-                        <div class="col-sm-8">
+                        <label class="control-label col-sm-2" for="date"><?=__('Type')?></label>      
+                        <div class="col-sm-4">
                             <select name="type" class="form-control" id="cf_type_fileds" required>
                                 <option value="cars"><?=__('Cars')?></option>
                                 <option value="houses"><?=__('Real State')?></option>
@@ -78,8 +78,8 @@
                     </div>
                     <!-- multycategory selector -->
                     <div class="form-group">
-                        <label class="control-label col-sm-4"><?=__('Categories')?></label>
-                        <div class="col-sm-8">
+                        <label class="control-label col-sm-2"><?=__('Categories')?></label>
+                        <div class="col-sm-4">
                             <select id="categories" name="categories[]" multiple data-placeholder="<?=__('Choose 1 or several categories')?>">
                                 <option></option>
                                 <?function lili12($item, $key,$cats){?>
@@ -93,161 +93,12 @@
                             </select>
                         </div>
                     </div>
-                    <hr>
                     <div class="form-group">
-                        <div class="col-sm-8 col-sm-offset-4">
+                        <div class="col-sm-4 col-sm-offset-2">
                             <button type="submit" class="btn btn-primary"><?=__('Create')?></button>
                         </div>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Optional Fields')?></h3>
-            </div>
-            <div class="panel-body">
-                <p><?=__('Optional Advertisement Fields')?></p>
-                <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')).'?define=cf', array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
-                    <fieldset>
-                        <div class="form-group">
-                            <?= FORM::label('phone', __('Phone'), array('class'=>'control-label col-sm-4', 'for'=>'phone'))?>
-                            <div class="col-sm-8">
-                                <div class="onoffswitch">
-                                    <?= FORM::hidden('phone', 0);?>
-                                    <?= FORM::checkbox('phone', 1, (bool) core::config('advertisement.phone'), array(
-                                    'placeholder' => "", 
-                                    'class' => 'onoffswitch-checkbox', 
-                                    'id' => 'phone', 
-                                    'data-content'=> __("Phone field"),
-                                    'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
-                                    'data-toggle'=>"popover",
-                                    'data-original-title'=>__("Displays the field Phone in the Ad form."),
-                                    ))?>
-                                    <?= FORM::label('phone', "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>'phone'))?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <?= FORM::label('website', __('Website'), array('class'=>'control-label col-sm-4', 'for'=>'website'))?>
-                            <div class="col-sm-8">
-                                <div class="onoffswitch">
-                                    <?= FORM::hidden('website', 0);?>
-                                    <?= FORM::checkbox('website', 1, (bool) core::config('advertisement.website'), array(
-                                    'placeholder' => "http://foo.com/", 
-                                    'class' => 'onoffswitch-checkbox', 
-                                    'id' => 'website', 
-                                    'data-content'=> __("Website field"),
-                                    'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
-                                    'data-toggle'=>"popover",
-                                    'data-original-title'=>__("Displays the field Website in the Ad form."),
-                                    ))?>
-                                    <?= FORM::label('website', "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>'website'))?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <?= FORM::label('location', __('Location'), array('class'=>'control-label col-sm-4', 'for'=>'location'))?>
-                            <div class="col-sm-8">
-                                <div class="onoffswitch">
-                                    <?= FORM::hidden('location', 0);?>
-                                    <?= FORM::checkbox('location', 1, (bool) core::config('advertisement.location'), array(
-                                    'placeholder' => "", 
-                                    'class' => 'onoffswitch-checkbox', 
-                                    'id' => 'location', 
-                                    'data-content'=> __("Displays location select"),
-                                    'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
-                                    'data-toggle'=>"popover",
-                                    'data-original-title'=>__("Displays the Select Location in the Ad form."),
-                                    ))?>
-                                    <?= FORM::label('location', "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>'location'))?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <?= FORM::label('price', __('Price'), array('class'=>'control-label col-sm-4', 'for'=>'price'))?>
-                            <div class="col-sm-8">
-                                <div class="onoffswitch">
-                                    <?= FORM::hidden('price', 0);?>
-                                    <?= FORM::checkbox('price', 1, (bool) core::config('advertisement.price'), array(
-                                    'placeholder' => "", 
-                                    'class' => 'onoffswitch-checkbox', 
-                                    'id' => 'price', 
-                                    'data-content'=> __("Price field"),
-                                    'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
-                                    'data-toggle'=>"popover",
-                                    'data-original-title'=>__("Displays the field Price in the Ad form."),
-                                    ))?>
-                                    <?= FORM::label('price', "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>'price'))?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <?= FORM::label('upload_file', __('Upload file'), array('class'=>'control-label col-sm-4', 'for'=>'upload_file'))?>
-                            <div class="col-sm-8">
-                                <div class="onoffswitch">
-                                    <?= FORM::hidden('upload_file', 0);?>
-                                    <?= FORM::checkbox('upload_file', 1, (bool) core::config('advertisement.upload_file'), array(
-                                    'placeholder' => "", 
-                                    'class' => 'onoffswitch-checkbox', 
-                                    'id' => 'upload_file', 
-                                    ))?>
-                                    <?= FORM::label('upload_file', "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>'upload_file'))?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <?= FORM::label('captcha', __('Captcha'), array('class'=>'control-label col-sm-4', 'for'=>'captcha'))?>
-                            <div class="col-sm-8">
-                                <div class="onoffswitch">
-                                    <?= FORM::hidden('captcha', 0);?>
-                                    <?= FORM::checkbox('captcha', 1, (bool) core::config('advertisement.captcha'), array(
-                                    'placeholder' => "http://foo.com/", 
-                                    'class' => 'onoffswitch-checkbox', 
-                                    'id' => 'captcha', 
-                                    'data-content'=> __("Enables Captcha"),
-                                    'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
-                                    'data-toggle'=>"popover",
-                                    'data-original-title'=>__("Captcha appears in the form."),
-                                    ))?>
-                                    <?= FORM::label('captcha', "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>'captcha'))?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <?= FORM::label('address', __('Address'), array('class'=>'control-label col-sm-4', 'for'=>'address'))?>
-                            <div class="col-sm-8">
-                                <div class="onoffswitch">
-                                    <?= FORM::hidden('address', 0);?>
-                                    <?= FORM::checkbox('address', 1, (bool) core::config('advertisement.address'), array(
-                                    'placeholder' => "", 
-                                    'class' => 'onoffswitch-checkbox', 
-                                    'id' => 'address', 
-                                    'data-content'=> __("Address field"),
-                                    'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
-                                    'data-toggle'=>"popover",
-                                    'data-original-title'=>__("Displays the field Address in the Ad form."),
-                                    ))?>
-                                    <?= FORM::label('address', "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>'address'))?>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="form-group">
-                            <div class="col-sm-8 col-sm-offset-4">
-                                <?= FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')).'?define=cf'))?>
-                            </div>
-                        </div>
-                    </fieldset>
-                <?FORM::close()?>
             </div>
         </div>
     </div>
