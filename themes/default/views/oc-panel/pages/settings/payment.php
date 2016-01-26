@@ -523,6 +523,25 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <?= FORM::label($forms['stripe_bitcoin']['key'], __('Accept Bitoin payments, only with USD'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
+                        <div class="col-md-8">
+                            <div class="onoffswitch">
+                                <?= Form::checkbox($forms['stripe_bitcoin']['key'], 1, (bool) $forms['stripe_bitcoin']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['stripe_bitcoin']['key'], 
+                                'data-content'=> '',
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>'',                     
+                                ))?>
+                                <?= FORM::label($forms['stripe_bitcoin']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

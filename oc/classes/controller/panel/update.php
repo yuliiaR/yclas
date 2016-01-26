@@ -24,6 +24,18 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         {
             DB::query(Database::UPDATE,"DELETE FROM `".self::$db_prefix."config` WHERE `config_key` = 'smtp_ssl' AND `group_name`='email' LIMIT 1;")->execute();
         }catch (exception $e) {}
+
+
+        //new configs
+        $configs = array(
+                       
+                        array( 'config_key'     => 'stripe_bitcoin',
+                               'group_name'     => 'payment', 
+                               'config_value'   => '0'),
+                       
+                        );
+        
+        Model_Config::config_array($configs);        
     }
 
     /**
