@@ -1083,7 +1083,10 @@ class Controller_Ad extends Controller {
     	        	elseif(is_string($value))
     	        		$ads->where($key, 'like', '%'.$value.'%');
                     elseif(is_array($value))
-                        $ads->where($key, 'IN', array_filter($value));
+                    {
+                        if ( ! empty($value = array_filter($value)))
+                            $ads->where($key, 'IN', $value);
+                    }
     	        }
             }
 
@@ -1099,7 +1102,10 @@ class Controller_Ad extends Controller {
                     elseif(is_string($value))
                         $users->where($key, 'like', '%'.$value.'%');
                     elseif(is_array($value))
-                        $users->where($key, 'IN', array_filter($value));
+                    {
+                        if ( ! empty($value = array_filter($value)))
+                            $ads->where($key, 'IN', $value);
+                    }
                 }
 
                 $users = $users->find_all();
