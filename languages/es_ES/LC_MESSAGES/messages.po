@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.6.1\n"
-"POT-Creation-Date: 2016-01-07 16:05:21\n"
-"PO-Revision-Date: 2016-01-07 16:05:21\n"
-"Last-Translator: admin <neo22s@gmail.com>\n"
+"POT-Creation-Date: 2016-01-25 15:41:08\n"
+"PO-Revision-Date: 2016-01-25 15:41:08\n"
+"Last-Translator: admin <oliver@open-classifieds.com>\n"
 "Language-Team: en\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -4637,7 +4637,7 @@ msgstr "Anterior"
 
 #: String 1156
 msgid "Previous step"
-msgstr "Siguiente paso"
+msgstr "Paso anterior"
 
 #: String 1157
 msgid "Price"
