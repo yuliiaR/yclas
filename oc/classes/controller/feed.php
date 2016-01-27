@@ -7,9 +7,9 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
         $info = array(
-                        'title'       => 'RSS '.htmlspecialchars(Core::config('general.site_name')),
+                        'title'       => 'RSS '.htmlspecialchars(Core::config('general.site_name'),ENT_QUOTES),
                         'pubDate'     => date("r"),
-                        'description' => __('Latest published'),
+                        'description' => htmlspecialchars(__('Latest published'),ENT_QUOTES),
                         'generator'   => 'Open Classifieds',
         ); 
         
@@ -61,9 +61,9 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
         $info = array(
-                        'title'         => 'RSS Blog '.htmlspecialchars(Core::config('general.site_name')),
+                        'title'         => 'RSS Blog '.htmlspecialchars(Core::config('general.site_name'),ENT_QUOTES),
                         'pubDate'       => date("r"),
-                        'description'   => __('Latest post published'),
+                        'description'   => htmlspecialchars(__('Latest post published'),ENT_QUOTES),
                         'generator'     => 'Open Classifieds',
         ); 
         
@@ -103,9 +103,9 @@ class Controller_Feed extends Controller {
         $this->auto_render = FALSE;
 
         $info = array(
-                        'title'         => 'RSS Forum '.htmlspecialchars(Core::config('general.site_name')),
+                        'title'         => 'RSS Forum '.htmlspecialchars(Core::config('general.site_name'),ENT_QUOTES),
                         'pubDate'       => date("r"),
-                        'description'   => __('Latest post published'),
+                        'description'   => htmlspecialchars(__('Latest post published'),ENT_QUOTES),
                         'generator'     => 'Open Classifieds',
         ); 
         
