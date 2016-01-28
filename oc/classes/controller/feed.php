@@ -162,9 +162,9 @@ class Controller_Feed extends Controller {
             {
 
                 $info = array(
-                                'title'       => 'RSS '.$user->name,
+                                'title'       => 'RSS '.htmlspecialchars($user->name,ENT_QUOTES),
                                 'pubDate'     => date("r"),
-                                'description' => $user->name.' - '.$user->description,
+                                'description' => htmlspecialchars($user->name.' - '.$user->description,ENT_QUOTES),
                                 'generator'   => 'Open Classifieds',
                 ); 
                 
