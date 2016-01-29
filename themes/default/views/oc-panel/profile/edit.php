@@ -1,6 +1,31 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="row">
     <div class="col-md-12">
+        <?if( Core::config('payment.stripe_connect')==1):?>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="page-edit-profile">
+                    <h3 class="panel-title"><?=__('Stripe Connect')?></h3>
+                    <p><?=sprintf(__('Sell your items with credit card using stripe. Our platform charges %s percentage, per transaction.'),Core::config('payment.stripe_appfee'))?></p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <?if ($user->stripe_user_id!=''):?>
+                                Stripe connected <?=$user->stripe_user_id?>
+                                <br>
+                                Reconnect:
+                                <br>
+                            <?endif?>
+                            <a class="btn btn-primary" href="<?=Route::url('default', array('controller'=>'stripe','action'=>'connect','id'=>'now'))?>">
+                                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Connect with Stripe
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?endif?>
+
         <div class="panel panel-default">
             <div class="panel-heading" id="page-edit-profile">
                 <h3 class="panel-title"><?=__('Edit Profile')?></h3>

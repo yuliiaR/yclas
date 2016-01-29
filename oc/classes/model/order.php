@@ -52,6 +52,7 @@ class Model_Order extends ORM {
     const PRODUCT_TO_TOP        = 2; //paid to return the ad to the first page
     const PRODUCT_TO_FEATURED   = 3; // paid to featured an ad in the site
     const PRODUCT_AD_SELL       = 4; // a customer paid to buy the item/ad 
+    const PRODUCT_APP_FEE       = 5; // application fee, thats what we cahrge to the seller
 
     /**
      * returns the product array
@@ -64,6 +65,7 @@ class Model_Order extends ORM {
             self::PRODUCT_TO_TOP        =>  __('Top up ad'),
             self::PRODUCT_TO_FEATURED   =>  __('Feature ad'),
             self::PRODUCT_AD_SELL       =>  __('Buy product'),
+            self::PRODUCT_APP_FEE       =>  __('Application Fee'),
         );
     }
 

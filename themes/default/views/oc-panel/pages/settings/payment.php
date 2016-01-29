@@ -165,9 +165,195 @@
                             ))?> 
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['stock']['key'], "<a target='_blank' href='https://docs.yclas.com/pay-directly-from-ad/'>".__('Stock control')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['stock']['key']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= FORM::hidden($forms['stock']['key'], 0);?>
+                                <?= Form::checkbox($forms['stock']['key'], 1, (bool) $forms['stock']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['stock']['key'],
+                                'data-content'=> '',
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>'', 
+                                ))?>
+                                <?= FORM::label($forms['stock']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stock']['key']))?>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Stripe</div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    
+                    <div class="form-group">
+                        <label class="col-md-8 col-md-offset-4">
+                            <p>To get paid via Credit card you can also use a Stripe account. It's free to register. They charge 2'95% of any sale.</p>
+                            <a class="btn btn-success" target="_blank" href="https://stripe.com">
+                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Stripe</a>
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?= FORM::label($forms['stripe_private']['key'], __('Stripe private key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_private']['key']))?>
+                        <div class="col-md-8">
+                            <?= FORM::input($forms['stripe_private']['key'], $forms['stripe_private']['value'], array(
+                            'placeholder' => "", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['stripe_private']['key'],
+                            'data-content'=> __("Stripe private key"),
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"right",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>'', 
+                            ))?> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['stripe_public']['key'], __('Stripe public key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_public']['key']))?>
+                        <div class="col-md-8">
+                            <?= FORM::input($forms['stripe_public']['key'], $forms['stripe_public']['value'], array(
+                            'placeholder' => "", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['stripe_public']['key'],
+                            'data-content'=> __("Stripe public key"),
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"right",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>'', 
+                            ))?> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['stripe_address']['key'], __('Requires address to pay for extra security'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_address']['key']))?>
+                        <div class="col-md-8">
+                            <div class="onoffswitch">
+                                <?= Form::checkbox($forms['stripe_address']['key'], 1, (bool) $forms['stripe_address']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['stripe_address']['key'], 
+                                'data-content'=> '',
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>'',                     
+                                ))?>
+                                <?= FORM::label($forms['stripe_address']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_address']['key']))?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['stripe_alipay']['key'], __('Accept Alipay payments'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_alipay']['key']))?>
+                        <div class="col-md-8">
+                            <div class="onoffswitch">
+                                <?= Form::checkbox($forms['stripe_alipay']['key'], 1, (bool) $forms['stripe_alipay']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['stripe_alipay']['key'], 
+                                'data-content'=> '',
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>'',                     
+                                ))?>
+                                <?= FORM::label($forms['stripe_alipay']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_alipay']['key']))?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['stripe_bitcoin']['key'], __('Accept Bitoin payments, only with USD'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
+                        <div class="col-md-8">
+                            <div class="onoffswitch">
+                                <?= Form::checkbox($forms['stripe_bitcoin']['key'], 1, (bool) $forms['stripe_bitcoin']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['stripe_bitcoin']['key'], 
+                                'data-content'=> '',
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>'',                     
+                                ))?>
+                                <?= FORM::label($forms['stripe_bitcoin']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-8 col-md-offset-4">
+                            <p>Get a fee from each sale made by your customers, using <a href="https://stripe.com/connect">Stripe Connect</a></p>
+                        </label>
+
+                        <div class="form-group">
+                            <?= FORM::label($forms['stripe_connect']['key'], __('Activate Stripe Connect'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_connect']['key']))?>
+                            <div class="col-md-8">
+                                <div class="onoffswitch">
+                                    <?= Form::checkbox($forms['stripe_connect']['key'], 1, (bool) $forms['stripe_connect']['value'], array(
+                                    'placeholder' => __("TRUE or FALSE"), 
+                                    'class' => 'onoffswitch-checkbox', 
+                                    'id' => $forms['stripe_connect']['key'], 
+                                    'data-content'=> '',
+                                    'data-trigger'=>"hover",
+                                    'data-placement'=>"right",
+                                    'data-toggle'=>"popover",
+                                    'data-original-title'=>'',                     
+                                    ))?>
+                                    <?= FORM::label($forms['stripe_connect']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_connect']['key']))?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <?= FORM::label($forms['stripe_clientid']['key'], __('Stripe client id').' <a href="https://dashboard.stripe.com/account/applications/settings">Get Key</a>', array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_clientid']['key']))?>
+                            <div class="col-md-8">
+                                <?= FORM::input($forms['stripe_clientid']['key'], $forms['stripe_clientid']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['stripe_clientid']['key'],
+                                'data-content'=> __("Stripe client id").' Redirect URL:'.Route::url('default', array('controller'=>'stripe','action'=>'connect','id'=>'now')),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>'', 
+                                ))?> 
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <?= FORM::label($forms['stripe_appfee']['key'], __('Application fee %'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_appfee']['key']))?>
+                            <div class="col-md-8">
+                                <?= FORM::input($forms['stripe_appfee']['key'], $forms['stripe_appfee']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['stripe_appfee']['key'],
+                                'data-content'=> __("How much you charge the seller in percentage."),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>'', 
+                                ))?> 
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <div class="panel panel-default">
             <div class="panel-heading">Paypal</div>
             <div class="panel-body">
@@ -228,27 +414,7 @@
                                 <?= FORM::label($forms['paypal_seller']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['paypal_seller']['key']))?>
                             </div>
                         </div>
-                    </div>
-                        
-                    <div class="form-group">
-                        <?= FORM::label($forms['stock']['key'], "<a target='_blank' href='https://docs.yclas.com/pay-directly-from-ad/'>".__('Paypal link stock control')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['stock']['key']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= FORM::hidden($forms['stock']['key'], 0);?>
-                                <?= Form::checkbox($forms['stock']['key'], 1, (bool) $forms['stock']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['stock']['key'],
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'', 
-                                ))?>
-                                <?= FORM::label($forms['stock']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stock']['key']))?>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -439,112 +605,7 @@
                 </div>
             </div>
         </div>
-        
-        <div class="panel panel-default">
-            <div class="panel-heading">Stripe</div>
-            <div class="panel-body">
-                <div class="form-horizontal">
-                    
-                    <div class="form-group">
-                        <label class="col-md-8 col-md-offset-4">
-                            <p>To get paid via Credit card you can also use a Stripe account. It's free to register. They charge 2'95% of any sale.</p>
-                            <a class="btn btn-success" target="_blank" href="https://stripe.com">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Stripe</a>
-                        </label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <?= FORM::label($forms['stripe_private']['key'], __('Stripe private key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_private']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['stripe_private']['key'], $forms['stripe_private']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
-                            'id' => $forms['stripe_private']['key'],
-                            'data-content'=> __("Stripe private key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <?= FORM::label($forms['stripe_public']['key'], __('Stripe public key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_public']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['stripe_public']['key'], $forms['stripe_public']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
-                            'id' => $forms['stripe_public']['key'],
-                            'data-content'=> __("Stripe public key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['stripe_address']['key'], __('Requires address to pay for extra security'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_address']['key']))?>
-                        <div class="col-md-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['stripe_address']['key'], 1, (bool) $forms['stripe_address']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['stripe_address']['key'], 
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'',                     
-                                ))?>
-                                <?= FORM::label($forms['stripe_address']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_address']['key']))?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['stripe_alipay']['key'], __('Accept Alipay payments'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_alipay']['key']))?>
-                        <div class="col-md-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['stripe_alipay']['key'], 1, (bool) $forms['stripe_alipay']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['stripe_alipay']['key'], 
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'',                     
-                                ))?>
-                                <?= FORM::label($forms['stripe_alipay']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_alipay']['key']))?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['stripe_bitcoin']['key'], __('Accept Bitoin payments, only with USD'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
-                        <div class="col-md-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['stripe_bitcoin']['key'], 1, (bool) $forms['stripe_bitcoin']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['stripe_bitcoin']['key'], 
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'',                     
-                                ))?>
-                                <?= FORM::label($forms['stripe_bitcoin']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
         <div class="panel panel-default">
             <div class="panel-heading">Bitpay</div>
             <div class="panel-body">

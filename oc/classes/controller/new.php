@@ -12,6 +12,20 @@ class Controller_New extends Controller
      */
     public function action_index()
     {
+        // redirect to login, if conditions are met 
+        if( ( core::config('advertisement.login_to_post') == TRUE OR Core::config('payment.stripe_connect')==TRUE ) AND !Auth::instance()->logged_in())
+        {
+            Alert::set(Alert::INFO, __('Please, login before posting advertisement!'));
+            HTTP::redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')).'?auth_redirect='.URL::current());
+        }
+
+        // redirect to connect stripe 
+        if( Core::config('payment.stripe_connect')==TRUE  AND empty($this->user->stripe_user_id))
+        {
+            Alert::set(Alert::INFO, __('Please, connect with Stripe'));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
+        }
+
         //Detect early spam users, show him alert
         if (core::config('general.black_list') == TRUE AND Model_User::is_spam(Core::post('email')) === TRUE)
         {
@@ -64,13 +78,6 @@ class Controller_New extends Controller
             $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
         }
         $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
-
-        // redirect to login, if conditions are met 
-        if(core::config('advertisement.login_to_post') == TRUE AND !Auth::instance()->logged_in())
-        {
-            Alert::set(Alert::INFO, __('Please, login before posting advertisement!'));
-            HTTP::redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')));
-        }
 
         $categories = new Model_Category;
         $categories = $categories->where('id_category_parent', '=', '1');

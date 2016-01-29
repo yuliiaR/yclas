@@ -122,6 +122,8 @@ catch(e){}
 
         <?if ($order->amount>0):?>
 
+        <?=StripeKO::button_connect($order)?>
+        
         <?if (Core::config('payment.paypal_account')!=''):?>
             <p class="text-right">
                 <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
@@ -129,7 +131,7 @@ catch(e){}
                 </a>
             </p>
         <?endif?>
-        
+
         <?if ($order->id_product!=Model_Order::PRODUCT_AD_SELL):?>
             <?if ( ($user = Auth::instance()->get_user())!=FALSE AND ($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_role == Model_Role::ROLE_MODERATOR)):?>
                 <ul class="list-inline text-right">
