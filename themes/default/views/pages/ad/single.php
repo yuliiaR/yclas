@@ -94,7 +94,7 @@
         <?endif?>
      </div>
 
-    <?if(core::config('payment.paypal_seller')==1 AND $ad->price != NULL AND $ad->price > 0):?>
+    <?if((core::config('payment.paypal_seller')==1 OR Core::config('payment.stripe_connect')==1) AND $ad->price != NULL AND $ad->price > 0):?>
         <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
             <?if (!Auth::instance()->logged_in()):?>
                 <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 

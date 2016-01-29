@@ -25,6 +25,11 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"DELETE FROM `".self::$db_prefix."config` WHERE `config_key` = 'smtp_ssl' AND `group_name`='email' LIMIT 1;")->execute();
         }catch (exception $e) {}
 
+        //stripe connect
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `stripe_user_id` varchar(140) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
 
         //new configs
         $configs = array(
@@ -32,6 +37,15 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'stripe_bitcoin',
                                'group_name'     => 'payment', 
                                'config_value'   => '0'),
+                        array( 'config_key'     => 'stripe_appfee',
+                               'group_name'     => 'payment', 
+                               'config_value'   => '0'),
+                        array( 'config_key'     => 'stripe_connect',
+                               'group_name'     => 'payment', 
+                               'config_value'   => '0'),
+                        array( 'config_key'     => 'stripe_clientid',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
                        
                         );
         

@@ -722,8 +722,8 @@ class Controller_Ad extends Controller {
      */
     public function action_buy()
     {
-        //check pay to featured top is enabled
-        if(core::config('payment.paypal_seller') == FALSE)
+        //check pay to featured top is enabled check stripe config too
+        if(core::config('payment.paypal_seller') == FALSE AND Core::config('payment.stripe_connect')==FALSE)
             throw HTTP_Exception::factory(404,__('Page not found'));
 
         //getting the user that wants to buy now

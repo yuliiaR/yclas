@@ -700,6 +700,7 @@ class Controller_Panel_Stats extends Auth_Controller {
         $query = DB::select(DB::expr('COUNT(id_order) total'))
             ->from('orders')
             ->where('status', '=', Model_Order::STATUS_PAID)
+            ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
             ->where('pay_date', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
 
         $query = $query->execute();
@@ -723,6 +724,7 @@ class Controller_Panel_Stats extends Auth_Controller {
         $query = DB::select(DB::expr('DATE(pay_date) date'))
             ->select(DB::expr('COUNT(id_order) total'))
             ->from('orders')
+            ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
             ->where('status', '=', Model_Order::STATUS_PAID)
             ->where('pay_date', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
 
@@ -770,6 +772,7 @@ class Controller_Panel_Stats extends Auth_Controller {
 
         $query = DB::select(DB::expr('SUM(amount) total'))
             ->from('orders')
+            ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
             ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
 
         $query = $query->execute();
@@ -793,6 +796,7 @@ class Controller_Panel_Stats extends Auth_Controller {
         $query = DB::select(DB::expr('DATE(created) date'))
             ->select(DB::expr('SUM(amount) total'))
             ->from('orders')
+            ->where('id_product','!=',Model_Order::PRODUCT_AD_SELL)
             ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
 
         $query = $query->group_by(DB::expr('DATE(created)'))

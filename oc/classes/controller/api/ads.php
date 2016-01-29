@@ -221,11 +221,11 @@ class Controller_Api_Ads extends Api_User {
     {
         try
         {
-            //get image
-            $image = $_FILES['image']; //file post
-
-            if (is_numeric($id_ad = $this->request->param('id')))
+            if (is_numeric($id_ad = $this->request->param('id')) AND isset($_FILES['image']))
             {
+                //get image
+                $image = $_FILES['image']; //file post
+
                 $ad = new Model_Ad();
                 $ad->where('id_ad','=',$id_ad)->where('id_user','=',$this->user->id_user)->find();
 
