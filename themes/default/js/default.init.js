@@ -163,6 +163,16 @@ $(function(){
                     $.get($('meta[name="application-name"]').data('baseurl'), function(data) {
                         $('input[name="auto_locate"]').after($(data).find("#auto-locations"));
                         $('#auto-locations').modal('show');
+                        $('#auto-locations .list-group-item').click(function(event) {
+                            event.preventDefault();
+                            $this = $(this);
+                            $.post($('meta[name="application-name"]').data('baseurl'), {
+                                user_location: $this.data('id')
+                            })
+                            .done(function( data ) {
+                                window.location.href = $this.attr('href');
+                            });
+                        });
                     })
                 },
                 error: function(error) {
