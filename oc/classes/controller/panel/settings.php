@@ -371,7 +371,9 @@ class Controller_Panel_Settings extends Auth_Controller {
 
         // all form config values
         $imageconf = new Model_Config();
-        $config = $imageconf->where('group_name', '=', 'image')->find_all();
+        $config = $imageconf->where('group_name', '=', 'image')
+                            ->where('config_key','NOT LIKE','aws_%')
+                            ->find_all();
 
         // save only changed values
         if($this->request->post())
@@ -396,8 +398,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                             ->rule('image_watermark_position', 'not_empty')
                             ->rule('image_watermark_position', 'digit')
                             ->rule('image_watermark_position', 'range', array(':value', 0, 2))
-                            ->rule('image_disallow_nudes', 'range', array(':value', 0, 1))
-                            ->rule('image_aws_s3_active', 'range', array(':value', 0, 1));
+                            ->rule('image_disallow_nudes', 'range', array(':value', 0, 1));
             
             if ($validation->check()) {
                 foreach ($config as $c) 
