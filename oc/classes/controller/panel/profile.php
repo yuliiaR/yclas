@@ -167,6 +167,51 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
         
     }
+
+
+    public function action_sales()
+    {
+        //check pay to featured top is enabled check stripe config too
+        if(core::config('payment.paypal_seller') == FALSE AND Core::config('payment.stripe_connect')==FALSE)
+            throw HTTP_Exception::factory(404,__('Page not found'));
+
+        $user = Auth::instance()->get_user();
+
+        $this->template->title = __('My sales');
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My sales')));
+        Controller::$full_width = TRUE;
+
+        $orders = new Model_Order();
+        $orders = $orders->join('ads')
+                        ->using('id_ad')
+                        ->where('order.status','=',Model_Order::STATUS_PAID)
+                        ->where('order.id_product','=',Model_Order::PRODUCT_AD_SELL)
+                        ->where('ads.id_user', '=', $user->id_user);
+
+
+        $pagination = Pagination::factory(array(
+                    'view'           => 'oc-panel/crud/pagination',
+                    'total_items'    => $orders->count_all(),
+        ))->route_params(array(
+                    'controller' => $this->request->controller(),
+                    'action'     => $this->request->action(),
+        ));
+
+        $pagination->title($this->template->title);
+
+        $orders = $orders->order_by('pay_date','desc')
+        ->limit($pagination->items_per_page)
+        ->offset($pagination->offset)
+        ->find_all();
+
+        $pagination = $pagination->render();
+
+        $this->template->bind('content', $content);
+        $this->template->content = View::factory('oc-panel/profile/sales', array('orders' => $orders,'pagination'=>$pagination));
+
+        
+    }
+
    /**
     * list all subscription for a given user
     * @return view 
