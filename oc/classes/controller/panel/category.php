@@ -204,13 +204,24 @@ class Controller_Panel_Category extends Auth_Crud {
                 {
                     $c = new Model_Category($id_cat);
                     $c->order = $order;
-                    $c->save();
+
+                    try {
+                        $c->save();
+                    } catch (Exception $e) {
+                        Kohana::$log->add(Log::ERROR, 'Controller Category saveorder id_category: '.$c->id_category.'- URL:'.URL::current());
+                    }
                 }
                 else
                 {
                     //saves the main category
                     $cat->order  = $order;
                     $cat->save();
+
+                    try {
+                        $cat->save();
+                    } catch (Exception $e) {
+                        Kohana::$log->add(Log::ERROR, 'Controller Category saveorder id_category: '.$cat->id_category.'- URL:'.URL::current());
+                    }
                 }
                 $order++;
             }
@@ -315,7 +326,8 @@ class Controller_Panel_Category extends Auth_Crud {
                 $insert = DB::insert('categories', array('name', 'seoname', 'id_category_parent'));
                 foreach ($multy_cats as $name)
                 {
-                    $insert = $insert->values(array($name,$obj_category->gen_seoname($name),1));
+                    if (!empty($name))
+                        $insert = $insert->values(array($name,$obj_category->gen_seoname($name),1));
                 }
                 // Insert everything with one query.
                 $insert->execute();

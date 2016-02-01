@@ -227,13 +227,22 @@ class Controller_Panel_Location extends Auth_Crud {
                     $c = new Model_Location($id_loc);
                     $c->parent_deep     = core::get('deep');
                     $c->order           = $order;
-                    $c->save();
+                    
+                    try {
+                        $c->save();
+                    } catch (Exception $e) {
+                        Kohana::$log->add(Log::ERROR, 'Controller Location saveorder id_location: '.$c->id_location.'- URL:'.URL::current());
+                    }
                 }
                 else
                 {
                     //saves the main location
                     $loc->order  = $order;
-                    $loc->save();
+                    try {
+                        $loc->save();
+                    } catch (Exception $e) {
+                        Kohana::$log->add(Log::ERROR, 'Controller Location saveorder id_location: '.$loc->id_location.'- URL:'.URL::current());
+                    }
                 }
                 $order++;
             }
@@ -333,7 +342,8 @@ class Controller_Panel_Location extends Auth_Crud {
                 $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent'));
                 foreach ($multy_cats as $name)
                 {
-                    $insert = $insert->values(array($name,$obj_location->gen_seoname($name),Core::get('id_location', 1)));
+                    if (!empty($name))
+                        $insert = $insert->values(array($name,$obj_location->gen_seoname($name),Core::get('id_location', 1)));
                 }
                 // Insert everything with one query.
                 $insert->execute();
@@ -371,7 +381,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 $i = 1;
                 foreach ($geonames_locations as $location)
                 {
-                    if ( ! in_array($location->seoname = $obj_location->gen_seoname($location->name), $locations_array))
+                    if ( !empty($locations->name) AND ! in_array($location->seoname = $obj_location->gen_seoname($location->name), $locations_array))
                     {
                         $insert = $insert->values(array($location->name,
                                                         $location->seoname,
