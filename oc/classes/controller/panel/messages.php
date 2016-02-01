@@ -87,7 +87,7 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                 }
                 
                 Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Messaging'))->set_url(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index'))));
-                if ($msg_thread->id_ad !== NULL)
+                if ($msg_thread->id_ad !== NULL AND $msg_thread->ad->loaded())
                     Breadcrumbs::add(Breadcrumb::factory()->set_title($msg_thread->ad->title));
                 else
                     Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Direct Message')));
