@@ -191,7 +191,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/stripe-connection/'>".__('Stripe')."</a>"?></div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/stripe/'>".__('Stripe')."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     
