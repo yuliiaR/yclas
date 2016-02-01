@@ -191,7 +191,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Stripe</div>
+            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/stripe/'>".__('Stripe')."</a>"?></div>
             <div class="panel-body">
                 <div class="form-horizontal">
                     
@@ -294,7 +294,7 @@
 
                     <div class="form-group">
                         <label class="col-md-8 col-md-offset-4">
-                            <p>Get a fee from each sale made by your customers, using <a href="https://stripe.com/connect">Stripe Connect</a></p>
+                            <p>Get a fee from each sale made by your customers, using <a target="_blank" href="https://stripe.com/connect">Stripe Connect</a></p>
                         </label>
 
                         <div class="form-group">
@@ -317,7 +317,7 @@
                         </div>
 
                         <div class="form-group">
-                            <?= FORM::label($forms['stripe_clientid']['key'], __('Stripe client id').' <a href="https://dashboard.stripe.com/account/applications/settings">Get Key</a>', array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_clientid']['key']))?>
+                            <?= FORM::label($forms['stripe_clientid']['key'], __('Stripe client id').' <a target="_blank" href="https://dashboard.stripe.com/account/applications/settings">Get Key</a>', array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_clientid']['key']))?>
                             <div class="col-md-8">
                                 <?= FORM::input($forms['stripe_clientid']['key'], $forms['stripe_clientid']['value'], array(
                                 'placeholder' => "", 
