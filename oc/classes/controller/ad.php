@@ -1029,7 +1029,7 @@ class Controller_Ad extends Controller {
                 if (core::get('category')!==NULL)
                 {
                     $category = new Model_Category();
-                    $category->where('seoname','=',core::get('category'))->cached()->limit(1)->find();
+                    $category->where('seoname',(is_array(core::get('category'))?'in':'='),core::get('category'))->cached()->limit(1)->find();
                     if ($category->loaded())
                         $ads->where('id_category', 'IN', $category->get_siblings_ids());
                 }
@@ -1039,7 +1039,7 @@ class Controller_Ad extends Controller {
                 if (core::get('location')!==NULL)
                 {
                     $location = new Model_location();
-                    $location->where('seoname','=',core::get('location'))->cached()->limit(1)->find();
+                    $location->where('seoname',(is_array(core::get('location'))?'in':'='),core::get('location'))->cached()->limit(1)->find();
                     if ($location->loaded())
                         $ads->where('id_location', 'IN', $location->get_siblings_ids());
                 }

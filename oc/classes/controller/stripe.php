@@ -140,7 +140,10 @@ class Controller_Stripe extends Controller{
                 {
                     $application_fee = StripeKO::application_fee($order->amount);
 
-                    $charge = \Stripe\Charge::create(array(
+                    //we charge the fee only if its not admin
+                    if ($order->ad->user->id_role!=Model_Role::ROLE_ADMIN)
+                    {
+                        $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($order->amount), // amount in cents, again
                                                         "currency"  => $order->currency,
                                                         "card"      => $token,
@@ -148,6 +151,17 @@ class Controller_Stripe extends Controller{
                                                         "application_fee" => StripeKO::money_format($application_fee)), 
                                                      array('stripe_account' => $order->ad->user->stripe_user_id)
                                                     );
+                    }
+                    else
+                    {
+                        $charge = \Stripe\Charge::create(array(
+                                                        "amount"    => StripeKO::money_format($order->amount), // amount in cents, again
+                                                        "currency"  => $order->currency,
+                                                        "card"      => $token,
+                                                        "description" => $order->description)
+                                                    );
+                    }
+                    
                 }
                 catch(Stripe_CardError $e) 
                 {
@@ -160,12 +174,15 @@ class Controller_Stripe extends Controller{
                 //mark as paid
                 $order->confirm_payment('stripe',Core::post('stripeToken'));
                 
-                //crete new order for the application fee so we know how much the site owner is earning ;)
-                $order_app = Model_Order::new_order($order->ad, $order->ad->user,
-                                                    Model_Order::PRODUCT_APP_FEE, $application_fee, core::config('payment.paypal_currency'),
-                                                    'id_order->'.$order->id_order.' id_ad->'.$order->ad->id_ad);
-                $order_app->confirm_payment('stripe',Core::post('stripeToken'));
-
+                //only if is not admin
+                if ($order->ad->user->id_role!=Model_Role::ROLE_ADMIN)
+                {
+                    //crete new order for the application fee so we know how much the site owner is earning ;)
+                    $order_app = Model_Order::new_order($order->ad, $order->ad->user,
+                                                        Model_Order::PRODUCT_APP_FEE, $application_fee, core::config('payment.paypal_currency'),
+                                                        'id_order->'.$order->id_order.' id_ad->'.$order->ad->id_ad);
+                    $order_app->confirm_payment('stripe',Core::post('stripeToken'));
+                }
                 
                 //redirect him to his ads
                 Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
