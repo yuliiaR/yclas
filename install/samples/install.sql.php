@@ -337,7 +337,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`ord
 (0, 'New reply: [TITLE]', 'messaging-reply', '[URL.QL]\n\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, '[FROM.NAME] sent you a direct message', 'messaging-user-contact', 'Hello [TO.NAME],\n\n[FROM.NAME] have a message for you:\n\n[DESCRIPTION]\n\n[URL.QL]\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Hello [TO.NAME]!', 'messaging-ad-contact', 'You have been contacted regarding your advertisement:\n\n`[AD.NAME]`.\n\nUser [FROM.NAME], have a message for you:\n\n[DESCRIPTION]\n\n[URL.QL]\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
-(0, 'New review for [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\n\n[RATE]\n\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1);");
+(0, 'New review for [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\n\n[RATE]\n\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
+(0, 'There is a new reply on the forum', 'new-forum-answer', 'There is a new reply on a forum post where you participated.<br><br><a target=\"_blank\" href=\"[FORUM.LINK]\">Check it here</a><br><br>[FORUM.LINK]<br>', '".core::request('ADMIN_EMAIL').", 'email',  1);");
 
 /**
  * Content translations
@@ -458,7 +459,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`id_
 (150, 'es_ES', 0, 'Recibo de [ORDER.DESC] #[ORDER.ID]', 'new-order', 'Hola [USER.NAME], gracias por comprar [ORDER.DESC].\r\n\r\nPor favor, completa tu pago aquí [URL.CHECKOUT]', '".core::request('ADMIN_EMAIL')."', '2014-10-28 04:11:39', 'email', 1),
 (151, 'es_ES', 0, '¡Enhorabuena! Tu anuncio `[AD.NAME]` fue creado en [SITE.NAME]!', 'ads-confirm', 'Bienvenido [USER.NAME],\r\n\r\nGracias por crear un anuncio en [SITE.NAME]! \r\n\r\nPor favor, has clic en este enlace [URL.QL] para confirmarlo.\r\n\r\n¡Saludos!', '".core::request('ADMIN_EMAIL')."', '2014-10-28 04:12:51', 'email', 1),
 (152, 'es_ES', 0, 'Tu anuncio [AD.NAME] ha expirado', 'ad-expired', 'Hola [USER.NAME], Tu anuncio [AD.NAME] ha expirado \r\n\r\nPor favor, revisa tu anuncio aquí [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:59', 'email', 1),
-(153, 'es_ES', 0, 'Opinión nueva para [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\r\n\r\n[RATE]\r\n\r\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:15', 'email', 1);");
+(153, 'es_ES', 0, 'Opinión nueva para [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\r\n\r\n[RATE]\r\n\r\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:15', 'email', 1),
+(154, 'es_ES', 0, 'Hay una nueva respuesta en el foro', 'new-forum-answer', 'Hay una nueva respuesta en el foro donde has participado.\r\n<br><br>\r\n<a target=\"_blank\" href=\"[FORUM.LINK]\">Puedes revisarla aquí</a>\r\n<br><br>\r\n[FORUM.LINK]\r\n<br>', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:15', 'email', 1);");
 
 mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`locale`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) VALUES
 ('fr_FR', 'Félicitations! Votre annonce a bien été créée sur [SITE.NAME]!', 'ads-confirm', 'Bienvenue [USER.NAME],<br /><br />\n<br /><br />\nMerci d''avoir créé une anonnce sur [SITE.NAME]! <br /><br />\n<br /><br />\nVeuillez cliquer sur ce lien [URL.QL] pour la confirmer.<br /><br />\n<br /><br />\nCordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
