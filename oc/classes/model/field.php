@@ -299,10 +299,12 @@ class Model_Field {
         if ($this->field_exists($name))
         {
             $fields = self::get_all();
-            return $fields[$name];
+            
+            if (isset($fields[$name]))
+                return $fields[$name];
         }
-        else
-            return FALSE;
+        
+        return FALSE;
     }
 
     /**
