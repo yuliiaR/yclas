@@ -336,14 +336,19 @@ class Controller_Panel_Location extends Auth_Crud {
         {
             if(core::post('multy_locations') !== "")
             {
-                $multy_cats = explode(',', core::post('multy_locations'));
+                $multy_locs = explode(',', core::post('multy_locations'));
                 $obj_location = new Model_Location();
+                $locations_array = array();
 
                 $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent'));
-                foreach ($multy_cats as $name)
+                foreach ($multy_locs as $name)
                 {
-                    if (!empty($name))
-                        $insert = $insert->values(array($name,$obj_location->gen_seoname($name),Core::get('id_location', 1)));
+                    if ( ! empty($name) AND ! in_array($seoname = $obj_location->gen_seoname($name), $locations_array))
+                    {
+                        $insert = $insert->values(array($name, $seoname, Core::get('id_location', 1)));
+
+                        $locations_array[] = $seoname;
+                    }
                 }
                 // Insert everything with one query.
                 $insert->execute();
