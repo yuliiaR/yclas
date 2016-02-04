@@ -68,6 +68,9 @@
         <?if ($ad->price>0):?>
             <span class="label label-danger"><?= __('Price');?> : <?=i18n::money_format( $ad->price)?></span>
         <?endif?>
+        <?if ($ad->price==0 && core::config('advertisement.free')==1):?>
+            <span class="label label-danger"><?= __('Price');?> : <?=__('Free');?></span>
+        <?endif?>
         <?if ($ad->id_location != 1):?>
             <span class="label label-default"><?=$ad->location->name?></span>
         <?endif?>

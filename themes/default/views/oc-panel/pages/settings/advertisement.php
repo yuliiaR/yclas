@@ -687,6 +687,26 @@
                         </div>
                     </div>
                     
+					<div class="form-group">
+                        <?= FORM::label($forms['free']['key'], __('Show Free tag'), array('class'=>'control-label col-sm-4', 'for'=>$forms['free']['key']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= FORM::hidden($forms['free']['key'], 0);?>
+                                <?= FORM::checkbox($forms['free']['key'], 1, (bool) $forms['free']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['free']['key'], 
+                                'data-original-title'=> __("Show Free tag"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-content'=>__("You can choose if you wish to display free tag when price is equal to zero."),
+                                ))?>
+                                <?= FORM::label($forms['free']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['free']['key']))?>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <?= FORM::label($forms['fbcomments']['key'], "<a target='_blank' href='https://docs.yclas.com/add-facebook-comments/'>".__('Facebook comments')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['fbcomments']['key']))?>
                         <div class="col-sm-8">

@@ -144,6 +144,9 @@
               <?if ($ad->price!=0){?>
                   <li class="price"><?=__('Price');?>: <b><?=i18n::money_format( $ad->price)?></b></li>
               <?}?>  
+              <?if ($ad->price==0 AND core::config('advertisement.free')==1){?>
+                  <li class="price"><?=__('Price');?>: <b><?=__('Free');?></b></li>
+              <?}?>  
           </ul>
        
           <?if(core::config('advertisement.description')!=FALSE):?>
