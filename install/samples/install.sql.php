@@ -658,6 +658,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'login_to_contact', 0),
 ('advertisement', 'only_admin_post', 0),
 ('advertisement', 'sharing', '0'),
+('advertisement', 'free', '0'),
 ('advertisement', 'logbee', 0),
 ('advertisement', 'leave_alert', 1),
 ('advertisement', 'validate_banned_words', 0),

@@ -46,6 +46,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'stripe_clientid',
                                'group_name'     => 'payment', 
                                'config_value'   => ''),
+                        array( 'config_key'     => 'free',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => '0'),
                        
                         );
         
