@@ -322,12 +322,17 @@ class Controller_Panel_Category extends Auth_Crud {
             {
                 $multy_cats = explode(',', core::post('multy_categories'));
                 $obj_category = new Model_Category();
+                $categories_array = array();
 
                 $insert = DB::insert('categories', array('name', 'seoname', 'id_category_parent'));
                 foreach ($multy_cats as $name)
                 {
-                    if (!empty($name))
-                        $insert = $insert->values(array($name,$obj_category->gen_seoname($name),1));
+                    if ( ! empty($name) AND ! in_array($seoname = $obj_category->gen_seoname($name), $categories_array))
+                    {
+                        $insert = $insert->values(array($name, $seoname, 1));
+
+                        $categories_array[] = $seoname;
+                    }
                 }
                 // Insert everything with one query.
                 $insert->execute();
