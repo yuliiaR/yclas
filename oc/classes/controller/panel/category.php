@@ -306,7 +306,7 @@ class Controller_Panel_Category extends Auth_Crud {
 
     }
 
-     /**
+    /**
      * Creates multiple categories just with name
      * @return void      
      */
@@ -324,20 +324,28 @@ class Controller_Panel_Category extends Auth_Crud {
                 $obj_category = new Model_Category();
                 $categories_array = array();
 
-                $insert = DB::insert('categories', array('name', 'seoname', 'id_category_parent'));
-                foreach ($multy_cats as $name)
+                if (is_array($multy_cats))
                 {
-                    if ( ! empty($name) AND ! in_array($seoname = $obj_category->gen_seoname($name), $categories_array))
+                    $execute = FALSE;
+                    $insert = DB::insert('categories', array('name', 'seoname', 'id_category_parent'));
+                    foreach ($multy_cats as $name)
                     {
-                        $insert = $insert->values(array($name, $seoname, 1));
+                        if ( ! empty($name) AND ! in_array($seoname = $obj_category->gen_seoname($name), $categories_array))
+                        {
+                            $execute = TRUE;
+                            $insert = $insert->values(array($name, $seoname, 1));
 
-                        $categories_array[] = $seoname;
+                            $categories_array[] = $seoname;
+                        }
+                    }
+                    
+                    // Insert everything with one query.
+                    if ($execute==TRUE)
+                    {
+                        $insert->execute();
+                        Core::delete_cache();
                     }
                 }
-                // Insert everything with one query.
-                $insert->execute();
-
-                Core::delete_cache();
             }
             else
                 Alert::set(Alert::INFO, __('Select some categories first.'));

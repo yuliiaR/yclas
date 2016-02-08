@@ -340,20 +340,28 @@ class Controller_Panel_Location extends Auth_Crud {
                 $obj_location = new Model_Location();
                 $locations_array = array();
 
-                $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent'));
-                foreach ($multy_locs as $name)
+                if (is_array($multy_locs))
                 {
-                    if ( ! empty($name) AND ! in_array($seoname = $obj_location->gen_seoname($name), $locations_array))
+                    $execute = FALSE;
+                    $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent'));
+                    foreach ($multy_locs as $name)
                     {
-                        $insert = $insert->values(array($name, $seoname, Core::get('id_location', 1)));
+                        if ( ! empty($name) AND ! in_array($seoname = $obj_location->gen_seoname($name), $locations_array))
+                        {
+                            $execute = TRUE;
+                            $insert = $insert->values(array($name, $seoname, Core::get('id_location', 1)));
 
-                        $locations_array[] = $seoname;
+                            $locations_array[] = $seoname;
+                        }
+                    }
+
+                    // Insert everything with one query.
+                    if ($execute==TRUE)
+                    {
+                        $insert->execute();
+                        Core::delete_cache();
                     }
                 }
-                // Insert everything with one query.
-                $insert->execute();
-
-                Core::delete_cache();
             }
             else
                 Alert::set(Alert::INFO, __('Select some locations first.'));
