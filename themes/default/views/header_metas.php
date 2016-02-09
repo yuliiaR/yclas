@@ -73,3 +73,6 @@
 <?endif?> 
 
 <link rel="shortcut icon" href="<?=(Theme::get('favicon_url')!='') ? Theme::get('favicon_url') : core::config('general.base_url').'images/favicon.ico'?>">
+<?if(Theme::get('apple-touch-icon')!=NULL):?>
+<link rel="apple-touch-icon" href="<?=(Theme::get('apple-touch-icon')) ?>">
+<?endif?>
