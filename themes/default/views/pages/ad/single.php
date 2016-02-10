@@ -54,7 +54,7 @@
                         <?if( isset($value['thumb']) AND isset($value['image']) ):?>
                             <div class="col-md-3">
                                 <a href="<?=$value['image']?>" class="thumbnail gallery-item" data-gallery>
-                                    <img src="<?=$value['thumb']?>" class="img-rounded" alt="<?=HTML::chars($ad->title)?>">
+                                    <img src="<?=Core::imagefly($value['thumb'],96,96)?>" class="img-rounded" alt="<?=HTML::chars($ad->title)?>">
                                 </a>
                             </div>
                         <?endif?>

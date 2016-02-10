@@ -19,14 +19,14 @@
                     <div class="thumbnail latest_ads">
                         <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"  class="min-h">
                             <?if($ad->get_first_image()!== NULL):?>
-                                <img src="<?=$ad->get_first_image()?>" alt="<?=HTML::chars($ad->title)?>">
+                                <img src="<?=Core::imagefly($ad->get_first_image(),132,132)?>" alt="<?=HTML::chars($ad->title)?>">
                             <?else:?>
                                 <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                    <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
+                                    <img src="<?=Core::imagefly($icon_src,132,132)?>" alt="<?=HTML::chars($ad->title)?>" >
                                 <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                    <img src="<?=$icon_src?>" alt="<?=HTML::chars($ad->title)?>" >
+                                    <img src="<?=Core::imagefly($icon_src,132,132)?>" alt="<?=HTML::chars($ad->title)?>" >
                                 <?else:?>
-                                    <img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" alt="<?=HTML::chars($ad->title)?>"> 
+                                    <img data-src="holder.js/132x132?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" alt="<?=HTML::chars($ad->title)?>"> 
                                 <?endif?> 
                             <?endif?>
                         </a>

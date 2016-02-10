@@ -8,7 +8,7 @@
                 <div class="media-left">
                     
                     <a title="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-                        <img class="media-object" style="width: 64px; height: 64px;" src="<?=$ad->get_first_image()?>" alt="<?= HTML::chars($ad->title)?>">
+                        <img class="media-object" src="<?=Core::imagefly($ad->get_first_image(),64,64)?>" alt="<?= HTML::chars($ad->title)?>">
                     </a>
                 </div>
             <?endif?>
