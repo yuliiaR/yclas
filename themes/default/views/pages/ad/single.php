@@ -54,7 +54,24 @@
                         <?if( isset($value['thumb']) AND isset($value['image']) ):?>
                             <div class="col-md-3">
                                 <a href="<?=$value['image']?>" class="thumbnail gallery-item" data-gallery>
-                                    <img src="<?=Core::imagefly($value['thumb'],96,96)?>" class="img-rounded" alt="<?=HTML::chars($ad->title)?>">
+                                    <picture>
+                                        <source
+                                            media="(min-width: 1200px)"
+                                            srcset="<?=Core::imagefly($value['image'],125,125)?>">
+                                        <source
+                                            media="(min-width: 992px)"
+                                            srcset="<?=Core::imagefly($value['image'],96,96)?>">
+                                        <source
+                                            media="(min-width: 768px)"
+                                            srcset="<?=Core::imagefly($value['image'],939,939)?>">
+                                        <source
+                                            media="(min-width: 480px)"
+                                            srcset="<?=Core::imagefly($value['image'],727,727)?>">
+                                        <source
+                                            media="(min-width: 320px)"
+                                            srcset="<?=Core::imagefly($value['image'],440,440)?>">
+                                        <img src="<?=Core::imagefly($value['image'],280,280)?>"  class="img-responsive img-rounded" alt="<?=HTML::chars($ad->title)?>">
+                                    </picture>
                                 </a>
                             </div>
                         <?endif?>
