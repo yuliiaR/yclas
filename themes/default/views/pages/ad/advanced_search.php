@@ -12,28 +12,30 @@
                 </div>
                 </div>
 
-                <div class="form-group">
-                <?= FORM::label('category', __('Category'), array('class'=>'', 'for'=>'category' ))?>
-                    <div class="control mr-30">
-                        <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category" class="form-control" data-placeholder="<?=__('Category')?>">
-                        <?if ( ! core::config('general.search_multi_catloc')) :?>
-                            <option value=""><?=__('Category')?></option>
-                        <?endif?>
-                        <?function lili($item, $key,$cats){?>
-                            <?if (core::config('general.search_multi_catloc')):?>
-                                <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(is_array(core::request('category')) AND in_array($cats[$key]['seoname'], core::request('category')))?"selected":''?> ><?=$cats[$key]['name']?></option>
-                            <?else:?>
-                                <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
+                <?if(count($categories) > 0):?>
+                    <div class="form-group">
+                        <?= FORM::label('category', __('Category'), array('class'=>'', 'for'=>'category' ))?>
+                        <div class="control mr-30">
+                            <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category" class="form-control" data-placeholder="<?=__('Category')?>">
+                            <?if ( ! core::config('general.search_multi_catloc')) :?>
+                                <option value=""><?=__('Category')?></option>
                             <?endif?>
-                            <?if (count($item)>0):?>
-                            <optgroup label="<?=$cats[$key]['name']?>">    
-                                <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
-                                </optgroup>
-                            <?endif?>
-                        <?}array_walk($order_categories, 'lili',$categories);?>
-                        </select>
+                            <?function lili($item, $key,$cats){?>
+                                <?if (core::config('general.search_multi_catloc')):?>
+                                    <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(is_array(core::request('category')) AND in_array($cats[$key]['seoname'], core::request('category')))?"selected":''?> ><?=$cats[$key]['name']?></option>
+                                <?else:?>
+                                    <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
+                                <?endif?>
+                                <?if (count($item)>0):?>
+                                <optgroup label="<?=$cats[$key]['name']?>">    
+                                    <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
+                                    </optgroup>
+                                <?endif?>
+                            <?}array_walk($order_categories, 'lili',$categories);?>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                <?endif?>
 
                 <?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
                     <div class="form-group">
