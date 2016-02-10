@@ -109,6 +109,7 @@ $modules = array(
 	'formmanager'	=> COMMONPATH.'modules/formmanager',// forms to objects ORM
 	'widgets'	    => COMMONPATH.'modules/widgets',    // loads default widgets
     'cron'          => COMMONPATH.'modules/cron',    // cron module
+    'imagefly'      => COMMONPATH.'modules/imagefly',//imagefly resize image files on the fly ;)
     //modules unique for open classifieds
 	'blacksmith'	=> MODPATH.'blacksmith', // used to handle custom fields
 );
