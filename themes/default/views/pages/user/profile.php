@@ -5,12 +5,29 @@
 </div>
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-xs-3">
         <a class="thumbnail">
-            <img src="<?=Core::imagefly($user->get_profile_image(),142,142)?>" class="img-rounded" alt="<?=__('Profile Picture')?>">
+            <picture>
+                <source
+                    media="(min-width: 1200px)"
+                    srcset="<?=Core::imagefly($user->get_profile_image(),179,179)?>">
+                <source
+                    media="(min-width: 992px)"
+                    srcset="<?=Core::imagefly($user->get_profile_image(),142,142)?>">
+                <source
+                    media="(min-width: 768px)"
+                    srcset="<?=Core::imagefly($user->get_profile_image(),205,205)?>">
+                <source
+                    media="(min-width: 480px)"
+                    srcset="<?=Core::imagefly($user->get_profile_image(),152,152)?>">
+                <source
+                    media="(min-width: 320px)"
+                    srcset="<?=Core::imagefly($user->get_profile_image(),80,80)?>">
+                <img src="<?=Core::imagefly($user->get_profile_image(),142,142)?>" class="img-rounded img-responsive" alt="<?=__('Profile Picture')?>">            
+            </picture>
         </a>
     </div>
-    <div class="col-md-9">
+    <div class="col-xs-9">
         <div class="text-description">
             <?=$user->description?>
         </div>
