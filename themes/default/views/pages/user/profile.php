@@ -66,7 +66,7 @@
                     </li>
                 <?endif?>
             <?endforeach?>
-            <?if($user->cf_whatsapp AND $value!=''):?>
+            <?if($user->cf_whatsapp AND $user->cf_whatsapp!=''):?>
                 <li><?=$user->cf_whatsapp?> <i class="fa fa-2x fa-whatsapp" alt="Whatsapp" title="Whatsapp" style="color:#43d854"></i></li>
             <?endif?>
             <?endif?>
@@ -148,10 +148,10 @@
         <div class="clearfix">&nbsp;</div>
         <?if (Theme::get('premium')==1):?>
             <p>
-              <?if($user->cf_skype AND $value!=''):?>
+              <?if($user->cf_skype AND $user->cf_skype!=''):?>
                     <a href="skype:<?=$user->cf_skype?>?chat" title="Skype" alt="Skype"><i class="fa fa-2x fa-skype" style="color:#00aff0"></i></a>
                 <?endif?>
-                <?if($user->cf_telegram AND $value!=''):?>
+                <?if($user->cf_telegram AND $user->cf_telegram!=''):?>
                     <a href="tg://resolve?domain=<?=$user->cf_telegram?>" id="telegram" title="Telegram" alt="Telegram"><i class="glyphicon fa-2x glyphicon-send" style="color:#0088cc"></i></a>
                 <?endif?>
             </p>
