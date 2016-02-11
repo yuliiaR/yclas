@@ -53,25 +53,25 @@
             <?endif?>
             <?if (Theme::get('premium')==1):?>
             <?foreach ($user->custom_columns(TRUE) as $name => $value):?>
-                <?if(!$user->cf_skype AND !$user->cf_telegram AND $value!=''):?>
-                    <li>
-                        <strong><?=$name?>:</strong>
-                        <?if($value=='checkbox_1'):?>
-                            <i class="fa fa-check"></i>
-                        <?elseif($value=='checkbox_0'):?>
-                            <i class="fa fa-times"></i>
-                        <?else:?>
-                            <?=$value?>
-                        <?endif?>
-                    </li>
-                <?endif?>
+            	<?if($value!=''):?>
+	            	<li>
+	                    <strong><?=$name?>:</strong>
+	                    <?if($value=='checkbox_1'):?>
+	                        <i class="fa fa-check"></i>
+	                    <?elseif($value=='checkbox_0'):?>
+	                        <i class="fa fa-times"></i>
+	                    <?else:?>
+	                        <?=$value?>
+	                    <?endif?>
+	            	</li>
+	            <?endif?>
             <?endforeach?>
             <?if(isset($user->cf_whatsapp) AND $user->cf_whatsapp!=''):?>
                 <li><?=$user->cf_whatsapp?> <i class="fa fa-2x fa-whatsapp" alt="Whatsapp" title="Whatsapp" style="color:#43d854"></i></li>
             <?endif?>
             <?endif?>
         </ul>
-
+		<div class="clearfix">&nbsp;</div>
         <!-- Popup contact form -->
         <?if (core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in()) :?>
             <a class="btn btn-success" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
@@ -148,7 +148,7 @@
         <div class="clearfix">&nbsp;</div>
         <?if (Theme::get('premium')==1):?>
             <p>
-              <?if(isset($user->cf_skype) AND $user->cf_skype!=''):?>
+              	<?if(isset($user->cf_skype) AND $user->cf_skype!=''):?>
                     <a href="skype:<?=$user->cf_skype?>?chat" title="Skype" alt="Skype"><i class="fa fa-2x fa-skype" style="color:#00aff0"></i></a>
                 <?endif?>
                 <?if(isset($user->cf_telegram) AND $user->cf_telegram!=''):?>
