@@ -83,7 +83,8 @@
                                                                              'rating'=>"Rating",
                                                                              'favorited'=>"Favorited",
                                                                              'published-desc'=>"Newest",
-                                                                             'published-asc'=>"Oldest"), 
+                                                                             'published-asc'=>"Oldest",
+                                                                             'distance'=>"Distance"), 
                             $forms['sort_by']['value'], array(
                             'placeholder' => $forms['sort_by']['value'], 
                             'class' => 'tips form-control input-sm ', 

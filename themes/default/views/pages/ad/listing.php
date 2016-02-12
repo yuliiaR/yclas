@@ -65,7 +65,7 @@
 	            <li><a href="?<?=http_build_query(['items_per_page' => '100'] + Request::current()->query())?>">100 <?=__('per page')?></a></li>
           	</ul>
         </div>
-        <button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
+        <button type="button" id="sort" data-sort="<?=core::request('sort',core::config('advertisement.sort_by'))?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-list-alt"></span> <?=__('Sort')?> <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" id="sort-list">
@@ -122,13 +122,13 @@
               <a class="pull-left" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
                   <figure>
                       <?if($ad->get_first_image() !== NULL):?>
-                          <img src="<?=$ad->get_first_image()?>" alt="<?=HTML::chars($ad->title)?>" />
+                          <img src="<?=Core::imagefly($ad->get_first_image(),150,150)?>" alt="<?=HTML::chars($ad->title)?>" />
                       <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                          <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
+                          <img src="<?=Core::imagefly($icon_src,150,150)?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
                       <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                          <img src="<?=$icon_src?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
+                          <img src="<?=Core::imagefly($icon_src,150,150)?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
                       <?else:?>
-                          <img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>"> 
+                          <img data-src="holder.js/150x150?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>"> 
                       <?endif?>
                   </figure>
               </a>

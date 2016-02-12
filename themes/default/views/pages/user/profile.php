@@ -5,12 +5,29 @@
 </div>
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-xs-3">
         <a class="thumbnail">
-            <img src="<?=$user->get_profile_image()?>" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
+            <picture>
+                <source
+                    media="(min-width: 1200px)"
+                    srcset="<?=Core::imagefly($user->get_profile_image(),179,179)?>">
+                <source
+                    media="(min-width: 992px)"
+                    srcset="<?=Core::imagefly($user->get_profile_image(),142,142)?>">
+                <source
+                    media="(min-width: 768px)"
+                    srcset="<?=Core::imagefly($user->get_profile_image(),205,205)?>">
+                <source
+                    media="(min-width: 480px)"
+                    srcset="<?=Core::imagefly($user->get_profile_image(),152,152)?>">
+                <source
+                    media="(min-width: 320px)"
+                    srcset="<?=Core::imagefly($user->get_profile_image(),80,80)?>">
+                <img src="<?=Core::imagefly($user->get_profile_image(),142,142)?>" class="img-rounded img-responsive" alt="<?=__('Profile Picture')?>">            
+            </picture>
         </a>
     </div>
-    <div class="col-md-9">
+    <div class="col-xs-9">
         <div class="text-description">
             <?=$user->description?>
         </div>
@@ -36,20 +53,25 @@
             <?endif?>
             <?if (Theme::get('premium')==1):?>
             <?foreach ($user->custom_columns(TRUE) as $name => $value):?>
-                <li>
-                    <strong><?=$name?>:</strong>
-                    <?if($value=='checkbox_1'):?>
-                        <i class="fa fa-check"></i>
-                    <?elseif($value=='checkbox_0'):?>
-                        <i class="fa fa-times"></i>
-                    <?else:?>
-                        <?=$value?>
-                    <?endif?>
-                </li>
+            	<?if($value!=''):?>
+	            	<li>
+	                    <strong><?=$name?>:</strong>
+	                    <?if($value=='checkbox_1'):?>
+	                        <i class="fa fa-check"></i>
+	                    <?elseif($value=='checkbox_0'):?>
+	                        <i class="fa fa-times"></i>
+	                    <?else:?>
+	                        <?=$value?>
+	                    <?endif?>
+	            	</li>
+	            <?endif?>
             <?endforeach?>
+            <?if(isset($user->cf_whatsapp) AND $user->cf_whatsapp!=''):?>
+                <li><?=$user->cf_whatsapp?> <i class="fa fa-2x fa-whatsapp" alt="Whatsapp" title="Whatsapp" style="color:#43d854"></i></li>
+            <?endif?>
             <?endif?>
         </ul>
-
+		<div class="clearfix">&nbsp;</div>
         <!-- Popup contact form -->
         <?if (core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in()) :?>
             <a class="btn btn-success" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
@@ -123,6 +145,17 @@
                 </div>
             </div>
         </div>
+        <div class="clearfix">&nbsp;</div>
+        <?if (Theme::get('premium')==1):?>
+            <p>
+              	<?if(isset($user->cf_skype) AND $user->cf_skype!=''):?>
+                    <a href="skype:<?=$user->cf_skype?>?chat" title="Skype" alt="Skype"><i class="fa fa-2x fa-skype" style="color:#00aff0"></i></a>
+                <?endif?>
+                <?if(isset($user->cf_telegram) AND $user->cf_telegram!=''):?>
+                    <a href="tg://resolve?domain=<?=$user->cf_telegram?>" id="telegram" title="Telegram" alt="Telegram"><i class="glyphicon fa-2x glyphicon-send" style="color:#0088cc"></i></a>
+                <?endif?>
+            </p>
+        <?endif?>
 	</article>
 </div>
 <div class="page-header">
