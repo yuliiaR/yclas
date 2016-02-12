@@ -8,22 +8,7 @@
     <div class="col-xs-3">
         <a class="thumbnail">
             <picture>
-                <source
-                    media="(min-width: 1200px)"
-                    srcset="<?=Core::imagefly($user->get_profile_image(),179,179)?>">
-                <source
-                    media="(min-width: 992px)"
-                    srcset="<?=Core::imagefly($user->get_profile_image(),142,142)?>">
-                <source
-                    media="(min-width: 768px)"
-                    srcset="<?=Core::imagefly($user->get_profile_image(),205,205)?>">
-                <source
-                    media="(min-width: 480px)"
-                    srcset="<?=Core::imagefly($user->get_profile_image(),152,152)?>">
-                <source
-                    media="(min-width: 320px)"
-                    srcset="<?=Core::imagefly($user->get_profile_image(),80,80)?>">
-                <img src="<?=Core::imagefly($user->get_profile_image(),142,142)?>" class="img-rounded img-responsive" alt="<?=__('Profile Picture')?>">            
+                <?=HTML::picture($user->get_profile_image(), array('w' => 142, 'h' => 142), array('1200px' => array('w' => '179', 'h' => '179'), '992px' => array('w' => '142', 'h' => '142'), '768px' => array('w' => '205', 'h' => '205'), '480px' => array('w' => '152', 'h' => '152'), '320px' => array('w' => '80', 'h' => '80')), array('class' => 'img-rounded img-responsive', 'alt' => __('Profile Picture')))?>
             </picture>
         </a>
     </div>

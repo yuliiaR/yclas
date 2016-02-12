@@ -18,39 +18,13 @@
                 <div class="col-md-3">
                     <div class="thumbnail latest_ads">
                         <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"  class="min-h">
-                            <picture>
-                                <?if($ad->get_first_image()!== NULL):?>
-                                    <source
-                                        media="(min-width: 992px)"
-                                        srcset="<?=Core::imagefly($ad->get_first_image(),132,132)?>">
-                                    <source
-                                        media="(min-width: 320px)"
-                                        srcset="<?=Core::imagefly($ad->get_first_image(),648,648)?>">
-                                <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                    <source
-                                        media="(min-width: 992px)"
-                                        srcset="<?=Core::imagefly($icon_src,132,132)?>">
-                                    <source
-                                        media="(min-width: 320px)"
-                                        srcset="<?=Core::imagefly($icon_src,648,648)?>">
-                                <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                    <source
-                                        media="(min-width: 992px)"
-                                        srcset="<?=Core::imagefly($icon_src,132,132)?>">
-                                    <source
-                                        media="(min-width: 320px)"
-                                        srcset="<?=Core::imagefly($icon_src,648,648)?>">
-                                <?endif?>
-                                <?if($ad->get_first_image()!== NULL):?>
-                                    <img src="<?=Core::imagefly($ad->get_first_image(),132,132)?>" alt="<?=HTML::chars($ad->title)?>">
-                                <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                    <img src="<?=Core::imagefly($icon_src,132,132)?>" alt="<?=HTML::chars($ad->title)?>" >
-                                <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                    <img src="<?=Core::imagefly($icon_src,132,132)?>" alt="<?=HTML::chars($ad->title)?>" >
-                                <?else:?>
-                                    <img data-src="holder.js/132x132?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" alt="<?=HTML::chars($ad->title)?>"> 
-                                <?endif?>
-                            </picture>
+                            <?if($ad->get_first_image()!== NULL):?>
+                                <?=HTML::picture($ad->get_first_image(), ['w' => 132, 'h' => 132], ['992px' => ['w' => '132', 'h' => '132'], '320px' => ['w' => '648', 'h' => '648']], ['alt' => HTML::chars($ad->title)])?>
+                            <?elseif( ($icon_src = $ad->category->get_icon()) !== FALSE):?>
+                                <?=HTML::picture($icon_src, ['w' => 132, 'h' => 132], ['992px' => ['w' => '132', 'h' => '132'], '320px' => ['w' => '648', 'h' => '648']], ['alt' => HTML::chars($ad->title)])?>
+                            <?else:?>
+                                <img data-src="holder.js/179x179?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" alt="<?=HTML::chars($ad->title)?>">  
+                            <?endif?>
                         </a>
                         <div class="caption">
                             <h5><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h5>
