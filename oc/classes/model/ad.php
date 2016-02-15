@@ -1038,7 +1038,8 @@ class Model_Ad extends ORM {
             $email_content = array( '[URL.AD]'     => $url_ad,
                                     '[AD.TITLE]'   => $this->title,
                                     '[ORDER.ID]'   => $order->id_order,
-                                    '[PRODUCT.ID]' => $order->id_product);
+                                    '[PRODUCT.ID]' => $order->id_product,
+                                    '[BUYER.INSTRUCTIONS]' => (isset($this->cf_buyer_instructions)?$this->cf_buyer_instructions:''));
             // send email to BUYER
             $order->user->email('ads-purchased', $email_content);
 
