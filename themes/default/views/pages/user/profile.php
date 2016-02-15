@@ -147,38 +147,58 @@
     <h3><?=$user->name.' '.__(' advertisements')?></h3>
 
     <?if($profile_ads!==NULL):?>
-        <?foreach($profile_ads as $ads):?>			 
-            <?if($ads->featured >= Date::unix2mysql(time())):?>
+        <?foreach($profile_ads as $ad):?>
+            <?if($ad->featured >= Date::unix2mysql(time())):?>
                 <article class="well featured">
+                    <span class="label label-danger pull-right"><?=__('Featured')?></span>
             <?else:?>
                 <article class="well">
             <?endif?>
                 
-                <h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>"><?=$ads->title?></a></h4>
-                <p><strong><?=__('Description')?>: </strong><?=Text::removebbcode($ads->description)?><p>
-                <p><b><?=__('Publish Date');?>:</b> <?= Date::format($ads->published, core::config('general.date_format'))?><p>
+                <h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h4>
+
+                <div class="picture">
+                    <a class="pull-left" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+                        <figure>
+                            <?if($ad->get_first_image() !== NULL):?>
+                                  <img src="<?=Core::imagefly($ad->get_first_image(),150,150)?>" alt="<?=HTML::chars($ad->title)?>" />
+                              <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
+                                  <img src="<?=Core::imagefly($icon_src,150,150)?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
+                              <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
+                                  <img src="<?=Core::imagefly($icon_src,150,150)?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
+                              <?else:?>
+                                  <img data-src="holder.js/150x150?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>"> 
+                              <?endif?>
+                        </figure>
+                    </a>
+                </div>
+
+                <p><strong><?=__('Description')?>: </strong><?=Text::removebbcode($ad->description)?><p>
+                <p><b><?=__('Publish Date');?>:</b> <?= Date::format($ad->published, core::config('general.date_format'))?><p>
                 
                 <?$visitor = Auth::instance()->get_user()?>
                 
                 <?if ($visitor != FALSE && $visitor->id_role == 10):?>
                     <br>
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ads->id_ad))?>"><?=__("Edit");?></a> |
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ads->id_ad))?>" 
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=__("Edit");?></a> |
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
                         onclick="return confirm('<?=__('Deactivate?')?>');"><?=__("Deactivate");?>
                     </a> |
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ads->id_ad))?>" 
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" 
                         onclick="return confirm('<?=__('Spam?')?>');"><?=__("Spam");?>
                     </a> |
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ads->id_ad))?>" 
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" 
                         onclick="return confirm('<?=__('Delete?')?>');"><?=__("Delete");?>
                     </a>
-                <?elseif($visitor != FALSE && $visitor->id_user == $ads->id_user):?>
+                <?elseif($visitor != FALSE && $visitor->id_user == $ad->id_user):?>
                     <br>
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ads->id_ad))?>"><?=__("Edit");?></a> 
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=__("Edit");?></a> 
                 <?endif?>
+                <div class="clearfix"></div>
             </article>
         <?endforeach?>
         <?=$pagination?>
     <?endif?>
+
 </div>
 	
