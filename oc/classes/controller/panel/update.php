@@ -31,6 +31,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `stripe_user_id` varchar(140) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
+        // update 
+        try 
+        {
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."content` SET description=CONCAT(description,'\n\n[BUYER.INSTRUCTIONS]') WHERE `seotitle` = 'ads-purchased' AND `description` NOT LIKE '%[BUYER.INSTRUCTIONS]'")->execute();
+        }catch (exception $e) {}
+
         //new configs
         $configs = array(
                        

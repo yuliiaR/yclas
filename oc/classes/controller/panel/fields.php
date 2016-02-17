@@ -52,7 +52,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                 HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
             }
             
-            $name   = URL::title(Core::post('name'));
+            $name   = URL::title(Core::post('name'),'_');
 
             $field = new Model_Field();
 
