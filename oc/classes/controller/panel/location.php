@@ -374,9 +374,11 @@ class Controller_Panel_Location extends Auth_Crud {
      * Import multiple locations from geonames
      * @return void      
      */
-    public function action_geonames_locations()
+    public function action_geonames()
     {
-        $this->auto_render = FALSE;
+        $this->template->title  = __('Geonames');
+
+        $this->template->scripts['footer'][] = URL::base('http').'themes/default/js/oc-panel/locations-geonames.js';
     
         //update the elements related to that ad
         if (core::post('geonames_locations') !== "")
@@ -395,7 +397,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 $execute = FALSE;
                 foreach ($geonames_locations as $location)
                 {
-                    if ( !empty($locations->name) AND ! in_array($location->seoname = $obj_location->gen_seoname($location->name), $locations_array))
+                    if ( !empty($location->name) AND ! in_array($location->seoname = $obj_location->gen_seoname($location->name), $locations_array))
                     {
                         $execute = TRUE;
                         $insert = $insert->values(array($location->name,
@@ -417,6 +419,8 @@ class Controller_Panel_Location extends Auth_Crud {
                     $insert->execute();
                     Core::delete_cache();
                 }
+
+                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index')).'?id_location='.Core::get('id_location', 1));
             }
     
         }
@@ -424,7 +428,7 @@ class Controller_Panel_Location extends Auth_Crud {
             Alert::set(Alert::INFO, __('Select some locations first.'));
         
         
-        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index')).'?id_location='.Core::get('id_location', 1));
+        $this->template->content = View::factory('oc-panel/pages/locations/geonames');
     }
 
     /**

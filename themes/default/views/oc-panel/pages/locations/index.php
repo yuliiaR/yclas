@@ -1,9 +1,18 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="page-header">
-    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
-        <?=__('New Location')?>
-    </a>
+    <ul class="list-inline pull-right">
+        <li>
+            <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'geonames'), 'http')?><?=Core::get('id_location') ? '?id_location='.Core::get('id_location') : NULL?>" title="<?=__('Import Locations')?>" target="_blank">
+                <?=__('Import Geonames Locations')?>
+            </a>
+        </li>
+        <li>
+            <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
+                <?=__('New Location')?>
+            </a>
+        </li>
+    </ul>
     <h1><?=($location->id_location > 1) ? $location->name.' – ':NULL?> <?=__('Locations')?></h1>
     <p><?=__("Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")?> <a href="https://docs.yclas.com/how-to-add-locations/" target="_blank"><?=__('Read more')?></a></p>
 </div>
