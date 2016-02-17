@@ -1,9 +1,18 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="page-header">
-    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
-        <?=__('New Location')?>
-    </a>
+    <ul class="list-inline pull-right">
+        <li>
+            <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'geonames'), 'http')?><?=Core::get('id_location') ? '?id_location='.Core::get('id_location') : NULL?>" title="<?=__('Import Locations')?>" target="_blank">
+                <?=__('Import Geonames Locations')?>
+            </a>
+        </li>
+        <li>
+            <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
+                <?=__('New Location')?>
+            </a>
+        </li>
+    </ul>
     <h1><?=($location->id_location > 1) ? $location->name.' – ':NULL?> <?=__('Locations')?></h1>
     <p><?=__("Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")?> <a href="https://docs.yclas.com/how-to-add-locations/" target="_blank"><?=__('Read more')?></a></p>
 </div>
@@ -90,62 +99,6 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-8">
                                     <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations'.'?id_location='.Core::get('id_location', 1)))))?>
-                                </div>
-                            </div>
-                        <?= FORM::close()?>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'geonames_locations')).'?id_location='.Core::get('id_location', 1), array('id'=>'auto_locations_form', 'class'=>'form-horizontal', 'role'=>'form','enctype'=>'multipart/form-data'))?>
-                            <div class="form-group" id="group-continent">
-                                <label for="continent" class="col-sm-3 control-label" data-action="<?=__('Import continents')?>"><?=__('Continent')?></label>
-                                <div class="col-sm-8">
-                                    <select name="continent" id="continent" onchange="getPlaces(this.value,'country');" class="disable-chosen form-control">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group" id="group-country">
-                                <label for="country" class="col-sm-3 control-label" data-action="<?=__('Import countries')?>"><?=__('Country')?></label>
-                                <div class="col-sm-8">
-                                    <select name="country" id="country" onchange="getPlaces(this.value,'province');" class="disable-chosen form-control">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group" id="group-province">
-                                <label for="province" class="col-sm-3 control-label" data-action="<?=__('Import states/provinces')?>"><?=__('State')?> / <?=__('Province')?></label>
-                                <div class="col-sm-8">
-                                    <select name="province" id="province" onchange="getPlaces(this.value,'region');" class="disable-chosen form-control">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group" id="group-region">
-                                <label for="region" class="col-sm-3 control-label" data-action="<?=__('Import counties/regions')?>"><?=__('County')?> / <?=__('Region')?></label>
-                                <div class="col-sm-8">
-                                    <select name="region" id="region" onchange="getPlaces(this.value,'city');" class="disable-chosen form-control">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group" id="group-city">
-                                <label for="city" class="col-sm-3 control-label" data-action="<?=__('Import cities')?>"><?=__('City')?></label>
-                                <div class="col-sm-8">
-                                    <select name="city" id="city" class="disable-chosen form-control">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-8">
-                                    <input type="hidden" id="auto_locations" value="" name="geonames_locations">
-                                    <input type="hidden" id="auto_locations_lang" value="<?=substr(Core::config('i18n.locale'), 0, -3)?>" name="auto_locations_lang">
-                                    <?= FORM::button('submit', __('Import'), array('type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'auto_locations_import', 'action'=>Route::url('oc-panel',array('controller'=>'location','action'=>'geonames_locations')).'?id_location='.Core::get('id_location', 1)))?>
-                                    <?= FORM::button('reset', __('Reset'), array('type'=>'button', 'class'=>'btn btn-default', 'id'=>'auto_locations_import_reset'))?>
                                 </div>
                             </div>
                         <?= FORM::close()?>
