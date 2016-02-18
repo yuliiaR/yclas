@@ -11,7 +11,7 @@ class Controller_Panel_Settings extends Auth_Controller {
     {
         parent::__construct($request, $response);
         
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Settings'))->set_url(Route::url('oc-panel',array('controller'  => 'settings'))));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Settings'))->set_url(Route::url('oc-panel',array('controller' => 'settings', 'action' => 'general'))));
 
     }
 

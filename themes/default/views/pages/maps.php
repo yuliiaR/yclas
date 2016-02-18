@@ -13,7 +13,7 @@
             lon: <?=$ad->longitude?>,
             title: '<?=htmlentities(json_encode($ad->title),ENT_QUOTES)?>',
             <?if(( $icon_src = $ad->category->get_icon() )!==FALSE AND !is_numeric(core::get('id_ad'))):?>
-            icon: '<?=Core::imagefly($icon_src,20,20)?>',
+            icon: '<?=Core::imagefly($icon_src,50,50)?>',
             <?endif?>
             animation: google.maps.Animation.DROP,
             <?if (core::get('controls') != 0) :?>
