@@ -1468,7 +1468,9 @@ class Model_Ad extends ORM {
                                                                 '[AD.NAME]'     =>$ad->title,
                                                                 ));
 
+                    Model_Subscription::new_ad($ad->user);
                     Model_Subscribe::notify($ad);
+
                     $return_message = __('Advertisement is posted. Congratulations!');
                 break;
         }

@@ -60,13 +60,23 @@ class Model_Order extends ORM {
      */
     public static function products()
     {
-        return array(
-            self::PRODUCT_CATEGORY      =>  __('Post in paid category'),
-            self::PRODUCT_TO_TOP        =>  __('Top up ad'),
-            self::PRODUCT_TO_FEATURED   =>  __('Feature ad'),
-            self::PRODUCT_AD_SELL       =>  __('Buy product'),
-            self::PRODUCT_APP_FEE       =>  __('Application Fee'),
-        );
+        $products = array(
+                            self::PRODUCT_CATEGORY      =>  __('Post in paid category'),
+                            self::PRODUCT_TO_TOP        =>  __('Top up ad'),
+                            self::PRODUCT_TO_FEATURED   =>  __('Feature ad'),
+                            self::PRODUCT_AD_SELL       =>  __('Buy product'),
+                            self::PRODUCT_APP_FEE       =>  __('Application Fee'),
+                        );
+        if (Core::config('general.subscriptions')==TRUE AND Theme::get('premium')==1 )
+        {
+            $plans = new Model_Plan();
+            $plans = $plans->where('status','=',1)
+                            ->cached()->find_all();
+            foreach ($plans as $plan) 
+                $products[$plan->id_plan] = $plan->name;
+        }
+
+        return $products;
     }
 
 
@@ -77,9 +87,19 @@ class Model_Order extends ORM {
      */
     public static function product_desc($product)
     {
-        $products = self::products();
+        //its a plan product
+        if ($product >= 100)
+        {
+            $plan = new Model_Plan($product);
+            return ($plan->loaded())?$plan->name.' - '.$plan->description:NULL;
+        }
+        else
+        {
+            $products = self::products();
 
-        return (isset($products[$product])) ? $products[$product] : '' ;
+            return (isset($products[$product])) ? $products[$product] : '' ;
+        }
+        
     }
 
     /**
@@ -112,8 +132,7 @@ class Model_Order extends ORM {
         // update orders
         if($this->loaded())
         {
-            $ad  = $this->ad;
-
+            
             $this->status    = self::STATUS_PAID;
             $this->pay_date  = Date::unix2mysql();
             $this->paymethod = $paymethod;
@@ -128,37 +147,55 @@ class Model_Order extends ORM {
             //if saved delete coupon from session and -- number of coupons.
             Model_Coupon::sale($this->coupon);
 
+            //for membership plans
+            if ($this->id_product >= 100)
+            {
+                Model_Subscription::new_order($this);
+                
+                $replace_email = array('[AD.TITLE]'     => $this->description,
+                                         '[URL.AD]'     => Route::url('pricing'),
+                                         '[ORDER.ID]'   => $this->id_order,
+                                         '[PRODUCT.ID]' => $this->id_product);
+                
+            }
+            else
+            {
+                $ad  = $this->ad;
+
+                //depending on the product different actions
+                switch ($this->id_product) {
+                    case Model_Order::PRODUCT_AD_SELL:
+                            $ad->sale($this);
+                        break;
+                    case Model_Order::PRODUCT_TO_TOP:
+                            $ad->to_top();
+                        break;
+                    case Model_Order::PRODUCT_TO_FEATURED:
+                            $ad->to_feature($this->featured_days);
+                        break;
+                    case Model_Order::PRODUCT_CATEGORY:
+                            $ad->paid_category();
+                        break;
+                }
+
+                $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
+                
+                $replace_email = array('[AD.TITLE]'   => $ad->title,
+                                         '[URL.AD]'     => $url_ad,
+                                         '[ORDER.ID]'   => $this->id_order,
+                                         '[PRODUCT.ID]' => $this->id_product);
+
+                
+            }
+
             //send email to site owner! new sale!! 
             if(core::config('email.new_ad_notify') == TRUE)
             {                    
-                $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
-                
-                $replace = array('[AD.TITLE]'   => $ad->title,
-                                 '[URL.AD]'     => $url_ad,
-                                 '[ORDER.ID]'   => $this->id_order,
-                                 '[PRODUCT.ID]' => $this->id_product);
-
                 Email::content(core::config('email.notify_email'),
                                     core::config('general.site_name'),
                                     core::config('email.notify_email'),
                                     core::config('general.site_name'),'ads-sold',
-                                    $replace);
-            }
-
-            //depending on the product different actions
-            switch ($this->id_product) {
-                case Model_Order::PRODUCT_AD_SELL:
-                        $ad->sale($this);
-                    break;
-                case Model_Order::PRODUCT_TO_TOP:
-                        $ad->to_top();
-                    break;
-                case Model_Order::PRODUCT_TO_FEATURED:
-                        $ad->to_feature($this->featured_days);
-                    break;
-                case Model_Order::PRODUCT_CATEGORY:
-                        $ad->paid_category();
-                    break;
+                                    $replace_email);
             }
  
         }
@@ -175,7 +212,7 @@ class Model_Order extends ORM {
      * @param  string   $description 
      * @return Model_Order                
      */
-    public static function new_order(Model_Ad $ad, $user, $id_product, $amount, $currency = NULL, $description = NULL, $featured_days = NULL)
+    public static function new_order(Model_Ad $ad = NULL, $user, $id_product, $amount, $currency = NULL, $description = NULL, $featured_days = NULL)
     {
         if ($currency === NULL)
             $currency = core::config('payment.paypal_currency');
@@ -185,7 +222,11 @@ class Model_Order extends ORM {
 
         //get if theres an unpaid order for this product and this ad
         $order = new Model_Order();
-        $order->where('id_ad',      '=', $ad->id_ad)
+
+        if ($ad!==NULL AND $ad->loaded())
+            $order->where('id_ad',      '=', $ad->id_ad);
+
+        $order
               ->where('id_user',    '=', $user->id_user)
               ->where('status',     '=', Model_Order::STATUS_CREATED)
               ->where('id_product', '=', $id_product)
@@ -206,7 +247,8 @@ class Model_Order extends ORM {
             //create order      
             $order = new Model_Order;
             $order->id_user       = $user->id_user;
-            $order->id_ad         = $ad->id_ad;
+            if ($ad!==NULL AND $ad->loaded())
+                $order->id_ad         = $ad->id_ad;
             $order->id_product    = $id_product;
             $order->currency      = $currency;
             $order->amount        = $amount;
@@ -350,7 +392,6 @@ class Model_Order extends ORM {
      */
     public function check_pricing()
     {
-
         //update order based on the price and the amount of 
         $days = core::get('featured_days');
         if (is_numeric($days) AND ($price = Model_Order::get_featured_price($days)) !==FALSE )
@@ -418,6 +459,11 @@ class Model_Order extends ORM {
                 break;
             case self::PRODUCT_AD_SELL:
                     $amount =$this->ad->price;
+                break;
+            default:
+                $plan = new Model_Plan($this->id_product);
+
+                $amount = ($plan->loaded())?$plan->price:0;
                 break;
         }
 

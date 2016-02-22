@@ -179,6 +179,28 @@
                 </div>
             </div>
         </div>
+
+        <?if( Core::config('general.subscriptions')==1):?>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="page-edit-profile">
+                    <h3 class="panel-title"><?=__('Subscription')?></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <?if ($user->subscription()==FALSE):?>
+                                <p><?=sprintf(__('You are subscribed to the plan %s until %s with %u ads left'),$user->subscription()->plan->name,$user->subscription()->expire_date,$user->subscription()->amount_ads_left)?></p>
+                            <?else:?>
+                                <a class="btn btn-primary" href="<?=Route::url('pricing')?>">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=__('Choose a Plan')?>
+                                </a>
+                            <?endif?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?endif?>
+        
     </div>
 </div>
 <!--/row-->

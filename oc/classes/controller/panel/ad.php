@@ -306,6 +306,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 						try
 						{
 							$active_ad->save();
+                            Model_Subscription::new_ad($active_ad->user);
                             Model_Subscribe::notify($active_ad);
 						}
 						catch (Exception $e)
