@@ -55,7 +55,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         try
         {
             DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
-                                    ('Renew subscription', '*/5 * * * *', 'Cron_Subscription::renew', NULL, 'Notify by email user subscription will expire. Or charge if uses stripe', 1);")->execute();
+                                    ('Renew subscription', '*/5 * * * *', 'Cron_Subscription::renew', NULL, 'Notify by email user subscription will expire. Deactivates current subscription', 1);")->execute();
         }catch (exception $e) {}
 
 
