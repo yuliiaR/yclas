@@ -100,6 +100,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `has_image` tinyint(1) NOT NULL DEFAULT '0',
   `latitude` float(10,6) NULL DEFAULT NULL,
   `longitude` float(10,6) NULL DEFAULT NULL,
+  `id_geoname` int(10) unsigned NULL DEFAULT NULL,
+  `fcodename_geoname` varchar(145) NULL DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
