@@ -82,6 +82,18 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."content` SET description=CONCAT(description,'\n\n[BUYER.INSTRUCTIONS]') WHERE `seotitle` = 'ads-purchased' AND `description` NOT LIKE '%[BUYER.INSTRUCTIONS]'")->execute();
         }catch (exception $e) {}
 
+        //location.id_geoname column 
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `id_geoname` int(10) UNSIGNED NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
+        //location.fcodename_geoname column 
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `fcodename_geoname` varchar(140) NULL DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
         //new configs
         $configs = array(
                        
