@@ -72,7 +72,7 @@ function listPlaces(jData)
 
     for(var i=0;i<counts;i++) {
         who.options[who.options.length] = new Option(jData.geonames[i].name,jData.geonames[i].geonameId);
-        import_items.push({name:jData.geonames[i].name,lat:jData.geonames[i].lat,long:jData.geonames[i].lng});
+        import_items.push({name:jData.geonames[i].name,lat:jData.geonames[i].lat,long:jData.geonames[i].lng,id_geoname:jData.geonames[i].geonameId,fcodename_geoname:whos});
     }
 
     $("#auto_locations_import").html($('label[for='+ whos +']').data('action'));
@@ -83,11 +83,35 @@ function listPlaces(jData)
 
 $(function  ()
 {
+    $('#group-continent').hide();
     $('#group-country').hide();
     $('#group-region').hide();
     $('#group-province').hide();
     $('#group-city').hide();
-    getPlaces(6295630,'continent');
+
+    if ($('#current_location_id_geoname').val() && $('#current_location_fcodename_geoname').val()) {
+        switch ($('#current_location_fcodename_geoname').val()) {
+            case 'continent':
+                whos = "country";
+                break;
+            case 'country':
+                whos = "province";
+                break;
+            case 'province':
+                whos = "region";
+                break;
+            case 'region':
+                whos = "city";
+                break;
+            case 'city':
+                whos = "continent";
+                break;
+        }
+        getPlaces($('#current_location_id_geoname').val(), whos);
+    }
+    else {
+        getPlaces(6295630, 'continent');
+    }
     
     $("#auto_locations_import_reset").click(function() {
         $('#group-country').hide();

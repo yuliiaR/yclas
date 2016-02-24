@@ -100,6 +100,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `has_image` tinyint(1) NOT NULL DEFAULT '0',
   `latitude` float(10,6) NULL DEFAULT NULL,
   `longitude` float(10,6) NULL DEFAULT NULL,
+  `id_geoname` int(10) unsigned NULL DEFAULT NULL,
+  `fcodename_geoname` varchar(145) NULL DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
@@ -311,6 +313,35 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   UNIQUE KEY `".core::request('TABLE_PREFIX')."coupons_UK_name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."plans` (
+      `id_plan` int(10) unsigned NOT NULL AUTO_INCREMENT,
+      `name` varchar(145) NOT NULL,
+      `seoname` varchar(145) NOT NULL,
+      `description` longtext NOT NULL,
+      `price` decimal(14,3) NOT NULL DEFAULT '0',
+      `days` int(10) DEFAULT 1,
+      `amount_ads` int(10) DEFAULT 1,
+      `marketplace_fee` decimal(14,3) NOT NULL DEFAULT '0',
+      `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      `status` tinyint(1) NOT NULL DEFAULT '0',
+      PRIMARY KEY (`id_plan`),
+      UNIQUE KEY `".core::request('TABLE_PREFIX')."plan_UK_seoname` (`seoname`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET')." AUTO_INCREMENT=100;");
+
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."subscriptions` (
+      `id_subscription` int(10) unsigned NOT NULL AUTO_INCREMENT,
+      `id_order` int(10) unsigned NOT NULL,
+      `id_user` int(10) unsigned NOT NULL,
+      `id_plan` int(10) unsigned NOT NULL,
+      `amount_ads` int(10) DEFAULT 1,
+      `amount_ads_left` int(10) DEFAULT 0,
+      `expire_date` DATETIME  NULL,
+      `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      `status` tinyint(1) NOT NULL DEFAULT '0',
+      PRIMARY KEY (`id_subscription`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+
+
 /**
  * add basic content like emails
  */
@@ -338,7 +369,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`ord
 (0, '[FROM.NAME] sent you a direct message', 'messaging-user-contact', 'Hello [TO.NAME],\n\n[FROM.NAME] have a message for you:\n\n[DESCRIPTION]\n\n[URL.QL]\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Hello [TO.NAME]!', 'messaging-ad-contact', 'You have been contacted regarding your advertisement:\n\n`[AD.NAME]`.\n\nUser [FROM.NAME], have a message for you:\n\n[DESCRIPTION]\n\n[URL.QL]\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'New review for [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\n\n[RATE]\n\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', 'email', 1),
-(0, 'There is a new reply on the forum', 'new-forum-answer', 'There is a new reply on a forum post where you participated.<br><br><a target=\"_blank\" href=\"[FORUM.LINK]\">Check it here</a><br><br>[FORUM.LINK]<br>', '".core::request('ADMIN_EMAIL')."', 'email',  1);");
+(0, 'There is a new reply on the forum', 'new-forum-answer', 'There is a new reply on a forum post where you participated.<br><br><a target=\"_blank\" href=\"[FORUM.LINK]\">Check it here</a><br><br>[FORUM.LINK]<br>', '".core::request('ADMIN_EMAIL')."', 'email',  1),
+(0, 'Your plan [PLAN.NAME] has expired', 'plan-expired', 'Hello [USER.NAME],Your plan [PLAN.NAME] has expired \n\nPlease renew your plan here [URL.CHECKOUT]', '".core::request('ADMIN_EMAIL')."', 'email',  1);");
 
 /**
  * Content translations
@@ -460,7 +492,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`id_
 (151, 'es_ES', 0, '¡Enhorabuena! Tu anuncio `[AD.NAME]` fue creado en [SITE.NAME]!', 'ads-confirm', 'Bienvenido [USER.NAME],\r\n\r\nGracias por crear un anuncio en [SITE.NAME]! \r\n\r\nPor favor, has clic en este enlace [URL.QL] para confirmarlo.\r\n\r\n¡Saludos!', '".core::request('ADMIN_EMAIL')."', '2014-10-28 04:12:51', 'email', 1),
 (152, 'es_ES', 0, 'Tu anuncio [AD.NAME] ha expirado', 'ad-expired', 'Hola [USER.NAME], Tu anuncio [AD.NAME] ha expirado \r\n\r\nPor favor, revisa tu anuncio aquí [URL.EDITAD]', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:59', 'email', 1),
 (153, 'es_ES', 0, 'Opinión nueva para [AD.TITLE] [RATE]', 'ad-review', '[URL.QL]\r\n\r\n[RATE]\r\n\r\n[DESCRIPTION]', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:15', 'email', 1),
-(154, 'es_ES', 0, 'Hay una nueva respuesta en el foro', 'new-forum-answer', 'Hay una nueva respuesta en el foro donde has participado.\r\n<br><br>\r\n<a target=\"_blank\" href=\"[FORUM.LINK]\">Puedes revisarla aquí</a>\r\n<br><br>\r\n[FORUM.LINK]\r\n<br>', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:15', 'email', 1);");
+(154, 'es_ES', 0, 'Hay una nueva respuesta en el foro', 'new-forum-answer', 'Hay una nueva respuesta en el foro donde has participado.\r\n<br><br>\r\n<a target=\"_blank\" href=\"[FORUM.LINK]\">Puedes revisarla aquí</a>\r\n<br><br>\r\n[FORUM.LINK]\r\n<br>', '".core::request('ADMIN_EMAIL')."', '2014-10-28 03:52:15', 'email', 1),
+(155, 'es_ES', 0, 'Su plan [PLAN.NAME] ha expirado', 'plan-expired', 'Hola [USER.NAME],Su plan [PLAN.NAME] ha expirado \n\nPorfavor renueve su plan aquí [URL.CHECKOUT]', '".core::request('ADMIN_EMAIL')."', '2016-02-28 03:52:15', 'email', 1);");
 
 mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`locale`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) VALUES
 ('fr_FR', 'Félicitations! Votre annonce a bien été créée sur [SITE.NAME]!', 'ads-confirm', 'Bienvenue [USER.NAME],<br /><br />\n<br /><br />\nMerci d''avoir créé une anonnce sur [SITE.NAME]! <br /><br />\n<br /><br />\nVeuillez cliquer sur ce lien [URL.QL] pour la confirmer.<br /><br />\n<br /><br />\nCordialement!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
@@ -561,6 +594,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'fraudlabspro', ''),
 ('payment', 'paysbuy', ''),
 ('payment', 'paysbuy_sandbox', '0'),
+('general', 'subscriptions', '0'),
 ('general', 'api_key', '".core::generate_password(32)."'),
 ('general', 'number_format', '%n'),
 ('general', 'date_format', 'd-m-y'),
@@ -734,6 +768,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."crontab` (`nam
 ('Unpaid Orders', '0 7 * * *', 'Cron_Ad::unpaid', NULL, 'Notify unpaid orders 2 days after was created', 1),
 ('Expired Featured Ad', '0 8 * * *', 'Cron_Ad::expired_featured', NULL, 'Notify by email of expired featured ad', 1),
 ('Expired Ad', '0 9 * * *', 'Cron_Ad::expired', NULL, 'Notify by email of expired ad', 1),
-('About to Expire Ad', '05 9 * * *', 'Cron_Ad::to_expire', NULL, 'Notify by email your ad is about to expire', 1);");
+('About to Expire Ad', '05 9 * * *', 'Cron_Ad::to_expire', NULL, 'Notify by email your ad is about to expire', 1),
+('Renew subscription', '*/5 * * * *', 'Cron_Subscription::renew', NULL, 'Notify by email user subscription will expire.', 1);");
 
 mysqli_close($link);

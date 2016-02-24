@@ -138,8 +138,13 @@ class Controller_Stripe extends Controller{
 
                 // Create the charge on Stripe's servers - this will charge the user's card
                 try 
-                {
-                    $application_fee = StripeKO::application_fee($order->amount);
+                {   
+                    //in case memberships the fee may be set on the plan ;)
+                    $fee = NULL;
+                    if ( $order->ad->user->subscription()->loaded() )
+                        $fee = $order->ad->user->subscription()->plan->marketplace_fee;
+
+                    $application_fee = StripeKO::application_fee($order->amount, $fee);
 
                     //we charge the fee only if its not admin
                     if ($order->ad->user->id_role!=Model_Role::ROLE_ADMIN)

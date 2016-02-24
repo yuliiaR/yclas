@@ -225,4 +225,19 @@ class Model_User extends Model_OC_User {
         return array();
     }
 
+    /**
+     * get the current subscription of the user
+     * @return Model_Subscription 
+     */
+    public function subscription()
+    {
+        $s = new Model_Subscription();
+        $s->where('id_user','=',$this->id_user)
+            ->where('status','=',1)
+            ->order_by('created','desc')
+            ->find();
+
+        return $s;
+    }
+
 } // END Model_User

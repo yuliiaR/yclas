@@ -379,6 +379,26 @@ class Controller_Panel_Location extends Auth_Crud {
         $this->template->title  = __('Geonames');
 
         $this->template->scripts['footer'][] = URL::base('http').'themes/default/js/oc-panel/locations-geonames.js';
+        
+        $location = NULL;
+
+        if (intval(Core::get('id_location')) > 0)
+        {
+            $location = new Model_Location(Core::get('id_location'));
+            
+            if ($location->loaded())
+            {
+                if ($location->parent->loaded() AND $location->parent->id_location != 1)
+                {
+                    Breadcrumbs::add(Breadcrumb::factory()->set_title($location->parent->name)->set_url(Route::url('oc-panel',array('controller'=>'location','action'=>'geonames')).'?id_location='.$location->parent->id_location));
+                }
+            }
+            else
+            {
+                Alert::set(Alert::ERROR, __('You are selecting a location that does not exist'));
+                $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
+            }
+        }
     
         //update the elements related to that ad
         if (core::post('geonames_locations') !== "")
@@ -391,7 +411,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 $obj_location = new Model_Location();
                 $locations_array = array();
     
-                $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent', 'latitude', 'longitude', 'order'));
+                $insert = DB::insert('locations', array('name', 'seoname', 'id_location_parent', 'latitude', 'longitude', 'id_geoname', 'fcodename_geoname', 'order'));
 
                 $i = 1;
                 $execute = FALSE;
@@ -405,6 +425,8 @@ class Controller_Panel_Location extends Auth_Crud {
                                                         Core::get('id_location', 1),
                                                         isset($location->lat)?$location->lat:NULL,
                                                         isset($location->long)?$location->long:NULL,
+                                                        isset($location->id_geoname)?$location->id_geoname:NULL,
+                                                        isset($location->fcodename_geoname)?$location->fcodename_geoname:NULL,
                                                         $i));
                         
                         $locations_array[] = $location->seoname;
@@ -428,7 +450,7 @@ class Controller_Panel_Location extends Auth_Crud {
             Alert::set(Alert::INFO, __('Select some locations first.'));
         
         
-        $this->template->content = View::factory('oc-panel/pages/locations/geonames');
+        $this->template->content = View::factory('oc-panel/pages/locations/geonames',array('location' => $location));
     }
 
     /**
