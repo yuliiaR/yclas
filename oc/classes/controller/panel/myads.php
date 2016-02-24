@@ -374,6 +374,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 try 
                 {
                     $advert->save();
+                    Model_Subscription::new_ad($avert->user);
                     Model_Subscribe::notify($advert);
                     Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
                 } 

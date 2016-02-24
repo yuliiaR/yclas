@@ -15,6 +15,51 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
      */
     public function action_270()
     {
+        //plans
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS `".self::$db_prefix."plans` (
+                                      `id_plan` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                      `name` varchar(145) NOT NULL,
+                                      `seoname` varchar(145) NOT NULL,
+                                      `description` longtext NOT NULL,
+                                      `price` decimal(14,3) NOT NULL DEFAULT '0',
+                                      `days` int(10) DEFAULT 1,
+                                      `amount_ads` int(10) DEFAULT 1,
+                                      `marketplace_fee` decimal(14,3) NOT NULL DEFAULT '0',
+                                      `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                      `status` tinyint(1) NOT NULL DEFAULT '0',
+                                      PRIMARY KEY (`id_plan`),
+                                      UNIQUE KEY `".self::$db_prefix."plan_UK_seoname` (`seoname`)
+                                    ) ENGINE=MyISAM AUTO_INCREMENT=100;")->execute();
+        }catch (exception $e) {}
+
+        //subscriptions
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS `".self::$db_prefix."subscriptions` (
+                                      `id_subscription` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                      `id_order` int(10) unsigned NOT NULL,
+                                      `id_user` int(10) unsigned NOT NULL,
+                                      `id_plan` int(10) unsigned NOT NULL,
+                                      `amount_ads` int(10) DEFAULT 1,
+                                      `amount_ads_left` int(10) DEFAULT 0,
+                                      `expire_date` DATETIME  NULL,
+                                      `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                      `status` tinyint(1) NOT NULL DEFAULT '0',
+                                      PRIMARY KEY (`id_subscription`)
+                                    ) ENGINE=MyISAM ;")->execute();
+        }catch (exception $e) {}
+
+        //crontab renew subscription
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
+                                    ('Renew subscription', '*/5 * * * *', 'Cron_Subscription::renew', NULL, 'Notify by email user subscription will expire. Deactivates current subscription', 1);")->execute();
+        }catch (exception $e) {}
+
+
+        //SMTP ssl
         try
         {
             DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."config` (`group_name`, `config_key`, `config_value`) VALUES ('email', 'smtp_secure', (SELECT IF(config_value=0,'','ssl') as config_value FROM `".self::$db_prefix."config`as oconf WHERE `config_key` = 'smtp_ssl' AND `group_name`='email' LIMIT 1) );")->execute();
@@ -31,7 +76,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `stripe_user_id` varchar(140) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
-        // update 
+        // update buyer instructions
         try 
         {
             DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."content` SET description=CONCAT(description,'\n\n[BUYER.INSTRUCTIONS]') WHERE `seotitle` = 'ads-purchased' AND `description` NOT LIKE '%[BUYER.INSTRUCTIONS]'")->execute();
@@ -67,7 +112,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'free',
                                'group_name'     => 'advertisement', 
                                'config_value'   => '0'),
-                       
+                        array( 'config_key'     => 'subscriptions',
+                               'group_name'     => 'general', 
+                               'config_value'   => '0'),
                         );
         
         Model_Config::config_array($configs);       
@@ -80,9 +127,18 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'),
+                            array('order'=>0,
+                                'title'=>'Your plan [PLAN.NAME] has expired',
+                               'seotitle'=>'plan-expired',
+                               'description'=>"Hello [USER.NAME],Your plan [PLAN.NAME] has expired \n\nPlease renew your plan here [URL.CHECKOUT]",
+                               'from_email'=>core::config('email.notify_email'),
+                               'type'=>'email',
+                               'status'=>'1'),
                         );
 
         Model_Content::content_array($contents); 
+
+
     }
 
     /**

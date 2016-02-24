@@ -55,6 +55,14 @@ Route::set('maintenance', URL::title(__('maintenance')).'.html')
         'action'     => 'index',));
 
 /**
+ * pricing page
+ */
+Route::set('pricing', URL::title(__('pricing')).'.html')
+->defaults(array(
+        'controller' => 'plan',
+        'action'     => 'index',));
+
+/**
  * page view public
  */
 Route::set('page','<seotitle>.html')

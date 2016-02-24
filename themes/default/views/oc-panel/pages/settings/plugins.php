@@ -171,6 +171,27 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <?= FORM::label($forms['subscriptions']['id'], __('subscriptions'), array('class'=>'control-label col-sm-4', 'for'=>$forms['subscriptions']['id']))?>
+                            <div class="col-sm-8">
+                                <div class="onoffswitch">
+                                    <?= Form::checkbox($forms['subscriptions']['key'], 1, (bool) $forms['subscriptions']['value'], array(
+                                    'placeholder' => __("TRUE or FALSE"), 
+                                    'class' => 'onoffswitch-checkbox', 
+                                    'id' => $forms['subscriptions']['id'], 
+                                    'data-content'=> __("Once set to TRUE, enables subscriptions"),
+                                    'data-trigger'=>"hover",
+                                    'data-placement'=>"right",
+                                    'data-toggle'=>"popover",
+                                    'data-original-title'=>__("subscriptions"),
+                                    ))?>
+                                    <?= FORM::label($forms['subscriptions']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['subscriptions']['id']))?>
+                                    <?= FORM::hidden($forms['subscriptions']['key'], 0);?>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -12,36 +12,53 @@ class Controller_New extends Controller
      */
     public function action_index()
     {
+        //advertisement.only_admin_post
+        if( Core::config('advertisement.only_admin_post') == TRUE AND (
+            !Auth::instance()->logged_in() OR  
+            (Auth::instance()->logged_in() AND $this->user->id_role != Model_Role::ROLE_ADMIN)))
+        {
+            $this->redirect('default');
+        }
         // redirect to login, if conditions are met 
-        if( ( core::config('advertisement.login_to_post') == TRUE OR Core::config('payment.stripe_connect')==TRUE ) AND !Auth::instance()->logged_in())
+        elseif((Core::config('advertisement.login_to_post')  == TRUE 
+             OR Core::config('payment.stripe_connect')       == TRUE 
+             OR Core::config('general.subscriptions')        == TRUE ) 
+             AND !Auth::instance()->logged_in())
         {
             Alert::set(Alert::INFO, __('Please, login before posting advertisement!'));
             HTTP::redirect(Route::url('oc-panel',array('controller'=>'auth','action'=>'login')).'?auth_redirect='.URL::current());
         }
-
-        // redirect to connect stripe 
-        if( Core::config('payment.stripe_connect')==TRUE  AND empty($this->user->stripe_user_id))
-        {
-            Alert::set(Alert::INFO, __('Please, connect with Stripe'));
-            $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
-        }
-
         //Detect early spam users, show him alert
-        if (core::config('general.black_list') == TRUE AND Model_User::is_spam(Core::post('email')) === TRUE)
+        elseif (core::config('general.black_list') == TRUE AND Model_User::is_spam(Core::post('email')) === TRUE)
         {
             Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
             $this->redirect('default');
         }
-
-        //advertisement.only_admin_post
-        if( Core::config('advertisement.only_admin_post')==1 AND (
-            !Auth::instance()->logged_in() OR  
-            (Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN)))
+        // redirect to connect stripe 
+        elseif( Core::config('payment.stripe_connect') == TRUE  AND empty($this->user->stripe_user_id))
         {
-            $this->redirect('default');
+            Alert::set(Alert::INFO, __('Please, connect with Stripe'));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
         }
-        
-        if (Core::post('ajaxValidateCaptcha'))
+        //users subscriptions needs to login and have a valid plan
+        elseif (Core::config('general.subscriptions') == TRUE AND Theme::get('premium') == TRUE )
+        {
+            $subscription = $this->user->subscription();
+
+            //if theres no subscription or expired or without free ads 
+            if (!$subscription->loaded() 
+                OR ( $subscription->loaded() 
+                    AND (Date::mysql2unix($subscription->expire_date) < time() 
+                            OR $subscription->amount_ads_left == 0 )
+                        )
+                )
+            {
+                Alert::set(Alert::INFO, __('Please, choose a plan first'));
+                HTTP::redirect(Route::url('pricing'));
+            }
+        }
+        //validates captcha
+        elseif (Core::post('ajaxValidateCaptcha'))
         {
             $this->auto_render = FALSE;
             $this->template = View::factory('js');
