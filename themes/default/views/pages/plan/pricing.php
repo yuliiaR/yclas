@@ -1,11 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="container">
-    <?if($subscription!==FALSE):?>
-        <p><?=sprintf(__('You are subscribed to the plan %s until %s with %u ads left'),$subscription->plan->name,$subscription->expire_date,$subscription->amount_ads_left)?></p>
-    <?endif?>
-    <div class="row pricing">
-        <?foreach ($plans as $plan):?>
+<?if($subscription!==FALSE):?>
+    <p><?=sprintf(__('You are subscribed to the plan %s until %s with %u ads left'),$subscription->plan->name,$subscription->expire_date,$subscription->amount_ads_left)?></p>
+<?endif?>
+<div class="row pricing">
+    <?foreach ($plans as $plan):?>
         <?
             $current_plan = FALSE;
             if ($subscription!==FALSE AND $subscription->plan->id_plan==$plan->id_plan)
@@ -52,7 +51,5 @@
                 
             </div>
         </div>
-        <?endforeach?>
-    </div>    
-
-</div>
+    <?endforeach?>
+</div>    
