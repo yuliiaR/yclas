@@ -148,3 +148,14 @@ $(function (){
         });
     }
 });
+
+$(function() {
+    $('#listingMap').on('shown.bs.modal', function (e) {
+        new Maplace({
+            locations: locations,
+            controls_on_map: false,
+            pan_on_click: false
+        }).Load();
+    })
+});
+

@@ -48,8 +48,9 @@
             </button>
         <?endif?>
         <?if (core::config('advertisement.map')==1):?>
-            <a href="<?=Route::url('map')?>?category=<?=Model_Category::current()->loaded()?Model_Category::current()->seoname:NULL?>&location=<?=Model_Location::current()->loaded()?Model_Location::current()->seoname:NULL?>" 
-                class="btn btn-default btn-sm">
+            <a href="#"
+                class="btn btn-default btn-sm"
+                data-toggle="modal" data-target="#listingMap">
                 <span class="glyphicon glyphicon-globe"></span> <?=__('Map')?>
             </a>
         <?endif?>
@@ -234,4 +235,7 @@
             </div>
         </div>
     </div>
+    <?if (core::config('advertisement.map')==1):?>
+        <?=View::factory('pages/ad/listing_map', compact('ads'))?>
+    <?endif?>
 <?endif?>
