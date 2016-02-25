@@ -58,7 +58,7 @@ class Controller_New extends Controller
             }
         }
         //validates captcha
-        elseif (Core::post('ajaxValidateCaptcha'))
+        if (Core::post('ajaxValidateCaptcha'))
         {
             $this->auto_render = FALSE;
             $this->template = View::factory('js');
