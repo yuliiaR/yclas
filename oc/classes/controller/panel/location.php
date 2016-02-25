@@ -388,10 +388,7 @@ class Controller_Panel_Location extends Auth_Crud {
             
             if ($location->loaded())
             {
-                if ($location->parent->loaded() AND $location->parent->id_location != 1)
-                {
-                    Breadcrumbs::add(Breadcrumb::factory()->set_title($location->parent->name)->set_url(Route::url('oc-panel',array('controller'=>'location','action'=>'geonames')).'?id_location='.$location->parent->id_location));
-                }
+                Breadcrumbs::add(Breadcrumb::factory()->set_title($location->name)->set_url(Route::url('oc-panel',array('controller'=>'location','action'=>'geonames')).'?id_location='.$location->id_location));
             }
             else
             {
