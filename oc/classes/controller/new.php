@@ -17,7 +17,7 @@ class Controller_New extends Controller
             !Auth::instance()->logged_in() OR  
             (Auth::instance()->logged_in() AND $this->user->id_role != Model_Role::ROLE_ADMIN)))
         {
-            $this->redirect('default');
+            $this->redirect(Route::url('default'));
         }
         // redirect to login, if conditions are met 
         elseif((Core::config('advertisement.login_to_post')  == TRUE 
@@ -32,7 +32,7 @@ class Controller_New extends Controller
         elseif (core::config('general.black_list') == TRUE AND Model_User::is_spam(Core::post('email')) === TRUE)
         {
             Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
-            $this->redirect('default');
+            $this->redirect(Route::url('default'));
         }
         // redirect to connect stripe 
         elseif( Core::config('payment.stripe_connect') == TRUE  AND empty($this->user->stripe_user_id))
@@ -110,7 +110,7 @@ class Controller_New extends Controller
             else
             {
                 Alert::set(Alert::INFO, __('Posting advertisements is not yet available.'));
-                $this->redirect('default');
+                $this->redirect(Route::url('default'));
             }
         }
 
