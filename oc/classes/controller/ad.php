@@ -1079,7 +1079,37 @@ class Controller_Ad extends Controller {
             {
                 foreach ($cf_fields as $key => $value) 
     	        {	
-    	        	if(is_numeric($value))
+                    //filter by range
+                    if(array_key_exists(str_replace('cf_','',$key), Model_Field::get_all())
+                        AND Model_Field::get_all()[str_replace('cf_','',$key)]['type'] == 'range')
+                    {
+                        $cf_min = isset($value[0]) ? $value[0] : NULL;
+                        $cf_max = isset($value[1]) ? $value[1] : NULL;
+
+                        if (is_numeric($cf_min = str_replace(',','.',$cf_min))) // handle comma (,) used in some countries
+                            $cf_min = (float)$cf_min;
+                        if (is_numeric($cf_max = str_replace(',','.',$cf_max))) // handle comma (,) used in some countries
+                            $cf_max = (float)$cf_max;
+
+                        if (is_numeric($cf_min) AND is_numeric($cf_max))
+                        {
+                            // swap 2 values
+                            if ($cf_min > $cf_max) 
+                            {
+                                $aux = $cf_min;
+                                $cf_min = $cf_max;
+                                $cf_max = $aux;
+                                unset($aux);
+                            }               
+
+                            $ads->where($key, 'BETWEEN', array($cf_min,$cf_max));
+                        }
+                        elseif (is_numeric($cf_min)) // only min cf has been provided
+                            $ads->where($key, '>=', $cf_min);
+                        elseif (is_numeric($cf_max)) // only max cf has been provided
+                            $ads->where($key, '<=', $cf_max);
+                    }
+    	        	elseif(is_numeric($value))
     	        		$ads->where($key, '=', $value);
     	        	elseif(is_string($value))
     	        		$ads->where($key, 'like', '%'.$value.'%');
