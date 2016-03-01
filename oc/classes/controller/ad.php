@@ -189,7 +189,10 @@ class Controller_Ad extends Controller {
 
         if (core::request('userpos') == 1 AND Model_User::get_userlatlng())
         {
-            $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
+            if (isset($_COOKIE['mydistance']) AND is_numeric($_COOKIE['mydistance']) AND $_COOKIE['mydistance'] <= 500)
+                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round($_COOKIE['mydistance'] * 1.60934)) : $_COOKIE['mydistance'];
+            else 
+                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
             $ads->where(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'),'<=',$location_distance);
         }
     
@@ -927,7 +930,10 @@ class Controller_Ad extends Controller {
 
             if (core::request('userpos') == 1 AND Model_User::get_userlatlng())
             {
-                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
+                if (isset($_COOKIE['mydistance']) AND is_numeric($_COOKIE['mydistance']) AND $_COOKIE['mydistance'] <= 500)
+                    $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round($_COOKIE['mydistance'] * 1.60934)) : $_COOKIE['mydistance'];
+                else 
+                    $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
                 $ads->where(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'),'<=',$location_distance);
             }
 

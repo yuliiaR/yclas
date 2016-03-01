@@ -44,7 +44,7 @@
                 data-marker-title="<?=__('My Location')?>"
                 data-marker-error="<?=__('Cannot determine address at this location.')?>"
                 data-href="?<?=http_build_query(['userpos' => 1] + Request::current()->query())?>">
-                <i class="glyphicon glyphicon-map-marker"></i> <?=sprintf(__('%s from you'), i18n::format_measurement(Core::config('advertisement.auto_locate_distance', 1)))?>
+                <i class="glyphicon glyphicon-map-marker"></i> <?=sprintf(__('%s from you'), i18n::format_measurement(isset($_COOKIE['mydistance']) ? $_COOKIE['mydistance'] : Core::config('advertisement.auto_locate_distance', 2)))?>
             </button>
         <?endif?>
         <?if (core::config('advertisement.map')==1):?>
@@ -216,6 +216,36 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-distance btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="label-icon"><?=isset($_COOKIE['mydistance']) ? i18n::format_measurement($_COOKIE['mydistance']) : i18n::format_measurement(Core::config('advertisement.auto_locate_distance', 2))?></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                <li>
+                                    <a href="#" data-value="2"><?=i18n::format_measurement(2)?></a>
+                                </li>
+                                <li>
+                                    <a href="#" data-value="5"><?=i18n::format_measurement(5)?></a>
+                                </li>
+                                <li>
+                                    <a href="#" data-value="10"><?=i18n::format_measurement(10)?></a>
+                                </li>
+                                <li>
+                                    <a href="#" data-value="20"><?=i18n::format_measurement(20)?></a>
+                                </li>
+                                <li>
+                                    <a href="#" data-value="50"><?=i18n::format_measurement(50)?></a>
+                                </li>
+                                <li>
+                                    <a href="#" data-value="250"><?=i18n::format_measurement(250)?></a>
+                                </li>
+                                <li>
+                                    <a href="#" data-value="500"><?=i18n::format_measurement(500)?></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <input type="hidden" name="distance" id="myDistance" value="<?=isset($_COOKIE['mydistance']) ? $_COOKIE['mydistance'] : Core::config('advertisement.auto_locate_distance', 2)?>" disabled>
                         <input type="hidden" name="latitude" id="myLatitude" value="" disabled>
                         <input type="hidden" name="longitude" id="myLongitude" value="" disabled>
                         <?=FORM::input('myAddress', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'myAddress', 'placeholder'=>__('Where do you want to search?')))?>
