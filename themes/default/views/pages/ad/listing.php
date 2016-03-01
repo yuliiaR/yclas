@@ -44,7 +44,7 @@
                 data-marker-title="<?=__('My Location')?>"
                 data-marker-error="<?=__('Cannot determine address at this location.')?>"
                 data-href="?<?=http_build_query(['userpos' => 1] + Request::current()->query())?>">
-                <i class="glyphicon glyphicon-map-marker"></i> <?=sprintf(__('%s from you'), i18n::format_measurement(isset($_COOKIE['mydistance']) ? $_COOKIE['mydistance'] : Core::config('advertisement.auto_locate_distance', 2)))?>
+                <i class="glyphicon glyphicon-map-marker"></i> <?=sprintf(__('%s from you'), i18n::format_measurement(Core::cookie('mydistance', Core::config('advertisement.auto_locate_distance', 2))))?>
             </button>
         <?endif?>
         <?if (core::config('advertisement.map')==1):?>
@@ -218,7 +218,7 @@
                     <div class="input-group">
                         <div class="input-group-btn">
                             <button type="button" class="btn btn-distance btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="label-icon"><?=isset($_COOKIE['mydistance']) ? i18n::format_measurement($_COOKIE['mydistance']) : i18n::format_measurement(Core::config('advertisement.auto_locate_distance', 2))?></span>
+                                <span class="label-icon"><?=i18n::format_measurement(Core::cookie('mydistance', Core::config('advertisement.auto_locate_distance', 2)))?></span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu pull-left" role="menu">
@@ -245,7 +245,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <input type="hidden" name="distance" id="myDistance" value="<?=isset($_COOKIE['mydistance']) ? $_COOKIE['mydistance'] : Core::config('advertisement.auto_locate_distance', 2)?>" disabled>
+                        <input type="hidden" name="distance" id="myDistance" value="<?=Core::cookie('mydistance', Core::config('advertisement.auto_locate_distance', 2))?>" disabled>
                         <input type="hidden" name="latitude" id="myLatitude" value="" disabled>
                         <input type="hidden" name="longitude" id="myLongitude" value="" disabled>
                         <?=FORM::input('myAddress', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'myAddress', 'placeholder'=>__('Where do you want to search?')))?>
