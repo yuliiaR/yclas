@@ -516,6 +516,22 @@ function createCustomFieldsByCategory (customfields) {
                                                                                 regex: '^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$'
                                                                             });
                 break;
+            case 'range':
+                $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'text',
+                                                                                    'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'class'       : 'form-control',
+                                                                                    'placeholder' : customfield.label,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'data-toggle' : 'tooltip',
+                                                                                    'title'       : customfield.tooltip,
+                                                                                    'required'    : customfield.required,
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[idx],
+                                                                                }));
+                $('#custom-fields input[name="' + idx + '"]').rules('add', {
+                                                                                regex: '^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$'
+                                                                            });
+                break;
             case 'date':
                 $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'             : 'text',
                                                                                     'id'               : idx,
