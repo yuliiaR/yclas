@@ -173,14 +173,14 @@
                         </div>
 
                         <div class="form-group">
-                            <?= FORM::label($forms['subscriptions']['id'], __('subscriptions'), array('class'=>'control-label col-sm-4', 'for'=>$forms['subscriptions']['id']))?>
+                            <?= FORM::label($forms['subscriptions']['id'], __('Subscriptions / Memberships'), array('class'=>'control-label col-sm-4', 'for'=>$forms['subscriptions']['id']))?>
                             <div class="col-sm-8">
                                 <div class="onoffswitch">
                                     <?= Form::checkbox($forms['subscriptions']['key'], 1, (bool) $forms['subscriptions']['value'], array(
                                     'placeholder' => __("TRUE or FALSE"), 
                                     'class' => 'onoffswitch-checkbox', 
                                     'id' => $forms['subscriptions']['id'], 
-                                    'data-content'=> __("Once set to TRUE, enables subscriptions"),
+                                    'data-content'=> __("Once set to TRUE, enables memberships plans"),
                                     'data-trigger'=>"hover",
                                     'data-placement'=>"right",
                                     'data-toggle'=>"popover",
