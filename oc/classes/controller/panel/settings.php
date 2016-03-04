@@ -303,6 +303,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             }
 
             $validation =   Validation::factory($this->request->post())
+            ->rule('pay_to_go_on_top', 'not_empty')
             ->rule('pay_to_go_on_top', 'numeric')
             ->rule('stripe_appfee', 'numeric')
             ->rule('stripe_appfee', 'range', array(':value', 0, 100))
