@@ -12,7 +12,7 @@
                 </div>
                 </div>
 
-                <?if(count($categories) > 0):?>
+                <?if(count($categories) > 1):?>
                     <div class="form-group">
                         <?= FORM::label('category', __('Category'), array('class'=>'', 'for'=>'category' ))?>
                         <div class="control mr-30">

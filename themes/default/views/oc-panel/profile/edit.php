@@ -188,7 +188,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-8">
-                            <?if ($user->subscription()==FALSE):?>
+                            <?if ($user->subscription()->loaded()):?>
                                 <p><?=sprintf(__('You are subscribed to the plan %s until %s with %u ads left'),$user->subscription()->plan->name,$user->subscription()->expire_date,$user->subscription()->amount_ads_left)?></p>
                             <?else:?>
                                 <a class="btn btn-primary" href="<?=Route::url('pricing')?>">

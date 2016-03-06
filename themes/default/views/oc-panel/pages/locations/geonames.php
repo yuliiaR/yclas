@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="page-header">
-    <h1><?=__('Import Locations')?></h1>
+    <h1><?=($location AND $location->id_location > 1) ? $location->name.' – ':NULL?> <?=__('Import Locations')?></h1>
 </div>
 
 <div class="row">

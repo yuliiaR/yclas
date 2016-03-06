@@ -13,10 +13,11 @@ class Controller_Ad extends Controller {
 			$this->template->scripts['footer'][] = '//cdn.jsdelivr.net/jquery.infinitescroll/2.0b2/jquery.infinitescroll.js';
 			$this->template->scripts['footer'][] = 'js/listing.js';
 		}
-		if(core::config('general.auto_locate'))
+		if(core::config('general.auto_locate') OR core::config('advertisement.map'))
 		{
 		    Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
 		    Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
+            Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/maplace.js/0.1.3/maplace.min.js';
 		}
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
 		$this->template->scripts['footer'][] = 'js/sort.js';
@@ -188,7 +189,10 @@ class Controller_Ad extends Controller {
 
         if (core::request('userpos') == 1 AND Model_User::get_userlatlng())
         {
-            $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
+            if (is_numeric(Core::cookie('mydistance')) AND Core::cookie('mydistance') <= 500)
+                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::cookie('mydistance') * 1.60934)) : Core::cookie('mydistance');
+            else 
+                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
             $ads->where(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'),'<=',$location_distance);
         }
     
@@ -926,7 +930,10 @@ class Controller_Ad extends Controller {
 
             if (core::request('userpos') == 1 AND Model_User::get_userlatlng())
             {
-                $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
+                if (is_numeric(Core::cookie('mydistance')) AND Core::cookie('mydistance') <= 500)
+                    $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::cookie('mydistance') * 1.60934)) : Core::cookie('mydistance');
+                else 
+                    $location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
                 $ads->where(DB::expr('degrees(acos(sin(radians('.$_COOKIE['mylat'].')) * sin(radians(`latitude`)) + cos(radians('.$_COOKIE['mylat'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$_COOKIE['mylng'].' - `longitude`))))) * 111.321'),'<=',$location_distance);
             }
 
@@ -1078,7 +1085,37 @@ class Controller_Ad extends Controller {
             {
                 foreach ($cf_fields as $key => $value) 
     	        {	
-    	        	if(is_numeric($value))
+                    //filter by range
+                    if(array_key_exists(str_replace('cf_','',$key), Model_Field::get_all())
+                        AND Model_Field::get_all()[str_replace('cf_','',$key)]['type'] == 'range')
+                    {
+                        $cf_min = isset($value[0]) ? $value[0] : NULL;
+                        $cf_max = isset($value[1]) ? $value[1] : NULL;
+
+                        if (is_numeric($cf_min = str_replace(',','.',$cf_min))) // handle comma (,) used in some countries
+                            $cf_min = (float)$cf_min;
+                        if (is_numeric($cf_max = str_replace(',','.',$cf_max))) // handle comma (,) used in some countries
+                            $cf_max = (float)$cf_max;
+
+                        if (is_numeric($cf_min) AND is_numeric($cf_max))
+                        {
+                            // swap 2 values
+                            if ($cf_min > $cf_max) 
+                            {
+                                $aux = $cf_min;
+                                $cf_min = $cf_max;
+                                $cf_max = $aux;
+                                unset($aux);
+                            }               
+
+                            $ads->where($key, 'BETWEEN', array($cf_min,$cf_max));
+                        }
+                        elseif (is_numeric($cf_min)) // only min cf has been provided
+                            $ads->where($key, '>=', $cf_min);
+                        elseif (is_numeric($cf_max)) // only max cf has been provided
+                            $ads->where($key, '<=', $cf_max);
+                    }
+    	        	elseif(is_numeric($value))
     	        		$ads->where($key, '=', $value);
     	        	elseif(is_string($value))
     	        		$ads->where($key, 'like', '%'.$value.'%');

@@ -129,6 +129,11 @@ $(function (){
 
         $('#myLocation').on('shown.bs.modal', function (e) {
             myLocationInit();
+            $("#myLocation .input-group-btn .dropdown-menu li a").click(function(e) {
+                e.preventDefault();
+                $('.btn-distance:first-child').html($(this).html() + ' <span class="caret"></span>');
+                $('#myDistance').val($(this).data('value')).removeAttr("disabled");
+            });
         })
 
         //on keyup, start the countdown
@@ -142,9 +147,21 @@ $(function (){
         $("#setMyLocation").click(function(e) {
             setCookie('mylat', $("#myLatitude").val());
             setCookie('mylng', $("#myLongitude").val());
+            setCookie('mydistance', $("#myDistance").val());
             $('#myLocation').modal('hide');
             //$('#myLocationBtn').html('<i class="glyphicon glyphicon-map-marker"></i> ' + $("#myAddress").val());
             window.location.href = $('#myLocationBtn').data('href');
         });
     }
 });
+
+$(function() {
+    $('#listingMap').on('shown.bs.modal', function (e) {
+        new Maplace({
+            locations: locations,
+            controls_on_map: false,
+            pan_on_click: false
+        }).Load();
+    })
+});
+

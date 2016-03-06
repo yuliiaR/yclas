@@ -40,6 +40,7 @@
                     <option value="textarea"><?=__('Text Long')?></option>
                     <option value="integer"><?=__('Number')?></option>  
                     <option value="decimal"><?=__('Number Decimal')?></option>
+                    <option value="range"><?=__('Numeric Range')?></option>
                     <option value="date"><?=__('Date')?></option>
                     <option value="select"><?=__('Select')?></option>
                     <option value="radio"><?=__('Radio')?></option>
