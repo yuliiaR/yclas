@@ -133,7 +133,7 @@
                         </div>
 
                         <div class="form-group">
-                            <?= FORM::label($forms['social_auth']['id'], __('Social Auth'), array('class'=>'control-label col-sm-4', 'for'=>$forms['social_auth']['id']))?>
+                            <?= FORM::label($forms['social_auth']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-login-using-social-auth-facebook-google-twitter/'>".__('Social Auth')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['social_auth']['id']))?>
                             <div class="col-sm-8">
                                 <div class="onoffswitch">
                                     <?= Form::checkbox($forms['social_auth']['key'], 1, (bool) $forms['social_auth']['value'], array(
@@ -173,7 +173,7 @@
                         </div>
 
                         <div class="form-group">
-                            <?= FORM::label($forms['subscriptions']['id'], __('Subscriptions / Memberships'), array('class'=>'control-label col-sm-4', 'for'=>$forms['subscriptions']['id']))?>
+                            <?= FORM::label($forms['subscriptions']['id'], "<a target='_blank' href='https://docs.yclas.com/membership-plans/'>".__('Subscriptions / Memberships')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['subscriptions']['id']))?>
                             <div class="col-sm-8">
                                 <div class="onoffswitch">
                                     <?= Form::checkbox($forms['subscriptions']['key'], 1, (bool) $forms['subscriptions']['value'], array(
