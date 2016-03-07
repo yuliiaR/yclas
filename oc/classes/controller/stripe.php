@@ -63,7 +63,7 @@ class Controller_Stripe extends Controller{
                                                         "metadata"    => array("id_order" => $order->id_order))
                                                     );
                 }
-                catch(Stripe_CardError $e) 
+                catch(Exception $e) 
                 {
                     // The card has been declined
                     Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
@@ -169,7 +169,7 @@ class Controller_Stripe extends Controller{
                     }
                     
                 }
-                catch(Stripe_CardError $e) 
+                catch(Exception $e) 
                 {
                     // The card has been declined
                     Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
