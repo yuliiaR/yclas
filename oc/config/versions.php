@@ -1,5 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+   '2.7.0' => 
+  array (
+    'codename' => 'Taipei',
+    'released' => '2016-03-11',
+    'blog' => 'http://open-classifieds.com/2015/03/11/open-classifieds-2-7-0/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.6.1...2.7.0',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.7.0+is%3Aclosed',
+    'download' => 'https://j.mp/oc_270',
+  ),
   '2.6.1' => 
   array (
     'codename' => 'Taiwan',
