@@ -26,11 +26,28 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$ads = new Model_Ad();
 
         $fields = array('title','id_ad','published','created','id_category', 'id_location','status');
-		
+				
+		$filters = array('all','active');
+		if(core::config('advertisement.expire_date') > 0){
+			array_push($filters,'expired');
+		}
+
         //filter ads by status
         $status = is_numeric(Core::get('status'))?Core::get('status'):Model_Ad::STATUS_PUBLISHED;
         $ads = $ads->where('status', '=', $status);
 		
+		//filter = active
+        if(core::config('advertisement.expire_date') > 0 AND Core::get('filter')=='active')
+        {
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
+        }
+
+        //filter = expired 
+        if(core::config('advertisement.expire_date') > 0 AND Core::get('filter')=='expired')
+        {
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '<', Date::unix2mysql());
+        }
+
 		// sort ads by search value
 		if($q = $this->request->query('search'))
 		{
@@ -64,13 +81,14 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 			$this->template->content = View::factory('oc-panel/pages/ad',array('res'			=> $ads,
 																				'pagination'	=> $pagination,
-                                                                                'fields'        => $fields
+                                                                                'fields'        => $fields,
+                                                                                'filters'		=> $filters
                                                                                 )); 
 
 		}
 		else
 		{
-			$this->template->content = View::factory('oc-panel/pages/ad', array('res' => NULL,'fields'        => $fields));
+			$this->template->content = View::factory('oc-panel/pages/ad', array('res' => NULL,'fields'        => $fields,'filters' => $filters));
 		}		
 	}
 
