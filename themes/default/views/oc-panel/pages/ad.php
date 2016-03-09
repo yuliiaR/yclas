@@ -59,6 +59,19 @@
   </ul>
 </div>  
 
+<?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+	    <?=Core::get('filter','Filter')?> <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <?foreach($filters as $filter):?>
+		    <li><a class="ajax-load" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=<?=$filter?>"><?=$filter?></a></li>
+	    <?endforeach?>
+	  </ul>
+	</div> 
+<?endif?>
+
 <br>
 <br>
 <div class="clearfix"></div>
