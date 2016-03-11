@@ -74,7 +74,7 @@
 					<?endif?>
 			
 					<?if($form_show['description'] != FALSE):?>
-					<?=d(core::config('advertisement.validate_banned_words'))?>
+					<?=(core::config('advertisement.validate_banned_words'))?>
 						<div class="form-group">
 							<div class="col-md-9">
 								<?= FORM::label('description', __('Description'), array('for'=>'description', 'spellcheck'=>TRUE))?>
