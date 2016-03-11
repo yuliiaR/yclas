@@ -33,7 +33,14 @@
     <a class="btn btn-info ajax-load" type="submit" value="unconfirmed" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_UNCONFIRMED?>" rel="tooltip" title="<?=__('Unconfirmed Sort')?>">
         <i class=" glyphicon glyphicon-plane"></i> <?=__(' Unconfirmed')?>
     </a>
-
+    <?if(core::config('advertisement.expire_date') > 0):?>
+	    <a class="btn btn-danger ajax-load" type="submit" value="expired ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=expired" rel="tooltip" title="<?=__('Expired Ads')?>">
+	        <i class=" glyphicon glyphicon-time"></i> <?=__(' Expired Ads')?>
+	    </a>
+	    <a class="btn btn-primary ajax-load" type="submit" value="not expired ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=active" rel="tooltip" title="<?=__('Not Expired Ads')?>">
+	        <i class=" glyphicon glyphicon-ok"></i> <?=__(' Not Expired Ads')?>
+	    </a>
+    <?endif?>
     <?if(Core::get('status') == Model_Ad::STATUS_UNAVAILABLE OR Core::get('status') == Model_Ad::STATUS_UNCONFIRMED OR Core::get('status') == Model_Ad::STATUS_SPAM):?>
     <a
         href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Core::get('status')?>" 

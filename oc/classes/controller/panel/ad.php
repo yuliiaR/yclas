@@ -26,11 +26,23 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$ads = new Model_Ad();
 
         $fields = array('title','id_ad','published','created','id_category', 'id_location','status');
-		
+
         //filter ads by status
         $status = is_numeric(Core::get('status'))?Core::get('status'):Model_Ad::STATUS_PUBLISHED;
         $ads = $ads->where('status', '=', $status);
 		
+		//filter = active
+        if(core::config('advertisement.expire_date') > 0 AND Core::get('filter')=='active')
+        {
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
+        }
+
+        //filter = expired 
+        if(core::config('advertisement.expire_date') > 0 AND Core::get('filter')=='expired')
+        {
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '<', Date::unix2mysql());
+        }
+
 		// sort ads by search value
 		if($q = $this->request->query('search'))
 		{
