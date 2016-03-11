@@ -391,7 +391,7 @@ $I->see('NEW LOCATION','a');
 $I->see('Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).','p');
 $I->see('Add names for multiple locations, for each one push enter.');
 $I->see('Please use the correct CSV format');
-$I->seeElement('button', ['id' => 'auto_locations_import']);
+$I->seeElement('a', ['title' => 'Import Locations']);
 $I->seeElement('.drag-icon');
 $I->seeCurrentUrlEquals('/oc-panel/location');
 
