@@ -17,9 +17,9 @@ class Controller_Feed extends Controller {
 
         //last ads, you can modify this value at: advertisement.feed_elements
         $ads = new Model_Ad();
-        $ads    ->where('status','=',Model_Ad::STATUS_PUBLISHED)
-                ->order_by('published','desc')
-                ->limit(Core::config('advertisement.feed_elements'));
+
+        //only published ads
+        $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 
         //filter by category aor location
         if (Model_Category::current()->loaded())
@@ -28,7 +28,49 @@ class Controller_Feed extends Controller {
         if (Model_Location::current()->loaded())
             $ads->where('id_location','=',Model_Location::current()->id_location);
 
-        $ads = $ads->cached()->find_all();
+        //order depending on the sort parameter
+        switch (core::request('sort',core::config('advertisement.sort_by'))) 
+        {
+            //title z->a
+            case 'title-asc':
+                $ads->order_by('title','asc')->order_by('published','desc');
+                break;
+            //title a->z
+            case 'title-desc':
+                $ads->order_by('title','desc')->order_by('published','desc');
+                break;
+            //cheaper first
+            case 'price-asc':
+                $ads->order_by('price','asc')->order_by('published','desc');
+                break;
+            //expensive first
+            case 'price-desc':
+                $ads->order_by('price','desc')->order_by('published','desc');
+                break;
+            //featured
+            case 'featured':
+                $ads->order_by('featured','desc')->order_by('published','desc');
+                break;
+            //rating
+            case 'rating':
+                $ads->order_by('rate','desc')->order_by('published','desc');
+                break;
+            //favorited
+            case 'favorited':
+                $ads->order_by('favorited','desc')->order_by('published','desc');
+                break;
+            //oldest first
+            case 'published-asc':
+                $ads->order_by('published','asc');
+                break;
+            //newest first
+            case 'published-desc':
+            default:
+                $ads->order_by('published','desc');
+                break;
+        }
+
+        $ads = $ads->limit(Core::config('advertisement.feed_elements'))->cached()->find_all();
 
         foreach($ads as $a)
         {
