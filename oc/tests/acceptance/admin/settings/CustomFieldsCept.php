@@ -21,7 +21,7 @@ $I->checkOption('searchable');
 $I->checkOption('show_listing');
 $I->click('button[type="submit"]');
 
-$I->see('Field my-custom-field created');
+$I->see('Field my_custom_field created');
 $I->seeElement('.drag-item');
 
 // delete all cache
@@ -51,8 +51,8 @@ $I->click('a[href="http://reoc.lo/oc-panel/theme/index/default"]');
 */
 $I->amOnPage('/oc-panel/fields');
 $I->see('Custom Fields');
-$I->see('my-custom-field');
-$I->click('a[href="http://reoc.lo/oc-panel/fields/delete/my-custom-field"]');
+$I->see('my_custom_field');
+$I->click('a[href="http://reoc.lo/oc-panel/fields/delete/my_custom_field"]');
 //$I->click('.confirm'); 
 $I->amOnPage('/oc-panel/fields');
 $I->dontSeeElement('.drag-item');
