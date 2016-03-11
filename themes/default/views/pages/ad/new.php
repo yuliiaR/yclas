@@ -74,6 +74,7 @@
 					<?endif?>
 			
 					<?if($form_show['description'] != FALSE):?>
+					<?=d(core::config('advertisement.validate_banned_words'))?>
 						<div class="form-group">
 							<div class="col-md-9">
 								<?= FORM::label('description', __('Description'), array('for'=>'description', 'spellcheck'=>TRUE))?>
@@ -82,7 +83,7 @@
 									'id'=>'description', 
 									'rows'=>10, 
 									'required',
-									'data-bannedwords' => (core::config('advertisement.banned_words') != '') ? json_encode(explode(',', core::config('advertisement.banned_words'))) : '',
+									'data-bannedwords' => (core::config('advertisement.validate_banned_words') AND core::config('advertisement.banned_words') != '') ? json_encode(explode(',', core::config('advertisement.banned_words'))) : '',
 									'data-error' => __('This field must not contain banned words ({0})')))?>
 							</div>
 						</div>
