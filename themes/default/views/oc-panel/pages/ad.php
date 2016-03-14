@@ -41,6 +41,13 @@
 	        <i class=" glyphicon glyphicon-ok"></i> <?=__(' Not Expired Ads')?>
 	    </a>
     <?endif?>
+    	
+	<?if(core::config('payment.to_featured') != FALSE):?>
+	    <a class="btn btn-primary ajax-load" type="submit" value="featured ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=featured" rel="tooltip" title="<?=__('Featured Ads')?>">
+	        <i class=" glyphicon glyphicon-bullhorn"></i> <?=__(' Featured Ads')?>
+	    </a>
+    <?endif?>
+
     <?if(Core::get('status') == Model_Ad::STATUS_UNAVAILABLE OR Core::get('status') == Model_Ad::STATUS_UNCONFIRMED OR Core::get('status') == Model_Ad::STATUS_SPAM):?>
     <a
         href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete_all')).'?status='.Core::get('status')?>" 
