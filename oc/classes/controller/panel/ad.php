@@ -43,6 +43,12 @@ class Controller_Panel_Ad extends Auth_Controller {
             $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '<', Date::unix2mysql());
         }
 
+        //filter = featured 
+        if(Core::get('filter')=='featured')
+        {
+        	$ads->where('featured', '>=', Date::unix2mysql());
+        }
+
 		// sort ads by search value
 		if($q = $this->request->query('search'))
 		{
