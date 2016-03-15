@@ -94,6 +94,17 @@
                         rel="tooltip" title="<?=__('Update')?>">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
+                    <?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+                        <a
+                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'sold','id'=>$ad->id_ad))?>" 
+                            class="btn btn-warning" 
+                            title="<?=__('Mark as Sold?')?>" 
+                            data-toggle="confirmation" 
+                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                            data-btnCancelLabel="<?=__('No way!')?>">
+                            <i class="glyphicon glyphicon-usd"></i>
+                        </a>
+                    <?endif?>
                     <? if( $ad->status == Model_Ad::STATUS_UNAVAILABLE 
                                 AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  
                         ):?>

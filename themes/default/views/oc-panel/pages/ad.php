@@ -37,7 +37,7 @@
 	    <a class="btn btn-danger ajax-load" type="submit" value="expired ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=expired" rel="tooltip" title="<?=__('Expired Ads')?>">
 	        <i class=" glyphicon glyphicon-time"></i> <?=__(' Expired Ads')?>
 	    </a>
-	    <a class="btn btn-primary ajax-load" type="submit" value="not expired ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=active" rel="tooltip" title="<?=__('Not Expired Ads')?>">
+	    <a class="btn btn-success ajax-load" type="submit" value="not expired ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=active" rel="tooltip" title="<?=__('Not Expired Ads')?>">
 	        <i class=" glyphicon glyphicon-ok"></i> <?=__(' Not Expired Ads')?>
 	    </a>
     <?endif?>
