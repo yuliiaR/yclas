@@ -221,6 +221,14 @@
 					<?endif?>
 					<?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
 					<a class="btn btn-warning " 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'sold','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
+						onclick="return confirm('<?=__('Mark as Sold?')?>');"
+						rel="tooltip" title="<?=__('Mark as Sold')?>">
+						<i class="glyphicon   glyphicon-usd"></i>
+					</a>
+					<?endif?>
+					<?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+					<a class="btn btn-warning " 
 						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
 						onclick="return confirm('<?=__('Deactivate?')?>');"
 						rel="tooltip" title="<?=__('Deactivate')?>">
