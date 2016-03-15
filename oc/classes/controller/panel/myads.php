@@ -187,6 +187,41 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
 	}
 
+    /**
+     * Mark advertisement as deactivated : STATUS = 50 and set the stock equal to zero
+     */
+    public function action_sold()
+    {
+        
+        $deact_ad = new Model_Ad($this->request->param('id'));
+
+        if ($deact_ad->loaded())
+        {
+            if(Auth::instance()->get_user()->id_user != $deact_ad->id_user)
+            {
+                Alert::set(Alert::ALERT, __("This is not your advertisement."));
+                HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
+            }
+
+            if ($deact_ad->sold())
+            {
+                Alert::set(Alert::SUCCESS, __('Advertisement is marked as Sold'));
+                HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
+            }
+            else
+            {               
+                Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
+                HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
+            } 
+        }
+        else
+        {
+            //throw 404
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+                
+    }
+
 	/**
 	 * Edit advertisement: Update
 	 *

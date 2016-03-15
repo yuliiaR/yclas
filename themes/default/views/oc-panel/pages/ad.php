@@ -37,7 +37,7 @@
 	    <a class="btn btn-danger ajax-load" type="submit" value="expired ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=expired" rel="tooltip" title="<?=__('Expired Ads')?>">
 	        <i class=" glyphicon glyphicon-time"></i> <?=__(' Expired Ads')?>
 	    </a>
-	    <a class="btn btn-primary ajax-load" type="submit" value="not expired ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=active" rel="tooltip" title="<?=__('Not Expired Ads')?>">
+	    <a class="btn btn-success ajax-load" type="submit" value="not expired ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=active" rel="tooltip" title="<?=__('Not Expired Ads')?>">
 	        <i class=" glyphicon glyphicon-ok"></i> <?=__(' Not Expired Ads')?>
 	    </a>
     <?endif?>
@@ -217,6 +217,14 @@
 						onclick="return confirm('<?=__('Spam?')?>');"
 						rel="tooltip" title="<?=__('Spam')?>">
 						<i class="glyphicon   glyphicon-fire"></i>
+					</a>
+					<?endif?>
+					<?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+					<a class="btn btn-warning " 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'sold','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
+						onclick="return confirm('<?=__('Mark as Sold?')?>');"
+						rel="tooltip" title="<?=__('Mark as Sold')?>">
+						<i class="glyphicon   glyphicon-usd"></i>
 					</a>
 					<?endif?>
 					<?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
