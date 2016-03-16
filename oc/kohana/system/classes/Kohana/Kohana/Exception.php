@@ -162,10 +162,8 @@ class Kohana_Kohana_Exception extends Exception {
      */
     public static function text($e)
     {
-        if ( ! $e instanceof Exception AND ! $e instanceof Throwable)
-        {
-            throw InvalidArgumentException('Argument 1 passed to Kohana_Kohana_Exception::text() must be an instance of Exception or Throwable');
-        }
+        if ( ! $e instanceof Exception AND ! $e instanceof Throwable )
+            throw InvalidArgumentException;
 
         return sprintf('%s [ %s ]: %s ~ %s [ %d ]',
             get_class($e), $e->getCode(), strip_tags($e->getMessage()), Debug::path($e->getFile()), $e->getLine());
@@ -180,10 +178,8 @@ class Kohana_Kohana_Exception extends Exception {
      */
     public static function response($e)
     {
-        if ( ! $e instanceof Exception AND ! $e instanceof Throwable)
-        {
-            throw InvalidArgumentException('Argument 1 passed to Kohana_Kohana_Exception::response() must be an instance of Exception or Throwable');
-        }
+        if ( ! $e instanceof Exception AND ! $e instanceof Throwable )
+            throw InvalidArgumentException;
 
         try
         {
