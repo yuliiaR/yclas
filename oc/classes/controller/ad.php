@@ -881,10 +881,11 @@ class Controller_Ad extends Controller {
             $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/jquery.infinitescroll/2.0b2/jquery.infinitescroll.js';
             $this->template->scripts['footer'][] = 'js/listing.js';
         }
-        if(core::config('general.auto_locate'))
+        if(core::config('general.auto_locate') OR core::config('advertisement.map'))
         {
             Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
             Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
+            Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/maplace.js/0.1.3/maplace.min.js';
         }
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
         $this->template->scripts['footer'][] = 'js/sort.js';
