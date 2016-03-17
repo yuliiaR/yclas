@@ -1619,4 +1619,20 @@ class Model_Ad extends ORM {
         return NULL;
     }
 
+    /**
+     * New instance of the Microdata to add to add Microdata semantics
+     * @return PHPStructuredData\Microdata    Product Microdata instance
+     */
+    public function structured_data()
+    {
+        require_once Kohana::find_file('vendor', 'PHPStructuredData/Microdata','php');
+        
+        $structured_data = new PHPStructuredData\Microdata('Product');
+
+        if (core::config('advertisement.rich_snippets') == FALSE)
+            return $structured_data->enable(FALSE);
+
+        return $structured_data;
+    }
+
 } // END Model_ad
