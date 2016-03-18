@@ -817,6 +817,19 @@ class Model_Ad extends ORM {
         }
     }
 
+    /**
+     * prints product structured data
+     * @return string html
+     */
+    public function structured_data()
+    {
+        if (core::config('advertisement.rich_snippets') 
+            AND $this->loaded() 
+            AND $this->status == self::STATUS_PUBLISHED)
+        {
+            return View::factory('pages/ad/json-ld', ['ad' => $this])->render();
+        }
+    }
 
     /**
      * prints the comments script from the view
@@ -1617,22 +1630,6 @@ class Model_Ad extends ORM {
         }
 
         return NULL;
-    }
-
-    /**
-     * New instance of the Microdata to add to add Microdata semantics
-     * @return PHPStructuredData\Microdata    Product Microdata instance
-     */
-    public function structured_data()
-    {
-        require_once Kohana::find_file('vendor', 'PHPStructuredData/Microdata','php');
-        
-        $structured_data = new PHPStructuredData\Microdata('Product');
-
-        if (core::config('advertisement.rich_snippets') == FALSE)
-            return $structured_data->enable(FALSE);
-
-        return $structured_data;
     }
 
 } // END Model_ad
