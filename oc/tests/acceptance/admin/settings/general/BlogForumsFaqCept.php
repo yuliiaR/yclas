@@ -96,8 +96,8 @@ $I->see('My Forum');
 $I->amOnPage('/forum/my-forum');
 $I->click('a[href="http://reoc.lo/forum/my-forum/my-new-topic.html"]');
 $I->see('My New Topic','h1');
-$I->see('This is my New Topic','p');
-$I->see('This is my reply on the New Topic!','p');
+$I->see('This is my New Topic');
+$I->see('This is my reply on the New Topic!');
 
 // Update
 $I->amOnPage('/forum/my-forum');
@@ -109,8 +109,8 @@ $I->see('Topic is updated.');
 
 $I->amOnPage('/forum/my-forum/my-new-topic.html');
 $I->see('My Updated Topic','h1');
-$I->see('This is my New Updated Topic','p');
-$I->see('This is my reply on the New Topic!','p');
+$I->see('This is my New Updated Topic');
+$I->see('This is my reply on the New Topic!');
 
 // Delete
 //$I->amOnPage('/oc-panel/topic');

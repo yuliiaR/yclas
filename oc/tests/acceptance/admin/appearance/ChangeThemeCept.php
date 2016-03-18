@@ -37,7 +37,7 @@ $I->see('Search and place ads easily with open classifieds');
 
 $I->wantTo('activate Reclassifieds3 theme');
 $I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','reclassifieds3');
+$I->fillField('#formorm_config_value','reclassifieds');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 
@@ -62,7 +62,7 @@ $I->seeElement('.breadcrumb');
 
 // See on responsive theme
 $I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','responsive3');
+$I->fillField('#formorm_config_value','responsive');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 $I->amOnPage('/oc-panel/theme/options');
@@ -158,7 +158,7 @@ $I->seeElement('.breadcrumb');
 
 $I->wantTo('activate moderndeluxe3 theme');
 $I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','moderndeluxe3');
+$I->fillField('#formorm_config_value','moderndeluxe');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 

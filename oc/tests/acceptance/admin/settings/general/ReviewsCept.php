@@ -29,7 +29,18 @@ $I->see('leave a review','a');
 
 $I->wantTo('activate Reclassifieds3 theme');
 $I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','reclassifieds3');
+$I->fillField('#formorm_config_value','reclassifieds');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+
+$I->amOnPage('/jobs/just-random-title-here.html');
+$I->see('leave a review','a');
+
+
+
+$I->wantTo('activate Reclassifieds3 theme');
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','responsive');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 
@@ -74,7 +85,7 @@ $I->see('leave a review','a');
 
 $I->wantTo('activate moderndeluxe3 theme');
 $I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','moderndeluxe3');
+$I->fillField('#formorm_config_value','moderndeluxe');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 

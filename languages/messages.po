@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OfficeGate Language Pack\n"
-"POT-Creation-Date: 2016-02-22 18:48+0100\n"
+"POT-Creation-Date: 2016-03-08 13:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -506,7 +506,7 @@ msgstr ""
 #: themes/moderndeluxe/views/header.php:51
 #: themes/jobdrop/views/pages/ad/advanced_search.php:27
 #: themes/jobdrop/views/pages/ad/advanced_search.php:138
-#: themes/jobdrop/views/pages/ad/listing.php:52
+#: themes/jobdrop/views/pages/ad/listing.php:58
 #: themes/jobdrop/views/pages/blog/listing.php:21
 #: themes/jobdrop/views/pages/blog/listing.php:24
 #: themes/jobdrop/views/pages/home.php:44
@@ -569,7 +569,7 @@ msgstr ""
 #: oc/common/views/oc-panel/pages/menu/update.php:102
 #: oc/common/views/oc-panel/pages/menu/index.php:114
 #: oc/common/views/oc-panel/pages/translations/edit.php:23
-#: oc/common/views/oc-panel/crud/indexajax.php:92
+#: oc/common/views/oc-panel/crud/indexajax.php:93
 #: oc/common/views/oc-panel/crud/index.php:17
 msgid "Search"
 msgstr ""
@@ -588,8 +588,8 @@ msgstr ""
 #: themes/ocean/views/pages/ad/new.php:25
 #: themes/ocean/views/pages/ad/new.php:26
 #: themes/yummo/views/pages/ad/advanced_search.php:10
-#: themes/yummo/views/pages/ad/new.php:57
 #: themes/yummo/views/pages/ad/new.php:59
+#: themes/yummo/views/pages/ad/new.php:61
 #: themes/splash/views/pages/ad/advanced_search.php:33
 #: themes/splash/views/pages/forum/new.php:52
 #: themes/splash/views/pages/forum/new.php:54
@@ -671,7 +671,7 @@ msgstr ""
 #: themes/ocean/views/pages/ad/new.php:33
 #: themes/yummo/views/pages/ad/advanced_search.php:18
 #: themes/yummo/views/pages/ad/advanced_search.php:20
-#: themes/yummo/views/pages/ad/new.php:64
+#: themes/yummo/views/pages/ad/new.php:66
 #: themes/splash/views/pages/ad/advanced_search.php:41
 #: themes/splash/views/pages/ad/advanced_search.php:43
 #: themes/splash/views/pages/ad/new.php:40
@@ -751,7 +751,7 @@ msgstr ""
 #: themes/ocean/views/pages/ad/new.php:66
 #: themes/yummo/views/pages/ad/advanced_search.php:43
 #: themes/yummo/views/pages/ad/advanced_search.php:45
-#: themes/yummo/views/pages/ad/new.php:97
+#: themes/yummo/views/pages/ad/new.php:99
 #: themes/splash/views/pages/ad/advanced_search.php:66
 #: themes/splash/views/pages/ad/advanced_search.php:68
 #: themes/splash/views/pages/ad/new.php:73
@@ -787,7 +787,7 @@ msgstr ""
 #: themes/newspaper/views/pages/ad/related.php:35
 #: themes/newspaper/views/pages/ad/single.php:42
 #: themes/newspaper/views/pages/ad/new.php:49
-#: themes/newspaper/views/pages/ad/listing.php:194
+#: themes/newspaper/views/pages/ad/listing.php:192
 #: themes/newspaper/views/widget/widget_subscribers.php:41
 #: themes/newspaper/views/widget/widget_subscribers.php:42
 #: themes/newspaper/views/oc-panel/profile/edit_ad.php:169
@@ -814,7 +814,7 @@ msgstr ""
 #: themes/czsale/views/pages/ad/advanced_search.php:45
 #: themes/czsale/views/pages/ad/single.php:152
 #: themes/czsale/views/pages/ad/new.php:68
-#: themes/czsale/views/pages/ad/listing.php:124
+#: themes/czsale/views/pages/ad/listing.php:122
 #: themes/czsale/views/oc-panel/profile/edit_ad.php:169
 #: themes/kamaleon/views/pages/ad/advanced_search.php:44
 #: themes/kamaleon/views/pages/ad/advanced_search.php:46
@@ -952,8 +952,8 @@ msgid "Related ads"
 msgstr ""
 
 #: themes/olson/views/pages/ad/related.php:16
-#: themes/olson/views/pages/ad/listing.php:111
-#: themes/olson/views/pages/ad/listing.php:141
+#: themes/olson/views/pages/ad/listing.php:107
+#: themes/olson/views/pages/ad/listing.php:147
 #: themes/olson/options.php:116
 #: themes/gummy/views/pages/ad/listing.php:53
 #: themes/gummy/views/pages/ad/listing.php:76
@@ -962,23 +962,23 @@ msgstr ""
 #: themes/gummy/options.php:139
 #: themes/ocean/views/pages/ad/listing.php:140
 #: themes/ocean/options.php:118
-#: themes/yummo/views/pages/ad/listing.php:111
+#: themes/yummo/views/pages/ad/listing.php:108
 #: themes/yummo/options.php:128
-#: themes/splash/views/pages/ad/listing.php:54
-#: themes/splash/views/pages/ad/listing.php:116
+#: themes/splash/views/pages/ad/listing.php:60
+#: themes/splash/views/pages/ad/listing.php:122
 #: themes/splash/views/pages/user/profile.php:170
 #: themes/splash/views/oc-panel/profile/ads.php:35
 #: themes/splash/views/oc-panel/profile/ads.php:96
 #: themes/splash/views/oc-panel/profile/ads.php:97
-#: themes/reclassifieds/views/pages/ad/listing.php:142
-#: themes/reclassifieds/views/pages/ad/listing.php:157
+#: themes/reclassifieds/views/pages/ad/listing.php:140
+#: themes/reclassifieds/views/pages/ad/listing.php:155
 #: themes/reclassifieds/options.php:112
-#: themes/moderndeluxe/views/pages/ad/listing.php:142
-#: themes/moderndeluxe/views/pages/ad/listing.php:185
+#: themes/moderndeluxe/views/pages/ad/listing.php:140
+#: themes/moderndeluxe/views/pages/ad/listing.php:183
 #: themes/moderndeluxe/options.php:121
 #: themes/jobdrop/views/pages/ad/advanced_search.php:176
-#: themes/jobdrop/views/pages/ad/listing.php:70
-#: themes/jobdrop/views/pages/user/profile.php:152
+#: themes/jobdrop/views/pages/ad/listing.php:76
+#: themes/jobdrop/views/pages/user/profile.php:154
 #: themes/jobdrop/views/oc-panel/profile/ads.php:18
 #: themes/jobdrop/views/oc-panel/profile/ads.php:79
 #: themes/jobdrop/views/oc-panel/profile/ads.php:80
@@ -986,24 +986,24 @@ msgstr ""
 #: themes/mobile/views/oc-panel/profile/ads.php:78
 #: themes/mobile/views/oc-panel/profile/ads.php:80
 #: themes/newspaper/views/pages/ad/related.php:10
-#: themes/newspaper/views/pages/ad/listing.php:116
-#: themes/newspaper/views/pages/ad/listing.php:142
+#: themes/newspaper/views/pages/ad/listing.php:114
+#: themes/newspaper/views/pages/ad/listing.php:140
 #: themes/newspaper/views/pages/user/profile.php:142
 #: themes/newspaper/options.php:157
-#: themes/responsive/views/pages/ad/listing.php:138
-#: themes/responsive/views/pages/ad/listing.php:154
+#: themes/responsive/views/pages/ad/listing.php:136
+#: themes/responsive/views/pages/ad/listing.php:152
 #: themes/responsive/options.php:122
 #: themes/default/views/pages/ad/related.php:18
-#: themes/default/views/pages/ad/listing.php:78
-#: themes/default/views/pages/ad/listing.php:92
+#: themes/default/views/pages/ad/listing.php:79
+#: themes/default/views/pages/ad/listing.php:93
 #: themes/default/views/pages/user/profile.php:153
 #: themes/default/views/oc-panel/pages/ad.php:237
 #: themes/default/views/oc-panel/profile/ads.php:16
 #: themes/default/views/oc-panel/profile/ads.php:77
 #: themes/default/views/oc-panel/profile/ads.php:78
-#: themes/czsale/views/pages/ad/listing.php:103
+#: themes/czsale/views/pages/ad/listing.php:101
 #: themes/czsale/options.php:117
-#: themes/kamaleon/views/pages/ad/listing.php:144
+#: themes/kamaleon/views/pages/ad/listing.php:141
 #: themes/kamaleon/options.php:136
 #: oc/classes/widget/featured.php:25
 msgid "Featured"
@@ -1024,12 +1024,12 @@ msgstr ""
 #: themes/default/views/pages/ad/single.php:6
 #: themes/czsale/views/pages/ad/single.php:4
 #: themes/kamaleon/views/pages/ad/single.php:6
-#: oc/classes/controller/ad.php:331
+#: oc/classes/controller/ad.php:335
 msgid "This advertisement doesn´t exist, or is not yet published!"
 msgstr ""
 
 #: themes/olson/views/pages/ad/single.php:14
-#: themes/olson/views/pages/ad/listing.php:149
+#: themes/olson/views/pages/ad/listing.php:155
 #: themes/gummy/views/pages/ad/single.php:375
 #: themes/gummy/views/pages/ad/listing.php:118
 #: themes/gummy/views/pages/userprofile.php:162
@@ -1037,50 +1037,50 @@ msgstr ""
 #: themes/ocean/views/pages/ad/listing.php:157
 #: themes/ocean/views/pages/ad/listing.php:258
 #: themes/yummo/views/pages/ad/single.php:11
-#: themes/yummo/views/pages/ad/listing.php:167
+#: themes/yummo/views/pages/ad/listing.php:165
 #: themes/splash/views/pages/ad/advanced_search.php:187
-#: themes/splash/views/pages/ad/listing.php:146
+#: themes/splash/views/pages/ad/listing.php:154
 #: themes/reclassifieds/views/pages/ad/single.php:15
-#: themes/reclassifieds/views/pages/ad/listing.php:162
+#: themes/reclassifieds/views/pages/ad/listing.php:160
 #: themes/reclassifieds/views/pages/ad/listing.php:265
 #: themes/moderndeluxe/views/pages/ad/single.php:15
-#: themes/moderndeluxe/views/pages/ad/listing.php:159
-#: themes/moderndeluxe/views/pages/ad/listing.php:267
+#: themes/moderndeluxe/views/pages/ad/listing.php:157
+#: themes/moderndeluxe/views/pages/ad/listing.php:265
 #: themes/jobdrop/views/pages/ad/advanced_search.php:238
-#: themes/jobdrop/views/pages/ad/listing.php:246
+#: themes/jobdrop/views/pages/ad/listing.php:252
 #: themes/newspaper/views/pages/ad/single.php:20
-#: themes/newspaper/views/pages/ad/listing.php:165
-#: themes/newspaper/views/pages/ad/listing.php:254
+#: themes/newspaper/views/pages/ad/listing.php:163
+#: themes/newspaper/views/pages/ad/listing.php:252
 #: themes/responsive/views/pages/ad/single.php:12
-#: themes/responsive/views/pages/ad/listing.php:161
+#: themes/responsive/views/pages/ad/listing.php:159
 #: themes/default/views/pages/ad/single.php:15
-#: themes/default/views/pages/ad/listing.php:99
+#: themes/default/views/pages/ad/listing.php:100
 #: themes/czsale/views/pages/ad/single.php:37
 #: themes/czsale/views/pages/ad/listing.php:208
 #: themes/kamaleon/views/pages/ad/single.php:15
-#: themes/kamaleon/views/pages/ad/listing.php:163
-#: themes/kamaleon/views/pages/ad/listing.php:267
+#: themes/kamaleon/views/pages/ad/listing.php:160
+#: themes/kamaleon/views/pages/ad/listing.php:264
 msgid "Add to Favorites"
 msgstr ""
 
 #: themes/olson/views/pages/ad/single.php:36
 #: themes/olson/views/pages/ad/single.php:49
-#: themes/olson/views/pages/ad/listing.php:316
+#: themes/olson/views/pages/ad/listing.php:355
 #: themes/gummy/views/pages/ad/listing.php:233
-#: themes/ocean/views/pages/ad/listing.php:334
-#: themes/yummo/views/pages/ad/listing.php:304
+#: themes/ocean/views/pages/ad/listing.php:364
+#: themes/yummo/views/pages/ad/listing.php:330
 #: themes/splash/views/pages/ad/advanced_search.php:286
-#: themes/splash/views/pages/ad/listing.php:245
-#: themes/reclassifieds/views/pages/ad/listing.php:341
-#: themes/moderndeluxe/views/pages/ad/listing.php:343
+#: themes/splash/views/pages/ad/listing.php:283
+#: themes/reclassifieds/views/pages/ad/listing.php:374
+#: themes/moderndeluxe/views/pages/ad/listing.php:371
 #: themes/jobdrop/views/pages/ad/advanced_search.php:341
-#: themes/jobdrop/views/pages/ad/listing.php:368
-#: themes/newspaper/views/pages/ad/listing.php:331
-#: themes/responsive/views/pages/ad/listing.php:308
-#: themes/default/views/pages/ad/listing.php:229
+#: themes/jobdrop/views/pages/ad/listing.php:404
+#: themes/newspaper/views/pages/ad/listing.php:359
+#: themes/responsive/views/pages/ad/listing.php:338
+#: themes/default/views/pages/ad/listing.php:260
 #: themes/default/views/oc-panel/pages/settings/payment.php:21
-#: themes/czsale/views/pages/ad/listing.php:295
-#: themes/kamaleon/views/pages/ad/listing.php:346
+#: themes/czsale/views/pages/ad/listing.php:325
+#: themes/kamaleon/views/pages/ad/listing.php:374
 #: oc/common/views/oc-panel/pages/widgets/form_widget.php:50
 msgid "Close"
 msgstr ""
@@ -1198,10 +1198,12 @@ msgstr ""
 #: themes/ocean/views/pages/ad/listing.php:208
 #: themes/ocean/views/pages/ad/listing.php:211
 #: themes/yummo/views/pages/ad/single.php:226
-#: themes/yummo/views/pages/ad/new.php:179
+#: themes/yummo/views/pages/ad/new.php:182
 #: themes/splash/views/pages/ad/single.php:152
 #: themes/splash/views/pages/ad/new.php:162
 #: themes/splash/views/pages/ad/checkout.php:50
+#: themes/splash/views/widget/widget_contact.php:16
+#: themes/splash/views/widget/widget_contact.php:58
 #: themes/splash/views/widget/widget_subscribers.php:72
 #: themes/splash/views/oc-panel/pages/messages/message.php:83
 #: themes/splash/views/oc-panel/profile/edit_ad.php:265
@@ -1215,8 +1217,8 @@ msgstr ""
 #: themes/moderndeluxe/views/pages/ad/single.php:85
 #: themes/moderndeluxe/views/pages/ad/single.php:192
 #: themes/moderndeluxe/views/pages/ad/new.php:182
-#: themes/moderndeluxe/views/pages/ad/listing.php:216
-#: themes/moderndeluxe/views/pages/ad/listing.php:219
+#: themes/moderndeluxe/views/pages/ad/listing.php:214
+#: themes/moderndeluxe/views/pages/ad/listing.php:217
 #: themes/jobdrop/views/pages/ad/single.php:214
 #: themes/jobdrop/views/pages/ad/new.php:152
 #: themes/jobdrop/views/pages/ad/checkout.php:43
@@ -1227,13 +1229,15 @@ msgstr ""
 #: themes/mobile/views/pages/ad/single.php:32
 #: themes/mobile/views/pages/ad/new.php:110
 #: themes/mobile/views/pages/ad/checkout.php:30
-#: themes/mobile/views/pages/ad/listing.php:30
-#: themes/mobile/views/pages/ad/listing.php:33
+#: themes/mobile/views/pages/ad/listing.php:29
+#: themes/mobile/views/pages/ad/listing.php:32
 #: themes/mobile/views/oc-panel/pages/messages/message.php:66
 #: themes/mobile/views/oc-panel/profile/edit_ad.php:204
 #: themes/newspaper/views/pages/ad/single.php:216
 #: themes/newspaper/views/pages/ad/new.php:166
 #: themes/newspaper/views/widget/widget_subscribers.php:79
+#: themes/newspaper/views/widget_contact.php:18
+#: themes/newspaper/views/widget_contact.php:60
 #: themes/newspaper/views/oc-panel/profile/edit_ad.php:253
 #: themes/responsive/views/pages/ad/single.php:76
 #: themes/responsive/views/pages/ad/single.php:79
@@ -1246,8 +1250,10 @@ msgstr ""
 #: themes/default/views/pages/ad/single.php:168
 #: themes/default/views/pages/ad/new.php:165
 #: themes/default/views/pages/ad/checkout.php:29
-#: themes/default/views/pages/ad/listing.php:145
-#: themes/default/views/pages/ad/listing.php:148
+#: themes/default/views/pages/ad/listing.php:146
+#: themes/default/views/pages/ad/listing.php:149
+#: themes/default/views/widget/widget_contact.php:24
+#: themes/default/views/widget/widget_contact.php:66
 #: themes/default/views/widget/widget_subscribers.php:81
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:493
 #: themes/default/views/oc-panel/pages/messages/message.php:66
@@ -1256,14 +1262,14 @@ msgstr ""
 #: themes/czsale/views/pages/ad/single.php:119
 #: themes/czsale/views/pages/ad/single.php:236
 #: themes/czsale/views/pages/ad/new.php:192
-#: themes/czsale/views/pages/ad/listing.php:121
+#: themes/czsale/views/pages/ad/listing.php:119
 #: themes/czsale/views/oc-panel/profile/edit_ad.php:253
 #: themes/kamaleon/views/pages/ad/single.php:79
 #: themes/kamaleon/views/pages/ad/single.php:82
 #: themes/kamaleon/views/pages/ad/single.php:189
 #: themes/kamaleon/views/pages/ad/new.php:176
+#: themes/kamaleon/views/pages/ad/listing.php:210
 #: themes/kamaleon/views/pages/ad/listing.php:213
-#: themes/kamaleon/views/pages/ad/listing.php:216
 #: oc/classes/model/category.php:145
 #: oc/classes/model/ad.php:156
 #: oc/classes/widget/subscribers.php:41
@@ -1271,44 +1277,44 @@ msgid "Price"
 msgstr ""
 
 #: themes/olson/views/pages/ad/single.php:92
-#: themes/olson/views/pages/ad/listing.php:216
+#: themes/olson/views/pages/ad/listing.php:222
 #: themes/gummy/views/pages/ad/single.php:61
 #: themes/gummy/views/pages/ad/listing.php:100
 #: themes/gummy/views/pages/home.php:113
 #: themes/ocean/views/pages/ad/single.php:85
 #: themes/ocean/views/pages/ad/listing.php:211
 #: themes/yummo/views/pages/ad/single.php:32
-#: themes/yummo/views/pages/ad/listing.php:50
-#: themes/yummo/views/pages/ad/listing.php:222
-#: themes/yummo/views/pages/home.php:87
+#: themes/yummo/views/pages/ad/listing.php:46
+#: themes/yummo/views/pages/ad/listing.php:218
+#: themes/yummo/views/pages/home.php:83
 #: themes/splash/views/pages/ad/single.php:186
-#: themes/splash/views/pages/ad/listing.php:137
+#: themes/splash/views/pages/ad/listing.php:145
 #: themes/reclassifieds/views/pages/ad/single.php:85
 #: themes/reclassifieds/views/pages/ad/listing.php:216
 #: themes/moderndeluxe/views/pages/ad/single.php:85
-#: themes/moderndeluxe/views/pages/ad/listing.php:219
+#: themes/moderndeluxe/views/pages/ad/listing.php:217
 #: themes/mobile/views/pages/ad/single.php:32
-#: themes/mobile/views/pages/ad/listing.php:33
+#: themes/mobile/views/pages/ad/listing.php:32
 #: themes/newspaper/views/pages/ad/single.php:13
-#: themes/newspaper/views/pages/ad/listing.php:181
+#: themes/newspaper/views/pages/ad/listing.php:179
 #: themes/responsive/views/pages/ad/single.php:79
 #: themes/responsive/views/pages/ad/listing.php:210
 #: themes/default/views/pages/ad/single.php:72
-#: themes/default/views/pages/ad/listing.php:148
+#: themes/default/views/pages/ad/listing.php:149
 #: themes/czsale/views/pages/ad/single.php:120
-#: themes/czsale/views/pages/ad/listing.php:44
+#: themes/czsale/views/pages/ad/listing.php:42
 #: themes/czsale/views/pages/ad/listing.php:225
 #: themes/kamaleon/views/pages/ad/single.php:82
-#: themes/kamaleon/views/pages/ad/listing.php:216
+#: themes/kamaleon/views/pages/ad/listing.php:213
 msgid "Free"
 msgstr ""
 
 #: themes/olson/views/pages/ad/single.php:95
 #: themes/yummo/views/pages/ad/single.php:46
-#: themes/yummo/views/pages/ad/listing.php:206
+#: themes/yummo/views/pages/ad/listing.php:202
 #: themes/splash/views/pages/ad/advanced_search.php:197
 #: themes/splash/views/pages/ad/single.php:192
-#: themes/splash/views/pages/ad/listing.php:156
+#: themes/splash/views/pages/ad/listing.php:164
 msgid "Posted by"
 msgstr ""
 
@@ -1331,9 +1337,9 @@ msgstr ""
 #: themes/ocean/views/pages/ad/new.php:148
 #: themes/ocean/views/pages/ad/new.php:151
 #: themes/ocean/views/pages/ad/new.php:157
-#: themes/yummo/views/pages/ad/new.php:280
 #: themes/yummo/views/pages/ad/new.php:284
-#: themes/yummo/views/pages/ad/new.php:292
+#: themes/yummo/views/pages/ad/new.php:288
+#: themes/yummo/views/pages/ad/new.php:296
 #: themes/splash/views/pages/ad/new.php:136
 #: themes/splash/views/pages/ad/new.php:140
 #: themes/splash/views/pages/ad/new.php:146
@@ -1410,7 +1416,7 @@ msgstr ""
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:263
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:264
 #: themes/ocean/views/pages/ad/new.php:204
-#: themes/yummo/views/pages/ad/new.php:264
+#: themes/yummo/views/pages/ad/new.php:268
 #: themes/splash/views/pages/ad/new.php:174
 #: themes/splash/views/oc-panel/profile/edit_ad.php:275
 #: themes/splash/views/oc-panel/profile/edit_ad.php:276
@@ -1451,8 +1457,8 @@ msgstr ""
 #: themes/ocean/views/pages/ad/new.php:139
 #: themes/ocean/views/pages/ad/new.php:140
 #: themes/yummo/views/pages/ad/single.php:183
-#: themes/yummo/views/pages/ad/new.php:272
-#: themes/yummo/views/pages/ad/new.php:274
+#: themes/yummo/views/pages/ad/new.php:276
+#: themes/yummo/views/pages/ad/new.php:278
 #: themes/splash/views/pages/ad/single.php:127
 #: themes/splash/views/pages/ad/new.php:132
 #: themes/splash/views/pages/ad/new.php:133
@@ -1518,7 +1524,8 @@ msgstr ""
 #: themes/splash/views/pages/user/profile.php:78
 #: themes/splash/views/pages/user/profile.php:81
 #: themes/splash/views/pages/user/profile.php:142
-#: themes/splash/views/widget/widget_contact.php:59
+#: themes/splash/views/widget/widget_contact.php:22
+#: themes/splash/views/widget/widget_contact.php:90
 #: themes/reclassifieds/views/pages/ad/single.php:137
 #: themes/reclassifieds/views/pages/ad/single.php:140
 #: themes/moderndeluxe/views/pages/ad/single.php:140
@@ -1527,9 +1534,9 @@ msgstr ""
 #: themes/jobdrop/views/pages/ad/single.php:162
 #: themes/jobdrop/views/pages/ad/single.php:165
 #: themes/jobdrop/views/pages/ad/single.php:244
-#: themes/jobdrop/views/pages/user/profile.php:63
-#: themes/jobdrop/views/pages/user/profile.php:66
-#: themes/jobdrop/views/pages/user/profile.php:124
+#: themes/jobdrop/views/pages/user/profile.php:65
+#: themes/jobdrop/views/pages/user/profile.php:68
+#: themes/jobdrop/views/pages/user/profile.php:126
 #: themes/mobile/views/pages/ad/single.php:77
 #: themes/mobile/views/pages/ad/single.php:79
 #: themes/mobile/views/pages/ad/single.php:89
@@ -1543,7 +1550,8 @@ msgstr ""
 #: themes/newspaper/views/pages/user/profile.php:49
 #: themes/newspaper/views/pages/user/profile.php:52
 #: themes/newspaper/views/pages/user/profile.php:112
-#: themes/newspaper/views/widget_contact.php:58
+#: themes/newspaper/views/widget_contact.php:24
+#: themes/newspaper/views/widget_contact.php:92
 #: themes/responsive/views/pages/ad/single.php:135
 #: themes/responsive/views/pages/ad/single.php:138
 #: themes/responsive/views/pages/ad/single.php:214
@@ -1553,7 +1561,8 @@ msgstr ""
 #: themes/default/views/pages/user/profile.php:64
 #: themes/default/views/pages/user/profile.php:67
 #: themes/default/views/pages/user/profile.php:125
-#: themes/default/views/widget/widget_contact.php:66
+#: themes/default/views/widget/widget_contact.php:30
+#: themes/default/views/widget/widget_contact.php:98
 #: themes/czsale/views/pages/ad/single.php:206
 #: themes/czsale/views/pages/ad/single.php:209
 #: themes/czsale/views/pages/ad/single.php:260
@@ -1618,7 +1627,7 @@ msgstr ""
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:191
 #: themes/ocean/views/pages/ad/new.php:92
 #: themes/yummo/views/pages/ad/single.php:115
-#: themes/yummo/views/pages/ad/new.php:122
+#: themes/yummo/views/pages/ad/new.php:124
 #: themes/splash/views/pages/ad/new.php:97
 #: themes/splash/views/pages/user/profile.php:193
 #: themes/splash/views/pages/forum/new.php:58
@@ -1629,7 +1638,7 @@ msgstr ""
 #: themes/reclassifieds/views/pages/ad/new.php:92
 #: themes/moderndeluxe/views/pages/ad/new.php:92
 #: themes/jobdrop/views/pages/ad/new.php:87
-#: themes/jobdrop/views/pages/user/profile.php:175
+#: themes/jobdrop/views/pages/user/profile.php:177
 #: themes/jobdrop/views/pages/forum/new.php:63
 #: themes/jobdrop/views/pages/forum/new.php:65
 #: themes/jobdrop/views/oc-panel/profile/edit_ad.php:185
@@ -1689,8 +1698,8 @@ msgstr ""
 
 #: themes/olson/views/pages/ad/single.php:194
 #: themes/olson/views/pages/ad/single.php:231
-#: themes/olson/views/pages/ad/listing.php:77
-#: themes/olson/views/pages/home.php:88
+#: themes/olson/views/pages/ad/listing.php:73
+#: themes/olson/views/pages/home.php:84
 #: themes/olson/views/header.php:45
 #: themes/gummy/views/pages/ad/single.php:80
 #: themes/gummy/views/pages/ad/listing.php:25
@@ -1702,31 +1711,31 @@ msgstr ""
 #: themes/yummo/views/header.php:61
 #: themes/splash/views/pages/ad/single.php:227
 #: themes/splash/views/pages/ad/single.php:229
-#: themes/splash/views/pages/ad/listing.php:78
+#: themes/splash/views/pages/ad/listing.php:84
 #: themes/splash/views/pages/home.php:28
 #: themes/reclassifieds/views/pages/ad/single.php:236
-#: themes/reclassifieds/views/pages/ad/listing.php:100
+#: themes/reclassifieds/views/pages/ad/listing.php:98
 #: themes/moderndeluxe/views/pages/ad/single.php:238
-#: themes/moderndeluxe/views/pages/ad/listing.php:100
+#: themes/moderndeluxe/views/pages/ad/listing.php:98
 #: themes/jobdrop/views/pages/ad/advanced_search.php:192
 #: themes/jobdrop/views/pages/ad/single.php:113
 #: themes/jobdrop/views/pages/ad/single.php:146
-#: themes/jobdrop/views/pages/ad/listing.php:86
+#: themes/jobdrop/views/pages/ad/listing.php:92
 #: themes/jobdrop/views/pages/home.php:28
 #: themes/newspaper/views/pages/ad/single.php:290
-#: themes/newspaper/views/pages/ad/listing.php:77
+#: themes/newspaper/views/pages/ad/listing.php:75
 #: themes/newspaper/views/pages/home.php:60
 #: themes/responsive/views/pages/ad/single.php:236
-#: themes/responsive/views/pages/ad/listing.php:104
-#: themes/responsive/views/pages/home.php:48
+#: themes/responsive/views/pages/ad/listing.php:102
+#: themes/responsive/views/pages/home.php:46
 #: themes/default/views/pages/ad/single.php:215
-#: themes/default/views/pages/ad/listing.php:53
+#: themes/default/views/pages/ad/listing.php:54
 #: themes/czsale/views/pages/ad/single.php:273
-#: themes/czsale/views/pages/ad/listing.php:75
+#: themes/czsale/views/pages/ad/listing.php:73
 #: themes/czsale/views/pages/home.php:38
 #: themes/kamaleon/views/pages/ad/single.php:236
-#: themes/kamaleon/views/pages/ad/listing.php:105
-#: themes/kamaleon/views/pages/home.php:61
+#: themes/kamaleon/views/pages/ad/listing.php:102
+#: themes/kamaleon/views/pages/home.php:59
 #: oc/classes/widget/map.php:18
 #: oc/classes/controller/map.php:9
 #: oc/classes/controller/map.php:112
@@ -1772,7 +1781,7 @@ msgstr ""
 #: themes/reclassifieds/views/pages/ad/single.php:152
 #: themes/moderndeluxe/views/pages/ad/single.php:155
 #: themes/jobdrop/views/pages/ad/single.php:176
-#: themes/jobdrop/views/pages/user/profile.php:73
+#: themes/jobdrop/views/pages/user/profile.php:75
 #: themes/jobdrop/views/pages/contact.php:3
 #: themes/jobdrop/views/header.php:60
 #: themes/newspaper/views/pages/ad/single.php:187
@@ -1826,8 +1835,8 @@ msgstr ""
 #: themes/ocean/views/pages/auth/register-form.php:7
 #: themes/yummo/views/pages/ad/single.php:198
 #: themes/yummo/views/pages/ad/single.php:200
-#: themes/yummo/views/pages/ad/new.php:218
-#: themes/yummo/views/pages/ad/new.php:220
+#: themes/yummo/views/pages/ad/new.php:222
+#: themes/yummo/views/pages/ad/new.php:224
 #: themes/yummo/views/pages/auth/register-form.php:5
 #: themes/yummo/views/pages/auth/register-form.php:7
 #: themes/yummo/views/pages/contact.php:8
@@ -1842,8 +1851,8 @@ msgstr ""
 #: themes/splash/views/pages/auth/register-form.php:7
 #: themes/splash/views/pages/contact.php:38
 #: themes/splash/views/pages/contact.php:39
-#: themes/splash/views/widget/widget_contact.php:9
-#: themes/splash/views/widget/widget_contact.php:10
+#: themes/splash/views/widget/widget_contact.php:29
+#: themes/splash/views/widget/widget_contact.php:30
 #: themes/splash/views/oc-panel/profile/edit_ad.php:104
 #: themes/splash/views/oc-panel/profile/ads.php:29
 #: themes/splash/views/oc-panel/profile/edit.php:59
@@ -1864,8 +1873,8 @@ msgstr ""
 #: themes/jobdrop/views/pages/ad/single.php:188
 #: themes/jobdrop/views/pages/ad/new.php:168
 #: themes/jobdrop/views/pages/ad/new.php:169
-#: themes/jobdrop/views/pages/user/profile.php:83
 #: themes/jobdrop/views/pages/user/profile.php:85
+#: themes/jobdrop/views/pages/user/profile.php:87
 #: themes/jobdrop/views/pages/auth/register-form.php:5
 #: themes/jobdrop/views/pages/auth/register-form.php:7
 #: themes/jobdrop/views/pages/contact.php:35
@@ -1900,8 +1909,8 @@ msgstr ""
 #: themes/newspaper/views/pages/auth/register-form.php:7
 #: themes/newspaper/views/pages/contact.php:20
 #: themes/newspaper/views/pages/contact.php:22
-#: themes/newspaper/views/widget_contact.php:9
-#: themes/newspaper/views/widget_contact.php:10
+#: themes/newspaper/views/widget_contact.php:31
+#: themes/newspaper/views/widget_contact.php:32
 #: themes/newspaper/views/oc-panel/profile/edit_ad.php:82
 #: themes/responsive/views/pages/ad/single.php:156
 #: themes/responsive/views/pages/ad/single.php:158
@@ -1921,8 +1930,8 @@ msgstr ""
 #: themes/default/views/pages/user/profile.php:86
 #: themes/default/views/pages/contact.php:21
 #: themes/default/views/pages/contact.php:23
-#: themes/default/views/widget/widget_contact.php:16
-#: themes/default/views/widget/widget_contact.php:17
+#: themes/default/views/widget/widget_contact.php:37
+#: themes/default/views/widget/widget_contact.php:38
 #: themes/default/views/oc-panel/pages/black_list.php:13
 #: themes/default/views/oc-panel/pages/locations/create.php:16
 #: themes/default/views/oc-panel/pages/locations/create.php:17
@@ -2022,8 +2031,8 @@ msgstr ""
 #: themes/ocean/views/pages/auth/register-form.php:19
 #: themes/yummo/views/pages/ad/single.php:204
 #: themes/yummo/views/pages/ad/single.php:206
-#: themes/yummo/views/pages/ad/new.php:224
-#: themes/yummo/views/pages/ad/new.php:230
+#: themes/yummo/views/pages/ad/new.php:228
+#: themes/yummo/views/pages/ad/new.php:234
 #: themes/yummo/views/pages/auth/register-form.php:12
 #: themes/yummo/views/pages/auth/register-form.php:19
 #: themes/yummo/views/pages/contact.php:14
@@ -2038,8 +2047,8 @@ msgstr ""
 #: themes/splash/views/pages/auth/register-form.php:19
 #: themes/splash/views/pages/contact.php:40
 #: themes/splash/views/pages/contact.php:41
-#: themes/splash/views/widget/widget_contact.php:15
-#: themes/splash/views/widget/widget_contact.php:16
+#: themes/splash/views/widget/widget_contact.php:35
+#: themes/splash/views/widget/widget_contact.php:36
 #: themes/splash/views/widget/widget_subscribers.php:57
 #: themes/splash/views/widget/widget_subscribers.php:58
 #: themes/splash/views/widget/widget_subscribers.php:64
@@ -2062,8 +2071,8 @@ msgstr ""
 #: themes/jobdrop/views/pages/ad/single.php:194
 #: themes/jobdrop/views/pages/ad/new.php:170
 #: themes/jobdrop/views/pages/ad/new.php:175
-#: themes/jobdrop/views/pages/user/profile.php:89
 #: themes/jobdrop/views/pages/user/profile.php:91
+#: themes/jobdrop/views/pages/user/profile.php:93
 #: themes/jobdrop/views/pages/auth/login-form.php:5
 #: themes/jobdrop/views/pages/auth/login-form.php:7
 #: themes/jobdrop/views/pages/auth/forgot-form.php:5
@@ -2114,8 +2123,8 @@ msgstr ""
 #: themes/newspaper/views/widget/widget_subscribers.php:71
 #: themes/newspaper/views/widget_login.php:55
 #: themes/newspaper/views/widget_login.php:56
-#: themes/newspaper/views/widget_contact.php:15
-#: themes/newspaper/views/widget_contact.php:16
+#: themes/newspaper/views/widget_contact.php:37
+#: themes/newspaper/views/widget_contact.php:38
 #: themes/newspaper/views/oc-panel/profile/edit_ad.php:83
 #: themes/responsive/views/pages/ad/single.php:162
 #: themes/responsive/views/pages/ad/single.php:164
@@ -2141,8 +2150,8 @@ msgstr ""
 #: themes/default/views/pages/user/profile.php:92
 #: themes/default/views/pages/contact.php:27
 #: themes/default/views/pages/contact.php:29
-#: themes/default/views/widget/widget_contact.php:22
-#: themes/default/views/widget/widget_contact.php:23
+#: themes/default/views/widget/widget_contact.php:43
+#: themes/default/views/widget/widget_contact.php:44
 #: themes/default/views/widget/widget_subscribers.php:65
 #: themes/default/views/widget/widget_subscribers.php:66
 #: themes/default/views/widget/widget_subscribers.php:72
@@ -2150,7 +2159,7 @@ msgstr ""
 #: themes/default/views/oc-panel/sidebar.php:126
 #: themes/default/views/oc-panel/sidebar.php:221
 #: themes/default/views/oc-panel/pages/black_list.php:14
-#: themes/default/views/oc-panel/pages/fields/new.php:46
+#: themes/default/views/oc-panel/pages/fields/new.php:47
 #: themes/default/views/oc-panel/pages/userfields/new.php:47
 #: themes/default/views/oc-panel/profile/edit_ad.php:83
 #: themes/default/views/oc-panel/profile/edit.php:44
@@ -2217,16 +2226,16 @@ msgstr ""
 #: themes/splash/views/pages/user/profile.php:115
 #: themes/splash/views/pages/contact.php:43
 #: themes/splash/views/pages/contact.php:44
-#: themes/splash/views/widget/widget_contact.php:23
-#: themes/splash/views/widget/widget_contact.php:24
+#: themes/splash/views/widget/widget_contact.php:44
+#: themes/splash/views/widget/widget_contact.php:45
 #: themes/reclassifieds/views/pages/ad/single.php:175
 #: themes/reclassifieds/views/pages/ad/single.php:177
 #: themes/moderndeluxe/views/pages/ad/single.php:178
 #: themes/moderndeluxe/views/pages/ad/single.php:180
 #: themes/jobdrop/views/pages/ad/single.php:200
 #: themes/jobdrop/views/pages/ad/single.php:202
-#: themes/jobdrop/views/pages/user/profile.php:97
 #: themes/jobdrop/views/pages/user/profile.php:99
+#: themes/jobdrop/views/pages/user/profile.php:101
 #: themes/jobdrop/views/pages/contact.php:40
 #: themes/jobdrop/views/pages/contact.php:41
 #: themes/mobile/views/pages/ad/single.php:111
@@ -2241,8 +2250,8 @@ msgstr ""
 #: themes/newspaper/views/pages/user/profile.php:85
 #: themes/newspaper/views/pages/contact.php:33
 #: themes/newspaper/views/pages/contact.php:35
-#: themes/newspaper/views/widget_contact.php:22
-#: themes/newspaper/views/widget_contact.php:23
+#: themes/newspaper/views/widget_contact.php:46
+#: themes/newspaper/views/widget_contact.php:47
 #: themes/responsive/views/pages/ad/single.php:170
 #: themes/responsive/views/pages/ad/single.php:172
 #: themes/responsive/views/pages/contact.php:32
@@ -2253,8 +2262,8 @@ msgstr ""
 #: themes/default/views/pages/user/profile.php:100
 #: themes/default/views/pages/contact.php:35
 #: themes/default/views/pages/contact.php:37
-#: themes/default/views/widget/widget_contact.php:30
-#: themes/default/views/widget/widget_contact.php:31
+#: themes/default/views/widget/widget_contact.php:52
+#: themes/default/views/widget/widget_contact.php:53
 #: themes/default/views/oc-panel/pages/newsletter.php:83
 #: themes/czsale/views/pages/ad/single.php:226
 #: themes/czsale/views/pages/ad/single.php:227
@@ -2289,16 +2298,18 @@ msgstr ""
 #: themes/splash/views/pages/user/profile.php:122
 #: themes/splash/views/pages/contact.php:45
 #: themes/splash/views/pages/contact.php:46
-#: themes/splash/views/widget/widget_contact.php:29
-#: themes/splash/views/widget/widget_contact.php:30
+#: themes/splash/views/widget/widget_contact.php:10
+#: themes/splash/views/widget/widget_contact.php:11
+#: themes/splash/views/widget/widget_contact.php:51
+#: themes/splash/views/widget/widget_contact.php:52
 #: themes/reclassifieds/views/pages/ad/single.php:182
 #: themes/reclassifieds/views/pages/ad/single.php:184
 #: themes/moderndeluxe/views/pages/ad/single.php:185
 #: themes/moderndeluxe/views/pages/ad/single.php:187
 #: themes/jobdrop/views/pages/ad/single.php:207
 #: themes/jobdrop/views/pages/ad/single.php:209
-#: themes/jobdrop/views/pages/user/profile.php:104
 #: themes/jobdrop/views/pages/user/profile.php:106
+#: themes/jobdrop/views/pages/user/profile.php:108
 #: themes/jobdrop/views/pages/contact.php:42
 #: themes/jobdrop/views/pages/contact.php:43
 #: themes/mobile/views/pages/ad/single.php:117
@@ -2313,8 +2324,10 @@ msgstr ""
 #: themes/newspaper/views/pages/user/profile.php:92
 #: themes/newspaper/views/pages/contact.php:39
 #: themes/newspaper/views/pages/contact.php:41
-#: themes/newspaper/views/widget_contact.php:28
-#: themes/newspaper/views/widget_contact.php:29
+#: themes/newspaper/views/widget_contact.php:12
+#: themes/newspaper/views/widget_contact.php:13
+#: themes/newspaper/views/widget_contact.php:53
+#: themes/newspaper/views/widget_contact.php:54
 #: themes/responsive/views/pages/ad/single.php:177
 #: themes/responsive/views/pages/ad/single.php:179
 #: themes/responsive/views/pages/contact.php:38
@@ -2325,8 +2338,10 @@ msgstr ""
 #: themes/default/views/pages/user/profile.php:107
 #: themes/default/views/pages/contact.php:41
 #: themes/default/views/pages/contact.php:44
-#: themes/default/views/widget/widget_contact.php:36
-#: themes/default/views/widget/widget_contact.php:37
+#: themes/default/views/widget/widget_contact.php:18
+#: themes/default/views/widget/widget_contact.php:19
+#: themes/default/views/widget/widget_contact.php:59
+#: themes/default/views/widget/widget_contact.php:60
 #: themes/default/views/oc-panel/pages/newsletter.php:90
 #: themes/czsale/views/pages/ad/single.php:231
 #: themes/czsale/views/pages/ad/single.php:232
@@ -2347,8 +2362,8 @@ msgstr ""
 #: themes/yummo/views/pages/ad/single.php:237
 #: themes/splash/views/pages/ad/single.php:157
 #: themes/splash/views/pages/ad/single.php:158
-#: themes/splash/views/widget/widget_contact.php:37
-#: themes/splash/views/widget/widget_contact.php:38
+#: themes/splash/views/widget/widget_contact.php:67
+#: themes/splash/views/widget/widget_contact.php:68
 #: themes/reclassifieds/views/pages/ad/single.php:198
 #: themes/reclassifieds/views/pages/ad/single.php:200
 #: themes/moderndeluxe/views/pages/ad/single.php:201
@@ -2357,14 +2372,14 @@ msgstr ""
 #: themes/jobdrop/views/pages/ad/single.php:225
 #: themes/newspaper/views/pages/ad/single.php:227
 #: themes/newspaper/views/pages/ad/single.php:230
-#: themes/newspaper/views/widget_contact.php:36
-#: themes/newspaper/views/widget_contact.php:37
+#: themes/newspaper/views/widget_contact.php:69
+#: themes/newspaper/views/widget_contact.php:70
 #: themes/responsive/views/pages/ad/single.php:193
 #: themes/responsive/views/pages/ad/single.php:195
 #: themes/default/views/pages/ad/single.php:177
 #: themes/default/views/pages/ad/single.php:179
-#: themes/default/views/widget/widget_contact.php:44
-#: themes/default/views/widget/widget_contact.php:45
+#: themes/default/views/widget/widget_contact.php:75
+#: themes/default/views/widget/widget_contact.php:76
 #: themes/czsale/views/pages/ad/single.php:243
 #: themes/czsale/views/pages/ad/single.php:244
 #: themes/kamaleon/views/pages/ad/single.php:198
@@ -2383,7 +2398,7 @@ msgstr ""
 #: themes/ocean/views/pages/ad/single.php:209
 #: themes/ocean/views/pages/ad/new.php:286
 #: themes/yummo/views/pages/ad/single.php:243
-#: themes/yummo/views/pages/ad/new.php:331
+#: themes/yummo/views/pages/ad/new.php:335
 #: themes/yummo/views/pages/contact.php:42
 #: themes/splash/views/pages/ad/reviews.php:85
 #: themes/splash/views/pages/ad/single.php:165
@@ -2392,14 +2407,14 @@ msgstr ""
 #: themes/splash/views/pages/forum/topic.php:122
 #: themes/splash/views/pages/forum/new.php:71
 #: themes/splash/views/pages/contact.php:52
-#: themes/splash/views/widget/widget_contact.php:50
+#: themes/splash/views/widget/widget_contact.php:80
 #: themes/reclassifieds/views/pages/ad/single.php:206
 #: themes/reclassifieds/views/pages/ad/new.php:286
 #: themes/moderndeluxe/views/pages/ad/single.php:209
 #: themes/moderndeluxe/views/pages/ad/new.php:286
 #: themes/jobdrop/views/pages/ad/single.php:231
 #: themes/jobdrop/views/pages/ad/new.php:224
-#: themes/jobdrop/views/pages/user/profile.php:111
+#: themes/jobdrop/views/pages/user/profile.php:113
 #: themes/jobdrop/views/pages/forum/topic.php:118
 #: themes/jobdrop/views/pages/forum/new.php:76
 #: themes/jobdrop/views/pages/contact.php:49
@@ -2410,7 +2425,7 @@ msgstr ""
 #: themes/newspaper/views/pages/ad/new.php:259
 #: themes/newspaper/views/pages/user/profile.php:98
 #: themes/newspaper/views/pages/contact.php:51
-#: themes/newspaper/views/widget_contact.php:49
+#: themes/newspaper/views/widget_contact.php:82
 #: themes/responsive/views/pages/ad/single.php:201
 #: themes/responsive/views/pages/ad/new.php:256
 #: themes/responsive/views/pages/contact.php:45
@@ -2419,7 +2434,7 @@ msgstr ""
 #: themes/default/views/pages/ad/new.php:229
 #: themes/default/views/pages/user/profile.php:112
 #: themes/default/views/pages/contact.php:55
-#: themes/default/views/widget/widget_contact.php:57
+#: themes/default/views/widget/widget_contact.php:88
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:258
 #: themes/czsale/views/pages/ad/single.php:253
 #: themes/czsale/views/pages/ad/new.php:301
@@ -2437,21 +2452,21 @@ msgstr ""
 #: themes/yummo/views/pages/ad/listing.php:11
 #: themes/splash/views/pages/ad/new.php:6
 #: themes/reclassifieds/views/pages/ad/new.php:3
-#: themes/reclassifieds/views/pages/ad/listing.php:72
+#: themes/reclassifieds/views/pages/ad/listing.php:70
 #: themes/moderndeluxe/views/pages/ad/new.php:3
-#: themes/moderndeluxe/views/pages/ad/listing.php:72
+#: themes/moderndeluxe/views/pages/ad/listing.php:70
 #: themes/jobdrop/views/pages/ad/new.php:3
 #: themes/mobile/views/pages/ad/new.php:5
 #: themes/newspaper/views/pages/ad/new.php:2
-#: themes/newspaper/views/pages/ad/listing.php:53
+#: themes/newspaper/views/pages/ad/listing.php:51
 #: themes/responsive/views/pages/ad/new.php:3
-#: themes/responsive/views/pages/ad/listing.php:66
+#: themes/responsive/views/pages/ad/listing.php:64
 #: themes/default/views/pages/ad/new.php:3
 #: themes/default/views/pages/ad/listing.php:30
 #: themes/czsale/views/pages/ad/new.php:3
 #: themes/czsale/views/pages/ad/listing.php:17
 #: themes/kamaleon/views/pages/ad/new.php:3
-#: themes/kamaleon/views/pages/ad/listing.php:78
+#: themes/kamaleon/views/pages/ad/listing.php:75
 #: oc/classes/controller/new.php:77
 #: oc/classes/controller/new.php:78
 msgid "Publish new advertisement"
@@ -2462,7 +2477,7 @@ msgstr ""
 #: themes/gummy/views/pages/ad/new.php:29
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:146
 #: themes/ocean/views/pages/ad/new.php:40
-#: themes/yummo/views/pages/ad/new.php:72
+#: themes/yummo/views/pages/ad/new.php:74
 #: themes/splash/views/pages/ad/new.php:47
 #: themes/splash/views/oc-panel/profile/edit_ad.php:165
 #: themes/reclassifieds/views/pages/ad/new.php:40
@@ -2485,7 +2500,7 @@ msgstr ""
 #: themes/gummy/views/pages/ad/new.php:32
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:149
 #: themes/ocean/views/pages/ad/new.php:43
-#: themes/yummo/views/pages/ad/new.php:75
+#: themes/yummo/views/pages/ad/new.php:77
 #: themes/splash/views/pages/ad/new.php:50
 #: themes/splash/views/oc-panel/profile/edit_ad.php:168
 #: themes/reclassifieds/views/pages/ad/new.php:43
@@ -2509,8 +2524,8 @@ msgstr ""
 #: themes/gummy/views/pages/ad/new.php:124
 #: themes/ocean/views/pages/ad/new.php:52
 #: themes/ocean/views/pages/ad/new.php:78
-#: themes/yummo/views/pages/ad/new.php:84
-#: themes/yummo/views/pages/ad/new.php:110
+#: themes/yummo/views/pages/ad/new.php:86
+#: themes/yummo/views/pages/ad/new.php:112
 #: themes/splash/views/pages/ad/new.php:59
 #: themes/splash/views/pages/ad/new.php:85
 #: themes/reclassifieds/views/pages/ad/new.php:52
@@ -2537,7 +2552,7 @@ msgstr ""
 #: themes/gummy/views/pages/ad/new.php:115
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:172
 #: themes/ocean/views/pages/ad/new.php:69
-#: themes/yummo/views/pages/ad/new.php:101
+#: themes/yummo/views/pages/ad/new.php:103
 #: themes/splash/views/pages/ad/new.php:76
 #: themes/splash/views/oc-panel/profile/edit_ad.php:191
 #: themes/reclassifieds/views/pages/ad/new.php:69
@@ -2558,7 +2573,7 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:98
 #: themes/gummy/views/pages/ad/new.php:105
 #: themes/ocean/views/pages/ad/new.php:99
-#: themes/yummo/views/pages/ad/new.php:130
+#: themes/yummo/views/pages/ad/new.php:132
 #: themes/splash/views/pages/ad/new.php:104
 #: themes/reclassifieds/views/pages/ad/new.php:99
 #: themes/moderndeluxe/views/pages/ad/new.php:99
@@ -2576,7 +2591,7 @@ msgstr ""
 #: themes/gummy/views/pages/ad/new.php:73
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:303
 #: themes/ocean/views/pages/ad/new.php:110
-#: themes/yummo/views/pages/ad/new.php:145
+#: themes/yummo/views/pages/ad/new.php:147
 #: themes/splash/views/pages/ad/new.php:112
 #: themes/splash/views/oc-panel/profile/edit_ad.php:300
 #: themes/reclassifieds/views/pages/ad/new.php:110
@@ -2594,7 +2609,7 @@ msgstr ""
 #: themes/kamaleon/views/pages/ad/new.php:106
 #: oc/classes/model/ad.php:359
 #: oc/classes/model/ad.php:415
-#: oc/classes/controller/panel/location.php:508
+#: oc/classes/controller/panel/location.php:527
 #: oc/classes/controller/panel/category.php:433
 #: oc/common/classes/model/oc/user.php:683
 #: oc/common/classes/controller/panel/cmsimages.php:74
@@ -2606,7 +2621,7 @@ msgstr ""
 #: themes/olson/views/oc-panel/profile/edit_ad.php:330
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:352
 #: themes/ocean/views/pages/ad/new.php:121
-#: themes/yummo/views/pages/ad/new.php:154
+#: themes/yummo/views/pages/ad/new.php:156
 #: themes/splash/views/pages/ad/new.php:120
 #: themes/splash/views/oc-panel/profile/edit_ad.php:349
 #: themes/reclassifieds/views/pages/ad/new.php:121
@@ -2617,19 +2632,19 @@ msgstr ""
 #: themes/newspaper/views/oc-panel/profile/edit_ad.php:352
 #: themes/responsive/views/pages/ad/new.php:107
 #: themes/default/views/pages/ad/new.php:108
-#: themes/default/views/oc-panel/pages/fields/new.php:44
+#: themes/default/views/oc-panel/pages/fields/new.php:45
 #: themes/default/views/oc-panel/pages/userfields/new.php:45
 #: themes/default/views/oc-panel/profile/edit_ad.php:329
 #: themes/czsale/views/pages/ad/new.php:129
 #: themes/czsale/views/oc-panel/profile/edit_ad.php:352
 #: themes/kamaleon/views/pages/ad/new.php:117
-#: oc/common/views/oc-panel/crud/indexajax.php:33
+#: oc/common/views/oc-panel/crud/indexajax.php:34
 msgid "Select"
 msgstr ""
 
 #: themes/olson/views/pages/ad/new.php:118
-#: themes/olson/views/pages/ad/listing.php:231
-#: themes/olson/views/pages/ad/listing.php:251
+#: themes/olson/views/pages/ad/listing.php:237
+#: themes/olson/views/pages/ad/listing.php:257
 #: themes/olson/views/oc-panel/profile/edit_ad.php:331
 #: themes/gummy/views/pages/ad/new.php:84
 #: themes/gummy/views/pages/ad/listing.php:157
@@ -2643,14 +2658,14 @@ msgstr ""
 #: themes/ocean/views/pages/ad/new.php:122
 #: themes/ocean/views/pages/ad/listing.php:230
 #: themes/ocean/views/pages/ad/listing.php:245
-#: themes/yummo/views/pages/ad/new.php:155
-#: themes/yummo/views/pages/ad/listing.php:241
-#: themes/yummo/views/pages/ad/listing.php:259
+#: themes/yummo/views/pages/ad/new.php:157
+#: themes/yummo/views/pages/ad/listing.php:237
+#: themes/yummo/views/pages/ad/listing.php:255
 #: themes/splash/views/pages/ad/advanced_search.php:221
 #: themes/splash/views/pages/ad/advanced_search.php:238
 #: themes/splash/views/pages/ad/new.php:121
-#: themes/splash/views/pages/ad/listing.php:180
-#: themes/splash/views/pages/ad/listing.php:197
+#: themes/splash/views/pages/ad/listing.php:188
+#: themes/splash/views/pages/ad/listing.php:205
 #: themes/splash/views/pages/blog/listing.php:51
 #: themes/splash/views/pages/user/profile.php:200
 #: themes/splash/views/pages/user/profile.php:212
@@ -2660,23 +2675,23 @@ msgstr ""
 #: themes/reclassifieds/views/pages/ad/listing.php:236
 #: themes/reclassifieds/views/pages/ad/listing.php:251
 #: themes/moderndeluxe/views/pages/ad/new.php:122
-#: themes/moderndeluxe/views/pages/ad/listing.php:239
-#: themes/moderndeluxe/views/pages/ad/listing.php:254
+#: themes/moderndeluxe/views/pages/ad/listing.php:237
+#: themes/moderndeluxe/views/pages/ad/listing.php:252
 #: themes/jobdrop/views/pages/ad/advanced_search.php:283
 #: themes/jobdrop/views/pages/ad/advanced_search.php:298
 #: themes/jobdrop/views/pages/ad/new.php:111
-#: themes/jobdrop/views/pages/ad/listing.php:311
-#: themes/jobdrop/views/pages/ad/listing.php:326
+#: themes/jobdrop/views/pages/ad/listing.php:317
+#: themes/jobdrop/views/pages/ad/listing.php:332
 #: themes/jobdrop/views/pages/blog/listing.php:46
-#: themes/jobdrop/views/pages/user/profile.php:182
-#: themes/jobdrop/views/pages/user/profile.php:194
+#: themes/jobdrop/views/pages/user/profile.php:184
+#: themes/jobdrop/views/pages/user/profile.php:196
 #: themes/jobdrop/views/pages/forum/list.php:39
 #: themes/jobdrop/views/oc-panel/profile/edit_ad.php:312
 #: themes/mobile/views/pages/ad/single.php:58
 #: themes/mobile/views/pages/blog/listing.php:21
 #: themes/newspaper/views/pages/ad/new.php:104
-#: themes/newspaper/views/pages/ad/listing.php:221
-#: themes/newspaper/views/pages/ad/listing.php:238
+#: themes/newspaper/views/pages/ad/listing.php:219
+#: themes/newspaper/views/pages/ad/listing.php:236
 #: themes/newspaper/views/pages/blog/listing.php:30
 #: themes/newspaper/views/pages/user/profile.php:180
 #: themes/newspaper/views/pages/user/profile.php:187
@@ -2685,8 +2700,8 @@ msgstr ""
 #: themes/responsive/views/pages/ad/listing.php:233
 #: themes/responsive/views/pages/ad/listing.php:249
 #: themes/default/views/pages/ad/new.php:109
-#: themes/default/views/pages/ad/listing.php:161
-#: themes/default/views/pages/ad/listing.php:179
+#: themes/default/views/pages/ad/listing.php:162
+#: themes/default/views/pages/ad/listing.php:180
 #: themes/default/views/pages/user/profile.php:183
 #: themes/default/views/pages/user/profile.php:195
 #: themes/default/views/widget/widget_tools.php:21
@@ -2701,8 +2716,8 @@ msgstr ""
 #: themes/czsale/views/pages/ad/listing.php:194
 #: themes/czsale/views/oc-panel/profile/edit_ad.php:353
 #: themes/kamaleon/views/pages/ad/new.php:118
-#: themes/kamaleon/views/pages/ad/listing.php:236
-#: themes/kamaleon/views/pages/ad/listing.php:254
+#: themes/kamaleon/views/pages/ad/listing.php:233
+#: themes/kamaleon/views/pages/ad/listing.php:251
 #: oc/classes/controller/panel/fields.php:97
 #: oc/classes/controller/panel/userfields.php:90
 #: oc/common/views/pages/blog/listing.php:28
@@ -2724,7 +2739,7 @@ msgid "Edit"
 msgstr ""
 
 #: themes/olson/views/pages/ad/new.php:121
-#: themes/olson/views/pages/ad/listing.php:239
+#: themes/olson/views/pages/ad/listing.php:245
 #: themes/olson/views/oc-panel/profile/edit_ad.php:299
 #: themes/olson/views/oc-panel/profile/edit_ad.php:334
 #: themes/gummy/views/pages/ad/new.php:87
@@ -2736,11 +2751,11 @@ msgstr ""
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:356
 #: themes/ocean/views/pages/ad/new.php:125
 #: themes/ocean/views/pages/ad/listing.php:238
-#: themes/yummo/views/pages/ad/new.php:158
-#: themes/yummo/views/pages/ad/listing.php:249
+#: themes/yummo/views/pages/ad/new.php:160
+#: themes/yummo/views/pages/ad/listing.php:245
 #: themes/splash/views/pages/ad/advanced_search.php:229
 #: themes/splash/views/pages/ad/new.php:124
-#: themes/splash/views/pages/ad/listing.php:188
+#: themes/splash/views/pages/ad/listing.php:196
 #: themes/splash/views/pages/blog/listing.php:52
 #: themes/splash/views/pages/user/profile.php:208
 #: themes/splash/views/oc-panel/pages/messages/message.php:54
@@ -2749,12 +2764,12 @@ msgstr ""
 #: themes/reclassifieds/views/pages/ad/new.php:125
 #: themes/reclassifieds/views/pages/ad/listing.php:244
 #: themes/moderndeluxe/views/pages/ad/new.php:125
-#: themes/moderndeluxe/views/pages/ad/listing.php:247
+#: themes/moderndeluxe/views/pages/ad/listing.php:245
 #: themes/jobdrop/views/pages/ad/advanced_search.php:291
 #: themes/jobdrop/views/pages/ad/new.php:114
-#: themes/jobdrop/views/pages/ad/listing.php:319
+#: themes/jobdrop/views/pages/ad/listing.php:325
 #: themes/jobdrop/views/pages/blog/listing.php:47
-#: themes/jobdrop/views/pages/user/profile.php:190
+#: themes/jobdrop/views/pages/user/profile.php:192
 #: themes/jobdrop/views/oc-panel/profile/edit_ad.php:292
 #: themes/jobdrop/views/oc-panel/profile/edit_ad.php:315
 #: themes/mobile/views/pages/blog/listing.php:23
@@ -2763,7 +2778,7 @@ msgstr ""
 #: themes/mobile/views/oc-panel/profile/edit_ad.php:262
 #: themes/mobile/views/oc-panel/profile/subscriptions.php:82
 #: themes/newspaper/views/pages/ad/new.php:107
-#: themes/newspaper/views/pages/ad/listing.php:230
+#: themes/newspaper/views/pages/ad/listing.php:228
 #: themes/newspaper/views/pages/blog/listing.php:31
 #: themes/newspaper/views/pages/user/profile.php:183
 #: themes/newspaper/views/oc-panel/profile/edit_ad.php:321
@@ -2772,7 +2787,7 @@ msgstr ""
 #: themes/responsive/views/pages/ad/listing.php:241
 #: themes/default/views/coupon.php:7
 #: themes/default/views/pages/ad/new.php:112
-#: themes/default/views/pages/ad/listing.php:169
+#: themes/default/views/pages/ad/listing.php:170
 #: themes/default/views/pages/user/profile.php:191
 #: themes/default/views/widget/widget_coupon.php:7
 #: themes/default/views/widget/widget_tools.php:35
@@ -2790,7 +2805,7 @@ msgstr ""
 #: themes/czsale/views/oc-panel/profile/edit_ad.php:321
 #: themes/czsale/views/oc-panel/profile/edit_ad.php:356
 #: themes/kamaleon/views/pages/ad/new.php:121
-#: themes/kamaleon/views/pages/ad/listing.php:244
+#: themes/kamaleon/views/pages/ad/listing.php:241
 #: oc/common/views/pages/blog/listing.php:30
 #: oc/common/views/oc-panel/pages/forum/topic.php:64
 #: oc/common/classes/oc/form.php:222
@@ -2800,7 +2815,7 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:125
 #: themes/gummy/views/pages/ad/new.php:91
 #: themes/ocean/views/pages/ad/new.php:129
-#: themes/yummo/views/pages/ad/new.php:163
+#: themes/yummo/views/pages/ad/new.php:165
 #: themes/splash/views/pages/ad/new.php:129
 #: themes/reclassifieds/views/pages/ad/new.php:129
 #: themes/moderndeluxe/views/pages/ad/new.php:129
@@ -2817,7 +2832,7 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:125
 #: themes/gummy/views/pages/ad/new.php:91
 #: themes/ocean/views/pages/ad/new.php:129
-#: themes/yummo/views/pages/ad/new.php:163
+#: themes/yummo/views/pages/ad/new.php:165
 #: themes/splash/views/pages/ad/new.php:129
 #: themes/reclassifieds/views/pages/ad/new.php:129
 #: themes/moderndeluxe/views/pages/ad/new.php:129
@@ -2834,7 +2849,7 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:126
 #: themes/gummy/views/pages/ad/new.php:92
 #: themes/ocean/views/pages/ad/new.php:130
-#: themes/yummo/views/pages/ad/new.php:164
+#: themes/yummo/views/pages/ad/new.php:166
 #: themes/splash/views/pages/ad/new.php:129
 #: themes/reclassifieds/views/pages/ad/new.php:130
 #: themes/moderndeluxe/views/pages/ad/new.php:130
@@ -2851,7 +2866,7 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:126
 #: themes/gummy/views/pages/ad/new.php:92
 #: themes/ocean/views/pages/ad/new.php:130
-#: themes/yummo/views/pages/ad/new.php:164
+#: themes/yummo/views/pages/ad/new.php:166
 #: themes/splash/views/pages/ad/new.php:129
 #: themes/reclassifieds/views/pages/ad/new.php:130
 #: themes/moderndeluxe/views/pages/ad/new.php:130
@@ -2868,7 +2883,7 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:127
 #: themes/gummy/views/pages/ad/new.php:93
 #: themes/ocean/views/pages/ad/new.php:131
-#: themes/yummo/views/pages/ad/new.php:165
+#: themes/yummo/views/pages/ad/new.php:167
 #: themes/splash/views/pages/ad/new.php:129
 #: themes/reclassifieds/views/pages/ad/new.php:131
 #: themes/moderndeluxe/views/pages/ad/new.php:131
@@ -2886,7 +2901,7 @@ msgstr ""
 #: themes/olson/views/oc-panel/profile/edit_ad.php:212
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:219
 #: themes/ocean/views/pages/ad/new.php:153
-#: themes/yummo/views/pages/ad/new.php:286
+#: themes/yummo/views/pages/ad/new.php:290
 #: themes/splash/views/pages/ad/new.php:142
 #: themes/splash/views/oc-panel/profile/edit_ad.php:231
 #: themes/reclassifieds/views/pages/ad/new.php:153
@@ -2909,7 +2924,7 @@ msgstr ""
 #: themes/olson/views/oc-panel/profile/edit_ad.php:248
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:255
 #: themes/ocean/views/pages/ad/new.php:184
-#: themes/yummo/views/pages/ad/new.php:182
+#: themes/yummo/views/pages/ad/new.php:185
 #: themes/splash/views/pages/ad/new.php:164
 #: themes/splash/views/oc-panel/profile/edit_ad.php:267
 #: themes/reclassifieds/views/pages/ad/new.php:184
@@ -2930,7 +2945,7 @@ msgstr ""
 #: themes/olson/views/oc-panel/profile/edit_ad.php:236
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:243
 #: themes/ocean/views/pages/ad/new.php:193
-#: themes/yummo/views/pages/ad/new.php:189
+#: themes/yummo/views/pages/ad/new.php:192
 #: themes/splash/views/pages/ad/new.php:168
 #: themes/splash/views/oc-panel/profile/edit_ad.php:255
 #: themes/reclassifieds/views/pages/ad/new.php:193
@@ -2955,8 +2970,8 @@ msgstr ""
 #: themes/gummy/views/pages/ad/new.php:202
 #: themes/ocean/views/pages/ad/new.php:219
 #: themes/ocean/views/pages/ad/new.php:224
-#: themes/yummo/views/pages/ad/new.php:224
-#: themes/yummo/views/pages/ad/new.php:230
+#: themes/yummo/views/pages/ad/new.php:228
+#: themes/yummo/views/pages/ad/new.php:234
 #: themes/splash/views/pages/ad/new.php:180
 #: themes/splash/views/pages/ad/new.php:185
 #: themes/reclassifieds/views/pages/ad/new.php:219
@@ -2986,7 +3001,7 @@ msgstr ""
 #: themes/gummy/views/pages/auth/register-form.php:20
 #: themes/ocean/views/pages/ad/new.php:226
 #: themes/ocean/views/pages/auth/register-form.php:21
-#: themes/yummo/views/pages/ad/new.php:232
+#: themes/yummo/views/pages/ad/new.php:236
 #: themes/yummo/views/pages/auth/register-form.php:21
 #: themes/splash/views/pages/ad/new.php:187
 #: themes/splash/views/pages/auth/register-form.php:21
@@ -3012,7 +3027,7 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:263
 #: themes/gummy/views/pages/ad/new.php:218
 #: themes/ocean/views/pages/ad/new.php:273
-#: themes/yummo/views/pages/ad/new.php:318
+#: themes/yummo/views/pages/ad/new.php:322
 #: themes/splash/views/pages/ad/new.php:225
 #: themes/reclassifieds/views/pages/ad/new.php:273
 #: themes/moderndeluxe/views/pages/ad/new.php:273
@@ -3029,7 +3044,7 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:277
 #: themes/gummy/views/pages/ad/new.php:230
 #: themes/ocean/views/pages/ad/new.php:288
-#: themes/yummo/views/pages/ad/new.php:334
+#: themes/yummo/views/pages/ad/new.php:338
 #: themes/splash/views/pages/ad/new.php:236
 #: themes/reclassifieds/views/pages/ad/new.php:288
 #: themes/moderndeluxe/views/pages/ad/new.php:288
@@ -3051,7 +3066,7 @@ msgstr ""
 #: themes/gummy/views/topmenu.php:12
 #: themes/gummy/views/topmenu.php:23
 #: themes/ocean/views/pages/ad/new.php:296
-#: themes/yummo/views/pages/ad/new.php:341
+#: themes/yummo/views/pages/ad/new.php:345
 #: themes/yummo/views/header.php:25
 #: themes/splash/views/pages/ad/new.php:241
 #: themes/splash/views/header.php:65
@@ -3076,7 +3091,7 @@ msgstr ""
 
 #: themes/olson/views/pages/ad/new.php:285
 #: themes/ocean/views/pages/ad/new.php:296
-#: themes/yummo/views/pages/ad/new.php:341
+#: themes/yummo/views/pages/ad/new.php:345
 #: themes/splash/views/pages/ad/new.php:241
 #: themes/reclassifieds/views/pages/ad/new.php:296
 #: themes/moderndeluxe/views/pages/ad/new.php:296
@@ -3094,7 +3109,7 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:285
 #: themes/gummy/views/pages/ad/new.php:236
 #: themes/ocean/views/pages/ad/new.php:296
-#: themes/yummo/views/pages/ad/new.php:341
+#: themes/yummo/views/pages/ad/new.php:345
 #: themes/splash/views/pages/ad/new.php:241
 #: themes/reclassifieds/views/pages/ad/new.php:296
 #: themes/moderndeluxe/views/pages/ad/new.php:296
@@ -3110,7 +3125,7 @@ msgstr ""
 #: themes/olson/views/pages/ad/new.php:287
 #: themes/gummy/views/pages/ad/new.php:239
 #: themes/ocean/views/pages/ad/new.php:298
-#: themes/yummo/views/pages/ad/new.php:343
+#: themes/yummo/views/pages/ad/new.php:347
 #: themes/splash/views/pages/ad/new.php:245
 #: themes/reclassifieds/views/pages/ad/new.php:298
 #: themes/moderndeluxe/views/pages/ad/new.php:298
@@ -3128,7 +3143,7 @@ msgstr ""
 #: themes/gummy/views/pages/ad/new.php:271
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:377
 #: themes/ocean/views/pages/ad/new.php:317
-#: themes/yummo/views/pages/ad/new.php:366
+#: themes/yummo/views/pages/ad/new.php:370
 #: themes/splash/views/pages/ad/new.php:274
 #: themes/splash/views/oc-panel/profile/edit_ad.php:372
 #: themes/splash/views/oc-panel/profile/edit_ad.php:393
@@ -3147,83 +3162,83 @@ msgstr ""
 msgid "Processing..."
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:69
+#: themes/olson/views/pages/ad/listing.php:65
 #: themes/gummy/views/pages/ad/listing.php:17
 #: themes/ocean/views/pages/ad/listing.php:90
-#: themes/yummo/views/pages/ad/listing.php:149
-#: themes/splash/views/pages/ad/listing.php:90
-#: themes/reclassifieds/views/pages/ad/listing.php:92
-#: themes/moderndeluxe/views/pages/ad/listing.php:92
+#: themes/yummo/views/pages/ad/listing.php:147
+#: themes/splash/views/pages/ad/listing.php:96
+#: themes/reclassifieds/views/pages/ad/listing.php:90
+#: themes/moderndeluxe/views/pages/ad/listing.php:90
 #: themes/jobdrop/views/pages/ad/advanced_search.php:202
-#: themes/jobdrop/views/pages/ad/listing.php:96
-#: themes/newspaper/views/pages/ad/listing.php:69
-#: themes/responsive/views/pages/ad/listing.php:96
+#: themes/jobdrop/views/pages/ad/listing.php:102
+#: themes/newspaper/views/pages/ad/listing.php:67
+#: themes/responsive/views/pages/ad/listing.php:94
 #: themes/default/views/pages/ad/listing.php:44
-#: themes/czsale/views/pages/ad/listing.php:67
-#: themes/kamaleon/views/pages/ad/listing.php:97
+#: themes/czsale/views/pages/ad/listing.php:65
+#: themes/kamaleon/views/pages/ad/listing.php:94
 msgid "My Location"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:70
+#: themes/olson/views/pages/ad/listing.php:66
 #: themes/gummy/views/pages/ad/listing.php:18
 #: themes/ocean/views/pages/ad/listing.php:91
-#: themes/yummo/views/pages/ad/listing.php:150
-#: themes/splash/views/pages/ad/listing.php:91
-#: themes/reclassifieds/views/pages/ad/listing.php:93
-#: themes/moderndeluxe/views/pages/ad/listing.php:93
+#: themes/yummo/views/pages/ad/listing.php:148
+#: themes/splash/views/pages/ad/listing.php:97
+#: themes/reclassifieds/views/pages/ad/listing.php:91
+#: themes/moderndeluxe/views/pages/ad/listing.php:91
 #: themes/jobdrop/views/pages/ad/advanced_search.php:203
-#: themes/jobdrop/views/pages/ad/listing.php:97
-#: themes/newspaper/views/pages/ad/listing.php:70
-#: themes/responsive/views/pages/ad/listing.php:97
+#: themes/jobdrop/views/pages/ad/listing.php:103
+#: themes/newspaper/views/pages/ad/listing.php:68
+#: themes/responsive/views/pages/ad/listing.php:95
 #: themes/default/views/pages/ad/listing.php:45
-#: themes/czsale/views/pages/ad/listing.php:68
-#: themes/kamaleon/views/pages/ad/listing.php:98
+#: themes/czsale/views/pages/ad/listing.php:66
+#: themes/kamaleon/views/pages/ad/listing.php:95
 msgid "Cannot determine address at this location."
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:72
-#: themes/olson/views/pages/ad/listing.php:289
+#: themes/olson/views/pages/ad/listing.php:68
+#: themes/olson/views/pages/ad/listing.php:295
 #: themes/gummy/views/pages/ad/listing.php:20
 #: themes/gummy/views/pages/ad/listing.php:205
 #: themes/ocean/views/pages/ad/listing.php:93
 #: themes/ocean/views/pages/ad/listing.php:307
-#: themes/yummo/views/pages/ad/listing.php:152
-#: themes/splash/views/pages/ad/listing.php:93
-#: themes/reclassifieds/views/pages/ad/listing.php:95
+#: themes/yummo/views/pages/ad/listing.php:150
+#: themes/splash/views/pages/ad/listing.php:99
+#: themes/reclassifieds/views/pages/ad/listing.php:93
 #: themes/reclassifieds/views/pages/ad/listing.php:314
-#: themes/moderndeluxe/views/pages/ad/listing.php:95
-#: themes/moderndeluxe/views/pages/ad/listing.php:316
+#: themes/moderndeluxe/views/pages/ad/listing.php:93
+#: themes/moderndeluxe/views/pages/ad/listing.php:314
 #: themes/jobdrop/views/pages/ad/advanced_search.php:205
-#: themes/jobdrop/views/pages/ad/listing.php:99
-#: themes/newspaper/views/pages/ad/listing.php:72
-#: themes/newspaper/views/pages/ad/listing.php:303
-#: themes/responsive/views/pages/ad/listing.php:99
+#: themes/jobdrop/views/pages/ad/listing.php:105
+#: themes/newspaper/views/pages/ad/listing.php:70
+#: themes/newspaper/views/pages/ad/listing.php:301
+#: themes/responsive/views/pages/ad/listing.php:97
 #: themes/responsive/views/pages/ad/listing.php:281
 #: themes/default/views/pages/ad/listing.php:47
-#: themes/default/views/pages/ad/listing.php:201
-#: themes/czsale/views/pages/ad/listing.php:70
+#: themes/default/views/pages/ad/listing.php:202
+#: themes/czsale/views/pages/ad/listing.php:68
 #: themes/czsale/views/pages/ad/listing.php:267
-#: themes/kamaleon/views/pages/ad/listing.php:100
-#: themes/kamaleon/views/pages/ad/listing.php:318
+#: themes/kamaleon/views/pages/ad/listing.php:97
+#: themes/kamaleon/views/pages/ad/listing.php:315
 msgid "%s from you"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:81
+#: themes/olson/views/pages/ad/listing.php:77
 #: themes/olson/options.php:126
 #: themes/ocean/views/pages/ad/listing.php:107
 #: themes/ocean/options.php:128
 #: themes/yummo/options.php:138
-#: themes/splash/views/pages/ad/listing.php:73
-#: themes/reclassifieds/views/pages/ad/listing.php:109
+#: themes/splash/views/pages/ad/listing.php:79
+#: themes/reclassifieds/views/pages/ad/listing.php:107
 #: themes/reclassifieds/options.php:122
-#: themes/moderndeluxe/views/pages/ad/listing.php:109
+#: themes/moderndeluxe/views/pages/ad/listing.php:107
 #: themes/moderndeluxe/options.php:131
 #: themes/jobdrop/views/pages/ad/advanced_search.php:188
-#: themes/jobdrop/views/pages/ad/listing.php:82
+#: themes/jobdrop/views/pages/ad/listing.php:88
 #: themes/jobdrop/options.php:114
-#: themes/newspaper/views/pages/ad/listing.php:86
-#: themes/responsive/views/pages/ad/listing.php:108
-#: themes/kamaleon/views/pages/ad/listing.php:114
+#: themes/newspaper/views/pages/ad/listing.php:84
+#: themes/responsive/views/pages/ad/listing.php:106
+#: themes/kamaleon/views/pages/ad/listing.php:111
 #: themes/kamaleon/options.php:146
 #: oc/classes/controller/panel/pool.php:15
 #: oc/classes/controller/panel/ad.php:20
@@ -3231,68 +3246,68 @@ msgstr ""
 msgid "List"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:84
+#: themes/olson/views/pages/ad/listing.php:80
 #: themes/olson/options.php:125
 #: themes/ocean/views/pages/ad/listing.php:110
 #: themes/ocean/options.php:127
 #: themes/yummo/options.php:137
-#: themes/splash/views/pages/ad/listing.php:72
-#: themes/reclassifieds/views/pages/ad/listing.php:112
+#: themes/splash/views/pages/ad/listing.php:78
+#: themes/reclassifieds/views/pages/ad/listing.php:110
 #: themes/reclassifieds/options.php:121
-#: themes/moderndeluxe/views/pages/ad/listing.php:112
+#: themes/moderndeluxe/views/pages/ad/listing.php:110
 #: themes/moderndeluxe/options.php:130
 #: themes/jobdrop/views/pages/ad/advanced_search.php:185
-#: themes/jobdrop/views/pages/ad/listing.php:79
+#: themes/jobdrop/views/pages/ad/listing.php:85
 #: themes/jobdrop/options.php:113
-#: themes/newspaper/views/pages/ad/listing.php:89
-#: themes/responsive/views/pages/ad/listing.php:111
-#: themes/kamaleon/views/pages/ad/listing.php:117
+#: themes/newspaper/views/pages/ad/listing.php:87
+#: themes/responsive/views/pages/ad/listing.php:109
+#: themes/kamaleon/views/pages/ad/listing.php:114
 #: themes/kamaleon/options.php:145
 msgid "Grid"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:88
+#: themes/olson/views/pages/ad/listing.php:84
 #: themes/gummy/views/pages/ad/listing.php:30
 #: themes/gummy/options.php:106
 #: themes/gummy/options.php:123
 #: themes/ocean/views/pages/ad/listing.php:114
-#: themes/yummo/views/pages/ad/listing.php:121
-#: themes/splash/views/pages/ad/listing.php:62
-#: themes/reclassifieds/views/pages/ad/listing.php:116
-#: themes/moderndeluxe/views/pages/ad/listing.php:116
-#: themes/jobdrop/views/pages/ad/listing.php:107
-#: themes/newspaper/views/pages/ad/listing.php:93
+#: themes/yummo/views/pages/ad/listing.php:119
+#: themes/splash/views/pages/ad/listing.php:68
+#: themes/reclassifieds/views/pages/ad/listing.php:114
+#: themes/moderndeluxe/views/pages/ad/listing.php:114
+#: themes/jobdrop/views/pages/ad/listing.php:113
+#: themes/newspaper/views/pages/ad/listing.php:91
 #: themes/newspaper/options.php:107
 #: themes/newspaper/options.php:132
 #: themes/newspaper/options.php:141
-#: themes/responsive/views/pages/ad/listing.php:115
-#: themes/default/views/pages/ad/listing.php:58
-#: themes/czsale/views/pages/ad/listing.php:80
-#: themes/kamaleon/views/pages/ad/listing.php:121
+#: themes/responsive/views/pages/ad/listing.php:113
+#: themes/default/views/pages/ad/listing.php:59
+#: themes/czsale/views/pages/ad/listing.php:78
+#: themes/kamaleon/views/pages/ad/listing.php:118
 msgid "Show"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:88
+#: themes/olson/views/pages/ad/listing.php:84
 #: themes/gummy/views/pages/ad/listing.php:30
 #: themes/ocean/views/pages/ad/listing.php:114
-#: themes/yummo/views/pages/ad/listing.php:121
-#: themes/splash/views/pages/ad/listing.php:62
-#: themes/reclassifieds/views/pages/ad/listing.php:116
-#: themes/moderndeluxe/views/pages/ad/listing.php:116
-#: themes/jobdrop/views/pages/ad/listing.php:107
-#: themes/newspaper/views/pages/ad/listing.php:93
-#: themes/responsive/views/pages/ad/listing.php:115
-#: themes/default/views/pages/ad/listing.php:58
-#: themes/czsale/views/pages/ad/listing.php:80
-#: themes/kamaleon/views/pages/ad/listing.php:121
+#: themes/yummo/views/pages/ad/listing.php:119
+#: themes/splash/views/pages/ad/listing.php:68
+#: themes/reclassifieds/views/pages/ad/listing.php:114
+#: themes/moderndeluxe/views/pages/ad/listing.php:114
+#: themes/jobdrop/views/pages/ad/listing.php:113
+#: themes/newspaper/views/pages/ad/listing.php:91
+#: themes/responsive/views/pages/ad/listing.php:113
+#: themes/default/views/pages/ad/listing.php:59
+#: themes/czsale/views/pages/ad/listing.php:78
+#: themes/kamaleon/views/pages/ad/listing.php:118
 msgid "items per page"
 msgstr ""
 
+#: themes/olson/views/pages/ad/listing.php:87
+#: themes/olson/views/pages/ad/listing.php:88
+#: themes/olson/views/pages/ad/listing.php:89
+#: themes/olson/views/pages/ad/listing.php:90
 #: themes/olson/views/pages/ad/listing.php:91
-#: themes/olson/views/pages/ad/listing.php:92
-#: themes/olson/views/pages/ad/listing.php:93
-#: themes/olson/views/pages/ad/listing.php:94
-#: themes/olson/views/pages/ad/listing.php:95
 #: themes/gummy/views/pages/ad/listing.php:33
 #: themes/gummy/views/pages/ad/listing.php:34
 #: themes/gummy/views/pages/ad/listing.php:35
@@ -3303,269 +3318,269 @@ msgstr ""
 #: themes/ocean/views/pages/ad/listing.php:119
 #: themes/ocean/views/pages/ad/listing.php:120
 #: themes/ocean/views/pages/ad/listing.php:121
+#: themes/yummo/views/pages/ad/listing.php:122
+#: themes/yummo/views/pages/ad/listing.php:123
 #: themes/yummo/views/pages/ad/listing.php:124
 #: themes/yummo/views/pages/ad/listing.php:125
 #: themes/yummo/views/pages/ad/listing.php:126
-#: themes/yummo/views/pages/ad/listing.php:127
-#: themes/yummo/views/pages/ad/listing.php:128
-#: themes/splash/views/pages/ad/listing.php:65
-#: themes/splash/views/pages/ad/listing.php:66
-#: themes/splash/views/pages/ad/listing.php:67
-#: themes/splash/views/pages/ad/listing.php:68
-#: themes/splash/views/pages/ad/listing.php:69
+#: themes/splash/views/pages/ad/listing.php:71
+#: themes/splash/views/pages/ad/listing.php:72
+#: themes/splash/views/pages/ad/listing.php:73
+#: themes/splash/views/pages/ad/listing.php:74
+#: themes/splash/views/pages/ad/listing.php:75
+#: themes/reclassifieds/views/pages/ad/listing.php:117
+#: themes/reclassifieds/views/pages/ad/listing.php:118
 #: themes/reclassifieds/views/pages/ad/listing.php:119
 #: themes/reclassifieds/views/pages/ad/listing.php:120
 #: themes/reclassifieds/views/pages/ad/listing.php:121
-#: themes/reclassifieds/views/pages/ad/listing.php:122
-#: themes/reclassifieds/views/pages/ad/listing.php:123
+#: themes/moderndeluxe/views/pages/ad/listing.php:117
+#: themes/moderndeluxe/views/pages/ad/listing.php:118
 #: themes/moderndeluxe/views/pages/ad/listing.php:119
 #: themes/moderndeluxe/views/pages/ad/listing.php:120
 #: themes/moderndeluxe/views/pages/ad/listing.php:121
-#: themes/moderndeluxe/views/pages/ad/listing.php:122
-#: themes/moderndeluxe/views/pages/ad/listing.php:123
-#: themes/jobdrop/views/pages/ad/listing.php:110
-#: themes/jobdrop/views/pages/ad/listing.php:111
-#: themes/jobdrop/views/pages/ad/listing.php:112
-#: themes/jobdrop/views/pages/ad/listing.php:113
-#: themes/jobdrop/views/pages/ad/listing.php:114
+#: themes/jobdrop/views/pages/ad/listing.php:116
+#: themes/jobdrop/views/pages/ad/listing.php:117
+#: themes/jobdrop/views/pages/ad/listing.php:118
+#: themes/jobdrop/views/pages/ad/listing.php:119
+#: themes/jobdrop/views/pages/ad/listing.php:120
+#: themes/newspaper/views/pages/ad/listing.php:94
+#: themes/newspaper/views/pages/ad/listing.php:95
 #: themes/newspaper/views/pages/ad/listing.php:96
 #: themes/newspaper/views/pages/ad/listing.php:97
 #: themes/newspaper/views/pages/ad/listing.php:98
-#: themes/newspaper/views/pages/ad/listing.php:99
-#: themes/newspaper/views/pages/ad/listing.php:100
+#: themes/responsive/views/pages/ad/listing.php:116
+#: themes/responsive/views/pages/ad/listing.php:117
 #: themes/responsive/views/pages/ad/listing.php:118
 #: themes/responsive/views/pages/ad/listing.php:119
 #: themes/responsive/views/pages/ad/listing.php:120
-#: themes/responsive/views/pages/ad/listing.php:121
-#: themes/responsive/views/pages/ad/listing.php:122
-#: themes/default/views/pages/ad/listing.php:61
 #: themes/default/views/pages/ad/listing.php:62
 #: themes/default/views/pages/ad/listing.php:63
 #: themes/default/views/pages/ad/listing.php:64
 #: themes/default/views/pages/ad/listing.php:65
+#: themes/default/views/pages/ad/listing.php:66
+#: themes/czsale/views/pages/ad/listing.php:81
+#: themes/czsale/views/pages/ad/listing.php:82
 #: themes/czsale/views/pages/ad/listing.php:83
 #: themes/czsale/views/pages/ad/listing.php:84
 #: themes/czsale/views/pages/ad/listing.php:85
-#: themes/czsale/views/pages/ad/listing.php:86
-#: themes/czsale/views/pages/ad/listing.php:87
+#: themes/kamaleon/views/pages/ad/listing.php:121
+#: themes/kamaleon/views/pages/ad/listing.php:122
+#: themes/kamaleon/views/pages/ad/listing.php:123
 #: themes/kamaleon/views/pages/ad/listing.php:124
 #: themes/kamaleon/views/pages/ad/listing.php:125
-#: themes/kamaleon/views/pages/ad/listing.php:126
-#: themes/kamaleon/views/pages/ad/listing.php:127
-#: themes/kamaleon/views/pages/ad/listing.php:128
 msgid "per page"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:99
+#: themes/olson/views/pages/ad/listing.php:95
 #: themes/gummy/views/pages/ad/listing.php:41
 #: themes/gummy/views/pages/user/list.php:57
 #: themes/ocean/views/pages/ad/listing.php:125
-#: themes/yummo/views/pages/ad/listing.php:99
-#: themes/splash/views/pages/ad/listing.php:40
+#: themes/yummo/views/pages/ad/listing.php:96
+#: themes/splash/views/pages/ad/listing.php:46
 #: themes/splash/views/pages/user/list.php:75
-#: themes/reclassifieds/views/pages/ad/listing.php:127
-#: themes/moderndeluxe/views/pages/ad/listing.php:127
+#: themes/reclassifieds/views/pages/ad/listing.php:125
+#: themes/moderndeluxe/views/pages/ad/listing.php:125
 #: themes/jobdrop/views/pages/ad/advanced_search.php:164
-#: themes/jobdrop/views/pages/ad/listing.php:58
+#: themes/jobdrop/views/pages/ad/listing.php:64
 #: themes/jobdrop/views/pages/user/list.php:61
-#: themes/newspaper/views/pages/ad/listing.php:104
+#: themes/newspaper/views/pages/ad/listing.php:102
 #: themes/newspaper/views/pages/user/list.php:57
-#: themes/responsive/views/pages/ad/listing.php:126
-#: themes/default/views/pages/ad/listing.php:69
+#: themes/responsive/views/pages/ad/listing.php:124
+#: themes/default/views/pages/ad/listing.php:70
 #: themes/default/views/pages/user/list.php:57
-#: themes/czsale/views/pages/ad/listing.php:91
-#: themes/kamaleon/views/pages/ad/listing.php:132
+#: themes/czsale/views/pages/ad/listing.php:89
+#: themes/kamaleon/views/pages/ad/listing.php:129
 msgid "Sort"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:103
+#: themes/olson/views/pages/ad/listing.php:99
 #: themes/gummy/views/pages/ad/listing.php:45
 #: themes/gummy/views/pages/user/list.php:61
 #: themes/ocean/views/pages/ad/listing.php:129
-#: themes/yummo/views/pages/ad/listing.php:103
-#: themes/splash/views/pages/ad/listing.php:43
+#: themes/yummo/views/pages/ad/listing.php:100
+#: themes/splash/views/pages/ad/listing.php:49
 #: themes/splash/views/pages/user/list.php:79
-#: themes/reclassifieds/views/pages/ad/listing.php:131
-#: themes/moderndeluxe/views/pages/ad/listing.php:131
+#: themes/reclassifieds/views/pages/ad/listing.php:129
+#: themes/moderndeluxe/views/pages/ad/listing.php:129
 #: themes/jobdrop/views/pages/ad/advanced_search.php:168
-#: themes/jobdrop/views/pages/ad/listing.php:62
+#: themes/jobdrop/views/pages/ad/listing.php:68
 #: themes/jobdrop/views/pages/user/list.php:65
-#: themes/newspaper/views/pages/ad/listing.php:108
+#: themes/newspaper/views/pages/ad/listing.php:106
 #: themes/newspaper/views/pages/user/list.php:61
-#: themes/responsive/views/pages/ad/listing.php:130
+#: themes/responsive/views/pages/ad/listing.php:128
 #: themes/default/views/pages/user/list.php:61
-#: themes/czsale/views/pages/ad/listing.php:95
-#: themes/kamaleon/views/pages/ad/listing.php:136
+#: themes/czsale/views/pages/ad/listing.php:93
+#: themes/kamaleon/views/pages/ad/listing.php:133
 msgid "Rating"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:105
+#: themes/olson/views/pages/ad/listing.php:101
 #: themes/gummy/views/pages/ad/listing.php:47
 #: themes/gummy/views/pages/user/list.php:63
 #: themes/ocean/views/pages/ad/listing.php:131
-#: themes/yummo/views/pages/ad/listing.php:105
-#: themes/splash/views/pages/ad/listing.php:45
+#: themes/yummo/views/pages/ad/listing.php:102
+#: themes/splash/views/pages/ad/listing.php:51
 #: themes/splash/views/pages/user/list.php:81
-#: themes/reclassifieds/views/pages/ad/listing.php:133
-#: themes/moderndeluxe/views/pages/ad/listing.php:133
+#: themes/reclassifieds/views/pages/ad/listing.php:131
+#: themes/moderndeluxe/views/pages/ad/listing.php:131
 #: themes/jobdrop/views/pages/ad/advanced_search.php:170
-#: themes/jobdrop/views/pages/ad/listing.php:64
+#: themes/jobdrop/views/pages/ad/listing.php:70
 #: themes/jobdrop/views/pages/user/list.php:67
-#: themes/newspaper/views/pages/ad/listing.php:110
+#: themes/newspaper/views/pages/ad/listing.php:108
 #: themes/newspaper/views/pages/user/list.php:63
-#: themes/responsive/views/pages/ad/listing.php:132
-#: themes/default/views/pages/ad/listing.php:72
+#: themes/responsive/views/pages/ad/listing.php:130
+#: themes/default/views/pages/ad/listing.php:73
 #: themes/default/views/pages/user/list.php:63
-#: themes/czsale/views/pages/ad/listing.php:97
-#: themes/kamaleon/views/pages/ad/listing.php:138
+#: themes/czsale/views/pages/ad/listing.php:95
+#: themes/kamaleon/views/pages/ad/listing.php:135
 msgid "Name (A-Z)"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:106
+#: themes/olson/views/pages/ad/listing.php:102
 #: themes/gummy/views/pages/ad/listing.php:48
 #: themes/gummy/views/pages/user/list.php:64
 #: themes/ocean/views/pages/ad/listing.php:132
-#: themes/yummo/views/pages/ad/listing.php:106
-#: themes/splash/views/pages/ad/listing.php:46
+#: themes/yummo/views/pages/ad/listing.php:103
+#: themes/splash/views/pages/ad/listing.php:52
 #: themes/splash/views/pages/user/list.php:82
-#: themes/reclassifieds/views/pages/ad/listing.php:134
-#: themes/moderndeluxe/views/pages/ad/listing.php:134
+#: themes/reclassifieds/views/pages/ad/listing.php:132
+#: themes/moderndeluxe/views/pages/ad/listing.php:132
 #: themes/jobdrop/views/pages/ad/advanced_search.php:171
-#: themes/jobdrop/views/pages/ad/listing.php:65
+#: themes/jobdrop/views/pages/ad/listing.php:71
 #: themes/jobdrop/views/pages/user/list.php:68
-#: themes/newspaper/views/pages/ad/listing.php:111
+#: themes/newspaper/views/pages/ad/listing.php:109
 #: themes/newspaper/views/pages/user/list.php:64
-#: themes/responsive/views/pages/ad/listing.php:133
-#: themes/default/views/pages/ad/listing.php:73
+#: themes/responsive/views/pages/ad/listing.php:131
+#: themes/default/views/pages/ad/listing.php:74
 #: themes/default/views/pages/user/list.php:64
-#: themes/czsale/views/pages/ad/listing.php:98
-#: themes/kamaleon/views/pages/ad/listing.php:139
+#: themes/czsale/views/pages/ad/listing.php:96
+#: themes/kamaleon/views/pages/ad/listing.php:136
 msgid "Name (Z-A)"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:108
+#: themes/olson/views/pages/ad/listing.php:104
 #: themes/gummy/views/pages/ad/listing.php:50
 #: themes/ocean/views/pages/ad/listing.php:134
-#: themes/yummo/views/pages/ad/listing.php:108
-#: themes/splash/views/pages/ad/listing.php:48
-#: themes/reclassifieds/views/pages/ad/listing.php:136
-#: themes/moderndeluxe/views/pages/ad/listing.php:136
+#: themes/yummo/views/pages/ad/listing.php:105
+#: themes/splash/views/pages/ad/listing.php:54
+#: themes/reclassifieds/views/pages/ad/listing.php:134
+#: themes/moderndeluxe/views/pages/ad/listing.php:134
 #: themes/jobdrop/views/pages/ad/advanced_search.php:173
-#: themes/jobdrop/views/pages/ad/listing.php:67
-#: themes/newspaper/views/pages/ad/listing.php:113
-#: themes/responsive/views/pages/ad/listing.php:135
-#: themes/default/views/pages/ad/listing.php:75
-#: themes/czsale/views/pages/ad/listing.php:100
-#: themes/kamaleon/views/pages/ad/listing.php:141
+#: themes/jobdrop/views/pages/ad/listing.php:73
+#: themes/newspaper/views/pages/ad/listing.php:111
+#: themes/responsive/views/pages/ad/listing.php:133
+#: themes/default/views/pages/ad/listing.php:76
+#: themes/czsale/views/pages/ad/listing.php:98
+#: themes/kamaleon/views/pages/ad/listing.php:138
 msgid "Price (Low)"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:109
+#: themes/olson/views/pages/ad/listing.php:105
 #: themes/gummy/views/pages/ad/listing.php:51
 #: themes/ocean/views/pages/ad/listing.php:135
-#: themes/yummo/views/pages/ad/listing.php:109
-#: themes/splash/views/pages/ad/listing.php:49
-#: themes/reclassifieds/views/pages/ad/listing.php:137
-#: themes/moderndeluxe/views/pages/ad/listing.php:137
+#: themes/yummo/views/pages/ad/listing.php:106
+#: themes/splash/views/pages/ad/listing.php:55
+#: themes/reclassifieds/views/pages/ad/listing.php:135
+#: themes/moderndeluxe/views/pages/ad/listing.php:135
 #: themes/jobdrop/views/pages/ad/advanced_search.php:174
-#: themes/jobdrop/views/pages/ad/listing.php:68
-#: themes/newspaper/views/pages/ad/listing.php:114
-#: themes/responsive/views/pages/ad/listing.php:136
-#: themes/default/views/pages/ad/listing.php:76
-#: themes/czsale/views/pages/ad/listing.php:101
-#: themes/kamaleon/views/pages/ad/listing.php:142
+#: themes/jobdrop/views/pages/ad/listing.php:74
+#: themes/newspaper/views/pages/ad/listing.php:112
+#: themes/responsive/views/pages/ad/listing.php:134
+#: themes/default/views/pages/ad/listing.php:77
+#: themes/czsale/views/pages/ad/listing.php:99
+#: themes/kamaleon/views/pages/ad/listing.php:139
 msgid "Price (High)"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:112
+#: themes/olson/views/pages/ad/listing.php:108
 #: themes/ocean/views/pages/ad/listing.php:141
-#: themes/yummo/views/pages/ad/listing.php:112
-#: themes/splash/views/pages/ad/listing.php:55
+#: themes/yummo/views/pages/ad/listing.php:109
+#: themes/splash/views/pages/ad/listing.php:61
 #: themes/splash/views/oc-panel/profile/favorites.php:35
-#: themes/reclassifieds/views/pages/ad/listing.php:143
-#: themes/moderndeluxe/views/pages/ad/listing.php:143
+#: themes/reclassifieds/views/pages/ad/listing.php:141
+#: themes/moderndeluxe/views/pages/ad/listing.php:141
 #: themes/jobdrop/views/pages/ad/advanced_search.php:177
-#: themes/jobdrop/views/pages/ad/listing.php:71
+#: themes/jobdrop/views/pages/ad/listing.php:77
 #: themes/jobdrop/views/oc-panel/profile/favorites.php:17
 #: themes/mobile/views/oc-panel/profile/favorites.php:15
-#: themes/newspaper/views/pages/ad/listing.php:117
-#: themes/responsive/views/pages/ad/listing.php:139
-#: themes/default/views/pages/ad/listing.php:79
+#: themes/newspaper/views/pages/ad/listing.php:115
+#: themes/responsive/views/pages/ad/listing.php:137
+#: themes/default/views/pages/ad/listing.php:80
 #: themes/default/views/oc-panel/profile/favorites.php:16
-#: themes/czsale/views/pages/ad/listing.php:104
-#: themes/kamaleon/views/pages/ad/listing.php:145
+#: themes/czsale/views/pages/ad/listing.php:102
+#: themes/kamaleon/views/pages/ad/listing.php:142
 msgid "Favorited"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:114
+#: themes/olson/views/pages/ad/listing.php:110
 #: themes/ocean/views/pages/ad/listing.php:138
 #: themes/ocean/views/pages/ad/listing.php:202
-#: themes/yummo/views/pages/ad/listing.php:114
-#: themes/splash/views/pages/ad/listing.php:52
-#: themes/reclassifieds/views/pages/ad/listing.php:140
+#: themes/yummo/views/pages/ad/listing.php:111
+#: themes/splash/views/pages/ad/listing.php:58
+#: themes/reclassifieds/views/pages/ad/listing.php:138
 #: themes/reclassifieds/views/pages/ad/listing.php:207
-#: themes/moderndeluxe/views/pages/ad/listing.php:140
-#: themes/moderndeluxe/views/pages/ad/listing.php:210
+#: themes/moderndeluxe/views/pages/ad/listing.php:138
+#: themes/moderndeluxe/views/pages/ad/listing.php:208
 #: themes/jobdrop/views/pages/ad/advanced_search.php:179
-#: themes/jobdrop/views/pages/ad/listing.php:73
-#: themes/newspaper/views/pages/ad/listing.php:119
-#: themes/newspaper/views/pages/ad/listing.php:202
-#: themes/responsive/views/pages/ad/listing.php:141
+#: themes/jobdrop/views/pages/ad/listing.php:79
+#: themes/newspaper/views/pages/ad/listing.php:117
+#: themes/newspaper/views/pages/ad/listing.php:200
+#: themes/responsive/views/pages/ad/listing.php:139
 #: themes/responsive/views/pages/ad/listing.php:201
-#: themes/default/views/pages/ad/listing.php:81
-#: themes/default/views/pages/ad/listing.php:139
-#: themes/czsale/views/pages/ad/listing.php:106
-#: themes/czsale/views/pages/ad/listing.php:128
-#: themes/kamaleon/views/pages/ad/listing.php:147
-#: themes/kamaleon/views/pages/ad/listing.php:207
+#: themes/default/views/pages/ad/listing.php:82
+#: themes/default/views/pages/ad/listing.php:140
+#: themes/czsale/views/pages/ad/listing.php:104
+#: themes/czsale/views/pages/ad/listing.php:126
+#: themes/kamaleon/views/pages/ad/listing.php:144
+#: themes/kamaleon/views/pages/ad/listing.php:204
 msgid "Distance"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:116
+#: themes/olson/views/pages/ad/listing.php:112
 #: themes/gummy/views/pages/ad/listing.php:54
 #: themes/gummy/views/pages/user/list.php:65
 #: themes/ocean/views/pages/ad/listing.php:142
-#: themes/yummo/views/pages/ad/listing.php:116
-#: themes/splash/views/pages/ad/listing.php:56
+#: themes/yummo/views/pages/ad/listing.php:113
+#: themes/splash/views/pages/ad/listing.php:62
 #: themes/splash/views/pages/user/list.php:83
-#: themes/reclassifieds/views/pages/ad/listing.php:144
-#: themes/moderndeluxe/views/pages/ad/listing.php:144
+#: themes/reclassifieds/views/pages/ad/listing.php:142
+#: themes/moderndeluxe/views/pages/ad/listing.php:142
 #: themes/jobdrop/views/pages/ad/advanced_search.php:181
-#: themes/jobdrop/views/pages/ad/listing.php:75
+#: themes/jobdrop/views/pages/ad/listing.php:81
 #: themes/jobdrop/views/pages/user/list.php:69
-#: themes/newspaper/views/pages/ad/listing.php:121
+#: themes/newspaper/views/pages/ad/listing.php:119
 #: themes/newspaper/views/pages/user/list.php:65
-#: themes/responsive/views/pages/ad/listing.php:143
-#: themes/default/views/pages/ad/listing.php:83
+#: themes/responsive/views/pages/ad/listing.php:141
+#: themes/default/views/pages/ad/listing.php:84
 #: themes/default/views/pages/user/list.php:65
-#: themes/czsale/views/pages/ad/listing.php:108
-#: themes/kamaleon/views/pages/ad/listing.php:149
+#: themes/czsale/views/pages/ad/listing.php:106
+#: themes/kamaleon/views/pages/ad/listing.php:146
 msgid "Newest"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:117
+#: themes/olson/views/pages/ad/listing.php:113
 #: themes/gummy/views/pages/ad/listing.php:55
 #: themes/gummy/views/pages/user/list.php:66
 #: themes/ocean/views/pages/ad/listing.php:143
-#: themes/yummo/views/pages/ad/listing.php:117
-#: themes/splash/views/pages/ad/listing.php:57
+#: themes/yummo/views/pages/ad/listing.php:114
+#: themes/splash/views/pages/ad/listing.php:63
 #: themes/splash/views/pages/user/list.php:84
-#: themes/reclassifieds/views/pages/ad/listing.php:145
-#: themes/moderndeluxe/views/pages/ad/listing.php:145
+#: themes/reclassifieds/views/pages/ad/listing.php:143
+#: themes/moderndeluxe/views/pages/ad/listing.php:143
 #: themes/jobdrop/views/pages/ad/advanced_search.php:182
-#: themes/jobdrop/views/pages/ad/listing.php:76
+#: themes/jobdrop/views/pages/ad/listing.php:82
 #: themes/jobdrop/views/pages/user/list.php:70
-#: themes/newspaper/views/pages/ad/listing.php:122
+#: themes/newspaper/views/pages/ad/listing.php:120
 #: themes/newspaper/views/pages/user/list.php:66
-#: themes/responsive/views/pages/ad/listing.php:144
-#: themes/default/views/pages/ad/listing.php:84
+#: themes/responsive/views/pages/ad/listing.php:142
+#: themes/default/views/pages/ad/listing.php:85
 #: themes/default/views/pages/user/list.php:66
-#: themes/czsale/views/pages/ad/listing.php:109
-#: themes/kamaleon/views/pages/ad/listing.php:150
+#: themes/czsale/views/pages/ad/listing.php:107
+#: themes/kamaleon/views/pages/ad/listing.php:147
 msgid "Oldest"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:127
+#: themes/olson/views/pages/ad/listing.php:123
 #: themes/ocean/views/pages/ad/listing.php:8
 #: themes/yummo/views/pages/ad/listing.php:8
 #: themes/splash/views/pages/ad/listing.php:11
@@ -3578,8 +3593,8 @@ msgstr ""
 msgid "Listings"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:233
-#: themes/olson/views/pages/ad/listing.php:253
+#: themes/olson/views/pages/ad/listing.php:239
+#: themes/olson/views/pages/ad/listing.php:259
 #: themes/gummy/views/pages/ad/listing.php:159
 #: themes/gummy/views/pages/ad/listing.php:177
 #: themes/gummy/views/pages/user/profile.php:156
@@ -3587,33 +3602,33 @@ msgstr ""
 #: themes/gummy/views/pages/userprofile.php:208
 #: themes/ocean/views/pages/ad/listing.php:232
 #: themes/ocean/views/pages/ad/listing.php:247
-#: themes/yummo/views/pages/ad/listing.php:243
-#: themes/yummo/views/pages/ad/listing.php:261
+#: themes/yummo/views/pages/ad/listing.php:239
+#: themes/yummo/views/pages/ad/listing.php:257
 #: themes/splash/views/pages/ad/advanced_search.php:223
 #: themes/splash/views/pages/ad/advanced_search.php:240
-#: themes/splash/views/pages/ad/listing.php:182
-#: themes/splash/views/pages/ad/listing.php:199
+#: themes/splash/views/pages/ad/listing.php:190
+#: themes/splash/views/pages/ad/listing.php:207
 #: themes/splash/views/pages/user/profile.php:202
 #: themes/splash/views/oc-panel/profile/ads.php:142
 #: themes/reclassifieds/views/pages/ad/listing.php:238
 #: themes/reclassifieds/views/pages/ad/listing.php:253
-#: themes/moderndeluxe/views/pages/ad/listing.php:241
-#: themes/moderndeluxe/views/pages/ad/listing.php:256
+#: themes/moderndeluxe/views/pages/ad/listing.php:239
+#: themes/moderndeluxe/views/pages/ad/listing.php:254
 #: themes/jobdrop/views/pages/ad/advanced_search.php:285
 #: themes/jobdrop/views/pages/ad/advanced_search.php:300
-#: themes/jobdrop/views/pages/ad/listing.php:313
-#: themes/jobdrop/views/pages/ad/listing.php:328
-#: themes/jobdrop/views/pages/user/profile.php:184
+#: themes/jobdrop/views/pages/ad/listing.php:319
+#: themes/jobdrop/views/pages/ad/listing.php:334
+#: themes/jobdrop/views/pages/user/profile.php:186
 #: themes/jobdrop/views/oc-panel/profile/ads.php:117
 #: themes/mobile/views/oc-panel/profile/ads.php:126
 #: themes/mobile/views/oc-panel/profile/ads.php:133
-#: themes/newspaper/views/pages/ad/listing.php:223
-#: themes/newspaper/views/pages/ad/listing.php:240
+#: themes/newspaper/views/pages/ad/listing.php:221
+#: themes/newspaper/views/pages/ad/listing.php:238
 #: themes/newspaper/views/pages/user/profile.php:181
 #: themes/responsive/views/pages/ad/listing.php:235
 #: themes/responsive/views/pages/ad/listing.php:251
-#: themes/default/views/pages/ad/listing.php:163
-#: themes/default/views/pages/ad/listing.php:181
+#: themes/default/views/pages/ad/listing.php:164
+#: themes/default/views/pages/ad/listing.php:182
 #: themes/default/views/pages/user/profile.php:185
 #: themes/default/views/widget/widget_tools.php:24
 #: themes/default/views/oc-panel/pages/ad.php:102
@@ -3621,13 +3636,13 @@ msgstr ""
 #: themes/default/views/oc-panel/profile/ads.php:115
 #: themes/czsale/views/pages/ad/listing.php:181
 #: themes/czsale/views/pages/ad/listing.php:196
-#: themes/kamaleon/views/pages/ad/listing.php:238
-#: themes/kamaleon/views/pages/ad/listing.php:256
+#: themes/kamaleon/views/pages/ad/listing.php:235
+#: themes/kamaleon/views/pages/ad/listing.php:253
 msgid "Deactivate?"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:233
-#: themes/olson/views/pages/ad/listing.php:253
+#: themes/olson/views/pages/ad/listing.php:239
+#: themes/olson/views/pages/ad/listing.php:259
 #: themes/gummy/views/pages/ad/listing.php:160
 #: themes/gummy/views/pages/ad/listing.php:178
 #: themes/gummy/views/pages/user/profile.php:156
@@ -3635,58 +3650,58 @@ msgstr ""
 #: themes/gummy/views/pages/userprofile.php:209
 #: themes/ocean/views/pages/ad/listing.php:232
 #: themes/ocean/views/pages/ad/listing.php:247
-#: themes/yummo/views/pages/ad/listing.php:243
-#: themes/yummo/views/pages/ad/listing.php:261
+#: themes/yummo/views/pages/ad/listing.php:239
+#: themes/yummo/views/pages/ad/listing.php:257
 #: themes/splash/views/pages/ad/advanced_search.php:223
 #: themes/splash/views/pages/ad/advanced_search.php:240
-#: themes/splash/views/pages/ad/listing.php:182
-#: themes/splash/views/pages/ad/listing.php:199
+#: themes/splash/views/pages/ad/listing.php:190
+#: themes/splash/views/pages/ad/listing.php:207
 #: themes/splash/views/pages/user/profile.php:202
 #: themes/reclassifieds/views/pages/ad/listing.php:238
 #: themes/reclassifieds/views/pages/ad/listing.php:253
-#: themes/moderndeluxe/views/pages/ad/listing.php:241
-#: themes/moderndeluxe/views/pages/ad/listing.php:256
+#: themes/moderndeluxe/views/pages/ad/listing.php:239
+#: themes/moderndeluxe/views/pages/ad/listing.php:254
 #: themes/jobdrop/views/pages/ad/advanced_search.php:285
 #: themes/jobdrop/views/pages/ad/advanced_search.php:300
-#: themes/jobdrop/views/pages/ad/listing.php:313
-#: themes/jobdrop/views/pages/ad/listing.php:328
-#: themes/jobdrop/views/pages/user/profile.php:184
-#: themes/newspaper/views/pages/ad/listing.php:224
-#: themes/newspaper/views/pages/ad/listing.php:241
+#: themes/jobdrop/views/pages/ad/listing.php:319
+#: themes/jobdrop/views/pages/ad/listing.php:334
+#: themes/jobdrop/views/pages/user/profile.php:186
+#: themes/newspaper/views/pages/ad/listing.php:222
+#: themes/newspaper/views/pages/ad/listing.php:239
 #: themes/newspaper/views/pages/user/profile.php:181
 #: themes/responsive/views/pages/ad/listing.php:235
 #: themes/responsive/views/pages/ad/listing.php:251
-#: themes/default/views/pages/ad/listing.php:163
-#: themes/default/views/pages/ad/listing.php:181
+#: themes/default/views/pages/ad/listing.php:164
+#: themes/default/views/pages/ad/listing.php:182
 #: themes/default/views/pages/user/profile.php:185
 #: themes/default/views/widget/widget_tools.php:25
 #: themes/default/views/oc-panel/pages/ad.php:103
 #: themes/default/views/oc-panel/pages/ad.php:212
 #: themes/czsale/views/pages/ad/listing.php:181
 #: themes/czsale/views/pages/ad/listing.php:196
-#: themes/kamaleon/views/pages/ad/listing.php:238
-#: themes/kamaleon/views/pages/ad/listing.php:256
+#: themes/kamaleon/views/pages/ad/listing.php:235
+#: themes/kamaleon/views/pages/ad/listing.php:253
 msgid "Deactivate"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:236
+#: themes/olson/views/pages/ad/listing.php:242
 #: themes/gummy/views/pages/ad/listing.php:162
 #: themes/gummy/views/pages/user/profile.php:157
 #: themes/gummy/views/pages/userprofile.php:193
 #: themes/ocean/views/pages/ad/listing.php:235
-#: themes/yummo/views/pages/ad/listing.php:246
+#: themes/yummo/views/pages/ad/listing.php:242
 #: themes/splash/views/pages/ad/advanced_search.php:226
-#: themes/splash/views/pages/ad/listing.php:185
+#: themes/splash/views/pages/ad/listing.php:193
 #: themes/splash/views/pages/user/profile.php:205
 #: themes/reclassifieds/views/pages/ad/listing.php:241
-#: themes/moderndeluxe/views/pages/ad/listing.php:244
+#: themes/moderndeluxe/views/pages/ad/listing.php:242
 #: themes/jobdrop/views/pages/ad/advanced_search.php:288
-#: themes/jobdrop/views/pages/ad/listing.php:316
-#: themes/jobdrop/views/pages/user/profile.php:187
-#: themes/newspaper/views/pages/ad/listing.php:226
+#: themes/jobdrop/views/pages/ad/listing.php:322
+#: themes/jobdrop/views/pages/user/profile.php:189
+#: themes/newspaper/views/pages/ad/listing.php:224
 #: themes/newspaper/views/pages/user/profile.php:182
 #: themes/responsive/views/pages/ad/listing.php:238
-#: themes/default/views/pages/ad/listing.php:166
+#: themes/default/views/pages/ad/listing.php:167
 #: themes/default/views/pages/user/profile.php:188
 #: themes/default/views/widget/widget_tools.php:30
 #: themes/default/views/oc-panel/pages/ad.php:94
@@ -3694,35 +3709,35 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/moderate.php:39
 #: themes/default/views/oc-panel/pages/moderate.php:127
 #: themes/czsale/views/pages/ad/listing.php:184
-#: themes/kamaleon/views/pages/ad/listing.php:241
+#: themes/kamaleon/views/pages/ad/listing.php:238
 msgid "Spam?"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:236
+#: themes/olson/views/pages/ad/listing.php:242
 #: themes/gummy/views/pages/ad/listing.php:163
 #: themes/gummy/views/pages/user/profile.php:157
 #: themes/gummy/views/pages/userprofile.php:194
 #: themes/ocean/views/pages/ad/listing.php:235
-#: themes/yummo/views/pages/ad/listing.php:246
+#: themes/yummo/views/pages/ad/listing.php:242
 #: themes/splash/views/pages/ad/advanced_search.php:226
-#: themes/splash/views/pages/ad/listing.php:185
+#: themes/splash/views/pages/ad/listing.php:193
 #: themes/splash/views/pages/user/profile.php:205
 #: themes/splash/views/oc-panel/pages/messages/message.php:51
 #: themes/splash/views/oc-panel/pages/messages/index.php:35
 #: themes/splash/views/oc-panel/profile/ads.php:71
 #: themes/reclassifieds/views/pages/ad/listing.php:241
-#: themes/moderndeluxe/views/pages/ad/listing.php:244
+#: themes/moderndeluxe/views/pages/ad/listing.php:242
 #: themes/jobdrop/views/pages/ad/advanced_search.php:288
-#: themes/jobdrop/views/pages/ad/listing.php:316
-#: themes/jobdrop/views/pages/user/profile.php:187
+#: themes/jobdrop/views/pages/ad/listing.php:322
+#: themes/jobdrop/views/pages/user/profile.php:189
 #: themes/jobdrop/views/oc-panel/profile/ads.php:54
 #: themes/mobile/views/oc-panel/pages/messages/message.php:29
 #: themes/mobile/views/oc-panel/pages/messages/index.php:20
 #: themes/mobile/views/oc-panel/profile/ads.php:54
-#: themes/newspaper/views/pages/ad/listing.php:227
+#: themes/newspaper/views/pages/ad/listing.php:225
 #: themes/newspaper/views/pages/user/profile.php:182
 #: themes/responsive/views/pages/ad/listing.php:238
-#: themes/default/views/pages/ad/listing.php:166
+#: themes/default/views/pages/ad/listing.php:167
 #: themes/default/views/pages/user/profile.php:188
 #: themes/default/views/widget/widget_tools.php:31
 #: themes/default/views/oc-panel/pages/ad.php:16
@@ -3736,33 +3751,33 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/messages/index.php:19
 #: themes/default/views/oc-panel/profile/ads.php:52
 #: themes/czsale/views/pages/ad/listing.php:184
-#: themes/kamaleon/views/pages/ad/listing.php:241
+#: themes/kamaleon/views/pages/ad/listing.php:238
 msgid "Spam"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:239
+#: themes/olson/views/pages/ad/listing.php:245
 #: themes/gummy/views/pages/ad/listing.php:165
 #: themes/gummy/views/pages/blog/listing.php:31
 #: themes/gummy/views/pages/user/profile.php:158
 #: themes/gummy/views/pages/userprofile.php:196
 #: themes/ocean/views/pages/ad/listing.php:238
-#: themes/yummo/views/pages/ad/listing.php:249
+#: themes/yummo/views/pages/ad/listing.php:245
 #: themes/splash/views/pages/ad/advanced_search.php:229
-#: themes/splash/views/pages/ad/listing.php:188
+#: themes/splash/views/pages/ad/listing.php:196
 #: themes/splash/views/pages/blog/listing.php:52
 #: themes/splash/views/pages/user/profile.php:208
 #: themes/reclassifieds/views/pages/ad/listing.php:244
-#: themes/moderndeluxe/views/pages/ad/listing.php:247
+#: themes/moderndeluxe/views/pages/ad/listing.php:245
 #: themes/jobdrop/views/pages/ad/advanced_search.php:291
-#: themes/jobdrop/views/pages/ad/listing.php:319
+#: themes/jobdrop/views/pages/ad/listing.php:325
 #: themes/jobdrop/views/pages/blog/listing.php:47
-#: themes/jobdrop/views/pages/user/profile.php:190
+#: themes/jobdrop/views/pages/user/profile.php:192
 #: themes/mobile/views/pages/blog/listing.php:23
-#: themes/newspaper/views/pages/ad/listing.php:229
+#: themes/newspaper/views/pages/ad/listing.php:227
 #: themes/newspaper/views/pages/blog/listing.php:31
 #: themes/newspaper/views/pages/user/profile.php:183
 #: themes/responsive/views/pages/ad/listing.php:241
-#: themes/default/views/pages/ad/listing.php:169
+#: themes/default/views/pages/ad/listing.php:170
 #: themes/default/views/pages/user/profile.php:191
 #: themes/default/views/widget/widget_tools.php:34
 #: themes/default/views/oc-panel/pages/ad.php:117
@@ -3770,80 +3785,80 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/moderate.php:45
 #: themes/default/views/oc-panel/pages/moderate.php:137
 #: themes/czsale/views/pages/ad/listing.php:187
-#: themes/kamaleon/views/pages/ad/listing.php:244
+#: themes/kamaleon/views/pages/ad/listing.php:241
 #: oc/common/views/pages/blog/listing.php:30
 msgid "Delete?"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:296
+#: themes/olson/views/pages/ad/listing.php:305
 #: themes/gummy/views/pages/ad/listing.php:212
 #: themes/ocean/views/pages/ad/listing.php:314
-#: themes/yummo/views/pages/ad/listing.php:283
-#: themes/splash/views/pages/ad/listing.php:224
-#: themes/reclassifieds/views/pages/ad/listing.php:321
-#: themes/moderndeluxe/views/pages/ad/listing.php:323
-#: themes/jobdrop/views/pages/ad/listing.php:349
-#: themes/mobile/views/pages/ad/listing.php:64
-#: themes/newspaper/views/pages/ad/listing.php:310
+#: themes/yummo/views/pages/ad/listing.php:279
+#: themes/splash/views/pages/ad/listing.php:232
+#: themes/reclassifieds/views/pages/ad/listing.php:324
+#: themes/moderndeluxe/views/pages/ad/listing.php:321
+#: themes/jobdrop/views/pages/ad/listing.php:355
+#: themes/mobile/views/pages/ad/listing.php:63
+#: themes/newspaper/views/pages/ad/listing.php:308
 #: themes/responsive/views/pages/ad/listing.php:288
-#: themes/default/views/pages/ad/listing.php:208
+#: themes/default/views/pages/ad/listing.php:209
 #: themes/czsale/views/pages/ad/listing.php:274
-#: themes/kamaleon/views/pages/ad/listing.php:325
+#: themes/kamaleon/views/pages/ad/listing.php:322
 msgid "We do not have any advertisements in this category"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:307
+#: themes/olson/views/pages/ad/listing.php:346
 #: themes/gummy/views/pages/ad/listing.php:224
-#: themes/ocean/views/pages/ad/listing.php:325
-#: themes/yummo/views/pages/ad/listing.php:295
+#: themes/ocean/views/pages/ad/listing.php:355
+#: themes/yummo/views/pages/ad/listing.php:321
 #: themes/splash/views/pages/ad/advanced_search.php:277
-#: themes/splash/views/pages/ad/listing.php:236
-#: themes/reclassifieds/views/pages/ad/listing.php:332
-#: themes/moderndeluxe/views/pages/ad/listing.php:334
+#: themes/splash/views/pages/ad/listing.php:274
+#: themes/reclassifieds/views/pages/ad/listing.php:365
+#: themes/moderndeluxe/views/pages/ad/listing.php:362
 #: themes/jobdrop/views/pages/ad/advanced_search.php:332
-#: themes/jobdrop/views/pages/ad/listing.php:359
-#: themes/newspaper/views/pages/ad/listing.php:322
-#: themes/responsive/views/pages/ad/listing.php:299
-#: themes/default/views/pages/ad/listing.php:220
-#: themes/czsale/views/pages/ad/listing.php:286
-#: themes/kamaleon/views/pages/ad/listing.php:337
+#: themes/jobdrop/views/pages/ad/listing.php:395
+#: themes/newspaper/views/pages/ad/listing.php:350
+#: themes/responsive/views/pages/ad/listing.php:329
+#: themes/default/views/pages/ad/listing.php:251
+#: themes/czsale/views/pages/ad/listing.php:316
+#: themes/kamaleon/views/pages/ad/listing.php:365
 msgid "Where do you want to search?"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:309
+#: themes/olson/views/pages/ad/listing.php:348
 #: themes/gummy/views/pages/ad/listing.php:226
-#: themes/ocean/views/pages/ad/listing.php:327
-#: themes/yummo/views/pages/ad/listing.php:297
+#: themes/ocean/views/pages/ad/listing.php:357
+#: themes/yummo/views/pages/ad/listing.php:323
 #: themes/splash/views/pages/ad/advanced_search.php:279
-#: themes/splash/views/pages/ad/listing.php:238
-#: themes/reclassifieds/views/pages/ad/listing.php:334
-#: themes/moderndeluxe/views/pages/ad/listing.php:336
+#: themes/splash/views/pages/ad/listing.php:276
+#: themes/reclassifieds/views/pages/ad/listing.php:367
+#: themes/moderndeluxe/views/pages/ad/listing.php:364
 #: themes/jobdrop/views/pages/ad/advanced_search.php:334
-#: themes/jobdrop/views/pages/ad/listing.php:361
-#: themes/newspaper/views/pages/ad/listing.php:324
-#: themes/responsive/views/pages/ad/listing.php:301
-#: themes/default/views/pages/ad/listing.php:222
-#: themes/czsale/views/pages/ad/listing.php:288
-#: themes/kamaleon/views/pages/ad/listing.php:339
+#: themes/jobdrop/views/pages/ad/listing.php:397
+#: themes/newspaper/views/pages/ad/listing.php:352
+#: themes/responsive/views/pages/ad/listing.php:331
+#: themes/default/views/pages/ad/listing.php:253
+#: themes/czsale/views/pages/ad/listing.php:318
+#: themes/kamaleon/views/pages/ad/listing.php:367
 msgid "Ok"
 msgstr ""
 
-#: themes/olson/views/pages/ad/listing.php:318
+#: themes/olson/views/pages/ad/listing.php:357
 #: themes/gummy/views/pages/ad/listing.php:235
-#: themes/ocean/views/pages/ad/listing.php:336
-#: themes/yummo/views/pages/ad/listing.php:306
+#: themes/ocean/views/pages/ad/listing.php:366
+#: themes/yummo/views/pages/ad/listing.php:332
 #: themes/splash/views/pages/ad/advanced_search.php:288
-#: themes/splash/views/pages/ad/listing.php:247
-#: themes/reclassifieds/views/pages/ad/listing.php:343
-#: themes/moderndeluxe/views/pages/ad/listing.php:345
+#: themes/splash/views/pages/ad/listing.php:285
+#: themes/reclassifieds/views/pages/ad/listing.php:376
+#: themes/moderndeluxe/views/pages/ad/listing.php:373
 #: themes/jobdrop/views/pages/ad/advanced_search.php:343
-#: themes/jobdrop/views/pages/ad/listing.php:370
-#: themes/newspaper/views/pages/ad/listing.php:333
-#: themes/responsive/views/pages/ad/listing.php:310
-#: themes/default/views/pages/ad/listing.php:231
+#: themes/jobdrop/views/pages/ad/listing.php:406
+#: themes/newspaper/views/pages/ad/listing.php:361
+#: themes/responsive/views/pages/ad/listing.php:340
+#: themes/default/views/pages/ad/listing.php:262
 #: themes/default/views/oc-panel/pages/black_list.php:24
-#: themes/czsale/views/pages/ad/listing.php:297
-#: themes/kamaleon/views/pages/ad/listing.php:348
+#: themes/czsale/views/pages/ad/listing.php:327
+#: themes/kamaleon/views/pages/ad/listing.php:376
 msgid "Remove"
 msgstr ""
 
@@ -3904,7 +3919,7 @@ msgstr ""
 msgid "Popular Ads last month"
 msgstr ""
 
-#: themes/olson/views/pages/home.php:99
+#: themes/olson/views/pages/home.php:95
 #: themes/olson/views/header.php:49
 #: themes/gummy/views/widget/widget_subscribers.php:16
 #: themes/gummy/views/widget/widget_subscribers.php:17
@@ -3918,14 +3933,14 @@ msgstr ""
 #: themes/splash/views/widget/widget_search.php:18
 #: themes/splash/views/widget/widget_subscribers.php:9
 #: themes/splash/views/widget/widget_subscribers.php:10
-#: themes/reclassifieds/views/pages/home.php:64
-#: themes/moderndeluxe/views/pages/home.php:63
+#: themes/reclassifieds/views/pages/home.php:62
+#: themes/moderndeluxe/views/pages/home.php:61
 #: themes/moderndeluxe/views/header.php:66
-#: themes/mobile/views/pages/home.php:41
+#: themes/mobile/views/pages/home.php:40
 #: themes/newspaper/views/pages/home.php:67
 #: themes/newspaper/views/widget/widget_subscribers.php:16
 #: themes/newspaper/views/widget/widget_subscribers.php:17
-#: themes/responsive/views/pages/home.php:56
+#: themes/responsive/views/pages/home.php:54
 #: themes/responsive/views/header.php:62
 #: themes/default/views/pages/home.php:41
 #: themes/default/views/widget/widget_search.php:23
@@ -3937,12 +3952,12 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/tools/import_tool.php:17
 #: themes/default/views/oc-panel/pages/categories/index.php:7
 #: themes/default/views/oc-panel/pages/fields/update.php:47
-#: themes/default/views/oc-panel/pages/fields/new.php:62
+#: themes/default/views/oc-panel/pages/fields/new.php:63
 #: themes/default/views/oc-panel/pages/fields/index.php:81
 #: themes/czsale/views/pages/home.php:43
 #: themes/czsale/views/widget/widget_search.php:24
 #: themes/czsale/views/widget/widget_search.php:25
-#: themes/kamaleon/views/pages/home.php:68
+#: themes/kamaleon/views/pages/home.php:66
 #: oc/classes/widget/subscribers.php:23
 #: oc/classes/widget/categories.php:18
 #: oc/classes/widget/categories.php:25
@@ -3953,18 +3968,18 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: themes/olson/views/pages/home.php:189
+#: themes/olson/views/pages/home.php:185
 #: themes/gummy/views/pages/home.php:219
 #: themes/ocean/views/pages/home.php:157
-#: themes/yummo/views/pages/home.php:118
-#: themes/splash/views/pages/home.php:127
-#: themes/reclassifieds/views/pages/home.php:115
-#: themes/moderndeluxe/views/pages/home.php:119
-#: themes/newspaper/views/pages/home.php:157
-#: themes/responsive/views/pages/home.php:106
+#: themes/yummo/views/pages/home.php:114
+#: themes/splash/views/pages/home.php:123
+#: themes/reclassifieds/views/pages/home.php:117
+#: themes/moderndeluxe/views/pages/home.php:117
+#: themes/newspaper/views/pages/home.php:161
+#: themes/responsive/views/pages/home.php:104
 #: themes/default/views/pages/home.php:84
 #: themes/czsale/views/pages/home.php:88
-#: themes/kamaleon/views/pages/home.php:122
+#: themes/kamaleon/views/pages/home.php:120
 msgid "Please choose your closest location"
 msgstr ""
 
@@ -4293,12 +4308,12 @@ msgstr ""
 #: oc/classes/controller/plan.php:120
 #: oc/classes/controller/panel/profile.php:9
 #: oc/classes/controller/panel/profile.php:11
-#: oc/classes/controller/ad.php:23
-#: oc/classes/controller/ad.php:333
-#: oc/classes/controller/ad.php:565
-#: oc/classes/controller/ad.php:787
-#: oc/classes/controller/ad.php:858
-#: oc/classes/controller/ad.php:893
+#: oc/classes/controller/ad.php:24
+#: oc/classes/controller/ad.php:337
+#: oc/classes/controller/ad.php:569
+#: oc/classes/controller/ad.php:791
+#: oc/classes/controller/ad.php:862
+#: oc/classes/controller/ad.php:897
 #: oc/classes/controller/contact.php:12
 #: oc/common/views/oc-panel/pages/menu/update.php:86
 #: oc/common/views/oc-panel/pages/menu/index.php:88
@@ -5326,9 +5341,9 @@ msgstr ""
 #: themes/jobdrop/options.php:160
 #: themes/jobdrop/options.php:169
 #: themes/jobdrop/options.php:177
-#: themes/mobile/options.php:78
-#: themes/mobile/options.php:103
-#: themes/mobile/options.php:111
+#: themes/mobile/options.php:75
+#: themes/mobile/options.php:100
+#: themes/mobile/options.php:108
 #: themes/newspaper/options.php:89
 #: themes/newspaper/options.php:116
 #: themes/newspaper/options.php:123
@@ -5413,9 +5428,9 @@ msgstr ""
 #: themes/jobdrop/options.php:161
 #: themes/jobdrop/options.php:170
 #: themes/jobdrop/options.php:178
-#: themes/mobile/options.php:79
-#: themes/mobile/options.php:104
-#: themes/mobile/options.php:112
+#: themes/mobile/options.php:76
+#: themes/mobile/options.php:101
+#: themes/mobile/options.php:109
 #: themes/newspaper/options.php:90
 #: themes/newspaper/options.php:115
 #: themes/newspaper/options.php:124
@@ -5471,7 +5486,7 @@ msgstr ""
 #: themes/reclassifieds/options.php:77
 #: themes/moderndeluxe/options.php:91
 #: themes/jobdrop/options.php:71
-#: themes/mobile/options.php:61
+#: themes/mobile/options.php:58
 #: themes/newspaper/options.php:68
 #: themes/responsive/options.php:92
 #: themes/czsale/options.php:82
@@ -5489,7 +5504,7 @@ msgstr ""
 #: themes/yummo/options.php:98
 #: themes/reclassifieds/options.php:92
 #: themes/moderndeluxe/options.php:101
-#: themes/mobile/options.php:71
+#: themes/mobile/options.php:68
 #: themes/responsive/options.php:102
 #: themes/czsale/options.php:97
 #: themes/kamaleon/options.php:116
@@ -5746,7 +5761,7 @@ msgstr ""
 #: themes/reclassifieds/options.php:155
 #: themes/moderndeluxe/options.php:171
 #: themes/jobdrop/options.php:146
-#: themes/mobile/options.php:86
+#: themes/mobile/options.php:83
 #: themes/responsive/options.php:159
 #: themes/czsale/options.php:134
 #: themes/kamaleon/options.php:195
@@ -5760,7 +5775,7 @@ msgstr ""
 #: themes/reclassifieds/options.php:159
 #: themes/moderndeluxe/options.php:175
 #: themes/jobdrop/options.php:150
-#: themes/mobile/options.php:90
+#: themes/mobile/options.php:87
 #: themes/responsive/options.php:163
 #: themes/czsale/options.php:138
 #: themes/kamaleon/options.php:199
@@ -5775,7 +5790,7 @@ msgstr ""
 #: themes/reclassifieds/options.php:163
 #: themes/moderndeluxe/options.php:179
 #: themes/jobdrop/options.php:154
-#: themes/mobile/options.php:94
+#: themes/mobile/options.php:91
 #: themes/newspaper/options.php:169
 #: themes/responsive/options.php:167
 #: themes/kamaleon/options.php:203
@@ -5788,7 +5803,7 @@ msgstr ""
 #: themes/splash/options.php:136
 #: themes/reclassifieds/options.php:167
 #: themes/moderndeluxe/options.php:183
-#: themes/mobile/options.php:98
+#: themes/mobile/options.php:95
 #: themes/newspaper/options.php:182
 #: themes/responsive/options.php:171
 #: themes/czsale/options.php:142
@@ -5813,7 +5828,7 @@ msgstr ""
 #: themes/reclassifieds/options.php:179
 #: themes/moderndeluxe/options.php:195
 #: themes/jobdrop/options.php:176
-#: themes/mobile/options.php:110
+#: themes/mobile/options.php:107
 #: themes/newspaper/options.php:186
 #: themes/responsive/options.php:175
 #: themes/czsale/options.php:158
@@ -5828,7 +5843,7 @@ msgstr ""
 #: themes/responsive/views/pages/search.php:4
 #: themes/czsale/views/sidebar.php:11
 #: oc/classes/widget/search.php:19
-#: oc/classes/controller/ad.php:889
+#: oc/classes/controller/ad.php:893
 msgid "Advanced Search"
 msgstr ""
 
@@ -5876,7 +5891,7 @@ msgstr ""
 #: themes/gummy/views/pages/ad/new.php:76
 #: themes/gummy/views/oc-panel/profile/edit_ad.php:295
 #: themes/ocean/views/pages/ad/new.php:113
-#: themes/yummo/views/pages/ad/new.php:147
+#: themes/yummo/views/pages/ad/new.php:149
 #: themes/splash/views/pages/ad/new.php:114
 #: themes/reclassifieds/views/pages/ad/new.php:113
 #: themes/moderndeluxe/views/pages/ad/new.php:113
@@ -5969,7 +5984,7 @@ msgstr ""
 #: themes/splash/views/pages/user/profile.php:28
 #: themes/splash/views/oc-panel/profile/edit.php:167
 #: themes/jobdrop/views/pages/user/list.php:82
-#: themes/jobdrop/views/pages/user/profile.php:11
+#: themes/jobdrop/views/pages/user/profile.php:12
 #: themes/jobdrop/views/oc-panel/profile/edit.php:148
 #: themes/mobile/views/pages/user/list.php:60
 #: themes/mobile/views/pages/user/profile.php:10
@@ -6056,19 +6071,19 @@ msgstr ""
 #: themes/splash/views/pages/blog/listing.php:43
 #: themes/splash/views/pages/user/profile.php:194
 #: themes/reclassifieds/views/pages/ad/listing.php:210
-#: themes/moderndeluxe/views/pages/ad/listing.php:213
+#: themes/moderndeluxe/views/pages/ad/listing.php:211
 #: themes/jobdrop/views/pages/blog/listing.php:38
-#: themes/jobdrop/views/pages/user/profile.php:176
+#: themes/jobdrop/views/pages/user/profile.php:178
 #: themes/mobile/views/pages/user/profile.php:101
 #: themes/mobile/views/pages/user/profile.php:103
 #: themes/newspaper/views/pages/ad/related.php:42
-#: themes/newspaper/views/pages/ad/listing.php:204
+#: themes/newspaper/views/pages/ad/listing.php:202
 #: themes/newspaper/views/pages/blog/listing.php:22
 #: themes/newspaper/views/pages/user/profile.php:174
 #: themes/responsive/views/pages/ad/listing.php:204
-#: themes/default/views/pages/ad/listing.php:142
+#: themes/default/views/pages/ad/listing.php:143
 #: themes/default/views/pages/user/profile.php:177
-#: themes/kamaleon/views/pages/ad/listing.php:210
+#: themes/kamaleon/views/pages/ad/listing.php:207
 msgid "Publish Date"
 msgstr ""
 
@@ -6077,14 +6092,14 @@ msgstr ""
 #: themes/splash/views/pages/faq/listing.php:32
 #: themes/splash/views/oc-panel/profile/favorites.php:27
 #: themes/reclassifieds/views/pages/ad/listing.php:232
-#: themes/moderndeluxe/views/pages/ad/listing.php:235
+#: themes/moderndeluxe/views/pages/ad/listing.php:233
 #: themes/jobdrop/views/pages/blog/listing.php:42
 #: themes/jobdrop/views/pages/faq/listing.php:29
 #: themes/jobdrop/views/oc-panel/profile/favorites.php:5
 #: themes/mobile/views/pages/blog/listing.php:17
 #: themes/newspaper/views/pages/blog/listing.php:26
 #: themes/responsive/views/pages/ad/listing.php:228
-#: themes/default/views/pages/ad/listing.php:156
+#: themes/default/views/pages/ad/listing.php:157
 #: themes/default/views/oc-panel/pages/tools/import_tool.php:5
 #: themes/default/views/oc-panel/pages/black_list.php:5
 #: themes/default/views/oc-panel/pages/settings/payment.php:34
@@ -6118,6 +6133,7 @@ msgstr ""
 #: oc/common/views/oc-panel/crud/indexajax.php:13
 #: oc/common/views/oc-panel/crud/indexajax.php:14
 #: oc/common/views/oc-panel/crud/indexajax.php:15
+#: oc/common/views/oc-panel/crud/indexajax.php:16
 #: oc/common/views/oc-panel/crud/index.php:11
 msgid "Read more"
 msgstr ""
@@ -6222,7 +6238,7 @@ msgstr ""
 #: themes/splash/views/pages/user/profile.php:50
 #: themes/splash/views/pages/forum/list.php:38
 #: themes/splash/views/oc-panel/profile/subscriptions.php:35
-#: themes/jobdrop/views/pages/user/profile.php:35
+#: themes/jobdrop/views/pages/user/profile.php:37
 #: themes/jobdrop/views/pages/forum/list.php:34
 #: themes/jobdrop/views/oc-panel/profile/subscriptions.php:15
 #: themes/mobile/views/pages/user/profile.php:21
@@ -6243,7 +6259,7 @@ msgstr ""
 #: themes/gummy/views/pages/user/profile.php:24
 #: themes/gummy/views/pages/userprofile.php:28
 #: themes/splash/views/pages/user/profile.php:52
-#: themes/jobdrop/views/pages/user/profile.php:37
+#: themes/jobdrop/views/pages/user/profile.php:39
 #: themes/mobile/views/pages/user/profile.php:23
 #: themes/newspaper/views/pages/user/profile.php:24
 #: themes/default/views/pages/user/profile.php:37
@@ -6253,7 +6269,7 @@ msgstr ""
 #: themes/gummy/views/pages/user/profile.php:110
 #: themes/gummy/views/pages/userprofile.php:114
 #: themes/splash/views/pages/user/profile.php:164
-#: themes/jobdrop/views/pages/user/profile.php:146
+#: themes/jobdrop/views/pages/user/profile.php:148
 #: themes/newspaper/views/pages/user/profile.php:135
 #: themes/default/views/pages/user/profile.php:147
 msgid " advertisements"
@@ -6315,8 +6331,8 @@ msgid "I’m looking for..."
 msgstr ""
 
 #: themes/gummy/views/header.php:31
-#: oc/classes/controller/ad.php:72
-#: oc/classes/controller/ad.php:406
+#: oc/classes/controller/ad.php:73
+#: oc/classes/controller/ad.php:410
 #: oc/common/classes/controller/forum.php:252
 msgid "in"
 msgstr ""
@@ -6402,7 +6418,7 @@ msgstr ""
 #: themes/reclassifieds/options.php:82
 #: themes/moderndeluxe/options.php:96
 #: themes/jobdrop/options.php:76
-#: themes/mobile/options.php:66
+#: themes/mobile/options.php:63
 #: themes/newspaper/options.php:73
 #: themes/responsive/options.php:97
 #: themes/czsale/options.php:87
@@ -6474,21 +6490,21 @@ msgstr ""
 
 #: themes/ocean/views/pages/ad/listing.php:68
 #: themes/yummo/views/pages/ad/listing.php:11
-#: themes/reclassifieds/views/pages/ad/listing.php:70
-#: themes/moderndeluxe/views/pages/ad/listing.php:70
-#: themes/newspaper/views/pages/ad/listing.php:52
-#: themes/responsive/views/pages/ad/listing.php:65
+#: themes/reclassifieds/views/pages/ad/listing.php:68
+#: themes/moderndeluxe/views/pages/ad/listing.php:68
+#: themes/newspaper/views/pages/ad/listing.php:50
+#: themes/responsive/views/pages/ad/listing.php:63
 #: themes/default/views/pages/ad/listing.php:28
 #: themes/czsale/views/pages/ad/listing.php:16
-#: themes/kamaleon/views/pages/ad/listing.php:77
+#: themes/kamaleon/views/pages/ad/listing.php:74
 msgid "New Advertisement"
 msgstr ""
 
 #: themes/ocean/views/pages/ad/listing.php:103
-#: themes/reclassifieds/views/pages/ad/listing.php:105
-#: themes/moderndeluxe/views/pages/ad/listing.php:105
-#: themes/newspaper/views/pages/ad/listing.php:82
-#: themes/kamaleon/views/pages/ad/listing.php:110
+#: themes/reclassifieds/views/pages/ad/listing.php:103
+#: themes/moderndeluxe/views/pages/ad/listing.php:103
+#: themes/newspaper/views/pages/ad/listing.php:80
+#: themes/kamaleon/views/pages/ad/listing.php:107
 msgid "Minimal"
 msgstr ""
 
@@ -6546,7 +6562,7 @@ msgstr ""
 
 #: themes/ocean/options.php:83
 #: themes/reclassifieds/options.php:72
-#: themes/mobile/options.php:56
+#: themes/mobile/options.php:53
 #: themes/responsive/options.php:87
 msgid "Upload your Logo. Recommended size 250px x 40px. Leave blank for none."
 msgstr ""
@@ -6571,54 +6587,54 @@ msgstr ""
 msgid "Hide icon on category/location description"
 msgstr ""
 
-#: themes/yummo/views/pages/ad/related.php:40
-#: themes/yummo/views/pages/ad/listing.php:62
-#: themes/yummo/views/pages/ad/listing.php:234
-#: themes/yummo/views/pages/home.php:99
+#: themes/yummo/views/pages/ad/related.php:36
+#: themes/yummo/views/pages/ad/listing.php:58
+#: themes/yummo/views/pages/ad/listing.php:230
+#: themes/yummo/views/pages/home.php:95
 msgid "more"
 msgstr ""
 
 #: themes/yummo/views/pages/ad/single.php:46
-#: themes/yummo/views/pages/ad/listing.php:206
+#: themes/yummo/views/pages/ad/listing.php:202
 #: themes/splash/views/pages/ad/advanced_search.php:197
-#: themes/splash/views/pages/ad/listing.php:156
-#: oc/classes/controller/ad.php:406
+#: themes/splash/views/pages/ad/listing.php:164
+#: oc/classes/controller/ad.php:410
 msgid "on"
 msgstr ""
 
 #: themes/yummo/views/pages/ad/new.php:21
-#: themes/yummo/views/pages/ad/new.php:55
+#: themes/yummo/views/pages/ad/new.php:57
 msgid "Ad Information"
 msgstr ""
 
 #: themes/yummo/views/pages/ad/new.php:29
-#: themes/yummo/views/pages/ad/new.php:139
+#: themes/yummo/views/pages/ad/new.php:141
 msgid "Ad Images"
 msgstr ""
 
-#: themes/yummo/views/pages/ad/new.php:37
-#: themes/yummo/views/pages/ad/new.php:176
+#: themes/yummo/views/pages/ad/new.php:38
+#: themes/yummo/views/pages/ad/new.php:179
 msgid "Ad Details"
 msgstr ""
 
-#: themes/yummo/views/pages/ad/new.php:44
-#: themes/yummo/views/pages/ad/new.php:215
+#: themes/yummo/views/pages/ad/new.php:46
+#: themes/yummo/views/pages/ad/new.php:219
 msgid "Contact Information & Publish"
 msgstr ""
 
-#: themes/yummo/views/pages/ad/new.php:134
-#: themes/yummo/views/pages/ad/new.php:171
-#: themes/yummo/views/pages/ad/new.php:211
+#: themes/yummo/views/pages/ad/new.php:136
+#: themes/yummo/views/pages/ad/new.php:173
+#: themes/yummo/views/pages/ad/new.php:214
 msgid "Save &amp; continue"
 msgstr ""
 
-#: themes/yummo/views/pages/ad/new.php:170
-#: themes/yummo/views/pages/ad/new.php:210
-#: themes/yummo/views/pages/ad/new.php:346
+#: themes/yummo/views/pages/ad/new.php:172
+#: themes/yummo/views/pages/ad/new.php:213
+#: themes/yummo/views/pages/ad/new.php:350
 msgid "Previous step"
 msgstr ""
 
-#: themes/yummo/views/pages/ad/listing.php:206
+#: themes/yummo/views/pages/ad/listing.php:202
 msgid "from"
 msgstr ""
 
@@ -6636,7 +6652,7 @@ msgstr ""
 #: themes/yummo/views/widget/widget_search.php:53
 #: themes/splash/views/widget/widget_search.php:46
 #: themes/splash/views/widget/widget_search.php:47
-#: themes/newspaper/views/pages/home.php:111
+#: themes/newspaper/views/pages/home.php:115
 #: themes/default/views/widget/widget_search.php:52
 #: themes/default/views/widget/widget_search.php:53
 #: themes/default/views/oc-panel/sidebar.php:29
@@ -6712,16 +6728,94 @@ msgstr ""
 msgid "Hide page links on footer"
 msgstr ""
 
+#: themes/splash/views/pages/plan/pricing.php:7
+#: themes/splash/views/pages/ad/checkout.php:7
+#: themes/splash/views/pages/ad/checkout.php:37
+#: themes/splash/views/pages/ad/checkout.php:43
+#: themes/jobdrop/views/pages/ad/checkout.php:30
+#: themes/jobdrop/views/pages/ad/checkout.php:36
+#: themes/mobile/views/pages/ad/checkout.php:16
+#: themes/mobile/views/pages/ad/checkout.php:22
+#: themes/default/views/pages/ad/checkout.php:16
+#: themes/default/views/pages/ad/checkout.php:22
+#: oc/classes/controller/plan.php:119
+#: oc/classes/controller/ad.php:790
+msgid "Checkout"
+msgstr ""
+
+#: themes/splash/views/pages/plan/pricing.php:26
+#: themes/splash/views/oc-panel/profile/edit.php:212
+#: themes/jobdrop/views/pages/plan/pricing.php:19
+#: themes/jobdrop/views/oc-panel/profile/edit.php:193
+#: themes/default/views/pages/plan/pricing.php:4
+#: themes/default/views/oc-panel/profile/edit.php:192
+msgid "You are subscribed to the plan %s until %s with %u ads left"
+msgstr ""
+
+#: themes/splash/views/pages/plan/pricing.php:43
+#: themes/jobdrop/views/pages/plan/pricing.php:36
+#: themes/default/views/pages/plan/pricing.php:21
+msgid "Pay once"
+msgstr ""
+
+#: themes/splash/views/pages/plan/pricing.php:45
+#: themes/jobdrop/views/pages/plan/pricing.php:38
+#: themes/default/views/pages/plan/pricing.php:23
+msgid "Yearly"
+msgstr ""
+
+#: themes/splash/views/pages/plan/pricing.php:47
+#: themes/jobdrop/views/pages/plan/pricing.php:40
+#: themes/default/views/pages/plan/pricing.php:25
+msgid "6 months"
+msgstr ""
+
+#: themes/splash/views/pages/plan/pricing.php:49
+#: themes/jobdrop/views/pages/plan/pricing.php:42
+#: themes/default/views/pages/plan/pricing.php:27
+msgid "Quarterly"
+msgstr ""
+
+#: themes/splash/views/pages/plan/pricing.php:51
+#: themes/jobdrop/views/pages/plan/pricing.php:44
+#: themes/default/views/pages/plan/pricing.php:29
+msgid "Monthly"
+msgstr ""
+
+#: themes/splash/views/pages/plan/pricing.php:53
+#: themes/jobdrop/views/pages/plan/pricing.php:46
+#: themes/default/views/pages/plan/pricing.php:31
+msgid "days"
+msgstr ""
+
+#: themes/splash/views/pages/plan/pricing.php:60
+#: themes/jobdrop/views/pages/plan/pricing.php:53
+#: themes/default/views/pages/plan/pricing.php:38
+msgid "market place fee"
+msgstr ""
+
+#: themes/splash/views/pages/plan/pricing.php:67
+#: themes/jobdrop/views/pages/plan/pricing.php:60
+#: themes/default/views/pages/plan/pricing.php:45
+msgid "Renew"
+msgstr ""
+
+#: themes/splash/views/pages/plan/pricing.php:69
+#: themes/jobdrop/views/pages/plan/pricing.php:62
+#: themes/default/views/pages/plan/pricing.php:47
+msgid "Sign Up"
+msgstr ""
+
 #: themes/splash/views/pages/ad/advanced_search.php:197
-#: themes/splash/views/pages/ad/listing.php:156
+#: themes/splash/views/pages/ad/listing.php:164
 msgid "from %s"
 msgstr ""
 
 #: themes/splash/views/pages/ad/reviews.php:22
 #: themes/default/views/pages/ad/reviews.php:16
 #: themes/default/views/oc-panel/sidebar.php:37
-#: oc/classes/controller/ad.php:568
-#: oc/classes/controller/ad.php:570
+#: oc/classes/controller/ad.php:572
+#: oc/classes/controller/ad.php:574
 #: oc/common/views/oc-panel/pages/user/update.php:20
 msgid "Reviews"
 msgstr ""
@@ -6787,20 +6881,6 @@ msgstr ""
 msgid "Title *"
 msgstr ""
 
-#: themes/splash/views/pages/ad/checkout.php:7
-#: themes/splash/views/pages/ad/checkout.php:37
-#: themes/splash/views/pages/ad/checkout.php:43
-#: themes/jobdrop/views/pages/ad/checkout.php:30
-#: themes/jobdrop/views/pages/ad/checkout.php:36
-#: themes/mobile/views/pages/ad/checkout.php:16
-#: themes/mobile/views/pages/ad/checkout.php:22
-#: themes/default/views/pages/ad/checkout.php:16
-#: themes/default/views/pages/ad/checkout.php:22
-#: oc/classes/controller/plan.php:119
-#: oc/classes/controller/ad.php:786
-msgid "Checkout"
-msgstr ""
-
 #: themes/splash/views/pages/ad/checkout.php:35
 #: themes/splash/views/oc-panel/pages/messages/index.php:47
 #: themes/splash/views/oc-panel/profile/ads.php:33
@@ -6819,7 +6899,7 @@ msgstr ""
 #: themes/default/views/pages/ad/checkout.php:14
 #: themes/default/views/oc-panel/pages/moderate.php:27
 #: themes/default/views/oc-panel/pages/messages/index.php:31
-#: themes/default/views/oc-panel/pages/fields/new.php:43
+#: themes/default/views/oc-panel/pages/fields/new.php:44
 #: themes/default/views/oc-panel/pages/userfields/new.php:44
 #: themes/default/views/oc-panel/home.php:112
 #: themes/default/views/oc-panel/profile/ads.php:14
@@ -6927,7 +7007,7 @@ msgstr ""
 msgid "Enter keyword..."
 msgstr ""
 
-#: themes/splash/views/pages/home.php:113
+#: themes/splash/views/pages/home.php:109
 msgid "More ads"
 msgstr ""
 
@@ -7077,6 +7157,12 @@ msgstr ""
 msgid "users"
 msgstr ""
 
+#: themes/splash/views/widget/widget_contact.php:6
+#: themes/newspaper/views/widget_contact.php:8
+#: themes/default/views/widget/widget_contact.php:14
+msgid "Please, login before contact the advertiser!"
+msgstr ""
+
 #: themes/splash/views/oc-panel/pages/messages/message.php:11
 #: themes/jobdrop/views/oc-panel/pages/messages/message.php:10
 #: themes/mobile/views/oc-panel/pages/messages/message.php:10
@@ -7103,7 +7189,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/categories/index.php:138
 #: themes/default/views/oc-panel/pages/messages/message.php:94
 #: themes/default/views/oc-panel/pages/fields/update.php:104
-#: themes/default/views/oc-panel/pages/fields/new.php:117
+#: themes/default/views/oc-panel/pages/fields/new.php:118
 #: themes/default/views/oc-panel/pages/newsletter.php:102
 #: themes/default/views/oc-panel/pages/userfields/update.php:91
 #: themes/default/views/oc-panel/pages/userfields/new.php:107
@@ -7122,7 +7208,7 @@ msgstr ""
 #: themes/splash/views/oc-panel/pages/messages/index.php:26
 #: themes/mobile/views/oc-panel/pages/messages/index.php:11
 #: themes/default/views/oc-panel/pages/messages/index.php:10
-#: oc/classes/controller/ad.php:72
+#: oc/classes/controller/ad.php:73
 msgid "All"
 msgstr ""
 
@@ -7152,8 +7238,8 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/messages/index.php:30
 #: themes/default/views/oc-panel/pages/newsletter.php:69
 #: themes/default/views/oc-panel/profile/stats.php:50
-#: oc/common/views/oc-panel/crud/indexajax.php:45
-#: oc/common/views/oc-panel/crud/indexajax.php:69
+#: oc/common/views/oc-panel/crud/indexajax.php:46
+#: oc/common/views/oc-panel/crud/indexajax.php:70
 msgid "From"
 msgstr ""
 
@@ -7201,7 +7287,7 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/moderate.php:95
 #: themes/default/views/oc-panel/profile/ads.php:50
 #: themes/czsale/views/pages/ad/single.php:124
-#: themes/czsale/views/pages/ad/listing.php:126
+#: themes/czsale/views/pages/ad/listing.php:124
 #: oc/classes/model/ad.php:160
 msgid "Published"
 msgstr ""
@@ -7291,7 +7377,7 @@ msgstr ""
 
 #: themes/splash/views/oc-panel/profile/stats.php:31
 #: themes/jobdrop/views/pages/ad/advanced_search.php:221
-#: themes/jobdrop/views/pages/ad/listing.php:229
+#: themes/jobdrop/views/pages/ad/listing.php:235
 #: themes/jobdrop/views/oc-panel/profile/stats.php:18
 #: themes/mobile/views/oc-panel/profile/stats.php:31
 #: themes/default/views/oc-panel/home.php:37
@@ -7301,7 +7387,7 @@ msgstr ""
 
 #: themes/splash/views/oc-panel/profile/stats.php:32
 #: themes/jobdrop/views/pages/ad/advanced_search.php:223
-#: themes/jobdrop/views/pages/ad/listing.php:231
+#: themes/jobdrop/views/pages/ad/listing.php:237
 #: themes/jobdrop/views/oc-panel/profile/stats.php:19
 #: themes/mobile/views/oc-panel/profile/stats.php:32
 #: themes/default/views/oc-panel/home.php:38
@@ -7352,8 +7438,8 @@ msgstr ""
 #: themes/default/views/oc-panel/pages/stats/dashboard.php:29
 #: themes/default/views/oc-panel/pages/newsletter.php:27
 #: themes/default/views/oc-panel/profile/stats.php:60
-#: oc/common/views/oc-panel/crud/indexajax.php:55
-#: oc/common/views/oc-panel/crud/indexajax.php:75
+#: oc/common/views/oc-panel/crud/indexajax.php:56
+#: oc/common/views/oc-panel/crud/indexajax.php:76
 msgid "To"
 msgstr ""
 
@@ -7531,6 +7617,18 @@ msgstr ""
 msgid "Delete photo"
 msgstr ""
 
+#: themes/splash/views/oc-panel/profile/edit.php:206
+#: themes/jobdrop/views/oc-panel/profile/edit.php:187
+#: themes/default/views/oc-panel/profile/edit.php:186
+msgid "Subscription"
+msgstr ""
+
+#: themes/splash/views/oc-panel/profile/edit.php:215
+#: themes/jobdrop/views/oc-panel/profile/edit.php:196
+#: themes/default/views/oc-panel/profile/edit.php:195
+msgid "Choose a Plan"
+msgstr ""
+
 #: themes/splash/options.php:73
 #: themes/jobdrop/options.php:67
 #: themes/kamaleon/options.php:97
@@ -7578,19 +7676,19 @@ msgstr ""
 msgid "Share"
 msgstr ""
 
-#: themes/jobdrop/views/pages/ad/single.php:267
+#: themes/jobdrop/views/pages/ad/single.php:268
 msgid "About"
 msgstr ""
 
-#: themes/jobdrop/views/pages/ad/single.php:274
+#: themes/jobdrop/views/pages/ad/single.php:275
 msgid "Work environment"
 msgstr ""
 
-#: themes/jobdrop/views/pages/ad/listing.php:43
+#: themes/jobdrop/views/pages/ad/listing.php:49
 msgid "Filter categories"
 msgstr ""
 
-#: themes/jobdrop/views/pages/ad/listing.php:46
+#: themes/jobdrop/views/pages/ad/listing.php:52
 msgid "Filter locations"
 msgstr ""
 
@@ -7719,8 +7817,8 @@ msgstr ""
 #: oc/classes/model/category.php:62
 #: oc/classes/model/category.php:597
 #: oc/classes/widget/locations.php:92
-#: oc/classes/controller/ad.php:76
-#: oc/classes/controller/ad.php:229
+#: oc/classes/controller/ad.php:77
+#: oc/classes/controller/ad.php:233
 msgid "all"
 msgstr ""
 
@@ -7742,8 +7840,8 @@ msgstr ""
 
 #: themes/mobile/views/pagination.php:6
 #: themes/mobile/views/oc-panel/crud/pagination.php:6
-#: oc/classes/controller/ad.php:233
-#: oc/classes/controller/ad.php:1135
+#: oc/classes/controller/ad.php:237
+#: oc/classes/controller/ad.php:1172
 #: oc/common/classes/controller/blog.php:51
 msgid "Page "
 msgstr ""
@@ -7789,23 +7887,23 @@ msgstr ""
 msgid "Change the main color scheme and style of the theme"
 msgstr ""
 
-#: themes/mobile/options.php:29
+#: themes/mobile/options.php:26
 msgid "Change the header color scheme and style of the theme"
 msgstr ""
 
-#: themes/mobile/options.php:38
+#: themes/mobile/options.php:35
 msgid "Change the theme of List Elements"
 msgstr ""
 
-#: themes/mobile/options.php:47
+#: themes/mobile/options.php:44
 msgid "Change the theme of Featured Elements"
 msgstr ""
 
-#: themes/mobile/options.php:77
+#: themes/mobile/options.php:74
 msgid "Display slider in home"
 msgstr ""
 
-#: themes/mobile/options.php:102
+#: themes/mobile/options.php:99
 msgid "Allow uploading images in publish new."
 msgstr ""
 
@@ -7856,47 +7954,6 @@ msgstr ""
 #: themes/default/views/widget/widget_coupon.php:19
 #: themes/default/views/oc-panel/pages/map.php:870
 msgid "Add"
-msgstr ""
-
-#: themes/default/views/pages/plan/pricing.php:5
-#: themes/default/views/oc-panel/profile/edit.php:192
-msgid "You are subscribed to the plan %s until %s with %u ads left"
-msgstr ""
-
-#: themes/default/views/pages/plan/pricing.php:22
-msgid "Pay once"
-msgstr ""
-
-#: themes/default/views/pages/plan/pricing.php:24
-msgid "Yearly"
-msgstr ""
-
-#: themes/default/views/pages/plan/pricing.php:26
-msgid "6 months"
-msgstr ""
-
-#: themes/default/views/pages/plan/pricing.php:28
-msgid "Quarterly"
-msgstr ""
-
-#: themes/default/views/pages/plan/pricing.php:30
-msgid "Monthly"
-msgstr ""
-
-#: themes/default/views/pages/plan/pricing.php:32
-msgid "days"
-msgstr ""
-
-#: themes/default/views/pages/plan/pricing.php:39
-msgid "market place fee"
-msgstr ""
-
-#: themes/default/views/pages/plan/pricing.php:46
-msgid "Renew"
-msgstr ""
-
-#: themes/default/views/pages/plan/pricing.php:48
-msgid "Sign Up"
 msgstr ""
 
 #: themes/default/views/pages/ad/flag.php:2
@@ -8078,8 +8135,8 @@ msgstr ""
 
 #: themes/default/views/oc-panel/sidebar.php:133
 #: themes/default/views/oc-panel/pages/settings/plugins.php:6
-#: oc/classes/controller/panel/settings.php:477
 #: oc/classes/controller/panel/settings.php:478
+#: oc/classes/controller/panel/settings.php:479
 msgid "Plugins"
 msgstr ""
 
@@ -8130,7 +8187,7 @@ msgstr ""
 
 #: themes/default/views/oc-panel/sidebar.php:192
 #: oc/common/views/oc-panel/pages/coupon/index.php:102
-#: oc/common/views/oc-panel/crud/indexajax.php:122
+#: oc/common/views/oc-panel/crud/indexajax.php:123
 #: oc/common/views/oc-panel/crud/index.php:78
 msgid "Export"
 msgstr ""
@@ -8416,12 +8473,15 @@ msgid "Once set to TRUE, enables adblock detection"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/settings/plugins.php:176
-#: themes/default/views/oc-panel/pages/settings/plugins.php:187
-msgid "subscriptions"
+msgid "Subscriptions / Memberships"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/settings/plugins.php:183
-msgid "Once set to TRUE, enables subscriptions"
+msgid "Once set to TRUE, enables memberships plans"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/settings/plugins.php:187
+msgid "subscriptions"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/settings/payment.php:9
@@ -8988,7 +9048,7 @@ msgstr ""
 
 #: themes/default/views/oc-panel/pages/settings/general.php:139
 #: themes/default/views/oc-panel/pages/settings/advertisement.php:296
-#: oc/classes/controller/panel/settings.php:352
+#: oc/classes/controller/panel/settings.php:353
 msgid "Deactivated"
 msgstr ""
 
@@ -9707,7 +9767,7 @@ msgid "Longitude"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/locations/create.php:52
-#: themes/default/views/oc-panel/pages/fields/new.php:118
+#: themes/default/views/oc-panel/pages/fields/new.php:119
 #: themes/default/views/oc-panel/pages/fields/index.php:98
 #: themes/default/views/oc-panel/pages/userfields/new.php:108
 #: oc/common/views/oc-panel/pages/blog/create.php:38
@@ -9822,12 +9882,12 @@ msgstr ""
 msgid "City"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/locations/geonames.php:58
+#: themes/default/views/oc-panel/pages/locations/geonames.php:62
 msgid "Import"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/locations/geonames.php:59
-#: oc/common/views/oc-panel/crud/indexajax.php:94
+#: themes/default/views/oc-panel/pages/locations/geonames.php:63
+#: oc/common/views/oc-panel/crud/indexajax.php:95
 msgid "Reset"
 msgstr ""
 
@@ -10333,44 +10393,44 @@ msgid "Tooltip"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:39
-#: themes/default/views/oc-panel/pages/fields/new.php:53
+#: themes/default/views/oc-panel/pages/fields/new.php:54
 #: themes/default/views/oc-panel/pages/userfields/update.php:39
 #: themes/default/views/oc-panel/pages/userfields/new.php:54
 msgid "Values"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:41
-#: themes/default/views/oc-panel/pages/fields/new.php:56
+#: themes/default/views/oc-panel/pages/fields/new.php:57
 #: themes/default/views/oc-panel/pages/userfields/update.php:41
 #: themes/default/views/oc-panel/pages/userfields/new.php:57
 msgid "Comma separated for select"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:50
-#: themes/default/views/oc-panel/pages/fields/new.php:64
+#: themes/default/views/oc-panel/pages/fields/new.php:65
 #: themes/default/views/oc-panel/pages/fields/index.php:83
 msgid "Choose 1 or several categories"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:63
-#: themes/default/views/oc-panel/pages/fields/new.php:76
+#: themes/default/views/oc-panel/pages/fields/new.php:77
 msgid "Selecting parent category also selects child categories."
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:71
-#: themes/default/views/oc-panel/pages/fields/new.php:84
+#: themes/default/views/oc-panel/pages/fields/new.php:85
 #: themes/default/views/oc-panel/pages/userfields/update.php:49
 #: themes/default/views/oc-panel/pages/userfields/new.php:65
 msgid "Required"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:73
-#: themes/default/views/oc-panel/pages/fields/new.php:86
+#: themes/default/views/oc-panel/pages/fields/new.php:87
 msgid "Required field to submit a new ad."
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:80
-#: themes/default/views/oc-panel/pages/fields/new.php:93
+#: themes/default/views/oc-panel/pages/fields/new.php:94
 #: themes/default/views/oc-panel/pages/userfields/update.php:58
 #: themes/default/views/oc-panel/pages/userfields/new.php:74
 #: themes/default/views/oc-panel/pages/userfields/index.php:31
@@ -10378,33 +10438,33 @@ msgid "Searchable"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:82
-#: themes/default/views/oc-panel/pages/fields/new.php:95
+#: themes/default/views/oc-panel/pages/fields/new.php:96
 #: themes/default/views/oc-panel/pages/userfields/update.php:60
 #: themes/default/views/oc-panel/pages/userfields/new.php:76
 msgid "Search in ads will include this field as well."
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:89
-#: themes/default/views/oc-panel/pages/fields/new.php:102
+#: themes/default/views/oc-panel/pages/fields/new.php:103
 #: themes/default/views/oc-panel/pages/userfields/update.php:85
 #: themes/default/views/oc-panel/pages/userfields/new.php:101
 msgid "Admin Privileged"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:91
-#: themes/default/views/oc-panel/pages/fields/new.php:104
+#: themes/default/views/oc-panel/pages/fields/new.php:105
 #: themes/default/views/oc-panel/pages/userfields/update.php:87
 #: themes/default/views/oc-panel/pages/userfields/new.php:103
 msgid "Can be seen and edited only by admin."
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:98
-#: themes/default/views/oc-panel/pages/fields/new.php:111
+#: themes/default/views/oc-panel/pages/fields/new.php:112
 msgid "Show Listing"
 msgstr ""
 
 #: themes/default/views/oc-panel/pages/fields/update.php:100
-#: themes/default/views/oc-panel/pages/fields/new.php:113
+#: themes/default/views/oc-panel/pages/fields/new.php:114
 msgid "Can be seen in the list of ads while browsing."
 msgstr ""
 
@@ -10433,12 +10493,16 @@ msgstr ""
 msgid "Number Decimal"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/fields/new.php:45
+#: themes/default/views/oc-panel/pages/fields/new.php:43
+msgid "Numeric Range"
+msgstr ""
+
+#: themes/default/views/oc-panel/pages/fields/new.php:46
 #: themes/default/views/oc-panel/pages/userfields/new.php:46
 msgid "Radio"
 msgstr ""
 
-#: themes/default/views/oc-panel/pages/fields/new.php:47
+#: themes/default/views/oc-panel/pages/fields/new.php:48
 #: themes/default/views/oc-panel/pages/userfields/new.php:48
 msgid "Checkbox"
 msgstr ""
@@ -10621,14 +10685,6 @@ msgstr ""
 
 #: themes/default/views/oc-panel/home.php:99
 msgid "Latest Published Ads"
-msgstr ""
-
-#: themes/default/views/oc-panel/profile/edit.php:186
-msgid "Subscription"
-msgstr ""
-
-#: themes/default/views/oc-panel/profile/edit.php:195
-msgid "Choose a Plan"
 msgstr ""
 
 #: themes/default/views/oc-panel/main.php:67
@@ -10832,7 +10888,7 @@ msgid "Something went wrong with uploading pictures, please check format"
 msgstr ""
 
 #: oc/classes/model/ad.php:446
-#: oc/classes/controller/panel/location.php:525
+#: oc/classes/controller/panel/location.php:544
 #: oc/classes/controller/panel/category.php:450
 #: oc/common/classes/model/oc/user.php:701
 #: oc/common/classes/controller/panel/cmsimages.php:92
@@ -11084,19 +11140,19 @@ msgstr ""
 #: oc/classes/controller/panel/profile.php:176
 #: oc/classes/controller/panel/myads.php:91
 #: oc/classes/controller/panel/myads.php:167
-#: oc/classes/controller/ad.php:444
-#: oc/classes/controller/ad.php:451
-#: oc/classes/controller/ad.php:613
-#: oc/classes/controller/ad.php:620
-#: oc/classes/controller/ad.php:632
-#: oc/classes/controller/ad.php:663
-#: oc/classes/controller/ad.php:674
-#: oc/classes/controller/ad.php:716
-#: oc/classes/controller/ad.php:727
-#: oc/classes/controller/ad.php:757
-#: oc/classes/controller/ad.php:799
-#: oc/classes/controller/ad.php:839
-#: oc/classes/controller/ad.php:869
+#: oc/classes/controller/ad.php:448
+#: oc/classes/controller/ad.php:455
+#: oc/classes/controller/ad.php:617
+#: oc/classes/controller/ad.php:624
+#: oc/classes/controller/ad.php:636
+#: oc/classes/controller/ad.php:667
+#: oc/classes/controller/ad.php:678
+#: oc/classes/controller/ad.php:720
+#: oc/classes/controller/ad.php:731
+#: oc/classes/controller/ad.php:761
+#: oc/classes/controller/ad.php:803
+#: oc/classes/controller/ad.php:843
+#: oc/classes/controller/ad.php:873
 #: oc/common/classes/controller/faq.php:113
 #: oc/common/classes/controller/forum.php:120
 #: oc/common/classes/controller/forum.php:308
@@ -11207,8 +11263,8 @@ msgid "Subscription to "
 msgstr ""
 
 #: oc/classes/controller/plan.php:111
-#: oc/classes/controller/ad.php:778
-#: oc/classes/controller/ad.php:817
+#: oc/classes/controller/ad.php:782
+#: oc/classes/controller/ad.php:821
 msgid "This order was already paid."
 msgstr ""
 
@@ -11503,6 +11559,7 @@ msgid "Map saved."
 msgstr ""
 
 #: oc/classes/controller/panel/location.php:50
+#: oc/classes/controller/panel/location.php:395
 msgid "You are selecting a location that does not exist"
 msgstr ""
 
@@ -11548,7 +11605,7 @@ msgid "Location not deleted"
 msgstr ""
 
 #: oc/classes/controller/panel/location.php:367
-#: oc/classes/controller/panel/location.php:428
+#: oc/classes/controller/panel/location.php:447
 msgid "Select some locations first."
 msgstr ""
 
@@ -11556,18 +11613,18 @@ msgstr ""
 msgid "Geonames"
 msgstr ""
 
-#: oc/classes/controller/panel/location.php:469
+#: oc/classes/controller/panel/location.php:488
 #: oc/classes/controller/panel/category.php:393
 #: oc/common/classes/alert.php:162
 msgid "Success"
 msgstr ""
 
-#: oc/classes/controller/panel/location.php:491
+#: oc/classes/controller/panel/location.php:510
 #: oc/classes/controller/panel/category.php:415
 msgid "Icon deleted."
 msgstr ""
 
-#: oc/classes/controller/panel/location.php:511
+#: oc/classes/controller/panel/location.php:530
 #: oc/classes/controller/panel/category.php:436
 #: oc/common/classes/model/oc/user.php:685
 #: oc/common/classes/controller/panel/cmsimages.php:78
@@ -11575,22 +11632,22 @@ msgstr ""
 msgid "Image is not valid. Please try again."
 msgstr ""
 
-#: oc/classes/controller/panel/location.php:541
+#: oc/classes/controller/panel/location.php:560
 #: oc/classes/controller/panel/category.php:466
 msgid "Icon is uploaded."
 msgstr ""
 
-#: oc/classes/controller/panel/location.php:544
+#: oc/classes/controller/panel/location.php:563
 #: oc/classes/controller/panel/category.php:469
 #: oc/common/classes/model/oc/user.php:728
 msgid "Icon file could not been saved."
 msgstr ""
 
-#: oc/classes/controller/panel/location.php:607
+#: oc/classes/controller/panel/location.php:626
 msgid "All locations were deleted."
 msgstr ""
 
-#: oc/classes/controller/panel/location.php:611
+#: oc/classes/controller/panel/location.php:630
 #: oc/classes/controller/panel/category.php:518
 msgid "You did not confirmed your delete action."
 msgstr ""
@@ -11709,25 +11766,25 @@ msgstr ""
 msgid "Featured plan updated"
 msgstr ""
 
-#: oc/classes/controller/panel/settings.php:348
+#: oc/classes/controller/panel/settings.php:349
 msgid "Payments Configuration updated"
 msgstr ""
 
-#: oc/classes/controller/panel/settings.php:370
 #: oc/classes/controller/panel/settings.php:371
+#: oc/classes/controller/panel/settings.php:372
 #: oc/common/views/oc-panel/pages/cmsimages/index.php:13
 msgid "Image"
 msgstr ""
 
-#: oc/classes/controller/panel/settings.php:411
+#: oc/classes/controller/panel/settings.php:412
 msgid "At least one image format should be allowed."
 msgstr ""
 
-#: oc/classes/controller/panel/settings.php:460
+#: oc/classes/controller/panel/settings.php:461
 msgid "Image Configuration updated"
 msgstr ""
 
-#: oc/classes/controller/panel/settings.php:521
+#: oc/classes/controller/panel/settings.php:522
 msgid "Plugins configuration updated"
 msgstr ""
 
@@ -11866,44 +11923,44 @@ msgstr ""
 msgid "Queue cleaned"
 msgstr ""
 
-#: oc/classes/controller/ad.php:81
-#: oc/classes/controller/ad.php:83
+#: oc/classes/controller/ad.php:82
+#: oc/classes/controller/ad.php:84
 msgid "List of all postings in"
 msgstr ""
 
-#: oc/classes/controller/ad.php:493
+#: oc/classes/controller/ad.php:497
 msgid "You can only add a review if you bought this product"
 msgstr ""
 
-#: oc/classes/controller/ad.php:501
+#: oc/classes/controller/ad.php:505
 msgid "You can not review yourself."
 msgstr ""
 
-#: oc/classes/controller/ad.php:545
+#: oc/classes/controller/ad.php:549
 msgid "Thanks for your review!"
 msgstr ""
 
-#: oc/classes/controller/ad.php:556
+#: oc/classes/controller/ad.php:560
 msgid "Wrong Captcha"
 msgstr ""
 
-#: oc/classes/controller/ad.php:559
+#: oc/classes/controller/ad.php:563
 msgid "You already added a review"
 msgstr ""
 
-#: oc/classes/controller/ad.php:732
+#: oc/classes/controller/ad.php:736
 msgid "To buy this product you first need to register"
 msgstr ""
 
-#: oc/classes/controller/ad.php:752
+#: oc/classes/controller/ad.php:756
 msgid "Purchase"
 msgstr ""
 
-#: oc/classes/controller/ad.php:857
+#: oc/classes/controller/ad.php:861
 msgid "Thanks"
 msgstr ""
 
-#: oc/classes/controller/ad.php:890
+#: oc/classes/controller/ad.php:894
 msgid "Search in"
 msgstr ""
 
@@ -12171,13 +12228,13 @@ msgstr ""
 
 #: oc/common/views/oc-panel/pages/coupon/index.php:43
 #: oc/common/views/oc-panel/pages/content/list.php:35
-#: oc/common/views/oc-panel/crud/indexajax.php:113
+#: oc/common/views/oc-panel/crud/indexajax.php:114
 #: oc/common/views/oc-panel/crud/index.php:36
 msgid "Actions"
 msgstr ""
 
 #: oc/common/views/oc-panel/pages/coupon/index.php:104
-#: oc/common/views/oc-panel/crud/indexajax.php:124
+#: oc/common/views/oc-panel/crud/indexajax.php:125
 #: oc/common/views/oc-panel/crud/index.php:80
 msgid "Export all"
 msgstr ""

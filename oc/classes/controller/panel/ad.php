@@ -26,11 +26,29 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$ads = new Model_Ad();
 
         $fields = array('title','id_ad','published','created','id_category', 'id_location','status');
-		
+
         //filter ads by status
         $status = is_numeric(Core::get('status'))?Core::get('status'):Model_Ad::STATUS_PUBLISHED;
         $ads = $ads->where('status', '=', $status);
 		
+		//filter = active
+        if(core::config('advertisement.expire_date') > 0 AND Core::get('filter')=='active')
+        {
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
+        }
+
+        //filter = expired 
+        if(core::config('advertisement.expire_date') > 0 AND Core::get('filter')=='expired')
+        {
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '<', Date::unix2mysql());
+        }
+
+        //filter = featured 
+        if(Core::get('filter')=='featured')
+        {
+        	$ads->where('featured', '>=', Date::unix2mysql());
+        }
+
 		// sort ads by search value
 		if($q = $this->request->query('search'))
 		{
@@ -255,6 +273,35 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 	}
 
+	/**
+	 * Mark advertisement as deactivated : STATUS = 50 and set the stock equal to zero
+	 */
+	public function action_sold()
+	{
+
+		$id = $this->request->param('id');
+		$param_current_url = Core::get('current_url');
+		$format_id = explode('_', $id);
+
+		foreach ($format_id as $id) 
+		{
+			if (isset($id) AND is_numeric($id))
+			{
+				$deact_ad = new Model_Ad($id);
+				$deact_ad->sold();
+			}
+		}
+		Alert::set(Alert::SUCCESS, __('Advertisement is marked as sold'));
+		
+		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
+		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
+		else
+			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
+
+	}
+    
     /**
      * removes featred ad
      */

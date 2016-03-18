@@ -3,7 +3,7 @@
   * Theme Name: Ocean Free
   * Description: Clean free theme that includes full admin. It has publicity. Do not delete this theme, all the views depend in this theme.
   * Tags: HTML5, Admin, Free
-  * Version: 2.6.1
+  * Version: 2.7.0
   * Author: Chema <chema@open-classifieds.com> , <slobodan@open-classifieds.com>
   * License: GPL v3
   */
@@ -45,7 +45,7 @@ Theme::$styles = array( '//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.cs
 if (Theme::$skin!='default')
     Theme::$styles = array_merge(Theme::$styles, array('css/color-'.Theme::$skin.'.css' => 'screen'));
 
-Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.11.3,bootstrap@3.3.6,bootstrap.datepicker@0.1,chosen@1.0.0,jquery.validation@1.11.1,holder@2.8.1',
+Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.1,bootstrap@3.3.6,bootstrap.datepicker@0.1,chosen@1.0.0,jquery.validation@1.11.1,holder@2.8.1',
                                     '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js',
                                     '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),

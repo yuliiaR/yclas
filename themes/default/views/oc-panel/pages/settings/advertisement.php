@@ -759,6 +759,26 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['rich_snippets']['key'], "<a target='_blank' href='https://developers.google.com/structured-data/rich-snippets/products'>Rich Snippets</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['rich_snippets']['key']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= FORM::hidden($forms['rich_snippets']['key'], 0);?>
+                                <?= FORM::checkbox($forms['rich_snippets']['key'], 1, (bool) $forms['rich_snippets']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['rich_snippets']['key'], 
+                                'data-original-title'=> "rich_snippets",
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-content'=> __("Enables rich snippets for products"),
+                                ))?>
+                                <?= FORM::label($forms['rich_snippets']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['count_visits']['key']))?>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
             </div>

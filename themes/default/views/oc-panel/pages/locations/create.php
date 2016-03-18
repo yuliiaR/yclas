@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <?= FORM::label('description', __('Description'), array('class'=>'control-label', 'for'=>'description'))?>
-                                <?= FORM::textarea('description', __('Description'), array('class'=>'form-control','id' => 'description','data-editor'=>'html'))?>
+                                <?= FORM::textarea('description', '', array('class'=>'form-control','id' => 'description','data-editor'=>'html', 'placeholder'=>__('Description')))?>
                             </div>
                         </div>
                         <div class="form-group">

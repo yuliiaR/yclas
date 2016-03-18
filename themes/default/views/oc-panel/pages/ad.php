@@ -33,6 +33,20 @@
     <a class="btn btn-info ajax-load" type="submit" value="unconfirmed" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_UNCONFIRMED?>" rel="tooltip" title="<?=__('Unconfirmed Sort')?>">
         <i class=" glyphicon glyphicon-plane"></i> <?=__(' Unconfirmed')?>
     </a>
+    <?if(core::config('advertisement.expire_date') > 0):?>
+	    <a class="btn btn-danger ajax-load" type="submit" value="expired ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=expired" rel="tooltip" title="<?=__('Expired Ads')?>">
+	        <i class=" glyphicon glyphicon-time"></i> <?=__(' Expired Ads')?>
+	    </a>
+	    <a class="btn btn-success ajax-load" type="submit" value="not expired ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=active" rel="tooltip" title="<?=__('Not Expired Ads')?>">
+	        <i class=" glyphicon glyphicon-ok"></i> <?=__(' Not Expired Ads')?>
+	    </a>
+    <?endif?>
+    	
+	<?if(core::config('payment.to_featured') != FALSE):?>
+	    <a class="btn btn-primary ajax-load" type="submit" value="featured ads" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=featured" rel="tooltip" title="<?=__('Featured Ads')?>">
+	        <i class=" glyphicon glyphicon-bullhorn"></i> <?=__(' Featured Ads')?>
+	    </a>
+    <?endif?>
 
     <?if(Core::get('status') == Model_Ad::STATUS_UNAVAILABLE OR Core::get('status') == Model_Ad::STATUS_UNCONFIRMED OR Core::get('status') == Model_Ad::STATUS_SPAM):?>
     <a
@@ -203,6 +217,14 @@
 						onclick="return confirm('<?=__('Spam?')?>');"
 						rel="tooltip" title="<?=__('Spam')?>">
 						<i class="glyphicon   glyphicon-fire"></i>
+					</a>
+					<?endif?>
+					<?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+					<a class="btn btn-warning " 
+						href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'sold','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
+						onclick="return confirm('<?=__('Mark as Sold?')?>');"
+						rel="tooltip" title="<?=__('Mark as Sold')?>">
+						<i class="glyphicon   glyphicon-usd"></i>
 					</a>
 					<?endif?>
 					<?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>

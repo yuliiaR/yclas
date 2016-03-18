@@ -1572,6 +1572,32 @@ class Model_Ad extends ORM {
     }
 
     /**
+     * changes the status of an ad to deactivated and set stock = 0
+     * @return bool 
+     */ 
+    public function sold()
+    {
+        if ($this->loaded() AND $this->status != Model_Ad::STATUS_UNAVAILABLE)
+        {
+            try
+            {
+                $this->status = Model_Ad::STATUS_UNAVAILABLE;
+                $this->stock = 0;
+                $this->save();
+                
+                return TRUE;
+            }
+            catch (Exception $e)
+            {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+
+        return FALSE;
+
+    }
+
+    /**
      * returns the paypal account of the ad, used in controller paypal
      * @return string email
      */
@@ -1591,6 +1617,22 @@ class Model_Ad extends ORM {
         }
 
         return NULL;
+    }
+
+    /**
+     * New instance of the Microdata to add to add Microdata semantics
+     * @return PHPStructuredData\Microdata    Product Microdata instance
+     */
+    public function structured_data()
+    {
+        require_once Kohana::find_file('vendor', 'PHPStructuredData/Microdata','php');
+        
+        $structured_data = new PHPStructuredData\Microdata('Product');
+
+        if (core::config('advertisement.rich_snippets') == FALSE)
+            return $structured_data->enable(FALSE);
+
+        return $structured_data;
     }
 
 } // END Model_ad

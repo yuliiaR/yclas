@@ -82,7 +82,7 @@
 									'id'=>'description', 
 									'rows'=>10, 
 									'required',
-									'data-bannedwords' => (core::config('advertisement.banned_words') != '') ? json_encode(explode(',', core::config('advertisement.banned_words'))) : '',
+									'data-bannedwords' => (core::config('advertisement.validate_banned_words') AND core::config('advertisement.banned_words') != '') ? json_encode(explode(',', core::config('advertisement.banned_words'))) : '',
 									'data-error' => __('This field must not contain banned words ({0})')))?>
 							</div>
 						</div>

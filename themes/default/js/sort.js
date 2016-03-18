@@ -134,6 +134,7 @@ $(function (){
                 $('.btn-distance:first-child').html($(this).html() + ' <span class="caret"></span>');
                 $('#myDistance').val($(this).data('value')).removeAttr("disabled");
             });
+            $(".pac-container").css("z-index", $("#myLocation").css("z-index"));
         })
 
         //on keyup, start the countdown
@@ -142,6 +143,11 @@ $(function (){
             if ($(this).val()) {
                 typingLocationTimer = setTimeout(doneLocationTyping, doneLocationTypingInterval);
             }
+        });
+
+        $('#myAddress').geocomplete()
+            .bind("geocode:result", function(){
+                doneLocationTyping();
         });
 
         $("#setMyLocation").click(function(e) {
