@@ -101,6 +101,10 @@ $(function(){
     $register_params['rules']['password1'] = {required: true};
     $register_params['rules']['password2'] = {required: true};
     $register_params['messages']['email'] = {"emaildomain" : $('.register :input[name="email"]').data('error')};
+    $register_params['rules']['captcha'] = {"remote" : {url: $(".register").attr('action'),
+                                                        type: "post",
+                                                        data: {ajaxValidateCaptcha: true}}};
+    $register_params['messages']['captcha'] = {"remote" : $('.register :input[name="captcha"]').data('error')};
 
     $(".register").each(function() {
         $(this).validate($register_params)
