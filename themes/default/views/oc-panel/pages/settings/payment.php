@@ -397,7 +397,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='https://docs.yclas.com/pay-directly-from-ad/'>".__('User paypal link')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_seller']['key']))?>
+                        <?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='https://docs.yclas.com/pay-directly-from-ad/'>".__('Buy Now button')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_seller']['key']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= FORM::hidden($forms['paypal_seller']['key'], 0);?>
