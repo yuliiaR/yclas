@@ -14,7 +14,7 @@
                         <input class="form-control" type="text" name="featured_days" placeholder="<?=__('Days')?>">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="featured_price" placeholder="<?=i18n::money_format(0)?>">
+                        <input class="form-control" type="text" name="featured_price" placeholder="<?=i18n::format_currency(0,core::config('payment.paypal_currency'))?>">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -101,7 +101,7 @@
                                                     <a class="btn btn-xs btn-danger plan-delete" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>?delete_plan=<?=$days?>"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
                                                 <?endif?>
                                             </div>
-                                            <?=$days?> <?=__('Days')?> - <?=i18n::money_format($price)?>
+                                            <?=$days?> <?=__('Days')?> - <?=i18n::format_currency($price,core::config('payment.paypal_currency'))?>
                                         </li>
                                     <?$i++;endforeach?>
                                 </ul>
@@ -397,7 +397,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='https://docs.yclas.com/pay-directly-from-ad/'>".__('User paypal link')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_seller']['key']))?>
+                        <?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='https://docs.yclas.com/pay-directly-from-ad/'>".__('Buy Now button')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_seller']['key']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= FORM::hidden($forms['paypal_seller']['key'], 0);?>
