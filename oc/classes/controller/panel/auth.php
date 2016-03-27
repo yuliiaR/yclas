@@ -378,4 +378,46 @@ class Controller_Panel_Auth extends Controller {
         else
             $this->redirect(Route::url('default'));
     }
+
+
+    /**
+     * Sends an email with a link to change your password
+     * 
+     */
+    public function action_2step()
+    {
+        //template header
+        $this->template->title            = __('2 Step Authentication');
+        $this->template->content = View::factory('pages/auth/2step');
+        
+        //if user loged in redirect home
+        if (Auth::instance()->logged_in() AND Cookie::get('google_authenticator')==$this->user->id_user
+            OR (core::config('general.google_authenticator')!=TRUE OR $this->user->google_authenticator=='') )
+        {
+            $this->redirect(Route::get('oc-panel')->uri());
+        }
+        //posting data so try to remember password
+        elseif (core::post('code') AND CSRF::valid('2step'))
+        {            
+            //load library
+            require Kohana::find_file('vendor', 'GoogleAuthenticator');
+
+            $ga = new PHPGangsta_GoogleAuthenticator();
+            if ($ga->verifyCode($this->user->google_authenticator, core::post('code'), 2)) 
+            {
+                //set cookie
+                Cookie::set('google_authenticator' , $this->user->id_user, Core::config('auth.lifetime') );
+
+                // redirect to the url we wanted to see
+                Auth::instance()->login_redirect();
+            } 
+            else 
+            {
+                Form::set_errors(array(__('Invalid Code')));
+            }
+            
+        }
+                
+            
+    }
 }
