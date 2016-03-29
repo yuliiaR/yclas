@@ -401,6 +401,28 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="form-group">
+                        <?= FORM::label($forms['google_authenticator']['id'], __("2 Step Authentication"), array('class'=>'control-label col-sm-4', 'for'=>$forms['google_authenticator']['id']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= Form::checkbox($forms['google_authenticator']['key'], 1, (bool) $forms['google_authenticator']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['google_authenticator']['id'], 
+                                'data-content'=> __("Once set to TRUE, enables 2 step Google Authenticator"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"right",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>__("2 step Google Authenticator"),
+                                ))?>
+                                <?= FORM::label($forms['google_authenticator']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['google_authenticator']['id']))?>
+                                <?= FORM::hidden($forms['google_authenticator']['key'], 0);?>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
