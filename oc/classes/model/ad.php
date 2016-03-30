@@ -117,7 +117,7 @@ class Model_Ad extends ORM {
 				        'title'			=> array(array('not_empty'), array('min_length', array(':value', 2)), array('max_length', array(':value', 145))),
 				        'description'	=> array(array('not_empty'), array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), ),
 				        'address'		=> array(array('max_length', array(':value', 145)), ),
-                        'website'       => array(array('max_length', array(':value', 145)), ),
+                        'website'       => array(array('max_length', array(':value', 200)), ),
 				        'phone'			=> array(array('max_length', array(':value', 30)), ),
 				        'status'		=> array(array('numeric')),
 				        'has_images'	=> array(array('numeric')),
