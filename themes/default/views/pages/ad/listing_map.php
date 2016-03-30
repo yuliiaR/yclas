@@ -29,7 +29,7 @@
                             <?endforeach?>
                         ];
                     </script>
-                    <div id="gmap" style="height:400px;width:598px;"></div>
+                    <div id="gmap" style="height:400px;width:568px;"></div>
                 </div>
             </div>
         </div>
