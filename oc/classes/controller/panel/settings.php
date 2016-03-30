@@ -214,6 +214,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             
             $validation =   Validation::factory($this->request->post())
                             ->rule('general_maintenance', 'range', array(':value', 0, 1))
+                            ->rule('general_private_site', 'range', array(':value', 0, 1))
                             ->rule('general_disallowbots', 'range', array(':value', 0, 1))
                             ->rule('general_cookie_consent', 'range', array(':value', 0, 1))
                             ->rule('general_site_name', 'not_empty')
@@ -244,6 +245,9 @@ class Controller_Panel_Settings extends Auth_Controller {
 
                         if ($c->config_key == 'maintenance' AND $c->config_value == 0)
                             Alert::del('maintenance');
+        
+                        if ($c->config_key == 'private_site' AND $c->config_value == 0)
+                            Alert::del('private_site');
     
                         Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);    
                     }

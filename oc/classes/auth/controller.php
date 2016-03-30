@@ -66,6 +66,7 @@ class Auth_Controller extends Controller
         Theme::checker();
         
         $this->maintenance();
+        $this->private_site();
 	
 		if($this->auto_render===TRUE)
 		{

@@ -30,6 +30,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'google_authenticator',
                                'group_name'     => 'general', 
                                'config_value'   => '0'),
+                        array( 'config_key'     => 'private_site',
+                               'group_name'     => 'general', 
+                               'config_value'   => '0'),
                         );
         
         Model_Config::config_array($configs);
