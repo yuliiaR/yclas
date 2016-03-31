@@ -218,14 +218,11 @@ class Controller extends Kohana_Controller
     public function private_site()
     {
         //private_site
-        if (core::config('general.private_site')==1 AND strtolower($this->request->controller())!='auth')
+        if (core::config('general.private_site')==1 AND $this->user==FALSE AND (strtolower($this->request->action())!='login') )
         {
-            if ($this->user!=FALSE)
-            {
-                Alert::set(Alert::INFO, __('Private Site!!'), NULL, 'private_site');
-            }
-            else
-                $this->redirect(Route::url('private_site'));
+            $this->auto_render = FALSE;
+            $this->response->status(403);
+            $this->template = View::factory('pages/error/403');
         }
     }      
         

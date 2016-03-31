@@ -15,6 +15,11 @@ class Controller_Panel_Auth extends Controller {
 	    {
 	    	Auth::instance()->login_redirect();
 	    }
+        //private site only allows post to login
+        elseif(!$_POST AND core::config('general.private_site')==1)
+        {
+            $this->redirect(Route::url('default'));
+        }
 	    //posting data so try to login
 	    elseif ($this->request->post() AND CSRF::valid('login') AND Valid::email(core::post('email')))
 	    {
@@ -112,7 +117,13 @@ class Controller_Panel_Auth extends Controller {
                 }
             }
 	    }
-	    	    
+	    
+        //private site
+        if (!Auth::instance()->logged_in() AND core::config('general.private_site')==1)
+        {
+            $this->redirect(Route::url('default'));
+        }
+
 	    //Login page
 	    $this->template->title            = __('Login');	    
 	    $this->template->content = View::factory('pages/auth/login');
