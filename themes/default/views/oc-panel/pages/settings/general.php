@@ -191,6 +191,21 @@
                     </div>
 
                     <div class="form-group">
+                        <?= FORM::label($forms['private_site_page']['id'], "<a target='_blank' href=''>".__('Private Site landing page content')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['private_site_page']['id']))?>
+                        <div class="col-sm-8">
+                            <?= FORM::select($forms['private_site_page']['key'], $pages, $forms['private_site_page']['value'], array( 
+                            'class' => 'tips form-control input-sm', 
+                            'id' => $forms['private_site_page']['id'], 
+                            'data-content'=> __("Adds content to private site landing page"),
+                            'data-trigger'=>"hover",
+                            'data-placement'=>"bottom",
+                            'data-toggle'=>"popover",
+                            'data-original-title'=>__("Private Site landing page content"),
+                            ))?> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label col-sm-4', 'for'=>$forms['cookie_consent']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
