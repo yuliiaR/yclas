@@ -57,6 +57,18 @@ class Controller extends Kohana_Controller
         $this->user = Auth::instance()->get_user();
 
         parent::__construct($request,$response);
+
+        //check 2 step
+        if ( strtolower($this->request->controller())!='auth' AND
+            Auth::instance()->logged_in() AND
+            core::config('general.google_authenticator')==TRUE AND 
+            Auth::instance()->get_user()->google_authenticator!='' AND 
+            Cookie::get('google_authenticator')!=Auth::instance()->get_user()->id_user )
+        {
+            //redirect to 2step page
+            $url = Route::url('oc-panel',array('controller'=>'auth','action'=>'2step')).'?auth_redirect='.URL::current();
+            $this->redirect($url);
+        }
     }
 
     /**
@@ -70,6 +82,7 @@ class Controller extends Kohana_Controller
         Theme::checker();
         
         $this->maintenance();
+        $this->private_site();
         
         /**
          * selected category
@@ -197,7 +210,24 @@ class Controller extends Kohana_Controller
                 $this->redirect(Route::url('maintenance'));
         }
     }    
-        
+      
+    /**
+     * in case you set up general.private_site to TRUE
+     * @return void 
+     */
+    public function private_site()
+    {
+        //private_site
+        if (core::config('general.private_site')==1 AND strtolower($this->request->controller())!='auth')
+        {
+            if ($this->user!=FALSE)
+            {
+                Alert::set(Alert::INFO, __('Private Site!!'), NULL, 'private_site');
+            }
+            else
+                $this->redirect(Route::url('private_site'));
+        }
+    }      
         
     
 }
