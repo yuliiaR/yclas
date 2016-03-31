@@ -33,6 +33,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'private_site',
                                'group_name'     => 'general', 
                                'config_value'   => '0'),
+                        array( 'config_key'     => 'private_site_page',
+                               'group_name'     => 'general', 
+                               'config_value'   => ''),
                         );
         
         Model_Config::config_array($configs);
@@ -1125,7 +1128,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         //blog description to HTML
 
         $posts =  new Model_Post();
-		$posts = $posts->where('id_forum','IS',NULL)->find_all();
+    $posts = $posts->where('id_forum','IS',NULL)->find_all();
         foreach ($posts as $post) 
         {
             $post->description = Text::bb2html($post->description,TRUE, FALSE);
@@ -1267,8 +1270,8 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         // File::delete(MODPATH.'breadcrumbs');
         // File::delete(MODPATH.'formmanager');
         // File::delete(MODPATH.'mysqli');
-		
-		//assign new group_name to configs
+    
+    //assign new group_name to configs
         try
         {
             DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."config SET group_name='advertisement' WHERE config_key = 'advertisements_per_page' OR config_key = 'feed_elements' OR config_key = 'map_elements' OR config_key = 'sort_by'")->execute();
