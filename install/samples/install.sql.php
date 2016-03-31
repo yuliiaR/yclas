@@ -629,6 +629,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'akismet_key', ''),
 ('general', 'alert_terms', ''),
 ('general', 'contact_page', ''),
+('general', 'private_site_page', ''),
 ('general', 'search_by_description', 0),
 ('general', 'blog', 0),
 ('general', 'blog_disqus',''),
