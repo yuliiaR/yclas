@@ -209,7 +209,7 @@ class Controller_Panel_Auth extends Controller {
                 
             
     }
-    
+
     /**
      * Sends request to admin (private site)
      * 
@@ -274,7 +274,7 @@ class Controller_Panel_Auth extends Controller {
                 
             
     }
-
+    
     /**
      * Simple register for user
      *
