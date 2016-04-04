@@ -437,9 +437,8 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
-                        <?= FORM::label($forms['google_authenticator']['id'], __("2 Step Authentication"), array('class'=>'control-label col-sm-4', 'for'=>$forms['google_authenticator']['id']))?>
+                        <?= FORM::label($forms['google_authenticator']['id'], "<a target='_blank' href='https://docs.yclas.com/2-step-verification/'>".__('2 Step Authentication')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['google_authenticator']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['google_authenticator']['key'], 1, (bool) $forms['google_authenticator']['value'], array(
