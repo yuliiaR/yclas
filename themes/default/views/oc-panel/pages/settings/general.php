@@ -171,6 +171,26 @@
                     </div>
 
                     <div class="form-group">
+                        <?= FORM::label($forms['private_site']['id'], "<a target='_blank' href=''>".__("Private Site")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['private_site']['id']))?>
+                        <div class="col-sm-8">
+                            <div class="onoffswitch">
+                                <?= Form::checkbox($forms['private_site']['key'], 1, (bool) $forms['private_site']['value'], array(
+                                'placeholder' => __("TRUE or FALSE"), 
+                                'class' => 'onoffswitch-checkbox', 
+                                'id' => $forms['private_site']['id'], 
+                                'data-content'=> __("Enables the site to private_site"),
+                                'data-trigger'=>"hover",
+                                'data-placement'=>"bottom",
+                                'data-toggle'=>"popover",
+                                'data-original-title'=>__("Private Site"),
+                                ))?>
+                                <?= FORM::label($forms['private_site']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['private_site']['id']))?>
+                                <?= FORM::hidden($forms['private_site']['key'], 0);?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <?= FORM::label($forms['private_site_page']['id'], "<a target='_blank' href=''>".__('Private Site landing page content')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['private_site_page']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['private_site_page']['key'], $pages, $forms['private_site_page']['value'], array( 
@@ -184,7 +204,7 @@
                             ))?> 
                         </div>
                     </div>
-
+                    
                     <div class="form-group">
                         <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label col-sm-4', 'for'=>$forms['cookie_consent']['id']))?>
                         <div class="col-sm-8">
@@ -201,26 +221,6 @@
                                 ))?>
                                 <?= FORM::label($forms['cookie_consent']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['cookie_consent']['id']))?>
                                 <?= FORM::hidden($forms['cookie_consent']['key'], 0);?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['private_site']['id'], "<a target='_blank' href=''>".__("Private Site")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['private_site']['id']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['private_site']['key'], 1, (bool) $forms['private_site']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['private_site']['id'], 
-                                'data-content'=> __("Enables the site to private_site"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"bottom",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("Private Site"),
-                                ))?>
-                                <?= FORM::label($forms['private_site']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['private_site']['id']))?>
-                                <?= FORM::hidden($forms['private_site']['key'], 0);?>
                             </div>
                         </div>
                     </div>
