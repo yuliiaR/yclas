@@ -55,14 +55,6 @@ Route::set('maintenance', URL::title(__('maintenance')).'.html')
         'action'     => 'index',));
 
 /**
- * private_site
- */
-Route::set('private_site', URL::title(__('private_site')).'.html')
-->defaults(array(
-        'controller' => 'private_site',
-        'action'     => 'index',));
-
-/**
  * pricing page
  */
 Route::set('pricing', URL::title(__('pricing')).'.html')
