@@ -107,7 +107,7 @@
 											<span class="btn btn-default btn-file">
 												<span class="fileinput-new"><?=__('Select')?></span>
 												<span class="fileinput-exists"><?=__('Edit')?></span>
-												<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" accept="<?='image/'.str_replace(',', ', image/', rtrim(core::config('image.allowed_formats'),','))?>">
+												<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" accept="image/*">
 											</span>
 											<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=__('Delete')?></a>
 										  </div>
