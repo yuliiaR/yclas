@@ -43,11 +43,6 @@
                     height="300"
                     layout="responsive">
                 </amp-img>
-                <amp-img src="<?=Core::imagefly($value['image'],400,300)?>"
-                    width="400"
-                    height="300"
-                    layout="responsive">
-                </amp-img>
             <?endforeach?>
         </amp-carousel>
     <?endif?>
