@@ -76,3 +76,6 @@
 <?if(Theme::get('apple-touch-icon')!=NULL):?>
 <link rel="apple-touch-icon" href="<?=(Theme::get('apple-touch-icon')) ?>">
 <?endif?>
+<?if (isset($amphtml) AND $amphtml):?>
+<link rel="amphtml" href="<?=$amphtml?>" />
+<?endif?>

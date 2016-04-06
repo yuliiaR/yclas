@@ -8,7 +8,8 @@
 <?=View::factory('header_metas',array('title'             => $title,
                                       'meta_keywords'     => $meta_keywords,
                                       'meta_description'  => $meta_description,
-                                      'meta_copyright'    => $meta_copyright,))?> 
+                                      'meta_copyright'    => $meta_copyright,
+                                      'amphtml'           => $amphtml,))?> 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 7]><link rel="stylesheet" href="//blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
     <!--[if lt IE 9]>
