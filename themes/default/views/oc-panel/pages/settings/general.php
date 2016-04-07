@@ -171,7 +171,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['private_site']['id'], "<a target='_blank' href=''>".__("Private Site")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['private_site']['id']))?>
+                        <?= FORM::label($forms['private_site']['id'], "<a target='_blank' href='https://docs.yclas.com/private-site/'>".__("Private Site")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['private_site']['id']))?>
                         <div class="col-sm-8">
                             <div class="onoffswitch">
                                 <?= Form::checkbox($forms['private_site']['key'], 1, (bool) $forms['private_site']['value'], array(
@@ -191,7 +191,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['private_site_page']['id'], "<a target='_blank' href=''>".__('Private Site landing page content')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['private_site_page']['id']))?>
+                        <?= FORM::label($forms['private_site_page']['id'], "<a target='_blank' href='https://docs.yclas.com/private-site/'>".__('Private Site landing page content')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['private_site_page']['id']))?>
                         <div class="col-sm-8">
                             <?= FORM::select($forms['private_site_page']['key'], $pages, $forms['private_site_page']['value'], array( 
                             'class' => 'tips form-control input-sm', 
