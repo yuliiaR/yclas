@@ -429,15 +429,27 @@ class Controller_Ad extends Controller {
                 if($ad->get_first_image() !== NULL)
                     Controller::$image = $ad->get_first_image();
 
+                $view_file = 'pages/ad/single';
 
-				$this->template->bind('content', $content);
-				$this->template->content = View::factory('pages/ad/single',array('ad'				=>$ad,
-																				   'permission'		=>$permission, 
-																				   'hits'			=>$hits, 
-																				   'captcha_show'	=>$captcha_show,
-																				   'user'			=>$user,
-																				   'cf_list'		=>$ad->custom_columns()
-																				   ));
+                if (Core::get('amp') == '1')
+                {
+                    $this->template = 'amp/main';
+                    $this->before();
+                    $this->template->canonical = Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
+                    $view_file = 'amp/pages/ad/single';
+                }
+
+                $cf_list = $ad->custom_columns();
+                $this->template->amphtml = Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)).'?amp=1';
+
+                $this->template->bind('content', $content);
+                $this->template->content = View::factory($view_file, compact('ad',
+                                                                             'permission', 
+                                                                             'hits', 
+                                                                             'captcha_show',
+                                                                             'user',
+                                                                             'cf_list'
+                                                                            ));
 
 			}
 			//not found in DB
