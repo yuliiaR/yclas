@@ -1,14 +1,20 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="btn-group">
+
+<ul class="nav navbar-top-links navbar-right">
+    <li class="hidden-xs hidden-sm hidden-md">
+        <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'favorites'))?>">
+            <i class="linecon li_heart"></i> 
+        </a>
+    </li>
+    <li class="hidden-xs hidden-sm hidden-md">
     <?if (core::config('general.messaging') AND $messages = Model_Message::get_unread_threads(Auth::instance()->get_user())) :?>
-        <div class="btn-group navbar-btn" role="group">
             <?if ($messages_count = $messages->count_all() > 0) :?>
-                <a class="btn dropdown-toggle btn-success"
+                <a class="dropdown-toggle"
                     href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>"
                     data-toggle="dropdown"
                     data-target="#"
                 >
-                    <i class="fa fa-bell"></i> <span class="badge"><?=$messages_count?></span>
+                    <i class="linecon li_mail"></i><?=$messages_count?>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="dropdown-header"><?=sprintf(__('You have %s unread messages'), $messages_count)?></li>
@@ -23,21 +29,19 @@
                     <?endforeach?>
                 </ul>
             <?else:?>
-                <a class="btn btn-success"
+                <a
                     href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>"
                     title="<?=__('You have no unread messages')?>"
                     data-toggle="popover"
                     data-target="#"
                     data-placement="bottom"
                 >
-                    <i class="fa fa-bell-o"></i>
+                    <i class="linecon li_mail"></i> <?=$messages_count?>
                 </a>
             <?endif?>
-        </div>
     <?elseif ($ads = Auth::instance()->get_user()->contacts() AND count($ads) > 0) :?>
-        <div class="btn-group navbar-btn" role="group">
-            <a class="btn dropdown-toggle btn-success" data-toggle="dropdown" href="#" id="contact-notification" data-url="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'notifications'))?>">
-                <i class="fa fa-bell"></i> <span class="badge"><?=count($ads)?></span>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="contact-notification" data-url="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'notifications'))?>">
+                <i class="linecon li_mail"></i> <?=count($ads)?>
             </a>
             <ul id="contact-notification-dd" class="dropdown-menu">
                 <li class="dropdown-header"><?=__('Please check your email')?></li>
@@ -47,60 +51,63 @@
                     <li class="dropdown-header"><strong><?=$ad["title"]?></strong></li>
                 <?endforeach?>
             </ul>
-        </div>
     <?endif?>
-    <a class="btn btn-success navbar-btn"
-        href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
-        <i class="glyphicon-user glyphicon"></i> 
-    </a>
-    <div class="btn-group" role="group">
-        <a class="btn dropdown-toggle btn-success navbar-btn"  data-toggle="dropdown"
-            href="#"> <span class="caret"></span>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle profile-dropdown" data-toggle="dropdown" href="#">
+            <span class="hidden-xs"><?=Auth::instance()->get_user()->name?></span>
+            <img src="<?=Auth::instance()->get_user()->get_profile_image()?>" alt="" height="32" width="32" class="img-circle profile-img">
         </a>
-        <ul class="dropdown-menu dropdown-menu-right">
-        
-            <li><a href="<?=Route::url('oc-panel',array('controller'=>'home','action'=>'index'))?>">
-                <i class="glyphicon glyphicon-cog"></i> <?=__('Panel')?></a></li>
-        
-            <li><a href="<?=Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))?>"><i
-                   class="glyphicon glyphicon-edit"></i> <?=__('My Advertisements')?></a></li>
-        
-            <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'favorites'))?>"><i
-                   class="glyphicon glyphicon-heart"></i> <?=__('My Favorites')?></a></li>
-            <?if(core::config('payment.paypal_seller') == TRUE OR Core::config('payment.stripe_connect')==TRUE):?>
-            <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'sales'))?>"><i
-                   class="glyphicon glyphicon-usd"></i> <?=__('My Sales')?></a></li>
-            <?endif?>
-            <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'orders'))?>"><i
-                   class="glyphicon glyphicon-shopping-cart"></i> <?=__('My Payments')?></a></li>
-        
-            <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'subscriptions'))?>"><i
-                   class="glyphicon glyphicon-envelope"></i> <?=__('Subscriptions')?></a></li>
-
-            <?if (core::config('general.messaging') == TRUE):?>
-                <li>
-                    <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>">
-                        <i class="fa fa-inbox"></i> <?=__('Messages')?>
-                    </a>
-                </li>
-            <?endif?>
-        
-            <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))?>"><i
-                   class="glyphicon glyphicon-lock"></i> <?=__('Edit profile')?></a></li>
-        
-            <li><a href="<?=Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname))?>">
-                 <i class="glyphicon glyphicon-eye-open"></i> <?=__('Public profile')?></a></li>
-        
-            <li class="divider"></li>
-            <li><a
-                href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'logout'))?>">
-                    <i class="glyphicon glyphicon-off"></i> <?=__('Logout')?>
-            </a></li>
+        <ul class="dropdown-menu pull-right">
             <li>
-                <a
-                href="<?=Route::url('default')?>">
-                    <i class="glyphicon glyphicon-home"></i> <?=__('Visit Site')?></a>
+                <a href="<?=Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname))?>">
+                    <i class="fa fa-fw fa-user"></i> <?=__('Public profile')?>
+                </a>
+            </li>
+            <li>
+                <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))?>">
+                    <i class="fa fa-fw fa-edit"></i> <?=__('Edit profile')?>
+                </a>
+            </li>
+            <li class="hidden-lg">
+                <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'favorites'))?>">
+                    <i class="fa fa-fw fa-heart"></i> <?=__('My Favorites')?>
+                </a>
+            </li>
+            <?if (core::config('general.messaging') == TRUE):?>
+            <li class="hidden-lg">
+                <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>">
+                    <i class="fa fa-fw fa-envelope-o"></i> <?=__('My Messages')?>
+                </a>
+            </li>
+            <?endif?>
+            <li>
+                <a href="<?=Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))?>">
+                    <i class="fa fa-fw fa-list-alt"></i> <?=__('My Advertisements')?>
+                </a>
+            </li>  
+            <li>
+                <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'orders'))?>">
+                    <i class="fa fa-fw fa-shopping-cart"></i> <?=__('My Payments')?>
+                </a>
+            </li>
+            <li>
+                <a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'subscriptions'))?>">
+                    <i class="fa fa-fw fa-calendar-check-o"></i> <?=__('My Subscriptions')?>
+                </a>
+            </li>
+            <li class="divider hidden-lg"></li>                                        
+            <li class="hidden-lg">
+                <a href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'logout'))?>">
+                    <i class="fa fa-fw fa-sign-out"></i> <?=__('Logout')?>
+                </a>
             </li>
         </ul>
-    </div>
-</div>
+    </li>
+    </li>
+    <li class="hidden-xs hidden-sm hidden-md">
+        <a href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'logout'))?>">
+            <i class="fa fa-fw fa-sign-out"></i> <?=__('Logout')?>
+        </a>
+    </li>
+</ul>

@@ -1,7 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="page-header" id="crud-<?=__($name)?>">
-    <h1><?=__('New')?> <?=Text::ucfirst(__($name))?></h1>
-</div>
+
+<h1 class="page-header page-title">
+    <?=__('New')?> <?=Text::ucfirst(__($name))?>
+</h1>
+
+<hr>
+
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">

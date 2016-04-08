@@ -1,63 +1,68 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?=Alert::show()?>
-<div class="page-header">
-    <h1><?=__('Moderation')?></h1>
-</div>
-<? $current_url = Model_Ad::STATUS_NOPUBLISHED?>
+
+<h1 class="page-header page-title">
+    <?=__('Moderation')?>
+</h1>
+
+<hr>
+
+<?$current_url = Model_Ad::STATUS_NOPUBLISHED?>
+
 <div class="panel panel-default">
-    <div class="panel-body">
-        <table class="table table-bordered">
-            <tr>
-                <th>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="select-all" onclick="check_all();">
-                        </label>
-                    </div>
-                </th>
-                <th><?=__('Activate')?></th>
-                <th><?=__('Name')?></th>
-                <th><?=__('Category')?></th>
-                <th><?=__('Location')?></th>
-                <?if(core::config('advertisement.count_visits')==1):?>
-                <th><?=__('Hits')?></th>
-                <?endif?>
-                <th><?=__('Status')?></th>
-                <th><?=__('Date')?></th>
-                <!-- in case there are no ads we dont show buttons -->
-                <?if(isset($ads)):?>
-                <th>
-                    <a class="activate btn btn-success" 
-                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
-                        onclick="return confirm('<?=__('Activate?')?>');"
-                        rel="tooltip" title="<?=__('Activate')?>">
-                        <i class="glyphicon   glyphicon-ok-sign"></i>
-                    </a>
-                    <a class="spam btn btn-warning" 
-                            href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
-                            onclick="return confirm('<?=__('Spam?')?>');"
-                            rel="tooltip" title="<?=__('Spam')?>">
-                            <i class="glyphicon   glyphicon-fire"></i>
-                        </a>
-                    <a class="delete btn btn-danger " 
-                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
-                        onclick="return confirm('<?=__('Delete?')?>');"
-                        rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
-                        <i class="glyphicon   glyphicon-remove"></i>
-                    </a>
-                </th>
-                <?endif?>
-            </tr>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="sorting_disabled">
+                        <div class="checkbox check-success">
+                            <input type="checkbox" id="select-all">
+                            <label for="select-all"></label>
+                        </div>
+                    </th>
+                    <th class="sorting_disabled"><?=__('Activate')?></th>
+                    <th class="sorting_disabled"><?=__('Name')?></th>
+                    <th class="sorting_disabled"><?=__('Category')?></th>
+                    <th class="sorting_disabled"><?=__('Location')?></th>
+                    <?if(core::config('advertisement.count_visits')==1):?>
+                        <th class="sorting_disabled"><?=__('Hits')?></th>
+                    <?endif?>
+                    <th class="sorting_disabled"><?=__('Status')?></th>
+                    <th class="sorting_disabled"><?=__('Date')?></th>
+                    <!-- in case there are no ads we dont show buttons -->
+                    <?if(isset($ads)):?>
+                        <th>
+                            <a class="activate btn btn-success" 
+                                href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
+                                onclick="return confirm('<?=__('Activate?')?>');"
+                                rel="tooltip" title="<?=__('Activate')?>">
+                                <i class="glyphicon   glyphicon-ok-sign"></i>
+                            </a>
+                            <a class="spam btn btn-warning" 
+                                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
+                                    onclick="return confirm('<?=__('Spam?')?>');"
+                                    rel="tooltip" title="<?=__('Spam')?>">
+                                    <i class="glyphicon   glyphicon-fire"></i>
+                                </a>
+                            <a class="delete btn btn-danger " 
+                                href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
+                                onclick="return confirm('<?=__('Delete?')?>');"
+                                rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
+                                <i class="glyphicon   glyphicon-remove"></i>
+                            </a>
+                        </th>
+                    <?endif?>
+                </tr>
+            </thead>
             <?if(isset($ads)):?>
             <tbody>
             <?foreach($ads as $ad):?>  
                 <tr id="tr<?=$ad->id_ad?>">
                     <td>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="<?= $ad->id_ad.'_'?>" class="checkbox">
-                            </label>
+                        <div class="checkbox check-success">
+                            <input type="checkbox" id="<?= $ad->id_ad.'_'?>">
+                            <label for="<?= $ad->id_ad.'_'?>"></label>
                         </div>
                     </td>
                     <td>
@@ -146,10 +151,10 @@
             </tbody>
             <?endif?>
         </table>
+        <?if(isset($pagination)):?>
+            <div class="text-center">
+                <?=$pagination?>
+            </div>
+        <?endif?>
     </div>
 </div>
-<?if(isset($pagination)):?>
-    <div class="text-center">
-        <?=$pagination?>
-    </div>
-<?endif?>

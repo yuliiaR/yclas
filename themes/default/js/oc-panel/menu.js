@@ -86,7 +86,7 @@ $(function(){
     {
         //select radio if its notselected
         if(!$(this).parent().hasClass('in')){
-            $(".in").removeClass('in').children().removeAttr('checked');
+            $("#create-menu-item .in").removeClass('in').children().removeAttr('checked');
             $(this).attr('checked');
             $(this).parent().addClass('in');
         }
@@ -100,7 +100,7 @@ $(function(){
     {   
         //select radio if its notselected
         if(!$(this).parent().hasClass('in')){
-            $(".in").removeClass('in').children().removeAttr('checked');
+            $("#create-menu-item .in").removeClass('in').children().removeAttr('checked');
             $(this).attr('checked');
             $(this).parent().addClass('in');
         }

@@ -1,18 +1,44 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div id="page-categories" class="page-header">
-    <a class="btn btn-primary ajax-load pull-right" href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>" title="<?=__('New Category')?>">
-        <?=__('New Category')?>
+<ul class="list-inline pull-right">
+    <li>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#quick-creator">
+            <?=__('Quick creator')?>
+        </button>
+    </li>
+    <li>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-tool">
+            <i class="fa fa-upload"></i> <?=__('Import')?>
+        </button>
+    </li>
+    <li>
+        <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>" title="<?=__('New Category')?>">
+            <i class="fa fa-plus-circle"></i> <?=__('New Category')?>
+        </a>
+    </li>
+</ul>
+
+<h1 class="page-header page-title">
+    <?=__('Categories')?>
+    <a target="_blank" href="https://docs.yclas.com/how-to-add-categories/">
+        <i class="fa fa-question-circle"></i>
     </a>
-    <h1><?=__('Categories')?></h1>
-    <p><?=__("Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")." <a target='_blank' href='https://docs.yclas.com/how-to-add-categories/'>".__('Read more')."</a>"?></p>
-</div>
+</h1>
+
+<hr>
+
+<p>
+    <?=__('Change the order of your categories. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).')?>
+</p>
+
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading"><?=__('Home')?></div>
-            <div class="panel-body">
-                <?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'delete')), array('class'=>'form-inline', 'enctype'=>'multipart/form-data'))?>
+            <div class="panel-heading">
+                <div class="panel-title"><?=__('Home')?></div>
+            </div>
+            <?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'delete')), array('class'=>'form-inline', 'enctype'=>'multipart/form-data'))?>
+                <div class="panel-body table-responsive">
                     <ol class='plholder' id="ol_1" data-id="1">
                         <?function lili($item, $key,$cats){?>
                             <li data-id="<?=$key?>" id="li_<?=$key?>">
@@ -38,10 +64,9 @@
                                         <i class="glyphicon glyphicon-trash"></i>
                                     </a>
                                     <span class="drag-action">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input name="categories[]" value="<?=$key?>" type="checkbox">
-                                            </label>
+                                        <div class="checkbox check-success">
+                                            <input name="categories[]" value="<?=$key?>" type="checkbox" id="checkbox_<?=$key?>">
+                                            <label for="checkbox_<?=$key?>"></label>
                                         </div>
                                     </span>
                                 </div>
@@ -56,71 +81,25 @@
                             array_walk($order, 'lili',$cats);?>
                     </ol><!--ol_1-->
                     <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'category','action'=>'saveorder'))?>'></span>
-                    <?if(count($cats) > 1) :?>
-                        <p class="text-right">
+                </div>
+                <?if(count($cats) > 1) :?>
+                    <div class="panel-footer">
+                        <div class="text-right">
                             <button type="button" data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
                                 <?=__('Delete all categories')?>
                             </button>
 
                             <button name="delete" type="submit" class="btn btn-danger">
-                                <?=__('Delete selected categories')?>
+                                <i class="glyphicon glyphicon-trash space-right"></i><?=__('Delete selected categories')?>
                             </button>
-                        </p>
-                    <?endif?>
-                <?=FORM::close()?>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <span class="label label-info"><?=__('Heads Up!')?> <?=__('Quick category creator.')?></span>
-                        <div class="clearfix"></div> 
-                        <?=__('Add names for multiple categories, for each one push enter.')?>
-                        <div class="clearfix"></div><br>
-                        
-                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('class'=>'form-inline', 'role'=>'form','enctype'=>'multipart/form-data'))?>
-                            <div class="form-group">
-                                <div class="">
-                                <?= FORM::label('multy_categories', __('Name').':', array('class'=>'control-label', 'for'=>'multy_categories'))?>
-                                <?= FORM::input('multy_categories', '', array('placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_categories', 'type' => 'text','data-role'=>'tagsinput'))?>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories'))))?>
-                        <?= FORM::close()?>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel panel-default">
-		    <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/use-import-tool-categories-locations/'>"._('Upload CSV file')."</a>"?></div>
-                    <div class="panel-body">
-                        <p>
-                            <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwTm1NRGlqcEZwdGM&export=download"><?=__('download example')?>.</a>
-                        </p>
-                        <hr>
-                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="csv_file_categories"><?=__('Import Categories')?></label>
-                                <div class="col-sm-8">
-                                    <input type="file" name="csv_file_categories" id="csv_file_categories" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-8">
-                                    <?= FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'))))?>
-                                </div>
-                            </div>
-                        <?= FORM::close()?>
-                    </div>
-                </div>
-            </div>
+                <?endif?>
+            <?=FORM::close()?>
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="delete-all" tabindex="-1" role="dialog" aria-labelledby="deleteCategories" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -139,6 +118,60 @@
                     <button type="submit" class="btn btn-danger" name="confirmation" value="1"><?=__('Delete')?></button>
                 </div>
             <?= FORM::close()?>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="quick-creator" tabindex="-1" role="dialog" aria-labelledby="quickCategories" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories')), array('role'=>'form','enctype'=>'multipart/form-data'))?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
+                    <h4 id="quickCategories" class="modal-title"><?=__('Quick category creator.')?></h4>
+                </div>
+                <div class="modal-body">
+                    <p><?=__('Add names for multiple categories, for each one push enter.')?></p>
+                    <div class="form-group">
+                        <?=FORM::label('multy_categories', __('Name'), array('class'=>'control-label', 'for'=>'multy_categories'))?>
+                        <div>
+                            <?=FORM::input('multy_categories', '', array('placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_categories', 'type' => 'text','data-role'=>'tagsinput'))?>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
+                    <?=FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'multy_categories'))))?>
+                </div>
+            <?=FORM::close()?>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="import-tool" tabindex="-1" role="dialog" aria-labelledby="importCategories" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <?=FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool')), array('enctype'=>'multipart/form-data'))?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
+                    <h4 id="importCategories" class="modal-title"><?=__('Upload CSV file')?></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label" for="csv_file_categories">
+                            <?=__('Import Categories')?>
+                        </label>
+                        <input type="file" name="csv_file_categories" id="csv_file_categories" class="form-control">
+                        <span class="help-block">
+                            <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwTm1NRGlqcEZwdGM&export=download"><?=__('download example')?></a>.
+                        </span>
+                    </div>
+                </div>
+                <div class="modal-footer text-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
+                    <?=FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'))))?>
+                </div>
+            <?=FORM::close()?>
         </div>
     </div>
 </div>

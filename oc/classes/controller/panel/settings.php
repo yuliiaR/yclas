@@ -109,6 +109,7 @@ class Controller_Panel_Settings extends Auth_Controller {
                 $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'form')));
             }
                 
+            Alert::set(Alert::SUCCESS, __('Advertisement Configuration updated'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'form')));
             
         }
