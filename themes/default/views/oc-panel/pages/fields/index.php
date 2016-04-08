@@ -8,7 +8,7 @@
     </li>
     <li>
         <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>" title="<?=__('New field')?>">
-            <?=__('New field')?>
+            <i class="fa fa-plus-circle"></i>&nbsp; <?=__('New field')?>
         </a>
     </li>
 </ul>

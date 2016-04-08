@@ -10,8 +10,25 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
-                <div class="panel panel-default">
-                    <div class="panel-body">
+            <div>
+                <div>
+                    <ul class="nav nav-tabs nav-tabs-simple nav-tabs-left" id="tab-settings">
+                        <li class="active">
+                            <a data-toggle="tab" href="#tabSettingsEmailGeneral" aria-expanded="true"><?=__('General Email Configuation')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsElasticEmail" aria-expanded="false"><?=__('ElasticEmail')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsSMTPconfiguration" aria-expanded="false"><?=__('SMTP Configuration')?></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tabSettingsEmailGeneral" class="tab-pane active fade">
+                            <h4>
+                                <?=__('Generel Email Configuration')?>
+                            </h4>
+                            <hr>
                         <?foreach ($config as $c):?>
                             <?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
                         <?endforeach?>
@@ -43,10 +60,8 @@
 
                         <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))))?>
                     </div>
-                </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-body">
+                        <div id="tabSettingsElasticEmail" class="tab-pane fade">
                         <h4>
                             <?=__('ElasticEmail Configuration')?>
                             <a target="_blank" href="https://docs.yclas.com/configure-elasticemail-open-classifieds/">
@@ -91,10 +106,8 @@
 
                         <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))))?>
                     </div>
-                </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-body">
+                        <div id="tabSettingsSMTPconfiguration" class="tab-pane fade">
                         <h4>
                             <?=__('SMTP Configuration')?>
                             <a target="_blank" href="https://docs.yclas.com/smtp-configuration/">
@@ -175,6 +188,8 @@
                         <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))))?>
                     </div>
                 </div>
+                </div>
+            </div>
         </form>
-	</div><!--end col-md-8-->
+	</div>
 </div>

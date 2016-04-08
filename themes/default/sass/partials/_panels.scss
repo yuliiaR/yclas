@@ -4,9 +4,9 @@
     border-radius: 0;
     @include box-shadow(none);
     .panel-heading {
-        padding: 20px 20px 7px;
+        padding: 0 20px;
         h1, h2, h3, h4, h5, h5, h6 {
-            display:inline;
+            display:block;
         }
         .close-panel {
             position:absolute;
@@ -26,7 +26,6 @@
             }
         }
         & + .panel-body{
-            padding-top: 0;
             height: calc(100% - 50px);
         }
     }
@@ -55,10 +54,12 @@
             font-size:20px;
 		}
         .panel-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            font-weight: 500;
-            color:$text-color;
+            font-weight: 300;
+            color: $text-color;
+            border-bottom:1px solid #eeeeee;
+            padding:20px;
+            margin-left:-20px;
+            margin-right:-20px;
         }
 	}
     .note-toolbar {

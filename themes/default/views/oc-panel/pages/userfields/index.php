@@ -3,7 +3,7 @@
 <ul class="list-inline pull-right">
     <li>
         <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'new'))?>" title="<?=__('New field')?>">
-            <i class="fa fa-plus-circle"></i> <?=__('New field')?>
+            <i class="fa fa-plus-circle"></i>&nbsp; <?=__('New field')?>
         </a>
     </li>
 </ul>

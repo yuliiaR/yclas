@@ -32,6 +32,12 @@ header {
 	.nav {
 		> li {
 			float:left;
+			&:last-of-type {
+				margin-right:20px;
+				.linecon, .fa {
+					margin:0 !important;
+				}
+			}
 			> a {
 				padding:20px 7px;
 				display:inline-block;

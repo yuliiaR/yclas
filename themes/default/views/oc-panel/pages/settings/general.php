@@ -19,7 +19,7 @@
         <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
             <div>
                 <div>
-                    <ul class="nav nav-tabs nav-tabs-simple nav-tabs-left" id="tab-settings" style="background: #fff;">
+                    <ul class="nav nav-tabs nav-tabs-simple nav-tabs-left" id="tab-settings">
                         <li class="active">
                             <a data-toggle="tab" href="#tabSettingsGeneral" aria-expanded="true"><?=__('General')?></a>
                         </li>
@@ -36,7 +36,7 @@
                             <a data-toggle="tab" href="#tabSettingsRecaptcha" aria-expanded="false"><?=__('reCAPTCHA')?></a>
                         </li>
                     </ul>
-                    <div class="tab-content" style="background: #fff;">
+                    <div class="tab-content">
                         <div id="tabSettingsGeneral" class="tab-pane active fade">
                             <h4><?=__('General Settings')?></h4>
 

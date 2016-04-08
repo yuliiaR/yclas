@@ -2,23 +2,23 @@
 
 <ul class="list-inline pull-right">
     <li>
-        <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'geonames'), 'http')?><?=Core::get('id_location') ? '?id_location='.Core::get('id_location') : NULL?>" title="<?=__('Import Locations')?>" target="_blank">
+        <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'geonames'), 'http')?><?=Core::get('id_location') ? '?id_location='.Core::get('id_location') : NULL?>" title="<?=__('Import Locations')?>" target="_blank">
             <?=__('Import Geonames Locations')?>
         </a>
     </li>
     <li>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#quick-creator">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#quick-creator">
             <?=__('Quick creator')?>
         </button>
     </li>
     <li>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-tool">
-            <i class="fa fa-upload"></i> <?=__('Import')?>
+            <i class="fa fa-upload"></i>&nbsp;  <?=__('Import')?>
         </button>
     </li>
     <li>
         <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
-            <i class="fa fa-plus-circle"></i> <?=__('New Location')?>
+            <i class="fa fa-plus-circle"></i>&nbsp;  <?=__('New Location')?>
         </a>
     </li>
 </ul>
@@ -91,7 +91,7 @@
                             </button>
 
                             <button name="delete" type="submit" class="btn btn-danger">
-                                <i class="glyphicon glyphicon-trash"></i> <?=__('Delete selected locations')?>
+                                <i class="glyphicon glyphicon-trash"></i>&nbsp; <?=__('Delete selected locations')?>
                             </button>
                         </div>
                     </div>

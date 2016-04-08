@@ -27,11 +27,9 @@
 
 <h1 class="page-header page-title">
     <?=__('Advertisements')?>
-    <small>
         <a target="_blank" href="https://docs.yclas.com/how-to-manage-advertisements/">
             <i class="fa fa-question-circle"></i>
         </a>
-    </small>
 </h1>
 
 <hr>

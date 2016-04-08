@@ -255,3 +255,13 @@ ul.plholder li.placeholder:before {
     border-right: none;
     color: red;
 }
+
+/* Themes overview fixes */
+.theme .thumbnail {
+    background:$white;
+}
+
+/* Fix on width on bootstrap tagsinput */
+.bootstrap-tagsinput {
+    width:100%;
+}

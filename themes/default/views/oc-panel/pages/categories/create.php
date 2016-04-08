@@ -3,6 +3,7 @@
 <h1 class="page-header page-title">
     <?=__('New')?> <?=Text::ucfirst(__($name))?>
 </h1>
+<hr>
 
 <div class="row">
     <div class="col-md-12 col-lg-12">

@@ -38,7 +38,7 @@
             <div class="panel-heading">
                 <div class="panel-title"><?=__('Process Queue')?></div>
             </div>
-            <div class="panel-heading">
+            <div class="panel-body">
                 <p>
                 <?if($ads_import>0):?>
                     <div id="count_import"><?=sprintf(__('You got %d ads to get processed'),$ads_import)?></div>
