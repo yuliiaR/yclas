@@ -55,8 +55,40 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
 		<?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
-            <div class="panel panel-default">
-                <div class="panel-body">
+            <div>
+                <div>
+                    <ul class="nav nav-tabs nav-tabs-simple nav-tabs-left" id="tab-settings">
+                        <li class="active">
+                            <a data-toggle="tab" href="#tabSettingsPaymentGeneral" aria-expanded="true"><?=__('General')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentStripe" aria-expanded="false"><?=__('Stripe')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPaypal" aria-expanded="false"><?=__('Paypal')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPayment2checkout" aria-expanded="false"><?=__('2checkout')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPaymill" aria-expanded="false"><?=__('Paymill')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentBitpay" aria-expanded="false"><?=__('Bitpay')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPaysbuy" aria-expanded="false"><?=__('Paysbuy')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPreventFraud" aria-expanded="false"><?=__('Prevent Fraud')?></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tabSettingsPaymentGeneral" class="tab-pane active fade">
+                            <h4>
+                                <?=__('Generel payment configuration')?>
+                            </h4>
+                            <hr>
                     <?foreach ($config as $c):?>
                         <?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
                     <?endforeach?>
@@ -172,10 +204,8 @@
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
-            </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
+                        <div id="tabSettingsPaymentStripe" class="tab-pane fade">
                     <h4>
                         <?=__('Stripe')?>
                         <a target="_blank" href="https://docs.yclas.com/stripe/">
@@ -289,10 +319,8 @@
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
-            </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
+                        <div id="tabSettingsPaymentPaypal" class="tab-pane fade">
                     <h4>Paypal</h4>
                     <hr>
                         
@@ -340,10 +368,8 @@
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
-            </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
+                        <div id="tabSettingsPayment2checkout" class="tab-pane fade">
                     <h4>2checkout</h4>
                     <hr>
 
@@ -396,10 +422,8 @@
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
-            </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
+                        <div id="tabSettingsPaymentStripe" class="tab-pane fade">
                     <h4>Authorize.net</h4>
                     <hr>
 
@@ -452,10 +476,8 @@
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
-            </div>
         
-            <div class="panel panel-default">
-                <div class="panel-body">
+                        <div id="tabSettingsPaymentPaymill" class="tab-pane fade">
                     <h4>Paymill</h4>
                     <hr>
 
@@ -491,10 +513,8 @@
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
-            </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
+                        <div id="tabSettingsPaymentBitpay" class="tab-pane fade">
                     <h4>Bitpay</h4>
                     <hr>
                     
@@ -522,10 +542,8 @@
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
-            </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
+                        <div id="tabSettingsPaymentPaysbuy" class="tab-pane fade">
                     <h4>Paysbuy</h4>
                     <hr>
                     
@@ -565,10 +583,8 @@
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
-            </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
+                        <div id="tabSettingsPaymentPreventFraud" class="tab-pane fade">                           
                     <h4>Prevent Fraud</h4>
                     <hr>
 
@@ -596,6 +612,8 @@
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
             </div>
+                </div>
+            </div>
         </form>
-    </div><!--end col-md-8-->
+    </div>
 </div>

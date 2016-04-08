@@ -9,15 +9,16 @@
     </p>
 <?endif?>
 
-<div class="page-header">
-    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'email'))?>?force=1" title="<?=__('Email Settings')?>">
+
+<a class="btn btn-info pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings','action'=>'email'))?>?force=1" title="<?=__('Email Settings')?>">
         <?=__('Email Settings')?>
     </a>
-    <h1><?=__('Newsletter')?> <small><a href="https://docs.yclas.com/how-to-send-the-newsletter/" target="_blank"><?=__('Read more')?></a></small></h1>
-</div>
+<h1 class="page-header page-title"><?=__('Newsletter')?></h1>
+<hr>
+<p><a href="https://docs.yclas.com/how-to-send-the-newsletter/" target="_blank"><?=__('Read more')?></a></p>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <form method="post" action="<?=Route::url('oc-panel',array('controller'=>'newsletter','action'=>'index'))?>">  
             <div class="panel panel-default">
                 <div class="panel-body">

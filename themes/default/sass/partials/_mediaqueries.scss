@@ -37,6 +37,7 @@
     .sidebar {
         width:75px;
         margin-left:-15px;
+        overflow:initial;
         .sidebar-search {
             height:70px;
             input {
@@ -130,6 +131,12 @@
     .dropdown-li:hover .dropdown-menu {
         display: block;
         margin-top: 0;
+    }
+}
+
+@media(max-width:480px) {
+    .nav-tabs {
+        width:100%;
     }
 }
 

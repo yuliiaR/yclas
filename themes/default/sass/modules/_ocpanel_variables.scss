@@ -32,6 +32,12 @@ $white-dark:            lighten($sidebar-bg, 93.5%);
 
 $panel-default-border:  rgba(0, 0, 0, 0.07);
 
+$font-family-sans-serif:  "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+
 //** Placeholder text color
 $font-size-base:          14px;
 //** Unit-less `line-height` for use in components like buttons.

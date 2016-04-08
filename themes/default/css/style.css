@@ -1051,7 +1051,7 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -5135,7 +5135,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -5248,7 +5248,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6012,7 +6012,7 @@ html {
 
 body {
   background-color: #FAFAFA;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333333;
   font-size: 14px; }
   body a {
@@ -6202,6 +6202,14 @@ ul.plholder li.placeholder:before {
   border-right: none;
   color: red; }
 
+/* Themes overview fixes */
+.theme .thumbnail {
+  background: #ffffff; }
+
+/* Fix on width on bootstrap tagsinput */
+.bootstrap-tagsinput {
+  width: 100%; }
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   color: #333333; }
@@ -6258,6 +6266,10 @@ header {
     float: right; }
   header .nav > li {
     float: left; }
+    header .nav > li:last-of-type {
+      margin-right: 20px; }
+      header .nav > li:last-of-type .linecon, header .nav > li:last-of-type .fa {
+        margin: 0 !important; }
     header .nav > li > a {
       padding: 20px 7px;
       display: inline-block; }
@@ -6345,7 +6357,7 @@ header {
     font-weight: 500;
     position: relative;
     text-transform: uppercase;
-    font-size: 12px; }
+    font-size: 13px; }
     .sidebar-nav li.active a:before {
       content: "";
       height: 100%;
@@ -6449,15 +6461,18 @@ aside {
   background: #282C37;
   overflow: auto; }
 
+.folded aside {
+  overflow: initial; }
+
 .panel {
   background: #ffffff;
   position: relative;
   border-radius: 0;
   box-shadow: none; }
   .panel .panel-heading {
-    padding: 20px 20px 7px; }
+    padding: 0 20px; }
     .panel .panel-heading h1, .panel .panel-heading h2, .panel .panel-heading h3, .panel .panel-heading h4, .panel .panel-heading h5, .panel .panel-heading h5, .panel .panel-heading h6 {
-      display: inline; }
+      display: block; }
     .panel .panel-heading .close-panel {
       position: absolute;
       right: 15px;
@@ -6472,7 +6487,6 @@ aside {
         .panel .panel-heading .close-panel:hover i, .panel .panel-heading .close-panel:focus i {
           color: #d9534f; }
     .panel .panel-heading + .panel-body {
-      padding-top: 0;
       height: calc(100% - 50px); }
   .panel .panel-body {
     padding: 20px; }
@@ -6490,10 +6504,12 @@ aside {
     margin-right: 15px;
     font-size: 20px; }
   .panel-default .panel-heading .panel-title {
-    font-size: 13px;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #333333; }
+    font-weight: 300;
+    color: #333333;
+    border-bottom: 1px solid #eeeeee;
+    padding: 20px;
+    margin-left: -20px;
+    margin-right: -20px; }
 
 .panel-default .note-toolbar i {
   font-size: 12px;
@@ -6604,7 +6620,7 @@ table tbody tr th, table tbody tr td {
   margin: 0; }
 
 #map-settings {
-  overflow-y: hidden; }
+  overflow: visible; }
 
 .bootstrap-tagsinput {
   margin: 0; }
@@ -6857,7 +6873,8 @@ input[type="checkbox"]:focus {
     margin-right: 15px; }
   .sidebar {
     width: 75px;
-    margin-left: -15px; }
+    margin-left: -15px;
+    overflow: initial; }
     .sidebar .sidebar-search {
       height: 70px; }
       .sidebar .sidebar-search input {
@@ -6911,6 +6928,10 @@ input[type="checkbox"]:focus {
     display: block;
     margin-top: 0; } }
 
+@media (max-width: 480px) {
+  .nav-tabs {
+    width: 100%; } }
+
 .folded aside {
   width: 75px;
   transition: all 0.2s ease; }
@@ -6955,6 +6976,12 @@ input[type="checkbox"]:focus {
 @media (min-width: 768px) {
   .modal-dialog {
     margin: 100px auto; } }
+
+.export {
+  margin: 15px 20px 0 0; }
+
+.top-btn {
+  margin-left: 15px; }
 
 .btn {
   padding: 6px 12px;
@@ -7045,9 +7072,7 @@ input[type="checkbox"]:focus {
     margin-right: 0;
     font-weight: 400;
     color: #666666;
-    font-size: 13px;
     min-width: 70px;
-    text-transform: uppercase;
     border-color: transparent; }
     .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
       background: transparent;
@@ -7058,7 +7083,8 @@ input[type="checkbox"]:focus {
 
 .nav-tabs ~ .tab-content {
   overflow: hidden;
-  padding: 15px; }
+  padding: 15px;
+  background: #ffffff; }
   .nav-tabs ~ .tab-content > .tab-pane.slide-left, .nav-tabs ~ .tab-content > .tab-pane.slide-right {
     transition: all 0.3s ease; }
     .nav-tabs ~ .tab-content > .tab-pane.slide-left.sliding, .nav-tabs ~ .tab-content > .tab-pane.slide-right.sliding {
@@ -7094,7 +7120,9 @@ input[type="checkbox"]:focus {
 ------------------------------------
 */
 .nav-tabs-simple {
-  border-bottom: 0px; }
+  border-bottom: 0px;
+  background: #ffffff;
+  min-width: 200px; }
   .nav-tabs-simple:after {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     width: 100%;

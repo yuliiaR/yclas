@@ -2,18 +2,18 @@
 
 <ul class="list-inline pull-right">
     <li>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#quick-creator">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#quick-creator">
             <?=__('Quick creator')?>
         </button>
     </li>
     <li>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-tool">
-            <i class="fa fa-upload"></i> <?=__('Import')?>
+            <i class="fa fa-upload"></i>&nbsp; <?=__('Import')?>
         </button>
     </li>
     <li>
         <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'create'))?>" title="<?=__('New Category')?>">
-            <i class="fa fa-plus-circle"></i> <?=__('New Category')?>
+            <i class="fa fa-plus-circle"></i>&nbsp; <?=__('New Category')?>
         </a>
     </li>
 </ul>
@@ -90,7 +90,7 @@
                             </button>
 
                             <button name="delete" type="submit" class="btn btn-danger">
-                                <i class="glyphicon glyphicon-trash space-right"></i><?=__('Delete selected categories')?>
+                                <i class="glyphicon glyphicon-trash"></i>&nbsp; <?=__('Delete selected categories')?>
                             </button>
                         </div>
                     </div>
