@@ -8,7 +8,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h5 class="modal-title text-center"><?=__('Featured Plan')?></h5>
             </div>
-            <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config'))?>
+            <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config'))?>
                 <div class="modal-body">
                     <div class="form-group">
                         <input class="form-control" type="text" name="featured_days" placeholder="<?=__('Days')?>">
@@ -18,8 +18,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Close')?></button>
                     <button type="submit" class="btn btn-primary"><?=__('Save plan')?></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Close')?></button>
                 </div>
                 <input  type="hidden" name="featured_days_key">
             </form>
@@ -29,705 +29,573 @@
 
 	
 <?=Form::errors()?>
-<div class="page-header">
-    <h1><?=__('Payments Configuration')?></h1>
-    <p class=""><?=__('List of payment configuration values. Replace input fields with new desired values.')?> <a target='_blank' href='https://docs.yclas.com/setup-payment-gateways/'><?=__('Read more')?></a></p>
-    <?if (Theme::get('premium')!=1):?>
-        <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
-            Authorize, Stripe, Paymill and Bitpay <?=__('only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
-            <a class="btn btn-success pull-right" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>"><?=__('Browse Themes')?></a>
-        </p>
-    <?endif?>
-</div>
 
+<h1 class="page-header page-title">
+    <?=__('Payments Configuration')?>
+    <a target="_blank" href="https://docs.yclas.com/setup-payment-gateways/">
+        <i class="fa fa-question-circle"></i>
+    </a>
+</h1>
+<hr>
+
+<?if (Theme::get('premium')!=1):?>
+    <div class="alert alert-info fade in">
+        <p>
+            <strong><?=__('Heads Up!')?></strong> 
+            Authorize, Stripe, Paymill and Bitpay <?=__('only available with premium themes!').' '.__('Upgrade your Open Classifieds site to activate this feature.')?>
+        </p>
+        <p>
+            <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>">
+                <?=__('Browse Themes')?>
+            </a>
+        </p>
+    </div>
+<?endif?>
 
 <div class="row">
-    <div class="col-md-8">
-		<?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
-        <div class="panel panel-default">
-            <div class="panel-heading"><?=__('General Configuration')?></div>
-            <div class="panel-body">
-                <div class="form-horizontal">
+    <div class="col-md-12 col-lg-12">
+		<?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
+            <div class="panel panel-default">
+                <div class="panel-body">
                     <?foreach ($config as $c):?>
                         <?$forms[$c->config_key] = array('key'=>$c->config_key, 'value'=>$c->config_value)?>
                     <?endforeach?>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['paypal_currency']['key'], __('Site currency'), array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_currency']['key']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['paypal_currency']['key'], $forms['paypal_currency']['value'], array(
+                        <?=FORM::label($forms['paypal_currency']['key'], __('Payment currency'), array('class'=>'control-label', 'for'=>$forms['paypal_currency']['key']))?>
+                        <?=FORM::input($forms['paypal_currency']['key'], $forms['paypal_currency']['value'], array(
                             'placeholder' => $forms['paypal_currency']['value'], 
-                            'class' => 'tips form-control col-sm-3', 
+                            'class' => 'tips form-control', 
                             'id' => $forms['paypal_currency']['key'], 
-                            'data-original-title'=> __("Currency"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-content'=>__("Please be sure you are using a currency that your payment gateway supports."),
-                            ));?>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <?= FORM::label($forms['to_featured']['key'], __('Featured Ads'), array('class'=>'control-label col-sm-4', 'for'=>$forms['to_featured']['key']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= FORM::hidden($forms['to_featured']['key'], 0);?>
-                                <?= Form::checkbox($forms['to_featured']['key'], 1, (bool) $forms['to_featured']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['to_featured']['key'],
-                                'data-original-title'=> __("Featured ads"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-content'=>__("Featured ads will be highlighted for a defined number of days."), 
-                                ))?>
-                                <?= FORM::label($forms['to_featured']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['to_featured']['key']))?>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <?= FORM::label($forms['to_top']['key'], "<a target='_blank' href='https://docs.yclas.com/how-to-create-featured-plan/'>".__('Featured Plans')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['to_top']['key']))?>
-                        <div class="col-sm-8">
-                            <?if (is_array($featured_plans)):?>
-                                <ul class="list-unstyled">
-                                    <?$i=0;foreach ($featured_plans as $days => $price):?>
-                                        <li>
-                                            <div class="btn-group" style="margin-right:10px;">
-                                                <button type="button" class="btn btn-xs btn-warning plan-edit" data-days="<?=$days?>" data-price="<?=$price?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
-                                                <?if($i>0):?>
-                                                    <a class="btn btn-xs btn-danger plan-delete" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>?delete_plan=<?=$days?>"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
-                                                <?endif?>
-                                            </div>
-                                            <?=$days?> <?=__('Days')?> - <?=i18n::format_currency($price,core::config('payment.paypal_currency'))?>
-                                        </li>
-                                    <?$i++;endforeach?>
-                                </ul>
-                            <?endif?>
-                            <button type="button" class="btn btn-primary plan-add" data-toggle="modal" data-target="#modalplan">
-                                <?=__('Add a plan')?>
-                            </button>
-                        </div>
+                        ));?>
+                        <span class="help-block">
+                            <?=__("Please be sure you are using a currency that your payment gateway supports.")?>
+                        </span>
                     </div>
 
+                    <hr>
+                    
                     <div class="form-group">
-                        <?= FORM::label($forms['to_top']['key'], __('Bring to top Ad'), array('class'=>'control-label col-sm-4', 'for'=>$forms['to_top']['key']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= FORM::checkbox($forms['to_top']['key'], 1, (bool) $forms['to_top']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['to_top']['key'],
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'', 
-                                ))?>
-                                <?= FORM::label($forms['to_top']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['to_top']['key']))?>
-                            </div>
+                        <?=FORM::label($forms['to_featured']['key'], __('Featured Ads'), array('class'=>'control-label', 'for'=>$forms['to_featured']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['to_featured']['key'], 1, (bool) $forms['to_featured']['value'], array('id' => $forms['to_featured']['key'].'1'))?>
+                            <?=Form::label($forms['to_featured']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['to_featured']['key'], 0, ! (bool) $forms['to_featured']['value'], array('id' => $forms['to_featured']['key'].'0'))?>
+                            <?=Form::label($forms['to_featured']['key'].'0', __('Disabled'))?>
+                        </div>
+                        <span class="help-block">
+                            <?=__("Featured ads will be highlighted for a defined number of days.")?>
+                        </span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?=FORM::label($forms['to_top']['key'], __('Featured Plans'), array('class'=>'control-label', 'for'=>$forms['to_top']['key']))?>
+                        <a target="_blank" href="https://docs.yclas.com/how-to-create-featured-plan/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                        <?if (is_array($featured_plans)):?>
+                            <ul class="list-unstyled">
+                                <?$i=0;foreach ($featured_plans as $days => $price):?>
+                                    <div class="form-control-static">
+                                        <div class="btn-group" style="margin-right:10px;">
+                                            <button type="button" class="btn btn-xs btn-warning plan-edit" data-days="<?=$days?>" data-price="<?=$price?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                                            <?if($i>0):?>
+                                                <a class="btn btn-xs btn-danger plan-delete" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>?delete_plan=<?=$days?>"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
+                                            <?endif?>
+                                        </div>
+                                        <?=$days?> <?=__('Days')?> - <?=i18n::format_currency($price,core::config('payment.paypal_currency'))?>
+                                    </div>
+                                <?$i++;endforeach?>
+                            </ul>
+                        <?endif?>
+                        <button type="button" class="btn btn-primary btn-xs plan-add btn-icon-left" data-toggle="modal" data-target="#modalplan">
+                            <i class="fa fa-plus-circle"></i><?=__('Add a plan')?>
+                        </button>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['to_top']['key'], __('Bring to top Ad'), array('class'=>'control-label', 'for'=>$forms['to_top']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['to_top']['key'], 1, (bool) $forms['to_top']['value'], array('id' => $forms['to_top']['key'].'1'))?>
+                            <?=Form::label($forms['to_top']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['to_top']['key'], 0, ! (bool) $forms['to_top']['value'], array('id' => $forms['to_top']['key'].'0'))?>
+                            <?=Form::label($forms['to_top']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
                 
                     <div class="form-group">
-                        <?= FORM::label($forms['pay_to_go_on_top']['key'], __('To top price'), array('class'=>'control-label col-sm-4', 'for'=>$forms['pay_to_go_on_top']['key']))?>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                <?= FORM::input($forms['pay_to_go_on_top']['key'], $forms['pay_to_go_on_top']['value'], array(
+                        <?=FORM::label($forms['pay_to_go_on_top']['key'], __('To top price'), array('class'=>'control-label', 'for'=>$forms['pay_to_go_on_top']['key']))?>
+                        <div class="input-group">
+                            <?=FORM::input($forms['pay_to_go_on_top']['key'], $forms['pay_to_go_on_top']['value'], array(
                                     'placeholder' => "", 
                                     'class' => 'tips form-control col-sm-3', 
                                     'id' => $forms['pay_to_go_on_top']['key'],
-                                    'data-original-title'=> __("Pricing"),
-                                    'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
-                                    'data-toggle'=>"popover",
-                                    'data-content'=>__("How much the user needs to pay to top up an Ad"),  
                                     'data-rule-number' => 'true',
-                                    ));?> 
-                                <span class="input-group-addon"><?=core::config('payment.paypal_currency')?></span>
-                            </div>
+                                ));?> 
+                            <span class="input-group-addon"><?=core::config('payment.paypal_currency')?></span>
                         </div>
+                        <span class="help-block">
+                            <?=__("How much the user needs to pay to top up an Ad")?>
+                        </span>
                     </div>
 
+                    <hr>
+
                     <div class="form-group">
-                        <?= FORM::label($forms['alternative']['key'], __('Alternative Payment'), array('class'=>'col-md-4 control-label', 'for'=>$forms['alternative']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::select($forms['alternative']['key'], $pages, $forms['alternative']['value'], array( 
+                        <?=FORM::label($forms['alternative']['key'], __('Alternative Payment'), array('class'=>'control-label', 'for'=>$forms['alternative']['key']))?>
+                        <?=FORM::select($forms['alternative']['key'], $pages, $forms['alternative']['value'], array( 
                             'class' => 'tips form-control', 
                             'id' => $forms['alternative']['key'], 
-                            'data-content'=> __("A button with the page title appears next to other pay button, onclick model opens with description."),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Alternative Payment"),
                             ))?> 
-                        </div>
+                        <span class="help-block">
+                            <?=__("A button with the page title appears next to other pay button, onclick model opens with description.")?>
+                        </span>
                     </div>
+
+                    <hr>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['stock']['key'], "<a target='_blank' href='https://docs.yclas.com/pay-directly-from-ad/'>".__('Stock control')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['stock']['key']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= FORM::hidden($forms['stock']['key'], 0);?>
-                                <?= Form::checkbox($forms['stock']['key'], 1, (bool) $forms['stock']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['stock']['key'],
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'', 
-                                ))?>
-                                <?= FORM::label($forms['stock']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stock']['key']))?>
-                            </div>
+                        <?=FORM::label($forms['stock']['key'], __('Stock control'), array('class'=>'control-label', 'for'=>$forms['stock']['key']))?>
+                        <a target="_blank" href="https://docs.yclas.com/pay-directly-from-ad/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['stock']['key'], 1, (bool) $forms['stock']['value'], array('id' => $forms['stock']['key'].'1'))?>
+                            <?=Form::label($forms['stock']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['stock']['key'], 0, ! (bool) $forms['stock']['value'], array('id' => $forms['stock']['key'].'0'))?>
+                            <?=Form::label($forms['stock']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
 
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
             </div>
-        </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/stripe/'>".__('Stripe')."</a>"?></div>
-            <div class="panel-body">
-                <div class="form-horizontal">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>
+                        <?=__('Stripe')?>
+                        <a target="_blank" href="https://docs.yclas.com/stripe/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
+                    <hr>
                     
                     <div class="form-group">
-                        <label class="col-md-8 col-md-offset-4">
-                            <p>To get paid via Credit card you can also use a Stripe account. It's free to register. They charge 2'95% of any sale.</p>
+                        <p class="form-control-static">
+                            To get paid via Credit card you can also use a Stripe account. It's free to register. They charge 2'95% of any sale.
+                        </p>
+                        <p class="form-control-static">
                             <a class="btn btn-success" target="_blank" href="https://stripe.com">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Stripe</a>
-                        </label>
+                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Stripe
+                            </a>
+                        </p>
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['stripe_private']['key'], __('Stripe private key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_private']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['stripe_private']['key'], $forms['stripe_private']['value'], array(
+                        <?=FORM::label($forms['stripe_private']['key'], __('Stripe private key'), array('class'=>'control-label', 'for'=>$forms['stripe_private']['key']))?>
+                        <?=FORM::input($forms['stripe_private']['key'], $forms['stripe_private']['value'], array(
                             'placeholder' => "", 
                             'class' => 'tips form-control', 
                             'id' => $forms['stripe_private']['key'],
-                            'data-content'=> __("Stripe private key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
+                        ))?> 
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['stripe_public']['key'], __('Stripe public key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_public']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['stripe_public']['key'], $forms['stripe_public']['value'], array(
+                        <?=FORM::label($forms['stripe_public']['key'], __('Stripe public key'), array('class'=>'control-label', 'for'=>$forms['stripe_public']['key']))?>
+                        <?=FORM::input($forms['stripe_public']['key'], $forms['stripe_public']['value'], array(
                             'placeholder' => "", 
                             'class' => 'tips form-control', 
                             'id' => $forms['stripe_public']['key'],
-                            'data-content'=> __("Stripe public key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
+                        ))?> 
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['stripe_address']['key'], __('Requires address to pay for extra security'), array('class'=>'control-label', 'for'=>$forms['stripe_address']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['stripe_address']['key'], 1, (bool) $forms['stripe_address']['value'], array('id' => $forms['stripe_address']['key'].'1'))?>
+                            <?=Form::label($forms['stripe_address']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['stripe_address']['key'], 0, ! (bool) $forms['stripe_address']['value'], array('id' => $forms['stripe_address']['key'].'0'))?>
+                            <?=Form::label($forms['stripe_address']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['stripe_address']['key'], __('Requires address to pay for extra security'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_address']['key']))?>
-                        <div class="col-md-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['stripe_address']['key'], 1, (bool) $forms['stripe_address']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['stripe_address']['key'], 
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'',                     
-                                ))?>
-                                <?= FORM::label($forms['stripe_address']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_address']['key']))?>
-                            </div>
+                        <?=FORM::label($forms['stripe_alipay']['key'], __('Accept Alipay payments'), array('class'=>'control-label', 'for'=>$forms['stripe_alipay']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['stripe_alipay']['key'], 1, (bool) $forms['stripe_alipay']['value'], array('id' => $forms['stripe_alipay']['key'].'1'))?>
+                            <?=Form::label($forms['stripe_alipay']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['stripe_alipay']['key'], 0, ! (bool) $forms['stripe_alipay']['value'], array('id' => $forms['stripe_alipay']['key'].'0'))?>
+                            <?=Form::label($forms['stripe_alipay']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['stripe_alipay']['key'], __('Accept Alipay payments'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_alipay']['key']))?>
-                        <div class="col-md-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['stripe_alipay']['key'], 1, (bool) $forms['stripe_alipay']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['stripe_alipay']['key'], 
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'',                     
-                                ))?>
-                                <?= FORM::label($forms['stripe_alipay']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_alipay']['key']))?>
-                            </div>
+                        <?=FORM::label($forms['stripe_bitcoin']['key'], __('Accept Bitoin payments, only with USD'), array('class'=>'control-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['stripe_bitcoin']['key'], 1, (bool) $forms['stripe_bitcoin']['value'], array('id' => $forms['stripe_bitcoin']['key'].'1'))?>
+                            <?=Form::label($forms['stripe_bitcoin']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['stripe_bitcoin']['key'], 0, ! (bool) $forms['stripe_bitcoin']['value'], array('id' => $forms['stripe_bitcoin']['key'].'0'))?>
+                            <?=Form::label($forms['stripe_bitcoin']['key'].'0', __('Disabled'))?>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <p class="form-control-static">
+                            Get a fee from each sale made by your customers, using <a target="_blank" href="https://stripe.com/connect">Stripe Connect</a>
+                        </p>
+                    </div>
+                    <div class="form-group">
+
+                        <?=FORM::label($forms['stripe_connect']['key'], __('Activate Stripe Connect'), array('class'=>'control-label', 'for'=>$forms['stripe_connect']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['stripe_connect']['key'], 1, (bool) $forms['stripe_connect']['value'], array('id' => $forms['stripe_connect']['key'].'1'))?>
+                            <?=Form::label($forms['stripe_connect']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['stripe_connect']['key'], 0, ! (bool) $forms['stripe_connect']['value'], array('id' => $forms['stripe_connect']['key'].'0'))?>
+                            <?=Form::label($forms['stripe_connect']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['stripe_bitcoin']['key'], __('Accept Bitoin payments, only with USD'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
-                        <div class="col-md-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['stripe_bitcoin']['key'], 1, (bool) $forms['stripe_bitcoin']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['stripe_bitcoin']['key'], 
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'',                     
-                                ))?>
-                                <?= FORM::label($forms['stripe_bitcoin']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_bitcoin']['key']))?>
-                            </div>
-                        </div>
+                        <?=FORM::label($forms['stripe_clientid']['key'], __('Stripe client id').' <a target="_blank" href="https://dashboard.stripe.com/account/applications/settings">Get Key</a>', array('class'=>'control-label', 'for'=>$forms['stripe_clientid']['key']))?>
+                        <?=FORM::input($forms['stripe_clientid']['key'], $forms['stripe_clientid']['value'], array(
+                                    'placeholder' => "", 
+                                    'class' => 'tips form-control', 
+                                    'id' => $forms['stripe_clientid']['key'],
+                                    ))?> 
+                        <span class="help-block">
+                            <?=__("Stripe client id").' Redirect URL: '.Route::url('default', array('controller'=>'stripe','action'=>'connect','id'=>'now'))?>
+                        </span>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-8 col-md-offset-4">
-                            <p>Get a fee from each sale made by your customers, using <a target="_blank" href="https://stripe.com/connect">Stripe Connect</a></p>
-                        </label>
-
-                        <div class="form-group">
-                            <?= FORM::label($forms['stripe_connect']['key'], __('Activate Stripe Connect'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_connect']['key']))?>
-                            <div class="col-md-8">
-                                <div class="onoffswitch">
-                                    <?= Form::checkbox($forms['stripe_connect']['key'], 1, (bool) $forms['stripe_connect']['value'], array(
-                                    'placeholder' => __("TRUE or FALSE"), 
-                                    'class' => 'onoffswitch-checkbox', 
-                                    'id' => $forms['stripe_connect']['key'], 
-                                    'data-content'=> '',
-                                    'data-trigger'=>"hover",
-                                    'data-placement'=>"right",
-                                    'data-toggle'=>"popover",
-                                    'data-original-title'=>'',                     
-                                    ))?>
-                                    <?= FORM::label($forms['stripe_connect']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['stripe_connect']['key']))?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <?= FORM::label($forms['stripe_clientid']['key'], __('Stripe client id').' <a target="_blank" href="https://dashboard.stripe.com/account/applications/settings">Get Key</a>', array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_clientid']['key']))?>
-                            <div class="col-md-8">
-                                <?= FORM::input($forms['stripe_clientid']['key'], $forms['stripe_clientid']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['stripe_clientid']['key'],
-                                'data-content'=> __("Stripe client id").' Redirect URL:'.Route::url('default', array('controller'=>'stripe','action'=>'connect','id'=>'now')),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'', 
-                                ))?> 
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <?= FORM::label($forms['stripe_appfee']['key'], __('Application fee %'), array('class'=>'col-md-4 control-label', 'for'=>$forms['stripe_appfee']['key']))?>
-                            <div class="col-md-8">
-                                <?= FORM::input($forms['stripe_appfee']['key'], $forms['stripe_appfee']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['stripe_appfee']['key'],
-                                'data-content'=> __("How much you charge the seller in percentage."),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'', 
-                                ))?> 
-                            </div>
-                        </div>
-
+                        <?=FORM::label($forms['stripe_appfee']['key'], __('Application fee %'), array('class'=>'control-label', 'for'=>$forms['stripe_appfee']['key']))?>
+                        <?=FORM::input($forms['stripe_appfee']['key'], $forms['stripe_appfee']['value'], array(
+                            'placeholder' => "", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['stripe_appfee']['key'],
+                            'type' => 'number',
+                        ))?> 
+                        <span class="help-block">
+                            <?=__("How much you charge the seller in percentage.")?>
+                        </span>
                     </div>
 
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
             </div>
-        </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Paypal</div>
-            <div class="panel-body">
-                <div class="form-horizontal">
-                    
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Paypal</h4>
+                    <hr>
+                        
                     <div class="form-group">
-                        <?= FORM::label($forms['paypal_account']['key'], __('Paypal account'), array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_account']['key']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::hidden($forms['paypal_account']['key'], 0);?>
-                            <?= FORM::input($forms['paypal_account']['key'], $forms['paypal_account']['value'], array(
+                        <?=FORM::label($forms['paypal_account']['key'], __('Paypal account'), array('class'=>'control-label', 'for'=>$forms['paypal_account']['key']))?>
+                        <?=FORM::hidden($forms['paypal_account']['key'], 0);?>
+                        <?=FORM::input($forms['paypal_account']['key'], $forms['paypal_account']['value'], array(
                             'placeholder' => "some@email.com", 
                             'class' => 'tips form-control', 
                             'id' => $forms['paypal_account']['key'],
                             'data-original-title'=> __("Paypal mail address"),
                             'data-trigger'=>"hover",
-                            'data-placement'=>"right",
+                            'data-placement'=>"bottom",
                             'data-toggle'=>"popover",
                             'data-content'=>__("The paypal email address where the payments will be sent"), 
-                            ))?> 
+                        ))?>
+                        <span class="help-block">
+                            <?=__("The paypal email address where the payments will be sent")?>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['sandbox']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['sandbox']['key'], 1, (bool) $forms['sandbox']['value'], array('id' => $forms['sandbox']['key'].'1'))?>
+                            <?=Form::label($forms['sandbox']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['sandbox']['key'], 0, ! (bool) $forms['sandbox']['value'], array('id' => $forms['sandbox']['key'].'0'))?>
+                            <?=Form::label($forms['sandbox']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['sandbox']['key'], __('Sandbox'), array('class'=>'control-label col-sm-4', 'for'=>$forms['sandbox']['key']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= FORM::hidden($forms['sandbox']['key'], 0);?>
-                                <?= Form::checkbox($forms['sandbox']['key'], 1, (bool) $forms['sandbox']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['sandbox']['key'],
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'', 
-                                ))?>
-                                <?= FORM::label($forms['sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['sandbox']['key']))?>
-                            </div>
+                        <?=FORM::label($forms['paypal_seller']['key'], __('Buy Now button'), array('class'=>'control-label', 'for'=>$forms['paypal_seller']['key']))?>
+                        <a target="_blank" href="https://docs.yclas.com/pay-directly-from-ad/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['paypal_seller']['key'], 1, (bool) $forms['paypal_seller']['value'], array('id' => $forms['paypal_seller']['key'].'1'))?>
+                            <?=Form::label($forms['paypal_seller']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['paypal_seller']['key'], 0, ! (bool) $forms['paypal_seller']['value'], array('id' => $forms['paypal_seller']['key'].'0'))?>
+                            <?=Form::label($forms['paypal_seller']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <?= FORM::label($forms['paypal_seller']['key'], "<a target='_blank' href='https://docs.yclas.com/pay-directly-from-ad/'>".__('Buy Now button')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['paypal_seller']['key']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= FORM::hidden($forms['paypal_seller']['key'], 0);?>
-                                <?= Form::checkbox($forms['paypal_seller']['key'], 1, (bool) $forms['paypal_seller']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['paypal_seller']['key'],
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'', 
-                                ))?>
-                                <?= FORM::label($forms['paypal_seller']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['paypal_seller']['key']))?>
-                            </div>
-                        </div>
-                    </div>                    
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
             </div>
-        </div>
 
-         <div class="panel panel-default">
-            <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/2checkout-configuration/'>".__('2checkout')."</a>"?></div>
-            <div class="panel-body">
-                <div class="form-horizontal">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>2checkout</h4>
+                    <hr>
 
                     <div class="form-group">
-                        <label class="col-md-8 col-md-offset-4">
-                            <p><?=sprintf(__('To get paid via Credit card you need a %s account'),'2checkout')?>.</p>
-                            <a class="btn btn-success" target="_blank" href="https://www.2checkout.com/referral?r=6008d8b2c2">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at 2checkout</a>
-                    
-                        </label>
+                        <p class="form-control-static">
+                            <?=sprintf(__('To get paid via Credit card you need a %s account'),'2checkout')?>
+                        </p>
+                        <p class="form-control-static">
+                            <a class="btn btn-success btn-icon-left" target="_blank" href="https://www.2checkout.com/referral?r=6008d8b2c2">
+                                <i class="glyphicon glyphicon-pencil"></i> Register for free at 2checkout
+                            </a>
+                        </p>
                     </div>
-                    
+
                     <div class="form-group">
-                        <?= FORM::label($forms['twocheckout_sandbox']['key'], __('Sandbox'), array('class'=>'control-label col-sm-4', 'for'=>$forms['twocheckout_sandbox']['key']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['twocheckout_sandbox']['key'], 1, (bool) $forms['twocheckout_sandbox']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['twocheckout_sandbox']['key'],
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'', 
-                                ))?>
-                                <?= FORM::label($forms['twocheckout_sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['authorize_sandbox']['key']))?>
-                            </div>
-                        </div>
+                        <?=FORM::label($forms['twocheckout_sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['twocheckout_sandbox']['key']))?>
+                                <div class="onoffswitch">
+                                    <?= Form::checkbox($forms['twocheckout_sandbox']['key'], 1, (bool) $forms['twocheckout_sandbox']['value'], array(
+                                    'placeholder' => __("TRUE or FALSE"), 
+                                    'class' => 'onoffswitch-checkbox', 
+                                    'id' => $forms['twocheckout_sandbox']['key'],
+                                    'data-content'=> '',
+                                    'data-trigger'=>"hover",
+                                    'data-placement'=>"bottom",
+                                    'data-toggle'=>"popover",
+                                    'data-original-title'=>'',                     
+                                    ))?>
+                                    <?= FORM::label($forms['twocheckout_sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['authorize_sandbox']['key']))?>
+                                </div>
                     </div>
-                    
+                        
                     <div class="form-group">
-                        <?= FORM::label($forms['twocheckout_sid']['key'], __('Account Number'), array('class'=>'col-md-4 control-label', 'for'=>$forms['twocheckout_sid']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['twocheckout_sid']['key'], $forms['twocheckout_sid']['value'], array(
+                        <?=FORM::label($forms['twocheckout_sid']['key'], __('Account Number'), array('class'=>'control-label', 'for'=>$forms['twocheckout_sid']['key']))?>
+                        <?=FORM::input($forms['twocheckout_sid']['key'], $forms['twocheckout_sid']['value'], array(
                             'placeholder' => "", 
                             'class' => 'tips form-control', 
                             'id' => $forms['twocheckout_sid']['key'],
-                            'data-content'=> __('Account Number'),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
+                        ))?>
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['twocheckout_secretword']['key'], __('Secret Word'), array('class'=>'col-md-4 control-label', 'for'=>$forms['twocheckout_secretword']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['twocheckout_secretword']['key'], $forms['twocheckout_secretword']['value'], array(
+                        <?=FORM::label($forms['twocheckout_secretword']['key'], __('Secret Word'), array('class'=>'control-label', 'for'=>$forms['twocheckout_secretword']['key']))?>
+                        <?=FORM::input($forms['twocheckout_secretword']['key'], $forms['twocheckout_secretword']['value'], array(
                             'placeholder' => "", 
                             'class' => 'tips form-control', 
-                            'id' => $forms['twocheckout_secretword']['key'],
-                            'data-content'=> __('Secret Word'),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
+                            'id' => $forms['twocheckout_secretword']['key']
+                        ))?>
                     </div>
 
-
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
             </div>
-        </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Authorize.net</div>
-            <div class="panel-body">
-                <div class="form-horizontal">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Authorize.net</h4>
+                    <hr>
 
                     <div class="form-group">
-                        <label class="col-md-8 col-md-offset-4">
-                            <p><?=sprintf(__('To get paid via Credit card you need a %s account'),'Authorize.net')?>. <?=__('You will need also a SSL certificate')?>, <a href="https://www.ssl.com/code/49" target="_blank"><?=__('buy your SSL certificate here')?></a>.</p>
-                            <?=__('Register')?>
+                        <p class="form-control-static">
+                            <?=sprintf(__('To get paid via Credit card you need a %s account'),'Authorize.net')?>. <?=__('You will need also a SSL certificate')?>, <a href="https://www.ssl.com/code/49" target="_blank"><?=__('buy your SSL certificate here')?></a>.
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label(NULL, __('Register'), array('class'=>'control-label'))?>
+                        <p class="form-control-static">
                             <a class="btn btn-success" target="_blank" href="http://reseller.authorize.net/application/signupnow/?id=AUAffiliate">
-                                </i> US/Canada</a>
+                                </i> US/Canada
+                            </a>
                             <a class="btn btn-success" target="_blank" href="http://reseller.authorize.net/application/">
-                                UK/Europe</a>
-                        </label>
+                                UK/Europe
+                            </a>
+                        </p>
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['authorize_sandbox']['key'], __('Sandbox'), array('class'=>'control-label col-sm-4', 'for'=>$forms['authorize_sandbox']['key']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['authorize_sandbox']['key'], 1, (bool) $forms['authorize_sandbox']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['authorize_sandbox']['key'],
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'', 
-                                ))?>
-                                <?= FORM::label($forms['authorize_sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['authorize_sandbox']['key']))?>
-                            </div>
+                        <?=FORM::label($forms['authorize_sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['authorize_sandbox']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['authorize_sandbox']['key'], 1, (bool) $forms['authorize_sandbox']['value'], array('id' => $forms['authorize_sandbox']['key'].'1'))?>
+                            <?=Form::label($forms['authorize_sandbox']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['authorize_sandbox']['key'], 0, ! (bool) $forms['authorize_sandbox']['value'], array('id' => $forms['authorize_sandbox']['key'].'0'))?>
+                            <?=Form::label($forms['authorize_sandbox']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['authorize_login']['key'], __('Authorize API Login'), array('class'=>'col-md-4 control-label', 'for'=>$forms['authorize_login']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['authorize_login']['key'], $forms['authorize_login']['value'], array(
+                        <?=FORM::label($forms['authorize_login']['key'], __('Authorize API Login'), array('class'=>'control-label', 'for'=>$forms['authorize_login']['key']))?>
+                        <?=FORM::input($forms['authorize_login']['key'], $forms['authorize_login']['value'], array(
                             'placeholder' => "", 
                             'class' => 'tips form-control', 
                             'id' => $forms['authorize_login']['key'],
-                            'data-content'=> __('Authorize API Login'),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
+                        ))?> 
                     </div>
 
                     <div class="form-group">
-                        <?= FORM::label($forms['authorize_key']['key'], __('Authorize transaction Key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['authorize_key']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['authorize_key']['key'], $forms['authorize_key']['value'], array(
+                        <?=FORM::label($forms['authorize_key']['key'], __('Authorize transaction Key'), array('class'=>'control-label', 'for'=>$forms['authorize_key']['key']))?>
+                        <?=FORM::input($forms['authorize_key']['key'], $forms['authorize_key']['value'], array(
                             'placeholder' => "", 
                             'class' => 'tips form-control', 
                             'id' => $forms['authorize_key']['key'],
-                            'data-content'=> __("Authorize transaction Key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
+                        ))?> 
                     </div>
+
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
             </div>
-        </div>
         
-        <div class="panel panel-default">
-            <div class="panel-heading">Paymill</div>
-            <div class="panel-body">
-                <div class="form-horizontal">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Paymill</h4>
+                    <hr>
+
                     <div class="form-group">
-                        <label class="col-md-8 col-md-offset-4">
-                            <p>To get paid via Credit card you need a Paymill account. It's free to register. They charge 2'95% of any sale.</p>
-                            <a class="btn btn-success" target="_blank" href="https://app.paymill.com/en-en/auth/register?referrer=openclassifieds">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Paymill</a>
-                        </label>
+                        <p class="form-control-static">
+                            To get paid via Credit card you need a Paymill account. It's free to register. They charge 2'95% of any sale.
+                        </p>
+                        <p class="form-control-static">
+                            <a class="btn btn-success btn-icon-left" target="_blank" href="https://app.paymill.com/en-en/auth/register?referrer=openclassifieds">
+                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Paymill
+                            </a>
+                        </p>
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['paymill_private']['key'], __('Paymill private key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['paymill_private']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['paymill_private']['key'], $forms['paymill_private']['value'], array(
+                        <?=FORM::label($forms['paymill_private']['key'], __('Paymill private key'), array('class'=>'control-label', 'for'=>$forms['paymill_private']['key']))?>
+                        <?=FORM::input($forms['paymill_private']['key'], $forms['paymill_private']['value'], array(
                             'placeholder' => "", 
                             'class' => 'tips form-control', 
                             'id' => $forms['paymill_private']['key'],
-                            'data-content'=> __("Paymill private key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
+                        ))?> 
                     </div>
     
                     <div class="form-group">
-                        <?= FORM::label($forms['paymill_public']['key'], __('Paymill public key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['paymill_public']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['paymill_public']['key'], $forms['paymill_public']['value'], array(
+                        <?=FORM::label($forms['paymill_public']['key'], __('Paymill public key'), array('class'=>'control-label', 'for'=>$forms['paymill_public']['key']))?>
+                        <?=FORM::input($forms['paymill_public']['key'], $forms['paymill_public']['value'], array(
                             'placeholder' => "", 
                             'class' => 'tips form-control', 
                             'id' => $forms['paymill_public']['key'],
-                            'data-content'=> __("Paymill public key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
+                        ))?> 
                     </div>
+
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
             </div>
-        </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Bitpay</div>
-            <div class="panel-body">
-                <div class="form-horizontal">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Bitpay</h4>
+                    <hr>
                     
                     <div class="form-group">
-                        <label class="col-md-8 col-md-offset-4">
-                            <p>Accept bitcoins using Bitpay</p>
-                            <a class="btn btn-success" target="_blank" href="https://bitpay.com">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Bitpay</a>
-                        </label>
+                        <p class="form-control-static">
+                            Accept bitcoins using Bitpay
+                        </p>
+                        <p class="form-control-static">
+                            <a class="btn btn-success btn-icon-left" target="_blank" href="https://bitpay.com">
+                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Bitpay
+                            </a>
+                        </p>
                     </div>
                     
                     <div class="form-group">
-                        <?= FORM::label($forms['bitpay_apikey']['key'], __('Bitpay api key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['bitpay_apikey']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['bitpay_apikey']['key'], $forms['bitpay_apikey']['value'], array(
+                        <?=FORM::label($forms['bitpay_apikey']['key'], __('Bitpay api key'), array('class'=>'control-label', 'for'=>$forms['bitpay_apikey']['key']))?>
+                        <?=FORM::input($forms['bitpay_apikey']['key'], $forms['bitpay_apikey']['value'], array(
                             'placeholder' => "", 
                             'class' => 'tips form-control', 
                             'id' => $forms['bitpay_apikey']['key'],
                             'data-content'=> __("Bitpay api key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
+                        ))?> 
                     </div>
+
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
             </div>
-        </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Paysbuy</div>
-            <div class="panel-body">
-                <div class="form-horizontal">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Paysbuy</h4>
+                    <hr>
                     
                     <div class="form-group">
-                        <label class="col-md-8 col-md-offset-4">
-                            <p>Accept BAHT using Paysbuy</p>
+                        <p class="form-control-static">
+                            Accept BAHT using Paysbuy
+                        </p>
+                        <p class="form-control-static">
                             <a class="btn btn-success" target="_blank" href="https://paysbuy.com">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Paysbuy</a>
-                        </label>
+                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Paysbuy
+                            </a>
+                        </p>
+                    </div>
+                        
+                    <div class="form-group">
+                        <?=FORM::label($forms['paysbuy']['key'], __('Paysbuy account'), array('class'=>'control-label', 'for'=>$forms['paysbuy']['key']))?>
+                        <?=FORM::input($forms['paysbuy']['key'], $forms['paysbuy']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['paysbuy']['key']
+                        ))?>
+                        <span class="help-block">
+                            <?=__("Paysbuy account email")?>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['paysbuy_sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['paysbuy_sandbox']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['paysbuy_sandbox']['key'], 1, (bool) $forms['paysbuy_sandbox']['value'], array('id' => $forms['paysbuy_sandbox']['key'].'1'))?>
+                            <?=Form::label($forms['paysbuy_sandbox']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['paysbuy_sandbox']['key'], 0, ! (bool) $forms['paysbuy_sandbox']['value'], array('id' => $forms['paysbuy_sandbox']['key'].'0'))?>
+                            <?=Form::label($forms['paysbuy_sandbox']['key'].'0', __('Disabled'))?>
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <?= FORM::label($forms['paysbuy']['key'], __('Paysbuy account'), array('class'=>'col-md-4 control-label', 'for'=>$forms['paysbuy']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['paysbuy']['key'], $forms['paysbuy']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control', 
-                            'id' => $forms['paysbuy']['key'],
-                            'data-content'=> __("Paysbuy account email"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <?= FORM::label($forms['paysbuy_sandbox']['key'], __('Sandbox'), array('class'=>'col-md-4 control-label', 'for'=>$forms['paysbuy_sandbox']['key']))?>
-                        <div class="col-md-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['paysbuy_sandbox']['key'], 1, (bool) $forms['paysbuy_sandbox']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['paysbuy_sandbox']['key'], 
-                                'data-content'=> '',
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>'',                     
-                                ))?>
-                                <?= FORM::label($forms['paysbuy_sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['paysbuy_sandbox']['key']))?>
-                            </div>
-                        </div>
-                    </div>
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
             </div>
-        </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Prevent Fraud</div>
-            <div class="panel-body">
-                <div class="form-horizontal">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Prevent Fraud</h4>
+                    <hr>
 
                     <div class="form-group">
-                        <label class="col-md-8 col-md-offset-4">
-                            <p><?=__('Help prevent card fraud with FraudLabsPro, for Stripe, 2co, Paymill and Authorize.')?></p>
-                            <a class="btn btn-success" target="_blank" href="http://www.fraudlabspro.com/?ref=1429">
-                                <i class="glyphicon glyphicon-pencil"></i> <?=sprintf(__('Register for free at %s'),'FraudLabsPro')?></a>
-                        </label>
+                        <p class="form-control-static">
+                            <?=__('Help prevent card fraud with FraudLabsPro, for Stripe, 2co, Paymill and Authorize.')?>
+                        </p>
+                        <p class="form-control-static">
+                            <a class="btn btn-success btn-icon-left" target="_blank" href="http://www.fraudlabspro.com/?ref=1429">
+                                <i class="glyphicon glyphicon-pencil"></i><?=sprintf(__('Register for free at %s'),'FraudLabsPro')?>
+                            </a>
+                        </p>
                     </div>
-                    <div class="form-group">
                         
-                        <?= FORM::label($forms['fraudlabspro']['key'], __('FraudLabsPro api key'), array('class'=>'col-md-4 control-label', 'for'=>$forms['fraudlabspro']['key']))?>
-                        <div class="col-md-8">
-                            <?= FORM::input($forms['fraudlabspro']['key'], $forms['fraudlabspro']['value'], array(
+                    <div class="form-group">
+                        <?=FORM::label($forms['fraudlabspro']['key'], __('FraudLabsPro api key'), array('class'=>'control-label', 'for'=>$forms['fraudlabspro']['key']))?>
+                        <?=FORM::input($forms['fraudlabspro']['key'], $forms['fraudlabspro']['value'], array(
                             'placeholder' => "", 
                             'class' => 'tips form-control', 
                             'id' => $forms['fraudlabspro']['key'],
-                            'data-content'=> __("FraudLabsPro api key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>'', 
-                            ))?> 
-                        </div>
+                        ))?> 
                     </div>
+
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
             </div>
-        </div>
-
-
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="col-sm-8 col-sm-offset-4">
-                    <?= FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
-                </div>
-            </div>
-        </div>
         </form>
     </div><!--end col-md-8-->
 </div>

@@ -1,571 +1,537 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-
 <?=Form::errors()?>
-<div id="page-general-configuration" class="page-header">
-    <a class="btn btn-default pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>" title="<?=__('All configurations')?>"><?=__('All configurations')?></a>
-    <h1><?=__('General Configuration')?> <small><?=__('General site settings.')?></small></h1>
-</div>
+
+<ul class="list-inline pull-right">
+    <li>
+        <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'config'))?>" title="<?=__('All configurations')?>">
+            <?=__('All configurations')?>
+        </a>
+    </li>
+</ul>
+
+<h1 class="page-header page-title"><?=__('General Configuration')?></h1>
+
+<hr>
 
 <div class="row">
-    <div class="col-md-8">
-        <?= FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
-        <div class="panel panel-default">
-            <div class="panel-heading"><?=__('General Configuration')?></div>
-            <div class="panel-body">
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <?= FORM::label($forms['maintenance']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-activate-maintenance-mode/'>".__("Maintenance Mode")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['maintenance']['id']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['maintenance']['key'], 1, (bool) $forms['maintenance']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['maintenance']['id'], 
-                                'data-content'=> __("Enables the site to maintenance"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"bottom",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("Maintenance Mode"),
-                                ))?>
-                                <?= FORM::label($forms['maintenance']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['maintenance']['id']))?>
-                                <?= FORM::hidden($forms['maintenance']['key'], 0);?>
+    <div class="col-md-12 col-lg-12">
+        <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
+            <div>
+                <div>
+                    <ul class="nav nav-tabs nav-tabs-simple nav-tabs-left" id="tab-settings" style="background: #fff;">
+                        <li class="active">
+                            <a data-toggle="tab" href="#tabSettingsGeneral" aria-expanded="true"><?=__('General')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsRegional" aria-expanded="false"><?=__('Regional')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsAdditionalFeatures" aria-expanded="false"><?=__('Additional Features')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsComments" aria-expanded="false"><?=__('Comments')?></a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsRecaptcha" aria-expanded="false"><?=__('reCAPTCHA')?></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" style="background: #fff;">
+                        <div id="tabSettingsGeneral" class="tab-pane active fade">
+                            <h4><?=__('General Settings')?></h4>
+
+                            <hr>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['maintenance']['id'], __("Maintenance Mode"), array('class'=>'control-label', 'for'=>$forms['maintenance']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/how-to-activate-maintenance-mode/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['maintenance']['key'], 1, (bool) $forms['maintenance']['value'], array('id' => $forms['maintenance']['id'].'1'))?>
+                                    <?=Form::label($forms['maintenance']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['maintenance']['key'], 0, ! (bool) $forms['maintenance']['value'], array('id' => $forms['maintenance']['id'].'0'))?>
+                                    <?=Form::label($forms['maintenance']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("Enables the site to maintenance")?>
+                                </span>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <?= FORM::label($forms['disallowbots']['id'], "<a target='_blank' href='https://docs.yclas.com/allowdisallow-bots-crawlers/'>".__("Disallows (blocks) Bots and Crawlers on this website")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['disallowbots']['id']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['disallowbots']['key'], 1, (bool) $forms['disallowbots']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['disallowbots']['id'], 
-                                'data-content'=> __("Disallows Bots and Crawlers on the website"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"bottom",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("Disallows (blocks) Bots and Crawlers"),
-                                ))?>
-                                <?= FORM::label($forms['disallowbots']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['maintenance']['id']))?>
-                                <?= FORM::hidden($forms['disallowbots']['key'], 0);?>
+                            <hr>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['site_name']['id'], __('Site name'), array('class'=>'control-label', 'for'=>$forms['site_name']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/change-site-name-site-description/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
+                                    'placeholder' => 'Open-classifieds', 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['site_name']['id'],
+                                    'data-rule-required'=>'true',
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("Here you can declare your display name. This is seen by everyone!")?>
+                                </span>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <?= FORM::label($forms['site_name']['id'], "<a target='_blank' href='https://docs.yclas.com/change-site-name-site-description/'>".__('Site name')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_name']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
-                            'placeholder' => 'Open-classifieds', 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['site_name']['id'],
-                            'data-content'=> __("Here you can declare your display name. This is seen by everyone!"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Site Name"), 
-                            'data-rule-required'=>'true',
-                            ))?> 
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <?= FORM::label($forms['site_description']['id'], __('Site description'), array('class'=>'control-label', 'for'=>$forms['site_description']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/change-site-name-site-description/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?= FORM::textarea($forms['site_description']['key'], $forms['site_description']['value'], array(
+                                    'placeholder' => __('Description of your site in no more than 160 characters.'),
+                                    'rows' => 3, 'cols' => 50, 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['site_description']['id'],
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__('Description used for the <meta name="description"> of the home page. Might be used by Google as search result snippet. (max. 160 chars)')?>
+                                </span>
+                            </div>
 
-                    <div class="form-group">
-                        <?= FORM::label($forms['site_description']['id'], "<a target='_blank' href='https://docs.yclas.com/change-site-name-site-description/'>".__('Site description')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['site_description']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::textarea($forms['site_description']['key'], $forms['site_description']['value'], array(
-                            'placeholder' => __('Description of your site in no more than 160 characters.'),
-                            'rows' => 3, 'cols' => 50, 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['site_description']['id'],
-                            'data-content'=> __('Description used for the <meta name="description"> of the home page. Might be used by Google as search result snippet. (max. 160 chars)'),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Site Description"), 
-                            ))?> 
-                        </div>
-                    </div>
+                            <hr>
 
-                    <div class="form-group">
-                        <?= FORM::label($forms['moderation']['id'], "<a target='_blank' href='https://docs.yclas.com/how-ads-moderation-works/'>".__('Moderation')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['moderation']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::select($forms['moderation']['key'], array(0=>__("Post directly"),1=>__("Moderation on"),2=>__("Payment on"),3=>__("Email confirmation on"),4=>__("Email confirmation with Moderation"),5=>__("Payment with Moderation")), $forms['moderation']['value'], array(
-                            'placeholder' => $forms['moderation']['value'], 
-                            'class' => 'tips form-control input-sm ', 
-                            'id' => $forms['moderation']['id'],
-                            'data-content'=> __("Moderation is how you control newly created advertisements. You can set it up to fulfill your needs. For example, 'Post directly' will enable new ads to be posted directly, and get published as soon they submit."),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Moderation"), 
-                            ))?> 
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <?= FORM::label($forms['disallowbots']['id'], __("Disallows (blocks) Bots and Crawlers on this website"), array('class'=>'control-label', 'for'=>$forms['disallowbots']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/allowdisallow-bots-crawlers/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['disallowbots']['key'], 1, (bool) $forms['disallowbots']['value'], array('id' => $forms['disallowbots']['id'].'1'))?>
+                                    <?=Form::label($forms['disallowbots']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['disallowbots']['key'], 0, ! (bool) $forms['disallowbots']['value'], array('id' => $forms['disallowbots']['id'].'0'))?>
+                                    <?=Form::label($forms['disallowbots']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("Disallows Bots and Crawlers on the website")?>
+                                </span>
+                            </div>
 
-                    <div class="form-group">
-                        <?= FORM::label($forms['landing_page']['id'], "<a target='_blank' href='https://docs.yclas.com/home-or-listing/'>".__('Landing page')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['landing_page']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::select($forms['landing_page']['key'], 
-                                array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING','{"controller":"user","action":"index"}'=>'USERS'), $forms['landing_page']['value'], array(
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['landing_page']['id'], 
-                            'data-content'=> __("It changes landing page of website"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Landing page"),
-                            ))?> 
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <?= FORM::label($forms['private_site']['id'], __("Private Site"), array('class'=>'control-label', 'for'=>$forms['private_site']['id']))?>
+                                <a target="_blank" href="#">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['private_site']['key'], 1, (bool) $forms['private_site']['value'], array('id' => $forms['private_site']['id'].'1'))?>
+                                    <?=Form::label($forms['private_site']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['private_site']['key'], 0, ! (bool) $forms['private_site']['value'], array('id' => $forms['private_site']['id'].'0'))?>
+                                    <?=Form::label($forms['private_site']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("Enables the site to private_site")?>
+                                </span>
+                            </div>
 
-                    <div class="form-group">
-                            <?= FORM::label($forms['api_key']['id'], "<a target='_blank' href='https://docs.yclas.com/api-documentation/'>".__('API Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['api_key']['id']))?>
-                            <div class="col-sm-8">
+                            <div class="form-group">
+                                <?= FORM::label($forms['google_authenticator']['id'], __("2 Step Authentication"), array('class'=>'control-label', 'for'=>$forms['google_authenticator']['id']))?>
+                                <a target="_blank" href="#">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['google_authenticator']['key'], 1, (bool) $forms['google_authenticator']['value'], array('id' => $forms['google_authenticator']['id'].'1'))?>
+                                    <?=Form::label($forms['google_authenticator']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['google_authenticator']['key'], 0, ! (bool) $forms['google_authenticator']['value'], array('id' => $forms['google_authenticator']['id'].'0'))?>
+                                    <?=Form::label($forms['google_authenticator']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("2 step Google Authenticator")?>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label', 'for'=>$forms['cookie_consent']['id']))?>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['cookie_consent']['key'], 1, (bool) $forms['cookie_consent']['value'], array('id' => $forms['cookie_consent']['id'].'1'))?>
+                                    <?=Form::label($forms['cookie_consent']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['cookie_consent']['key'], 0, ! (bool) $forms['cookie_consent']['value'], array('id' => $forms['cookie_consent']['id'].'0'))?>
+                                    <?=Form::label($forms['cookie_consent']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("Enables an alert to accept cookies")?>
+                                </span>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['moderation']['id'], __('Moderation'), array('class'=>'control-label', 'for'=>$forms['moderation']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/how-ads-moderation-works/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?= FORM::select($forms['moderation']['key'], array(0=>__("Post directly"),1=>__("Moderation on"),2=>__("Payment on"),3=>__("Email confirmation on"),4=>__("Email confirmation with Moderation"),5=>__("Payment with Moderation")), $forms['moderation']['value'], array(
+                                    'placeholder' => $forms['moderation']['value'], 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['moderation']['id'],
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("Moderation is how you control newly created advertisements. You can set it up to fulfill your needs. For example, 'Post directly' will enable new ads to be posted directly, and get published as soon they submit.")?>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['landing_page']['id'], __('Landing page'), array('class'=>'control-label', 'for'=>$forms['landing_page']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/home-or-listing/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?= FORM::select($forms['landing_page']['key'], 
+                                        array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING','{"controller":"user","action":"index"}'=>'USERS'), $forms['landing_page']['value'], array(
+                                    'class' => 'form-control', 
+                                    'id' => $forms['landing_page']['id'], 
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("It changes landing page of website")?>
+                                </span>
+                            </div>
+
+                            <?$pages = array(''=>__('Deactivated'))?>
+                            <?foreach (Model_Content::get_pages() as $key => $value) {
+                                $pages[$value->seotitle] = $value->title;
+                            }?>
+                            <div class="form-group">
+                                <?= FORM::label($forms['alert_terms']['id'], __('Accept Terms Alert'), array('class'=>'control-label', 'for'=>$forms['alert_terms']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/activate-access-terms-alert/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array( 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['alert_terms']['id'], 
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("If you choose to use alert terms, you can select page you want to render. And to edit content, select link 'Content' on your admin panel sidebar. Find page named <name_you_specified> click 'Edit'. In section 'Description' add content that suits you.")?>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <?=FORM::label($forms['private_site_page']['id'], __('Private Site landing page content'), array('class'=>'control-label', 'for'=>$forms['private_site_page']['id']))?>
+                                <a target="_blank" href="#">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::select($forms['private_site_page']['key'], $pages, $forms['private_site_page']['value'], array( 
+                                    'class' => 'tips form-control', 
+                                    'id' => $forms['private_site_page']['id'],
+                                ))?>
+                                <span class="help-block">
+                                    <?=__("Adds content to private site landing page")?>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['contact_page']['id'], __('Contact page content'), array('class'=>'control-label', 'for'=>$forms['contact_page']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/how-to-add-text-contact-page/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?= FORM::select($forms['contact_page']['key'], $pages, $forms['contact_page']['value'], array( 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['contact_page']['id'], 
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("Adds content to contact page")?>
+                                </span>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group">
+                                <?=FORM::label($forms['email_domains']['key'], __('Allowed email domains'), array('class'=>'control-label', 'for'=>$forms['email_domains']['key']))?>
+                                <?=FORM::input($forms['email_domains']['key'], $forms['email_domains']['value'], array(
+                                    'placeholder' => __('For email domain push enter.'), 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['email_domains']['key'], 
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("You need to write your email domains to enable the service.")?>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['api_key']['id'], __('API Key'), array('class'=>'control-label', 'for'=>$forms['api_key']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/api-documentation/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
                                 <?= FORM::input($forms['api_key']['key'], $forms['api_key']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control input-sm', 
-                                'id' => $forms['api_key']['id'],
-                                'data-content'=> __("Integrate anything using your site API Key."),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"bottom",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("Installation API Key"), 
+                                    'placeholder' => "", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['api_key']['id'],
+                                ))?>
+                                <span class="help-block">
+                                    <?=__("Integrate anything using your site API Key.")?>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <?=FORM::label($forms['analytics']['id'], __('Analytics Tracking ID'), array('class'=>'control-label', 'for'=>$forms['analytics']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/how-to-add-tracking-codes/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
+                                    'placeholder' => 'UA-XXXXX-YY', 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['analytics']['id'],
                                 ))?> 
+                                <span class="help-block">
+                                    <?=__("Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings")?>
+                                </span>
                             </div>
-                    </div>
 
-                    <?$pages = array(''=>__('Deactivated'))?>
-                    <?foreach (Model_Content::get_pages() as $key => $value) {
-                        $pages[$value->seotitle] = $value->title;
-                    }?>
-                    <div class="form-group">
-                        <?= FORM::label($forms['alert_terms']['id'], "<a target='_blank' href='https://docs.yclas.com/activate-access-terms-alert/'>".__('Accept Terms Alert')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['alert_terms']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array( 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['alert_terms']['id'], 
-                            'data-content'=> __("If you choose to use alert terms, you can select page you want to render. And to edit content, select link 'Content' on your admin panel sidebar. Find page named <name_you_specified> click 'Edit'. In section 'Description' add content that suits you."),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Accept Terms Alert"),
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['contact_page']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-add-text-contact-page/'>".__('Contact page content')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['contact_page']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::select($forms['contact_page']['key'], $pages, $forms['contact_page']['value'], array( 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['contact_page']['id'], 
-                            'data-content'=> __("Adds content to contact page"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Contact page content"),
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['private_site']['id'], "<a target='_blank' href='https://docs.yclas.com/private-site/'>".__("Private Site")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['private_site']['id']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['private_site']['key'], 1, (bool) $forms['private_site']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['private_site']['id'], 
-                                'data-content'=> __("Enables the site to private_site"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"bottom",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("Private Site"),
-                                ))?>
-                                <?= FORM::label($forms['private_site']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['private_site']['id']))?>
-                                <?= FORM::hidden($forms['private_site']['key'], 0);?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['private_site_page']['id'], "<a target='_blank' href='https://docs.yclas.com/private-site/'>".__('Private Site landing page content')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['private_site_page']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::select($forms['private_site_page']['key'], $pages, $forms['private_site_page']['value'], array( 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['private_site_page']['id'], 
-                            'data-content'=> __("Adds content to private site landing page"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Private Site landing page content"),
-                            ))?> 
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label col-sm-4', 'for'=>$forms['cookie_consent']['id']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['cookie_consent']['key'], 1, (bool) $forms['cookie_consent']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['cookie_consent']['id'], 
-                                'data-content'=> __("Enables an alert to accept cookies"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("Cookie consent"),
-                                ))?>
-                                <?= FORM::label($forms['cookie_consent']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['cookie_consent']['id']))?>
-                                <?= FORM::hidden($forms['cookie_consent']['key'], 0);?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['email_domains']['key'], __('Allowed email domains'), array('class'=>'control-label col-sm-4', 'for'=>$forms['email_domains']['key']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['email_domains']['key'], $forms['email_domains']['value'], array(
-                            'placeholder' => __('For email domain push enter.'), 
-                            'class' => 'tips form-control', 
-                            'id' => $forms['email_domains']['key'], 
-                            'data-original-title'=> __("Email domains are separated with coma (,)"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-role'=>'tagsinput',
-                            'data-content'=>__("You need to write your email domains to enable the service."),
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['analytics']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-add-tracking-codes/'>".__('Analytics Tracking ID')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['analytics']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
-                            'placeholder' => 'UA-XXXXX-YY', 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['analytics']['id'],
-                            'data-content'=> __("Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Analytics Tracking ID"), 
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['akismet_key']['id'], "<a target='_blank' href='http://akismet.com/'>".__('Akismet Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['akismet_key']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['akismet_key']['key'], $forms['akismet_key']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['akismet_key']['id'],
-                            'data-content'=> __("Providing akismet key will activate this feature. This feature deals with spam posts and emails."),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Akismet Key"), 
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['gcm_apikey']['id'], "<a target='_blank' href='https://docs.yclas.com/native-apps/#push-notifications'>".__('GCM API Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['gcm_apikey']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['gcm_apikey']['key'], $forms['gcm_apikey']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['gcm_apikey']['id'],
-                            'data-content'=> __("Push notifications for your native app. Using Google Cloud Messaging, insert your API Key here."),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Push notifications"), 
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['html_head']['id'], "<a target='_blank' href='https://docs.yclas.com/html-in-head-element/'>".__('HTML in HEAD element')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['html_head']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::textarea($forms['html_head']['key'], $forms['html_head']['value'], array(
-                            'placeholder' => '',
-                            'rows' => 3, 'cols' => 50, 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['html_head']['id'],
-                            'data-content'=> __('To include your custom HTML code (validation metadata, reference to JS/CSS files, etc.) in the HEAD element of the rendered page.'),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__('HTML in HEAD element'), 
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['html_footer']['id'], "<a target='_blank' href='https://docs.yclas.com/html-in-footer/'>".__('HTML in footer')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['html_footer']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::textarea($forms['html_footer']['key'], $forms['html_footer']['value'], array(
-                            'placeholder' => '',
-                            'rows' => 3, 'cols' => 50, 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['html_footer']['id'],
-                            'data-content'=> __('To include your custom HTML code (reference to JS or CSS files, etc.) in the footer of the rendered page.'),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__('HTML in footer'), 
-                            ))?> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading"><?=__('Regional Settings')?></div>
-            <div class="panel-body">
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <?= FORM::label($forms['number_format']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-currency-format/'>".__('Money format')."</a>", array('class'=>'control-label col-sm-4','for'=>$forms['number_format']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
-                            'placeholder' => "20", 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['number_format']['id'],
-                            'data-content'=> __("Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits."),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Decimal representation"), 
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['date_format']['id'], "<a target='_blank' href='https://docs.yclas.com/change-date-format/'>".__('Date format')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['date_format']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['date_format']['key'], $forms['date_format']['value'], array(
-                            'placeholder' => "d/m/Y", 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['date_format']['id'], 
-                            'data-content'=> __("Each advertisement has a publish date. By selecting format, you can change how it is shown on your website."),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"bottom",
-                            'data-toggle'=>"popover",
-                            'data-original-title'=>__("Date format"),
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-sm-4"><?="<a target='_blank' href='https://docs.yclas.com/how-to-change-time-zone/'>".__("Time Zone")."</a>"?>:</label>                
-                        <div class="col-sm-8">
-                        <?= FORM::select($forms['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
-                                'placeholder' => "Madrid [+1:00]", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['timezone']['id'], 
+                            <div class="form-group">
+                                <?=FORM::label($forms['akismet_key']['id'], __('Akismet Key'), array('class'=>'control-label', 'for'=>$forms['akismet_key']['id']))?>
+                                <a target="_blank" href="https://akismet.com/">
+                                    <i class="fa fa-external-link-square"></i>
+                                </a>
+                                <?=FORM::input($forms['akismet_key']['key'], $forms['akismet_key']['value'], array(
+                                    'placeholder' => "", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['akismet_key']['id'],
                                 ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-sm-4"><?=__("Measurement Units")?>:</label>                
-                        <div class="col-sm-8">
-                            <?= FORM::select($forms['measurement']['key'], array('metric' => __("Metric"), 'imperial' => __("Imperial")), $forms['measurement']['value'], array(
-                                'placeholder' => $forms['measurement']['value'], 
-                                'class' => 'tips form-control input-sm ', 
-                                'id' => $forms['measurement']['id'],
-                                'data-content'=> __("Measurement units used by the system."),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"bottom",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("Measurement"), 
-                            ))?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading"><?=__("Enable Additional Features")?></div>
-            <div class="panel-body">
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <?= FORM::label($forms['search_by_description']['id'], __("Include search by description"), array('class'=>'control-label col-sm-4', 'for'=>$forms['search_by_description']['id']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['search_by_description']['key'], 1, (bool) $forms['search_by_description']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['search_by_description']['id'], 
-                                'data-content'=> __("Once set to TRUE, enables search to look for key words in description"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("Include search by description"),
-                                ))?>
-                                <?= FORM::label($forms['search_by_description']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['search_by_description']['id']))?>
-                                <?= FORM::hidden($forms['search_by_description']['key'], 0);?>
+                                <span class="help-block">
+                                    <?=__("Providing akismet key will activate this feature. This feature deals with spam posts and emails.")?>
+                                </span>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <?= FORM::label($forms['search_multi_catloc']['id'], __("Multi select category and location search"), array('class'=>'control-label col-sm-4', 'for'=>$forms['search_multi_catloc']['id']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['search_multi_catloc']['key'], 1, (bool) $forms['search_multi_catloc']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['search_multi_catloc']['id'], 
-                                'data-content'=> __("Once set to TRUE, enables multi select category and location search"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("Multi select category and location search"),
-                                ))?>
-                                <?= FORM::label($forms['search_multi_catloc']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['search_multi_catloc']['id']))?>
-                                <?= FORM::hidden($forms['search_multi_catloc']['key'], 0);?>
+
+                            <div class="form-group">
+                                <?=FORM::label($forms['gcm_apikey']['id'], __('GCM API Key'), array('class'=>'control-label', 'for'=>$forms['gcm_apikey']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/native-apps/#push-notifications">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::input($forms['gcm_apikey']['key'], $forms['gcm_apikey']['value'], array(
+                                    'placeholder' => "", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['gcm_apikey']['id'],
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("Push notifications for your native app. Using Google Cloud Messaging, insert your API Key here.")?>
+                                </span>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <?= FORM::label($forms['google_authenticator']['id'], "<a target='_blank' href='https://docs.yclas.com/2-step-verification/'>".__('2 Step Authentication')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['google_authenticator']['id']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['google_authenticator']['key'], 1, (bool) $forms['google_authenticator']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['google_authenticator']['id'], 
-                                'data-content'=> __("Once set to TRUE, enables 2 step Google Authenticator"),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("2 step Google Authenticator"),
-                                ))?>
-                                <?= FORM::label($forms['google_authenticator']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['google_authenticator']['id']))?>
-                                <?= FORM::hidden($forms['google_authenticator']['key'], 0);?>
+                            <div class="form-group">
+                                <?=FORM::label($forms['html_head']['id'], __('HTML in HEAD element'), array('class'=>'control-label', 'for'=>$forms['html_head']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/html-in-head-element/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::textarea($forms['html_head']['key'], $forms['html_head']['value'], array(
+                                    'placeholder' => '',
+                                    'rows' => 3, 'cols' => 50, 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['html_head']['id'],
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("To include your custom HTML code (validation metadata, reference to JS/CSS files, etc.) in the HEAD element of the rendered page.")?>
+                                </span>
                             </div>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading"><?=__("Comments Configuration")?></div>
-            <div class="panel-body">
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <?= FORM::label($forms['blog_disqus']['id'], "<a target='_blank' href='https://docs.yclas.com/how-to-create-a-blog/'>".__('Disqus for blog')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['blog_disqus']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['blog_disqus']['key'], $forms['blog_disqus']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['blog_disqus']['id'], 
-                            'data-original-title'=> __("Disqus for Blog Comments"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-content'=>__("You need to write your disqus ID to enable the service."),
-                            ))?> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <?= FORM::label($forms['faq_disqus']['id'], "<a target='_blank' href='https://docs.yclas.com/create-frequent-asked-questions-faq/'>".__('Disqus for FAQ')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['faq_disqus']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['faq_disqus']['id'], 
-                            'data-original-title'=> __("Disqus for FAQ Comments"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-content'=>__("You need to write your disqus ID to enable the service."),
-                            ))?> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading"><?=__("reCAPTCHA Configuration")?></div>
-            <div class="panel-body">
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <?= FORM::label($forms['recaptcha_active']['id'], "<a target='_blank' href='https://www.google.com/recaptcha/intro/index.html'>".__("Enable reCAPTCHA as captcha provider")."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['recaptcha_active']['id']))?>
-                        <div class="col-sm-8">
-                            <div class="onoffswitch">
-                                <?= Form::checkbox($forms['recaptcha_active']['key'], 1, (bool) $forms['recaptcha_active']['value'], array(
-                                'placeholder' => __("TRUE or FALSE"), 
-                                'class' => 'onoffswitch-checkbox', 
-                                'id' => $forms['recaptcha_active']['id'], 
-                                'data-content'=> __("If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register."),
-                                'data-trigger'=>"hover",
-                                'data-placement'=>"right",
-                                'data-toggle'=>"popover",
-                                'data-original-title'=>__("Black List"),
-                                ))?>
-                                <?= FORM::label($forms['recaptcha_active']['id'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['recaptcha_active']['id']))?>
-                                <?= FORM::hidden($forms['recaptcha_active']['key'], 0);?>
+                            <div class="form-group">
+                                <?=FORM::label($forms['html_footer']['id'], __('HTML in footer'), array('class'=>'control-label', 'for'=>$forms['html_footer']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/html-in-footer/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::textarea($forms['html_footer']['key'], $forms['html_footer']['value'], array(
+                                    'placeholder' => '',
+                                    'rows' => 3, 'cols' => 50, 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['html_footer']['id'],
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("To include your custom HTML code (reference to JS or CSS files, etc.) in the footer of the rendered page.")?>
+                                </span>
                             </div>
+                            <hr>
+                            <p>
+                                <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
+                            </p>
                         </div>
-                    </div>
+                        <div id="tabSettingsRegional" class="tab-pane fade">
+                            <h4><?=__('Regional Settings')?></h4>
 
-                    <div class="form-group">
-                        <?= FORM::label($forms['recaptcha_sitekey']['id'], "<a target='_blank' href='https://www.google.com/recaptcha/admin#list'>".__('reCAPTCHA Site Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['recaptcha_sitekey']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['recaptcha_sitekey']['key'], $forms['recaptcha_sitekey']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['recaptcha_sitekey']['id'], 
-                            'data-original-title'=> __("reCaptcha Site Key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-content'=>__("You need to write reCAPTCHA Site Key to enable the service."),
-                            ))?> 
+                            <hr>
+
+                            <div class="form-group">
+                                <?=FORM::label($forms['number_format']['id'], __('Money format'), array('class'=>'control-label','for'=>$forms['number_format']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/how-to-currency-format/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
+                                    'placeholder' => "20", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['number_format']['id']
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits.")?>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['date_format']['id'], __('Date format'), array('class'=>'control-label', 'for'=>$forms['date_format']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/change-date-format/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::input($forms['date_format']['key'], $forms['date_format']['value'], array(
+                                    'placeholder' => "d/m/Y", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['date_format']['id'], 
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("Each advertisement has a publish date. By selecting format, you can change how it is shown on your website.")?>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label"><?=__("Time Zone")?>:</label>  
+                                <a target="_blank" href="https://docs.yclas.com/how-to-change-time-zone/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?= FORM::select($forms['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
+                                        'placeholder' => "Madrid [+1:00]", 
+                                        'class' => 'tips form-control', 
+                                        'id' => $forms['timezone']['id'], 
+                                ))?>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label"><?=__("Measurement Units")?>:</label>
+                                <?=FORM::select($forms['measurement']['key'], array('metric' => __("Metric"), 'imperial' => __("Imperial")), $forms['measurement']['value'], array(
+                                        'placeholder' => $forms['measurement']['value'], 
+                                        'class' => 'form-control', 
+                                        'id' => $forms['measurement']['id'],
+                                ))?>
+                                <span class="help-block">
+                                    <?=__("Measurement units used by the system.")?>
+                                </span>
+                            </div>
+                            <hr>
+                            <p>
+                                <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
+                            </p>
                         </div>
-                    </div>
+                        <div id="tabSettingsAdditionalFeatures" class="tab-pane fade">
+                            <h4><?=__("Enable Additional Features")?></h4>
 
-                    <div class="form-group">
-                        <?= FORM::label($forms['recaptcha_secretkey']['id'], "<a target='_blank' href='https://www.google.com/recaptcha/admin#list'>".__('reCAPTCHA Secret Key')."</a>", array('class'=>'control-label col-sm-4', 'for'=>$forms['recaptcha_secretkey']['id']))?>
-                        <div class="col-sm-8">
-                            <?= FORM::input($forms['recaptcha_secretkey']['key'], $forms['recaptcha_secretkey']['value'], array(
-                            'placeholder' => "", 
-                            'class' => 'tips form-control input-sm', 
-                            'id' => $forms['recaptcha_secretkey']['id'], 
-                            'data-original-title'=> __("reCaptcha Secret Key"),
-                            'data-trigger'=>"hover",
-                            'data-placement'=>"right",
-                            'data-toggle'=>"popover",
-                            'data-content'=>__("You need to write your reCAPTCHA Secret Key to enable the service."),
-                            ))?> 
+                            <hr>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['search_by_description']['id'], __("Include search by description"), array('class'=>'control-label', 'for'=>$forms['search_by_description']['id']))?>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['search_by_description']['key'], 1, (bool) $forms['search_by_description']['value'], array('id' => $forms['search_by_description']['id'].'1'))?>
+                                    <?=Form::label($forms['search_by_description']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['search_by_description']['key'], 0, ! (bool) $forms['search_by_description']['value'], array('id' => $forms['search_by_description']['id'].'0'))?>
+                                    <?=Form::label($forms['search_by_description']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("Once set to TRUE, enables search to look for key words in description")?>
+                                </span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <?= FORM::label($forms['search_multi_catloc']['id'], __("Multi select category and location search"), array('class'=>'control-label', 'for'=>$forms['search_multi_catloc']['id']))?>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['search_multi_catloc']['key'], 1, (bool) $forms['search_multi_catloc']['value'], array('id' => $forms['search_multi_catloc']['id'].'1'))?>
+                                    <?=Form::label($forms['search_multi_catloc']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['search_multi_catloc']['key'], 0, ! (bool) $forms['search_multi_catloc']['value'], array('id' => $forms['search_multi_catloc']['id'].'0'))?>
+                                    <?=Form::label($forms['search_multi_catloc']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("Once set to TRUE, enables multi select category and location search")?>
+                                </span>
+                            </div>
+                            <hr>
+                            <p>
+                                <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
+                            </p>
+                        </div>
+                        <div id="tabSettingsComments" class="tab-pane fade">
+                            <h4><?=__("Comments Configuration")?></h4>
+
+                            <hr>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['blog_disqus']['id'], __('Disqus for blog'), array('class'=>'control-label', 'for'=>$forms['blog_disqus']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/how-to-create-a-blog/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::input($forms['blog_disqus']['key'], $forms['blog_disqus']['value'], array(
+                                    'placeholder' => "", 
+                                    'class' => 'tips form-control', 
+                                    'id' => $forms['blog_disqus']['id'],
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("You need to write your disqus ID to enable the service.")?>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['faq_disqus']['id'], __('Disqus for FAQ'), array('class'=>'control-label', 'for'=>$forms['faq_disqus']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/create-frequent-asked-questions-faq/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
+                                    'placeholder' => "", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['faq_disqus']['id'],
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("You need to write your disqus ID to enable the service.")?>
+                                </span>
+                            </div>
+                            <hr>
+                            <p>
+                                <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
+                            </p>
+                        </div>
+                        <div id="tabSettingsRecaptcha" class="tab-pane fade">
+                            <h4><?=__("reCAPTCHA Configuration")?></h4>
+
+                            <hr>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['recaptcha_active']['id'], __("Enable reCAPTCHA as captcha provider"), array('class'=>'control-label', 'for'=>$forms['recaptcha_active']['id']))?>
+                                <a target="_blank" href="https://www.google.com/recaptcha/intro/index.html">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['recaptcha_active']['key'], 1, (bool) $forms['recaptcha_active']['value'], array('id' => $forms['recaptcha_active']['id'].'1'))?>
+                                    <?=Form::label($forms['recaptcha_active']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['recaptcha_active']['key'], 0, ! (bool) $forms['recaptcha_active']['value'], array('id' => $forms['recaptcha_active']['id'].'0'))?>
+                                    <?=Form::label($forms['recaptcha_active']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("If advertisement is marked as spam, user is also marked. Can not publish new ads or register until removed from Black List! Also will not allow users from disposable email addresses to register.")?>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['recaptcha_sitekey']['id'], __('reCAPTCHA Site Key'), array('class'=>'control-label', 'for'=>$forms['recaptcha_sitekey']['id']))?>
+                                <a target="_blank" href="https://www.google.com/recaptcha/admin#list">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::input($forms['recaptcha_sitekey']['key'], $forms['recaptcha_sitekey']['value'], array(
+                                    'placeholder' => "", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['recaptcha_sitekey']['id'],
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("You need to write reCAPTCHA Site Key to enable the service.")?>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['recaptcha_secretkey']['id'], __('reCAPTCHA Secret Key'), array('class'=>'control-label', 'for'=>$forms['recaptcha_secretkey']['id']))?>
+                                <a target="_blank" href="https://www.google.com/recaptcha/admin#list">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?=FORM::input($forms['recaptcha_secretkey']['key'], $forms['recaptcha_secretkey']['value'], array(
+                                    'placeholder' => "", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['recaptcha_secretkey']['id'],
+                                ))?> 
+                                <span class="help-block">
+                                    <?=__("You need to write your reCAPTCHA Secret Key to enable the service.")?>
+                                </span>
+                            </div>
+                            <hr>
+                            <p>
+                                <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="col-sm-8 col-sm-offset-4">
-                    <?= FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
-                </div>
-            </div>
-        </div>
         </form>
     </div>
 </div>

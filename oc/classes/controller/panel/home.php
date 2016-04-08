@@ -259,6 +259,63 @@ class Controller_Panel_Home extends Auth_Controller {
         
         $orders = $query->as_array();
         $content->orders_total = (isset($orders[0]['count']))?$orders[0]['count']:0;
+
+        /////////////////////USERS STATS////////////////////////////////
+        $query = DB::select(DB::expr('DATE(created) date'))
+                        ->select(DB::expr('COUNT(id_user) count'))
+                        ->from('users')
+                        ->where('status','=',Model_User::STATUS_ACTIVE)
+                        ->where('created','between',array($my_from_date,$my_to_date))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('date','asc')
+                        ->execute();
+        
+        $users_dates = $query->as_array('date');
+        
+        
+        //Today 
+        $query = DB::select(DB::expr('COUNT(id_user) count'))
+                        ->from('users')
+                        ->where('status','=',Model_User::STATUS_ACTIVE)
+                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('created','asc')
+                        ->execute();
+        
+        $users = $query->as_array();
+        $content->users_today     = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        
+        //Yesterday
+        $query = DB::select(DB::expr('COUNT(id_user) count'))
+                        ->from('users')
+                        ->where('status','=',Model_User::STATUS_ACTIVE)
+                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
+                        ->group_by(DB::expr('DATE( created )'))
+                        ->order_by('created','asc')
+                        ->execute();
+        
+        $users = $query->as_array();
+        $content->users_yesterday = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        
+        
+        //Last 30 days ads
+        $query = DB::select(DB::expr('COUNT(id_user) count'))
+                        ->from('users')
+                        ->where('status','=',Model_User::STATUS_ACTIVE)
+                        ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
+                        ->execute();
+        
+        $ads = $query->as_array();
+        $content->users_month = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        
+        //total ads
+        $query = DB::select(DB::expr('COUNT(id_user) count'))
+                        ->from('users')
+                        ->where('status','=',Model_User::STATUS_ACTIVE)
+                        ->execute();
+        
+        $ads = $query->as_array();
+        $content->users_total = (isset($ads[0]['count']))?$ads[0]['count']:0;
 	}
     
     //marked email as subscribed
