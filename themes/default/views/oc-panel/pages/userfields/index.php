@@ -1,18 +1,35 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="page-header">
-    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'new'))?>" title="<?=__('New field')?>">
-        <?=__('New field')?>
+<ul class="list-inline pull-right">
+    <li>
+        <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'new'))?>" title="<?=__('New field')?>">
+            <i class="fa fa-plus-circle"></i>&nbsp; <?=__('New field')?>
+        </a>
+    </li>
+</ul>
+
+<h1 class="page-header page-title">
+    <?=__('User custom fields')?>
+    <a target="_blank" href="https://docs.yclas.com/users-custom-fields/">
+        <i class="fa fa-question-circle"></i>
     </a>
-    <h1><?=__('Custom Fields for Users')?></h1>
-    <?if (Theme::get('premium')!=1):?>
-        <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
-            <?=__('Custom fields are only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
-            <a class="btn btn-success pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>" title="<?=__('Browse Themes')?>"><?=__('Browse Themes')?></a>
+</h1>
+
+<hr>
+
+<?if (Theme::get('premium')!=1):?>
+    <div class="alert alert-info fade in">
+        <p>
+            <strong><?=__('Heads Up!')?></strong> 
+            <?=__('Custom fields are only available with premium themes!').' '.__('Upgrade your Open Classifieds site to activate this feature.')?>
         </p>
-    <?endif?>
-    <a target='_blank' href='https://docs.yclas.com/users-custom-fields/'><?=__('Read more')?></a>
-</div>
+        <p>
+            <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>">
+                <?=__('Browse Themes')?>
+            </a>
+        </p>
+    </div>
+<?endif?>
 
 <div class="row">
     <div class="col-md-12">
@@ -26,12 +43,12 @@
                                 <span class="drag-icon"><i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i></span>
                                 <div class="drag-name">
                                     <?=$name?>
-                                    <span class="label label-info "><?=$field['type']?></span>
-                                    <span class="label label-info "><?=($field['required'])?__('required'):NULL?></span>
-                                    <span class="label label-info "><?=(isset($field['searchable']) AND $field['searchable'])?__('Searchable'):NULL?></span>
-                                    <span class="label label-info "><?=(isset($field['show_profile']) AND $field['show_profile'])?__('Show profile'):NULL?></span>
-                                    <span class="label label-info "><?=(isset($field['show_register']) AND $field['show_register'])?__('Show register'):NULL?></span>
-                                    <span class="label label-info "><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>
+                                    <span class="label label-info label-sm"><?=$field['type']?></span>
+                                    <span class="label label-info label-sm"><?=($field['required'])?__('required'):NULL?></span>
+                                    <span class="label label-info label-sm"><?=(isset($field['searchable']) AND $field['searchable'])?__('Searchable'):NULL?></span>
+                                    <span class="label label-info label-sm"><?=(isset($field['show_profile']) AND $field['show_profile'])?__('Show profile'):NULL?></span>
+                                    <span class="label label-info label-sm"><?=(isset($field['show_register']) AND $field['show_register'])?__('Show register'):NULL?></span>
+                                    <span class="label label-info label-sm"><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>
                                 </div>
                                 <a class="drag-action ajax-load" title="<?=__('Edit')?>"
                                     href="<?=Route::url('oc-panel',array('controller'=>'userfields','action'=>'update','id'=>$name))?>">

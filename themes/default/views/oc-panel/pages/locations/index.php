@@ -1,32 +1,50 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="page-header">
-    <ul class="list-inline pull-right">
-        <li>
-            <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'geonames'), 'http')?><?=Core::get('id_location') ? '?id_location='.Core::get('id_location') : NULL?>" title="<?=__('Import Locations')?>" target="_blank">
-                <?=__('Import Geonames Locations')?>
-            </a>
-        </li>
-        <li>
-            <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
-                <?=__('New Location')?>
-            </a>
-        </li>
-    </ul>
-    <h1><?=($location->id_location > 1) ? $location->name.' – ':NULL?> <?=__('Locations')?></h1>
-    <p><?=__("Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).")?> <a href="https://docs.yclas.com/how-to-add-locations/" target="_blank"><?=__('Read more')?></a></p>
-</div>
+<ul class="list-inline pull-right">
+    <li>
+        <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'geonames'), 'http')?><?=Core::get('id_location') ? '?id_location='.Core::get('id_location') : NULL?>" title="<?=__('Import Locations')?>" target="_blank">
+            <?=__('Import Geonames Locations')?>
+        </a>
+    </li>
+    <li>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#quick-creator">
+            <?=__('Quick creator')?>
+        </button>
+    </li>
+    <li>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-tool">
+            <i class="fa fa-upload"></i>&nbsp;  <?=__('Import')?>
+        </button>
+    </li>
+    <li>
+        <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
+            <i class="fa fa-plus-circle"></i>&nbsp;  <?=__('New Location')?>
+        </a>
+    </li>
+</ul>
+
+<h1 class="page-header page-title">
+    <?=__('Locations')?>
+    <a target="_blank" href="https://docs.yclas.com/how-to-add-locations/">
+        <i class="fa fa-question-circle"></i>
+    </a>
+</h1>
+
+<hr>
+
+<p>
+    <?=__('Change the order of your locations. Keep in mind that more than 2 levels nested probably won´t be displayed in the theme (it is not recommended).')?>
+</p>
 
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading"><?=$location->name?></div>
-            <div class="panel-body">
-                <?=FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'delete')), array('class'=>'form-inline', 'enctype'=>'multipart/form-data'))?>
+            <div class="panel-heading"><div class="panel-title"><?=$location->name?></div></div>
+            <?=FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'delete')), array('enctype'=>'multipart/form-data'))?>
+                <div class="panel-body">
                     <ol class='plholder' id="ol_<?=$location->id_location?>" data-id="<?=$location->id_location?>">
                         <?foreach ($locs as $loc) :?>
                             <li data-id="<?=$loc->id_location?>" id="li_<?=$loc->id_location?>">
-                        
                                 <div class="drag-item">
                                     <span class="drag-icon"><i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i></span>
                                     <div class="drag-name">
@@ -52,10 +70,9 @@
                                         <i class="glyphicon glyphicon-trash"></i>
                                     </a>
                                     <span class="drag-action">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input name="locations[]" value="<?=$loc->id_location?>" type="checkbox">
-                                            </label>
+                                        <div class="checkbox check-success">
+                                            <input name="locations[]" value="<?=$loc->id_location?>" type="checkbox" id="checkbox_<?=$loc->id_location?>">
+                                            <label for="checkbox_<?=$loc->id_location?>"></label>
                                         </div>
                                     </span>
                                 </div>
@@ -65,70 +82,21 @@
                     </ol><!--ol_1-->
                     
                     <span id='ajax_result' data-url='<?=Route::url('oc-panel',array('controller'=>'location','action'=>'saveorder'))?>'></span>
-                    
-                    <?if(count($locs) > 0) :?>
-                        <p class="text-right">
+                </div>
+                <?if(count($locs) > 1) :?>
+                    <div class="panel-footer">
+                        <div class="text-right">
                             <button type="button" data-toggle="modal" data-target="#delete-all" class="btn btn-danger">
                                 <?=__('Delete all locations')?>
                             </button>
 
                             <button name="delete" type="submit" class="btn btn-danger">
-                                <?=__('Delete selected locations')?>
+                                <i class="glyphicon glyphicon-trash"></i>&nbsp; <?=__('Delete selected locations')?>
                             </button>
-                        </p>
-                    <?endif?>
-                <?=FORM::close()?>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <span class="label label-info"><?=__('Heads Up!')?> <?=__('Quick location creator.')?></span>
-                        <p><?=__('Add names for multiple locations, for each one push enter.')?></p>
-                      
-                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations'.'?id_location='.Core::get('id_location', 1))), array('class'=>'form-horizontal', 'role'=>'form','enctype'=>'multipart/form-data'))?>
-                            <div class="form-group">
-                                <?= FORM::label('multy_locations', __('Name').':', array('class'=>'col-sm-3 control-label', 'for'=>'multy_locations'))?>
-                                <div class="col-sm-8">
-                                    <?= FORM::input('multy_locations', '', array('placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_locations', 'type' => 'text','data-role'=>'tagsinput'))?>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-8">
-                                    <?= FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations'.'?id_location='.Core::get('id_location', 1)))))?>
-                                </div>
-                            </div>
-                        <?= FORM::close()?>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><?="<a target='_blank' href='https://docs.yclas.com/use-import-tool-categories-locations/'>"._('Upload CSV file')."</a>"?></div>
-                    <div class="panel-body">
-                        <p>
-                            <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwa2VjRXAtV0FXVlk&export=download"><?=__('download example')?>.</a>
-                        </p>
-                        <hr>
-                        <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'.'?id_parent='.Core::get('id_location', 1))), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="csv_file_locations"><?=__('Import Locations')?></label>
-                                <div class="col-sm-8">
-                                    <input type="file" name="csv_file_locations" id="csv_file_locations" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-8">
-                                    <?= FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'.'?id_parent='.Core::get('id_location', 1)))))?>
-                                </div>
-                            </div>
-                        <?= FORM::close()?>
-                    </div>
-                </div>
-            </div>
+                <?endif?>
+            <?=FORM::close()?>
         </div>
     </div>
 </div>
@@ -151,6 +119,57 @@
                 </div>
             <input type="hidden" name="id_location" value="<?=Core::get('id_location')?>"></div>
             <?= FORM::close()?>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="quick-creator" tabindex="-1" role="dialog" aria-labelledby="quickLocations" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <?=FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations'.'?id_location='.Core::get('id_location', 1))), array('role'=>'form','enctype'=>'multipart/form-data'))?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
+                    <h4 id="quickLocations" class="modal-title"><?=__('Quick location creator.')?></h4>
+                </div>
+                <div class="modal-body">
+                    <p><?=__('Add names for multiple locations, for each one push enter.')?></p>
+                    <div class="form-group">
+                        <?=FORM::label('multy_locations', __('Name'), array('class'=>'control-label', 'for'=>'multy_locations'))?>
+                        <div>
+                            <?=FORM::input('multy_locations', '', array('placeholder' => __('Hit enter to confirm'), 'class' => 'form-control', 'id' => 'multy_locations', 'type' => 'text','data-role'=>'tagsinput'))?>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
+                    <?=FORM::button('submit', __('Send'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'location','action'=>'multy_locations'.'?id_location='.Core::get('id_location', 1)))))?>
+                </div>
+            <?=FORM::close()?>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="import-tool" tabindex="-1" role="dialog" aria-labelledby="importLocations" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <?= FORM::open(Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'.'?id_parent='.Core::get('id_location', 1))), array('enctype'=>'multipart/form-data'))?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
+                    <h4 id="importLocations" class="modal-title"><?=__('Upload CSV file')?></h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwa2VjRXAtV0FXVlk&export=download"><?=__('download example')?>.</a>
+                    </p>
+                    <div class="form-group">
+                        <label class="control-label" for="csv_file_locations"><?=__('Import Locations')?></label>
+                        <input type="file" name="csv_file_locations" id="csv_file_locations" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer text-right">
+                    <?=FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'.'?id_parent='.Core::get('id_location', 1)))))?>
+                </div>
+            <?=FORM::close()?>
         </div>
     </div>
 </div>

@@ -1,23 +1,27 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="page-header">
-    <h1><?=__('Import tool for ads')?></h1>
-    <p><a target='_blank' href='https://docs.yclas.com/how-to-import-ads/'><?=__('Read More')?></a></p>
-</div>
+<h1 class="page-header page-title">
+    <?=__('Import tool for ads')?>
+    <a target="_blank" href="https://docs.yclas.com/how-to-import-ads/">
+        <i class="fa fa-question-circle"></i>
+    </a>
+</h1>
+
+<hr>
+
 <div class="row">
-    
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Upload CSV file')?></h3>
+                <div class="panel-title"><?=__('Upload CSV file')?></div>
+            </div>
+            <div class="panel-body">
                 <p>
                     <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwRzlOT2NCem5maFU&export=download"><?=__('download example')?>.</a>
-                    <br>
+                    <br /><br />
                     <span class="label label-info"><?=__('Hosting limit')?></span> 
                     upload_max_filesize: <?=ini_get('upload_max_filesize')?>, max_execution_time: <?=ini_get('max_execution_time')?><?=__('seconds')?> <?=__('limited to 10.000 at a time')?>, <?=__('1 MB file')?>.
                 </p>
-            </div>
-            <div class="panel-body">
                 <?= FORM::open(Route::url('oc-panel',array('controller'=>'import','action'=>'csv')), array('class'=>'', 'enctype'=>'multipart/form-data'))?>
                     <div class="form-group">
                         <label for=""> <?=__('Import Ads')?></label>
@@ -32,9 +36,9 @@
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Process Queue')?></h3>
+                <div class="panel-title"><?=__('Process Queue')?></div>
             </div>
-            <div class="panel-heading">
+            <div class="panel-body">
                 <p>
                 <?if($ads_import>0):?>
                     <div id="count_import"><?=sprintf(__('You got %d ads to get processed'),$ads_import)?></div>
@@ -61,7 +65,7 @@
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Get Latitude and Longitude')?></h3>
+                <div class="panel-title"><?=__('Get Latitude and Longitude')?></div>
             </div>
             <div class="panel-body">
                 <p><?=__('Gets Ads Latitude and Longitude from Google Maps API using advertisements address')?></p>

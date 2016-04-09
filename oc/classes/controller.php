@@ -114,6 +114,7 @@ class Controller extends Kohana_Controller
             $this->template->content          = '';
             $this->template->styles           = array();
             $this->template->scripts          = array();
+            $this->template->amphtml          = NULL;
 
             $this->template->header  = View::factory('header');
             $this->template->footer  = View::factory('footer');

@@ -13,3 +13,5 @@ themes/*
 oc/vendor/hybridauth/logs.txt
 oc/codecept.phar
 oc/tests/_output/*
+/vendor
+/node_modules

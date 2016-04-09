@@ -60,7 +60,7 @@ Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.1,bootstra
  * custom error alerts
  */
 Form::$errors_tpl 	= '<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a>
-			       		<h4 class="alert-heading">%s</h4>
+			       		<p><strong>%s</strong></p>
 			        	<ul>%s</ul></div>';
 
 Form::$error_tpl 	= '<div class="alert "><a class="close" data-dismiss="alert">×</a>%s</div>';
@@ -68,5 +68,5 @@ Form::$error_tpl 	= '<div class="alert "><a class="close" data-dismiss="alert">�
 
 Alert::$tpl 	= 	'<div class="alert alert-%s">
 					<a class="close" data-dismiss="alert" href="#">×</a>
-					<h4 class="alert-heading">%s</h4>%s
+					<strong>%s:</strong> %s
 					</div>';

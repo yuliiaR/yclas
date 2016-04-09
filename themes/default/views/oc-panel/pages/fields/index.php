@@ -1,18 +1,39 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<div class="page-header">
-    <a class="btn btn-primary pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>" title="<?=__('New field')?>">
-        <?=__('New field')?>
+<ul class="list-inline pull-right">
+    <li>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cf-template">
+            <?=__('Templates')?>
+        </button>
+    </li>
+    <li>
+        <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'new'))?>" title="<?=__('New field')?>">
+            <i class="fa fa-plus-circle"></i>&nbsp; <?=__('New field')?>
+        </a>
+    </li>
+</ul>
+
+<h1 class="page-header page-title">
+    <?=__('Custom Fields')?>
+    <a target="_blank" href="https://docs.yclas.com/how-to-create-custom-fields/">
+        <i class="fa fa-question-circle"></i>
     </a>
-    <h1><?=__('Custom Fields')?></h1>
-    <?if (Theme::get('premium')!=1):?>
-        <p class="well"><span class="label label-info"><?=__('Heads Up!')?></span> 
-            <?=__('Custom fields are only available with premium themes!').'<br/>'.__('Upgrade your Open Classifieds site to activate this feature.')?>
-            <a class="btn btn-success pull-right ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>" title="<?=__('Browse Themes')?>"><?=__('Browse Themes')?></a>
+</h1>
+<hr>
+
+<?if (Theme::get('premium')!=1):?>
+    <div class="alert alert-info fade in">
+        <p>
+            <strong><?=__('Heads Up!')?></strong> 
+            <?=__('Custom fields are only available with premium themes!').' '.__('Upgrade your Open Classifieds site to activate this feature.')?>
         </p>
-    <?endif?>
-    <a target='_blank' href='https://docs.yclas.com/how-to-create-custom-fields/'><?=__('Advertisement Custom Fields')?></a>
-</div>
+        <p>
+            <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>">
+                <?=__('Browse Themes')?>
+            </a>
+        </p>
+    </div>
+<?endif?>
 
 <div class="row">
     <div class="col-md-12">
@@ -57,49 +78,47 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?=__('Custom Fields Templates')?></h3>
-            </div>
-            <div class="panel-body">
-                <p><?=__('Create custom fields among predefined templates.')?></p>
-                <form class="form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'template'))?>">
+</div>
+
+<div class="modal fade" id="cf-template" tabindex="-1" role="dialog" aria-labelledby="cfTemplate" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form method="post" action="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'template'))?>">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
+                    <h4 id="cfTemplate" class="modal-title"><?=__('Custom Fields Templates')?></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Create custom fields among predefined templates.</p>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="date"><?=__('Type')?></label>      
-                        <div class="col-sm-4">
-                            <select name="type" class="form-control" id="cf_type_fileds" required>
-                                <option value="cars"><?=__('Cars')?></option>
-                                <option value="houses"><?=__('Real State')?></option>
-                                <option value="jobs"><?=__('Jobs')?></option>
-                                <option value="dating"><?=__('Friendship and Dating')?></option>  
-                            </select>
-                        </div>
-                    </div>
-                    <!-- multycategory selector -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2"><?=__('Categories')?></label>
-                        <div class="col-sm-4">
-                            <select id="categories" name="categories[]" multiple data-placeholder="<?=__('Choose 1 or several categories')?>">
-                                <option></option>
-                                <?function lili12($item, $key,$cats){?>
-                                    <?if($cats[$key]['id'] != 1):?>
-                                        <option value="<?=$cats[$key]['id']?>"><?=$cats[$key]['name']?></option>
-                                    <?endif?>
-                                    <?if (count($item)>0):?>
-                                        <? if (is_array($item)) array_walk($item, 'lili12', $cats);?>
-                                    <?endif?>
-                                <?}array_walk($order_categories, 'lili12',$categories);?>
-                            </select>
-                        </div>
+                        <label class="control-label" for="date"><?=__('Type')?></label>      
+                        <select name="type" class="form-control" id="cf_type_fileds" required>
+                            <option value="cars"><?=__('Cars')?></option>
+                            <option value="houses"><?=__('Real State')?></option>
+                            <option value="jobs"><?=__('Jobs')?></option>
+                            <option value="dating"><?=__('Friendship and Dating')?></option>  
+                        </select>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-4 col-sm-offset-2">
-                            <button type="submit" class="btn btn-primary"><?=__('Create')?></button>
-                        </div>
+                        <label class="control-label"><?=__('Categories')?></label>
+                        <select id="categories" name="categories[]" multiple data-placeholder="<?=__('Choose 1 or several categories')?>">
+                            <option></option>
+                            <?function lili12($item, $key,$cats){?>
+                                <?if($cats[$key]['id'] != 1):?>
+                                    <option value="<?=$cats[$key]['id']?>"><?=$cats[$key]['name']?></option>
+                                <?endif?>
+                                <?if (count($item)>0):?>
+                                    <? if (is_array($item)) array_walk($item, 'lili12', $cats);?>
+                                <?endif?>
+                            <?}array_walk($order_categories, 'lili12',$categories);?>
+                        </select>
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer text-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
+                    <button type="submit" class="btn btn-primary"><?=__('Create')?></button>
+                </div>
+            <?=FORM::close()?>
         </div>
     </div>
 </div>

@@ -107,20 +107,25 @@ function init_panel()
     $('select#cf_type_fileds').change(function(){ // on change add hidden   
         if($(this).val() == 'select' || $(this).val() == 'radio'){
             $('#cf_values_input').attr('type','text');
-            $('#cf_values_input').parent().parent().css('display','block'); // parent of a parent. display whole block
+            $('#cf_values_input').parent().css('display','block'); // parent of a parent. display whole block
         }
         else{
             $('#cf_values_input').attr('type','hidden');
-            $('#cf_values_input').parent().parent().css('display','none'); // parent of a parent. dont show whole block
+            $('#cf_values_input').parent().css('display','none'); // parent of a parent. dont show whole block
         }    
     }).change();
     
     // custom field edit, show/hide values field
-    $('#cf_values_input').parent().parent().css('display','none');
+    $('#cf_values_input').parent().css('display','none');
     if( $('#cf_type_field_input').attr('value') == 'select' 
         || $('#cf_type_field_input').attr('value') == 'radio') 
-            $('#cf_values_input').parent().parent().css('display','block'); 
+            $('#cf_values_input').parent().css('display','block'); 
 
+    // check all checkboxes in a table
+    $('#select-all').click(function(e){
+        var table= $(e.target).closest('table');
+        $('td input:checkbox',table).prop('checked',this.checked);
+    });
     
     $('select[name="locale_select"]').change(function()
     {
@@ -235,7 +240,7 @@ $(function(){
         //get the link location that was clicked
         pageurl = button.attr('href');
         button.css('cursor','wait');
-        //to get the ajax content and display in div with id 'content'
+        //to get the ajax content and display in div with id 'page-wrapper'
         $.ajax({
             url:updateURLParameter(pageurl,'rel','ajax'),
             beforeSend: function() {
@@ -254,7 +259,7 @@ $(function(){
                                         $('.br').removeClass('active');
                                         button.closest('.br').addClass('active');
                                         button.css('cursor','');
-                                        $("#content").html(data);
+                                        $("#page-wrapper").html(data);
                                         init_panel();
                                     });
 
@@ -267,7 +272,7 @@ $(window).bind('load', function() {
     setTimeout(function() {
         $(window).bind('popstate', function() {
             $.ajax({url:updateURLParameter(location.pathname,'rel','ajax'),success: function(data){
-                $('#content').html(data);
+                $('#page-wrapper').html(data);
             }});
         });
     }, 0);
@@ -336,3 +341,46 @@ function sendFile(file, editor, welEditable) {
         },
     });
 }
+
+
+//Loads the correct sidebar on window load,
+//collapses the sidebar on window resize.
+// Sets the min-height of #page-wrapper to window size
+$(function() {
+    $(window).bind("load resize", function() {
+        topOffset = 50;
+        width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+        if (width < 768) {
+            $('div.navbar-collapse').addClass('collapse');
+            topOffset = 100; // 2-row-menu
+        } else {
+            $('div.navbar-collapse').removeClass('collapse');
+        }
+
+        height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+        height = height - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#page-wrapper").css("min-height", (height) + "px");
+        }
+    });
+
+    var url = window.location;
+    var element = $('ul.nav a').filter().addClass('active').parent().parent().addClass('in').parent();
+    if (element.is('li')) {
+        element.addClass('active');
+    }
+});
+
+
+// The close button on the dashboard
+$('.close-panel').on('click',function() {
+    $.cookie('intro_panel', '1', { expires: 7, path: '/' });
+    $('#intro-panel').addClass('hidden');
+});
+
+
+// Initiate fastclick
+$(function() {
+    FastClick.attach(document.body);
+});

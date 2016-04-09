@@ -1,0 +1,20 @@
+.sidebar .sidebar-nav.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+/* New css */
+aside {
+    z-index: 4;
+    position: fixed;
+    width: 250px;
+    margin-left: -15px;
+    height:100%;
+    background:$sidebar-bg;
+    overflow: auto;
+}
+
+.folded aside {
+	overflow:initial;
+}
+
