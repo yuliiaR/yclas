@@ -1,5 +1,9 @@
 // Initiate the metisMenu
 $(function() {
+    $('.sidebar li.active').each(function() {
+        $(this).parent().parent().addClass('active');
+        $(this).parent().parent().find('a').attr('aria-expanded', true);
+    });
     $('#side-menu').metisMenu();
 });
 

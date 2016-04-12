@@ -66,8 +66,8 @@
               <?=Alert::show()?>
               <?=$content?>
               <?=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
-              <?=$footer?>
             </div>
+            <?=$footer?>
           </div>
         </div>
       </div>  
