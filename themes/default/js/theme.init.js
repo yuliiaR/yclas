@@ -5,24 +5,22 @@ $("button[name=submit]").click(function(){
     $("textarea[name=description]").data("sceditor").updateOriginal();
 });
     
-    //chosen enable/disable
-    $('select').chosen({
-        no_results_text: getChosenLocalization("no_results_text"),
-        placeholder_text_multiple: getChosenLocalization("placeholder_text_multiple"),
-        placeholder_text_single: getChosenLocalization("placeholder_text_single")
+    //select2 enable/disable
+    $('select').select2({
+        "language": "es"
     });
     $('select').each(function(){
-        if($(this).hasClass('disable-chosen')){
-            $(this).chosen('destroy');      
+        if($(this).hasClass('disable-select2')){
+            $(this).select2('destroy');      
         } 
     });
-    //chosen responsive width
-    $(window).on('resize.chosen', function() {
+    //select2 responsive width
+    $(window).on('resize', function() {
         $('select').each(function(){
             var width = $(this).parent().width();
-            $(this).siblings('.chosen-container').css({'width':width});
+            $(this).siblings('.select2-container').css({'width':width});
         });
-    }).triggerHandler('resize.chosen');
+    }).trigger('resize');
     
     $('input, select, textarea, .btn').tooltip();
 
