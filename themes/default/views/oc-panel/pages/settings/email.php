@@ -26,7 +26,7 @@
                     <div class="tab-content">
                         <div id="tabSettingsEmailGeneral" class="tab-pane active fade">
                             <h4>
-                                <?=__('Generel Email Configuration')?>
+                                <?=__('General Email Configuration')?>
                             </h4>
                             <hr>
                         <?foreach ($config as $c):?>
