@@ -102,9 +102,9 @@
             </div>
             <div class="form-group">
               <div class="col-sm-8 col-sm-offset-4">
-                <div class="checkbox checkbox-primary">
-                  <?=Form::checkbox('aspect_ratio', 1, (bool) $map_active, array('id' => 'aspect_ratio'.'1'))?>
-                  <?=Form::label('aspect_ratio'.'1', __('Enabled'))?>
+                <div class="checkbox check-success">
+                  <?=Form::checkbox('aspect_ratio', 1, (bool) $map_active, array('id' => 'aspratio'))?>
+                  <label for="aspratio"><?=__('Keep Aspect Ratio')?></label>
                 </div>
               </div>
             </div>
@@ -783,11 +783,17 @@
                     <?=__('Markers (Coordinates)')?>
                     </option>
                   </select></td>
-                <td><?=__('Enable')?>
-                  <input name="interactive" type="checkbox"  id="interactive" onchange="drawVisualization();" value="1" checked />
+                <td>
+                  <div class="checkbox check-success">
+                    <input name="interactive" type="checkbox"  id="interactive" onchange="drawVisualization();" value="1" checked />
+                    <label for="interactive"><?=__('Enable')?></label>
+                  </div>
                   <br>
-                  <?=__('Show Tooltip')?>
-                  <input name="tooltipt" type="checkbox"  id="tooltipt" onchange="drawVisualization();" value="1" checked /></td>
+                  <div class="checkbox check-success">
+                    <input name="tooltipt" type="checkbox"  id="tooltipt" onchange="drawVisualization();" value="1" checked />
+                    <label for="tooltipt"><?=__('Show Tooltip')?></label>
+                  </div>
+                </td>
                 <td><select name="map_action" onChange="isolinkcheck()">
                     <option value="none" selected="selected">
                     <?=__('None')?>

@@ -27,8 +27,16 @@
                 <tr>
                   	<td><?=$user->name?></td>
                   	<td><?=$user->email?></td>
-                  	<td><a href="<?=Route::url('oc-panel', array('controller'=>'pool','action'=>'remove','id'=>$user->id_user))?>" 
-                  		   class="btn btn-info"><?=__('Remove')?></a></td>
+                  	<td class="nowrap">
+                        <a href="<?=Route::url('oc-panel', array('controller'=>'pool','action'=>'remove','id'=>$user->id_user))?>" 
+                  		    class="btn btn-danger"
+                            title="<?=__('Are you sure you want to remove?')?>" 
+                            data-toggle="confirmation" 
+                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                            data-btnCancelLabel="<?=__('No way!')?>">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
                 </tr>
             <?endforeach?>
         </tbody>
