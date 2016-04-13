@@ -241,6 +241,7 @@
                                     'placeholder' => __('For email domain push enter.'), 
                                     'class' => 'form-control', 
                                     'id' => $forms['email_domains']['key'], 
+                                    'data-role'=>'tagsinput',
                                 ))?> 
                                 <span class="help-block">
                                     <?=__("You need to write your email domains to enable the service.")?>
