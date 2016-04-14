@@ -112,7 +112,7 @@
 
                             <div class="form-group">
                                 <?= FORM::label($forms['private_site']['id'], __("Private Site"), array('class'=>'control-label', 'for'=>$forms['private_site']['id']))?>
-                                <a target="_blank" href="#">
+                                <a target="_blank" href="https://docs.yclas.com/private-site/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <div class="radio radio-primary">
@@ -128,7 +128,7 @@
 
                             <div class="form-group">
                                 <?= FORM::label($forms['google_authenticator']['id'], __("2 Step Authentication"), array('class'=>'control-label', 'for'=>$forms['google_authenticator']['id']))?>
-                                <a target="_blank" href="#">
+                                <a target="_blank" href="https://docs.yclas.com/2-step-verification/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <div class="radio radio-primary">
@@ -207,7 +207,7 @@
 
                             <div class="form-group">
                                 <?=FORM::label($forms['private_site_page']['id'], __('Private Site landing page content'), array('class'=>'control-label', 'for'=>$forms['private_site_page']['id']))?>
-                                <a target="_blank" href="#">
+                                <a target="_blank" href="https://docs.yclas.com/private-site/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?=FORM::select($forms['private_site_page']['key'], $pages, $forms['private_site_page']['value'], array( 
