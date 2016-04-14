@@ -21,7 +21,7 @@
     }
     & > a {
       border-radius: 0;
-      padding: 15px 20px;
+      padding: 14px 20px;
       margin-right: 0;
       font-weight: 400;
       color: mix($text-color, #fff, 75%);
@@ -98,7 +98,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     width: 100%;
     position: relative;
-    bottom: 3px;
+    bottom: 5px;
     z-index: 120;
   }
   & > li {
@@ -160,7 +160,7 @@
       &.active,
       &:hover {
         &:after {
-          width: 3px;
+          width: 5px;
         }
       }
     }
@@ -169,7 +169,7 @@
   }
   &.nav-tabs-left {
     & > li:after {
-      right: 0;
+      left: 0;
     }
   }
   &.nav-tabs-right {
