@@ -1153,7 +1153,7 @@ function __($msgid)
         </div>
     </div> 
     
-    <script src="//cdn.jsdelivr.net/jquery/1.12.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js"></script>
