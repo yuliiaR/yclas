@@ -13,7 +13,7 @@
         <div class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="panel-title"><span class="text-success"> <?=__('Welcome')?> <?=Auth::instance()->get_user()->name?></span></div>
+                    <div class="panel-title"><?=__('Welcome')?> <?=Auth::instance()->get_user()->name?></div>
                     <a href="#" class="close-panel"><i class="fa fa-close"></i><span class="sr-only"><?=__('Hide')?></span></a>
                 </div>
                 <div class="panel-body">
