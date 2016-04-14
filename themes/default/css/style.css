@@ -8517,7 +8517,7 @@ ul.plholder li.placeholder:before {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 300;
+  font-weight: 500;
   color: #333333;
 }
 
@@ -8540,8 +8540,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0px;
   font-size: 27px;
   line-height: 35px;
-  font-weight: 300;
-  color: #2c2c2c;
+  font-weight: 500;
+  color: #333333;
 }
 
 .page-description {
@@ -8964,10 +8964,10 @@ aside {
 }
 
 .panel-default .panel-heading .panel-title {
-  font-weight: 300;
-  color: #333333;
+  font-weight: 500;
+  color: #41bb19;
   border-bottom: 1px solid #eeeeee;
-  padding: 20px;
+  padding: 15px 20px;
   margin-left: -20px;
   margin-right: -20px;
 }
@@ -9751,7 +9751,7 @@ fieldset[disabled] .btn-secondary.active {
 
 .nav-tabs > li > a {
   border-radius: 0;
-  padding: 15px 20px;
+  padding: 14px 20px;
   margin-right: 0;
   font-weight: 400;
   color: #666666;
@@ -9843,7 +9843,7 @@ fieldset[disabled] .btn-secondary.active {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   width: 100%;
   position: relative;
-  bottom: 3px;
+  bottom: 5px;
   z-index: 120;
 }
 
@@ -9913,11 +9913,11 @@ fieldset[disabled] .btn-secondary.active {
 .nav-tabs-simple.nav-tabs-left > li:hover:after,
 .nav-tabs-simple.nav-tabs-right > li.active:after,
 .nav-tabs-simple.nav-tabs-right > li:hover:after {
-  width: 3px;
+  width: 5px;
 }
 
 .nav-tabs-simple.nav-tabs-left > li:after {
-  right: 0;
+  left: 0;
 }
 
 .nav-tabs-simple.nav-tabs-right > li:after {
