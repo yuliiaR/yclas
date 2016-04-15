@@ -55,10 +55,10 @@
     </li>
     <li class="dropdown">
         <a class="dropdown-toggle profile-dropdown" data-toggle="dropdown" href="#">
-            <span class="hidden-xs"><?=Auth::instance()->get_user()->name?></span>
+            <span><?=Auth::instance()->get_user()->name?></span>
             <img src="<?=Auth::instance()->get_user()->get_profile_image()?>" alt="" height="32" width="32" class="img-circle profile-img">
         </a>
-        <ul class="dropdown-menu pull-right">
+        <ul class="dropdown-menu pull-right dropdown-profile">
             <li>
                 <a href="<?=Route::url('profile',array('seoname'=>Auth::instance()->get_user()->seoname))?>">
                     <i class="fa fa-fw fa-user"></i> <?=__('Public profile')?>

@@ -8555,12 +8555,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header {
-  background: #ffffff;
-  border-bottom: 1px solid rgba(230, 230, 230, 0.7);
+  background: #282C37;
 }
 
 header a {
-  color: #333333;
+  color: #b6bbca;
   padding: 30px 15px;
   display: inline-block;
 }
@@ -8572,10 +8571,10 @@ header a:hover, header a:focus {
 header .navbar {
   margin: 0;
   padding: 0;
-  height: 60px;
+  height: 50px;
   position: relative;
   z-index: 2;
-  background: #ffffff;
+  background: #282C37;
   border: 0;
   box-shadow: none;
 }
@@ -8603,7 +8602,7 @@ header .nav > li:last-of-type .linecon, header .nav > li:last-of-type .fa {
 }
 
 header .nav > li > a {
-  padding: 20px 7px;
+  padding: 15px 7px;
   display: inline-block;
 }
 
@@ -8626,7 +8625,7 @@ header .nav > li > a:hover, header .nav > li > a:focus {
 }
 
 header .nav > li > a.bigger {
-  padding: 20px 15px;
+  padding: 15px;
 }
 
 header .nav > li > .profile-dropdown .profile-img {
@@ -8635,6 +8634,11 @@ header .nav > li > .profile-dropdown .profile-img {
 
 header .nav > li > .dropdown-toggle .fa {
   margin-right: 0;
+}
+
+header .nav > li .dropdown-profile {
+  top: 57px;
+  right: 2px;
 }
 
 header .nav .open .dropdown-toggle {
@@ -8648,15 +8652,15 @@ header .navbar-brand {
   padding: 0;
   height: auto;
   cursor: pointer;
-  color: #231F20;
+  color: #b6bbca;
 }
 
 header .help-link {
   background: #f2f6f9;
   border: 1px solid #eee;
   position: absolute;
-  right: 16px;
-  bottom: -28px;
+  right: 15px;
+  bottom: -30px;
   padding: 5px 15px;
   font-weight: 300;
   z-index: 1;
@@ -8724,7 +8728,7 @@ header .dropdown > .dropdown-menu:after {
   background: #282C37;
   font-weight: 500;
   position: relative;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .sidebar-nav li a {
@@ -8820,7 +8824,7 @@ header .dropdown > .dropdown-menu:after {
 .sidebar-nav .nav-second-level li a {
   font-weight: 400;
   text-transform: none;
-  font-size: 12px;
+  font-size: 14px;
   padding: 14px 30px 14px 55px;
   color: #b6bbca !important;
 }
@@ -8892,6 +8896,7 @@ aside {
   height: 100%;
   background: #282C37;
   overflow: auto;
+  top: 60px;
 }
 
 .folded aside {
@@ -8965,7 +8970,7 @@ aside {
 
 .panel-default .panel-heading .panel-title {
   font-weight: 500;
-  color: #41bb19;
+  color: #333333;
   border-bottom: 1px solid #eeeeee;
   padding: 15px 20px;
   margin-left: -20px;
@@ -9039,7 +9044,7 @@ aside {
 
 .start-link {
   display: inline-block;
-  color: #333333;
+  color: #41bb19;
   margin: 0 40px 20px 0;
   padding-left: 30px;
   font-weight: 700;
@@ -9052,11 +9057,20 @@ aside {
   position: absolute;
   left: 0;
   top: -5px;
+  color: #333333;
 }
 
 .start-link:hover, .start-link:focus {
   color: #41bb19;
   text-decoration: none;
+}
+
+.widget-boxes .panel-heading {
+  padding: 20px;
+}
+
+.widget-boxes .panel-body {
+  padding-top: 0;
 }
 
 .panel-transparent {

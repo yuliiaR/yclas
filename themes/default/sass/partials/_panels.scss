@@ -55,7 +55,7 @@
 		}
         .panel-title {
             font-weight: 500;
-            color: $brand-primary;
+            color: $text-color;
             border-bottom:1px solid #eeeeee;
             padding:15px 20px;
             margin-left:-20px;
@@ -132,7 +132,7 @@
 
 .start-link {
     display:inline-block;
-    color:$text-color;
+    color:$brand-primary;
     margin:0 40px 20px 0;
     padding-left:30px;
     font-weight:700;
@@ -143,10 +143,20 @@
         position:absolute;
         left:0;
         top:-5px;
+        color:$text-color;
     }
     &:hover, &:focus {
         color:$brand-primary;
         text-decoration:none;
+    }
+}
+
+.widget-boxes {
+    .panel-heading {
+        padding: 20px;
+    }
+    .panel-body {
+        padding-top:0;
     }
 }
 

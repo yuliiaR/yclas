@@ -1,9 +1,7 @@
 header {
-	//background:$text-color-lighter;
-	background:$white;
-	border-bottom: 1px solid rgba(230,230,230,0.7);
+	background:$sidebar-bg;
 	a {
-		color:$text-color;
+		color:$white-darker;
 		&:hover, &:focus {
 			color:$brand-primary;
 		}
@@ -13,11 +11,10 @@ header {
 	.navbar {
 		margin:0;
 		padding:0;
-		height:60px;
+		height:50px;
 		position:relative;
 		z-index:2;	
-		//background:$text-color-lighter;	
-		background:$white;
+		background:$sidebar-bg;
 		border:0;
 		box-shadow:none;
 	}
@@ -39,7 +36,7 @@ header {
 				}
 			}
 			> a {
-				padding:20px 7px;
+				padding:15px 7px;
 				display:inline-block;
 				.linecon, .fa {
 					margin-right: 15px;
@@ -60,7 +57,7 @@ header {
 				background: transparent;
 			}
 			> a.bigger {
-				padding:20px 15px;
+				padding:15px;
 			}
 			> .profile-dropdown {
 				.profile-img {
@@ -71,6 +68,10 @@ header {
 				.fa {
 					margin-right:0;
 				}
+			}
+			.dropdown-profile {
+				top:57px;
+				right:2px;
 			}
 		}
 		.open {
@@ -86,14 +87,14 @@ header {
 		padding:0;
 		height:auto;
 		cursor:pointer;
-		color: #231F20;
+		color: $white-darker;
 	}
 	.help-link {
 		background:$text-color-lighter;
 		border:1px solid #eee;
 		position:absolute;
-		right:16px;
-		bottom:-28px;
+		right:15px;
+		bottom:-30px;
 		padding:5px 15px;
 		font-weight:300;
 		z-index:1;
