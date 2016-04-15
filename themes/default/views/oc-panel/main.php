@@ -62,10 +62,12 @@
           <div class="col-xs-12">
             <?=View::factory('oc-panel/sidebar',array('user'=>$user))?>
             <div id="page-wrapper">
+              <div class="row">
               <?=Breadcrumbs::render('oc-panel/breadcrumbs')?>
               <?=Alert::show()?>
               <?=$content?>
               <?=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
+              </div>
             </div>
             <?=$footer?>
           </div>
