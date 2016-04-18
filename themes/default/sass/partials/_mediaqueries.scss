@@ -125,6 +125,17 @@
             }
         }
     }
+    .nav-tabs-linetriangle li {
+        font-size:12px !important;
+        text-align:center;
+        width:100%;
+        a {
+            padding:14px 10px !important;
+            &:before {
+                display:none;
+            }
+        }
+    }
 }
 
 @media(min-width:768px) {

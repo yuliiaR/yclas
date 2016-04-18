@@ -8273,7 +8273,7 @@ body a:active {
 }
 
 #page-wrapper {
-  margin: 0 15px 0 265px;
+  margin: 0 0 0 250px;
   padding-top: 25px;
 }
 
@@ -8896,7 +8896,7 @@ aside {
   height: 100%;
   background: #282C37;
   overflow: auto;
-  top: 60px;
+  top: 50px;
 }
 
 .folded aside {
@@ -9548,6 +9548,17 @@ input[type="checkbox"]:focus {
     margin: 0;
     padding: 8px 0 7px 0;
   }
+  .nav-tabs-linetriangle li {
+    font-size: 12px !important;
+    text-align: center;
+    width: 100%;
+  }
+  .nav-tabs-linetriangle li a {
+    padding: 14px 10px !important;
+  }
+  .nav-tabs-linetriangle li a:before {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -9853,14 +9864,6 @@ fieldset[disabled] .btn-secondary.active {
   min-width: 200px;
 }
 
-.nav-tabs-simple:after {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  width: 100%;
-  position: relative;
-  bottom: 5px;
-  z-index: 120;
-}
-
 .nav-tabs-simple > li {
   margin-bottom: 0;
 }
@@ -10057,12 +10060,6 @@ fieldset[disabled] .btn-secondary.active {
   top: auto;
   left: -12px;
   right: auto;
-}
-
-@media screen and (max-width: 58em) {
-  .nav-tabs-linetriangle {
-    font-size: 0.6em;
-  }
 }
 
 /* Tabs : Fill-up 
