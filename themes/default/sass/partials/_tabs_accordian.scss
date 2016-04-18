@@ -94,13 +94,6 @@
   border-bottom: 0px;
   background:$white;
   min-width:200px;
-  &:after {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    width: 100%;
-    position: relative;
-    bottom: 5px;
-    z-index: 120;
-  }
   & > li {
     margin-bottom: 0;
     &:after {
@@ -299,11 +292,6 @@
         }
       }
     }
-  }
-}
-@media screen and (max-width:58em) {
-  .nav-tabs-linetriangle {
-    font-size: 0.6em;
   }
 }
 
