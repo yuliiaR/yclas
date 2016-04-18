@@ -293,8 +293,7 @@
                                                         type="submit" 
                                                         name="img_delete"
                                                         value="<?=$key?>" 
-                                                        href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
-                                                        title="<?=__('Delete image')?>">
+                                                        href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>">
                                                         <?=__('Delete')?>
                                                 </button>
                                                 <?if ($key > 1) :?>
@@ -302,7 +301,6 @@
                                                         type="submit" 
                                                         name="primary_image"
                                                         value="<?=$key?>" 
-                                                        title="<?=__('Set image as primary')?>"
                                                         href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
                                                         action="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"
                                                     >

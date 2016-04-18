@@ -11,6 +11,9 @@
       {       
             lat: <?=$ad->latitude?>,
             lon: <?=$ad->longitude?>,
+            <?if(core::get('zoom')) :?>
+              zoom: <?=core::get('zoom')?>,
+            <?endif?>
             title: '<?=htmlentities(json_encode($ad->title),ENT_QUOTES)?>',
             <?if(( $icon_src = $ad->category->get_icon() )!==FALSE AND !is_numeric(core::get('id_ad'))):?>
             icon: '<?=Core::imagefly($icon_src,50,50)?>',
@@ -30,7 +33,9 @@
           new Maplace({
               locations: locations,
               controls_on_map: false,
-              pan_on_click: false,
+              <?if(! core::get('zoom')) :?>
+                pan_on_click: false,
+              <?endif?>
               <? if(core::config('advertisement.map_style') != '') :?>
                 styles: {
                   'Default': <?=core::config('advertisement.map_style')?>
