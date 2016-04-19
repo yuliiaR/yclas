@@ -8749,12 +8749,14 @@ header .dropdown > .dropdown-menu:after {
   font-size: 14px;
   position: absolute;
   left: 30px;
-  top: 13px;
+  top: 16px;
 }
 
 .sidebar-nav li a .arrow {
   -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
+  position: relative;
+  top: 4px;
 }
 
 .sidebar-nav li.active a:first-of-type {
@@ -8897,6 +8899,8 @@ aside {
   background: #282C37;
   overflow: auto;
   top: 50px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .folded aside {
@@ -9478,7 +9482,7 @@ input[type="checkbox"]:focus {
     margin-right: 15px;
   }
   .sidebar {
-    width: 75px;
+    width: 50px !important;
     margin-left: -15px;
     overflow: initial;
   }
@@ -9492,7 +9496,11 @@ input[type="checkbox"]:focus {
     display: none;
   }
   .sidebar li a {
-    padding: 25px 15px 24px 15px;
+    padding: 25px 15px 25px 15px;
+  }
+  .sidebar li a i.linecon {
+    left: 17px;
+    top: 17px;
   }
   .sidebar li i {
     margin: 0;
@@ -9502,12 +9510,12 @@ input[type="checkbox"]:focus {
   }
   .nav-second-level {
     position: absolute;
-    left: 75px;
+    left: 51px;
     top: 0;
     z-index: 2;
   }
   .nav-second-level li a {
-    padding: 10px 15px;
+    padding: 15px 30px !important;
     width: 180px;
   }
   .nav-second-level li:first-child a {
@@ -9517,7 +9525,7 @@ input[type="checkbox"]:focus {
     padding-bottom: 15px;
   }
   #page-wrapper {
-    margin: 0 0 0 75px;
+    margin: 0 0 0 50px !important;
   }
   .panel .close-panel span {
     display: none;
@@ -9559,6 +9567,9 @@ input[type="checkbox"]:focus {
   .nav-tabs-linetriangle li a:before {
     display: none;
   }
+  .home_ads_label, .home_ads_category, .home_ads_location, .update_changelog, .update_releasenotes {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -9572,12 +9583,16 @@ input[type="checkbox"]:focus {
   .nav-tabs {
     width: 100%;
   }
+  .table tbody tr td {
+    padding: 10px !important;
+  }
+  .home_visitors_label, .home_visitors_months, .home_ads_label_mobile, .home_ads_hits, .update_releasedate, .update_releasename {
+    display: none;
+  }
 }
 
 .folded aside {
   width: 75px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
 }
 
 .folded aside li a {
