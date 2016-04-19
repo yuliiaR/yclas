@@ -13,6 +13,7 @@ aside {
     background:$sidebar-bg;
     overflow: auto;
     top:50px;
+    @include transition(all .2s ease);
 }
 
 .folded aside {

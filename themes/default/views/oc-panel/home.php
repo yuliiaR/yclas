@@ -141,40 +141,40 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th class="home_visitors_label"></th>
                             <th><?=__('Today')?></th>
                             <th><?=__('Yesterday')?></th>
-                            <th><?=__('Last 30 days')?></th>
+                            <th class="home_visitors_months"><?=__('Last 30 days')?></th>
                             <th><?=__('Total')?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><b><?=__('Ads')?></b></td>
+                            <td class="home_visitors_label"><b><?=__('Ads')?></b></td>
                             <td><?=$ads_today?></td>
                             <td><?=$ads_yesterday?></td>
-                            <td><?=$ads_month?></td>
+                            <td class="home_visitors_months"><?=$ads_month?></td>
                             <td><?=$ads_total?></td>
                         </tr>
                         <tr>
-                            <td><b><?=__('Visits')?></b></td>
+                            <td class="home_visitors_label"><b><?=__('Visits')?></b></td>
                             <td><?=$visits_today?></td>
                             <td><?=$visits_yesterday?></td>
-                            <td><?=$visits_month?></td>
+                            <td class="home_visitors_months"><?=$visits_month?></td>
                             <td><?=$visits_total?></td>
                         </tr>
                         <tr>
-                            <td><b><?=__('Sales')?></b></td>
+                            <td class="home_visitors_label"><b><?=__('Sales')?></b></td>
                             <td><?=$orders_today?></td>
                             <td><?=$orders_yesterday?></td>
-                            <td><?=$orders_month?></td>
+                            <td class="home_visitors_months"><?=$orders_month?></td>
                             <td><?=$orders_total?></td>
                         </tr>
                         <tr>
-                            <td><b><?=__('Users')?></b></td>
+                            <td class="home_visitors_label"><b><?=__('Users')?></b></td>
                             <td><?=$users_today?></td>
                             <td><?=$users_yesterday?></td>
-                            <td><?=$users_month?></td>
+                            <td class="home_visitors_months"><?=$users_month?></td>
                             <td><?=$users_total?></td>
                         </tr>
                     </tbody>
@@ -199,10 +199,10 @@
                         <tr>
                             <th>#</th>
                             <th><?=__('Name')?></th>
-                            <th><?=__('Category')?></th>
-                            <th><?=__('Location')?></th>
+                            <th class="home_ads_label"><?=__('Category')?></th>
+                            <th class="home_ads_label"><?=__('Location')?></th>
                             <?if(core::config('advertisement.count_visits')==1):?>
-                                <th><?=__('Hits')?></th>
+                                <th class="home_ads_label_mobile"><?=__('Hits')?></th>
                             <?endif?>
                             <th><?=__('Date')?></th>
                         </tr>
@@ -216,9 +216,9 @@
                                     <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
                                     </td>
                     
-                                    <td><?= wordwrap($ad->category->name, 15, "<br />\n"); ?>
+                                    <td class="home_ads_category"><?= wordwrap($ad->category->name, 15, "<br />\n"); ?>
                     
-                                    <td>
+                                    <td class="home_ads_location">
                                         <?if($ad->location->loaded()):?>
                                             <?=wordwrap($ad->location->name, 15, "<br />\n");?>
                                         <?else:?>
@@ -227,7 +227,7 @@
                                     </td>
                     
                                     <?if(core::config('advertisement.count_visits')==1):?>
-                                        <td><?=$ad->visits->count_all();?></td>
+                                        <td class="home_ads_hits"><?=$ad->visits->count_all();?></td>
                                     <?endif?>
                     
                                     <td><?= Date::format($ad->published, core::config('general.date_format'))?></td>
@@ -274,7 +274,7 @@
                 <h3 class="panel-title">Open-Classifieds on Facebook</h3>
             </div>
             <div class="panel-body">
-                <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fopenclassifieds&amp;width=350&amp;height=600&amp;colorscheme=dark&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=181472118540903" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%; height:600px;" allowTransparency="true"></iframe>
+                <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fopenclassifieds&amp;width=350&amp;height=220&amp;colorscheme=dark&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=181472118540903" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%; height:220px;" allowTransparency="true"></iframe>
             </div>
         </div>
     </div>
