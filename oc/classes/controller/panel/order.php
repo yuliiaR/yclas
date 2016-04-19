@@ -5,7 +5,7 @@ class Controller_Panel_Order extends Auth_CrudAjax {
     /**
     * @var $_index_fields ORM fields shown in index
     */
-    protected $_index_fields = array('id_order','id_user','id_product', 'paymethod','amount','currency','pay_date','created','status');
+    protected $_index_fields = array('id_order','id_user','id_product','id_ad','paymethod','amount','currency','pay_date','created','status');
     
     /**
      * @var $_orm_model ORM model name
@@ -20,6 +20,7 @@ class Controller_Panel_Order extends Auth_CrudAjax {
     public $crud_actions = array('create','update');
 
     protected $_fields_caption = array( 'id_user'       => array('model'=>'user','caption'=>'email'),
+                                        'id_ad'         => array('model'=>'ad','caption'=>'title','format'=>'title'),
                                         'id_product'    => 'Model_Order::product_desc',
                                          );
 
