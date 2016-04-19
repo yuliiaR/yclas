@@ -38,10 +38,12 @@
 				font-size:14px;
 				position:absolute;
 				left:30px;
-				top:13px;
+				top:16px;
 			}
 			.arrow {
 				@include transition(all .1s ease);
+				position: relative;
+			    top: 4px;    
 			}
 		}
 		&.active {
