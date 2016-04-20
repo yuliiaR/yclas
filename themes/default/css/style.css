@@ -8046,10 +8046,6 @@ button.close {
   margin: 0 1px;
 }
 
-.nav-tabs {
-  margin-bottom: 15px;
-}
-
 #loadingbar {
   position: fixed;
   z-index: 2147483647;
@@ -9524,6 +9520,9 @@ input[type="checkbox"]:focus {
   .nav-second-level li:last-child a {
     padding-bottom: 15px;
   }
+  .folded .nav-second-level {
+    left: 51px !important;
+  }
   #page-wrapper {
     margin: 0 0 0 50px !important;
   }
@@ -9567,7 +9566,15 @@ input[type="checkbox"]:focus {
   .nav-tabs-linetriangle li a:before {
     display: none;
   }
-  .home_ads_label, .home_ads_category, .home_ads_location, .update_changelog, .update_releasenotes {
+  table {
+    overflow-x: scroll;
+    display: block;
+  }
+  table thead, table tbody {
+    display: table;
+    width: 100%;
+  }
+  .home_ads_label, .home_ads_category, .home_ads_location, .update_changelog, .update_releasenotes, .ads_label, .ads_category, .ads_location, .ads_published, .ads_created, .coupon_created_label, .coupon_created, .blog_created_label, .blog_created, .page_seotitle_label, .page_seotitle {
     display: none;
   }
 }
@@ -9586,7 +9593,12 @@ input[type="checkbox"]:focus {
   .table tbody tr td {
     padding: 10px !important;
   }
-  .home_visitors_label, .home_visitors_months, .home_ads_label_mobile, .home_ads_hits, .update_releasedate, .update_releasename {
+  .panel form, .panel .table {
+    overflow-x: scroll;
+    display: block;
+    max-width: 100%;
+  }
+  .home_visitors_label, .home_visitors_months, .home_ads_label_mobile, .home_ads_hits, .update_releasedate, .update_releasename, .ads_label_mobile, .ads_hits_mobile, .ads_status_mobile, .page_active_label_mobile, .page_active_mobile {
     display: none;
   }
 }
@@ -9776,6 +9788,10 @@ fieldset[disabled] .btn-secondary.active {
 /* Tabs
 ------------------------------------
 */
+.nav-tabs {
+  margin-bottom: 15px;
+}
+
 .nav-tabs > li {
   padding-left: 0;
   padding-right: 0;
@@ -9939,6 +9955,7 @@ fieldset[disabled] .btn-secondary.active {
   top: 0;
   bottom: 0;
   position: absolute;
+  z-index: 3;
 }
 
 .nav-tabs-simple.nav-tabs-left > li.active:after,
