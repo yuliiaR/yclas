@@ -39,8 +39,8 @@ class Controller_Panel_Order extends Auth_CrudAjax {
         $this->_buttons_actions = array(
                                         array( 'url'   => Route::url('oc-panel', array('controller'=>'order', 'action'=>'pay')).'/' ,
                                                 'title' => __('Mark as paid'),
-                                                'class' => 'btn btn-xs btn-danger',
-                                                'icon'  => 'glyphicon glyphicon-usd'
+                                                'class' => '',
+                                                'icon'  => 'fa fa-fw fa-usd'
                                                 ), 
                                         );
     } 
