@@ -32,25 +32,38 @@
                     <th class="sorting_disabled"><?=__('Date')?></th>
                     <!-- in case there are no ads we dont show buttons -->
                     <?if(isset($ads)):?>
-                        <th>
-                            <a class="activate btn btn-success" 
-                                href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
-                                onclick="return confirm('<?=__('Activate?')?>');"
-                                rel="tooltip" title="<?=__('Activate')?>">
-                                <i class="glyphicon   glyphicon-ok-sign"></i>
-                            </a>
-                            <a class="spam btn btn-warning" 
-                                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
-                                    onclick="return confirm('<?=__('Spam?')?>');"
-                                    rel="tooltip" title="<?=__('Spam')?>">
-                                    <i class="glyphicon   glyphicon-fire"></i>
-                                </a>
-                            <a class="delete btn btn-danger " 
-                                href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
-                                onclick="return confirm('<?=__('Delete?')?>');"
-                                rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
-                                <i class="glyphicon   glyphicon-remove"></i>
-                            </a>
+                        <th class="sorting_disabled nowrap">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <i class="fa fa-cog"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a class="activate" 
+                                            href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
+                                            onclick="return confirm('<?=__('Activate?')?>');"
+                                            rel="tooltip" title="<?=__('Activate')?>">
+                                            <i class="fa fa-fw fa-check"></i> <?=__('Activate')?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="spam" 
+                                            href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
+                                            onclick="return confirm('<?=__('Spam?')?>');"
+                                            rel="tooltip" title="<?=__('Spam')?>">
+                                            <i class="fa fa-fw fa-fire"></i> <?=__('Spam')?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="delete" 
+                                            href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
+                                            onclick="return confirm('<?=__('Delete?')?>');"
+                                            rel="tooltip" title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
+                                            <i class="fa fa-fw fa-trash"></i> <?=__('Delete')?>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </th>
                     <?endif?>
                 </tr>
@@ -118,33 +131,43 @@
                     </td>
         
                     <td><?= Date::format($ad->created, core::config('general.date_format'))?></td>
-                     <td style="width:190px">
-                        
-                        <a class="btn btn-primary" 
-                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
-                            rel="tooltip" title="<?=__('Edit')?>">
-                            <i class="glyphicon   glyphicon-edit"></i>
-                        </a>
-
-                        <a
-                            href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                            class="btn btn-warning index-moderation" 
-                            title="<?=__('Spam?')?>" 
-                            data-id="tr<?=$ad->id_ad?>" 
-                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
-                            data-btnCancelLabel="<?=__('No way!')?>">
-                            <i class="glyphicon glyphicon-fire"></i>
-                        </a>
-        
-                        <a
-                            href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                            class="btn btn-danger index-moderation" 
-                            title="<?=__('Delete?')?>" 
-                            data-id="tr<?=$ad->id_ad?>" 
-                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
-                            data-btnCancelLabel="<?=__('No way!')?>">
-                            <i class="glyphicon glyphicon-remove"></i>
-                        </a>
+                    <td class="nowrap">
+                        <div class="btn-group">
+                            <a class="btn btn-primary" 
+                                href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
+                                rel="tooltip" title="<?=__('Edit')?>">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <div class="btn-group">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <i class="fa fa-cog"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a
+                                            href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+                                            class="index-moderation" 
+                                            title="<?=__('Spam')?>" 
+                                            data-id="tr<?=$ad->id_ad?>" 
+                                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                            data-btnCancelLabel="<?=__('No way!')?>">
+                                            <i class="fa fa-fw fa-fire"></i> <?=__('Spam')?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
+                                            class="index-moderation" 
+                                            title="<?=__('Delete')?>" 
+                                            data-id="tr<?=$ad->id_ad?>" 
+                                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                            data-btnCancelLabel="<?=__('No way!')?>">
+                                            <i class="fa fa-fw fa-trash"></i> <?=__('Delete')?>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             <?endforeach?>  

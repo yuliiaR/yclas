@@ -224,111 +224,107 @@
                             </td>
             
                 			<td class="nowrap">
-                                <ul class="list-inline">
-                                    <li>
-                                        <div class="dropdown">
-                                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                                <i class="fa fa-cog"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <?if($ad->status != Model_Ad::STATUS_SPAM):?>
-                                                    <li>
-                                                        <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Spam?')?>');"
-                                                            title="<?=__('Spam')?>">
-                                                            <i class="fa fa-fire"></i> <?=__('Spam')?>
-                                                        </a>
-                                                    </li>
-                                                <?endif?>
-                                                <?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
-                                                    <li>
-                                                        <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'sold','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Mark as Sold?')?>');"
-                                                            title="<?=__('Mark as Sold')?>">
-                                                            <i class="fa fa-money"></i> <?=__('Mark as Sold')?>
-                                                        </a>
-                                                    </li>
-                                                <?endif?>
-                                                <?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
-                                                    <li>
-                                                        <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Deactivate?')?>');"
-                                                            title="<?=__('Deactivate')?>">
-                                                            <i class="fa fa-minus"></i> <?=__('Deactivate')?>
-                                                        </a>
-                                                    </li>
-                                                <?endif?>
-                                                <?if( $ad->status != Model_Ad::STATUS_PUBLISHED ):?>
-                                                    <li>
-                                                        <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Activate?')?>');"
-                                                            title="<?=__('Activate')?>">
-                                                            <i class="fa fa-check"></i> <?=__('Activate')?>
-                                                        </a>
-                                                    </li>
-                                                <?endif?>
-                                                <!-- sel_url_to_redirect is important because is quick selector. This works with dynamic check boxes, where we select href to build new url -->
-                                                <li role="separator" class="divider"></li>
+                                <div class="btn-group">
+                                    <a class="btn btn-primary" 
+                                        href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
+                                        title="<?=__('Update')?>">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </a>
+                                    <div class="btn-group">
+                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <i class="fa fa-cog"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <?if($ad->status != Model_Ad::STATUS_SPAM):?>
                                                 <li>
-                                                    <a class="sel_url_to_redirect" 
-                                                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-                                                        onclick="return confirm('<?=__('Delete?')?>');"
-                                                        title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
-                                                        <i class="fa fa-times"></i> <?=__('Delete')?>
+                                                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
+                                                        onclick="return confirm('<?=__('Spam?')?>');"
+                                                        title="<?=__('Spam')?>">
+                                                        <i class="fa fa-fire"></i> <?=__('Spam')?>
                                                     </a>
                                                 </li>
-                                                <?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
-                                                    <li role="separator" class="divider"></li>
-                                                    <?if(core::config('payment.to_featured') != FALSE):?>
-                                                        <?if($ad->featured==NULL OR Date::mysql2unix($ad->featured) < time()):?>
-                                                            <li>
-                                                                <a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 
-                                                                    onclick="return confirm('<?=__('Make featured?')?>');"
-                                                                    title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
-                                                                    <i class="fa fa-bookmark-o"></i> <?=__('Featured')?>
-                                                                </a>
-                                                            </li>
-                                                        <?elseif(Date::mysql2unix($ad->featured) > time()):?>
-                                                            <li>
-                                                                <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'unfeature','id'=>$ad->id_ad))?>" 
-                                                                    onclick="return confirm('<?=__('Remove featured?')?>');"
-                                                                    title="<?=__('Remove Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to remove featured ad?')?>">
-                                                                    <span class="fa-stack fa-lg">
-                                                                        <i class="fa fa-bookmark-o fa-stack-1x"></i>
-                                                                        <i class="fa fa-ban fa-stack-2x"></i>
-                                                                    </span> 
-                                                                    <?=__('Remove Featured')?>
-                                                                </a>
-                                                            </li>
-                                                        <?endif?>
-                                                    <?endif?>
-                                                    <?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE):?>
+                                            <?endif?>
+                                            <?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+                                                <li>
+                                                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'sold','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
+                                                        onclick="return confirm('<?=__('Mark as Sold?')?>');"
+                                                        title="<?=__('Mark as Sold')?>">
+                                                        <i class="fa fa-money"></i> <?=__('Mark as Sold')?>
+                                                    </a>
+                                                </li>
+                                            <?endif?>
+                                            <?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+                                                <li>
+                                                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
+                                                        onclick="return confirm('<?=__('Deactivate?')?>');"
+                                                        title="<?=__('Deactivate')?>">
+                                                        <i class="fa fa-minus"></i> <?=__('Deactivate')?>
+                                                    </a>
+                                                </li>
+                                            <?endif?>
+                                            <?if( $ad->status != Model_Ad::STATUS_PUBLISHED ):?>
+                                                <li>
+                                                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
+                                                        onclick="return confirm('<?=__('Activate?')?>');"
+                                                        title="<?=__('Activate')?>">
+                                                        <i class="fa fa-check"></i> <?=__('Activate')?>
+                                                    </a>
+                                                </li>
+                                            <?endif?>
+                                            <!-- sel_url_to_redirect is important because is quick selector. This works with dynamic check boxes, where we select href to build new url -->
+                                            <li role="separator" class="divider"></li>
+                                            <li>
+                                                <a class="sel_url_to_redirect" 
+                                                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
+                                                    onclick="return confirm('<?=__('Delete?')?>');"
+                                                    title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
+                                                    <i class="fa fa-times"></i> <?=__('Delete')?>
+                                                </a>
+                                            </li>
+                                            <?if($current_url == Model_Ad::STATUS_PUBLISHED):?>
+                                                <li role="separator" class="divider"></li>
+                                                <?if(core::config('payment.to_featured') != FALSE):?>
+                                                    <?if($ad->featured==NULL OR Date::mysql2unix($ad->featured) < time()):?>
                                                         <li>
-                                                            <a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
-                                                                onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
-                                                                title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
-                                                                <i class="fa fa-arrow-circle-up"></i> <?=__('Go to top')?>
+                                                            <a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 
+                                                                onclick="return confirm('<?=__('Make featured?')?>');"
+                                                                title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
+                                                                <i class="fa fa-bookmark-o"></i> <?=__('Featured')?>
+                                                            </a>
+                                                        </li>
+                                                    <?elseif(Date::mysql2unix($ad->featured) > time()):?>
+                                                        <li>
+                                                            <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'unfeature','id'=>$ad->id_ad))?>" 
+                                                                onclick="return confirm('<?=__('Remove featured?')?>');"
+                                                                title="<?=__('Remove Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to remove featured ad?')?>">
+                                                                <span class="fa-stack fa-lg">
+                                                                    <i class="fa fa-bookmark-o fa-stack-1x"></i>
+                                                                    <i class="fa fa-ban fa-stack-2x"></i>
+                                                                </span> 
+                                                                <?=__('Remove Featured')?>
                                                             </a>
                                                         </li>
                                                     <?endif?>
+                                                <?endif?>
+                                                <?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE):?>
                                                     <li>
-                                                        <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>" 
-                                                            rel="tooltip" title="<?=__('Stats')?>">
-                                                            <i class="fa fa-align-left"></i> <?=__('Stats')?>
+                                                        <a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
+                                                            onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
+                                                            title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
+                                                            <i class="fa fa-arrow-circle-up"></i> <?=__('Go to top')?>
                                                         </a>
                                                     </li>
                                                 <?endif?>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="btn btn-primary" 
-                                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
-                                            title="<?=__('Update')?>">
-                                            <i class="fa fa-pencil-square-o"></i>
-                                        </a>
-                                    </li>
-                                </ul>
+                                                <li>
+                                                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>" 
+                                                        rel="tooltip" title="<?=__('Stats')?>">
+                                                        <i class="fa fa-align-left"></i> <?=__('Stats')?>
+                                                    </a>
+                                                </li>
+                                            <?endif?>
+                                        </ul>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     <?endforeach?>
