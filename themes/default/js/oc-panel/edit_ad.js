@@ -609,6 +609,10 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'required'    : customfield.required,
                                                                                     'checked'     : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
+                $('#custom-fields input[name="' + idx + '"]').before($('<input/>').attr({  'type'  : 'hidden',
+                                                                                            'name'  : idx,
+                                                                                            'value' : 0,
+                                                                                        }));
                 break;
         }
     });
