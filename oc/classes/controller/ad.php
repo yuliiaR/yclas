@@ -436,6 +436,7 @@ class Controller_Ad extends Controller {
                     $this->template = 'amp/main';
                     $this->before();
                     $this->template->canonical = Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
+                    $this->template->structured_data = $ad->structured_data();
                     $view_file = 'amp/pages/ad/single';
                 }
 
