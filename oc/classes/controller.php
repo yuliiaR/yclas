@@ -137,6 +137,7 @@ class Controller extends Kohana_Controller
     public function after()
     {
     	parent::after();
+
     	if ($this->auto_render === TRUE)
     	{
 
@@ -190,6 +191,9 @@ class Controller extends Kohana_Controller
     		$this->template->meta_description = seo::text($this->template->meta_description);
     		
     	}
+
+        
+        //d($this->template);
     	$this->response->body($this->template->render());
        
     }
@@ -224,8 +228,10 @@ class Controller extends Kohana_Controller
             $this->auto_render = FALSE;
             $this->response->status(403);
             $this->template = View::factory('pages/error/403');
+            $this->after();
+            // Return the response
+            die($this->response);
         }
     }      
-        
-    
+
 }
