@@ -7,7 +7,9 @@
 <meta name="keywords" content="<?=$meta_keywords?>" >
 <meta name="description" content="<?=HTML::chars($meta_description)?>" >
 <meta name="copyright" content="<?=HTML::chars($meta_copyright)?>" >
+<?if (isset($_SERVER['SERVER_ADDR'])):?>
 <meta name="server_addr" content="<?=$_SERVER['SERVER_ADDR']?>">
+<?endif?>
 <?if (Theme::get('premium')==1):?>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <?else:?>
