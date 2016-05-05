@@ -134,12 +134,16 @@
 							<div class="col-md-8">
 								<?= FORM::label('address', __('Address'), array('for'=>'address'))?>
 								<?if(core::config('advertisement.map_pub_new')):?>
-									<div class="input-group">
-										<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
-										<span class="input-group-btn">
-											<button class="btn btn-default locateme" type="button"><?=__('Locate me')?></button>
-										</span>
-									</div>
+									<?if (Core::is_HTTPS()):?>
+										<div class="input-group">
+											<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+											<span class="input-group-btn">
+												<button class="btn btn-default locateme" type="button"><?=__('Locate me')?></button>
+											</span>
+										</div>
+									<?else:?>
+										<?=FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+									<?endif?>
 								<?else:?>
 									<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 								<?endif?>
