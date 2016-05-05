@@ -322,10 +322,10 @@ class Model_Ad extends ORM {
         $path = 'images/'.$year.'/'.$month.'/'.$day.'/'.$this->id_ad.'/';       
         
         //check if path is a directory
-        if ( ! is_dir($path) )
+        if ( ! is_dir(DOCROOT.$path) )
         {
             //not a directory, try to create it
-            if (! @mkdir($path, 0755, TRUE))
+            if (! @mkdir(DOCROOT.$path, 0755, TRUE))
                 return FALSE;//failed creation :()
         }
 
