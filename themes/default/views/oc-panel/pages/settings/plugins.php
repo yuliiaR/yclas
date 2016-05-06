@@ -98,6 +98,9 @@
                             <?=Form::radio($forms['auto_locate']['key'], 0, ! (bool) $forms['auto_locate']['value'], array('id' => $forms['auto_locate']['key'].'0'))?>
                             <?=Form::label($forms['auto_locate']['key'].'0', __('Disabled'))?>
                         </div>
+                        <span class="help-block">
+                            <?=__("Requires setting up SSL on your website.")?>
+                        </span>
                     </div>
 
                     <hr>
