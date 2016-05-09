@@ -471,7 +471,7 @@ class Model_Ad extends ORM {
             if(core::config('image.watermark_position') == 0) // position center
             {
                 $wm_left_x = $width/2-$size_watermark[0]/2; // x axis , from left
-                $wm_top_y = $height/2-$size_watermark[1]/2; // y axis , from top
+                $wm_top_y = NULL; // centers the y offset
             }
             elseif (core::config('image.watermark_position') == 1) // position bottom
             {
