@@ -63,6 +63,11 @@ class Widget_Ads extends Widget
 	{
         $ads = new Model_Ad();
         $ads->where('status','=', Model_Ad::STATUS_PUBLISHED);
+        //if ad have passed expiration time dont show 
+        if(core::config('advertisement.expire_date') > 0)
+        {
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
+        }
 
         switch ($this->ads_type) 
         {
