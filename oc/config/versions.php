@@ -1,6 +1,25 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
-   '2.7.0' => 
+ '2.8.0' => 
+  array (
+    'codename' => 'noneyet',
+    'released' => '2016-xx-xx',
+    'blog' => 'http://open-classifieds.com/2016/xx/x/open-classifieds-2-7-1/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.7.0...2.8.0',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.8.0+is%3Aclosed',
+    'download' => 'https://j.mp/oc_280',
+  ),
+
+  '2.7.1' => 
+  array (
+    'codename' => 'Tlaloc',
+    'released' => '2016-05-10',
+    'blog' => 'http://open-classifieds.com/2016/05/10/open-classifieds-2-7-1/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.7.0...2.7.1',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.7.1+is%3Aclosed',
+    'download' => 'https://j.mp/oc_271',
+  ),
+  '2.7.0' => 
   array (
     'codename' => 'Taipei',
     'released' => '2016-03-11',

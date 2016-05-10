@@ -102,7 +102,7 @@ class Model_Subscription extends ORM {
         if (Core::config('general.subscriptions')==TRUE)
         {
             $subscription = $user->subscription();
-            if ($subscription->loaded())
+            if ($subscription->loaded() AND $subscription->amount_ads_left > 0)
             {
                 $subscription->amount_ads_left--;
                 try {

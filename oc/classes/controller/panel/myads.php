@@ -403,19 +403,30 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
             if(core::config('general.moderation') == Model_Ad::EMAIL_CONFIRMATION)
             {
-                $advert->status = Model_Ad::STATUS_PUBLISHED; // status active
-                $advert->published = Date::unix2mysql();
 
-                try 
+                if (Core::config('general.subscriptions') == TRUE AND 
+                        $advert->user->subscription()->loaded() AND
+                        $advert->user->subscription()->amount_ads_left <= 0  )
                 {
-                    $advert->save();
-                    Model_Subscription::new_ad($advert->user);
-                    Model_Subscribe::notify($advert);
-                    Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
-                } 
-                catch (Exception $e) 
+                    Alert::set(Alert::WARNING, sprintf(__('You do not have more ads left to publish.'),$active_ad->email));
+                    HTTP::redirect(Route::url('pricing'));
+                }
+                else
                 {
-                    throw HTTP_Exception::factory(500,$e->getMessage());
+                    $advert->status = Model_Ad::STATUS_PUBLISHED; // status active
+                    $advert->published = Date::unix2mysql();
+
+                    try 
+                    {
+                        $advert->save();
+                        Model_Subscription::new_ad($advert->user);
+                        Model_Subscribe::notify($advert);
+                        Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
+                    } 
+                    catch (Exception $e) 
+                    {
+                        throw HTTP_Exception::factory(500,$e->getMessage());
+                    }
                 }
             }
             elseif(core::config('general.moderation') == Model_Ad::EMAIL_MODERATION)
