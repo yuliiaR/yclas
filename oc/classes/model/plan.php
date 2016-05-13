@@ -36,7 +36,7 @@ class Model_Plan extends ORM {
     	return array(
 			        'price'     => array(array('price')),
                     'days'      => array(array('numeric'),array('range',array(':value',1,10000000000))),
-                    'amount_ads'=> array(array('numeric'),array('range',array(':value',1,10000000000))),
+                    'amount_ads'=> array(array('numeric'),array('range',array(':value',-1,10000000000))),
                     'seoname'   => array(   array(array($this, 'unique'), array('seoname', ':value')),
                                             array('not_empty'),
                                             array('max_length', array(':value', 145)), 

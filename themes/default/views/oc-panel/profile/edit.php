@@ -225,7 +225,13 @@
                     <div class="row">
                         <div class="col-md-8">
                             <?if ($user->subscription()->loaded()):?>
-                                <p><?=sprintf(__('You are subscribed to the plan %s until %s with %u ads left'),$user->subscription()->plan->name,$user->subscription()->expire_date,$user->subscription()->amount_ads_left)?></p>
+                                <p>
+                                    <?if($user->subscription()->amount_ads_left > -1 ):?>
+                                        <?=sprintf(__('You are subscribed to the plan %s until %s with %u ads left'),$user->subscription()->plan->name,$user->subscription()->expire_date,$user->subscription()->amount_ads_left)?>
+                                    <?else:?>
+                                        <?=sprintf(__('You are subscribed to the plan %s until %s with unlimited ads'),$user->subscription()->plan->name,$user->subscription()->expire_date)?>
+                                    <?endif?>
+                                </p>
                             <?else:?>
                                 <a class="btn btn-primary" href="<?=Route::url('pricing')?>">
                                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=__('Choose a Plan')?>
