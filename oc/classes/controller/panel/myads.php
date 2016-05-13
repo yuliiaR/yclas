@@ -406,7 +406,8 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
                 if (Core::config('general.subscriptions') == TRUE AND 
                         $advert->user->subscription()->loaded() AND
-                        $advert->user->subscription()->amount_ads_left <= 0  )
+                        $advert->user->subscription()->amount_ads_left <= 0 AND
+                        $advert->user->subscription()->amount_ads_left != -1  )
                 {
                     Alert::set(Alert::WARNING, sprintf(__('You do not have more ads left to publish.'),$active_ad->email));
                     HTTP::redirect(Route::url('pricing'));
