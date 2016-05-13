@@ -345,7 +345,14 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 				if ($active_ad->loaded())
 				{
-					if ($active_ad->status != Model_Ad::STATUS_PUBLISHED)
+                    //if theres subscription we need to check
+                    if (Core::config('general.subscriptions') == TRUE AND 
+                        $active_ad->user->subscription()->loaded() AND
+                        $active_ad->user->subscription()->amount_ads_left <= 0  )
+                    {
+                        Alert::set(Alert::WARNING, sprintf(__('The customer %s does not have more ads left to publish.'),$active_ad->email));
+                    }
+                    elseif ($active_ad->status != Model_Ad::STATUS_PUBLISHED)
 					{
 						$active_ad->published = Date::unix2mysql();
 						$active_ad->status    = Model_Ad::STATUS_PUBLISHED;

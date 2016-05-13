@@ -75,6 +75,13 @@ class Controller_Plan extends Controller {
         //loaded published and with stock if we control the stock.
         if($plan->loaded() AND $plan->status==1)
         {
+            //free plan can not be renewed
+            if ($plan->price==0 AND $this->user->subscription()->id_plan == $plan->id_plan)
+            {
+                Alert::set(Alert::WARNING, __('Free plan can not be renewed, before expired'));
+                HTTP::redirect(Route::url('pricing'));
+            }
+
             $order = Model_Order::new_order(NULL, $this->user, $plan->id_plan, $plan->price, core::config('payment.paypal_currency'), __('Subscription to ').$plan->name);
 
             //free plan no checkout
