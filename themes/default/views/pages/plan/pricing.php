@@ -1,7 +1,13 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?if($subscription!==FALSE):?>
-    <p><?=sprintf(__('You are subscribed to the plan %s until %s with %u ads left'),$subscription->plan->name,$subscription->expire_date,$subscription->amount_ads_left)?></p>
+    <p>
+        <?if($subscription->amount_ads_left > -1 ):?>
+            <?=sprintf(__('You are subscribed to the plan %s until %s with %u ads left'),$subscription->plan->name,$subscription->expire_date,$subscription->amount_ads_left)?>
+        <?else:?>
+            <?=sprintf(__('You are subscribed to the plan %s until %s with unlimited ads'),$subscription->plan->name,$subscription->expire_date)?>
+        <?endif?>
+    </p>
 <?endif?>
 <div class="row pricing">
     <?foreach ($plans as $plan):?>
@@ -32,7 +38,13 @@
                     <?endif?>
                 </p>
                 <hr>
-                <p><?=$plan->amount_ads?> <?=_('Ads')?></p>
+                <p>
+                    <?if ($plan->amount_ads > -1):?>
+                        <?=sprintf(__('%u Ads'), $plan->amount_ads)?>
+                    <?else:?>
+                        <?=_('Unlimited Ads')?>
+                    <?endif?>
+                </p>
                 <?if(Core::config('payment.stripe_connect')):?>
                 <hr>
                 <p><b><?=round($plan->marketplace_fee,1)?>% <?=__('market place fee')?></b></p>
