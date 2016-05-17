@@ -153,9 +153,6 @@
             width:100%;
         }
     }
-
-    // Removal of non important rows in tables to make room for important tables.
-    .home_ads_label, .home_ads_category, .home_ads_location, .update_changelog, .update_releasenotes, .ads_label, .ads_category, .ads_location, .ads_published, .ads_created, .coupon_created_label, .coupon_created, .blog_created_label, .blog_created, .page_seotitle_label, .page_seotitle {display:none;}
 }
 
 @media(min-width:768px) {
@@ -177,7 +174,5 @@
         display:block;
         max-width:100%;
     }
-    // Removal of non important rows in tables to make room for important tables.
-    .home_visitors_label, .home_visitors_months, .home_ads_label_mobile, .home_ads_hits, .update_releasedate, .update_releasename, .ads_label_mobile, .ads_hits_mobile, .ads_status_mobile, .page_active_label_mobile, .page_active_mobile {display:none;}
 }
 

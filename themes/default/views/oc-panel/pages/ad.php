@@ -95,14 +95,14 @@
                     </th>
                     <th class="sorting_disabled">#</th>
                     <th class="sorting_disabled"><?=__('Name')?></th>
-                    <th class="sorting_disabled ads_label"><?=__('Category')?></th>
-                    <th class="sorting_disabled ads_label"><?=__('Location')?></th>
+                    <th class="sorting_disabled hidden-sm hidden-xs"><?=__('Category')?></th>
+                    <th class="sorting_disabled hidden-sm hidden-xs"><?=__('Location')?></th>
                     <?if(core::config('advertisement.count_visits')==1):?>
-                       <th class="sorting_disabled ads_label_mobile"><?=__('Hits')?></th>
+                       <th class="sorting_disabled hidden-xs"><?=__('Hits')?></th>
                     <?endif?>
-                    <th class="sorting_disabled ads_label_mobile"><?=__('Status')?></th>
-                    <th class="sorting_disabled ads_label"><?=__('Published')?></th>
-                    <th class="sorting_disabled ads_label"><?=__('Created')?></th>
+                    <th class="sorting_disabled hidden-xs"><?=__('Status')?></th>
+                    <th class="sorting_disabled hidden-sm hidden-xs"><?=__('Published')?></th>
+                    <th class="sorting_disabled hidden-sm hidden-xs"><?=__('Created')?></th>
                     <!-- in case there are no ads we dont show buttons -->
                     <?if(isset($res)):?>
                         <th class="sorting_disabled">
@@ -176,9 +176,9 @@
                             <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
                             </td>
 
-                            <td class="ads_category"><?= wordwrap($ad->category->name, 15, "<br />\n"); ?></td>
+                            <td class="hidden-sm hidden-xs"><?= wordwrap($ad->category->name, 15, "<br />\n"); ?></td>
                                  
-                            <td class="ads_location">
+                            <td class="hidden-sm hidden-xs">
                                 <?if($ad->location->loaded()):?>
                                     <?=wordwrap($ad->location->name, 15, "<br />\n");?>
                                 <?else:?>
@@ -187,10 +187,10 @@
                             </td>
 
                             <?if(core::config('advertisement.count_visits')==1):?>
-                            <td class="ads_hits_mobile"><?=$ad->visits->count_all();?></td>
+                            <td class="hidden-xs"><?=$ad->visits->count_all();?></td>
                             <?endif?>
 
-                            <td class="ads_status_mobile">
+                            <td class="hidden-xs">
                             <?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
                                 <?=__('Not published')?>
                             <? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
@@ -214,12 +214,12 @@
                             <?endif?>
                             </td>
 	    	
-                            <td class="ads_published">
+                            <td class="hidden-sm hidden-xs">
                                 <?if ($ad->status == Model_Ad::STATUS_PUBLISHED):?>            
                                     <?=Date::format($ad->published, core::config('general.date_format'))?>
                                  <?endif ?>
                             </td>
-                            <td class="ads_created">
+                            <td class="hidden-sm hidden-xs">
                                 <?=Date::format($ad->created, core::config('general.date_format'))?>
                             </td>
             

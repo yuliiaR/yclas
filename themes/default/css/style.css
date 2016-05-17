@@ -7538,9 +7538,7 @@ input[type="checkbox"]:focus {
     display: block; }
     table thead, table tbody {
       display: table;
-      width: 100%; }
-  .home_ads_label, .home_ads_category, .home_ads_location, .update_changelog, .update_releasenotes, .ads_label, .ads_category, .ads_location, .ads_published, .ads_created, .coupon_created_label, .coupon_created, .blog_created_label, .blog_created, .page_seotitle_label, .page_seotitle {
-    display: none; } }
+      width: 100%; } }
 
 @media (min-width: 768px) {
   .dropdown-li:hover .dropdown-menu {
@@ -7555,8 +7553,6 @@ input[type="checkbox"]:focus {
   .panel form, .panel .table {
     overflow-x: scroll;
     display: block;
-    max-width: 100%; }
-  .home_visitors_label, .home_visitors_months, .home_ads_label_mobile, .home_ads_hits, .update_releasedate, .update_releasename, .ads_label_mobile, .ads_hits_mobile, .ads_status_mobile, .page_active_label_mobile, .page_active_mobile {
-    display: none; } }
+    max-width: 100%; } }
 
 /*# sourceMappingURL=style.css.map */
