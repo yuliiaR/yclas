@@ -152,6 +152,9 @@
                         <?if(($paysbuy = paysbuy::form($order)) != ''):?>
                             <li class="text-right"><?=$paysbuy?></li>
                         <?endif?>
+                        <?if(($securepay = securepay::button($order)) != ''):?>
+                            <li class="text-right"><?=$securepay?></li>
+                        <?endif?>
                         <?if( ($alt = $order->alternative_pay_button()) != ''):?>
                             <li class="text-right"><?=$alt?></li>
                         <?endif?>

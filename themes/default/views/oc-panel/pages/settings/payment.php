@@ -62,22 +62,25 @@
                             <a data-toggle="tab" href="#tabSettingsPaymentGeneral" aria-expanded="true"><?=__('General')?></a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tabSettingsPaymentStripe" aria-expanded="false"><?=__('Stripe')?></a>
+                            <a data-toggle="tab" href="#tabSettingsPaymentStripe" aria-expanded="false">Stripe</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tabSettingsPaymentPaypal" aria-expanded="false"><?=__('Paypal')?></a>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPaypal" aria-expanded="false">Paypal</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tabSettingsPayment2checkout" aria-expanded="false"><?=__('2checkout')?></a>
+                            <a data-toggle="tab" href="#tabSettingsPayment2checkout" aria-expanded="false">2checkout</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tabSettingsPaymentPaymill" aria-expanded="false"><?=__('Paymill')?></a>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPaymill" aria-expanded="false">Paymill</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tabSettingsPaymentBitpay" aria-expanded="false"><?=__('Bitpay')?></a>
+                            <a data-toggle="tab" href="#tabSettingsPaymentBitpay" aria-expanded="false">Bitpay</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tabSettingsPaymentPaysbuy" aria-expanded="false"><?=__('Paysbuy')?></a>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPaysbuy" aria-expanded="false">Paysbuy</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentSecurepay" aria-expanded="false">Securepay</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPreventFraud" aria-expanded="false"><?=__('Prevent Fraud')?></a>
@@ -386,19 +389,12 @@
 
                     <div class="form-group">
                         <?=FORM::label($forms['twocheckout_sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['twocheckout_sandbox']['key']))?>
-                                <div class="onoffswitch">
-                                    <?= Form::checkbox($forms['twocheckout_sandbox']['key'], 1, (bool) $forms['twocheckout_sandbox']['value'], array(
-                                    'placeholder' => __("TRUE or FALSE"), 
-                                    'class' => 'onoffswitch-checkbox', 
-                                    'id' => $forms['twocheckout_sandbox']['key'],
-                                    'data-content'=> '',
-                                    'data-trigger'=>"hover",
-                                    'data-placement'=>"bottom",
-                                    'data-toggle'=>"popover",
-                                    'data-original-title'=>'',                     
-                                    ))?>
-                                    <?= FORM::label($forms['twocheckout_sandbox']['key'], "<span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span>", array('class'=>'onoffswitch-label', 'for'=>$forms['authorize_sandbox']['key']))?>
-                                </div>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['twocheckout_sandbox']['key'], 1, (bool) $forms['twocheckout_sandbox']['value'], array('id' => $forms['twocheckout_sandbox']['key'].'1'))?>
+                            <?=Form::label($forms['twocheckout_sandbox']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['twocheckout_sandbox']['key'], 0, ! (bool) $forms['twocheckout_sandbox']['value'], array('id' => $forms['twocheckout_sandbox']['key'].'0'))?>
+                            <?=Form::label($forms['twocheckout_sandbox']['key'].'0', __('Disabled'))?>
+                        </div>
                     </div>
                         
                     <div class="form-group">
@@ -577,6 +573,59 @@
                             <?=Form::label($forms['paysbuy_sandbox']['key'].'1', __('Enabled'))?>
                             <?=Form::radio($forms['paysbuy_sandbox']['key'], 0, ! (bool) $forms['paysbuy_sandbox']['value'], array('id' => $forms['paysbuy_sandbox']['key'].'0'))?>
                             <?=Form::label($forms['paysbuy_sandbox']['key'].'0', __('Disabled'))?>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
+                </div>
+
+                <div id="tabSettingsPaymentSecurepay" class="tab-pane fade">
+                    <h4>SecurePay</h4>
+                    <hr>
+                    
+                    <div class="form-group">
+                        <p class="form-control-static">
+                            Accept card payments with SecurePay, specialized in Australia
+                        </p>
+                        <p class="form-control-static">
+                            <a class="btn btn-success" target="_blank" href="https://www.securepay.com.au/">
+                                <i class="glyphicon glyphicon-pencil"></i> Register for free at SecurePay
+                            </a>
+                        </p>
+                    </div>
+                        
+                    <div class="form-group">
+                        <?=FORM::label($forms['securepay_merchant']['key'], __('Merchant ID'), array('class'=>'control-label', 'for'=>$forms['securepay_merchant']['key']))?>
+                        <?=FORM::input($forms['securepay_merchant']['key'], $forms['securepay_merchant']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['securepay_merchant']['key']
+                        ))?>
+                        <span class="help-block">
+                            <?=__("Merchant ID")?>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['securepay_password']['key'], __('Password'), array('class'=>'control-label', 'for'=>$forms['securepay_password']['key']))?>
+                        <?=FORM::input($forms['securepay_password']['key'], $forms['securepay_password']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['securepay_password']['key']
+                        ))?>
+                        <span class="help-block">
+                            <?=__("Password")?>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['securepay_testing']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['securepay_testing']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['securepay_testing']['key'], 1, (bool) $forms['securepay_testing']['value'], array('id' => $forms['securepay_testing']['key'].'1'))?>
+                            <?=Form::label($forms['securepay_testing']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['securepay_testing']['key'], 0, ! (bool) $forms['securepay_testing']['value'], array('id' => $forms['securepay_testing']['key'].'0'))?>
+                            <?=Form::label($forms['securepay_testing']['key'].'0', __('Disabled'))?>
                         </div>
                     </div>
                     

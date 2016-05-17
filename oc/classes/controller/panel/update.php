@@ -36,6 +36,15 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'private_site_page',
                                'group_name'     => 'general', 
                                'config_value'   => ''),
+                        array( 'config_key'     => 'securepay_merchant',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'securepay_password',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'securepay_testing',
+                               'group_name'     => 'payment', 
+                               'config_value'   => '0'),
                         );
         
         Model_Config::config_array($configs);
