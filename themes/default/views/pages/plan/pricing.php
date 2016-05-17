@@ -47,7 +47,7 @@
                 </p>
                 <?if(Core::config('payment.stripe_connect')):?>
                 <hr>
-                <p><b><?=sprintf(__('%s%% market place fee'), round(12,1))?></b></p>
+                <p><b><?=sprintf(__('%s%% market place fee'), round($plan->marketplace_fee,1))?></b></p>
                 <?endif?>
 
                 <hr>
