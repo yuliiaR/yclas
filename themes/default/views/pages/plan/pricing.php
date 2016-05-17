@@ -34,7 +34,7 @@
                     <?elseif ($plan->days == 30):?>
                         <?=__('Monthly')?>
                     <?else:?>
-                        <?=$plan->days?> <?=__('days')?>
+                        <?=sprintf(__('%u days'), $plan->days)?>
                     <?endif?>
                 </p>
                 <hr>
@@ -47,7 +47,7 @@
                 </p>
                 <?if(Core::config('payment.stripe_connect')):?>
                 <hr>
-                <p><b><?=round($plan->marketplace_fee,1)?>% <?=__('market place fee')?></b></p>
+                <p><b><?=sprintf(__('%s%% market place fee'), round($plan->marketplace_fee,1))?></b></p>
                 <?endif?>
 
                 <hr>
@@ -56,7 +56,7 @@
                     <?if($current_plan==TRUE):?>
                         <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> <?=__('Renew')?>
                     <?else:?>
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>     <?=__('Sign Up')?>
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=__('Sign Up')?>
                     <?endif?>
                     <b><?=i18n::format_currency($plan->price,core::config('payment.paypal_currency'))?></b>
                 </a>
