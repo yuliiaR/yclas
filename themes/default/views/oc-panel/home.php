@@ -141,40 +141,40 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="home_visitors_label"></th>
+                            <th class="hidden-xs"></th>
                             <th><?=__('Today')?></th>
                             <th><?=__('Yesterday')?></th>
-                            <th class="home_visitors_months"><?=__('Last 30 days')?></th>
+                            <th class="hidden-xs"><?=__('Last 30 days')?></th>
                             <th><?=__('Total')?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="home_visitors_label"><b><?=__('Ads')?></b></td>
+                            <td class="hidden-xs"><b><?=__('Ads')?></b></td>
                             <td><?=$ads_today?></td>
                             <td><?=$ads_yesterday?></td>
-                            <td class="home_visitors_months"><?=$ads_month?></td>
+                            <td class="hidden-xs"><?=$ads_month?></td>
                             <td><?=$ads_total?></td>
                         </tr>
                         <tr>
-                            <td class="home_visitors_label"><b><?=__('Visits')?></b></td>
+                            <td class="hidden-xs"><b><?=__('Visits')?></b></td>
                             <td><?=$visits_today?></td>
                             <td><?=$visits_yesterday?></td>
-                            <td class="home_visitors_months"><?=$visits_month?></td>
+                            <td class="hidden-xs"><?=$visits_month?></td>
                             <td><?=$visits_total?></td>
                         </tr>
                         <tr>
-                            <td class="home_visitors_label"><b><?=__('Sales')?></b></td>
+                            <td class="hidden-xs"><b><?=__('Sales')?></b></td>
                             <td><?=$orders_today?></td>
                             <td><?=$orders_yesterday?></td>
-                            <td class="home_visitors_months"><?=$orders_month?></td>
+                            <td class="hidden-xs"><?=$orders_month?></td>
                             <td><?=$orders_total?></td>
                         </tr>
                         <tr>
-                            <td class="home_visitors_label"><b><?=__('Users')?></b></td>
+                            <td class="hidden-xs"><b><?=__('Users')?></b></td>
                             <td><?=$users_today?></td>
                             <td><?=$users_yesterday?></td>
-                            <td class="home_visitors_months"><?=$users_month?></td>
+                            <td class="hidden-xs"><?=$users_month?></td>
                             <td><?=$users_total?></td>
                         </tr>
                     </tbody>
@@ -199,10 +199,10 @@
                         <tr>
                             <th>#</th>
                             <th><?=__('Name')?></th>
-                            <th class="home_ads_label"><?=__('Category')?></th>
-                            <th class="home_ads_label"><?=__('Location')?></th>
+                            <th class="hidden-sm hidden-xs"><?=__('Category')?></th>
+                            <th class="hidden-sm hidden-xs"><?=__('Location')?></th>
                             <?if(core::config('advertisement.count_visits')==1):?>
-                                <th class="home_ads_label_mobile"><?=__('Hits')?></th>
+                                <th class="hidden-xs"><?=__('Hits')?></th>
                             <?endif?>
                             <th><?=__('Date')?></th>
                         </tr>
@@ -216,9 +216,9 @@
                                     <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?= wordwrap($ad->title, 15, "<br />\n"); ?></a>
                                     </td>
                     
-                                    <td class="home_ads_category"><?= wordwrap($ad->category->name, 15, "<br />\n"); ?>
+                                    <td class="hidden-sm hidden-xs"><?= wordwrap($ad->category->name, 15, "<br />\n"); ?>
                     
-                                    <td class="home_ads_location">
+                                    <td class="hidden-sm hidden-xs">
                                         <?if($ad->location->loaded()):?>
                                             <?=wordwrap($ad->location->name, 15, "<br />\n");?>
                                         <?else:?>
@@ -227,7 +227,7 @@
                                     </td>
                     
                                     <?if(core::config('advertisement.count_visits')==1):?>
-                                        <td class="home_ads_hits"><?=$ad->visits->count_all();?></td>
+                                        <td class="hidden-xs"><?=$ad->visits->count_all();?></td>
                                     <?endif?>
                     
                                     <td><?= Date::format($ad->published, core::config('general.date_format'))?></td>
