@@ -66,7 +66,7 @@
 
     <div class="well ">
         <?if ($ad->price>0):?>
-            <span class="label label-danger"><?= __('Price');?> : <?=i18n::money_format( $ad->price)?></span>
+            <span class="label label-danger price-curry"><?= __('Price');?> : <?=i18n::money_format( $ad->price)?></span>
         <?endif?>
         <?if ($ad->price==0 AND core::config('advertisement.free')==1):?>
             <span class="label label-danger"><?= __('Price');?> : <?=__('Free');?></span>

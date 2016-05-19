@@ -52,6 +52,7 @@ Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.3,bootstra
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
                                     'js/bootstrap-slider.js',
                                     'js/favico.min.js',
+                                    'js/curry.js',
                                     'js/default.init.js?v='.Core::VERSION,
                                     'js/theme.init.js?v='.Core::VERSION,
                                     );
