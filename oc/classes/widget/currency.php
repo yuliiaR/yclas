@@ -24,6 +24,10 @@ class Widget_Currency extends Widget
 						 		  						'label'		=> __('Currency name displayed'),
 						 		  						'default'   => __('Currencies'),
 														'required'	=> FALSE),
+                                'currencies' => array(  'type'      => 'text',
+                                                        'display'   => 'text',
+                                                        'label'     => __('Currencies to display coma separated'),
+                                                        'required'  => FALSE),
 						 		);
 	}
 
