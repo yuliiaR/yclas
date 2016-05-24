@@ -129,6 +129,10 @@ ol, ul {
 }
 /*.thumbnails{list-style: none!important;}*/
 
+/* selectpicker dropdown menu*/
+.bootstrap-select > .dropdown-toggle{width:auto;}
+.bootstrap-select.btn-group .dropdown-menu {min-width:auto;}
+
 /*custom multy-level dropdown */
 .dropdown-submenu{position:relative;text-align: left!important;}
 .dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}

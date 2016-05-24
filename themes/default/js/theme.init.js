@@ -68,7 +68,6 @@ savedCurrency = getCookie('site_currency');
 if (savedCurrency == undefined) {
     savedRate = 1;
     savedCurrency = siteCurrency;
-    console.log('CookieSet Empty. Set to '+savedCurrency+siteCurrency);
 }else {
     savedRate = getCookie('site_rate');
     savedCurrency = getCookie('site_currency');
@@ -118,3 +117,10 @@ function parseExchangeRate(data) {
     //console.log(rate);
     setCookie('site_rate', rate, { expires: 7, path: '' });
 }
+
+$(document).ready(function() {
+  $('.selectpicker').selectpicker({
+    style: 'btn-default',
+    size: false
+  });
+});

@@ -165,7 +165,7 @@ function getlocale() {
 
       if (classes) {
 
-        attrs += ' class="curry-ddm';
+        attrs += ' class="selectpicker curry-ddm';
 
         if (classes)
           attrs += ' ' + classes + '"';
@@ -208,6 +208,7 @@ function getlocale() {
 
         $(output).appendTo(this);
 
+        $('.selectpicker').selectpicker('refresh');
       });
 
     };
@@ -216,38 +217,52 @@ function getlocale() {
 
       // Only get currency hash once
       if (!requestedCurrency) {
-
+        var query = '';
+        var selected_currencies = $('.curry').data('currencies');
+        selected_currencies = selected_currencies.split(',');
+        // Request currencies from yahoo finance
+        if(selected_currencies == '') {
+          query = 'select * from yahoo.finance.xchange where pair="\
+                                          '+savedCurrency+'USD,\
+                                          '+savedCurrency+'EUR,\
+                                          '+savedCurrency+'INR,\
+                                          '+savedCurrency+'GBP,\
+                                          '+savedCurrency+'AED,\
+                                          '+savedCurrency+'BGN,\
+                                          '+savedCurrency+'BDT,\
+                                          '+savedCurrency+'CZK,\
+                                          '+savedCurrency+'DKK,\
+                                          '+savedCurrency+'HRK,\
+                                          '+savedCurrency+'HUF,\
+                                          '+savedCurrency+'IDR,\
+                                          '+savedCurrency+'JPY,\
+                                          '+savedCurrency+'NOK,\
+                                          '+savedCurrency+'PLN,\
+                                          '+savedCurrency+'RON,\
+                                          '+savedCurrency+'RUB,\
+                                          '+savedCurrency+'ALL,\
+                                          '+savedCurrency+'SEK,\
+                                          '+savedCurrency+'PHP,\
+                                          '+savedCurrency+'TRY,\
+                                          '+savedCurrency+'PKR,\
+                                          '+savedCurrency+'VND,\
+                                          '+savedCurrency+'RSD,\
+                                          '+savedCurrency+'CNY\
+                                          "';
+        } else {
+          query = 'select * from yahoo.finance.xchange where pair="'+savedCurrency+siteCurrency+',';
+          for (i = 0; i < selected_currencies.length; i++) { 
+            query += savedCurrency+selected_currencies[i]+',';
+          }
+          query = query.slice(0, -1);
+          query += '"';
+        }
         // Request currencies from yahoo finance
         var jqxhr = $.ajax({
             url: 'https://query.yahooapis.com/v1/public/yql',
             dataType: 'jsonp',
             data: {
-              q: 'select * from yahoo.finance.xchange where pair="'+savedCurrency+'USD,\
-              													  '+savedCurrency+'EUR,\
-              													  '+savedCurrency+'INR,\
-              													  '+savedCurrency+'GBP,\
-              													  '+savedCurrency+'AED,\
-              													  '+savedCurrency+'BGN,\
-              													  '+savedCurrency+'BDT,\
-              													  '+savedCurrency+'CZK,\
-              													  '+savedCurrency+'DKK,\
-              													  '+savedCurrency+'HRK,\
-              													  '+savedCurrency+'HUF,\
-              													  '+savedCurrency+'IDR,\
-              													  '+savedCurrency+'JPY,\
-              													  '+savedCurrency+'NOK,\
-              													  '+savedCurrency+'PLN,\
-              													  '+savedCurrency+'RON,\
-              													  '+savedCurrency+'RUB,\
-              													  '+savedCurrency+'ALL,\
-              													  '+savedCurrency+'SEK,\
-              													  '+savedCurrency+'PHP,\
-              													  '+savedCurrency+'TRY,\
-              													  '+savedCurrency+'PKR,\
-              													  '+savedCurrency+'VND,\
-              													  '+savedCurrency+'RSD,\
-              													  '+savedCurrency+'CNY,\
-              													  "',
+              q: query,
               format: 'json',
               env: 'store://datatables.org/alltableswithkeys'
             }
