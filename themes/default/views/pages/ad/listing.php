@@ -143,7 +143,7 @@
                   <li><b><?=__('Publish Date');?>:</b> <?=Date::format($ad->published, core::config('general.date_format'))?></li>
               <? }?>
               <?if ($ad->price!=0){?>
-                  <li class="price price-curry"><?=__('Price');?>: <b><?=i18n::money_format( $ad->price)?></b></li>
+                  <li class="price"><?=__('Price');?>: <b><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></b></li>
               <?}?>  
               <?if ($ad->price==0 AND core::config('advertisement.free')==1){?>
                   <li class="price"><?=__('Price');?>: <b><?=__('Free');?></b></li>

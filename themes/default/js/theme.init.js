@@ -83,6 +83,7 @@ if (savedCurrency == undefined) {
           'EUR': '&euro;',
           'JPY': '&yen;'
         });
+      	converted = Number(converted.toString().match(/^\d+(?:\.\d{2})?/));
         symbol = symbols[savedCurrency] || savedCurrency;
         $(this).text($(this).html(symbol + ' ' + converted).text());
     });
