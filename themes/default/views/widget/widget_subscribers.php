@@ -15,18 +15,22 @@
                     <?= FORM::label('category_subscribe', __('Categories'), array('class'=>'', 'for'=>'category_subscribe'))?>
                     <select data-placeholder="<?=__('Categories')?>" name="category_subscribe[]" id="category_subscribe" class="form-control" multiple required>
                         <option></option>
-                        <?function lili_subscribe($item, $key,$cats){?>
-                            <?if ( count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
-                                <option value="<?=$key?>"><?=$cats[$key]['name']?></option>
-                            <?endif?>
-                            <?if ($cats[$key]['id_category_parent'] == 1 OR count($item)>0):?>
-                                <option value="<?=$key?>"> <?=$cats[$key]['name']?> </option>  
-                                <? if (is_array($item)) array_walk($item, 'lili_subscribe', $cats);?>
-                            <?endif?>
-                        <?}
-                        $cat_order = $widget->cat_order_items; 
-                        if (is_array($cat_order))
-                          array_walk($cat_order , 'lili_subscribe', $widget->cat_items);?>
+                        <?if (! function_exists('lili_subscribe')):?>
+                            <?function lili_subscribe($item, $key,$cats){?>
+                                <?if ( count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
+                                    <option value="<?=$key?>"><?=$cats[$key]['name']?></option>
+                                <?endif?>
+                                <?if ($cats[$key]['id_category_parent'] == 1 OR count($item)>0):?>
+                                    <option value="<?=$key?>"> <?=$cats[$key]['name']?> </option>  
+                                    <? if (is_array($item)) array_walk($item, 'lili_subscribe', $cats)?>
+                                <?endif?>
+                            <?}?>
+                        <?endif?>
+                        <?
+                            $cat_order = $widget->cat_order_items; 
+                            if (is_array($cat_order))
+                                array_walk($cat_order , 'lili_subscribe', $widget->cat_items)
+                        ?>
                     </select> 
                 </div>
             </div>
@@ -41,17 +45,21 @@
                         <?= FORM::label('location_subscribe', __('Location'), array('class'=>'', 'for'=>'location_subscribe' ))?>
                         <select data-placeholder="<?=__('Location')?>" name="location_subscribe[]" id="location_subscribe" class="form-control" required>
                         <option></option>
-                        <?function lolo_subscribe($item, $key,$locs){?>
-                        <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
-                            <?if (count($item)>0):?>
-                            <optgroup label="<?=$locs[$key]['name']?>">    
-                                <? if (is_array($item)) array_walk($item, 'lolo_subscribe', $locs);?>
-                                </optgroup>
-                            <?endif?>
-                        <?}
-                        $loc_order_subscribe = $widget->loc_order_items; 
-                        if (is_array($loc_order_subscribe))
-                            array_walk($loc_order_subscribe , 'lolo_subscribe',$widget->loc_items);?>
+                        <?if (! function_exists('lolo_subscribe')):?>
+                            <?function lolo_subscribe($item, $key,$locs){?>
+                                <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
+                                <?if (count($item)>0):?>
+                                    <optgroup label="<?=$locs[$key]['name']?>">
+                                        <?if (is_array($item)) array_walk($item, 'lolo_subscribe', $locs)?>
+                                    </optgroup>
+                                <?endif?>
+                            <?}?>
+                        <?endif?>
+                        <?
+                            $loc_order_subscribe = $widget->loc_order_items; 
+                            if (is_array($loc_order_subscribe))
+                                array_walk($loc_order_subscribe , 'lolo_subscribe',$widget->loc_items)
+                        ?>
                         </select>
                     </div>
                 </div>
