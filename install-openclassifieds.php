@@ -299,11 +299,26 @@ class install{
     public static function get_url()
     {
         // Try to guess installation URL
-        $url = 'http://'.$_SERVER['SERVER_NAME'];
-        
-        if ($_SERVER['SERVER_PORT'] != '80') 
-            $url = $url.':'.$_SERVER['SERVER_PORT'];
-        
+        // Check whether we are using HTTPS or not 
+        if (isset($_SERVER['HTTPS']))
+        {
+            if ('on' == strtolower($_SERVER['HTTPS']) OR '1' == $_SERVER['HTTPS'])
+            {
+                $url = 'https://'.$_SERVER['SERVER_NAME'];
+            }
+        }
+        elseif (isset($_SERVER['SERVER_PORT']) AND ('443' == $_SERVER['SERVER_PORT']))
+        {
+            $url = 'https://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'];
+        }
+        else
+        {
+            $url = 'http://'.$_SERVER['SERVER_NAME'];
+
+            if ($_SERVER['SERVER_PORT'] != '80') 
+                $url = $url.':'.$_SERVER['SERVER_PORT'];
+        }
+
         $url .= self::get_folder();
         
         return $url;
