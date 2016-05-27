@@ -123,7 +123,7 @@ function getlocale() {
 	    default:
 	        siteCurrency = 'USD';
 	        break;
-	}console.log( $('.curry').data('locale') );
+	}
 	return siteCurrency;
 }
 
@@ -227,6 +227,7 @@ function getlocale() {
                                           '+savedCurrency+'EUR,\
                                           '+savedCurrency+'INR,\
                                           '+savedCurrency+'GBP,\
+                                          '+savedCurrency+'CAD,\
                                           '+savedCurrency+'AED,\
                                           '+savedCurrency+'BGN,\
                                           '+savedCurrency+'BDT,\

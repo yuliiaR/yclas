@@ -90,20 +90,21 @@ if (savedCurrency == undefined) {
  }
 
 $(function(){
- $('.my-future-ddm').curry({
-    change: true,
-    target: '.price-curry',
-    base: savedCurrency == undefined?siteCurrency:savedCurrency,
-    symbols: {}
- }).change(function(){
-    var selected = $(this).find(':selected'), // get selected currency
-    currency = selected.val(); // get currency name
-  
-    getRate(siteCurrency, currency);
-    setCookie('site_currency', currency, { expires: 7, path: '' });
+ if ($('.curry').length){
+     $('.my-future-ddm').curry({
+        change: true,
+        target: '.price-curry',
+        base: savedCurrency == undefined?siteCurrency:savedCurrency,
+        symbols: {}
+     }).change(function(){
+        var selected = $(this).find(':selected'), // get selected currency
+        currency = selected.val(); // get currency name
+      
+        getRate(siteCurrency, currency);
+        setCookie('site_currency', currency, { expires: 7, path: '' });
 
- });
-         
+     });
+ }
 });
 
 function getRate(from, to) {
