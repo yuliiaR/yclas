@@ -10,6 +10,15 @@
     'download' => 'https://j.mp/oc_280',
   ),
 
+    '2.7.2' => 
+  array (
+    'codename' => 'Tlaloc2',
+    'released' => '2016-05-25',
+    'blog' => 'http://open-classifieds.com/2016/05/25/open-classifieds-2-7-2/',
+    'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.7.1...2.7.2',
+    'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.7.2+is%3Aclosed',
+    'download' => 'https://j.mp/oc_272',
+  ),
   '2.7.1' => 
   array (
     'codename' => 'Tlaloc',
