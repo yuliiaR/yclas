@@ -7,125 +7,6 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.opensource.org/licenses/GPL-2.0
  */
-function getlocale() {
-	switch($('.curry').data('locale')){
-	    case 'en_US':
-	        siteCurrency = 'USD';
-	        break;
-	    case 'en_UK':
-	        siteCurrency = 'GBP';
-	        break;
-	    case 'ar':
-	        siteCurrency = 'AED';
-	        break;
-	    case 'bg_BG':
-	        siteCurrency = 'BGN';
-	        break;
-	    case 'bn_BD':
-	        siteCurrency = 'BDT';
-	        break;
-	    case 'ca_ES':
-	        siteCurrency = 'EUR';
-	        break;
-	    case 'cs_CZ':
-	        siteCurrency = 'CZK';
-	        break;
-	    case 'da_DK':
-	        siteCurrency = 'DKK';
-	        break;
-	    case 'de_DE':
-	        siteCurrency = 'EUR';
-	        break;
-	    case 'el_GR':
-	        siteCurrency = 'EUR';
-	        break;
-	    case 'en_UK':
-	        siteCurrency = 'GBP';
-	        break;
-	    case 'es_ES':
-	        siteCurrency = 'EUR';
-	        break;
-	    case 'fr_FR':
-	        siteCurrency = 'EUR';
-	        break;
-	    case 'hi_IN':
-	        siteCurrency = 'INR';
-	        break;
-	    case 'hr_HR':
-	        siteCurrency = 'HRK';
-	        break;
-	    case 'hu_HU':
-	        siteCurrency = 'HUF';
-	        break;
-	    case 'in_ID':
-	        siteCurrency = 'IDR';
-	        break;
-	    case 'it_IT':
-	        siteCurrency = 'EUR';
-	        break;
-	    case 'ja_JP':
-	        siteCurrency = 'JPY';
-	        break;
-	    case 'ml_IN':
-	        siteCurrency = 'INR';
-	        break;
-	    case 'nl_NL':
-	        siteCurrency = 'EUR';
-	        break;
-	    case 'no_NO':
-	        siteCurrency = 'NOK';
-	        break;
-	    case 'pl_PL':
-	        siteCurrency = 'PLN';
-	        break;
-	    case 'pt_PT':
-	        siteCurrency = 'EUR';
-	        break;
-	    case 'ro_RO':
-	        siteCurrency = 'RON';
-	        break;
-	    case 'ru_RU':
-	        siteCurrency = 'RUB';
-	        break;
-	    case 'sk_SK':
-	        siteCurrency = 'EUR';
-	        break;
-	    case 'sn_ZW':
-	        siteCurrency = 'USD';// ZWD not available
-	        break;
-	    case 'sq_AL':
-	        siteCurrency = 'ALL';
-	        break;
-	    case 'sr_RS':
-	        siteCurrency = 'RSD';
-	        break;
-	    case 'sv_SE':
-	        siteCurrency = 'SEK';
-	        break;
-	    case 'ta_IN':
-	        siteCurrency = 'INR';
-	        break;
-	    case 'tl_PH':
-	        siteCurrency = 'PHP';
-	        break;
-	    case 'tr':
-	        siteCurrency = 'TRY';
-	        break;
-	    case 'ur_PK':
-	        siteCurrency = 'PKR';
-	        break;
-	    case 'vi_VN':
-	        siteCurrency = 'VND';
-	        break;
-	    case 'zh_CN':
-	        siteCurrency = 'CNY';
-	        break;
-	    default:
-	        siteCurrency = 'USD';
-	        break;
-	}
-	return siteCurrency;
-}
 
 (function($) {
 
@@ -148,7 +29,7 @@ function getlocale() {
     var settings = $.extend({
       target: 'price-curry',
       change: true,
-      base: siteCurrency,
+      base: getSiteCurrency(),
       symbols: {}
     }, options);
 
@@ -165,7 +46,7 @@ function getlocale() {
 
       if (classes) {
 
-        attrs += ' class="selectpicker curry-ddm';
+        attrs += ' class="curry-ddm form-control';
 
         if (classes)
           attrs += ' ' + classes + '"';
@@ -208,7 +89,7 @@ function getlocale() {
 
         $(output).appendTo(this);
 
-        $('.selectpicker').selectpicker('refresh');
+        $('.curry-ddm').select2({"language": "es"}).select2('destroy').select2({"language": "es"});
       });
 
     };
@@ -222,6 +103,7 @@ function getlocale() {
         selected_currencies = selected_currencies.split(',');
         // Request currencies from yahoo finance
         if(selected_currencies == '') {
+          savedCurrency = getSavedCurrency();
           query = 'select * from yahoo.finance.xchange where pair="\
                                           '+savedCurrency+'USD,\
                                           '+savedCurrency+'EUR,\
@@ -251,7 +133,7 @@ function getlocale() {
                                           '+savedCurrency+'CNY\
                                           "';
         } else {
-          query = 'select * from yahoo.finance.xchange where pair="'+savedCurrency+siteCurrency+',';
+          query = 'select * from yahoo.finance.xchange where pair="'+savedCurrency+getSiteCurrency()+',';
           for (i = 0; i < selected_currencies.length; i++) { 
             query += savedCurrency+selected_currencies[i]+',';
           }
