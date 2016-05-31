@@ -150,7 +150,7 @@
               query += skandi_currencies;
             else if (selected_currencies[i] == 'asian')
               query += asian_currencies;
-            else if (selected_currencies[i] == 'americas')
+            else if (selected_currencies[i] == 'american')
               query += americas_currencies;
             else
               query += savedCurrency+selected_currencies[i]+',';
