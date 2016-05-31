@@ -101,6 +101,13 @@
         var query = '';
         var selected_currencies = $('.curry').data('currencies');
         selected_currencies = selected_currencies.split(',');
+
+        var major_currencies = savedCurrency+'USD,'+savedCurrency+'EUR,'+savedCurrency+'GBP,'+savedCurrency+'JPY,'+savedCurrency+'CAD,'+savedCurrency+'CHF,'+savedCurrency+'AUD,'+savedCurrency+'ZAR,';
+        var european_currencies = savedCurrency+'ALL,'+savedCurrency+'BGN,'+savedCurrency+'BYR,'+savedCurrency+'CZK,'+savedCurrency+'DKK,'+savedCurrency+'EUR,'+savedCurrency+'GBP,'+savedCurrency+'HRK,'+savedCurrency+'HUF,'+savedCurrency+'ISK,'+savedCurrency+'NOK,'+savedCurrency+'RON,'+savedCurrency+'RUB,'+savedCurrency+'SEK,'+savedCurrency+'UAH,';
+        var skandi_currencies = savedCurrency+'DKK,'+savedCurrency+'SEK,'+savedCurrency+'NOK,';
+        var asian_currencies = savedCurrency+'JPY,'+savedCurrency+'HKD,'+savedCurrency+'SGD,'+savedCurrency+'TWD,'+savedCurrency+'KRW,'+savedCurrency+'PHP,'+savedCurrency+'IDR,'+savedCurrency+'INR,'+savedCurrency+'CNY,'+savedCurrency+'MYR,'+savedCurrency+'THB,';
+        var americas_currencies = savedCurrency+'USD,'+savedCurrency+'CAD,'+savedCurrency+'MXN,'+savedCurrency+'BRL,'+savedCurrency+'ARS,'+savedCurrency+'CRC,'+savedCurrency+'COP,'+savedCurrency+'CLP,';
+        
         // Request currencies from yahoo finance
         if(selected_currencies == '') {
           savedCurrency = getSavedCurrency();
@@ -135,7 +142,18 @@
         } else {
           query = 'select * from yahoo.finance.xchange where pair="'+savedCurrency+getSiteCurrency()+',';
           for (i = 0; i < selected_currencies.length; i++) { 
-            query += savedCurrency+selected_currencies[i]+',';
+            if (selected_currencies[i] == 'major')
+              query += major_currencies;
+            else if (selected_currencies[i] == 'european')
+              query += european_currencies;
+            else if (selected_currencies[i] == 'skandi')
+              query += skandi_currencies;
+            else if (selected_currencies[i] == 'asian')
+              query += asian_currencies;
+            else if (selected_currencies[i] == 'american')
+              query += americas_currencies;
+            else
+              query += savedCurrency+selected_currencies[i]+',';
           }
           query = query.slice(0, -1);
           query += '"';
@@ -204,9 +222,23 @@
       // Add default currency symbols
       var symbols = $.extend({
           'USD': '&#36;',
+          'AUD': '&#36;',
+          'CAD': '&#36;',
+          'MXN': '&#36;',
+          'BRL': '&#36;',
           'GBP': '&pound;',
           'EUR': '&euro;',
-          'JPY': '&yen;'
+          'JPY': '&yen;',
+          'INR': '&#8377;',
+          'BDT': '&#2547;',
+          'PHP': '&#8369;',
+          'VND': '&#8363;',
+          'CNY': '&#165;',
+          'UAH': '&#8372;',
+          'HKD': '&#36;',
+          'SGD': '&#36;',
+          'TWD': '&#36;',
+          'THB': '&#3647;',
         }, settings.symbols),
         $priceTag, symbol;
 

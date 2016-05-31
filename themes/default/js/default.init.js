@@ -430,10 +430,24 @@ $(function(){
             money = Number(money.replace(/[^0-9\.]+/g, ''));
             converted = rate * money;
             var symbols = ({
-                'USD': '&dollar;',
-                'GBP': '&pound;',
-                'EUR': '&euro;',
-                'JPY': '&yen;'
+              'USD': '&#36;',
+              'AUD': '&#36;',
+              'CAD': '&#36;',
+              'MXN': '&#36;',
+              'BRL': '&#36;',
+              'GBP': '&pound;',
+              'EUR': '&euro;',
+              'JPY': '&yen;',
+              'INR': '&#8377;',
+              'BDT': '&#2547;',
+              'PHP': '&#8369;',
+              'VND': '&#8363;',
+              'CNY': '&#165;',
+              'UAH': '&#8372;',
+              'HKD': '&#36;',
+              'SGD': '&#36;',
+              'TWD': '&#36;',
+              'THB': '&#3647;',
             });
             converted = Number(converted.toString().match(/^\d+(?:\.\d{2})?/));
             symbol = symbols[savedCurrency] || savedCurrency;
