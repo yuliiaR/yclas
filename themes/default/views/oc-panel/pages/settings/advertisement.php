@@ -434,12 +434,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <?=FORM::label($forms['num_images']['key'], __('Number of images'), array('class'=>'control-label', 'for'=>$forms['num_images']['key']))?>
-                                <div class="radio radio-primary">
-                                    <?=Form::radio($forms['num_images']['key'], 1, (bool) $forms['num_images']['value'], array('id' => $forms['num_images']['key'].'1'))?>
-                                    <?=Form::label($forms['num_images']['key'].'1', __('Enabled'))?>
-                                    <?=Form::radio($forms['num_images']['key'], 0, ! (bool) $forms['num_images']['value'], array('id' => $forms['num_images']['key'].'0'))?>
-                                    <?=Form::label($forms['num_images']['key'].'0', __('Disabled'))?>
-                                </div>
+                                <?=FORM::input($forms['num_images']['key'], $forms['num_images']['value'], array(
+                                    'placeholder' => "4", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['num_images']['key'], 
+                                    'data-rule-required'=>'true',
+                                    'data-rule-digits' => 'true',
+                                ))?>
                                 <span class="help-block">
                                     <?=__("Number of images displayed")?>
                                 </span>
