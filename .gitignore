@@ -10,6 +10,7 @@ oc/logs/*
 images/*
 themes/*
 !themes/default/
+!themes/basecamp_free/
 oc/vendor/hybridauth/logs.txt
 oc/codecept.phar
 oc/tests/_output/*
