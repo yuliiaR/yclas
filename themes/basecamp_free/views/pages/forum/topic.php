@@ -51,7 +51,7 @@
 				<?foreach ($replies as $reply):?>
 					<div class="col-xs-12 forum-comment">
 						<div class="comment-user-block">
-							<div style="margin:5px">
+							<div class="m-5">
 								<img class="comment-auth" src="<?=$reply->user->get_profile_image()?>" alt="<?=HTML::chars($reply->user->name)?>">
 							</div>
 						</div>

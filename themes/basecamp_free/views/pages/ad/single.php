@@ -335,7 +335,7 @@
 												<?endif?>
 											</dl>
 										<?endif?>
-										<dl class="modal-footer" style="text-align: center;">	
+										<dl class="modal-footer text-center">	
 											<?= FORM::button('submit', __('Send Message'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'user_contact' , 'id'=>$ad->id_ad))))?>
 										</dl>
 									</fieldset>

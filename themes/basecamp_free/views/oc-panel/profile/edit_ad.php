@@ -73,7 +73,7 @@
 					<?if (count($orders) > 0) :?>
 						<div class="text-center">
 							<?foreach ($orders as $order):?>
-							<a class="btn btn-success" style="margin:3px;" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
+							<a class="btn btn-success mt-3" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
 								<i class="glyphicon glyphicon-shopping-cart"></i> <?=$order->description?>  
 							</a>
 							<?endforeach?>
@@ -124,7 +124,7 @@
 								<?=(core::config('advertisement.parent_category')) ? 'data-isparent' : NULL?>
 							>
 								<div id="select-category-template" class="col-sm-6 row hidden">
-									<select class="disable-chosen select-category" placeholder="<?=__('Pick a category...')?>"></select>
+									<select class="disable-select2 select-category" placeholder="<?=__('Pick a category...')?>"></select>
 								</div>
 								<div id="paid-category" class="hidden">
 									<span class="help-block" data-title="<?=__('Category %s is a paid category: %d')?>"><span class="text-warning"></span></span>
@@ -152,7 +152,7 @@
 							<?= FORM::label('locations', __('Location'), array('for'=>'location'))?>
 								<div id="location-chained" class="hidden" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
 									<div id="select-location-template" class="col-sm-6 row hidden">
-										<select class="disable-chosen select-location" placeholder="<?=__('Pick a location...')?>"></select>
+										<select class="disable-select2 select-location" placeholder="<?=__('Pick a location...')?>"></select>
 									</div>
 								</div>
 								<div id="location-edit">
@@ -275,7 +275,7 @@
 										<?if($images):?>
 											<?foreach ($images as $key => $value):?>
 												<?if(isset($value['thumb'])): // only formated images (not originals)?>
-													<div id="img<?=$key?>" class="edit-image text-center" style="display:inline-block; margin:5px">
+													<div id="img<?=$key?>" class="edit-image text-center display-inline-block m-5">
 														<a><img style="width: 150px;" src="<?=$value['thumb']?>" class="img-rounded thumbnail"></a>
 														<button class="btn btn-danger index-delete img-delete"
 																data-title="<?=__('Are you sure you want to delete?')?>" 
