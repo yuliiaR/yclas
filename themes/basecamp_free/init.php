@@ -4,7 +4,7 @@
   * Description: The Basecamp free theme offers basic views and options. For more options consider buying the Basecamp premium theme which offers extended customization.  
   * Tags: HTML5, Responsive, Mobile
   * Version: 2.7.0
-  * Author: Thom <thom@open-classifieds.com>
+  * Author: Christopher 
   * License: Free
   * Parent Theme: default
   * Skins: default, mint, charcoal/gold, plumb
@@ -14,7 +14,7 @@
 /**
  * placeholders for this theme
  */
-Widgets::$theme_placeholders	= array('footer', 'sidebar');
+Widgets::$theme_placeholders  = array('footer', 'sidebar', 'publish_new');
 
 /**
  * custom options for the theme
@@ -36,12 +36,12 @@ Theme::$skin = Theme::get('theme');
 
 //local files
 
-$theme_css =  array(      'css/bootstrap.min.css' => 'screen',
-                          'css/font-awesome.min.css' => 'screen',
-                          'css/bootstrap-image-gallery.min.css' => 'screen',
-                          'css/blueimp-gallery.min.css' => 'screen', 
-                          'css/datepicker.css' => 'screen',
-                          'css/chosen.min.css' => 'screen',                        
+$theme_css =  array(      '//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css' => 'screen',
+                          '//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css' => 'screen',
+                          '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.min.css' => 'screen',
+                          '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/css/blueimp-gallery.min.css' => 'screen', 
+                          '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
+                          '//cdn.jsdelivr.net/select2/4.0.2/css/select2.min.css' => 'screen',                        
                           'css/slider.css' => 'screen',
                           'css/styles.css?v='.Core::VERSION => 'screen',
                   );
@@ -54,32 +54,17 @@ if (Theme::$skin!='default')
 
 Theme::$styles = $theme_css;
 
-Theme::$scripts['footer'] = array(  'js/jquery-1.10.2.js',
-                                    'js/bootstrap.min.js',
-                                    'js/chosen.jquery.min.js',
-                                    Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'chosen')),
-                                    'js/jquery.validate.min.js',
+Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.3,bootstrap@3.3.6,bootstrap.datepicker@0.1,select2@4.0.2,jquery.validation@1.11.1,holder@2.8.1',
+                                    '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js',
+                                    '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.min.js',
+                                    Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'select2')),
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),
-                                    'js/blueimp-gallery.min.js',
-                                    'js/bootstrap-image-gallery.min.js',
-                                    'js/bootstrap-datepicker.js',
-                                    'js/holder.min.js',
                                     'js/bootstrap-slider.js',
-                                    'js/favico-0.3.8.min.js',
+                                    'js/favico.min.js',
+                                    'js/curry.js',
                                     'js/default.init.js?v='.Core::VERSION,
                                     'js/theme.init.js?v='.Core::VERSION,
                             );
-
-
-/**
-* load assets for yclas top bar
-*/
-if (method_exists('Core','yclas_url') AND Model_Domain::current()->id_domain != '1' AND Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
-{
-    Theme::$styles['css/yclas-topbar.css'] = 'screen';
-    Theme::$scripts['footer'][] = (Core::is_HTTPS() ? 'https://' : 'http://').Model_Domain::get_sub_domain().'/panel/site/bar/'.Model_Domain::current()->id_domain;
-    Theme::$scripts['footer'][] = 'js/yclas-topbar.js';
-}
 
 /**
  * custom error alerts

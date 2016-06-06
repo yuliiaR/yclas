@@ -26,7 +26,7 @@
 						<div class="ad_dcoll">
 							<div class="pad_10">
 								<div class="my_ad_title clearfix">
-									<div class="dropdown pull-right" style="display:inline-block">
+									<div class="dropdown pull-right display-inline-block">
 										<button class="btn btn-base-dark btn-sm dropdown-toggle " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
 											<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
 												<? if( $ad->status == Model_Ad::STATUS_UNAVAILABLE AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)):?>

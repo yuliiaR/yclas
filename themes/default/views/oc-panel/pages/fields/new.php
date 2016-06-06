@@ -17,12 +17,12 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-xs-1"><?=__('Label')?></label>
+                <label class="control-label"><?=__('Label')?></label>
                 <input class="form-control" type="text" name="label" placeholder="<?=__('Label')?>" required>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-xs-1"><?=__('Tooltip')?></label>
+                <label class="control-label"><?=__('Tooltip')?></label>
                 <input class="form-control" type="text" name="tooltip" placeholder="<?=__('Tooltip')?>">
             </div>
 

@@ -80,7 +80,7 @@
 												<?endif?>
 											</fieldset>
 									</div>
-									<div class="modal-footer" style="text-align:center;">	
+									<div class="modal-footer text-center">	
 										<?= FORM::button('submit', __('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
 									</div>
 									<?= FORM::close()?>

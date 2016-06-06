@@ -7,11 +7,11 @@
 <?endif?>
 
 <div class="panel-body">
-    <div class="btn-group" style="display: block;">
+    <div class="btn-group display-block">
         <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <?=i18n::get_display_language(i18n::$locale)?> <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" style="position:relative;width:100%;height: 250px;overflow: auto;">
+        <ul class="dropdown-menu dropdown-languages">
             <?foreach($widget->languages as $language):?>
             <?if(i18n::$locale!=$language):?>
             <li>

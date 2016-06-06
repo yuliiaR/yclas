@@ -17,11 +17,11 @@
 
 					<div class="text-center pad_10">
 						<?if($previous->loaded()):?>
-							<a class="btn btn-default" style="margin:3px;" href="<?=Route::url('blog',  array('seotitle'=>$previous->seotitle))?>" title="<?=HTML::chars($previous->title)?>">
+							<a class="btn btn-default m-3" href="<?=Route::url('blog',  array('seotitle'=>$previous->seotitle))?>" title="<?=HTML::chars($previous->title)?>">
 							<i class="glyphicon glyphicon-chevron-left"></i> <?=Text::truncate_html($previous->title, 28, NULL)?>...</a>
 						<?endif?>
 						<?if($next->loaded()):?>
-							<a class="btn btn-default" style="margin:3px;" href="<?=Route::url('blog',  array('seotitle'=>$next->seotitle))?>" title="<?=HTML::chars($next->title)?>">
+							<a class="btn btn-default m-3" href="<?=Route::url('blog',  array('seotitle'=>$next->seotitle))?>" title="<?=HTML::chars($next->title)?>">
 							<?=Text::truncate_html($next->title, 28, NULL)?>... <i class="glyphicon glyphicon-chevron-right"></i></a>
 						<?endif?>
 					</div>

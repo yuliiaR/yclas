@@ -40,7 +40,7 @@
 					<tbody>
 						<?foreach($list as $l):?>
 							<tr>
-								<td style="vertical-align:middle;">
+								<td class="vertical-center">
 									<!-- category -->
 									<?if ($l['category']):?>
 										<?=$l['category']?>
@@ -48,7 +48,7 @@
 										N/A
 									<?endif?>
 								</td>
-								<td style="vertical-align:middle;">
+								<td class="vertical-center">
 									<!-- locations -->
 									<?if ($l['location']):?>
 										<?=$l['location']?>
@@ -56,14 +56,14 @@
 										N/A
 									<?endif?>
 								</td>
-								<td style="vertical-align:middle;">
+								<td class="vertical-center">
 									<!-- Min price -->
 									<span class="badge min-price"><?=i18n::money_format($l['min_price'])?></span>
 										&nbsp;-&nbsp;
 									<!-- Max Price -->
 									<span class="badge max-price"><?=i18n::money_format($l['max_price'])?></span>
 								</td>
-								<td style="vertical-align:middle;" class="hidden-xs ">
+								<td class="vertical-align:middle;" class="hidden-xs ">
 									<!-- Created -->
 									<?=substr($l['created'], 0, 11)?>
 								</td>
