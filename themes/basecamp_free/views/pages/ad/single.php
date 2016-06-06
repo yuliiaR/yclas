@@ -147,8 +147,8 @@
 										<?else:?>
 											<span class="sf_btn i_price"><?=i18n::money_format( $ad->price)?></span>
 										<?endif?>
-									<?elseif (core::config('payment.paypal_seller')!=1 AND $ad->price>0):?>
-										<span class="sf_btn i_price"><?=i18n::money_format( $ad->price)?></span>
+									<?elseif ($ad->price>0):?>
+										<span class="sf_btn i_price"><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></span>
 									<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
 										<span class="sf_btn i_price"><?=__('Free');?></span>
 									<?else:?>
