@@ -16,7 +16,7 @@ return array(   'theme' => array(	       'type'      => 'text',
                                             'required'  => TRUE
                                             ),
 
-                'admin_theme' => array(     'type'      => 'text',
+                /*'admin_theme' => array(     'type'      => 'text',
                                             'display'   => 'select',
                                             'label'     => __('Change the admin color theme'),
                                             'options'   => array(   'bootstrap' => 'Original',
@@ -26,7 +26,7 @@ return array(   'theme' => array(	       'type'      => 'text',
                                                                     'united'    => 'Purple / Orange',
                                                                 ), 
                                             'default'   => 'bootstrap',
-                                            'required'  => TRUE),
+                                            'required'  => TRUE),*/
 
                 'category_badge' => array(  'type'      => 'text',
                                             'display'   => 'select',
