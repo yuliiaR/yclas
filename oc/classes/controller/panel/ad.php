@@ -150,43 +150,40 @@ class Controller_Panel_Ad extends Auth_Controller {
 	public function action_delete()
 	{
 		$id = $this->request->param('id');
-		
-		$format_id = explode('_', $id);
-		$auth_user = Auth::instance();
-	
-		$nb_Ads_Deleted = 0;
-		foreach ($format_id as $id) 
+		$id_ads = (isset($id) AND is_numeric($id)) ? array($id) : Core::get('id_ads');
+		$param_current_url = Core::get('current_url');
+		$i = 0;
+
+		if (is_array($id_ads))
 		{
-			
-			if (isset($id) AND $id !== '')
+			$ads = new Model_Ad();
+			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
+
+			foreach ($ads as $ad)
 			{
-				$ad = new Model_Ad($id);
-				
-				if($ad->loaded())
+				try
 				{
-					try
-					{
-						$ad->delete();
-						$nb_Ads_Deleted++;
-					}
-					catch (Exception $e)
-					{
-						Alert::set(Alert::ERROR, sprintf(__('Warning, something went wrong while deleting Ad with id %u'),$id).':<br>'.$e->getMessage());
-						//throw HTTP_Exception::factory(500,$e->getMessage());
-					}
+					$ad->delete();
+					$i++;
+				}
+				catch (Exception $e)
+				{
+					Alert::set(Alert::ERROR, sprintf(__('Warning, something went wrong while deleting Ad with id %u'),$id).':<br>'.$e->getMessage());
+					//throw HTTP_Exception::factory(500,$e->getMessage());
 				}
 			}
-
 		}
-		$level_Alert = ($nb_Ads_Deleted > 0) ? Alert::SUCCESS : Alert::INFO;
-		if ($nb_Ads_Deleted == 1)
-			$nb_Ads_Deleted = __('Advertisement has been permanently deleted');
-		elseif ($nb_Ads_Deleted >= 2)
-			$nb_Ads_Deleted = sprintf(__('%u advertisements have been permanently deleted'),$nb_Ads_Deleted);
-		else
-			$nb_Ads_Deleted = __('None (0) advertisement has been deleted');
 
-		Alert::set($level_Alert, $nb_Ads_Deleted);
+		$alert_type = ($i > 0) ? Alert::SUCCESS : Alert::INFO;
+
+		if ($i == 1)
+			$alert_text = __('Advertisement has been permanently deleted');
+		elseif ($i >= 2)
+			$alert_text = sprintf(__('%u advertisements have been permanently deleted'), $i);
+		else
+			$alert_text = __('None (0) advertisement has been deleted');
+
+		Alert::set($alert_type, $alert_text);
 
 		$param_current_url = Core::get('current_url');
 		
@@ -204,36 +201,34 @@ class Controller_Panel_Ad extends Auth_Controller {
 	public function action_spam()
 	{
 		$id = $this->request->param('id');
+		$id_ads = (isset($id) AND is_numeric($id)) ? array($id) : Core::get('id_ads');
 		$param_current_url = Core::get('current_url');
-		$format_id = explode('_', $id);
 
-		foreach ($format_id as $id) 
-		{ 
-			if (isset($id) AND $id !== '')
+		if (is_array($id_ads))
+		{
+			$ads = new Model_Ad();
+			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
+
+			foreach ($ads as $ad) 
 			{ 
-				$spam_ad = new Model_Ad($id);
-
-				if ($spam_ad->loaded())
+				if ($ad->status != Model_Ad::STATUS_SPAM)
 				{
-					if ($spam_ad->status != Model_Ad::STATUS_SPAM)
-					{
-						//mark user as spamer
-						$spam_ad->user->user_spam();
-                        //mark as as spam
-						$spam_ad->status = Model_Ad::STATUS_SPAM;
-						
-						try{
-							$spam_ad->save();
-						}
-						catch (Exception $e){
-							throw HTTP_Exception::factory(500,$e->getMessage());
-						}
+					//mark user as spamer
+					$ad->user->user_spam();
+					//mark as as spam
+					$ad->status = Model_Ad::STATUS_SPAM;
+							
+					try{
+						$ad->save();
+					}
+					catch (Exception $e){
+						throw HTTP_Exception::factory(500,$e->getMessage());
 					}
 				}
-				
 			}
+
+			Alert::set(Alert::SUCCESS, __('Advertisement is marked as spam'));
 		}
-		Alert::set(Alert::SUCCESS, __('Advertisement is marked as spam'));
 		
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
@@ -249,20 +244,20 @@ class Controller_Panel_Ad extends Auth_Controller {
 	 */
 	public function action_deactivate()
 	{
-
 		$id = $this->request->param('id');
+		$id_ads = (isset($id) AND is_numeric($id)) ? array($id) : Core::get('id_ads');
 		$param_current_url = Core::get('current_url');
-		$format_id = explode('_', $id);
 
-		foreach ($format_id as $id) 
+		if (is_array($id_ads))
 		{
-			if (isset($id) AND is_numeric($id))
-			{
-				$deact_ad = new Model_Ad($id);
-				$deact_ad->deactivate();
-			}
+			$ads = new Model_Ad();
+			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
+
+			foreach ($ads as $ad) 
+				$ad->deactivate();
+
+			Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
 		}
-		Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
 		
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
@@ -270,7 +265,6 @@ class Controller_Panel_Ad extends Auth_Controller {
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
 		else
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
-
 	}
 
 	/**
@@ -278,20 +272,20 @@ class Controller_Panel_Ad extends Auth_Controller {
 	 */
 	public function action_sold()
 	{
-
 		$id = $this->request->param('id');
+		$id_ads = (isset($id) AND is_numeric($id)) ? array($id) : Core::get('id_ads');
 		$param_current_url = Core::get('current_url');
-		$format_id = explode('_', $id);
 
-		foreach ($format_id as $id) 
+		if (is_array($id_ads))
 		{
-			if (isset($id) AND is_numeric($id))
-			{
-				$deact_ad = new Model_Ad($id);
-				$deact_ad->sold();
-			}
+			$ads = new Model_Ad();
+			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
+
+			foreach ($ads as $ad) 
+				$ad->sold();
+
+			Alert::set(Alert::SUCCESS, __('Advertisement is marked as sold'));
 		}
-		Alert::set(Alert::SUCCESS, __('Advertisement is marked as sold'));
 		
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
@@ -307,23 +301,27 @@ class Controller_Panel_Ad extends Auth_Controller {
      */
     public function action_unfeature()
     {
-        $id = $this->request->param('id');
-        $param_current_url = Core::get('current_url');
-        if (isset($id) AND is_numeric($id))
-        {
-            $ad = new Model_Ad($id);
-            $ad->unfeature();
-        }
-        
-        Alert::set(Alert::SUCCESS, __('Removed featured ad'));
-        
+		$id = $this->request->param('id');
+		$id_ads = (isset($id) AND is_numeric($id)) ? array($id) : Core::get('id_ads');
+		$param_current_url = Core::get('current_url');
+
+		if (is_array($id_ads))
+		{
+			$ads = new Model_Ad();
+			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
+
+			foreach ($ads as $ad) 
+				$ad->unfeature();
+
+			Alert::set(Alert::SUCCESS, __('Removed featured ad'));
+		}
+
         if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
             HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
         elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
             HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')));
         else
             HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
-
     }
 
 	/**
@@ -334,49 +332,47 @@ class Controller_Panel_Ad extends Auth_Controller {
 	{
 
 		$id = $this->request->param('id');
+		$id_ads = (isset($id) AND is_numeric($id)) ? array($id) : Core::get('id_ads');
 		$param_current_url = Core::get('current_url');
-		$format_id = explode('_', $id);
 
-		foreach ($format_id as $id) 
+		if (is_array($id_ads))
 		{
-			if (isset($id) AND $id !== '')
-			{
-				$active_ad = new Model_Ad($id);
+			$ads = new Model_Ad();
+			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
 
-				if ($active_ad->loaded())
+			foreach ($ads as $ad) 
+			{
+				//if theres subscription we need to check
+                if (Core::config('general.subscriptions') == TRUE AND 
+					$ad->user->subscription()->loaded() AND
+					$ad->user->subscription()->amount_ads_left <= 0 AND
+					$ad->user->subscription()->amount_ads_left != -1  )
 				{
-                    //if theres subscription we need to check
-                    if (Core::config('general.subscriptions') == TRUE AND 
-                        $active_ad->user->subscription()->loaded() AND
-                        $active_ad->user->subscription()->amount_ads_left <= 0 AND
-                        $active_ad->user->subscription()->amount_ads_left != -1  )
-                    {
-                        Alert::set(Alert::WARNING, sprintf(__('The customer %s does not have more ads left to publish.'),$active_ad->email));
-                    }
-                    elseif ($active_ad->status != Model_Ad::STATUS_PUBLISHED)
-					{
-						$active_ad->published = Date::unix2mysql();
-						$active_ad->status    = Model_Ad::STATUS_PUBLISHED;
+					Alert::set(Alert::WARNING, sprintf(__('The customer %s does not have more ads left to publish.'),$ad->email));
+				}
+				elseif ($ad->status != Model_Ad::STATUS_PUBLISHED)
+				{
+					$ad->published = Date::unix2mysql();
+					$ad->status    = Model_Ad::STATUS_PUBLISHED;
 						
-						try
-						{
-							$active_ad->save();
-                            Model_Subscription::new_ad($active_ad->user);
-                            Model_Subscribe::notify($active_ad);
-						}
-						catch (Exception $e)
-						{
-							throw HTTP_Exception::factory(500,$e->getMessage());
-						}
+					try
+					{
+						$ad->save();
+						Model_Subscription::new_ad($ad->user);
+						Model_Subscribe::notify($ad);
+					}
+					catch (Exception $e)
+					{
+						throw HTTP_Exception::factory(500,$e->getMessage());
 					}
 				}
 			}
+
+			$this->multiple_mails($id_ads); // sending many mails at the same time @TODO EMAIl
+
+			Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
 		}
 
-		$this->multiple_mails($format_id); // sending many mails at the same time @TODO EMAIl
-
-		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
-			
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)

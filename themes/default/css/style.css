@@ -6339,15 +6339,20 @@ header {
 .dropdown-menu {
   padding-top: 9px;
   padding-bottom: 9px; }
-  .dropdown-menu > li > a {
+  .dropdown-menu > li > a, .dropdown-menu > li .btn-link {
     font-size: 13px;
     padding: 8px 15px;
     color: gray; }
-    .dropdown-menu > li > a .fa {
+    .dropdown-menu > li > a .fa, .dropdown-menu > li .btn-link .fa {
       margin-right: 4px; }
-    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu > li .btn-link:hover, .dropdown-menu > li .btn-link:focus {
       background: transparent;
-      color: #000; }
+      color: #000;
+      text-decoration: none; }
+  .dropdown-menu > li > .btn.btn-link {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: left; }
 
 .sidebar-nav {
   margin-top: 15px; }
