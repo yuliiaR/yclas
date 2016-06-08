@@ -81,7 +81,7 @@
             <div class="form-group">
                 <div class="checkbox check-success">
                     <input name="show_listing" type="checkbox" id="checkbox_show_listing" <?=(isset($field_data['show_listing']) AND $field_data['show_listing']==TRUE)?'checked':''?>>
-                    <label for="checkbox_show_listing"><?=__('Admin Privileged')?></label>
+                    <label for="checkbox_show_listing"><?=__('Show Listing')?></label>
                 </div>
                 <div class="help-block"><?=__('Can be seen in the list of ads while browsing.')?></div>
             </div>
