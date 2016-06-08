@@ -11,7 +11,7 @@
 <?$current_url = Model_Ad::STATUS_NOPUBLISHED?>
 
 <div class="panel panel-default">
-    <div class="table-responsive">
+    <div>
         <form method="GET" enctype="multipart/form-data">
             <table class="table table-striped">
                 <thead>
@@ -41,24 +41,33 @@
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
                                             <button class="btn btn-block btn-link activate" 
+                                                data-toggle="confirmation"
                                                 formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
-                                                onclick="return confirm('<?=__('Activate?')?>');">
+                                                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                data-btnCancelLabel="<?=__('No way!')?>"
+                                                title="<?=__('Activate?')?>">
                                                 <i class="fa fa-check"></i> <?=__('Activate')?></span>
                                             </button>
                                         </li>
                                         <?if(Core::get('status') != Model_Ad::STATUS_SPAM):?>
                                             <li>
                                                 <button class="btn btn-block btn-link spam" 
+                                                    data-toggle="confirmation"
                                                     formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
-                                                    onclick="return confirm('<?=__('Spam?')?>');">
+                                                    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                    data-btnCancelLabel="<?=__('No way!')?>"
+                                                    title="<?=__('Spam?')?>">
                                                     <i class="fa fa-fw fa-fire"></i> <?=__('Spam')?></span>
                                                 </button>
                                             </li>
                                         <?endif?>
                                         <li>
                                             <button class="btn btn-block btn-link delete" 
+                                                data-toggle="confirmation"
                                                 formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>" 
-                                                onclick="return confirm('<?=__('Delete?')?>');">
+                                                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                data-btnCancelLabel="<?=__('No way!')?>"
+                                                title="<?=__('Delete?')?>" data-text="<?=__('Are you sure you want to delete?')?>">
                                                 <i class="fa fa-fw fa-times"></i> <?=__('Delete')?></span>
                                             </button>
                                         </li>

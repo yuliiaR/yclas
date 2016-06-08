@@ -83,7 +83,7 @@
             </li>
         <?endif?>
     </ul>
-    <div class="table-responsive">
+    <div>
         <form method="GET" enctype="multipart/form-data">
             <table class="table table-striped">
                 <thead>
@@ -117,8 +117,11 @@
                                                 <?if(Core::get('status') != Model_Ad::STATUS_SPAM):?>
                                                     <li>
                                                         <button class="btn btn-block btn-link spam" 
+                                                            data-toggle="confirmation"
                                                             formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Spam?')?>');">
+                                                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                            data-btnCancelLabel="<?=__('No way!')?>"
+                                                            title="<?=__('Spam?')?>">
                                                             <i class="fa fa-fire"></i> <?=__('Spam')?></span>
                                                         </button>
                                                     </li>
@@ -126,8 +129,11 @@
                                                 <?if(Core::get('status') != Model_Ad::STATUS_UNAVAILABLE):?>
                                                     <li>
                                                         <button class="btn btn-block btn-link deactivate" 
+                                                            data-toggle="confirmation"
                                                             formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate'))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Deactivate?')?>');">
+                                                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                            data-btnCancelLabel="<?=__('No way!')?>"
+                                                            title="<?=__('Deactivate?')?>">
                                                             <i class="fa fa-minus"></i> <?=__('Deactivate')?></span>
                                                         </button>
                                                     </li>
@@ -135,8 +141,11 @@
                                                 <?if($current_url != Model_Ad::STATUS_PUBLISHED):?>
                                                     <li>
                                                         <button class="btn btn-block btn-link activate" 
+                                                            data-toggle="confirmation"
                                                             formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Activate?')?>');">
+                                                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                            data-btnCancelLabel="<?=__('No way!')?>"
+                                                            title="<?=__('Activate?')?>">
                                                             <i class="fa fa-check"></i> <?=__('Activate')?></span>
                                                         </button>
                                                     </li>
@@ -144,8 +153,11 @@
                                                 <li role="separator" class="divider"></li>
                                                 <li>
                                                     <button class="btn btn-block btn-link delete" 
+                                                        data-toggle="confirmation"
                                                         formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>?current_url=<?=$current_url?>" 
-                                                        onclick="return confirm('<?=__('Delete?')?>');">
+                                                        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                        data-btnCancelLabel="<?=__('No way!')?>"
+                                                        title="<?=__('Delete?')?>" data-text="<?=__('Are you sure you want to delete?')?>">
                                                         <i class="fa fa-times"></i> <?=__('Delete')?></span>
                                                     </button>
                                                 </li>
@@ -235,8 +247,10 @@
                                                 <?if($ad->status != Model_Ad::STATUS_SPAM):?>
                                                     <li>
                                                         <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Spam?')?>');"
-                                                            title="<?=__('Spam')?>">
+                                                            data-toggle="confirmation"
+                                                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                            data-btnCancelLabel="<?=__('No way!')?>"
+                                                            title="<?=__('Spam?')?>">
                                                             <i class="fa fa-fire"></i> <?=__('Spam')?>
                                                         </a>
                                                     </li>
@@ -244,8 +258,10 @@
                                                 <?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
                                                     <li>
                                                         <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'sold','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Mark as Sold?')?>');"
-                                                            title="<?=__('Mark as Sold')?>">
+                                                            data-toggle="confirmation"
+                                                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                            data-btnCancelLabel="<?=__('No way!')?>"
+                                                            title="<?=__('Mark as Sold?')?>">
                                                             <i class="fa fa-money"></i> <?=__('Mark as Sold')?>
                                                         </a>
                                                     </li>
@@ -253,8 +269,10 @@
                                                 <?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
                                                     <li>
                                                         <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Deactivate?')?>');"
-                                                            title="<?=__('Deactivate')?>">
+                                                            data-toggle="confirmation"
+                                                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                            data-btnCancelLabel="<?=__('No way!')?>"
+                                                            title="<?=__('Deactivate?')?>">
                                                             <i class="fa fa-minus"></i> <?=__('Deactivate')?>
                                                         </a>
                                                     </li>
@@ -262,8 +280,10 @@
                                                 <?if( $ad->status != Model_Ad::STATUS_PUBLISHED ):?>
                                                     <li>
                                                         <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-                                                            onclick="return confirm('<?=__('Activate?')?>');"
-                                                            title="<?=__('Activate')?>">
+                                                            data-toggle="confirmation"
+                                                            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                            data-btnCancelLabel="<?=__('No way!')?>"
+                                                            title="<?=__('Activate?')?>">
                                                             <i class="fa fa-check"></i> <?=__('Activate')?>
                                                         </a>
                                                     </li>
@@ -273,8 +293,10 @@
                                                 <li>
                                                     <a class="sel_url_to_redirect" 
                                                         href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>?current_url=<?=$current_url?>" 
-                                                        onclick="return confirm('<?=__('Delete?')?>');"
-                                                        title="<?=__('Delete')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
+                                                        data-toggle="confirmation"
+                                                        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                        data-btnCancelLabel="<?=__('No way!')?>"
+                                                        title="<?=__('Delete?')?>" data-id="tr1" data-text="<?=__('Are you sure you want to delete?')?>">
                                                         <i class="fa fa-times"></i> <?=__('Delete')?>
                                                     </a>
                                                 </li>
@@ -284,16 +306,20 @@
                                                         <?if($ad->featured==NULL OR Date::mysql2unix($ad->featured) < time()):?>
                                                             <li>
                                                                 <a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 
-                                                                    onclick="return confirm('<?=__('Make featured?')?>');"
-                                                                    title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
+                                                                    data-toggle="confirmation"
+                                                                    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                                    data-btnCancelLabel="<?=__('No way!')?>"
+                                                                    title="<?=__('Make featured?')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
                                                                     <i class="fa fa-bookmark-o"></i> <?=__('Featured')?>
                                                                 </a>
                                                             </li>
                                                         <?elseif(Date::mysql2unix($ad->featured) > time()):?>
                                                             <li>
                                                                 <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'unfeature','id'=>$ad->id_ad))?>" 
-                                                                    onclick="return confirm('<?=__('Remove featured?')?>');"
-                                                                    title="<?=__('Remove Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to remove featured ad?')?>">
+                                                                    data-toggle="confirmation"
+                                                                    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                                    data-btnCancelLabel="<?=__('No way!')?>"
+                                                                    title="<?=__('Remove featured?')?>" data-id="tr1" data-text="<?=__('Are you sure you want to remove featured ad?')?>">
                                                                     <span class="fa-stack fa-lg">
                                                                         <i class="fa fa-bookmark-o fa-stack-1x"></i>
                                                                         <i class="fa fa-ban fa-stack-2x"></i>
@@ -306,8 +332,10 @@
                                                     <?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE):?>
                                                         <li>
                                                             <a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>" 
-                                                                onclick="return confirm('<?=__('Refresh listing, go to top?')?>');"
-                                                                title="<?=__('Go to top')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
+                                                                data-toggle="confirmation"
+                                                                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                                data-btnCancelLabel="<?=__('No way!')?>"
+                                                                title="<?=__('Refresh listing, go to top?')?>" data-id="tr1" data-text="<?=__('Are you sure you want to refresh listing and go to top?')?>">
                                                                 <i class="fa fa-arrow-circle-up"></i> <?=__('Go to top')?>
                                                             </a>
                                                         </li>
