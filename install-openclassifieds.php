@@ -429,6 +429,7 @@ class core{
         $c = curl_init(); if ($c === FALSE) return FALSE;
         curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($c, CURLOPT_URL, $url);
+        curl_setopt($c, CURLOPT_SSL_VERIFYHOST, FALSE);
         curl_setopt($c, CURLOPT_TIMEOUT,30); 
         curl_setopt($c, CURLOPT_NOPROGRESS, false);
         curl_setopt($c, CURLOPT_PROGRESSFUNCTION, array(new core, 'write_curl_progress'));
