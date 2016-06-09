@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<h1 class="page-header page-title">
+<h1 class="page-header page-title" id="page-welcome">
     <?=core::config('general.site_name')?> <?=__('panel')?>
 </h1>
 

@@ -1,7 +1,7 @@
 $(function (){
 // Instance the tour
     var tour = new Tour({
-        container: "#content"
+        container: "#page-wrapper"
     });
 
     tour.addSteps([
@@ -14,12 +14,12 @@ $(function (){
            redirect: false,
         },
         {
-           element: "#page-categories",
+           element: "#quick-creator-btn",
            title: "",
            content: getTourLocalization("step2_content"),
            path: getTourBasePath() + "oc-panel/category",
            placement: "top",
-           redirect: true,
+           placement: "bottom",
         },
         {
            element: "#page-general-configuration",
@@ -37,14 +37,6 @@ $(function (){
            placement: "top",
            redirect: true,
         },
-        {
-           element: "#oc-faq",
-           title: "",
-           content: getTourLocalization("step5_content"),
-           path: getTourBasePath() + "oc-panel/theme",
-           placement: "left",
-           redirect: true,
-    }
     ]);
 
     // Initialize the tour

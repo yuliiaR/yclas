@@ -10,7 +10,7 @@
     </li>
 </ul>
 
-<h1 class="page-header page-title"><?=__('General Configuration')?></h1>
+<h1 id="page-general-configuration"" class="page-header page-title"><?=__('General Configuration')?></h1>
 
 <hr>
 
