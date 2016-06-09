@@ -31,7 +31,11 @@
             </ul>
             <div class="tab-content" style="background: #fff;">
                 <div id="tabSettingsListing" class="tab-pane active">
-                    <h4><?=__('Listing Options')?></h4>
+                    <h4><?=__('Listing Options')?>
+                        <a target="_blank" href="https://docs.yclas.com/how-to-change-settings-for-ads/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
                     <hr>
                     <div>
                         <?foreach ($config as $c):?>
@@ -138,7 +142,11 @@
                     </p>
                 </div>
                 <div id="tabSettingsPublish" class="tab-pane fade">
-                    <h4><?=__('Publish Options')?></h4>
+                    <h4><?=__('Publish Options')?>
+                        <a target="_blank" href="https://docs.yclas.com/how-to-configure-publish-options/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
                     <hr>
                     <div>
                         <div class="form-group">
@@ -338,7 +346,11 @@
                     </p>
                 </div>
                 <div id="tabSettingsFields" class="tab-pane fade">
-                    <h4><?=__('Advertisement Fields')?></h4>
+                    <h4><?=__('Advertisement Fields')?>
+                        <a target="_blank" href="https://docs.yclas.com/how-to-manage-advertisement-fields//">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
@@ -464,7 +476,11 @@
                     </p>
                 </div>
                 <div id="tabSettingsDisplay" class="tab-pane fade">
-                    <h4><?=__('Advertisement Display Options')?></h4>
+                    <h4><?=__('Advertisement Display Options')?>
+                        <a target="_blank" href="https://docs.yclas.com/how-to-configure-advertisement-display-option/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
                     <hr>
                     <div>
                         <div class="form-group">
@@ -648,7 +664,11 @@
                     </p>
                 </div>
                 <div id="tabSettingsMap" class="tab-pane fade">
-                    <h4><?=__('Google Maps Settings')?></h4>
+                    <h4><?=__('Google Maps Settings')?>
+                        <a target="_blank" href="https://docs.yclas.com/how-to-configure-Google-Map-Settings/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
                     <hr>
                     <div>
                         <?$map_styles = array(
@@ -758,7 +778,11 @@
                     </p>
                 </div>
                 <div id="tabSettingsReview" class="tab-pane fade">
-                    <h4><?=__('Reviews Configuration')?></h4>
+                    <h4><?=__('Reviews Configuration')?>
+                        <a target="_blank" href="https://docs.yclas.com/review-system-works/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
                     <hr>
                     <div>
                         <div class="form-group">

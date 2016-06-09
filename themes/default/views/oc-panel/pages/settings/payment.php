@@ -372,8 +372,12 @@
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
 
-                        <div id="tabSettingsPayment2checkout" class="tab-pane fade">
-                    <h4>2checkout</h4>
+                    <div id="tabSettingsPayment2checkout" class="tab-pane fade">
+                    <h4>2checkout
+                        <a target="_blank" href="https://docs.yclas.com/2checkout-configuration/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
                     <hr>
 
                     <div class="form-group">
