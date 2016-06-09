@@ -7441,6 +7441,9 @@ input[type="checkbox"]:focus {
 .fht-table {
   margin-bottom: 0 !important; }
 
+.table-responsive {
+  overflow-x: visible; }
+
 .label {
   font-size: 82%;
   font-weight: 500;
