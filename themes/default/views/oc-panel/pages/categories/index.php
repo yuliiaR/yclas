@@ -2,7 +2,7 @@
 
 <ul class="list-inline pull-right">
     <li>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#quick-creator">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#quick-creator" id="quick-creator-btn">
             <?=__('Quick creator')?>
         </button>
     </li>

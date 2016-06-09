@@ -175,7 +175,7 @@ function init_panel()
 	if (typeof open_eshop !== 'undefined' && $.isFunction(open_eshop.init)) {open_eshop.init(open_eshop);}
 	
 	// Modal confirmation
-	$('[data-toggle="confirmation"]').click(function(event) {
+	$('a[data-toggle="confirmation"]').click(function(event) {
 	    var href = $(this).attr('href');
 	    var title = $(this).attr('title');
 	    var text = $(this).data('text');
@@ -196,6 +196,33 @@ function init_panel()
 	        window.open(href,"_self");
 	    });
 	});
+	
+    $('button[data-toggle="confirmation"]').on('click', function(event) {
+        event.preventDefault();
+        var form = $(this).closest('form');
+        var formaction = $(this).attr('formaction');
+        var title = $(this).attr('title');
+        var text = $(this).data('text');
+        var confirmButtonText = $(this).data('btnoklabel');
+        var cancelButtonText = $(this).data('btncancellabel');
+        event.preventDefault();
+        swal({
+            title: title,
+            text: text,
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: confirmButtonText,
+            cancelButtonText: cancelButtonText,
+            allowOutsideClick: true,
+            closeOnConfirm: true,
+        }, function(confirmed) {
+            if (confirmed) {
+                form.attr('action', formaction);
+                form.submit();
+            }
+        });
+    });
 	
 	//notification system
 	var favicon = new Favico({
