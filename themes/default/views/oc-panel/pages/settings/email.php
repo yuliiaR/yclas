@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="form-group">
-                            <?=FORM::label($forms['elastic_username']['key'], __('API Username'), array('class'=>'control-label', 'for'=>$forms['elastic_username']['key']))?>
+                            <?=FORM::label($forms['elastic_username']['key'], __('API Key'), array('class'=>'control-label', 'for'=>$forms['elastic_username']['key']))?>
                             <?=FORM::input($forms['elastic_username']['key'], $forms['elastic_username']['value'], array(
                                 'placeholder' => '', 
                                 'class' => 'tips form-control', 
@@ -94,7 +94,7 @@
                         </div>
                     
                         <div class="form-group">
-                            <?=FORM::label($forms['elastic_password']['key'], __('API Password'), array('class'=>'control-label', 'for'=>$forms['elastic_password']['key']))?>
+                            <?=FORM::label($forms['elastic_password']['key'], __('Public Account ID'), array('class'=>'control-label', 'for'=>$forms['elastic_password']['key']))?>
                             <?=FORM::input($forms['elastic_password']['key'], $forms['elastic_password']['value'], array(
                                 'placeholder' => "", 
                                 'class' => 'tips form-control', 
