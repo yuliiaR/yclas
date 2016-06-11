@@ -6474,10 +6474,70 @@ aside {
   background: #282C37;
   overflow: auto;
   top: 50px;
-  transition: all 0.2s ease; }
+  color: #b6bbca;
+  transition: all 0.2s ease;
+  /* Google CSE */ }
+  aside .search-list > ul {
+    margin: 15px 30px 15px 12px; }
+    aside .search-list > ul > li > a {
+      padding: 0;
+      font-weight: normal;
+      display: block;
+      padding-bottom: 7px;
+      padding-top: 7px;
+      font-size: 14px; }
+      aside .search-list > ul > li > a:hover {
+        text-decoration: none;
+        background: transparent; }
+  aside .search-docs {
+    font-size: 13px;
+    text-transform: uppercase; }
+  aside .search-container-oc-faq {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-left: -15px;
+    margin-right: -30px;
+    padding-left: 27px;
+    padding-right: 30px; }
+  aside .gsc-control-cse,
+  aside .gsc-control-cse * {
+    box-sizing: content-box; }
+  aside .cse .gsc-control-cse, aside .gsc-control-cse {
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important; }
+  aside .gsc-search-box-tools .gsc-search-box .gsc-input {
+    padding-right: 0 !important; }
+  aside .gsib_b {
+    display: none !important; }
+  aside .gsc-search-button {
+    display: none !important; }
+  aside .gsc-results-wrapper-overlay {
+    top: 15% !important;
+    margin-left: 150px !important;
+    width: 60% !important; }
 
 .folded aside {
   overflow: initial; }
+
+/* Google CSE */
+body.gsc-overflow-hidden aside {
+  overflow: visible; }
+
+#docModal .post-content h1 {
+  font-size: 25px;
+  border-bottom: 1px solid #dfdfdf;
+  padding-bottom: 20px;
+  margin-bottom: 20px; }
+
+#docModal .post-content h2, #docModal .post-content h3, #docModal .post-content h4, #docModal .post-content h5, #docModal .post-content h6 {
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 2em 0 0.5em;
+  color: #666666; }
 
 .panel {
   background: #ffffff;
