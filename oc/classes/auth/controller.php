@@ -118,7 +118,7 @@ class Auth_Controller extends Controller
 
                 	$common_css = array('css/other.css'=>'screen');
 
-                	Theme::$styles = array_merge($theme_css,$common_css);
+                	Theme::$styles = array_merge($common_css, $theme_css);
 
     	            Theme::$scripts['footer'] = array('js/jquery.min.js',
     	            								  'js/jquery.cookie.min.js',	

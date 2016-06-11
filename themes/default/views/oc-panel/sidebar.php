@@ -3,6 +3,205 @@
 <aside class="sidebar" role="navigation">
     <div class="sidebar-nav">
         <ul class="nav" id="side-menu">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="<?=__('Search...')?>">
+                    <span class="input-group-btn">
+                        <button class="btn" type="button" role="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="search-list" style="display: none;">
+                    <ul class="list-unstyled">
+                        <?if($user->id_role==Model_Role::ROLE_ADMIN OR $user->id_role==Model_Role::ROLE_MODERATOR):?>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Home')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'stats'))?>"><?=__('Stats')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'update'))?>"><?=__('Updates')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'ad'))?>"><?=__('Advertisements')?></a>
+                            </li>
+                            <?if( in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  ):  // payment with moderation?>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'ad', 'action'=>'moderate'))?>"><?=__('Moderation')?></a>
+                                </li>
+                            <?endif?>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'category'))?>"><?=__('Categories')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'location'))?>"><?=__('Locations')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'fields'))?>"><?=__('Custom Fields')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'order'))?>"><?=__('Orders')?></a>
+                            </li>
+                            <?if (core::config('general.subscriptions')==1):?>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'plan'))?>"><?=__('Plans')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'subscription'))?>"><?=__('Subscriptions')?></a>
+                                </li>
+                            <?endif?>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'coupon'))?>"><?=__('Coupons')?></a>
+                            </li>
+                            <?if (core::config('advertisement.reviews')==1):?>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'review'))?>"><?=__('Reviews')?></a>
+                                </li>
+                            <?endif?>
+                            <?if (core::config('general.blog')==1):?>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'blog'))?>"><?=__('Blog')?></a>
+                                </li>
+                            <?endif?>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'content', 'action'=>'page'))?>"><?=__('Pages')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'content', 'action'=>'email'))?>"><?=__('Email')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'newsletter'))?>"><?=__('Newsletters')?></a>
+                            </li>
+                            <?if (core::config('general.faq')==1):?>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'content', 'action'=>'help'))?>"><?=__('FAQ')?></a>
+                                </li>
+                            <?endif?>
+                            <?if(core::config('general.forums')==1):?>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'forum'))?>"><?=__('Forums')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'topic'))?>"><?=__('Topics')?></a>
+                                </li>
+                            <?endif?>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'cmsimages'))?>"><?=__('Media')?></a>
+                            </li>
+                            <li <?=(Request::current()->controller()=='map')?'class="active"':''?> >
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'map','action'=>'index'))?>" title="<?=__('Interactive Map')?>">
+                                    <span class="side-name-link"><?=__('Interactive Map')?></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>"><?=__('Themes')?></a>
+                            </li>
+                            <?if (Theme::has_options()):?>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'theme', 'action'=>'options'))?>"><?=__('Themes Options')?></a>
+                                </li>
+                            <?endif?>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'widget'))?>"><?=__('Widgets')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'menu'))?>"><?=__('Menu')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'theme', 'action'=>'css'))?>"><?=__('Custom CSS')?></a>
+                            </li>
+                            <li>
+                                <a href="<?=Route::url('oc-panel',array('controller'=>'market'))?>"><?=__('Market')?></a>
+                            </li>
+                            <?if ($user->has_access_to_any('settings,config')):?>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))?>"><?=__('General')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))?>"><?=__('Advertisement')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))?>"><?=__('Email settings')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>"><?=__('Payment')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'plugins'))?>"><?=__('Plugins')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'translations'))?>"><?=__('Translations')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'image'))?>"><?=__('Media settings')?></a>
+                                </li>
+                                <?if (core::config('general.social_auth')):?>
+                                     <li>
+                                        <a href="<?=Route::url('oc-panel',array('controller'=>'social'))?>"><?=__('Social Auth')?></a>
+                                    </li>
+                                <?endif?>
+                            <?endif?>
+                            <?if ($user->has_access_to_any('user,role,access')):?>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'user'))?>"><?=__('Users')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'role'))?>"><?=__('Roles')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'userfields'))?>"><?=__('User custom Fields')?></a>
+                                </li>
+                                <?if(core::config('general.black_list')):?>
+                                    <li>
+                                        <a href="<?=Route::url('oc-panel',array('controller'=>'pool'))?>"><?=__('User black list')?></a>
+                                    </li>
+                                <?endif?>
+                            <?endif?>
+                            <?if ($user->has_access_to_any('tools')):?>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'tools', 'action'=>'optimize'))?>"><?=__('Tools')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'crontab'))?>"><?=__('Crontab')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller'=>'import'))?>"><?=__('Import')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?=Route::url('oc-panel',array('controller' => 'tools', 'action' => 'export'))?>">
+                                        <?=__('Export')?>
+                                    </a>
+                                </li>
+                            <?endif?>
+                        <?endif?>
+                    </ul>
+                    <?if (Auth::instance()->get_user()->id_role != Model_Role::ROLE_USER):?>
+                        <div class="search-container-oc-faq">
+                            <p class="search-docs"><?=__('Search Documentation')?></p>
+                                <div id="cse" class="header-oc-faq">Loading</div>
+                                <script src='//www.google.com/jsapi' type='text/javascript'></script>
+                                <script type='text/javascript'>
+                                    google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
+                                    google.setOnLoadCallback(function() {
+                                        var customSearchOptions = {};
+                                        var orderByOptions = {};
+                                        orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
+                                        customSearchOptions['enableOrderBy'] = true;
+                                        customSearchOptions['orderByOptions'] = orderByOptions;
+                                        customSearchOptions['overlayResults'] = true;
+                                        var customSearchControl =   new google.search.CustomSearchControl('005338858194192804375:pwxtag7ahsm', customSearchOptions);
+                                        customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+                                        var options = new google.search.DrawOptions();
+                                        options.setAutoComplete(true);
+                                        customSearchControl.draw('cse', options);
+                                    }, true);
+                                </script>
+                        </div> 
+                    <?endif?>
+                </div>
+            </li>
             <? if($user->id_role==Model_Role::ROLE_ADMIN OR $user->id_role==Model_Role::ROLE_MODERATOR):?>
                 <li>
                     <a href="#"><i class="linecon li_display"></i> <span class="hidden-xs"><?=__('Panel')?></span><span class="fa arrow"></span></a>

@@ -61,3 +61,19 @@ $(document).click(function() {
         });
     }
 });
+
+$('.sidebar-search input').keyup(function () {
+    $('.search-list').show();
+    var filter = $('.sidebar-search input').val().toUpperCase();
+    if (filter == '')
+        $('.search-list').hide();
+    $('.search-list li').each(function( index ) {
+        var name = $.trim($(this).text());
+        if (name.toUpperCase().indexOf(filter) == 0) 
+            $(this).show();
+        else
+            $(this).hide();
+
+        console.log( index + ": " + $.trim($(this).text()) );
+    });
+});
