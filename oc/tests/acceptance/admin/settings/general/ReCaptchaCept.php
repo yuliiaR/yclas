@@ -24,7 +24,7 @@ $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/publish-new.html');
-$I->seeElement('.recaptcha1');
+$I->seeElement('#recaptcha1');
 
 $I->amOnPage('/oc-panel/Config/update/recaptcha_active');
 $I->fillField('#formorm_config_value','0');
@@ -40,5 +40,5 @@ $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/publish-new.html');
-$I->dontSeeElement('.recaptcha1');
+$I->dontSeeElement('#recaptcha1');
 

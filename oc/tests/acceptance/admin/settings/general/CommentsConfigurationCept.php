@@ -29,7 +29,7 @@ $I->seeElement('a', ['href' => 'http://reoc.lo/blog']);
 $I->amOnPage('/oc-panel/Blog/create');
 $I->fillField('#formorm_title','Blog Post Title');
 $I->fillField('#formorm_description','This is my test post on my Blog.');
-$I->checkOption('formorm[status]');
+$I->checkOption('#status');
 $I->click("submit"); //click create
 
 // Read
@@ -83,7 +83,7 @@ $I->seeElement('a', ['href' => 'http://reoc.lo/faq']);
 $I->amOnPage('/oc-panel/content/create?type=help');
 $I->fillField('#title','My faq name');
 $I->fillField('#description','Description for My faq');
-$I->checkOption('status');
+$I->checkOption('#status');
 $I->click("submit"); //click create
 
 // Read

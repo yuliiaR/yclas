@@ -48,10 +48,10 @@ $I->see('welcome admin');
 
 
 $I->amOnPage('/oc-panel/pool');
-$I->see('Remove','a');
+$I->seeElement('.btn.btn-danger');
 
-$I->click('Remove');
-$I->see('User John Smith has been removed from black list.');
+$I->click('a[href="http://reoc.lo/oc-panel/pool/remove/4"]');
+$I->seeElement('.alert.alert-success');
 
 $I->amOnPage('http://reoc.lo/oc-panel/ad/activate/4?current_url=30');
 $I->see('Advertisement is active and published');
