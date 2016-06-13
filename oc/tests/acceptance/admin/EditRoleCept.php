@@ -328,8 +328,7 @@ $I->dontSeeCurrentUrlEquals('/oc-panel/email');
 $I->amOnPage('/oc-panel/menu');
 $I->seeElement('.alert.alert-danger');
 $I->dontSee('Custom menu','h1');
-$I->dontSee('Create Menu Item','h3');
-$I->dontSee('Menu type','button');
+$I->dontSee('Create Menu Item');
 $I->dontSeeCurrentUrlEquals('/oc-panel/menu');
 
 $I->amOnPage('/');
@@ -418,8 +417,8 @@ $I->seeCurrentUrlEquals('/oc-panel/content/email');
 $I->amOnPage('/oc-panel/menu');
 $I->dontSeeElement('.alert.alert-danger');
 $I->see('Custom menu','h1');
-$I->see('Create Menu Item','h3');
-$I->see('Menu type','button');
+$I->see('Create Menu Item');
+$I->seeElement('.fa.fa-plus-circle');
 $I->seeCurrentUrlEquals('/oc-panel/menu');
 
 $I->amOnPage('/');

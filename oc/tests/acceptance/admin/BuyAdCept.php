@@ -15,11 +15,11 @@ $I->fillField('#formorm_config_value','1');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 
-$I->amOnPage('/jobs/title-for-the-ad.html');
+$I->amOnPage('/jobs/just-random-title-here.html');
 $I->click('Buy Now');
 
 $I->see('Checkout','h1');
-$I->see('Purchase: title-for-the-ad');
+$I->see('Purchase: just-random-title-here');
 
 $I->amOnPage('/oc-panel/Config/update/paypal_seller');
 $I->fillField('#formorm_config_value','0');

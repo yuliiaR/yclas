@@ -12,10 +12,9 @@ $I->click('auth_redirect');
 $I->see('welcome admin');
 
 $I->wantTo('switch ON "only administrator can publish new ad"');
-$I->amOnPage('/oc-panel/settings/form');
-$I->see('Advertisement Configuration','h1');
-$I->checkOption("#only_admin_post");
-$I->click("submit"); //click save
+$I->amOnPage('/oc-panel/Config/update/only_admin_post');
+$I->fillField("formorm[config_value]","1");
+$I->click('button[type="submit"]');
 
 $I->wantTo('logout and not to see publish new button');
 $I->click("//a[@href='http://reoc.lo/oc-panel/auth/logout']");
@@ -29,10 +28,9 @@ $I->fillField('email','admin@reoc.lo');
 $I->fillField('password','1234');
 $I->click('auth_redirect');
 // switch off only administrator can publish new ad
-$I->amOnPage('/oc-panel/settings/form');
-$I->see('Advertisement Configuration','h1');
-$I->click("only_admin_post");
-$I->click("submit"); //click save
+$I->amOnPage('/oc-panel/Config/update/only_admin_post');
+$I->fillField("formorm[config_value]","0");
+$I->click('button[type="submit"]');
 
 // logout and check if i can see publish new button
 $I->click("//a[@href='http://reoc.lo/oc-panel/auth/logout']");

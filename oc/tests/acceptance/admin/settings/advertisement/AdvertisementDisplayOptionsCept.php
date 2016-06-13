@@ -105,7 +105,7 @@ $I->click('a[href="http://reoc.lo/oc-panel/tools/get_ads_latlgn"]');
 
 //Read
 $I->amOnPage('/jobs/some-nice-title-here.html');
-$I->seeElement('a', ['href' => 'http://reoc.lo/map.html?category=jobs&location=madrid']);
+$I->seeElement('a', ['href' => 'http://reoc.lo/map.html?id_ad=1']);
 
 // Back to default
 $I->amOnPage('/oc-panel/Config/update/map');
@@ -123,7 +123,7 @@ $I->click('submit_btn');
 $I->see('Advertisement is updated');
 //Read
 $I->amOnPage('/jobs/some-nice-title-here.html');
-$I->dontSeeElement('button', ['href' => 'http://reoc.lo/map.html?category=jobs&location=madrid']);
+$I->dontSeeElement('a', ['href' => 'http://reoc.lo/map.html?id_ad=1']);
 
 
 
