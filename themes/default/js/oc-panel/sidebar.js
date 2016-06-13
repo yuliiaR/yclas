@@ -29,6 +29,7 @@ $('#collapse-menu').click(function() {
 function colapse_sidebar(event) {
     if (event) {
         $('body').addClass('folded');
+        $('.search-list').hide();
 
         //set cookie to be avare of current state of sidebar
         $.cookie('sidebar_state', 'collapsed', { expires: 7, path: '/' });
