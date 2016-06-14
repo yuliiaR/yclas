@@ -34,12 +34,12 @@
                     <tr>
                         <td class="col-md-1" style="text-align: center"><?=$order->id_product?></td>
                         <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
-                        <td class="col-md-2 text-center"><?=i18n::format_currency($order->amount - $order->ad->cf_shipping, $order->currency)?></td>
+                        <td class="col-md-2 text-center"><?=i18n::money_format($order->amount - $order->ad->cf_shipping, $order->currency)?></td>
                     </tr>
                     <tr>
                         <td class="col-md-1" style="text-align: center"></td>
                         <td class="col-md-9"><?=__('Shipping')?></td>
-                        <td class="col-md-2 text-center"><?=i18n::format_currency($order->ad->cf_shipping, $order->currency)?></td>
+                        <td class="col-md-2 text-center"><?=i18n::money_format($order->ad->cf_shipping, $order->currency)?></td>
                     </tr>
                 <?else:?>
                     <tr>
@@ -75,7 +75,7 @@
                         <?else :?>
                             <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
                         <?endif?>
-                        <td class="col-md-2 text-center"><?=i18n::format_currency(($order->coupon->loaded())?$order->original_price():$order->amount, $order->currency)?></td>
+                        <td class="col-md-2 text-center"><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format(($order->coupon->loaded())?$order->original_price():$order->amount, $order->currency):i18n::format_currency(($order->coupon->loaded())?$order->original_price():$order->amount, $order->currency)?></td>
                     </tr>
                     <?if (Theme::get('premium')==1 AND $order->coupon->loaded()):?>
                         <?$discount = ($order->coupon->discount_amount==0)?($order->original_price() * $order->coupon->discount_percentage/100):$order->coupon->discount_amount;?>
@@ -102,7 +102,7 @@
                 <tr>
                     <td>   </td>
                     <td class="text-right"><h4><strong><?=__('Total')?>: </strong></h4></td>
-                    <td class="text-center text-danger"><h4><strong><?=i18n::format_currency($order->amount, $order->currency)?></strong></h4></td>
+                    <td class="text-center text-danger"><h4><strong><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format($order->amount, $order->currency):i18n::format_currency($order->amount, $order->currency)?></strong></h4></td>
                 </tr>
             </tbody>
         </table>
