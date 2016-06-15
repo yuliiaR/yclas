@@ -170,9 +170,28 @@
                                     <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'import'))?>"><?=__('Import')?></a>
                                 </li>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller' => 'tools', 'action' => 'export'))?>">
-                                        <?=__('Export')?>
-                                    </a>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>"><?=__('Optimize')?></a>
+                                </li>
+                                <li>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap'))?>"><?=__('Sitemap')?></a>
+                                </li>
+                                <li>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'migration'))?>"><?=__('Migration')?></a>
+                                </li>
+                                <li>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>"><?=__('Cache')?></a>
+                                </li>
+                                <li>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=1"><?=__('Cache')?> - <?=__('Delete all')?></a>
+                                </li>
+                                <li>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=2"><?=__('Cache')?> - <?=__('Delete expired')?></a>
+                                </li>
+                                <li>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'logs'))?>"><?=__('Logs')?></a>
+                                </li>
+                                <li>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'phpinfo'))?>"><?=__('PHP Info')?></a>
                                 </li>
                             <?endif?>
                         <?endif?>
@@ -386,12 +405,7 @@
                             <?=Theme::admin_link(__('Import'), 'import','index','oc-panel')?>
                         </li>
                         <li>
-                            <a href="<?=Route::url('oc-panel',array('controller' => 'tools', 'action' => 'export'))?>">
-                                <?=__('Export')?>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://market.open-classifieds.com/oc-panel/support/index" target="_blank"><?=__('I need help')?></a>
+                            <a href="http://open-classifieds.com/support/" target="_blank"><?=__('I need help')?></a>
                         </li>
                     </ul>
                 </li>
