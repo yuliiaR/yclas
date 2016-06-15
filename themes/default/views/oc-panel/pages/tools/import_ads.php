@@ -1,5 +1,13 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
+<ul class="list-inline pull-right">
+    <li>
+        <a class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller' => 'tools', 'action' => 'export'))?>">
+            <?=__('Export')?>
+        </a>
+    </li>
+</ul>
+
 <h1 class="page-header page-title">
     <?=__('Import tool for ads')?>
     <a target="_blank" href="https://docs.yclas.com/how-to-import-ads/">
