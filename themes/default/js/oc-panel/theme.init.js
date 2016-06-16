@@ -427,3 +427,37 @@ $('.close-panel').on('click',function() {
 $(function() {
     FastClick.attach(document.body);
 });
+
+$(function(){
+
+    ////////////////////////////////////////////////////////////////////
+    // Hotkey binding to elements with 'data-keybinding' attribute: trigger click-event when hotkey pressed
+    clickable_selectors = [
+        'a[data-keybinding]', 
+        'input[data-keybinding][type="submit"]',
+        'input[data-keybinding][type="button"]',
+        'button[data-keybinding][type="button"]'
+    ]
+
+    $(clickable_selectors).each(function(i, selector){
+        $(selector).each(function(i, el){
+            Mousetrap.bind($(el).data('keybinding'), function(e){
+                el.click();
+            });
+        })
+    })
+
+    //////////////////////////////////////
+    // Hotkey binding to elements with 'data-keybinding' attribute: trigger focus on these elements
+    focusable_selectors = [
+        'input[data-keybinding][type="text"]',
+        'textarea[data-keybinding]',
+    ]
+    $(focusable_selectors).each(function(i, selector){
+        $(selector).each(function(i, el){
+            Mousetrap.bind($(el).data('keybinding'), function(e){
+                el.focus();
+            });
+        })
+    })
+})

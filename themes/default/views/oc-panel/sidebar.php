@@ -5,7 +5,7 @@
         <ul class="nav" id="side-menu">
             <li class="sidebar-search">
                 <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="<?=__('Search...')?>">
+                    <input type="text" class="form-control" data-keybinding='["command+shift+s", "ctrl+shift+s"]' placeholder="<?=__('Search...')?>">
                     <span class="input-group-btn">
                         <button class="btn" type="button" role="button">
                             <i class="fa fa-search"></i>
@@ -16,20 +16,20 @@
                     <ul class="list-unstyled">
                         <?if($user->id_role==Model_Role::ROLE_ADMIN OR $user->id_role==Model_Role::ROLE_MODERATOR):?>
                             <li>
-                                <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Home')?></a>
+                                <a class="ajax-load" data-keybinding='g h' href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Home')?></a>
                             </li>
                             <li>
-                                <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'stats'))?>"><?=__('Stats')?></a>
+                                <a class="ajax-load" data-keybinding='g s' href="<?=Route::url('oc-panel',array('controller'=>'stats'))?>"><?=__('Stats')?></a>
                             </li>
                             <li>
                                 <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'update'))?>"><?=__('Updates')?></a>
                             </li>
                             <li>
-                                <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'ad'))?>"><?=__('Advertisements')?></a>
+                                <a class="ajax-load" data-keybinding='g a' href="<?=Route::url('oc-panel',array('controller'=>'ad'))?>"><?=__('Advertisements')?></a>
                             </li>
                             <?if( in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  ):  // payment with moderation?>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'ad', 'action'=>'moderate'))?>"><?=__('Moderation')?></a>
+                                    <a class="ajax-load" data-keybinding='g m' href="<?=Route::url('oc-panel',array('controller'=>'ad', 'action'=>'moderate'))?>"><?=__('Moderation')?></a>
                                 </li>
                             <?endif?>
                             <li>
@@ -42,18 +42,18 @@
                                 <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'fields'))?>"><?=__('Custom Fields')?></a>
                             </li>
                             <li>
-                                <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'order'))?>"><?=__('Orders')?></a>
+                                <a class="ajax-load" data-keybinding='g o' href="<?=Route::url('oc-panel',array('controller'=>'order'))?>"><?=__('Orders')?></a>
                             </li>
                             <?if (core::config('general.subscriptions')==1):?>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'plan'))?>"><?=__('Plans')?></a>
+                                    <a class="ajax-load" data-keybinding='g p' href="<?=Route::url('oc-panel',array('controller'=>'plan'))?>"><?=__('Plans')?></a>
                                 </li>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'subscription'))?>"><?=__('Subscriptions')?></a>
+                                    <a class="ajax-load" data-keybinding='g s' href="<?=Route::url('oc-panel',array('controller'=>'subscription'))?>"><?=__('Subscriptions')?></a>
                                 </li>
                             <?endif?>
                             <li>
-                                <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'coupon'))?>"><?=__('Coupons')?></a>
+                                <a class="ajax-load" data-keybinding='g c' href="<?=Route::url('oc-panel',array('controller'=>'coupon'))?>"><?=__('Coupons')?></a>
                             </li>
                             <?if (core::config('advertisement.reviews')==1):?>
                                 <li>
@@ -117,16 +117,16 @@
                             </li>
                             <?if ($user->has_access_to_any('settings,config')):?>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))?>"><?=__('General')?></a>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))?>"><?=__('Settings')?> - <?=__('General')?></a>
                                 </li>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))?>"><?=__('Advertisement')?></a>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))?>"><?=__('Settings')?> - <?=__('Advertisement')?></a>
                                 </li>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))?>"><?=__('Email settings')?></a>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))?>"><?=__('Settings')?> - <?=__('Email')?></a>
                                 </li>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>"><?=__('Payment')?></a>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>"><?=__('Settings')?> - <?=__('Payment')?></a>
                                 </li>
                                 <li>
                                     <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'plugins'))?>"><?=__('Plugins')?></a>
@@ -145,7 +145,7 @@
                             <?endif?>
                             <?if ($user->has_access_to_any('user,role,access')):?>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'user'))?>"><?=__('Users')?></a>
+                                    <a class="ajax-load" data-keybinding='g u' href="<?=Route::url('oc-panel',array('controller'=>'user'))?>"><?=__('Users')?></a>
                                 </li>
                                 <li>
                                     <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'role'))?>"><?=__('Roles')?></a>
@@ -155,7 +155,7 @@
                                 </li>
                                 <?if(core::config('general.black_list')):?>
                                     <li>
-                                        <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'pool'))?>"><?=__('User black list')?></a>
+                                        <a class="ajax-load" data-keybinding='g b l' href="<?=Route::url('oc-panel',array('controller'=>'pool'))?>"><?=__('User black list')?></a>
                                     </li>
                                 <?endif?>
                             <?endif?>
@@ -182,7 +182,7 @@
                                     <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>"><?=__('Cache')?></a>
                                 </li>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=1"><?=__('Cache')?> - <?=__('Delete all')?></a>
+                                    <a class="ajax-load" data-keybinding='g c' href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=1"><?=__('Cache')?> - <?=__('Delete all')?></a>
                                 </li>
                                 <li>
                                     <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=2"><?=__('Cache')?> - <?=__('Delete expired')?></a>
