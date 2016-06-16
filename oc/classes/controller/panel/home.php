@@ -328,6 +328,6 @@ class Controller_Panel_Home extends Auth_Controller {
 
         die('OK');
     }
-	
+    
 
 }
