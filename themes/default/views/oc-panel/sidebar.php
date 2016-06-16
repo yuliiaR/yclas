@@ -53,7 +53,7 @@
                                 </li>
                             <?endif?>
                             <li>
-                                <a class="ajax-load" data-keybinding='g c' href="<?=Route::url('oc-panel',array('controller'=>'coupon'))?>"><?=__('Coupons')?></a>
+                                <a class="ajax-load" data-keybinding='g c o' href="<?=Route::url('oc-panel',array('controller'=>'coupon'))?>"><?=__('Coupons')?></a>
                             </li>
                             <?if (core::config('advertisement.reviews')==1):?>
                                 <li>
@@ -182,7 +182,7 @@
                                     <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>"><?=__('Cache')?></a>
                                 </li>
                                 <li>
-                                    <a class="ajax-load" data-keybinding='g c' href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=1"><?=__('Cache')?> - <?=__('Delete all')?></a>
+                                    <a class="ajax-load" data-keybinding='g c d' href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=1"><?=__('Cache')?> - <?=__('Delete all')?></a>
                                 </li>
                                 <li>
                                     <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'cache'))?>?force=2"><?=__('Cache')?> - <?=__('Delete expired')?></a>
