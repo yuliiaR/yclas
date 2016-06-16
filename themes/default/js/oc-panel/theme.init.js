@@ -430,8 +430,7 @@ $(function() {
 
 $(function(){
 
-    ////////////////////////////////////////////////////////////////////
-    // Hotkey binding to elements with 'data-keybinding' attribute: trigger click-event when hotkey pressed
+    // Shortcut binding to elements with 'data-keybinding' attribute: trigger click-event when hotkey pressed
     clickable_selectors = [
         'a[data-keybinding]', 
         'input[data-keybinding][type="submit"]',
@@ -447,8 +446,7 @@ $(function(){
         })
     })
 
-    //////////////////////////////////////
-    // Hotkey binding to elements with 'data-keybinding' attribute: trigger focus on these elements
+    // Shortcut binding to elements with 'data-keybinding' attribute: trigger focus on these elements
     focusable_selectors = [
         'input[data-keybinding][type="text"]',
         'textarea[data-keybinding]',

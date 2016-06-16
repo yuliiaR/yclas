@@ -74,7 +74,5 @@ $('.sidebar-search input').keyup(function () {
             $(this).show();
         else
             $(this).hide();
-
-        console.log( index + ": " + $.trim($(this).text()) );
     });
 });
