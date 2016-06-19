@@ -60,12 +60,12 @@ class Widget_Subscribers extends Widget
                                 'max_price'  => array(  'type'      => 'text',
                                                         'display'   => 'text',
                                                         'label'     => __('Maximum Price'),
-                                                        'default'   => __('1000'),
+                                                        'default'   => 1000,
                                                         'required'  => TRUE),
                                 'step'  => array(  'type'      => 'text',
                                                         'display'   => 'text',
                                                         'label'     => __('Increment Step'),
-                                                        'default'   => __('100'),
+                                                        'default'   => 100,
                                                         'required'  => TRUE),
 						 		);
 	}

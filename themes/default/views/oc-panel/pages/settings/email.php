@@ -17,7 +17,7 @@
                             <a data-toggle="tab" href="#tabSettingsEmailGeneral" aria-expanded="true"><?=__('General Email Configuation')?></a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tabSettingsElasticEmail" aria-expanded="false"><?=__('ElasticEmail')?></a>
+                            <a data-toggle="tab" href="#tabSettingsElasticEmail" aria-expanded="false">ElasticEmail</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#tabSettingsSMTPconfiguration" aria-expanded="false"><?=__('SMTP Configuration')?></a>
@@ -71,7 +71,7 @@
                         <hr>
 
                         <div class="form-group">
-                            <?=FORM::label($forms['elastic_active']['key'], __("ElasticEmail"), array('class'=>'control-label', 'for'=>$forms['elastic_active']['key']))?>
+                            <?=FORM::label($forms['elastic_active']['key'], "ElasticEmail", array('class'=>'control-label', 'for'=>$forms['elastic_active']['key']))?>
                             <div class="radio radio-primary">
                                 <?=Form::radio($forms['elastic_active']['key'], 1, (bool) $forms['elastic_active']['value'], array('id' => $forms['elastic_active']['key'].'1'))?>
                                 <?=Form::label($forms['elastic_active']['key'].'1', __('Enabled'))?>
