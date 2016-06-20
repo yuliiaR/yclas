@@ -207,7 +207,7 @@ class Controller extends Kohana_Controller
         //maintenance mode
         if (core::config('general.maintenance')==1 AND strtolower($this->request->controller())!='auth')
         {
-            if ($this->user!=FALSE  AND ($this->user->id_role==Model_Role::ROLE_ADMIN OR $this->user->id_role==Model_Role::ROLE_MODERATOR))
+            if ($this->user!=FALSE  AND ($this->user->is_admin() OR $this->user->is_moderator()))
             {
                 Alert::set(Alert::INFO, __('You are in maintenance mode, only you can see the website'), NULL, 'maintenance');
             }

@@ -15,7 +15,7 @@ class Controller_New extends Controller
         //advertisement.only_admin_post
         if( Core::config('advertisement.only_admin_post') == TRUE AND (
             !Auth::instance()->logged_in() OR  
-            (Auth::instance()->logged_in() AND $this->user->id_role != Model_Role::ROLE_ADMIN)))
+            (Auth::instance()->logged_in() AND ! $this->user->is_admin())))
         {
             $this->redirect(Route::url('default'));
         }
@@ -102,7 +102,7 @@ class Controller_New extends Controller
         // NO categories redirect ADMIN to categories panel
         if ($categories->count_all() == 0)
         {
-            if(Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
+            if(Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin())
             {
                 Alert::set(Alert::INFO, __('Please, first create some categories.'));
                 $this->redirect(Route::url('oc-panel',array('controller'=>'category','action'=>'index')));

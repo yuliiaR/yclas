@@ -111,7 +111,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 $activate = FALSE;
 
                 //admin whatever he wants
-                if ($user->id_role == Model_Role::ROLE_ADMIN )
+                if ($user->is_admin())
                 {
                     $activate = TRUE;
                 }
@@ -274,8 +274,8 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		$form = new Model_Ad($this->request->param('id'));
 		
         if($form->loaded() AND (Auth::instance()->get_user()->id_user == $form->id_user
-            OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN
-            OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_MODERATOR))
+            OR Auth::instance()->get_user()->is_admin()
+            OR Auth::instance()->get_user()->is_moderator()))
 		{
             // deleting single image by path 
             if(is_numeric($deleted_image = core::request('img_delete')))
@@ -474,7 +474,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             if($advert->loaded())
             {
                 //if admin or moderator user is the advert user ;) hack!!
-                if($this->user->id_role == Model_Role::ROLE_ADMIN OR $this->user->id_role == Model_Role::ROLE_MODERATOR)
+                if($this->user->is_admin() OR $this->user->is_moderator())
                     $user = $advert->user;
                 else
                     $user  = $this->user;

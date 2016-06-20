@@ -72,7 +72,7 @@
             </div>
         <?endif?>
 
-        <?if(Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN):?>
+        <?if(Auth::instance()->get_user()->is_admin()):?>
             <div class="panel panel-default">
                 <? $owner = new Model_User($ad->id_user)?>
                 <table class="table table-bordered admin-table-user">
@@ -265,7 +265,7 @@
                     <?if (Theme::get('premium')==1):?>
                         <div id="custom-fields"
                             data-customfield-values='<?=json_encode($ad->custom_columns(), JSON_HEX_APOS | JSON_HEX_QUOT)?>'
-                            <?=(Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN OR Auth::instance()->get_user()->id_role == Model_Role::ROLE_MODERATOR) ? 'data-admin-privilege': NULL?>
+                            <?=(Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator()) ? 'data-admin-privilege': NULL?>
                         >
                             <div id="custom-field-template" class="form-group hidden">
                                 <div class="col-sm-8">

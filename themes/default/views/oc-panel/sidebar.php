@@ -14,7 +14,7 @@
                 </div>
                 <div class="search-list" style="display: none;">
                     <ul class="list-unstyled">
-                        <?if($user->id_role==Model_Role::ROLE_ADMIN OR $user->id_role==Model_Role::ROLE_MODERATOR):?>
+                        <?if($user->is_admin() OR $user->is_moderator()):?>
                             <li>
                                 <a class="ajax-load" data-keybinding='g h' href="<?=Route::url('oc-panel',array('controller'=>'home'))?>"><?=__('Home')?></a>
                             </li>
@@ -221,7 +221,7 @@
                     <?endif?>
                 </div>
             </li>
-            <? if($user->id_role==Model_Role::ROLE_ADMIN OR $user->id_role==Model_Role::ROLE_MODERATOR):?>
+            <? if($user->is_admin() OR $user->is_moderator()):?>
                 <li>
                     <a href="#"><i class="linecon li_display"></i> <span class="hidden-xs"><?=__('Panel')?></span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -334,7 +334,7 @@
                 </li>
                 <?endif?>
             <?endif?>
-            <? if($user->id_role==Model_Role::ROLE_TRANSLATOR):?>
+            <? if($user->is_translator()):?>
                 <a href="#"><i class="linecon li_note"></i> <span class="hidden-xs"><?=__('Content')?></span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <?if (core::config('general.blog')==1):?>

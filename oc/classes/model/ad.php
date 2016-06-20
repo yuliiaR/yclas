@@ -897,7 +897,7 @@ class Model_Ad extends ORM {
             //is the admin getting the CF fields?
             $is_admin = FALSE;
             if (Auth::instance()->logged_in())
-                if (Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN)
+                if (Auth::instance()->get_user()->is_admin())
                     $is_admin = TRUE;
 
             //custom fields config, label, name and order
@@ -1336,7 +1336,7 @@ class Model_Ad extends ORM {
             // ad edited but we have moderation on, so goes to moderation queue unless you are admin
             if( ($moderation == Model_Ad::MODERATION_ON 
                 OR $moderation == Model_Ad::EMAIL_MODERATION
-                OR $moderation == Model_Ad::PAYMENT_MODERATION) AND Auth::instance()->get_user()->id_role != Model_Role::ROLE_ADMIN ) 
+                OR $moderation == Model_Ad::PAYMENT_MODERATION) AND ! Auth::instance()->get_user()->is_admin() ) 
             {
                 //notify admins new ad
                 $this->notify_admins();

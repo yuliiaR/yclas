@@ -411,8 +411,8 @@ class Controller_Ad extends Controller {
 				$permission = TRUE; //permission to add hit to advert and give access rights. 
 				$auth_user = Auth::instance();
                 if(!$auth_user->logged_in() OR 
-					($auth_user->get_user()->id_user != $ad->id_user AND ($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR)) OR 
-					($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR))
+					($auth_user->get_user()->id_user != $ad->id_user AND (! $auth_user->get_user()->is_admin() AND ! $auth_user->get_user()->is_moderator())) OR 
+					(! $auth_user->get_user()->is_admin() AND ! $auth_user->get_user()->is_moderator()))
 				{	
 
 					$permission = FALSE;
@@ -591,8 +591,8 @@ class Controller_Ad extends Controller {
                 $permission = TRUE; //permission to add hit to advert and give access rights. 
                 $auth_user = Auth::instance();
                 if(!$auth_user->logged_in() OR 
-                    ($auth_user->get_user()->id_user != $ad->id_user AND ($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR)) OR 
-                    ($auth_user->get_user()->id_role != Model_Role::ROLE_ADMIN AND $auth_user->get_user()->id_role != Model_Role::ROLE_MODERATOR))
+                    ($auth_user->get_user()->id_user != $ad->id_user AND (! $auth_user->get_user()->is_admin() AND ! $auth_user->get_user()->is_moderator())) OR 
+                    (! $auth_user->get_user()->is_admin() AND ! $auth_user->get_user()->is_moderator()))
                 {   
 
                     $permission = FALSE;
