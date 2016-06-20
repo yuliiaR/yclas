@@ -28,9 +28,13 @@ $(function(){
 $(function(){
 
     //notification system
-    var favicon = new Favico({
+    var favicon = false
+    
+    /*if ($('link[rel="shortcut icon"]')[0].href.indexOf("cdn.yclas") === -1) {
+        favicon = new Favico({
         animation : 'popFade'
     });
+    }*/
 
     $('#contact-notification').click(function(event) {
         $.get($(this).data('url'));
@@ -45,13 +49,19 @@ $(function(){
                 $("#contact-notification span").hide();
                 $("#contact-notification i").removeClass('fa-bell').addClass('fa-bell-o');
                 $("#contact-notification-dd" ).remove();
+                
+                if ( favicon !== false ) {
                 favicon.badge(0);
+            }
             }
         });
     });
     
     //intial value
+    if ( favicon !== false ) {
     favicon.badge($('#contact-notification span').text());
+    }
+    
 });
 
 //validate auth pages
@@ -416,7 +426,7 @@ $(function(){
     var savedRate, savedCurrency, siteCurrency;
     siteCurrency = getSiteCurrency();
     savedCurrency = getSavedCurrency();
-    if (savedCurrency == undefined) {
+    if (getCookie('site_currency') == undefined) {
         savedRate = 1;
         savedCurrency = siteCurrency;
     }
