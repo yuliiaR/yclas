@@ -107,6 +107,7 @@ class Controller_Feed extends Controller {
                         'pubDate'       => date("r"),
                         'description'   => htmlspecialchars(__('Latest post published'),ENT_QUOTES),
                         'generator'     => 'Open Classifieds',
+                        'link'          =>  Route::url('blog'),
         ); 
         
         $items = array();
@@ -149,6 +150,7 @@ class Controller_Feed extends Controller {
                         'pubDate'       => date("r"),
                         'description'   => htmlspecialchars(__('Latest post published'),ENT_QUOTES),
                         'generator'     => 'Open Classifieds',
+                        'link'          =>  Route::url('forum-home'),
         ); 
         
         $items = array();
@@ -208,6 +210,7 @@ class Controller_Feed extends Controller {
                                 'pubDate'     => date("r"),
                                 'description' => htmlspecialchars($user->name.' - '.$user->description,ENT_QUOTES),
                                 'generator'   => 'Open Classifieds',
+                                'link'        =>  Route::url('profile', array('seoname'=>$seoname)),
                 ); 
                 
                 $items = array();
