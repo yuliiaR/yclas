@@ -6,7 +6,9 @@ class Controller_Panel_Home extends Auth_Controller {
 	public function action_index()
 	{
         //if not god redirect him to the normal profile page
-        if ( ! in_array(Auth::instance()->get_user()->id_role, array(Model_Role::ROLE_ADMIN, Model_Role::ROLE_TRANSLATOR, Model_Role::ROLE_MODERATOR)))
+        if ( ! Auth::instance()->get_user()->is_admin() AND 
+             ! Auth::instance()->get_user()->is_moderator() AND 
+             ! Auth::instance()->get_user()->is_translator())
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'myads','action'=>'index')));  
         
         Core::ocacu();

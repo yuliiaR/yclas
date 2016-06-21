@@ -147,7 +147,7 @@ class Controller_Stripe extends Controller{
                     $application_fee = StripeKO::application_fee($order->amount, $fee);
 
                     //we charge the fee only if its not admin
-                    if ($order->ad->user->id_role!=Model_Role::ROLE_ADMIN)
+                    if (! $order->ad->user->is_admin())
                     {
                         $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($order->amount), // amount in cents, again
@@ -181,7 +181,7 @@ class Controller_Stripe extends Controller{
                 $order->confirm_payment('stripe',Core::post('stripeToken'));
                 
                 //only if is not admin
-                if ($order->ad->user->id_role!=Model_Role::ROLE_ADMIN)
+                if (! $order->ad->user->is_admin())
                 {
                     //crete new order for the application fee so we know how much the site owner is earning ;)
                     $order_app = Model_Order::new_order($order->ad, $order->ad->user,

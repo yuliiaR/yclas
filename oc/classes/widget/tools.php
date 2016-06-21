@@ -58,7 +58,7 @@ class Widget_Tools extends Widget
         {
             $user = Auth::instance()->get_user();
 
-            if($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_user == $ad->id_user)
+            if($user->is_admin() OR $user->id_user == $ad->id_user)
             {
                 $this->ad = $ad;
                 $this->user_ads = $user_ads->where('id_user', '=', $ad->id_user)->find_all();

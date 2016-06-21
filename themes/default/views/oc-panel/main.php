@@ -40,7 +40,7 @@
 	<?=Theme::scripts($scripts,'header','default')?>
     <link rel="shortcut icon" href="<?=core::config('general.base_url').'images/favicon.ico'?>">
 
-    <?if (Auth::instance()->get_user()->id_role==Model_Role::ROLE_ADMIN OR Auth::instance()->get_user()->id_role==Model_Role::ROLE_MODERATOR):?>
+    <?if (Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator()):?>
     <script>
       (function(){
       var handle = '@openclassifieds';

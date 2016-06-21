@@ -25,7 +25,7 @@
                 <i class="glyphicon glyphicon-off"></i><?=__("Deactivate");?>
             </a> 
         
-            <?if(Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_ADMIN):?>
+            <?if(Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin()):?>
                 <a class="btn btn-primary" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$widget->ad->id_ad))?>" 
                     onclick="return confirm('<?=__('Spam?')?>');">
                     <i class="glyphicon glyphicon-fire"></i><?=__("Spam");?>
