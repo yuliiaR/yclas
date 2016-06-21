@@ -346,7 +346,7 @@
 					</div>
 				<?endif?>
 			<?endif?>
-
+			<?=$ad->structured_data()?>
 			<?endif?>
 		</div>
 	</div>
