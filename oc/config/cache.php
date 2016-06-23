@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 return array
 (
-    'default' => 'memcache',
+    'default' => 'file',
     
     'file'  => array
     (

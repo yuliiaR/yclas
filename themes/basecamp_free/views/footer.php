@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row footer-widgets">
 			<?$i=0; foreach ( Widgets::render('footer') as $widget):?>
-				<div class="col-xs-3">
+				<div class="col-md-3">
 					<?=$widget?>
 				</div>
 				<? $i++; if ($i%4 == 0) echo '<div class="clearfix"></div>';?>
