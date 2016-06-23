@@ -22,7 +22,7 @@
                     </ul>
                     <?=View::factory('oc-panel/widget_login')?>
                 </nav>
-                <a href="http://open-classifieds.com/support/" target="_blank" class="help-link">Need help?</a>
+                <a href="http://open-classifieds.com/support/" target="_blank" class="help-link hidden-xs">Need help?</a>
             </div>
         </div>
     </div>

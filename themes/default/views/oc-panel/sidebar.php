@@ -3,7 +3,7 @@
 <aside class="sidebar" role="navigation">
     <div class="sidebar-nav">
         <ul class="nav" id="side-menu">
-            <li class="sidebar-search">
+            <li class="sidebar-search hidden-xs">
                 <div class="input-group custom-search-form">
                     <input type="text" class="form-control" data-keybinding='["command+shift+s", "ctrl+shift+s"]' placeholder="<?=__('Search...')?>">
                     <span class="input-group-btn">
@@ -255,7 +255,7 @@
                 </li>
                 <li>
                     <a href="#"><i class="linecon li_note"></i> <span class="hidden-xs"><?=__('Content')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level nav-mobile-moved">
                         <?if (core::config('general.blog')==1):?>
                             <?=Theme::admin_link(__('Blog'), 'blog','index','oc-panel')?>
                         <?endif?>
@@ -279,7 +279,7 @@
                 </li>
                 <li>
                     <a href="#"><i class="linecon li_photo"></i> <span class="hidden-xs"><?=__('Appearance')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level nav-mobile-moved">
                         <?=Theme::admin_link(__('Themes'), 'theme','index','oc-panel')?>
                         <?if (Theme::has_options()):?>
                             <?=Theme::admin_link(__('Theme Options'), 'theme','options','oc-panel')?>
@@ -293,7 +293,7 @@
                 <?if ($user->has_access_to_any('settings,config')):?>
                 <li>
                     <a href="#"><i class="linecon li_params"></i> <span class="hidden-xs"><?=__('Settings')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">           
+                    <ul class="nav nav-second-level nav-mobile-moved">           
                         <?=Theme::admin_link(__('General'), 'settings','general','oc-panel')?>
                         <?=Theme::admin_link(__('Advertisement'), 'settings','form','oc-panel')?>
                         <?=Theme::admin_link(__('Email settings'), 'settings','email','oc-panel')?>
@@ -310,7 +310,7 @@
                 <?if ($user->has_access_to_any('user,role,access')):?>
                 <li>
                     <a href="#"><i class="linecon li_user"></i> <span class="hidden-xs"><?=__('Users')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level nav-mobile-moved">
                         <?=Theme::admin_link(__('Users'),'user','index','oc-panel')?>
                         <?=Theme::admin_link(__('Roles'),'role','index','oc-panel')?>
                         <?=Theme::admin_link(__('User custom Fields'), 'userfields','index','oc-panel')?>
@@ -323,7 +323,7 @@
                 <?if ($user->has_access_to_any('tools')):?>
                 <li>
                     <a href="#"><i class="linecon li_lab"></i> <span class="hidden-xs"><?=__('Extra')?></span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level nav-mobile-moved">
                         <?=Theme::admin_link(__('Tools'), 'tools','optimize','oc-panel')?>
                         <?=Theme::admin_link(__('Crontab'), 'crontab','index','oc-panel')?>
                         <?=Theme::admin_link(__('Import'), 'import','index','oc-panel')?>
@@ -336,7 +336,7 @@
             <?endif?>
             <? if($user->is_translator()):?>
                 <a href="#"><i class="linecon li_note"></i> <span class="hidden-xs"><?=__('Content')?></span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
+                <ul class="nav nav-second-level nav-mobile-moved">
                     <?if (core::config('general.blog')==1):?>
                         <?=Theme::admin_link(__('Blog'), 'blog','index','oc-panel')?>
                     <?endif?>
