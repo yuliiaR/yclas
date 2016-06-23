@@ -7524,6 +7524,8 @@ input[type="checkbox"]:focus {
     text-align: left; } }
 
 @media (max-width: 768px) {
+  #page-wrapper, .folded #page-wrapper {
+    padding-top: 0; }
   h1 {
     font-size: 24px; }
   h2 {
@@ -7577,6 +7579,8 @@ input[type="checkbox"]:focus {
       padding-top: 15px; }
     .sidebar-nav .nav-second-level li:last-child a {
       padding-bottom: 15px; }
+  .sidebar-nav .nav-mobile-moved {
+    top: -50px; }
   .folded .nav-second-level {
     left: 51px; }
   #page-wrapper,
@@ -7616,7 +7620,11 @@ input[type="checkbox"]:focus {
     display: block; }
     table thead, table tbody {
       display: table;
-      width: 100%; } }
+      width: 100%; }
+  .media-mobile {
+    width: 100%;
+    margin-bottom: 20px;
+    display: block; } }
 
 @media (min-width: 768px) {
   .dropdown-li:hover .dropdown-menu {

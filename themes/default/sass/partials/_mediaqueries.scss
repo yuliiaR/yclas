@@ -7,6 +7,9 @@
 }
 
 @media(max-width:768px) {
+    #page-wrapper, .folded #page-wrapper {
+        padding-top:0;
+    }
     h1 {font-size:24px;}
     h2 {font-size:22px;}
     h3 {font-size:20px;}
@@ -85,6 +88,9 @@
             }
         }
     }
+    .sidebar-nav .nav-mobile-moved {
+        top:-50px
+    }
     .folded .nav-second-level {
         left:51px;
     }
@@ -152,6 +158,12 @@
             display:table;
             width:100%;
         }
+    }
+
+    .media-mobile {
+        width:100%;
+        margin-bottom:20px;
+        display:block;
     }
 }
 
