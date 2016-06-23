@@ -45,7 +45,7 @@
 															<?if ($order->featured_days != $days):?>
 																<li>
 																	<a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>?featured_days=<?=$days?>">
-																		<small><?=$days?> <?=__('Days')?> - <?=i18n::money_format($price)?></small>
+																		<small><?=$days?> <?=__('Days')?> - <?=core::config('payment.paypal_currency')?> <?=$price?></small>
 																	</a>
 																</li>
 															<?endif?>
