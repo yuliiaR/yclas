@@ -12,6 +12,11 @@ table {
 	}
 }
 
+.chosen-container {
+    position: absolute;
+    display: block;
+}
+
 .chosen-container-single .chosen-single {
 	height:30px !important;
 	padding:2px 0 0 8px !important;
@@ -22,6 +27,10 @@ table {
 
 .chosen-container-multi .chosen-choices li.search-field input[type=text] {
   height: 25px;
+}
+
+.chosen-container + .help-block {
+    margin-top: 35px;
 }
 
 #filter_buttons .form-group, #filter_buttons select {
