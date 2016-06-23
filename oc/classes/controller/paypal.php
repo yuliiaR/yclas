@@ -103,10 +103,14 @@ class Controller_Paypal extends Controller{
         if ($order->loaded())
         {
         	// case when selling advert
-        	if($order->id_product == Model_Order::PRODUCT_AD_SELL)
+        	if($order->id_product == Model_Order::PRODUCT_AD_SELL){
         		$paypal_account = $order->ad->paypal_account();
-        	else
+        		$currency = i18n::get_intl_currency_symbol();
+        	}
+        	else{
         		$paypal_account = core::config('payment.paypal_account');
+        		$currency = core::config('payment.paypal_currency');
+        	}
 
 			$paypal_url = (Core::config('payment.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
 
@@ -116,7 +120,7 @@ class Controller_Paypal extends Controller{
 	                             'site_url'            	=> URL::base(TRUE),
 	                             'paypal_url'        	=> $paypal_url,
 	                             'paypal_account'    	=> $paypal_account,
-	                             'paypal_currency'    	=> core::config('payment.paypal_currency'),
+	                             'paypal_currency'    	=> $currency,
 	                             'item_name'			=> $order->description);
 			
 			$this->template = View::factory('paypal', $paypal_data);
