@@ -6,7 +6,7 @@ $I->wantTo('edit a user');
 $I->amOnPage('/oc-panel/auth/login');
 $I->fillField('email','admin@reoc.lo');
 $I->fillField('password','1234');
-$I->click('auth_redirect');
+$I->click('button[type="submit"]');
 $I->amOnPage('/oc-panel');
 $I->see('welcome admin');
 
