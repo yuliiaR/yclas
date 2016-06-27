@@ -8,6 +8,7 @@ install/install.lock
 oc/cache/*
 oc/logs/*
 images/*
+images/favicon.ico
 themes/*
 !themes/default/
 !themes/basecamp_free/
