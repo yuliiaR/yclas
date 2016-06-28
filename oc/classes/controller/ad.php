@@ -895,7 +895,7 @@ class Controller_Ad extends Controller {
         }
         if(core::config('general.auto_locate') OR core::config('advertisement.map'))
         {
-            Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?libraries=geometry,places&v=3';
+            Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3.7&key='.core::config("advertisement.gm_api_key");
             Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/g/gmaps@0.4.15,maplace.js@0.1.3,jquery.geocomplete@1.6.5';
         }
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
