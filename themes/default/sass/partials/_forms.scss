@@ -29,10 +29,9 @@ table {
     .chosen-container-multi .chosen-choices li.search-field input[type=text] {
         height: 25px;
     }
-}
-
-.chosen-container + .help-block {
-    margin-top: 35px;
+    .chosen-container + .help-block {
+        margin-top: 35px;
+    }
 }
 
 #filter_buttons .form-group, #filter_buttons select {
