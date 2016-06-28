@@ -672,7 +672,7 @@
                     <hr>
                     <div>
                         <div class="form-group">
-                            <?=FORM::label($forms['gm_api_key']['key'], __('Google Maps API Key'), array('class'=>'control-label', 'for'=>$forms['gm_api_key']['key']))?>
+                            <?=FORM::label($forms['gm_api_key']['key'], __('Google Maps API Key').' <a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">Get Key</a>', array('class'=>'control-label', 'for'=>$forms['gm_api_key']['key']))?>
                             <?=FORM::input($forms['gm_api_key']['key'], $forms['gm_api_key']['value'], array(
                                 'placeholder' => "", 
                                 'class' => 'tips form-control', 
