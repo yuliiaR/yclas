@@ -348,7 +348,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					$ad->user->subscription()->amount_ads_left <= 0 AND
 					$ad->user->subscription()->amount_ads_left != -1  )
 				{
-					Alert::set(Alert::WARNING, sprintf(__('The customer %s does not have more ads left to publish.'),$ad->email));
+					Alert::set(Alert::WARNING, sprintf(__('The customer %s does not have more ads left to publish.'),$ad->user->email));
 				}
 				elseif ($ad->status != Model_Ad::STATUS_PUBLISHED)
 				{
