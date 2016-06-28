@@ -11,7 +11,7 @@
                         </li>
                         <li class="hidden">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="linecon li_settings"></i><span class="hidden-xs hidden-sm hidden-md">Quick settings</span><i class="fa fa-angle-down"></i>
+                                <i class="linecon li_settings"></i><span class="hidden-xs hidden-sm hidden-md"><?=__('Quick settings')?></span><i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
                                 <?=Theme::admin_link(__('Cache'),'tools','cache','oc-panel','glyphicon glyphicon-cog')?>
@@ -22,7 +22,7 @@
                     </ul>
                     <?=View::factory('oc-panel/widget_login')?>
                 </nav>
-                <a href="http://open-classifieds.com/support/" target="_blank" class="help-link hidden-xs">Need help?</a>
+                <a href="http://open-classifieds.com/support/" target="_blank" class="help-link hidden-xs"><?=__('Need help?')?></a>
             </div>
         </div>
     </div>
