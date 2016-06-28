@@ -17,7 +17,7 @@
         </button>
     </li>
     <li>
-        <a class="btn btn-primary ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
+        <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'create'))?><?=Core::get('id_location') ? '?id_location_parent='.Core::get('id_location') : NULL?>" title="<?=__('New Location')?>">
             <i class="fa fa-plus-circle"></i>&nbsp;  <?=__('New Location')?>
         </a>
     </li>
@@ -54,7 +54,7 @@
                                         href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'index'))?>?id_location=<?=$loc->id_location?>">
                                         <?=__('Browse')?>
                                     </a>
-                                    <a class="drag-action ajax-load" title="<?=__('Edit')?>"
+                                    <a class="drag-action" title="<?=__('Edit')?>"
                                         href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'update','id'=>$loc->id_location))?>">
                                         <i class="fa fa-pencil-square-o"></i>
                                     </a>

@@ -1,5 +1,4 @@
-$(function  ()
-{
+function initLocationsGMap () {
     map = new GMaps({
         div: '#map',
         zoom: parseInt($('#map').attr('data-zoom')),
@@ -51,4 +50,4 @@ $(function  ()
         e.preventDefault();
         $('#formorm_latitude').closest('form').submit();
     });
-});
+};

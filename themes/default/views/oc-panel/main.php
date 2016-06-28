@@ -76,8 +76,8 @@
         </div>
       </div>  
     </div>
-  	<?=Theme::scripts($scripts,'footer','default')?>
-  
+    <?=Theme::scripts($scripts,'footer','default')?>
+    <?=Theme::scripts($scripts,'async_defer', 'default', ['async' => '', 'defer' => ''])?>
   </body>
 </html>
 

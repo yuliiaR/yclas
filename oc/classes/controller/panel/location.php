@@ -63,7 +63,9 @@ class Controller_Panel_Location extends Auth_Crud {
 
         $this->template->title = __('New').' '.__($this->_orm_model);
         
+        $this->template->scripts['footer'][] = 'js/gmaps.min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/locations-gmap.js';
+        $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap';
 
         $location = new Model_Location();
         
@@ -135,7 +137,9 @@ class Controller_Panel_Location extends Auth_Crud {
     {
         $this->template->title = __('Update').' '.__($this->_orm_model).' '.$this->request->param('id');
     
+        $this->template->scripts['footer'][] = 'js/gmaps.min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/locations-gmap.js';
+        $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap';
 
         $form = new FormOrm($this->_orm_model,$this->request->param('id'));
         $location = new Model_Location($this->request->param('id'));
