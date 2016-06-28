@@ -6675,20 +6675,21 @@ table tbody tr th, table tbody tr td {
   table tbody tr th .checkbox, table tbody tr th .btn, table tbody tr td .checkbox, table tbody tr td .btn {
     margin: 0; }
 
-.chosen-container {
-  position: absolute;
-  display: block; }
-
 .chosen-container-single .chosen-single {
   height: 30px !important;
   padding: 2px 0 0 8px !important; }
   .chosen-container-single .chosen-single div {
     top: 3px !important; }
 
-.chosen-container-multi .chosen-choices li.search-field input[type=text] {
+.tab-content .chosen-container {
+  position: absolute;
+  display: block;
+  padding-right: 20%; }
+
+.tab-content .chosen-container-multi .chosen-choices li.search-field input[type=text] {
   height: 25px; }
 
-.chosen-container + .help-block {
+.tab-content .chosen-container + .help-block {
   margin-top: 35px; }
 
 #filter_buttons .form-group, #filter_buttons select {
