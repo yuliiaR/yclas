@@ -50,8 +50,8 @@ function colapse_sidebar(event) {
     }
 }
 
-//minified sidebar,when click outside close dropdown
-$(document).click(function() {
+//minified sidebar, when click second level link close dropdown
+$('.nav.nav-second-level li > a').click(function() {
     if ($('body').hasClass('folded')) {
         $('.sidebar li').each(function() {
             $(this).removeClass('active');
