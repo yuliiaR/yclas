@@ -11,7 +11,7 @@ class Controller_Panel_Map extends Auth_Controller {
 
         $this->template->styles              = array('css/map-generator.css' => 'screen');
         $this->template->scripts['footer'][] = '//www.google.com/jsapi';
-        $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false';
+        $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3.7&key='.core::config("advertisement.gm_api_key");
         $this->template->scripts['footer'][] = 'js/jscolor/jscolor.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/map/map-generator.js';
 
