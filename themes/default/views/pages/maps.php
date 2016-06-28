@@ -1,8 +1,8 @@
 <html>
 <head>
     <title><?=$title?></title>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
-    <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7"></script>
+    <script type="text/javascript" src="//maps.google.com/maps/api/js?libraries=geometry&v=3.7&key=<?=core::config('advertisement.gm_api_key')?>"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/maplace.js/0.1.3/maplace.min.js"></script>
     
     <script type="text/javascript">

@@ -21,7 +21,7 @@ class Controller_Home extends Controller {
                 Cookie::delete('user_location');
             }
 
-            Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7';
+            Theme::$scripts['footer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3.7&key='.core::config("advertisement.gm_api_key");
             Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
         }
         

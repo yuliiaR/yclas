@@ -692,6 +692,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'disqus', ''),
 ('advertisement', 'fbcomments', ''),
 ('advertisement', 'map', 0),
+('advertisement', 'gm_api_key', ''),
 ('advertisement', 'map_style', ''),
 ('advertisement', 'map_zoom', 14),
 ('advertisement', 'center_lon', ''),
