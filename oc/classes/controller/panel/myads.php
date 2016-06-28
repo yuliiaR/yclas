@@ -245,7 +245,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
                                                         'js/jasny-bootstrap.min.js',
-                                                        '//maps.google.com/maps/api/js?libraries=geometry&v=3.7&key='.core::config("advertisement.gm_api_key"),
+                                                        '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key"),
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
@@ -259,7 +259,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                                             '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
             
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
-                                                        '//maps.google.com/maps/api/js?libraries=geometry&v=3.7&key='.core::config("advertisement.gm_api_key"),
+                                                        '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key"),
                                                         '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js',
                                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
