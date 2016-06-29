@@ -169,7 +169,11 @@ function init_panel()
 	$(".icon-picker").iconPicker();
 	
 	// Load google api
-	$.getScript(("https:" == document.location.protocol ? "https:" : "http:") + "//www.google.com/jsapi");
+    jQuery.ajax({
+          url: ("https:" == document.location.protocol ? "https:" : "http:") + "//www.google.com/jsapi",
+          dataType: "script",
+          cache: true
+    });
 	
 	// Call open_eshop.init function only if exist
 	if (typeof open_eshop !== 'undefined' && $.isFunction(open_eshop.init)) {open_eshop.init(open_eshop);}
