@@ -267,87 +267,99 @@ $(".sceditor-container iframe").contents().find("body").bind('paste', function(e
     }
 });	
 
-// google map set marker on address
-if ($('#map').length !== 0){
-    new GMaps({
-        div: '#map',
-        zoom: parseInt($('#map').attr('data-zoom')),
-        lat: $('#map').attr('data-lat'),
-        lng: $('#map').attr('data-lon')
-    }); 
-    var typingTimer;                //timer identifier
-    var doneTypingInterval = 500;  //time in ms, 5 second for example
-    //on keyup, start the countdown
-    $('#address').keyup(function () {
-        clearTimeout(typingTimer);
-        if ($(this).val()) {
-           typingTimer = setTimeout(doneTyping, doneTypingInterval);
-        }
+function initLocationsGMap() {
+    jQuery.ajax({
+        url: ("https:" == document.location.protocol ? "https:" : "http:") + "//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js",
+        dataType: "script",
+        cache: true
+    }).done(function() {
+        locationsGMap();
     });
-    //user is "finished typing," refresh map
-    function doneTyping () {
-        GMaps.geocode({
-            address: $('#address').val(),
-            callback: function (results, status) {
-                if (status == 'OK') {
-                    var latlng = results[0].geometry.location;
-                    map = new GMaps({
-                        div: '#map',
-                        lat: latlng.lat(),
-                        lng: latlng.lng(),
-                    }); 
-                    map.setCenter(latlng.lat(), latlng.lng());
-                    map.addMarker({
-                        lat: latlng.lat(),
-                        lng: latlng.lng(),
-                        draggable: true,
-                    });
-                    $('#publish-latitude').val(latlng.lat()).removeAttr("disabled");
-                    $('#publish-longitude').val(latlng.lng()).removeAttr("disabled");
-                }
-            }
-        });
-    }
 }
 
-// auto locate user
-$('.locateme').click(function() {
-    var lat;
-    var lng;
-    GMaps.geolocate({
-        success: function(position) {
-            lat = position.coords.latitude;
-            lng = position.coords.longitude
-            map = new GMaps({
-                div: '#map',
-                lat: lat,
-                lng: lng,
-            }); 
-            map.setCenter(lat, lng);
-            map.addMarker({
-                lat: lat,
-                lng: lng,
-            });
-            $('#publish-latitude').val(lat).removeAttr("disabled");
-            $('#publish-longitude').val(lng).removeAttr("disabled");
+function locationsGMap() {
+    // google map set marker on address
+    if ($('#map').length !== 0){
+        new GMaps({
+            div: '#map',
+            zoom: parseInt($('#map').attr('data-zoom')),
+            lat: $('#map').attr('data-lat'),
+            lng: $('#map').attr('data-lon')
+        }); 
+        var typingTimer;                //timer identifier
+        var doneTypingInterval = 500;  //time in ms, 5 second for example
+        //on keyup, start the countdown
+        $('#address').keyup(function () {
+            clearTimeout(typingTimer);
+            if ($(this).val()) {
+               typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            }
+        });
+        //user is "finished typing," refresh map
+        function doneTyping () {
             GMaps.geocode({
-                lat: lat,
-                lng: lng,
-                callback: function(results, status) {
+                address: $('#address').val(),
+                callback: function (results, status) {
                     if (status == 'OK') {
-                        $("input[name='address']").val(results[0].formatted_address)
+                        var latlng = results[0].geometry.location;
+                        map = new GMaps({
+                            div: '#map',
+                            lat: latlng.lat(),
+                            lng: latlng.lng(),
+                        }); 
+                        map.setCenter(latlng.lat(), latlng.lng());
+                        map.addMarker({
+                            lat: latlng.lat(),
+                            lng: latlng.lng(),
+                            draggable: true,
+                        });
+                        $('#publish-latitude').val(latlng.lat()).removeAttr("disabled");
+                        $('#publish-longitude').val(latlng.lng()).removeAttr("disabled");
                     }
                 }
             });
-        },
-        error: function(error) {
-            alert('Geolocation failed: '+error.message);
-        },
-        not_supported: function() {
-            alert("Your browser does not support geolocation");
-        },
+        }
+    }
+
+    // auto locate user
+    $('.locateme').click(function() {
+        var lat;
+        var lng;
+        GMaps.geolocate({
+            success: function(position) {
+                lat = position.coords.latitude;
+                lng = position.coords.longitude
+                map = new GMaps({
+                    div: '#map',
+                    lat: lat,
+                    lng: lng,
+                }); 
+                map.setCenter(lat, lng);
+                map.addMarker({
+                    lat: lat,
+                    lng: lng,
+                });
+                $('#publish-latitude').val(lat).removeAttr("disabled");
+                $('#publish-longitude').val(lng).removeAttr("disabled");
+                GMaps.geocode({
+                    lat: lat,
+                    lng: lng,
+                    callback: function(results, status) {
+                        if (status == 'OK') {
+                            $("input[name='address']").val(results[0].formatted_address)
+                        }
+                    }
+                });
+            },
+            error: function(error) {
+                alert('Geolocation failed: '+error.message);
+            },
+            not_supported: function() {
+                alert("Your browser does not support geolocation");
+            },
+        });
     });
-});
+}
 
 $('.fileinput').on('change.bs.fileinput', function() {
 

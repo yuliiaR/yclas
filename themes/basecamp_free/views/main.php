@@ -38,6 +38,7 @@
 </div>
 <?=$footer?>
 <?=Theme::scripts($scripts,'footer')?>
+<?=Theme::scripts($scripts,'async_defer', 'default', ['async' => '', 'defer' => ''])?>
 <?=core::config('general.html_footer')?>
 <?=(Kohana::$environment === Kohana::DEVELOPMENT)? View::factory('profiler'):''?>
 </body>
