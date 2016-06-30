@@ -108,7 +108,7 @@ class Auth_Controller extends Controller
     				//other color
     	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
     	            {
-    	                $theme_css = array('css/'.Theme::get('admin_theme').'-bootstrap.min.css' => 'screen',);
+    	                $theme_css = array('css/style.css'=>'screen');
     	            }
     	            //default theme
     	            else
@@ -149,7 +149,7 @@ class Auth_Controller extends Controller
     	            //other color
     	            if (Theme::get('admin_theme')!='bootstrap' AND Theme::get('admin_theme')!='')
     	            {
-    	                $theme_css = array('//cdn.jsdelivr.net/bootswatch/3.3.6/'.Theme::get('admin_theme').'/bootstrap.min.css' => 'screen',);
+    	                $theme_css = array('css/style.css'=>'screen');
     	            }
     	            //default theme
     	            else
