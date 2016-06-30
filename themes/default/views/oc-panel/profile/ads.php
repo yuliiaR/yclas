@@ -84,11 +84,13 @@
                 <?endif?>
     
                 <td>
-                    <a class="btn btn-primary" 
-                        href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>" 
-                        rel="tooltip" title="<?=__('Stats')?>">
-                        <i class="glyphicon glyphicon-align-left"></i>
-                    </a>
+                    <?if(core::config('advertisement.count_visits')):?>
+                        <a class="btn btn-primary" 
+                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>" 
+                            rel="tooltip" title="<?=__('Stats')?>">
+                            <i class="glyphicon glyphicon-align-left"></i>
+                        </a>
+                    <?endif?>
                     <a class="btn btn-primary" 
                         href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
                         rel="tooltip" title="<?=__('Update')?>">
