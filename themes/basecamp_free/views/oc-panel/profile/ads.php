@@ -38,7 +38,9 @@
 												<?elseif($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
 													<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>"><?=__('Deactivate?')?></a>
 												<?endif?>
+                    							<?if(core::config('advertisement.count_visits')):?>
 												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>"><?=__('Stats')?></a></li>
+												<?endif?>
 												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=__('Update')?></a></li>
 												<li role="separator" class="divider"></li>
 												<?if( core::config('payment.to_top') ):?>
