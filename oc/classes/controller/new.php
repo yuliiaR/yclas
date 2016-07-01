@@ -91,8 +91,7 @@ class Controller_New extends Controller
         $this->template->scripts['footer'][] = 'js/canvasResize.js';
         if(core::config('advertisement.map_pub_new'))
         {
-            $this->template->scripts['footer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key");
-            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js';
+            $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap';
         }
         $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
 

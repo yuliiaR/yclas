@@ -153,54 +153,65 @@ function decodeHtml(html) {
     return txt.value;
 }
 
-$(function(){
+function initAutoLocate() {
     if ($('input[name="auto_locate"]').length) {
-
-        $('#auto-locations').on('show.bs.modal', function () {
-            $('.modal .modal-body').css('overflow-y', 'auto'); 
-            $('.modal .modal-body').css('max-height', $(window).height() * 0.8);
+        jQuery.ajax({
+            url: ("https:" == document.location.protocol ? "https:" : "http:") + "//cdn.jsdelivr.net/gmaps/0.4.15/gmaps.min.js",
+            dataType: "script",
+            cache: true
+        }).done(function() {
+            autoLocate();
         });
-
-        $('#auto-locations').modal('show');
-
-        if ( ! readCookie('cancel_auto_locate') && ( ! readCookie('mylat') || ! readCookie('mylng'))) {
-            var lat;
-            var lng;
-            GMaps.geolocate({
-                success: function(position) {
-                    lat = position.coords.latitude;
-                    lng = position.coords.longitude
-                    // 30 minutes cookie
-                    createCookie('mylat',lat,1800);
-                    createCookie('mylng',lng,1800);
-                    // show modal
-                    $.get($('meta[name="application-name"]').data('baseurl'), function(data) {
-                        $('input[name="auto_locate"]').after($(data).find("#auto-locations"));
-                        $('#auto-locations').modal('show');
-                        $('#auto-locations .list-group-item').click(function(event) {
-                            event.preventDefault();
-                            $this = $(this);
-                            $.post($('meta[name="application-name"]').data('baseurl'), {
-                                user_location: $this.data('id')
-                            })
-                            .done(function( data ) {
-                                window.location.href = $this.attr('href');
-                            });
-                        });
-                    })
-                },
-                error: function(error) {
-                    console.log('Geolocation failed: '+error.message);
-                    createCookie('cancel_auto_locate',1,1800);
-                },
-                not_supported: function() {
-                    console.log("Your browser does not support geolocation");
-                    createCookie('cancel_auto_locate',1,1800);
-                },
-            });
-        }
     }
+}
 
+function autoLocate() {
+    $('#auto-locations').on('show.bs.modal', function () {
+        $('.modal .modal-body').css('overflow-y', 'auto'); 
+        $('.modal .modal-body').css('max-height', $(window).height() * 0.8);
+    });
+
+    $('#auto-locations').modal('show');
+
+    if ( ! readCookie('cancel_auto_locate') && ( ! readCookie('mylat') || ! readCookie('mylng'))) {
+        var lat;
+        var lng;
+        GMaps.geolocate({
+            success: function(position) {
+                lat = position.coords.latitude;
+                lng = position.coords.longitude
+                // 30 minutes cookie
+                createCookie('mylat',lat,1800);
+                createCookie('mylng',lng,1800);
+                // show modal
+                $.get($('meta[name="application-name"]').data('baseurl'), function(data) {
+                    $('input[name="auto_locate"]').after($(data).find("#auto-locations"));
+                    $('#auto-locations').modal('show');
+                    $('#auto-locations .list-group-item').click(function(event) {
+                        event.preventDefault();
+                        $this = $(this);
+                        $.post($('meta[name="application-name"]').data('baseurl'), {
+                            user_location: $this.data('id')
+                        })
+                        .done(function( data ) {
+                            window.location.href = $this.attr('href');
+                        });
+                    });
+                })
+            },
+            error: function(error) {
+                console.log('Geolocation failed: '+error.message);
+                createCookie('cancel_auto_locate',1,1800);
+            },
+            not_supported: function() {
+                console.log("Your browser does not support geolocation");
+                createCookie('cancel_auto_locate',1,1800);
+            },
+        });
+    }
+}
+
+$(function(){
     $('#auto-locations .list-group-item').click(function(event) {
         event.preventDefault();
         $this = $(this);
