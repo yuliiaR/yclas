@@ -135,7 +135,7 @@
                                         <div class="btn-group" style="margin-right:10px;">
                                             <button type="button" class="btn btn-xs btn-warning plan-edit" data-days="<?=$days?>" data-price="<?=$price?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
                                             <?if($i>0):?>
-                                                <a class="btn btn-xs btn-danger plan-delete" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>?delete_plan=<?=$days?>"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
+                                                <a class="btn btn-xs btn-danger plan-delete" href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))?>?delete_plan=<?=$days?>" data-toggle="confirmation" data-btnOkLabel="<?=__('Yes, definitely!')?>" data-btnCancelLabel="<?=__('No way!')?>" title="<?=__('Delete?')?>" data-text="<?=__('Are you sure you want to delete this plan??')?>"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
                                             <?endif?>
                                         </div>
                                         <?=$days?> <?=__('Days')?> - <?=i18n::format_currency($price,core::config('payment.paypal_currency'))?>
