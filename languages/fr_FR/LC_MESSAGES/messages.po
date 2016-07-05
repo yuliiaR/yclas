@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 2bc42a903993524bc0d0341d431b6baca2b68c59\n"
-"POT-Creation-Date: 2016-06-28 15:53:07\n"
-"PO-Revision-Date: 2016-06-28 15:53:07\n"
+"Project-Id-Version: 064757847f254860aea4f64753c67c8abd4806e2\n"
+"POT-Creation-Date: 2016-07-05 09:25:59\n"
+"PO-Revision-Date: 2016-07-05 09:25:59\n"
 "Last-Translator: Lamia <ar@yclas.com>\n"
 "Language-Team: en\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Open Classifieds 2bc42a903993524bc0d0341d431b6baca2b68c59\n"
+"X-Generator: Open Classifieds 064757847f254860aea4f64753c67c8abd4806e2\n"
 
 #: String 0
 msgid " Expired Ads"
@@ -401,7 +401,7 @@ msgstr "Ajoute du contenu à la page de contact"
 
 #: String 97
 msgid "Adds content to private site landing page"
-msgstr ""
+msgstr "Ajoute du contenu sur la page d'accueil du site privé"
 
 #: String 98
 msgid "Admin Privileged"
@@ -1661,7 +1661,7 @@ msgstr "Afficher le fil d'ariane"
 
 #: String 412
 msgid "Display breadcrumb. Note: breadcrumbs are hidden when fixed header is enabled."
-msgstr ""
+msgstr "Afficher breadcrumb (fil d’Ariane). Note: Les Breadcrumbs sont cachés quand les en-tête fixes sont activées."
 
 #: String 413
 msgid "Display categories"
@@ -1669,7 +1669,7 @@ msgstr "Afficher les catégories"
 
 #: String 414
 msgid "Display flickerplate slider on homepage"
-msgstr ""
+msgstr "Afficher le slider Flickerplate sur la page d'accueil"
 
 #: String 415
 msgid "Display footer visual"
@@ -2149,7 +2149,7 @@ msgstr "Lien du Bas de page section 1"
 
 #: String 534
 msgid "Footer link section 2"
-msgstr ""
+msgstr "Lien du Bas de page section 2"
 
 #: String 535
 msgid "For banned word push enter."
@@ -2845,7 +2845,7 @@ msgstr "Limite d'hébergement"
 
 #: String 708
 msgid "Hover color of custom color"
-msgstr ""
+msgstr "Couleur Hover des couleurs prsonnalisées"
 
 #: String 709
 msgid "How many ads are going to appear in the RSS of your site."
@@ -3345,7 +3345,7 @@ msgstr "Clair"
 
 #: String 833
 msgid "Link hover text color"
-msgstr ""
+msgstr "Couleur du texte du lien Hover"
 
 #: String 834
 msgid "Link text color"
@@ -3493,7 +3493,7 @@ msgstr "Mode de maintenance"
 
 #: String 870
 msgid "Make entire list item clickable on homepage"
-msgstr ""
+msgstr "Permettre de cliquer sur tous les éléments de la page d'accueil"
 
 #: String 871
 msgid "Make featured?"
@@ -4069,7 +4069,7 @@ msgstr "Nombre d'annonce mises en avant à afficher dans le Slider d'accueil"
 
 #: String 1014
 msgid "Numeric Range"
-msgstr ""
+msgstr "Gamme numérique"
 
 #: String 1015
 msgid "OK"
@@ -4513,11 +4513,11 @@ msgstr "Veuillez svp vous connecter afin de pouvoir publier une annonce"
 
 #: String 1125
 msgid "Plugins"
-msgstr ""
+msgstr "Plugins"
 
 #: String 1126
 msgid "Plugins configuration updated"
-msgstr ""
+msgstr "Configuration des Plugins mise à jour"
 
 #: String 1127
 msgid "Popular Ads last month"
@@ -4989,7 +4989,7 @@ msgstr "Configuration des appréciations"
 
 #: String 1244
 msgid "Rich Snippets"
-msgstr ""
+msgstr "Rich Snippets (extrait enrichi)"
 
 #: String 1245
 msgid "Right side"
@@ -5337,19 +5337,19 @@ msgstr "Afficher les boutons de partage"
 
 #: String 1331
 msgid "Sidebar banner 1, allows HTML"
-msgstr ""
+msgstr "Bannière de la barre latérale 1, permet HTML"
 
 #: String 1332
 msgid "Sidebar banner 2, allows HTML"
-msgstr ""
+msgstr "Bannière de la barre latérale 2, permet HTML"
 
 #: String 1333
 msgid "Sidebar banner 3, allows HTML"
-msgstr ""
+msgstr "Bannière de la barre latérale 3, permet HTML"
 
 #: String 1334
 msgid "Sign Up"
-msgstr ""
+msgstr "Inscription"
 
 #: String 1335
 msgid "Sign in with"
@@ -5489,19 +5489,19 @@ msgstr "Trier par dans la liste"
 
 #: String 1369
 msgid "Space banner 1, allows HTML"
-msgstr ""
+msgstr "Bannière d’espace 1, permet HTML"
 
 #: String 1370
 msgid "Space banner 2, allows HTML"
-msgstr ""
+msgstr "Bannière d’espace 2, permet HTML"
 
 #: String 1371
 msgid "Space banner 3, allows HTML"
-msgstr ""
+msgstr "Bannière d’espace 3, permet HTML"
 
 #: String 1372
 msgid "Space banner 4 (Item page), allows HTML"
-msgstr ""
+msgstr "Bannière d’espace 4, permet HTML"
 
 #: String 1373
 msgid "Spam"
@@ -5709,7 +5709,7 @@ msgstr "Page de remerciement"
 
 #: String 1424
 msgid "The amount of time to delay between automatically cycling a banner"
-msgstr ""
+msgstr "Le temps de retard entre les changement automatique des bannières"
 
 #: String 1425
 msgid "The customer %s does not have more ads left to publish."
@@ -5769,7 +5769,7 @@ msgstr "Cet adresse e-mail a été marquée comme spam, nous sommes désolés ma
 
 #: String 1439
 msgid "This feature is only available with our paid plans! Upgrade your website to a paid plan to activate it."
-msgstr ""
+msgstr "Cette option est seulement disponible sur nos plans payants! Veuillez choisir un plan payant afin de l'activer. "
 
 #: String 1440
 msgid "This field is required."
@@ -5777,7 +5777,7 @@ msgstr "Ce champ est obligatoire."
 
 #: String 1441
 msgid "This field must not contain banned words ({0})"
-msgstr ""
+msgstr "Ce champs ne doit pas contenir de mots interdits ({0})"
 
 #: String 1442
 msgid "This is a list of users marked as spammers. To understand how this feature works, please read this article"
@@ -5785,7 +5785,7 @@ msgstr "Ceci est une liste d'utilisateurs marqués comme spammeurs. Veuillez lir
 
 #: String 1443
 msgid "This is a private website, you need to login to see the content!"
-msgstr ""
+msgstr "Ceci est site privé. Vous devez vous connecter pour voir son contenu!"
 
 #: String 1444
 msgid "This is not your advertisement."
@@ -5797,7 +5797,7 @@ msgstr "Ceci est permanent! Aucune sauvegarde, aucune restauration ou bouton mag
 
 #: String 1446
 msgid "This is the main overview page of your website."
-msgstr ""
+msgstr "Ceci est l’aperçu principal de votre site web."
 
 #: String 1447
 msgid "This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit."
@@ -5813,11 +5813,11 @@ msgstr "Cette commande a été déjà été payée."
 
 #: String 1450
 msgid "This panel shows how many visitors your website had the past month."
-msgstr ""
+msgstr "Ce tableau de bord affiche le nombre de visiteurs sur votre site le mois dernier. "
 
 #: String 1451
 msgid "This panel shows the latest published ads on your website."
-msgstr ""
+msgstr "Ce tableau de bord affiche les dernières annonces publiées sur votre site. "
 
 #: String 1452
 msgid "This post has been considered as spam! We are sorry but we can not publish this advertisement."
@@ -5857,11 +5857,11 @@ msgstr "Titre *"
 
 #: String 1461
 msgid "Title above ad"
-msgstr ""
+msgstr "Titre en dessus de l'annonce"
 
 #: String 1462
 msgid "Title below ad"
-msgstr ""
+msgstr "Titre en dessous de l'annonce"
 
 #: String 1463
 msgid "Title displayed"
@@ -5869,7 +5869,7 @@ msgstr "Titre affiché"
 
 #: String 1464
 msgid "Title in ad"
-msgstr ""
+msgstr "Titre de l'annonce"
 
 #: String 1465
 msgid "Title:"
@@ -5885,7 +5885,7 @@ msgstr "Pour acheter ce produit, vous devez d'abord vous inscrire"
 
 #: String 1468
 msgid "To buy this product you need to register first."
-msgstr ""
+msgstr "Pour acheter ce produit, vous devez vous inscrire."
 
 #: String 1469
 msgid "To continue your experience with %s you can get back to the main website by clicking here."
@@ -5941,7 +5941,7 @@ msgstr "Info-bulle:"
 
 #: String 1482
 msgid "Top menu background color"
-msgstr ""
+msgstr "Couleur de fond du menu principal"
 
 #: String 1483
 msgid "Top up ad"
@@ -5965,7 +5965,7 @@ msgstr "Total"
 
 #: String 1488
 msgid "Town - Neighbourhood"
-msgstr ""
+msgstr "Ville - Quartier"
 
 #: String 1489
 msgid "Transaction not successful!"
@@ -5993,7 +5993,7 @@ msgstr "Désactiver la barre latérale dans les annonces"
 
 #: String 1495
 msgid "Twitter social link"
-msgstr ""
+msgstr "Lien social Twitter"
 
 #: String 1496
 msgid "Type"
@@ -6025,7 +6025,7 @@ msgstr "NON CONFIRMÉE"
 
 #: String 1503
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: String 1504
 msgid "Unavailable"
@@ -6033,7 +6033,7 @@ msgstr "Indisponible"
 
 #: String 1505
 msgid "Unlimited"
-msgstr ""
+msgstr "Illimité"
 
 #: String 1506
 msgid "Unread"
@@ -6073,7 +6073,7 @@ msgstr "Mettez à niveau votre site Open Classifieds pour activer cette fonction
 
 #: String 1515
 msgid "Upgrade!"
-msgstr ""
+msgstr "Surclasser!"
 
 #: String 1516
 msgid "Upload"
@@ -6085,7 +6085,7 @@ msgstr "Téléchargez un fichier CSV"
 
 #: String 1518
 msgid "Upload Photos"
-msgstr ""
+msgstr "Entrez photos"
 
 #: String 1519
 msgid "Upload category icon"
@@ -6109,7 +6109,7 @@ msgstr "Téléchargez votre Logo. Taille recommandée 250px x 40px. Laisser blan
 
 #: String 1524
 msgid "Upload your Logo. Recommended size 57px x 57px. Leave blank for none."
-msgstr ""
+msgstr "Entrez votre logo. La taille recommandée est de 57px x 57px. Laissez vide si vous n'en avez pas."
 
 #: String 1525
 msgid "Upload your Logo. Recommended size W:200px x H:120px. Leave blank for none."
@@ -6117,7 +6117,7 @@ msgstr "Téléchargez votre logo. Taille recommandée 200px de Large par 120px d
 
 #: String 1526
 msgid "Upload your apple-touch-icon. Recommended size 57px x 57px. Leave blank for none."
-msgstr ""
+msgstr "Entrez votre apple-touch-icon. La taille recommandée est de 57px x 57px. Laissez vide si vous n'en avez pas."
 
 #: String 1527
 msgid "Upload your favicon. Leave blank for none."
@@ -6125,15 +6125,15 @@ msgstr "Téléchargez votre favicon. Laisser blanc pour aucun."
 
 #: String 1528
 msgid "Upload your favicon. Recommended size 57px x 57px. Leave blank for none."
-msgstr ""
+msgstr "Entrez votre favicon. La taille recommandée est de 57px x 57px. Laissez vide si vous n'en avez pas."
 
 #: String 1529
 msgid "Upload your footer image. Leave blank for none."
-msgstr ""
+msgstr "Entrez votre image de bas de page. Laissez vide si vous n'en avez pas."
 
 #: String 1530
 msgid "Upload your logo. Recommended height is 45px. Leave blank for none."
-msgstr ""
+msgstr "Entrez votre logo. La hauteur recommandée est de 45px. Laissez vide si vous n'en avez pas."
 
 #: String 1531
 msgid "Upload your logo. Recommended size 250px x 40px. Leave blank for none."
@@ -6141,7 +6141,7 @@ msgstr "Téléchargez votre logo. Taille recommandée 250px x 40px. Laisser blan
 
 #: String 1532
 msgid "Upload your top banner image if enabled"
-msgstr ""
+msgstr "Entrez l'image de votre bannière si activée."
 
 #: String 1533
 msgid "Url"
@@ -6165,7 +6165,7 @@ msgstr "L'utilisateur %s a été retiré de la liste noire."
 
 #: String 1538
 msgid "User Location"
-msgstr ""
+msgstr "Emplacement de l'utilisateur. "
 
 #: String 1539
 msgid "User Profile"
@@ -6173,7 +6173,7 @@ msgstr "Profil utilisateur"
 
 #: String 1540
 msgid "User Search"
-msgstr ""
+msgstr "Recherche de l'utilisateur"
 
 #: String 1541
 msgid "User account will be created"
@@ -6185,19 +6185,19 @@ msgstr "Cet utilisateur / Cette adresse e-mail est déjà utilisée et enregistr
 
 #: String 1543
 msgid "User black list"
-msgstr ""
+msgstr "Liste noire de l'utilisateur"
 
 #: String 1544
 msgid "User custom Fields"
-msgstr ""
+msgstr "Champs personnalisés de l'utilisateur"
 
 #: String 1545
 msgid "User custom fields"
-msgstr ""
+msgstr "Champs personnalisés de l'utilisateur"
 
 #: String 1546
 msgid "User is marked as spam"
-msgstr ""
+msgstr "Utilisateur marqué comme Spam"
 
 #: String 1547
 msgid "User not found"
@@ -6209,7 +6209,7 @@ msgstr "Cet utilisateur/adresse e-mail n'existe pas sur ce site"
 
 #: String 1549
 msgid "User or Ad not loaded"
-msgstr ""
+msgstr "Utilisateur ou Annonce non chargée"
 
 #: String 1550
 msgid "Users"
@@ -6225,7 +6225,7 @@ msgstr "Utilisateurs non connectés depuis les 3 derniers mois"
 
 #: String 1553
 msgid "Users search"
-msgstr ""
+msgstr "Recherche de l'utilisateur"
 
 #: String 1554
 msgid "Users with featured ads expired."
@@ -6257,7 +6257,7 @@ msgstr "Valable jusqu'au"
 
 #: String 1561
 msgid "Validate banned words"
-msgstr ""
+msgstr "Valider les mots interdits"
 
 #: String 1562
 msgid "Values"
@@ -6265,11 +6265,11 @@ msgstr "Valeurs"
 
 #: String 1563
 msgid "Verification Code"
-msgstr ""
+msgstr "Code de vérification "
 
 #: String 1564
 msgid "Verified"
-msgstr ""
+msgstr "Vérifié "
 
 #: String 1565
 msgid "View Advertisement"
@@ -6277,15 +6277,15 @@ msgstr "Voir Annonce"
 
 #: String 1566
 msgid "View all in"
-msgstr ""
+msgstr "Voir tout sur "
 
 #: String 1567
 msgid "View details"
-msgstr ""
+msgstr "Voir détails"
 
 #: String 1568
 msgid "View full page"
-msgstr ""
+msgstr "Voir toute la page"
 
 #: String 1569
 msgid "Views and Contacts statistic"
@@ -6317,7 +6317,7 @@ msgstr "Filigrane"
 
 #: String 1576
 msgid "Watermark background color"
-msgstr ""
+msgstr "Couleur de fond du filigrane"
 
 #: String 1577
 msgid "Watermark position"
@@ -6325,11 +6325,11 @@ msgstr "Position du filigrane"
 
 #: String 1578
 msgid "Watermark text"
-msgstr ""
+msgstr "Texte du filigrane"
 
 #: String 1579
 msgid "Watermark text size"
-msgstr ""
+msgstr "Taille du texte du filigrane"
 
 #: String 1580
 msgid "We are working on our site, please visit later. Thanks"
@@ -6345,7 +6345,7 @@ msgstr "Impossible de lire le fichier %s"
 
 #: String 1583
 msgid "We could not log you in. Please try again"
-msgstr ""
+msgstr "Connexion impossible. Veuillez réessayer"
 
 #: String 1584
 msgid "We detected you are currently off-line, please connect to gain full experience."
@@ -6373,7 +6373,7 @@ msgstr "Il n'y a pas encore de critiques et appréciations pour ce produit"
 
 #: String 1590
 msgid "We do not have any users matching your search"
-msgstr ""
+msgstr "Nous n'avons aucun utilisateur correspondant à votre recherche"
 
 #: String 1591
 msgid "We had, issues with your transaction. Please try paying with another paymethod."
@@ -6385,7 +6385,7 @@ msgstr "Nous avons besoin de votre adresse email pour terminer"
 
 #: String 1593
 msgid "We noticed that you may have an Ad Blocker turned on. Please be aware that our site is best experienced with Ad Blockers turned off."
-msgstr ""
+msgstr "Nous avons remarqué de vous avez un Ad Blocker activé. Veuillez le désactiver pour une meilleure expérience de notre site."
 
 #: String 1594
 msgid "We use cookies to track usage and preferences"
@@ -6421,11 +6421,11 @@ msgstr "Accueil"
 
 #: String 1602
 msgid "Welcome %s"
-msgstr ""
+msgstr "Bienvenue %s"
 
 #: String 1603
 msgid "Welcome %s!"
-msgstr ""
+msgstr "Bienvenue %s!"
 
 #: String 1604
 msgid "Welcome!"
@@ -6437,7 +6437,7 @@ msgstr "Où voulez-vous afficher ce widget?"
 
 #: String 1606
 msgid "Where do you want to search?"
-msgstr ""
+msgstr "Ou est ce que vous voulez chercher? "
 
 #: String 1607
 msgid "Where you want the sidebar to appear"
@@ -6445,7 +6445,7 @@ msgstr "Où voulez-vous que la barre latérale apparaîsse?"
 
 #: String 1608
 msgid "Wide"
-msgstr ""
+msgstr "Large"
 
 #: String 1609
 msgid "Widget %s deleted"
@@ -6473,7 +6473,7 @@ msgstr "Largeur (px)"
 
 #: String 1615
 msgid "Will be executed on time when you get visits, if you want to force the execute run in tour browser"
-msgstr ""
+msgstr "Sera exécuté à temps quand vous avez des visiteurs. Si vous voulez forcer l'exécution, appliquer sur votre navigateur"
 
 #: String 1616
 msgid "Work environment"
@@ -6501,7 +6501,7 @@ msgstr "Mauvais nom d'utilisateur ou mot de passe"
 
 #: String 1622
 msgid "Yearly"
-msgstr ""
+msgstr "Annuellement"
 
 #: String 1623
 msgid "Yes"
@@ -6545,11 +6545,11 @@ msgstr "Vous êtes en train de choisir un emplacement qui n'existe pas"
 
 #: String 1633
 msgid "You are subscribed to the plan %s until %s with %u ads left"
-msgstr ""
+msgstr "Vous êtes abonnés au plan %s jusqu'au %s avec %u annonces restantes"
 
 #: String 1634
 msgid "You are subscribed to the plan %s until %s with unlimited ads"
-msgstr ""
+msgstr "Vous êtes abonnés au plan %s jusqu'au %s avec un nombre d'annonces illimité."
 
 #: String 1635
 msgid "You are unsubscribed"
@@ -6557,7 +6557,7 @@ msgstr "Vous avez bien été désinscrit(e)"
 
 #: String 1636
 msgid "You can activate your preferred site language."
-msgstr ""
+msgstr "Vous pouvez activer votre langues préférée."
 
 #: String 1637
 msgid "You can change the look and feel of your website here."
@@ -6573,7 +6573,7 @@ msgstr "Vous pouvez choisir si vous souhaitez afficher le nombre de visites de c
 
 #: String 1640
 msgid "You can choose if you wish to display free tag when price is equal to zero."
-msgstr ""
+msgstr "Vous pouvez choisir d'afficher un tag Gratuit quand le prix est égal à Zéro."
 
 #: String 1641
 msgid "You can choose if you wish to display random related ads at each advertisement"
@@ -6597,7 +6597,7 @@ msgstr "Vous pouvez le déplacer vers l'espace réservé aux éléments inactifs
 
 #: String 1646
 msgid "You can not delete your user"
-msgstr ""
+msgstr "Vous ne pouvez pas supprimer votre utilisateur."
 
 #: String 1647
 msgid "You can not review yourself."
@@ -6617,7 +6617,7 @@ msgstr "Vous pouvez ajouter une appréciation ou un commentaire après avoir ach
 
 #: String 1651
 msgid "You can only select"
-msgstr ""
+msgstr "Vous pouvez seulement sélectionner "
 
 #: String 1652
 msgid "You can try a new search or publish a new topic ;)"
@@ -6633,7 +6633,7 @@ msgstr "Vous n'avez pas d'annonces en attente de publication"
 
 #: String 1655
 msgid "You do not have more ads left to publish."
-msgstr ""
+msgstr "Vous ne pouvez pas afficher plus d'annonces"
 
 #: String 1656
 msgid "You do not have permissions to access %s"
@@ -6653,7 +6653,7 @@ msgstr "vous avez %d annonces qui doivent être traitées"
 
 #: String 1660
 msgid "You have %s unread messages"
-msgstr ""
+msgstr "Vous avez %s messages non-lus"
 
 #: String 1661
 msgid "You have been contacted for these ads"
@@ -6661,19 +6661,19 @@ msgstr "Vous avez été contacté pour ces annonces"
 
 #: String 1662
 msgid "You have completed a basic configuration for your website. <br><br> We invite you to explore all of the features and available options that yclas has for your classifieds website."
-msgstr ""
+msgstr "Vous avez complété une configuration de base sur votre site.  Nous vous invitons à explorer toutes les autres options et caractéristiques de Yclas pour votre site d'annonces."
 
 #: String 1663
 msgid "You have no unread messages"
-msgstr ""
+msgstr "Vous n'avez pas de messages non-lus"
 
 #: String 1664
 msgid "You have reached the limit of %d ads that your Yclas Plan allows."
-msgstr ""
+msgstr "Vous avez atteint %d du nombre d'annonces que votre plan permet."
 
 #: String 1665
 msgid "You have reached the limit of %d ads that your Yclas Plan allows. You can update your plan here %s"
-msgstr ""
+msgstr "Vous avez atteint %d du nombre d'annonces que votre plan permet. Vous pouvez mettre à jour votre plan ici %s"
 
 #: String 1666
 msgid "You have reached the maximum number of custom fields allowed."
@@ -6681,15 +6681,15 @@ msgstr "Vous avez atteint le nombre maximum de champs personnalisés possibles."
 
 #: String 1667
 msgid "You have successfully changed your data"
-msgstr ""
+msgstr "Vous avez changé vos données avec succès"
 
 #: String 1668
 msgid "You have successfully unsubscribed"
-msgstr ""
+msgstr "Vous vous êtes désabonné avec succès"
 
 #: String 1669
 msgid "You may also like …"
-msgstr ""
+msgstr "Vous aimerez aussi ..."
 
 #: String 1670
 msgid "You need to enable paypal link to allow only reviews on purchases."
@@ -6713,7 +6713,7 @@ msgstr "Vous devez renseigner votre ID Disqus pour activer ce service."
 
 #: String 1675
 msgid "You need to write your email domains to enable the service."
-msgstr ""
+msgstr "Vous devez entrer le domaine de votre email pour activer ce service."
 
 #: String 1676
 msgid "You need to write your reCAPTCHA Secret Key to enable the service."
@@ -6741,7 +6741,7 @@ msgstr "Votre message a été envoyé"
 
 #: String 1682
 msgid "Your plan does not allow to import ads. Please upgrade"
-msgstr ""
+msgstr "Votre plan ne vous permet pas d'importer des annonces. Veuillez choisir un autre plan"
 
 #: String 1683
 msgid "Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us."
@@ -6749,7 +6749,7 @@ msgstr "Votre compte a été désactivé et interdit de publication en raison de
 
 #: String 1684
 msgid "Your request has been sent"
-msgstr ""
+msgstr "Votre demande a été envoyée"
 
 #: String 1685
 msgid "Your search did not match any advertisement."
@@ -6757,7 +6757,7 @@ msgstr "Votre recherche ne correspond à aucune annonce présente pour le moment
 
 #: String 1686
 msgid "Your selected location"
-msgstr ""
+msgstr "Votre emplacement sélectionné"
 
 #: String 1687
 msgid "Your sitemap XML to submit to engines"
@@ -6929,11 +6929,11 @@ msgstr "n'a pas été trouvée"
 
 #: String 1729
 msgid "item"
-msgstr ""
+msgstr "Éléments "
 
 #: String 1730
 msgid "items per page"
-msgstr ""
+msgstr "Éléments par page"
 
 #: String 1731
 msgid "less than a day"
@@ -6989,7 +6989,7 @@ msgstr "plus"
 
 #: String 1744
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: String 1745
 msgid "new topic"
@@ -7033,7 +7033,7 @@ msgstr "par page"
 
 #: String 1755
 msgid "pricing"
-msgstr ""
+msgstr "Prix"
 
 #: String 1756
 msgid "publish new"
@@ -7041,7 +7041,7 @@ msgstr "publier une nouvelle annonce"
 
 #: String 1757
 msgid "reCAPTCHA"
-msgstr ""
+msgstr "reCAPTCHA"
 
 #: String 1758
 msgid "reCAPTCHA Configuration"
@@ -7117,7 +7117,7 @@ msgstr "utilisateurs"
 
 #: String 1776
 msgid "valid until %s"
-msgstr ""
+msgstr "Valide jusqu'au %s"
 
 #: String 1777
 msgid "views"
