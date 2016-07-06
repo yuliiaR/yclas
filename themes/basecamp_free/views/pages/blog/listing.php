@@ -36,7 +36,7 @@
 								<span class="glyphicon glyphicon-calendar"></span> <?=Date::format($post->created, core::config('general.date_format'))?>
 							</p>
 							<div class="panel-body">
-								<div><?=Text::truncate_html($post->description, 255, NULL)?></div>
+								<div><?=Text::bb2html(Text::truncate_html($post->description, 255, NULL),TRUE)?></div>
 							</div>
 							<div class="panel-footer text-right">
 							<?if ($user !== NULL AND $user!=FALSE AND $user->id_role == Model_Role::ROLE_ADMIN):?>

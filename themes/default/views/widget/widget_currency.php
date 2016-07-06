@@ -6,7 +6,7 @@
     </div>
 <?endif?>
 <div class="panel-body">
-    <div class="form-group curry" data-locale="<?=Core::config('i18n.locale');?>" data-currencies="<?=($widget->currencies);?>">
+    <div class="form-group curry" data-locale="<?=Core::config('i18n.locale');?>" data-currencies="<?=($widget->currencies);?>" data-default="<?=($widget->default);?>">
         <div class="my-future-ddm"></div>
     </div>
 </div>
