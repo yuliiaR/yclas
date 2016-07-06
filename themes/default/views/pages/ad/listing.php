@@ -10,7 +10,7 @@
     <?endif?>
 </div>
 
-<div class="well" id="recomentadion">
+<div class="well blog-description" id="recomentadion">
     <?if (Controller::$image!==NULL AND Theme::get('hide_description_icon')!=1):?>
         <img src="<?=Controller::$image?>" class="img-responsive" alt="<?=($category!==NULL) ? HTML::chars($category->name) : (($location!==NULL AND $category===NULL) ? HTML::chars($location->name) : NULL)?>">
     <?endif?>
