@@ -304,23 +304,10 @@ class Model_Ad extends ORM {
         if (!$this->loaded())
             return FALSE;
 
-        $obj_date = date_parse($this->created); // convert date to array 
+        $obj_date = new DateTime($this->created);
         
-        $year = $obj_date['year'];
-        
-        // check for length, because original path is with 2 integers 
-        if(strlen($obj_date['month']) != 2)
-            $month = '0'.$obj_date['month'];
-        else
-            $month = $obj_date['month'];
-        
-        if(strlen($obj_date['day']) != 2)
-            $day = '0'.$obj_date['day'];
-        else
-            $day = $obj_date['day'];
-
-        $path = 'images/'.$year.'/'.$month.'/'.$day.'/'.$this->id_ad.'/';       
-        
+        $path = 'images/'.$obj_date->format('Y/m/d').'/'.$this->id_ad.'/'; 
+                
         //check if path is a directory
         if ( ! is_dir(DOCROOT.$path) )
         {
