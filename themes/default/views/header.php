@@ -30,7 +30,7 @@
                         </li>
                     <?endforeach?>
                 <?else:?>
-                    <?=Theme::nav_link(__('Listing'),'ad', 'glyphicon glyphicon-list' ,'listing', 'list')?>
+                    <?=Theme::nav_link(_e('Listing'),'ad', 'glyphicon glyphicon-list' ,'listing', 'list')?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=_e('Categories')?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -66,10 +66,10 @@
                         </ul>
                     </li>
                     <?if (core::config('general.blog')==1):?>
-                        <?=Theme::nav_link(__('Blog'),'blog','','index','blog')?>
+                        <?=Theme::nav_link(_e('Blog'),'blog','','index','blog')?>
                     <?endif?>
                     <?if (core::config('general.faq')==1):?>
-                        <?=Theme::nav_link(__('FAQ'),'faq','','index','faq')?>
+                        <?=Theme::nav_link(_e('FAQ'),'faq','','index','faq')?>
                     <?endif?>
                     <?if (core::config('general.forums')==1):?>
                         <?=Theme::nav_link('','forum','glyphicon glyphicon-tag','index','forum-home')?>

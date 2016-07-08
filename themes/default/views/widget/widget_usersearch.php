@@ -11,7 +11,7 @@
         <!-- if categories on show selector of categories -->
         <div class="form-group">
             <div class="col-xs-12">  
-                <?= FORM::label('search', __('Search'), array('class'=>'', 'for'=>'search'))?>
+                <?= FORM::label('search', _e('Search'), array('class'=>'', 'for'=>'search'))?>
                 <input type="text" id="search" name="search" class="form-control" value="" placeholder="<?=__('Search')?>">
             </div>
         </div>

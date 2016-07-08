@@ -16,7 +16,7 @@
                     <?foreach ($messages->find_all() as $message):?>
                         <li>
                             <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>($message->id_message_parent != NULL) ? $message->id_message_parent : $message->id_message))?>">
-                                <small><strong><?=isset($message->ad->title) ? $message->ad->title : __('Direct Message')?></strong></small>
+                                <small><strong><?=isset($message->ad->title) ? $message->ad->title : _e('Direct Message')?></strong></small>
                                 <br>
                                 <small><em><?=$message->from->name?></em></small>
                             </a>

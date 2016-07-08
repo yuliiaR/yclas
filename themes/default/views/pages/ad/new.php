@@ -9,7 +9,7 @@
 				<fieldset>
 					<div class="form-group">
 						<div class="col-md-8">
-							<?= FORM::label('title', __('Title'), array('for'=>'title'))?>
+							<?= FORM::label('title', _e('Title'), array('for'=>'title'))?>
 							<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
 						</div>
 					</div>
@@ -17,7 +17,7 @@
 					<!-- category select -->
 					<div class="form-group">
 						<div class="col-md-12">
-							<?= FORM::label('category', __('Category'), array('for'=>'category'))?>
+							<?= FORM::label('category', _e('Category'), array('for'=>'category'))?>
 							<div id="category-chained" class="row <?=($id_category === NULL) ? NULL : 'hidden'?>"
 								data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" 
 								data-price0="<?=i18n::money_format(0)?>" 
@@ -50,7 +50,7 @@
 					<?if($form_show['location'] != FALSE):?>
 						<div class="form-group">
 							<div class="col-md-12">
-								<?= FORM::label('locations', __('Location'), array('for'=>'location'))?>
+								<?= FORM::label('locations', _e('Location'), array('for'=>'location'))?>
 								<div id="location-chained" class="row <?=($id_location === NULL) ? NULL : 'hidden'?>" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
 									<div id="select-location-template" class="col-md-6 hidden">
 										<select class="disable-select2 select-location" placeholder="<?=__('Pick a location...')?>"></select>
@@ -76,7 +76,7 @@
 					<?if($form_show['description'] != FALSE):?>
 						<div class="form-group">
 							<div class="col-md-9">
-								<?= FORM::label('description', __('Description'), array('for'=>'description', 'spellcheck'=>TRUE))?>
+								<?= FORM::label('description', _e('Description'), array('for'=>'description', 'spellcheck'=>TRUE))?>
 								<?=FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 
 									'name'=>'description', 
 									'id'=>'description', 
@@ -124,7 +124,7 @@
 					<?if($form_show['phone'] != FALSE):?>
 						<div class="form-group">
 							<div class="col-md-4">
-								<?= FORM::label('phone', __('Phone'), array('for'=>'phone'))?>
+								<?= FORM::label('phone', _e('Phone'), array('for'=>'phone'))?>
 								<?= FORM::input('phone', Request::current()->post('phone'), array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
 							</div>
 						</div>
@@ -132,7 +132,7 @@
 					<?if($form_show['address'] != FALSE):?>
 						<div class="form-group">
 							<div class="col-md-8">
-								<?= FORM::label('address', __('Address'), array('for'=>'address'))?>
+								<?= FORM::label('address', _e('Address'), array('for'=>'address'))?>
 								<?if(core::config('advertisement.map_pub_new')):?>
 									<?if (Core::is_HTTPS()):?>
 										<div class="input-group">
@@ -166,7 +166,7 @@
 						<div class="form-group">
 				
 							<div class="col-md-4">
-								<?= FORM::label('price', __('Price'), array('for'=>'price'))?>
+								<?= FORM::label('price', _e('Price'), array('for'=>'price'))?>
 								<div class="input-prepend">
 								<?= FORM::input('price', Request::current()->post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text', 'data-error' => __('Please enter only numbers.')))?>
 								</div>
@@ -177,7 +177,7 @@
 						<div class="form-group">
 				
 							<div class="col-md-4">
-								<?= FORM::label('stock', __('In Stock'), array('for'=>'stock'))?>
+								<?= FORM::label('stock', _e('In Stock'), array('for'=>'stock'))?>
 								<div class="input-prepend">
 								<?= FORM::input('stock', Request::current()->post('stock'), array('placeholder' => '10', 'class' => 'form-control', 'id' => 'stock', 'type'=>'text'))?>
 								</div>
@@ -187,7 +187,7 @@
 					<?if($form_show['website'] != FALSE):?>
 						<div class="form-group">
 							<div class="col-md-4">
-								<?= FORM::label('website', __('Website'), array('for'=>'website'))?>
+								<?= FORM::label('website', _e('Website'), array('for'=>'website'))?>
 								<?= FORM::input('website', Request::current()->post('website'), array('placeholder' => core::config("general.base_url"), 'class' => 'form-control', 'id' => 'website'))?>
 							</div>
 						</div>
@@ -195,18 +195,18 @@
 					<?if (!Auth::instance()->get_user()):?>
 						<div class="form-group">
 							<div class="col-md-4">
-								<?= FORM::label('name', __('Name'), array('for'=>'name'))?>
+								<?= FORM::label('name', _e('Name'), array('for'=>'name'))?>
 								<?= FORM::input('name', Request::current()->post('name'), array('class'=>'form-control', 'id'=>'name', 'required', 'placeholder'=>__('Name')))?>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-md-4">
-								<?= FORM::label('email', (core::config('payment.paypal_seller')==1)?__('Paypal Email'):__('Email'), array('for'=>'email'))?>
+								<?= FORM::label('email', (core::config('payment.paypal_seller')==1)?_e('Paypal Email'):_e('Email'), array('for'=>'email'))?>
 								<?= FORM::input('email', Request::current()->post('email'), array('class'=>'form-control',
 									'id'=>'email',
 									'type'=>'email',
 									'required',
-									'placeholder' => (core::config('payment.paypal_seller')==1) ? __('Paypal Email') : __('Email'),
+									'placeholder' => (core::config('payment.paypal_seller')==1) ? _e('Paypal Email') : _e('Email'),
 									'data-domain' => (core::config('general.email_domains') != '') ? json_encode(explode(',', core::config('general.email_domains'))) : '',
 									'data-error' => __('Email must contain a valid email domain')
 									))?>
@@ -230,7 +230,7 @@
 									<?=Captcha::recaptcha_display()?>
 									<div id="recaptcha1"></div>
 								<?else:?>
-									<?= FORM::label('captcha', __('Captcha'), array('for'=>'captcha'))?>
+									<?= FORM::label('captcha', _e('Captcha'), array('for'=>'captcha'))?>
 									<span id="helpBlock" class="help-block"><?=captcha::image_tag('publish_new')?></span>
 									<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required', 'data-error' => __('Captcha is not correct')))?>
 								<?endif?>

@@ -35,19 +35,19 @@
                     <div class="col-md-8">
                         <?= FORM::open(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
                             <div class="form-group">
-                                <?= FORM::label('name', __('Name'), array('class'=>'col-xs-4 control-label', 'for'=>'name'))?>
+                                <?= FORM::label('name', _e('Name'), array('class'=>'col-xs-4 control-label', 'for'=>'name'))?>
                                 <div class="col-sm-8">
                                     <?= FORM::input('name', $user->name, array('class'=>'form-control', 'id'=>'name', 'required', 'placeholder'=>__('Name')))?>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <?= FORM::label('email', __('Email'), array('class'=>'col-xs-4 control-label', 'for'=>'email'))?>
+                                <?= FORM::label('email', _e('Email'), array('class'=>'col-xs-4 control-label', 'for'=>'email'))?>
                                 <div class="col-sm-8">
                                     <?= FORM::input('email', $user->email, array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <?= FORM::label('description', __('Description'), array('class'=>'col-xs-4 control-label', 'for'=>'description'))?>
+                                <?= FORM::label('description', _e('Description'), array('class'=>'col-xs-4 control-label', 'for'=>'description'))?>
                                 <div class="col-sm-8">
                                     <?= FORM::input('description', $user->description, array('class'=>'form-control', 'id'=>'description', 'type'=>'description' ,'placeholder'=>__('Description')))?>
                                 </div>
@@ -187,7 +187,7 @@
                                 <?=Form::errors()?>  
                               
                               <div class="form-group">
-                                <?= FORM::label('profile_img', __('Profile picture'), array('class'=>'col-xs-4 control-label', 'for'=>'profile_img'))?>
+                                <?= FORM::label('profile_img', _e('Profile picture'), array('class'=>'col-xs-4 control-label', 'for'=>'profile_img'))?>
                                 <div class="col-sm-8">
                                     <input type="file" name="profile_image" id="profile_img" />
                                 </div>  

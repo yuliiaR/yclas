@@ -4,5 +4,6 @@ $(function(){
         type: 'text',
         toggle: 'mouseenter',
         params: {where: 'original', exact: 1},
+        placement: 'bottom',
     });
 });
