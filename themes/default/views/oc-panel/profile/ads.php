@@ -52,6 +52,8 @@
                     <?=_e('Spam')?>
                 <? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
                     <?=_e('Unavailable')?>
+                <? elseif($ad->status == Model_Ad::STATUS_UNCONFIRMED):?>
+                    <?=_e('Unconfirmed')?>
                 <?endif?>
     
                 <?if( ($order = $ad->get_order())!==FALSE ):?>
@@ -96,7 +98,7 @@
                         rel="tooltip" title="<?=__('Update')?>">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
-                    <?if($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+                    <?if($ad->status != Model_Ad::STATUS_UNAVAILABLE AND $ad->status != Model_Ad::STATUS_UNCONFIRMED):?>
                         <a
                             href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'sold','id'=>$ad->id_ad))?>" 
                             class="btn btn-warning" 
@@ -121,7 +123,7 @@
                                 <i class="glyphicon glyphicon-ok"></i>
                             </a>
                         <?endif?>
-                    <?elseif($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
+                    <?elseif($ad->status != Model_Ad::STATUS_UNAVAILABLE AND $ad->status != Model_Ad::STATUS_UNCONFIRMED):?>
                         <a
                             href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>" 
                             class="btn btn-warning" 
