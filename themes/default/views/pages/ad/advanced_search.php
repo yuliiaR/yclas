@@ -1,12 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?=Form::errors()?>
 <div class="well recomentadion clearfix">
-    <h1><?=__('Search')?></h1>
+    <h1><?=_e('Search')?></h1>
     <?= FORM::open(Route::url('search'), array('class'=>'form-inline', 'method'=>'GET', 'action'=>''))?>
         <fieldset>
          
                 <div class="form-group">
-                <?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
+                <?= FORM::label('advertisement', _e('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
                 <div class="control mr-30">
                     <input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
                 </div>
@@ -14,7 +14,7 @@
 
                 <?if(count($categories) > 1):?>
                     <div class="form-group">
-                        <?= FORM::label('category', __('Category'), array('class'=>'', 'for'=>'category' ))?>
+                        <?= FORM::label('category', _e('Category'), array('class'=>'', 'for'=>'category' ))?>
                         <div class="control mr-30">
                             <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category" class="form-control" data-placeholder="<?=__('Category')?>">
                             <?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -39,7 +39,7 @@
 
                 <?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
                     <div class="form-group">
-                        <?= FORM::label('location', __('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
+                        <?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
                         <div class="control mr-30">
                             <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
                             <?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -64,14 +64,14 @@
             	
             	<?if(core::config('advertisement.price')):?>
                 <div class="form-group">
-                    <label class="" for="price-min"><?=__('Price from')?> </label> 
+                    <label class="" for="price-min"><?=_e('Price from')?> </label> 
                     <div class="control mr-30"> 
                         <input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="" for="price-max"><?=__('Price to')?></label>
+                    <label class="" for="price-max"><?=_e('Price to')?></label>
                     <div class="control mr-30">
                         <input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
                     </div>
@@ -94,11 +94,11 @@
             <?if (core::get('title')) :?>
                 <?=($total_ads == 1) ? sprintf(__('%d advertisement for %s'), $total_ads, core::get('title')) : sprintf(__('%d advertisements for %s'), $total_ads, core::get('title'))?>
             <?else:?>
-                <?=__('Search results')?>
+                <?=_e('Search results')?>
             <?endif?>
         </h3>
         <?=View::factory('pages/ad/listing',array('pagination'=>$pagination,'ads'=>$ads,'category'=>NULL, 'location'=>NULL, 'user'=>$user, 'featured'=>NULL))?>
     <?else:?>
-        <h3><?=__('Your search did not match any advertisement.')?></h3>
+        <h3><?=_e('Your search did not match any advertisement.')?></h3>
     <?endif?>
 <?endif?>

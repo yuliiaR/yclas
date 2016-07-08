@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?if(count($ads)):?>
-    <h3><?=__('Related ads')?></h3>
+    <h3><?=_e('Related ads')?></h3>
     <?foreach($ads as $ad ):?>
         <div class="media">
             <?if($ad->get_first_image() !== NULL):?>
@@ -15,7 +15,7 @@
             <div class="media-body">
                 <h4 class="media-heading">
                     <?if($ad->featured >= Date::unix2mysql(time())):?>
-                        <span class="label label-danger pull-right"><?=__('Featured')?></span>
+                        <span class="label label-danger pull-right"><?=_e('Featured')?></span>
                     <?endif?>
                     <a title="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"> <?=$ad->title; ?></a>
                 </h4>

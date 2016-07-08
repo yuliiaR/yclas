@@ -4,7 +4,7 @@
 <html>
 <body>
 <div style="font-family: Arial; font-size: 20px; text-align: center; margin-top: 200px;">
-    <?=__('Please wait while we transfer you to Paypal');?><br /><br />
+    <?=_e('Please wait while we transfer you to Paypal');?><br /><br />
     <form name="form1" id="form1" action="<?=$paypal_url;?>" method="post">
         <input type="hidden" name="cmd" value="_xclick">
         <input type="hidden" name="cbt" value="Return To <?=$site_name?>">

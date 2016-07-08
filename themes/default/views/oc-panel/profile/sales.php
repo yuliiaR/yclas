@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="page-header">
-    <h1><?=__('Sales')?></h1>
+    <h1><?=_e('Sales')?></h1>
 </div>
 
 <div class="panel panel-default">
@@ -10,10 +10,10 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th><?=__('Amount') ?></th>
-                    <th><?=__('Buyer') ?></th>
-                    <th><?=__('Date') ?></th>
-                    <th><?=__('Ad') ?></th>
+                    <th><?=_e('Amount') ?></th>
+                    <th><?=_e('Buyer') ?></th>
+                    <th><?=_e('Date') ?></th>
+                    <th><?=_e('Ad') ?></th>
                 </tr>
             </thead>
             <tbody>

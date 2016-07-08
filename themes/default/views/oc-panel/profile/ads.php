@@ -1,19 +1,19 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?=Alert::show()?>
 <div id="page-my-dvertisements" class="page-header">
-    <h1><?=__('My Advertisements')?></h1>
+    <h1><?=_e('My Advertisements')?></h1>
 </div>
 
 <div class="panel panel-default">
     <table class="table table-bordered">
         <tr>
-           <th><?=__('Name')?></th>
-            <th><?=__('Category')?></th>
-            <th><?=__('Location')?></th>
-            <th><?=__('Status')?></th>
-            <th><?=__('Date')?></th>
+           <th><?=_e('Name')?></th>
+            <th><?=_e('Category')?></th>
+            <th><?=_e('Location')?></th>
+            <th><?=_e('Status')?></th>
+            <th><?=_e('Date')?></th>
             <?if( core::config('payment.to_featured')):?>
-            <th><?=__('Featured')?></th>
+            <th><?=_e('Featured')?></th>
             <?endif?>
             <th></th>
         </tr>
@@ -45,24 +45,24 @@
     
                 <td>
                 <?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
-                    <?=__('Not published')?>
+                    <?=_e('Not published')?>
                 <? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
-                    <?=__('Published')?>
+                    <?=_e('Published')?>
                 <? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
-                    <?=__('Spam')?>
+                    <?=_e('Spam')?>
                 <? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
-                    <?=__('Unavailable')?>
+                    <?=_e('Unavailable')?>
                 <? elseif($ad->status == Model_Ad::STATUS_UNCONFIRMED):?>
-                    <?=__('Unconfirmed')?>
+                    <?=_e('Unconfirmed')?>
                 <?endif?>
     
                 <?if( ($order = $ad->get_order())!==FALSE ):?>
                     <?if ($order->status==Model_Order::STATUS_CREATED AND $ad->status != Model_Ad::STATUS_PUBLISHED):?>
                         <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
-                            <i class="glyphicon glyphicon-shopping-cart"></i> <?=__('Pay')?>  <?=i18n::format_currency($order->amount,$order->currency)?> 
+                            <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>  <?=i18n::format_currency($order->amount,$order->currency)?> 
                         </a>
                     <?elseif ($order->status==Model_Order::STATUS_PAID):?>
-                        (<?=__('Paid')?>)
+                        (<?=_e('Paid')?>)
                     <?endif?>
                 <?endif?>
     
@@ -77,7 +77,7 @@
                             href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>" 
                             onclick="return confirm('<?=__('Make featured?')?>');"
                             rel="tooltip" title="<?=__('Featured')?>" data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>">
-                            <i class="glyphicon glyphicon-bookmark "></i> <?=__('Featured')?>
+                            <i class="glyphicon glyphicon-bookmark "></i> <?=_e('Featured')?>
                         </a>
                     <?else:?>
                         <?= Date::format($ad->featured, core::config('general.date_format'))?>

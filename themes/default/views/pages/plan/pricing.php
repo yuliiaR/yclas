@@ -24,15 +24,15 @@
                 <hr>
                 <p>
                     <?if ($plan->days == 0 AND $plan->price>0):?>
-                        <?=__('Pay once')?>
+                        <?=_e('Pay once')?>
                     <?elseif ($plan->days == 365):?>
-                        <?=__('Yearly')?>
+                        <?=_e('Yearly')?>
                     <?elseif ($plan->days == 180):?>
-                        <?=__('6 months')?>
+                        <?=_e('6 months')?>
                     <?elseif ($plan->days == 90):?>
-                        <?=__('Quarterly')?>
+                        <?=_e('Quarterly')?>
                     <?elseif ($plan->days == 30):?>
-                        <?=__('Monthly')?>
+                        <?=_e('Monthly')?>
                     <?else:?>
                         <?=sprintf(__('%u days'), $plan->days)?>
                     <?endif?>
@@ -54,9 +54,9 @@
                 <a href="<?=Route::url('default', array('controller'=>'plan','action'=>'buy','id'=>$plan->seoname))?>" 
                     class="btn btn-<?=($current_plan)?'primary':'success'?> btn-block">
                     <?if($current_plan==TRUE):?>
-                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> <?=__('Renew')?>
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> <?=_e('Renew')?>
                     <?else:?>
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=__('Sign Up')?>
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=_e('Sign Up')?>
                     <?endif?>
                     <b><?=i18n::format_currency($plan->price,core::config('payment.paypal_currency'))?></b>
                 </a>

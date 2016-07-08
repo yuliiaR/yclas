@@ -3,7 +3,7 @@
 <?if ($ad->status != Model_Ad::STATUS_PUBLISHED AND $permission === FALSE AND ($ad->id_user != $user) OR (Theme::get('premium')!=1)):?>
 
 <div class="page-header">
-	<h1><?= __('This advertisement doesn´t exist, or is not yet published!')?></h1>
+	<h1><?=_e('This advertisement doesn´t exist, or is not yet published!')?></h1>
 </div>
 
 <?else:?>
@@ -21,7 +21,7 @@
                         <?for ($i=0; $i < round($ad->rate,1); $i++):?>
                             <span class="glyphicon glyphicon-star"></span>
                         <?endfor?>(<?=round($ad->rate,1)?>/<?=Model_Review::RATE_MAX?>)<span class="separator">|</span>
-                        <span class="glyphicon glyphicon-comment"></span><?=count($reviews)?> <?=__('reviews')?>
+                        <span class="glyphicon glyphicon-comment"></span><?=count($reviews)?> <?=_e('reviews')?>
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@
                 <a class="btn btn-success pull-right" data-toggle="modal" data-dismiss="modal" 
                     href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
                 <?endif?>
-                    <i class="glyphicon glyphicon-bullhorn"></i> <?=__('Add New Review')?>
+                    <i class="glyphicon glyphicon-bullhorn"></i> <?=_e('Add New Review')?>
                 </a>
 
             </div>
@@ -45,7 +45,7 @@
                     <form action="" method="post">
                         <div class="modal-header">
                             <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
-                            <h3 class="modal-title"><?=__('Add New Review')?></h3>
+                            <h3 class="modal-title"><?=_e('Add New Review')?></h3>
                         </div>
                         <div class="modal-body">
                             <?=Form::errors()?>
@@ -126,7 +126,7 @@
 
     <?elseif (count($reviews) == 0):?>
     <div class="page-header">
-        <h3><?=__('We do not have any reviews for this product')?></h3>
+        <h3><?=_e('We do not have any reviews for this product')?></h3>
     </div>
     <?endif?>
 

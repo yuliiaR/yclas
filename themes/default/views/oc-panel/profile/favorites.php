@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="page-header">
-    <h1><?=__('My Favorites')?></h1>
+    <h1><?=_e('My Favorites')?></h1>
     <?if (Auth::instance()->get_user()->is_admin()) :?>
-        <small><a target='_blank' href='https://docs.yclas.com/add-chosen-ads-favourites/'><?=__('Read more')?></a></small>
+        <small><a target='_blank' href='https://docs.yclas.com/add-chosen-ads-favourites/'><?=_e('Read more')?></a></small>
     <?endif?>
 </div>
 
@@ -12,8 +12,8 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th><?=__('Advertisement') ?></th>
-                    <th><?=__('Favorited') ?></th>
+                    <th><?=_e('Advertisement') ?></th>
+                    <th><?=_e('Favorited') ?></th>
                     <th></th>
                 </tr>
             </thead>

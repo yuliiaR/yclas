@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="page-header">
-    <h1><?=__('Orders')?></h1>
+    <h1><?=_e('Orders')?></h1>
 </div>
 
 <div class="panel panel-default">
@@ -10,12 +10,12 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th><?=__('Status') ?></th>
-                    <th><?=__('Product') ?></th>
-                    <th><?=__('Amount') ?></th>
-                    <th><?=__('Ad') ?></th>
-                    <th><?=__('Date') ?></th>
-                    <th><?=__('Date Paid') ?></th>
+                    <th><?=_e('Status') ?></th>
+                    <th><?=_e('Product') ?></th>
+                    <th><?=_e('Amount') ?></th>
+                    <th><?=_e('Ad') ?></th>
+                    <th><?=_e('Date') ?></th>
+                    <th><?=_e('Date Paid') ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
                         <td>
                             <?if ($order->status == Model_Order::STATUS_CREATED):?>
                             <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
-                            <i class="glyphicon glyphicon-shopping-cart"></i> <?=__('Pay')?>   
+                            <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>   
                             </a>
                             <?else:?>
                                 <?=Model_Order::$statuses[$order->status]?>

@@ -9,7 +9,7 @@
 	<br>
 <?else:?>
 	<div class="page-header">
-		<h1><?=__('Contact Us')?></h1>
+		<h1><?=_e('Contact Us')?></h1>
 	</div>
 <?endif?>
 <div class="well">
@@ -52,7 +52,7 @@
 						<?=Captcha::recaptcha_display()?>
 						<div id="recaptcha1"></div>
 					<?else:?>
-						<?=__('Captcha')?>*:<br />
+						<?=_e('Captcha')?>*:<br />
 						<?=captcha::image_tag('contact')?><br />
 						<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
 					<?endif?>

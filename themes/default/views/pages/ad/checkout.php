@@ -11,22 +11,22 @@
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
             <p>
-                <em><?=__('Date')?>: <?= Date::format($order->created, core::config('general.date_format'))?></em>
+                <em><?=_e('Date')?>: <?= Date::format($order->created, core::config('general.date_format'))?></em>
                 <br>
-                <em><?=__('Checkout')?> :# <?=$order->id_order?></em>
+                <em><?=_e('Checkout')?> :# <?=$order->id_order?></em>
             </p>
         </div>
     </div>
     <div class="row">
         <div class="text-center">
-            <h1><?=__('Checkout')?></h1>
+            <h1><?=_e('Checkout')?></h1>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th style="text-align: center">#</th>
-                    <th><?=__('Product')?></th>
-                    <th class="text-center"><?=__('Price')?></th>
+                    <th><?=_e('Product')?></th>
+                    <th class="text-center"><?=_e('Price')?></th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-1" style="text-align: center"></td>
-                        <td class="col-md-9"><?=__('Shipping')?></td>
+                        <td class="col-md-9"><?=_e('Shipping')?></td>
                         <td class="col-md-2 text-center"><?=i18n::money_format($order->ad->cf_shipping, $order->currency)?></td>
                     </tr>
                 <?else:?>
@@ -49,14 +49,14 @@
                                 <?=$order->description?> 
                                 <em>(<?=Model_Order::product_desc($order->id_product)?> 
                                     <?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED):?>
-                                        <?=$order->featured_days?> <?=__('Days')?>
+                                        <?=$order->featured_days?> <?=_e('Days')?>
                                     <?endif?>
                                     )
                                 </em>
                                 <div class="dropdown" style="display:inline-block;">
                                 <?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED AND is_array($featured_plans=Model_Order::get_featured_plans()) AND count($featured_plans) > 1):?>
                                     <button class="btn btn-xs btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                        <?=__('Change plan')?> 
+                                        <?=_e('Change plan')?> 
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
@@ -64,7 +64,7 @@
                                             <?if ($order->featured_days != $days):?>
                                                 <li>
                                                     <a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>?featured_days=<?=$days?>">
-                                                        <small><?=$days?> <?=__('Days')?> - <?=core::config('payment.paypal_currency')?> <?=$price?></small>
+                                                        <small><?=$days?> <?=_e('Days')?> - <?=core::config('payment.paypal_currency')?> <?=$price?></small>
                                                     </a>
                                                 </li>
                                             <?endif?>
@@ -84,7 +84,7 @@
                                 <?=$order->id_coupon?>
                             </td>
                             <td class="col-md-9">
-                                <?=__('Coupon')?> '<?=$order->coupon->name?>'
+                                <?=_e('Coupon')?> '<?=$order->coupon->name?>'
                                 <?=sprintf(__('valid until %s'), Date::format($order->coupon->valid_date, core::config('general.date_format')))?>.
                             </td>
                             <td class="col-md-2 text-center text-danger">
@@ -101,7 +101,7 @@
                 </tr>
                 <tr>
                     <td>   </td>
-                    <td class="text-right"><h4><strong><?=__('Total')?>: </strong></h4></td>
+                    <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
                     <td class="text-center text-danger"><h4><strong><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format($order->amount, $order->currency):i18n::format_currency($order->amount, $order->currency)?></strong></h4></td>
                 </tr>
             </tbody>
@@ -114,7 +114,7 @@
         <?if (Core::config('payment.paypal_account')!=''):?>
             <p class="text-right">
                 <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
-                    <?=__('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
+                    <?=_e('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </p>
         <?endif?>
@@ -124,7 +124,7 @@
                 <ul class="list-inline text-right">
                     <li>
                         <a title="<?=__('Mark as paid')?>" class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'order', 'action'=>'pay','id'=>$order->id_order))?>">
-                            <i class="glyphicon glyphicon-usd"></i> <?=__('Mark as paid')?>
+                            <i class="glyphicon glyphicon-usd"></i> <?=_e('Mark as paid')?>
                         </a>
                     </li>
                 </ul>
@@ -174,7 +174,7 @@
             <ul class="list-inline text-right">
                 <li>
                     <a title="<?=__('Click to proceed')?>" class="btn btn-success" href="<?=Route::url('default', array('controller'=> 'ad', 'action'=>'checkoutfree','id'=>$order->id_order))?>">
-                        <?=__('Click to proceed')?>
+                        <?=_e('Click to proceed')?>
                     </a>
                 </li>
                 <?=View::factory('coupon')?>
