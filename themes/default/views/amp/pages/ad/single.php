@@ -6,7 +6,7 @@
         <?if ($ad->price>0):?>
             <li><?=i18n::money_format($ad->price)?></li>
         <?elseif ($ad->price==0 AND core::config('advertisement.free')==1):?>
-            <li><?=__('Free')?></li>
+            <li><?=_e('Free')?></li>
         <?endif?>
         <li>
             <a href="<?=Route::url('profile', ['seoname' => $ad->user->seoname])?>"><?=$ad->user->name?></a>
@@ -27,7 +27,7 @@
             <?=Date::format($ad->published, core::config('general.date_format'))?>
         </li>
         <?if(core::config('advertisement.count_visits')==1):?>
-            <li><?=$hits?> <?=__('Hits')?></li>
+            <li><?=$hits?> <?=_e('Hits')?></li>
         <?endif?>
     </ul>
 
@@ -74,9 +74,9 @@
     <?if((core::config('payment.paypal_seller')==1 OR Core::config('payment.stripe_connect')==1) AND $ad->price != NULL AND $ad->price > 0):?>
         <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
             <?if (!Auth::instance()->logged_in()):?>
-                <a href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>"><?=__('Buy Now')?></a>
+                <a href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>"><?=_e('Buy Now')?></a>
             <?else:?>
-                <a type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?></a>
+                <a type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Buy Now')?></a>
             <?endif?>
         <?endif?>
     <?endif?>
@@ -88,12 +88,12 @@
     </amp-img>
 
     <div class="amp-oc-link">
-        <a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=__('Send Message')?></a>
+        <a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=_e('Send Message')?></a>
     </div>
 
     <hr>
 
     <p class="amp-oc-text-center ">
-        <a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=__('View full page')?></a>
+        <a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=_e('View full page')?></a>
     </p>
 <?endif?>

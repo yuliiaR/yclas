@@ -41,9 +41,9 @@
                 <i class="fa fa-bell"></i> <span class="badge"><?=count($ads)?></span>
             </a>
             <ul id="contact-notification-dd" class="dropdown-menu">
-                <li class="dropdown-header"><?=__('Please check your email')?></li>
+                <li class="dropdown-header"><?=_e('Please check your email')?></li>
                 <li class="divider"></li>
-                <li class="dropdown-header"><?=__('You have been contacted for these ads')?></li>
+                <li class="dropdown-header"><?=_e('You have been contacted for these ads')?></li>
                 <?foreach ($ads as $ad ):?>
                     <li class="dropdown-header"><strong><?=$ad["title"]?></strong></li>
                 <?endforeach?>

@@ -33,12 +33,12 @@
                 && core::config('payment.to_featured') != FALSE)):?>
             <div id="recomentadion" class="well recomentadion clearfix">
                 <?if(core::config('payment.pay_to_go_on_top') > 0 && core::config('payment.to_top') != FALSE):?>
-                    <p class="text-info"><?=__('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
-                    <a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
+                    <p class="text-info"><?=_e('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
+                    <a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Go Top!')?></a>
                 <?endif?>
                 <?if(core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql()):?>
-                    <p class="text-info"><?=__('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
-                    <a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
+                    <p class="text-info"><?=_e('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
+                    <a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Go Featured!')?></a>
                 <?endif?>
             </div>
         <?endif?>
@@ -66,10 +66,10 @@
 
     <div class="well ">
         <?if ($ad->price>0):?>
-            <span class="label label-danger"><?= __('Price');?> : <span class="price-curry"><?=i18n::money_format( $ad->price)?></span></span>
+            <span class="label label-danger"><?=_e('Price');?> : <span class="price-curry"><?=i18n::money_format( $ad->price)?></span></span>
         <?endif?>
         <?if ($ad->price==0 AND core::config('advertisement.free')==1):?>
-            <span class="label label-danger"><?= __('Price');?> : <?=__('Free');?></span>
+            <span class="label label-danger"><?=_e('Price');?> : <?=_e('Free');?></span>
         <?endif?>
         <?if ($ad->id_location != 1):?>
             <span class="label label-default"><?=$ad->location->name?></span>
@@ -78,7 +78,7 @@
         <div class="pull-right">
             <span class="label label-info"><?= Date::format($ad->published, core::config('general.date_format'))?></span>
             <?if(core::config('advertisement.count_visits')==1):?>
-                <span class="label label-info"><?=$hits?> <?=__('Hits')?></span> 
+                <span class="label label-info"><?=$hits?> <?=_e('Hits')?></span> 
             <?endif?>
         </div>    
     </div>
@@ -101,9 +101,9 @@
         <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
             <?if (!Auth::instance()->logged_in()):?>
                 <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
-                    href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=__('Buy Now')?></a>
+                    href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=_e('Buy Now')?></a>
             <?else:?>
-                <a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?></a>
+                <a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Buy Now')?></a>
             <?endif?>
         <?endif?>
     <?endif?>
@@ -114,14 +114,14 @@
         <?if ((core::config('advertisement.login_to_contact') == TRUE OR core::config('general.messaging') == TRUE) AND !Auth::instance()->logged_in()) :?>
             <a class="btn btn-success" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
                 <i class="glyphicon glyphicon-envelope"></i> 
-                <?=__('Send Message')?>
+                <?=_e('Send Message')?>
             </a>
         <?else :?>
-            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=__('Send Message')?></button>
+            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=_e('Send Message')?></button>
         <?endif?>
     
         <?if (core::config('advertisement.phone')==1 AND strlen($ad->phone)>1):?>
-            <a class="btn btn-warning" href="tel:<?=$ad->phone?>"><?=__('Phone').': '.$ad->phone?></a>
+            <a class="btn btn-warning" href="tel:<?=$ad->phone?>"><?=_e('Phone').': '.$ad->phone?></a>
         <?endif?>
     
         <div id="contact-modal" class="modal fade">
@@ -129,7 +129,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                          <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
-                        <h3><?=__('Contact')?></h3>
+                        <h3><?=_e('Contact')?></h3>
                     </div>
                     <div class="modal-body">
                         <?=Form::errors()?>
@@ -212,8 +212,8 @@
     <?endif?>
     <?=$ad->qr()?>
     <?if (core::config('advertisement.map')==1 AND $ad->latitude AND $ad->longitude):?>
-        <p><img class="img-responsive" src="//maps.googleapis.com/maps/api/staticmap?zoom=<?=Core::config('advertisement.map_zoom')?>&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=<?=($ad->category->get_icon() AND Kohana::$environment !== Kohana::DEVELOPMENT) ? 'icon:'.Core::imagefly($ad->category->get_icon(),50,50).'%7C' : NULL?>size:large%7Ccolor:red%7Clabel:·%7C<?=$ad->latitude?>,<?=$ad->longitude?>" alt="<?=HTML::chars($ad->title)?> <?=__('Map')?>" style="width:100%;"></p>
-        <p><a class="btn btn-default btn-sm" href="<?=Route::url('map')?>?id_ad=<?=$ad->id_ad?>"><span class="glyphicon glyphicon-globe"></span> <?=__('Map View')?></a></p>
+        <p><img class="img-responsive" src="//maps.googleapis.com/maps/api/staticmap?zoom=<?=Core::config('advertisement.map_zoom')?>&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=<?=($ad->category->get_icon() AND Kohana::$environment !== Kohana::DEVELOPMENT) ? 'icon:'.Core::imagefly($ad->category->get_icon(),50,50).'%7C' : NULL?>size:large%7Ccolor:red%7Clabel:·%7C<?=$ad->latitude?>,<?=$ad->longitude?>" alt="<?=HTML::chars($ad->title)?> <?=_e('Map')?>" style="width:100%;"></p>
+        <p><a class="btn btn-default btn-sm" href="<?=Route::url('map')?>?id_ad=<?=$ad->id_ad?>"><span class="glyphicon glyphicon-globe"></span> <?=_e('Map View')?></a></p>
     <?endif?>
     <?=$ad->related()?>
     <?=$ad->comments()?>
@@ -229,10 +229,10 @@
                 </div>
                 <div class="modal-body"><div class="modal-image"></div></div>
                 <div class="modal-footer">
-                    <a class="btn btn-info modal-prev"><i class="glyphicon glyphicon-arrow-left glyphicon"></i> <?=__('Previous')?></a>
-                    <a class="btn btn-primary modal-next"><?=__('Next')?> <i class="glyphicon glyphicon-arrow-right glyphicon"></i></a>
-                    <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="glyphicon glyphicon-play glyphicon"></i> <?=__('Slideshow')?></a>
-                    <a class="btn modal-download" target="_blank"><i class="glyphicon glyphicon-download"></i> <?=__('Download')?></a>
+                    <a class="btn btn-info modal-prev"><i class="glyphicon glyphicon-arrow-left glyphicon"></i> <?=_e('Previous')?></a>
+                    <a class="btn btn-primary modal-next"><?=_e('Next')?> <i class="glyphicon glyphicon-arrow-right glyphicon"></i></a>
+                    <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="glyphicon glyphicon-play glyphicon"></i> <?=_e('Slideshow')?></a>
+                    <a class="btn modal-download" target="_blank"><i class="glyphicon glyphicon-download"></i> <?=_e('Download')?></a>
                 </div>
             </div>
         </div>

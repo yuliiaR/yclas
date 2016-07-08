@@ -3,11 +3,11 @@
     <div class="well">
         <h3>
             <?if(core::config('advertisement.ads_in_home') == 0):?>
-                <?=__('Latest Ads')?>
+                <?=_e('Latest Ads')?>
             <?elseif(core::config('advertisement.ads_in_home') == 1 OR core::config('advertisement.ads_in_home') == 4):?>
-                <?=__('Featured Ads')?>
+                <?=_e('Featured Ads')?>
             <?elseif(core::config('advertisement.ads_in_home') == 2):?>
-                <?=__('Popular Ads last month')?>
+                <?=_e('Popular Ads last month')?>
             <?endif?>
             <?if ($user_location) :?>
                 <small><?=$user_location->name?></small>
@@ -38,7 +38,7 @@
 <?endif?>
 <div class='well'>
     <h3>
-        <?=__("Categories")?>
+        <?=_e("Categories")?>
         <?if ($user_location) :?>
             <small><?=$user_location->name?></small>
         <?endif?>
@@ -81,7 +81,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 id="autoLocations" class="modal-title text-center"><?=__('Please choose your closest location')?></h4>
+                        <h4 id="autoLocations" class="modal-title text-center"><?=_e('Please choose your closest location')?></h4>
                     </div>
                     <div class="modal-body">
                         <div class="list-group">

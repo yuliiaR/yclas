@@ -58,6 +58,16 @@ Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.3,bootstra
                                     'js/theme.init.js?v='.Core::VERSION,
                                     );
 
+if (Auth::instance()->logged_in() AND 
+    (Auth::instance()->get_user()->is_admin() OR 
+        Auth::instance()->get_user()->is_moderator() OR
+        Auth::instance()->get_user()->is_translator()))
+{
+    Theme::$styles['css/bootstrap-editable.css'] = 'screen';
+    Theme::$scripts['footer'][] = 'js/bootstrap-editable.min.js';
+    Theme::$scripts['footer'][] = 'js/oc-panel/live-translator.js';
+}
+
 /**
  * custom error alerts
  */

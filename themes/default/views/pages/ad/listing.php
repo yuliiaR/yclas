@@ -6,7 +6,7 @@
     <?elseif ($location!==NULL):?>
         <h1><?=$location->name?></h1>
     <?else:?>
-        <h1><?=__('Listings')?></h1>
+        <h1><?=_e('Listings')?></h1>
     <?endif?>
 </div>
 
@@ -27,7 +27,7 @@
         <i class="glyphicon glyphicon-pencil"></i> 
         <a title="<?=__('New Advertisement')?>" 
             href="<?=Route::url('post_new')?>?category=<?=($category!==NULL)?$category->seoname:''?>&location=<?=($location!==NULL)?$location->seoname:''?>">
-            <?=__('Publish new advertisement')?>
+            <?=_e('Publish new advertisement')?>
         </a>
     <?endif?>
 </div><!--end of recomentadion-->
@@ -51,38 +51,38 @@
             <a href="#"
                 class="btn btn-default btn-sm"
                 data-toggle="modal" data-target="#listingMap">
-                <span class="glyphicon glyphicon-globe"></span> <?=__('Map')?>
+                <span class="glyphicon glyphicon-globe"></span> <?=_e('Map')?>
             </a>
         <?endif?>
         <div class="btn-group">
           	<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	            <?=__('Show').' '.core::request('items_per_page').' '.__('items per page')?> <span class="caret"></span>
+	            <?=_e('Show').' '.core::request('items_per_page').' '._e('items per page')?> <span class="caret"></span>
           	</button>
           	<ul class="dropdown-menu dropdown-menu-right" role="menu" id="show-list">
-	            <li><a href="?<?=http_build_query(['items_per_page' => '5'] + Request::current()->query())?>">  5 <?=__('per page')?></a></li>
-	            <li><a href="?<?=http_build_query(['items_per_page' => '10'] + Request::current()->query())?>"> 10 <?=__('per page')?></a></li>
-	            <li><a href="?<?=http_build_query(['items_per_page' => '20'] + Request::current()->query())?>"> 20 <?=__('per page')?></a></li>
-	            <li><a href="?<?=http_build_query(['items_per_page' => '50'] + Request::current()->query())?>"> 50 <?=__('per page')?></a></li>
-	            <li><a href="?<?=http_build_query(['items_per_page' => '100'] + Request::current()->query())?>">100 <?=__('per page')?></a></li>
+	            <li><a href="?<?=http_build_query(['items_per_page' => '5'] + Request::current()->query())?>">  5 <?=_e('per page')?></a></li>
+	            <li><a href="?<?=http_build_query(['items_per_page' => '10'] + Request::current()->query())?>"> 10 <?=_e('per page')?></a></li>
+	            <li><a href="?<?=http_build_query(['items_per_page' => '20'] + Request::current()->query())?>"> 20 <?=_e('per page')?></a></li>
+	            <li><a href="?<?=http_build_query(['items_per_page' => '50'] + Request::current()->query())?>"> 50 <?=_e('per page')?></a></li>
+	            <li><a href="?<?=http_build_query(['items_per_page' => '100'] + Request::current()->query())?>">100 <?=_e('per page')?></a></li>
           	</ul>
         </div>
         <button type="button" id="sort" data-sort="<?=core::request('sort',core::config('advertisement.sort_by'))?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-list-alt"></span> <?=__('Sort')?> <span class="caret"></span>
+            <span class="glyphicon glyphicon-list-alt"></span> <?=_e('Sort')?> <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" id="sort-list">
-            <li><a href="?<?=http_build_query(['sort' => 'title-asc'] + Request::current()->query())?>"><?=__('Name (A-Z)')?></a></li>
-            <li><a href="?<?=http_build_query(['sort' => 'title-desc'] + Request::current()->query())?>"><?=__('Name (Z-A)')?></a></li>
+            <li><a href="?<?=http_build_query(['sort' => 'title-asc'] + Request::current()->query())?>"><?=_e('Name (A-Z)')?></a></li>
+            <li><a href="?<?=http_build_query(['sort' => 'title-desc'] + Request::current()->query())?>"><?=_e('Name (Z-A)')?></a></li>
             <?if(core::config('advertisement.price')!=FALSE):?>
-                <li><a href="?<?=http_build_query(['sort' => 'price-asc'] + Request::current()->query())?>"><?=__('Price (Low)')?></a></li>
-                <li><a href="?<?=http_build_query(['sort' => 'price-desc'] + Request::current()->query())?>"><?=__('Price (High)')?></a></li>
+                <li><a href="?<?=http_build_query(['sort' => 'price-asc'] + Request::current()->query())?>"><?=_e('Price (Low)')?></a></li>
+                <li><a href="?<?=http_build_query(['sort' => 'price-desc'] + Request::current()->query())?>"><?=_e('Price (High)')?></a></li>
             <?endif?>
-            <li><a href="?<?=http_build_query(['sort' => 'featured'] + Request::current()->query())?>"><?=__('Featured')?></a></li>
-            <li><a href="?<?=http_build_query(['sort' => 'favorited'] + Request::current()->query())?>"><?=__('Favorited')?></a></li>
+            <li><a href="?<?=http_build_query(['sort' => 'featured'] + Request::current()->query())?>"><?=_e('Featured')?></a></li>
+            <li><a href="?<?=http_build_query(['sort' => 'favorited'] + Request::current()->query())?>"><?=_e('Favorited')?></a></li>
             <?if(core::config('general.auto_locate')):?>
-                <li><a href="?<?=http_build_query(['sort' => 'distance'] + Request::current()->query())?>" id="sort-distance"><?=__('Distance')?></a></li>
+                <li><a href="?<?=http_build_query(['sort' => 'distance'] + Request::current()->query())?>" id="sort-distance"><?=_e('Distance')?></a></li>
             <?endif?>
-            <li><a href="?<?=http_build_query(['sort' => 'published-desc'] + Request::current()->query())?>"><?=__('Newest')?></a></li>
-            <li><a href="?<?=http_build_query(['sort' => 'published-asc'] + Request::current()->query())?>"><?=__('Oldest')?></a></li>
+            <li><a href="?<?=http_build_query(['sort' => 'published-desc'] + Request::current()->query())?>"><?=_e('Newest')?></a></li>
+            <li><a href="?<?=http_build_query(['sort' => 'published-asc'] + Request::current()->query())?>"><?=_e('Oldest')?></a></li>
         </ul>
     </div>
     <div class="clearfix"></div>
@@ -90,7 +90,7 @@
   <?foreach($ads as $ad ):?>
       <?if($ad->featured >= Date::unix2mysql(time())):?>
           <article class="list well clearfix featured ">
-              <span class="label label-danger pull-right"><?=__('Featured')?></span>
+              <span class="label label-danger pull-right"><?=_e('Featured')?></span>
       <?else:?>
           <article class="list well clearfix">
       <?endif?>
@@ -137,16 +137,16 @@
           
           <ul>
               <?if (core::request('sort') == 'distance' AND Model_User::get_userlatlng()) :?>
-                  <li><b><?=__('Distance');?>:</b> <?=i18n::format_measurement($ad->distance)?></li>
+                  <li><b><?=_e('Distance');?>:</b> <?=i18n::format_measurement($ad->distance)?></li>
               <?endif?>
               <?if ($ad->published!=0){?>
-                  <li><b><?=__('Publish Date');?>:</b> <?=Date::format($ad->published, core::config('general.date_format'))?></li>
+                  <li><b><?=_e('Publish Date');?>:</b> <?=Date::format($ad->published, core::config('general.date_format'))?></li>
               <? }?>
               <?if ($ad->price!=0){?>
-                  <li class="price"><?=__('Price');?>: <b><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></b></li>
+                  <li class="price"><?=_e('Price');?>: <b><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></b></li>
               <?}?>  
               <?if ($ad->price==0 AND core::config('advertisement.free')==1){?>
-                  <li class="price"><?=__('Price');?>: <b><?=__('Free');?></b></li>
+                  <li class="price"><?=_e('Price');?>: <b><?=_e('Free');?></b></li>
               <?}?>  
           </ul>
        
@@ -154,20 +154,20 @@
             <p><?=Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE);?></p>
           <?endif?>
           
-          <a title="<?=HTML::chars($ad->seotitle);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="glyphicon glyphicon-share"></i><?=__('Read more')?></a>
+          <a title="<?=HTML::chars($ad->seotitle);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><i class="glyphicon glyphicon-share"></i><?=_e('Read more')?></a>
           <?if ($user !== NULL AND ($user->is_admin() OR $user->is_moderator())):?>
               <br />
               <div class="toolbar btn btn-primary btn-xs"><i class="glyphicon glyphicon-cog"></i>
                   <div id="user-toolbar-options<?=$ad->id_ad?>" class="hide user-toolbar-options">
-                      <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a> |
+                      <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=_e("Edit");?></a> |
                       <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
-                          onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i><?=__("Deactivate");?>
+                          onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i><?=_e("Deactivate");?>
                       </a> |
                       <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" 
-                          onclick="return confirm('<?=__('Spam?')?>');"><i class="glyphicon glyphicon-fire"></i><?=__("Spam");?>
+                          onclick="return confirm('<?=__('Spam?')?>');"><i class="glyphicon glyphicon-fire"></i><?=_e("Spam");?>
                       </a> |
                       <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" 
-                          onclick="return confirm('<?=__('Delete?')?>');"><i class="glyphicon glyphicon-remove"></i><?=__("Delete");?>
+                          onclick="return confirm('<?=__('Delete?')?>');"><i class="glyphicon glyphicon-remove"></i><?=_e("Delete");?>
                       </a>
 
                   </div>
@@ -177,9 +177,9 @@
           <br/>
           <div class="toolbar btn btn-primary btn-xs"><i class="glyphicon glyphicon-cog"></i>
               <div id="user-toolbar-options<?=$ad->id_ad?>" class="hide user-toolbar-options">
-                  <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i><?=__("Edit");?></a> |
+                  <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i><?=_e("Edit");?></a> |
                   <a class="btn btn-primary btn-xs" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>" 
-                      onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i><?=__("Deactivate");?>
+                      onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i><?=_e("Deactivate");?>
                   </a>
               </div>
           </div>
@@ -206,7 +206,7 @@
     <?endif?>
  <!-- Case when we dont have ads for specific category / location -->
   <div class="page-header">
-      <h3><?=__('We do not have any advertisements in this category')?></h3>
+      <h3><?=_e('We do not have any advertisements in this category')?></h3>
   </div>
 <?endif?>
 
@@ -250,16 +250,16 @@
                         <input type="hidden" name="longitude" id="myLongitude" value="" disabled>
                         <?=FORM::input('myAddress', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'myAddress', 'placeholder'=>__('Where do you want to search?')))?>
                         <span class="input-group-btn">
-                            <button id="setMyLocation" class="btn btn-default" type="button"><?=__('Ok')?></button>
+                            <button id="setMyLocation" class="btn btn-default" type="button"><?=_e('Ok')?></button>
                         </span>
                     </div>
                     <br>
                     <div id="mapCanvas"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Close')?></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=_e('Close')?></button>
                     <?if (core::request('userpos') == 1) :?>
-                        <a class="btn btn-danger" href="?<?=http_build_query(['userpos' => NULL] + Request::current()->query())?>"><?=__('Remove')?></a>
+                        <a class="btn btn-danger" href="?<?=http_build_query(['userpos' => NULL] + Request::current()->query())?>"><?=_e('Remove')?></a>
                     <?endif?>
                 </div>
             </div>

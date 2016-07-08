@@ -5,11 +5,11 @@
 <div class="panel panel-default">
     <table class="table table-bordered">
         <tr>
-            <th><?=__('Category')?></th>
-            <th><?=__('Location')?></th>
-            <th><?=__('Min Price')?></th>
-            <th><?=__('Max Price')?></th>
-            <th><?=__('Created')?></th>
+            <th><?=_e('Category')?></th>
+            <th><?=_e('Location')?></th>
+            <th><?=_e('Min Price')?></th>
+            <th><?=_e('Max Price')?></th>
+            <th><?=_e('Created')?></th>
             <th>
                 <a
                     href="<?=Route::url('default', array('controller'=>'subscribe','action'=>'unsubscribe', 'id'=>Auth::instance()->get_user()->id_user))?>" 

@@ -8,8 +8,8 @@
 
 <div class="panel-body">
     <?if (!is_null($widget->info)):?>
-        <p><?=$widget->info->views?> <strong><?=__('views')?></strong></p>
-        <p><?=$widget->info->ads?> <strong><?=__('ads')?></strong></p>
-        <p><?=$widget->info->users?> <strong><?=__('users')?></strong></p>
+        <p><?=$widget->info->views?> <strong><?=_e('views')?></strong></p>
+        <p><?=$widget->info->ads?> <strong><?=_e('ads')?></strong></p>
+        <p><?=$widget->info->users?> <strong><?=_e('users')?></strong></p>
     <?endif?>
 </div>

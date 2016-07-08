@@ -3,7 +3,7 @@
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mobile-menu-panel">
-                <span class="sr-only"><?=__('Toggle navigation')?></span>
+                <span class="sr-only"><?=_e('Toggle navigation')?></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -32,7 +32,7 @@
                 <?else:?>
                     <?=Theme::nav_link(__('Listing'),'ad', 'glyphicon glyphicon-list' ,'listing', 'list')?>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Categories')?> <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=_e('Categories')?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <?foreach($cats as $c ):?>
                                 <?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
@@ -86,7 +86,7 @@
                 <?if (Core::config('advertisement.only_admin_post')!=1):?>
                     <a class="btn btn-danger" href="<?=Route::url('post_new')?>">
                         <i class="glyphicon glyphicon-pencil glyphicon"></i>
-                        <?=__('Publish new ')?>
+                        <?=_e('Publish new ')?>
                     </a>                
                 <?endif?>
             </div>
@@ -99,7 +99,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <a class="close" data-dismiss="modal" >&times;</a>
-                    <h3><?=__('Login')?></h3>
+                    <h3><?=_e('Login')?></h3>
                 </div>
                 <div class="modal-body">
                     <?=View::factory('pages/auth/login-form')?>
@@ -112,7 +112,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <a class="close" data-dismiss="modal" >&times;</a>
-                    <h3><?=__('Forgot password')?></h3>
+                    <h3><?=_e('Forgot password')?></h3>
                 </div>
                 <div class="modal-body">
                     <?=View::factory('pages/auth/forgot-form')?>
@@ -125,7 +125,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                   <a class="close" data-dismiss="modal" >&times;</a>
-                  <h3><?=__('Register')?></h3>
+                  <h3><?=_e('Register')?></h3>
                 </div>
                 <div class="modal-body">
                     <?=View::factory('pages/auth/register-form', ['recaptcha_placeholder' => 'recaptcha4'])?>

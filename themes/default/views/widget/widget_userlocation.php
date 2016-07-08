@@ -8,6 +8,6 @@
 
 <div class="panel-body">
     <?if($widget->location !== FALSE) :?>
-        <p><a href="<?=Route::url('list', array('location'=>$widget->location->seoname))?>"><?=$widget->location->name?></a> <small>(<a href="<?=Route::url('default')?>?user_location=0"><?=__('Change Location')?></a>)</small></p>
+        <p><a href="<?=Route::url('list', array('location'=>$widget->location->seoname))?>"><?=$widget->location->name?></a> <small>(<a href="<?=Route::url('default')?>?user_location=0"><?=_e('Change Location')?></a>)</small></p>
     <?endif?>
 </div>

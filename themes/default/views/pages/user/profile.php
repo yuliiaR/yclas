@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <div class="page-header">
-    <h3><?= __('User Profile')?></h3>
+    <h3><?=_e('User Profile')?></h3>
 </div>
 
 <div class="row">
@@ -32,9 +32,9 @@
                     <?endif?>
                 </li>
             <?endif?>
-            <li><strong><?=__('Created')?>:</strong> <?= Date::format($user->created, core::config('general.date_format')) ?></li>
+            <li><strong><?=_e('Created')?>:</strong> <?= Date::format($user->created, core::config('general.date_format')) ?></li>
             <?if ($user->last_login!=NULL):?>
-            <li><strong><?=__('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
+            <li><strong><?=_e('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
             <?endif?>
             <?if (Theme::get('premium')==1):?>
             <?foreach ($user->custom_columns(TRUE) as $name => $value):?>
@@ -61,17 +61,17 @@
         <?if (core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in()) :?>
             <a class="btn btn-success" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
                 <i class="glyphicon glyphicon-envelope"></i>
-                <?=__('Send Message')?>
+                <?=_e('Send Message')?>
             </a>
         <?else :?>
-            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=__('Send Message')?></button>
+            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=_e('Send Message')?></button>
         <?endif?>
         <div id="contact-modal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                          <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
-                        <h3><?=__('Contact')?></h3>
+                        <h3><?=_e('Contact')?></h3>
                     </div>
                     
                     <div class="modal-body">
@@ -150,7 +150,7 @@
         <?foreach($profile_ads as $ad):?>
             <?if($ad->featured >= Date::unix2mysql(time())):?>
                 <article class="well featured">
-                    <span class="label label-danger pull-right"><?=__('Featured')?></span>
+                    <span class="label label-danger pull-right"><?=_e('Featured')?></span>
             <?else:?>
                 <article class="well">
             <?endif?>
@@ -173,26 +173,26 @@
                     </a>
                 </div>
 
-                <p><strong><?=__('Description')?>: </strong><?=Text::removebbcode($ad->description)?><p>
-                <p><b><?=__('Publish Date');?>:</b> <?= Date::format($ad->published, core::config('general.date_format'))?><p>
+                <p><strong><?=_e('Description')?>: </strong><?=Text::removebbcode($ad->description)?><p>
+                <p><b><?=_e('Publish Date');?>:</b> <?= Date::format($ad->published, core::config('general.date_format'))?><p>
                 
                 <?$visitor = Auth::instance()->get_user()?>
                 
                 <?if ($visitor != FALSE && $visitor->id_role == 10):?>
                     <br>
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=__("Edit");?></a> |
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> |
                     <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
-                        onclick="return confirm('<?=__('Deactivate?')?>');"><?=__("Deactivate");?>
+                        onclick="return confirm('<?=__('Deactivate?')?>');"><?=_e("Deactivate");?>
                     </a> |
                     <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" 
-                        onclick="return confirm('<?=__('Spam?')?>');"><?=__("Spam");?>
+                        onclick="return confirm('<?=__('Spam?')?>');"><?=_e("Spam");?>
                     </a> |
                     <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" 
-                        onclick="return confirm('<?=__('Delete?')?>');"><?=__("Delete");?>
+                        onclick="return confirm('<?=__('Delete?')?>');"><?=_e("Delete");?>
                     </a>
                 <?elseif($visitor != FALSE && $visitor->id_user == $ad->id_user):?>
                     <br>
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=__("Edit");?></a> 
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> 
                 <?endif?>
                 <div class="clearfix"></div>
             </article>

@@ -4,7 +4,7 @@
         <?if( Core::config('payment.stripe_connect')==1):?>
             <div class="panel panel-default">
                 <div class="panel-heading" id="page-edit-profile">
-                    <h3 class="panel-title"><?=__('Stripe Connect')?></h3>
+                    <h3 class="panel-title"><?=_e('Stripe Connect')?></h3>
                     <p><?=sprintf(__('Sell your items with credit card using stripe. Our platform charges %s percentage, per transaction.'),Core::config('payment.stripe_appfee'))?></p>
                 </div>
                 <div class="panel-body">
@@ -28,7 +28,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading" id="page-edit-profile">
-                <h3 class="panel-title"><?=__('Edit Profile')?></h3>
+                <h3 class="panel-title"><?=_e('Edit Profile')?></h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -80,14 +80,14 @@
                                 <div class="col-md-offset-4 col-md-8">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="subscriber" value="1" <?=($user->subscriber)?'checked':NULL?> > <?=__('Subscribed to emails')?>
+                                            <input type="checkbox" name="subscriber" value="1" <?=($user->subscriber)?'checked':NULL?> > <?=_e('Subscribed to emails')?>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-8">
-                                    <button type="submit" class="btn btn-primary"><?=__('Update')?></button>
+                                    <button type="submit" class="btn btn-primary"><?=_e('Update')?></button>
                                 </div>
                             </div>
                         <?= FORM::close()?>
@@ -97,7 +97,7 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading" id="page-edit-profile">
-                <h3 class="panel-title"><?=__('Change password')?></h3>
+                <h3 class="panel-title"><?=_e('Change password')?></h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -106,25 +106,25 @@
                             <?=Form::errors()?>  
                                   
                             <div class="form-group">
-                                <label class="col-xs-4 control-label"><?=__('New password')?></label>
+                                <label class="col-xs-4 control-label"><?=_e('New password')?></label>
                                 <div class="col-sm-8">
                                 <input class="form-control" type="password" name="password1" placeholder="<?=__('Password')?>">
                                 </div>
                             </div>
                               
                             <div class="form-group">
-                                <label class="col-xs-4 control-label"><?=__('Repeat password')?></label>
+                                <label class="col-xs-4 control-label"><?=_e('Repeat password')?></label>
                                 <div class="col-sm-8">
                                 <input class="form-control" type="password" name="password2" placeholder="<?=__('Password')?>">
                                     <p class="help-block">
-                                          <?=__('Type your password twice to change')?>
+                                          <?=_e('Type your password twice to change')?>
                                     </p>
                                 </div>
                             </div>
                                   
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-8">
-                                    <button type="submit" class="btn btn-primary"><?=__('Update')?></button>
+                                    <button type="submit" class="btn btn-primary"><?=_e('Update')?></button>
                                 </div>
                             </div>
                                   
@@ -137,28 +137,28 @@
         <?if( Core::config('general.google_authenticator')==TRUE):?>
         <div class="panel panel-default">
             <div class="panel-heading" id="page-edit-profile">
-                <h3 class="panel-title"><?=__('2 Step Authentication')?></h3>
+                <h3 class="panel-title"><?=_e('2 Step Authentication')?></h3>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
                         <?if ($user->google_authenticator!=''):?>
                             <p><img src="<?=$user->google_authenticator_qr()?>"></p>
-                            <p><?=__('Google Authenticator Code')?>: <?=$user->google_authenticator?></p>
+                            <p><?=_e('Google Authenticator Code')?>: <?=$user->google_authenticator?></p>
                             <p>
                                 <a class="btn btn-warning" href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'2step','id'=>'disable'))?>">
-                                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> <?=__('Disable')?>
+                                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> <?=_e('Disable')?>
                                 </a>
                             </p>
                         <?else:?>
                             <p>
                                 <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'2step','id'=>'enable'))?>">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=__('Enable')?>
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=_e('Enable')?>
                                 </a>
                             </p>
                         <?endif?>
                         <hr>
-                        <p><?=__('2 step authentication provided by Google Authenticator.')?></p>
+                        <p><?=_e('2 step authentication provided by Google Authenticator.')?></p>
                         <div class="btn-group">
                             <a class="btn btn-default" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"><i class="fa fa-android"></i> Android</a> 
                             <a class="btn btn-default" href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8"><i class="fa fa-apple"></i> iOS</a>
@@ -171,7 +171,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading" id="page-edit-profile">
-                <h3 class="panel-title"><?=__('Profile picture')?></h3>
+                <h3 class="panel-title"><?=_e('Profile picture')?></h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -195,7 +195,7 @@
                               
                               <div class="form-group">
                                   <div class="col-md-offset-4 col-md-8">
-                                      <button type="submit" class="btn btn-primary"><?=__('Update')?></button>
+                                      <button type="submit" class="btn btn-primary"><?=_e('Update')?></button>
                                       
                                       <?if ($user->has_image):?>
                                           <button type="submit"
@@ -205,7 +205,7 @@
                                                   name="photo_delete"
                                                   value="1" 
                                                   title="<?=__('Delete photo')?>">
-                                                  <?=__('Delete photo')?>
+                                                  <?=_e('Delete photo')?>
                                           </button>
                                       <?endif?>
                                   </div>
@@ -219,7 +219,7 @@
         <?if( Core::config('general.subscriptions')==1):?>
             <div class="panel panel-default">
                 <div class="panel-heading" id="page-edit-profile">
-                    <h3 class="panel-title"><?=__('Subscription')?></h3>
+                    <h3 class="panel-title"><?=_e('Subscription')?></h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -234,7 +234,7 @@
                                 </p>
                             <?else:?>
                                 <a class="btn btn-primary" href="<?=Route::url('pricing')?>">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=__('Choose a Plan')?>
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=_e('Choose a Plan')?>
                                 </a>
                             <?endif?>
                         </div>

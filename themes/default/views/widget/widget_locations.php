@@ -14,7 +14,7 @@
                     <a href="<?=Route::url('list',array('location'=>$widget->loc_breadcrumb['parent_seoname'],'category'=>$widget->cat_seoname))?>" title="<?=HTML::chars($widget->loc_breadcrumb['parent_name'])?>"><?=$widget->loc_breadcrumb['parent_name']?></a> - 
                         <?=$widget->loc_breadcrumb['name']?>
                 <?else:?>
-                    <a href="<?=Route::url('list',array('location'=>$widget->loc_breadcrumb['parent_seoname'],'category'=>$widget->cat_seoname))?>" title="<?=HTML::chars($widget->loc_breadcrumb['parent_name'])?>"><?=__('Home')?></a> - 
+                    <a href="<?=Route::url('list',array('location'=>$widget->loc_breadcrumb['parent_seoname'],'category'=>$widget->cat_seoname))?>" title="<?=HTML::chars($widget->loc_breadcrumb['parent_name'])?>"><?=_e('Home')?></a> - 
                     <?if($widget->loc_breadcrumb['id'] != 1):?>
                         <?=$widget->loc_breadcrumb['name']?>
                     <?endif?>

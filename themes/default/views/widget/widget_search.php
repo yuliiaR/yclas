@@ -76,14 +76,14 @@
             <?if(core::config('advertisement.price')):?>
                 <div class="form-group">
                     <div class="col-xs-12"> 
-                        <label class="" for="price-min"><?=__('Price from')?> </label>
+                        <label class="" for="price-min"><?=_e('Price from')?> </label>
                         <input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
                     </div>
                 </div>
             
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <label class="" for="price-max"><?=__('Price to')?></label>
+                        <label class="" for="price-max"><?=_e('Price to')?></label>
                         <input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
                     </div>
                 </div>

@@ -4,9 +4,9 @@
 
 <div class="page-header">
     <a class="btn btn-primary pull-right" target="_blank" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-        <?=__('View Advertisement')?>
+        <?=_e('View Advertisement')?>
     </a>
-    <h1><?=$ad->title?> <small><?=__('Edit Advertisement')?></small></h1>
+    <h1><?=$ad->title?> <small><?=_e('Edit Advertisement')?></small></h1>
     <?$str=NULL;switch ($ad->status) {
         case Model_Ad::STATUS_NOPUBLISHED:
             $str = __('NOPUBLISHED');
@@ -37,7 +37,7 @@
                 data-toggle="confirmation" 
                 data-btnOkLabel="<?=__('Yes, definitely!')?>" 
                 data-btnCancelLabel="<?=__('No way!')?>">
-                <i class="glyphicon glyphicon-ok"></i> <?=__('Activate')?>
+                <i class="glyphicon glyphicon-ok"></i> <?=_e('Activate')?>
             </a>
     <?endif?>
 </div>
@@ -49,12 +49,12 @@
                 OR (core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql() )):?>
             <div id="recomentadion" class="well recomentadion clearfix">
                 <?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE):?>
-                    <p class="text-info"><?=__('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
-                    <a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
+                    <p class="text-info"><?=_e('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
+                    <a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Go Top!')?></a>
                 <?endif?>
                 <?if(core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql()):?>
-                    <p class="text-info"><?=__('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
-                    <a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
+                    <p class="text-info"><?=_e('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
+                    <a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Go Featured!')?></a>
                 <?endif?>
             </div>
         <?endif?>
@@ -65,7 +65,7 @@
                 <div class="panel-body">	
                     <?foreach ($orders as $order):?>
                         <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
-                            <i class="glyphicon glyphicon-shopping-cart"></i> <?=__('Pay')?> <?=$order->description?>  
+                            <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?> <?=$order->description?>  
                         </a>
                     <?endforeach?>
                 </div>
@@ -77,11 +77,11 @@
                 <? $owner = new Model_User($ad->id_user)?>
                 <table class="table table-bordered admin-table-user">
                     <tr>
-                        <th><?=__('Id_User')?></th>
-                        <th><?=__('Profile')?></th>
-                        <th><?=__('Name')?></th>
-                        <th><?=__('Email')?></th>
-                        <th><?=__('Status')?></th>
+                        <th><?=_e('Id_User')?></th>
+                        <th><?=_e('Profile')?></th>
+                        <th><?=_e('Name')?></th>
+                        <th><?=_e('Email')?></th>
+                        <th><?=_e('Status')?></th>
                     </tr>
                     <tbody>
                         <tr>
@@ -152,7 +152,7 @@
                                     <div class="input-group">
                                         <input class="form-control" type="text" placeholder="<?=$ad->category->name?>" disabled>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button"><?=__('Edit category')?></button>
+                                            <button class="btn btn-default" type="button"><?=_e('Edit category')?></button>
                                         </span>
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@
                                     <div class="input-group">
                                         <input class="form-control" type="text" placeholder="<?=$ad->location->name?>" disabled>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button"><?=__('Edit location')?></button>
+                                            <button class="btn btn-default" type="button"><?=_e('Edit location')?></button>
                                         </span>
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@
                                         <div class="input-group">
                                             <?= FORM::input('address', $ad->address, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default locateme" type="button"><?=__('Locate me')?></button>
+                                                <button class="btn btn-default locateme" type="button"><?=_e('Locate me')?></button>
                                             </span>
                                         </div>
                                     <?else:?>
@@ -298,7 +298,7 @@
                                                         name="img_delete"
                                                         value="<?=$key?>" 
                                                         href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>">
-                                                        <?=__('Delete')?>
+                                                        <?=_e('Delete')?>
                                                 </button>
                                                 <?if ($key > 1) :?>
                                                     <button class="btn btn-info img-primary"
@@ -308,7 +308,7 @@
                                                         href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
                                                         action="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"
                                                     >
-                                                            <?=__('Primary image')?>
+                                                            <?=_e('Primary image')?>
                                                     </button>
                                                 <?endif?>
                                             </div>
@@ -328,11 +328,11 @@
                                             <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
                                             <div>
                                                 <span class="btn btn-default btn-file">
-                                                    <span class="fileinput-new"><?=__('Select')?></span>
-                                                    <span class="fileinput-exists"><?=__('Edit')?></span>
+                                                    <span class="fileinput-new"><?=_e('Select')?></span>
+                                                    <span class="fileinput-exists"><?=_e('Edit')?></span>
                                                     <input type="file" name="image0" id="fileInput0" accept="<?='image/'.str_replace(',', ', image/', rtrim(core::config('image.allowed_formats'),','))?>">
                                                 </span>
-                                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=__('Delete')?></a>
+                                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=_e('Delete')?></a>
                                             </div>
                                         </div>
                                     </div>
@@ -352,7 +352,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title"><?=__('Processing...')?></h4>
+                    <h4 class="modal-title"><?=_e('Processing...')?></h4>
                 </div>
                 <div class="modal-body">
                     <div class="progress progress-striped active">

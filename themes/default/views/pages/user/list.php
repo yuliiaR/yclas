@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="page-header">
-    <h1><?=__('Users')?></h1>
+    <h1><?=_e('Users')?></h1>
 </div>
 
 <?=Form::errors()?>
@@ -54,18 +54,18 @@
 <div class="btn-group pull-right">
 
     <button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
-        <span class="glyphicon glyphicon-list-alt"></span> <?=__('Sort')?> <span class="caret"></span>
+        <span class="glyphicon glyphicon-list-alt"></span> <?=_e('Sort')?> <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu" id="sort-list">
          <?if (Core::config('advertisement.reviews')==1):?>
-            <li><a href="?<?=http_build_query(['sort' => 'rating'] + Request::current()->query())?>"><?=__('Rating')?></a></li>
+            <li><a href="?<?=http_build_query(['sort' => 'rating'] + Request::current()->query())?>"><?=_e('Rating')?></a></li>
         <?endif?>
-        <li><a href="?<?=http_build_query(['sort' => 'name-asc'] + Request::current()->query())?>"><?=__('Name (A-Z)')?></a></li>
-        <li><a href="?<?=http_build_query(['sort' => 'name-desc'] + Request::current()->query())?>"><?=__('Name (Z-A)')?></a></li>
-        <li><a href="?<?=http_build_query(['sort' => 'created-desc'] + Request::current()->query())?>"><?=__('Newest')?></a></li>
-        <li><a href="?<?=http_build_query(['sort' => 'created-asc'] + Request::current()->query())?>"><?=__('Oldest')?></a></li>
-        <li><a href="?<?=http_build_query(['sort' => 'ads-desc'] + Request::current()->query())?>"><?=__('More Ads')?></a></li>
-        <li><a href="?<?=http_build_query(['sort' => 'ads-asc'] + Request::current()->query())?>"><?=__('Less Ads')?></a></li>
+        <li><a href="?<?=http_build_query(['sort' => 'name-asc'] + Request::current()->query())?>"><?=_e('Name (A-Z)')?></a></li>
+        <li><a href="?<?=http_build_query(['sort' => 'name-desc'] + Request::current()->query())?>"><?=_e('Name (Z-A)')?></a></li>
+        <li><a href="?<?=http_build_query(['sort' => 'created-desc'] + Request::current()->query())?>"><?=_e('Newest')?></a></li>
+        <li><a href="?<?=http_build_query(['sort' => 'created-asc'] + Request::current()->query())?>"><?=_e('Oldest')?></a></li>
+        <li><a href="?<?=http_build_query(['sort' => 'ads-desc'] + Request::current()->query())?>"><?=_e('More Ads')?></a></li>
+        <li><a href="?<?=http_build_query(['sort' => 'ads-asc'] + Request::current()->query())?>"><?=_e('Less Ads')?></a></li>
     </ul>
 </div>
 <div class="clearfix"></div><br>
@@ -80,7 +80,7 @@
                 <div class="caption">
                     <h3>
                         <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>">
-                            <?=$user->name?> <span class="badge"><?=$user->ads_count?> <?=__('Ads')?></span>
+                            <?=$user->name?> <span class="badge"><?=$user->ads_count?> <?=_e('Ads')?></span>
                         </a>
                     </h3>
                     <?if (Core::config('advertisement.reviews')==1):?>
@@ -92,7 +92,7 @@
                     <?endif?>
                     <p><?=Text::limit_chars(Text::removebbcode($user->description), 255, NULL, TRUE);?></p>
                     <p>
-                        <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>" class="btn btn-primary btn-block" role="button"><?=__('See profile')?></a>
+                        <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>" class="btn btn-primary btn-block" role="button"><?=_e('See profile')?></a>
                     </p>
                 </div>
             </div>
@@ -107,6 +107,6 @@
 <?elseif (count($users) == 0):?>
 <!-- Case when we dont have ads for specific category / location -->
 <div class="page-header">
-  <h3><?=__('We do not have any users matching your search')?></h3>
+  <h3><?=_e('We do not have any users matching your search')?></h3>
 </div>
 <?endif?>

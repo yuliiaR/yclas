@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="page-header">
-	<h1><?=__('Publish new advertisement')?></h1>
+	<h1><?=_e('Publish new advertisement')?></h1>
 </div>
 <div class="row">
 	<div class="<?=count(Widgets::render('publish_new')) > 0 ? 'col-xs-9' : 'col-xs-12'?>">
@@ -36,7 +36,7 @@
 										<div class="input-group">
 											<input class="form-control" type="text" placeholder="<?=$selected_category->name?>" disabled>
 											<span class="input-group-btn">
-												<button class="btn btn-default" type="button"><?=__('Select another')?></button>
+												<button class="btn btn-default" type="button"><?=_e('Select another')?></button>
 											</span>
 										</div>
 									</div>
@@ -62,7 +62,7 @@
 											<div class="input-group">
 												<input class="form-control" type="text" placeholder="<?=$selected_location->name?>" disabled>
 												<span class="input-group-btn">
-													<button class="btn btn-default" type="button"><?=__('Select another')?></button>
+													<button class="btn btn-default" type="button"><?=_e('Select another')?></button>
 												</span>
 											</div>
 										</div>
@@ -97,7 +97,7 @@
 						data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>"
 					>
 						<div class="col-md-12">
-							<label><?=__('Images')?></label>
+							<label><?=_e('Images')?></label>
 							<div class="row">
 								<div class="col-md-12">
 									<?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?>
@@ -105,19 +105,19 @@
 										  	<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
 											<div>
 											<span class="btn btn-default btn-file">
-												<span class="fileinput-new"><?=__('Select')?></span>
-												<span class="fileinput-exists"><?=__('Edit')?></span>
+												<span class="fileinput-new"><?=_e('Select')?></span>
+												<span class="fileinput-exists"><?=_e('Edit')?></span>
 												<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" accept="image/*">
 											</span>
-											<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=__('Delete')?></a>
+											<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=_e('Delete')?></a>
 										  </div>
 										</div>
 									<?endfor?>
 								</div>
 							</div>
-							<p class="help-block"><?=__('Up to')?> <?=core::config('advertisement.num_images')?> <?=__('images allowed.')?></p>
-							<p class="help-block"><?=join(' '.__('or').' ', array_filter(array_merge(array(join(', ', array_slice(array_map('strtoupper', explode(',', core::config('image.allowed_formats'))), 0, -2))), array_slice(array_map('strtoupper', explode(',', core::config('image.allowed_formats'))), -2))))?> <?=__('formats only')?>.</p>
-							<p class="help-block"><?=__('Maximum file size of')?> <?=core::config('image.max_image_size')?>MB.</p>
+							<p class="help-block"><?=_e('Up to')?> <?=core::config('advertisement.num_images')?> <?=_e('images allowed.')?></p>
+							<p class="help-block"><?=join(' '.__('or').' ', array_filter(array_merge(array(join(', ', array_slice(array_map('strtoupper', explode(',', core::config('image.allowed_formats'))), 0, -2))), array_slice(array_map('strtoupper', explode(',', core::config('image.allowed_formats'))), -2))))?> <?=_e('formats only')?>.</p>
+							<p class="help-block"><?=_e('Maximum file size of')?> <?=core::config('image.max_image_size')?>MB.</p>
 						</div>
 					</div>
 				<?endif?>
@@ -138,7 +138,7 @@
 										<div class="input-group">
 											<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 											<span class="input-group-btn">
-												<button class="btn btn-default locateme" type="button"><?=__('Locate me')?></button>
+												<button class="btn btn-default locateme" type="button"><?=_e('Locate me')?></button>
 											</span>
 										</div>
 									<?else:?>
@@ -218,7 +218,7 @@
 							<div class="col-md-4">
 								<label class="checkbox">
 								  	<input type="checkbox" required name="tos" id="tos"/> 
-									<a target="_blank" href="<?=Route::url('page', array('seotitle'=>core::config('advertisement.tos')))?>"> <?=__('Terms of service')?></a>
+									<a target="_blank" href="<?=Route::url('page', array('seotitle'=>core::config('advertisement.tos')))?>"> <?=_e('Terms of service')?></a>
 								</label>
 							</div>
 						</div>
@@ -240,7 +240,7 @@
 					<div class="form-actions">
 						<?= FORM::button('submit_btn', __('Publish new'), array('type'=>'submit', 'id' => 'publish-new-btn', 'data-swaltitle' => __('Are you sure?'), 'data-swaltext' => __('It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost.'), 'class'=>'btn btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 						<?if (!Auth::instance()->get_user()):?>
-							<p class="help-block"><?=__('User account will be created')?></p>
+							<p class="help-block"><?=_e('User account will be created')?></p>
 						<?endif?>
 						<?if ( ! Core::config('advertisement.leave_alert')):?>
 							<input type="hidden" name="leave_alert" value="0" disabled>
@@ -254,7 +254,7 @@
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title"><?=__('Processing...')?></h4>
+							<h4 class="modal-title"><?=_e('Processing...')?></h4>
 						</div>
 						<div class="modal-body">
 							<div class="progress progress-striped active">

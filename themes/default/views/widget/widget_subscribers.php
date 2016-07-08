@@ -102,7 +102,7 @@
         </div>
         
         <?if($widget->subscriber):?>
-            <a href="<?=Route::url('default', array('controller'=>'subscribe', 'action'=>'unsubscribe', 'id'=>$widget->user_id))?>"><?=__('Unsubscribe')?></a>
+            <a href="<?=Route::url('default', array('controller'=>'subscribe', 'action'=>'unsubscribe', 'id'=>$widget->user_id))?>"><?=_e('Unsubscribe')?></a>
         <?endif?>
         
     <?= FORM::close()?>
