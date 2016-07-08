@@ -127,14 +127,14 @@
                     
                     <div class="form-group">
                         <div class="col-sm-8">
-                            <?= FORM::label('title', __('Title'), array('class'=>'', 'for'=>'title'))?>
+                            <?= FORM::label('title', _e('Title'), array('class'=>'', 'for'=>'title'))?>
                             <?= FORM::input('title', $ad->title, array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
                         </div>
                     </div>
                     <!-- category select -->
                     <div class="form-group">
                         <div class="col-md-8">
-                            <?= FORM::label('category', __('Category'), array('for'=>'category'))?>
+                            <?= FORM::label('category', _e('Category'), array('for'=>'category'))?>
                             <div id="category-chained" class="row hidden"
                                 data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" 
                                 data-price0="<?=i18n::money_format(0)?>" 
@@ -164,7 +164,7 @@
                     <!-- location select -->
                     <div class="form-group">
                         <div class="col-md-8">
-                            <?= FORM::label('locations', __('Location'), array('for'=>'location'))?>
+                            <?= FORM::label('locations', _e('Location'), array('for'=>'location'))?>
                             <div id="location-chained" class="row hidden" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
                                 <div id="select-location-template" class="col-md-6 hidden">
                                     <select class="disable-select2 select-location" placeholder="<?=__('Pick a location...')?>"></select>
@@ -187,7 +187,7 @@
                     <?if(core::config('advertisement.description') != FALSE):?>
                         <div class="form-group">
                             <div class="col-sm-8">
-                                <?= FORM::label('description', __('Description'), array('class'=>'', 'for'=>'description', 'spellcheck'=>TRUE))?>
+                                <?= FORM::label('description', _e('Description'), array('class'=>'', 'for'=>'description', 'spellcheck'=>TRUE))?>
                                 <?= FORM::textarea('description', $ad->description, array('class'=>'form-control col-md-9 col-sm-9 col-xs-12'.((Core::config("advertisement.description_bbcode"))?NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description', 'rows'=>8, 'required'))?>
                             </div>
                         </div>
@@ -195,7 +195,7 @@
                     <?if(core::config('advertisement.phone') != FALSE):?>
                         <div class="form-group">
                             <div class="col-sm-8">
-                                <?= FORM::label('phone', __('Phone'), array('class'=>'', 'for'=>'phone'))?>
+                                <?= FORM::label('phone', _e('Phone'), array('class'=>'', 'for'=>'phone'))?>
                                 <?= FORM::input('phone', $ad->phone, array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
                             </div>
                         </div>
@@ -203,7 +203,7 @@
                     <?if(core::config('advertisement.address') != FALSE):?>
                         <div class="form-group">
                             <div class="col-sm-8">
-                                <?= FORM::label('address', __('Address'), array('class'=>'', 'for'=>'address'))?>
+                                <?= FORM::label('address', _e('Address'), array('class'=>'', 'for'=>'address'))?>
                                 <?if(core::config('advertisement.map_pub_new')):?>
                                     <?if (Core::is_HTTPS()):?>
                                         <div class="input-group">
@@ -236,7 +236,7 @@
                     <?if(core::config('payment.stock')):?>
                         <div class="form-group">
                             <div class="col-sm-8">
-                                <?= FORM::label('stock', __('In Stock'), array('class'=>'', 'for'=>'stock'))?>
+                                <?= FORM::label('stock', _e('In Stock'), array('class'=>'', 'for'=>'stock'))?>
                                 <div class="input-prepend">
                                 <?= FORM::input('stock', $ad->stock, array('placeholder' => '10', 'class' => 'form-control', 'id' => 'stock', 'type'=>'text'))?>
                                 </div>
@@ -246,7 +246,7 @@
                     <?if(core::config('advertisement.price') != FALSE):?>
                         <div class="form-group">
                             <div class="col-sm-8">
-                                <?= FORM::label('price', __('Price'), array('class'=>'', 'for'=>'price'))?>
+                                <?= FORM::label('price', _e('Price'), array('class'=>'', 'for'=>'price'))?>
                                 <div class="input-prepend">
                                     <?= FORM::input('price', $ad->price, array('placeholder'=>html_entity_decode(i18n::money_format(1)),'class'=>'form-control', 'id' => 'price', 'data-error' => __('Please enter only numbers.')))?>
                                 </div>
@@ -256,7 +256,7 @@
                     <?if(core::config('advertisement.website') != FALSE):?>
                         <div class="form-group">
                             <div class="col-sm-8">
-                                <?= FORM::label('website', __('Website'), array('class'=>'', 'for'=>'website'))?>
+                                <?= FORM::label('website', _e('Website'), array('class'=>'', 'for'=>'website'))?>
                                 <?= FORM::input('website', $ad->website, array('class'=>'form-control', 'id'=>'website', 'placeholder'=>__('Website')))?>
                             </div>
                         </div>
@@ -321,7 +321,7 @@
                     <div class="form-group">
                         <?if (core::config('advertisement.num_images') > count($images)):?> <!-- permition to add more images-->
                             <div class="col-sm-8">
-                                <?= FORM::label('images', __('Add image'), array('class'=>'', 'for'=>'images0'))?>
+                                <?= FORM::label('images', _e('Add image'), array('class'=>'', 'for'=>'images0'))?>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -341,7 +341,7 @@
                         <?endif?>
                     </div>
                     <div class="page-header"></div>
-                    <?= FORM::button('submit_btn', (in_array(core::config('general.moderation'), Model_Ad::$moderation_status))?__('Publish'):__('Update'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))))?>
+                    <?= FORM::button('submit_btn', (in_array(core::config('general.moderation'), Model_Ad::$moderation_status))?_e('Publish'):_e('Update'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))))?>
                 </fieldset>
             <?= FORM::close()?>
         </div>

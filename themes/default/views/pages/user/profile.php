@@ -81,13 +81,13 @@
                             <fieldset>
                                 <?if (!Auth::instance()->get_user()):?>
                                     <div class="form-group">
-                                        <?= FORM::label('name', __('Name'), array('class'=>'col-md-2 control-label', 'for'=>'name'))?>
+                                        <?= FORM::label('name', _e('Name'), array('class'=>'col-md-2 control-label', 'for'=>'name'))?>
                                         <div class="col-md-4 ">
                                             <?= FORM::input('name', Core::request('name'), array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <?= FORM::label('email', __('Email'), array('class'=>'col-md-2 control-label', 'for'=>'email'))?>
+                                        <?= FORM::label('email', _e('Email'), array('class'=>'col-md-2 control-label', 'for'=>'email'))?>
                                         <div class="col-md-4 ">
                                             <?= FORM::input('email', Core::request('email'), array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?>
                                         </div>
@@ -95,21 +95,21 @@
                                 <?endif?>
                                 <?if(core::config('general.messaging') != TRUE):?>
                                     <div class="form-group">
-                                        <?= FORM::label('subject', __('Subject'), array('class'=>'col-md-2 control-label', 'for'=>'subject'))?>
+                                        <?= FORM::label('subject', _e('Subject'), array('class'=>'col-md-2 control-label', 'for'=>'subject'))?>
                                         <div class="col-md-4 ">
                                             <?= FORM::input('subject', Core::request('subject'), array('placeholder' => __('Subject'), 'class' => 'form-control', 'id' => 'subject'))?>
                                         </div>
                                     </div>
                                 <?endif?>
                                 <div class="form-group">
-                                    <?= FORM::label('message', __('Message'), array('class'=>'col-md-2 control-label', 'for'=>'message'))?>
+                                    <?= FORM::label('message', _e('Message'), array('class'=>'col-md-2 control-label', 'for'=>'message'))?>
                                     <div class="col-md-6">
                                         <?= FORM::textarea('message', Core::post('subject'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>
                                         </div>
                                 </div>
                                 <?if (core::config('advertisement.captcha') != FALSE):?>
                                     <div class="form-group">
-                                        <?= FORM::label('captcha', __('Captcha'), array('class'=>'col-md-2 control-label', 'for'=>'captcha'))?>
+                                        <?= FORM::label('captcha', _e('Captcha'), array('class'=>'col-md-2 control-label', 'for'=>'captcha'))?>
                                         <div class="col-md-4">
                                             <?if (Core::config('general.recaptcha_active')):?>
                                                 <?=Captcha::recaptcha_display()?>
@@ -122,7 +122,7 @@
                                     </div>
                                 <?endif?>
                                 <div class="modal-footer">	
-                                    <?= FORM::button('submit', __('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
+                                    <?= FORM::button('submit', _e('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
                                 </div>
                             </fieldset>
                         <?= FORM::close()?>
@@ -144,7 +144,7 @@
 	</article>
 </div>
 <div class="page-header">
-    <h3><?=$user->name.' '.__(' advertisements')?></h3>
+    <h3><?=$user->name.' '._e(' advertisements')?></h3>
 
     <?if($profile_ads!==NULL):?>
         <?foreach($profile_ads as $ad):?>

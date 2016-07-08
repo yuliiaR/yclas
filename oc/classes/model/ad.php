@@ -826,6 +826,10 @@ class Model_Ad extends ORM {
     {
         if($this->loaded())
         {
+            // Publisher doesn't want comments
+            if (isset($this->cf_commentsdisabled) AND (bool) $this->cf_commentsdisabled)
+                return FALSE;
+
             return $this->fbcomments().$this->disqus();
         }
     

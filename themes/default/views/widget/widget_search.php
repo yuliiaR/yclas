@@ -11,7 +11,7 @@
         <!-- if categories on show selector of categories -->
         <div class="form-group">
             <div class="col-xs-12">  
-                <?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'', 'for'=>'title'))?>
+                <?= FORM::label('advertisement', _e('Advertisement Title'), array('class'=>'', 'for'=>'title'))?>
                 <input type="text" id="title" name="title" class="form-control" value="" placeholder="<?=__('Search')?>">
             </div>
         </div>
@@ -20,7 +20,7 @@
             <?if($widget->cat_items !== NULL):?>
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <?= FORM::label('category', __('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
+                        <?= FORM::label('category', _e('Categories'), array('class'=>'', 'for'=>'category_widget_search'))?>
                         <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category_widget_search" class="form-control" data-placeholder="<?=__('Categories')?>">
                             <option></option>
                             <?function lili_search($item, $key, $params){?>
@@ -49,7 +49,7 @@
                 <?if(count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <?= FORM::label('location_widget_search', __('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
+                            <?= FORM::label('location_widget_search', _e('Locations'), array('class'=>'', 'for'=>'location_widget_search' ))?>
                             <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location_widget_search" class="form-control" data-placeholder="<?=__('Locations')?>">
                                 <option></option>
                                 <?function lolo_search($item, $key, $params){?>

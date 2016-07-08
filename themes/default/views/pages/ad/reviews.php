@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="form-group">
-                                <?=FORM::label('description', __('Review'), array('for'=>'description'))?>
+                                <?=FORM::label('description', _e('Review'), array('for'=>'description'))?>
                                 <div class="controls">
                                     <?=FORM::textarea('description', core::post('description',''), array('placeholder' => __('Review'), 'class' => 'form-control', 'name'=>'description', 'id'=>'description', 'required'))?>   
                                 </div>
@@ -68,7 +68,7 @@
                                     <?else:?>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <?=FORM::label('captcha', __('Captcha'), array('for'=>'captcha'))?>
+                                                <?=FORM::label('captcha', _e('Captcha'), array('for'=>'captcha'))?>
                                                 <span id="helpBlock" class="help-block"><?=captcha::image_tag('review')?></span>
                                                 <?=FORM::input('captcha', "", array('class'=>'form-control', 'id' => 'captcha', 'required'))?>
                                             </div>
