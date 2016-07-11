@@ -42,7 +42,7 @@
                     <?if ($plan->amount_ads > -1):?>
                         <?=sprintf(__('%u Ads'), $plan->amount_ads)?>
                     <?else:?>
-                        <?=_('Unlimited Ads')?>
+                        <?=__('Unlimited Ads')?>
                     <?endif?>
                 </p>
                 <?if(Core::config('payment.stripe_connect')):?>
