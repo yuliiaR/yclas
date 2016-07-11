@@ -14,7 +14,7 @@
 <div class="btn-toolbar">
     <div class="btn-group pull-right">
         <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_ARCHIVED?>" class="btn btn-primary">
-            <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <?=__('Archive')?>
+            <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <?=_e('Archive')?>
         </a>
         <a 
             href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_SPAM?>"
@@ -24,7 +24,7 @@
             data-btnOkLabel="<?=__('Yes, definitely!')?>" 
             data-btnCancelLabel="<?=__('No way!')?>"
         >
-            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> <?=__('Spam')?>
+            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> <?=_e('Spam')?>
         </a>
         <a 
             href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_DELETED?>"
@@ -34,7 +34,7 @@
             data-btnOkLabel="<?=__('Yes, definitely!')?>" 
             data-btnCancelLabel="<?=__('No way!')?>"
         >
-            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> <?=__('Delete')?>
+            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> <?=_e('Delete')?>
         </a>
     </div>
 </div>
@@ -63,7 +63,7 @@
                         <p class="<?=HTML::chars($message->from->name)?>"><?=Text::bb2html($message->message,TRUE)?></p>
                         <?if ($message->price > 0):?>
                             <p>
-                                <strong><?=__('Price')?></strong>: <?=i18n::money_format($message->price)?>
+                                <strong><?=_e('Price')?></strong>: <?=i18n::money_format($message->price)?>
                             </p>
                         <?endif?>
                     </td>
@@ -77,7 +77,7 @@
                     <form class="form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>Request::current()->param('id')))?>"> 
                         <?php if (isset($errors)): ?>
                             <div class="alert alert-danger" role="alert">
-                                <p><?=__('Some errors were encountered, please check the details you entered.')?></p>
+                                <p><?=_e('Some errors were encountered, please check the details you entered.')?></p>
                                 <ul>
                                     <?php foreach ($errors as $message): ?>
                                         <li><?php echo $message ?></li>
@@ -91,8 +91,8 @@
                             </div>
                         </div>
                         <?=Form::token('reply_message')?>
-                        <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-default"><?=__('Cancel')?></a>
-                        <button type="submit" class="btn btn-primary"><?=__('Reply')?></button>
+                        <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-default"><?=_e('Cancel')?></a>
+                        <button type="submit" class="btn btn-primary"><?=_e('Reply')?></button>
                     </form> 
                 </td>
             </tr>

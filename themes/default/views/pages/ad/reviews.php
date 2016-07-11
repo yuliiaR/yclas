@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 section-box span8">
                 <h1>
-                    <?=$ad->title.' '.__("Reviews")?>
+                    <?=$ad->title.' '._e("Reviews")?>
                 </h1>
                 <hr />
                 <div class="row rating-desc">
