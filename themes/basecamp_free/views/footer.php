@@ -25,7 +25,7 @@
            
 			<?if(Cookie::get('user_location')):?>
 				<p class="text-center">
-					<a href="<?=Route::url('default')?>?user_location=0"><span class="glyphicon glyphicon-globe"></span> <?=__('Change Location')?></a>
+					<a href="<?=Route::url('default')?>?user_location=0"><span class="glyphicon glyphicon-globe"></span> <?=_e('Change Location')?></a>
 				</p>
 			<?endif?>
 		</div>

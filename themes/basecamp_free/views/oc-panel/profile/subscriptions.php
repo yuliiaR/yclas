@@ -4,7 +4,7 @@
 		<div class="col-xs-12">
 			<div class="page-header">
 				<h3>
-					<?=__('Subscriptions')?>
+					<?=_e('Subscriptions')?>
 				</h3>
 			</div>
 
@@ -20,7 +20,7 @@
 					data-href="<?=Route::url('default', array('controller'=>'subscribe','action'=>'unsubscribe', 'id'=>Auth::instance()->get_user()->id_user))?>" 
 					data-btnOkLabel="<?=__('Yes, definitely!')?>" 
 					data-btnCancelLabel="<?=__('No way!')?>">
-					<i class="glyphicon glyphicon-remove"></i> <?=__('Unsubscribe to all?')?>
+					<i class="glyphicon glyphicon-remove"></i> <?=_e('Unsubscribe to all?')?>
 				</a>
 			</div>	
 
@@ -28,10 +28,10 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th><?=__('Category')?></th>
-							<th><?=__('Location')?></th>
-							<th><?=__('Price')?></th>
-							<th class="hidden-xs"><?=__('Created')?></th>
+							<th><?=_e('Category')?></th>
+							<th><?=_e('Location')?></th>
+							<th><?=_e('Price')?></th>
+							<th class="hidden-xs"><?=_e('Created')?></th>
 							<th width="55">
 								&nbsp;
 							</th>

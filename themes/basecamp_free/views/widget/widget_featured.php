@@ -19,9 +19,9 @@
 								<?if ($ad->price>0):?>
 									<span class="ad_price"> <?=i18n::money_format( $ad->price)?></span>
 								<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
-									<span class="ad_price"><?=__('Free');?></span>
+									<span class="ad_price"><?=_e('Free');?></span>
 								<?else:?>
-									<span class="ad_price"><?=__('Check Listing');?></span>
+									<span class="ad_price"><?=_e('Check Listing');?></span>
 								<?endif?>
 							</div>
 						</a>
@@ -34,9 +34,9 @@
 								<?if ($ad->price>0):?>
 									<span class="ad_price"> <?=i18n::money_format( $ad->price)?></span>
 								<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
-									<span class="ad_price"><?=__('Free');?></span>
+									<span class="ad_price"><?=_e('Free');?></span>
 								<?else:?>
-									<span class="ad_price"><?=__('Check Listing');?></span>
+									<span class="ad_price"><?=_e('Check Listing');?></span>
 								<?endif?>
 							</div>
 						</a>

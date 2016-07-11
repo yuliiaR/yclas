@@ -4,13 +4,13 @@
 	<div class="modal-body">
 		<?=Form::errors()?>
 		<div class="form-group clearfix">
-			<label class="col-xs-12 control-label"><?=__('Name')?></label>
+			<label class="col-xs-12 control-label"><?=_e('Name')?></label>
 			<div class="col-xs-12">
 				<input class="form-control" type="text" name="name" value="<?=Request::current()->post('name')?>" placeholder="<?=__('Name')?>">
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label class="col-xs-12 control-label"><?=__('Email')?></label>
+			<label class="col-xs-12 control-label"><?=_e('Email')?></label>
 			<div class="col-xs-12">
 				<input
 					class="form-control" 
@@ -24,26 +24,26 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label class="col-xs-12 control-label"><?=__('New password')?></label>
+			<label class="col-xs-12 control-label"><?=_e('New password')?></label>
 			<div class="col-xs-12 col-sm-8">
 				<input class="form-control" type="password" name="password1" placeholder="<?=__('Password')?>">
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label class="col-xs-12 control-label"><?=__('Repeat password')?></label>
+			<label class="col-xs-12 control-label"><?=_e('Repeat password')?></label>
 			<div class="col-xs-12 col-sm-8">
 				<input class="form-control" type="password" name="password2" placeholder="<?=__('Password')?>">
 				<p class="help-block">
-					<?=__('Type your password twice')?>
+					<?=_e('Type your password twice')?>
 				</p>
 			</div>
 		</div>
 	</div>
 	<div class="modal-foot-controls clearfix">
 		<a class="btn btn-base-dark pull-left log-btn"  data-dismiss="modal" data-toggle="modal"  href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
-			<?=__('Login')?>
+			<?=_e('Login')?>
 		</a>
-		<button type="submit" class="btn btn-base-dark pull-right reg-btn"><?=__('Register')?></button>
+		<button type="submit" class="btn btn-base-dark pull-right reg-btn"><?=_e('Register')?></button>
 	</div>
 	<?=Form::redirect()?>
 	<?=Form::CSRF('register')?>

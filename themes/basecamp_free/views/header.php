@@ -18,9 +18,9 @@
 	    
 			<div class="collapse navbar-collapse navbar-right" id="mobile-menu-panel">
 				<ul class="nav navbar-nav">
-					<?=Theme::nav_link(__('Listing'),'ad', '' ,'listing', 'list')?>
+					<?=Theme::nav_link(_e('Listing'),'ad', '' ,'listing', 'list')?>
 					<li class="nav-dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=__('Categories')?> <b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=_e('Categories')?> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 						<?foreach($cats as $c ):?>
 							<?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
@@ -57,18 +57,18 @@
 						</ul>
 					</li>	
 					<?if (core::config('general.blog')==1):?>
-						<?=Theme::nav_link(__('Blog'),'blog','','index','blog')?>
+						<?=Theme::nav_link(_e('Blog'),'blog','','index','blog')?>
 					<?endif?>
 					<?if (core::config('general.faq')==1):?>
-						<?=Theme::nav_link(__('FAQ'),'faq','','index','faq')?>
+						<?=Theme::nav_link(_e('FAQ'),'faq','','index','faq')?>
 					<?endif?>
 					<?if (core::config('general.forums')==1):?>
-						<?=Theme::nav_link(__('Forum'),'forum','','index','forum-home')?>
+						<?=Theme::nav_link(_e('Forum'),'forum','','index','forum-home')?>
 					<?endif?>
 					<?if (core::config('advertisement.map')==1):?>
-						<?=Theme::nav_link(__('Map'),'map', '', 'index', 'map')?>
+						<?=Theme::nav_link(_e('Map'),'map', '', 'index', 'map')?>
 					<?endif?>
-					<?=Theme::nav_link(__('Contact'),'contact', '', 'index', 'contact')?>
+					<?=Theme::nav_link(_e('Contact'),'contact', '', 'index', 'contact')?>
 				</ul>
 			</div>
 		</div>		
@@ -106,7 +106,7 @@
 				<div class="tool_bar_search_input">
 					<div class="input-group col-md-12">
 						<input type="text" class="search-query form-control" name="search" placeholder="<?=__('Search')?>"  />
-						<span class="input-group-btn"><?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-default', 'action'=>Route::url('search')))?></span>
+						<span class="input-group-btn"><?= FORM::button('submit', _e('Search'), array('type'=>'submit', 'class'=>'btn btn-default', 'action'=>Route::url('search')))?></span>
 					</div>
 				</div>
 				<?= FORM::close()?>
@@ -131,7 +131,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<a class="close" data-dismiss="modal" >&times;</a>
-					<h3><?=__('Login')?></h3>
+					<h3><?=_e('Login')?></h3>
 				</div>
 					<?=View::factory('pages/auth/login-form')?>
 			</div>
@@ -142,7 +142,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<a class="close" data-dismiss="modal" >&times;</a>
-					<h3><?=__('Forgot password')?></h3>
+					<h3><?=_e('Forgot password')?></h3>
 				</div>
 					<?=View::factory('pages/auth/forgot-form')?>
 			</div>
@@ -153,7 +153,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<a class="close" data-dismiss="modal" >&times;</a>
-					<h3><?=__('Register')?></h3>
+					<h3><?=_e('Register')?></h3>
 				</div>
 					<?=View::factory('pages/auth/register-form')?>
 			</div>

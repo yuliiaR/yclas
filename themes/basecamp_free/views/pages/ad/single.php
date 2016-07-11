@@ -6,7 +6,7 @@
 				<?if ($ad->status != Model_Ad::STATUS_PUBLISHED && $permission === FALSE && ($ad->id_user != $user)):?>
 					<div class="no_results text-center">
 						<span class="nr_badge"><i class="glyphicon glyphicon-comment"></i></span>
-						<p class="nr_info"><?= __('This advertisement doesn´t exist, or is not yet published!')?></p>
+						<p class="nr_info"><?= _e('This advertisement doesn´t exist, or is not yet published!')?></p>
 					</div>
 				<?else:?>
 				
@@ -26,12 +26,12 @@
 				<div class="alert alert-success text-center alert-dismissible" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<?if(core::config('payment.pay_to_go_on_top') > 0 && core::config('payment.to_top') != FALSE):?>
-							<p class="pad_5tb"><?=__('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
-							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
+							<p class="pad_5tb"><?=_e('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
+							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Go Top!')?></a>
 						<?endif?>
 						<?if(core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql()):?>
-							<p class="pad_5tb"><?=__('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
-							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
+							<p class="pad_5tb"><?=_e('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
+							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Go Featured!')?></a>
 						<?endif?>
 				</div>
 				<?endif?>
@@ -41,9 +41,9 @@
 					<div class="col-xs-7 main-ad-left">
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-camera"></span> <?=__('Photos')?></a></li>
+							<li role="presentation" class="active"><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-camera"></span> <?=_e('Photos')?></a></li>
 							<?if (core::config('advertisement.map')==1 AND $ad->latitude AND $ad->longitude):?>
-								<li role="presentation"><a href="#map" aria-controls="map" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-map-marker"></span> <?=__('Map')?></a></li>
+								<li role="presentation"><a href="#map" aria-controls="map" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-map-marker"></span> <?=_e('Map')?></a></li>
 							<?endif?>
 						</ul>
 
@@ -86,7 +86,7 @@
 								<div role="tabpanel" class="tab-pane clearfix fade" id="map">
 									<div class="pad_10">
 										<p><img class="img-responsive" src="//maps.googleapis.com/maps/api/staticmap?zoom=<?=Core::config('advertisement.map_zoom')?>&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:large%7Ccolor:red%7Clabel:·%7C<?=$ad->latitude?>,<?=$ad->longitude?>" alt="<?=HTML::chars($ad->title)?> <?=__('Map')?>" style="width:100%;"></p>
-										<p class="text-center"><a class="btn btn-base-dark btn-sm" href="<?=Route::url('map')?>?category=<?=$ad->category->seoname?>&location=<?=$ad->location->seoname?>"><span class="glyphicon glyphicon-globe"></span> <?=__('Map View')?></a></p>
+										<p class="text-center"><a class="btn btn-base-dark btn-sm" href="<?=Route::url('map')?>?category=<?=$ad->category->seoname?>&location=<?=$ad->location->seoname?>"><span class="glyphicon glyphicon-globe"></span> <?=_e('Map View')?></a></p>
 									</div>
 								</div>
 							<?endif?>
@@ -117,7 +117,7 @@
 									<?endif?>
 									<p class=""><span class="glyphicon glyphicon-calendar"></span> <?= Date::format($ad->published, core::config('general.date_format'))?></p>
 									<?if(core::config('advertisement.count_visits')==1):?>
-										<p class=""><span class="glyphicon glyphicon-eye-open"></span> <?=$hits?> <?=__('Hits')?></p> 
+										<p class=""><span class="glyphicon glyphicon-eye-open"></span> <?=$hits?> <?=_e('Hits')?></p> 
 									<?endif?>
 								</div>
 
@@ -140,9 +140,9 @@
 									<?if(core::config('payment.paypal_seller')==1 AND $ad->price != NULL AND $ad->price > 0):?>
 										<?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
 											<?if (!Auth::instance()->logged_in()):?>
-												<a class="sf_btn i_price" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=__('Buy Now')?> - <?=i18n::money_format( $ad->price)?></a>
+												<a class="sf_btn i_price" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=_e('Buy Now')?> - <?=i18n::money_format( $ad->price)?></a>
 											<?else:?>
-												<a class="sf_btn i_price" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?> - <?=i18n::money_format( $ad->price)?></a>
+												<a class="sf_btn i_price" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Buy Now')?> - <?=i18n::money_format( $ad->price)?></a>
 											<?endif?>
 										<?else:?>
 											<span class="sf_btn i_price"><?=i18n::money_format( $ad->price)?></span>
@@ -150,7 +150,7 @@
 									<?elseif ($ad->price>0):?>
 										<span class="sf_btn i_price"><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></span>
 									<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
-										<span class="sf_btn i_price"><?=__('Free');?></span>
+										<span class="sf_btn i_price"><?=_e('Free');?></span>
 									<?else:?>
 										<span class="sf_btn i_price">N/A</span>	
 									<?endif?>
@@ -158,9 +158,9 @@
 								<?if ($ad->can_contact()):?>
 									<div class="seller_f_block">
 										<?if ((core::config('advertisement.login_to_contact') == TRUE OR core::config('general.messaging') == TRUE) AND !Auth::instance()->logged_in()):?>
-											<a class="sf_btn" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=__('Send Message')?></a>
+											<a class="sf_btn" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=_e('Send Message')?></a>
 										<?else:?>
-											<a class="sf_btn" href="#" data-toggle="modal" data-target="#contact-modal"><?=__('Send Message')?></a>
+											<a class="sf_btn" href="#" data-toggle="modal" data-target="#contact-modal"><?=_e('Send Message')?></a>
 										<?endif?>
 									</div>
 								<?endif?>
@@ -202,7 +202,7 @@
 						<?else:?>
 							<div class="no_results text-center">
 								<span class="nr_badge"><i class="glyphicon glyphicon-comment"></i></span>
-								<p class="nr_info"><?=__('Sorry, comments are unavailable..')?></p>
+								<p class="nr_info"><?=_e('Sorry, comments are unavailable..')?></p>
 							</div>
 						<?endif?>
 						</div>
@@ -218,7 +218,7 @@
 						<div class="pad_10">
 							<?if(core::config('advertisement.sharing')==1):?>
 								<div class="well">
-									<h1><?=__('Share')?></h1>
+									<h1><?=_e('Share')?></h1>
 									<?=View::factory('share')?>
 								</div>
 								<div class="clearfix"></div><br>
@@ -241,10 +241,10 @@
 							<div class="modal-image"></div>
 						</div>
 						<div class="modal-footer">
-							<a class="btn btn-info modal-prev"><i class="glyphicon glyphicon-arrow-left glyphicon"></i> <?=__('Previous')?></a>
-							<a class="btn btn-primary modal-next"><?=__('Next')?> <i class="glyphicon glyphicon-arrow-right glyphicon"></i></a>
-							<a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="glyphicon glyphicon-play glyphicon"></i> <?=__('Slideshow')?></a>
-							<a class="btn modal-download" target="_blank"><i class="glyphicon glyphicon-download"></i> <?=__('Download')?></a>
+							<a class="btn btn-info modal-prev"><i class="glyphicon glyphicon-arrow-left glyphicon"></i> <?=_e('Previous')?></a>
+							<a class="btn btn-primary modal-next"><?=_e('Next')?> <i class="glyphicon glyphicon-arrow-right glyphicon"></i></a>
+							<a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="glyphicon glyphicon-play glyphicon"></i> <?=_e('Slideshow')?></a>
+							<a class="btn modal-download" target="_blank"><i class="glyphicon glyphicon-download"></i> <?=_e('Download')?></a>
 						</div>
 					</div>
 				</div>
@@ -284,7 +284,7 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
-									<h3><?=__('Contact')?></h3>
+									<h3><?=_e('Contact')?></h3>
 								</div>
 								<div class="modal-body">
 									<?=Form::errors()?>
@@ -292,40 +292,40 @@
 									<fieldset>
 										<?if (!Auth::instance()->get_user()):?>
 											<dl class="form-group clearfix">
-												<dt><?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?></dt>
+												<dt><?= FORM::label('name', _e('Name'), array('class'=>'control-label', 'for'=>'name'))?></dt>
 												<dd><?= FORM::input('name', Core::request('name'), array('placeholder' => __('Name'), 'class'=>'form-control', 'id' => 'name', 'required'))?></dd>
 											</dl>
 											<dl class="form-group clearfix">
-												<dt><?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?></dt>
+												<dt><?= FORM::label('email', _e('Email'), array('class'=>'control-label', 'for'=>'email'))?></dt>
 												<dd><?= FORM::input('email', Core::request('email'), array('placeholder' => __('Email'), 'class'=>'form-control', 'id' => 'email', 'type'=>'email','required'))?></dd>
 											</dl>
 										<?endif?>
 										<?if(core::config('general.messaging') != TRUE):?>
 											<dl class="form-group clearfix">
-												<dt><?= FORM::label('subject', __('Subject'), array('class'=>'control-label', 'for'=>'subject'))?></dt>
+												<dt><?= FORM::label('subject', _e('Subject'), array('class'=>'control-label', 'for'=>'subject'))?></dt>
 												<dd><?= FORM::input('subject', Core::request('subject'), array('placeholder' => __('Subject'), 'class'=>'form-control', 'id' => 'subject'))?></dd>
 											</dl>
 										<?endif?>
 										<dl class="form-group clearfix">
-											<dt><?= FORM::label('message', __('Message'), array('class'=>'control-label', 'for'=>'message'))?></dt>
+											<dt><?= FORM::label('message', _e('Message'), array('class'=>'control-label', 'for'=>'message'))?></dt>
 											<dd><?= FORM::textarea('message', Core::request('message'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>5, 'required'))?></dd>
 										</dl>
 										<?if(core::config('general.messaging')):?>
 											<dl class="form-group clearfix">
-												<dt><?= FORM::label('price', __('Price'), array('class'=>'control-label', 'for'=>'price'))?></dt>
+												<dt><?= FORM::label('price', _e('Price'), array('class'=>'control-label', 'for'=>'price'))?></dt>
 												<dd><?= FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?></dd>
 											</dl>
 										<?endif?>
 										<!-- file to be sent-->
 										<?if(core::config('advertisement.upload_file') AND core::config('general.messaging') != TRUE):?>
 											<dl class="form-group clearfix">
-												<dt><?= FORM::label('file', __('File'), array('class'=>'control-label', 'for'=>'file'))?></dt>
+												<dt><?= FORM::label('file', _e('File'), array('class'=>'control-label', 'for'=>'file'))?></dt>
 												<dd><?= FORM::file('file', array('placeholder' => __('File'), 'class'=>'form-control', 'id' => 'file'))?></dd>
 											</dl>
 										<?endif?>
 										<?if (core::config('advertisement.captcha') != FALSE):?>
 											<dl class="capt form-group clearfix">
-												<?=FORM::label('captcha', __('Captcha'), array('class'=>'control-label hidden', 'for'=>'captcha'))?>
+												<?=FORM::label('captcha', _e('Captcha'), array('class'=>'control-label hidden', 'for'=>'captcha'))?>
 												<?if (Core::config('general.recaptcha_active')):?>
 													<?=Captcha::recaptcha_display()?>
 													<div id="recaptcha1"></div>
@@ -336,7 +336,7 @@
 											</dl>
 										<?endif?>
 										<dl class="modal-footer text-center">	
-											<?= FORM::button('submit', __('Send Message'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'user_contact' , 'id'=>$ad->id_ad))))?>
+											<?= FORM::button('submit', _e('Send Message'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'user_contact' , 'id'=>$ad->id_ad))))?>
 										</dl>
 									</fieldset>
 									<?= FORM::close()?>

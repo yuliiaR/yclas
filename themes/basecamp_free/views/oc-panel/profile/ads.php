@@ -4,7 +4,7 @@
 		<div class="col-xs-12">
 			<div class="page-header">
 				<h3>
-					<?=__('My Advertisements')?>
+					<?=_e('My Advertisements')?>
 				</h3>
 			</div>
 
@@ -32,29 +32,29 @@
 												<? if( $ad->status == Model_Ad::STATUS_UNAVAILABLE AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)):?>
 													<?if ( ($order = $ad->get_order()) === FALSE OR ($order !== FALSE AND $order->status == Model_Order::STATUS_PAID) ):?>
 														<li>
-															<a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>"><?=__('Activate?')?></a> 
+															<a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>"><?=_e('Activate?')?></a> 
 														</li>
 													<?endif?>
 												<?elseif($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
-													<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>"><?=__('Deactivate?')?></a>
+													<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>"><?=_e('Deactivate?')?></a>
 												<?endif?>
                     							<?if(core::config('advertisement.count_visits')):?>
-												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>"><?=__('Stats')?></a></li>
+												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>"><?=_e('Stats')?></a></li>
 												<?endif?>
-												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=__('Update')?></a></li>
+												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e('Update')?></a></li>
 												<li role="separator" class="divider"></li>
 												<?if( core::config('payment.to_top') ):?>
-													<li><a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>"><?=__('Go to top')?>?</a>
+													<li><a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>"><?=_e('Go to top')?>?</a>
 												<?endif?>
 												<?if( core::config('payment.to_featured')):?>
 													<li>
 													<?if($ad->featured == NULL):?>
 														<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>"
 														onclick="return confirm('<?=__('Make featured?')?>');" rel="tooltip" title="<?=__('Featured')?>" 
-														data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>"><?=__('Make featured?')?>
+														data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>"><?=_e('Make featured?')?>
 														</a>
 													<?else:?>
-														<a href="#"><?=__('Featured')?> til <?= Date::format($ad->featured, core::config('general.date_format'))?></a>
+														<a href="#"><?=_e('Featured')?> til <?= Date::format($ad->featured, core::config('general.date_format'))?></a>
 													<?endif?>
 													</li>
 												<?endif?>
@@ -64,41 +64,41 @@
 										<a class="at" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?= $ad->title; ?></a>
 								</div>
 							
-								<p><b><?=__('Date')?> : </b><?= Date::format($ad->published, core::config('general.date_format'))?></p>
+								<p><b><?=_e('Date')?> : </b><?= Date::format($ad->published, core::config('general.date_format'))?></p>
 								<? foreach($category as $cat):?>
 									<? if ($cat->id_category == $ad->id_category): ?>
-										<p><b><?=__('Category')?> : </b><?= $cat->name ?></p>
+										<p><b><?=_e('Category')?> : </b><?= $cat->name ?></p>
 									<?endif?>
 								<?endforeach?>
 								<?$locat_name = NULL;?>
 								<?foreach($location as $loc):?>
 									<? if ($loc->id_location == $ad->id_location):$locat_name=$loc->name;?>
-										<p><b><?=__('Location')?> : </b><?=$locat_name?></p>
+										<p><b><?=_e('Location')?> : </b><?=$locat_name?></p>
 									<?endif?>
 								<?endforeach?>
 								<?if($locat_name == NULL):?>
-									<p><b><?=__('Location')?> : </b>n/a</p>
+									<p><b><?=_e('Location')?> : </b>n/a</p>
 								<?endif?>
-								<p><b><?=__('Status')?> : </b>
+								<p><b><?=_e('Status')?> : </b>
 								<?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
-									<span class="badge"><?=__('Not published')?></span>
+									<span class="badge"><?=_e('Not published')?></span>
 								<? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
-									<span class="badge badge-success"><?=__('Published')?></span>
+									<span class="badge badge-success"><?=_e('Published')?></span>
 								<? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
-									<span class="badge badge-warning"> <?=__('Spam')?></span>
+									<span class="badge badge-warning"> <?=_e('Spam')?></span>
 								<? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
-									<span class="badge badge-danger"><?=__('Unavailable')?></span>
+									<span class="badge badge-danger"><?=_e('Unavailable')?></span>
 								<?endif?>
 								</p>
 								<p class="text-right">
 									<?if( ($order = $ad->get_order())!==FALSE ):?>
 										<?if ($order->status==Model_Order::STATUS_CREATED AND $ad->status != Model_Ad::STATUS_PUBLISHED):?>
 											<a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
-											<i class="glyphicon glyphicon-shopping-cart"></i> <?=__('Pay')?>  <?=i18n::format_currency($order->amount,$order->currency)?> 
+											<i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>  <?=i18n::format_currency($order->amount,$order->currency)?> 
 											</a>
 										<?elseif ($order->status==Model_Order::STATUS_PAID):?>
 											<a class="btn btn-warning disabled" href="#" disabled>
-												<?=__('Paid')?>
+												<?=_e('Paid')?>
 											</a>
 										<?endif?>
 									<?endif?>

@@ -6,12 +6,12 @@
 		<div class="index-head-btns">
 		<?if (Core::config('advertisement.only_admin_post')!=1):?>
 			<a class="btn btn-base-light btn-lg" href="<?=Route::url('post_new')?>">
-				 <?=__('Publish new ')?>
+				 <?=_e('Publish new ')?>
 			</a>                
 		<?endif?>
 		<?if (!Auth::instance()->logged_in()):?>
 		<a class="btn btn-base-light btn-lg" data-toggle="modal" tabindex="-1" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'register'))?>#register-modal">
-			<?=__('Register')?>
+			<?=_e('Register')?>
 		</a>
 		<?endif?>
 		</div>
@@ -26,11 +26,11 @@
 			<?if(count($ads)):?>
 			<h3 class="text-center">
 				<?if(core::config('advertisement.ads_in_home') == 0):?>
-					<?=__('Latest Ads')?>
+					<?=_e('Latest Ads')?>
 				<?elseif(core::config('advertisement.ads_in_home') == 1 OR core::config('advertisement.ads_in_home') == 4):?>
-					<?=__('Featured Ads')?>
+					<?=_e('Featured Ads')?>
 				<?elseif(core::config('advertisement.ads_in_home') == 2):?>
-					<?=__('Popular Ads last month')?>
+					<?=_e('Popular Ads last month')?>
 				<?endif?>
 				<?if ($user_location) :?>
 					<small><?=$user_location->name?></small>
@@ -50,9 +50,9 @@
 							<?if ($ad->price>0):?>
 								<span class="ad_price"> <?=i18n::money_format( $ad->price)?></span>
 							<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
-								<span class="ad_price"><?=__('Free');?></span>
+								<span class="ad_price"><?=_e('Free');?></span>
 							<?else:?>
-								<span class="ad_price"><?=__('Check Listing');?></span>
+								<span class="ad_price"><?=_e('Check Listing');?></span>
 							<?endif?>
 							</a>
 						</div>
@@ -78,7 +78,7 @@
 			</div>
 			<div class="col-xs-2 text-right post-ad-banner-btn">
 				<a class="btn btn-base-light btn-lg" href="<?=Route::url('post_new')?>">
-					<?=__('Publish new ')?>
+					<?=_e('Publish new ')?>
 				</a>  
 			</div>
 		</div>
@@ -147,7 +147,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 id="autoLocations" class="modal-title text-center"><?=__('Please choose your closest location')?></h4>
+						<h4 id="autoLocations" class="modal-title text-center"><?=_e('Please choose your closest location')?></h4>
 					</div>
 					<div class="modal-body">
 						<div class="list-group">

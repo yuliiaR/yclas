@@ -16,10 +16,10 @@
 
 			<div class="col-sm-3 inbox-side-menu">
 				<div class="list-group">
-					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="list-group-item"><?=__('All')?></a>
-					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>?status=<?=Model_Message::STATUS_NOTREAD?>" class="list-group-item"><?=__('Unread')?></a>
-					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>?status=<?=Model_Message::STATUS_ARCHIVED?>" class="list-group-item"><?=__('Archieved')?></a>
-					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>?status=<?=Model_Message::STATUS_SPAM?>" class="list-group-item"><?=__('Spam')?></a>
+					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="list-group-item"><?=_e('All')?></a>
+					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>?status=<?=Model_Message::STATUS_NOTREAD?>" class="list-group-item"><?=_e('Unread')?></a>
+					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>?status=<?=Model_Message::STATUS_ARCHIVED?>" class="list-group-item"><?=_e('Archieved')?></a>
+					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>?status=<?=Model_Message::STATUS_SPAM?>" class="list-group-item"><?=_e('Spam')?></a>
 				</div>
 			</div>
 
@@ -79,7 +79,7 @@
 						
 							<?if ($message->price > 0):?>
 								<p>
-									<strong><?=__('Price')?></strong>: <?=i18n::money_format($message->price)?>
+									<strong><?=_e('Price')?></strong>: <?=i18n::money_format($message->price)?>
 								</p>
 							<?endif?>
 						</div>
@@ -94,7 +94,7 @@
 				<form method="post" action="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>Request::current()->param('id')))?>"> 
 				<?php if (isset($errors)): ?>
 					<div class="alert alert-danger" role="alert">
-						<p><?=__('Some errors were encountered, please check the details you entered.')?></p>
+						<p><?=_e('Some errors were encountered, please check the details you entered.')?></p>
 						<ul>
 							<?php foreach ($errors as $message): ?>
 								<li><?php echo $message ?></li>
@@ -112,8 +112,8 @@
 			</div>
 		</div>
 			<div class="panel-footer text-center">
-				<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-default"><?=__('Cancel')?></a>
-				<button type="submit" class="btn btn-success"><?=__('Reply')?></button>
+				<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-default"><?=_e('Cancel')?></a>
+				<button type="submit" class="btn btn-success"><?=_e('Reply')?></button>
 			</div>
 				</form>
 	</div>

@@ -15,7 +15,7 @@
 					<?foreach ($messages->find_all() as $message):?>
 						<li>
 							<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'message','id'=>($message->id_message_parent != NULL) ? $message->id_message_parent : $message->id_message))?>">
-								<small><strong><?=isset($message->ad->title) ? $message->ad->title : __('Direct Message')?></strong></small>
+								<small><strong><?=isset($message->ad->title) ? $message->ad->title : _e('Direct Message')?></strong></small>
 								<br>
 								<small><em><?=$message->from->name?></em></small>
 							</a>
@@ -40,9 +40,9 @@
 				<i class="fa fa-bell"></i> <span class="badge"><?=count($ads)?></span>
 			</a>
 			<ul id="contact-notification-dd" class="dropdown-menu">
-				<li class="dropdown-header"><?=__('Please check your email')?></li>
+				<li class="dropdown-header"><?=_e('Please check your email')?></li>
 				<li class="divider"></li>
-				<li class="dropdown-header"><?=__('You have been contacted for these ads')?></li>
+				<li class="dropdown-header"><?=_e('You have been contacted for these ads')?></li>
 				<?foreach ($ads as $ad ):?>
 					<li class="dropdown-header"><strong><?=$ad["title"]?></strong></li>
 				<?endforeach?>

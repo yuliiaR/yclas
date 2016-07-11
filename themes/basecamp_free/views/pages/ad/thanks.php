@@ -8,7 +8,7 @@
 						<h3><?=$page->title?></h3>
 						<p class="pad_5"><?=$page->description?></p>
 					<?else:?>
-						<h3><?=__('Thanks for submitting your advertisement')?></h3>
+						<h3><?=_e('Thanks for submitting your advertisement')?></h3>
 					<?endif?>
 				</div>
 
@@ -16,13 +16,13 @@
 				
 				<div class="well text-center clearfix">
 					<?if(core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql()):?>
-						<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
+						<p class="text-info"><?=_e('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
 						<span class="extra_btn"><a class="btn btn-success" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>">
-							<i class="glyphicon glyphicon-bookmark"></i> <?=__('Go Featured!')?> 
+							<i class="glyphicon glyphicon-bookmark"></i> <?=_e('Go Featured!')?> 
 						</a></span>
 					<?endif?>
 					<?if(core::config('general.moderation') == Model_Ad::POST_DIRECTLY) :?>
-						<span class="extra_btn"><br><a class="btn btn-success" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=__('Go to Your Ad')?></a><br><br></span>
+						<span class="extra_btn"><br><a class="btn btn-success" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=_e('Go to Your Ad')?></a><br><br></span>
 					<?endif?>
 				</div>
 			</div>

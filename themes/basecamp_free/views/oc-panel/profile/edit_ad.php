@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="col-xs-12">
 			<div class="page-header">
-				<h3><?=__('Edit Advertisement')?> <small><?=$ad->title?></small></h3>	
+				<h3><?=_e('Edit Advertisement')?> <small><?=$ad->title?></small></h3>	
 			</div>
 
 			<?=Form::errors()?>
@@ -30,7 +30,7 @@
 
 			<div class="text-right pad_10">
 				<a class="btn btn-success" target="_blank" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-					<?=__('View Advertisement')?>
+					<?=_e('View Advertisement')?>
 				</a>
 				<? if( $ad->status == Model_Ad::STATUS_UNAVAILABLE AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)):?>
 					<a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>" 
@@ -39,7 +39,7 @@
 						data-toggle="confirmation" 
 						data-btnOkLabel="<?=__('Yes, definitely!')?>" 
 						data-btnCancelLabel="<?=__('No way!')?>">
-						<i class="glyphicon glyphicon-ok"></i> <?=__('Activate')?>
+						<i class="glyphicon glyphicon-ok"></i> <?=_e('Activate')?>
 					</a>
 				<?endif?>
 				<button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#adInfo" aria-expanded="false" aria-controls="adInfo">
@@ -55,9 +55,9 @@
 						<table class="table table-bordered admin-table-user">
 							<thead>
 								<tr>
-									<th><?=__('Profile')?></th>
-									<th><?=__('Email')?></th>
-									<th><?=__('Status')?></th>
+									<th><?=_e('Profile')?></th>
+									<th><?=_e('Email')?></th>
+									<th><?=_e('Status')?></th>
 								</tr>
 							</thead>	
 							<tbody>
@@ -89,14 +89,14 @@
 					<div class="alert alert-success text-center alert-dismissible" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<?if(core::config('payment.pay_to_go_on_top') > 0 AND core::config('payment.to_top') != FALSE):?>
-							<p class="text-info"><?=__('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
-							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Top!')?></a>
+							<p class="text-info"><?=_e('Your Advertisement can go on top again! For only ').i18n::format_currency(core::config('payment.pay_to_go_on_top'),core::config('payment.paypal_currency'));?></p>
+							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_top','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Go Top!')?></a>
 						<?endif?>
 						<br>
 						<br>
 						<?if(core::config('payment.to_featured') != FALSE AND $ad->featured < Date::unix2mysql()):?>
-							<p class="text-info"><?=__('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
-							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Go Featured!')?></a>
+							<p class="text-info"><?=_e('Your Advertisement can go to featured! For only ').i18n::format_currency(Model_Order::get_featured_price(),core::config('payment.paypal_currency'));?></p>
+							<a class="btn btn-xs btn-primary" type="button" href="<?=Route::url('default', array('action'=>'to_featured','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Go Featured!')?></a>
 						<?endif?>
 					</div>
 			<?endif?>
@@ -108,7 +108,7 @@
 					<!-- START TITLE -->
 					<div class="form-group">
 						<div class="col-xs-12">
-							<?= FORM::label('title', __('Title'), array('class'=>'', 'for'=>'title'))?>
+							<?= FORM::label('title', _e('Title'), array('class'=>'', 'for'=>'title'))?>
 							<?= FORM::input('title', $ad->title, array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
 						</div>
 					</div>
@@ -117,7 +117,7 @@
 					<!-- START CATEGORY -->
 					<div class="form-group">
 						<div class="col-xs-12">
-							<?= FORM::label('category', __('Category'), array('for'=>'category'))?>
+							<?= FORM::label('category', _e('Category'), array('for'=>'category'))?>
 							<div id="category-chained" class="hidden"
 								data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" 
 								data-price0="<?=i18n::money_format(0)?>" 
@@ -136,7 +136,7 @@
 									<div class="input-group">
 										<input class="form-control" type="text" placeholder="<?=$ad->category->name?>" disabled>
 										<span class="input-group-btn">
-											<button class="btn btn-default" type="button"><?=__('Edit category')?></button>
+											<button class="btn btn-default" type="button"><?=_e('Edit category')?></button>
 										</span>
 									</div>
 								</div>
@@ -149,7 +149,7 @@
 					<!-- START LOCATION -->
 					<div class="form-group">
 						<div class="col-xs-12">
-							<?= FORM::label('locations', __('Location'), array('for'=>'location'))?>
+							<?= FORM::label('locations', _e('Location'), array('for'=>'location'))?>
 								<div id="location-chained" class="hidden" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'locations'))?>">
 									<div id="select-location-template" class="col-sm-6 row hidden">
 										<select class="disable-select2 select-location" placeholder="<?=__('Pick a location...')?>"></select>
@@ -160,7 +160,7 @@
 										<div class="input-group">
 											<input class="form-control" type="text" placeholder="<?=$ad->location->name?>" disabled>
 											<span class="input-group-btn">
-												<button class="btn btn-default" type="button"><?=__('Edit location')?></button>
+												<button class="btn btn-default" type="button"><?=_e('Edit location')?></button>
 											</span>
 										</div>
 									</div>
@@ -175,7 +175,7 @@
 						<div class="form-group">
 							<?if(core::config('payment.stock')):?>
 								<div class="col-xs-6">
-									<?= FORM::label('stock', __('In Stock'), array('class'=>'', 'for'=>'stock'))?>
+									<?= FORM::label('stock', _e('In Stock'), array('class'=>'', 'for'=>'stock'))?>
 									<div class="input-prepend">
 										<?= FORM::input('stock', $ad->stock, array('placeholder' => '10', 'class' => 'form-control fc-small', 'id' => 'stock', 'type'=>'text'))?>
 									</div>
@@ -183,7 +183,7 @@
 							<?endif?>
 							<?if(core::config('advertisement.price') != FALSE):?>
 								<div class="col-xs-6">
-									<?= FORM::label('price', __('Price'), array('class'=>'', 'for'=>'price'))?>
+									<?= FORM::label('price', _e('Price'), array('class'=>'', 'for'=>'price'))?>
 									<div class="input-prepend">
 										<?= FORM::input('price', $ad->price, array('placeholder'=>html_entity_decode(i18n::money_format(1)),'class'=>'form-control fc-small', 'id' => 'price', 'data-error' => __('Please enter only numbers.')))?>
 									</div>
@@ -197,7 +197,7 @@
 					<?if(core::config('advertisement.description') != FALSE):?>
 						<div class="form-group">
 							<div class="col-xs-12">
-								<?= FORM::label('description', __('Description'), array('class'=>'', 'for'=>'description', 'spellcheck'=>TRUE))?>
+								<?= FORM::label('description', _e('Description'), array('class'=>'', 'for'=>'description', 'spellcheck'=>TRUE))?>
 								<?= FORM::textarea('description', $ad->description, array('class'=>'form-control col-md-9 col-sm-9 col-xs-12'.((Core::config("advertisement.description_bbcode"))?NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description', 'rows'=>8, 'required'))?>
 							</div>
 						</div>
@@ -208,7 +208,7 @@
 					<?if((core::config('advertisement.phone') != FALSE) OR (core::config('advertisement.address') != FALSE)):?>
 						<div class="form-group">
 							<div class="col-xs-12">
-								<?= FORM::label('phone', __('Phone'), array('class'=>'', 'for'=>'phone'))?>
+								<?= FORM::label('phone', _e('Phone'), array('class'=>'', 'for'=>'phone'))?>
 								<?= FORM::input('phone', $ad->phone, array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
 							</div>
 						</div>
@@ -219,12 +219,12 @@
 					<?if(core::config('advertisement.address') != FALSE):?>
 						<div class="form-group">
 							<div class="col-xs-12">
-								<?= FORM::label('address', __('Address'), array('class'=>'', 'for'=>'address'))?>
+								<?= FORM::label('address', _e('Address'), array('class'=>'', 'for'=>'address'))?>
 								<?if(core::config('advertisement.map_pub_new')):?>
 									<div class="input-group">
 										<?= FORM::input('address', $ad->address, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 										<span class="input-group-btn">
-											<button class="btn btn-default locateme" type="button"><?=__('Locate me')?></button>
+											<button class="btn btn-default locateme" type="button"><?=_e('Locate me')?></button>
 										</span>
 									</div>
 								<?else:?>
@@ -251,7 +251,7 @@
 					<?if(core::config('advertisement.website') != FALSE):?>
 						<div class="form-group">
 							<div class="col-sm-8">
-								<?= FORM::label('website', __('Website'), array('class'=>'', 'for'=>'website'))?>
+								<?= FORM::label('website', _e('Website'), array('class'=>'', 'for'=>'website'))?>
 								<?= FORM::input('website', $ad->website, array('class'=>'form-control', 'id'=>'website', 'placeholder'=>__('Website')))?>
 							</div>
 						</div>
@@ -312,17 +312,17 @@
 									<div class="col-xs-12">
 										<hr>
 										<br>
-										<?= FORM::label('images', __('Add image'), array('class'=>'', 'for'=>'images0'))?>
+										<?= FORM::label('images', _e('Add image'), array('class'=>'', 'for'=>'images0'))?>
 										<br>
 										<div class="fileinput fileinput-new" data-provides="fileinput">
 											<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
 												<div>
 													<span class="btn btn-default btn-file">
-														<span class="fileinput-new"><?=__('Select')?></span>
-														<span class="fileinput-exists"><?=__('Edit')?></span>
+														<span class="fileinput-new"><?=_e('Select')?></span>
+														<span class="fileinput-exists"><?=_e('Edit')?></span>
 														<input type="file" name="image0" id="fileInput0" accept="<?='image/'.str_replace(',', ', image/', rtrim(core::config('image.allowed_formats'),','))?>">
 													</span>
-													<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=__('Delete')?></a>
+													<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=_e('Delete')?></a>
 												</div>
 										</div>
 									</div>
@@ -334,7 +334,7 @@
 								<br>
 									<hr>
 								<br>	
-									<?= FORM::button('submit_btn', (in_array(core::config('general.moderation'), Model_Ad::$moderation_status))?__('Publish'):__('Update'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))))?>
+									<?= FORM::button('submit_btn', (in_array(core::config('general.moderation'), Model_Ad::$moderation_status))?_e('Publish'):_e('Update'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))))?>
 								<br>
 							</div>
 				</fieldset>
@@ -353,7 +353,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title"><?=__('Processing...')?></h4>
+					<h4 class="modal-title"><?=_e('Processing...')?></h4>
 				</div>
 				<div class="modal-body">
 					<div class="progress progress-striped active">

@@ -4,13 +4,13 @@
 		<div class="col-xs-12">
 			<div class="page-header">
 				<?if (core::get('status',-1)==Model_Message::STATUS_NOTREAD):?>	
-					<h3><?=__('Unread')?></h3>
+					<h3><?=_e('Unread')?></h3>
 				<?elseif (core::get('status',-1)==Model_Message::STATUS_ARCHIVED):?>
-					<h3><?=__('Archieved')?></h3>
+					<h3><?=_e('Archieved')?></h3>
 				<?elseif (core::get('status',-1)==Model_Message::STATUS_SPAM):?>
-					<h3><?=__('Spam')?></h3>
+					<h3><?=_e('Spam')?></h3>
 				<?else:?>
-					<h3><?=__('Inbox')?></h3>
+					<h3><?=_e('Inbox')?></h3>
 				<?endif?>
 			</div>
 	
@@ -19,10 +19,10 @@
 			<div class="inbox-top-menu text-right">
 				<div class="btn-group">
 					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="btn btn-base-dark <?=(!is_numeric(core::get('status')))?'active':''?>">
-						<?=__('All')?>
+						<?=_e('All')?>
 					</a>
 					<a href="?status=<?=Model_Message::STATUS_NOTREAD?>" class="btn btn-base-dark <?=(core::get('status',-1)==Model_Message::STATUS_NOTREAD)?'active':''?>">
-						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <?=__('Unread')?>
+						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <?=_e('Unread')?>
 					</a>
 					<button type="button" class="btn btn-base-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<span class="caret"></span>
@@ -30,10 +30,10 @@
 					</button>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="?status=<?=Model_Message::STATUS_ARCHIVED?>"><span class="glyphicon glyphicon-folder-close"></span> <?=__('Archieved')?></a>
+							<a href="?status=<?=Model_Message::STATUS_ARCHIVED?>"><span class="glyphicon glyphicon-folder-close"></span> <?=_e('Archieved')?></a>
 						</li>
 						<li>
-							<a href="?status=<?=Model_Message::STATUS_SPAM?>"><span class="glyphicon glyphicon-fire"></span> <?=__('Spam')?></a>
+							<a href="?status=<?=Model_Message::STATUS_SPAM?>"><span class="glyphicon glyphicon-fire"></span> <?=_e('Spam')?></a>
 						</li>
 					</ul>
 				</div>
@@ -41,10 +41,10 @@
  
 			<div class="col-sm-3 inbox-side-menu">
 				<div class="list-group">
-					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="list-group-item <?=(!is_numeric(core::get('status')))?'active':''?>"><?=__('All')?></a>
-					<a href="?status=<?=Model_Message::STATUS_NOTREAD?>" class="list-group-item <?=(core::get('status',-1)==Model_Message::STATUS_NOTREAD)?'active':''?>"><?=__('Unread')?></a>
-					<a href="?status=<?=Model_Message::STATUS_ARCHIVED?>" class="list-group-item <?=(core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'active':''?>"><?=__('Archieved')?></a>
-					<a href="?status=<?=Model_Message::STATUS_SPAM?>" class="list-group-item <?=(core::get('status',-1)==Model_Message::STATUS_SPAM)?'active':''?>"><?=__('Spam')?></a>
+					<a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>" class="list-group-item <?=(!is_numeric(core::get('status')))?'active':''?>"><?=_e('All')?></a>
+					<a href="?status=<?=Model_Message::STATUS_NOTREAD?>" class="list-group-item <?=(core::get('status',-1)==Model_Message::STATUS_NOTREAD)?'active':''?>"><?=_e('Unread')?></a>
+					<a href="?status=<?=Model_Message::STATUS_ARCHIVED?>" class="list-group-item <?=(core::get('status',-1)==Model_Message::STATUS_ARCHIVED)?'active':''?>"><?=_e('Archieved')?></a>
+					<a href="?status=<?=Model_Message::STATUS_SPAM?>" class="list-group-item <?=(core::get('status',-1)==Model_Message::STATUS_SPAM)?'active':''?>"><?=_e('Spam')?></a>
 				</div>
 			</div>
 
@@ -61,7 +61,7 @@
 											<?if(isset($message->ad->title)):?>
 												<?=$message->ad->title?>
 											<?else:?>
-												<?=__('Direct Message')?>
+												<?=_e('Direct Message')?>
 											<?endif?>
 										</a>
 								</div>
@@ -84,7 +84,7 @@
 					<!-- No results? Lets tell the user -->
 					<div class="no_results text-center">
 						<span class="nr_badge"><i class="glyphicon glyphicon-info-sign glyphicon"></i></span>
-						<p class="nr_info"><?=__('You don’t have any messages yet.')?></p>
+						<p class="nr_info"><?=_e('You don’t have any messages yet.')?></p>
 					</div>
 				<?endif?>
 
