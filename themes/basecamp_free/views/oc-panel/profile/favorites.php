@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="col-xs-12">
 			<div class="page-header">
-				<h3><?=__('My Favorites')?></h3>
+				<h3><?=_e('My Favorites')?></h3>
 			</div>
 			
 			<?foreach($favorites as $favorite):?>
@@ -24,9 +24,9 @@
 								<a class="at" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$favorite->ad->category->seoname,'seotitle'=>$favorite->ad->seotitle))?>"><?=$favorite->ad->title?></a>
 							</div>
 						
-							<p><b><?=__('Date')?> : </b><?= Date::format($favorite->ad->published, core::config('general.date_format'))?></p>
-							<p><b><?=__('Location')?> : </b><?=$favorite->ad->location->name?></p>
-							<p><b><?=__('Favorited') ?> :</b> <?= Date::format($favorite->created, core::config('general.date_format'))?></p>
+							<p><b><?=_e('Date')?> : </b><?= Date::format($favorite->ad->published, core::config('general.date_format'))?></p>
+							<p><b><?=_e('Location')?> : </b><?=$favorite->ad->location->name?></p>
+							<p><b><?=_e('Favorited') ?> :</b> <?= Date::format($favorite->created, core::config('general.date_format'))?></p>
 							<p class="text-right">
 								<a 
 								href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'favorites','id'=>$favorite->id_ad))?>" 

@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <?if(count($ads)):?>
-	<h3><?=__('Related ads')?></h3>
+	<h3><?=_e('Related ads')?></h3>
 		<div class="ad_listings">
 			<ul class="ad_list list">
 				<?foreach($ads as $ad ):?>
@@ -24,7 +24,7 @@
 							<?if ($ad->price!=0):?>
 								<span class="gallery_only ad_gprice"><?=i18n::money_format( $ad->price)?></span>
 							<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
-								<span class="gallery_only ad_gprice"><?=__('Free');?></span> 
+								<span class="gallery_only ad_gprice"><?=_e('Free');?></span> 
 							<?else:?>
 								<span class="gallery_only ad_gprice">Check Listing</span>
 							<?endif?>
@@ -51,13 +51,13 @@
 									<?if ($ad->price!=0):?>
 									<span class="ad_price"> 
 										<a class="add-transition" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-											<?=__('Price');?>: <b><?=i18n::money_format( $ad->price)?></b>
+											<?=_e('Price');?>: <b><?=i18n::money_format( $ad->price)?></b>
 										</a>							 
 									</span>
 									<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
 										<span class="ad_price"> 
 											<a class="add-transition" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-												<?=__('Price');?>: <b><?=__('Free');?></b>
+												<?=_e('Price');?>: <b><?=_e('Free');?></b>
 											</a>							 
 										</span>
 									<?else:?>  
@@ -76,6 +76,6 @@
 <?else:?>
 	<div class="no_results text-center">
 		<span class="nr_badge"><i class="glyphicon glyphicon-th-list"></i></span>
-		<p class="nr_info"><?=__('Sorry, no related ads available..')?></p>
+		<p class="nr_info"><?=_e('Sorry, no related ads available..')?></p>
 	</div>
 <?endif?>

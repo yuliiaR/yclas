@@ -14,16 +14,16 @@
 					</div>
 					<div class="action-btns text-right">
 						<?if (Auth::instance()->logged_in()):?>
-							<a class="btn btn-success" href="#reply_form"><?=__('Reply')?></a>
+							<a class="btn btn-success" href="#reply_form"><?=_e('Reply')?></a>
 						<?else:?>
 							<a class="btn btn-success" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
-							<?=__('Reply')?>
+							<?=_e('Reply')?>
 							</a>
 						<?endif?>
 						<?if(Auth::instance()->logged_in()):?>
 							<?if(Auth::instance()->get_user()->id_role==Model_Role::ROLE_ADMIN):?>
 								<a class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'topic', 'action'=>'update','id'=>$topic->id_post)) ?>">
-									<?=__('Edit')?>
+									<?=_e('Edit')?>
 								</a>
 							<?endif?>
 						<?endif?>
@@ -46,7 +46,7 @@
 
 				<?if ($replies->count()>0):?>
 				<div class="page-header text-center">
-					<h1><?=__('Comments')?></h1>
+					<h1><?=_e('Comments')?></h1>
 				</div>
 				<?foreach ($replies as $reply):?>
 					<div class="col-xs-12 forum-comment">
@@ -74,12 +74,12 @@
 								<?if(Auth::instance()->logged_in()):?>
 									<?if(Auth::instance()->get_user()->id_role==Model_Role::ROLE_ADMIN):?>
 										<a class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=> 'topic', 'action'=>'update','id'=>$reply->id_post)) ?>">
-										<?=__('Edit')?>
+										<?=_e('Edit')?>
 										</a>
 									<?endif?>
 								<?endif?>
 								<?if(Auth::instance()->logged_in()):?>
-								<a  class="btn btn-success" href="#reply_form"><?=__('Reply')?></a>
+								<a  class="btn btn-success" href="#reply_form"><?=_e('Reply')?></a>
 								<?endif?>
 							</div>
 						</div>
@@ -97,7 +97,7 @@
 				<form id="reply_form" method="post" action="<?=Route::url('forum-topic',array('seotitle'=>$topic->seotitle,'forum'=>$forum->seoname))?>"> 
 					<?php if ($errors): ?>
 						<div class="alert alert-danger text-center" role="alert">
-							<p class="message"><?=__('Some errors were encountered, please check the details you entered.')?></p>
+							<p class="message"><?=_e('Some errors were encountered, please check the details you entered.')?></p>
 							<ul class="errors">
 								<?php foreach ($errors as $message): ?>
 									<li><?php echo $message ?></li>
@@ -107,7 +107,7 @@
 					<?php endif?>       
 					<div class="form-group">
 						<div class="col-xs-12">
-							<textarea name="description" rows="10" class="form-control input-xxlarge" required><?=core::post('description',__('Reply here'))?></textarea>
+							<textarea name="description" rows="10" class="form-control input-xxlarge" required><?=core::post('description',_e('Reply here'))?></textarea>
 						</div>
 					</div>
 					<?if (core::config('advertisement.captcha') != FALSE OR core::config('general.captcha') != FALSE):?>
@@ -120,7 +120,7 @@
 									</div>
 								<?else:?>
 									<div class="form-captcha wide-view">
-										<span class="cap_note text-center"><?= FORM::label('captcha', __('Captcha'), array('for'=>'captcha'))?></span>
+										<span class="cap_note text-center"><?= FORM::label('captcha', _e('Captcha'), array('for'=>'captcha'))?></span>
 										<span class="cap_img"><?=captcha::image_tag('new-reply-topic')?></span>
 										<span class="cap_ans"><?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?></span>
 									</div>
@@ -129,7 +129,7 @@
 						</div>
 					<?endif?>
 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-success" name="submit"><?=__('Reply')?></button>
+						<button type="submit" class="btn btn-success" name="submit"><?=_e('Reply')?></button>
 					</div>
 				</form> 
 
@@ -138,7 +138,7 @@
 				<div class="login-required">
 					<a class="btn btn-success btn-lg" data-toggle="modal" data-dismiss="modal" 
 						href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
-						<?=__('Login to reply')?>
+						<?=_e('Login to reply')?>
 					</a>
 				</div>
 

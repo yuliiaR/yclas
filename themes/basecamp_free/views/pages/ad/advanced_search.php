@@ -10,7 +10,7 @@
 					<?if (core::get('title')) :?>
 						<?=($total_ads == 1) ? sprintf(__('%d advertisement for %s'), $total_ads, core::get('title')) : sprintf(__('%d advertisements for %s'), $total_ads, core::get('title'))?>
 					<?else:?>
-						<?=__('Search results')?>
+						<?=_e('Search results')?>
 					<?endif?>
 				</h3>
 			</div>
@@ -27,13 +27,13 @@
 			<?=Form::errors()?>
 			<fieldset>
 				<div class="form-group col-xs-12 col-sm-4 ">
-					<?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
+					<?= FORM::label('advertisement', _e('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
 						<div class="control mr-30">
 							<input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
 						</div>
 				</div>
 				<div class="form-group col-xs-12 col-sm-4 ">
-					<?= FORM::label('category', __('Category'), array('class'=>'', 'for'=>'category' ))?>
+					<?= FORM::label('category', _e('Category'), array('class'=>'', 'for'=>'category' ))?>
 						<div class="control mr-30">
 							<select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category" class="form-control" data-placeholder="<?=__('Category')?>">
 							<?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -56,7 +56,7 @@
 				</div>
 				<?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
 					<div class="form-group col-xs-12 col-sm-4">
-						<?= FORM::label('location', __('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
+						<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
 						<div class="control mr-30">
 							<select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
 							<?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -81,13 +81,13 @@
             	
 				<?if(core::config('advertisement.price')):?>
 					<div class="form-group col-xs-6 col-sm-4">
-						<label class="" for="price-min"><?=__('Price from')?> </label> 
+						<label class="" for="price-min"><?=_e('Price from')?> </label> 
 							<div class="control mr-30"> 
 								<input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
 							</div>
 					</div>
 					<div class="form-group col-xs-6 col-sm-4">
-						<label class="" for="price-max"><?=__('Price to')?></label>
+						<label class="" for="price-max"><?=_e('Price to')?></label>
 							<div class="control mr-30">
 								<input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
 							</div>
@@ -97,7 +97,7 @@
 				<div class="form-group col-xs-12 col-sm-4 text-center">
 					<label>&nbsp;</label>
 					<div>
-						<?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('search')))?>
+						<?= FORM::button('submit', _e('Search'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('search')))?>
 					</div>
 				</div>
 			</fieldset>
@@ -113,7 +113,7 @@
 		
 		<div class="col-md-9 col-sm-12 col-xs-12">
 			<div class="page-header">
-				<h3><?=__('Search results')?></h3>
+				<h3><?=_e('Search results')?></h3>
 			</div>	
 			
 			<a class="collapse_searchform_expand add-transition" role="button" data-toggle="collapse" href="#collapsAdvSearchForm" aria-expanded="false" aria-controls="collapsAdvSearchForm">
@@ -126,13 +126,13 @@
 				<?=Form::errors()?>
 				<fieldset>
 					<div class="form-group col-xs-12 col-sm-4 ">
-						<?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
+						<?= FORM::label('advertisement', _e('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
 						<div class="control mr-30">
 							<input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
 						</div>
 					</div>
 					<div class="form-group col-xs-12 col-sm-4 ">
-						<?= FORM::label('category', __('Category'), array('class'=>'', 'for'=>'category' ))?>
+						<?= FORM::label('category', _e('Category'), array('class'=>'', 'for'=>'category' ))?>
 						<div class="control mr-30">
 							<select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category" class="form-control" data-placeholder="<?=__('Category')?>">
 							<?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -155,7 +155,7 @@
 					</div>
 					<?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
 						<div class="form-group col-xs-12 col-sm-4">
-							<?= FORM::label('location', __('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
+							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
 							<div class="control mr-30">
 								<select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
 								<?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -180,14 +180,14 @@
             	
 					<?if(core::config('advertisement.price')):?>
 						<div class="form-group col-xs-6 col-sm-4">
-							<label class="" for="price-min"><?=__('Price from')?> </label> 
+							<label class="" for="price-min"><?=_e('Price from')?> </label> 
 								<div class="control mr-30"> 
 									<input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
 								</div>
 						</div>
 
 						<div class="form-group col-xs-6 col-sm-4">
-							<label class="" for="price-max"><?=__('Price to')?></label>
+							<label class="" for="price-max"><?=_e('Price to')?></label>
 								<div class="control mr-30">
 									<input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
 								</div>
@@ -197,7 +197,7 @@
 					<div class="form-group col-xs-12 col-sm-4 text-center">
 						<label>&nbsp;</label>
 						<div>
-							<?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('search')))?>
+							<?= FORM::button('submit', _e('Search'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('search')))?>
 						</div>
 					</div>
 				</fieldset>
@@ -207,7 +207,7 @@
 	
 			<div class="no_results text-center">
 				<span class="nr_badge"><i class="glyphicon glyphicon-info-sign glyphicon"></i></span>
-				<p class="nr_info"><?=__('Your search did not match any advertisement.')?></p>
+				<p class="nr_info"><?=_e('Your search did not match any advertisement.')?></p>
 			</div>
 		</div>
 		
@@ -221,7 +221,7 @@
 	<?else:?>
 		<div class="col-md-9 col-sm-12 col-xs-12">
 			<div class="page-header">
-				<h3><?=__('Search')?></h3>
+				<h3><?=_e('Search')?></h3>
 			</div>	
 	
 			<div id="adv_search_form">
@@ -230,13 +230,13 @@
 			<?=Form::errors()?>
 				<fieldset>
 					<div class="form-group col-xs-12 ">
-						<?= FORM::label('advertisement', __('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
+						<?= FORM::label('advertisement', _e('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
 						<div class="control mr-30">
 							<input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
 						</div>
 					</div>
 					<div class="form-group col-xs-12 ">
-						<?= FORM::label('category', __('Category'), array('class'=>'', 'for'=>'category' ))?>
+						<?= FORM::label('category', _e('Category'), array('class'=>'', 'for'=>'category' ))?>
 						<div class="control mr-30">
 							<select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="category<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="category" class="form-control" data-placeholder="<?=__('Category')?>">
 							<?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -259,7 +259,7 @@
 					</div>
 					<?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
 						<div class="form-group col-xs-12">
-							<?= FORM::label('location', __('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
+							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
 							<div class="control mr-30">
 								<select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
 								<?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -284,13 +284,13 @@
             	
 					<?if(core::config('advertisement.price')):?>
 						<div class="form-group col-xs-6 col-sm-4">
-							<label class="" for="price-min"><?=__('Price from')?> </label> 
+							<label class="" for="price-min"><?=_e('Price from')?> </label> 
 							<div class="control mr-30"> 
 								<input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
 							</div>
 						</div>
 						<div class="form-group col-xs-6 col-sm-4">
-							<label class="" for="price-max"><?=__('Price to')?></label>
+							<label class="" for="price-max"><?=_e('Price to')?></label>
 							<div class="control mr-30">
 								<input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
 							</div>
@@ -299,7 +299,7 @@
 					<div class="form-group col-xs-12 col-sm-4 text-center">
 						<label>&nbsp;</label>
 						<div>
-							<?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('search')))?>
+							<?= FORM::button('submit', _e('Search'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('search')))?>
 						</div>
 					</div>
 				</fieldset>

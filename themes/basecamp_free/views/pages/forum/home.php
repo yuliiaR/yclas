@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="page-header">
-					<h3><?=__("Forums")?></h3>
+					<h3><?=_e("Forums")?></h3>
 				</div>
 
 				<form action="<?=Route::URL('forum-home')?>" method="get">
@@ -25,7 +25,7 @@
 					<?else:?>
 						<a class="btn btn-success" href="<?=Route::url('forum-new')?>" title="<?=__('New Topic')?>">
 					<?endif?>
-						<i class="fa fa-plus"></i> <?=__('New Topic')?></a>
+						<i class="fa fa-plus"></i> <?=_e('New Topic')?></a>
 				</div>
 
 				<br>
@@ -34,8 +34,8 @@
 					<thead>
 						<tr>
 							<th></th>
-							<th class="hidden-xs text-center"><?=__('Last Message')?></th>
-							<th class="hidden-xs text-center"><?=__('Topics')?></th>
+							<th class="hidden-xs text-center"><?=_e('Last Message')?></th>
+							<th class="hidden-xs text-center"><?=_e('Topics')?></th>
 						</tr>
 					</thead>
 					<tbody>

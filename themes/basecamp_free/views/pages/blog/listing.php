@@ -8,7 +8,7 @@
 						<button class="btn btn-base-dark btn-sm pull-right" type="button" data-toggle="collapse" data-target="#collapseBlogSearch" aria-expanded="false" aria-controls="collapseBlogSearch">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
-						<?=__('Blog')?>
+						<?=_e('Blog')?>
 					</h3>
 				</div>
 
@@ -18,7 +18,7 @@
 							<div class="input-group">
 								<input type="text" class="form-control" placeholder="<?=__('Search')?>..." value="<?=core::get('search')?>" name="search">
 								<span class="input-group-btn">
-									<button class="btn btn-default" type="submit"><?=__('Search')?></button>
+									<button class="btn btn-default" type="submit"><?=_e('Search')?></button>
 								</span>
 							</div>
 						</form>
@@ -44,7 +44,7 @@
 								<a class="btn btn-danger" href="<?=Route::url('oc-panel', array('controller'=>'blog','action'=>'delete','id'=>$post->id_post))?>" 
 								onclick="return confirm('<?=__('Delete?')?>');"><i class="fa fa-trash"></i></a>
 							<?endif?>
-							<a class="btn btn-base-dark" title="<?=HTML::chars($post->title)?>" href="<?=Route::url('blog', array('seotitle'=>$post->seotitle))?>"><?=__('Read more')?></a>
+							<a class="btn btn-base-dark" title="<?=HTML::chars($post->title)?>" href="<?=Route::url('blog', array('seotitle'=>$post->seotitle))?>"><?=_e('Read more')?></a>
 							</div>
 						</div>
 					<?endforeach?>
@@ -55,7 +55,7 @@
 					<!-- No Blogs Found -->
 					<div class="no_results text-center">
 						<span class="nr_badge"><i class="glyphicon glyphicon-info-sign glyphicon"></i></span>
-						<p class="nr_info"><?=__('We do not have any blog posts')?></p>
+						<p class="nr_info"><?=_e('We do not have any blog posts')?></p>
 					</div>
 				<?endif?>
 			</div>

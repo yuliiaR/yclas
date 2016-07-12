@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="<?=(Theme::get('sidebar_position')!='none')?'col-xs-9':'col-xs-12'?> <?=(Theme::get('sidebar_position')=='left')?'pull-right':'pull-left'?>">
 				<div class="page-header">
-					<h3><?=__('Register')?></h3>
+					<h3><?=_e('Register')?></h3>
 				</div>
 				<div class="auth-page reg">
 					<?=View::factory('pages/auth/register-form')?>

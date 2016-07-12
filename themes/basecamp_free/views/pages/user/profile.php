@@ -16,9 +16,9 @@
 								<p><?=$user->description?></p>
 								<p>
 									<ul class="list-unstyled">
-									<li><strong><?=__('Created')?>:</strong> <?= Date::format($user->created, core::config('general.date_format')) ?></li>
+									<li><strong><?=_e('Created')?>:</strong> <?= Date::format($user->created, core::config('general.date_format')) ?></li>
 									<?if ($user->last_login!=NULL):?>
-										<li><strong><?=__('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
+										<li><strong><?=_e('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
 									<?endif?>
 									</ul>
 								</p>	
@@ -29,17 +29,17 @@
 						<?if (core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in()) :?>
 							<a class="btn btn-base-dark" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
 								<i class="glyphicon glyphicon-envelope"></i>
-								<?=__('Send Message')?>
+								<?=_e('Send Message')?>
 							</a>
 						<?else :?>
-							<button class="btn btn-base-dark" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=__('Send Message')?></button>
+							<button class="btn btn-base-dark" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=_e('Send Message')?></button>
 						<?endif?>
 						<div id="contact-modal" class="modal fade">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
 										 <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
-										<h3><?=__('Contact')?></h3>
+										<h3><?=_e('Contact')?></h3>
 									</div>
 									<?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact', 'id'=>$user->id_user)), array('class'=>'clean_form', 'enctype'=>'multipart/form-data'))?>
 									<div class="modal-body">
@@ -47,27 +47,27 @@
 											<fieldset>
 												<?if (!Auth::instance()->get_user()):?>
 													<dl class="form-group">
-														<dt><?= FORM::label('name', __('Name'), array('class'=>'control-label', 'for'=>'name'))?></dt>
+														<dt><?= FORM::label('name', _e('Name'), array('class'=>'control-label', 'for'=>'name'))?></dt>
 														<dd><?= FORM::input('name', Core::request('name'), array('placeholder' => __('Name'), 'class' => 'form-control', 'id' => 'name', 'required'))?></dd>
 													</dl>
 													<dl class="form-group">
-													   <dt> <?= FORM::label('email', __('Email'), array('class'=>'control-label', 'for'=>'email'))?></dt>
+													   <dt> <?= FORM::label('email', _e('Email'), array('class'=>'control-label', 'for'=>'email'))?></dt>
 														<dd><?= FORM::input('email', Core::request('email'), array('placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'email', 'type'=>'email','required'))?></dd>
 													</dl>
 												<?endif?>
 												<?if(core::config('general.messaging') != TRUE):?>
 													<dl class="form-group">
-														<dt><?= FORM::label('subject', __('Subject'), array('class'=>'control-label', 'for'=>'subject'))?></dt>
+														<dt><?= FORM::label('subject', _e('Subject'), array('class'=>'control-label', 'for'=>'subject'))?></dt>
 														<dd><?= FORM::input('subject', Core::request('subject'), array('placeholder' => __('Subject'), 'class' => 'form-control', 'id' => 'subject'))?></dd>
 													</dl>
 												<?endif?>
 												<dl class="form-group">
-													<dt><?= FORM::label('message', __('Message'), array('class'=>'control-label', 'for'=>'message'))?></dt>
+													<dt><?= FORM::label('message', _e('Message'), array('class'=>'control-label', 'for'=>'message'))?></dt>
 													<dd><?= FORM::textarea('message', Core::post('subject'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>4, 'required'))?></dd>
 												</dl>
 												<?if (core::config('advertisement.captcha') != FALSE):?>
 													<dl class="capt form-group clearfix">
-													  <?= FORM::label('captcha', __('Captcha'), array('class'=>'hidden', 'for'=>'captcha'))?>
+													  <?= FORM::label('captcha', _e('Captcha'), array('class'=>'hidden', 'for'=>'captcha'))?>
 														
 															<?if (Core::config('general.recaptcha_active')):?>
 															  <?=Captcha::recaptcha_display()?>
@@ -81,7 +81,7 @@
 											</fieldset>
 									</div>
 									<div class="modal-footer text-center">	
-										<?= FORM::button('submit', __('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
+										<?= FORM::button('submit', _e('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
 									</div>
 									<?= FORM::close()?>
 								</div> 
@@ -95,7 +95,7 @@
 				<?if($profile_ads!==NULL):?>
 					<div class="pad_10">
 						<div class="page-header">
-							<h3><?=$user->name.' '.__(' advertisements')?></h3>
+							<h3><?=$user->name.' '._e(' advertisements')?></h3>
 						</div>
 						<?if (Theme::get('switch_rview')==1) : ?>
 							<div class="clearfix">
@@ -129,7 +129,7 @@
 												<?if ($ads->price!=0):?>
 													<span class="gallery_only ad_gprice"><?=i18n::money_format( $ads->price)?></span>
 												<?elseif (($ads->price==0 OR $ads->price == NULL) AND core::config('advertisement.free')==1):?>
-													<span class="gallery_only ad_gprice"><?=__('Free');?></span>
+													<span class="gallery_only ad_gprice"><?=_e('Free');?></span>
 												<?else:?>	
 													<span class="gallery_only ad_gprice">Check Listing</span>
 												<?endif?>
@@ -165,9 +165,9 @@
 																		<br />
 																		<ul class="ad_controls_list">
 																			<li><a class="btn btn-success" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ads->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a></li>
-																			<li><a class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ads->id_ad))?>" onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i> <?=__("Deactivate");?></a></li>
-																			<li><a class="btn btn-danger" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ads->id_ad))?>" onclick="return confirm('<?=__('Spam?')?>');"><i class="glyphicon glyphicon-fire"></i> <?=__("Spam");?></a></li>
-																			<li><a class="btn btn-danger" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ads->id_ad))?>" onclick="return confirm('<?=__('Delete?')?>');"><i class="glyphicon glyphicon-remove"></i> <?=__("Delete");?></a></li>
+																			<li><a class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ads->id_ad))?>" onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i> <?=_e("Deactivate");?></a></li>
+																			<li><a class="btn btn-danger" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ads->id_ad))?>" onclick="return confirm('<?=__('Spam?')?>');"><i class="glyphicon glyphicon-fire"></i> <?=_e("Spam");?></a></li>
+																			<li><a class="btn btn-danger" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ads->id_ad))?>" onclick="return confirm('<?=__('Delete?')?>');"><i class="glyphicon glyphicon-remove"></i> <?=_e("Delete");?></a></li>
 																		</ul>
 																	</div>
 																</div>
@@ -176,20 +176,20 @@
 													<?elseif($visitor != FALSE && $visitor->id_user == $ads->id_user):?>
 														<br>
 														<span class="ad_options">
-															<a class="btn btn-success" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ads->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a> 
+															<a class="btn btn-success" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ads->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=_e("Edit");?></a> 
 														</span>
 													<?endif?>
 
 													<?if ($ads->price!=0):?>
 														<span class="ad_price"> 
 															<a class="add-transition" title="<?=HTML::chars($ads->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>">
-																<?=__('Price');?>: <b><?=i18n::money_format( $ads->price)?></b>
+																<?=_e('Price');?>: <b><?=i18n::money_format( $ads->price)?></b>
 															</a>							 
 														</span>
 													<?elseif (($ads->price==0 OR $ads->price == NULL) AND core::config('advertisement.free')==1):?>
 														<span class="ad_price"> 
 														<a class="add-transition" title="<?=HTML::chars($ads->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>">
-															<b><?=__('Free');?></b>
+															<b><?=_e('Free');?></b>
 														</a>	
 														</span>	
 													<?else:?>  

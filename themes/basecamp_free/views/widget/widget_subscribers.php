@@ -12,7 +12,7 @@
         <?if($widget->cat_items !== NULL):?>
             <div class="form-group">
                 <div class="col-xs-12">
-                    <?= FORM::label('category_subscribe', __('Categories'), array('class'=>'', 'for'=>'category_subscribe'))?>
+                    <?= FORM::label('category_subscribe', _e('Categories'), array('class'=>'', 'for'=>'category_subscribe'))?>
                     <select data-placeholder="<?=__('Categories')?>" name="category_subscribe[]" id="category_subscribe" class="form-control" multiple required>
                         <option></option>
                         <?if (! function_exists('lili_subscribe')):?>
@@ -42,7 +42,7 @@
             <?if(count($widget->loc_items) > 1 AND core::config('advertisement.location') != FALSE):?>
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <?= FORM::label('location_subscribe', __('Location'), array('class'=>'', 'for'=>'location_subscribe' ))?>
+                        <?= FORM::label('location_subscribe', _e('Location'), array('class'=>'', 'for'=>'location_subscribe' ))?>
                         <select data-placeholder="<?=__('Location')?>" name="location_subscribe[]" id="location_subscribe" class="form-control" required>
                         <option></option>
                         <?if (! function_exists('lolo_subscribe')):?>
@@ -70,7 +70,7 @@
         <?if($widget->user_email == NULL):?>
             <div class="form-group">
                 <div class="col-xs-12">
-                    <?= FORM::label('email_subscribe', __('Email'), array('class'=>'', 'for'=>'email_subscribe'))?>
+                    <?= FORM::label('email_subscribe', _e('Email'), array('class'=>'', 'for'=>'email_subscribe'))?>
                     <?= FORM::input('email_subscribe', Request::current()->post('email_subscribe'), array('class'=>'form-control', 'id'=>'email_subscribe', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
                 </div>
             </div>
@@ -86,7 +86,7 @@
             <!-- slider -->
             <div class="form-group">
                 <div class="col-xs-12">
-                    <?= FORM::label('price_subscribe', __('Price'), array('class'=>'', 'for'=>'price_subscribe'))?>
+                    <?= FORM::label('price_subscribe', _e('Price'), array('class'=>'', 'for'=>'price_subscribe'))?>
                     <input type="text" class="slider_subscribe" value="<?=$widget->min_price?>,<?=$widget->max_price?>" 
                             data-slider-min='<?=$widget->min_price?>' data-slider-max="<?=$widget->max_price?>" 
                             data-slider-step="50" data-slider-value='[<?=$widget->min_price?>,<?=$widget->max_price?>]' 
@@ -98,12 +98,12 @@
         <?endif?>
         
         <div class="text-center">
-            <?= FORM::button('submit', __('Subscribe'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id))))?>
+            <?= FORM::button('submit', _e('Subscribe'), array('type'=>'submit', 'class'=>'btn btn-base-dark', 'action'=>Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id))))?>
         </div>
         
         <?if($widget->subscriber):?>
 			<p class="text-right">
-            <a href="<?=Route::url('default', array('controller'=>'subscribe', 'action'=>'unsubscribe', 'id'=>$widget->user_id))?>"><?=__('Unsubscribe')?></a>
+            <a href="<?=Route::url('default', array('controller'=>'subscribe', 'action'=>'unsubscribe', 'id'=>$widget->user_id))?>"><?=_e('Unsubscribe')?></a>
 			</p>
 		<?endif?>
         

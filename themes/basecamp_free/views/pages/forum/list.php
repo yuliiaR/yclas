@@ -30,7 +30,7 @@
 					<?else:?>
 						<a class="btn btn-success" href="<?=Route::url('forum-new')?>?id_forum=<?=$forum->id_forum?>" title="<?=__('New Topic')?>">
 					<?endif?>
-						<i class="fa fa-plus"></i> <?=__('New Topic')?></a>
+						<i class="fa fa-plus"></i> <?=_e('New Topic')?></a>
 				</div>
 				
 				<div class="clearfix"></div>
@@ -39,16 +39,16 @@
 
 				<div class="topic-row header">
 					<div class="topic-title">
-						<span><?=__('Topic')?></span>
+						<span><?=_e('Topic')?></span>
 					</div>
 					<div class="topic-date">
-						<span><?=__('Created')?></span>
+						<span><?=_e('Created')?></span>
 					</div>
 					<div class="topic-date">
-						<span><?=__('Last Message')?></span>
+						<span><?=_e('Last Message')?></span>
 					</div>
 					<div class="topic-replies">
-						<span><?=__('Replies')?></span>
+						<span><?=_e('Replies')?></span>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -86,7 +86,7 @@
 				<?elseif (count($topics) == 0):?>
 					<div class="no_results text-center">
 						<span class="nr_badge"><i class="glyphicon glyphicon-info-sign glyphicon"></i></span>
-						<p class="nr_info"><?=__('There are no topics in this section..')?></p>
+						<p class="nr_info"><?=_e('There are no topics in this section..')?></p>
 					</div>
 				<?endif?>
 
