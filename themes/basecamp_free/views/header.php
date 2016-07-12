@@ -155,7 +155,7 @@
 					<a class="close" data-dismiss="modal" >&times;</a>
 					<h3><?=_e('Register')?></h3>
 				</div>
-					<?=View::factory('pages/auth/register-form')?>
+					<?=View::factory('pages/auth/register-form', ['recaptcha_placeholder' => 'recaptcha4'])?>
 			</div>
 		</div>
 	</div>

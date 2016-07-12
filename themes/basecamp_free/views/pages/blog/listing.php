@@ -60,10 +60,7 @@
 				<?endif?>
 			</div>
 
-			<?if(Theme::get('sidebar_position')!='none'):?>
-	            <?=(Theme::get('sidebar_position')=='left')?View::fragment('sidebar_front','sidebar'):''?>
-	            <?=(Theme::get('sidebar_position')=='right')?View::fragment('sidebar_front','sidebar'):''?>
-	        <?endif?>
+			<?=View::fragment('sidebar_front','sidebar')?>
 	    </div>
 	</div>
 </div>
