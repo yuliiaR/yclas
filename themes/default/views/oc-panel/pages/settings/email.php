@@ -45,6 +45,18 @@
                                 <?=__("Email from where we send the emails, also used for software communications.")?>
                             </span>
                         </div>
+
+                        <div class="form-group">
+                            <?=FORM::label($forms['notify_name']['key'], __('Notify name'), array('class'=>'control-label', 'for'=>$forms['notify_name']['key']))?>
+                            <?=FORM::input($forms['notify_name']['key'], $forms['notify_name']['value'], array(
+                                'placeholder' => "no-reply ".core::config('general.site_name'), 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['notify_name']['key'], 
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Name from where we send the emails, also used for software communications.")?>
+                            </span>
+                        </div>
                     
                         <div class="form-group">
                             <?= FORM::label($forms['new_ad_notify']['key'], __("Notify me on new ad"), array('class'=>'control-label', 'for'=>$forms['new_ad_notify']['key']))?>
