@@ -13,7 +13,8 @@ return array(   'theme' => array(	       'type'      => 'text',
                                                                     'orange'    => 'Orange',
                                                                 ),
                                             'default'   => 'default',
-                                            'required'  => TRUE
+                                            'required'  => TRUE,
+                                            'category'  => __('Color'),
                                             ),
 
                 /*'admin_theme' => array(     'type'      => 'text',
@@ -35,7 +36,8 @@ return array(   'theme' => array(	       'type'      => 'text',
                                                                     '0'  => __('No'),
                                                                 ), 
                                             'default'   => '0',
-                                            'required'  => TRUE),
+                                            'required'  => TRUE,
+                                            'category'  => __('Layout')),
 
                 'hide_description_icon' => array(   'type'      => 'text',
                                                     'display'   => 'select',
@@ -44,6 +46,7 @@ return array(   'theme' => array(	       'type'      => 'text',
                                                                             '0' => __('No'),
                                                                             ), 
                                                     'default'   => '0',
-                                                    'required'  => TRUE),
+                                                    'required'  => TRUE,
+                                                    'category'  => __('Listing')),
 
 );

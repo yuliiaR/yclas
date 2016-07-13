@@ -14,17 +14,10 @@ return array(   'theme' => array(	       'type'      => 'text',
 																	'plumb'   => 'Plumb',
                                                                 ),
                                             'default'   => 'default',
-                                            'required'  => TRUE
+                                            'required'  => TRUE,
+                                            'category'  => __('Color')
                                             ),
-                'maintitle_banner' => array(   'type'      => 'text',
-                                            'display'   => 'text',
-                                            'label'     => __('Text of the title in the main banner in home')),
 
-                'maintitle_lowerbanner' => array(   'type'      => 'text',
-                                            'display'   => 'text',
-                                            'label'     => __('Text of the title in the lower banner in home')),
-                 											
-											
                 'category_badge' => array(  'type'      => 'text',
                                             'display'   => 'select',
                                             'label'     => __('Disable category counter badge'),
@@ -32,8 +25,19 @@ return array(   'theme' => array(	       'type'      => 'text',
                                                                     '0'  => __('No'),
                                                                 ), 
                                             'default'   => '0',
-                                            'required'  => TRUE),
+                                            'required'  => TRUE,
+                                            'category'  => __('Layout')),
 
+                'maintitle_banner' => array(   'type'      => 'text',
+                                            'display'   => 'text',
+                                            'label'     => __('Text of the title in the main banner in home'),
+                                            'category'  => __('Homepage')),
+
+                'maintitle_lowerbanner' => array(   'type'      => 'text',
+                                            'display'   => 'text',
+                                            'label'     => __('Text of the title in the lower banner in home'),
+                                            'category'  => __('Homepage')),
+                                                            
                 'hide_description_icon' => array(   'type'      => 'text',
                                                     'display'   => 'select',
                                                     'label'     => __('Hide icon on category/location description'),
@@ -41,5 +45,6 @@ return array(   'theme' => array(	       'type'      => 'text',
                                                                             '0' => __('No'),
                                                                             ), 
                                                     'default'   => '0',
-                                                    'required'  => TRUE),
+                                                    'required'  => TRUE,
+                                                    'category'  => __('Listing')),
 );
