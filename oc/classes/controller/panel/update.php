@@ -10,6 +10,35 @@
  */
 class Controller_Panel_Update extends Controller_Panel_OC_Update {    
 
+
+    /**
+     * This function will upgrade DB that didn't existed in versions prior to 2.8.1
+     */
+    public function action_281()
+    {
+
+        //new configs
+        $configs = array(
+                        
+                        array( 'config_key'     => 'robokassa_login',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'robokassa_pass1',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'robokassa_pass2',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'robokassa_testing',
+                               'group_name'     => 'payment', 
+                               'config_value'   => '0'),
+
+                        );
+        
+        Model_Config::config_array($configs);
+    }
+
+
     /**
      * This function will upgrade DB that didn't existed in versions prior to 2.8.1
      */

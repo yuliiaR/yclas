@@ -83,6 +83,9 @@
                             <a data-toggle="tab" href="#tabSettingsPaymentSecurepay" aria-expanded="false">Securepay</a>
                         </li>
                         <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentRobokassa" aria-expanded="false">Robokassa</a>
+                        </li>
+                        <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPreventFraud" aria-expanded="false"><?=__('Prevent Fraud')?></a>
                         </li>
                     </ul>
@@ -636,6 +639,81 @@
                     <hr>
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
+
+                <div id="tabSettingsPaymentRobokassa" class="tab-pane fade">
+                    <h4>Robokassa</h4>
+                    <hr>
+                    
+                    <div class="form-group">
+                        <p class="form-control-static">
+                            Accept payments with Robokassa, specialized in Russia market
+                        </p>
+                        <p class="form-control-static">
+                            <a class="btn btn-success" target="_blank" href="http://robokassa.ru/">
+                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Robokassa
+                            </a>
+                        </p>
+                    </div>
+                        
+                    <div class="form-group">
+                        <?=FORM::label($forms['robokassa_login']['key'], 'Shop identifier', array('class'=>'control-label', 'for'=>$forms['robokassa_login']['key']))?>
+                        <?=FORM::input($forms['robokassa_login']['key'], $forms['robokassa_login']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['robokassa_login']['key']
+                        ))?>
+                        <span class="help-block">
+                            Shop identifier
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['robokassa_pass1']['key'], __('Password').' 1', array('class'=>'control-label', 'for'=>$forms['robokassa_pass1']['key']))?>
+                        <?=FORM::input($forms['robokassa_pass1']['key'], $forms['robokassa_pass1']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['robokassa_pass1']['key']
+                        ))?>
+                        <span class="help-block">
+                            <?=__("Password")?> 1
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['robokassa_pass2']['key'], __('Password').' 2', array('class'=>'control-label', 'for'=>$forms['robokassa_pass2']['key']))?>
+                        <?=FORM::input($forms['robokassa_pass2']['key'], $forms['robokassa_pass2']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['robokassa_pass2']['key']
+                        ))?>
+                        <span class="help-block">
+                            <?=__("Password")?> 2
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['robokassa_testing']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['robokassa_testing']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['robokassa_testing']['key'], 1, (bool) $forms['robokassa_testing']['value'], array('id' => $forms['robokassa_testing']['key'].'1'))?>
+                            <?=Form::label($forms['robokassa_testing']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['robokassa_testing']['key'], 0, ! (bool) $forms['robokassa_testing']['value'], array('id' => $forms['robokassa_testing']['key'].'0'))?>
+                            <?=Form::label($forms['robokassa_testing']['key'].'0', __('Disabled'))?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label('', __('Integration URIs'), array('class'=>'control-label'))?>
+                        <span class="help-block">
+                            Result URL <pre><?=Route::url('default',array('controller'=>'robokassa', 'action'=>'result','id'=>'1'))?></pre>
+                            Success URL <pre><?=Route::url('default',array('controller'=>'robokassa', 'action'=>'success','id'=>'1'))?></pre>
+                            Fail URL <pre><?=Route::url('default',array('controller'=>'robokassa', 'action'=>'fail','id'=>'1'))?></pre>
+                        </span>
+                    </div>
+                    
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
+                </div>
+
 
                         <div id="tabSettingsPaymentPreventFraud" class="tab-pane fade">                           
                     <h4>Prevent Fraud</h4>
