@@ -155,6 +155,9 @@
                         <?if(($securepay = securepay::button($order)) != ''):?>
                             <li class="text-right"><?=$securepay?></li>
                         <?endif?>
+                        <?if(($robokassa = robokassa::button($order)) != ''):?>
+                            <li class="text-right"><?=$robokassa?></li>
+                        <?endif?>
                         <?if( ($alt = $order->alternative_pay_button()) != ''):?>
                             <li class="text-right"><?=$alt?></li>
                         <?endif?>
