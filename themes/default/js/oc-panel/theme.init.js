@@ -1,6 +1,6 @@
 function init_panel()
 {
-    if ($("textarea[name=description]").data('editor')=='html')
+    if ($("textarea[name=description], textarea[name='formorm[description]']").data('editor')=='html')
     {
         $("#formorm_description, textarea[name=description], textarea[name=email_purchase_notes], .cf_textarea_fields").summernote({
             height: "450",
