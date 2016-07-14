@@ -52,8 +52,8 @@
 						</div>
 					
 						<div class="sort_opts btn-group ">
-							<a class="btn btn-sm btn-base-dark" id="gview_switch" href="#"><span class="glyphicon glyphicon-th-large"></span></a>
-							<a class="btn btn-sm btn-base-dark" id="lview_switch" href="#"><span class="glyphicon glyphicon-th-list"></span></a>	
+							<a class="btn btn-sm btn-base-dark <?=(core::cookie('list/grid')==0)?'active':''?>" id="grid" href="#"><span class="glyphicon glyphicon-th-large"></span></a>
+							<a class="btn btn-sm btn-base-dark <?=(core::cookie('list/grid')==1)?'active':''?>" id="list" href="#"><span class="glyphicon glyphicon-th-list"></span></a>	
 						<button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-sm btn-base-dark dropdown-toggle" data-toggle="dropdown">
 							<span class="glyphicon glyphicon-sort-by-attributes-alt"></span> <?=_e('Sort')?> <span class="caret"></span>
 						</button>
@@ -96,11 +96,12 @@
 				<div class="ad_listings">
 					<ul class="ad_list list clearfix">
 						<?$ci=0; foreach($ads as $ad ):?>
+						<?if($ci%3==0 OR $ci==0):?><div class="row"><?endif?>
 						<?if($ad->featured >= Date::unix2mysql(time())):?>
-						<li class="ad_listitem clearfix featured_ad">
+						<li class="<?=(core::cookie('list/grid')==0)?'col-lg-4 col-md-4 col-sm-4 col-xs-10 ad_griditem':'ad_listitem'?> clearfix featured_ad">
 							<span class="feat_marker"><i class="glyphicon glyphicon-bookmark"></i></span>
 						<?else:?>
-						<li class="ad_listitem clearfix">
+						<li class="<?=(core::cookie('list/grid')==0)?'col-lg-4 col-md-4 col-sm-4 col-xs-10 ad_griditem':'ad_listitem'?> clearfix">
 						<?endif?>
 							<div class="ad_inner">
 								<div class="ad_photo">
@@ -140,75 +141,76 @@
 										</p>
 						
 										<?if(core::config('advertisement.description')!=FALSE):?>
-											<p class="ad_desc"><?=Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE);?></p>
+											<p class="ad_desc"><?=(core::cookie('list/grid')==1)?Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE):substr(Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE),0,50)?></p>
 										<?endif?>
 				
-										<div class="ad_buttons">
-											<?if ($user !== NULL AND ($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_role == Model_Role::ROLE_MODERATOR )):?>
-												<span class="ad_options">
-													<a class="btn btn-warning" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))?>#adcontrol<?=$ad->id_ad?>-modal"><i class="glyphicon glyphicon-cog"></i></a>
-												</span>
-
-												<div id="adcontrol<?=$ad->id_ad?>-modal" class="modal fade">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-body">
-																<a class="close" data-dismiss="modal" >Cancel</a>
-																<br />
-																<ul class="ad_controls_list">
-																	<li><a class="btn btn-success" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a></li>
-																	<li><a class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i> <?=_e("Deactivate");?></a></li>
-																	<li><a class="btn btn-danger" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" onclick="return confirm('<?=__('Spam?')?>');"><i class="glyphicon glyphicon-fire"></i> <?=_e("Spam");?></a></li>
-																	<li><a class="btn btn-danger" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" onclick="return confirm('<?=__('Delete?')?>');"><i class="glyphicon glyphicon-remove"></i> <?=_e("Delete");?></a></li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</div>
-											<?elseif($user !== NULL && $user->id_user == $ad->id_user):?>
-												<span class="ad_options">
-													<a class="btn btn-warning" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))?>#adcontrol<?=$ad->id_ad?>-modal"><i class="glyphicon glyphicon-cog"></i></a>
-												</span>
-									
-												<div id="adcontrol<?=$ad->id_ad?>-modal" class="modal fade">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-body">
-																<a class="close" data-dismiss="modal" >Cancel</a>
-																<br />
-																<ul class="ad_controls_list">
-																	<li><a class="btn btn-success" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a></li>
-																	<li><a class="btn btn-warning"  href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>" onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i> <?=_e("Deactivate");?></a></li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</div>
-											<?endif?>
-								
-											<?if ($ad->price!=0):?>
-												<span class="ad_price"> 
-													<a class="add-transition" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-													<?=_e('Price');?>: <b><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></b>
-													</a>							 
-												</span>
-											<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
-												<span class="ad_price"> 
-												<a class="add-transition" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
-													<b><?=_e('Free');?></b>
-												</a>	
-												</span>
-											<?else:?>
-												<span class="ad_price na">
-													<a class="add-transition" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">Check Listing</a>
-												</span>
-											<?endif?>
-										</div>
 									</div>
+								</div>
+								<div class="ad_buttons">
+									<?if ($user !== NULL AND ($user->id_role == Model_Role::ROLE_ADMIN OR $user->id_role == Model_Role::ROLE_MODERATOR )):?>
+										<span class="ad_options">
+											<a class="btn btn-warning" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))?>#adcontrol<?=$ad->id_ad?>-modal"><i class="glyphicon glyphicon-cog"></i></a>
+										</span>
+
+										<div id="adcontrol<?=$ad->id_ad?>-modal" class="modal fade">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-body">
+														<a class="close" data-dismiss="modal" >Cancel</a>
+														<br />
+														<ul class="ad_controls_list">
+															<li><a class="btn btn-success" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a></li>
+															<li><a class="btn btn-warning" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i> <?=_e("Deactivate");?></a></li>
+															<li><a class="btn btn-danger" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" onclick="return confirm('<?=__('Spam?')?>');"><i class="glyphicon glyphicon-fire"></i> <?=_e("Spam");?></a></li>
+															<li><a class="btn btn-danger" href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" onclick="return confirm('<?=__('Delete?')?>');"><i class="glyphicon glyphicon-remove"></i> <?=_e("Delete");?></a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									<?elseif($user !== NULL && $user->id_user == $ad->id_user):?>
+										<span class="ad_options">
+											<a class="btn btn-warning" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))?>#adcontrol<?=$ad->id_ad?>-modal"><i class="glyphicon glyphicon-cog"></i></a>
+										</span>
+							
+										<div id="adcontrol<?=$ad->id_ad?>-modal" class="modal fade">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-body">
+														<a class="close" data-dismiss="modal" >Cancel</a>
+														<br />
+														<ul class="ad_controls_list">
+															<li><a class="btn btn-success" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=__("Edit");?></a></li>
+															<li><a class="btn btn-warning"  href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>" onclick="return confirm('<?=__('Deactivate?')?>');"><i class="glyphicon glyphicon-off"></i> <?=_e("Deactivate");?></a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									<?endif?>
+						
+									<?if ($ad->price!=0):?>
+										<span class="ad_price"> 
+											<a class="add-transition" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+											<?=_e('Price');?>: <b><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></b>
+											</a>							 
+										</span>
+									<?elseif (($ad->price==0 OR $ad->price == NULL) AND core::config('advertisement.free')==1):?>
+										<span class="ad_price"> 
+										<a class="add-transition" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+											<b><?=_e('Free');?></b>
+										</a>	
+										</span>
+									<?else:?>
+										<span class="ad_price na">
+											<a class="add-transition" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">Check Listing</a>
+										</span>
+									<?endif?>
 								</div>
 							</div>
 						</li>
-						<? $ci++; if ($ci%4 == 0) echo '<div class="clear"></div>';?>
+						<?$ci++;?>
+						<?if($ci%3==0):?></div><div class="clearfix">&nbsp;</div><?endif?>
 						<?endforeach?>
 					</ul>
 				</div>
