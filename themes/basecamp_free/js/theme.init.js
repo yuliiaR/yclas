@@ -38,6 +38,30 @@ $("button[name=submit]").click(function(){
         $('#accept_terms_modal').modal('show');
     });
 
+    //list / grit swap
+    $('#list').click(function(event){
+        setCookie('list/grid',1,10);
+    });
+
+    $('#grid').click(function(event){
+        setCookie('list/grid',0,10);
+    });
+
+    if(getCookie('list/grid') == 1)
+        $("#list").trigger("click");
+    else if(getCookie('list/grid') == 0)
+        $("#grid").trigger("click");
+    else if(getCookie('list/grid') == 2)
+        $("#minimal").trigger("click");
+    else if(getCookie('list/grid') == null){
+        if($('#listgrid').data('default') == 1)
+            $("#list").trigger("click");
+        else if($('#listgrid').data('default') == 0)
+            $("#grid").trigger("click"); 
+        else if($('#listgrid').data('default') == 2)
+            $("#minimal").trigger("click"); 
+    }
+
 });
 
 $(function(){
