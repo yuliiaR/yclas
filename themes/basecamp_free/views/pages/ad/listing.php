@@ -108,9 +108,9 @@
 									<div class="ad_photo_inner">
 										<a title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
 											<?if($ad->get_first_image() !== NULL):?>
-												<img src="<?=$ad->get_first_image()?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
+												<?=HTML::picture($ad->get_first_image(), ['w' => 180, 'h' => 180], ['320px' => ['w' => '180', 'h' => '180']], ['class' => 'img-responsive'], ['alt' => HTML::chars($ad->title)])?>
 											<?else:?>
-												<img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>"> 
+												<img data-src="holder.js/180x180?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>"> 
 											<?endif?>
 											<span class="gallery_only fm"><i class="glyphicon glyphicon-bookmark"></i></span>
 											<?if ($ad->price!=0):?>
