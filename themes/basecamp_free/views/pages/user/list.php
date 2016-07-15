@@ -46,9 +46,9 @@
 								<div class="ub-inner">
 									<div class="thumbnail">
 										<div class="thumb-img">
-											 <span class="badge badge-success"><?=$user->ads_count?> <?=_e('Ads')?></span>
+											<span class="badge badge-success"><?=$user->ads_count?> <?=_e('Ads')?></span>
 											<a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>">
-												<img class="img-responsive" style="width: 100%;" src="<?=$user->get_profile_image()?>" alt="<?=__('Profile Picture')?>">
+												<?=HTML::picture($user->get_profile_image(), ['w' => 200, 'h' => 200], ['1200px' => ['w' => '200', 'h' => '200'], '992px' => ['w' => '210', 'h' => '210'], '768px' => ['w' => '283', 'h' => '283'], '480px' => ['w' => '324', 'h' => '324'], '320px' => ['w' => '274', 'h' => '274']], ['class' => 'img-responsive'], ['alt' => __('Profile Picture')])?>
 											</a>
 											<p class="u-name">
 												<?=$user->name?>
