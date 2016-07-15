@@ -116,6 +116,13 @@ $I->see('Item updated. Please to see the changes delete the cache');
 $I->amOnPage('/');
 $I->seeElement('#sidebar');
 
+// See on basecamp theme
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','basecamp');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/all');
+$I->seeElement('.Widget_Search');
 
 // Back to default theme
 $I->amOnPage('/oc-panel/Config/update/theme');
