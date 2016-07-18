@@ -211,10 +211,7 @@
         <div class="clearfix"></div><br>
     <?endif?>
     <?=$ad->qr()?>
-    <?if (core::config('advertisement.map')==1 AND $ad->latitude AND $ad->longitude):?>
-        <p><img class="img-responsive" src="//maps.googleapis.com/maps/api/staticmap?zoom=<?=Core::config('advertisement.map_zoom')?>&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=<?=($ad->category->get_icon() AND Kohana::$environment !== Kohana::DEVELOPMENT) ? 'icon:'.Core::imagefly($ad->category->get_icon(),50,50).'%7C' : NULL?>size:large%7Ccolor:red%7Clabel:·%7C<?=$ad->latitude?>,<?=$ad->longitude?>" alt="<?=HTML::chars($ad->title)?> <?=_e('Map')?>" style="width:100%;"></p>
-        <p><a class="btn btn-default btn-sm" href="<?=Route::url('map')?>?id_ad=<?=$ad->id_ad?>"><span class="glyphicon glyphicon-globe"></span> <?=_e('Map View')?></a></p>
-    <?endif?>
+    <?=$ad->map()?>
     <?=$ad->related()?>
     <?=$ad->comments()?>
     <?=$ad->flagad()?>
