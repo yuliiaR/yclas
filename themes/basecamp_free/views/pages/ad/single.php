@@ -58,13 +58,13 @@
 												<? if ($i==1) :?>
 													<div class="mainThumb">
 														<a href="<?=$value['image']?>" class="thumbnail gallery-item first" data-gallery>
-															<img src="<?=$value['thumb']?>" class="img-rounded" alt="<?=HTML::chars($ad->title)?>">
+															<?=HTML::picture($value['thumb'], ['w' => 200, 'h' => 200], ['992px' => ['w' => '200', 'h' => '200'], '320px' => ['w' => '200', 'h' => '200']], ['class' => 'img-rounded'], ['alt' => HTML::chars($ad->title)])?>
 														</a>
 													</div>
 												<?else:?>
 													<div class="ad_thumb_block">
 														<a href="<?=$value['image']?>" class="thumbnail gallery-item" data-gallery>
-															<img src="<?=$value['thumb']?>" class="img-rounded" alt="<?=HTML::chars($ad->title)?>">
+															<?=HTML::picture($value['thumb'], ['w' => 200, 'h' => 200], ['992px' => ['w' => '200', 'h' => '200'], '320px' => ['w' => '200', 'h' => '200']], ['alt' => HTML::chars($ad->title)])?>
 														</a>
 													</div>
 												<?endif?>

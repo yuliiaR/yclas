@@ -22,6 +22,18 @@ body.has_fixed_head {
 	min-width:1206px !important;
 }
 
+.logo {
+    padding: 10px 0px;
+    margin: 0px;
+    height: 60px;
+}
+.logo h1 {
+    color: #333;
+    font-size: 20px;
+    margin: 10px 0px;
+    font-weight: 700;
+}
+
 .navbar-collapse.collapse {
   display: block!important;
   border:none;
@@ -786,10 +798,11 @@ label {
 	width: 100%;
 }
 .ad_listings ul.ad_list.list li.ad_listitem .ad_inner {
-	padding: 10px 0px;
+	padding: 10px 10px;
 	border: 2px solid #EAEAEA;
 	margin: 5px 0px;
 	overflow: hidden;
+	width:100%;
 }
 .ad_listings ul.ad_list.list li .ad_photo {
 	width: 30%;
@@ -873,6 +886,28 @@ label {
 }
 .ad_listings ul.ad_list.list .gallery_only {
 	display: none;
+}
+
+/* Grid View */
+
+.ad_inner{
+	float:left;
+	max-height: 270px;
+}
+
+li.ad_griditem .ad_inner {
+	padding: 10px 10px;
+	border: 2px solid #EAEAEA;
+	margin: 5px 0px;
+	overflow: hidden;
+}
+.ad_listings ul.ad_list.list li.ad_griditem .ad_photo {
+	width: 50%;
+	float: left;
+}
+.ad_listings ul.ad_list.list li.ad_griditem .ad_details {
+	width: 50%;
+	float: left;
 }
 
 /* General -  Gallery View */
@@ -1094,6 +1129,7 @@ p.seller_user_ul {
 .ad_images .mainThumb {
 	border-bottom: 1px solid #eee;
 	margin-bottom: 5px;
+	text-align: center;
 }
 .ad_images .ad_thumb_block {
 	width: 33.33333333%;

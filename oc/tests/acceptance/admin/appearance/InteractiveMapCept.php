@@ -20,8 +20,6 @@ $I->fillField('cd','150');
 $I->fillField('c','150');
 $I->click("//input[@value='Add']");
 $I->click('submit');
-
-
 //$I->see('Map saved.'); // Map is saved, not sure why this is not visibly on test :S not an issue!
 
 // Check if interactive map appears in all premium themes.
@@ -45,8 +43,6 @@ $I->amOnPage('/');
 //$I->see('Map', 'h2'); div for map is displayed, without title or something unique so it can check for it
 
 
-
-
 $I->wantTo('activate Newspaper theme');
 $I->amOnPage('/oc-panel/Config/update/theme');
 $I->fillField('#formorm_config_value','newspaper');
@@ -55,9 +51,6 @@ $I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/');
 $I->see('Map', 'h2');
-
-
-
 
 
 $I->wantTo('activate Czsale theme');
@@ -70,9 +63,6 @@ $I->amOnPage('/');
 $I->see('Map', 'h4');
 
 
-
-
-
 $I->wantTo('activate Ocean Premium theme');
 $I->amOnPage('/oc-panel/Config/update/theme');
 $I->fillField('#formorm_config_value','ocean');
@@ -81,8 +71,6 @@ $I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/');
 //$I->see('Map', 'h2'); div for map is displayed, without title or something unique so it can check for it
-
-
 
 
 $I->wantTo('activate moderndeluxe3 theme');
@@ -95,8 +83,6 @@ $I->amOnPage('/');
 //$I->seeElement('div', ['id' => 'visualization']); // map is not displayed on test but it's displayed if I enable and cofigure it from panel
 
 
-
-
 $I->wantTo('activate Olson theme');
 $I->amOnPage('/oc-panel/Config/update/theme');
 $I->fillField('#formorm_config_value','olson');
@@ -105,8 +91,6 @@ $I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/');
 $I->see('Map', 'h4');
-
-
 
 
 $I->wantTo('activate Kamaleon theme');
@@ -119,8 +103,6 @@ $I->amOnPage('/');
 $I->see('Map', 'h2');
 
 
-
-
 $I->wantTo('activate Jobdrop theme');
 $I->amOnPage('/oc-panel/Config/update/theme');
 $I->fillField('#formorm_config_value','jobdrop');
@@ -128,7 +110,6 @@ $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 $I->amOnPage('/');
 $I->see('Map', 'h2');
-
 
 
 $I->amOnPage('/oc-panel/Config/update/theme');
@@ -139,7 +120,6 @@ $I->amOnPage('/');
 $I->see('Map', 'h2');
 
 
-
 $I->wantTo('activate Yummo theme');
 $I->amOnPage('/oc-panel/Config/update/theme');
 $I->fillField('#formorm_config_value','yummo');
@@ -148,6 +128,14 @@ $I->see('Item updated. Please to see the changes delete the cache');
 $I->amOnPage('/');
 $I->see('Map', 'h2');
 
+
+$I->wantTo('activate Basecamp theme');
+$I->amOnPage('/oc-panel/Config/update/theme');
+$I->fillField('#formorm_config_value','basecamp');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+$I->amOnPage('/');
+$I->see('Map', 'h3');
 
 
 $I->wantTo('activate Default theme again');

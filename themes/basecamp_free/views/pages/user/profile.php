@@ -8,7 +8,7 @@
 					<article class="well clearfix">
 						<div class="col-sm-3">
 							<a class="thumbnail profile-img">
-								<img src="<?=$user->get_profile_image()?>" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
+								<?=HTML::picture($user->get_profile_image(), ['w' => 200, 'h' => 200], ['1200px' => ['w' => '167', 'h' => '167'], '992px' => ['w' => '182', 'h' => '182'], '768px' => ['w' => '190', 'h' => '190'], '480px' => ['w' => '190', 'h' => '190'], '320px' => ['w' => '190', 'h' => '190']], ['class' => 'img-rounded'], ['alt' => __('Profile Picture')])?>
 							</a>
 						</div>
 						<div class="col-sm-9">

@@ -38,6 +38,38 @@ $("button[name=submit]").click(function(){
         $('#accept_terms_modal').modal('show');
     });
 
+    //list / grit swap
+    $('#list').click(function(event){
+        $('.ad_griditem').addClass('ad_listitem');
+        $('.ad_griditem').removeClass('ad_griditem col-lg-4 col-md-4 col-sm-4 col-xs-12');
+        $(this).addClass('active');
+        $('#grid').removeClass('active');
+        setCookie('list/grid',1,10);
+    });
+
+    $('#grid').click(function(event){
+        $('.ad_listitem').addClass('ad_griditem col-lg-4 col-md-4 col-sm-4 col-xs-12');
+        $('.ad_listitem').removeClass('ad_listitem');
+        $(this).addClass('active');
+        $('#list').removeClass('active');
+        setCookie('list/grid',0,10);
+    });
+
+    if(getCookie('list/grid') == 1)
+        $("#list").trigger("click");
+    else if(getCookie('list/grid') == 0)
+        $("#grid").trigger("click");
+    else if(getCookie('list/grid') == 2)
+        $("#minimal").trigger("click");
+    else if(getCookie('list/grid') == null){
+        if($('#listgrid').data('default') == 1)
+            $("#list").trigger("click");
+        else if($('#listgrid').data('default') == 0)
+            $("#grid").trigger("click"); 
+        else if($('#listgrid').data('default') == 2)
+            $("#minimal").trigger("click"); 
+    }
+
 });
 
 $(function(){

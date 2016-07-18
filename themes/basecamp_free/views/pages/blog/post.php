@@ -12,7 +12,7 @@
 					</p>
 
 					<div class="blog-content pad_10">
-						<?=Text::bb2html($post->description,TRUE)?>
+						<?=$post->description?>
 					</div> 
 
 					<div class="text-center pad_10">

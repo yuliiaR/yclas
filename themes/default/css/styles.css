@@ -222,6 +222,11 @@ ol, ul {
     padding-left: 0;
     margin-bottom: 0;
 }
+
+.panel-sidebar.Widget_Tools > .panel-body > div > a{
+    white-space: normal;
+}
+
 img#captcha_img_publish_new {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
