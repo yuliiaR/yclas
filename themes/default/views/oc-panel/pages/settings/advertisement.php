@@ -715,7 +715,7 @@
                         ?>
 
                         <div class="form-group">
-                            <?=FORM::label($forms['reviews_paid']['key'], __("Google map style"), array('class'=>'control-label', 'for'=>$forms['reviews_paid']['key']))?>
+                            <?=FORM::label($forms['map_style']['key'], __("Google map style"), array('class'=>'control-label', 'for'=>$forms['map_style']['key']))?>
                             <?=FORM::select($forms['map_style']['key'], array_flip($map_styles), $forms['map_style']['value'], array(
                                 'placeholder' => "http://foo.com/", 
                                 'class' => 'form-control', 
