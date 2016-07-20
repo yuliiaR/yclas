@@ -32,24 +32,16 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'robokassa_testing',
                                'group_name'     => 'payment', 
                                'config_value'   => '0'),
-
-                        );
-        
-        Model_Config::config_array($configs);
-    }
-
-
-    /**
-     * This function will upgrade DB that didn't existed in versions prior to 2.8.1
-     */
-    public function action_281()
-    {
-        //new configs
-        $configs = array(
                         array( 'config_key'     => 'notify_name',
                                'group_name'     => 'email', 
                                'config_value'   => 'no-reply '.core::config('general.site_name')),
                         );
+
+        //adds Vkontakte login
+        try 
+        {
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."config` SET `config_value`= REPLACE(`config_value`,'},\"base_url\"',',\"Vkontakte\":{\"enabled\":\"0\",\"keys\":{\"id\":\"\",\"secret\":\"\"}}},\"base_url\"') WHERE `group_name` = 'social' AND `config_key`='config'")->execute();
+        }catch (exception $e) {}
 
         Model_Config::config_array($configs);
     }
