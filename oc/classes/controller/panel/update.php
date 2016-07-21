@@ -12,9 +12,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
 
 
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 2.8.1
+     * This function will upgrade DB that didn't existed in versions prior to 2.8.0
      */
-    public function action_281()
+    public function action_290()
     {
 
         //new configs
@@ -47,7 +47,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 2.8.0
+     * This function will upgrade DB that didn't existed in versions prior to 2.9.0
      */
     public function action_280()
     {

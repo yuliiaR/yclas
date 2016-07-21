@@ -2,7 +2,7 @@
                 return array (
   '2.9.0' => 
   array (
-    'codename' => 'Saigon',
+    'codename' => 'Ho Chi Minh',
     'released' => '2016-07-28',
     'blog' => 'http://open-classifieds.com/2016/07/28/open-classifieds-2-9-0/',
     'changelog' => 'https://github.com/open-classifieds/openclassifieds2/compare/2.8.0...2.9.0',
