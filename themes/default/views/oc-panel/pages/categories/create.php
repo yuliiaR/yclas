@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
-<h1 class="page-header page-title">
+<h1 class="page-header page-title" id="crud-<?=__($name)?>">
     <?=__('New')?> <?=Text::ucfirst(__($name))?>
 </h1>
 <hr>
