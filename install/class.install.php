@@ -23,7 +23,7 @@ class install{
      * Software install settings
      * @var string
      */
-    const VERSION   = '2.8.0';
+    const VERSION   = '2.9.0';
 
     /**
      * default locale/language of the install
@@ -513,7 +513,7 @@ class core{
     public static function generate_password ($length = 16)
     {
         // define possible characters
-        $possible = '23456789+@%$*abcdefghjkmnpqrstuvwxyz';
+        $possible = '23456789@%$*abcdefghjkmnpqrstuvwxyz';
         $possible_length = strlen($possible)-1;
 
         // add random characters to $password until $length is reached
