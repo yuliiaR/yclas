@@ -26,7 +26,7 @@ $I->click('submit');
 
 // Read
 $I->amOnPage('/oc-panel/Coupon/');
-$I->see('23-06-16');
+$I->see('23-06-18');
 $I->see('10.00');
 $I->seeElement('.btn.btn-danger.index-delete');
 
@@ -87,7 +87,7 @@ $I->see('Coupon ANYF created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('ANYF');
 $I->see('10.00');
-$I->see('23-06-16');
+$I->see('23-06-18');
 
 // Read
 $I->amOnPage('/?coupon=ANYF');
@@ -135,7 +135,7 @@ $I->see('Coupon ANYP created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('ANYP');
 $I->see('50% ');
-$I->see('23-06-16');
+$I->see('23-06-18');
 
 // Read
 $I->amOnPage('/?coupon=ANYP');
@@ -182,7 +182,7 @@ $I->see('Coupon FEATUREDF created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('FEATUREDF');
 $I->see('10.00');
-$I->see('23-06-16');
+$I->see('23-06-18');
 
 // Read
 $I->amOnPage('/?coupon=FEATUREDF');
@@ -230,7 +230,7 @@ $I->see('Coupon FEATUREDP created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('FEATUREDP');
 $I->see('50%');
-$I->see('23-06-16');
+$I->see('23-06-18');
 
 // Read
 $I->amOnPage('/?coupon=FEATUREDP');
@@ -276,7 +276,7 @@ $I->see('Coupon BRINGONTOPF created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('BRINGONTOPF');
 $I->see('10.00');
-$I->see('23-06-16');
+$I->see('23-06-18');
 
 // Read
 $I->amOnPage('/?coupon=BRINGONTOPF');
@@ -325,7 +325,7 @@ $I->see('Coupon BRINGONTOPP created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('BRINGONTOPP');
 $I->see('50%');
-$I->see('23-06-16');
+$I->see('23-06-18');
 
 // Read
 $I->amOnPage('/?coupon=BRINGONTOPP');
@@ -375,7 +375,7 @@ $I->amOnPage('/oc-panel/Coupon/');
 // Read
 $I->see('PAIDCATF');
 $I->see('10.00');
-$I->see('23-06-16');
+$I->see('23-06-18');
 
 // Update
 $I->amOnPage('/oc-panel/Coupon/');
@@ -409,7 +409,7 @@ $I->see('Coupon PAIDCATP created');
 // Read
 $I->see('PAIDCATP');
 $I->see('50%');
-$I->see('23-06-16');
+$I->see('23-06-18');
 
 // Update
 $I->amOnPage('/oc-panel/Coupon/');
