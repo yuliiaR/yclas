@@ -49,7 +49,12 @@
                             <div class="form-group">
                                 <?= FORM::label('description', _e('Description'), array('class'=>'col-xs-4 control-label', 'for'=>'description'))?>
                                 <div class="col-sm-8">
-                                    <?= FORM::input('description', $user->description, array('class'=>'form-control', 'id'=>'description', 'type'=>'description' ,'placeholder'=>__('Description')))?>
+                                    <?=FORM::textarea('description', $user->description, array(
+                                    'placeholder' => '',
+                                    'rows' => 3, 'cols' => 50, 
+                                    'class' => 'form-control', 
+                                    'id' => 'description',
+                                ))?> 
                                 </div>
                             </div>
         
