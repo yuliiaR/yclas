@@ -106,6 +106,8 @@ class Controller_Paypal extends Controller{
         	if($order->id_product == Model_Order::PRODUCT_AD_SELL){
         		$paypal_account = $order->ad->paypal_account();
         		$currency = i18n::get_intl_currency_symbol();
+        		if(isset($order->ad->cf_shipping) AND Valid::numeric($order->ad->cf_shipping) AND $order->ad->cf_shipping > 0)
+        			$order->amount = $order->amount + $order->ad->cf_shipping;
         	}
         	else{
         		$paypal_account = core::config('payment.paypal_account');
