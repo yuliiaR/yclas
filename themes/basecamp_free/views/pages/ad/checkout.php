@@ -18,7 +18,7 @@
 								<?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND isset($order->ad->cf_shipping) AND Valid::numeric($order->ad->cf_shipping) AND $order->ad->cf_shipping > 0):?>
 									<tr>
 										<td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
-										<td class="col-md-3 text-center"><?=i18n::format_currency($order->amount - $order->ad->cf_shipping, $order->currency)?></td>
+										<td class="col-md-3 text-center"><?=i18n::format_currency($order->amount, $order->currency)?></td>
 									</tr>
 									<tr>
 										<td class="col-md-9"><?=_e('Shipping')?></td>
@@ -64,7 +64,11 @@
 								</tr>
 								<tr>
 									<td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
-									<td class="text-center text-danger"><h4><strong><?=i18n::format_currency($order->amount, $order->currency)?></strong></h4></td>
+									<?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND isset($order->ad->cf_shipping) AND Valid::numeric($order->ad->cf_shipping) AND $order->ad->cf_shipping > 0):?>
+				                    	<td class="text-center text-danger"><h4><strong><?=i18n::money_format($order->amount + $order->ad->cf_shipping, $order->currency)?></strong></h4></td>
+				                    <?else:?>
+				                    	<td class="text-center text-danger"><h4><strong><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format($order->amount, $order->currency):i18n::format_currency($order->amount, $order->currency)?></strong></h4></td>
+				                    <?endif?>
 								</tr>
 							</tbody>
 						</table>
