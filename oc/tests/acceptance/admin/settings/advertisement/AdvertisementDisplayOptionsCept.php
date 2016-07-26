@@ -94,6 +94,12 @@ $I->amOnPage('/oc-panel/Config/update/map_pub_new'); // enable google map in pub
 $I->fillField('#formorm_config_value','1');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
+// Enter gm_apikey
+$I->amOnPage('/oc-panel/Config/update/gm_api_key');
+$I->fillField('#formorm_config_value','AIzaSyAGRRhbCE1MuqhCzZbefdxzACk7qRI9Czg');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+
 // Edit ad's address
 $I->amOnPage('/oc-panel/myads/update/1');
 $I->fillField('address','Madrid');
