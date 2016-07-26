@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'plugins')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
+        <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'plugins')), array('class'=>'config ajax-load', 'enctype'=>'multipart/form-data'))?>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="form-group">

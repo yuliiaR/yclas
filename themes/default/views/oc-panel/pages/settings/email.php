@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
+        <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email')), array('class'=>'config ajax-load', 'enctype'=>'multipart/form-data'))?>
             <div>
                 <div>
                     <ul class="nav nav-tabs nav-tabs-simple nav-tabs-left" id="tab-settings">

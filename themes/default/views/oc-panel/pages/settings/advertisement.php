@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')), array('class'=>'config', 'enctype'=>'multipart/form-data'))?>
+        <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form')), array('class'=>'config ajax-load', 'enctype'=>'multipart/form-data'))?>
             <ul class="nav nav-tabs nav-tabs-simple nav-tabs-left" id="tab-settings" style="background: #fff;">
                 <li class="active">
                     <a data-toggle="tab" href="#tabSettingsListing" aria-expanded="true"><?=__('Listing Options')?></a>

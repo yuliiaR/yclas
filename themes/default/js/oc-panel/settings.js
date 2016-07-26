@@ -41,3 +41,51 @@ $('.plan-delete').click(function(e) {
     $(this).closest('li').slideUp();
     $.ajax({url: $(this).attr('href')});
 });
+
+initPNotify();
+
+function initPNotify() {
+    $('form.ajax-load').submit(function(event) {
+        $form = $(this);
+
+        // process the form
+        $.ajax({
+            type        : $form.attr('method'),
+            url         : $form.attr('action'),
+            data        : $form.serialize(),
+        })
+        
+            // using the done promise callback
+            .done(function(data) {
+
+                $(data).find('.alert').each(function() {
+                    var notifyType = 'notice';
+                    var notifyTitle = $(this).find('.alert-heading:first').text();
+                    var notifyTitle = $(this).find('strong:first').text() + notifyTitle;
+                    var notifyText = $(this).find('.close').remove();
+                    var notifyText = $(this).find('.alert-heading').remove();
+                    var notifyText = $(this).html();
+
+                    if ($(this).hasClass('alert-info')) notifyType = 'info';
+                    else if ($(this).hasClass('alert-success')) notifyType = 'success';
+                    else if ($(this).hasClass('alert-danger')) notifyType = 'error';
+
+                    new PNotify({
+                        title: notifyTitle,
+                        text: notifyText,
+                        type: notifyType,
+                        insert_brs: false,
+                        delay: 4000,
+                        styling: 'bootstrap3',
+                    });
+                });
+            })
+
+            .fail(function(data) {
+                // show any errors
+                console.log(data);
+            });
+
+        event.preventDefault();
+    });
+}
