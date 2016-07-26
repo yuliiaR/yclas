@@ -7,12 +7,15 @@
 
 class Controller_Panel_Settings extends Auth_Controller {
 
-    public function __construct($request, $response)
-    {
-        parent::__construct($request, $response);
-        
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Settings'))->set_url(Route::url('oc-panel',array('controller' => 'settings', 'action' => 'general'))));
+    public function before($template = NULL)
+    {   
+        parent::before();
 
+       Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Settings'))->set_url(Route::url('oc-panel',array('controller' => 'settings', 'action' => 'general'))));
+
+        $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
+        $this->template->scripts['footer'][]= 'js/pnotify.custom.min.js';
+        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
     }
 
     public function action_index()
@@ -33,10 +36,10 @@ class Controller_Panel_Settings extends Auth_Controller {
         // all form config values
         $advertisement = new Model_Config();
         $config = $advertisement->where('group_name', '=', 'advertisement')->find_all();
-        $this->template->styles  = array('//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
+        $this->template->styles  = array(
+            '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen',
+            'css/pnotify.custom.min.css' => 'screen');
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
-        $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
-        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         
         // save only changed values
         if($this->request->post())
@@ -127,9 +130,6 @@ class Controller_Panel_Settings extends Auth_Controller {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Email')));
         $this->template->title = __('Email');
 
-        $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
-        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
-
         // all form config values
         $emailconf = new Model_Config();
         $config = $emailconf->where('group_name', '=', 'email')->find_all();
@@ -186,11 +186,10 @@ class Controller_Panel_Settings extends Auth_Controller {
      */
     public function action_general()
     {
-        // validation active 
-        $this->template->styles  = array('//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen');
+        $this->template->styles  = array(
+            '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen',
+            'css/pnotify.custom.min.css' => 'screen');
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
-        $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
-        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('General')));
         $this->template->title = __('General');
@@ -285,10 +284,6 @@ class Controller_Panel_Settings extends Auth_Controller {
             Model_Order::delete_featured_plan(Core::get('delete_plan'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
         }
-
-        // validation active 
-        $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
-        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
         
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Payments')));
         $this->template->title = __('Payments');
@@ -370,10 +365,7 @@ class Controller_Panel_Settings extends Auth_Controller {
      * @return [view] Renders view with form inputs
      */
     public function action_image()
-    {
-        $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
-        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
-        
+    {   
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Image')));
         $this->template->title = __('Image');
 
@@ -477,10 +469,6 @@ class Controller_Panel_Settings extends Auth_Controller {
      */
     public function action_plugins()
     {
-        // validation active 
-        $this->template->scripts['footer'][]= 'js/jquery.validate.min.js';
-        $this->template->scripts['footer'][]= '/js/oc-panel/settings.js';
-        
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Plugins')));
         $this->template->title = __('Plugins');
 
