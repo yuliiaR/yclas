@@ -105,17 +105,7 @@ function init_panel()
     
     $('.tips').popover();
 
-    $("select").chosen({
-        no_results_text: getChosenLocalization("no_results_text"),
-        placeholder_text_multiple: getChosenLocalization("placeholder_text_multiple"),
-        placeholder_text_single: getChosenLocalization("placeholder_text_single"),
-        width: "100%"
-        });
-    $('select').each(function(){
-        if($(this).hasClass('disable-chosen')){
-            $(this).chosen('destroy');      
-        } 
-    });
+    initSelect2();
     
     $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
     
@@ -456,3 +446,26 @@ $(function(){
         })
     })
 })
+
+function initSelect2() {
+    //select2 enable/disable
+    $('select:not(".disable-select2")').select2({
+        "language": "es"
+    });
+
+    //select2 responsive width
+    $(window).on('resize', function() {
+        $('select:not(".disable-select2")').each(function(){
+            var width = $(this).parent().width();
+            $(this).siblings('.select2-container').css({'width':width});
+        });
+    }).trigger('resize');
+    
+    //select2 on bootstrap tabs
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (event) {
+        $('select:not(".disable-select2")').each(function(){
+            var width = $(this).parent().width();
+            $(this).siblings('.select2-container').css({'width':width});
+        });
+    })
+}

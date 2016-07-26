@@ -14,7 +14,7 @@
                             <div class="form-group" id="group-continent">
                                 <label for="continent" class="col-sm-3 control-label" data-action="<?=__('Import continents')?>"><?=__('Continent')?></label>
                                 <div class="col-sm-8">
-                                    <select name="continent" id="continent" onchange="getPlaces(this.value,'country');" class="disable-chosen form-control">
+                                    <select name="continent" id="continent" onchange="getPlaces(this.value,'country');" class="disable-select2 form-control">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -22,7 +22,7 @@
                             <div class="form-group" id="group-country">
                                 <label for="country" class="col-sm-3 control-label" data-action="<?=__('Import countries')?>"><?=__('Country')?></label>
                                 <div class="col-sm-8">
-                                    <select name="country" id="country" onchange="getPlaces(this.value,'province');" class="disable-chosen form-control">
+                                    <select name="country" id="country" onchange="getPlaces(this.value,'province');" class="disable-select2 form-control">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -30,7 +30,7 @@
                             <div class="form-group" id="group-province">
                                 <label for="province" class="col-sm-3 control-label" data-action="<?=__('Import states/provinces')?>"><?=__('State')?> / <?=__('Province')?></label>
                                 <div class="col-sm-8">
-                                    <select name="province" id="province" onchange="getPlaces(this.value,'region');" class="disable-chosen form-control">
+                                    <select name="province" id="province" onchange="getPlaces(this.value,'region');" class="disable-select2 form-control">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -38,7 +38,7 @@
                             <div class="form-group" id="group-region">
                                 <label for="region" class="col-sm-3 control-label" data-action="<?=__('Import counties/regions')?>"><?=__('County')?> / <?=__('Region')?></label>
                                 <div class="col-sm-8">
-                                    <select name="region" id="region" onchange="getPlaces(this.value,'city');" class="disable-chosen form-control">
+                                    <select name="region" id="region" onchange="getPlaces(this.value,'city');" class="disable-select2 form-control">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -46,7 +46,7 @@
                             <div class="form-group" id="group-city">
                                 <label for="city" class="col-sm-3 control-label" data-action="<?=__('Import cities')?>"><?=__('City')?></label>
                                 <div class="col-sm-8">
-                                    <select name="city" id="city" class="disable-chosen form-control">
+                                    <select name="city" id="city" class="disable-select2 form-control">
                                         <option value=""></option>
                                     </select>
                                 </div>
