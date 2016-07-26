@@ -12,25 +12,20 @@ table {
 	}
 }
 
-.chosen-container-single .chosen-single {
-	height:30px !important;
-	padding:2px 0 0 8px !important;
-	div {
-		top:3px !important;
-	}
-}
-
-.tab-content {
-    .chosen-container {
-        position: absolute;
-        display: block;
-        padding-right: 20%;
+.select2-container--default {
+    .select2-selection--single {
+        height: 34px;
     }
-    .chosen-container-multi .chosen-choices li.search-field input[type=text] {
-        height: 25px;
-    }
-    .chosen-container + .help-block {
-        margin-top: 35px;
+    .select2-selection--single, .select2-selection--multiple {
+        border-radius: 0;
+        border-color: rgba(0, 0, 0, 0.07);
+        .select2-selection__rendered {
+            color: #555555;
+            line-height: 34px;
+        }
+        .select2-selection__arrow {
+            height: 34px;
+        }
     }
 }
 
