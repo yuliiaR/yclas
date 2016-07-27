@@ -8,7 +8,7 @@
     <?= FORM::open(Route::url('profiles'), array('class'=>'form-inline', 'method'=>'GET', 'action'=>''))?>
         <fieldset>
                 <div class="form-group">
-                    <label></label>
+                    <?= FORM::label('user', _e('Name'), array('class'=>'', 'for'=>'user'))?>
                     <div class="control mr-30">
                         <input type="text" id="search" name="search" class="form-control" value="<?=core::request('search')?>" placeholder="<?=__('Search')?>">
                     </div>
@@ -25,7 +25,7 @@
                                     $select[$select_name] = $select_name;
                                 }
                             } else $select = $field['values']?>
-                            <label></label>
+                            <?= FORM::label('cfuser_'.$name, $field['label'], array('for'=>'cfuser_'.$name))?>
                             <div>
                                 <?=Form::cf_form_field('cf_'.$name, array(
                                 'display'   => $field['type'],
