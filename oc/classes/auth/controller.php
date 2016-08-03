@@ -154,10 +154,10 @@ class Auth_Controller extends Controller
     	            //default theme
     	            else
     	            {
-    	                $theme_css = array('css/style.css'=>'screen');
+    	                $theme_css = array('css/style.css?v='.Core::VERSION=>'screen');
     	            }
 
-                	$common_css = array('css/other.css'=>'screen'); 
+                	$common_css = array('css/other.css?v='.Core::VERSION=>'screen'); 
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
 
