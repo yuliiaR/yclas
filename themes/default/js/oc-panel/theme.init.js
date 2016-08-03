@@ -467,5 +467,13 @@ function initSelect2() {
             var width = $(this).parent().width();
             $(this).siblings('.select2-container').css({'width':width});
         });
-    })
+    });
+
+    //select2 on bootstrap modals
+    $('.modal').on('shown.bs.modal', function (event) {
+        $('select:not(".disable-select2")').each(function(){
+            var width = $(this).parent().width();
+            $(this).siblings('.select2-container').css({'width':width});
+        });
+    });
 }

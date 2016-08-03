@@ -141,7 +141,7 @@
 										</p>
 						
 										<?if(core::config('advertisement.description')!=FALSE):?>
-											<p class="ad_desc"><?=(core::cookie('list/grid')==1)?Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE):substr(Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE),0,50)?></p>
+											<p class="ad_desc"><?=(core::cookie('list/grid')==1)?Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE) : Text::limit_chars(Text::removebbcode($ad->description), 30, NULL, TRUE)?></p>
 										<?endif?>
 				
 									</div>

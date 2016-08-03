@@ -95,7 +95,7 @@
 				<div class="clearfix">
 					<div class="row">
 					<?$i=0; foreach($categs as $c):?>
-						<?if($c['id_category_parent'] == 1 && $c['id_category'] != 1):?>
+						<?if($c['id_category_parent'] == 1 AND $c['id_category'] != 1 AND ! in_array($c['id_category'], $hide_categories)):?>
 							<div class="col-xs-4 col-sm-4 col-md-4">
 								<div class="panel panel-home-categories">
 									<div class="panel-heading">
@@ -104,7 +104,7 @@
 									<div class="panel-body">
 										<ul class="list-group">
 										<?$ci=0; foreach($categs as $chi):?>
-											<?if($chi['id_category_parent'] == $c['id_category']):?>
+											<?if($chi['id_category_parent'] == $c['id_category'] AND ! in_array($chi['id_category'], $hide_categories)):?>
 												<li class="list-group-item">
 													<a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname'], 'location'=>$user_location ? $user_location->seoname : NULL))?>">
 													<?if (Theme::get('category_badge')!=1) : ?>

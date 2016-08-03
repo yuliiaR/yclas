@@ -80,7 +80,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="cf-template" tabindex="-1" role="dialog" aria-labelledby="cfTemplate" aria-hidden="true">
+<div class="modal" id="cf-template" tabindex="-1" role="dialog" aria-labelledby="cfTemplate" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <form method="post" action="<?=Route::url('oc-panel',array('controller'=>'fields','action'=>'template'))?>">
