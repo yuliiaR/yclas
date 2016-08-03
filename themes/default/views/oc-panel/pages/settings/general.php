@@ -187,6 +187,19 @@
                                 </span>
                             </div>
 
+                            <?$categories = array()?>
+                            <?foreach ((new Model_Category)->where('id_category','!=','1')->order_by('order','asc')->find_all()->cached() as $category) {
+                                $categories[$category->id_category] = $category->name;
+                            }?>
+                            <div class="form-group">
+                                <?=FORM::label($forms['hide_homepage_categories']['id'], __('Hide categories'), array('class'=>'control-label', 'for'=>$forms['hide_homepage_categories']['id'],'multiple'=>true))?>
+                                <?=FORM::select($forms['hide_homepage_categories']['key'], $categories, json_decode($forms['hide_homepage_categories']['value'], TRUE), array( 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['hide_homepage_categories']['id'], 
+                                ))?> 
+                                <p class="help-block"><?=__('Hide categories from homepage')?></p>
+                            </div>
+
                             <?$pages = array(''=>__('Deactivated'))?>
                             <?foreach (Model_Content::get_pages() as $key => $value) {
                                 $pages[$value->seotitle] = $value->title;

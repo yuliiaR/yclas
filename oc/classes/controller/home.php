@@ -91,6 +91,8 @@ class Controller_Home extends Controller {
 
 		$categs = Model_Category::get_category_count(TRUE, $user_location);
 
+        $hide_categories = json_decode(Core::config('general.hide_homepage_categories'), TRUE);
+
         $locats = Model_Location::get_location_count();
 
         $auto_locats = NULL;
@@ -108,7 +110,7 @@ class Controller_Home extends Controller {
 	
         $this->template->bind('content', $content);
         
-        $this->template->content = View::factory('pages/home', compact('ads', 'categs', 'locats', 'auto_locats', 'user_location'));
+        $this->template->content = View::factory('pages/home', compact('ads', 'categs', 'locats', 'auto_locats', 'user_location', 'hide_categories'));
 		
 	}
 
