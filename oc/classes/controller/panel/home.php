@@ -285,7 +285,7 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->execute();
         
         $users = $query->as_array();
-        $content->users_today     = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        $content->users_today     = (isset($users[0]['count']))?$users[0]['count']:0;
         
         //Yesterday
         $query = DB::select(DB::expr('COUNT(id_user) count'))
@@ -297,7 +297,7 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->execute();
         
         $users = $query->as_array();
-        $content->users_yesterday = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        $content->users_yesterday = (isset($users[0]['count']))?$users[0]['count']:0;
         
         
         //Last 30 days ads
@@ -308,7 +308,7 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->execute();
         
         $ads = $query->as_array();
-        $content->users_month = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        $content->users_month = (isset($users[0]['count']))?$users[0]['count']:0;
         
         //total ads
         $query = DB::select(DB::expr('COUNT(id_user) count'))
@@ -317,7 +317,7 @@ class Controller_Panel_Home extends Auth_Controller {
                         ->execute();
         
         $ads = $query->as_array();
-        $content->users_total = (isset($ads[0]['count']))?$ads[0]['count']:0;
+        $content->users_total = (isset($users[0]['count']))?$users[0]['count']:0;
 	}
     
     //marked email as subscribed
