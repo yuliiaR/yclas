@@ -193,6 +193,7 @@
                             }?>
                             <div class="form-group">
                                 <?=FORM::label($forms['hide_homepage_categories']['id'], __('Hide categories'), array('class'=>'control-label', 'for'=>$forms['hide_homepage_categories']['id'],'multiple'=>true))?>
+                                <?=FORM::hidden($forms['hide_homepage_categories']['key'], NULL)?>
                                 <?=FORM::select($forms['hide_homepage_categories']['key'], $categories, json_decode($forms['hide_homepage_categories']['value'], TRUE), array( 
                                     'class' => 'form-control', 
                                     'id' => $forms['hide_homepage_categories']['id'], 
