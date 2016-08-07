@@ -207,7 +207,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         }
         
         //not updatable fields
-        $do_nothing = array('base_url','menu','locale','allow_query_language','charset','translate','ocacu','minify','subscribe', 'blog', 'faq', 'forums', 'messaging', 'black_list', 'auto_locate', 'social_auth', 'adblock','subscriptions', 'cron');
+        $do_nothing = array('base_url','menu','locale','allow_query_language','charset','translate','ocacu','minify','subscribe', 'blog', 'faq', 'forums', 'messaging', 'black_list', 'auto_locate', 'social_auth', 'adblock','subscriptions', 'cron', 'hide_homepage_categories');
 
         // save only changed values
         if($this->request->post())
@@ -243,8 +243,6 @@ class Controller_Panel_Settings extends Auth_Controller {
                     {
                         if ($c->config_key == 'html_head' OR $c->config_key == 'html_footer')
                             $c->config_value = Kohana::$_POST_ORIG[$c->group_name][$c->config_key][0];
-                        elseif ($c->config_key == 'hide_homepage_categories')
-                            $c->config_value = json_encode($config_res[$c->group_name][$c->config_key]);
                         else
                             $c->config_value = $config_res[$c->group_name][$c->config_key][0];
 
