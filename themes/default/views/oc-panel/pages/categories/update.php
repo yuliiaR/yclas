@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="page-header" id="crud-<?=$name?>">
-    <h1><?=__('Update')?> <?=Text::ucfirst($name)?></h1>
+    <h1><?=__('Update')?> <?=Text::ucfirst(__($name))?></h1>
 </div>
 <div class="row">
     <div class="col-md-6">
