@@ -2,12 +2,17 @@
 
 <ul class="list-inline pull-right">
     <li>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#hide-categories">
+            <?=__('Hide Categories')?>
+        </button>
+    </li>
+    <li>
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#quick-creator" id="quick-creator-btn">
             <?=__('Quick creator')?>
         </button>
     </li>
     <li>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-tool">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-tool">
             <i class="fa fa-upload"></i>&nbsp; <?=__('Import')?>
         </button>
     </li>
@@ -170,6 +175,37 @@
                 <div class="modal-footer text-right">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
                     <?=FORM::button('submit', __('Upload'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'tools','action'=>'import_tool'))))?>
+                </div>
+            <?=FORM::close()?>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="hide-categories" tabindex="-1" role="dialog" aria-labelledby="hideCategories" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <?=FORM::open(Route::url('oc-panel',array('controller'=>'category','action'=>'hide_homepage_categories')), array('enctype'=>'multipart/form-data'))?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle"></i></button>
+                    <h4 id="hideCategories" class="modal-title"><?=__('Hide Categories')?></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <?$categories = array()?>
+                        <?foreach ((new Model_Category)->where('id_category','!=','1')->order_by('order','asc')->find_all()->cached() as $category) {
+                            $categories[$category->id_category] = $category->name;
+                        }?>
+                        <?=FORM::label('Hide categories from homepage', __('Hide categories from homepage'), array('class'=>'control-label', 'for'=>'Hide categories from homepage'))?>
+                        <?=FORM::hidden('hide_homepage_categories[]', NULL)?>
+                        <?=FORM::select('hide_homepage_categories[]', $categories, $hide_homepage_categories, array( 
+                            'class' => 'form-control', 
+                            'id' => 'hide_homepage_categories', 
+                        ))?> 
+                    </div>
+                </div>
+                <div class="modal-footer text-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Cancel')?></button>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'category','action'=>'hide_homepage_categories'))))?>
                 </div>
             <?=FORM::close()?>
         </div>

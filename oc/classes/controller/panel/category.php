@@ -34,8 +34,9 @@ class Controller_Panel_Category extends Auth_Crud {
 
         $cats  = Model_Category::get_as_array();
         $order = Model_Category::get_multidimensional();
+        $hide_homepage_categories = json_decode(core::config('general.hide_homepage_categories'), TRUE);
 
-        $this->template->content = View::factory('oc-panel/pages/categories/index',array('cats' => $cats,'order'=>$order));
+        $this->template->content = View::factory('oc-panel/pages/categories/index',array('cats' => $cats,'order'=>$order,'hide_homepage_categories'=>$hide_homepage_categories));
     }
 
     /**
@@ -518,6 +519,24 @@ class Controller_Panel_Category extends Auth_Crud {
             Alert::set(Alert::ERROR, __('You did not confirmed your delete action.'));
         }
         
+        HTTP::redirect(Route::url('oc-panel',array('controller'=>'category', 'action'=>'index')));
+    }
+
+    /**
+     * Updates general.hide_homepage_categories config
+     * @return void
+     */
+    public function action_hide_homepage_categories()
+    {
+        if ($hide_homepage_categories = $this->request->post('hide_homepage_categories')
+            AND is_array($hide_homepage_categories))
+        {
+            $hide_homepage_categories = json_encode($hide_homepage_categories);
+            Model_Config::set_value('general', 'hide_homepage_categories', $hide_homepage_categories);
+
+            Alert::set(Alert::SUCCESS, __('Updated hidden categories from homepage'));
+        }
+
         HTTP::redirect(Route::url('oc-panel',array('controller'=>'category', 'action'=>'index')));
     }
 
