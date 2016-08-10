@@ -619,6 +619,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'robokassa_pass1', ''),
 ('payment', 'robokassa_pass2', ''),
 ('payment', 'robokassa_testing', 0),
+('payment', 'paguelofacil_cclw', ''),
+('payment', 'paguelofacil_testing', 0),
 ('general', 'subscriptions', '0'),
 ('general', 'api_key', '".core::generate_password(32)."'),
 ('general', 'number_format', '%n'),

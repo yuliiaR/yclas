@@ -23,6 +23,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'hide_homepage_categories',
                                'group_name'     => 'general', 
                                'config_value'   => '{}'),
+                        array( 'config_key'     => 'paguelofacil_cclw',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'paguelofacil_testing',
+                               'group_name'     => 'payment', 
+                               'config_value'   => '0'),
                         );
 
         Model_Config::config_array($configs);
