@@ -86,6 +86,9 @@
                             <a data-toggle="tab" href="#tabSettingsPaymentRobokassa" aria-expanded="false">Robokassa</a>
                         </li>
                         <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPaguelofacil" aria-expanded="false">Paguelofacil</a>
+                        </li>
+                        <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPreventFraud" aria-expanded="false"><?=__('Prevent Fraud')?></a>
                         </li>
                     </ul>
@@ -714,8 +717,44 @@
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
 
+                <div id="tabSettingsPaymentPaguelofacil" class="tab-pane fade">
+                    <h4>Paguelofacil</h4>
+                    <hr>
 
-                        <div id="tabSettingsPaymentPreventFraud" class="tab-pane fade">                           
+                    <div class="form-group">
+                        <?=FORM::label($forms['paguelofacil_cclw']['key'], 'CCLW', array('class'=>'control-label', 'for'=>$forms['paguelofacil_cclw']['key']))?>
+                        <?=FORM::input($forms['paguelofacil_cclw']['key'], $forms['paguelofacil_cclw']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['paguelofacil_cclw']['key']
+                        ))?>
+                        <span class="help-block">
+                            CCLW
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['paguelofacil_testing']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['paguelofacil_testing']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['paguelofacil_testing']['key'], 1, (bool) $forms['paguelofacil_testing']['value'], array('id' => $forms['paguelofacil_testing']['key'].'1'))?>
+                            <?=Form::label($forms['paguelofacil_testing']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['paguelofacil_testing']['key'], 0, ! (bool) $forms['paguelofacil_testing']['value'], array('id' => $forms['paguelofacil_testing']['key'].'0'))?>
+                            <?=Form::label($forms['paguelofacil_testing']['key'].'0', __('Disabled'))?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label('', __('Integration URIs'), array('class'=>'control-label'))?>
+                        <span class="help-block">
+                            Result URL <pre><?=Route::url('default',array('controller'=>'paguelofacil', 'action'=>'result','id'=>core::config('general.api_key')))?></pre>
+                        </span>
+                    </div>
+                    
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
+                </div>
+
+                <div id="tabSettingsPaymentPreventFraud" class="tab-pane fade">                           
                     <h4>Prevent Fraud</h4>
                     <hr>
 

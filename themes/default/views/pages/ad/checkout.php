@@ -162,6 +162,9 @@
                         <?if(($robokassa = robokassa::button($order)) != ''):?>
                             <li class="text-right"><?=$robokassa?></li>
                         <?endif?>
+                        <?if(($paguelofacil = paguelofacil::button($order)) != ''):?>
+                            <li class="text-right"><?=$paguelofacil?></li>
+                        <?endif?>
                         <?if( ($alt = $order->alternative_pay_button()) != ''):?>
                             <li class="text-right"><?=$alt?></li>
                         <?endif?>
