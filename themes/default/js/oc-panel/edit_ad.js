@@ -538,7 +538,7 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'data-toggle' : 'tooltip',
                                                                                     'title'       : customfield.tooltip,
                                                                                     'required'    : customfield.required,
-                                                                                    'value'       : $('#custom-fields').data('customfield-values')[idx],
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
                 $('#custom-fields input[name="' + idx + '"]').rules('add', {
                                                                                 regex: '^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$'
