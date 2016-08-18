@@ -3,18 +3,9 @@ $I = new AcceptanceTester($scenario);
 $I->am('a visitor');
 $I->wantTo('publish a new ad');
 
+$I->login_admin();
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
-
-$I->wantTo('activate Basecamp theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','basecamp');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('basecamp');
 
 $I->click('Logout'); 
 
@@ -47,17 +38,8 @@ $I->amOnPage('/user/david');
 $I->see('David');
 $I->dontSee('Page not found');
 
+$I->login_admin();
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
-
-$I->wantTo('activate Default theme again');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','default');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('default');
 
 $I->click('Logout'); 

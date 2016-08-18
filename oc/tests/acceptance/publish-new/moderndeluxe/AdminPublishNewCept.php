@@ -3,19 +3,9 @@ $I = new AcceptanceTester($scenario);
 $I->am('the administrator');
 $I->wantTo('publish a new ad');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
+$I->login_admin();
 
-
-$I->wantTo('activate moderndeluxe theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','moderndeluxe');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
-
+$I->activate_theme('moderndeluxe');
 
 $I->amOnPage('/publish-new.html');
 $I->see('Publish new advertisement');
@@ -38,11 +28,6 @@ $I->see('Admin ad moderndeluxe theme');
 $I->see('This is a new admin ad on moderndeluxe theme');
 $I->see('Barcelona');
 
-
-$I->wantTo('activate Default theme again');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','default');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('default');
 
 $I->click('Logout'); 

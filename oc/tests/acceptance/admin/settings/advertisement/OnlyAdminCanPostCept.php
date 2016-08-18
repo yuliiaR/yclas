@@ -5,11 +5,7 @@ $I = new AcceptanceTester($scenario);
 $I->am('the Administrator');
 $I->wantTo('log in with valid account');
 $I->lookForwardTo('see the welcome message in the Panel');
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->wantTo('switch ON "only administrator can publish new ad"');
 $I->amOnPage('/oc-panel/Config/update/only_admin_post');
@@ -23,10 +19,7 @@ $I->dontsee('publish new');
 
 // bring it back to default option!
 // login
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
+$I->login_admin();
 // switch off only administrator can publish new ad
 $I->amOnPage('/oc-panel/Config/update/only_admin_post');
 $I->fillField("formorm[config_value]","0");

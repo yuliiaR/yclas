@@ -3,11 +3,7 @@ $I = new AcceptanceTester($scenario);
 $I->am('the administrator');
 $I->wantTo('enable and see Interactive Map on homepage');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
+$I->login_admin();
 
 // Enable Interactive Map
 $I->amOnPage('/oc-panel/Config/update/map_active');
@@ -24,125 +20,83 @@ $I->click('submit');
 
 // Check if interactive map appears in all premium themes.
 $I->wantTo('activate Splash theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','splash');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('splash');
 
 $I->amOnPage('/');
 $I->see('Map', 'h2');
 
-
 $I->wantTo('activate Reclassifieds3 theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','reclassifieds');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('reclassifieds');
 
 $I->amOnPage('/');
 //$I->see('Map', 'h2'); div for map is displayed, without title or something unique so it can check for it
 
-
+$I->activate_theme('newspaper');
 $I->wantTo('activate Newspaper theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','newspaper');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/');
 $I->see('Map', 'h2');
 
 
 $I->wantTo('activate Czsale theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','czsale');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('czsale');
 
 $I->amOnPage('/');
 $I->see('Map', 'h4');
 
 
 $I->wantTo('activate Ocean Premium theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','ocean');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('ocean');
 
 $I->amOnPage('/');
 //$I->see('Map', 'h2'); div for map is displayed, without title or something unique so it can check for it
 
 
 $I->wantTo('activate moderndeluxe3 theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','moderndeluxe');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('moderndeluxe');
 
 $I->amOnPage('/');
 //$I->seeElement('div', ['id' => 'visualization']); // map is not displayed on test but it's displayed if I enable and cofigure it from panel
 
 
 $I->wantTo('activate Olson theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','olson');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('olson');
 
 $I->amOnPage('/');
 $I->see('Map', 'h4');
 
 
 $I->wantTo('activate Kamaleon theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','kamaleon');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('kamaleon');
 
 $I->amOnPage('/');
 $I->see('Map', 'h2');
 
 
 $I->wantTo('activate Jobdrop theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','jobdrop');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('jobdrop');
 $I->amOnPage('/');
 $I->see('Map', 'h2');
 
 
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','responsive');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->wantTo('activate responsive theme');
+$I->activate_theme('responsive');
 $I->amOnPage('/');
 $I->see('Map', 'h2');
 
 
 $I->wantTo('activate Yummo theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','yummo');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('yummo');
 $I->amOnPage('/');
 $I->see('Map', 'h2');
 
 
 $I->wantTo('activate Basecamp theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','basecamp');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('basecamp');
 $I->amOnPage('/');
 $I->see('Map', 'h3');
 
-
-$I->wantTo('activate Default theme again');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','default');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->$I->activate_theme('default');;
 
 $I->amOnPage('/oc-panel/Config/update/map_jscode');
 $I->fillField('#formorm_config_value','');

@@ -3,13 +3,7 @@ $I = new AcceptanceTester($scenario);
 $I->am("the admin");
 $I->wantTo('change configurations and see changes on frontend');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
-
+$I->login_admin();
 
 // Description BBCode
 $I->amOnPage('/oc-panel/Config/update/description_bbcode');
