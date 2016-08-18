@@ -20,7 +20,23 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
-   /**
-    * Define custom actions here
-    */
+    public function login_admin()
+    {
+    	$I = $this;
+    	$I->amOnPage('/oc-panel/auth/login');
+		$I->fillField('email','admin@reoc.lo');
+		$I->fillField('password','1234');
+		$I->click('auth_redirect');
+		$I->amOnPage('/oc-panel/');
+		$I->see('welcome admin');
+    }
+
+    public function activate_theme($theme)
+    {
+        $I = $this;
+        $I->wantTo('activate '. $theme .' theme again');
+        $I->amOnPage('/oc-panel/Config/update/theme');
+        $I->fillField('#formorm_config_value',$theme);
+        $I->click('button[type="submit"]');
+    }
 }

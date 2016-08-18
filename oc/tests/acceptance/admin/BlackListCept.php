@@ -3,12 +3,7 @@ $I = new AcceptanceTester($scenario);
 $I->am('the administrator');
 $I->wantTo('mark an ad as spam, see the owner of the ad in Black List, remove him, remove spam from ad.');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/ad');
 $I->click('a[href="http://reoc.lo/oc-panel/ad/spam/4?current_url=1"]');
@@ -39,12 +34,7 @@ $I->see('Your profile has been disable for posting, due to recent spam content! 
 
 $I->click('Logout');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel');
-$I->see('welcome admin');
+$I->login_admin();
 
 
 $I->amOnPage('/oc-panel/pool');

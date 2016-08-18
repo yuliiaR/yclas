@@ -3,11 +3,7 @@ $I = new AcceptanceTester($scenario);
 $I->am('the administrator');
 $I->wantTo('activate and use messaging system between admin and john.');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
+$I->login_admin();
 
 // Enable Messaging System
 $I->amOnPage('/oc-panel/Config/update/messaging');
@@ -56,11 +52,7 @@ $I->amOnPage('/');
 $I->click('Logout');
 
 // See the reply and answer
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/messages');
 $I->see('Unread','span');
@@ -104,11 +96,7 @@ $I->see('2.00');
 $I->amOnPage('/');
 $I->click('Logout');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
+$I->login_admin();
 
 // Delete Message
 $I->amOnPage('/oc-panel/messages/message/1');
@@ -132,11 +120,7 @@ $I->click('button[type="submit"]');
 $I->amOnPage('/');
 $I->click('Logout');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/messages');
 $I->see('Unread','span');
@@ -168,11 +152,7 @@ $I->see('title for the ad');
 $I->amOnPage('/');
 $I->click('Logout');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/messages/message/1');
 $I->fillField('message','Can you see me..?');
@@ -199,15 +179,10 @@ $I->click('button[type="submit"]');
 $I->amOnPage('/');
 $I->click('Logout');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/messages');
 $I->see('Unread','span');
-
 
 // Back to default
 $I->amOnPage('/oc-panel/Config/update/messaging');

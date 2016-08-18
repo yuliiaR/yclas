@@ -3,12 +3,7 @@ $I = new AcceptanceTester($scenario);
 $I->am("the admin");
 $I->wantTo('create menu items, use them and then delete them to bring default menu back');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/');
 $I->see('Listing','a');
@@ -24,12 +19,10 @@ $I->fillField('#formorm_config_value','[{"title":"item1","url":"http:\/\/google.
 $I->click('button[type="submit"]');
 $I->see('Item created. Please to see the changes delete the cache');
 
-
 // Read
 $I->amOnPage('/');
 $I->see('item1','a');
 $I->seeElement('.fa.fa-music');
-
 
 // Update
 $I->amOnPage('/oc-panel/Config/update/menu');
@@ -40,7 +33,6 @@ $I->see('Item updated. Please to see the changes delete the cache');
 $I->amOnPage('/');
 $I->see('itemitem1','a');
 $I->seeElement('.fa.fa-music');
-
 
 // Delete
 $I->amOnPage('/oc-panel/Config/delete/menu');

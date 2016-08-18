@@ -5,12 +5,8 @@ $I = new AcceptanceTester($scenario);
 $I->am('the Administrator');
 $I->wantTo('log in with valid account');
 $I->lookForwardTo('see the welcome message in the Panel');
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+
+$I->login_admin();
 
 //Logout before trying to login again, also test if logout button works
 $I->wantTo('log out and try to login again');

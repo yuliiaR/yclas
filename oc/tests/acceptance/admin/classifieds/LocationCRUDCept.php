@@ -3,11 +3,7 @@ $I = new AcceptanceTester($scenario);
 $I->am('the administrator');
 $I->wantTo('crud a location');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/location');
 $I->click('a[href="http://reoc.lo/oc-panel/location/create"]');

@@ -3,12 +3,7 @@ $I = new AcceptanceTester($scenario);
 $I->am('the administrator');
 $I->wantTo('enable memberships, CRUD and buy plans');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+$I->login_admin();
 
 // Activate Memberships
 $I->amOnPage('/oc-panel/Config/update/subscriptions');
@@ -31,10 +26,7 @@ $I->see('Item created. Please to see the changes delete the cache');
 
 // Change to Ocean Premium (premium feature)
 $I->wantTo('activate Ocean Premium theme');
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','ocean');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->activate_theme('ocean');
 
 // See plan
 $I->wantTo('go to the publish page and see the plan.');
@@ -91,15 +83,11 @@ $I->see('Sign Up');
 $I->see('$0.00');
 $I->seeElement('.btn.btn-success.btn-block');
 
-// Login as admin
 $I->amOnPage('/');
 $I->click('Logout');  
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+
+// Login as admin
+$I->login_admin();
 
 // Delete plan
 $I->amOnPage('/oc-panel/Plan/delete/100');
@@ -120,12 +108,8 @@ $I->dontSee('Free plan','h3');
 // Login as admin - disable Memberships
 $I->amOnPage('/');
 $I->click('Logout');  
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/Config/update/subscriptions');
 $I->fillField('#formorm_config_value','0');
@@ -146,18 +130,11 @@ $I->dontSee('Please, choose a plan first');
 
 // Login as admin - switch to default theme
 $I->amOnPage('/');
-$I->click('Logout');  
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+$I->click('Logout');
 
-$I->amOnPage('/oc-panel/Config/update/theme');
-$I->fillField('#formorm_config_value','default');
-$I->click('button[type="submit"]');
-$I->see('Item updated. Please to see the changes delete the cache');
+$I->login_admin();
+
+$I->$I->activate_theme('default');;
 
 
 

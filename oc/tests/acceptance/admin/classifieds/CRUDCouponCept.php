@@ -6,12 +6,7 @@ $I = new AcceptanceTester($scenario);
 $I->am('the administrator');
 $I->wantTo('CRUD coupons');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+$I->login_admin();
 
 
 // Create from BULK and see it on panel
@@ -67,13 +62,9 @@ $I->fillField('#formorm_config_value','50');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 
-
-
 /*
 						CREATE
 */
-
-
 
 // Create ANY fixed
 $I->wantTo('to create ANY fixed');
