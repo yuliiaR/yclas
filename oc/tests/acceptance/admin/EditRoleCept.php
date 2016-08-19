@@ -3,15 +3,7 @@ $I = new AcceptanceTester($scenario);
 $I->am("the admin");
 $I->wantTo('edit roles and see the changes');
 
-
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
-
-
+$I->login_admin();
 
 // USER
 
@@ -69,12 +61,7 @@ $I->see('You do not have permissions to access Profile orders');
 $I->amOnPage('/');
 $I->click('Logout');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/Role/update/1');
 $I->checkOption('profile|*');
@@ -143,12 +130,7 @@ $I->click('Logout');
 
 // TRANSLATOR
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/Role/update/5');
 $I->unCheckOption('translations|*');
@@ -159,7 +141,6 @@ $I->see('Item updated');
 $I->amOnPage('/oc-panel/User/update/4');
 $I->selectOption('formorm[id_role]','5');
 $I->click('formorm[submit]');
-$I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/');
 $I->click('Logout');
@@ -194,12 +175,7 @@ $I->click('Logout');
 // Back to default
 
 // login as admin
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/Role/update/5');
 $I->checkOption('translations|*');
@@ -238,12 +214,7 @@ $I->amOnPage('/');
 $I->click('Logout');
 
 // login as admin
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+$I->login_admin();
 
 
 
@@ -253,7 +224,6 @@ $I->see('welcome admin');
 $I->amOnPage('/oc-panel/User/update/4');
 $I->selectOption('formorm[id_role]','7');
 $I->click('formorm[submit]');
-$I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/oc-panel/Role/update/7');
 $I->unCheckOption('ad|*');
@@ -338,12 +308,7 @@ $I->click('Logout');
 // Back to default
 
 // login as admin
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/Role/update/7');
 $I->checkOption('ad|*');
@@ -425,14 +390,8 @@ $I->amOnPage('/');
 $I->click('Logout');
 
 // login as admin
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel/');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/User/update/4');
 $I->selectOption('formorm[id_role]','1');
 $I->click('formorm[submit]');
-$I->see('Item updated. Please to see the changes delete the cache');

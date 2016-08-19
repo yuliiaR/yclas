@@ -3,12 +3,7 @@ $I = new AcceptanceTester($scenario);
 $I->am('the administrator');
 $I->wantTo('edit a user');
 
-$I->amOnPage('/oc-panel/auth/login');
-$I->fillField('email','admin@reoc.lo');
-$I->fillField('password','1234');
-$I->click('auth_redirect');
-$I->amOnPage('/oc-panel');
-$I->see('welcome admin');
+$I->login_admin();
 
 $I->amOnPage('/oc-panel/User/update/4');
 $I->fillField('#formorm_name','Michael');
