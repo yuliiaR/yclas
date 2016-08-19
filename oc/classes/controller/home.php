@@ -93,8 +93,6 @@ class Controller_Home extends Controller {
 
         $hide_categories = json_decode(Core::config('general.hide_homepage_categories'), TRUE);
 
-        $locats = Model_Location::get_location_count();
-
         $auto_locats = NULL;
         $auto_location_distance = Core::config('general.measurement') == 'imperial' ? (Num::round(Core::config('advertisement.auto_locate_distance') * 1.60934)) : Core::config('advertisement.auto_locate_distance');
         if(core::config('general.auto_locate') AND !isset($_COOKIE['cancel_auto_locate']) AND Model_User::get_userlatlng()) {
@@ -110,7 +108,7 @@ class Controller_Home extends Controller {
 	
         $this->template->bind('content', $content);
         
-        $this->template->content = View::factory('pages/home', compact('ads', 'categs', 'locats', 'auto_locats', 'user_location', 'hide_categories'));
+        $this->template->content = View::factory('pages/home', compact('ads', 'categs', 'auto_locats', 'user_location', 'hide_categories'));
 		
 	}
 
