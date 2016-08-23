@@ -769,13 +769,13 @@ label {
 .ad_listings ul.ad_list.gallery {
 	margin:0 -10px;
 }
-.ad_listings ul.ad_list.gallery li.ad_listitem.featured_ad span.feat_marker {
+.ad_listings ul.ad_list.list li.ad_griditem.featured_ad span.feat_marker {
 	display: none;
 }
-.ad_listings ul.ad_list.gallery li.ad_listitem.featured_ad .ad_inner .ad_photo img {
+.ad_listings ul.ad_list.list li.ad_griditem.featured_ad .ad_inner .ad_photo img {
 	border: 2px solid #FFC107;
 }
-.ad_listings ul.ad_list.gallery li.ad_listitem.featured_ad .ad_inner .ad_photo a .fm {
+.ad_listings ul.ad_list.list li.ad_griditem.featured_ad .ad_inner .ad_photo a .fm {
 	position: absolute;
 	top: -5px;
 	right: 5px;
@@ -783,7 +783,7 @@ label {
 	color: #FFC107;
 	display: block;
 }
-.ad_listings ul.ad_list.gallery li.ad_listitem.featured_ad span.ad_gprice {
+.ad_listings ul.ad_list.list li.ad_griditem.featured_ad span.ad_gprice {
 	background: #FFC107;
 	color: #2F2F2F;
 }
