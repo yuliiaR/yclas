@@ -7,7 +7,7 @@
 				<div class="page-header">
 					<h3><?=$forum->name?></h3>
 					<div class="pad_5tb">
-						<small><?=$forum->description?></small>
+						<small><?=Text::bb2html($forum->description,TRUE)?></small>
 					</div>
 				</div>
 
