@@ -276,7 +276,7 @@
 											<?foreach ($images as $key => $value):?>
 												<?if(isset($value['thumb'])): // only formated images (not originals)?>
 													<div id="img<?=$key?>" class="edit-image text-center display-inline-block m-5">
-														<a><img style="width: 150px;" src="<?=$value['thumb']?>" class="img-rounded thumbnail"></a>
+														<a><img style="width: 150px;" src="<?=$value['thumb']?>" class="img-rounded thumbnail img-responsive"></a>
 														<button class="btn btn-danger index-delete img-delete"
 																data-title="<?=__('Are you sure you want to delete?')?>" 
 																data-btnOkLabel="<?=__('Yes, definitely!')?>" 
