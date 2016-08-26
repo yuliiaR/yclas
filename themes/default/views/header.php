@@ -83,7 +83,7 @@
             </ul>
             <div class="pull-right navbar-btn">
                 <?=View::factory('widget_login')?>
-                <?if (Core::config('advertisement.only_admin_post')!=1):?>
+                <?if ((Core::config('advertisement.only_admin_post')!=1) OR (Core::config('advertisement.only_admin_post')==1 AND Auth::instance()->logged_in() AND (Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator()))):?>
                     <a class="btn btn-danger" href="<?=Route::url('post_new')?>">
                         <i class="glyphicon glyphicon-pencil glyphicon"></i>
                         <?=_e('Publish new ')?>
