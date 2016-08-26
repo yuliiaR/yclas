@@ -90,7 +90,7 @@
 			<div class="col-xs-12">
 				<div class="navbar-btn text-right">
 					<?=View::factory('widget_login')?>
-					<?if (Core::config('advertisement.only_admin_post')!=1):?>
+					<?if ((Core::config('advertisement.only_admin_post')!=1) OR (Core::config('advertisement.only_admin_post')==1 AND Auth::instance()->logged_in() AND (Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator()))):?>
 						<a class="btn btn-base-light" href="<?=Route::url('post_new')?>">
 							<i class="glyphicon glyphicon-plus glyphicon"></i>
 						</a>                
