@@ -126,14 +126,14 @@
                 <fieldset>
                     
                     <div class="form-group">
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 col-xs-12">
                             <?= FORM::label('title', _e('Title'), array('class'=>'', 'for'=>'title'))?>
                             <?= FORM::input('title', $ad->title, array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
                         </div>
                     </div>
                     <!-- category select -->
                     <div class="form-group">
-                        <div class="col-md-8">
+                        <div class="col-md-8 col-xs-12">
                             <?= FORM::label('category', _e('Category'), array('for'=>'category'))?>
                             <div id="category-chained" class="row hidden"
                                 data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" 
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                             <div id="category-edit" class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-8 col-xs-12">
                                     <div class="input-group">
                                         <input class="form-control" type="text" placeholder="<?=$ad->category->name?>" disabled>
                                         <span class="input-group-btn">
@@ -171,7 +171,7 @@
                                 </div>
                             </div>
                             <div id="location-edit" class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-8 col-xs-12">
                                     <div class="input-group">
                                         <input class="form-control" type="text" placeholder="<?=$ad->location->name?>" disabled>
                                         <span class="input-group-btn">
@@ -186,7 +186,7 @@
 
                     <?if(core::config('advertisement.description') != FALSE):?>
                         <div class="form-group">
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 col-xs-12">
                                 <?= FORM::label('description', _e('Description'), array('class'=>'', 'for'=>'description', 'spellcheck'=>TRUE))?>
                                 <?= FORM::textarea('description', $ad->description, array('class'=>'form-control col-md-9 col-sm-9 col-xs-12'.((Core::config("advertisement.description_bbcode"))?NULL:' disable-bbcode'), 'name'=>'description', 'id'=>'description', 'rows'=>8, 'required'))?>
                             </div>
@@ -194,7 +194,7 @@
                     <?endif?>
                     <?if(core::config('advertisement.phone') != FALSE):?>
                         <div class="form-group">
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 col-xs-12">
                                 <?= FORM::label('phone', _e('Phone'), array('class'=>'', 'for'=>'phone'))?>
                                 <?= FORM::input('phone', $ad->phone, array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
                             </div>
@@ -202,7 +202,7 @@
                     <?endif?>
                     <?if(core::config('advertisement.address') != FALSE):?>
                         <div class="form-group">
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 col-xs-12">
                                 <?= FORM::label('address', _e('Address'), array('class'=>'', 'for'=>'address'))?>
                                 <?if(core::config('advertisement.map_pub_new')):?>
                                     <?if (Core::is_HTTPS()):?>
@@ -235,7 +235,7 @@
                     <?endif?>
                     <?if(core::config('payment.stock')):?>
                         <div class="form-group">
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 col-xs-12">
                                 <?= FORM::label('stock', _e('In Stock'), array('class'=>'', 'for'=>'stock'))?>
                                 <div class="input-prepend">
                                 <?= FORM::input('stock', $ad->stock, array('placeholder' => '10', 'class' => 'form-control', 'id' => 'stock', 'type'=>'text'))?>
@@ -245,7 +245,7 @@
                     <?endif?>
                     <?if(core::config('advertisement.price') != FALSE):?>
                         <div class="form-group">
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 col-xs-12">
                                 <?= FORM::label('price', _e('Price'), array('class'=>'', 'for'=>'price'))?>
                                 <div class="input-prepend">
                                     <?= FORM::input('price', $ad->price, array('placeholder'=>html_entity_decode(i18n::money_format(1)),'class'=>'form-control', 'id' => 'price', 'data-error' => __('Please enter only numbers.')))?>
@@ -255,7 +255,7 @@
                     <?endif?>
                     <?if(core::config('advertisement.website') != FALSE):?>
                         <div class="form-group">
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 col-xs-12">
                                 <?= FORM::label('website', _e('Website'), array('class'=>'', 'for'=>'website'))?>
                                 <?= FORM::input('website', $ad->website, array('class'=>'form-control', 'id'=>'website', 'placeholder'=>__('Website')))?>
                             </div>
@@ -268,7 +268,7 @@
                             <?=(Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator()) ? 'data-admin-privilege': NULL?>
                         >
                             <div id="custom-field-template" class="form-group hidden">
-                                <div class="col-sm-8">
+                                <div class="col-sm-8 col-xs-12">
                                     <div data-label></div>
                                     <div data-input></div>
                                 </div>
@@ -282,14 +282,14 @@
                         data-image-height="<?=core::config('image.height') ? core::config('image.height') : 0?>" 
                         data-image-quality="<?=core::config('image.quality')?>" 
                         data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>">
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-xs-12">
                             <div class="row">
                                 <?$images = $ad->get_images()?>
                                 <?if($images):?>
                                     <?foreach ($images as $key => $value):?>
                                         <?if(isset($value['thumb'])): // only formated images (not originals)?>
                                             <div id="img<?=$key?>" class="col-md-4 col-sm-4 col-md-4 edit-image">
-                                                <a><img src="<?=$value['thumb']?>" class="img-rounded thumbnail"></a>
+                                                <a><img src="<?=$value['thumb']?>" class="img-rounded thumbnail img-responsive"></a>
                                                 <button class="btn btn-danger index-delete img-delete"
                                                         data-title="<?=__('Are you sure you want to delete?')?>" 
                                                         data-btnOkLabel="<?=__('Yes, definitely!')?>" 
