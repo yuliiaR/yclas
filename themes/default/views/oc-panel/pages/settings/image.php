@@ -25,7 +25,7 @@
 
                     <div class="form-group">
                         <?=FORM::label($forms['allowed_formats']['id'], __('Allowed image formats'), array('class'=>'control-label', 'for'=>$forms['allowed_formats']['id']))?>
-                        <?=FORM::select($forms['allowed_formats']['key'], array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','webp'=>'webp','gif'=>'gif','raw'=>'raw'), explode(',', $forms['allowed_formats']['value']), array(
+                        <?=FORM::select($forms['allowed_formats']['key'], array('jpeg'=>'jpeg','jpg'=>'jpg','png'=>'png','webp'=>'webp','gif'=>'gif'), explode(',', $forms['allowed_formats']['value']), array(
                             'placeholder' => $forms['allowed_formats']['value'],
                             'multiple' => 'true',
                             'class' => 'tips form-control',
