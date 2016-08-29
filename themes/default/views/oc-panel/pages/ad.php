@@ -13,7 +13,7 @@
     <li>
         <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <?=Core::get('order','Sort')?> <?=Core::get('sort')?>  <span class="caret"></span>
+                <?=Core::get('order',__('Sort'))?> <?=Core::get('sort')?>  <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                 <?foreach($fields as $field):?>

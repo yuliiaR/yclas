@@ -89,7 +89,7 @@
                     <h4 id="cfTemplate" class="modal-title"><?=__('Custom Fields Templates')?></h4>
                 </div>
                 <div class="modal-body">
-                    <p>Create custom fields among predefined templates.</p>
+                    <p><?=__('Create custom fields among predefined templates.')?></p>
                     <div class="form-group">
                         <label class="control-label" for="date"><?=__('Type')?></label>      
                         <select name="type" class="form-control" id="cf_type_fileds" required>
