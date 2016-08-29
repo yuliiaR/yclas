@@ -309,7 +309,9 @@
 											<dt><?= FORM::label('message', _e('Message'), array('class'=>'control-label', 'for'=>'message'))?></dt>
 											<dd><?= FORM::textarea('message', Core::request('message'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>5, 'required'))?></dd>
 										</dl>
-										<?if(core::config('general.messaging')):?>
+										<?if(core::config('general.messaging') AND 
+		                                    core::config('advertisement.price') AND 
+		                                    core::config('advertisement.contact_price')):?>
 											<dl class="form-group clearfix">
 												<dt><?= FORM::label('price', _e('Price'), array('class'=>'control-label', 'for'=>'price'))?></dt>
 												<dd><?= FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?></dd>
