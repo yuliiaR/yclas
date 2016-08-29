@@ -649,11 +649,11 @@
                     
                     <div class="form-group">
                         <p class="form-control-static">
-                            Accept payments with Robokassa, specialized in Russia market
+                            <?=__('Accept payments with Robokassa, specialized in Russia market')?>
                         </p>
                         <p class="form-control-static">
                             <a class="btn btn-success" target="_blank" href="http://robokassa.ru/">
-                                <i class="glyphicon glyphicon-pencil"></i> Register for free at Robokassa
+                                <i class="glyphicon glyphicon-pencil"></i> <?=__('Register for free at Robokassa')?>
                             </a>
                         </p>
                     </div>

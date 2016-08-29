@@ -39,7 +39,11 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading"><div class="panel-title"><?=$location->name?></div></div>
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <?=($location->id_location == 1) ? __('Home location') : $location->name?>
+                </div>
+            </div>
             <?=FORM::open(Route::url('oc-panel',array('controller'=>'location','action'=>'delete')), array('enctype'=>'multipart/form-data'))?>
                 <div class="panel-body">
                     <ol class='plholder' id="ol_<?=$location->id_location?>" data-id="<?=$location->id_location?>">
