@@ -508,7 +508,24 @@
                                 <?=__("Require only the logged in users to contact.")?>
                             </span>
                         </div>
-                        
+
+                        <?if (Core::config('general.messaging')) :?>
+                            <div class="form-group">
+                                <?=FORM::label($forms['contact']['key'], __('Price on contact form'), array('class'=>'control-label', 'for'=>$forms['contact']['key']))?>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['contact_price']['key'], 1, (bool) $forms['contact_price']['value'], array('id' => $forms['contact_price']['key'].'1'))?>
+                                    <?=Form::label($forms['contact_price']['key'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['contact_price']['key'], 0, ! (bool) $forms['contact_price']['value'], array('id' => $forms['contact_price']['key'].'0'))?>
+                                    <?=Form::label($forms['contact_price']['key'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("Show price field on contact form.")?>
+                                </span>
+                            </div>
+                        <?endif?>
+
+                        <hr>
+
                         <div class="form-group">
                             <?=FORM::label($forms['qr_code']['key'], __('Show QR code'), array('class'=>'control-label', 'for'=>$forms['qr_code']['key']))?>
                             <div class="radio radio-primary">

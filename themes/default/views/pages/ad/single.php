@@ -163,7 +163,9 @@
                                         <?= FORM::textarea('message', Core::request('message'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>
                                     </div>
                                 </div>
-                                <?if(core::config('general.messaging')):?>
+                                <?if(core::config('general.messaging') AND 
+                                    core::config('advertisement.price') AND 
+                                    core::config('advertisement.contact_price')):?>
                                     <div class="form-group">
                                         <?= FORM::label('price', _e('Price'), array('class'=>'col-sm-2 control-label', 'for'=>'price'))?>
                                         <div class="col-md-6">
