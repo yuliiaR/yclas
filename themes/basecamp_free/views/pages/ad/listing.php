@@ -300,3 +300,6 @@
 		</div>
 	</div>
 <?endif?>
+<?if (core::config('advertisement.map')==1):?>
+    <?=View::factory('pages/ad/listing_map', compact('ads'))?>
+<?endif?>
