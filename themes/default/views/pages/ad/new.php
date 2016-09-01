@@ -179,7 +179,7 @@
 							<div class="col-md-4">
 								<?= FORM::label('stock', _e('In Stock'), array('for'=>'stock'))?>
 								<div class="input-prepend">
-								<?= FORM::input('stock', Request::current()->post('stock'), array('placeholder' => '10', 'class' => 'form-control', 'id' => 'stock', 'type'=>'text'))?>
+								<?= FORM::input('stock', Core::post('stock', 1), array('placeholder' => '10', 'class' => 'form-control', 'id' => 'stock', 'type'=>'text'))?>
 								</div>
 							</div>
 						</div>
