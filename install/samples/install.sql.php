@@ -694,6 +694,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'website', 1),
 ('advertisement', 'price', 1),
 ('advertisement', 'contact', 1),
+('advertisement', 'contact_price', 1),
 ('advertisement', 'tos', ''),
 ('advertisement', 'thanks_page', ''),
 ('advertisement', 'disqus', ''),
