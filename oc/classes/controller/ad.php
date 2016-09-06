@@ -128,7 +128,8 @@ class Controller_Ad extends Controller {
         if ( ($landing = json_decode(core::config('general.landing_page'))) != NULL
             AND $landing->controller == 'ad'
             AND $landing->action == 'listing'
-            AND (isset($data['pagination']) AND $data['pagination']->current_page == 1) )
+            AND (isset($data['pagination']) AND $data['pagination']->current_page == 1) 
+            AND $location === NULL AND $category === NULL )
         {
             //only show site title
             $this->template->title = NULL;
