@@ -18,7 +18,7 @@
     {
         $structured_data['offers'] = [
             '@type' => 'Offer',
-            'priceCurrency' => i18n::get_intl_currency_symbol(),
+            'priceCurrency' => i18n::get_intl_currency_symbol()?i18n::get_intl_currency_symbol():'USD',
             'price' => $ad->price,
         ];
 
