@@ -33,7 +33,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                'group_name'     => 'advertisement', 
                                'config_value'   => '1'),
                         );
-
+        
+        try 
+        {
+            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."content SET description='Hello Admin,\n\n [EMAIL.SENDER]: [EMAIL.FROM], have a message for you:\n\n [EMAIL.SUBJECT]\n\n [EMAIL.BODY] \n\n Regards!' WHERE seotitle='contact-admin'")->execute();        
+        }catch (exception $e) {}
+        
         Model_Config::config_array($configs);
     }
 
