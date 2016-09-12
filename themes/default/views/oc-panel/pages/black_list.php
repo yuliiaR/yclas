@@ -10,7 +10,7 @@
 <hr>
 
 <p>
-    <?=__('This is a list of users marked as spammers. To understand how this feature works, please read this article')?>
+    <?=__('This is a list of users marked as spammers.')?>
 </p>
 
 <div class="panel panel-default">
