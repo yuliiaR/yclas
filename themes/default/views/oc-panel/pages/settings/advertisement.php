@@ -467,6 +467,9 @@
                                     <?=Form::radio($forms['upload_file']['key'], 0, ! (bool) $forms['upload_file']['value'], array('id' => $forms['upload_file']['key'].'0'))?>
                                     <?=Form::label($forms['upload_file']['key'].'0', __('Disabled'))?>
                                 </div>
+                                <span class="help-block">
+                                    <?=__("Allows buyer to upload a file in the Ad contact form.")?>
+                                </span>
                             </div>
                         </div>
                     </div>
