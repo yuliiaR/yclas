@@ -288,6 +288,9 @@
 
                         <div class="form-group">
                             <?=FORM::label($forms['thanks_page']['key'], __('Thanks page'), array('class'=>'control-label', 'for'=>$forms['thanks_page']['key']))?>
+                            <a target="_blank" href="https://docs.yclas.com/thanks-page/">
+                                <i class="fa fa-question-circle"></i>
+                            </a>
                             <?=FORM::select($forms['thanks_page']['key'], $pages, $forms['thanks_page']['value'], array(
                                 'placeholder' => "", 
                                 'class' => 'form-control', 
