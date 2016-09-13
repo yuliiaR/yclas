@@ -27,6 +27,9 @@
                         <div id="tabSettingsEmailGeneral" class="tab-pane active fade">
                             <h4>
                                 <?=__('General Email Configuration')?>
+                                <a target="_blank" href="https://docs.yclas.com/general-email-configuration/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
                             </h4>
                             <hr>
                         <?foreach ($config as $c):?>

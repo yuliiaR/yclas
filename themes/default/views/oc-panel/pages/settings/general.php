@@ -237,6 +237,9 @@
 
                             <div class="form-group">
                                 <?=FORM::label($forms['email_domains']['key'], __('Allowed email domains'), array('class'=>'control-label', 'for'=>$forms['email_domains']['key']))?>
+                                <a target="_blank" href="https://docs.yclas.com/allowed-email-domains/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
                                 <?=FORM::input($forms['email_domains']['key'], $forms['email_domains']['value'], array(
                                     'placeholder' => __('For email domain push enter.'), 
                                     'class' => 'form-control', 
