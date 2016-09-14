@@ -190,7 +190,9 @@
 							<?if(core::config('advertisement.description')!=FALSE):?>
 								<div class="ad_desc"><?=Text::bb2html($ad->description,TRUE)?></div>
 							<?endif?>
-							<?=$ad->flagad()?>
+							<?if(core::config('advertisement.report')==1):?>
+						        <?=$ad->flagad()?>
+						    <?endif?>
 						</div>
 					</div>
 					
