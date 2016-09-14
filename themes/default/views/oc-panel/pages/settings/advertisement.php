@@ -583,7 +583,20 @@
                                 <?=__("You can choose if you wish to display sharing buttons at each advertisement.")?>
                             </span>
                         </div>
-                        
+
+                        <div class="form-group">
+                            <?=FORM::label($forms['report']['key'], __('Show Report this ad button'), array('class'=>'control-label', 'for'=>$forms['sharing']['key']))?>
+                            <div class="radio radio-primary">
+                                <?=Form::radio($forms['report']['key'], 1, (bool) $forms['report']['value'], array('id' => $forms['report']['key'].'1'))?>
+                                <?=Form::label($forms['report']['key'].'1', __('Enabled'))?>
+                                <?=Form::radio($forms['report']['key'], 0, ! (bool) $forms['report']['value'], array('id' => $forms['report']['key'].'0'))?>
+                                <?=Form::label($forms['report']['key'].'0', __('Disabled'))?>
+                            </div>
+                            <span class="help-block">
+                                <?=__("You can choose if you wish to display Report this ad button at each advertisement.")?>
+                            </span>
+                        </div>
+
                         <hr>
 
                         <div class="form-group">

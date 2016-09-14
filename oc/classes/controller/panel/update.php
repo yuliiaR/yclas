@@ -32,6 +32,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'contact_price',
                                'group_name'     => 'advertisement', 
                                'config_value'   => '1'),
+                        array( 'config_key'     => 'report',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => '1'),
                         );
         
         try 
