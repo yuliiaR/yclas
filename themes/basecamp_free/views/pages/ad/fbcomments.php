@@ -6,7 +6,7 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/<?=Core::config('i18n.get_facebook_language')?>/all.js#xfbml=1&appId=<?=$fbcomments?>";
+  js.src = "//connect.facebook.net/<?=i18n::get_facebook_language(i18n::$locale)?>/all.js#xfbml=1&appId=<?=$fbcomments?>";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
