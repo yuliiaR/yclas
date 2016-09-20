@@ -28,7 +28,7 @@ ol, ul {
 }
 .blog-description img {
     display: block;
-    height: auto;
+    height: auto!important;
     max-width: 100%;
 }
 .resp-header-search {display: none; margin-bottom: 10px;}
