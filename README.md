@@ -20,10 +20,10 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 * KO Formmanager https://github.com/colinbm/kohana-formmanager
 * PHP-Gettext https://launchpad.net/php-gettext/
 * Pear File_Gettext http://pear.php.net/package/File_Gettext
-* POTCreator http://hpyer.cn/codes/potcreator
+* POTCreator
 * PHP.mo https://github.com/josscrowcroft/php.mo
 * jQuery Google maps http://maplacejs.com/
-* PHP-Mailer https://code.google.com/a/apache-extras.org/p/phpmailer/
+* PHP-Mailer https://github.com/PHPMailer/PHPMailer
 * PHP-SitemapGenerator http://www.phpclasses.org/package/5838-PHP-Generate-sitemaps-and-notify-updates.html
 * jsmin-php https://github.com/rgrove/jsmin-php/
 * Minify https://github.com/mrclay/minify
