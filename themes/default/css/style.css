@@ -5034,7 +5034,8 @@ button.close {
   left: 0;
   z-index: 1050;
   -webkit-overflow-scrolling: touch;
-  outline: 0; }
+  outline: 0;
+  overflow-y: scroll; }
   .modal.fade .modal-dialog {
     -webkit-transform: translate(0, -25%);
     transform: translate(0, -25%);
