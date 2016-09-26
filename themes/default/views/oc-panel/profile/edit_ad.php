@@ -248,7 +248,7 @@
                             <div class="col-sm-8 col-xs-12">
                                 <?= FORM::label('price', _e('Price'), array('class'=>'', 'for'=>'price'))?>
                                 <div class="input-prepend">
-                                    <?= FORM::input('price', html_entity_decode(i18n::money_format($ad->price)), array('placeholder'=>html_entity_decode(i18n::money_format(1)),'class'=>'form-control', 'id' => 'price', 'data-error' => __('Please enter only numbers.')))?>
+                                    <?= FORM::input('price', $ad->price, array('placeholder'=>html_entity_decode(i18n::money_format(1)),'class'=>'form-control', 'id' => 'price', 'data-error' => __('Please enter only numbers.')))?>
                                 </div>
                             </div>
                         </div>
