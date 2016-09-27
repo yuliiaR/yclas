@@ -288,6 +288,9 @@
 
                         <div class="form-group">
                             <?=FORM::label($forms['thanks_page']['key'], __('Thanks page'), array('class'=>'control-label', 'for'=>$forms['thanks_page']['key']))?>
+                            <a target="_blank" href="https://docs.yclas.com/thanks-page/">
+                                <i class="fa fa-question-circle"></i>
+                            </a>
                             <?=FORM::select($forms['thanks_page']['key'], $pages, $forms['thanks_page']['value'], array(
                                 'placeholder' => "", 
                                 'class' => 'form-control', 
@@ -467,6 +470,9 @@
                                     <?=Form::radio($forms['upload_file']['key'], 0, ! (bool) $forms['upload_file']['value'], array('id' => $forms['upload_file']['key'].'0'))?>
                                     <?=Form::label($forms['upload_file']['key'].'0', __('Disabled'))?>
                                 </div>
+                                <span class="help-block">
+                                    <?=__("Allows buyer to upload a file in the Ad contact form.")?>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -577,7 +583,20 @@
                                 <?=__("You can choose if you wish to display sharing buttons at each advertisement.")?>
                             </span>
                         </div>
-                        
+
+                        <div class="form-group">
+                            <?=FORM::label($forms['report']['key'], __('Show Report this ad button'), array('class'=>'control-label', 'for'=>$forms['sharing']['key']))?>
+                            <div class="radio radio-primary">
+                                <?=Form::radio($forms['report']['key'], 1, (bool) $forms['report']['value'], array('id' => $forms['report']['key'].'1'))?>
+                                <?=Form::label($forms['report']['key'].'1', __('Enabled'))?>
+                                <?=Form::radio($forms['report']['key'], 0, ! (bool) $forms['report']['value'], array('id' => $forms['report']['key'].'0'))?>
+                                <?=Form::label($forms['report']['key'].'0', __('Disabled'))?>
+                            </div>
+                            <span class="help-block">
+                                <?=__("You can choose if you wish to display Report this ad button at each advertisement.")?>
+                            </span>
+                        </div>
+
                         <hr>
 
                         <div class="form-group">

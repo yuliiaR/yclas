@@ -26,32 +26,52 @@ class Controller_Api_Auth extends Api_Auth {
                     {}
                 }
 
-                $res = $user->as_array();
-                $res['user_token'] = $user->api_token();
-                $res['image']      = $user->get_profile_image();
-
-                //I do not want to return this fields...
-                $hidden_fields =  array('password','token',
-                                        'hybridauth_provider_uid','token_created','token_expires',
-                                        'user_agent');
-
-                //all fields
-                $this->_return_fields = array_keys($res);
-
-                //remove the hidden fields
-                foreach ($this->_return_fields as $key => $value) 
-                {
-                    if(in_array($value,$hidden_fields))
-                        unset($this->_return_fields[$key]);
-                }
-
-                $this->rest_output(array('user' => $res));
+                $this->rest_output( array('user' => self::get_user_array($user)) );
             }
         }
         else
             $this->_error(__('Wrong user name or password'),401);
     }
 
+    public function action_social()
+    {
+        $user = FALSE;
+        
+        $provider_name = Core::request('social_network');
+        $identifier    = Core::request('token');
+        $email         = Core::request('email');
+        $name          = Core::request('name');
+
+        $user = Auth::instance()->social_login($provider_name, $identifier);
+
+        //not found in database
+        if ($user == FALSE)
+        {
+            //register the user in DB
+            Model_User::create_social($email,$name,$provider_name,$identifier);
+            //log him in
+            $user = Auth::instance()->social_login($provider_name, $identifier);
+        }
+
+
+        if ( $user!== FALSE AND $user->loaded() )
+        {   
+            //save device id only if its different
+            if (Core::request('device_id')!==NULL AND $user->device_id!=Core::request('device_id'))
+            {
+                $user->device_id = Core::request('device_id');
+                try 
+                {
+                    $user->save();
+                }
+                catch (Kohana_HTTP_Exception $khe)
+                {}
+            }
+
+            $this->rest_output( array('user' => self::get_user_array($user)) );
+        }
+        
+    }
 
     public function action_index()
     {   
@@ -118,6 +138,28 @@ class Controller_Api_Auth extends Api_Auth {
             $this->_error($errors);
         }
 
+    }
+
+
+    public static function get_user_array($user)
+    {
+        $res = $user->as_array();
+        $res['user_token'] = $user->api_token();
+        $res['image']      = $user->get_profile_image();
+
+        //I do not want to return this fields...
+        $hidden_fields =  array('password','token',
+                                'hybridauth_provider_uid','token_created','token_expires',
+                                'user_agent');
+
+        //remove the hidden fields
+        foreach ($res as $key => $value) 
+        {
+            if(in_array($key,$hidden_fields))
+                unset($res[$key]);
+        }
+
+        return $res;
     }
 
 } // END

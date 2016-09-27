@@ -99,7 +99,7 @@
                             <?=Form::label($forms['auto_locate']['key'].'0', __('Disabled'))?>
                         </div>
                         <span class="help-block">
-                            <?=__("Requires setting up SSL on your website.")?>
+                            <?=__("Get the geographical position of a user. Requires setting up SSL on your website.")?>
                         </span>
                     </div>
 

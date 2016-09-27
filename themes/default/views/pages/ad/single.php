@@ -216,7 +216,9 @@
     <?=$ad->map()?>
     <?=$ad->related()?>
     <?=$ad->comments()?>
-    <?=$ad->flagad()?>
+    <?if(core::config('advertisement.report')==1):?>
+        <?=$ad->flagad()?>
+    <?endif?>
     <?=$ad->structured_data()?>
     
     <!-- modal-gallery is the modal dialog used for the image gallery -->

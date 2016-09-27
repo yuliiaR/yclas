@@ -27,6 +27,9 @@
                         <div id="tabSettingsEmailGeneral" class="tab-pane active fade">
                             <h4>
                                 <?=__('General Email Configuration')?>
+                                <a target="_blank" href="https://docs.yclas.com/general-email-configuration/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
                             </h4>
                             <hr>
                         <?foreach ($config as $c):?>
@@ -93,7 +96,7 @@
                         </div>
                                         
                         <div class="form-group">
-                            <a class="btn btn-success" href="http://j.mp/elasticemailoc" target="_blank" onclick='setCookie("elastic_alert",1,365)' >Sign Up ElasticEmail $5 Free</a>
+                            <a class="btn btn-success" href="http://j.mp/elasticemailoc" target="_blank" onclick='setCookie("elastic_alert",1,365)' >Sign Up ElasticEmail 150K emails free per month</a>
                         </div>
 
                         <div class="form-group">
