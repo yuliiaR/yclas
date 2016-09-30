@@ -42,7 +42,7 @@
     <div class="alert alert-info fade in">
         <p>
             <strong><?=__('Heads Up!')?></strong> 
-            Authorize, Stripe, Paymill, 2checkout, Paysbuy, SecurePay, Robokassa, Paguelofacil and Bitpay <?=__('only available with premium themes!').' '.__('Upgrade your Open Classifieds site to activate this feature.')?>
+            Authorize, Stripe, Paymill, 2checkout, Paysbuy, SecurePay, Robokassa, Paguelofacil, Mercadopago and Bitpay <?=__('only available with premium themes!').' '.__('Upgrade your Open Classifieds site to activate this feature.')?>
         </p>
         <p>
             <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>">
@@ -87,6 +87,9 @@
                         </li>
                         <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPaguelofacil" aria-expanded="false">Paguelofacil</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentMercadoPago" aria-expanded="false">MercadoPago</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPreventFraud" aria-expanded="false"><?=__('Prevent Fraud')?></a>
@@ -747,6 +750,52 @@
                         <?=FORM::label('', __('Integration URIs'), array('class'=>'control-label'))?>
                         <span class="help-block">
                             Result URL <pre><?=Route::url('default',array('controller'=>'paguelofacil', 'action'=>'result','id'=>core::config('general.api_key')))?></pre>
+                        </span>
+                    </div>
+                    
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
+                </div>
+
+                <div id="tabSettingsPaymentMercadoPago" class="tab-pane fade">
+                    <h4>MercadoPago</h4>
+                    <hr>
+
+                    <div class="form-group">
+                        <p class="form-control-static">
+                            Get your <strong>CLIENT_ID</strong> and <strong>CLIENT_SECRET</strong> in the following address:
+                            <ul>
+                            <li>Argentina: <a href="https://www.mercadopago.com/mla/herramientas/aplicaciones">https://www.mercadopago.com/mla/herramientas/aplicaciones</a></li>
+                            <li>Brazil: <a href="https://www.mercadopago.com/mlb/ferramentas/aplicacoes">https://www.mercadopago.com/mlb/ferramentas/aplicacoes</a></li>
+                            <li>Mexico: <a href="https://www.mercadopago.com/mlm/herramientas/aplicaciones">https://www.mercadopago.com/mlm/herramientas/aplicaciones</a></li>
+                            <li>Venezuela: <a href="https://www.mercadopago.com/mlv/herramientas/aplicaciones">https://www.mercadopago.com/mlv/herramientas/aplicaciones</a></li>
+                            <li>Colombia: <a href="https://www.mercadopago.com/mco/herramientas/aplicaciones">https://www.mercadopago.com/mco/herramientas/aplicaciones</a></li>
+                            <li>Chile: <a href="https://www.mercadopago.com/mlc/herramientas/aplicaciones">https://www.mercadopago.com/mlc/herramientas/aplicaciones</a></li>
+                            </ul>
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['mercadopago_client_id']['key'], 'Client ID', array('class'=>'control-label', 'for'=>$forms['mercadopago_client_id']['key']))?>
+                        <?=FORM::input($forms['mercadopago_client_id']['key'], $forms['mercadopago_client_id']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['mercadopago_client_id']['key']
+                        ))?>
+                        <span class="help-block">
+                            Client ID
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['mercadopago_client_secret']['key'], 'Client Secret', array('class'=>'control-label', 'for'=>$forms['mercadopago_client_secret']['key']))?>
+                        <?=FORM::input($forms['mercadopago_client_secret']['key'], $forms['mercadopago_client_secret']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['mercadopago_client_secret']['key']
+                        ))?>
+                        <span class="help-block">
+                            Client Secret
                         </span>
                     </div>
                     
