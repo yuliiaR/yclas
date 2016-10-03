@@ -518,3 +518,9 @@ function getCookie(name) {
     var parts = value.split("; " + name + "=");
     if (parts.length == 2) return parts.pop().split(";").shift();
 }
+
+$('.modal').on('hidden.bs.modal', function (e) {
+    if($('.modal').hasClass('in')) {
+    $('body').addClass('modal-open');
+    }    
+});
