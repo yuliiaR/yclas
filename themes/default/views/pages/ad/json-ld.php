@@ -31,6 +31,7 @@
         $structured_data['aggregateRating'] = [
             '@type' => 'AggregateRating',
             'ratingValue' => $ad->rate,
+            'ratingCount' => Model_Review::get_ad_count_rates($ad),
         ];
     }
 
