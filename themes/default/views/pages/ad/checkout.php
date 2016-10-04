@@ -71,6 +71,7 @@
                                         <?endforeach?>
                                     </ul>
                                 <?endif?>
+                                </div>
                             </td>
                         <?else :?>
                             <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
