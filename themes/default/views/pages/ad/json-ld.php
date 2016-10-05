@@ -19,7 +19,7 @@
         $structured_data['offers'] = [
             '@type' => 'Offer',
             'priceCurrency' => i18n::get_intl_currency_symbol()?i18n::get_intl_currency_symbol():'USD',
-            'price' => $ad->price,
+            'price' => preg_replace("/[^0-9,.]/", "", i18n::money_format($ad->price)),
         ];
 
         if (Core::config('payment.stock') AND $ad->stock > 0)
@@ -31,6 +31,7 @@
         $structured_data['aggregateRating'] = [
             '@type' => 'AggregateRating',
             'ratingValue' => $ad->rate,
+            'ratingCount' => Model_Review::get_ad_count_rates($ad),
         ];
     }
 

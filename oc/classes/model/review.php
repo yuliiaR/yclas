@@ -83,6 +83,26 @@ class Model_Review extends ORM {
     }
 
     /**
+     * returns amount of rates of an ad
+     * @param  Model_Ad $ad [description]
+     * @return [type]                 [description]
+     */
+    public static function get_ad_count_rates(Model_Ad $ad)
+    {
+        $query = DB::select(DB::expr('COUNT(rate) rate'))
+                        ->from('reviews')
+                        ->where('id_ad','=',$ad->id_ad)
+                        ->where('status','=',Model_Review::STATUS_ACTIVE)
+                        ->group_by('id_ad')
+                        ->execute();
+
+        $rates = $query->as_array();
+
+        return $rates[0]['rate'];
+
+    }
+
+    /**
      * returns the user rate from all the reviews
      * @param  Model_User $user [description]
      * @return [type]                 [description]
