@@ -449,7 +449,7 @@ class Model_Order extends ORM {
         //get original price for the product
         switch ($this->id_product) {
             case self::PRODUCT_CATEGORY:
-                    $amount = $this->ad->category->price;
+                    $amount = $this->ad->category->price > 0 ? $this->ad->category->price : $this->ad->category->parent->price;
                 break;
             case self::PRODUCT_TO_TOP:
                     $amount = core::config('payment.pay_to_go_on_top');
