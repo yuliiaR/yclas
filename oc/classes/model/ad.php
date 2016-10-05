@@ -1396,27 +1396,19 @@ class Model_Ad extends ORM {
         $moderation = core::config('general.moderation'); 
 
         //calculate how much he needs to pay in case we have payment on
-        if ($moderation == Model_Ad::PAYMENT_ON OR $moderation == Model_Ad::PAYMENT_MODERATION)
+        if (in_array($moderation, [Model_Ad::PAYMENT_ON, Model_Ad::PAYMENT_MODERATION]))
         {
-            // check category price, if 0 check parent
-            if($ad->category->price == 0)
-            {
-                $cat_parent = new Model_Category($ad->category->id_category_parent);
+            // check category price
+            $amount = $ad->category->price > 0 ? $ad->category->price : $ad->category->parent->price;
 
-                //category without price
-                if($cat_parent->price == 0)
-                {
-                    //swapping moderation since theres no price :(
-                    if ($moderation == Model_Ad::PAYMENT_ON)
-                        $moderation = Model_Ad::POST_DIRECTLY;
-                    elseif($moderation == Model_Ad::PAYMENT_MODERATION)
-                        $moderation = Model_Ad::MODERATION_ON;
-                }
+            //swapping moderation since theres no price :(
+            if ($amount == 0)
+            {
+                if ($moderation == Model_Ad::PAYMENT_MODERATION)
+                    $moderation = Model_Ad::MODERATION_ON;
                 else
-                    $amount = $cat_parent->price;
+                    $moderation = Model_Ad::POST_DIRECTLY;
             }
-            else
-                $amount = $ad->category->price;
         }
 
         //where and what we say to the user depending ont he moderation
