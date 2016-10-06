@@ -9,7 +9,7 @@
     ];
 
     if ($ad->get_first_image() !== NULL)
-        $structured_data['image'] = $ad->description;
+        $structured_data['image'] = $ad->get_first_image();
 
     if (Core::config('advertisement.description') != FALSE)
         $structured_data['description'] = $ad->description;
