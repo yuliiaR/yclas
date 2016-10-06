@@ -223,7 +223,7 @@ class Controller extends Kohana_Controller
     public function private_site()
     {
         //private_site
-        if (core::config('general.private_site')==1 AND $this->user==FALSE AND (strtolower($this->request->action())!='login') )
+        if (core::config('general.private_site')==1 AND $this->user==FALSE AND (strtolower($this->request->action()) != 'login') AND (strtolower($this->request->action()) != 'request') )
         {
             $this->auto_render = FALSE;
             $this->response->status(403);
