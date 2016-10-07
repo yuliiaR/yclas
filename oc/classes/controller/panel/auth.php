@@ -261,18 +261,18 @@ class Controller_Panel_Auth extends Controller {
                 }
                 else
                 {
-                    Form::set_errors(array(__('User already exists')));
+                    Alert::set(Alert::ERROR,__('User already exists'));
                 }
                 
             }
             else
             {
-                Form::set_errors(array(__('Invalid Email')));
+                Alert::set(Alert::ERROR,__('Invalid Email'));
             }
             
         }
                 
-            
+        $this->redirect(Route::get('default')->uri());    
     }
     
     /**
