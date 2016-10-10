@@ -65,7 +65,7 @@ msgstr "%s coupons restants"
 
 #: String 13
 msgid "%s days ago"
-msgstr "Il y %s jours"
+msgstr "Il y a %s jours"
 
 #: String 14
 msgid "%s from you"
@@ -101,23 +101,23 @@ msgstr "Il y a 12 mois"
 
 #: String 22
 msgid "2 Step Authentication"
-msgstr "Authentification à 2 étapes"
+msgstr "Authentification en 2 étapes"
 
 #: String 23
 msgid "2 Step Authentication Disabled"
-msgstr "Authentification à 2 étapes désactivée"
+msgstr "Authentification en 2 étapes désactivée"
 
 #: String 24
 msgid "2 Step Authentication Enabled"
-msgstr "Authentification à 2 étapes activée"
+msgstr "Authentification en 2 étapes activée"
 
 #: String 25
 msgid "2 step Google Authenticator"
-msgstr "Google Authenticator à 2 étapes"
+msgstr "Google Authenticator en 2 étapes"
 
 #: String 26
 msgid "2 step authentication provided by Google Authenticator."
-msgstr "Authentification à 2 étapes par Google Authenticator"
+msgstr "Authentification en 2 étapes avec Google Authenticator"
 
 #: String 27
 msgid "3 Months Ago"
@@ -149,7 +149,7 @@ msgstr ":field doit être une date"
 
 #: String 34
 msgid ":field must be a decimal with :param2 places"
-msgstr ":field doit être un nombre décimal avec :param2 places"
+msgstr ":field doit être un nombre décimal avec :param2 emplacements"
 
 #: String 35
 msgid ":field must be a digit"
@@ -161,7 +161,7 @@ msgstr ":field doit être un numéro de téléphone"
 
 #: String 37
 msgid ":field must be a url"
-msgstr ":field doit être une URL"
+msgstr ":field doit être une adresse internet URL"
 
 #: String 38
 msgid ":field must be an email address"
@@ -217,7 +217,7 @@ msgstr ":field doit être égal à :param2"
 
 #: String 51
 msgid ":field must not be empty"
-msgstr ":field ne doit pas être vide"
+msgstr ":field ne peux pas être laissé vide"
 
 #: String 52
 msgid ":field must not contain banned words"
@@ -2525,15 +2525,15 @@ msgstr "Page d'accueil CTA URL"
 
 #: String 628
 msgid "Homepage CTA button 1 Title"
-msgstr "Bouton Page d'accueil CTA 1 Titre"
+msgstr "Titre 1 du Bouton Page d'accueil CTA"
 
 #: String 629
 msgid "Homepage CTA button 1 URL"
-msgstr "Bouton Page d'accueil CTA 1 URL"
+msgstr "URL du Bouton 1 de la Page d'accueil CTA"
 
 #: String 630
 msgid "Homepage CTA button 2 Title"
-msgstr "Bouton Page d'accueil CTA 2 Titre"
+msgstr "Titre du Bouton 2 de la Page d'accueil CTA"
 
 #: String 631
 msgid "Homepage CTA button 2 URL"
@@ -2545,75 +2545,75 @@ msgstr "Page d’accueil HTML"
 
 #: String 633
 msgid "Homepage Header Slider CTA Title 1"
-msgstr "Curseur en entête de page d'accueil CTA Titre 1"
+msgstr "Titre 1 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 634
 msgid "Homepage Header Slider CTA Title 2"
-msgstr "Curseur en entête de page d'accueil CTA Titre 2"
+msgstr "Titre 2 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 635
 msgid "Homepage Header Slider CTA Title 3"
-msgstr "Curseur en entête de page d'accueil CTA Titre 3"
+msgstr "Titre 3 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 636
 msgid "Homepage Header Slider CTA Title 4"
-msgstr "Curseur en entête de page d'accueil CTA Titre 4"
+msgstr "Titre 4 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 637
 msgid "Homepage Header Slider CTA Title 5"
-msgstr "Curseur en entête de page d'accueil CTA Titre 5"
+msgstr "Titre 5 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 638
 msgid "Homepage Header Slider CTA Title 6"
-msgstr "Curseur en entête de page d'accueil CTA Titre 6"
+msgstr "Titre 6 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 639
 msgid "Homepage Header Slider CTA Title 7"
-msgstr "Curseur en entête de page d'accueil CTA Titre 7"
+msgstr "Titre 7 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 640
 msgid "Homepage Header Slider CTA Title 8"
-msgstr "Curseur en entête de page d'accueil CTA Titre 8"
+msgstr "Titre 8 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 641
 msgid "Homepage Header Slider CTA Title 9"
-msgstr "Curseur en entête de page d'accueil CTA Titre 9"
+msgstr "Titre 9 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 642
 msgid "Homepage Header Slider CTA URL 1"
-msgstr "Curseur en entête de page d'accueil CTA URL 1"
+msgstr "URL 1 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 643
 msgid "Homepage Header Slider CTA URL 2"
-msgstr "Curseur en entête de page d'accueil CTA URL 2"
+msgstr "URL 2 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 644
 msgid "Homepage Header Slider CTA URL 3"
-msgstr "Curseur en entête de page d'accueil CTA URL 3"
+msgstr "URL 3 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 645
 msgid "Homepage Header Slider CTA URL 4"
-msgstr "Curseur en entête de page d'accueil CTA URL 4"
+msgstr "URL 4 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 646
 msgid "Homepage Header Slider CTA URL 5"
-msgstr "Curseur en entête de page d'accueil CTA URL 5"
+msgstr "URL 5 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 647
 msgid "Homepage Header Slider CTA URL 6"
-msgstr "Curseur en entête de page d'accueil CTA URL 6"
+msgstr "URL 6 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 648
 msgid "Homepage Header Slider CTA URL 7"
-msgstr "Curseur en entête de page d'accueil CTA URL 7"
+msgstr "URL 7 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 649
 msgid "Homepage Header Slider CTA URL 8"
-msgstr "Curseur en entête de page d'accueil CTA URL 8"
+msgstr "URL 8 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 650
 msgid "Homepage Header Slider CTA URL 9"
-msgstr "Curseur en entête de page d'accueil CTA URL 9"
+msgstr "URL 9 du Curseur CTA de l'entête de la page d'accueil"
 
 #: String 651
 msgid "Homepage Header Slider Image 1"
