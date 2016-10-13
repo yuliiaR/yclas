@@ -954,11 +954,13 @@ class Controller_Ad extends Controller {
 	        	if(core::get('search'))
 	        		$search_advert = core::get('search');
 
-	        	$ads
-        			->where_open()
-                	->where('title', 'like', '%'.$search_advert.'%')
-                	->or_where('description', 'like', '%'.$search_advert.'%')
-                	->where_close();
+	        	if(core::config('general.search_by_description') == TRUE)
+                        $ads->where_open()
+                            ->where('title', 'like', '%'.$search_advert.'%')
+                            ->or_where('description', 'like', '%'.$search_advert.'%')
+                            ->where_close();
+                else
+                    $ads->where('title', 'like', '%'.$search_advert.'%');
 	        }
 
             //cf filter arrays

@@ -46,10 +46,13 @@ class Controller_Api_Listings extends Api_Auth {
                 //make a search with q? param
                 if (isset($this->_params['q']) AND strlen($this->_params['q']))
                 {
-                    $ads->where_open()
-                        ->where('title', 'like', '%'.$this->_params['q'].'%')
-                        ->or_where('description', 'like', '%'.$this->_params['q'].'%')
-                        ->where_close();
+                    if(core::config('general.search_by_description') == TRUE)
+                        $ads->where_open()
+                            ->where('title', 'like', '%'.$this->_params['q'].'%')
+                            ->or_where('description', 'like', '%'.$this->_params['q'].'%')
+                            ->where_close();
+                    else
+                        $ads->where('title', 'like', '%'.$this->_params['q'].'%');
                 }
 
                 //getting all the ads of a category.
