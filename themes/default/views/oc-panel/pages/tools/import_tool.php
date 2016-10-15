@@ -3,7 +3,6 @@
 <div class="row">
     <div class="col-lg-12 page-title-container">
         <h1 class="page-header page-title"><?=__('Import tool for locations and categories')?></h1>
-        <span class="page-description"><?=__('This panel shows how many visitors your website had the past month.')?> <a target="_blank" href="https://docs.yclas.com/use-import-tool-categories-locations/"><?=__('Read more')?></a></span>
     </div>
 </div>
 
