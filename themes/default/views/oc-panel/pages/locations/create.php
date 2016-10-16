@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <?= FORM::label('latitude', __('Latitude'), array('class'=>'control-label', 'for'=>'latitude'))?>
-                                <?= FORM::input('latitude', core::request('latitude'), array('placeholder' => __('Longitude'), 'class' => 'form-control', 'id' => 'latitude'))?>
+                                <?= FORM::input('latitude', core::request('latitude'), array('placeholder' => __('Latitude'), 'class' => 'form-control', 'id' => 'latitude'))?>
                             </div>
                         </div>
                         <div class="form-group">
