@@ -28,7 +28,7 @@
                     <?=__('Please use the correct CSV format')?> <a href="https://docs.google.com/uc?id=0B60e9iwQucDwRzlOT2NCem5maFU&export=download"><?=__('download example')?>.</a>
                     <br /><br />
                     <span class="label label-info"><?=__('Hosting limit')?></span> 
-                    upload_max_filesize: <?=ini_get('upload_max_filesize')?>, max_execution_time: <?=ini_get('max_execution_time')?><?=__('seconds')?> <?=__('limited to 10.000 at a time')?>, <?=__('1 MB file')?>.
+                    <br>upload_max_filesize: <?=ini_get('upload_max_filesize')?>,<br>max_execution_time: <?=ini_get('max_execution_time')?> <?=__('seconds')?> <?=__('limited to 10.000 at a time')?>, <?=__('1 MB file')?>.
                 </p>
                 <?= FORM::open(Route::url('oc-panel',array('controller'=>'import','action'=>'csv')), array('class'=>'', 'enctype'=>'multipart/form-data'))?>
                     <div class="form-group">
