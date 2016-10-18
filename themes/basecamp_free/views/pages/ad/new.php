@@ -151,7 +151,7 @@
 						<div class="form-group">
 							<div class="col-xs-8">
 								<?= FORM::label('address', _e('Address'), array('for'=>'address'))?>
-								<?if(core::config('advertisement.map_pub_new')):?>
+								<?if(core::config('advertisement.map_pub_new') AND Core::is_HTTPS()):?>
 									<div class="input-group">
 										<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 										<span class="input-group-btn">
