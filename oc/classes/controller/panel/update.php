@@ -50,6 +50,13 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         {
             DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."content SET description='Hello Admin,\n\n [EMAIL.SENDER]: [EMAIL.FROM], have a message for you:\n\n [EMAIL.SUBJECT]\n\n [EMAIL.BODY] \n\n Regards!' WHERE seotitle='contact-admin'")->execute();        
         }catch (exception $e) {}
+
+        //crontab renew subscription
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
+                                    ('Notify new updates', '0 9 * * 1', 'Cron_Update::notify', NULL, 'Notify by email of new site updates.', 1);")->execute();
+        }catch (exception $e) {}
         
         Model_Config::config_array($configs);
     }

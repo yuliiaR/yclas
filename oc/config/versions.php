@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-return array (
- '2.9.0' => 
+                return array (
+  '2.9.0' => 
   array (
     'codename' => 'Moscow',
     'released' => '2016-07-22',
@@ -9,7 +9,7 @@ return array (
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.9.0+is%3Aclosed',
     'download' => 'https://j.mp/oc_290',
   ),
- '2.8.0' => 
+  '2.8.0' => 
   array (
     'codename' => 'Saigon',
     'released' => '2016-06-28',
@@ -18,7 +18,7 @@ return array (
     'issues' => 'https://github.com/open-classifieds/openclassifieds2/issues?q=milestone%3A2.8.0+is%3Aclosed',
     'download' => 'https://j.mp/oc_280',
   ),
- '2.7.2' => 
+  '2.7.2' => 
   array (
     'codename' => 'Tlaloc2',
     'released' => '2016-05-25',
