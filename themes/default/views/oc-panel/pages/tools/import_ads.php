@@ -25,7 +25,7 @@
             </div>
             <div class="panel-body">
                 <p>
-                    <?=__('Please use the correct CSV format')?> <a href="https://cdn.rawgit.com/open-classifieds/openclassifieds2/master/install/import/ads.csv"><?=__('download example')?>.</a>
+                    <?=__('Please use the correct CSV format')?> <a href="https://cdn.rawgit.com/open-classifieds/openclassifieds2/master/install/samples/import/ads.csv"><?=__('download example')?>.</a>
                     <br /><br />
                     <span class="label label-info"><?=__('Hosting limit')?></span> 
                     <br>upload_max_filesize: <?=ini_get('upload_max_filesize')?>,<br>max_execution_time: <?=ini_get('max_execution_time')?> <?=__('seconds')?> <?=__('limited to 10.000 at a time')?>, <?=__('1 MB file')?>.
