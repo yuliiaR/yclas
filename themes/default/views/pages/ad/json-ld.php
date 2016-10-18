@@ -19,7 +19,7 @@
         $structured_data['offers'] = [
             '@type' => 'Offer',
             'priceCurrency' => i18n::get_intl_currency_symbol()?i18n::get_intl_currency_symbol():'USD',
-            'price' => i18n::format_currency_without_symbol($ad->price),
+            'price' => number_format($ad->price,2,".",""),
         ];
 
         if (Core::config('payment.stock') AND $ad->stock > 0)
