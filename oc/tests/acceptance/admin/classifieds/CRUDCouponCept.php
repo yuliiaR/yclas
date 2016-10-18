@@ -1,6 +1,6 @@
 <?php 
 
-// Before this test it's important to import ads: https://mega.co.nz/#!99NgnYKI!3xh_k3A6mQGOJmGqxKUsC2zdiR9SwHtlDa9muH5tSYI
+// Before this test it's important to import ads: https://cdn.rawgit.com/open-classifieds/openclassifieds2/master/install/import/ads.csv
 
 $I = new AcceptanceTester($scenario);
 $I->am('the administrator');
