@@ -16,6 +16,7 @@ class Cron_Subscription {
      */
     public static function renew()
     {
+
         if (Core::config('general.subscriptions')==TRUE)
         {
             //get expired subscription that are active
@@ -25,6 +26,7 @@ class Cron_Subscription {
                                         ->where('expire_date','<=',Date::unix2mysql())
                                         ->order_by('created','desc')
                                         ->find_all();
+
             foreach ($subscriptions as $s) 
             {   
                 //disable the plan
@@ -52,10 +54,45 @@ class Cron_Subscription {
                     }
                     else
                     {
-                        $checkout_url = $s->user->ql('default',array('controller'=>'plan','action'=>'checkout','id'=>$order->id_order));
+                        $paid = FALSE;
 
-                        $s->user->email('plan-expired', array(  '[PLAN.NAME]'      => $plan->name,
-                                                                '[URL.CHECKOUT]'   => $checkout_url));
+                        //customers who paid with sripe we can charge the recurrency
+                        if ($order->user->stripe_agreement!=NULL)
+                        {
+                            StripeKO::init();
+
+                            // Create the charge on Stripe's servers - this will charge the user's card
+                            try 
+                            {
+                                $charge = \Stripe\Charge::create(array(
+                                                                    "amount"    => StripeKO::money_format($order->amount), // amount in cents, again
+                                                                    "currency"  => $order->currency,
+                                                                    'customer'  => $order->user->stripe_agreement,
+                                                                    "description" => $order->description,
+                                                                    "metadata"    => array("id_order" => $order->id_order))
+                                                                );
+                                $paid = TRUE;
+                            }
+                            catch(Exception $e) 
+                            {
+                                // The card has been declined
+                                Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
+                                $paid = FALSE;
+                            }                           
+                        }
+
+                        if ($paid === TRUE)
+                        {
+                            //mark as paid
+                            $order->confirm_payment('stripe',$charge->id);
+                        }
+                        else
+                        {
+                            $checkout_url = $s->user->ql('default',array('controller'=>'plan','action'=>'checkout','id'=>$order->id_order));
+
+                            $s->user->email('plan-expired', array(  '[PLAN.NAME]'      => $plan->name,
+                                                                    '[URL.CHECKOUT]'   => $checkout_url));
+                        }
                     }
 
                 }//if plan loaded

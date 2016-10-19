@@ -62,6 +62,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `notification_date` datetime DEFAULT NULL,
   `device_id` varchar(255) DEFAULT NULL,
   `stripe_user_id` varchar(140) DEFAULT NULL,
+  `stripe_agreement` varchar(40) DEFAULT NULL,
   `google_authenticator` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_email` (`email`),

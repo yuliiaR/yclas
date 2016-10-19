@@ -57,6 +57,13 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
                                     ('Notify new updates', '0 9 * * 1', 'Cron_Update::notify', NULL, 'Notify by email of new site updates.', 1);")->execute();
         }catch (exception $e) {}
+
+        //stripe agreement
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `stripe_agreement` varchar(40) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
         
         Model_Config::config_array($configs);
     }

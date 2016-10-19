@@ -39,16 +39,26 @@ class Controller_Stripe extends Controller{
                     $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
                 }
 
-                // include class vendor
-                require Kohana::find_file('vendor/stripe', 'init');
-
-                // Set your secret key: remember to change this to your live secret key in production
-                // See your keys here https://manage.stripe.com/account
-                \Stripe\Stripe::setAppInfo('Open Classifieds', Core::VERSION, 'http://open-classifieds.com');
-                \Stripe\Stripe::setApiKey(Core::config('payment.stripe_private'));
+                StripeKO::init();
 
                 // Get the credit card details submitted by the form
                 $token = Core::post('stripeToken');
+
+                try
+                {
+                    // Create a Customer
+                    $customer = \Stripe\Customer::create(array(
+                      'card'  => $token,
+                      'email' => $order->user->email)
+                    );
+                }
+                catch(Exception $e) 
+                {
+                    // The card has been declined
+                    Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
+                    Alert::set(Alert::ERROR, 'The card has been declined');
+                    $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
+                }
 
                 //3d secure active?
                 if (Core::config('payment.stripe_3d_secure') == TRUE)
@@ -56,7 +66,7 @@ class Controller_Stripe extends Controller{
                     try 
                     {
                         $three_d_secure =  \Stripe\ThreeDSecure::create(array(
-                                                    'card'      => $token,
+                                                    'customer'  => $customer->id,
                                                     'amount'    => StripeKO::money_format($order->amount),
                                                     'currency'  => $order->currency,
                                                     'return_url'=> Route::url('default',array('controller'=>'stripe','action'=>'3d','id'=>$order->id_order))
@@ -73,6 +83,8 @@ class Controller_Stripe extends Controller{
                     //he has 3d secure redirect to stripe, if not continues normal process
                     if ($three_d_secure->status == 'redirect_pending')
                     {
+                        //so we can use later the customer to store it
+                        Session::instance()->set('customer_id',$customer->id);
                         die(View::factory('post_redirect', ['redirect_url' => $three_d_secure->redirect_url])->render());
                     }    
                     else
@@ -88,10 +100,18 @@ class Controller_Stripe extends Controller{
                     $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($order->amount), // amount in cents, again
                                                         "currency"  => $order->currency,
-                                                        "card"      => $token,
+                                                        'customer'  => $customer->id,
                                                         "description" => $order->description,
                                                         "metadata"    => array("id_order" => $order->id_order))
                                                     );
+
+                    //its a plan product
+                    if ($order->id_product >= 100)
+                    {
+                        //save the stripe user id to be able to charge them later on renewal
+                        $order->user->stripe_agreement = $customer->id;
+                        $order->user->save();
+                    }
                 }
                 catch(Exception $e) 
                 {
@@ -153,13 +173,7 @@ class Controller_Stripe extends Controller{
                     $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
                 }
 
-                // include class vendor
-                require Kohana::find_file('vendor/stripe', 'init');
-
-                // Set your secret key: remember to change this to your live secret key in production
-                // See your keys here https://manage.stripe.com/account
-                \Stripe\Stripe::setAppInfo('Open Classifieds', Core::VERSION, 'http://open-classifieds.com');
-                \Stripe\Stripe::setApiKey(Core::config('payment.stripe_private'));
+                StripeKO::init();
 
                 // Get the credit card details submitted by the form
                 $token = Core::post('stripeToken');
@@ -329,23 +343,17 @@ class Controller_Stripe extends Controller{
         if ($order->loaded())
         {
             //dr($_GET);
-            if ( Core::get('status') == 'succeeded' AND Core::get('id')!=NULL ) 
+            if ( Core::get('status') == 'succeeded' AND Core::get('id')!=NULL AND ($customer_id = Session::instance()->get('customer_id')) != NULL)  
             {
                 try
                 {
-                    // include class vendor
-                    require Kohana::find_file('vendor/stripe', 'init');
-
-                    // Set your secret key: remember to change this to your live secret key in production
-                    // See your keys here https://manage.stripe.com/account
-                    \Stripe\Stripe::setAppInfo('Open Classifieds', Core::VERSION, 'http://open-classifieds.com');
-                    \Stripe\Stripe::setApiKey(Core::config('payment.stripe_private'));
+                    StripeKO::init();
 
                     // Create the charge on Stripe's servers - this will charge the user's card
                     $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($order->amount), // amount in cents, again
                                                         "currency"  => $order->currency,
-                                                        "card"      => Core::get('id'),
+                                                        'customer'  => $customer_id,//we charge this customer!
                                                         "description" => $order->description,
                                                         "metadata"    => array("id_order" => $order->id_order))
                                                     );
@@ -356,6 +364,14 @@ class Controller_Stripe extends Controller{
                     Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
                     Alert::set(Alert::ERROR, 'The card has been declined');
                     $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
+                }
+
+                //its a plan product
+                if ($order->id_product >= 100)
+                {
+                    //save the stripe user id to be able to charge them later on renewal
+                    $order->user->stripe_agreement = $customer_id;
+                    $order->user->save();
                 }
 
                 //mark as paid
