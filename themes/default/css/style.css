@@ -6932,6 +6932,15 @@ input[type="checkbox"]:focus {
 .checkbox.check-info input[type=checkbox]:checked + label::after {
   color: #fff; }
 
+.note-editor .checkbox input[type=checkbox] {
+  opacity: 1;
+  width: auto;
+  height: auto; }
+
+.note-editor .checkbox label:before {
+  border-width: 0;
+  top: 0; }
+
 .folded aside {
   width: 75px; }
 

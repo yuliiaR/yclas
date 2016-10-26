@@ -216,10 +216,12 @@
 					<?if(core::config('advertisement.tos') != ''):?>
 						<div class="form-group">
 							<div class="col-md-4">
-								<label class="checkbox">
-								  	<input type="checkbox" required name="tos" id="tos"/> 
-									<a target="_blank" href="<?=Route::url('page', array('seotitle'=>core::config('advertisement.tos')))?>"> <?=_e('Terms of service')?></a>
-								</label>
+								<div class="checkbox">
+									<label>
+									  	<input type="checkbox" required name="tos" id="tos"/> 
+										<a target="_blank" href="<?=Route::url('page', array('seotitle'=>core::config('advertisement.tos')))?>"> <?=_e('Terms of service')?></a>
+									</label>
+								</div>
 							</div>
 						</div>
 					<?endif?>

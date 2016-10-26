@@ -359,3 +359,18 @@ input[type=checkbox]:checked + label{
         color: $color-white;
     }
 }
+
+//
+.note-editor {
+    .checkbox {
+        input[type=checkbox] {
+            opacity: 1;
+            width: auto;
+            height: auto;
+        }
+        label:before {
+            border-width: 0;
+            top: 0;
+        }
+    }
+}
