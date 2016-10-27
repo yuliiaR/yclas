@@ -21,7 +21,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_role`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."roles_UK_name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."access` (
@@ -29,7 +29,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `id_role` int(10) unsigned NOT NULL,
   `access` varchar(100) NOT NULL,
   PRIMARY KEY (`id_access`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."users` (
@@ -70,7 +70,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_api_token` (`api_token`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_seoname` (`seoname`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_provider_AND_uid` (`hybridauth_provider_name`,`hybridauth_provider_uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."categories` (
@@ -87,7 +87,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `has_image` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_IK_seo_name` (`seoname`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."locations` (
@@ -106,7 +106,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `fcodename_geoname` varchar(145) NULL DEFAULT NULL,
   PRIMARY KEY (`id_location`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."loations_UK_seoname` (`seoname`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."ads` (
@@ -139,7 +139,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   KEY `".core::request('TABLE_PREFIX')."ads_IK_title` (`title`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."ads_UK_seotitle` (`seotitle`),
   KEY `".core::request('TABLE_PREFIX')."ads_IK_status` (`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."visits` (
@@ -150,16 +150,16 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_visit`),
   KEY `".core::request('TABLE_PREFIX')."visits_IK_id_ad` (`id_ad`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."config` ( 
   `group_name` VARCHAR(128)  NOT NULL, 
   `config_key` VARCHAR(128)  NOT NULL, 
-  `config_value` LONGTEXT,
+  `config_value` MEDIUMTEXT,
    PRIMARY KEY (`config_key`),
    UNIQUE KEY `".core::request('TABLE_PREFIX')."config_UK_group_name_AND_config_key` (`group_name`,`config_key`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET')." ;");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET')." ;");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."orders` (
@@ -180,7 +180,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   PRIMARY KEY (`id_order`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_status` (`status`)
-)ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+)ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."content` (
@@ -189,13 +189,13 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `order` int(2) unsigned NOT NULL DEFAULT '0',
   `title` varchar(145) NOT NULL,
   `seotitle` varchar(145) NOT NULL,
-  `description` LONGTEXT NULL,
+  `description` MEDIUMTEXT NULL,
   `from_email` varchar(145) NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `type` enum('page','email','help') NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_content`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."subscribers` (
@@ -207,7 +207,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `max_price` decimal(14,3) NOT NULL DEFAULT '0',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_subscribe`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."posts` (
@@ -217,7 +217,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `id_forum` int(10) unsigned NULL DEFAULT NULL,
   `title` varchar(245) NOT NULL,
   `seotitle` varchar(245) NOT NULL,
-  `description` longtext NOT NULL,
+  `description` MEDIUMTEXT NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ip_address` bigint DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
@@ -226,7 +226,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   KEY `".core::request('TABLE_PREFIX')."posts_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."posts_IK_id_post_parent` (`id_post_parent`),
   KEY `".core::request('TABLE_PREFIX')."posts_IK_id_forum` (`id_forum`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."forums` (
   `id_forum` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -239,7 +239,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `description` varchar(255) NULL,
   PRIMARY KEY (`id_forum`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."forums_IK_seo_name` (`seoname`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')."crontab` (
@@ -259,7 +259,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_crontab`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."crontab_UK_name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."reviews (
     id_review int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -273,7 +273,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."
     PRIMARY KEY (id_review) USING BTREE,
     KEY ".core::request('TABLE_PREFIX')."reviews_IK_id_user (id_user),
     KEY ".core::request('TABLE_PREFIX')."reviews_IK_id_ad (id_ad)
-    ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+    ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."favorites (
     id_favorite int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -282,7 +282,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."
     created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id_favorite) USING BTREE,
     KEY ".core::request('TABLE_PREFIX')."favorites_IK_id_user_AND_id_ad (id_user,id_ad)
-    ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+    ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."messages (
   `id_message` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -297,7 +297,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."
   `status_to` tinyint(1) NOT NULL DEFAULT 0,
   `status_from` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (id_message) USING BTREE
-) ENGINE=MyISAM  DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB  DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."coupons` (
@@ -313,13 +313,13 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_coupon`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."coupons_UK_name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."plans` (
       `id_plan` int(10) unsigned NOT NULL AUTO_INCREMENT,
       `name` varchar(145) NOT NULL,
       `seoname` varchar(145) NOT NULL,
-      `description` longtext NOT NULL,
+      `description` MEDIUMTEXT NOT NULL,
       `price` decimal(14,3) NOT NULL DEFAULT '0',
       `days` int(10) DEFAULT 1,
       `amount_ads` int(10) DEFAULT 1,
@@ -328,7 +328,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
       `status` tinyint(1) NOT NULL DEFAULT '0',
       PRIMARY KEY (`id_plan`),
       UNIQUE KEY `".core::request('TABLE_PREFIX')."plan_UK_seoname` (`seoname`)
-    ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET')." AUTO_INCREMENT=100;");
+    ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET')." AUTO_INCREMENT=100;");
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."subscriptions` (
       `id_subscription` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -341,7 +341,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
       `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
       `status` tinyint(1) NOT NULL DEFAULT '0',
       PRIMARY KEY (`id_subscription`)
-    ) ENGINE=MyISAM DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+    ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 /**

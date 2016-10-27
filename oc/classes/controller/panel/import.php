@@ -384,7 +384,7 @@ class Controller_Panel_Import extends Controller_Panel_OC_Tools {
                                               `image_4` varchar(200) DEFAULT NULL,
                                               `processed` tinyint(1) NOT NULL DEFAULT '0',
                                               PRIMARY KEY (`id_import`)
-                                            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;"); 
+                                            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;"); 
         try 
         {
            $query->execute();
