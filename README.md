@@ -1,8 +1,8 @@
-#  Open Classifieds 2.9.0
+#  Yclas 3.0.0
 
 
 # Description
-Open Classifieds is a powerful script that can transform any domain into a fully customizable classifieds site within a few seconds. Thousands of web developers trust OC to run their big classifieds website. OC can be used to create car/auto sales, job search board, buying & selling real estate and almost anything you can think of. And when you’re ready for more, there are themes and premium support available to transform your site into anything you can imagine.
+Yclas self-hosted is a powerful script that can transform any domain into a fully customizable classifieds site within a few seconds. Thousands of web developers trust Yclas to run their big classifieds website. Yclas can be used to create car/auto sales, job search board, buying & selling real estate and almost anything you can think of. And when you’re ready for more, there are themes and premium support available to transform your site into anything you can imagine.
 
 # How to Install
 Please read [INSTALL.md](INSTALL.md)
@@ -14,7 +14,7 @@ Please read [LICENSE](LICENSE)
 Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 
-# OC works thanks to other GPL software
+# Yclas works thanks to other GPL software
 
 * Kohana 3.3.4 http://kohanaframework.org/
 * KO Formmanager https://github.com/colinbm/kohana-formmanager
