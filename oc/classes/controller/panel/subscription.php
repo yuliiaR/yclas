@@ -27,7 +27,7 @@ class Controller_Panel_Subscription extends Auth_CrudAjax {
     {
         if (Theme::get('premium')!=1)
         {
-            Alert::set(Alert::INFO,  __('Upgrade your Open Classifieds site to activate this feature.'));
+            Alert::set(Alert::INFO,  __('Upgrade your Yclas site to activate this feature.'));
         }
 
         $this->_filter_fields = array(  'id_user'    => 'INPUT', 

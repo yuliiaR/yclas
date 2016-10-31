@@ -1,9 +1,9 @@
-# Automated Testing for OC
+# Automated Testing for Yclas
 
 ## Instructions
 
 
-1. Install Open Classifieds. 
+1. Install Yclas. 
 
     Admin must have:<br>
     Email: admin@reoc.lo<br>
@@ -13,7 +13,7 @@
 2. Upload all premium themes into /themes folder.
 
 
-3. Download [this file](https://mega.nz/#!A41ghCJL!dDIXPWZ9NOvRscw0STOsYNoOMGH6dAtk6Atcc1pD2LI) and upload it On panel, Tools -> Import. Then, click PROCESS. 
+3. Download [this file](https://cdn.rawgit.com/open-classifieds/openclassifieds2/master/install/samples/import/ads.csv) and upload it On panel, Tools -> Import. Then, click PROCESS. 
 
 
 4. Go to the /oc/ directory to download codecept.phar and run the first test:
