@@ -60,13 +60,13 @@ else
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>Open Classifieds <?=__("Installation")?></title>
+    <title>Yclas Self-Hosted <?=__("Installation")?></title>
     <meta name="keywords" content="" >
     <meta name="description" content="" >
-    <meta name="copyright" content="Open Classifieds <?=install::VERSION?>" >
-    <meta name="author" content="Open Classifieds">
+    <meta name="copyright" content="Yclas Self-Hosted <?=install::VERSION?>" >
+    <meta name="author" content="Yclas Self-Hosted">
 
-    <link rel="shortcut icon" href="http://open-classifieds.com/wp-content/uploads/2012/04/favicon1.ico" />
+    <link rel="shortcut icon" href="https://yclas.com/images/favicon.ico?v0.1" />
 
     <link href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
@@ -97,13 +97,13 @@ else
             <div class="col-md-8 col-md-offset-2 animated fadeIn">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2><a target="_blank" href="http://open-classifieds.com/"><img class="logo" src="http://open-classifieds.com/wp-content/uploads/2015/05/oc-logo-hd.png"></a></h2>
+                        <h2><a target="_blank" href="https://yclas.com/self-hosted.html"><img class="logo" src="https://cdn.yclas.com/images/yclas_Logo_noTagline_144x44.png"></a></h2>
                         <br>
                         <p><strong><?=__("Welcome to the super easy and fast installation")?></strong></p>
-                        <p>Open Classifieds is an open source powerful PHP classifieds script that can help you start a website and turn it into a fully customizable classifieds site within a few minutes.</p>
+                        <p>Yclas Self-Hosted is an open source powerful PHP classifieds script that can help you start a website and turn it into a fully customizable classifieds site within a few minutes.</p>
                         <br>
                         <p class="text-center"><strong><?=__('Can’t get it to work?')?></strong></p>
-                        <p><a target="_blank" href="http://open-classifieds.com/market/" class="btn btn-default btn-large btn-block"><?=__("Get our professional services")?></a></p>
+                        <p><a target="_blank" href="https://selfhosted.yclas.com/" class="btn btn-default btn-large btn-block"><?=__("Get our professional services")?></a></p>
                     </div>
                     <div class="col-md-6">
                         <div class="off-canvas animated">
@@ -148,7 +148,7 @@ else
                                             <div class="form-group">                
                                                 <label for="DB_NAME" class="control-label"><?=__("Database name")?></label>
                                                 <input type="text" id="DB_NAME" name="DB_NAME" class="form-control" value="<?=core::request('DB_NAME','openclassifieds')?>" required>
-                                                <p class="help-block"><small><a target="_blank" href="http://open-classifieds.com/2014/02/24/create-mysql-database/"><?=__("How to create a MySQL database?")?></a></small></p>
+                                                <p class="help-block"><small><a target="_blank" href="https://docs.yclas.com/create-mysql-database/"><?=__("How to create a MySQL database?")?></a></small></p>
                                             </div>
                                             <div class="form-group">                
                                                 <label for="DB_USER" class="control-label"><?=__("User name")?></label>
@@ -260,7 +260,7 @@ else
                 <hr>
                 <div class="row copyright">
                     <div class="col-md-6">
-                        <p>Copyright <a target="_blank" href="http://open-classifieds.com/">Open Classifieds</a></p>
+                        <p>Copyright <a target="_blank" href="https://yclas.com/">Yclas.com</a></p>
                     </div>
                     <div class="col-md-6">
                         <p class="text-right">&copy; 2009-<?=date('Y')?></p>

@@ -31,7 +31,7 @@ $I->fillField('title','some nice title here');
 //$I->fillField('description','Updated description');
 $I->fillField('phone','949494949');
 $I->fillField('address','optional address');
-$I->fillField('website','http://open-classifieds.com');
+$I->fillField('website','https://yclas.com');
 $I->fillField('price','0');
 $I->click('submit_btn');
 $I->see('Advertisement is updated');
@@ -39,7 +39,7 @@ $I->see('Advertisement is updated');
 // Read
 $I->amOnPage('/jobs/some-nice-title-here.html');
 $I->see('some nice title here','h1');
-$I->see('http://open-classifieds.com','a');
+$I->see('https://yclas.com','a');
 $I->see('optional address','p');
 $I->see('Phone: 949494949','a');
 

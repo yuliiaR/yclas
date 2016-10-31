@@ -9,7 +9,7 @@
 * Working!
 
 More & some videos at:
-http://open-classifieds.com/documentation/install/
+https://docs.yclas.com/install-self-hosted/
 
 # Upgrade 1.7.x/1.8.x to 2.0.x
 Be aware that 2.0.x uses different URL structure and that themes are not compatible between these 2 versions. If you bought a theme contact us.
@@ -33,11 +33,9 @@ Be aware that 2.0.x uses different URL structure and that themes are not compati
 
 
 # Support
-If you have any doubts how to use different options of Open Classifieds please check how-tos listed below explaining some of the features. http://open-classifieds.com/support/
+If you have any doubts how to use different options of Open Classifieds please check how-tos listed below explaining some of the features. https://docs.yclas.com/
 
-If you still haven’t found an answer you can try to write in forums to get a help from community. http://forums.open-classifieds.com/
-
-You can also buy our Support Pack or by buying any of our Premium Themes or hosting plan you get professional support. http://open-classifieds.com/market/
+You can also buy our Support Pack or by buying any of our Premium Themes or hosting plan you get professional support. https://selfhosted.yclas.com/
 
 # FAQ
-http://open-classifieds.com/support/
+https://docs.yclas.com/

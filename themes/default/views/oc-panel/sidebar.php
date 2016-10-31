@@ -328,7 +328,7 @@
                         <?=Theme::admin_link(__('Crontab'), 'crontab','index','oc-panel')?>
                         <?=Theme::admin_link(__('Import'), 'import','index','oc-panel')?>
                         <li>
-                            <a href="http://open-classifieds.com/support/" target="_blank"><?=__('I need help')?></a>
+                            <a href="https://docs.yclas.com/" target="_blank"><?=__('I need help')?></a>
                         </li>
                     </ul>
                 </li>
