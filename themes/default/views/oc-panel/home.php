@@ -6,7 +6,7 @@
 
 <hr>
 
-<p><?=__('This is the main overview page of your Open Classifieds website.')?></p>
+<p><?=__('This is the main overview page of your website.')?></p>
 
 <?if (core::cookie('intro_panel')!=1):?>
     <div class="row" id="intro-panel">
