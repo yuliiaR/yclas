@@ -13,7 +13,7 @@
 2. Upload all premium themes into /themes folder.
 
 
-3. Download [this file](https://cdn.rawgit.com/open-classifieds/openclassifieds2/master/install/samples/import/ads.csv) and upload it On panel, Tools -> Import. Then, click PROCESS. 
+3. Download [this file](https://cdn.rawgit.com/yclas/yclas/master/install/samples/import/ads.csv) and upload it On panel, Tools -> Import. Then, click PROCESS. 
 
 
 4. Go to the /oc/ directory to download codecept.phar and run the first test:
