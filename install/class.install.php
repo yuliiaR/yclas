@@ -4,8 +4,8 @@
  *
  * @package    Install
  * @category   Helper
- * @author     Chema <chema@garridodiaz.com>
- * @copyright  (c) 2009-2014 Open Classifieds Team
+ * @author     Chema <chema@open-classifieds.com>
+ * @copyright  (c) 2009-2016 Open Classifieds Team
  * @license    GPL v3
  */
 
@@ -23,7 +23,7 @@ class install{
      * Software install settings
      * @var string
      */
-    const VERSION   = '2.9.0';
+    const VERSION   = '3.0.0';
 
     /**
      * default locale/language of the install

@@ -16,7 +16,6 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
      */
     public function action_300()
     {
-
         //new configs
         $configs = array(
                         
@@ -45,6 +44,20 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                                'group_name'     => 'payment', 
                                'config_value'   => '0'),
                         );
+
+        //get theme license and add it to the config
+        if (Theme::get('license')!==NULL)
+        {            
+            $configs[]= array( 'config_key'     => 'date',
+                               'group_name'     => 'license', 
+                               'config_value'   => Theme::get('license_date')
+                               );
+
+            $configs[]= array( 'config_key'     => 'number',
+                               'group_name'     => 'license', 
+                               'config_value'   => Theme::get('license')
+                               );
+        }
         
         try 
         {
@@ -64,7 +77,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `stripe_agreement` varchar(40) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
-        
+
         Model_Config::config_array($configs);
     }
 

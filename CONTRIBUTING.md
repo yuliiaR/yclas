@@ -1,6 +1,6 @@
-# Contributing to Open Classifieds
+# Contributing to Yclas Self-Hosted
 
-Looking to contribute something to Open Classifieds? **Here's how you can help.**
+Looking to contribute something to Yclas? **Here's how you can help.**
 
 ## Environment
 Recommended PHP 5.5 , MySQL 5.5, Apache 2.2, Linux.
@@ -16,26 +16,26 @@ Host file:
 Vhost apache:
 <VirtualHost *:80>
 ServerName reoc.lo
-DocumentRoot /var/www/open-classifieds/
+DocumentRoot /var/www/yclas/
 </VirtualHost>
 ```
 
 ## Cloning repo
-Go to https://github.com/open-classifieds for each repo in the top right theres a button that says Fork. Click there to clone each repo, don't forget to clone common. That will copy the repos to your github user, ex: https://github.com/neo22s?tab=repositories
+Go to https://github.com/yclas for each repo in the top right theres a button that says Fork. Click there to clone each repo, don't forget to clone common. That will copy the repos to your github user, ex: https://github.com/neo22s?tab=repositories
 
 Clone your project in local
 ```
-git clone git@github.com:neo22s/openclassifieds2.git open-classifieds
-cd open-classifieds
+git clone git@github.com:neo22s/yclas.git yclas
+cd yclas
 git submodule init
 git submodule update
 ```
 
-This will clone the openclassifieds2 project + submodule at oc/common https://github.com/open-classifieds/common
+This will clone the yclas project + submodule at oc/common https://github.com/yclas/common
 
 
 Modify the hidden file .gitmodules, this is to track changes at the neo22s/common repo
-- Ex git@github.com:open-classifieds.com/common.git
+- Ex git@github.com:yclas/common.git
 - To git@github.com:neo22s/common.git
 - Save file.
 
@@ -61,7 +61,7 @@ Tricks
 ```
 git add . # will add all the files, even new ones
 git add -u # will add all the tracked files even the deleted ones
-git commit -a -m 'working on open-classifieds/openclassifieds#725' # this will mention an issue in the repo
+git commit -a -m 'working on yclas/yclas#725' # this will mention an issue in the repo
 ```
 
 
@@ -70,7 +70,7 @@ If you made changes in any file located at oc/common (common submodule), you nee
 
 ## Pull Requests
 
-Now you have new code at your fork ex https://github.com/neo22s/common. To move them to the original https://github.com/open-classified/common repo you need to go to https://github.com/neo22s/common, and click on Pull Request (next to compare). This will create a pull request to the original code and the responsible will decide to merge it or not.
+Now you have new code at your fork ex https://github.com/neo22s/common. To move them to the original https://github.com/yclas/common repo you need to go to https://github.com/neo22s/common, and click on Pull Request (next to compare). This will create a pull request to the original code and the responsible will decide to merge it or not.
 
 Notes:
 - Try to submit pull requests against master branch for easier merging
@@ -80,7 +80,7 @@ Notes:
 ## Keep sync with original repo
 First time, add a remote with the upstream
 ```
-git remote add upstream git@github.com:open-classifieds/openclassifieds2.git
+git remote add upstream git@github.com:yclas/yclas.git
 ```
 
 Everytime you want to sync just
@@ -95,12 +95,12 @@ Remember to be at you master branch!
 
 ## Reporting issues
 
-https://github.com/open-classifieds/openclassifieds2/issues
+https://github.com/yclas/yclas/issues
 
-We only accept issues that are bug reports or feature requests. Bugs must be isolated and reproducible problems that we can fix within the Open Classifieds core. Please read the following guidelines before opening any issue.
+We only accept issues that are bug reports or feature requests. Bugs must be isolated and reproducible problems that we can fix within the Yclas core. Please read the following guidelines before opening any issue.
 
 1. **Search for existing issues.** We get a lot of duplicate issues, and you'd help us out a lot by first checking if someone else has reported the same issue. Moreover, the issue may have already been resolved with a fix available.
-2. **Create an isolated and reproducible test case.** Be sure the problem exists in Open Classifieds code.
+2. **Create an isolated and reproducible test case.** Be sure the problem exists in Yclas code.
 3. **Include a live example.** Make use of screenshots if needed.
 4. **Share as much information as possible.** Include operating system and version, browser and version, version of OC, customized or vanilla build, etc. where appropriate. Also include steps to reproduce the bug.
 
@@ -116,7 +116,7 @@ We only accept issues that are bug reports or feature requests. Bugs must be iso
 ## Coding standards
 
 - PHP http://kohanaframework.org/3.3/guide/kohana/conventions
-- SQL https://github.com/open-classifieds/openclassifieds2/wiki/SQL-Coding-Standard
+- SQL https://github.com/yclas/yclas/wiki/SQL-Coding-Standard
 
 ## License
 

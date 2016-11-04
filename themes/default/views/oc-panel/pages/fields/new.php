@@ -13,7 +13,7 @@
           
             <div class="form-group">
                 <label class="control-label"><?=__('Name')?></label>                    
-                <input class="form-control" type="text" name="name" placeholder="<?=__('Name')?>" required>
+                <input class="form-control" type="text" name="name" maxlength="64" placeholder="<?=__('Name')?>" required>
             </div>
 
             <div class="form-group">

@@ -10,7 +10,7 @@ class Controller_Feed extends Controller {
                         'title'       => 'RSS '.htmlspecialchars(Core::config('general.site_name'),ENT_QUOTES),
                         'pubDate'     => date("r"),
                         'description' => htmlspecialchars(__('Latest published'),ENT_QUOTES),
-                        'generator'   => 'Open Classifieds',
+                        'generator'   => 'Yclas',
         ); 
         
         $items = array();
@@ -106,7 +106,7 @@ class Controller_Feed extends Controller {
                         'title'         => 'RSS Blog '.htmlspecialchars(Core::config('general.site_name'),ENT_QUOTES),
                         'pubDate'       => date("r"),
                         'description'   => htmlspecialchars(__('Latest post published'),ENT_QUOTES),
-                        'generator'     => 'Open Classifieds',
+                        'generator'     => 'Yclas',
                         'link'          =>  Route::url('blog'),
         ); 
         
@@ -149,7 +149,7 @@ class Controller_Feed extends Controller {
                         'title'         => 'RSS Forum '.htmlspecialchars(Core::config('general.site_name'),ENT_QUOTES),
                         'pubDate'       => date("r"),
                         'description'   => htmlspecialchars(__('Latest post published'),ENT_QUOTES),
-                        'generator'     => 'Open Classifieds',
+                        'generator'     => 'Yclas',
                         'link'          =>  Route::url('forum-home'),
         ); 
         
@@ -209,7 +209,7 @@ class Controller_Feed extends Controller {
                                 'title'       => 'RSS '.htmlspecialchars($user->name,ENT_QUOTES),
                                 'pubDate'     => date("r"),
                                 'description' => htmlspecialchars($user->name.' - '.$user->description,ENT_QUOTES),
-                                'generator'   => 'Open Classifieds',
+                                'generator'   => 'Yclas',
                                 'link'        =>  Route::url('profile', array('seoname'=>$seoname)),
                 ); 
                 

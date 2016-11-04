@@ -22,7 +22,7 @@ if (! ((bool) ini_get('short_open_tag')) )
 
 //prevent from new install to be done over current existing one
 if (file_exists(DOCROOT.'oc/config/database.php'))
-    die('It seems Open Classifieds is already installed');
+    die('It seems Yclas is already installed');
 
 
 //read from oc/versions.json on CDN
@@ -36,8 +36,8 @@ $is_compatible  = install::is_compatible();
  *
  * @package    Install
  * @category   Helper
- * @author     Chema <chema@garridodiaz.com>
- * @copyright  (c) 2009-2014 Open Classifieds Team
+ * @author     Chema <chema@open-classifieds.com>
+ * @copyright  (c) 2009-2016 Open Classifieds Team
  * @license    GPL v3
  */
 
@@ -52,7 +52,7 @@ class install{
      * Software install settings
      * @var string
      */
-    const VERSION   = '2.9.0';
+    const VERSION   = '3.0.0';
 
     /**
      * default locale/language of the install
@@ -93,7 +93,7 @@ class install{
          * all the install checks
          */
         return     array(
-                'New Installation'=>array('message'   => 'It seems that Open Classifieds is already installed',
+                'New Installation'=>array('message'   => 'It seems that Yclas is already installed',
                                         'mandatory' => TRUE,
                                         'result'    => !file_exists('oc/config/database.php')
                                         ),
@@ -214,7 +214,7 @@ class install{
      */
     public static function versions()
     {
-        return json_decode(core::curl_get_contents('http://open-classifieds.com/files/versions.json?r='.time()),TRUE);
+        return json_decode(core::curl_get_contents('https://raw.githubusercontent.com/yclas/yclas/master/versions.json?t='.time()),TRUE);
     }
 
     /**
@@ -696,12 +696,12 @@ function __($msgid)
     <meta charset="utf8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Open Classifieds <?=__("Installation")?></title>
-    <meta name="copyright" content="Open Classifieds <?=install::VERSION?>" >
-    <meta name="author" content="Open Classifieds">
+    <title>Yclas Self-Hosted <?=__("Installation")?></title>
+    <meta name="copyright" content="Yclas Self-Hosted <?=install::VERSION?>" >
+    <meta name="author" content="Yclas Self-Hosted">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="shortcut icon" href="http://open-classifieds.com/wp-content/uploads/2012/04/favicon1.ico" />
+    <link rel="shortcut icon" href="https://yclas.com/images/favicon.ico?v0.1" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -984,13 +984,13 @@ function __($msgid)
             <div class="col-md-8 col-md-offset-2 animated fadeIn">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2><a target="_blank" href="http://open-classifieds.com/"><img class="logo" src="http://open-classifieds.com/wp-content/uploads/2015/05/oc-logo-hd.png"></a></h2>
+                        <h2><a target="_blank" href="https://yclas.com/"><img class="logo" src="https://cdn.yclas.com/images/yclas_Logo_noTagline_144x44.png"></a></h2>
                         <br>
                         <p><strong><?=__("Welcome to the super easy and fast installation")?></strong></p>
-                        <p>Open Classifieds is an open source powerful PHP classifieds script that can help you start a website and turn it into a fully customizable classifieds site within a few minutes.</p>
+                        <p>Yclas.com is an open source powerful PHP classifieds script that can help you start a website and turn it into a fully customizable classifieds site within a few minutes.</p>
                         <br>
                         <p class="text-center"><strong><?=__('Can’t get it to work?')?></strong></p>
-                        <p><a target="_blank" href="http://open-classifieds.com/market/" class="btn btn-default btn-large btn-block"><?=__("Get our professional services")?></a></p>
+                        <p><a target="_blank" href="https://selfhosted.yclas.com/" class="btn btn-default btn-large btn-block"><?=__("Get our professional services")?></a></p>
                     </div>
                     <div class="col-md-6">
                         <div class="off-canvas animated">
@@ -1019,7 +1019,7 @@ function __($msgid)
                                             </div>
                                             <p>
                                                 <small>
-                                                    We will download Open Classifieds <?=$last_version?> and redirect you to the installation form.
+                                                    We will download Yclas Self-Hosted <?=$last_version?> and redirect you to the installation form.
                                                 </small>
                                             </p>
                                         </form>
@@ -1032,7 +1032,7 @@ function __($msgid)
                                             <div class="form-group">                
                                                 <label for="DB_NAME" class="control-label"><?=__("Database name")?></label>
                                                 <input type="text" id="DB_NAME" name="DB_NAME" class="form-control" value="<?=core::request('DB_NAME','openclassifieds')?>" required>
-                                                <p class="help-block"><small><a target="_blank" href="http://open-classifieds.com/2014/02/24/create-mysql-database/"><?=__("How to create a MySQL database?")?></a></small></p>
+                                                <p class="help-block"><small><a target="_blank" href="https://docs.yclas.com/create-mysql-database/"><?=__("How to create a MySQL database?")?></a></small></p>
                                             </div>
                                             <div class="form-group">                
                                                 <label for="DB_USER" class="control-label"><?=__("User name")?></label>
@@ -1159,7 +1159,7 @@ function __($msgid)
                 <hr>
                 <div class="row copyright">
                     <div class="col-md-6">
-                        <p>Copyright <a target="_blank" href="http://open-classifieds.com/">Open Classifieds</a></p>
+                        <p>Copyright <a target="_blank" href="https://yclas.com/">Yclas.com</a></p>
                     </div>
                     <div class="col-md-6">
                         <p class="text-right">&copy; 2009-<?=date('Y')?></p>
@@ -1447,7 +1447,7 @@ function hosting_view()
                     </ul>
                     <br>
                     <p>
-                        <a class="btn btn-default btn-large" href="http://open-classifieds.com/hosting/">
+                        <a class="btn btn-default btn-large" href="https://yclas.com/self-hosted.html">
                             <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $4 Month
                         </a>
                     </p>

@@ -66,6 +66,7 @@ class Model_Subscribe extends ORM {
                         ->from('users')
                         ->where('id_user', 'IN', $subscribers_id)
                         ->where('status','=',Model_User::STATUS_ACTIVE)
+                        ->where('subscriber','=',1)
                         ->execute();
 
             $users = $query->as_array();

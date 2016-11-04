@@ -2,10 +2,10 @@
 
 <div class="page-header">
     <a class="btn btn-default pull-right" id="advanced-options" ><?=__("Advanced options")?></a>
-    <h1><?=__("Welcome to")?> Open Classifieds <?=__("installation")?></h1>
+    <h1><?=__("Welcome to")?> Yclas Self-Hosted <?=__("installation")?></h1>
     <p>
         <?=__("Welcome to the super easy and fast installation")?>. 
-            <a href="http://open-classifieds.com/market/" target="_blank">
+            <a href="https://selfhosted.yclas.com/" target="_blank">
             <?=__("If you need any help please check our professional services")?></a>.
     </p>
     
@@ -116,7 +116,7 @@
                 <h3>2. <?=__('Database Configuration')?></h3>
             </div>
             <div class="panel-body">
-                <p><a target="_blank" href="http://open-classifieds.com/2014/02/24/create-mysql-database/"><?=__("How to create a MySQL database?")?></a></p>
+                <p><a target="_blank" href="https://docs.yclas.com/create-mysql-database/"><?=__("How to create a MySQL database?")?></a></p>
                 <div class="form-group">                
                     <div class="col-md-12">
                     <label class="control-label"><?=__("Host name")?>:</label>

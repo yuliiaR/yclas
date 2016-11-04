@@ -39,7 +39,7 @@
     </ul>
     <br>
     <p>
-        <a class="btn btn-default btn-large" href="http://open-classifieds.com/hosting/">
+        <a class="btn btn-default btn-large" href="https://yclas.com/self-hosted.html">
             <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $4 Month
         </a>
     </p>

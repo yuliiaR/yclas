@@ -197,7 +197,7 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
             // save ids migration for maps in configs?
             // do migration using iframe this
 
-        $this->template->title   = __('Open Classifieds migration');
+        $this->template->title   = __('Yclas migration');
         Breadcrumbs::add(Breadcrumb::factory()->set_title(Text::ucfirst(__('Migration'))));
 
 

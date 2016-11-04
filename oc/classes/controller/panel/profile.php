@@ -254,6 +254,11 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 								'location'=>$location->name,
 								'id'=>$s->id_subscribe);
 			}
+
+            if ($this->user->subscriber == 0)
+            {
+                Alert::set(Alert::INFO,  __('You can not receive emails. Enable it in your profile.'));
+            }
 			
 			$this->template->content = View::factory('oc-panel/profile/subscriptions', array('list'=>$list));
    		}

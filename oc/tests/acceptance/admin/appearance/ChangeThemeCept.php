@@ -18,12 +18,12 @@ $I->amOnPage('/');
 $I->see('Homepage site slogan');
 
 $I->amOnPage('/oc-panel/theme/options');
-$I->fillField('#home_slogan','Search and place ads easily with open classifieds');
+$I->fillField('#home_slogan','Search and place ads easily with us');
 $I->click('submit');
 $I->see('Theme configuration updated');
 
 $I->amOnPage('/');
-$I->see('Search and place ads easily with open classifieds');
+$I->see('Search and place ads easily with us');
 
 
 // Reclassifieds

@@ -16,13 +16,13 @@ class Core extends OC_Core{
 	 * OC version
 	 * @var string
 	 */
-	const VERSION = '2.9.0';
+	const VERSION = '3.0.0';
 
 
     /**
      * @var string used to populate data from valid domain
      */
-    const DOMAIN  = 'open-classifieds.com';
+    const DOMAIN  = 'yclas.com';
 
 
 

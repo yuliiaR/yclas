@@ -48,6 +48,9 @@ class Controller_Panel_UserFields extends Auth_Controller {
             
             $name   = URL::title(Core::post('name'));
 
+            if (strlen($name)>=60)
+                $name = Text::limit_chars($name,60,'');
+
             $field = new Model_UserField();
 
             try {
