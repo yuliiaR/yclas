@@ -89,6 +89,7 @@ class Controller_New extends Controller
         $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js';
         $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.10/ouibounce.min.js';
         $this->template->scripts['footer'][] = 'js/canvasResize.js';
+        $this->template->scripts['footer'][] = 'js/load-image.all.min.js';
         if(core::config('advertisement.map_pub_new'))
         {
             $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap';

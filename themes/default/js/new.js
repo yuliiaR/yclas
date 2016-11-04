@@ -399,6 +399,28 @@ $('.fileinput').on('change.bs.fileinput', function() {
                         }).appendTo('#publish-new');
                 }
             });
+
+            // Fixes exif orientation on thumbnail
+            var thumbnail = $(this).find('.thumbnail > img');
+            var rotation = 1;
+            var rotate = {
+                1: 'rotate(0deg)',
+                2: 'rotate(0deg)',
+                3: 'rotate(180deg)',
+                4: 'rotate(0deg)',
+                5: 'rotate(0deg)',
+                6: 'rotate(90deg)',
+                7: 'rotate(0deg)',
+                8: 'rotate(270deg)'
+            };
+
+            loadImage.parseMetaData(
+                image,
+                function (data) {
+                    rotation = data.exif.get('Orientation');
+                    thumbnail.css('transform', rotate[rotation]);
+                }
+            );
         }
     }
 
