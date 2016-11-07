@@ -27,7 +27,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-	
+    
 <?=Form::errors()?>
 
 <h1 class="page-header page-title">
@@ -54,7 +54,7 @@
 
 <div class="row">
     <div class="col-md-12 col-lg-12">
-		<?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config ajax-load', 'enctype'=>'multipart/form-data'))?>
+        <?=FORM::open(Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment')), array('class'=>'config ajax-load', 'enctype'=>'multipart/form-data'))?>
             <div>
                 <div>
                     <ul class="nav nav-tabs nav-tabs-simple nav-tabs-left" id="tab-settings">
@@ -196,6 +196,24 @@
                         <span class="help-block">
                             <?=__("A button with the page title appears next to other pay button, onclick model opens with description.")?>
                         </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['vat_country']['key'], __('VAT Country'), array('class'=>'control-label', 'for'=>$forms['vat_country']['key']))?>
+                        <?=FORM::input($forms['vat_country']['key'], $forms['vat_country']['value'], array(
+                            'placeholder' => "", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['vat_country']['key'],
+                        ))?>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['vat_number']['key'], __('VAT Number'), array('class'=>'control-label', 'for'=>$forms['vat_number']['key']))?>
+                        <?=FORM::input($forms['vat_number']['key'], $forms['vat_number']['value'], array(
+                            'placeholder' => "", 
+                            'class' => 'tips form-control', 
+                            'id' => $forms['vat_number']['key'],
+                        ))?>
                     </div>
 
                     <hr>

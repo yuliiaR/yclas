@@ -43,6 +43,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'stripe_3d_secure',
                                'group_name'     => 'payment', 
                                'config_value'   => '0'),
+                        array( 'config_key'     => 'VAT_country',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'VAT_number',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
                         );
 
         //get theme license and add it to the config
@@ -77,6 +83,13 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `stripe_agreement` varchar(40) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
+        //VAT
+        try 
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT` varchar(40) DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT_country` varchar(40) DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT_number` varchar(40) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
 
         Model_Config::config_array($configs);
     }
