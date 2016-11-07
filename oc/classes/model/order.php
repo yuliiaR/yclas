@@ -2,34 +2,34 @@
 /**
  * description...
  *
- * @author		Slobodan <slobodan@open-classifieds.com>
- * @package		OC
- * @copyright	(c) 2009-2013 Open Classifieds Team
- * @license		GPL v3
+ * @author      Slobodan <slobodan@open-classifieds.com>
+ * @package     OC
+ * @copyright   (c) 2009-2013 Open Classifieds Team
+ * @license     GPL v3
  * *
  */
 class Model_Order extends ORM {
 
 
-	/**
-	 * Table name to use
-	 *
-	 * @access	protected
-	 * @var		string	$_table_name default [singular model name]
-	 */
-	protected $_table_name = 'orders';
+    /**
+     * Table name to use
+     *
+     * @access  protected
+     * @var     string  $_table_name default [singular model name]
+     */
+    protected $_table_name = 'orders';
 
-	/**
-	 * Column to use as primary key
-	 *
-	 * @access	protected
-	 * @var		string	$_primary_key default [id]
-	 */
-	protected $_primary_key = 'id_order';
+    /**
+     * Column to use as primary key
+     *
+     * @access  protected
+     * @var     string  $_primary_key default [id]
+     */
+    protected $_primary_key = 'id_order';
 
-	/**
-	 * Status constants
-	 */
+    /**
+     * Status constants
+     */
     const STATUS_CREATED        = 0;   // just created
     const STATUS_PAID           = 1;   // paid!
     const STATUS_REFUSED        = 5;   //tried to paid but not succeed
@@ -152,11 +152,15 @@ class Model_Order extends ORM {
             {
                 Model_Subscription::new_order($this);
                 
+
                 $replace_email = array('[AD.TITLE]'     => $this->description,
-                                         '[URL.AD]'     => Route::url('pricing'),
-                                         '[ORDER.ID]'   => $this->id_order,
-                                         '[PRODUCT.ID]' => $this->id_product);
-                
+                                     '[URL.AD]'         => Route::url('pricing'),
+                                     '[ORDER.ID]'       => $this->id_order,
+                                     '[PRODUCT.ID]'     => $this->id_product,
+                                     '[VAT.COUNTRY]'    => (isset($this->VAT) AND $this->VAT > 0)?$this->VAT_country:'',
+                                     '[VAT.NUMBER]'     => (isset($this->VAT) AND $this->VAT > 0)?$this->VAT_number:'',
+                                     '[VAT.PERCENTAGE]' => (isset($this->VAT) AND $this->VAT > 0)?$this->VAT:'');
+
             }
             else
             {
@@ -179,13 +183,15 @@ class Model_Order extends ORM {
                 }
 
                 $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
-                
-                $replace_email = array('[AD.TITLE]'   => $ad->title,
-                                         '[URL.AD]'     => $url_ad,
-                                         '[ORDER.ID]'   => $this->id_order,
-                                         '[PRODUCT.ID]' => $this->id_product);
 
-                
+                $replace_email = array('[AD.TITLE]'     => $ad->title,
+                                     '[URL.AD]'         => $url_ad,
+                                     '[ORDER.ID]'       => $this->id_order,
+                                     '[PRODUCT.ID]'     => $this->id_product,
+                                     '[VAT.COUNTRY]'    => (isset($this->VAT) AND $this->VAT > 0)?$this->VAT_country:'',
+                                     '[VAT.NUMBER]'     => (isset($this->VAT) AND $this->VAT > 0)?$this->VAT_number:'',
+                                     '[VAT.PERCENTAGE]' => (isset($this->VAT) AND $this->VAT > 0)?$this->VAT:'');
+
             }
 
             //send email to site owner! new sale!! 
@@ -295,7 +301,7 @@ class Model_Order extends ORM {
 
             //send email to user with link to pay
             $url_checkout = $user->ql('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order));
-                
+
             $replace = array('[ORDER.ID]'    => $order->id_order,
                              '[ORDER.DESC]'  => $order->description,
                              '[URL.CHECKOUT]'=> $url_checkout);

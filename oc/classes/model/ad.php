@@ -1043,7 +1043,10 @@ class Model_Ad extends ORM {
                                     '[AD.TITLE]'   => $this->title,
                                     '[ORDER.ID]'   => $order->id_order,
                                     '[PRODUCT.ID]' => $order->id_product,
-                                    '[BUYER.INSTRUCTIONS]' => (isset($this->cf_buyer_instructions)?$this->cf_buyer_instructions:''));
+                                    '[BUYER.INSTRUCTIONS]' => (isset($this->cf_buyer_instructions)?$this->cf_buyer_instructions:''),
+                                    '[VAT.COUNTRY]'    => (isset($order->VAT) AND $order->VAT > 0)?$order->VAT_country:'',
+                                    '[VAT.NUMBER]'     => (isset($order->VAT) AND $order->VAT > 0)?$order->VAT_number:'',
+                                    '[VAT.PERCENTAGE]' => (isset($order->VAT) AND $order->VAT > 0)?$order->VAT:'');
             // send email to BUYER
             $order->user->email('ads-purchased', $email_content);
 
