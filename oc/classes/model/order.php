@@ -254,6 +254,34 @@ class Model_Order extends ORM {
             $order->amount        = $amount;
             $order->description   = $description;
 
+            // check product
+            if($order->id_product == Model_Order::PRODUCT_AD_SELL)
+            {   
+                // check if ad has VAT
+                if(isset($order->ad->cf_vatnumber) AND $order->ad->cf_vatnumber AND isset($order->ad->cf_vatcountry) AND $order->ad->cf_vatcountry)
+                {
+                    $order->VAT_country = $order->ad->cf_vatcountry;
+                    $order->VAT_number = $order->ad->cf_vatnumber;
+                    $order->VAT = euvat::vat_by_country($order->ad->cf_vatcountry);
+                }
+                // check if user has VAT
+                elseif(isset($order->user->cf_vatnumber) AND $order->user->cf_vatnumber AND isset($order->user->cf_vatcountry) AND $order->user->cf_vatcountry)
+                {
+                    $order->VAT_country = $order->user->cf_vatcountry;
+                    $order->VAT_number = $order->user->cf_vatnumber;
+                    $order->VAT = euvat::vat_by_country($order->ad->cf_vatcountry);
+                }
+            } 
+            else
+            {
+                if(core::config('payment.vat_country') AND core::config('payment.vat_number'))
+                {
+                    $order->VAT_country = core::config('payment.vat_country');
+                    $order->VAT_number = core::config('payment.vat_number');
+                    $order->VAT = euvat::vat_by_country(core::config('payment.vat_country'));
+                }
+            }
+
             //store how many days the ad is featured
             if ($featured_days!==NULL AND is_numeric($featured_days))
                 $order->featured_days = $featured_days;
@@ -471,6 +499,24 @@ class Model_Order extends ORM {
     }
 
     /**
+     * calculates and adds VAT to the order amount
+     */
+    public function add_VAT()
+    {
+        if($this->VAT > 0)
+        {
+            $this->amount = ($this->amount) + ($this->amount * $this->VAT / 100);
+
+            try {
+                $this->save();
+            } 
+            catch (Exception $e){
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+    }
+
+    /**
      * verify if a transaction is fraudulent
      * @return boolean                    
      */
@@ -661,6 +707,54 @@ array (
     'ordinal_position' => 9,
     'numeric_precision' => '14',
     'numeric_scale' => '3',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'VAT' => 
+  array (
+    'type' => 'float',
+    'exact' => true,
+    'column_name' => 'VAT',
+    'column_default' => '0.000',
+    'data_type' => 'decimal',
+    'is_nullable' => false,
+    'ordinal_position' => 9,
+    'numeric_precision' => '14',
+    'numeric_scale' => '3',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'VAT_number' => 
+  array (
+    'type' => 'string',
+    'exact' => true,
+    'column_name' => 'VAT_number',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => true,
+    'ordinal_position' => 11,
+    'character_maximum_length' => '145',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'VAT_country' => 
+  array (
+    'type' => 'string',
+    'exact' => true,
+    'column_name' => 'VAT_country',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => true,
+    'ordinal_position' => 11,
+    'character_maximum_length' => '145',
+    'collation_name' => 'utf8_general_ci',
     'comment' => '',
     'extra' => '',
     'key' => '',

@@ -82,6 +82,7 @@ class Controller_Plan extends Controller {
                 HTTP::redirect(Route::url('pricing'));
             }
 
+
             $order = Model_Order::new_order(NULL, $this->user, $plan->id_plan, $plan->price, core::config('payment.paypal_currency'), __('Subscription to ').$plan->name);
 
             //free plan no checkout
@@ -121,6 +122,9 @@ class Controller_Plan extends Controller {
 
             //checks coupons or amount of featured days
             $order->check_pricing();
+
+            //adds VAT to the amount
+            $order->add_VAT();
 
             //template header
             $this->template->title              = __('Checkout').' '.Model_Order::product_desc($order->id_product);

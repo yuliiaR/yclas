@@ -798,6 +798,9 @@ class Controller_Ad extends Controller {
             //checks coupons or amount of featured days
             $order->check_pricing();
 
+            //adds VAT to the amount
+            $order->add_VAT();
+
             //template header
             $this->template->title              = __('Checkout').' '.Model_Order::product_desc($order->id_product);
             Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
@@ -836,6 +839,9 @@ class Controller_Ad extends Controller {
 
             //checks coupons or amount of featured days
             $order->check_pricing();
+            
+            //adds VAT to the amount
+            $order->add_VAT();
 
             //he needs to pay...little prick
             if ($order->amount > 0)

@@ -11,6 +11,10 @@
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
             <p>
+                <?if(isset($order->VAT) AND $order->VAT > 0):?>
+                    <em><?=_e('VAT Number')?>: <?=$order->VAT_country?> <?=$order->VAT_number?></em>
+                    <br>
+                <?endif?>
                 <em><?=_e('Date')?>: <?= Date::format($order->created, core::config('general.date_format'))?></em>
                 <br>
                 <em><?=_e('Checkout')?> :# <?=$order->id_order?></em>
@@ -76,7 +80,7 @@
                         <?else :?>
                             <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
                         <?endif?>
-                        <td class="col-md-2 text-center"><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format(($order->coupon->loaded())?$order->original_price():$order->amount, $order->currency):i18n::format_currency(($order->coupon->loaded())?$order->original_price():$order->amount, $order->currency)?></td>
+                        <td class="col-md-2 text-center"><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format(($order->coupon->loaded())?$order->original_price():$order->original_price(), $order->currency):i18n::format_currency(($order->coupon->loaded())?$order->original_price():$order->original_price(), $order->currency)?></td>
                     </tr>
                     <?if (Theme::get('premium')==1 AND $order->coupon->loaded()):?>
                         <?$discount = ($order->coupon->discount_amount==0)?($order->original_price() * $order->coupon->discount_percentage/100):$order->coupon->discount_amount;?>
@@ -100,6 +104,25 @@
                         <em><?=$order->ad->title?></em>
                     </td>
                 </tr>
+
+                <?if(isset($order->VAT) AND $order->VAT > 0):?>
+                    <td class="col-md-1" style="text-align: center"></td>
+                    <td class="col-md-9">
+                        <em><?=_e('VAT')?> <?=number_format($order->VAT,2)?>%</em>
+                    </td>
+                    <td class="col-md-2 text-center text-danger">
+                        <?if($order->id_product == Model_Order::PRODUCT_AD_SELL):?>
+                            <?=i18n::money_format($order->original_price()*$order->VAT/100, $order->currency)?>
+                        <?else:?>
+                            <?if(isset($discount)):?>
+                                <?=i18n::format_currency(($order->original_price()-$discount)*$order->VAT/100, $order->currency)?>
+                            <?else:?>
+                                <?=i18n::format_currency($order->original_price()*$order->VAT/100, $order->currency)?>
+                            <?endif?>
+                        <?endif?>
+                    </td>
+                <?endif?>
+
                 <tr>
                     <td>   </td>
                     <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
