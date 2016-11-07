@@ -2,10 +2,10 @@
 /**
  * description...
  *
- * @author      Chema <chema@open-classifieds.com>
- * @package     OC
- * @copyright   (c) 2009-2013 Open Classifieds Team
- * @license     GPL v3
+ * @author		Chema <chema@open-classifieds.com>
+ * @package		OC
+ * @copyright	(c) 2009-2013 Open Classifieds Team
+ * @license		GPL v3
  * 
  */
 class Model_Ad extends ORM {
@@ -13,23 +13,23 @@ class Model_Ad extends ORM {
     /**
      * Table name to use
      *
-     * @access  protected
-     * @var     string  $_table_name default [singular model name]
+     * @access	protected
+     * @var		string	$_table_name default [singular model name]
      */
     protected $_table_name = 'ads';
 
     /**
      * Column to use as primary key
      *
-     * @access  protected
-     * @var     string  $_primary_key default [id_ad]
+     * @access	protected
+     * @var		string	$_primary_key default [id_ad]
      */
     protected $_primary_key = 'id_ad';
 
     protected $_belongs_to = array(
-        'user'       => array('foreign_key' => 'id_user'),
-        'category'   => array('foreign_key' => 'id_category'),
-        'location'   => array('foreign_key' => 'id_location'),
+        'user'		 => array('foreign_key' => 'id_user'),
+        'category'	 => array('foreign_key' => 'id_category'),
+    	'location'	 => array('foreign_key' => 'id_location'),
     );
 
 
@@ -108,24 +108,24 @@ class Model_Ad extends ORM {
      */
     public function rules()
     {
-        $rules = array(
-                        'id_ad'         => array(array('numeric')),
-                        'id_user'       => array(array('numeric')),
-                        'id_category'   => array(array('not_empty'),array('digit')),
-                        'id_location'   => array(array('digit')),
-                        'type'          => array(),
-                        'title'         => array(array('not_empty'), array('min_length', array(':value', 2)), array('max_length', array(':value', 145))),
-                        'description'   => array(array('not_empty'), array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), ),
-                        'address'       => array(array('max_length', array(':value', 145)), ),
+    	$rules = array(
+				        'id_ad'		    => array(array('numeric')),
+				        'id_user'		=> array(array('numeric')),
+				        'id_category'	=> array(array('not_empty'),array('digit')),
+				        'id_location'   => array(array('digit')),
+				        'type'			=> array(),
+				        'title'			=> array(array('not_empty'), array('min_length', array(':value', 2)), array('max_length', array(':value', 145))),
+				        'description'	=> array(array('not_empty'), array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), ),
+				        'address'		=> array(array('max_length', array(':value', 145)), ),
                         'website'       => array(array('max_length', array(':value', 200)), ),
-                        'phone'         => array(array('max_length', array(':value', 30)), ),
-                        'status'        => array(array('numeric')),
-                        'has_images'    => array(array('numeric')),
-                        'last_modified' => array(),
+				        'phone'			=> array(array('max_length', array(':value', 30)), ),
+				        'status'		=> array(array('numeric')),
+				        'has_images'	=> array(array('numeric')),
+				        'last_modified'	=> array(),
                         'price'         => array(array('price')),
                         'latitude'      => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
                         'longitude'     => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
-                    );
+				    );
 
         if (core::config('advertisement.description') == FALSE)
             $rules['description'] = array(array('min_length', array(':value', 5)), array('max_length', array(':value', 65535)), );
@@ -143,25 +143,25 @@ class Model_Ad extends ORM {
      */
     public function labels()
     {
-        return array(
-                    'id_ad'         => 'Id ad',
-                    'id_user'       => __('User'),
-                    'id_category'   => __('Category'),
-                    'id_location'   => __('Location'),
-                    'type'          => __('Type'),
-                    'title'         => __('Title'),
-                    'seotitle'      => __('SEO title'),
-                    'description'   => __('Description'),
-                    'address'       => __('Address'),
-                    'price'         => __('Price'),
-                    'phone'         => __('Phone'),
-                    'ip_address'    => __('Ip address'),
-                    'created'       => __('Created'),
-                    'published'     => __('Published'),
-                    'status'        => __('Status'),
-                    'has_images'    => __('Has images'),
-                    'last_modified' => __('Last modified'),
-                );
+    	return array(
+			        'id_ad'		    => 'Id ad',
+			        'id_user'		=> __('User'),
+			        'id_category'	=> __('Category'),
+			        'id_location'	=> __('Location'),
+			        'type'			=> __('Type'),
+			        'title'			=> __('Title'),
+			        'seotitle'		=> __('SEO title'),
+			        'description'	=> __('Description'),
+			        'address'		=> __('Address'),
+			        'price'			=> __('Price'),
+			        'phone'			=> __('Phone'),
+			        'ip_address'	=> __('Ip address'),
+			        'created'		=> __('Created'),
+			        'published'		=> __('Published'),
+			        'status'		=> __('Status'),
+			        'has_images'	=> __('Has images'),
+			        'last_modified'	=> __('Last modified'),
+			    );
     }
     
     /**
