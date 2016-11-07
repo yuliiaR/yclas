@@ -43,10 +43,10 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'stripe_3d_secure',
                                'group_name'     => 'payment', 
                                'config_value'   => '0'),
-                        array( 'config_key'     => 'VAT_country',
+                        array( 'config_key'     => 'vat_country',
                                'group_name'     => 'payment', 
                                'config_value'   => ''),
-                        array( 'config_key'     => 'VAT_number',
+                        array( 'config_key'     => 'vat_number',
                                'group_name'     => 'payment', 
                                'config_value'   => ''),
                         );
