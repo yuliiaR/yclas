@@ -86,9 +86,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
         //VAT
         try 
         {
-            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT` varchar(40) DEFAULT NULL")->execute();
-            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT_country` varchar(40) DEFAULT NULL")->execute();
-            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT_number` varchar(40) DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT` varchar(20) DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT_country` varchar(20) DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT_number` varchar(20) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
         Model_Config::config_array($configs);
