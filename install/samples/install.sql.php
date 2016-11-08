@@ -594,7 +594,6 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'pay_to_go_on_top', '5'),
 ('payment', 'vat_country', '0'),
 ('payment', 'vat_number', '0'),
-('payment', 'pay_to_go_on_top', '5'),
 ('payment', 'paypal_account', ''),
 ('payment', 'paypal_seller', '0'),
 ('payment', 'stock', '0'),
