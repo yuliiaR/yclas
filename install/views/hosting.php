@@ -34,12 +34,12 @@
     <br>
     <ul>
         <li>100% Compatible High Speed Hosting</li>
-        <li>1 Premium Theme, of your choice worth $185</li>
+        <li>Get $185 discount on our Pro pack with all themes.</li>
         <li>Professional Installation and Support for 3 months</li>
     </ul>
     <br>
     <p>
-        <a class="btn btn-default btn-large" href="https://yclas.com/self-hosted.html">
+        <a class="btn btn-default btn-large" href="https://yclas.com/self-hosted.html#hosting">
             <i class=" icon-shopping-cart icon-white"></i> Get Hosting! Less than $4 Month
         </a>
     </p>
