@@ -177,9 +177,9 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `description` varchar(145) DEFAULT NULL,
   `txn_id` varchar(255) DEFAULT NULL,
   `featured_days` int(10) unsigned NULL,
-  `VAT_country` decimal(14,3) NOT NULL DEFAULT '0',
-  `VAT_number` decimal(14,3) NOT NULL DEFAULT '0',
-  `VAT` decimal(14,3) NOT NULL DEFAULT '0',
+  `VAT_country` varchar(20) DEFAULT NULL,
+  `VAT_number` varchar(20) DEFAULT NULL,
+  `VAT` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_order`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_status` (`status`)
