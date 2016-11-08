@@ -275,7 +275,7 @@ class Model_Order extends ORM {
                 {
                     $order->VAT_country = $order->user->cf_vatcountry;
                     $order->VAT_number = $order->user->cf_vatnumber;
-                    $order->VAT = euvat::vat_by_country($order->ad->cf_vatcountry);
+                    $order->VAT = euvat::vat_by_country($order->user->cf_vatcountry);
                 }
             } 
             else
