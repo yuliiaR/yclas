@@ -315,6 +315,15 @@ class Controller_Panel_Auth extends Controller {
                                 ->rule('password2', 'not_empty')
                                 ->rule('password1', 'matches', array(':validation', 'password1', 'password2'));
 
+                if(core::post('cf_vatnumber') AND core::post('cf_vatcountry'))
+                {
+                    if (!euvat::verify_vies(core::post('cf_vatnumber'),core::post('cf_vatcountry')))
+                    {
+                        Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
+                        $this->redirect(Route::url('oc-panel', array('controller'=>'auth','action'=>'register')));
+                    }
+                }
+
                 if ($validation->check())
                 {
                     //posting data so try to remember password

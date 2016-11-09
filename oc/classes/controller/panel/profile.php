@@ -125,7 +125,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
             {
                 if (!euvat::verify_vies(core::post('cf_vatnumber'),core::post('cf_vatcountry')))
                 {
-                    Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'.core::post('cf_vatnumber')));
+                    Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
                     $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
                 }
             }
