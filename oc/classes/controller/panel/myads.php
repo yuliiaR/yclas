@@ -315,6 +315,12 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     unset($data['location']);
                 }
 
+                if(isset($data['cf_vatcountry']) AND $data['cf_vatcountry'] AND isset($data['cf_vatnumber']) AND $data['cf_vatnumber']){
+                    if (!euvat::verify_vies($data['cf_vatnumber'],$data['cf_vatcountry'])){
+                        Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
+                        $this->redirect(Route::url('post_new'));                     }
+                }
+        
                 $return = $form->save_ad($data);
         
                 //there was an error on the validation
