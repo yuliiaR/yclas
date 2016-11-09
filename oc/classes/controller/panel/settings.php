@@ -321,6 +321,13 @@ class Controller_Panel_Settings extends Auth_Controller {
             //not updatable fields
             $do_nothing = array('featured_days','pay_to_go_on_feature','featured_plans');
 
+            if(Core::request('vat_country') AND Core::request('vat_number')){
+                if (!euvat::verify_vies(Core::request('vat_country'),Core::request('vat_number'))){
+                    Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
+                    $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));                    
+                }
+            }
+
             if ($validation->check()) {
                 foreach ($config as $c) 
                 {
