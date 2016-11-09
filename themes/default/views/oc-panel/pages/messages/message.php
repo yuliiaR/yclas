@@ -13,8 +13,15 @@
 </div>
 <div class="btn-toolbar">
     <div class="btn-group pull-right">
-        <a href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_ARCHIVED?>" class="btn btn-primary">
-            <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <?=_e('Archive')?>
+        <a
+            href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_ARCHIVED?>"
+            class="btn btn-warning"
+            data-toggle="confirmation"
+            data-text="<?=__('Are you sure you want to archive this message?')?>" 
+            data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+            data-btnCancelLabel="<?=__('No way!')?>"
+        >
+        <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <?=_e('Archive')?>
         </a>
         <a 
             href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'status','id'=>$msg_thread->id_message))?>?status=<?=Model_Message::STATUS_SPAM?>"
