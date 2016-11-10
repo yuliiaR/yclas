@@ -201,6 +201,9 @@ class Form extends OC_Form {
                 $attributes['type'] = 'email';
                 $input = FORM::input($name, $value, $attributes);
                 break;
+            case 'country':
+                $input = FORM::select($name, EUVAT::$countries, (! is_array($value)) ? $value : NULL, $attributes);
+                break;
             case 'string':
             default:
                 $input = FORM::input($name, $value, $attributes);
