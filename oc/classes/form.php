@@ -202,7 +202,7 @@ class Form extends OC_Form {
                 $input = FORM::input($name, $value, $attributes);
                 break;
             case 'country':
-                $input = FORM::select($name, EUVAT::$countries, (! is_array($value)) ? $value : NULL, $attributes);
+                $input = FORM::select($name, EUVAT::countries(), (! is_array($value)) ? $value : NULL, $attributes);
                 break;
             case 'string':
             default:

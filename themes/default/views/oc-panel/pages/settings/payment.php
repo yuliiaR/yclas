@@ -200,7 +200,7 @@
 
                     <div class="form-group">
                         <?=FORM::label($forms['vat_country']['key'], __('VAT Country'), array('class'=>'control-label', 'for'=>$forms['vat_country']['key']))?>
-                        <?=Form::select($forms['vat_country']['key'], EUVAT::$countries, $forms['vat_country']['value'])?>
+                        <?=Form::select($forms['vat_country']['key'], EUVAT::countries(), $forms['vat_country']['value'])?>
                     </div>
 
                     <div class="form-group">

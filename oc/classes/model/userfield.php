@@ -322,7 +322,7 @@ class Model_UserField {
         if ($as_array === TRUE)
             foreach ($user_fields as $key => $field)
                 if ($field['type'] == 'country')
-                    $user_fields[$key]['values'] = EUVAT::$countries;
+                    $user_fields[$key]['values'] = EUVAT::countries();
 
         return $user_fields;
     }
