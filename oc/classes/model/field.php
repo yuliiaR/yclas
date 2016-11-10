@@ -329,7 +329,7 @@ class Model_Field {
             if ($as_array === TRUE)
                 foreach ($fields as $key => $field)
                     if ($field['type'] == 'country')
-                        $fields[$key]['values'] = EUVAT::$countries;
+                        $fields[$key]['values'] = EUVAT::countries();
 
             return $fields;
         }
