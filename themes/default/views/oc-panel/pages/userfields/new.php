@@ -37,6 +37,7 @@
                     <option value="select"><?=__('Select')?></option>
                     <option value="radio"><?=__('Radio')?></option>
                     <option value="email"><?=__('Email')?></option>
+                    <option value="country"><?=__('Country')?></option>
                     <option value="checkbox"><?=__('Checkbox')?></option>
                 </select>
             </div>

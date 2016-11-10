@@ -86,6 +86,11 @@ class Model_UserField {
                         ->string($this->_name_prefix.$name, 145);
                     break;
 
+                case 'country':
+                    $table->add_column()
+                        ->string($this->_name_prefix.$name, 145);
+                    break;
+
                 case 'string':            
                 default:
                     $table->add_column()
@@ -312,6 +317,12 @@ class Model_UserField {
            
             $user_fields = (object) $user_fields;
         }
+
+        // Pre-populate country select values
+        if ($as_array === TRUE)
+            foreach ($user_fields as $key => $field)
+                if ($field['type'] == 'country')
+                    $user_fields[$key]['values'] = EUVAT::countries();
 
         return $user_fields;
     }

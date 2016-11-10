@@ -618,6 +618,29 @@ function createCustomFieldsByCategory (customfields) {
                 });
                 $('#custom-fields select[name="' + idx + '"] option[value=" "]').val(null);
                 break;
+            case 'country':
+                $template.find('div[data-input]').replaceWith($('<select/>').attr({ 'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'class'       : 'form-control',
+                                                                                    'placeholder' : customfield.label,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'required'    : customfield.required,
+                                                                                }));
+                $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(' ').html('&nbsp;'));
+                for (var val in customfield.values) {
+                    $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(val).html(customfield.values[val]));
+                }
+                $('#custom-fields select[name="' + idx + '"] option[value="' + $('#custom-fields').data('customfield-values')[customfield.label] +'"]').attr('selected', true);
+                // selectize allowEmptyOption bugfix
+                $('#custom-fields select[name="' + idx + '"]').selectize({
+                    allowEmptyOption: 'true',
+                    onChange: function(value) {
+                        if (value == ' ')
+                            $('#custom-fields select[name="' + idx + '"] option[selected]').val(null);
+                    }
+                });
+                $('#custom-fields select[name="' + idx + '"] option[value=" "]').val(null);
+                break;
             case 'radio':
                 $.each(customfield.values, function (radioidx, value) {
                     $('<div/>').attr('class', 'radio').append($('<label/>').append($('<input/>').attr({ 'type'        : 'radio',

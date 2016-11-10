@@ -91,6 +91,11 @@ class Model_Field {
                         ->string($this->_name_prefix.$name, 145);
                     break;
 
+                case 'country':
+                    $table->add_column()
+                        ->string($this->_name_prefix.$name, 145);
+                    break;
+
                 case 'string':            
                 default:
                     $table->add_column()
@@ -319,9 +324,19 @@ class Model_Field {
     public static function get_all($as_array = TRUE)
     {
         if ( ! is_null($fields = json_decode(core::config('advertisement.fields'),$as_array)) )
+        {
+            // Pre-populate country select values
+            if ($as_array === TRUE)
+                foreach ($fields as $key => $field)
+                    if ($field['type'] == 'country')
+                        $fields[$key]['values'] = EUVAT::countries();
+
             return $fields;
+        }
         else
+        {
             return array();
+        }
     }
 
     /**
