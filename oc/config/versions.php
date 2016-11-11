@@ -1,6 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
-  
   '3.0.0' => 
   array (
     'codename' => 'Kiev',
@@ -10,7 +9,6 @@
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A3.0.0+is%3Aclosed',
     'download' => 'https://j.mp/yc_300',
   ),
-
   '2.9.0' => 
   array (
     'codename' => 'Moscow',
