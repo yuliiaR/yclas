@@ -1,16 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
-  
   '3.0.0' => 
   array (
     'codename' => 'Kiev',
-    'released' => '2016-11-09',
-    'blog' => ' http://open-classifieds.com/2016/11/09/yclas-3/',
+    'released' => '2016-11-10',
+    'blog' => ' http://open-classifieds.com/2016/11/10/yclas-3/',
     'changelog' => 'https://github.com/yclas/yclas/compare/2.9.0...3.0.0',
     'issues' => 'https://github.com/yclas/yclas/issues?q=milestone%3A3.0.0+is%3Aclosed',
     'download' => 'https://j.mp/yc_300',
   ),
-
   '2.9.0' => 
   array (
     'codename' => 'Moscow',

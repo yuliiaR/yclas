@@ -18,7 +18,7 @@
                 </div>
                 <div class="panel-body">
                     <p>
-                        <?=__('Thanks for using Open Classifieds. If you have any questions you can you can click the help button in the upper right corner.')?>
+                        <?=__('Thanks for using Yclas. If you have any questions you can you can click the help button in the upper right corner.')?>
                     </p>
                     <p>
                         <?=__('Your installation version is')?> 
