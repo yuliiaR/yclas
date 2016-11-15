@@ -32,8 +32,8 @@ class Controller_Panel_Stats extends Auth_Controller {
         $content->title = $this->template->title;
 
         // Getting the dates and range
-        $from_date = Core::post('from_date', Core::get('from_date', strtotime('-1 month')));
-        $to_date   = Core::post('to_date', Core::get('to_date', time()));
+        $from_date = Core::request('from_date', date('Y-m-d', strtotime('-1 month')));
+        $to_date   = Core::request('to_date', date('Y-m-d', strtotime('+1 day')));
 
         // We assure is a proper time stamp if not we transform it
         if (is_string($from_date) === TRUE) 
