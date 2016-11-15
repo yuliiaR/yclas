@@ -47,8 +47,8 @@ class MercadoPago {
                     )
                 ),
                 "payer" => array(
-                    "name"  => Auth::instance()->get_user()->name,
-                    "email" => Auth::instance()->get_user()->email,
+                    "name"  => Auth::instance()->logged_in() ? Auth::instance()->get_user()->name : $order->ad->user->name,
+                    "email" => Auth::instance()->logged_in() ? Auth::instance()->get_user()->email : $order->ad->user->email,
                 ),
                 "back_urls" => array(
                     "success" => Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')),

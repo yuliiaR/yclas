@@ -98,7 +98,7 @@ class Model_Review extends ORM {
 
         $rates = $query->as_array();
 
-        return $rates[0]['rate'];
+        return empty($rates) ? 0 : $rates[0]['rate'];
 
     }
 
