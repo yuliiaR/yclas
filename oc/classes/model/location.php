@@ -162,12 +162,17 @@ class Model_Location extends ORM {
      * we get the locations in an array 
      * @return array 
      */
-    public static function get_as_array()
+    public static function get_as_array($limit = NULL)
     {
         if ( ($locs_arr = Core::cache('locs_arr'))===NULL)
         {
             $locs = new self;
-            $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
+            $locs->order_by('order','asc');
+
+            if (is_int($limit))
+                $locs->limit($limit);
+
+            $locs = $locs->find_all()->cached()->as_array('id_location');
 
             //transform the locs to an array
             $locs_arr = array();
@@ -226,12 +231,17 @@ class Model_Location extends ORM {
      * we get the locations in an array miltidimensional by deep.
      * @return array 
      */
-    public static function get_multidimensional()
+    public static function get_multidimensional($limit = NULL)
     {
         if ( ($locs_m = Core::cache('locs_m'))===NULL)
         {
             $locs = new self;
-            $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
+            $locs->order_by('order','asc');
+
+            if (is_int($limit))
+                $locs->limit($limit);
+
+            $locs = $locs->find_all()->cached()->as_array('id_location');
 
             //for each location we get his siblings
             $locs_s = array();
