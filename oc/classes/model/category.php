@@ -170,13 +170,18 @@ class Model_Category extends ORM {
      * we get the categories in an array 
      * @return array 
      */
-    public static function get_as_array()
+    public static function get_as_array($limit = NULL)
     {
         //transform the cats to an array
         if ( ($cats_arr = Core::cache('cats_arr'))===NULL)
         {
             $cats = new self;
-            $cats = $cats->order_by('order','asc')->find_all()->cached()->as_array('id_category');
+            $cats->order_by('order','asc');
+
+            if (is_int($limit))
+                $cats->limit($limit);
+
+            $cats = $cats->find_all()->cached()->as_array('id_category');
 
             $cats_arr = array();
             foreach ($cats as $cat) 
@@ -234,13 +239,18 @@ class Model_Category extends ORM {
      * we get the categories in an array miltidimensional by deep.
      * @return array 
      */
-    public static function get_multidimensional()
+    public static function get_multidimensional($limit = NULL)
     {
         //multidimensional array
         if ( ($cats_m = Core::cache('cats_m'))===NULL)
         {
             $cats = new self;
-            $cats = $cats->order_by('order','asc')->find_all()->cached()->as_array('id_category');
+            $cats->order_by('order','asc');
+
+            if (is_int($limit))
+                $cats->limit($limit);
+
+            $cats = $cats->find_all()->cached()->as_array('id_category');
 
             //for each category we get his siblings
             $cats_s = array();

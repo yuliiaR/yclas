@@ -66,8 +66,8 @@ class Widget_Search extends Widget
         if ($this->advanced != FALSE)
         {
             
-            $this->cat_items         = Model_Category::get_as_array();
-            $this->cat_order_items   = Model_Category::get_multidimensional();
+            $this->cat_items         = Model_Category::get_as_array(200);
+            $this->cat_order_items   = Model_Category::get_multidimensional(200);
             $this->selected_category = NULL;
 
             if (core::request('category'))
@@ -80,8 +80,8 @@ class Widget_Search extends Widget
             }
 
             // get all locations
-            $this->loc_items         = Model_Location::get_as_array();
-            $this->loc_order_items   = Model_Location::get_multidimensional();
+            $this->loc_items         = Model_Location::get_as_array(200);
+            $this->loc_order_items   = Model_Location::get_multidimensional(200);
             $this->selected_location = NULL;
 
             if (core::request('location'))
