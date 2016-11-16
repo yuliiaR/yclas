@@ -44,6 +44,8 @@ class Controller_Api_Ads extends Api_User {
                     $a['price'] = i18n::money_format($ad->price);
                     $a['thumb'] = $ad->get_first_image();
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
+                    foreach ($a['customfields'] as $key => $values) 
+                        $a['customfields'][$key]['value'] = $a[$key];
                     $a['url'] = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
                     $output[] = $a;
                 }
@@ -74,6 +76,8 @@ class Controller_Api_Ads extends Api_User {
                         $a['category'] = $ad->category->as_array();
                         $a['location'] = $ad->location->as_array();
                         $a['customfields'] = Model_Field::get_by_category($ad->id_category);
+                        foreach ($a['customfields'] as $key => $values) 
+                            $a['customfields'][$key]['value'] = $a[$key];
                         $a['url'] = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
                         $this->rest_output(array('ad' => $a));
                     }

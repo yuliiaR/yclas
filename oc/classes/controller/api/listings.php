@@ -106,6 +106,8 @@ class Controller_Api_Listings extends Api_Auth {
                     $a['price'] = i18n::money_format($ad->price);
                     $a['thumb'] = $ad->get_first_image();
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
+                    foreach ($a['customfields'] as $key => $values) 
+                        $a['customfields'][$key]['value'] = $a[$key];
 
                     //sorting by distance, lets add it!
                     if (isset($ad->distance))
@@ -149,6 +151,8 @@ class Controller_Api_Listings extends Api_Auth {
                     $a['location'] = $ad->location->as_array();
                     $a['user']     = Controller_Api_Users::get_user_array($ad->user);
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
+                    foreach ($a['customfields'] as $key => $values) 
+                        $a['customfields'][$key]['value'] = $a[$key];
                     //sorting by distance, lets add it!
                     if (isset($ad->distance))
                         $a['distance'] = i18n::format_measurement($ad->distance);
