@@ -20,7 +20,7 @@
             <div class="well">
                 <h3><b><?=$plan->name?></b></h3>
                 <hr>
-                <p><?=$plan->description?></p>
+                <p><?=Text::bb2html($plan->description,TRUE)?></p>
                 <hr>
                 <p>
                     <?if ($plan->days == 0 AND $plan->price>0):?>
