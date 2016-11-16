@@ -98,7 +98,7 @@
                     <div class="tab-content">
                         <div id="tabSettingsPaymentGeneral" class="tab-pane active fade">
                             <h4>
-                                <?=__('Generel payment configuration')?>
+                                <?=__('General payment configuration')?>
                             </h4>
                             <hr>
                     <?foreach ($config as $c):?>
