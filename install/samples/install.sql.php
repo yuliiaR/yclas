@@ -142,15 +142,15 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."visits` (
-  `id_visit` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_ad` int(10) unsigned DEFAULT NULL,
-  `id_user` int(10) unsigned DEFAULT NULL,
-  `contacted` tinyint(1) NOT NULL DEFAULT '0',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_visit`),
-  KEY `".core::request('TABLE_PREFIX')."visits_IK_id_ad` (`id_ad`)
-) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."visits (
+                        id_visit int(10) unsigned NOT NULL AUTO_INCREMENT,
+                        id_ad int(10) unsigned DEFAULT NULL,
+                        hits int(10) NOT NULL DEFAULT '0',
+                        contacts int(10) NOT NULL DEFAULT '0',
+                        created DATE NOT NULL,
+                        PRIMARY KEY (id_visit),
+                        UNIQUE KEY ".core::request('TABLE_PREFIX')."visits_UK_id_ad_AND_created (id_ad,created)
+                        ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
 mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."config` ( 

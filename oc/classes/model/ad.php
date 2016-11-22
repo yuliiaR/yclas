@@ -220,34 +220,17 @@ class Model_Ad extends ORM {
 
 
     /**
-     *  Create single table for each advertisement hit
+     *  returns the count of visits
      * 
      */
     public function count_ad_hit()
     {
-        $hits = 0;
-        if (!Model_Visit::is_bot() 
-            AND $this->loaded() 
-            AND $this->status==Model_Ad::STATUS_PUBLISHED 
-            AND core::config('advertisement.count_visits')==1)
+        if ($this->loaded() AND $this->status==Model_Ad::STATUS_PUBLISHED )
         {
-            if(!Auth::instance()->logged_in())
-                $visitor_id = NULL;
-            else
-                $visitor_id = Auth::instance()->get_user()->id_user;
-
-            //insert new visit
-            if ($this->id_user!=$visitor_id)
-                $new_hit = DB::insert('visits', array('id_ad', 'id_user'))
-                                    ->values(array($this->id_ad, $visitor_id))
-                                    ->execute();
-
-            //count how many matches are found 
-            $hits = new Model_Visit();
-            $hits = $hits->where('id_ad','=', $this->id_ad)->count_all();
+            return Model_Visit::count_all_visits($this->id_ad);
         }
-        return $hits;
-        
+
+        return 0;
     }
 
     /**
@@ -1225,7 +1208,7 @@ class Model_Ad extends ORM {
         DB::update('orders')->set(array('id_ad' => NULL))->where('id_ad', '=',$this->id_ad)->execute();
 
         //remove visits ads
-        DB::update('visits')->set(array('id_ad' => NULL))->where('id_ad', '=',$this->id_ad)->execute();
+        DB::delete('visits')->where('id_ad', '=',$this->id_ad)->execute();
 
         //remove messages ads
         DB::update('messages')->set(array('id_ad' => NULL))->where('id_ad', '=',$this->id_ad)->execute();

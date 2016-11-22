@@ -36,7 +36,6 @@ class Model_Visit extends ORM {
     	return array(
 			        'id_visit'	=> array(array('numeric')),
 			        'id_ad'	=> array(array('numeric')),
-			        'id_user'	=> array(array('numeric')),
 			    );
     }
 
@@ -50,9 +49,7 @@ class Model_Visit extends ORM {
     	return array(
 			        'id_visit'		=> 'Id visit',
 			        'id_ad'		    => 'Id ad',
-			        'id_user'		=> 'Id user',
 			        'created'		=> 'Created',
-			        'ip_address'	=> 'Ip address',
 			    );
     }
 
@@ -63,7 +60,7 @@ class Model_Visit extends ORM {
      */
     public static function popular_ads($days = 30)
     {
-        $query = DB::select('id_ad',DB::expr('COUNT(id_visit) count'))
+        $query = DB::select('id_ad',DB::expr('SUM(hits) count'))
                         ->from('visits')
                         ->where('created','between',array(date('Y-m-d',strtotime('-'.$days.' day')),date::unix2mysql()))
                         ->group_by(DB::expr('id_ad'))
@@ -73,6 +70,95 @@ class Model_Visit extends ORM {
 
         return $query->as_array('id_ad');
     }
+
+    /**
+     * get all the visits
+     * @return integer
+     */
+    public static function count_all_visits($id_ad = NULL)
+    {
+        $query = DB::select(DB::expr('SUM(hits) total'))->from('visits');
+
+        if ($id_ad!=NULL)
+            $query = $query->where('id_ad','=',$id_ad);
+
+        $query = $query->cached()->execute();
+
+        $result = $query->as_array();
+        return (isset($result[0]['total'])) ? $result[0]['total'] : 0;
+    }
+
+
+    /**
+     * ads a hit to table visits to an ad
+     * @param  integer $id_ad id of the ad
+     * @return integger        
+     */
+    public static function hit_ad($id_ad)
+    {
+        if (core::config('advertisement.count_visits')==TRUE AND !self::is_bot())
+        {
+            //see if exists the visit
+            $hit = new Model_Visit();
+            $hit = $hit ->where('id_ad','=',$id_ad)
+                        ->where('created','=',date('Y-m-d'))
+                        ->limit(1)->cached()->find();
+
+            //didnt...so create it!
+            if (!$hit->loaded())
+            {
+                $hit = new Model_Visit();
+                $hit->id_ad   = $id_ad;
+                $hit->hits    = 1;
+                $hit->created = date('Y-m-d');
+            }
+            //existed add 1
+            else    
+                $hit->hits++;
+            
+            $hit->save();
+
+            return $hit->hits;
+        }
+
+        return 0;
+    }
+
+    /**
+     * ads a contact to table visits to an ad
+     * @param  integer $id_ad id of the ad
+     * @return integger        
+     */
+    public static function contact_ad($id_ad)
+    {
+        if (core::config('advertisement.count_visits')==TRUE AND !self::is_bot())
+        {
+            //see if exists the visit
+            $hit = new Model_Visit();
+            $hit = $hit ->where('id_ad','=',$id_ad)
+                        ->where('created','=',date('Y-m-d'))
+                        ->limit(1)->cached()->find();
+
+            //didnt...so create it!
+            if (!$hit->loaded())
+            {
+                $hit = new Model_Visit();
+                $hit->id_ad   = $id_ad;
+                $hit->contacts= 1;
+                $hit->created = date('Y-m-d');
+            }
+            //existed add 1
+            else    
+                $hit->contacts++;
+            
+            $hit->save();
+
+            return $hit->contacts;
+        }
+
+        return 0;
+    }
+
 
     /**
      * visitor is a bot?
@@ -100,84 +186,5 @@ class Model_Visit extends ORM {
         return FALSE;
     }
 
-    protected $_table_columns =  
-array (
-  'id_visit' => 
-  array (
-    'type' => 'int',
-    'min' => '0',
-    'max' => '4294967295',
-    'column_name' => 'id_visit',
-    'column_default' => NULL,
-    'data_type' => 'int unsigned',
-    'is_nullable' => false,
-    'ordinal_position' => 1,
-    'display' => '10',
-    'comment' => '',
-    'extra' => 'auto_increment',
-    'key' => 'PRI',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'id_ad' => 
-  array (
-    'type' => 'int',
-    'min' => '0',
-    'max' => '4294967295',
-    'column_name' => 'id_ad',
-    'column_default' => NULL,
-    'data_type' => 'int unsigned',
-    'is_nullable' => true,
-    'ordinal_position' => 2,
-    'display' => '10',
-    'comment' => '',
-    'extra' => '',
-    'key' => 'MUL',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'id_user' => 
-  array (
-    'type' => 'int',
-    'min' => '0',
-    'max' => '4294967295',
-    'column_name' => 'id_user',
-    'column_default' => NULL,
-    'data_type' => 'int unsigned',
-    'is_nullable' => true,
-    'ordinal_position' => 3,
-    'display' => '10',
-    'comment' => '',
-    'extra' => '',
-    'key' => 'MUL',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'created' => 
-  array (
-    'type' => 'string',
-    'column_name' => 'created',
-    'column_default' => 'CURRENT_TIMESTAMP',
-    'data_type' => 'timestamp',
-    'is_nullable' => false,
-    'ordinal_position' => 4,
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
-  'contacted' => 
-  array (
-    'type' => 'int',
-    'min' => '-128',
-    'max' => '127',
-    'column_name' => 'contacted',
-    'column_default' => '0',
-    'data_type' => 'tinyint',
-    'is_nullable' => false,
-    'ordinal_position' => 18,
-    'display' => '1',
-    'comment' => '',
-    'extra' => '',
-    'key' => '',
-    'privileges' => 'select,insert,update,references',
-  ),
-);
+
 } // END Model_Visit

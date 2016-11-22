@@ -553,7 +553,7 @@ class Controller_Panel_Stats extends Auth_Controller {
             $to_date            = $original_to_date - ($original_to_date - $original_from_date);
         }
 
-        $query = DB::select(DB::expr('COUNT(id_visit) total'))
+        $query = DB::select(DB::expr('SUM(hits) total'))
             ->from('visits')
             ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
 
@@ -575,12 +575,12 @@ class Controller_Panel_Stats extends Auth_Controller {
         // Dates range we are filtering
         $dates = $this->dates_range($from_date, $to_date);
 
-        $query = DB::select(DB::expr('DATE(created) date'))
-            ->select(DB::expr('COUNT(id_visit) total'))
+        $query = DB::select(DB::expr('created date'))
+            ->select(DB::expr('SUM(hits) total'))
             ->from('visits')
             ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
 
-        $query = $query->group_by(DB::expr('DATE(created)'))
+        $query = $query->group_by('created')
             ->order_by('date', 'asc')
             ->execute();
 
@@ -622,9 +622,8 @@ class Controller_Panel_Stats extends Auth_Controller {
             $to_date            = $original_to_date - ($original_to_date - $original_from_date);
         }
 
-        $query = DB::select(DB::expr('COUNT(id_visit) total'))
+        $query = DB::select(DB::expr('SUM(contacts) total'))
             ->from('visits')
-            ->where('contacted', '=', 1)
             ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
 
         $query = $query->execute();
@@ -645,13 +644,12 @@ class Controller_Panel_Stats extends Auth_Controller {
         // Dates range we are filtering
         $dates = $this->dates_range($from_date, $to_date);
 
-        $query = DB::select(DB::expr('DATE(created) date'))
-            ->select(DB::expr('COUNT(id_visit) total'))
+        $query = DB::select(DB::expr('created date'))
+            ->select(DB::expr('SUM(contacts) total'))
             ->from('visits')
-            ->where('contacted', '=', 1)
             ->where('created', 'between', array(Date::unix2mysql($from_date), Date::unix2mysql($to_date)));
 
-        $query = $query->group_by(DB::expr('DATE(created)'))
+        $query = $query->group_by('created')
             ->order_by('date', 'asc')
             ->execute();
 

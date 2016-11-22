@@ -544,25 +544,23 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         /////////////////////CONTACT STATS////////////////////////////////
 
         //visits created last XX days
-        $query = DB::select(DB::expr('DATE(created) date'))
-                        ->select(DB::expr('COUNT(contacted) count'))
+        $query = DB::select(DB::expr('created date'))
+                        ->select(DB::expr('SUM(contacts) count'))
                         ->from('visits')
-                        ->where('contacted', '=', 1)
                         ->where('id_ad', 'in', $list_ad)
                         ->where('created','between',array($my_from_date,$my_to_date))
-                        ->group_by(DB::expr('DATE( created )'))
+                        ->group_by('created')
                         ->order_by('date','asc')
                         ->execute();
 
         $contacts_dates = $query->as_array('date');
 
         //Today 
-        $query = DB::select(DB::expr('COUNT(contacted) count'))
+        $query = DB::select(DB::expr('SUM(contacts) count'))
                         ->from('visits')
-                        ->where('contacted', '=', 1)
                         ->where('id_ad', 'in', $list_ad)
-                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
-                        ->group_by(DB::expr('DATE( created )'))
+                        ->where('created','=',DB::expr('CURDATE()'))
+                        ->group_by('created')
                         ->order_by('created','asc')
                         ->execute();
 
@@ -570,12 +568,11 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         $content->contacts_today     = (isset($contacts[0]['count']))?$contacts[0]['count']:0;
 
         //Yesterday
-        $query = DB::select(DB::expr('COUNT(contacted) count'))
+        $query = DB::select(DB::expr('SUM(contacts) count'))
                         ->from('visits')
-                        ->where('contacted', '=', 1)
                         ->where('id_ad', 'in', $list_ad)
-                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
-                        ->group_by(DB::expr('DATE( created )'))
+                        ->where('created','=',date('Y-m-d',strtotime('-1 day')))
+                        ->group_by('created')
                         ->order_by('created','asc')
                         ->execute();
         
@@ -583,9 +580,8 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         $content->contacts_yesterday = (isset($contacts[0]['count']))?$contacts[0]['count']:0; //
 
         //Last 30 days contacts
-        $query = DB::select(DB::expr('COUNT(contacted) count'))
+        $query = DB::select(DB::expr('SUM(contacts) count'))
                         ->from('visits')
-                        ->where('contacted', '=', 1)
                         ->where('id_ad', 'in', $list_ad)
                         ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
                         ->execute();
@@ -594,8 +590,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         $content->contacts_month = (isset($contacts[0]['count']))?$contacts[0]['count']:0;
 
         //total contacts
-        $query = DB::select(DB::expr('COUNT(contacted) count'))
-        				->where('contacted', '=', 1)
+        $query = DB::select(DB::expr('SUM(contacts) count'))
                         ->where('id_ad', 'in', $list_ad)
                         ->from('visits')
                         ->execute();
@@ -606,12 +601,12 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         /////////////////////VISITS STATS////////////////////////////////
 
         //visits created last XX days
-        $query = DB::select(DB::expr('DATE(created) date'))
-                        ->select(DB::expr('COUNT(id_visit) count'))
+        $query = DB::select(DB::expr('created date'))
+                        ->select(DB::expr('SUM(hits) count'))
                         ->from('visits')
                         ->where('id_ad', 'in', $list_ad)
                         ->where('created','between',array($my_from_date,$my_to_date))
-                        ->group_by(DB::expr('DATE( created )'))
+                        ->group_by('created')
                         ->order_by('date','asc')
                         ->execute();
 
@@ -629,12 +624,11 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         $content->stats_daily = $stats_daily;
 
         //Today 
-        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+        $query = DB::select(DB::expr('SUM(hits) count'))
                         ->from('visits')
-                        
                         ->where('id_ad', 'in', $list_ad)
-                        ->where(DB::expr('DATE( created )'),'=',DB::expr('CURDATE()'))
-                        ->group_by(DB::expr('DATE( created )'))
+                        ->where('created','=',DB::expr('CURDATE()'))
+                        ->group_by('created')
                         ->order_by('created','asc')
                         ->execute();
 
@@ -642,12 +636,11 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         $content->visits_today     = (isset($visits[0]['count']))?$visits[0]['count']:0;
 
         //Yesterday
-        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+        $query = DB::select(DB::expr('SUM(hits) count'))
                         ->from('visits')
-                        
                         ->where('id_ad', 'in', $list_ad)
-                        ->where(DB::expr('DATE( created )'),'=',date('Y-m-d',strtotime('-1 day')))
-                        ->group_by(DB::expr('DATE( created )'))
+                        ->where('created','=',date('Y-m-d',strtotime('-1 day')))
+                        ->group_by('created')
                         ->order_by('created','asc')
                         ->execute();
         
@@ -656,7 +649,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
 
         //Last 30 days visits
-        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+        $query = DB::select(DB::expr('SUM(hits) count'))
                         ->from('visits')
                         ->where('id_ad', 'in', $list_ad)
                         ->where('created','between',array(date('Y-m-d',strtotime('-30 day')),date::unix2mysql()))
@@ -666,7 +659,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         $content->visits_month = (isset($visits[0]['count']))?$visits[0]['count']:0;
 
         //total visits
-        $query = DB::select(DB::expr('COUNT(id_visit) count'))
+        $query = DB::select(DB::expr('SUM(hits) count'))
                         ->where('id_ad', 'in', $list_ad)
                         ->from('visits')
                         ->execute();

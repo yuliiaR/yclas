@@ -269,9 +269,6 @@ class Controller_Feed extends Controller {
             $first_ad = $ads->select('published')->order_by('published','asc')->limit(1)->find();
             $first_ad = $first_ad->published;
 
-            $views = new Model_Visit();
-            $total_views = $views->count_all();
-
             $users = new Model_User();
             $total_users = $users->count_all();
 
@@ -290,7 +287,7 @@ class Controller_Feed extends Controller {
                             'locale'        => Core::config('i18n.locale'),
                             'currency'      => '',
                             'ads'           => $total_ads,
-                            'views'         => $total_views,
+                            'views'         => Model_Visit::count_all_visits(),
                             'users'         => $total_users,
             );
 

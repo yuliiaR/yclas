@@ -14,6 +14,52 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
     /**
      * This function will upgrade DB that didn't existed in versions prior to 3.0.0
      */
+    public function action_301()
+    {
+
+        //visits table tmp
+        try
+        {
+            DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS ".self::$db_prefix."visits_tmp (
+                                        id_visit int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                        id_ad int(10) unsigned DEFAULT NULL,
+                                        hits int(10) NOT NULL DEFAULT '0',
+                                        contacts int(10) NOT NULL DEFAULT '0',
+                                        created DATE NOT NULL,
+                                        PRIMARY KEY (id_visit),
+                                        UNIQUE KEY ".self::$db_prefix."visits_IK_id_ad_AND_created (id_ad,created)
+                                        ) ENGINE=InnoDB;")->execute();
+        }catch (exception $e) {}
+
+        //move to tempo table
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO ".self::$db_prefix."visits_tmp (id_ad, hits, contacts, created)
+                                        SELECT id_ad, count(id_ad) hits,sum(contacted) contacts, DATE(created) created
+                                        FROM ".self::$db_prefix."visits
+                                        GROUP BY id_ad, DATE(created)
+                                        HAVING hits>0
+                                        ORDER BY DATE(created) ASC;")->execute();
+        }catch (exception $e) {}
+
+        //rename tables, we keep old one...just in case!
+        try
+        {
+            DB::query(Database::UPDATE,"RENAME TABLE ".self::$db_prefix."visits TO ".self::$db_prefix."visits_old;")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"RENAME TABLE ".self::$db_prefix."visits_tmp TO ".self::$db_prefix."visits;")->execute();
+        }catch (exception $e) {}
+
+
+
+    }
+
+    /**
+     * This function will upgrade DB that didn't existed in versions prior to 3.0.0
+     */
     public function action_300()
     {
         //new configs

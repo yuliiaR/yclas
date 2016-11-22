@@ -134,23 +134,7 @@ class Controller_Contact extends Controller {
 						Alert::set(Alert::SUCCESS, __('Your message has been sent'));
 
 						// we are updating field of visit table (contact)
-						$visit = new Model_Visit();
-
-						$visit->where('id_ad', '=', $this->request->param('id'))
-										->where('contacted', '=',0)
-										->order_by('created', 'desc')
-										->limit(1)->find();
-						if ($visit->loaded())
-						{
-							$visit->contacted = 1;
-							try {
-								$visit->save();
-							} catch (Exception $e) {
-								//throw 500
-								throw HTTP_Exception::factory(500,$e->getMessage());
-							}
-						}
-
+                        Model_Visit::contact_ad($ad->id_ad);
 					}
 					else
 						Alert::set(Alert::ERROR, __('Message not sent'));

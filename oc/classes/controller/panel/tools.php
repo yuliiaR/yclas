@@ -462,9 +462,9 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
             }
             
         }
-
+/*
         //posthits --> visits, mass migration
-        $insert = 'INSERT INTO `'.$prefix.'visits` ( `id_ad`, `created`, `ip_address`) VALUES';
+        $insert = 'INSERT INTO `'.$prefix.'visits` ( `id_ad`, `created`) VALUES';
 
         $step  = 5000;
         $total = $db->query(Database::SELECT, 'SELECT count(*) cont FROM `'.$pf.'postshits`')->as_array();
@@ -477,11 +477,11 @@ class Controller_Panel_Tools extends Controller_Panel_OC_Tools {
             foreach ($hits as $hit) 
             {
                 //build insert query
-                $values.= '('.$hit['idPost'].',  \''.$hit['hitTime'].'\', \''.ip2long($hit['ip']).'\'),';
+                $values.= '('.$hit['idPost'].',  \''.$hit['hitTime'].'\'),';
             }
 
             $dbo->query(Database::INSERT, $insert.substr($values,0,-1));
-        }
+        }*/
             //old way of migrating
             // $hits = $db->query(Database::SELECT, 'SELECT * FROM `'.$pf.'postshits` ');
 

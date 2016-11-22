@@ -421,6 +421,7 @@ class Controller_Ad extends Controller {
                 else 
                     $user = $auth_user->get_user()->id_user;
 
+                Model_Visit::hit_ad($ad->id_ad);
                 $hits = $ad->count_ad_hit();				
 
 				$captcha_show = core::config('advertisement.captcha');	
