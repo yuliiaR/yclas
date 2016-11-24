@@ -186,5 +186,85 @@ class Model_Visit extends ORM {
         return FALSE;
     }
 
+    protected $_table_columns =  
+array (
+  'id_visit' =>
+  array (
+    'type' => 'int', 
+    'min' => '0', 
+    'max' => '4294967295', 
+    'column_name' => 'id_visit', 
+    'column_default' => NULL, 
+    'data_type' => 'int unsigned', 
+    'is_nullable' => false, 
+    'ordinal_position' => 1, 
+    'display' => '10', 
+    'comment' => '', 
+    'extra' => 'auto_increment', 
+    'key' => 'PRI', 
+    'privileges' => 'select,insert,update,references', 
+  ), 
+  'id_ad' => 
+  array (
+    'type' => 'int',
+    'min' => '0',
+    'max' => '4294967295',
+    'column_name' => 'id_ad', 
+    'column_default' => NULL, 
+    'data_type' => 'int unsigned', 
+    'is_nullable' => true, 
+    'ordinal_position' => 2, 
+    'display' => '10',
+    'comment' => '', 
+    'extra' => '', 
+    'key' => 'MUL', 
+    'privileges' => 'select,insert,update,references', 
+  ), 
+  'hits' => 
+  array (
+    'type' => 'int', 
+    'min' => '-2147483648', 
+    'max' => '2147483647', 
+    'column_name' => 'hits', 
+    'column_default' => '0', 
+    'data_type' => 'int', 
+    'is_nullable' => false, 
+    'ordinal_position' => 3, 
+    'display' => '10', 
+    'comment' => '', 
+    'extra' => '', 
+    'key' => '', 
+    'privileges' => 'select,insert,update,references', 
+  ),
+  'contacts' => 
+  array (
+    'type' => 'int', 
+    'min' => '-2147483648', 
+    'max' => '2147483647', 
+    'column_name' => 'contacts', 
+    'column_default' => '0', 
+    'data_type' => 'int', 
+    'is_nullable' => false, 
+    'ordinal_position' => 4, 
+    'display' => '10', 
+    'comment' => '', 
+    'extra' => '', 
+    'key' => '', 
+    'privileges' => 'select,insert,update,references', 
+  ), 
+  'created' =>
+  array (
+    'type' => 'string', 
+    'column_name' => 'created', 
+    'column_default' => NULL, 
+    'data_type' => 'date', 
+    'is_nullable' => false, 
+    'ordinal_position' => 5, 
+    'comment' => '', 
+    'extra' => '', 
+    'key' => '', 
+    'privileges' => 'select,insert,update,references', 
+  ),
+);
 
 } // END Model_Visit
