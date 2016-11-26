@@ -87,9 +87,6 @@ class Model_User extends Model_OC_User {
         //delete orders
         DB::delete('orders')->where('id_user', '=',$this->id_user)->execute();
 
-        //remove visits ads
-        DB::update('visits')->set(array('id_user' => NULL))->where('id_user', '=',$this->id_user)->execute();
-
         //delete subscribtions
         DB::delete('subscribers')->where('id_user', '=',$this->id_user)->execute();
 
