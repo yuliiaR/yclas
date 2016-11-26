@@ -119,7 +119,7 @@ class Model_User extends Model_OC_User {
                         ->join(array('visits', 'v'),'INNER')
                         ->on('a.id_ad','=','v.id_ad')
                         ->where('a.id_user','=',$this->id_user)
-                        ->where('v.contacted','=','1')
+                        ->where('v.contacts','>','0')
                         ->where('v.created','>', (is_null($this->notification_date))? 0:$this->notification_date)
                         ->order_by('v.created', 'DESC');
             
