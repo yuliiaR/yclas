@@ -193,7 +193,7 @@ class Controller extends Kohana_Controller
     	}
 
         //no cache for logged users / actions, so we can use varnish or whatever ;)
-        if ($this->user != NULL)
+        if ($this->user != FALSE)
             $this->response->headers('cache-control', 'no-cache, no-store, max-age=0, must-revalidate');
 
         //d($this->template);

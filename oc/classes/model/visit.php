@@ -107,6 +107,7 @@ class Model_Visit extends ORM {
             //didnt...so create it!
             if (!$hit->loaded())
             {
+                $hit->invalidate_cache();
                 $hit = new Model_Visit();
                 $hit->id_ad   = $id_ad;
                 $hit->hits    = 1;
@@ -116,11 +117,12 @@ class Model_Visit extends ORM {
             else    
                 $hit->hits++;
             
-            $hit->save();
-
+            try {
+                $hit->save();
+            } catch (Exception $e) {}
+            
             return $hit->hits;
         }
-
         return 0;
     }
 
@@ -142,6 +144,7 @@ class Model_Visit extends ORM {
             //didnt...so create it!
             if (!$hit->loaded())
             {
+                $hit->invalidate_cache();
                 $hit = new Model_Visit();
                 $hit->id_ad   = $id_ad;
                 $hit->contacts= 1;
@@ -151,7 +154,9 @@ class Model_Visit extends ORM {
             else    
                 $hit->contacts++;
             
-            $hit->save();
+            try {
+                $hit->save();
+            } catch (Exception $e) {}
 
             return $hit->contacts;
         }
