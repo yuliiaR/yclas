@@ -16,6 +16,14 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
      */
     public function action_301()
     {
+        //new configs
+        $configs = array(
+                        array( 'config_key'     => 'elastic_listname',
+                               'group_name'     => 'email', 
+                               'config_value'   => ''),
+                        );
+
+        Model_Config::config_array($configs);
 
         //visits table tmp
         try

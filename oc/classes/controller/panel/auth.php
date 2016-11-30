@@ -452,6 +452,10 @@ class Controller_Panel_Auth extends Controller {
                 //throw 500
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }   
+
+            //unsusbcribe from elasticemail
+            if ( Core::config('email.elastic_listname')!='' )
+                ElasticEmail::unsubscribe(Core::config('email.elastic_listname'),$user->email);
         }
         else
             Alert::set(Alert::INFO, __('Please login to unsubscribe.'));

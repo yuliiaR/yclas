@@ -104,7 +104,12 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
 		if($this->request->post())
 		{
-			
+			//change elastic email status, he was subscribed but not anymore
+            if ( Core::config('email.elastic_listname')!=''  AND $user->subscriber == 1 AND core::post('subscriber',0) == 0 )
+                ElasticEmail::unsubscribe(Core::config('email.elastic_listname'),$user->email);
+            elseif ( Core::config('email.elastic_listname')!=''  AND $user->subscriber == 0 AND core::post('subscriber',0) == 1 )
+                ElasticEmail::subscribe(Core::config('email.elastic_listname'),$user->email,$user->name);
+
 			$user->name = core::post('name');
             $user->description = core::post('description');
 			$user->email = core::post('email');
@@ -295,6 +300,10 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 				throw HTTP_Exception::factory(500,$e->getMessage());
 			}
 
+            //unsusbcribe from elasticemail
+            if ( Core::config('email.elastic_listname')!='' )
+                ElasticEmail::subscribe(Core::config('email.elastic_listname'),Auth::instance()->get_user()->email);
+            
             $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'subscriptions')));
 		}
 	}

@@ -117,6 +117,15 @@
                             ))?>
                         </div>
 
+                        <div class="form-group">
+                            <?=FORM::label($forms['elastic_listname']['key'], __('List name to subscribe users after register'), array('class'=>'control-label', 'for'=>$forms['elastic_listname']['key']))?>
+                            <?=FORM::input($forms['elastic_listname']['key'], $forms['elastic_listname']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['elastic_listname']['key'],      
+                            ))?>
+                        </div>
+
                         <hr>
 
                         <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))))?>
