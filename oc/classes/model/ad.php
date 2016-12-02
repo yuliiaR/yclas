@@ -916,6 +916,9 @@ class Model_Ad extends ORM {
                             case 'date':
                                 $cf_value = Date::format($cf_value, core::config('general.date_format'));
                                 break;
+                            case 'file':
+                                $cf_value = HTML::file_anchor($cf_value, __('Download'), ['class' => 'btn btn-success']);
+                                break;
                         }      
                         
                         //should it be added to the listing? //I added the isset since those who update may not have this field ;)
@@ -1028,7 +1031,7 @@ class Model_Ad extends ORM {
                 $buyer_instructions = $this->cf_buyer_instructions;
 
             if (isset($this->cf_file_download))
-                $buyer_instructions = $this->cf_file_download;
+                $buyer_instructions .= HTML::file_anchor($this->cf_file_download, __('Download'));
 
             $email_content = array( '[URL.AD]'     => $url_ad,
                                     '[AD.TITLE]'   => $this->title,
