@@ -641,6 +641,30 @@ function createCustomFieldsByCategory (customfields) {
                 });
                 $('#custom-fields select[name="' + idx + '"] option[value=" "]').val(null);
                 break;
+            case 'file':
+                $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'hidden',
+                                                                                    'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'class'       : 'form-control',
+                                                                                    'placeholder' : customfield.label,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'data-toggle' : 'tooltip',
+                                                                                    'title'       : customfield.tooltip,
+                                                                                    'required'    : customfield.required,
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
+                                                                                }));
+                $('#custom-fields input[name="' + idx + '"]').after($('<div/>').attr({'class' : 'form-control-static',}).append($('#custom-fields').data('customfield-values')[customfield.label]));
+                $('#custom-fields input[name="' + idx + '"]').after($('<div/>').attr({'id' : idx + '_dropbox',}));
+                options = {
+                    success: function(files) {
+                        $('#custom-fields input[name="' + idx + '"]').val(files[0].link);
+                    },
+                    linkType: "preview",
+                    multiselect: false,
+                    extensions: customfield.values,
+                };
+                document.getElementById(idx + '_dropbox').appendChild(Dropbox.createChooseButton(options));
+                break;
             case 'radio':
                 $.each(customfield.values, function (radioidx, value) {
                     $('<div/>').attr('class', 'radio').append($('<label/>').append($('<input/>').attr({ 'type'        : 'radio',

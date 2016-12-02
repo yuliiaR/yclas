@@ -111,7 +111,7 @@ function init_panel()
     
     //custom fields select. To determain if some fields are shown or not
     $('select#cf_type_fileds').change(function(){ // on change add hidden   
-        if($(this).val() == 'select' || $(this).val() == 'radio'){
+        if($(this).val() == 'select' || $(this).val() == 'radio' || $(this).val() == 'file'){
             $('#cf_values_input').attr('type','text');
             $('#cf_values_input').parent().css('display','block'); // parent of a parent. display whole block
         }

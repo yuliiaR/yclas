@@ -204,6 +204,9 @@ class Form extends OC_Form {
             case 'country':
                 $input = FORM::select($name, EUVAT::countries(), (! is_array($value)) ? $value : NULL, $attributes);
                 break;
+            case 'file':
+                $input = FORM::hidden($name, $value, $attributes);
+                break;
             case 'string':
             default:
                 $input = FORM::input($name, $value, $attributes);

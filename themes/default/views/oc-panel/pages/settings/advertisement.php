@@ -28,6 +28,9 @@
                 <li>
                     <a data-toggle="tab" href="#tabSettingsReview" aria-expanded="false"><?=__('Reviews')?></a>
                 </li>
+                <li>
+                    <a data-toggle="tab" href="#tabSettingsDropbox" aria-expanded="false"><?=__('Dropbox')?></a>
+                </li>
             </ul>
             <div class="tab-content" style="background: #fff;">
                 <div id="tabSettingsListing" class="tab-pane active">
@@ -858,6 +861,30 @@
                             </div>
                             <span class="help-block">
                                 <?=__("You need to enable paypal link to allow only reviews on purchases.")?>
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>
+                        <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
+                    </p>
+                </div>
+                <div id="tabSettingsDropbox" class="tab-pane fade">
+                    <h4><?=__('Dropbox Configuration')?></h4>
+                    <hr>
+                    <div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['dropbox_app_key']['key'], __('Dropbox App Key'), array('class'=>'control-label', 'for'=>$forms['dropbox_app_key']['key']))?>
+                            <a target="_blank" href="https://www.dropbox.com/developers/apps/create">
+                                <i class="fa fa-external-link-square"></i>
+                            </a>
+                            <?=FORM::input($forms['dropbox_app_key']['key'], $forms['dropbox_app_key']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['dropbox_app_key']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Dropbox App Key")?>
                             </span>
                         </div>
                     </div>

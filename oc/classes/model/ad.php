@@ -1022,11 +1022,19 @@ class Model_Ad extends ORM {
                 
             $url_ad = Route::url('ad', array('category'=>$this->category->seoname,'seotitle'=>$this->seotitle));
 
+            $buyer_instructions = NULL;
+
+            if (isset($this->cf_buyer_instructions))
+                $buyer_instructions = $this->cf_buyer_instructions;
+
+            if (isset($this->cf_file_download))
+                $buyer_instructions = $this->cf_file_download;
+
             $email_content = array( '[URL.AD]'     => $url_ad,
                                     '[AD.TITLE]'   => $this->title,
                                     '[ORDER.ID]'   => $order->id_order,
                                     '[PRODUCT.ID]' => $order->id_product,
-                                    '[BUYER.INSTRUCTIONS]' => (isset($this->cf_buyer_instructions)?$this->cf_buyer_instructions:''),
+                                    '[BUYER.INSTRUCTIONS]' => $buyer_instructions,
                                     '[VAT.COUNTRY]'    => (isset($order->VAT) AND $order->VAT > 0)?$order->VAT_country:'',
                                     '[VAT.NUMBER]'     => (isset($order->VAT) AND $order->VAT > 0)?$order->VAT_number:'',
                                     '[VAT.PERCENTAGE]' => (isset($order->VAT) AND $order->VAT > 0)?$order->VAT:'');
