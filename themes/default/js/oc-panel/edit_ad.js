@@ -651,7 +651,7 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'data-toggle' : 'tooltip',
                                                                                     'title'       : customfield.tooltip,
                                                                                     'required'    : customfield.required,
-                                                                                    'value'       : $('#custom-fields').data('customfield-values')[idx],
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
                 $('#custom-fields input[name="' + idx + '"]').after($('<div/>').attr({'class' : 'form-control-static',}).append($('#custom-fields').data('customfield-values')[customfield.label]));
                 $('#custom-fields input[name="' + idx + '"]').after($('<div/>').attr({'id' : idx + '_dropbox',}));
