@@ -40,6 +40,7 @@
                     <option value="email"><?=__('Email')?></option>
                     <option value="checkbox"><?=__('Checkbox')?></option>
                     <option value="country"><?=__('Country')?></option>
+                    <option value="file"><?=__('File')?></option>
                 </select>
             </div>
 

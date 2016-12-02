@@ -21,6 +21,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'elastic_listname',
                                'group_name'     => 'email', 
                                'config_value'   => ''),
+                        array( 'config_key'     => 'dropbox_app_key',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
                         );
 
         Model_Config::config_array($configs);
