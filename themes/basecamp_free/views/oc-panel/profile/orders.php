@@ -11,9 +11,17 @@
 					<?foreach($orders as $order):?>
 						<li class="list-group-item" id="tr<?=$order->pk()?>">
 							<div class="order-item">
-								<a href="#" data-toggle="modal" data-target="#viewOrderID<?=$order->id_order?>" title="<?=HTML::chars($order->ad->title)?>">
-									<?=Text::limit_chars($order->ad->title, 50, NULL, TRUE)?>
-								</a> <i class="fa fa-share-square-o"></i>
+								<?if ($order->status == Model_Order::STATUS_CREATED):?>
+									<a href="#" data-toggle="modal" data-target="#viewOrderID<?=$order->id_order?>" title="<?=HTML::chars($order->ad->title)?>">
+										<?=Text::limit_chars($order->description, 50, NULL, TRUE)?>
+									 	<i class="fa fa-share-square-o"></i>
+									</a>
+								<?else:?>
+									<a href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'order', 'id' => $order->id_order))?>" title="<?=HTML::chars($order->ad->title)?>">
+										<?=Text::limit_chars($order->description, 30, NULL, TRUE)?>
+									 	<i class="fa fa-search"></i>
+									</a>
+								<?endif?>
 							</div>
 							<div class="order-info pad_5tb">
 							<span class="badge"><?=Model_Order::product_desc($order->id_product)?></span>

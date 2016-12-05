@@ -42,6 +42,11 @@ class Controller_Panel_Order extends Auth_CrudAjax {
                                                 'class' => '',
                                                 'icon'  => 'fa fa-fw fa-usd'
                                                 ), 
+                                        array( 'url'   => Route::url('oc-panel', array('controller'=>'profile', 'action'=>'order')).'/' ,
+                                                'title' => __('See order'),
+                                                'class' => '',
+                                                'icon'  => 'fa fa-fw fa-search'
+                                                )
                                         );
     } 
 
