@@ -182,6 +182,43 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
         
     }
 
+    public function action_order()
+    {
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My Purchases'))->set_url(Route::url('oc-panel',array('controller'=>'profile','action'=>'orders'))));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Order')));
+        $this->template->title   = __('View Order');
+
+        $user = Auth::instance()->get_user();
+        $id_order = $this->request->param('id');
+        
+        $order = new Model_Order;
+        $order->where('id_order', '=', $id_order);
+
+        //if admin we do not verify the user
+        if ($user->id_role!=Model_Role::ROLE_ADMIN)
+            $order->where('id_user','=',$user->id_user);
+
+        $order->find();
+
+        if( ! $order->loaded() )
+        {
+            Alert::set(ALERT::WARNING, __('Order could not be loaded'));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'orders')));
+        }
+
+        $this->template->bind('content', $content);
+        $this->template->content = View::factory('oc-panel/profile/order');
+
+        $content->order = $order;
+        $content->product = $order->id_product;
+        $content->user = $user;
+
+        if(core::get('print') == 1)
+        {
+            $this->template->scripts['footer'] = array('js/oc-panel/order.js');
+        }
+        
+    }
 
     public function action_sales()
     {

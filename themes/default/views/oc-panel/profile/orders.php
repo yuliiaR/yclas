@@ -16,6 +16,7 @@
                     <th><?=_e('Ad') ?></th>
                     <th><?=_e('Date') ?></th>
                     <th><?=_e('Date Paid') ?></th>
+                    <th><?=_e('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,15 +25,7 @@
     
                         <td><?=$order->pk()?></td>
     
-                        <td>
-                            <?if ($order->status == Model_Order::STATUS_CREATED):?>
-                            <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
-                            <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>   
-                            </a>
-                            <?else:?>
-                                <?=Model_Order::$statuses[$order->status]?>
-                            <?endif?>
-                        </td>
+                        <td><?=Model_Order::$statuses[$order->status]?></td>
     
                         <td><?=Model_Order::product_desc($order->id_product)?></td>
     
@@ -44,6 +37,18 @@
                         <td><?=$order->created?></td>
     
                         <td><?=$order->pay_date?></td>
+
+                        <td>
+                            <?if ($order->status == Model_Order::STATUS_CREATED):?>
+                                <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
+                                <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>   
+                                </a>
+                            <?else:?>
+                                <a class="btn btn-default" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'order', 'id' => $order->id_order))?>">
+                                    <i class="fa fa-search"></i> <?=_e('View')?>   
+                                </a>
+                            <?endif?>
+                        </td>
     
                     </tr>
                 <?endforeach?>
