@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="col-xs-12">
 			<div class="page-header">
-				<h3><?=__('Orders')?></h3>
+				<h3><?=_e('Orders')?></h3>
 			</div>
 
 			<div class="panel panel-default">
@@ -45,12 +45,12 @@
 										<p><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$order->ad->category->seoname,'seotitle'=>$order->ad->seotitle))?>">
 											<?=HTML::chars($order->ad->title)?>
 											</a></p>
-										<p><b><?=__('Product') ?> :</b> <?=Model_Order::product_desc($order->id_product)?></p>
-										<p><b><?=__('Date') ?> :</b> <?=$order->created?></p>
-										<p><b><?=__('Date Paid') ?> :</b> <?=$order->pay_date?></p>
+										<p><b><?=_e('Product') ?> :</b> <?=Model_Order::product_desc($order->id_product)?></p>
+										<p><b><?=_e('Date') ?> :</b> <?=$order->created?></p>
+										<p><b><?=_e('Date Paid') ?> :</b> <?=$order->pay_date?></p>
 										<hr>
 										<p  class="text-right">
-											<b><?=__('Total') ?>:</b>
+											<b><?=_e('Total') ?>:</b>
 											<?if ($order->status == Model_Order::STATUS_CREATED):?>
 												<span class="order-unpaid"><?=i18n::format_currency($order->amount, $order->currency)?> <i class="fa fa-clock-o"></i></span>
 											<?else:?>
@@ -62,7 +62,7 @@
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 									<?if ($order->status == Model_Order::STATUS_CREATED):?>
 										<a class="btn btn-success" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
-										<i class="glyphicon glyphicon-shopping-cart"></i> <?=__('Pay')?>   
+										<i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>   
 										</a>
 									<?else:?>
 										<a class="btn btn-success disabled" href="#" disabled><?=Model_Order::$statuses[$order->status]?></a>
