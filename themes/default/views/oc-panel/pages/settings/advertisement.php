@@ -875,7 +875,7 @@
                     <div>
                         <div class="form-group">
                             <?=FORM::label($forms['dropbox_app_key']['key'], __('Dropbox App Key'), array('class'=>'control-label', 'for'=>$forms['dropbox_app_key']['key']))?>
-                            <a target="_blank" href="https://www.dropbox.com/developers/apps/create">
+                            <a target="_blank" href="https://docs.yclas.com/upload-files-to-ads/">
                                 <i class="fa fa-external-link-square"></i>
                             </a>
                             <?=FORM::input($forms['dropbox_app_key']['key'], $forms['dropbox_app_key']['value'], array(
