@@ -134,6 +134,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
                 //expired but cannot reactivate option
                 if (Core::config('advertisement.expire_reactivation') == FALSE
+                    AND core::config('advertisement.expire_date') > 0
                     AND (Date::formatted_time($active_ad->published.'+'.core::config('advertisement.expire_date').' days')
                         < Date::formatted_time()))
                 {
