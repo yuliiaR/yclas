@@ -693,6 +693,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('image', 'disallow_nudes', 0),
 ('advertisement', 'num_images', '4'),
 ('advertisement', 'expire_date', '0'),
+('advertisement', 'expire_reactivation', '1'),
 ('advertisement', 'description', 1),
 ('advertisement', 'address', 1),
 ('advertisement', 'phone', 1),

@@ -200,6 +200,19 @@
                                 <?=__("After how many days an Ad will expire. 0 for never")?>
                             </span>
                         </div>
+
+                        <div class="form-group">
+                            <?=FORM::label($forms['expire_reactivation']['key'], __('Allow ad reactivation'), array('class'=>'control-label', 'for'=>$forms['expire_reactivation']['key']))?>
+                            <div class="radio radio-primary">
+                                <?=Form::radio($forms['expire_reactivation']['key'], 1, (bool) $forms['expire_reactivation']['value'], array('id' => $forms['expire_reactivation']['key'].'1'))?>
+                                <?=Form::label($forms['expire_reactivation']['key'].'1', __('Enabled'))?>
+                                <?=Form::radio($forms['expire_reactivation']['key'], 0, ! (bool) $forms['expire_reactivation']['value'], array('id' => $forms['expire_reactivation']['key'].'0'))?>
+                                <?=Form::label($forms['expire_reactivation']['key'].'0', __('Disabled'))?>
+                            </div>
+                            <span class="help-block">
+                                <?=__("Allows reactivate ad after is expired.")?>
+                            </span>
+                        </div>
                         
                         <hr>
 
