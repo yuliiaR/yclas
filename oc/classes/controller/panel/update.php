@@ -12,7 +12,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
 
 
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 3.0.0
+     * This function will upgrade DB that didn't existed in versions prior to 3.0.1
      */
     public function action_301()
     {
@@ -24,6 +24,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'dropbox_app_key',
                                'group_name'     => 'advertisement', 
                                'config_value'   => ''),
+                        array( 'config_key'     => 'expire_reactivation',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => '1'),
                         );
 
         Model_Config::config_array($configs);
