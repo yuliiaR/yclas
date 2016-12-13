@@ -524,3 +524,20 @@ $('.modal').on('hidden.bs.modal', function (e) {
     $('body').addClass('modal-open');
     }    
 });
+
+$('.show-all-categories').click(function() {
+    $.ajax({
+        url: $('#modalAllCategories').data('apiurl'),
+        data: { 
+            "id_category_parent": $(this).data('cat-id'),
+            "sort": 'order',
+        },
+        success: function(result) {
+            $('#modalAllCategories .modal-body .list-group').empty();
+            $('#modalAllCategories').modal('show');
+            $.each(result.categories, function (idx, category) {
+                $("#modalAllCategories .modal-body .list-group").append('<li class="list-group-item"><a href="/' + category.seoname + '">' + category.name + '</a></li>');
+            });
+        }
+    });
+});

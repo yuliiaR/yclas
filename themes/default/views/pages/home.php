@@ -53,15 +53,26 @@
                         </div>
                         <div class="panel-body">
                             <ul class="list-group">
-                                <?foreach($categs as $chi):?>
+                                <?$ci=0; foreach($categs as $chi):?>
                                     <?if($chi['id_category_parent'] == $c['id_category'] AND ! in_array($chi['id_category'], $hide_categories)):?>
-                                        <li class="list-group-item">
-                                            <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname'], 'location'=>$user_location ? $user_location->seoname : NULL))?>"><?=$chi['name'];?> 
-                                                <?if (Theme::get('category_badge')!=1) : ?>
-                                                    <span class="pull-right badge badge-success"><?=number_format($chi['count'])?></span>
-                                                <?endif?>
-                                            </a>
-                                        </li>
+                                        <?if ($ci < 15):?>
+                                            <li class="list-group-item">
+                                                <a title="<?=HTML::chars($chi['name'])?>" href="<?=Route::url('list', array('category'=>$chi['seoname'], 'location'=>$user_location ? $user_location->seoname : NULL))?>"><?=$chi['name'];?> 
+                                                    <?if (Theme::get('category_badge')!=1) : ?>
+                                                        <span class="pull-right badge badge-success"><?=number_format($chi['count'])?></span>
+                                                    <?endif?>
+                                                </a>
+                                            </li>
+                                        <?endif?>
+                                        <?$ci++; if ($ci == 15):?>
+                                            <li class="list-group-item">
+                                                <a role="button" 
+                                                    class="show-all-categories"
+                                                    data-cat-id="<?=$c['id_category']?>">
+                                                    <?=__("See all categories")?> <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+                                                </a>
+                                            </li>
+                                        <?endif?>
                                     <?endif?>
                                  <?endforeach?>
                             </ul>
@@ -71,6 +82,19 @@
                 <? $i++; if ($i%3 == 0) echo '<div class="clear"></div>';?>
             <?endif?>
         <?endforeach?>
+    </div>
+</div>
+<div id="modalAllCategories" class="modal fade" tabindex="-1" data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <?if(core::config('general.auto_locate') AND ! Cookie::get('user_location') AND Core::is_HTTPS()):?>

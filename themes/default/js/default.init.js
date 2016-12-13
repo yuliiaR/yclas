@@ -520,3 +520,21 @@ $('.modal').on('hidden.bs.modal', function (e) {
     $('body').addClass('modal-open');
     }    
 });
+
+$('.show-all-categories').click(function(event) {
+    event.preventDefault();
+    $.ajax({
+        url: $('#modalAllCategories').data('apiurl'),
+        data: { 
+            "id_category_parent": $(this).data('cat-id'),
+            "sort": 'order',
+        },
+        success: function(result) {
+            $('#modalAllCategories .modal-body .list-group').empty();
+            $('#modalAllCategories').modal('show');
+            $.each(result.categories, function (idx, category) {
+                $("#modalAllCategories .modal-body .list-group").append('<a href="/' + category.seoname + '" class="list-group-item">' + category.name + '</a>');
+            });
+        }
+    });
+});
