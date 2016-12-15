@@ -661,7 +661,7 @@ function createCustomFieldsByCategory (customfields) {
                     },
                     linkType: "preview",
                     multiselect: false,
-                    extensions: customfield.values,
+                    extensions: customfield.values.split(','),
                 };
                 document.getElementById(idx + '_dropbox').appendChild(Dropbox.createChooseButton(options));
                 break;
