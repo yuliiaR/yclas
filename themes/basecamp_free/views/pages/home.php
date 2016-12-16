@@ -99,7 +99,10 @@
 							<div class="col-xs-4 col-sm-4 col-md-4">
 								<div class="panel panel-home-categories">
 									<div class="panel-heading">
-										<a title="<?=HTML::chars($c['name'])?>" href="<?=Route::url('list', array('category'=>$c['seoname'], 'location'=>$user_location ? $user_location->seoname : NULL))?>"><?=mb_strtoupper($c['name']);?> (<?=number_format($c['count'])?>)</a>
+										<a title="<?=HTML::chars($c['name'])?>" href="<?=Route::url('list', array('category'=>$c['seoname'], 'location'=>$user_location ? $user_location->seoname : NULL))?>"><?=mb_strtoupper($c['name']);?>
+										<?if (Theme::get('category_badge')!=1) : ?>
+											 (<?=number_format($c['count'])?>)</a>
+										<?endif?>
 									</div>
 									<div class="panel-body">
 										<ul class="list-group">
