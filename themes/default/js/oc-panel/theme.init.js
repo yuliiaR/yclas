@@ -124,7 +124,8 @@ function init_panel()
     // custom field edit, show/hide values field
     $('#cf_values_input').parent().css('display','none');
     if( $('#cf_type_field_input').attr('value') == 'select' 
-        || $('#cf_type_field_input').attr('value') == 'radio') 
+        || $('#cf_type_field_input').attr('value') == 'radio'
+        || $('#cf_type_field_input').attr('value') == 'file') 
             $('#cf_values_input').parent().css('display','block'); 
 
     // check all checkboxes in a table
