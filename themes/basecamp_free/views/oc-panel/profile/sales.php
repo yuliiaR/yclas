@@ -22,6 +22,11 @@
 							<div class="pad_10">
 								<div class="my_ad_title clearfix">
 									<a class="at" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$order->ad->category->seoname,'seotitle'=>$order->ad->seotitle))?>"><?=$order->ad->title?> (#<?=$order->pk()?>)</a>
+									<?if (isset($order->ad->cf_file_download)):?>
+				                        <a class="btn btn-sm btn-success" href="<?=$order->ad->cf_file_download?>">
+				                            <?=_e('Download')?>
+				                        </a>
+				                    <?endif?>
 								</div>
 								<p><b><?=_e('User')?> : </b><a href="<?=Route::url('profile', array('seoname'=> $order->user->seoname)) ?>" ><?=$order->user->name?></a></p>
 								<p><b><?=_e('Date')?> : </b><?=$order->pay_date?></p>

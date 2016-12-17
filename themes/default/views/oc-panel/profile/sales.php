@@ -28,8 +28,16 @@
 
                         <td><?=$order->pay_date?></td>
 
-                        <td><a href="<?=Route::url('ad', array('category'=> $order->ad->category->seoname,'seotitle'=>$order->ad->seotitle)) ?>" title="<?=HTML::chars($order->ad->title)?>">
-                            <?=Text::limit_chars($order->ad->title, 30, NULL, TRUE)?></a></td>
+                        <td>
+                            <a href="<?=Route::url('ad', array('category'=> $order->ad->category->seoname,'seotitle'=>$order->ad->seotitle)) ?>" title="<?=HTML::chars($order->ad->title)?>">
+                                <?=Text::limit_chars($order->ad->title, 30, NULL, TRUE)?>
+                            </a>
+                            <?if (isset($order->ad->cf_file_download)):?>
+                                <a class="btn btn-sm btn-success" href="<?=$order->ad->cf_file_download?>">
+                                    <?=_e('Download')?>
+                                </a>
+                            <?endif?>
+                        </td>
 
                     </tr>
                 <?endforeach?>
