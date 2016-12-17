@@ -917,7 +917,7 @@ class Model_Ad extends ORM {
                                 $cf_value = Date::format($cf_value, core::config('general.date_format'));
                                 break;
                             case 'file':
-                                $cf_value = HTML::file_anchor($cf_value, __('Download'), ['class' => 'btn btn-success']);
+                                $cf_value = '<a'.HTML::attributes(['class' => 'btn btn-success', 'href' => $this->cf_file_download]).'>'.__('Download').'</a>';
                                 break;
                         }      
                         
@@ -993,7 +993,7 @@ class Model_Ad extends ORM {
         if ($this->loaded())
         {    
             // decrease limit of ads, if 0 deactivate
-            if ($this->stock > 0 OR $this->stock == NULL)
+            if (core::config('payment.stock')==1 AND ($this->stock > 0 OR $this->stock == NULL))
             {
                 $this->stock = ($this->stock!=NULL)?$this->stock - 1:$this->stock;
 
@@ -1031,7 +1031,7 @@ class Model_Ad extends ORM {
                 $buyer_instructions = $this->cf_buyer_instructions;
 
             if (isset($this->cf_file_download))
-                $buyer_instructions .= HTML::file_anchor($this->cf_file_download, __('Download'));
+                $buyer_instructions .= '<a'.HTML::attributes(['href' => $this->cf_file_download]).'>'.__('Download').'</a>';
 
             $email_content = array( '[URL.AD]'     => $url_ad,
                                     '[AD.TITLE]'   => $this->title,
