@@ -50,6 +50,12 @@ class Controller_Map extends Controller {
                 $ads->where('id_location', 'IN', $location->get_siblings_ids());
         }
 
+        //if ad have passed expiration time dont show 
+        if(core::config('advertisement.expire_date') > 0)
+        {
+            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
+        }
+
         //if only 1 ad
         if (is_numeric(core::get('id_ad')))
             $ads = $ads->where('id_ad','=',core::get('id_ad'));
