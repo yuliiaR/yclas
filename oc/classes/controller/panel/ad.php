@@ -360,6 +360,9 @@ class Controller_Panel_Ad extends Auth_Controller {
 						$ad->save();
 						Model_Subscription::new_ad($ad->user);
 						Model_Subscribe::notify($ad);
+
+						// Post on social media
+            			Social::post_ad($ad);
 					}
 					catch (Exception $e)
 					{

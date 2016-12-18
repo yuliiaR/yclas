@@ -66,7 +66,7 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
-                                    'placeholder' => 'Open-classifieds', 
+                                    'placeholder' => 'Yclas', 
                                     'class' => 'form-control', 
                                     'id' => $forms['site_name']['id'],
                                     'data-rule-required'=>'true',

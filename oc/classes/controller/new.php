@@ -264,6 +264,7 @@ class Controller_New extends Controller
                             $this->redirect($return['checkout_url']);
                         else
                             $this->redirect(Route::url('default', array('action'=>'thanks','controller'=>'ad','id'=>$new_ad->id_ad)));
+
                     }
                 }
                 else
