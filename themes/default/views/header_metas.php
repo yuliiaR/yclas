@@ -32,6 +32,17 @@
 <meta property="og:url"     content="<?=URL::current()?>"/>
 <meta property="og:site_name" content="<?=HTML::chars(core::config('general.site_name'))?>"/>
 
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="<?=HTML::chars(core::config('general.site_name'))?>" />
+<meta name="twitter:title" content="<?=HTML::chars($title)?>" />
+<meta name="twitter:description" content="<?=HTML::chars($meta_description)?>" />
+<?if (Controller::$image!==NULL):?>
+<meta name="twitter:image" content="<?=Controller::$image?>" />
+<?elseif(Theme::get('logo_url')!=NULL):?>
+<meta name="twitter:image" content="<?=Theme::get('logo_url')?>" />
+<?endif?>
+<meta name="twitter:image:alt" content="<?=HTML::chars($title)?>" />
+
 <?if (core::config('general.disallowbots')=='1'):?>
     <meta name="robots" content="noindex,nofollow,noodp,noydir" />
     <meta name="googlebot" content="noindex,noarchive,nofollow,noodp" />

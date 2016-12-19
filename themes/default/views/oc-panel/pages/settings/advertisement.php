@@ -31,6 +31,9 @@
                 <li>
                     <a data-toggle="tab" href="#tabSettingsDropbox" aria-expanded="false"><?=__('Dropbox')?></a>
                 </li>
+                <li>
+                    <a data-toggle="tab" href="#tabSettingsSocial" aria-expanded="false"><?=__('Social')?></a>
+                </li>
             </ul>
             <div class="tab-content" style="background: #fff;">
                 <div id="tabSettingsListing" class="tab-pane active">
@@ -898,6 +901,142 @@
                             ))?> 
                             <span class="help-block">
                                 <?=__("Dropbox App Key")?>
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>
+                        <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
+                    </p>
+                </div>
+                
+                <div id="tabSettingsSocial" class="tab-pane fade">
+                    <h4><?=__('Social Configuration')?>
+                        <a target="_blank" href="https://docs.yclas.com/auto-post-social-media/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
+                    <hr>
+                    <div>
+                        <h4><?=__('Twitter')?></h4>
+                        <hr>
+                        <div class="form-group">
+                            <?=FORM::label($forms['twitter']['key'], __('Auto Post'), array('class'=>'control-label', 'for'=>$forms['twitter']['key']))?>
+                            <div class="radio radio-primary">
+                                <?=Form::radio($forms['twitter']['key'], 1, (bool) $forms['twitter']['value'], array('id' => $forms['twitter']['key'].'1'))?>
+                                <?=Form::label($forms['twitter']['key'].'1', __('Enabled'))?>
+                                <?=Form::radio($forms['twitter']['key'], 0, ! (bool) $forms['twitter']['value'], array('id' => $forms['twitter']['key'].'0'))?>
+                                <?=Form::label($forms['twitter']['key'].'0', __('Disabled'))?>
+                            </div>
+                            <span class="help-block">
+                                <?=__("Enable to post new ads on twitter automatically.")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['twitter_consumer_key']['key'], __('Consumer Key'), array('class'=>'control-label', 'for'=>$forms['twitter_consumer_key']['key']))?>
+                            <?=FORM::input($forms['twitter_consumer_key']['key'], $forms['twitter_consumer_key']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['twitter_consumer_key']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Twitter Consumer Key")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['twitter_consumer_secret']['key'], __('Consumer Secret'), array('class'=>'control-label', 'for'=>$forms['twitter_consumer_secret']['key']))?>
+                            <?=FORM::input($forms['twitter_consumer_secret']['key'], $forms['twitter_consumer_secret']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['twitter_consumer_secret']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Twitter Consumer Secret")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['access_token']['key'], __('Access Token'), array('class'=>'control-label', 'for'=>$forms['access_token']['key']))?>
+                            <?=FORM::input($forms['access_token']['key'], $forms['access_token']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['access_token']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Access Token")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['access_token_secret']['key'], __('Access Token Secret'), array('class'=>'control-label', 'for'=>$forms['access_token_secret']['key']))?>
+                            <?=FORM::input($forms['access_token_secret']['key'], $forms['access_token_secret']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['access_token_secret']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Access Token Secret")?>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <hr>
+
+                    <div>
+                        <h4><?=__('Facebook')?></h4>
+                        <hr>
+                        <div class="form-group">
+                            <?=FORM::label($forms['facebook']['key'], __('Auto Post'), array('class'=>'control-label', 'for'=>$forms['facebook']['key']))?>
+                            <div class="radio radio-primary">
+                                <?=Form::radio($forms['facebook']['key'], 1, (bool) $forms['facebook']['value'], array('id' => $forms['facebook']['key'].'1'))?>
+                                <?=Form::label($forms['facebook']['key'].'1', __('Enabled'))?>
+                                <?=Form::radio($forms['facebook']['key'], 0, ! (bool) $forms['facebook']['value'], array('id' => $forms['facebook']['key'].'0'))?>
+                                <?=Form::label($forms['facebook']['key'].'0', __('Disabled'))?>
+                            </div>
+                            <span class="help-block">
+                                <?=__("Enable to post new ads on facebook automatically.")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['facebook_app_id']['key'], __('Facebook App Id'), array('class'=>'control-label', 'for'=>$forms['facebook_app_id']['key']))?>
+                            <?=FORM::input($forms['facebook_app_id']['key'], $forms['facebook_app_id']['value'], array(
+                                'placeholder' => "Facebook App Id", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['facebook_app_id']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Facebook App Id")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['facebook_app_secret']['key'], __('Facebook App Secret'), array('class'=>'control-label', 'for'=>$forms['facebook_app_secret']['key']))?>
+                            <?=FORM::input($forms['facebook_app_secret']['key'], $forms['facebook_app_secret']['value'], array(
+                                'placeholder' => "Facebook App Secret", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['facebook_app_secret']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Facebook App Secret")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['facebook_access_token']['key'], __('Facebook Access Token'), array('class'=>'control-label', 'for'=>$forms['facebook_access_token']['key']))?>
+                            <?=FORM::input($forms['facebook_access_token']['key'], $forms['facebook_access_token']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['facebook_access_token']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Facebook Access Token")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['facebook_id']['key'], __('Facebook Id'), array('class'=>'control-label', 'for'=>$forms['facebook_id']['key']))?>
+                            <?=FORM::input($forms['facebook_id']['key'], $forms['facebook_id']['value'], array(
+                                'placeholder' => "Facebook Id", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['facebook_id']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Facebook Id")?>
                             </span>
                         </div>
                     </div>

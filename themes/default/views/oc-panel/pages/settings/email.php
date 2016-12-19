@@ -79,7 +79,7 @@
                         <div id="tabSettingsElasticEmail" class="tab-pane fade">
                         <h4>
                             <?=__('ElasticEmail Configuration')?>
-                            <a target="_blank" href="https://docs.yclas.com/configure-elasticemail-open-classifieds/">
+                            <a target="_blank" href="https://docs.yclas.com/configure-elasticemail-yclas/">
                                 <i class="fa fa-question-circle"></i>
                             </a>
                         </h4>
