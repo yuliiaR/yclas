@@ -132,6 +132,41 @@
 					</div>
 				</div>
 			</div>
+
+	        <?if( Core::config('general.google_authenticator')==TRUE):?>
+	        <div class="panel panel-default">
+	            <div class="panel-heading" id="page-edit-profile">
+	                <h3 class="panel-title"><?=_e('2 Step Authentication')?></h3>
+	            </div>
+	            <div class="panel-body">
+	                <div class="row">
+	                    <div class="col-md-12">
+	                        <?if ($user->google_authenticator!=''):?>
+	                            <p><img src="<?=$user->google_authenticator_qr()?>"></p>
+	                            <p><?=_e('Google Authenticator Code')?>: <?=$user->google_authenticator?></p>
+	                            <p>
+	                                <a class="btn btn-warning" href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'2step','id'=>'disable'))?>">
+	                                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> <?=_e('Disable')?>
+	                                </a>
+	                            </p>
+	                        <?else:?>
+	                            <p>
+	                                <a class="btn btn-primary" href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'2step','id'=>'enable'))?>">
+	                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <?=_e('Enable')?>
+	                                </a>
+	                            </p>
+	                        <?endif?>
+	                        <hr>
+	                        <p><?=_e('2 step authentication provided by Google Authenticator.')?></p>
+	                        <div class="btn-group">
+	                            <a class="btn btn-default" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"><i class="fa fa-android"></i> Android</a> 
+	                            <a class="btn btn-default" href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8"><i class="fa fa-apple"></i> iOS</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <?endif?>
 	
 			<form enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>"> 
 			<div class="panel panel-default">
