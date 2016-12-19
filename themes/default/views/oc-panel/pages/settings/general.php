@@ -128,7 +128,7 @@
 
                             <div class="form-group">
                                 <?= FORM::label($forms['google_authenticator']['id'], __("2 Step Authentication"), array('class'=>'control-label', 'for'=>$forms['google_authenticator']['id']))?>
-                                <a target="_blank" href="https://docs.yclas.com/2-step-verification/">
+                                <a target="_blank" href="https://docs.yclas.com/2-step-authentication/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <div class="radio radio-primary">
