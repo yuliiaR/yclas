@@ -911,16 +911,17 @@
                 </div>
                 
                 <div id="tabSettingsSocial" class="tab-pane fade">
-                    <h4><?=__('Social Configuration')?></h4>
+                    <h4><?=__('Social Configuration')?>
+                        <a target="_blank" href="https://docs.yclas.com/auto-post-social-media/">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </h4>
                     <hr>
                     <div>
                         <h4><?=__('Twitter')?></h4>
                         <hr>
                         <div class="form-group">
                             <?=FORM::label($forms['twitter']['key'], __('Auto Post'), array('class'=>'control-label', 'for'=>$forms['twitter']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/">
-                                <i class="fa fa-question-circle"></i>
-                            </a>
                             <div class="radio radio-primary">
                                 <?=Form::radio($forms['twitter']['key'], 1, (bool) $forms['twitter']['value'], array('id' => $forms['twitter']['key'].'1'))?>
                                 <?=Form::label($forms['twitter']['key'].'1', __('Enabled'))?>
@@ -933,9 +934,6 @@
                         </div>
                         <div class="form-group">
                             <?=FORM::label($forms['twitter_consumer_key']['key'], __('Consumer Key'), array('class'=>'control-label', 'for'=>$forms['twitter_consumer_key']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/">
-                                <i class="fa fa-external-link-square"></i>
-                            </a>
                             <?=FORM::input($forms['twitter_consumer_key']['key'], $forms['twitter_consumer_key']['value'], array(
                                 'placeholder' => "", 
                                 'class' => 'tips form-control', 
@@ -947,9 +945,6 @@
                         </div>
                         <div class="form-group">
                             <?=FORM::label($forms['twitter_consumer_secret']['key'], __('Consumer Secret'), array('class'=>'control-label', 'for'=>$forms['twitter_consumer_secret']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/">
-                                <i class="fa fa-external-link-square"></i>
-                            </a>
                             <?=FORM::input($forms['twitter_consumer_secret']['key'], $forms['twitter_consumer_secret']['value'], array(
                                 'placeholder' => "", 
                                 'class' => 'tips form-control', 
@@ -961,9 +956,6 @@
                         </div>
                         <div class="form-group">
                             <?=FORM::label($forms['access_token']['key'], __('Access Token'), array('class'=>'control-label', 'for'=>$forms['access_token']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/">
-                                <i class="fa fa-external-link-square"></i>
-                            </a>
                             <?=FORM::input($forms['access_token']['key'], $forms['access_token']['value'], array(
                                 'placeholder' => "", 
                                 'class' => 'tips form-control', 
@@ -975,9 +967,6 @@
                         </div>
                         <div class="form-group">
                             <?=FORM::label($forms['access_token_secret']['key'], __('Access Token Secret'), array('class'=>'control-label', 'for'=>$forms['access_token_secret']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/">
-                                <i class="fa fa-external-link-square"></i>
-                            </a>
                             <?=FORM::input($forms['access_token_secret']['key'], $forms['access_token_secret']['value'], array(
                                 'placeholder' => "", 
                                 'class' => 'tips form-control', 
@@ -996,9 +985,6 @@
                         <hr>
                         <div class="form-group">
                             <?=FORM::label($forms['facebook']['key'], __('Auto Post'), array('class'=>'control-label', 'for'=>$forms['facebook']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/">
-                                <i class="fa fa-question-circle"></i>
-                            </a>
                             <div class="radio radio-primary">
                                 <?=Form::radio($forms['facebook']['key'], 1, (bool) $forms['facebook']['value'], array('id' => $forms['facebook']['key'].'1'))?>
                                 <?=Form::label($forms['facebook']['key'].'1', __('Enabled'))?>
@@ -1011,9 +997,6 @@
                         </div>
                         <div class="form-group">
                             <?=FORM::label($forms['facebook_app_id']['key'], __('Facebook App Id'), array('class'=>'control-label', 'for'=>$forms['facebook_app_id']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/">
-                                <i class="fa fa-external-link-square"></i>
-                            </a>
                             <?=FORM::input($forms['facebook_app_id']['key'], $forms['facebook_app_id']['value'], array(
                                 'placeholder' => "Facebook App Id", 
                                 'class' => 'tips form-control', 
@@ -1025,9 +1008,6 @@
                         </div>
                         <div class="form-group">
                             <?=FORM::label($forms['facebook_app_secret']['key'], __('Facebook App Secret'), array('class'=>'control-label', 'for'=>$forms['facebook_app_secret']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/">
-                                <i class="fa fa-external-link-square"></i>
-                            </a>
                             <?=FORM::input($forms['facebook_app_secret']['key'], $forms['facebook_app_secret']['value'], array(
                                 'placeholder' => "Facebook App Secret", 
                                 'class' => 'tips form-control', 
@@ -1039,9 +1019,6 @@
                         </div>
                         <div class="form-group">
                             <?=FORM::label($forms['facebook_access_token']['key'], __('Facebook Access Token'), array('class'=>'control-label', 'for'=>$forms['facebook_access_token']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/">
-                                <i class="fa fa-external-link-square"></i>
-                            </a>
                             <?=FORM::input($forms['facebook_access_token']['key'], $forms['facebook_access_token']['value'], array(
                                 'placeholder' => "", 
                                 'class' => 'tips form-control', 
@@ -1053,9 +1030,6 @@
                         </div>
                         <div class="form-group">
                             <?=FORM::label($forms['facebook_id']['key'], __('Facebook Id'), array('class'=>'control-label', 'for'=>$forms['facebook_id']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/">
-                                <i class="fa fa-external-link-square"></i>
-                            </a>
                             <?=FORM::input($forms['facebook_id']['key'], $forms['facebook_id']['value'], array(
                                 'placeholder' => "Facebook Id", 
                                 'class' => 'tips form-control', 
