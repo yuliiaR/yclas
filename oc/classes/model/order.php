@@ -176,8 +176,7 @@ class Model_Order extends ORM {
                         break;
                     case Model_Order::PRODUCT_TO_FEATURED:
                             $ad->to_feature($this->featured_days);
-                            if(core::config('advertisement.post_only_featured') == TRUE)
-                                Social::post_ad($ad);
+                            Social::social_post_featured_ad($ad);
                         break;
                     case Model_Order::PRODUCT_CATEGORY:
                             $ad->paid_category();
