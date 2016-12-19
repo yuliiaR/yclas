@@ -468,20 +468,22 @@ class Controller_Panel_Auth extends Controller {
             $this->redirect(Route::url('default'));
     }
 
-
     /**
-     * Sends an email with a link to change your password
+     * 2step verification form
      * 
      */
     public function action_2step()
     {
+        // 2step disabled or trying to access directly
+        if (!Auth::instance()->logged_in() OR Core::config('general.google_authenticator') == FALSE )
+            $this->redirect(Route::get('oc-panel')->uri());
+
         //template header
         $this->template->title            = __('2 Step Authentication');
         $this->template->content = View::factory('pages/auth/2step');
-        
+
         //if user loged in redirect home
-        if (Auth::instance()->logged_in() AND Cookie::get('google_authenticator')==$this->user->id_user
-            OR (core::config('general.google_authenticator')!=TRUE OR $this->user->google_authenticator=='') )
+        if  ( Auth::instance()->logged_in() AND ( Cookie::get('google_authenticator') == $this->user->id_user OR $this->user->google_authenticator == '' ) )
         {
             $this->redirect(Route::get('oc-panel')->uri());
         }
@@ -506,7 +508,7 @@ class Controller_Panel_Auth extends Controller {
             }
             
         }
-                
-            
     }
+
+
 }
