@@ -164,7 +164,9 @@ class Model_Location extends ORM {
      */
     public static function get_as_array($limit = NULL)
     {
-        if ( ($locs_arr = Core::cache('locs_arr'))===NULL)
+        $cache_name = is_int($limit) ? 'locs_arr'.'_'.$limit : 'locs_arr';
+        
+        if ( ($locs_arr = Core::cache($cache_name))===NULL)
         {
             $locs = new self;
             $locs->order_by('order','asc');
@@ -186,7 +188,7 @@ class Model_Location extends ORM {
                                                       'id'                 => $loc->id_location,
                                                     );
             }
-            Core::cache('locs_arr',$locs_arr);
+            Core::cache($cache_name,$locs_arr);
         }
 
         return $locs_arr;
@@ -233,7 +235,9 @@ class Model_Location extends ORM {
      */
     public static function get_multidimensional($limit = NULL)
     {
-        if ( ($locs_m = Core::cache('locs_m'))===NULL)
+        $cache_name = is_int($limit) ? 'locs_m'.'_'.$limit : 'locs_m';
+
+        if ( ($locs_m = Core::cache($cache_name))===NULL)
         {
             $locs = new self;
             $locs->order_by('order','asc');
@@ -254,7 +258,7 @@ class Model_Location extends ORM {
                 $locs_m = self::multi_locs($locs_s);
             else
                 $locs_m = array();
-            Core::cache('locs_m',$locs_m);
+            Core::cache($cache_name, $locs_m);
         }
         return $locs_m;
     }
