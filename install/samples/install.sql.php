@@ -742,6 +742,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'leave_alert', 1),
 ('advertisement', 'validate_banned_words', 0),
 ('advertisement', 'rich_snippets', 0),
+('advertisement', 'post_only_featured', 0),
 ('advertisement', 'twitter', 0),
 ('advertisement', 'twitter_consumer_key', ''),
 ('advertisement', 'twitter_consumer_secret', ''),

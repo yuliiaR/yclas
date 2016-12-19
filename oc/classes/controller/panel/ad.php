@@ -362,7 +362,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 						Model_Subscribe::notify($ad);
 
 						// Post on social media
-            			Social::post_ad($ad);
+						if(core::config('advertisement.post_only_featured') == FALSE)
+            				Social::post_ad($ad);
 					}
 					catch (Exception $e)
 					{

@@ -1471,7 +1471,7 @@ class Model_Ad extends ORM {
         //save the last changes on status
         $ad->save();
 
-        if($ad->status == Model_Ad::STATUS_PUBLISHED)
+        if($ad->status == Model_Ad::STATUS_PUBLISHED AND core::config('advertisement.post_only_featured') == FALSE)
         {
             // Post on social media
             Social::post_ad($ad);
