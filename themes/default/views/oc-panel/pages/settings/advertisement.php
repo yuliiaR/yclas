@@ -917,6 +917,19 @@
                         </a>
                     </h4>
                     <hr>
+                        <div class="form-group">
+                            <?=FORM::label($forms['post_only_featured']['key'], __('Only Featured Ads'), array('class'=>'control-label', 'for'=>$forms['post_only_featured']['key']))?>
+                            <div class="radio radio-primary">
+                                <?=Form::radio($forms['post_only_featured']['key'], 1, (bool) $forms['post_only_featured']['value'], array('id' => $forms['post_only_featured']['key'].'1'))?>
+                                <?=Form::label($forms['post_only_featured']['key'].'1', __('Enabled'))?>
+                                <?=Form::radio($forms['post_only_featured']['key'], 0, ! (bool) $forms['post_only_featured']['value'], array('id' => $forms['post_only_featured']['key'].'0'))?>
+                                <?=Form::label($forms['post_only_featured']['key'].'0', __('Disabled'))?>
+                            </div>
+                            <span class="help-block">
+                                <?=__("Enable to post only featured ads.")?>
+                            </span>
+                        </div>
+                    <hr>
                     <div>
                         <h4><?=__('Twitter')?></h4>
                         <hr>
