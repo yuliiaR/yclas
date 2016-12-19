@@ -672,7 +672,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'gcm_apikey', ''),
 ('general', 'email_domains', ''),
 ('general', 'cron', 1),
-('general', 'google_authenticator', 0),
+('general', 'google_authenticator', 1),
 ('general', 'private_site', 0),
 ('general', 'private_site_page', ''),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
