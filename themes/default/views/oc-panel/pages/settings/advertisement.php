@@ -916,79 +916,20 @@
                             <i class="fa fa-question-circle"></i>
                         </a>
                     </h4>
+
                     <hr>
-                        <div class="form-group">
-                            <?=FORM::label($forms['social_post_only_featured']['key'], __('Only Featured Ads'), array('class'=>'control-label', 'for'=>$forms['social_post_only_featured']['key']))?>
-                            <div class="radio radio-primary">
-                                <?=Form::radio($forms['social_post_only_featured']['key'], 1, (bool) $forms['social_post_only_featured']['value'], array('id' => $forms['social_post_only_featured']['key'].'1'))?>
-                                <?=Form::label($forms['social_post_only_featured']['key'].'1', __('Enabled'))?>
-                                <?=Form::radio($forms['social_post_only_featured']['key'], 0, ! (bool) $forms['social_post_only_featured']['value'], array('id' => $forms['social_post_only_featured']['key'].'0'))?>
-                                <?=Form::label($forms['social_post_only_featured']['key'].'0', __('Disabled'))?>
-                            </div>
-                            <span class="help-block">
-                                <?=__("Enable to post only featured ads.")?>
-                            </span>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['social_post_only_featured']['key'], __('Only Featured Ads'), array('class'=>'control-label', 'for'=>$forms['social_post_only_featured']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['social_post_only_featured']['key'], 1, (bool) $forms['social_post_only_featured']['value'], array('id' => $forms['social_post_only_featured']['key'].'1'))?>
+                            <?=Form::label($forms['social_post_only_featured']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['social_post_only_featured']['key'], 0, ! (bool) $forms['social_post_only_featured']['value'], array('id' => $forms['social_post_only_featured']['key'].'0'))?>
+                            <?=Form::label($forms['social_post_only_featured']['key'].'0', __('Disabled'))?>
                         </div>
-                    <hr>
-                    <div>
-                        <h4><?=__('Twitter')?></h4>
-                        <hr>
-                        <div class="form-group">
-                            <?=FORM::label($forms['twitter']['key'], __('Auto Post'), array('class'=>'control-label', 'for'=>$forms['twitter']['key']))?>
-                            <div class="radio radio-primary">
-                                <?=Form::radio($forms['twitter']['key'], 1, (bool) $forms['twitter']['value'], array('id' => $forms['twitter']['key'].'1'))?>
-                                <?=Form::label($forms['twitter']['key'].'1', __('Enabled'))?>
-                                <?=Form::radio($forms['twitter']['key'], 0, ! (bool) $forms['twitter']['value'], array('id' => $forms['twitter']['key'].'0'))?>
-                                <?=Form::label($forms['twitter']['key'].'0', __('Disabled'))?>
-                            </div>
-                            <span class="help-block">
-                                <?=__("Enable to post new ads on twitter automatically.")?>
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <?=FORM::label($forms['twitter_consumer_key']['key'], __('Consumer Key'), array('class'=>'control-label', 'for'=>$forms['twitter_consumer_key']['key']))?>
-                            <?=FORM::input($forms['twitter_consumer_key']['key'], $forms['twitter_consumer_key']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['twitter_consumer_key']['key'],
-                            ))?> 
-                            <span class="help-block">
-                                <?=__("Twitter Consumer Key")?>
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <?=FORM::label($forms['twitter_consumer_secret']['key'], __('Consumer Secret'), array('class'=>'control-label', 'for'=>$forms['twitter_consumer_secret']['key']))?>
-                            <?=FORM::input($forms['twitter_consumer_secret']['key'], $forms['twitter_consumer_secret']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['twitter_consumer_secret']['key'],
-                            ))?> 
-                            <span class="help-block">
-                                <?=__("Twitter Consumer Secret")?>
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <?=FORM::label($forms['access_token']['key'], __('Access Token'), array('class'=>'control-label', 'for'=>$forms['access_token']['key']))?>
-                            <?=FORM::input($forms['access_token']['key'], $forms['access_token']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['access_token']['key'],
-                            ))?> 
-                            <span class="help-block">
-                                <?=__("Access Token")?>
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <?=FORM::label($forms['access_token_secret']['key'], __('Access Token Secret'), array('class'=>'control-label', 'for'=>$forms['access_token_secret']['key']))?>
-                            <?=FORM::input($forms['access_token_secret']['key'], $forms['access_token_secret']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['access_token_secret']['key'],
-                            ))?> 
-                            <span class="help-block">
-                                <?=__("Access Token Secret")?>
-                            </span>
-                        </div>
+                        <span class="help-block">
+                            <?=__("Enable to post only featured ads.")?>
+                        </span>
                     </div>
                     
                     <hr>
@@ -1053,6 +994,70 @@
                             </span>
                         </div>
                     </div>
+
+                    <hr>
+
+                    <div>
+                        <h4><?=__('Twitter')?></h4>
+                        <hr>
+                        <div class="form-group">
+                            <?=FORM::label($forms['twitter']['key'], __('Auto Post'), array('class'=>'control-label', 'for'=>$forms['twitter']['key']))?>
+                            <div class="radio radio-primary">
+                                <?=Form::radio($forms['twitter']['key'], 1, (bool) $forms['twitter']['value'], array('id' => $forms['twitter']['key'].'1'))?>
+                                <?=Form::label($forms['twitter']['key'].'1', __('Enabled'))?>
+                                <?=Form::radio($forms['twitter']['key'], 0, ! (bool) $forms['twitter']['value'], array('id' => $forms['twitter']['key'].'0'))?>
+                                <?=Form::label($forms['twitter']['key'].'0', __('Disabled'))?>
+                            </div>
+                            <span class="help-block">
+                                <?=__("Enable to post new ads on twitter automatically.")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['twitter_consumer_key']['key'], __('Consumer Key'), array('class'=>'control-label', 'for'=>$forms['twitter_consumer_key']['key']))?>
+                            <?=FORM::input($forms['twitter_consumer_key']['key'], $forms['twitter_consumer_key']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['twitter_consumer_key']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Twitter Consumer Key")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['twitter_consumer_secret']['key'], __('Consumer Secret'), array('class'=>'control-label', 'for'=>$forms['twitter_consumer_secret']['key']))?>
+                            <?=FORM::input($forms['twitter_consumer_secret']['key'], $forms['twitter_consumer_secret']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['twitter_consumer_secret']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Twitter Consumer Secret")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['access_token']['key'], __('Access Token'), array('class'=>'control-label', 'for'=>$forms['access_token']['key']))?>
+                            <?=FORM::input($forms['access_token']['key'], $forms['access_token']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['access_token']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Access Token")?>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['access_token_secret']['key'], __('Access Token Secret'), array('class'=>'control-label', 'for'=>$forms['access_token_secret']['key']))?>
+                            <?=FORM::input($forms['access_token_secret']['key'], $forms['access_token_secret']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['access_token_secret']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Access Token Secret")?>
+                            </span>
+                        </div>
+                    </div>
+
                     <hr>
                     <p>
                         <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
