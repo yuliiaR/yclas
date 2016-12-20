@@ -34,6 +34,9 @@
                 <li>
                     <a data-toggle="tab" href="#tabSettingsSocial" aria-expanded="false"><?=__('Social')?></a>
                 </li>
+                <li>
+                    <a data-toggle="tab" href="#tabSettingsPicker" aria-expanded="false"><?=__('Google Picker')?></a>
+                </li>
             </ul>
             <div class="tab-content" style="background: #fff;">
                 <div id="tabSettingsListing" class="tab-pane active">
@@ -901,6 +904,47 @@
                             ))?> 
                             <span class="help-block">
                                 <?=__("Dropbox App Key")?>
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>
+                        <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
+                    </p>
+                </div>
+
+                <div id="tabSettingsPicker" class="tab-pane fade">
+                    <h4><?=__('Google Picker Configuration')?></h4>
+                    <hr>
+                    <div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['picker_api_key']['key'], __('Google Picker API Key'), array('class'=>'control-label', 'for'=>$forms['picker_api_key']['key']))?>
+                            <a target="_blank" href="https://docs.yclas.com/upload-files-to-ads/">
+                                <i class="fa fa-external-link-square"></i>
+                            </a>
+                            <?=FORM::input($forms['picker_api_key']['key'], $forms['picker_api_key']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['picker_api_key']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Google Picker API Key")?>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['picker_client_id']['key'], __('Google Picker Client ID'), array('class'=>'control-label', 'for'=>$forms['picker_client_id']['key']))?>
+                            <a target="_blank" href="https://docs.yclas.com/upload-files-to-ads/">
+                                <i class="fa fa-external-link-square"></i>
+                            </a>
+                            <?=FORM::input($forms['picker_client_id']['key'], $forms['picker_client_id']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['picker_client_id']['key'],
+                            ))?> 
+                            <span class="help-block">
+                                <?=__("Google Picker Client ID")?>
                             </span>
                         </div>
                     </div>

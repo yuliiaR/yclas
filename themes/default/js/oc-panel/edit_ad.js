@@ -654,16 +654,48 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
                 $('#custom-fields input[name="' + idx + '"]').after($('<div/>').attr({'class' : 'form-control-static',}).append($('#custom-fields').data('customfield-values')[customfield.label]));
-                $('#custom-fields input[name="' + idx + '"]').after($('<div/>').attr({'id' : idx + '_dropbox',}));
-                options = {
-                    success: function(files) {
-                        $('#custom-fields input[name="' + idx + '"]').val(files[0].link);
-                    },
-                    linkType: "preview",
-                    multiselect: false,
-                    extensions: customfield.values.split(','),
-                };
-                document.getElementById(idx + '_dropbox').appendChild(Dropbox.createChooseButton(options));
+                if ($('#dropboxjs').length)
+                {
+                    $('#custom-fields input[name="' + idx + '"]').after($('<div/>').attr({'id' : idx + '_dropbox',}));
+                    options = {
+                        success: function(files) {
+                            $('#custom-fields input[name="' + idx + '"]').val(files[0].link);
+                        },
+                        linkType: "preview",
+                        multiselect: false,
+                        extensions: customfield.values.split(','),
+                    };
+                    document.getElementById(idx + '_dropbox').appendChild(Dropbox.createChooseButton(options));
+                }
+                else if($('#googlepickerjs').length)
+                {
+                    $('#custom-fields input[name="' + idx + '"]')
+                        .after($('<div/>')
+                            .attr({'id' : idx + '_gpicker',})
+                            .append('<a class="gpicker btn btn-sm btn-default" href="#"><i class="fa fa-google fa-fw text-primary" aria-hidden="true"></i> <strong>' + getCFSearchLocalization('upload_file_to_google_drive') + '</strong></a>'));
+                    $('.gpicker').click(function(event) {
+                        event.preventDefault();
+                        var id = this.id;
+                        var viewId = new google.picker.DocsUploadView();
+                        var setOAuthToken = true;
+                              
+                        if (authApiLoaded && ! oauthToken) {
+                            viewIdForhandleAuthResult = viewId;
+                            window.gapi.auth.authorize(
+                                {
+                                    'client_id': clientId,
+                                    'scope': scope,
+                                    'immediate': false
+                                },
+                                handleAuthResult
+                            );
+                        } else {
+                            createPicker(viewId, setOAuthToken);
+                        }
+
+                        return false;
+                    });
+                }
                 break;
             case 'radio':
                 $.each(customfield.values, function (radioidx, value) {
@@ -798,3 +830,53 @@ function FileApiSupported() {
 $("#price").keyup(function() {
     $(this).val($(this).val().replace(/[^\d.,]/g, ''));
 });
+
+function onApiLoad() {
+    gapi.load('auth', {'callback': onAuthApiLoad});
+    gapi.load('picker', {'callback': onPickerApiLoad});
+}
+
+function onAuthApiLoad() {
+    authApiLoaded = true;
+}
+
+function onPickerApiLoad() {
+    pickerApiLoaded = true;
+}
+
+function handleAuthResult(authResult) {
+    if (authResult && ! authResult.error) {
+        oauthToken = authResult.access_token;
+        createPicker(viewIdForhandleAuthResult, true);
+    }
+}
+
+function createPicker(viewId, setOAuthToken) {
+    if (authApiLoaded && pickerApiLoaded) {
+        var picker;
+          
+        if (authApiLoaded && oauthToken && setOAuthToken) {
+            picker = new google.picker.PickerBuilder().
+                addView(viewId).
+                setOAuthToken(oauthToken).
+                setDeveloperKey(developerKey).
+                setCallback(pickerCallback).
+                build();
+        } else {
+            picker = new google.picker.PickerBuilder().
+                addView(viewId).
+                setDeveloperKey(developerKey).
+                setCallback(pickerCallback).
+                build();
+        }
+          
+        picker.setVisible(true);
+    }
+}
+
+function pickerCallback(data) {
+    if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+        doc = data[google.picker.Response.DOCUMENTS][0];
+        $('input[data-type="file"]').val(doc.downloadUrl)
+    }
+}
