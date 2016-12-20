@@ -363,6 +363,4 @@
         </div>
     </div>
 </div>
-<?if (core::config('advertisement.dropbox_app_key')):?>
-    <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="<?=core::config('advertisement.dropbox_app_key')?>"></script>
-<?endif?>
+<?=View::factory('pages/ad/new_scripts')?>

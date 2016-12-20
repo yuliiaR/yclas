@@ -60,6 +60,12 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'facebook_id',
                                'group_name'     => 'advertisement', 
                                'config_value'   => ''),
+                        array( 'config_key'     => 'picker_api_key',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'picker_client_id',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
                         );
 
         Model_Config::config_array($configs);
