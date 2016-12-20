@@ -151,9 +151,7 @@
                                                 </div>
                                             </div>
                                         <?endif?>
-                                        <?if(core::config('general.messaging') AND 
-                                            core::config('advertisement.price') AND 
-                                            core::config('advertisement.contact_price')):?>
+                                        <?if(core::config('general.messaging') != TRUE):?>
                                             <div class="form-group">
                                                 <?= FORM::label('subject', _e('Subject'), array('class'=>'col-sm-2 control-label', 'for'=>'subject'))?>
                                                 <div class="col-md-4 ">
