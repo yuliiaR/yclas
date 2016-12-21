@@ -172,8 +172,10 @@ class Model_Category extends ORM {
      */
     public static function get_as_array($limit = NULL)
     {
+        $cache_name = is_int($limit) ? 'cats_arr'.'_'.$limit : 'cats_arr';
+
         //transform the cats to an array
-        if ( ($cats_arr = Core::cache('cats_arr'))===NULL)
+        if ( ($cats_arr = Core::cache($cache_name))===NULL)
         {
             $cats = new self;
             $cats->order_by('order','asc');
@@ -195,7 +197,7 @@ class Model_Category extends ORM {
                                                       'id'                 => $cat->id_category,
                                                     );
             }
-            Core::cache('cats_arr',$cats_arr);
+            Core::cache($cache_name, $cats_arr);
         }   
 
         return $cats_arr;
@@ -241,8 +243,10 @@ class Model_Category extends ORM {
      */
     public static function get_multidimensional($limit = NULL)
     {
+        $cache_name = is_int($limit) ? 'cats_m'.'_'.$limit : 'cats_m';
+        
         //multidimensional array
-        if ( ($cats_m = Core::cache('cats_m'))===NULL)
+        if ( ($cats_m = Core::cache($cache_name))===NULL)
         {
             $cats = new self;
             $cats->order_by('order','asc');
@@ -263,7 +267,7 @@ class Model_Category extends ORM {
                 $cats_m = self::multi_cats($cats_s);
             else
                 $cats_m = array();
-            Core::cache('cats_m',$cats_m);
+            Core::cache($cache_name,$cats_m);
         }
 
         return $cats_m;

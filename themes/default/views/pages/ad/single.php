@@ -97,115 +97,128 @@
         <?endif?>
      </div>
 
-    <?if((core::config('payment.paypal_seller')==1 OR Core::config('payment.stripe_connect')==1) AND $ad->price != NULL AND $ad->price > 0):?>
-        <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
-            <?if (!Auth::instance()->logged_in()):?>
-                <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
-                    href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal"><?=_e('Buy Now')?></a>
-            <?else:?>
-                <a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Buy Now')?></a>
+    <div class="btn-group btn-group-justified" role="group">
+        <?if((core::config('payment.paypal_seller')==1 OR Core::config('payment.stripe_connect')==1) AND $ad->price != NULL AND $ad->price > 0):?>
+            <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
+                <div class="btn-group" role="group">
+                    <?if (!Auth::instance()->logged_in()):?>
+                        <a class="btn btn-primary" data-toggle="modal" data-dismiss="modal" 
+                            href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+                            <i class="fa fa-fw fa-money" aria-hidden="true"></i> <?=_e('Buy Now')?>
+                        </a>
+                    <?else:?>
+                        <a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            &nbsp;&nbsp;<?=_e('Buy Now')?>
+                        </a>
+                    <?endif?>
+                </div>
             <?endif?>
         <?endif?>
-    <?endif?>
-        
-    <hr />
-    
-    <?if ($ad->can_contact()):?>
-        <?if ((core::config('advertisement.login_to_contact') == TRUE OR core::config('general.messaging') == TRUE) AND !Auth::instance()->logged_in()) :?>
-            <a class="btn btn-success" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
-                <i class="glyphicon glyphicon-envelope"></i> 
-                <?=_e('Send Message')?>
-            </a>
-        <?else :?>
-            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i> <?=_e('Send Message')?></button>
-        <?endif?>
-    
-        <?if (core::config('advertisement.phone')==1 AND strlen($ad->phone)>1):?>
-            <a class="btn btn-warning" href="tel:<?=$ad->phone?>"><?=_e('Phone').': '.$ad->phone?></a>
-        <?endif?>
-    
-        <div id="contact-modal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                         <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
-                        <h3><?=_e('Contact')?></h3>
-                    </div>
-                    <div class="modal-body">
-                        <?=Form::errors()?>
-                        <?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'user_contact', 'id'=>$ad->id_ad)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
-                            <fieldset>
-                                <?if (!Auth::instance()->get_user()):?>
-                                    <div class="form-group">
-                                        <?= FORM::label('name', _e('Name'), array('class'=>'col-sm-2 control-label', 'for'=>'name'))?>
-                                        <div class="col-md-4 ">
-                                            <?= FORM::input('name', Core::request('name'), array('placeholder' => __('Name'), 'class'=>'form-control', 'id' => 'name', 'required'))?>
+        <?if ($ad->can_contact()):?>
+            <div class="btn-group" role="group">
+                <?if ((core::config('advertisement.login_to_contact') == TRUE OR core::config('general.messaging') == TRUE) AND !Auth::instance()->logged_in()) :?>
+                    <a class="btn btn-success" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+                        <i class="glyphicon glyphicon-envelope"></i>&nbsp;&nbsp;<?=_e('Send Message')?>
+                    </a>
+                <?else :?>
+                    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#contact-modal"><i class="glyphicon glyphicon-envelope"></i>&nbsp;&nbsp;<?=_e('Send Message')?></button>
+                <?endif?>
+
+                <div id="contact-modal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                 <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+                                <h3><?=_e('Contact')?></h3>
+                            </div>
+                            <div class="modal-body">
+                                <?=Form::errors()?>
+                                
+                                <?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'user_contact', 'id'=>$ad->id_ad)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
+                                    <fieldset>
+                                        <?if (!Auth::instance()->get_user()):?>
+                                            <div class="form-group">
+                                                <?= FORM::label('name', _e('Name'), array('class'=>'col-sm-2 control-label', 'for'=>'name'))?>
+                                                <div class="col-md-4 ">
+                                                    <?= FORM::input('name', Core::request('name'), array('placeholder' => __('Name'), 'class'=>'form-control', 'id' => 'name', 'required'))?>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <?= FORM::label('email', _e('Email'), array('class'=>'col-sm-2 control-label', 'for'=>'email'))?>
+                                                <div class="col-md-4 ">
+                                                    <?= FORM::input('email', Core::request('email'), array('placeholder' => __('Email'), 'class'=>'form-control', 'id' => 'email', 'type'=>'email','required'))?>
+                                                </div>
+                                            </div>
+                                        <?endif?>
+                                        <?if(core::config('general.messaging') != TRUE):?>
+                                            <div class="form-group">
+                                                <?= FORM::label('subject', _e('Subject'), array('class'=>'col-sm-2 control-label', 'for'=>'subject'))?>
+                                                <div class="col-md-4 ">
+                                                    <?= FORM::input('subject', Core::request('subject'), array('placeholder' => __('Subject'), 'class'=>'form-control', 'id' => 'subject'))?>
+                                                </div>
+                                            </div>
+                                        <?endif?>
+                                        <div class="form-group">
+                                            <?= FORM::label('message', _e('Message'), array('class'=>'col-sm-2 control-label', 'for'=>'message'))?>
+                                            <div class="col-md-6">
+                                                <?= FORM::textarea('message', Core::request('message'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>    
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <?= FORM::label('email', _e('Email'), array('class'=>'col-sm-2 control-label', 'for'=>'email'))?>
-                                        <div class="col-md-4 ">
-                                            <?= FORM::input('email', Core::request('email'), array('placeholder' => __('Email'), 'class'=>'form-control', 'id' => 'email', 'type'=>'email','required'))?>
+                                        <?if(core::config('general.messaging') AND 
+                                            core::config('advertisement.price') AND 
+                                            core::config('advertisement.contact_price')):?>
+                                            <div class="form-group">
+                                                <?= FORM::label('price', _e('Price'), array('class'=>'col-sm-2 control-label', 'for'=>'price'))?>
+                                                <div class="col-md-6">
+                                                    <?= FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?>
+                                                </div>
+                                            </div>
+                                        <?endif?>
+                                        <!-- file to be sent-->
+                                        <?if(core::config('advertisement.upload_file') AND core::config('general.messaging') != TRUE):?>
+                                            <div class="form-group">
+                                                <?= FORM::label('file', _e('File'), array('class'=>'col-sm-2 control-label', 'for'=>'file'))?>
+                                                <div class="col-md-6">
+                                                    <?= FORM::file('file', array('placeholder' => __('File'), 'class'=>'form-control', 'id' => 'file'))?>
+                                                </div>
+                                            </div>
+                                        <?endif?>
+                                        <?if (core::config('advertisement.captcha') != FALSE):?>
+                                            <div class="form-group">
+                                                <?=FORM::label('captcha', _e('Captcha'), array('class'=>'col-sm-2 control-label', 'for'=>'captcha'))?>
+                                                <div class="col-md-4">
+                                                    <?if (Core::config('general.recaptcha_active')):?>
+                                                        <?=Captcha::recaptcha_display()?>
+                                                        <div id="recaptcha1"></div>
+                                                    <?else:?>
+                                                        <?=captcha::image_tag('contact')?><br />
+                                                        <?= FORM::input('captcha', "", array('class'=>'form-control', 'id' => 'captcha', 'required'))?>
+                                                    <?endif?>
+                                                </div>
+                                            </div>
+                                        <?endif?>
+                                        <div class="modal-footer">  
+                                            <?= FORM::button('submit', _e('Contact Us'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'user_contact' , 'id'=>$ad->id_ad))))?>
                                         </div>
-                                    </div>
-                                <?endif?>
-                                <?if(core::config('general.messaging') != TRUE):?>
-                                    <div class="form-group">
-                                        <?= FORM::label('subject', _e('Subject'), array('class'=>'col-sm-2 control-label', 'for'=>'subject'))?>
-                                        <div class="col-md-4 ">
-                                            <?= FORM::input('subject', Core::request('subject'), array('placeholder' => __('Subject'), 'class'=>'form-control', 'id' => 'subject'))?>
-                                        </div>
-                                    </div>
-                                <?endif?>
-                                <div class="form-group">
-                                    <?= FORM::label('message', _e('Message'), array('class'=>'col-sm-2 control-label', 'for'=>'message'))?>
-                                    <div class="col-md-6">
-                                        <?= FORM::textarea('message', Core::request('message'), array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>
-                                    </div>
-                                </div>
-                                <?if(core::config('general.messaging') AND 
-                                    core::config('advertisement.price') AND 
-                                    core::config('advertisement.contact_price')):?>
-                                    <div class="form-group">
-                                        <?= FORM::label('price', _e('Price'), array('class'=>'col-sm-2 control-label', 'for'=>'price'))?>
-                                        <div class="col-md-6">
-                                            <?= FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1)), 'class' => 'form-control', 'id' => 'price', 'type'=>'text'))?>
-                                        </div>
-                                    </div>
-                                <?endif?>
-                                <!-- file to be sent-->
-                                <?if(core::config('advertisement.upload_file') AND core::config('general.messaging') != TRUE):?>
-                                    <div class="form-group">
-                                        <?= FORM::label('file', _e('File'), array('class'=>'col-sm-2 control-label', 'for'=>'file'))?>
-                                        <div class="col-md-6">
-                                            <?= FORM::file('file', array('placeholder' => __('File'), 'class'=>'form-control', 'id' => 'file'))?>
-                                        </div>
-                                    </div>
-                                <?endif?>
-                                <?if (core::config('advertisement.captcha') != FALSE):?>
-                                    <div class="form-group">
-                                        <?=FORM::label('captcha', _e('Captcha'), array('class'=>'col-sm-2 control-label', 'for'=>'captcha'))?>
-                                        <div class="col-md-4">
-                                            <?if (Core::config('general.recaptcha_active')):?>
-                                                <?=Captcha::recaptcha_display()?>
-                                                <div id="recaptcha1"></div>
-                                            <?else:?>
-                                                <?=captcha::image_tag('contact')?><br />
-                                                <?= FORM::input('captcha', "", array('class'=>'form-control', 'id' => 'captcha', 'required'))?>
-                                            <?endif?>
-                                        </div>
-                                    </div>
-                                <?endif?>
-                                <div class="modal-footer">  
-                                    <?= FORM::button('submit', __('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'user_contact' , 'id'=>$ad->id_ad))))?>
-                                </div>
-                            </fieldset>
-                        <?= FORM::close()?>
+                                    </fieldset>
+                                <?= FORM::close()?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?endif?>
+
+            <?if (core::config('advertisement.phone')==1 AND strlen($ad->phone)>1):?>
+                <div class="btn-group" role="group">
+                    <a class="btn btn-warning" href="tel:<?=$ad->phone?>">
+                        <span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;
+                        <?=_e('Phone').': '.$ad->phone?>
+                    </a>
+                </div>
+            <?endif?>
+        <?endif?>
+    </div>
 
     <div class="clearfix"></div><br>
     <?if(core::config('advertisement.sharing')==1):?>

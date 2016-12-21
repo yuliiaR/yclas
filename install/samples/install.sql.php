@@ -716,6 +716,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'center_lon', ''),
 ('advertisement', 'center_lat', ''),
 ('advertisement', 'dropbox_app_key', ''),
+('advertisement', 'picker_api_key', ''),
+('advertisement', 'picker_client_id', ''),
 ('advertisement', 'auto_locate_distance', 100),
 ('advertisement', 'ads_in_home', '0'),
 ('advertisement', 'banned_words_replacement', 'xxx'),
