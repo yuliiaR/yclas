@@ -12,9 +12,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
 
 
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 3.0.1
+     * This function will upgrade DB that didn't existed in versions prior to 3.1.0
      */
-    public function action_301()
+    public function action_310()
     {
         //new configs
         $configs = array(
@@ -118,7 +118,7 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
     }
 
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 3.0.0
+     * This function will upgrade DB that didn't existed in versions prior to 3.1.0
      */
     public function action_300()
     {

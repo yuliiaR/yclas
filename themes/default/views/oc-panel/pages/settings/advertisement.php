@@ -32,10 +32,10 @@
                     <a data-toggle="tab" href="#tabSettingsDropbox" aria-expanded="false"><?=__('Dropbox')?></a>
                 </li>
                 <li>
-                    <a data-toggle="tab" href="#tabSettingsSocial" aria-expanded="false"><?=__('Social')?></a>
+                    <a data-toggle="tab" href="#tabSettingsPicker" aria-expanded="false"><?=__('Google Picker')?></a>
                 </li>
                 <li>
-                    <a data-toggle="tab" href="#tabSettingsPicker" aria-expanded="false"><?=__('Google Picker')?></a>
+                    <a data-toggle="tab" href="#tabSettingsSocial" aria-expanded="false"><?=__('Social')?></a>
                 </li>
             </ul>
             <div class="tab-content" style="background: #fff;">
