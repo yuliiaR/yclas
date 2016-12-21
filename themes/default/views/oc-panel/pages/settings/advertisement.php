@@ -32,10 +32,10 @@
                     <a data-toggle="tab" href="#tabSettingsDropbox" aria-expanded="false"><?=__('Dropbox')?></a>
                 </li>
                 <li>
-                    <a data-toggle="tab" href="#tabSettingsSocial" aria-expanded="false"><?=__('Social')?></a>
+                    <a data-toggle="tab" href="#tabSettingsPicker" aria-expanded="false"><?=__('Google Picker')?></a>
                 </li>
                 <li>
-                    <a data-toggle="tab" href="#tabSettingsPicker" aria-expanded="false"><?=__('Google Picker')?></a>
+                    <a data-toggle="tab" href="#tabSettingsSocial" aria-expanded="false"><?=__('Social')?></a>
                 </li>
             </ul>
             <div class="tab-content" style="background: #fff;">
@@ -915,19 +915,6 @@
 
                 <div id="tabSettingsPicker" class="tab-pane fade">
                     <h4><?=__('Google Picker Configuration')?></h4>
-                    <hr>
-                        <div class="form-group">
-                            <?=FORM::label($forms['social_post_only_featured']['key'], __('Only Featured Ads'), array('class'=>'control-label', 'for'=>$forms['social_post_only_featured']['key']))?>
-                            <div class="radio radio-primary">
-                                <?=Form::radio($forms['social_post_only_featured']['key'], 1, (bool) $forms['social_post_only_featured']['value'], array('id' => $forms['social_post_only_featured']['key'].'1'))?>
-                                <?=Form::label($forms['social_post_only_featured']['key'].'1', __('Enabled'))?>
-                                <?=Form::radio($forms['social_post_only_featured']['key'], 0, ! (bool) $forms['social_post_only_featured']['value'], array('id' => $forms['social_post_only_featured']['key'].'0'))?>
-                                <?=Form::label($forms['social_post_only_featured']['key'].'0', __('Disabled'))?>
-                            </div>
-                            <span class="help-block">
-                                <?=__("Enable to post only featured ads.")?>
-                            </span>
-                        </div>
                     <hr>
                     <div>
                         <div class="form-group">
