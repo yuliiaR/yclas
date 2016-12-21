@@ -27,6 +27,9 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         array( 'config_key'     => 'expire_reactivation',
                                'group_name'     => 'advertisement', 
                                'config_value'   => '1'),
+                        array( 'config_key'     => 'social_post_only_featured',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
                         array( 'config_key'     => 'twitter_consumer_key',
                                'group_name'     => 'advertisement', 
                                'config_value'   => ''),
@@ -60,6 +63,13 @@ class Controller_Panel_Update extends Controller_Panel_OC_Update {
                         );
 
         Model_Config::config_array($configs);
+
+        //crontab generate FB access token
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
+                                    ('Generate Access Token', '10 9 1 * *', 'Social::GetAccessToken', NULL, 'Generate Facebook long-lived Access Token.', 1);")->execute();
+        }catch (exception $e) {}
 
         //visits table tmp
         try

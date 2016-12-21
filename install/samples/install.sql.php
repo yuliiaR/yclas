@@ -742,6 +742,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'leave_alert', 1),
 ('advertisement', 'validate_banned_words', 0),
 ('advertisement', 'rich_snippets', 0),
+('advertisement', 'social_post_only_featured', 0),
 ('advertisement', 'twitter', 0),
 ('advertisement', 'twitter_consumer_key', ''),
 ('advertisement', 'twitter_consumer_secret', ''),
@@ -828,6 +829,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."crontab` (`nam
 ('Expired Ad', '0 9 * * *', 'Cron_Ad::expired', NULL, 'Notify by email of expired ad', 1),
 ('About to Expire Ad', '05 9 * * *', 'Cron_Ad::to_expire', NULL, 'Notify by email your ad is about to expire', 1),
 ('Renew subscription', '*/5 * * * *', 'Cron_Subscription::renew', NULL, 'Notify by email user subscription will expire.', 1),
-('Notify new updates', '0 9 * * 1', 'Cron_Update::notify', NULL, 'Notify by email of new site updates.', 1);");
+('Notify new updates', '0 9 * * 1', 'Cron_Update::notify', NULL, 'Notify by email of new site updates.', 1),
+('Generate Access Token', '10 9 1 * *', 'Social::GetAccessToken', NULL, 'Generate Facebook long-lived Access Token.', 1);");
 
 mysqli_close($link);
