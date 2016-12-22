@@ -139,7 +139,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<a class="close" data-dismiss="modal" >&times;</a>
-					<h3><?=_e('Login')?></h3>
+					<h3 class="modal-title"><?=_e('Login')?></h3>
 				</div>
 					<?=View::factory('pages/auth/login-form')?>
 			</div>
@@ -150,7 +150,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<a class="close" data-dismiss="modal" >&times;</a>
-					<h3><?=_e('Forgot password')?></h3>
+					<h3 class="modal-title"><?=_e('Forgot password')?></h3>
 				</div>
 					<?=View::factory('pages/auth/forgot-form')?>
 			</div>
@@ -161,9 +161,9 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<a class="close" data-dismiss="modal" >&times;</a>
-					<h3><?=_e('Register')?></h3>
+					<h3 class="modal-title"><?=_e('Register')?></h3>
 				</div>
-					<?=View::factory('pages/auth/register-form', ['recaptcha_placeholder' => 'recaptcha4'])?>
+					<?=View::factory('pages/auth/register-form', ['recaptcha_placeholder' => 'recaptcha4', 'modal_form' => TRUE])?>
 			</div>
 		</div>
 	</div>
