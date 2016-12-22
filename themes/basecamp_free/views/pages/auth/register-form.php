@@ -26,7 +26,7 @@
 		<div class="form-group clearfix">
 			<label class="col-xs-12 control-label"><?=_e('New password')?></label>
 			<div class="col-xs-12 col-sm-8">
-				<input class="form-control" type="password" name="password1" placeholder="<?=__('Password')?>">
+				<input id="register_password" class="form-control" type="password" name="password1" placeholder="<?=__('Password')?>">
 			</div>
 		</div>
 		<div class="form-group clearfix">
