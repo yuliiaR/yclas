@@ -544,6 +544,7 @@ $('.show-all-categories').click(function() {
 
 $(function(){
     $('#register_password').strength();
+    $('#register_password_modal').strength();
 });
 
 /*!
