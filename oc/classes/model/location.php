@@ -94,6 +94,10 @@ class Model_Location extends ORM {
             }
             catch (ORM_Validation_Exception $e)
             {
+                throw HTTP_Exception::factory(500,$e->errors(''));
+            }
+            catch (Exception $e)
+            {
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
         }

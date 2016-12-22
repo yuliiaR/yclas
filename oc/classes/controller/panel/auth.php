@@ -308,6 +308,8 @@ class Controller_Panel_Auth extends Controller {
             if(captcha::check('register')) {
                 $validation =   Validation::factory($this->request->post())
                                 ->rule('name', 'not_empty')
+                                ->rule('name', 'min_length', array(':value', 2))
+                                ->rule('name', 'max_length', array(':value', 145))
                                 ->rule('email', 'not_empty')
                                 ->rule('email', 'email')
                                 ->rule('email', 'email_domain')
