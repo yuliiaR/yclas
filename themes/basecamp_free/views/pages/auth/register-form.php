@@ -69,10 +69,17 @@
 		</div>
 	</div>
 	<div class="modal-foot-controls clearfix">
-		<a class="btn btn-base-dark pull-left log-btn"  data-dismiss="modal" data-toggle="modal"  href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
-			<?=_e('Login')?>
-		</a>
-		<button type="submit" class="btn btn-base-dark pull-right reg-btn"><?=_e('Register')?></button>
+        <ul class="list-inline">
+            <li>
+                <button type="submit" class="btn btn-base-dark"><?=_e('Register')?></button>
+            </li>
+            <li>
+                <?=_e('Already Have an Account?')?>
+                <a data-dismiss="modal" data-toggle="modal"  href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>#login-modal">
+                    <?=_e('Login')?>
+                </a>
+            </li>
+        </ul>
 	</div>
 	<?=Form::redirect()?>
 	<?=Form::CSRF('register')?>

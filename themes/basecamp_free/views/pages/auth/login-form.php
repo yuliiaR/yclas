@@ -23,10 +23,19 @@
 		</div>
 	</div>
 	<div class="modal-foot-controls clearfix">
-		<a class="btn btn-base-dark pull-left reg-btn" data-toggle="modal" tabindex="-1" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'register'))?>#register-modal">
-			<?=_e('Register')?>
-		</a>
-		<button type="submit" class="btn btn-base-dark pull-right log-btn" tabindex="4"><?=_e('Login')?></button>
+        <ul class="list-inline">
+            <li>
+                <button type="submit" class="btn btn-base-dark log-btn">
+                    <?=_e('Login')?>
+                </button>
+            </li>
+            <li>
+                <?=_e('Don\'t Have an Account?')?>
+                <a data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'register'))?>#register-modal">
+                    <?=_e('Register')?>
+                </a>
+            </li>
+        </ul>
 	</div>
 	<?=Form::redirect()?>
 	<?=Form::CSRF('login')?>
