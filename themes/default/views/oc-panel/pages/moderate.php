@@ -112,7 +112,7 @@
                                     <?endif?>
                                 </td>
                                 <?if(core::config('advertisement.count_visits')==1):?>
-                                <td><?=$ad->visits->count_all();?></td>
+                                <td><?=$ad->count_ad_hit();?></td>
                                 <?endif?>
                     
                                 <td>
