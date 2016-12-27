@@ -916,7 +916,8 @@ class Model_Ad extends ORM {
                             case 'date':
                                 $cf_value = Date::format($cf_value, core::config('general.date_format'));
                                 break;
-                            case 'file':
+                            case 'file_dropbox':
+                            case 'file_gpicker':
                                 $cf_value = '<a'.HTML::attributes(['class' => 'btn btn-success', 'href' => $cf_value]).'>'.__('Download').'</a>';
                                 break;
                         }      

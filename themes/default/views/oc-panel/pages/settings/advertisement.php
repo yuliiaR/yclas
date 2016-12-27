@@ -29,7 +29,10 @@
                     <a data-toggle="tab" href="#tabSettingsReview" aria-expanded="false"><?=__('Reviews')?></a>
                 </li>
                 <li>
-                    <a data-toggle="tab" href="#tabSettingsFileUpload" aria-expanded="false"><?=__('File Upload')?></a>
+                    <a data-toggle="tab" href="#tabSettingsDropbox" aria-expanded="false"><?=__('Dropbox')?></a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#tabSettingsPicker" aria-expanded="false"><?=__('Google Picker')?></a>
                 </li>
                 <li>
                     <a data-toggle="tab" href="#tabSettingsSocial" aria-expanded="false"><?=__('Social')?></a>
@@ -885,21 +888,7 @@
                         <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
                     </p>
                 </div>
-                <div id="tabSettingsFileUpload" class="tab-pane fade">
-                    <h4><?=__('File Upload Configuration')?></h4>
-                    <hr>
-                    <div class="form-group">
-                        <?=FORM::label($forms['file_upload_service']['key'], __("File Upload Service"), array('class'=>'control-label', 'for'=>$forms['file_upload_service']['key']))?>
-                        <div class="radio radio-primary">
-                            <?=Form::radio($forms['file_upload_service']['key'], 'dropbox', ($forms['file_upload_service']['value'] == 'dropbox' ? TRUE : FALSE), array('id' => $forms['file_upload_service']['key'].'1'))?>
-                            <?=Form::label($forms['file_upload_service']['key'].'1', __('Dropbox'))?>
-                            <?=Form::radio($forms['file_upload_service']['key'], 'gpicker', ($forms['file_upload_service']['value'] == 'gpicker' ? TRUE : FALSE), array('id' => $forms['file_upload_service']['key'].'2'))?>
-                            <?=Form::label($forms['file_upload_service']['key'].'2', __('Google Picker'))?>
-                            <?=Form::radio($forms['file_upload_service']['key'], 0, ! (bool) $forms['file_upload_service']['value'], array('id' => $forms['file_upload_service']['key'].'0'))?>
-                            <?=Form::label($forms['file_upload_service']['key'].'0', __('Disabled'))?>
-                        </div>
-                    </div>
-                    <br>
+                <div id="tabSettingsDropbox" class="tab-pane fade">
                     <h4><?=__('Dropbox Configuration')?></h4>
                     <hr>
                     <div>
@@ -914,13 +903,18 @@
                                 'id' => $forms['dropbox_app_key']['key'],
                             ))?> 
                             <span class="help-block">
-                                <?=__("Dropbox App Key.")?>
+                                <?=__("Dropbox App Key")?>
                             </span>
                         </div>
                     </div>
+                    <hr>
+                    <p>
+                        <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
+                    </p>
+                </div>
 
-                    <br>
 
+                <div id="tabSettingsPicker" class="tab-pane fade">
                     <h4><?=__('Google Picker Configuration')?></h4>
                     <hr>
                     <div>
