@@ -44,7 +44,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 					}
 					catch (ORM_Validation_Exception $e)
 					{
-						throw HTTP_Exception::factory(500,$e->getMessage());
+						throw HTTP_Exception::factory(500,$e->errors(''));
 					}
 					catch (Exception $e)
 					{
