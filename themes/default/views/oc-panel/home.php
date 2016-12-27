@@ -227,7 +227,7 @@
                                     </td>
                     
                                     <?if(core::config('advertisement.count_visits')==1):?>
-                                        <td class="hidden-xs"><?=$ad->visits->count_all();?></td>
+                                        <td class="hidden-xs"><?=$ad->count_ad_hit();?></td>
                                     <?endif?>
                     
                                     <td><?= Date::format($ad->published, core::config('general.date_format'))?></td>
