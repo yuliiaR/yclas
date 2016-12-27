@@ -641,7 +641,7 @@ function createCustomFieldsByCategory (customfields) {
                 });
                 $('#custom-fields select[name="' + idx + '"] option[value=" "]').val(null);
                 break;
-            case 'file':
+            case 'file_dropbox':
                 $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'hidden',
                                                                                     'id'          : idx,
                                                                                     'name'        : idx,
@@ -651,51 +651,56 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'data-toggle' : 'tooltip',
                                                                                     'title'       : customfield.tooltip,
                                                                                     'required'    : customfield.required,
-                                                                                    'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[idx],
                                                                                 }));
-                $('#custom-fields input[name="' + idx + '"]').after($('<div/>').attr({'class' : 'form-control-static',}).append($('#custom-fields').data('customfield-values')[customfield.label]));
-                if ($('#dropboxjs').length)
-                {
-                    $('#custom-fields input[name="' + idx + '"]').after($('<div/>').attr({'id' : idx + '_dropbox',}));
-                    options = {
-                        success: function(files) {
-                            $('#custom-fields input[name="' + idx + '"]').val(files[0].link);
-                        },
-                        linkType: "preview",
-                        multiselect: false,
-                        extensions: customfield.values.split(','),
-                    };
-                    document.getElementById(idx + '_dropbox').appendChild(Dropbox.createChooseButton(options));
-                }
-                else if($('#googlepickerjs').length)
-                {
-                    $('#custom-fields input[name="' + idx + '"]')
-                        .after($('<div/>')
-                            .attr({'id' : idx + '_gpicker',})
-                            .append('<a class="gpicker btn btn-sm btn-default" href="#"><i class="fa fa-google fa-fw text-primary" aria-hidden="true"></i> <strong>' + getCFSearchLocalization('upload_file_to_google_drive') + '</strong></a>'));
-                    $('.gpicker').click(function(event) {
-                        event.preventDefault();
-                        var id = this.id;
-                        var viewId = new google.picker.DocsUploadView();
-                        var setOAuthToken = true;
-                              
-                        if (authApiLoaded && ! oauthToken) {
-                            viewIdForhandleAuthResult = viewId;
-                            window.gapi.auth.authorize(
-                                {
-                                    'client_id': clientId,
-                                    'scope': scope,
-                                    'immediate': false
-                                },
-                                handleAuthResult
-                            );
-                        } else {
-                            createPicker(viewId, setOAuthToken);
-                        }
+                $('#custom-fields input[name="' + idx + '"]').after($('<div/>').attr({'id' : idx + '_dropbox',}));
+                options = {
+                    success: function(files) {
+                        $('#custom-fields input[name="' + idx + '"]').val(files[0].link);
+                    },
+                    linkType: "preview",
+                    multiselect: false,
+                    extensions: customfield.values.split(','),
+                };
+                document.getElementById(idx + '_dropbox').appendChild(Dropbox.createChooseButton(options));
+                break;
+            case 'file_gpicker':
+                $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'hidden',
+                                                                                    'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'class'       : 'form-control',
+                                                                                    'placeholder' : customfield.label,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'data-toggle' : 'tooltip',
+                                                                                    'title'       : customfield.tooltip,
+                                                                                    'required'    : customfield.required,
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[idx],
+                                                                                }));
+                $('#custom-fields input[name="' + idx + '"]')
+                    .after($('<div/>')
+                        .attr({'id' : idx + '_gpicker',})
+                        .append('<a class="gpicker btn btn-sm btn-default" href="#"><i class="fa fa-google fa-fw text-primary" aria-hidden="true"></i> <strong>' + getCFSearchLocalization('upload_file_to_google_drive') + '</strong></a>'));
+                $('.gpicker').click(function() {
+                    var id = this.id;
+                    var viewId = new google.picker.DocsUploadView();
+                    var setOAuthToken = true;
+                          
+                    if (authApiLoaded && ! oauthToken) {
+                        viewIdForhandleAuthResult = viewId;
+                        window.gapi.auth.authorize(
+                            {
+                                'client_id': clientId,
+                                'scope': scope,
+                                'immediate': false
+                            },
+                            handleAuthResult
+                        );
+                    } else {
+                        createPicker(viewId, setOAuthToken);
+                    }
 
-                        return false;
-                    });
-                }
+                    return false;
+                });
                 break;
             case 'radio':
                 $.each(customfield.values, function (radioidx, value) {

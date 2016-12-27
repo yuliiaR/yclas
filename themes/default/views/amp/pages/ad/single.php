@@ -57,7 +57,7 @@
         <p><?=$ad->address?></p>
     <?endif?>
 
-    <?if (count($cf_list)) :?>
+    <?if (count($cf_list) > 0) :?>
         <ul>
             <?foreach ($cf_list as $name => $value):?>
                 <?if($value=='checkbox_1'):?>

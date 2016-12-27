@@ -40,7 +40,8 @@
                     <option value="email"><?=__('Email')?></option>
                     <option value="checkbox"><?=__('Checkbox')?></option>
                     <option value="country"><?=__('Country')?></option>
-                    <option value="file"><?=__('File')?></option>
+                    <option value="file_dropbox"><?=__('File Dropbox')?></option>
+                    <option value="file_gpicker"><?=__('File Google Drive')?></option>
                 </select>
             </div>
 
