@@ -18,13 +18,13 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 * Kohana 3.3.4 http://kohanaframework.org/
 * KO Formmanager https://github.com/colinbm/kohana-formmanager
-* PHP-Gettext https://launchpad.net/php-gettext/
+* PHP-Gettext https://github.com/neo22s/php-gettext
 * Pear File_Gettext http://pear.php.net/package/File_Gettext
-* POTCreator
+* POTCreator https://github.com/neo22s/potcreator
 * PHP.mo https://github.com/josscrowcroft/php.mo
 * jQuery Google maps http://maplacejs.com/
 * PHP-Mailer https://github.com/PHPMailer/PHPMailer
-* PHP-SitemapGenerator http://www.phpclasses.org/package/5838-PHP-Generate-sitemaps-and-notify-updates.html
+* PHP-SitemapGenerator https://github.com/pawelantczak/php-sitemap-generator
 * jsmin-php https://github.com/rgrove/jsmin-php/
 * Minify https://github.com/mrclay/minify
 * Mobile Detect https://github.com/serbanghita/Mobile-Detect
@@ -36,8 +36,18 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 * jQuery Sortable http://johnny.github.io/jquery-sortable/
 * Bootstrap Image Gallery https://github.com/blueimp/Bootstrap-Image-Gallery
 * Blacksmith https://github.com/themusicman/Blacksmith
-* Hybrid Auth http://hybridauth.sourceforge.net/
+* Hybrid Auth https://github.com/hybridauth/hybridauth
 * MySQLi Kohana https://github.com/Azuka/Kohana-Database-MySQLi
 * JS Loading Bar https://github.com/peachananr/loading-bar
 * Slugifier https://github.com/keyvanakbary/slugifier/
 * Bootgrid http://www.jquery-bootgrid.com/
+* Domain Parser https://github.com/novutec/DomainParser/
+* php5-akismet https://github.com/achingbrain/php5-akismet
+* amazon-s3-php-class https://github.com/tpyo/amazon-s3-php-class
+* AuthorizeNet https://github.com/AuthorizeNet/sdk-php/
+* codebird-php https://github.com/jublonet/codebird-php
+* MercadoPago https://github.com/mercadopago/sdk-php
+* Stripe https://github.com/stripe/stripe-php
+* GCM-PHP-Server-Push-Message https://github.com/mattg888/GCM-PHP-Server-Push-Message
+* FraudLabsPro https://github.com/neo22s/fraudlasbspro
+* GoogleAuthenticator https://github.com/PHPGangsta/GoogleAuthenticator
