@@ -3,7 +3,7 @@
   '3.1.0' => 
   array (
     'codename' => 'Riga',
-    'released' => '2016-12-26',
+    'released' => '2016-12-28',
     'blog' => '',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.0.0...3.1.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/36?closed=1',

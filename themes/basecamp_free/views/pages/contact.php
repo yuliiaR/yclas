@@ -3,9 +3,19 @@
 	<div class="container">
 		<div class="row">
 			<div class="<?=(Theme::get('sidebar_position')!='none')?'col-xs-9':'col-xs-12'?> <?=(Theme::get('sidebar_position')=='left')?'pull-right':'pull-left'?>">
-				<div class="page-header">
-					<h3><?=_e('Contact Us')?></h3>
-				</div>
+
+				<?if(core::config('general.contact_page') != ''):?>
+					<?$content = Model_Content::get_by_title(core::config('general.contact_page'))?>
+					<div class="page-header">
+						<h1><?=$content->title?></h1>
+					</div>
+					<div class="text-description"><?=$content->description?></div>
+					<br>
+				<?else:?>
+					<div class="page-header">
+						<h1><?=_e('Contact Us')?></h1>
+					</div>
+				<?endif?>
 				
 				<?=Form::errors()?>
 
