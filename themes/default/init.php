@@ -33,10 +33,10 @@ Theme::$skin = Theme::get('theme');
  * styles and themes, loaded in this order
  */
 
-Theme::$styles = array( '//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css' => 'screen',
-                        '//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css' => 'screen',
+Theme::$styles = array( '//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css' => 'screen',
+                        '//cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css' => 'screen',
                         '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.min.css' => 'screen',
-                        '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/css/blueimp-gallery.min.css' => 'screen', 
+                        '//cdn.jsdelivr.net/blueimp-gallery/2.15.0/css/blueimp-gallery.min.css' => 'screen', 
                         '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
                         '//cdn.jsdelivr.net/select2/4.0.2/css/select2.min.css' => 'screen',
                         'css/styles.css?v='.Core::VERSION => 'screen',
@@ -46,8 +46,8 @@ Theme::$styles = array( '//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.cs
 if (Theme::$skin!='default')
     Theme::$styles = array_merge(Theme::$styles, array('css/color-'.Theme::$skin.'.css' => 'screen'));
 
-Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.3,bootstrap@3.3.6,bootstrap.datepicker@0.1,select2@4.0.2,jquery.validation@1.11.1,holder@2.8.1',
-                                    '//cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js',
+Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.4,bootstrap@3.3.7,bootstrap.datepicker@0.1,select2@4.0.3,jquery.validation@1.15.0,holder@2.9.3',
+                                    '//cdn.jsdelivr.net/blueimp-gallery/2.15.0/js/jquery.blueimp-gallery.min.js',
                                     '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'select2')),
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),

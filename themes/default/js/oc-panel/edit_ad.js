@@ -641,6 +641,7 @@ function createCustomFieldsByCategory (customfields) {
                 });
                 $('#custom-fields select[name="' + idx + '"] option[value=" "]').val(null);
                 break;
+            case 'file':
             case 'file_dropbox':
                 $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'hidden',
                                                                                     'id'          : idx,
