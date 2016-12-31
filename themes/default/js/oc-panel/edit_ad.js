@@ -428,8 +428,10 @@ $('.fileinput').on('change.bs.fileinput', function() {
             loadImage.parseMetaData(
                 image,
                 function (data) {
-                    rotation = data.exif.get('Orientation');
-                    thumbnail.css('transform', rotate[rotation]);
+                    if (data.exif) {
+                        rotation = data.exif.get('Orientation');
+                        thumbnail.css('transform', rotate[rotation]);
+                    }
                 }
             );
         }
@@ -641,6 +643,7 @@ function createCustomFieldsByCategory (customfields) {
                 });
                 $('#custom-fields select[name="' + idx + '"] option[value=" "]').val(null);
                 break;
+            case 'file':
             case 'file_dropbox':
                 $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'hidden',
                                                                                     'id'          : idx,

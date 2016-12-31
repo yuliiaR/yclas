@@ -961,28 +961,39 @@ class Model_Ad extends ORM {
      */
     public function related()
     {
-        if($this->loaded() AND core::config('advertisement.related')>0 )
+        if ($this->loaded() AND core::config('advertisement.related') > 0 )
         {    
             $ads = new self();
-            $ads
-            ->where_open()
-            ->or_where('id_category','=',$this->id_category)
-            ->or_where('id_location','=',$this->id_location)
-            ->where_close()
-            ->where('id_ad','!=',$this->id_ad)
-            ->where('status','=',self::STATUS_PUBLISHED);
+            $ads->where('id_ad', '!=', $this->id_ad)
+                ->where('status', '=', self::STATUS_PUBLISHED);
             
             //if ad have passed expiration time dont show 
-            if(core::config('advertisement.expire_date') > 0)
+            if (core::config('advertisement.expire_date') > 0)
             {
                 $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
             }
 
-            $ads = $ads->limit(core::config('advertisement.related'))
-            ->order_by(DB::expr('RAND()'))
-            ->cached()->find_all();
+            $ads->limit(core::config('advertisement.related'))
+                ->order_by(DB::expr('RAND()'));
 
-            return View::factory('pages/ad/related',array('ads'=>$ads))->render();
+            $related_ads = clone $ads;
+            $related_ads = $related_ads->where('id_category', '=', $this->id_category)
+                ->where('id_location', '=', $this->id_location)
+                ->cached()
+                ->find_all();
+
+            if (count($related_ads) == 0)
+            {
+                $related_ads = clone $ads;
+                $related_ads = $related_ads->where_open()
+                    ->or_where('id_category', '=', $this->id_category)
+                    ->or_where('id_location', '=', $this->id_location)
+                    ->where_close()
+                    ->cached()
+                    ->find_all();
+            }
+
+            return View::factory('pages/ad/related',array('ads' => $related_ads))->render();
         }
     
         return FALSE;
