@@ -428,8 +428,10 @@ $('.fileinput').on('change.bs.fileinput', function() {
             loadImage.parseMetaData(
                 image,
                 function (data) {
-                    rotation = data.exif.get('Orientation');
-                    thumbnail.css('transform', rotate[rotation]);
+                    if (data.exif) {
+                        rotation = data.exif.get('Orientation');
+                        thumbnail.css('transform', rotate[rotation]);
+                    }
                 }
             );
         }
