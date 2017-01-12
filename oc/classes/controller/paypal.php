@@ -27,9 +27,9 @@ class Controller_Paypal extends Controller{
 
 		//START PAYPAL IPN
 		//manual checks
-		$id_order         = Core::post('item_number');
-		$paypal_amount    = Core::post('mc_gross');
-		$payer_id         = Core::post('payer_id');
+		$id_order         = Core::request('item_number');
+		$paypal_amount    = Core::request('mc_gross');
+		$payer_id         = Core::request('payer_id');
 
 		//retrieve info for the item in DB
 		$order = new Model_Order();
@@ -45,23 +45,23 @@ class Controller_Paypal extends Controller{
             {
                 $paypal_account = $order->ad->paypal_account();
 
-                $receiver_correct = (Core::post('receiver_email') == $paypal_account  OR Core::post('business')  == $paypal_account);
+                $receiver_correct = (Core::request('receiver_email') == $paypal_account  OR Core::request('business')  == $paypal_account);
             }
             //any other payment goes to classifieds site payment
             else
             { 
-                $receiver_correct = (Core::post('receiver_email') == core::config('payment.paypal_account')  OR Core::post('business')  == core::config('payment.paypal_account'));
+                $receiver_correct = (Core::request('receiver_email') == core::config('payment.paypal_account')  OR Core::request('business')  == core::config('payment.paypal_account'));
             }
 
             //same amount and same currency
-			if ( Core::post('payment_status')   == 'Completed' 
-                AND  Core::post('mc_gross')     == number_format($order->amount, 2, '.', '')
-				AND  Core::post('mc_currency')  == core::config('payment.paypal_currency') AND  $receiver_correct)
+			if ( Core::request('payment_status')   == 'Completed' 
+                AND  Core::request('mc_gross')     == number_format($order->amount, 2, '.', '')
+				AND  Core::request('mc_currency')  == core::config('payment.paypal_currency') AND  $receiver_correct)
 			{
                 //same price , currency and email no cheating ;)
 				if (paypal::validate_ipn()) 
 				{
-					$order->confirm_payment('paypal',Core::post('txn_id'));	
+					$order->confirm_payment('paypal',Core::request('txn_id'));	
 				}
 				else
 				{
@@ -106,7 +106,7 @@ class Controller_Paypal extends Controller{
         	if($order->id_product == Model_Order::PRODUCT_AD_SELL){
         		$paypal_account = $order->ad->paypal_account();
         		$currency = i18n::get_intl_currency_symbol();
-        		if(isset($order->ad->cf_shipping) AND Valid::numeric($order->ad->cf_shipping) AND $order->ad->cf_shipping > 0)
+        		if(isset($order->ad->cf_shipping) AND Valid::price($order->ad->cf_shipping) AND $order->ad->cf_shipping > 0)
         			$order->amount = $order->amount + $order->ad->cf_shipping;
         	}
         	else{
@@ -120,6 +120,7 @@ class Controller_Paypal extends Controller{
 	                             'amount'            	=> number_format($order->amount, 2, '.', ''),
 	                             'site_name'        	=> core::config('general.site_name'),
 	                             'site_url'            	=> URL::base(TRUE),
+                                 'notify_url'           => Route::url('default',array('controller'=>'paypal','action'=>'ipn','id'=>$order_id)),
 	                             'paypal_url'        	=> $paypal_url,
 	                             'paypal_account'    	=> $paypal_account,
 	                             'paypal_currency'    	=> $currency,
@@ -136,4 +137,117 @@ class Controller_Paypal extends Controller{
 		}
 	}
 
+    public function action_guestipn()
+    {
+        $this->auto_render = FALSE;
+
+        //START PAYPAL IPN
+        //manual checks
+        $id_ad            = Core::request('item_number');
+        $paypal_amount    = Core::request('mc_gross');
+        $payer_id         = Core::request('payer_id');
+        $payer_email      = Core::request('payer_email');
+        $payer_name       = Core::request('first_name').' '.Core::request('last_name');
+
+        //amount we need to recieve
+        if (isset($ad->cf_shipping) AND Valid::price($ad->cf_shipping) AND $ad->cf_shipping > 0)
+            $ad->price = $ad->price + $ad->cf_shipping;
+
+        //check ad exists
+        $ad     = new Model_Ad($id_ad);
+
+        //loaded published and with stock if we control the stock.
+        if($ad->loaded() AND $ad->status==Model_Ad::STATUS_PUBLISHED
+            AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
+            AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1) 
+            )
+        {
+            //order is from a payment done to the owner of the ad
+            $paypal_account = $ad->paypal_account();
+
+            $receiver_correct = (Core::request('receiver_email') == $paypal_account  OR Core::request('business')  == $paypal_account);
+
+            //same amount and same currency
+            if ( Core::request('payment_status')   == 'Completed' 
+                AND  Core::request('mc_gross')     == number_format($ad->price, 2, '.', '')
+                AND  Core::request('mc_currency')  == core::config('payment.paypal_currency') AND  $receiver_correct)
+            {
+                //same price , currency and email no cheating ;)
+                if (paypal::validate_ipn()) 
+                {
+                    //create user if does not exists, if not will return the user
+                    $user = Model_User::create_email($payer_email,$payer_name);
+                    //new order
+                    $order = Model_Order::new_order($ad, $user, Model_Order::PRODUCT_AD_SELL, 
+                                                    $ad->price, core::config('payment.paypal_currency'), __('Purchase').': '.$ad->seotitle);
+
+                    $order->confirm_payment('paypal',Core::request('txn_id')); 
+                }
+                else
+                {
+                    Kohana::$log->add(Log::ERROR, 'A payment has been made but is flagged as INVALID');
+                    $this->response->body('KO');
+                }   
+            } 
+            else //trying to cheat....
+            {
+                Kohana::$log->add(Log::ERROR, 'Attempt illegal actions with transaction');
+                $this->response->body('KO');
+            }
+        }// END order loaded
+        else
+        {
+            Kohana::$log->add(Log::ERROR, 'Ad not loaded');
+            $this->response->body('KO');
+        }
+
+        $this->response->body('OK');
+    } 
+
+    /**
+     * [action_form] generates the form to pay at paypal
+     */
+    public function action_guestpay()
+    { 
+        $this->auto_render = FALSE;
+
+        //check ad exists
+        $id_ad  = $this->request->param('id');
+        $ad     = new Model_Ad($id_ad);
+
+        //loaded published and with stock if we control the stock.
+        if($ad->loaded() AND $ad->status==Model_Ad::STATUS_PUBLISHED
+            AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
+            AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1) 
+            )
+        {
+
+            $paypal_account = $ad->paypal_account();
+            $currency = i18n::get_intl_currency_symbol();
+            if(isset($ad->cf_shipping) AND Valid::price($ad->cf_shipping) AND $ad->cf_shipping > 0)
+                $ad->price = $ad->price + $ad->cf_shipping;
+       
+            $paypal_url = (Core::config('payment.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
+
+            $paypal_data = array('order_id'             => $id_ad,
+                                 'amount'               => number_format($ad->price, 2, '.', ''),
+                                 'site_name'            => core::config('general.site_name'),
+                                 'site_url'             => URL::base(TRUE),
+                                 'notify_url'           => Route::url('default',array('controller'=>'paypal','action'=>'guestipn','id'=>$id_ad)),
+                                 'paypal_url'           => $paypal_url,
+                                 'paypal_account'       => $paypal_account,
+                                 'paypal_currency'      => $currency,
+                                 'item_name'            => $ad->title);
+            
+            $this->template = View::factory('paypal', $paypal_data);
+            $this->response->body($this->template->render());
+
+        }
+        else
+        {
+            Alert::set(Alert::INFO, __('Order could not be loaded'));
+            $this->redirect(Route::url('default'));
+        }
+
+    }
 }

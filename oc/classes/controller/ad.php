@@ -742,13 +742,6 @@ class Controller_Ad extends Controller {
         //check pay to featured top is enabled check stripe config too
         if(core::config('payment.paypal_seller') == FALSE AND Core::config('payment.stripe_connect')==FALSE)
             throw HTTP_Exception::factory(404,__('Page not found'));
-
-        //getting the user that wants to buy now
-        if (!Auth::instance()->logged_in())
-        {
-            Alert::set(Alert::INFO, __('To buy this product you first need to register'));
-            $this->redirect(Route::url('oc-panel'));
-        }
         
         $id_product = Model_Order::PRODUCT_AD_SELL;
 
@@ -760,19 +753,68 @@ class Controller_Ad extends Controller {
         if($ad->loaded() AND $ad->status==Model_Ad::STATUS_PUBLISHED
             AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)) )
         {
-            $amount     = $ad->price;
-            $currency   = core::config('payment.paypal_currency');
-            
-            if (isset($ad->cf_shipping) AND Valid::numeric($ad->cf_shipping) AND $ad->cf_shipping > 0)
-                $amount = $ad->price + $ad->cf_shipping;
 
-            $order = Model_Order::new_order($ad, $this->user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
+            //guest checkout since is not logged in
+            if (!Auth::instance()->logged_in())
+            {
+                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'guestcheckout' ,'id' => $id_ad)));
+            }
+            else
+            {
+                $amount     = $ad->price;
+                $currency   = core::config('payment.paypal_currency');
+                
+                if (isset($ad->cf_shipping) AND Valid::price($ad->cf_shipping) AND $ad->cf_shipping > 0)
+                    $amount = $ad->price + $ad->cf_shipping;
 
-            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
+                $order = Model_Order::new_order($ad, $this->user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
+
+                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));   
+            }
+
         }
         else
             throw HTTP_Exception::factory(404,__('Page not found'));
         
+    }
+
+    /**
+     * guestcheckout for non registered users
+     * @return [type] [description]
+     */
+    public function action_guestcheckout()
+    {
+        //only for not logued in users
+        if (Auth::instance()->logged_in())
+            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'buy' ,'id' => $id_ad)));
+        
+        //check ad exists
+        $id_ad  = $this->request->param('id');
+        $ad     = new Model_Ad($id_ad);
+
+        //loaded published and with stock if we control the stock.
+        if($ad->loaded() AND $ad->status==Model_Ad::STATUS_PUBLISHED
+            AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
+            AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1) 
+            )
+        {
+
+            //template header
+            $this->template->title              = __('Checkout').' '.Model_Order::product_desc(Model_Order::PRODUCT_AD_SELL);
+            Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+            Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title ));
+
+            Controller::$full_width = TRUE;
+
+            $this->template->bind('content', $content);
+
+            $this->template->content = View::factory('pages/ad/guestcheckout',array('ad' => $ad)); 
+        }
+        else
+        {
+            //throw 404
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }            
     }
 
 

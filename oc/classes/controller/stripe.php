@@ -254,6 +254,120 @@ class Controller_Stripe extends Controller{
     }
 
     /**
+     * gets the payment token from stripe and marks order as paid. Methos for application fee
+     * connect for guests, only for sell ad products
+     */
+    public function action_payguest()
+    { 
+        
+        $this->auto_render = FALSE;
+
+        $id_ad = $this->request->param('id');
+
+        //check ad exists
+        $ad     = new Model_Ad($id_ad);
+
+        //loaded published and with stock if we control the stock.
+        if($ad->loaded() AND $ad->status==Model_Ad::STATUS_PUBLISHED
+            AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
+            AND (core::config('payment.stripe_connect')==1) 
+            )
+        {
+
+            if ( isset( $_POST[ 'stripeToken' ] ) ) 
+            {
+
+                StripeKO::init();
+
+                // Get the credit card details submitted by the form
+                $token = Core::post('stripeToken');
+
+                // email
+                $email = Core::post('stripeEmail');
+
+
+                // Create the charge on Stripe's servers - this will charge the user's card
+                try 
+                {   
+                    //in case memberships the fee may be set on the plan ;)
+                    $fee = NULL;
+                    if ( $ad->user->subscription()->loaded() )
+                        $fee = $ad->user->subscription()->plan->marketplace_fee;
+
+                    if(isset($ad->cf_shipping) AND Valid::price($ad->cf_shipping) AND $ad->cf_shipping > 0)
+                        $ad->price = $ad->price + $ad->cf_shipping;
+
+                    $application_fee = StripeKO::application_fee($ad->price, $fee);
+
+                    //we charge the fee only if its not admin
+                    if (! $ad->user->is_admin())
+                    {
+                        $charge = \Stripe\Charge::create(array(
+                                                        "amount"    => StripeKO::money_format($ad->price), // amount in cents, again
+                                                        "currency"  => core::config('payment.paypal_currency'),
+                                                        "card"      => $token,
+                                                        "description" => $ad->title,
+                                                        "application_fee" => StripeKO::money_format($application_fee)), 
+                                                     array('stripe_account' => $ad->user->stripe_user_id)
+                                                    );
+                    }
+                    else
+                    {
+                        $charge = \Stripe\Charge::create(array(
+                                                        "amount"    => StripeKO::money_format($ad->price), // amount in cents, again
+                                                        "currency"  => core::config('payment.paypal_currency'),
+                                                        "card"      => $token,
+                                                        "description" => $ad->title)
+                                                    );
+                    }
+                    
+                }
+                catch(Exception $e) 
+                {
+                    // The card has been declined
+                    Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
+                    Alert::set(Alert::ERROR, 'Stripe The card has been declined');
+                    $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'guestcheckout','id'=>$ad->id_ad)));
+                }
+                
+                //create user if does not exists, if not will return the user
+                $user = Model_User::create_email($email);
+                //new order
+                $order = Model_Order::new_order($ad, $user, Model_Order::PRODUCT_AD_SELL, 
+                                                $ad->price, core::config('payment.paypal_currency'), __('Purchase').': '.$ad->seotitle);
+
+                //mark as paid
+                $order->confirm_payment('stripe',Core::post('stripeToken'));
+                
+                //only if is not admin we charge the fee
+                if (! $order->ad->user->is_admin())
+                {
+                    //crete new order for the application fee so we know how much the site owner is earning ;)
+                    $order_app = Model_Order::new_order($order->ad, $order->ad->user,
+                                                        Model_Order::PRODUCT_APP_FEE, $application_fee, core::config('payment.paypal_currency'),
+                                                        'id_order->'.$order->id_order.' id_ad->'.$order->ad->id_ad);
+                    $order_app->confirm_payment('stripe',Core::post('stripeToken'));
+                }
+                
+                //redirect him to his ads
+                Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
+                $this->redirect(Route::url('default'));
+            }
+            else
+            {
+                Alert::set(Alert::INFO, __('Please fill your card details.'));
+                $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'guestcheckout','id'=>$ad->id_ad)));
+            }
+            
+        }
+        else
+        {
+            Alert::set(Alert::INFO, __('Order could not be loaded'));
+            $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'guestcheckout','id'=>$ad->id_ad)));
+        }
+    }
+
+    /**
      * connects the loged user to his stripe account
      * code based on https://gist.github.com/7109113
      * see https://stripe.com/docs/connect/standalone-accounts
