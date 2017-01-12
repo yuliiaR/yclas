@@ -784,12 +784,13 @@ class Controller_Ad extends Controller {
      */
     public function action_guestcheckout()
     {
+        $id_ad  = $this->request->param('id');
+
         //only for not logued in users
         if (Auth::instance()->logged_in())
             $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'buy' ,'id' => $id_ad)));
         
         //check ad exists
-        $id_ad  = $this->request->param('id');
         $ad     = new Model_Ad($id_ad);
 
         //loaded published and with stock if we control the stock.
