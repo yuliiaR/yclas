@@ -71,6 +71,9 @@
                             <a data-toggle="tab" href="#tabSettingsPayment2checkout" aria-expanded="false">2checkout</a>
                         </li>
                         <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentAuthorize" aria-expanded="false">Authorize</a>
+                        </li>
+                        <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPaymill" aria-expanded="false">Paymill</a>
                         </li>
                         <li>
@@ -456,7 +459,7 @@
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
 
-                        <div id="tabSettingsPaymentStripe" class="tab-pane fade">
+                        <div id="tabSettingsPaymentAuthorize" class="tab-pane fade">
                     <h4>Authorize.net</h4>
                     <hr>
 
