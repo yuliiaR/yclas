@@ -104,13 +104,12 @@ $modules = array(
 	'orm'		    => KOMODPATH.'orm',        // Object Relationship Mapping
     //modules not included on the KO package but in the common module
     'common'        => COMMONPATH, // common classes open classifieds project
-	'pagination'	=> COMMONPATH.'modules/pagination', // ORM Pagination
-	'breadcrumbs'	=> COMMONPATH.'modules/breadcrumbs',// breadcrumb view
-	'formmanager'	=> COMMONPATH.'modules/formmanager',// forms to objects ORM
-	'widgets'	    => COMMONPATH.'modules/widgets',    // loads default widgets
-    'cron'          => COMMONPATH.'modules/cron',    // cron module
-    'imagefly'      => COMMONPATH.'modules/imagefly',//imagefly resize image files on the fly ;)
-    //modules unique for open classifieds
+	'pagination'	=> MODPATH.'pagination', // ORM Pagination
+	'breadcrumbs'	=> MODPATH.'breadcrumbs',// breadcrumb view
+	'formmanager'	=> MODPATH.'formmanager',// forms to objects ORM
+	'widgets'	    => MODPATH.'widgets',    // loads default widgets
+    'cron'          => MODPATH.'cron',    // cron module
+    'imagefly'      => MODPATH.'imagefly',//imagefly resize image files on the fly ;)
 	'blacksmith'	=> MODPATH.'blacksmith', // used to handle custom fields
 );
 
