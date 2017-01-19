@@ -3,7 +3,7 @@
 <?if(Auth::instance()->logged_in()):?>
     <?if (core::config('general.messaging') AND $messages = Model_Message::get_unread_threads(Auth::instance()->get_user())) :?>
         <div class="btn-group" role="group">
-            <?if ($messages_count = $messages->count_all() > 0) :?>
+            <?if (($messages_count = $messages->count_all()) > 0) :?>
                 <a class="btn btn-success"
                     href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>"
                     data-toggle="dropdown"
