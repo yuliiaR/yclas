@@ -371,59 +371,64 @@ $('.fileinput').on('change.bs.fileinput', function() {
         var $input = $(this).find('input[name^="image"]');
         var image = $input[0].files[0];
         var max_size = $('.images').data('max-image-size')*1048576 // max size in bites
+        var $closestFileInput = $(this).closest('.fileinput');
 
-        if (image && image.size > max_size)
-        {
-            swal({
-                title: '',
-                text: $('.images').data('swaltext'),
-                type: "warning",
-                allowOutsideClick: true
-            });
-            
-            $(this).closest('.fileinput').fileinput('clear');
-        }
-        else
-        {
-            //resize image
-            canvasResize(image, {
-                width: $('.images').data('image-width'),
-                height: $('.images').data('image-height'),
-                crop: false,
-                quality: $('.images').data('image-quality'),
-                callback: function(data, width, height) {
+        //resize image
+        canvasResize(image, {
+            width: $('.images').data('image-width'),
+            height: $('.images').data('image-height'),
+            crop: false,
+            quality: $('.images').data('image-quality'),
+            callback: function(data, width, height) {
+
+                var base64Image = new Image();
+                base64Image.src = data;
+
+                if (base64Image.size > max_size)
+                {
+                    swal({
+                        title: '',
+                        text: $('.images').data('swaltext'),
+                        type: "warning",
+                        allowOutsideClick: true
+                    });
+
+                    $closestFileInput.fileinput('clear');
+                }
+                else
+                {
                     $('<input>').attr({
-                        type: 'hidden',
-                        name: 'base64_' + $input.attr('name'),
-                        value: data
-                        }).appendTo('#publish-new');
+                    type: 'hidden',
+                    name: 'base64_' + $input.attr('name'),
+                    value: data
+                    }).appendTo('#publish-new');
                 }
-            });
+            }
+        });
 
-            // Fixes exif orientation on thumbnail
-            var thumbnail = $(this).find('.thumbnail > img');
-            var rotation = 1;
-            var rotate = {
-                1: 'rotate(0deg)',
-                2: 'rotate(0deg)',
-                3: 'rotate(180deg)',
-                4: 'rotate(0deg)',
-                5: 'rotate(0deg)',
-                6: 'rotate(90deg)',
-                7: 'rotate(0deg)',
-                8: 'rotate(270deg)'
-            };
+        // Fixes exif orientation on thumbnail
+        var thumbnail = $(this).find('.thumbnail > img');
+        var rotation = 1;
+        var rotate = {
+            1: 'rotate(0deg)',
+            2: 'rotate(0deg)',
+            3: 'rotate(180deg)',
+            4: 'rotate(0deg)',
+            5: 'rotate(0deg)',
+            6: 'rotate(90deg)',
+            7: 'rotate(0deg)',
+            8: 'rotate(270deg)'
+        };
 
-            loadImage.parseMetaData(
-                image,
-                function (data) {
-                    if (data.exif) {
-                        rotation = data.exif.get('Orientation');
-                        thumbnail.css('transform', rotate[rotation]);
-                    }
+        loadImage.parseMetaData(
+            image,
+            function (data) {
+                if (data.exif) {
+                    rotation = data.exif.get('Orientation');
+                    thumbnail.css('transform', rotate[rotation]);
                 }
-            );
-        }
+            }
+        );
     }
 
     //unhide next box image after selecting first
