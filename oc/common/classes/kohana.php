@@ -170,7 +170,7 @@ class Kohana extends Kohana_Core {
     public static function cache($name, $data = NULL, $lifetime = NULL)
     {
         //in case the OC_core is not yet loaded we need to use the normal cache...sucks but happens onload
-        if (class_exists('OC_Core'))
+        if (class_exists('Kohana_Cache'))
             return Core::cache($name, $data, $lifetime);
         else
             return parent::cache($name, $data, $lifetime);
