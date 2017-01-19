@@ -938,8 +938,6 @@ class Controller_Ad extends Controller {
 
 	public function action_advanced_search()
 	{
-        d(URL::current());
-        
         if (Theme::get('infinite_scroll'))
         {
             $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/jquery.infinitescroll/2.0b2/jquery.infinitescroll.js';
