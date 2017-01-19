@@ -166,7 +166,7 @@ class SitemapGenerator {
             throw new InvalidArgumentException("More than 50,000 URLs per single sitemap is not allowed.");
 
         $generatorInfo = '<!-- generator="SimpleSitemapGenerator/'.$this->classVersion.'" -->
-                          <!-- sitemap-generator-url="http://www.antczak.org"
+                          <!-- sitemap-generator-url="https://yclas.com"
                           sitemap-generator-version="'.$this->classVersion.'" -->
                           <!-- generated-on="'.date('c').'" -->';
         $sitemapHeader = '<?xml version="1.0" encoding="UTF-8"?>'.$generatorInfo.'
