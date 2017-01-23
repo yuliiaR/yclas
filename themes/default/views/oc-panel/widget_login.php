@@ -8,7 +8,7 @@
     </li>
     <li class="hidden-xs hidden-sm hidden-md">
     <?if (core::config('general.messaging') AND $messages = Model_Message::get_unread_threads(Auth::instance()->get_user())) :?>
-            <?if ($messages_count = $messages->count_all() > 0) :?>
+            <?if (($messages_count = $messages->count_all()) > 0) :?>
                 <a class="dropdown-toggle"
                     href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>"
                     data-toggle="dropdown"
