@@ -617,7 +617,11 @@ class Model_OC_User extends ORM {
                         .(($this->last_modified) ? '?v='.Date::mysql2unix($this->last_modified) : NULL);
         }
         else
-            return '//www.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=250';
+        {
+            $default_profile_image = Theme::get('default_profile_image') ? '&d='.urlencode(str_replace('i0.wp.com/', '', Theme::get('default_profile_image'))) : NULL;
+            
+            return '//www.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=250'.$default_profile_image;
+        }
     }
 
     /**
