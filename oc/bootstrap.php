@@ -4,7 +4,7 @@
 
 // Load the core Kohana class
 require SYSPATH.'classes/Kohana/Core'.EXT;
-require COMMONPATH.'classes/kohana'.EXT;
+require APPPATH.'classes/kohana'.EXT;
 
 /**
  * Enable the Kohana auto-loader.
