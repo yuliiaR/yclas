@@ -43,6 +43,7 @@ class Controller_Panel_Fields extends Auth_Controller {
         //find all, for populating form select fields 
         $categories         = Model_Category::get_as_array();  
         $order_categories   = Model_Category::get_multidimensional();
+        $errors             = '';
 
         if ($_POST)
         {
@@ -51,43 +52,59 @@ class Controller_Panel_Fields extends Auth_Controller {
                 Alert::set(Alert::ERROR,__('You have reached the maximum number of custom fields allowed.'));
                 HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
             }
-            
-            $name   = URL::title(Core::post('name'),'_');
 
-            if (strlen($name)>=60)
-                $name = Text::limit_chars($name,60,'');
+            $validation =   Validation::factory($this->request->post())
+                                                    ->rule('name', 'alpha')
+                                                    ->rule('name', 'not_empty')
+                                                    ->rule('name', 'min_length', array(':value', 3))
+                                                    ->rule('name', 'max_length', array(':value', 60));
+            if ($validation->check()) 
+            {
 
-            $field = new Model_Field();
+                $name   = URL::title(Core::post('name'),'_');
 
-            try {
+                if (strlen($name)>=60)
+                    $name = Text::limit_chars($name,60,'');
 
-                $options = array(
-                                'label'             => Core::post('label'),
-                                'tooltip'           => Core::post('tooltip'),
-                                'required'          => (Core::post('required')=='on')?TRUE:FALSE,
-                                'searchable'        => (Core::post('searchable')=='on')?TRUE:FALSE,
-                                'admin_privilege'   => (Core::post('admin_privilege')=='on')?TRUE:FALSE,
-                                'show_listing'      => (Core::post('show_listing')=='on')?TRUE:FALSE,
-                                );
+                $field = new Model_Field();
 
-                if ($field->create($name,Core::post('type'),Core::post('values'),Core::post('categories'),$options))
-                {
-                    Core::delete_cache();
-                    Alert::set(Alert::SUCCESS,sprintf(__('Field %s created'),$name));
+                try {
+
+                    $options = array(
+                                    'label'             => Core::post('label'),
+                                    'tooltip'           => Core::post('tooltip'),
+                                    'required'          => (Core::post('required')=='on')?TRUE:FALSE,
+                                    'searchable'        => (Core::post('searchable')=='on')?TRUE:FALSE,
+                                    'admin_privilege'   => (Core::post('admin_privilege')=='on')?TRUE:FALSE,
+                                    'show_listing'      => (Core::post('show_listing')=='on')?TRUE:FALSE,
+                                    );
+
+                    if ($field->create($name,Core::post('type'),Core::post('values'),Core::post('categories'),$options))
+                    {
+                        Core::delete_cache();
+                        Alert::set(Alert::SUCCESS,sprintf(__('Field %s created'),$name));
+                    }
+                    else
+                        Alert::set(Alert::WARNING,sprintf(__('Field %s already exists'),$name));
+     
+
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());     
                 }
-                else
-                    Alert::set(Alert::WARNING,sprintf(__('Field %s already exists'),$name));
- 
 
-            } catch (Exception $e) {
-                throw HTTP_Exception::factory(500,$e->getMessage());     
+                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
+                
             }
-
-            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
+            else
+                $errors = $validation->errors('field');
+            
+                
         }
 
+        
         $this->template->content = View::factory('oc-panel/pages/fields/new',array('categories' => $categories,
                                                                                    'order_categories' => $order_categories,
+                                                                                   'errors' => $errors
         																			));
     }
 
