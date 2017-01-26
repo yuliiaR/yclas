@@ -54,7 +54,7 @@ if (Theme::$skin!='default')
 
 Theme::$styles = $theme_css;
 
-Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.4,bootstrap@3.3.7,bootstrap.datepicker@0.1,select2@4.0.3,jquery.validation@1.15.0,holder@2.9.3',
+Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.4,bootstrap@3.3.7,select2@4.0.3,jquery.validation@1.15.0,holder@2.9.3',
                                     '//cdn.jsdelivr.net/blueimp-gallery/2.15.0/js/jquery.blueimp-gallery.min.js',
                                     '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'select2')),
@@ -62,6 +62,7 @@ Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.4,bootstra
                                     'js/bootstrap-slider.js',
                                     'js/favico.min.js',
                                     'js/curry.js',
+                                    'js/bootstrap-datepicker.js',
                                     'js/default.init.js?v='.Core::VERSION,
                                     'js/theme.init.js?v='.Core::VERSION,
                             );
