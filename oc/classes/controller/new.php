@@ -212,7 +212,7 @@ class Controller_New extends Controller
                     // User detection, if doesnt exists create
                     if (!Auth::instance()->logged_in()) 
                     {
-                     $user = Model_User::create_email(core::post('email'), core::post('name'));
+                    $user = Model_User::create_email(core::post('email'), core::post('name'));
 
                     //add custom fields
                     $save_cf = FALSE;
