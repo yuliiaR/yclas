@@ -103,7 +103,6 @@ $modules = array(
 	'image'		    => KOMODPATH.'image',      // Image manipulation
 	'orm'		    => KOMODPATH.'orm',        // Object Relationship Mapping
     //modules not included on the KO package but in the common module
-    'common'        => COMMONPATH, // common classes open classifieds project
 	'pagination'	=> MODPATH.'pagination', // ORM Pagination
 	'breadcrumbs'	=> MODPATH.'breadcrumbs',// breadcrumb view
 	'formmanager'	=> MODPATH.'formmanager',// forms to objects ORM

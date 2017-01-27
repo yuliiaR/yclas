@@ -36,7 +36,7 @@ class Controller_Panel_UserFields extends Auth_Controller {
      
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('New field')));
         $this->template->title = __('New Custom Field for Users');
-
+        $errors             = '';
 
         if ($_POST)
         {
@@ -46,42 +46,54 @@ class Controller_Panel_UserFields extends Auth_Controller {
                 HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));  
             }
             
-            $name   = URL::title(Core::post('name'));
 
-            if (strlen($name)>=60)
-                $name = Text::limit_chars($name,60,'');
+            $validation =   Validation::factory($this->request->post())
+                                                    ->rule('name', 'alpha')
+                                                    ->rule('name', 'not_empty')
+                                                    ->rule('name', 'min_length', array(':value', 3))
+                                                    ->rule('name', 'max_length', array(':value', 60));
+            if ($validation->check()) 
+            {
 
-            $field = new Model_UserField();
+                $name   = URL::title(Core::post('name'));
 
-            try {
+                if (strlen($name)>=60)
+                    $name = Text::limit_chars($name,60,'');
 
-                $options = array(
-                                'label'             => Core::post('label'),
-                                'tooltip'           => Core::post('tooltip'),
-                                'required'          => (Core::post('required')=='on')?TRUE:FALSE,
-                                'searchable'        => (Core::post('searchable')=='on')?TRUE:FALSE,
-                                'show_profile'      => (Core::post('show_profile')=='on')?TRUE:FALSE,
-                                'show_register'     => (Core::post('show_register')=='on')?TRUE:FALSE,
-                                'admin_privilege'   => (Core::post('admin_privilege')=='on')?TRUE:FALSE,
-                                );
+                $field = new Model_UserField();
 
-                if ($field->create($name,Core::post('type'),Core::post('values'),$options))
-                {
-                    Core::delete_cache();
-                    Alert::set(Alert::SUCCESS,sprintf(__('Field %s created'),$name));
+                try {
+
+                    $options = array(
+                                    'label'             => Core::post('label'),
+                                    'tooltip'           => Core::post('tooltip'),
+                                    'required'          => (Core::post('required')=='on')?TRUE:FALSE,
+                                    'searchable'        => (Core::post('searchable')=='on')?TRUE:FALSE,
+                                    'show_profile'      => (Core::post('show_profile')=='on')?TRUE:FALSE,
+                                    'show_register'     => (Core::post('show_register')=='on')?TRUE:FALSE,
+                                    'admin_privilege'   => (Core::post('admin_privilege')=='on')?TRUE:FALSE,
+                                    );
+
+                    if ($field->create($name,Core::post('type'),Core::post('values'),$options))
+                    {
+                        Core::delete_cache();
+                        Alert::set(Alert::SUCCESS,sprintf(__('Field %s created'),$name));
+                    }
+                    else
+                        Alert::set(Alert::ERROR,sprintf(__('Field %s already exists'),$name));
+     
+
+                } catch (Exception $e) {
+                    throw HTTP_Exception::factory(500,$e->getMessage());     
                 }
-                else
-                    Alert::set(Alert::ERROR,sprintf(__('Field %s already exists'),$name));
- 
 
-            } catch (Exception $e) {
-                throw HTTP_Exception::factory(500,$e->getMessage());     
+                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));  
             }
-
-            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'userfields','action'=>'index')));  
+            else
+                $errors = $validation->errors('field');
         }
 
-        $this->template->content = View::factory('oc-panel/pages/userfields/new');
+        $this->template->content = View::factory('oc-panel/pages/userfields/new',array('errors' => $errors));
     }
 
     public function action_update()

@@ -127,16 +127,8 @@ class Widgets {
     {
         $widgets = array();
 
-
         //check directory for widgets for this project
         foreach (new DirectoryIterator(APPPATH.'classes/widget') as $file) 
-        {
-            if($file->isFile())
-                $widgets[] = 'widget_'.$file->getBasename('.php');            
-        }
-
-        //check directory for common widgets
-        foreach (new DirectoryIterator(COMMONPATH.'modules/widgets/classes/widget') as $file) 
         {
             if($file->isFile())
                 $widgets[] = 'widget_'.$file->getBasename('.php');            

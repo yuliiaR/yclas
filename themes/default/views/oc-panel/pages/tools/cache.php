@@ -83,6 +83,36 @@
                     <?endforeach?>
                 </tbody>
             </table>
+            <?if(Core::config('cache.default')=='apcu'):?>
+            <h2>APCu stats</h2>
+            <table class="table table-striped">
+            <?foreach (array_merge(apcu_cache_info(),apcu_sma_info()) as $key => $value):?>
+
+                <?if ( (!empty($value) OR is_numeric($value)) AND $key!='block_lists' ):?>
+                <tr>
+                    <td><?=$key?></td>
+                    <td>
+                    <?
+                        switch ($key) {
+                            case 'start_time':
+                                echo Date::unix2mysql($value);
+                                break;
+                            case 'seg_size':
+                            case 'avail_mem':
+                            case 'mem_size':
+                                echo Text::bytes($value);
+                                break;
+                            default:
+                                print_r($value);
+                                break;
+                        }
+                    ?>
+                    </td>
+                </tr>
+                <?endif?>
+            <?endforeach?>
+            </table>
+            <?endif?>
         </div>
     </div>
 </div>

@@ -36,13 +36,6 @@ $system = $application.'/kohana/system';
 $komodules = $application.'/kohana/modules';
 
 /**
- * The directory where common Open Classifieds files are 
- * @see https://github.com/open-classifieds/common
- * @see https://github.com/open-classifieds/openclassifieds2/blob/master/CONTRIBUTING.md
- */
-$common = $application.'/common';
-
-/**
  * The default extension of resource files. If you change this, all resources
  * must be renamed to use the new extension.
  *
@@ -90,10 +83,6 @@ if ( ! is_dir($modules) AND is_dir(DOCROOT.$modules))
 if ( ! is_dir($komodules) AND is_dir(DOCROOT.$komodules))
     $komodules = DOCROOT.$komodules;
 
-// Make the common module relative to the docroot, for symlink'd index.php
-if ( ! is_dir($common) AND is_dir(DOCROOT.$common))
-    $common = DOCROOT.$common;
-
 // Make the system relative to the docroot, for symlink'd index.php
 if ( ! is_dir($system) AND is_dir(DOCROOT.$system))
     $system = DOCROOT.$system;
@@ -103,11 +92,10 @@ if ( ! is_dir($system) AND is_dir(DOCROOT.$system))
 define('APPPATH', realpath($application).DIRECTORY_SEPARATOR);
 define('KOMODPATH', realpath($komodules).DIRECTORY_SEPARATOR);
 define('MODPATH', realpath($modules).DIRECTORY_SEPARATOR);
-define('COMMONPATH', realpath($common).DIRECTORY_SEPARATOR);
 define('SYSPATH', realpath($system).DIRECTORY_SEPARATOR);
 
 // Clean up the configuration vars
-unset($application, $modules, $komodules,$common, $system);
+unset($application, $modules, $komodules, $system);
 
 // OC install
 if (file_exists(DOCROOT.'install/install.lock'))
