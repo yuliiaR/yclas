@@ -320,9 +320,9 @@
                                                                     data-btnOkLabel="<?=__('Yes, definitely!')?>" 
                                                                     data-btnCancelLabel="<?=__('No way!')?>"
                                                                     title="<?=__('Remove featured?')?>" data-id="tr1" data-text="<?=__('Are you sure you want to remove featured ad?')?>">
-                                                                    <span class="fa-stack fa-lg">
+                                                                    <span class="fa-stack">
                                                                         <i class="fa fa-bookmark-o fa-stack-1x"></i>
-                                                                        <i class="fa fa-ban fa-stack-2x"></i>
+                                                                        <i class="fa fa-ban fa-stack"></i>
                                                                     </span> 
                                                                     <?=__('Remove Featured')?>
                                                                 </a>
