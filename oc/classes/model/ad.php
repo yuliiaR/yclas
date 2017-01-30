@@ -914,7 +914,8 @@ class Model_Ad extends ORM {
                                 $cf_value = isset($cf_config->$cf_name->values[$cf_value-1]) ? $cf_config->$cf_name->values[$cf_value-1] : NULL;
                                 break;
                             case 'date':
-                                $cf_value = Date::format($cf_value, core::config('general.date_format'));
+                                if(strtolower(Request::current()->controller()) != 'myads' AND strtolower(Request::current()->action()) != 'update')
+                                    $cf_value = Date::format($cf_value, core::config('general.date_format'));
                                 break;
                             case 'file':
                             case 'file_dropbox':
