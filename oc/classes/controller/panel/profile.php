@@ -339,7 +339,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
             //unsusbcribe from elasticemail
             if ( Core::config('email.elastic_listname')!='' )
-                ElasticEmail::subscribe(Core::config('email.elastic_listname'),Auth::instance()->get_user()->email);
+                ElasticEmail::unsubscribe(Core::config('email.elastic_listname'),Auth::instance()->get_user()->email);
             
             $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'subscriptions')));
 		}
