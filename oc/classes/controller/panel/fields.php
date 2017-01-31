@@ -54,7 +54,7 @@ class Controller_Panel_Fields extends Auth_Controller {
             }
 
             $validation =   Validation::factory($this->request->post())
-                                                    ->rule('name', 'alpha')
+                                                    ->rule('name', 'alpha_dash')
                                                     ->rule('name', 'not_empty')
                                                     ->rule('name', 'min_length', array(':value', 3))
                                                     ->rule('name', 'max_length', array(':value', 60));
