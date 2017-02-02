@@ -143,8 +143,6 @@ class Controller_Panel_Settings extends Auth_Controller {
             ->rule('notify_email', 'email')
             ->rule('notify_name', 'not_empty')
             ->rule('new_ad_notify', 'range', array(':value', 0, 1))
-            ->rule('elastic_active', 'range', array(':value', 0, 1))
-            ->rule('smtp_active', 'range', array(':value', 0, 1))
             ->rule('smtp_ssl', 'range', array(':value', 0, 1))
             ->rule('smtp_port', 'digit')
             ->rule('smtp_auth', 'range', array(':value', 0, 1));

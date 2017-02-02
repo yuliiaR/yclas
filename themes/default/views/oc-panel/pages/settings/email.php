@@ -103,8 +103,6 @@
                                 </a>
                             </h4>
                             <hr>
-
-                            <?=Form::hidden($forms['elastic_active']['key'], $forms['elastic_active']['value'])?>
                                             
                             <div class="form-group">
                                 <a class="btn btn-success" href="http://j.mp/elasticemailoc" target="_blank" onclick='setCookie("elastic_alert",1,365)' >Sign Up ElasticEmail 150K emails free per month</a>
@@ -205,7 +203,6 @@
                         </div>
 
                         <div id="smtp-config">
-                            <?=Form::hidden($forms['smtp_active']['key'], $forms['smtp_active']['value'])?>
 
                             <div class="form-group">
                                 <?=FORM::label($forms['smtp_secure']['key'], __('Smtp secure'), array('class'=>'control-label', 'for'=>$forms['smtp_secure']['key']))?>
