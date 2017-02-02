@@ -25,10 +25,12 @@ class Email {
      */
     public static function send($to,$to_name='',$subject,$body,$reply,$replyName,$file = NULL)
     {
+        $result = FALSE;
+
         //multiple to but theres none...
         if (is_array($to) AND count($to)==0)
             return FALSE;
-
+        
         $body = Text::nl2br($body);
 
         //get the unsubscribe link
@@ -51,81 +53,29 @@ class Email {
         $unsubscribe_link = Route::url('oc-panel',array('controller'=>'auth','action'=>'unsubscribe','id'=>$email_encoded));
 
         //get the template from the html email boilerplate
+        $body_original = $body;
         $body = View::factory('email',array('title'=>$subject,'content'=>$body,'unsubscribe_link'=>$unsubscribe_link))->render();
 
-        //sendign via elasticemail
-        if (Core::config('email.elastic_active')==TRUE)
-        {
-            return ElasticEmail::send($to,$to_name, $subject, $body, $reply, $replyName);
-        }
-        else
-        {
-            require_once Kohana::find_file('vendor', 'php-mailer/phpmailer','php');
-            
-            $mail= new PHPMailer();
-            $mail->CharSet = Kohana::$charset;
+        switch (core::config('email.service')) {
+            case 'elasticemail':
+                $result =  ElasticEmail::send($to,$to_name, $subject, $body, $reply, $replyName);
+                break;
+            case 'mailgun':
+                //todo
 
-            if(core::config('email.smtp_active') == TRUE)
-            { 
-                require_once Kohana::find_file('vendor', 'php-mailer/smtp','php');
-                
-                $mail->IsSMTP();
-                $mail->Timeout = 5;
+                break;
+            case 'pepipost':
+                //todo
 
-                //SMTP HOST config
-                if (core::config('email.smtp_host')!="")
-                    $mail->Host       = core::config('email.smtp_host');              // sets custom SMTP server
-                
-
-                //SMTP PORT config
-                if (core::config('email.smtp_port')!="")
-                    $mail->Port       = core::config('email.smtp_port');              // set a custom SMTP port
-                
-
-                //SMTP AUTH config
-                if (core::config('email.smtp_auth') == TRUE)
-                {
-                    $mail->SMTPAuth   = TRUE;                                                  // enable SMTP authentication
-                    $mail->Username   = core::config('email.smtp_user');              // SMTP username
-                    $mail->Password   = core::config('email.smtp_pass');              // SMTP password                        
-                }
-
-                // sets the prefix to the server
-                $mail->SMTPSecure = core::config('email.smtp_secure');                  
-                    
-            }
-
-            $mail->From       = core::config('email.notify_email');
-            $mail->FromName   = core::config('email.notify_name');
-            $mail->Subject    = $subject;
-            $mail->MsgHTML($body);
-
-            if($file !== NULL) 
-                $mail->AddAttachment($file['tmp_name'],$file['name']);
-
-            $mail->AddReplyTo($reply,$replyName);//they answer here
-
-            if (is_array($to))
-            {
-                foreach ($to as $contact) 
-                    $mail->AddBCC($contact['email'],$contact['name']);               
-            }
-            else
-                $mail->AddAddress($to,$to_name);
-
-            $mail->IsHTML(TRUE); // send as HTML
-
-            if(!$mail->Send()) 
-            {//to see if we return a message or a value bolean
-                Alert::set(Alert::ALERT,"Mailer Error: " . $mail->ErrorInfo);
-                return FALSE;
-            } 
-            else 
-                return TRUE;
+                break;
+            case 'smtp':
+            case 'mail':
+            default:
+                $result = self::phpmailer($to,$to_name,$subject,$body,$reply,$replyName,$file);
+                break;
         }
 
-        return FALSE;
- 
+        return $result;
     }
 
     /**
@@ -211,90 +161,6 @@ class Email {
         }
     }
 
-
-
-    /**
-     * Send Elastic Email using cURL (libcurl) in PHP
-     *
-     */
-    public static function ElasticEmail($to,$to_name='', $subject, $body_html, $from, $from_name) {
-        
-        // Initialize cURL
-        $ch = curl_init();
-        
-        // Set cURL options
-        curl_setopt($ch, CURLOPT_URL, 'https://api.elasticemail.com/mailer/send');
-        curl_setopt($ch, CURLOPT_POST, 1);
-
-        // Parameter data
-        // $data = array( 
-        //     'username'  => Core::config('email.elastic_username'), 
-        //     'api_key'   => Core::config('email.elastic_username'), 
-        //     'from'      => $from, 
-        //     'from_name' => $from_name, 
-        //     'to'        => $to, 
-        //     'is_html'   => "true", 
-        //     'subject'   => $subject, 
-        //     'body'      => $body 
-        // );
-
-        //multiple recipients in elasctic sent as BCC internally
-        if (is_array($to))
-        {
-            $to_aux = '';
-            foreach ($to as $contact) 
-                 $to_aux .= $contact['name'].' <'.$contact['email'].'>;';
-
-             $to = $to_aux;
-        }
-        elseif($to_name!='')
-            $to = $to_name . ' <'.$to.'>;';
-        
-
-
-        $data = 'username='.urlencode(Core::config('email.elastic_username')).
-                '&api_key='.urlencode(Core::config('email.elastic_username')).
-                '&from='.urlencode($from).
-                '&from_name='.urlencode($from_name).
-                '&to='.urlencode($to).
-                '&subject='.urlencode($subject).
-                '&body_html='.urlencode($body_html);
-        
-        // Set parameter data to POST fields
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
-        // Header data
-            $header = "Content-Type: application/x-www-form-urlencoded\r\n";
-            $header .= "Content-Length: ".strlen($data)."\r\n\r\n";
-
-        // Set header
-        curl_setopt($ch, CURLOPT_HEADER, $header);
-
-        //timeout
-        curl_setopt($ch,CURLOPT_TIMEOUT, 2);
-        
-        // Set to receive server response
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        
-        // Set cURL to verify SSL
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        
-        // Get result
-        $result = curl_exec($ch);
-        
-        // Close cURL
-        curl_close($ch);
-        
-        return ($result === false) ? FALSE : TRUE;
-
-        // Return the response or NULL on failure
-        //  return ($result === false) ? NULL : $result;
-        
-        // Alternative error checking return
-        // return ($result === false) ? 'Curl error: ' . curl_error($ch): $result;
-    }
-
-
     /**
      * returns an array of administrators and moderators
      * @return array
@@ -316,7 +182,116 @@ class Email {
 
         return $arr;
     }
+
+    /**
+     * returns the spam score of a raw email using api from postmarkapp
+     * @param  string $raw_email entire RAW email with headers etc....
+     * @return numeric/false            spam score or FALSE is something went wrong....
+     */
+    public static function get_spam_score($raw_email)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_URL, 'http://spamcheck.postmarkapp.com/filter');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('email' => $raw_email,'options'=>'short')));
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+
+        $response = curl_exec($ch);
+
+        //something went wrong with the request
+        if(empty($response) || curl_error($ch) || curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200){
+            curl_close($ch);
+            return FALSE;
+        }
+
+        curl_close($ch);
+
+        $score = json_decode($response);
+
+        if ($score->success == TRUE AND is_numeric($score->score))
+            return $score->score;
+        else
+            return FALSE;
+    }
   
+    public static function phpmailer($to,$to_name='',$subject,$body,$reply,$replyName,$file = NULL)
+    {
+        require_once Kohana::find_file('vendor', 'php-mailer/phpmailer','php');
+            
+        $mail= new PHPMailer();
+        $mail->CharSet = Kohana::$charset;
+
+        if(core::config('email.service') == 'smtp')
+        { 
+            require_once Kohana::find_file('vendor', 'php-mailer/smtp','php');
+            
+            $mail->IsSMTP();
+            $mail->Timeout = 5;
+
+            //SMTP HOST config
+            if (core::config('email.smtp_host')!="")
+                $mail->Host       = core::config('email.smtp_host');              // sets custom SMTP server
+            
+
+            //SMTP PORT config
+            if (core::config('email.smtp_port')!="")
+                $mail->Port       = core::config('email.smtp_port');              // set a custom SMTP port
+            
+
+            //SMTP AUTH config
+            if (core::config('email.smtp_auth') == TRUE)
+            {
+                $mail->SMTPAuth   = TRUE;                                                  // enable SMTP authentication
+                $mail->Username   = core::config('email.smtp_user');              // SMTP username
+                $mail->Password   = core::config('email.smtp_pass');              // SMTP password                        
+            }
+
+            // sets the prefix to the server
+            $mail->SMTPSecure = core::config('email.smtp_secure');                  
+                
+        }
+
+        $mail->From       = core::config('email.notify_email');
+        $mail->FromName   = core::config('email.notify_name');
+        $mail->Subject    = $subject;
+        $mail->MsgHTML($body);
+
+        if($file !== NULL) 
+            $mail->AddAttachment($file['tmp_name'],$file['name']);
+
+        $mail->AddReplyTo($reply,$replyName);//they answer here
+
+        if (is_array($to))
+        {
+            foreach ($to as $contact) 
+                $mail->AddBCC($contact['email'],$contact['name']);               
+        }
+        else
+            $mail->AddAddress($to,$to_name);
+
+        $mail->IsHTML(TRUE); // send as HTML
+
+        //to multiple destinataries, check spam score
+        if (is_array($to))
+        {
+            $mail->preSend();
+            $spam_score = Email::get_spam_score($mail->getSentMIMEMessage());
+            if ($spam_score >= 5 OR $spam_score === FALSE)
+            {
+                Alert::set(Alert::ALERT,"Please review your email. Got a Spam Score of " . $spam_score);
+                return $spam_score;
+            }
+        }
+
+        if(!$mail->Send()) 
+        {//to see if we return a message or a value bolean
+            Alert::set(Alert::ALERT,"Mailer Error: " . $mail->ErrorInfo);
+            return FALSE;
+        } 
+        else 
+            return TRUE;
+    }
 
 
 } //end email

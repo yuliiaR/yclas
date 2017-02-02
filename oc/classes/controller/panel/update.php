@@ -8,11 +8,23 @@
  * @copyright  (c) 2009-2014 Open Classifieds Team
  * @license    GPL v3
  */
-class Controller_Panel_Update extends Controller_Panel_OC_Update {    
+class Controller_Panel_Update extends Auth_Controller {
 
     public function action_320()
     {
         File::delete(DOCROOT.'oc/common');
+
+
+        $email_service = (Core::config('email.elastic_active') == 1 ? 'elastic': ( Core::config('email.smtp_active') == 1?'smtp':'mail' ) );
+
+        //new configs
+        $configs = array(
+                        array( 'config_key'     => 'service',
+                               'group_name'     => 'email', 
+                               'config_value'   => $email_service),
+                        );
+
+        Model_Config::config_array($configs);
     }
 
 

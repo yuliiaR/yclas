@@ -1,7 +1,7 @@
 //settins scripts 
 
 // $('#allowed_formats option').each(function(){
-// 	$(this).attr('selected', 'selected');
+//  $(this).attr('selected', 'selected');
 // });
 
 // jQuery.validator with bootstrap integration
@@ -89,3 +89,153 @@ function initPNotify() {
         event.preventDefault();
     });
 }
+
+$(function(){
+    service = $('#tab-settings li.active').find('.email-service').attr('id');
+
+    if (service == 'smtp' || service == 'gmail' || service == 'outlook' || service == 'yahoo' || service == 'zoho')
+    {
+        showSmtpConfig();     
+    }
+    else if(service == 'elastic') {
+        showElasticConfig();
+    }
+    else {
+        hideEmailConfig();
+    }
+});
+
+function hideEmailConfig() {
+    $('#elastic-config').hide();
+    $('#smtp-config').hide();
+}
+
+function showSmtpConfig() {
+    $('#elastic-config').hide();
+    $('#smtp-config').show();
+}
+
+function showElasticConfig() {
+    $('#elastic-heading, #smtp-heading, #gmail-heading, #outlook-heading, #yahoo-heading, #zoho-heading').hide();
+    $('input[name="elastic_active"]').val('1');
+    $('input[name="service"]').val('elastic');
+    $('#elastic-heading').show();
+    $('#elastic-config').show();
+    $('#smtp-config').hide();
+}
+
+function clearSmtpConfig() {
+    $('input[name="elastic_active"]').val('0');
+    $('input[name="smtp_active"]').val('0');
+    $('select[name="smtp_secure"]').val('').trigger("change");
+    $('input[name="smtp_host"]').val('');
+    $('input[name="smtp_port"]').val('');
+    $('select[name="smtp_auth"]').val('0').trigger("change");
+    $('input[name="smtp_user"]').val('');
+    $('input[name="smtp_pass"]').val('');
+}
+
+function clearElasticConfig() {
+    $('input[name="elastic_active"]').val('0');
+    $('input[name="elastic_username"]').val('');
+    $('input[name="elastic_password"]').val('');
+    $('input[name="elastic_listname"]').val('');
+}
+
+function gmailConfig() {
+    $('#elastic-heading, #smtp-heading, #gmail-heading, #outlook-heading, #yahoo-heading, #zoho-heading').hide();
+    $('#gmail-heading').show();
+    $('input[name="service"]').val('gmail');
+    $('input[name="smtp_active"]').val('1');
+    $('select[name="smtp_secure"]').val('ssl').trigger("change");
+    $('input[name="smtp_host"]').val('smtp.gmail.com');
+    $('input[name="smtp_port"]').val('465');
+    $('select[name="smtp_auth"]').val('1').trigger("change");
+    $('input[name="smtp_user"]').val('');
+    $('input[name="smtp_pass"]').val('');
+}
+
+function outlookConfig() {
+    $('#elastic-heading, #smtp-heading, #gmail-heading, #outlook-heading, #yahoo-heading, #zoho-heading').hide();
+    $('#outlook-heading').show();
+    $('input[name="service"]').val('outlook');
+    $('input[name="smtp_active"]').val('1');
+    $('select[name="smtp_secure"]').val('tls').trigger("change");
+    $('input[name="smtp_host"]').val('smtp.office365.com');
+    $('input[name="smtp_port"]').val('587');
+    $('select[name="smtp_auth"]').val('1').trigger("change");
+    $('input[name="smtp_user"]').val('');
+    $('input[name="smtp_pass"]').val('');
+}
+
+function yahooConfig() {
+    $('#elastic-heading, #smtp-heading, #gmail-heading, #outlook-heading, #yahoo-heading, #zoho-heading').hide();
+    $('#yahoo-heading').show();
+    $('input[name="service"]').val('yahoo');
+    $('input[name="smtp_active"]').val('1');
+    $('select[name="smtp_secure"]').val('ssl').trigger("change");
+    $('input[name="smtp_host"]').val('smtp.mail.yahoo.com');
+    $('input[name="smtp_port"]').val('465');
+    $('select[name="smtp_auth"]').val('1').trigger("change");
+    $('input[name="smtp_user"]').val('');
+    $('input[name="smtp_pass"]').val('');
+}
+
+function zohoConfig() {
+    $('#elastic-heading, #smtp-heading, #gmail-heading, #outlook-heading, #yahoo-heading, #zoho-heading').hide();
+    $('#zoho-heading').show();
+    $('input[name="service"]').val('zoho');
+    $('input[name="smtp_active"]').val('1');
+    $('select[name="smtp_secure"]').val('tls').trigger("change");
+    $('input[name="smtp_host"]').val('smtp.zoho.com');
+    $('input[name="smtp_port"]').val('587');
+    $('select[name="smtp_auth"]').val('1').trigger("change");
+    $('input[name="smtp_user"]').val('');
+    $('input[name="smtp_pass"]').val('');
+}
+
+$('#tab-settings a[class="email-service"][data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    service = $(this).attr('id');
+    switch(service) {
+        case 'smtp':
+            $('#elastic-heading, #smtp-heading, #gmail-heading, #outlook-heading, #yahoo-heading, #zoho-heading').hide();
+            $('#smtp-heading').show();
+            clearElasticConfig();
+            clearSmtpConfig();    
+            showSmtpConfig();    
+            break;
+        case 'gmail':
+            clearElasticConfig();
+            clearSmtpConfig();    
+            gmailConfig();
+            showSmtpConfig();    
+            break;
+        case 'outlook':
+            clearElasticConfig();
+            clearSmtpConfig();    
+            outlookConfig();
+            showSmtpConfig();
+            break;
+        case 'yahoo':
+            clearElasticConfig();
+            clearSmtpConfig();    
+            yahooConfig();
+            showSmtpConfig();
+            break;
+        case 'zoho':
+            clearElasticConfig();
+            clearSmtpConfig();    
+            zohoConfig();
+            showSmtpConfig();
+            break;
+        case 'elastic':
+            clearSmtpConfig();
+            showElasticConfig();
+            break;
+        default:
+            $('#elastic-heading, #smtp-heading, #gmail-heading, #outlook-heading, #yahoo-heading, #zoho-heading').hide();
+            clearSmtpConfig();
+            clearElasticConfig();
+            hideEmailConfig();
+    }
+})

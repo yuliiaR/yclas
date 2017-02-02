@@ -30,10 +30,10 @@ $(function (){
            redirect: true,
         },
         {
-           element: "#page-themes",
+           element: "#page-email-settings",
            title: "",
-           content: getTourLocalization("step4_content"),
-           path: getTourBasePath() + "oc-panel/theme",
+           content: getTourLocalization("step11_content"),
+           path: getTourBasePath() + "oc-panel/settings/email",
            placement: "top",
            redirect: true,
         },
