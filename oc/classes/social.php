@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php
 /**
  * Sociual auth class
  *
@@ -49,8 +49,7 @@ class Social {
         require_once Kohana::find_file('vendor', 'hybridauth/hybridauth/Hybrid/Endpoint','php');
         require_once Kohana::find_file('vendor', 'hybridauth/hybridauth/Hybrid/Logger','php');
         require_once Kohana::find_file('vendor', 'hybridauth/hybridauth/Hybrid/Exception','php');
-        require_once Kohana::find_file('vendor', 'hybridauth/hybridauth/Hybrid/Auth','php');
-        require_once Kohana::find_file('vendor', 'hybridauth/vendor/autoload','php');
+        // require_once Kohana::find_file('vendor', 'hybridauth/vendor/autoload','php'); will uncomment on upgrade
     }
 
     public static function include_vendor_twitter()
@@ -58,28 +57,81 @@ class Social {
         require_once Kohana::find_file('vendor/', 'codebird-php/codebird');
     }
 
+    public static function include_vendor_instagram()
+    {
+        require_once Kohana::find_file('vendor/', 'Instagram-API/src/Autoload');
+    }
+    
     public static function social_post_featured_ad(Model_Ad $ad)
     {
-    	if($ad->status == Model_Ad::STATUS_PUBLISHED AND core::config('advertisement.social_post_only_featured') == TRUE)
-    	{	
-	        if(core::config('advertisement.twitter'))
-	            self::twitter($ad);
-	        
-	        if(core::config('advertisement.facebook'))
-	            self::facebook($ad);
-    	}
+        if($ad->status == Model_Ad::STATUS_PUBLISHED AND core::config('advertisement.social_post_only_featured') == TRUE)
+        {   
+            if(core::config('advertisement.twitter'))
+                self::twitter($ad);
+            
+            if(core::config('advertisement.facebook'))
+                self::facebook($ad);
+
+            if(core::config('advertisement.instagram'))
+                self::instagram($ad);
+        }
     }
 
-    public static function post_ad(Model_Ad $ad)
+    public static function post_ad(Model_Ad $ad, $file)
     {
-    	if($ad->status == Model_Ad::STATUS_PUBLISHED AND core::config('advertisement.social_post_only_featured') == FALSE)
-    	{	
-	        if(core::config('advertisement.twitter'))
-	            self::twitter($ad);
-	        
-	        if(core::config('advertisement.facebook'))
-	            self::facebook($ad);
-    	}
+        if($ad->status == Model_Ad::STATUS_PUBLISHED AND core::config('advertisement.social_post_only_featured') == FALSE)
+        {   
+            if(core::config('advertisement.twitter'))
+                self::twitter($ad);
+            
+            if(core::config('advertisement.facebook'))
+                self::facebook($ad);
+
+            if(core::config('advertisement.instagram'))
+                self::instagram($ad, $file);
+
+        }
+    }
+
+    public static function instagram(Model_Ad $ad, $file = NULL)
+    {
+            if($file == NULL)
+                $file = $ad->get_first_image('image');
+
+            if($file !== NULL)
+            {
+                self::include_vendor_instagram();
+
+                $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
+                
+                $caption = $ad->title;
+
+                if($ad->category->id_category_parent != 1 AND $ad->category->parent->loaded())
+                    $caption .= ' - '.$ad->category->parent->name;
+
+                // Instagram caption characters limit is 2200 !!
+                $caption .= '-'.$ad->category->name;
+
+                if($ad->id_location != 1 AND $ad->location->loaded())
+                {
+                    if($ad->location->id_location_parent != 1 AND $ad->location->parent->loaded())
+                        $caption .= ', '.$ad->location->parent->name;
+                    
+                    $caption .= '-'.$ad->location->name;
+                }
+
+                if($ad->price>0)
+                    $caption .= ', '.i18n::money_format($ad->price);
+
+                $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
+                $caption .= ' - '.$url_ad;
+
+                $i = new \InstagramAPI\Instagram();
+                $i->setUser(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
+                $i->login();
+                $i->uploadPhoto(Core::imagefly($file,400,500), $caption);
+            }
+
     }
 
     public static function twitter(Model_Ad $ad)
@@ -99,7 +151,7 @@ class Social {
 
         $message .= ' - '.Text::limit_chars($ad->category->name, 20, NULL, TRUE);
 
-        if($ad->id_location != 1)
+        if($ad->id_location != 1 AND $ad->location->loaded())
         {
             if($ad->location->id_location_parent != 1 AND $ad->location->parent->loaded())
                 $message .= ', '.Text::limit_chars($ad->location->parent->name, 20, NULL, TRUE);

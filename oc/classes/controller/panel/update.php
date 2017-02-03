@@ -22,6 +22,15 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'service',
                                'group_name'     => 'email', 
                                'config_value'   => $email_service),
+                        array( 'config_key'     => 'instagram',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => '0'),
+                        array( 'config_key'     => 'instagram_username',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'instagram_password',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
                         );
 
         Model_Config::config_array($configs);

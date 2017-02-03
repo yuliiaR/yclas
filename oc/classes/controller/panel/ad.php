@@ -361,8 +361,8 @@ class Controller_Panel_Ad extends Auth_Controller {
 						Model_Subscription::new_ad($ad->user);
 						Model_Subscribe::notify($ad);
 
-						// Post on social media
-        				Social::post_ad($ad);
+						// Post on social media 
+        				Social::post_ad($ad, $ad->get_first_image('image'));
 					}
 					catch (Exception $e)
 					{
