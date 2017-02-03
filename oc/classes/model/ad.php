@@ -1485,9 +1485,6 @@ class Model_Ad extends ORM {
         //save the last changes on status
         $ad->save();
 
-        // Post on social media
-        Social::post_ad($ad);
-
         //notify admins new ad
         $ad->notify_admins();
 

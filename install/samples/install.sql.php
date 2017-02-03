@@ -761,6 +761,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'facebook_app_secret', ''),
 ('advertisement', 'facebook_access_token', ''),
 ('advertisement', 'facebook_id', ''),
+('advertisement', 'instagram_username', ''),
+('advertisement', 'instagram_password', ''),
 ('email', 'notify_email', '".core::request('ADMIN_EMAIL')."'),
 ('email', 'notify_name', '"."no-reply ".core::request('SITE_NAME')."'),
 ('email', 'new_ad_notify', 0),

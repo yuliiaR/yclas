@@ -277,6 +277,9 @@ class Controller_New extends Controller
                                 $filename = $new_ad->save_image($_FILES['image'.$i]);
                         }
 
+                        // Post on social media
+                        Social::post_ad($new_ad, $filename);
+
                         Alert::set(Alert::SUCCESS, $return['message']);
 
                         //redirect user
