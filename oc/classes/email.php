@@ -284,7 +284,14 @@ class Email {
             }
         }
 
-        if(!$mail->Send()) 
+        try {
+            $result = $mail->Send();
+        } catch (Exception $e) {
+            $result = FALSE;
+            $mail->ErrorInfo = $e->getMessage();
+        }
+
+        if(!$result) 
         {//to see if we return a message or a value bolean
             Alert::set(Alert::ALERT,"Mailer Error: " . $mail->ErrorInfo);
             return FALSE;
