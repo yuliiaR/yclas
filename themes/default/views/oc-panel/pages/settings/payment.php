@@ -110,11 +110,7 @@
 
                     <div class="form-group">
                         <?=FORM::label($forms['paypal_currency']['key'], __('Payment currency'), array('class'=>'control-label', 'for'=>$forms['paypal_currency']['key']))?>
-                        <?=FORM::input($forms['paypal_currency']['key'], $forms['paypal_currency']['value'], array(
-                            'placeholder' => $forms['paypal_currency']['value'], 
-                            'class' => 'tips form-control', 
-                            'id' => $forms['paypal_currency']['key'], 
-                        ));?>
+                        <?=Form::select($forms['paypal_currency']['key'], i18n::currencies(), $forms['paypal_currency']['value'])?>
                         <span class="help-block">
                             <?=__("Please be sure you are using a currency that your payment gateway supports.")?>
                         </span>
