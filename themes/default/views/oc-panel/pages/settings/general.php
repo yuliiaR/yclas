@@ -357,11 +357,7 @@
                                 <a target="_blank" href="https://docs.yclas.com/how-to-currency-format/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
-                                <?=FORM::input($forms['number_format']['key'], $forms['number_format']['value'], array(
-                                    'placeholder' => "20", 
-                                    'class' => 'form-control', 
-                                    'id' => $forms['number_format']['id']
-                                ))?> 
+                                <?=Form::select($forms['number_format']['key'], i18n::currencies_defaults(), $forms['number_format']['value'])?>
                                 <span class="help-block">
                                     <?=__("Number format is how you want to display numbers related to advertisements. More specific advertisement price. Every country have a specific way of dealing with decimal digits.")?>
                                 </span>
