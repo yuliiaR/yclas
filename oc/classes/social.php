@@ -126,10 +126,14 @@ class Social {
                 $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
                 $caption .= ' - '.$url_ad;
 
-                $i = new \InstagramAPI\Instagram();
-                $i->setUser(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
-                $i->login();
-                $i->uploadPhoto(Core::imagefly($file,400,500), $caption);
+                try 
+                {
+                    $i->setUser(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
+                    $i->login();
+                    $i->uploadPhoto(Core::imagefly($file,400,500), $caption);
+                } catch (InstagramException $e) {
+                    echo $e->getMessage();
+                }
             }
 
     }
