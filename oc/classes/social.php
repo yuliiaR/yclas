@@ -126,6 +126,8 @@ class Social {
                 $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
                 $caption .= ' - '.$url_ad;
 
+                $i = new \InstagramAPI\Instagram();
+
                 try 
                 {
                     $i->setUser(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
