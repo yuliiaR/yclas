@@ -1104,6 +1104,7 @@ class Model_Ad extends ORM {
             $this->featured = Date::unix2mysql(time() + ($days * 24 * 60 * 60));
             try {
                 $this->save();
+                Social::social_post_featured_ad($this);
             } catch (Exception $e) {
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
@@ -1484,9 +1485,6 @@ class Model_Ad extends ORM {
    
         //save the last changes on status
         $ad->save();
-
-        // Post on social media
-        Social::post_ad($ad);
 
         //notify admins new ad
         $ad->notify_admins();

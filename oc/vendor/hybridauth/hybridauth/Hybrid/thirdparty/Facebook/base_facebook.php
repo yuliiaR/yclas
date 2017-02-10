@@ -138,11 +138,16 @@ abstract class BaseFacebook
    * @var array
    */
   public static $CURL_OPTS = array(
-    CURLOPT_CONNECTTIMEOUT => 10,
+    CURLOPT_CONNECTTIMEOUT => 50,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_TIMEOUT        => 60,
     CURLOPT_USERAGENT      => 'facebook-php-3.2',
+    CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_SSL_VERIFYHOST => false,
   );
+
+  protected $trustForwarded = true;
+  protected $allowSignedRequest = false;
 
   /**
    * List of query parameters that get automatically dropped when rebuilding
@@ -232,14 +237,14 @@ abstract class BaseFacebook
    *
    * @var boolean
    */
-  protected $trustForwarded = false;
+  // protected $trustForwarded = false;
 
   /**
    * Indicates if signed_request is allowed in query parameters.
    *
    * @var boolean
    */
-  protected $allowSignedRequest = true;
+  // protected $allowSignedRequest = true;
 
   /**
    * Initialize a Facebook Application.
@@ -1249,22 +1254,16 @@ abstract class BaseFacebook
    * @return string The HTTP Protocol
    */
   protected function getHttpProtocol() {
-    if ($this->trustForwarded && isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
-      if ($_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+
+    //we are sure is a https request , we use first the Nginx forwarded PROTO OR apache
+    if( (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) AND $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') 
+        OR (isset($_SERVER['REQUEST_SCHEME']) AND $_SERVER['REQUEST_SCHEME'] == 'https')
+        OR (isset($_SERVER['HTTP_CF_VISITOR']) AND $_SERVER['HTTP_CF_VISITOR'] == '{"scheme":"https"}')
+        )
+    {   
         return 'https';
-      }
-      return 'http';
     }
-    /*apache + variants specific way of checking for https*/
-    if (isset($_SERVER['HTTPS']) &&
-        ($_SERVER['HTTPS'] === 'on' || $_SERVER['HTTPS'] == 1)) {
-      return 'https';
-    }
-    /*nginx way of checking for https*/
-    if (isset($_SERVER['SERVER_PORT']) &&
-        ($_SERVER['SERVER_PORT'] === '443')) {
-      return 'https';
-    }
+
     return 'http';
   }
 

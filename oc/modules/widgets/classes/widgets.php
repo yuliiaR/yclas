@@ -134,6 +134,13 @@ class Widgets {
                 $widgets[] = 'widget_'.$file->getBasename('.php');            
         }
 
+        //check directory for common widgets
+        foreach (new DirectoryIterator(MODPATH.'widgets/classes/widget') as $file) 
+        {
+            if($file->isFile())
+                $widgets[] = 'widget_'.$file->getBasename('.php');            
+        }
+        
         return $widgets;
     }
 

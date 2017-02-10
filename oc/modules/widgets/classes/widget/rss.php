@@ -61,13 +61,13 @@ class Widget_RSS extends Widget
 	 *
 	 * @return  void
 	 */
-	public function before()
+	/*public function before()
 	{
 		//try to get the RSS from the cache
         $rss = Feed::parse($this->rss_url,$this->rss_limit,$this->rss_expire);
 
 		$this->rss_items = $rss;
-	}
+	}*/
 
 
 }
