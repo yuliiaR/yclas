@@ -15,7 +15,7 @@ class Controller_Ad extends Controller {
 		}
 		if(core::config('general.auto_locate') OR core::config('advertisement.map'))
 		{
-            Theme::$scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry,places&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap';
+            Theme::$scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry,places&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
 		}
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
 		$this->template->scripts['footer'][] = 'js/sort.js';
@@ -945,7 +945,7 @@ class Controller_Ad extends Controller {
         }
         if(core::config('general.auto_locate') OR core::config('advertisement.map'))
         {
-            Theme::$scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry,places&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap';
+            Theme::$scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry,places&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
         }
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
         $this->template->scripts['footer'][] = 'js/sort.js';

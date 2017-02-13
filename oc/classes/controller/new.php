@@ -92,7 +92,7 @@ class Controller_New extends Controller
         $this->template->scripts['footer'][] = 'js/load-image.all.min.js';
         if(core::config('advertisement.map_pub_new'))
         {
-            $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap';
+            $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
         }
         $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
 

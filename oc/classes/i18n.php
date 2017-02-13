@@ -426,7 +426,15 @@ class I18n extends Kohana_I18n {
                 break;
         }
     }
-    
+        
+    public static function get_gmaps_language($locale)
+    {
+        if (strlen($locale)>2)
+            $locale = substr($locale,0,2);
+
+        return $locale;
+    }
+
     /**
      * returns the number in the locale format
      * @param  float $number 

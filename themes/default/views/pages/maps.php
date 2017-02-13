@@ -1,7 +1,7 @@
 <html>
 <head>
     <title><?=$title?></title>
-    <script type="text/javascript" src="//maps.google.com/maps/api/js?libraries=geometry&v=3&key=<?=core::config('advertisement.gm_api_key')?>"></script>
+    <script type="text/javascript" src="//maps.google.com/maps/api/js?libraries=geometry&v=3&key=<?=core::config('advertisement.gm_api_key')?>&language=<?=i18n::get_display_language(i18n::$locale)?>"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/maplace.js/0.1.3/maplace.min.js"></script>
     

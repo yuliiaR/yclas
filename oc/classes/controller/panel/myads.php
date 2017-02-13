@@ -261,7 +261,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                                                         'js/load-image.all.min.js',
                                                         'js/oc-panel/edit_ad.js');
 
-            $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap';
+            $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
             $this->template->scripts['async_defer'][] = '//apis.google.com/js/api.js?onload=onApiLoad';
         }
         else
@@ -276,7 +276,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                                                         'js/canvasResize.js',
                                                         'js/oc-panel/edit_ad.js');
 
-            $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap';
+            $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
             $this->template->scripts['async_defer'][] = '//apis.google.com/js/api.js?onload=onApiLoad';
         }
 
