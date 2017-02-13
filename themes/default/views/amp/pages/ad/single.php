@@ -77,7 +77,7 @@
         <?endif?>
     <?endif?>
 
-    <amp-img src="//maps.googleapis.com/maps/api/staticmap?zoom=<?=Core::config('advertisement.map_zoom')?>&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=<?=($ad->category->get_icon() AND Kohana::$environment !== Kohana::DEVELOPMENT) ? 'icon:'.Core::imagefly($ad->category->get_icon(),48,48).'%7C' : NULL?>size:large%7Ccolor:red%7Clabel:·%7C<?=$ad->latitude?>,<?=$ad->longitude?>"
+    <amp-img src="//maps.googleapis.com/maps/api/staticmap?language=<?=i18n::get_display_language(i18n::$locale)?>&zoom=<?=Core::config('advertisement.map_zoom')?>&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=<?=($ad->category->get_icon() AND Kohana::$environment !== Kohana::DEVELOPMENT) ? 'icon:'.Core::imagefly($ad->category->get_icon(),48,48).'%7C' : NULL?>size:large%7Ccolor:red%7Clabel:·%7C<?=$ad->latitude?>,<?=$ad->longitude?>"
         height="300"
         width="600"
         layout="responsive">

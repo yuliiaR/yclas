@@ -426,7 +426,15 @@ class I18n extends Kohana_I18n {
                 break;
         }
     }
-    
+        
+    public static function get_gmaps_language($locale)
+    {
+        if (strlen($locale)>2)
+            $locale = substr($locale,0,2);
+
+        return $locale;
+    }
+
     /**
      * returns the number in the locale format
      * @param  float $number 
@@ -557,6 +565,8 @@ class I18n extends Kohana_I18n {
         'VEB' => array(NULL,2,',','.',0),          //  Venezuela, Bolivar
         'VND' => array('&#x20ab;',0,'','.',0),           //  Viet Nam, Dong ₫
         'ZWD' => array(NULL,2,'.',' ',0),          //  Zimbabwe Dollar
+        'XPF' => array('₣',0,'.',' ',0),          //  Polynesian franc
+        'LKR' => array('₨',2,'.',',',0),          //  Sri Lankan Rupee
     );
     
     /**
@@ -815,6 +825,7 @@ class I18n extends Kohana_I18n {
         'CUP' => 'Cuban Peso',
         'CYP' => 'Cyprus Pound',
         'CZK' => 'Czech Koruna',
+        'XPF' => 'XPF CFP franc',
         'DKK' => 'Danish Krone',
         'DOP' => 'Dominican Peso',
         'XCD' => 'East Caribbean Dollar',
@@ -835,6 +846,7 @@ class I18n extends Kohana_I18n {
         'KES' => 'Kenyan Shilling',
         'KWD' => 'Kuwaiti Dinar',
         'LVL' => 'Latvian Lats',
+        'LKR' => 'Sri Lankan Rupee',
         'LBP' => 'Lebanese Pound',
         'LTL' => 'Lithuanian Litas',
         'MKD' => 'Macedonia, Denar',
@@ -887,6 +899,8 @@ class I18n extends Kohana_I18n {
         $currencies_defaults['%.0n'] = 'No decimal digits';
         $currencies_defaults['%.1n'] = 'One decimal digit';
         $currencies_defaults['%.2n'] = 'Two decimal digits';
+        $currencies_defaults['%.3n'] = 'Three decimal digits';
+        $currencies_defaults['%.4n'] = 'Four decimal digits';
 
         return $currencies_defaults;
     }
