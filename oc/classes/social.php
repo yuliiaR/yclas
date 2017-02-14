@@ -99,7 +99,7 @@ class Social {
                 self::instagram($ad, $file);
 
             if(core::config('advertisement.pinterest'))
-                self::pinterest($ad);
+                self::pinterest($ad, $file);
         }
     }
 
