@@ -31,6 +31,21 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'instagram_password',
                                'group_name'     => 'advertisement', 
                                'config_value'   => ''),
+                        array( 'config_key'     => 'pinterest',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => '0'),
+                        array( 'config_key'     => 'pinterest_app_id',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'pinterest_app_secret',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'pinterest_access_token',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'pinterest_board',
+                               'group_name'     => 'advertisement', 
+                               'config_value'   => ''),
                         );
 
         Model_Config::config_array($configs);
