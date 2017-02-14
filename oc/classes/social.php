@@ -9,6 +9,7 @@
  * @license    GPL v3
  */
 
+use DirkGroenen\Pinterest\Pinterest;
 
 class Social {
 
