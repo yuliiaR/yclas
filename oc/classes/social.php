@@ -62,18 +62,26 @@ class Social {
         require_once Kohana::find_file('vendor/', 'Instagram-API/src/Autoload');
     }
     
+    public static function include_vendor_pinterest()
+    {
+        require_once Kohana::find_file('vendor/', 'Pinterest/vendor/dirkgroenen/pinterest-api-php/autoload');
+    }
+    
     public static function social_post_featured_ad(Model_Ad $ad)
     {
         if($ad->status == Model_Ad::STATUS_PUBLISHED AND core::config('advertisement.social_post_only_featured') == TRUE)
         {   
             if(core::config('advertisement.twitter'))
                 self::twitter($ad);
-            
+
             if(core::config('advertisement.facebook'))
                 self::facebook($ad);
 
             if(core::config('advertisement.instagram'))
                 self::instagram($ad);
+
+            if(core::config('advertisement.pinterest'))
+                self::pinterest($ad);
         }
     }
 
@@ -90,6 +98,60 @@ class Social {
             if(core::config('advertisement.instagram'))
                 self::instagram($ad, $file);
 
+            if(core::config('advertisement.pinterest'))
+                self::pinterest($ad);
+        }
+    }
+
+    public static function pinterest(Model_Ad $ad, $file = NULL)
+    {
+        if($file == NULL)
+            $file = $ad->get_first_image('image');
+
+        if($file !== NULL)
+        {
+            self::include_vendor_pinterest();
+
+            $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
+                
+            $caption = $ad->title;
+
+            if($ad->category->id_category_parent != 1 AND $ad->category->parent->loaded())
+                $caption .= ' - '.$ad->category->parent->name;
+
+            // Pinterest caption characters limit is 500
+            $caption .= '-'.$ad->category->name;
+
+            if($ad->id_location != 1 AND $ad->location->loaded())
+            {
+                if($ad->location->id_location_parent != 1 AND $ad->location->parent->loaded())
+                    $caption .= ', '.$ad->location->parent->name;
+                
+                $caption .= '-'.$ad->location->name;
+            }
+
+            if($ad->price>0)
+                $caption .= ', '.i18n::money_format($ad->price);
+
+            $caption .= ' - '.$url_ad;
+
+            $pinterest = new Pinterest(core::config('advertisement.pinterest_app_id'), core::config('advertisement.pinterest_app_secret'));
+            
+            try 
+            {
+                $loginurl = $pinterest->auth->getLoginUrl(core::config('general.base_url'), array('read_public', 'write_public'));
+
+                $pinterest->auth->setOAuthToken(core::config('advertisement.pinterest_access_token'));
+                $me = $pinterest->users->me();
+                
+                $pinterest->pins->create(array(
+                    "note"          => $caption,
+                    "image_url"     => core::imagefly($file,400,600),
+                    "board"         => core::config('advertisement.pinterest_board')
+                ));
+            } catch (InstagramException $e) {
+                echo $e->getMessage();
+            }
         }
     }
 
