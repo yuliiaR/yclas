@@ -111,6 +111,11 @@ abstract class Kohana_Cache {
 	 */
 	public static function instance($group = NULL)
 	{
+        if ($group === NULL)
+        {
+            $group = Kohana::$config->load('cache.default');
+        }
+        
 		// If there is no group supplied
 		if ($group === NULL)
 		{
@@ -286,19 +291,24 @@ abstract class Kohana_Cache {
 	 */
 	abstract public function delete_all();
 
-	/**
-	 * Replaces troublesome characters with underscores.
-	 *
-	 *     // Sanitize a cache id
-	 *     $id = $this->_sanitize_id($id);
-	 *
-	 * @param   string  $id  id of cache to sanitize
-	 * @return  string
-	 */
 	protected function _sanitize_id($id)
-	{
-		// Change slashes and spaces to underscores
-		return str_replace(array('/', '\\', ' '), '_', $id);
-	}
+    {
+
+        // adding cache prefix to avoid duplicates
+        $prefix = '';
+        // configuration for the specific cache group
+        if (isset($this->_config['prefix']) AND $this->_config['prefix'] !== NULL)
+        {
+            $prefix = $this->_config['prefix'];
+        }
+        // prefix general configuration cache
+        else
+        {
+            $prefix = Kohana::$config->load('cache.prefix');
+        }
+
+        // sha1 the id makes sure name is not too long and has not any not allowed characters
+        return $prefix.sha1($id);
+    }
 }
 // End Kohana_Cache

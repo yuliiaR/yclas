@@ -2,6 +2,7 @@
 return array
 (
     'default' => 'file',
+    //'prefix'  => 'cache1_',
     
     'file'  => array
     (

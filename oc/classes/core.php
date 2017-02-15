@@ -36,9 +36,6 @@ class Core {
         //temporary cookie salt in case of exception
         Cookie::$salt = 'cookie_oc_temp';
 
-        //Change the default cache system, based on your config /config/cache.php
-        Cache::$default = Core::config('cache.default');
-
         //loading configs from table config
         //is not loaded yet in Kohana::$config
         Kohana::$config->attach(new ConfigDB(), FALSE);
