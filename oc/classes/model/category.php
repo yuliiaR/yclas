@@ -80,7 +80,7 @@ class Model_Category extends ORM {
     public static function create_name($name,$order=0, $id_category_parent = 1, $parent_deep=0, $price=0, $description = NULL)
     {
         $cat = new self();
-        $cat->where('name','=',$name)->limit(1)->find();
+        $cat->where('name','=',$name)->where('id_category_parent','=',$id_category_parent)->limit(1)->find();
 
         //if doesnt exists create
         if (!$cat->loaded())
