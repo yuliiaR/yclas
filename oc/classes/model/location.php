@@ -74,7 +74,7 @@ class Model_Location extends ORM {
     public static function create_name($name,$order=0, $id_location_parent = 1, $parent_deep=0, $latitude=NULL, $longitude=NULL, $description = NULL)
     {
         $loc = new self();
-        $loc->where('name','=',$name)->limit(1)->find();
+        $loc->where('name','=',$name)->where('id_location_parent','=',$id_location_parent)->limit(1)->find();
 
         //if doesnt exists create
         if (!$loc->loaded())
