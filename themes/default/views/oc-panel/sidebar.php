@@ -341,9 +341,6 @@
                         <?=Theme::admin_link(__('Blog'), 'blog','index','oc-panel')?>
                     <?endif?>
                     <?=Theme::admin_link(__('Pages'), 'content','page','oc-panel')?>
-                    <?if (core::config('general.blog')==1):?>
-                        <?=Theme::admin_link(__('Blog'), 'blog','index','oc-panel')?>
-                    <?endif?>
                     <?=Theme::admin_link(__('Email'), 'content','email','oc-panel')?>
                     <?if (core::config('general.faq')==1):?>
                         <?=Theme::admin_link(__('FAQ'), 'content','help','oc-panel')?>
