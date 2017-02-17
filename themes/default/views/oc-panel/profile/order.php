@@ -33,7 +33,7 @@
 	                </tr>
 	            </thead>
 	            <tbody>
-	                <?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND isset($order->ad->cf_shipping) AND Valid::price($order->ad->cf_shipping) AND $order->ad->cf_shipping > 0):?>
+	                <?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND $order->ad->shipping_price()):?>
 	                    <tr>
 	                        <td class="col-md-1" style="text-align: center"><?=$order->id_product?></td>
 	                        <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
@@ -42,7 +42,7 @@
 	                    <tr>
 	                        <td class="col-md-1" style="text-align: center"></td>
 	                        <td class="col-md-9"><?=_e('Shipping')?></td>
-	                        <td class="col-md-2 text-center"><?=i18n::money_format($order->ad->cf_shipping, $order->currency)?></td>
+	                        <td class="col-md-2 text-center"><?=i18n::money_format($order->ad->shipping_price(), $order->currency)?></td>
 	                    </tr>
 	                <?else:?>
 	                    <tr>
@@ -106,8 +106,8 @@
 	                <tr>
 	                    <td>   </td>
 	                    <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
-	                    <?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND isset($order->ad->cf_shipping) AND Valid::price($order->ad->cf_shipping) AND $order->ad->cf_shipping > 0):?>
-	                        <td class="text-center text-danger"><h4><strong><?=i18n::money_format($order->amount + $order->ad->cf_shipping, $order->currency)?></strong></h4></td>
+	                    <?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND $order->ad->shipping_price()):?>
+	                        <td class="text-center text-danger"><h4><strong><?=i18n::money_format($order->amount + $order->ad->shipping_price(), $order->currency)?></strong></h4></td>
 	                    <?else:?>
 	                        <td class="text-center text-danger"><h4><strong><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format($order->amount, $order->currency):i18n::format_currency($order->amount, $order->currency)?></strong></h4></td>
 	                    <?endif?>

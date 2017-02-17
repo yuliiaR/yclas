@@ -3,7 +3,7 @@
         <img class="img-responsive" src="//maps.googleapis.com/maps/api/staticmap?language=<?=i18n::get_gmaps_language(i18n::$locale)?>&amp;zoom=<?=Core::config('advertisement.map_zoom')?>&amp;scale=false&amp;size=600x300&amp;maptype=roadmap&amp;format=png&amp;visual_refresh=true&amp;markers=<?=($ad->category->get_icon() AND Kohana::$environment !== Kohana::DEVELOPMENT) ? 'icon:'.Core::imagefly($ad->category->get_icon(),48,48).'%7C' : NULL?>size:large%7Ccolor:red%7Clabel:·%7C<?=$ad->latitude?>,<?=$ad->longitude?>&amp;key=<?=core::config('advertisement.gm_api_key')?>" alt="<?=HTML::chars($ad->title)?> <?=_e('Map')?>" style="width:100%;">
     </p>
     <p>
-        <a class="btn btn-default btn-sm" href="<?=Route::url('map')?>?id_ad=<?=$ad->id_ad?>">
+        <a class="btn btn-default btn-sm" href="<?=Route::url('map')?>?id_ad=<?=$ad->id_ad?>" target="<?=THEME::$is_mobile ? '_blank' : NULL?>">
             <span class="glyphicon glyphicon-globe"></span> <?=_e('Map View')?>
         </a>
     </p>
