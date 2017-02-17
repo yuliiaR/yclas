@@ -435,6 +435,12 @@ class Model_Order extends ORM {
             $this->save();
         }
 
+        if ($this->ad->shipping_pickup() AND core::get('shipping_pickup'))
+        {
+            $this->amount = $this->ad->price;
+            $this->save();
+        }
+
         //original coupon so we dont lose it while we do operations
         $orig_coupon = $this->id_coupon;
 
@@ -492,7 +498,12 @@ class Model_Order extends ORM {
                     $amount = Model_Order::get_featured_price($this->featured_days);
                 break;
             case self::PRODUCT_AD_SELL:
-                    $amount =$this->ad->price;
+                    if ($this->ad->shipping_pickup() AND core::get('shipping_pickup'))
+                        $amount = $this->ad->price;
+                    elseif ($this->ad->shipping_price())
+                        $amount = $this->ad->price + $this->ad->shipping_price();
+                    else
+                        $amount = $this->ad->price;
                 break;
             default:
                 $plan = new Model_Plan($this->id_product);

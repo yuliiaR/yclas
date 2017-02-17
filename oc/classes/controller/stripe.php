@@ -294,8 +294,10 @@ class Controller_Stripe extends Controller{
                     if ( $ad->user->subscription()->loaded() )
                         $fee = $ad->user->subscription()->plan->marketplace_fee;
 
-                    if(isset($ad->cf_shipping) AND Valid::price($ad->cf_shipping) AND $ad->cf_shipping > 0)
-                        $ad->price = $ad->price + $ad->cf_shipping;
+                    if ($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
+                        $ad->price = $ad->price;
+                    elseif($ad->shipping_price())
+                        $ad->price = $ad->price + $ad->shipping_price();
 
                     $application_fee = StripeKO::application_fee($ad->price, $fee);
 

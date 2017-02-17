@@ -106,8 +106,6 @@ class Controller_Paypal extends Controller{
         	if($order->id_product == Model_Order::PRODUCT_AD_SELL){
         		$paypal_account = $order->ad->paypal_account();
         		$currency = i18n::get_intl_currency_symbol();
-        		if(isset($order->ad->cf_shipping) AND Valid::price($order->ad->cf_shipping) AND $order->ad->cf_shipping > 0)
-        			$order->amount = $order->amount + $order->ad->cf_shipping;
         	}
         	else{
         		$paypal_account = core::config('payment.paypal_account');
@@ -150,8 +148,10 @@ class Controller_Paypal extends Controller{
         $payer_name       = Core::request('first_name').' '.Core::request('last_name');
 
         //amount we need to recieve
-        if (isset($ad->cf_shipping) AND Valid::price($ad->cf_shipping) AND $ad->cf_shipping > 0)
-            $ad->price = $ad->price + $ad->cf_shipping;
+        if ($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
+            $ad->price = $ad->price;
+        elseif($ad->shipping_price())
+            $ad->price = $ad->price + $ad->shipping_price();
 
         //check ad exists
         $ad     = new Model_Ad($id_ad);
@@ -224,16 +224,23 @@ class Controller_Paypal extends Controller{
 
             $paypal_account = $ad->paypal_account();
             $currency = i18n::get_intl_currency_symbol();
-            if(isset($ad->cf_shipping) AND Valid::price($ad->cf_shipping) AND $ad->cf_shipping > 0)
-                $ad->price = $ad->price + $ad->cf_shipping;
+
+            if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
+                $ad->price = $ad->price;
+            elseif($ad->shipping_price())
+                $ad->price = $ad->price + $ad->shipping_price();
        
             $paypal_url = (Core::config('payment.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
+            $notify_url = Route::url('default',array('controller'=>'paypal','action'=>'guestipn','id'=>$id_ad));
+
+            if($ad->shipping_pickup() AND core::get('shipping_pickup'))
+                $notify_url = $notify_url.'?shipping_pickup=1';
 
             $paypal_data = array('order_id'             => $id_ad,
                                  'amount'               => number_format($ad->price, 2, '.', ''),
                                  'site_name'            => core::config('general.site_name'),
                                  'site_url'             => URL::base(TRUE),
-                                 'notify_url'           => Route::url('default',array('controller'=>'paypal','action'=>'guestipn','id'=>$id_ad)),
+                                 'notify_url'           => $notify_url,
                                  'paypal_url'           => $paypal_url,
                                  'paypal_account'       => $paypal_account,
                                  'paypal_currency'      => $currency,
