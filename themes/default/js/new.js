@@ -562,5 +562,8 @@ function FileApiSupported() {
 }
 
 $("#price").keyup(function() {
-    $(this).val($(this).val().replace(/[^\d.,]/g, ''));
+    if ($(this).data('decimal_point') == ',')
+        $(this).val($(this).val().replace(/[^\d,]/g, ''));
+    else
+        $(this).val($(this).val().replace(/[^\d.]/g, ''));
 });
