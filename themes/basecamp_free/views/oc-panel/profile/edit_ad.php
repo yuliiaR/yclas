@@ -185,7 +185,7 @@
 								<div class="col-xs-6">
 									<?= FORM::label('price', _e('Price'), array('class'=>'', 'for'=>'price'))?>
 									<div class="input-prepend">
-										<?= FORM::input('price', i18n::format_currency_without_symbol($ad->price), array('placeholder'=>html_entity_decode(i18n::money_format(1)),'class'=>'form-control fc-small', 'id' => 'price', 'data-error' => __('Please enter only numbers.')))?>
+										<?= FORM::input('price', i18n::format_currency_without_symbol($ad->price), array('placeholder'=>html_entity_decode(i18n::money_format(1)),'class'=>'form-control fc-small', 'id' => 'price', 'data-error' => __('Please enter only numbers.'), 'data-decimal_point' => i18n::get_decimal_point()))?>
 									</div>
 								</div>
 							<?endif?>

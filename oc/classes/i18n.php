@@ -904,6 +904,26 @@ class I18n extends Kohana_I18n {
 
         return $currencies_defaults;
     }
+
+    /**
+     * returns the decimal point from the locale format
+     * @return string
+     */
+    public static function get_decimal_point()
+    {
+        $format = core::config('general.number_format');
+
+        //in case not any format standard
+        if ($format == NULL)
+            return '.';
+
+        if (in_array($format, array_keys(self::$currencies)))
+        {
+            return self::$currencies[$format][2];
+        }
+        else
+            return '.';
+    }
     
 }//end i18n
 
