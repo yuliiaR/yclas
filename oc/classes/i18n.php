@@ -567,6 +567,7 @@ class I18n extends Kohana_I18n {
         'ZWD' => array(NULL,2,'.',' ',0),          //  Zimbabwe Dollar
         'XPF' => array('F',0,'.',',',1),          //  Polynesian franc
         'LKR' => array('₨',2,'.',',',0),          //  Sri Lankan Rupee
+        'MAD' => array('.د.م',2,'.',',',1),          //  Moroccan Dirham
     );
     
     /**
@@ -849,6 +850,7 @@ class I18n extends Kohana_I18n {
         'LKR' => 'Sri Lankan Rupee',
         'LBP' => 'Lebanese Pound',
         'LTL' => 'Lithuanian Litas',
+        'MAD' => 'Moroccan Dirham',
         'MKD' => 'Macedonia, Denar',
         'MYR' => 'Malaysian Ringgit',
         'MTL' => 'Maltese Lira',
