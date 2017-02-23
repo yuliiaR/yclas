@@ -121,7 +121,7 @@ class paytabs {
                 'country_shipping' => isset($order->user->cf_country) ? $order->user->cf_country : "BHR",
                
                 "products_per_title" => $order->description,
-                'currency' => "BHD",
+                'currency' => core::config('payment.paypal_currency'),
                 "unit_price"=> $order->amount,
                 'quantity' => "1",
                 'other_charges' => "0",
