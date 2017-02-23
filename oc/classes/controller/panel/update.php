@@ -46,6 +46,12 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'pinterest_board',
                                'group_name'     => 'advertisement', 
                                'config_value'   => ''),
+                        array( 'config_key'     => 'paytabs_merchant_email',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'paytabs_secret_key',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
                         );
 
         Model_Config::config_array($configs);
