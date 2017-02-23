@@ -634,6 +634,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'robokassa_testing', 0),
 ('payment', 'paguelofacil_cclw', ''),
 ('payment', 'paguelofacil_testing', 0),
+('payment', 'paytabs_merchant_email, ''),
+('payment', 'paytabs_secret_key', ''),
 ('payment', 'mercadopago_client_id', ''),
 ('payment', 'mercadopago_client_secret', ''),
 ('general', 'subscriptions', '0'),
