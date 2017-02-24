@@ -505,7 +505,8 @@ class I18n extends Kohana_I18n {
         'SVC' => array(NULL,2,'.',',',0),          //  El Salvador Colon
         'EUR' => array('&euro;',2,',','.',0),          //  Euro
         'ESP' => array('&euro;',2,',','.',1),          //  Euro in spanish format
-        'GHC' => array(NULL,2,'.',',',0),          //  Ghana, Cedi
+        'GHC' => array('&#8373;',2,'.',',',0),          //  Old Ghana, Cedi
+        'GHS' => array('&#8373;',2,'.',',',0),          //  Ghana, Cedi
         'GIP' => array(NULL,2,'.',',',0),          //  Gibraltar Pound
         'GTQ' => array(NULL,2,'.',',',0),          //  Guatemala, Quetzal
         'HNL' => array(NULL,2,'.',',',0),          //  Honduras, Lempira
@@ -831,7 +832,8 @@ class I18n extends Kohana_I18n {
         'XCD' => 'East Caribbean Dollar',
         'EGP' => 'Egyptian Pound',
         'SVC' => 'El Salvador Colon',
-        'GHC' => 'Ghana, Cedi',
+        'GHC' => 'Old Ghana, Cedi',
+        'GHS' => 'Ghana, Cedi',
         'GIP' => 'Gibraltar Pound',
         'GTQ' => 'Guatemala, Quetzal',
         'HNL' => 'Honduras, Lempira',
