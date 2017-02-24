@@ -87,7 +87,7 @@ class Controller_New extends Controller
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js';
         $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js';
-        $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.10/ouibounce.min.js';
+        $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.12/ouibounce.min.js';
         $this->template->scripts['footer'][] = 'js/canvasResize.js';
         $this->template->scripts['footer'][] = 'js/load-image.all.min.js';
         if(core::config('advertisement.map_pub_new'))
