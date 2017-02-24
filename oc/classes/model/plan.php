@@ -52,6 +52,19 @@ class Model_Plan extends ORM {
         return array('created');
     }
 
+    /**
+     * rule to verify that plan id is bigger than 100
+     * @param  integer $id_plan 
+     * @return integer                     
+     */
+    public function check_id($id_plan)
+    {        
+        if ($id_plan > 100)
+            return $id_plan;
+
+        return $id_plan + 100;
+    }
+
     protected $_table_columns = array (
         'id_plan' => 
             array (
