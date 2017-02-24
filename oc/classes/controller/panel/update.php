@@ -64,6 +64,13 @@ class Controller_Panel_Update extends Auth_Controller {
                         );
 
         Model_Config::config_array($configs);
+
+        //modify only the plans that are wrong
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."plans SET id_plan=id_plan+100 WHERE id_plan < 100")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."plans` AUTO_INCREMENT=100")->execute();
+        }catch (exception $e) {}
     }
 
 
