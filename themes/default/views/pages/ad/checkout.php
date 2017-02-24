@@ -228,6 +228,9 @@
                         <?if(($paytabs = paytabs::button($order)) != ''):?>
                             <li class="text-right"><?=$paytabs?></li>
                         <?endif?>
+                        <?if(($payfast = payfast::form($order)) != ''):?>
+                            <li class="text-right"><?=$payfast?></li>
+                        <?endif?>
                         <?if(($mp = MercadoPago::button($order)) != ''):?>
                             <li class="text-right"><?=$mp?></li>
                         <?endif?>

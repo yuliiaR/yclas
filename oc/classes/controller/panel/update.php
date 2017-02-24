@@ -52,6 +52,15 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'paytabs_secret_key',
                                'group_name'     => 'payment', 
                                'config_value'   => ''),
+                        array( 'config_key'     => 'payfast_merchant_id',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'payfast_merchant_key',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'payfast_sandbox',
+                               'group_name'     => 'payment', 
+                               'config_value'   => '0'),
                         );
 
         Model_Config::config_array($configs);
