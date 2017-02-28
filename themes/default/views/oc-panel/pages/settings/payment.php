@@ -826,11 +826,11 @@
                     </div>
 
                     <div class="form-group">
-                        <?=FORM::label($forms['paytabs_merchant_key']['key'], 'Merchant Key', array('class'=>'control-label', 'for'=>$forms['paytabs_merchant_key']['key']))?>
-                        <?=FORM::input($forms['paytabs_merchant_key']['key'], $forms['paytabs_merchant_key']['value'], array(
+                        <?=FORM::label($forms['payfast_merchant_key']['key'], 'Merchant Key', array('class'=>'control-label', 'for'=>$forms['payfast_merchant_key']['key']))?>
+                        <?=FORM::input($forms['payfast_merchant_key']['key'], $forms['payfast_merchant_key']['value'], array(
                                 'placeholder' => "", 
                                 'class' => 'tips form-control', 
-                                'id' => $forms['paytabs_merchant_key']['key']
+                                'id' => $forms['payfast_merchant_key']['key']
                         ))?>
                     </div>
 
