@@ -9,7 +9,7 @@
 						<br><hr><br>
 							<p>Since you are loged in as admin only you can see this message:</p>
 							<code><?=$message?></code>
-							<p>It's been loged in <a href="<?php echo URL::site('/oc-panel/tools/logs', TRUE) ?>">Panel->Extra->Tools->Logs</a> for more information regarding this error.</p>
+							<p>It's been loged in <a href="<?php echo Route::url('oc-panel',array('controller'=>'tools','action'=>'logs')) ?>">Panel->Extra->Tools->Logs</a> for more information regarding this error.</p>
 						<br><hr><br>
 					<?endif?>
 				<?endif?>
