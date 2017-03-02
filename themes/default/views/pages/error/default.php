@@ -60,7 +60,7 @@
         <?if (Auth::instance()->get_user()->is_admin()):?>
             <p>Since you are logged in as admin only you can see this message:</p>
             <code><?=$message?></code>
-            <p>It's been logged in Panel->Tools->Logs for more information regarding this error.</p>
+        <p>It's been logged in <a href="<?php echo URL::site('/oc-panel/tools/logs', TRUE) ?>">Panel->Extra->Tools->Logs</a> for more information regarding this error.</p>
         <?endif?>
         <?endif?>
 
