@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title><?=Core::config('general.site_name')?> - <?=__('Maintenance')?></title>
-    <link href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <style type="text/css">
