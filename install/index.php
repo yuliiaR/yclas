@@ -65,6 +65,8 @@ else
     <meta name="description" content="" >
     <meta name="copyright" content="Yclas Self-Hosted <?=install::VERSION?>" >
     <meta name="author" content="Yclas Self-Hosted">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
 
     <link rel="shortcut icon" href="https://yclas.com/images/favicon.ico?v0.1" />
 
