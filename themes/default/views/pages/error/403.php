@@ -1,12 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?=i18n::html_lang()?>">
   <head>
-    <meta charset="utf-8">
+    <meta charset="<?=Kohana::$charset?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="<?=__('This is a private website, you need to login to see the content!')?>">
     <meta name="author" content="Yclas">
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
@@ -17,7 +17,7 @@
     <link href="//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/blueimp-gallery/2.14.0/css/blueimp-gallery.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
     <script type="text/javascript" src="//cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.min.js"></script>
 
