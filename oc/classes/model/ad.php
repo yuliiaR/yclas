@@ -1627,4 +1627,11 @@ class Model_Ad extends ORM {
         return NULL;
     }
 
+
+    public static function count_all_ads()
+    {
+        $ads = new Model_Ad();
+        return $ads->count_all();
+    }
+
 } // END Model_ad
