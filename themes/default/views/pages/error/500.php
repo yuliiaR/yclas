@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="<?=i18n::html_lang()?>">
   <head>
