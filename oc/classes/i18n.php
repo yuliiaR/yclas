@@ -505,7 +505,8 @@ class I18n extends Kohana_I18n {
         'SVC' => array(NULL,2,'.',',',0),          //  El Salvador Colon
         'EUR' => array('&euro;',2,',','.',0),          //  Euro
         'ESP' => array('&euro;',2,',','.',1),          //  Euro in spanish format
-        'GHC' => array(NULL,2,'.',',',0),          //  Ghana, Cedi
+        'GHC' => array('&#8373;',2,'.',',',0),          //  Old Ghana, Cedi
+        'GHS' => array('&#8373;',2,'.',',',0),          //  Ghana, Cedi
         'GIP' => array(NULL,2,'.',',',0),          //  Gibraltar Pound
         'GTQ' => array(NULL,2,'.',',',0),          //  Guatemala, Quetzal
         'HNL' => array(NULL,2,'.',',',0),          //  Honduras, Lempira
@@ -567,6 +568,7 @@ class I18n extends Kohana_I18n {
         'ZWD' => array(NULL,2,'.',' ',0),          //  Zimbabwe Dollar
         'XPF' => array('F',0,'.',',',1),          //  Polynesian franc
         'LKR' => array('₨',2,'.',',',0),          //  Sri Lankan Rupee
+        'MAD' => array('.د.م',2,'.',',',1),          //  Moroccan Dirham
     );
     
     /**
@@ -831,7 +833,8 @@ class I18n extends Kohana_I18n {
         'XCD' => 'East Caribbean Dollar',
         'EGP' => 'Egyptian Pound',
         'SVC' => 'El Salvador Colon',
-        'GHC' => 'Ghana, Cedi',
+        'GHC' => 'Old Ghana, Cedi',
+        'GHS' => 'Ghana, Cedi',
         'GIP' => 'Gibraltar Pound',
         'GTQ' => 'Guatemala, Quetzal',
         'HNL' => 'Honduras, Lempira',
@@ -849,6 +852,7 @@ class I18n extends Kohana_I18n {
         'LKR' => 'Sri Lankan Rupee',
         'LBP' => 'Lebanese Pound',
         'LTL' => 'Lithuanian Litas',
+        'MAD' => 'Moroccan Dirham',
         'MKD' => 'Macedonia, Denar',
         'MYR' => 'Malaysian Ringgit',
         'MTL' => 'Maltese Lira',
@@ -903,6 +907,26 @@ class I18n extends Kohana_I18n {
         $currencies_defaults['%.4n'] = 'Four decimal digits';
 
         return $currencies_defaults;
+    }
+
+    /**
+     * returns the decimal point from the locale format
+     * @return string
+     */
+    public static function get_decimal_point()
+    {
+        $format = core::config('general.number_format');
+
+        //in case not any format standard
+        if ($format == NULL)
+            return '.';
+
+        if (in_array($format, array_keys(self::$currencies)))
+        {
+            return self::$currencies[$format][2];
+        }
+        else
+            return '.';
     }
     
 }//end i18n

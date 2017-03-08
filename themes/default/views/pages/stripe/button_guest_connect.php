@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="text-right">
-<form action="<?=Route::url('default',array('controller'=>'stripe','action'=>'payguest','id'=>$ad->id_ad))?>" method="post">
+<form action="<?=Route::url('default',array('controller'=>'stripe','action'=>'payguest','id'=>$ad->id_ad))?><?=core::get('shipping_pickup') ? '?shipping_pickup=1' : NULL?>" method="post">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="<?=Core::config('payment.stripe_public')?>"

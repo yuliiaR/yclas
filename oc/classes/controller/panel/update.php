@@ -46,9 +46,31 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'pinterest_board',
                                'group_name'     => 'advertisement', 
                                'config_value'   => ''),
+                        array( 'config_key'     => 'paytabs_merchant_email',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'paytabs_secret_key',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'payfast_merchant_id',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'payfast_merchant_key',
+                               'group_name'     => 'payment', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'payfast_sandbox',
+                               'group_name'     => 'payment', 
+                               'config_value'   => '0'),
                         );
 
         Model_Config::config_array($configs);
+
+        //modify only the plans that are wrong
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."plans SET id_plan=id_plan+100 WHERE id_plan < 100")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."plans` AUTO_INCREMENT=100")->execute();
+        }catch (exception $e) {}
     }
 
 

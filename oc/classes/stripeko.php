@@ -117,8 +117,10 @@ class StripeKO {
             if ($ad->price != NULL AND $ad->price > 0 AND 
                 (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)))
             {
-                if(isset($ad->cf_shipping) AND Valid::price($ad->cf_shipping) AND $ad->cf_shipping > 0)
-                    $ad->price = $ad->price + $ad->cf_shipping;
+                if ($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
+                    $ad->price = $ad->price;
+                elseif($ad->shipping_price())
+                    $ad->price = $ad->price + $ad->shipping_price();
 
                 return View::factory('pages/stripe/button_guest_connect',array('ad'=>$ad));
             }

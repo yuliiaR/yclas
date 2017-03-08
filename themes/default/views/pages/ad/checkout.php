@@ -34,16 +34,46 @@
                 </tr>
             </thead>
             <tbody>
-                <?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND isset($order->ad->cf_shipping) AND Valid::price($order->ad->cf_shipping) AND $order->ad->cf_shipping > 0):?>
+                <?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND $order->ad->shipping_price()):?>
                     <tr>
                         <td class="col-md-1" style="text-align: center"><?=$order->id_product?></td>
                         <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
-                        <td class="col-md-2 text-center"><?=i18n::money_format($order->amount, $order->currency)?></td>
+                        <td class="col-md-2 text-center">
+                            <?if ($order->ad->shipping_pickup() AND core::get('shipping_pickup')):?>
+                                <?=i18n::money_format($order->amount, $order->currency)?>
+                            <?else:?>
+                                <?=i18n::money_format($order->amount - $order->ad->cf_shipping, $order->currency)?>
+                            <?endif?>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col-md-1" style="text-align: center"></td>
-                        <td class="col-md-9"><?=_e('Shipping')?></td>
-                        <td class="col-md-2 text-center"><?=i18n::money_format($order->ad->cf_shipping, $order->currency)?></td>
+                        <td class="col-md-9">
+                            <?if ($order->ad->shipping_pickup() AND core::get('shipping_pickup')):?>
+                                <?=_e('Customer Pickup')?>
+                            <?else:?>
+                                <?=_e('Shipping')?>
+                            <?endif?>
+                            <?if ($order->ad->shipping_pickup()):?>
+                                <div class="dropdown" style="display:inline-block;">
+                                    <button class="btn btn-xs btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <?=_e('Change')?>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-header"><?=_e('Shipping method')?></li>
+                                        <li><a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>?shipping_pickup=1"><?=_e('Customer Pickup - Free')?></a></li>
+                                        <li><a href="<?=Route::url('default',array('controller'=>'ad', 'action'=>'checkout','id'=>$order->id_order))?>"><?=_e('Shipping')?> – <?=i18n::money_format($order->ad->shipping_price())?></a></li>
+                                    </ul>
+                                </div>
+                            <?endif?>
+                        </td>
+                        <td class="col-md-2 text-center">
+                            <?if ($order->ad->shipping_pickup() AND core::get('shipping_pickup')):?>
+                                <?=i18n::money_format(0, $order->currency)?>
+                            <?else:?>
+                                <?=i18n::money_format($order->ad->cf_shipping, $order->currency)?>
+                            <?endif?>
+                        </td>
                     </tr>
                 <?else:?>
                     <tr>
@@ -126,11 +156,17 @@
                 <tr>
                     <td>   </td>
                     <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
-                    <?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND isset($order->ad->cf_shipping) AND Valid::price($order->ad->cf_shipping) AND $order->ad->cf_shipping > 0):?>
-                        <td class="text-center text-danger"><h4><strong><?=i18n::money_format($order->amount + $order->ad->cf_shipping, $order->currency)?></strong></h4></td>
-                    <?else:?>
-                        <td class="text-center text-danger"><h4><strong><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format($order->amount, $order->currency):i18n::format_currency($order->amount, $order->currency)?></strong></h4></td>
-                    <?endif?>
+                    <td class="text-center text-danger">
+                        <h4>
+                            <strong>
+                                <?if($order->id_product == Model_Order::PRODUCT_AD_SELL):?>
+                                    <?=i18n::money_format($order->amount, $order->currency)?>
+                                <?else:?>
+                                    <?=i18n::format_currency($order->amount, $order->currency)?>
+                                <?endif?>
+                            </strong>
+                        </h4>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -188,6 +224,12 @@
                         <?endif?>
                         <?if(($paguelofacil = paguelofacil::button($order)) != ''):?>
                             <li class="text-right"><?=$paguelofacil?></li>
+                        <?endif?>
+                        <?if(($paytabs = paytabs::button($order)) != ''):?>
+                            <li class="text-right"><?=$paytabs?></li>
+                        <?endif?>
+                        <?if(($payfast = payfast::form($order)) != ''):?>
+                            <li class="text-right"><?=$payfast?></li>
                         <?endif?>
                         <?if(($mp = MercadoPago::button($order)) != ''):?>
                             <li class="text-right"><?=$mp?></li>

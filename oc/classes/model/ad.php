@@ -1633,5 +1633,35 @@ class Model_Ad extends ORM {
         $ads = new Model_Ad();
         return $ads->count_all();
     }
+    
+    /**
+     * returns the shipping price of the ad
+     * @return string shipping price
+     */
+    public function shipping_price()
+    {
+        if ($this->loaded())
+        {
+            if(isset($this->cf_shipping) AND Valid::price($this->cf_shipping) AND $this->cf_shipping > 0)
+                return $this->cf_shipping;
+        }
+
+        return NULL;
+    }
+
+    /**
+     * returns the shipping price of the ad
+     * @return string shipping price
+     */
+    public function shipping_pickup()
+    {
+        if ($this->loaded())
+        {
+            if(isset($this->cf_shipping_pickup) AND $this->cf_shipping_pickup > 0)
+                return TRUE;
+        }
+
+        return FALSE;
+    }
 
 } // END Model_ad

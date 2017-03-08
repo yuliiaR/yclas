@@ -42,7 +42,7 @@
     <div class="alert alert-info fade in">
         <p>
             <strong><?=__('Heads Up!')?></strong> 
-            Authorize, Stripe, Paymill, 2checkout, Paysbuy, SecurePay, Robokassa, Paguelofacil, Mercadopago and Bitpay <?=__('only available with premium themes!').'<br>'.__('Upgrade your Yclas site to activate this feature.')?>
+            Authorize, Stripe, Paymill, 2checkout, Paysbuy, SecurePay, Robokassa, Paguelofacil, Paytabs, Payfast, Mercadopago and Bitpay <?=__('only available with premium themes!').'<br>'.__('Upgrade your Yclas site to activate this feature.')?>
         </p>
         <p>
             <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'theme'))?>">
@@ -90,6 +90,12 @@
                         </li>
                         <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPaguelofacil" aria-expanded="false">Paguelofacil</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPaytabs" aria-expanded="false">Paytabs</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentPayfast" aria-expanded="false">Payfast</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentMercadoPago" aria-expanded="false">MercadoPago</a>
@@ -774,6 +780,68 @@
                         <span class="help-block">
                             Result URL <pre><?=Route::url('default',array('controller'=>'paguelofacil', 'action'=>'result','id'=>core::config('general.api_key')))?></pre>
                         </span>
+                    </div>
+                    
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
+                </div>
+
+                <div id="tabSettingsPaymentPaytabs" class="tab-pane fade">
+                    <h4>Paytabs</h4>
+                    <hr>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['paytabs_merchant_email']['key'], 'Merchant Email', array('class'=>'control-label', 'for'=>$forms['paytabs_merchant_email']['key']))?>
+                        <?=FORM::input($forms['paytabs_merchant_email']['key'], $forms['paytabs_merchant_email']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['paytabs_merchant_email']['key']
+                        ))?>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['paytabs_secret_key']['key'], 'Secret Key', array('class'=>'control-label', 'for'=>$forms['paytabs_secret_key']['key']))?>
+                        <?=FORM::input($forms['paytabs_secret_key']['key'], $forms['paytabs_secret_key']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['paytabs_secret_key']['key']
+                        ))?>
+                    </div>
+                    
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
+                </div>
+
+                <div id="tabSettingsPaymentPayfast" class="tab-pane fade">
+                    <h4>Payfast</h4>
+                    <hr>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['payfast_merchant_id']['key'], 'Merchant ID', array('class'=>'control-label', 'for'=>$forms['payfast_merchant_id']['key']))?>
+                        <?=FORM::input($forms['payfast_merchant_id']['key'], $forms['payfast_merchant_id']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['payfast_merchant_id']['key']
+                        ))?>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['payfast_merchant_key']['key'], 'Merchant Key', array('class'=>'control-label', 'for'=>$forms['payfast_merchant_key']['key']))?>
+                        <?=FORM::input($forms['payfast_merchant_key']['key'], $forms['payfast_merchant_key']['value'], array(
+                                'placeholder' => "", 
+                                'class' => 'tips form-control', 
+                                'id' => $forms['payfast_merchant_key']['key']
+                        ))?>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['payfast_sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['payfast_sandbox']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['payfast_sandbox']['key'], 1, (bool) $forms['payfast_sandbox']['value'], array('id' => $forms['payfast_sandbox']['key'].'1'))?>
+                            <?=Form::label($forms['payfast_sandbox']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['payfast_sandbox']['key'], 0, ! (bool) $forms['payfast_sandbox']['value'], array('id' => $forms['payfast_sandbox']['key'].'0'))?>
+                            <?=Form::label($forms['payfast_sandbox']['key'].'0', __('Disabled'))?>
+                        </div>
                     </div>
                     
                     <hr>
