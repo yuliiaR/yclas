@@ -283,7 +283,7 @@ class Social {
 
         $data['access_token'] = $page_access_token;
 
-        $post_url = 'https://graph.facebook.com/me/feed?appsecret_proof='.$appsecret_proof.'&scope=publish_stream,status_update';
+        $post_url = 'https://graph.facebook.com/'.$page_id.'/feed?appsecret_proof='.$appsecret_proof.'&scope=publish_stream,status_update';
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $post_url);
