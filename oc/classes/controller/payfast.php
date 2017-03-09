@@ -33,17 +33,26 @@ class Controller_Payfast extends Controller{
                 $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
             }
 
-            //correct payment?
-            if (payfast::validate_itn()) 
+            //same amount
+            if (Core::request('amount_gross') == number_format($order->amount, 2, '.', ''))
             {
-                //mark as paid
-                $order->confirm_payment('payfast',Core::request('signature'));
+                //correct payment?
+                if (payfast::validate_itn()) 
+                {
+                    //mark as paid
+                    $order->confirm_payment('payfast',Core::request('signature'));
+                }
+                else
+                {
+                    Kohana::$log->add(Log::ERROR, 'A payment has been made but is flagged as INVALID');
+                    $this->response->body('KO');
+                }
             }
-            else
+            else //trying to cheat....
             {
-                Kohana::$log->add(Log::ERROR, 'A payment has been made but is flagged as INVALID');
+                Kohana::$log->add(Log::ERROR, 'Attempt illegal actions with transaction');
                 $this->response->body('KO');
-            }       
+            }
         }
         else
         {

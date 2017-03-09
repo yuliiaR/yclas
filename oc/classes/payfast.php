@@ -229,7 +229,28 @@ class payfast {
         {
             $form_action = ( Core::config('payment.payfast_sandbox') == 1) ? self::url_sandbox_gateway : self::url_gateway;
 
-            return View::factory('pages/payfast/form',array('order' => $order, 'form_action' => $form_action));
+            $info = ['merchant_id' => Core::config('payment.payfast_merchant_id'),
+                'merchant_key' => Core::config('payment.payfast_merchant_key'),
+                'return_url' => URL::base(TRUE),
+                'cancel_url' => Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)),
+                'notify_url' => Route::url('default',array('controller'=>'payfast', 'action'=>'itn','id'=>'1')),
+                'm_payment_id' => $order->id_order,
+                'amount' => $order->amount,
+                'item_name' => $order->description,
+                'item_description' => $order->description
+            ];
+
+            // Create output string
+            $payfast_output = '';
+
+            foreach ($info as $key => $value)
+                $payfast_output .= $key .'='. urlencode(trim($value)) . '&';
+            
+            $payfast_output = substr($payfast_output, 0, -1);
+
+            $info['signature'] = md5($payfast_output);
+
+            return View::factory('pages/payfast/form', array('order' => $order, 'form_action' => $form_action, 'info' => $info));
         }
 
         return '';
