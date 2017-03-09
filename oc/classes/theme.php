@@ -1053,10 +1053,8 @@ class Theme {
     public static function landing_single_ad()
     {
         if (Theme::get('landing_single_ad',0) == TRUE AND 
-            (strtolower(Request::current()->controller())=='ad' AND 
-            strtolower(Request::current()->action()) == 'view') OR
-            (strtolower(Request::current()->controller())=='user' AND 
-            strtolower(Request::current()->action()) == 'profile')
+            ((strtolower(Request::current()->controller())=='ad' AND strtolower(Request::current()->action()) == 'view') OR
+            (strtolower(Request::current()->controller())=='user' AND strtolower(Request::current()->action()) == 'profile'))
             )
             return TRUE;
         else
