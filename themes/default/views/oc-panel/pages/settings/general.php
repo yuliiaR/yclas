@@ -122,7 +122,7 @@
                                     <?=Form::label($forms['private_site']['id'].'0', __('Disabled'))?>
                                 </div>
                                 <span class="help-block">
-                                    <?=__("Enables the site to private_site")?>
+                                    <?=__("Enables the site to Private site")?>
                                 </span>
                             </div>
 
