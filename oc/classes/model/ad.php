@@ -1627,6 +1627,13 @@ class Model_Ad extends ORM {
         return NULL;
     }
 
+
+    public static function count_all_ads()
+    {
+        $ads = new Model_Ad();
+        return $ads->count_all();
+    }
+    
     /**
      * returns the shipping price of the ad
      * @return string shipping price
