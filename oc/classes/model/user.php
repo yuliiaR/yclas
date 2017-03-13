@@ -1103,7 +1103,7 @@ class Model_User extends ORM {
             $options
         );
       
-        $data['message'] = $message;
+        $data['message'] = $message."<br><br>".__('Please check your email');
         
         $pusher->trigger('user_'.$channel, 'my-event', $data);    
     }
