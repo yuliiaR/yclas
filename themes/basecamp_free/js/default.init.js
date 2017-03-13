@@ -679,3 +679,39 @@ $(function(){
     };
 
 })( jQuery, window, document );
+
+$(function(){
+    var user = $('#pusher-subscribe').data('user');
+    var key = $('#pusher-subscribe').data('key');
+
+    // subscribe user if is logged in
+    if(user != undefined && user != ''){
+
+        var pusher = new Pusher(key, {
+          cluster: 'eu',
+          encrypted: true
+        });
+
+        var channel = pusher.subscribe('user_'+user);
+        channel.bind('my-event', function(data) {
+            toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "0",
+              "hideDuration": "0",
+              "timeOut": "0",
+              "extendedTimeOut": "0",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+            toastr.info('',data.message);
+        });
+    }
+});

@@ -133,4 +133,6 @@
             </div>
         </div>
     </div>
+<?elseif(Core::config('general.pusher_notifications')):?> 
+    <div id="pusher-subscribe" class="hidden" data-user="<?=Auth::instance()->get_user()->email?>" data-key="<?=Core::config('general.pusher_notifications_key')?>"></div>
 <?endif?>

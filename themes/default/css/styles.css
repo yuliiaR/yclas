@@ -275,6 +275,9 @@ img#captcha_img_publish_new {
   background-color: #3c763d;
   border-color: #3c763d!important;
 }
+#toast-container > div{
+  opacity: 1;
+}
 
 /*Media screens*/
 @media only screen and (max-width : 480px) {

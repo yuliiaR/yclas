@@ -61,6 +61,18 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'payfast_sandbox',
                                'group_name'     => 'payment', 
                                'config_value'   => '0'),
+                        array( 'config_key'     => 'pusher_notifications',
+                               'group_name'     => 'general', 
+                               'config_value'   => '0'),
+                        array( 'config_key'     => 'pusher_notifications_app_id',
+                               'group_name'     => 'general', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'pusher_notifications_key',
+                               'group_name'     => 'general', 
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'pusher_notifications_secret',
+                               'group_name'     => 'general', 
+                               'config_value'   => ''),
                         );
 
         Model_Config::config_array($configs);
