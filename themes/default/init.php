@@ -69,6 +69,12 @@ if (Auth::instance()->logged_in() AND
     Theme::$scripts['footer'][] = 'js/oc-panel/live-translator.js';
 }
 
+if (Core::config('general.pusher_notifications')){
+    Theme::$styles['//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'] = 'screen';
+    Theme::$scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js';
+    Theme::$scripts['footer'][] = '//js.pusher.com/4.0/pusher.min.js';
+}
+
 /**
  * custom error alerts
  */
