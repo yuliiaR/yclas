@@ -1088,7 +1088,7 @@ class Model_User extends ORM {
      * @param  string $message, what will be send
      * @param  string $channel, where will be send/to whom
      */
-    public function pusher($channel = null, $message = null)
+    public function pusher($channel = NULL, $message = NULL, $content)
     {
         require_once Kohana::find_file('vendor', 'pusher/autoload');
 
@@ -1102,8 +1102,12 @@ class Model_User extends ORM {
             Core::config('general.pusher_notifications_app_id'),
             $options
         );
-      
-        $data['message'] = $message."<br><br>".__('Please check your email');
+        
+        if (core::config('general.messaging') AND strpos($content, 'messaging') !== FALSE) {
+            $data['message'] = __('You got a new message.').'<br><br><a href="'.Route::url('oc-panel', array('controller'=>'messages')).'">'.__('Read more').'</a>';
+        } else {
+            $data['message'] = $message."<br><br>".__('Please check your email');
+        }
         
         $pusher->trigger('user_'.$channel, 'my-event', $data);    
     }

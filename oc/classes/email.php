@@ -23,7 +23,7 @@ class Email {
      * @param  [type] $file      [description]
      * @return boolean
      */
-    public static function send($to,$to_name='',$subject,$body,$reply,$replyName,$file = NULL)
+    public static function send($to,$to_name='',$subject,$body,$reply,$replyName,$file = NULL,$content = NULL)
     {
         $result = FALSE;
 
@@ -79,10 +79,10 @@ class Email {
         if (Core::config('general.pusher_notifications')){
             if (is_array($to)){
                 foreach ($to as $user_email) {
-                    Model_User::pusher($user_email['email'], Text::limit_chars(Text::removebbcode($body), 80, NULL, TRUE));
+                    Model_User::pusher($user_email['email'], Text::limit_chars(Text::removebbcode($body), 80, NULL, TRUE),$content);
                 }
             } else 
-                Model_User::pusher($to, Text::limit_chars(Text::removebbcode($body), 80, NULL, TRUE));
+                Model_User::pusher($to, Text::limit_chars(Text::removebbcode($body), 80, NULL, TRUE),$content);
         }
 
         return $result;
@@ -139,7 +139,7 @@ class Email {
             $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
             $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
 
-            return Email::send($to,$to_name,$subject,$body,$from,$from_name, $file_upload); 
+            return Email::send($to,$to_name,$subject,$body,$from,$from_name, $file_upload,$content); 
         }
         else 
             return FALSE;
