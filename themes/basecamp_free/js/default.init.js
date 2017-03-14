@@ -1,5 +1,5 @@
 $(function(){
-    
+
     //favorites system
 	$('.add-favorite, .remove-favorite').click(function(event) {
 		  event.preventDefault();
@@ -17,7 +17,7 @@ $(function(){
                         else
                             $('#'+countname).html(currentvalue+1);
                     }
-                    
+
 					$('#'+$this.data('id')+' a').toggleClass('add-favorite remove-favorite');
 					$('#'+$this.data('id')+' a i').toggleClass('glyphicon-star-empty glyphicon-star');
 				});
@@ -29,7 +29,7 @@ $(function(){
 
     //notification system
     var favicon = false
-    
+
     /*if ($('link[rel="shortcut icon"]')[0].href.indexOf("cdn.yclas") === -1) {
         favicon = new Favico({
         animation : 'popFade'
@@ -41,7 +41,7 @@ $(function(){
         $(document).mouseup(function (e)
         {
             var contact = $("#contact-notification");
-        
+
             if (!contact.is(e.target) // if the target of the click isn't the container...
                 && contact.has(e.target).length === 0) // ... nor a descendant of the container
             {
@@ -49,24 +49,24 @@ $(function(){
                 $("#contact-notification span").hide();
                 $("#contact-notification i").removeClass('fa-bell').addClass('fa-bell-o');
                 $("#contact-notification-dd" ).remove();
-                
+
                 if ( favicon !== false ) {
                 favicon.badge(0);
             }
             }
         });
     });
-    
+
     //intial value
     if ( favicon !== false ) {
     favicon.badge($('#contact-notification span').text());
     }
-    
+
 });
 
 //validate auth pages
 $(function(){
-    
+
     $.validator.addMethod(
         "emaildomain",
         function(value, element, domains) {
@@ -119,7 +119,7 @@ $(function(){
     $(".register").each(function() {
         $(this).validate($register_params)
     });
-    
+
 });
 
 function createCookie(name,value,seconds) {
@@ -167,7 +167,7 @@ function initAutoLocate() {
 
 function autoLocate() {
     $('#auto-locations').on('show.bs.modal', function () {
-        $('.modal .modal-body').css('overflow-y', 'auto'); 
+        $('.modal .modal-body').css('overflow-y', 'auto');
         $('.modal .modal-body').css('max-height', $(window).height() * 0.8);
     });
 
@@ -287,7 +287,7 @@ $(function(){
             values = JSON.stringify(values);
 
             recentSearches.unshift(values);
-            if (recentSearches.length > $('#Widget_RecentlySearched').data('max-items')) { 
+            if (recentSearches.length > $('#Widget_RecentlySearched').data('max-items')) {
                 recentSearches.pop();
             }
 
@@ -428,7 +428,7 @@ function getSavedCurrency() {
     if (savedCurrency == undefined) {
         return siteCurrency;
     }
-    
+
     return savedCurrency;
 }
 
@@ -486,7 +486,7 @@ $(function(){
             }).change(function(){
                 var selected = $(this).find(':selected'), // get selected currency
                 currency = selected.val(); // get currency name
-          
+
                 getRate(siteCurrency, currency);
                 setCookie('site_currency', currency, { expires: 7, path: '' });
             });
@@ -522,13 +522,13 @@ function getCookie(name) {
 $('.modal').on('hidden.bs.modal', function (e) {
     if($('.modal').hasClass('in')) {
     $('body').addClass('modal-open');
-    }    
+    }
 });
 
 $('.show-all-categories').click(function() {
     $.ajax({
         url: $('#modalAllCategories').data('apiurl'),
-        data: { 
+        data: {
             "id_category_parent": $(this).data('cat-id'),
             "sort": 'order',
         },
@@ -590,7 +590,7 @@ $(function(){
             function GetPercentage(a, b) {
                 return ((b / a) * 100);
             }
-            
+
             function check_strength(thisval,thisid) {
                 if (thisval.length > 8) { characters = 1; } else { characters = -1; };
                 if (thisval.match(upperCase)) { capitalletters = 1} else { capitalletters = 0; };
@@ -631,12 +631,12 @@ $(function(){
             thisid = this.$elem.attr('id');
 
             this.$elem.addClass(this.options.strengthClass).attr('data-password',thisid).after('<input style="display:none" class="'+this.options.strengthClass+'" data-password="'+thisid+'" type="text" name="" value=""><a data-password-button="'+thisid+'" href="" class="'+this.options.strengthButtonClass+'">'+this.options.strengthButtonText+'</a><div class="'+this.options.strengthMeterClass+'"><div data-meter="'+thisid+'">Strength</div></div>');
-             
+
             this.$elem.bind('keyup keydown', function(event) {
                 thisval = $('#'+$(this).attr('id')).val();
                 $('input[type="text"][data-password="'+$(this).attr('id')+'"]').val(thisval);
                 check_strength(thisval,$(this).attr('id'));
-                
+
             });
 
              $('input[type="text"][data-password="'+thisid+'"]').bind('keyup keydown', function(event) {
@@ -644,7 +644,7 @@ $(function(){
                 console.log(thisval);
                 $('input[type="password"][data-password="'+thisid+'"]').val(thisval);
                 check_strength(thisval,thisid);
-                
+
             });
 
             $(document.body).on('click', '.'+this.options.strengthButtonClass, function(e) {
@@ -679,3 +679,11 @@ $(function(){
     };
 
 })( jQuery, window, document );
+
+function getResizeValue(value) {
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        return Math.round((value/3));
+    } else {
+        return value;
+    }
+}
