@@ -276,7 +276,10 @@ img#captcha_img_publish_new {
   border-color: #3c763d!important;
 }
 #toast-container > div{
-  opacity: 1;
+  opacity: 1!important;
+}
+#toast-container a{
+  color: #FFF!important;
 }
 
 /*Media screens*/
