@@ -227,36 +227,41 @@ class Model_Field {
      * @return bool       
      */
     public function delete($name)
-    {        
-        if ($this->field_exists($name))
+    {      
+        $deleted = FALSE;  
+
+        //remove the keys from configs
+        $conf = new Model_Config();
+        $conf->where('group_name','=','advertisement')
+             ->where('config_key','=','fields')
+             ->limit(1)->find();
+                    
+        if ($conf->loaded())
+        {
+            //remove the key
+            $fields = json_decode($conf->config_value, TRUE);
+
+            if (isset($fields[$name]))
+            {
+                unset($fields[$name]);
+                $conf->config_value = json_encode($fields);
+                $conf->save();
+                $deleted = TRUE;
+            }
+        }
+
+        //remove column
+        if ($deleted AND $this->field_exists($name))
         {
             $table = $this->_bs->table($this->_db_prefix.'ads');
             $table->drop_column($this->_name_prefix.$name);
             $this->_bs->forge($this->_db);
-
-
-            //save configs
-            $conf = new Model_Config();
-            $conf->where('group_name','=','advertisement')
-                 ->where('config_key','=','fields')
-                 ->limit(1)->find();
-                        
-            if ($conf->loaded())
-            {
-                //remove the key
-                $fields = json_decode($conf->config_value, TRUE);
-                unset($fields[$name]);
-
-                $conf->config_value = json_encode($fields);
-                $conf->save();
-            }
 
             return TRUE;
         }
         else
             return FALSE;
 
-        
     }
 
     /**

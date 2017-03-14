@@ -1083,4 +1083,29 @@ class Model_User extends ORM {
         return $s;
     }
 
+    /**
+     * sends a push notification to this user
+     * @param  string $message, what will be send
+     * @param  string $channel, where will be send/to whom
+     */
+    public function pusher($channel = null, $message = null)
+    {
+        require_once Kohana::find_file('vendor', 'pusher/autoload');
+
+        $options = array(
+            'cluster' => 'eu',
+            'encrypted' => true
+        );
+        $pusher = new Pusher(
+            Core::config('general.pusher_notifications_key'),
+            Core::config('general.pusher_notifications_secret'),
+            Core::config('general.pusher_notifications_app_id'),
+            $options
+        );
+      
+        $data['message'] = $message."<br><br>".__('Please check your email');
+        
+        $pusher->trigger('user_'.$channel, 'my-event', $data);    
+    }
+
 } // END Model_User

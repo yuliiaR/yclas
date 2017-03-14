@@ -75,6 +75,16 @@ class Email {
                 break;
         }
 
+        // notify user (pusher)
+        if (Core::config('general.pusher_notifications')){
+            if (is_array($to)){
+                foreach ($to as $user_email) {
+                    Model_User::pusher($user_email['email'], Text::limit_chars(Text::removebbcode($body), 80, NULL, TRUE));
+                }
+            } else 
+                Model_User::pusher($to, Text::limit_chars(Text::removebbcode($body), 80, NULL, TRUE));
+        }
+
         return $result;
     }
 

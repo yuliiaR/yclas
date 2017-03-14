@@ -35,6 +35,9 @@
                         <li>
                             <a data-toggle="tab" href="#tabSettingsRecaptcha" aria-expanded="false"><?=__('reCAPTCHA')?></a>
                         </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsNotifications" aria-expanded="false"><?=__('Notifications')?></a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div id="tabSettingsGeneral" class="tab-pane active fade">
@@ -122,7 +125,7 @@
                                     <?=Form::label($forms['private_site']['id'].'0', __('Disabled'))?>
                                 </div>
                                 <span class="help-block">
-                                    <?=__("Enables the site to Private site")?>
+                                    <?=__("Enables the site to private_site")?>
                                 </span>
                             </div>
 
@@ -523,6 +526,53 @@
                                 <span class="help-block">
                                     <?=__("You need to write your reCAPTCHA Secret Key to enable the service.")?>
                                 </span>
+                            </div>
+                            <hr>
+                            <p>
+                                <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
+                            </p>
+                        </div>
+                        <div id="tabSettingsNotifications" class="tab-pane fade">
+                            <h4><?=__("Notifications")?>
+                                <a target="_blank" href="//docs.yclas.com/notification-system">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                            </h4>
+                            <hr>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['pusher_notifications']['id'], __("Enable Notifications"), array('class'=>'control-label', 'for'=>$forms['pusher_notifications']['id']))?>
+
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['pusher_notifications']['key'], 1, (bool) $forms['pusher_notifications']['value'], array('id' => $forms['pusher_notifications']['id'].'1'))?>
+                                    <?=Form::label($forms['pusher_notifications']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['pusher_notifications']['key'], 0, ! (bool) $forms['pusher_notifications']['value'], array('id' => $forms['pusher_notifications']['id'].'0'))?>
+                                    <?=Form::label($forms['pusher_notifications']['id'].'0', __('Disabled'))?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['pusher_notifications_app_id']['id'], __('App ID'), array('class'=>'control-label', 'for'=>$forms['pusher_notifications_app_id']['id']))?>
+                                <?=FORM::input($forms['pusher_notifications_app_id']['key'], $forms['pusher_notifications_app_id']['value'], array(
+                                    'placeholder' => "", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['pusher_notifications_app_id']['id'],
+                                ))?>
+                            </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['pusher_notifications_key']['id'], __('Key'), array('class'=>'control-label', 'for'=>$forms['pusher_notifications_key']['id']))?>
+                                <?=FORM::input($forms['pusher_notifications_key']['key'], $forms['pusher_notifications_key']['value'], array(
+                                    'placeholder' => "", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['pusher_notifications_key']['id'],
+                                ))?>
+                            </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['pusher_notifications_secret']['id'], __('Secret'), array('class'=>'control-label', 'for'=>$forms['pusher_notifications_secret']['id']))?>
+                                <?=FORM::input($forms['pusher_notifications_secret']['key'], $forms['pusher_notifications_secret']['value'], array(
+                                    'placeholder' => "", 
+                                    'class' => 'form-control', 
+                                    'id' => $forms['pusher_notifications_secret']['id'],
+                                ))?>
                             </div>
                             <hr>
                             <p>
