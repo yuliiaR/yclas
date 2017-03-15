@@ -38,6 +38,9 @@
                         <li>
                             <a data-toggle="tab" href="#tabSettingsNotifications" aria-expanded="false"><?=__('Notifications')?></a>
                         </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabSettingsAlgolia" aria-expanded="false">Algolia Search</a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div id="tabSettingsGeneral" class="tab-pane active fade">
@@ -69,11 +72,11 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?= FORM::input($forms['site_name']['key'], $forms['site_name']['value'], array(
-                                    'placeholder' => 'Yclas', 
-                                    'class' => 'form-control', 
+                                    'placeholder' => 'Yclas',
+                                    'class' => 'form-control',
                                     'id' => $forms['site_name']['id'],
                                     'data-rule-required'=>'true',
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("Here you can declare your display name. This is seen by everyone!")?>
                                 </span>
@@ -86,10 +89,10 @@
                                 </a>
                                 <?= FORM::textarea($forms['site_description']['key'], $forms['site_description']['value'], array(
                                     'placeholder' => __('Description of your site in no more than 160 characters.'),
-                                    'rows' => 3, 'cols' => 50, 
-                                    'class' => 'form-control', 
+                                    'rows' => 3, 'cols' => 50,
+                                    'class' => 'form-control',
                                     'id' => $forms['site_description']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__('Description used for the <meta name="description"> of the home page. Might be used by Google as search result snippet. (max. 160 chars)')?>
                                 </span>
@@ -166,10 +169,10 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?= FORM::select($forms['moderation']['key'], array(0=>__("Post directly"),1=>__("Moderation on"),2=>__("Payment on"),3=>__("Email confirmation on"),4=>__("Email confirmation with Moderation"),5=>__("Payment with Moderation")), $forms['moderation']['value'], array(
-                                    'placeholder' => $forms['moderation']['value'], 
-                                    'class' => 'form-control', 
+                                    'placeholder' => $forms['moderation']['value'],
+                                    'class' => 'form-control',
                                     'id' => $forms['moderation']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("Moderation is how you control newly created advertisements. You can set it up to fulfill your needs. For example, 'Post directly' will enable new ads to be posted directly, and get published as soon they submit.")?>
                                 </span>
@@ -180,11 +183,11 @@
                                 <a target="_blank" href="https://docs.yclas.com/home-or-listing/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
-                                <?= FORM::select($forms['landing_page']['key'], 
+                                <?= FORM::select($forms['landing_page']['key'],
                                         array('{"controller":"home","action":"index"}'=>'HOME','{"controller":"ad","action":"listing"}'=>'LISTING','{"controller":"user","action":"index"}'=>'USERS'), $forms['landing_page']['value'], array(
-                                    'class' => 'form-control', 
-                                    'id' => $forms['landing_page']['id'], 
-                                ))?> 
+                                    'class' => 'form-control',
+                                    'id' => $forms['landing_page']['id'],
+                                ))?>
                                 <span class="help-block">
                                     <?=__("It changes landing page of website")?>
                                 </span>
@@ -199,10 +202,10 @@
                                 <a target="_blank" href="https://docs.yclas.com/activate-access-terms-alert/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
-                                <?=FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array( 
-                                    'class' => 'form-control', 
-                                    'id' => $forms['alert_terms']['id'], 
-                                ))?> 
+                                <?=FORM::select($forms['alert_terms']['key'], $pages, $forms['alert_terms']['value'], array(
+                                    'class' => 'form-control',
+                                    'id' => $forms['alert_terms']['id'],
+                                ))?>
                                 <span class="help-block">
                                     <?=__("If you choose to use alert terms, you can select page you want to render. And to edit content, select link 'Content' on your admin panel sidebar. Find page named <name_you_specified> click 'Edit'. In section 'Description' add content that suits you.")?>
                                 </span>
@@ -213,8 +216,8 @@
                                 <a target="_blank" href="https://docs.yclas.com/private-site/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
-                                <?=FORM::select($forms['private_site_page']['key'], $pages, $forms['private_site_page']['value'], array( 
-                                    'class' => 'tips form-control', 
+                                <?=FORM::select($forms['private_site_page']['key'], $pages, $forms['private_site_page']['value'], array(
+                                    'class' => 'tips form-control',
                                     'id' => $forms['private_site_page']['id'],
                                 ))?>
                                 <span class="help-block">
@@ -227,10 +230,10 @@
                                 <a target="_blank" href="https://docs.yclas.com/how-to-add-text-contact-page/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
-                                <?= FORM::select($forms['contact_page']['key'], $pages, $forms['contact_page']['value'], array( 
-                                    'class' => 'form-control', 
-                                    'id' => $forms['contact_page']['id'], 
-                                ))?> 
+                                <?= FORM::select($forms['contact_page']['key'], $pages, $forms['contact_page']['value'], array(
+                                    'class' => 'form-control',
+                                    'id' => $forms['contact_page']['id'],
+                                ))?>
                                 <span class="help-block">
                                     <?=__("Adds content to contact page")?>
                                 </span>
@@ -244,11 +247,11 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?=FORM::input($forms['email_domains']['key'], $forms['email_domains']['value'], array(
-                                    'placeholder' => __('For email domain push enter.'), 
-                                    'class' => 'form-control', 
-                                    'id' => $forms['email_domains']['key'], 
+                                    'placeholder' => __('For email domain push enter.'),
+                                    'class' => 'form-control',
+                                    'id' => $forms['email_domains']['key'],
                                     'data-role'=>'tagsinput',
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("You need to write your email domains to enable the service.")?>
                                 </span>
@@ -260,8 +263,8 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?= FORM::input($forms['api_key']['key'], $forms['api_key']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
                                     'id' => $forms['api_key']['id'],
                                 ))?>
                                 <span class="help-block">
@@ -275,10 +278,10 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?=FORM::input($forms['analytics']['key'], $forms['analytics']['value'], array(
-                                    'placeholder' => 'UA-XXXXX-YY', 
-                                    'class' => 'form-control', 
+                                    'placeholder' => 'UA-XXXXX-YY',
+                                    'class' => 'form-control',
                                     'id' => $forms['analytics']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("Once logged in your Google Analytics, you can find the Tracking ID in the Accounts List or in the Property Settings")?>
                                 </span>
@@ -290,10 +293,10 @@
                                     <i class="fa fa-external-link-square"></i>
                                 </a>
                                 <?=FORM::input($forms['akismet_key']['key'], $forms['akismet_key']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
                                     'id' => $forms['akismet_key']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("Providing akismet key will activate this feature. This feature deals with spam posts and emails.")?>
                                 </span>
@@ -305,10 +308,10 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?=FORM::input($forms['gcm_apikey']['key'], $forms['gcm_apikey']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
                                     'id' => $forms['gcm_apikey']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("Push notifications for your native app. Using Google Cloud Messaging, insert your API Key here.")?>
                                 </span>
@@ -321,10 +324,10 @@
                                 </a>
                                 <?=FORM::textarea($forms['html_head']['key'], $forms['html_head']['value'], array(
                                     'placeholder' => '',
-                                    'rows' => 3, 'cols' => 50, 
-                                    'class' => 'form-control', 
+                                    'rows' => 3, 'cols' => 50,
+                                    'class' => 'form-control',
                                     'id' => $forms['html_head']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("To include your custom HTML code (validation metadata, reference to JS/CSS files, etc.) in the HEAD element of the rendered page.")?>
                                 </span>
@@ -337,10 +340,10 @@
                                 </a>
                                 <?=FORM::textarea($forms['html_footer']['key'], $forms['html_footer']['value'], array(
                                     'placeholder' => '',
-                                    'rows' => 3, 'cols' => 50, 
-                                    'class' => 'form-control', 
+                                    'rows' => 3, 'cols' => 50,
+                                    'class' => 'form-control',
                                     'id' => $forms['html_footer']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("To include your custom HTML code (reference to JS or CSS files, etc.) in the footer of the rendered page.")?>
                                 </span>
@@ -371,30 +374,30 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?=FORM::input($forms['date_format']['key'], $forms['date_format']['value'], array(
-                                    'placeholder' => "d/m/Y", 
-                                    'class' => 'form-control', 
-                                    'id' => $forms['date_format']['id'], 
-                                ))?> 
+                                    'placeholder' => "d/m/Y",
+                                    'class' => 'form-control',
+                                    'id' => $forms['date_format']['id'],
+                                ))?>
                                 <span class="help-block">
                                     <?=__("Each advertisement has a publish date. By selecting format, you can change how it is shown on your website.")?>
                                 </span>
                             </div>
                             <div class="form-group">
-                                <label class="control-label"><?=__("Time Zone")?>:</label>  
+                                <label class="control-label"><?=__("Time Zone")?>:</label>
                                 <a target="_blank" href="https://docs.yclas.com/how-to-change-time-zone/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?= FORM::select($forms['timezone']['key'], Date::get_timezones(), core::request('TIMEZONE',date_default_timezone_get()), array(
-                                        'placeholder' => "Madrid [+1:00]", 
-                                        'class' => 'tips form-control', 
-                                        'id' => $forms['timezone']['id'], 
+                                        'placeholder' => "Madrid [+1:00]",
+                                        'class' => 'tips form-control',
+                                        'id' => $forms['timezone']['id'],
                                 ))?>
                             </div>
                             <div class="form-group">
                                 <label class="control-label"><?=__("Measurement Units")?>:</label>
                                 <?=FORM::select($forms['measurement']['key'], array('metric' => __("Metric"), 'imperial' => __("Imperial")), $forms['measurement']['value'], array(
-                                        'placeholder' => $forms['measurement']['value'], 
-                                        'class' => 'form-control', 
+                                        'placeholder' => $forms['measurement']['value'],
+                                        'class' => 'form-control',
                                         'id' => $forms['measurement']['id'],
                                 ))?>
                                 <span class="help-block">
@@ -423,7 +426,7 @@
                                     <?=__("Once set to TRUE, enables search to look for key words in description")?>
                                 </span>
                             </div>
-                            
+
                             <div class="form-group">
                                 <?= FORM::label($forms['search_multi_catloc']['id'], __("Multi select category and location search"), array('class'=>'control-label', 'for'=>$forms['search_multi_catloc']['id']))?>
                                 <div class="radio radio-primary">
@@ -452,10 +455,10 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?=FORM::input($forms['blog_disqus']['key'], $forms['blog_disqus']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'tips form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'tips form-control',
                                     'id' => $forms['blog_disqus']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("You need to write your disqus ID to enable the service.")?>
                                 </span>
@@ -466,10 +469,10 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?=FORM::input($forms['faq_disqus']['key'], $forms['faq_disqus']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
                                     'id' => $forms['faq_disqus']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("You need to write your disqus ID to enable the service.")?>
                                 </span>
@@ -505,10 +508,10 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?=FORM::input($forms['recaptcha_sitekey']['key'], $forms['recaptcha_sitekey']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
                                     'id' => $forms['recaptcha_sitekey']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("You need to write reCAPTCHA Site Key to enable the service.")?>
                                 </span>
@@ -519,10 +522,10 @@
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?=FORM::input($forms['recaptcha_secretkey']['key'], $forms['recaptcha_secretkey']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
                                     'id' => $forms['recaptcha_secretkey']['id'],
-                                ))?> 
+                                ))?>
                                 <span class="help-block">
                                     <?=__("You need to write your reCAPTCHA Secret Key to enable the service.")?>
                                 </span>
@@ -553,25 +556,72 @@
                             <div class="form-group">
                                 <?=FORM::label($forms['pusher_notifications_app_id']['id'], __('App ID'), array('class'=>'control-label', 'for'=>$forms['pusher_notifications_app_id']['id']))?>
                                 <?=FORM::input($forms['pusher_notifications_app_id']['key'], $forms['pusher_notifications_app_id']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
                                     'id' => $forms['pusher_notifications_app_id']['id'],
                                 ))?>
                             </div>
                             <div class="form-group">
                                 <?=FORM::label($forms['pusher_notifications_key']['id'], __('Key'), array('class'=>'control-label', 'for'=>$forms['pusher_notifications_key']['id']))?>
                                 <?=FORM::input($forms['pusher_notifications_key']['key'], $forms['pusher_notifications_key']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
                                     'id' => $forms['pusher_notifications_key']['id'],
                                 ))?>
                             </div>
                             <div class="form-group">
                                 <?=FORM::label($forms['pusher_notifications_secret']['id'], __('Secret'), array('class'=>'control-label', 'for'=>$forms['pusher_notifications_secret']['id']))?>
                                 <?=FORM::input($forms['pusher_notifications_secret']['key'], $forms['pusher_notifications_secret']['value'], array(
-                                    'placeholder' => "", 
-                                    'class' => 'form-control', 
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
                                     'id' => $forms['pusher_notifications_secret']['id'],
+                                ))?>
+                            </div>
+                            <hr>
+                            <p>
+                                <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
+                            </p>
+                        </div>
+                        <div id="tabSettingsAlgolia" class="tab-pane fade">
+                            <h4>Algolia Search
+                                <a target="_blank" href="#>
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                            </h4>
+                            <hr>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['algolia_search']['id'], __("Enable Notifications"), array('class'=>'control-label', 'for'=>$forms['algolia_search']['id']))?>
+
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['algolia_search']['key'], 1, (bool) $forms['algolia_search']['value'], array('id' => $forms['algolia_search']['id'].'1'))?>
+                                    <?=Form::label($forms['algolia_search']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['algolia_search']['key'], 0, ! (bool) $forms['algolia_search']['value'], array('id' => $forms['algolia_search']['id'].'0'))?>
+                                    <?=Form::label($forms['algolia_search']['id'].'0', __('Disabled'))?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['algolia_search_application_id']['id'], __('Application ID'), array('class'=>'control-label', 'for'=>$forms['algolia_search_application_id']['id']))?>
+                                <?=FORM::input($forms['algolia_search_application_id']['key'], $forms['algolia_search_application_id']['value'], array(
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
+                                    'id' => $forms['algolia_search_application_id']['id'],
+                                ))?>
+                            </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['algolia_search_admin_key']['id'], __('API Key'), array('class'=>'control-label', 'for'=>$forms['algolia_search_admin_key']['id']))?>
+                                <?=FORM::input($forms['algolia_search_admin_key']['key'], $forms['algolia_search_admin_key']['value'], array(
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
+                                    'id' => $forms['algolia_search_admin_key']['id'],
+                                ))?>
+                            </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['algolia_search_only_key']['id'], __('Search-Only API Key'), array('class'=>'control-label', 'for'=>$forms['algolia_search_only_key']['id']))?>
+                                <?=FORM::input($forms['algolia_search_only_key']['key'], $forms['algolia_search_only_key']['value'], array(
+                                    'placeholder' => "",
+                                    'class' => 'form-control',
+                                    'id' => $forms['algolia_search_only_key']['id'],
                                 ))?>
                             </div>
                             <hr>

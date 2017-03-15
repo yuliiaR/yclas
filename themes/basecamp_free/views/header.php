@@ -12,11 +12,11 @@
             <?
 			$cats = Model_Category::get_category_count();
             $loc_seoname = NULL;
-            
+
             if (Model_Location::current()->loaded())
                 $loc_seoname = Model_Location::current()->seoname;
 			?>
-	    
+
 			<div class="collapse navbar-collapse navbar-right" id="mobile-menu-panel">
 				<ul class="nav navbar-nav">
 					<?if (class_exists('Menu') AND count( $menus = Menu::get() )>0 ):?>
@@ -24,7 +24,7 @@
 	                        <li class="<?=(Request::current()->uri()==$data['url'])?'active':''?>" >
 	                        <a href="<?=$data['url']?>" target="<?=$data['target']?>">
 	                            <?if($data['icon']!=''):?><i class="<?=$data['icon']?>"></i> <?endif?>
-	                            <?=$data['title']?></a> 
+	                            <?=$data['title']?></a>
 	                        </li>
 	                    <?endforeach?>
 	                <?else:?>
@@ -62,7 +62,7 @@
 	                                <?endif?>
 	                            <?endforeach?>
 	                        </ul>
-						</li>	
+						</li>
 						<?if (core::config('general.blog')==1):?>
 							<?=Theme::nav_link(_e('Blog'),'blog','','index','blog')?>
 						<?endif?>
@@ -79,7 +79,7 @@
 					<?endif?>
 				</ul>
 			</div>
-		</div>		
+		</div>
 	</div>
 <!-- // MAIN NAV -->
 
@@ -93,7 +93,7 @@
 					<?if ((Core::config('advertisement.only_admin_post')!=1) OR (Core::config('advertisement.only_admin_post')==1 AND Auth::instance()->logged_in() AND (Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator()))):?>
 						<a class="btn btn-base-light" href="<?=Route::url('post_new')?>">
 							<i class="glyphicon glyphicon-plus glyphicon"></i>
-						</a>                
+						</a>
 					<?endif?>
 					<button class="btn btn-base-light" type="button" data-toggle="collapse" data-target="#toolSearch" aria-expanded="false" aria-controls="toolSearch">
 						<i class="glyphicon glyphicon-search glyphicon"></i>
@@ -110,14 +110,22 @@
 	<div class="tool_bar_search">
 		<div class="container">
 			<div class="row">
-				<?= FORM::open(Route::url('search'), array('class'=>'', 'method'=>'GET', 'action'=>''))?>
-				<div class="tool_bar_search_input">
-					<div class="input-group col-md-12">
-						<input type="text" class="search-query form-control" name="search" placeholder="<?=__('Search')?>"  />
-						<span class="input-group-btn"><?= FORM::button('submit', _e('Search'), array('type'=>'submit', 'class'=>'btn btn-default', 'action'=>Route::url('search')))?></span>
+				<?if(Core::config('general.algolia_search') == 1):?>
+					<div class="tool_bar_search_input">
+						<div class="input-group col-md-12">
+							<?=View::factory('pages/algolia/autocomplete')?>
+						</div>
 					</div>
-				</div>
-				<?= FORM::close()?>
+				<?else:?>
+					<?= FORM::open(Route::url('search'), array('class'=>'', 'method'=>'GET', 'action'=>''))?>
+					<div class="tool_bar_search_input">
+						<div class="input-group col-md-12">
+							<input type="text" class="search-query form-control" name="search" placeholder="<?=__('Search')?>"  />
+							<span class="input-group-btn"><?= FORM::button('submit', _e('Search'), array('type'=>'submit', 'class'=>'btn btn-default', 'action'=>Route::url('search')))?></span>
+						</div>
+					</div>
+					<?= FORM::close()?>
+				<?endif?>
 			</div>
 		</div>
 	</div>
@@ -168,6 +176,6 @@
 		</div>
 	</div>
 	<!-- // POP UP MODALS - LOGIN - REGISTER - FORGOT PASS -->
-<?elseif(Core::config('general.pusher_notifications')):?> 
+<?elseif(Core::config('general.pusher_notifications')):?>
     <div id="pusher-subscribe" class="hidden" data-user="<?=Auth::instance()->get_user()->email?>" data-key="<?=Core::config('general.pusher_notifications_key')?>"></div>
 <?endif?>

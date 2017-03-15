@@ -14,13 +14,13 @@
 					<?endif?>
 				</h3>
 			</div>
-			
-			<!-- Dropdown Edit Search --> 
+
+			<!-- Dropdown Edit Search -->
 			<div class="drop-edit-search">
 			<a class="collapse_searchform_expand add-transition" role="button" data-toggle="collapse" href="#collapsAdvSearchForm" aria-expanded="false" aria-controls="collapsAdvSearchForm">
 				Edit Search <i class="fa fa-caret-square-o-down"></i>
 			</a>
-			
+
 			<div class="collapse" id="collapsAdvSearchForm">
 			<div class="modify_search clearfix">
 			<?= FORM::open(Route::url('search'), array('class'=>'form-inline', 'method'=>'GET', 'action'=>''))?>
@@ -29,7 +29,11 @@
 				<div class="form-group col-xs-12 col-sm-4 ">
 					<?= FORM::label('advertisement', _e('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
 						<div class="control mr-30">
-							<input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+							<?if(Core::config('general.algolia_search') == 1):?>
+	                            <?=View::factory('pages/algolia/autocomplete_ad')?>
+	                        <?else:?>
+	                            <input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+	                        <?endif?>
 						</div>
 				</div>
 				<div class="form-group col-xs-12 col-sm-4 ">
@@ -46,7 +50,7 @@
 									<option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
 								<?endif?>
 								<?if (count($item)>0):?>
-								<optgroup label="<?=$cats[$key]['name']?>">    
+								<optgroup label="<?=$cats[$key]['name']?>">
 									<? if (is_array($item)) array_walk($item, 'lili', $cats);?>
 									</optgroup>
 								<?endif?>
@@ -56,7 +60,7 @@
 				</div>
 				<?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
 					<div class="form-group col-xs-12 col-sm-4">
-						<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
+						<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
 						<div class="control mr-30">
 							<select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
 							<?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -69,7 +73,7 @@
 									<option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
 								<?endif?>
 								<?if (count($item)>0):?>
-								<optgroup label="<?=$locs[$key]['name']?>">    
+								<optgroup label="<?=$locs[$key]['name']?>">
 									<? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
 									</optgroup>
 								<?endif?>
@@ -78,11 +82,11 @@
 						</div>
 					</div>
 				<?endif?>
-            	
+
 				<?if(core::config('advertisement.price')):?>
 					<div class="form-group col-xs-6 col-sm-4">
-						<label class="" for="price-min"><?=_e('Price from')?> </label> 
-							<div class="control mr-30"> 
+						<label class="" for="price-min"><?=_e('Price from')?> </label>
+							<div class="control mr-30">
 								<input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
 							</div>
 					</div>
@@ -93,7 +97,7 @@
 							</div>
 					</div>
 				<?endif?>
-                
+
 				<div class="form-group col-xs-12 col-sm-4 text-center">
 					<label>&nbsp;</label>
 					<div>
@@ -102,24 +106,24 @@
 				</div>
 			</fieldset>
 			<?= FORM::close()?>
-			</div>	
+			</div>
 			</div>
 			</div>
 		</div>
-        
+
 		<?=View::factory('pages/ad/listing',array('pagination'=>$pagination,'ads'=>$ads,'category'=>NULL, 'location'=>NULL, 'user'=>$user, 'featured'=>NULL))?>
 
 		<?else:?>
-		
+
 		<div class="col-md-9 col-sm-12 col-xs-12">
 			<div class="page-header">
 				<h3><?=_e('Search results')?></h3>
-			</div>	
-			
+			</div>
+
 			<a class="collapse_searchform_expand add-transition" role="button" data-toggle="collapse" href="#collapsAdvSearchForm" aria-expanded="false" aria-controls="collapsAdvSearchForm">
 			<span class="glyphicon glyphicon-edit"></span> Edit Search
 			</a>
-	
+
 			<div class="collapse" id="collapsAdvSearchForm">
 				<div class="modify_search clearfix">
 				<?= FORM::open(Route::url('search'), array('class'=>'form-inline', 'method'=>'GET', 'action'=>''))?>
@@ -128,7 +132,11 @@
 					<div class="form-group col-xs-12 col-sm-4 ">
 						<?= FORM::label('advertisement', _e('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
 						<div class="control mr-30">
-							<input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+							<?if(Core::config('general.algolia_search') == 1):?>
+	                            <?=View::factory('pages/algolia/autocomplete_ad')?>
+	                        <?else:?>
+	                            <input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+	                        <?endif?>
 						</div>
 					</div>
 					<div class="form-group col-xs-12 col-sm-4 ">
@@ -145,7 +153,7 @@
 									<option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
 								<?endif?>
 								<?if (count($item)>0):?>
-								<optgroup label="<?=$cats[$key]['name']?>">    
+								<optgroup label="<?=$cats[$key]['name']?>">
 									<? if (is_array($item)) array_walk($item, 'lili', $cats);?>
 									</optgroup>
 								<?endif?>
@@ -155,7 +163,7 @@
 					</div>
 					<?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
 						<div class="form-group col-xs-12 col-sm-4">
-							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
+							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
 							<div class="control mr-30">
 								<select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
 								<?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -168,7 +176,7 @@
 										<option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
 									<?endif?>
 									<?if (count($item)>0):?>
-									<optgroup label="<?=$locs[$key]['name']?>">    
+									<optgroup label="<?=$locs[$key]['name']?>">
 										<? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
 										</optgroup>
 									<?endif?>
@@ -177,11 +185,11 @@
 							</div>
 						</div>
 					<?endif?>
-            	
+
 					<?if(core::config('advertisement.price')):?>
 						<div class="form-group col-xs-6 col-sm-4">
-							<label class="" for="price-min"><?=_e('Price from')?> </label> 
-								<div class="control mr-30"> 
+							<label class="" for="price-min"><?=_e('Price from')?> </label>
+								<div class="control mr-30">
 									<input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
 								</div>
 						</div>
@@ -193,7 +201,7 @@
 								</div>
 						</div>
 					<?endif?>
-                
+
 					<div class="form-group col-xs-12 col-sm-4 text-center">
 						<label>&nbsp;</label>
 						<div>
@@ -202,28 +210,28 @@
 					</div>
 				</fieldset>
 				<?= FORM::close()?>
-				</div>	
+				</div>
 			</div>
-	
+
 			<div class="no_results text-center">
 				<span class="nr_badge"><i class="glyphicon glyphicon-info-sign glyphicon"></i></span>
 				<p class="nr_info"><?=_e('Your search did not match any advertisement.')?></p>
 			</div>
 		</div>
-		
+
 		<?if(Theme::get('sidebar_position')!='none'):?>
             <?=(Theme::get('sidebar_position')=='left')?View::fragment('sidebar_front','sidebar'):''?>
             <?=(Theme::get('sidebar_position')=='right')?View::fragment('sidebar_front','sidebar'):''?>
         <?endif?>
-	
+
 		<?endif?>
 
 	<?else:?>
 		<div class="col-md-9 col-sm-12 col-xs-12">
 			<div class="page-header">
 				<h3><?=_e('Search')?></h3>
-			</div>	
-	
+			</div>
+
 			<div id="adv_search_form">
 			<div class="clearfix">
 			<?= FORM::open(Route::url('search'), array('class'=>'form-inline', 'method'=>'GET', 'action'=>''))?>
@@ -232,7 +240,11 @@
 					<div class="form-group col-xs-12 ">
 						<?= FORM::label('advertisement', _e('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
 						<div class="control mr-30">
-							<input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+							<?if(Core::config('general.algolia_search') == 1):?>
+								<?=View::factory('pages/algolia/autocomplete_ad')?>
+							<?else:?>
+								<input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+							<?endif?>
 						</div>
 					</div>
 					<div class="form-group col-xs-12 ">
@@ -249,7 +261,7 @@
 									<option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
 								<?endif?>
 								<?if (count($item)>0):?>
-								<optgroup label="<?=$cats[$key]['name']?>">    
+								<optgroup label="<?=$cats[$key]['name']?>">
 									<? if (is_array($item)) array_walk($item, 'lili', $cats);?>
 								</optgroup>
 								<?endif?>
@@ -259,7 +271,7 @@
 					</div>
 					<?if(core::config('advertisement.location') != FALSE AND count($locations) > 1):?>
 						<div class="form-group col-xs-12">
-							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
+							<?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
 							<div class="control mr-30">
 								<select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
 								<?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -272,7 +284,7 @@
 										<option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
 									<?endif?>
 									<?if (count($item)>0):?>
-									<optgroup label="<?=$locs[$key]['name']?>">    
+									<optgroup label="<?=$locs[$key]['name']?>">
 										<? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
 										</optgroup>
 									<?endif?>
@@ -281,11 +293,11 @@
 							</div>
 						</div>
 					<?endif?>
-            	
+
 					<?if(core::config('advertisement.price')):?>
 						<div class="form-group col-xs-6 col-sm-4">
-							<label class="" for="price-min"><?=_e('Price from')?> </label> 
-							<div class="control mr-30"> 
+							<label class="" for="price-min"><?=_e('Price from')?> </label>
+							<div class="control mr-30">
 								<input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
 							</div>
 						</div>
@@ -304,7 +316,7 @@
 					</div>
 				</fieldset>
 			<?= FORM::close()?>
-			</div>	
+			</div>
 			</div>
 		</div>
 
