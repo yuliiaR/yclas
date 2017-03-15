@@ -788,4 +788,10 @@ $(function(){
     ]).on('autocomplete:selected', function(dataset, suggestion) {
       location.href = suggestion.permalink;
     });
+
+    $("input.aa-input-search").keydown(function(event){
+        if(event.keyCode == 13) {
+            $(this).parents('form:first').submit();
+        }
+    });
 });
