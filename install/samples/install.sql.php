@@ -774,6 +774,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'facebook_app_secret', ''),
 ('advertisement', 'facebook_access_token', ''),
 ('advertisement', 'facebook_id', ''),
+('advertisement', 'instagram', '0'),
 ('advertisement', 'instagram_username', ''),
 ('advertisement', 'instagram_password', ''),
 ('advertisement', 'pinterest', '0'),
