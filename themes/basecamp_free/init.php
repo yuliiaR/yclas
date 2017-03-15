@@ -1,10 +1,10 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 /**
   * Theme Name: Basecamp free
-  * Description: The Basecamp free theme offers basic views and options. For more options consider buying the Basecamp premium theme which offers extended customization.  
+  * Description: The Basecamp free theme offers basic views and options. For more options consider buying the Basecamp premium theme which offers extended customization.
   * Tags: HTML5, Responsive, Mobile
   * Version: 3.1.0
-  * Author: Christopher 
+  * Author: Christopher
   * License: Free
   * Parent Theme: default
   * Skins: default, mint, charcoal/gold, plumb
@@ -39,9 +39,9 @@ Theme::$skin = Theme::get('theme');
 $theme_css =  array(      '//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css' => 'screen',
                           '//cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css' => 'screen',
                           '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.min.css' => 'screen',
-                          '//cdn.jsdelivr.net/blueimp-gallery/2.15.0/css/blueimp-gallery.min.css' => 'screen', 
+                          '//cdn.jsdelivr.net/blueimp-gallery/2.15.0/css/blueimp-gallery.min.css' => 'screen',
                           '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
-                          '//cdn.jsdelivr.net/select2/4.0.3/css/select2.min.css' => 'screen',                        
+                          '//cdn.jsdelivr.net/select2/4.0.3/css/select2.min.css' => 'screen',
                           'css/slider.css' => 'screen',
                           'css/styles.css?v='.Core::VERSION => 'screen',
                   );
@@ -67,8 +67,8 @@ Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.4,bootstra
                                     'js/theme.init.js?v='.Core::VERSION,
                             );
 
-if (Auth::instance()->logged_in() AND 
-    (Auth::instance()->get_user()->is_admin() OR 
+if (Auth::instance()->logged_in() AND
+    (Auth::instance()->get_user()->is_admin() OR
         Auth::instance()->get_user()->is_moderator() OR
         Auth::instance()->get_user()->is_translator()))
 {
@@ -81,6 +81,12 @@ if (Core::config('general.pusher_notifications')){
     Theme::$styles['//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'] = 'screen';
     Theme::$scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js';
     Theme::$scripts['footer'][] = '//js.pusher.com/4.0/pusher.min.js';
+}
+
+if (Core::config('general.algolia_search')){
+    Theme::$styles['css/algolia/algolia-autocomplete.css'] = 'screen';
+    Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js';
+    Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js';
 }
 
 /**

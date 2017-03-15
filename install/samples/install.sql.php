@@ -153,9 +153,9 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS ".core::request('TABLE_PREFIX')."
                         ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
 
 
-mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."config` ( 
-  `group_name` VARCHAR(128)  NOT NULL, 
-  `config_key` VARCHAR(128)  NOT NULL, 
+mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX')."config` (
+  `group_name` VARCHAR(128)  NOT NULL,
+  `config_key` VARCHAR(128)  NOT NULL,
   `config_value` MEDIUMTEXT,
    PRIMARY KEY (`config_key`),
    UNIQUE KEY `".core::request('TABLE_PREFIX')."config_UK_group_name_AND_config_key` (`group_name`,`config_key`)
@@ -166,7 +166,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `id_order` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(10) unsigned NOT NULL,
   `id_ad` int(10) unsigned NULL,
-  `id_product` varchar(20) NOT NULL, 
+  `id_product` varchar(20) NOT NULL,
   `id_coupon` int(10) unsigned DEFAULT NULL,
   `paymethod` varchar(20) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -350,7 +350,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
 /**
  * add basic content like emails
  */
-mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`order`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`) 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`order`, `title`, `seotitle`, `description`, `from_email`, `type`, `status`)
     VALUES
 (0, 'Change Password [SITE.NAME]', 'auth-remember', 'Hello [USER.NAME],\n\nFollow this link  [URL.QL]\n\nThanks!!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
 (0, 'Welcome to [SITE.NAME]!', 'auth-register', 'Welcome [USER.NAME],\n\nWe are really happy that you have joined us! [URL.QL]\n\nRemember your user details:\nEmail: [USER.EMAIL]\nPassword: [USER.PWD]\n\nWe do not have your original password anymore.\n\nRegards!', '".core::request('ADMIN_EMAIL')."', 'email', 1),
@@ -552,13 +552,13 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."content` (`loc
 /**
  * Access
  */
-mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."roles` (`id_role`, `name`, `description`) VALUES 
-    (1, 'user', 'Normal user'), 
-    (5, 'translator', 'User + Translations'), 
-    (7, 'moderator', 'Moderator'), 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."roles` (`id_role`, `name`, `description`) VALUES
+    (1, 'user', 'Normal user'),
+    (5, 'translator', 'User + Translations'),
+    (7, 'moderator', 'Moderator'),
     (10, 'admin', 'Full access');");
 
-mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_role`, `access`) VALUES 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_role`, `access`) VALUES
             (10, '*.*'),
             (1, 'profile.*'),(1, 'stats.user'),(1, 'myads.*'),(1, 'messages.*'),
             (5, 'translations.*'),(5, 'profile.*'),(5, 'stats.user'),(5, 'content.*'),(5, 'myads.*'),(5, 'messages.*'),
@@ -566,10 +566,10 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_r
             (7, 'widgets.*'),(7, 'menu.*'),(7, 'category.*'),(7, 'location.*'),(7, 'myads.*'),(7, 'messages.*');");
 
 /**
- * Create user God/Admin 
+ * Create user God/Admin
  */
 $password = hash_hmac('sha256', core::request('ADMIN_PWD'), install::$hash_key);
-mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`, `subscriber`) 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."users` (`id_user`, `name`, `seoname`, `email`, `password`, `status`, `id_role`, `subscriber`)
 VALUES (1, 'admin', 'admin', '".core::request('ADMIN_EMAIL')."', '$password', 1, 10, 1)");
 
 /**
@@ -690,6 +690,10 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'pusher_notifications_app_id', ''),
 ('general', 'pusher_notifications_key', ''),
 ('general', 'pusher_notifications_secret', ''),
+('general', 'algolia_search', '0'),
+('general', 'algolia_search_application_id', ''),
+('general', 'algolia_search_admin_key', ''),
+('general', 'algolia_search_only_key', ''),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),
@@ -798,19 +802,19 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 
 
 //base category
-mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."categories` 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."categories`
   (`id_category` ,`name` ,`order` ,`id_category_parent` ,`parent_deep` ,`seoname` ,`description` )
 VALUES (1, 'Home category', 0 , 0, 0, 'all', 'root category');");
 
 
 //base location
-mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."locations` 
+mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."locations`
   (`id_location` ,`name` ,`id_location_parent` ,`parent_deep` ,`seoname` ,`description`)
 VALUES (1 , 'Home location', 0, 0, 'all', 'root location');");
 
- 
 
-//sample values 
+
+//sample values
 if ( core::request('SAMPLE_DB') !== NULL)
 {
     //sample catpegories
@@ -853,6 +857,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."crontab` (`nam
 ('About to Expire Ad', '05 9 * * *', 'Cron_Ad::to_expire', NULL, 'Notify by email your ad is about to expire', 1),
 ('Renew subscription', '*/5 * * * *', 'Cron_Subscription::renew', NULL, 'Notify by email user subscription will expire.', 1),
 ('Notify new updates', '0 9 * * 1', 'Cron_Update::notify', NULL, 'Notify by email of new site updates.', 1),
-('Generate Access Token', '10 9 1 * *', 'Social::GetAccessToken', NULL, 'Generate Facebook long-lived Access Token.', 1);");
+('Notify new updates', '0 9 * * 1', 'Cron_Update::notify', NULL, 'Notify by email of new site updates.', 1),
+('Algolia Search re-index', '0 * * * *', 'Cron_Algolia::reindex', NULL, 'Re-index everything', 1);");
 
 mysqli_close($link);

@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * Update controllers 
+ * Update controllers
  *
  * @package    OC
  * @category   Update
@@ -20,58 +20,70 @@ class Controller_Panel_Update extends Auth_Controller {
         //new configs
         $configs = array(
                         array( 'config_key'     => 'service',
-                               'group_name'     => 'email', 
+                               'group_name'     => 'email',
                                'config_value'   => $email_service),
                         array( 'config_key'     => 'instagram',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'instagram_username',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'instagram_password',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'pinterest',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'pinterest_app_id',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'pinterest_app_secret',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'pinterest_access_token',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'pinterest_board',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'paytabs_merchant_email',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'paytabs_secret_key',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'payfast_merchant_id',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'payfast_merchant_key',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'payfast_sandbox',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'pusher_notifications',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'pusher_notifications_app_id',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => ''),
                         array( 'config_key'     => 'pusher_notifications_key',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => ''),
                         array( 'config_key'     => 'pusher_notifications_secret',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'algolia_search',
+                               'group_name'     => 'general',
+                               'config_value'   => '0'),
+                        array( 'config_key'     => 'algolia_search_application_id',
+                               'group_name'     => 'general',
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'algolia_search_admin_key',
+                               'group_name'     => 'general',
+                               'config_value'   => ''),
+                        array( 'config_key'     => 'algolia_search_only_key',
+                               'group_name'     => 'general',
                                'config_value'   => ''),
                         );
 
@@ -82,6 +94,13 @@ class Controller_Panel_Update extends Auth_Controller {
         {
             DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."plans SET id_plan=id_plan+100 WHERE id_plan < 100")->execute();
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."plans` AUTO_INCREMENT=100")->execute();
+        }catch (exception $e) {}
+
+        //crontab re-index algolia indices
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
+                                    ('Algolia Search re-index', '0 * * * *', 'Cron_Algolia::ReIndex', NULL, 'Re-index everything', 1);")->execute();
         }catch (exception $e) {}
     }
 
@@ -94,52 +113,52 @@ class Controller_Panel_Update extends Auth_Controller {
         //new configs
         $configs = array(
                         array( 'config_key'     => 'elastic_listname',
-                               'group_name'     => 'email', 
+                               'group_name'     => 'email',
                                'config_value'   => ''),
                         array( 'config_key'     => 'dropbox_app_key',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'expire_reactivation',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '1'),
                         array( 'config_key'     => 'social_post_only_featured',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'twitter_consumer_key',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'twitter_consumer_secret',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'access_token',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'access_token_secret',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'twitter',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'facebook_app_id',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'facebook_app_secret',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'facebook_access_token',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'facebook',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'facebook_id',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'picker_api_key',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'picker_client_id',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         );
 
@@ -199,56 +218,56 @@ class Controller_Panel_Update extends Auth_Controller {
     {
         //new configs
         $configs = array(
-                        
+
                         array( 'config_key'     => 'hide_homepage_categories',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => '{}'),
                         array( 'config_key'     => 'paguelofacil_cclw',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'paguelofacil_testing',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'mercadopago_client_id',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'mercadopago_client_secret',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'contact_price',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '1'),
                         array( 'config_key'     => 'report',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '1'),
                         array( 'config_key'     => 'stripe_3d_secure',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'vat_country',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'vat_number',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         );
 
         //get theme license and add it to the config
         if (Theme::get('license')!==NULL)
-        {            
+        {
             $configs[]= array( 'config_key'     => 'date',
-                               'group_name'     => 'license', 
+                               'group_name'     => 'license',
                                'config_value'   => Theme::get('license_date')
                                );
 
             $configs[]= array( 'config_key'     => 'number',
-                               'group_name'     => 'license', 
+                               'group_name'     => 'license',
                                'config_value'   => Theme::get('license')
                                );
         }
-        
-        try 
+
+        try
         {
-            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."content SET description='Hello Admin,\n\n [EMAIL.SENDER]: [EMAIL.FROM], have a message for you:\n\n [EMAIL.SUBJECT]\n\n [EMAIL.BODY] \n\n Regards!' WHERE seotitle='contact-admin'")->execute();        
+            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."content SET description='Hello Admin,\n\n [EMAIL.SENDER]: [EMAIL.FROM], have a message for you:\n\n [EMAIL.SUBJECT]\n\n [EMAIL.BODY] \n\n Regards!' WHERE seotitle='contact-admin'")->execute();
         }catch (exception $e) {}
 
         //crontab renew subscription
@@ -259,13 +278,13 @@ class Controller_Panel_Update extends Auth_Controller {
         }catch (exception $e) {}
 
         //stripe agreement
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `stripe_agreement` varchar(40) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
         //VAT
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT` varchar(20) DEFAULT NULL")->execute();
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `VAT_country` varchar(20) DEFAULT NULL")->execute();
@@ -283,26 +302,26 @@ class Controller_Panel_Update extends Auth_Controller {
 
         //new configs
         $configs = array(
-                        
+
                         array( 'config_key'     => 'robokassa_login',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'robokassa_pass1',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'robokassa_pass2',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'robokassa_testing',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'notify_name',
-                               'group_name'     => 'email', 
+                               'group_name'     => 'email',
                                'config_value'   => 'no-reply '.core::config('general.site_name')),
                         );
 
         //adds Vkontakte login
-        try 
+        try
         {
             DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."config` SET `config_value`= REPLACE(`config_value`,'},\"base_url\"',',\"Vkontakte\":{\"enabled\":\"0\",\"keys\":{\"id\":\"\",\"secret\":\"\"}}},\"base_url\"') WHERE `group_name` = 'social' AND `config_key`='config'")->execute();
         }catch (exception $e) {}
@@ -316,13 +335,13 @@ class Controller_Panel_Update extends Auth_Controller {
     public function action_280()
     {
         //google 2 step auth
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `google_authenticator` varchar(40) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
         //fixes yahoo login
-        try 
+        try
         {
             DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."config` SET `config_value`= REPLACE(`config_value`,',\"Yahoo\":{\"enabled\":\"0\",\"keys\":{\"id\":',',\"Yahoo\":{\"enabled\":\"0\",\"keys\":{\"key\":') WHERE `group_name` = 'social' AND `config_key`='config' AND `config_value` LIKE '%,\"Yahoo\":{\"enabled\":\"0\",\"keys\":{\"id\":%'")->execute();
             DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."config` SET `config_value`= REPLACE(`config_value`,',\"Yahoo\":{\"enabled\":\"1\",\"keys\":{\"id\":',',\"Yahoo\":{\"enabled\":\"1\",\"keys\":{\"key\":') WHERE `group_name` = 'social' AND `config_key`='config' AND `config_value` LIKE '%,\"Yahoo\":{\"enabled\":\"1\",\"keys\":{\"id\":%'")->execute();
@@ -331,31 +350,31 @@ class Controller_Panel_Update extends Auth_Controller {
         //new configs
         $configs = array(
                         array( 'config_key'     => 'rich_snippets',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'google_authenticator',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'private_site',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'private_site_page',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => ''),
                         array( 'config_key'     => 'securepay_merchant',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'securepay_password',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'securepay_testing',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'gm_api_key',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         );
-        
+
         Model_Config::config_array($configs);
     }
 
@@ -420,53 +439,53 @@ class Controller_Panel_Update extends Auth_Controller {
         }catch (exception $e) {}
 
         //stripe connect
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `stripe_user_id` varchar(140) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
         // update buyer instructions
-        try 
+        try
         {
             DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."content` SET description=CONCAT(description,'\n\n[BUYER.INSTRUCTIONS]') WHERE `seotitle` = 'ads-purchased' AND `description` NOT LIKE '%[BUYER.INSTRUCTIONS]'")->execute();
         }catch (exception $e) {}
 
-        //location.id_geoname column 
-        try 
+        //location.id_geoname column
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `id_geoname` int(10) UNSIGNED NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
-        //location.fcodename_geoname column 
-        try 
+        //location.fcodename_geoname column
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `fcodename_geoname` varchar(140) NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
         //new configs
         $configs = array(
-                       
+
                         array( 'config_key'     => 'stripe_bitcoin',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'stripe_appfee',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'stripe_connect',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'stripe_clientid',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => ''),
                         array( 'config_key'     => 'free',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'subscriptions',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => '0'),
                         );
-        
-        Model_Config::config_array($configs);       
+
+        Model_Config::config_array($configs);
 
          //new mails
         $contents = array(array('order'=>0,
@@ -485,7 +504,7 @@ class Controller_Panel_Update extends Auth_Controller {
                                'status'=>'1'),
                         );
 
-        Model_Content::content_array($contents); 
+        Model_Content::content_array($contents);
 
 
     }
@@ -537,8 +556,8 @@ class Controller_Panel_Update extends Auth_Controller {
                                'group_name'     => 'advertisement',
                                'config_value'   => '0'),
                         );
-        
-        Model_Config::config_array($configs);  
+
+        Model_Config::config_array($configs);
     }
 
     /**
@@ -565,11 +584,11 @@ class Controller_Panel_Update extends Auth_Controller {
         //redo users rates
         try
         {
-            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."users u SET rate=(SELECT AVG(".self::$db_prefix."reviews.rate) rates 
-                                                                                            FROM ".self::$db_prefix."reviews 
-                                                                                            RIGHT JOIN ".self::$db_prefix."ads 
-                                                                                            USING (id_ad) 
-                                                                                            WHERE ".self::$db_prefix."ads.id_user = u.id_user AND ".self::$db_prefix."reviews.status = 1 
+            DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."users u SET rate=(SELECT AVG(".self::$db_prefix."reviews.rate) rates
+                                                                                            FROM ".self::$db_prefix."reviews
+                                                                                            RIGHT JOIN ".self::$db_prefix."ads
+                                                                                            USING (id_ad)
+                                                                                            WHERE ".self::$db_prefix."ads.id_user = u.id_user AND ".self::$db_prefix."reviews.status = 1
                                                                                             GROUP BY ".self::$db_prefix."reviews.id_ad);")->execute();
         }catch (exception $e) {}
 
@@ -593,26 +612,26 @@ class Controller_Panel_Update extends Auth_Controller {
         //new configs
         $configs = array(
                         array( 'config_key'     => 'description',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '1'),
                         array( 'config_key'     => 'social_auth',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => '1'),
                         array( 'config_key'     => 'map_style',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     => 'adblock',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'stripe_alipay',
-                               'group_name'     => 'payment', 
+                               'group_name'     => 'payment',
                                'config_value'   => '0'),
                         array( 'config_key'     => 'auto_locate_distance',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '100'),
                         );
-        
-        Model_Config::config_array($configs);        
+
+        Model_Config::config_array($configs);
     }
 
     /**
@@ -622,7 +641,7 @@ class Controller_Panel_Update extends Auth_Controller {
     {
         //CF users searchable admin privilege option to false if didnt exists
         $cf_users = Model_UserField::get_all();
-        foreach ($cf_users as $name => $options) 
+        foreach ($cf_users as $name => $options)
         {
             $modified = FALSE;
             if(!isset($options['searchable']))
@@ -643,22 +662,22 @@ class Controller_Panel_Update extends Auth_Controller {
         }
 
         //change latitude/longitude data type length
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` CHANGE `latitude` `latitude` FLOAT(10, 6) NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` CHANGE `longitude` `longitude` FLOAT(10, 6) NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` CHANGE `latitude` `latitude` FLOAT(10, 6) NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` CHANGE `longitude` `longitude` FLOAT(10, 6) NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
@@ -670,24 +689,24 @@ class Controller_Panel_Update extends Auth_Controller {
         }catch (exception $e) {}
 
         //messages status
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."messages` ADD `status_to` tinyint(1) NOT NULL DEFAULT '0'")->execute();
         }catch (exception $e) {}
 
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."messages` ADD `status_from` tinyint(1) NOT NULL DEFAULT '0'")->execute();
         }catch (exception $e) {}
 
         //do something with status to migrate to status_from
-        
-        try 
+
+        try
         {
             DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."messages` SET `status_from`=`status` , `status_to`=`status`")->execute();
         }catch (exception $e) {}
 
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."messages` DROP `status`")->execute();
         }catch (exception $e) {}
@@ -695,13 +714,13 @@ class Controller_Panel_Update extends Auth_Controller {
         //new configs
         $configs = array(
                         array( 'config_key'     => 'measurement',
-                               'group_name'     => 'general', 
+                               'group_name'     => 'general',
                                'config_value'   => 'metric'),
                         array( 'config_key'     => 'leave_alert',
-                               'group_name'     => 'advertisement', 
+                               'group_name'     => 'advertisement',
                                'config_value'   => '1'),
                         );
-        
+
         Model_Config::config_array($configs);
     }
 
@@ -727,16 +746,16 @@ class Controller_Panel_Update extends Auth_Controller {
                 $lines = explode(PHP_EOL,$htaccess);
 
                 //we remove lines between header and footer
-                if (is_array($lines) AND count($lines)>5) 
+                if (is_array($lines) AND count($lines)>5)
                 {
                     //which KEY int he array is its of the items?
                     $header_line = array_search($search_header, $lines);
                     $footer_line = array_search($search_footer, $lines);
 
                     //remove each line....
-                    foreach (range($header_line,$footer_line) as $key => $number) 
+                    foreach (range($header_line,$footer_line) as $key => $number)
                         unset($lines[$number]);
-                    
+
                     //generate the new file from the array
                     File::write($htaccess_file,implode(PHP_EOL,$lines));
 
@@ -750,62 +769,62 @@ class Controller_Panel_Update extends Auth_Controller {
         //new configs
         $configs = array(
                         array( 'config_key'     =>'api_key',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => Text::random('alnum', 32)),
                         array( 'config_key'     =>'twocheckout_sid',
-                               'group_name'     =>'payment', 
+                               'group_name'     =>'payment',
                                'config_value'   => ''),
                         array( 'config_key'     =>'twocheckout_secretword',
-                               'group_name'     =>'payment', 
+                               'group_name'     =>'payment',
                                'config_value'   => ''),
                         array( 'config_key'     =>'twocheckout_sandbox',
-                               'group_name'     =>'payment', 
+                               'group_name'     =>'payment',
                                'config_value'   => 0),
                         array( 'config_key'     =>'messaging',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => 0),
                         array( 'config_key'     =>'gcm_apikey',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => ''),
                         array( 'config_key'     =>'fraudlabspro',
-                               'group_name'     =>'payment', 
+                               'group_name'     =>'payment',
                                'config_value'   => ''),
                         array( 'config_key'     =>'contact_page',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => ''),
                         array( 'config_key'     =>'description_bbcode',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   => '1'),
                         );
-        
+
         Model_Config::config_array($configs);
-        
+
 
         //api token
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `api_token` varchar(40) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD CONSTRAINT `oc2_users_UK_api_token` UNIQUE (`api_token`)")->execute();
         }catch (exception $e) {}
-        
+
         //notification date
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `notification_date` DATETIME NULL DEFAULT NULL ;")->execute();
         }catch (exception $e) {}
 
         //device ID
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `device_id` varchar(255) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
         //favorited counter
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` ADD `favorited` INT(10) UNSIGNED NOT NULL DEFAULT '0'")->execute();
         }catch (exception $e) {}
@@ -897,7 +916,7 @@ class Controller_Panel_Update extends Auth_Controller {
         }catch (exception $e) {}
 
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `id_coupon` INT NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
         //end coupons
@@ -906,31 +925,31 @@ class Controller_Panel_Update extends Auth_Controller {
         //myads access
         try
         {
-            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES 
+            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES
                                                                          (1, 'myads.*'),(5, 'myads.*'),(7, 'myads.*')")->execute();
         }catch (exception $e) {}
-            
+
         //messages access
         try
         {
-            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES 
+            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES
                                                                          (1, 'messages.*'),(5, 'messages.*'),(7, 'messages.*')")->execute();
         }catch (exception $e) {}
 
         //set favorites count
         $ads = new Model_Ad();
         $ads = $ads->find_all();
-            
+
         if (count($ads))
         {
-            foreach ($ads as $ad) 
+            foreach ($ads as $ad)
             {
                 $ad->favorited = $ad->favorites->count_all();
-                
-                try 
+
+                try
                 {
                     $ad->save();
-                } 
+                }
                 catch (Exception $e)
                 {
                     throw HTTP_Exception::factory(500,$e->getMessage());
@@ -955,54 +974,54 @@ class Controller_Panel_Update extends Auth_Controller {
         //new configs
         $configs = array(
                         array( 'config_key'     =>'subscribe',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => 0),
                         array( 'config_key'     =>'cookie_consent',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => 0),
                         array( 'config_key'     =>'sharing',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   => 0),
                         array( 'config_key'     =>'logbee',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   => 0),
                         array( 'config_key'     =>'thanks_page',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   => ''),
                         array( 'config_key'     =>'auto_locate',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => 0),
                         array( 'config_key'     =>'search_multi_catloc',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => 0),
                         array( 'config_key'     =>'featured_plans',
-                               'group_name'     =>'payment', 
+                               'group_name'     =>'payment',
                                'config_value'   => '{"5":"10"}'),
                         array( 'config_key'     =>'user_fields',
-                               'group_name'     =>'user', 
+                               'group_name'     =>'user',
                                'config_value'   => '{}'),
                         );
-        
+
         Model_Config::config_array($configs);
-        
+
         //locations latitude/longitude
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `latitude` DOUBLE NULL , ADD `longitude` DOUBLE NULL ;")->execute();
         }catch (exception $e) {}
 
         //ads latitude/longitude
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` ADD `latitude` DOUBLE NULL , ADD `longitude` DOUBLE NULL ;")->execute();
         }catch (exception $e) {}
-        
+
         //featured days on orders
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `featured_days` int(10) unsigned DEFAULT 0")->execute();
         }catch (exception $e) {}
-    
+
         //update pay as feature, create one in the array
         $price = core::config('payment.pay_to_go_on_feature');
         $days  = core::config('payment.featured_days');
@@ -1011,9 +1030,9 @@ class Controller_Panel_Update extends Auth_Controller {
 
         Model_Config::set_value('payment','pay_to_go_on_feature',1);
 
-        
+
     }
-    
+
     /**
      * This function will upgrade DB that didn't existed in versions prior to 2.3.1
      */
@@ -1027,7 +1046,7 @@ class Controller_Panel_Update extends Auth_Controller {
         File::delete(DOCROOT.'themes/default/views/pages/bitpay/button_loged.php');
         File::delete(DOCROOT.'themes/default/views/pages/paymill/button_loged.php');
 
-        
+
     }
 
     /**
@@ -1048,47 +1067,47 @@ class Controller_Panel_Update extends Auth_Controller {
         }catch (exception $e) {}
 
         //control login attempts
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `last_failed` DATETIME NULL DEFAULT NULL ;")->execute();
         }catch (exception $e) {}
-        
-        try 
+
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `failed_attempts` int(10) unsigned DEFAULT 0")->execute();
         }catch (exception $e) {}
-        
+
         //categories/locations/users/ads has_image/last_modified
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` ADD `last_modified` DATETIME NULL DEFAULT NULL ;")->execute();
         }catch (exception $e) {}
-        
-        try 
+
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` ADD `has_image` TINYINT( 1 ) NOT NULL DEFAULT '0' ;")->execute();
         }catch (exception $e) {}
-        
-        try 
+
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `last_modified` DATETIME NULL DEFAULT NULL ;")->execute();
         }catch (exception $e) {}
-        
-        try 
+
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."locations` ADD `has_image` TINYINT( 1 ) NOT NULL DEFAULT '0' ;")->execute();
         }catch (exception $e) {}
-        
-        try 
+
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `has_image` TINYINT( 1 ) NOT NULL DEFAULT '0' ;")->execute();
         }catch (exception $e) {}
-        
-        try 
+
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` ADD `last_modified` DATETIME NULL DEFAULT NULL ;")->execute();
         }catch (exception $e) {}
-        
+
         //new configs
         $configs = array(
                         array( 'config_key'     =>'aws_s3_active',
@@ -1146,29 +1165,29 @@ class Controller_Panel_Update extends Auth_Controller {
                                'group_name'     =>'general',
                                'config_value'   =>''),
                         );
-        
+
         Model_Config::config_array($configs);
-        
+
         //upgrade has_image field to use it as images count
         $ads = new Model_Ad();
         $ads = $ads->where('has_images','>',0)->find_all();
-        
+
         if(count($ads))
         {
-            foreach ($ads as $ad) 
+            foreach ($ads as $ad)
             {
                 $ad->has_images = 0;//begin with 0 images
                 $route = $ad->image_path();
                 $folder = DOCROOT.$route;
                 $image_keys = array();
-                
+
                 if(is_dir($folder))
                 {
                     //retrive ad pictures
-                    foreach (new DirectoryIterator($folder) as $file) 
-                    {   
+                    foreach (new DirectoryIterator($folder) as $file)
+                    {
                         if(!$file->isDot())
-                        {   
+                        {
                             $key = explode('_', $file->getFilename());
                             $key = end($key);
                             $key = explode('.', $key);
@@ -1182,28 +1201,28 @@ class Controller_Panel_Update extends Auth_Controller {
                             }
                         }
                     }
-                    
+
                     //count images and reordering file names
                     if (count($image_keys))
                     {
                         asort($image_keys);
-                        
+
                         foreach ($image_keys as $image_key)
                         {
                             $ad->has_images++;
-                            
+
                             @rename($folder.$ad->seotitle.'_'.$image_key.'.jpg', $folder.$ad->seotitle.'_'.$ad->has_images.'.jpg');
                             @rename($folder.'thumb_'.$ad->seotitle.'_'.$image_key.'.jpg', $folder.'thumb_'.$ad->seotitle.'_'.$ad->has_images.'.jpg');
                         }
                     }
                 }
-                
+
                 //update has_images count
-                try 
+                try
                 {
                     $ad->save();
-                } 
-                catch (Exception $e) 
+                }
+                catch (Exception $e)
                 {
                     throw HTTP_Exception::factory(500,$e->getMessage());
                 }
@@ -1215,10 +1234,10 @@ class Controller_Panel_Update extends Auth_Controller {
         if(is_dir($images_path))
         {
             //retrive cat pictures
-            foreach (new DirectoryIterator($images_path) as $file) 
-            {   
+            foreach (new DirectoryIterator($images_path) as $file)
+            {
                 if($file->isFile())
-                {   
+                {
                     $cat_name =  str_replace('.png','', $file->getFilename());
                     $cat = new Model_Category();
                     $cat->where('seoname','=',$cat_name)->find();
@@ -1237,10 +1256,10 @@ class Controller_Panel_Update extends Auth_Controller {
         if(is_dir($images_path))
         {
             //retrive loc pictures
-            foreach (new DirectoryIterator($images_path) as $file) 
-            {   
+            foreach (new DirectoryIterator($images_path) as $file)
+            {
                 if($file->isFile())
-                {   
+                {
                     $loc_name =  str_replace('.png','', $file->getFilename());
                     $loc = new Model_Location();
                     $loc->where('seoname','=',$loc_name)->find();
@@ -1258,10 +1277,10 @@ class Controller_Panel_Update extends Auth_Controller {
         if(is_dir($images_path))
         {
             //retrive user pictures
-            foreach (new DirectoryIterator($images_path) as $file) 
-            {   
+            foreach (new DirectoryIterator($images_path) as $file)
+            {
                 if($file->isFile() AND is_numeric($id_user =  str_replace('.png','', $file->getFilename())))
-                {  
+                {
                     $user = new Model_User($id_user);
                     if ($user->loaded())
                     {
@@ -1274,18 +1293,18 @@ class Controller_Panel_Update extends Auth_Controller {
 
 
     }
-    
+
     /**
      * This function will upgrade DB that didn't existed in versions prior to 2.2.1
      */
     public function action_221()
-    {  
+    {
         $configs = array(
                         array( 'config_key'     =>'count_visits',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   => 1),
                         array( 'config_key'     =>'disallowbots',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => 0),
 
                         );
@@ -1297,7 +1316,7 @@ class Controller_Panel_Update extends Auth_Controller {
      * This function will upgrade DB that didn't existed in versions prior to 2.2.0
      */
     public function action_220()
-    {   
+    {
         //updating contents replacing . for _
         try
         {
@@ -1331,30 +1350,30 @@ class Controller_Panel_Update extends Auth_Controller {
             DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."content SET seotitle='ads-purchased' WHERE seotitle='adspurchased' AND type='email'")->execute();
         }catch (exception $e) {}
         //end updating emails
-        
+
 
         //order transaction
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD  `txn_id` VARCHAR( 255 ) NULL DEFAULT NULL")->execute();
         }catch (exception $e) {}
-        
+
 
         //ip_address from float to bigint
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` CHANGE last_ip last_ip BIGINT NULL DEFAULT NULL ")->execute();
         }catch (exception $e) {}
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."visits` CHANGE ip_address ip_address BIGINT NULL DEFAULT NULL ")->execute();
         }catch (exception $e) {}
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` CHANGE ip_address ip_address BIGINT NULL DEFAULT NULL ")->execute();
         }catch (exception $e) {}
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."posts` CHANGE ip_address ip_address BIGINT NULL DEFAULT NULL ")->execute();
         }catch (exception $e) {}
 
@@ -1404,10 +1423,10 @@ class Controller_Panel_Update extends Auth_Controller {
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` CHANGE  `description`  `description` TEXT NULL DEFAULT NULL;")->execute();
         }catch (exception $e) {}
-        
+
         $categories = new Model_Category();
         $categories = $categories->find_all();
-        foreach ($categories as $category) 
+        foreach ($categories as $category)
         {
             $category->description = Text::bb2html($category->description,TRUE, FALSE);
             try {
@@ -1423,7 +1442,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
         $locations = new Model_Location();
         $locations = $locations->find_all();
-        foreach ($locations as $location) 
+        foreach ($locations as $location)
         {
             $location->description = Text::bb2html($location->description,TRUE, FALSE);
             try {
@@ -1435,7 +1454,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
         $contents = new Model_Content();
         $contents = $contents->find_all();
-        foreach ($contents as $content) 
+        foreach ($contents as $content)
         {
             $content->description = Text::bb2html($content->description,TRUE, FALSE);
             try {
@@ -1447,7 +1466,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
         $posts =  new Model_Post();
     $posts = $posts->where('id_forum','IS',NULL)->find_all();
-        foreach ($posts as $post) 
+        foreach ($posts as $post)
         {
             $post->description = Text::bb2html($post->description,TRUE, FALSE);
             try {
@@ -1456,12 +1475,12 @@ class Controller_Panel_Update extends Auth_Controller {
         }
 
         //Reviews
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `rate` FLOAT( 4, 2 ) NULL DEFAULT NULL ;")->execute();
         }catch (exception $e) {}
 
-        try 
+        try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."ads` ADD `rate` FLOAT( 4, 2 ) NULL DEFAULT NULL ;")->execute();
         }catch (exception $e) {}
@@ -1485,7 +1504,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
         //User description About
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users`  ADD  `description` TEXT NULL DEFAUlT NULL AFTER  `password` ")->execute();
         }catch (exception $e) {}
 
@@ -1531,50 +1550,50 @@ class Controller_Panel_Update extends Auth_Controller {
         //new configs...
         $configs = array(
                          array('config_key'     =>'bitpay_apikey',
-                               'group_name'     =>'payment', 
-                               'config_value'   =>''), 
+                               'group_name'     =>'payment',
+                               'config_value'   =>''),
                          array('config_key'     =>'paymill_private',
-                               'group_name'     =>'payment', 
-                               'config_value'   =>''), 
+                               'group_name'     =>'payment',
+                               'config_value'   =>''),
                          array('config_key'     =>'paymill_public',
-                               'group_name'     =>'payment', 
-                               'config_value'   =>''), 
+                               'group_name'     =>'payment',
+                               'config_value'   =>''),
                          array('config_key'     =>'stripe_public',
-                               'group_name'     =>'payment', 
-                               'config_value'   =>''), 
+                               'group_name'     =>'payment',
+                               'config_value'   =>''),
                          array('config_key'     =>'stripe_private',
-                               'group_name'     =>'payment', 
-                               'config_value'   =>''), 
+                               'group_name'     =>'payment',
+                               'config_value'   =>''),
                          array('config_key'     =>'stripe_address',
-                               'group_name'     =>'payment', 
-                               'config_value'   =>'0'), 
+                               'group_name'     =>'payment',
+                               'config_value'   =>'0'),
                          array('config_key'     =>'alternative',
-                               'group_name'     =>'payment', 
-                               'config_value'   =>''), 
+                               'group_name'     =>'payment',
+                               'config_value'   =>''),
                          array('config_key'     =>'authorize_sandbox',
-                               'group_name'     =>'payment', 
-                               'config_value'   =>'0'), 
+                               'group_name'     =>'payment',
+                               'config_value'   =>'0'),
                          array('config_key'     =>'authorize_login',
-                               'group_name'     =>'payment', 
-                               'config_value'   =>''), 
+                               'group_name'     =>'payment',
+                               'config_value'   =>''),
                          array('config_key'     =>'authorize_key',
-                               'group_name'     =>'payment', 
+                               'group_name'     =>'payment',
                                'config_value'   =>''),
                          array('config_key'     =>'elastic_active',
-                               'group_name'     =>'email', 
+                               'group_name'     =>'email',
                                'config_value'   =>0),
                          array('config_key'     =>'elastic_username',
-                               'group_name'     =>'email', 
+                               'group_name'     =>'email',
                                'config_value'   =>''),
                          array('config_key'     =>'elastic_password',
-                               'group_name'     =>'email', 
+                               'group_name'     =>'email',
                                'config_value'   =>''),
                          array('config_key'     =>'reviews',
-                               'group_name'     =>'advertisement', 
-                               'config_value'   =>'0'), 
+                               'group_name'     =>'advertisement',
+                               'config_value'   =>'0'),
                          array('config_key'     =>'reviews_paid',
-                               'group_name'     =>'advertisement', 
-                               'config_value'   =>'0'), 
+                               'group_name'     =>'advertisement',
+                               'config_value'   =>'0'),
                         );
 
         Model_Config::config_array($configs);
@@ -1588,28 +1607,28 @@ class Controller_Panel_Update extends Auth_Controller {
         // File::delete(MODPATH.'breadcrumbs');
         // File::delete(MODPATH.'formmanager');
         // File::delete(MODPATH.'mysqli');
-    
+
     //assign new group_name to configs
         try
         {
             DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."config SET group_name='advertisement' WHERE config_key = 'advertisements_per_page' OR config_key = 'feed_elements' OR config_key = 'map_elements' OR config_key = 'sort_by'")->execute();
         }catch (exception $e) {}
             DB::query(Database::UPDATE,"UPDATE ".self::$db_prefix."content SET seotitle=REPLACE(seotitle,'.','-') WHERE type='email'")->execute();
-       
+
     }
-    
+
     /**
      * This function will upgrade DB that didn't existed in versions prior to 2.1.8
      */
     public function action_218()
-    {   
+    {
 
 
         try
         {
             DB::query(Database::UPDATE,"ALTER TABLE ".self::$db_prefix."config DROP INDEX ".self::$db_prefix."config_IK_group_name_AND_config_key")->execute();
         }catch (exception $e) {}
-        
+
         try
         {
             DB::query(Database::UPDATE,"ALTER TABLE ".self::$db_prefix."config ADD PRIMARY KEY (config_key);")->execute();
@@ -1622,13 +1641,13 @@ class Controller_Panel_Update extends Auth_Controller {
 
         $configs = array(
                          array('config_key'     =>'login_to_post',
-                               'group_name'     =>'advertisement', 
-                               'config_value'   =>'0'),  
+                               'group_name'     =>'advertisement',
+                               'config_value'   =>'0'),
                         );
 
-        // returns TRUE if some config is saved 
+        // returns TRUE if some config is saved
         $return_conf = Model_Config::config_array($configs);
-        
+
         //delete old files from 322
         File::delete(APPPATH.'ko322');
         File::delete(MODPATH.'auth');
@@ -1639,30 +1658,30 @@ class Controller_Panel_Update extends Auth_Controller {
         File::delete(MODPATH.'unittest');
 
     }
-    
+
     /**
      * This function will upgrade DB that didn't existed in versions prior to 2.1.7
      */
     public function action_217()
-    {        
+    {
 
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."posts` ADD  `id_post_parent` INT NULL DEFAULT NULL AFTER  `id_user`")->execute();
         }catch (exception $e) {}
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."posts` ADD  `ip_address` FLOAT NULL DEFAULT NULL AFTER  `created`")->execute();
         }catch (exception $e) {}
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."posts` ADD  `id_forum` INT NULL DEFAULT NULL AFTER  `id_post_parent`")->execute();
         }catch (exception $e) {}
         try
-        {    
+        {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."posts` ENGINE = MYISAM ")->execute();
         }catch (exception $e) {}
-        
+
 
         DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS  `".self::$db_prefix."forums` (
                       `id_forum` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -1678,20 +1697,20 @@ class Controller_Panel_Update extends Auth_Controller {
                     ) ENGINE=MyISAM")->execute();
 
         // build array with new (missing) configs
-        
+
         //set sitemap to 0
         Model_Config::set_value('sitemap','on_post',0);
 
         $configs = array(
                          array('config_key'     =>'forums',
-                               'group_name'     =>'general', 
-                               'config_value'   =>'0'), 
+                               'group_name'     =>'general',
+                               'config_value'   =>'0'),
                          array('config_key'     =>'ocacu',
-                               'group_name'     =>'general', 
-                               'config_value'   =>'0'), 
+                               'group_name'     =>'general',
+                               'config_value'   =>'0'),
                         );
 
-        // returns TRUE if some config is saved 
+        // returns TRUE if some config is saved
         $return_conf = Model_Config::config_array($configs);
 
     }
@@ -1700,19 +1719,19 @@ class Controller_Panel_Update extends Auth_Controller {
      * This function will upgrade DB that didn't existed in versions prior to 2.1.5
      */
     public function action_215()
-    {        
+    {
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'qr_code',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   =>'0'),
                          array('config_key'     =>'black_list',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   =>'1'),
                          array('config_key'     =>'stock',
-                               'group_name'     =>'payment', 
-                               'config_value'   =>'0'), 
+                               'group_name'     =>'payment',
+                               'config_value'   =>'0'),
                          array('config_key'     =>'fbcomments',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   =>''),
                         );
         $contents = array(array('order'=>'0',
@@ -1737,7 +1756,7 @@ class Controller_Panel_Update extends Auth_Controller {
                                'type'=>'email',
                                'status'=>'1'),);
 
-        // returns TRUE if some config is saved 
+        // returns TRUE if some config is saved
         $return_conf = Model_Config::config_array($configs);
         $return_cont = Model_Content::content_array($contents);
 
@@ -1756,7 +1775,7 @@ class Controller_Panel_Update extends Auth_Controller {
         }catch (exception $e) {}
         try
         {
-            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_access`, `id_role`, `access`) VALUES 
+            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_access`, `id_role`, `access`) VALUES
                                                                          (17, 7, 'location.*'),(16, 7, 'profile.*'),(15, 7, 'content.*'),(14, 7, 'stats.user'),
                                                                          (13, 7, 'blog.*'),(12, 7, 'translations.*'),(11, 7, 'ad.*'),
                                                                          (10, 7, 'widgets.*'),(9, 7, 'menu.*'),(8, 7, 'category.*')")->execute();
@@ -1768,17 +1787,17 @@ class Controller_Panel_Update extends Auth_Controller {
      * This function will upgrade DB that didn't existed in versions prior to 2.1.3
      */
     public function action_214()
-    {        
+    {
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'sort_by',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   =>'published-desc'),
                          array('config_key'     =>'map_pub_new',
-                               'group_name'     =>'advertisement', 
-                               'config_value'   =>'0'), 
+                               'group_name'     =>'advertisement',
+                               'config_value'   =>'0'),
                         );
 
-        // returns TRUE if some config is saved 
+        // returns TRUE if some config is saved
         $return_conf = Model_Config::config_array($configs);
     }
 
@@ -1789,19 +1808,19 @@ class Controller_Panel_Update extends Auth_Controller {
     {
       // build array with new (missing) configs
         $configs = array(array('config_key'     =>'related',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   =>'5'),
                         array('config_key'     =>'faq',
-                               'group_name'     =>'general', 
-                               'config_value'   =>'0'), 
+                               'group_name'     =>'general',
+                               'config_value'   =>'0'),
                          array('config_key'     =>'faq_disqus',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   =>''),
                          );
 
-        // returns TRUE if some config is saved 
-        $return_conf = Model_Config::config_array($configs); 
-       
+        // returns TRUE if some config is saved
+        $return_conf = Model_Config::config_array($configs);
+
     }
 
     /**
@@ -1818,7 +1837,7 @@ class Controller_Panel_Update extends Auth_Controller {
         {
             DB::query(Database::UPDATE,"CREATE UNIQUE INDEX ".self::$db_prefix."users_UK_provider_AND_uid on ".self::$db_prefix."users (hybridauth_provider_name, hybridauth_provider_uid)")->execute();
         }catch (exception $e) {}
-        
+
         try
         {
             DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS  `".self::$db_prefix."posts` (
@@ -1837,22 +1856,22 @@ class Controller_Panel_Update extends Auth_Controller {
 
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'search_by_description',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => 0),
                         array('config_key'     =>'blog',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => 0),
                         array('config_key'     =>'minify',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => 0),
                         array('config_key'     =>'parent_category',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   => 1),
                         array('config_key'     =>'blog_disqus',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   => ''),
                         array('config_key'     =>'config',
-                               'group_name'     =>'social', 
+                               'group_name'     =>'social',
                                'config_value'   =>'{"debug_mode":"0","providers":{
                                                           "OpenID":{"enabled":"1"},
                                                           "Yahoo":{"enabled":"0","keys":{"id":"","secret":""}},
@@ -1867,10 +1886,10 @@ class Controller_Panel_Update extends Auth_Controller {
                                                       "base_url":"",
                                                       "debug_file":""}'));
 
-        // returns TRUE if some config is saved 
+        // returns TRUE if some config is saved
         $return_conf = Model_Config::config_array($configs);
 
-        
+
     }
 
     /**
@@ -1881,64 +1900,64 @@ class Controller_Panel_Update extends Auth_Controller {
     {
       // build array with new (missing) configs
         $configs = array(array('config_key'     =>'fields',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   =>''),
                          array('config_key'     =>'alert_terms',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   =>''),
                          );
 
-        // returns TRUE if some config is saved 
-        $return_conf = Model_Config::config_array($configs); 
+        // returns TRUE if some config is saved
+        $return_conf = Model_Config::config_array($configs);
     }
 
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 2.0.5 
-     * changes added: config for landing page, etc..  
+     * This function will upgrade DB that didn't existed in versions prior to 2.0.5
+     * changes added: config for landing page, etc..
      */
     public function action_206()
     {
       // build array with new (missing) configs
         $configs = array(array('config_key'     =>'landing_page',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   =>'{"controller":"home","action":"index"}'),
                          array('config_key'     =>'banned_words',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   =>''),
                          array('config_key'     =>'banned_words_replacement',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   =>''),
                          array('config_key'     =>'akismet_key',
-                               'group_name'     =>'general', 
+                               'group_name'     =>'general',
                                'config_value'   =>''));
 
-        // returns TRUE if some config is saved 
+        // returns TRUE if some config is saved
         $return_conf = Model_Config::config_array($configs);
 
-        
+
     }
 
     /**
-     * This function will upgrade DB that didn't existed in versions prior to 2.0.5 
-     * changes added: subscription widget, new email content, map zoom, paypal seller etc..  
+     * This function will upgrade DB that didn't existed in versions prior to 2.0.5
+     * changes added: subscription widget, new email content, map zoom, paypal seller etc..
      */
     public function action_205()
     {
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'paypal_seller',
-                               'group_name'     =>'payment', 
+                               'group_name'     =>'payment',
                                'config_value'   =>'0'),
                          array('config_key'     =>'map_zoom',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   =>'16'),
                          array('config_key'     =>'center_lon',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   =>'3'),
                          array('config_key'     =>'center_lat',
-                               'group_name'     =>'advertisement', 
+                               'group_name'     =>'advertisement',
                                'config_value'   =>'40'),
                          array('config_key'     =>'new_ad_notify',
-                               'group_name'     =>'email', 
+                               'group_name'     =>'email',
                                'config_value'   =>'0'));
 
         $contents = array(array('order'=>'0',
@@ -1956,12 +1975,12 @@ class Controller_Panel_Update extends Auth_Controller {
                                'type'=>'email',
                                'status'=>'1'));
 
-        // returns TRUE if some config is saved 
+        // returns TRUE if some config is saved
         $return_conf = Model_Config::config_array($configs);
         $return_cont = Model_Content::content_array($contents);
 
-        
-        
+
+
         try
         {
             DB::query(Database::UPDATE,"CREATE TABLE IF NOT EXISTS `".self::$db_prefix."subscribers` (
@@ -1975,7 +1994,7 @@ class Controller_Panel_Update extends Auth_Controller {
                     PRIMARY KEY (`id_subscribe`)
                   ) ENGINE=MyISAM DEFAULT CHARSET=".self::$db_charset.";")->execute();
         }catch (exception $e) {}
-        
+
         // remove INDEX from content table
         try
         {
@@ -1985,24 +2004,24 @@ class Controller_Panel_Update extends Auth_Controller {
 
 
     /**
-     * This function will upgrade configs that didn't existed in versions prior to 2.0.3 
+     * This function will upgrade configs that didn't existed in versions prior to 2.0.3
      */
     public function action_203()
     {
         // build array with new (missing) configs
         $configs = array(array('config_key'     =>'watermark',
-                               'group_name'     =>'image', 
-                               'config_value'   =>'0'), 
+                               'group_name'     =>'image',
+                               'config_value'   =>'0'),
                          array('config_key'     =>'watermark_path',
-                               'group_name'     =>'image', 
-                               'config_value'   =>''), 
+                               'group_name'     =>'image',
+                               'config_value'   =>''),
                          array('config_key'     =>'watermark_position',
-                               'group_name'     =>'image', 
+                               'group_name'     =>'image',
                                'config_value'   =>'0'),
                          array('config_key'     =>'ads_in_home',
                                'group_name'     =>'advertisement',
                                'config_value'   =>'0'));
-        
+
         $contents = array(array('order'=>'0',
                                'title'=>'Hello [USER.NAME]!',
                                'seotitle'=>'user-profile-contact',
@@ -2010,8 +2029,8 @@ class Controller_Panel_Update extends Auth_Controller {
                                'from_email'=>core::config('email.notify_email'),
                                'type'=>'email',
                                'status'=>'1'));
-        
-        // returns TRUE if some config is saved 
+
+        // returns TRUE if some config is saved
         $return_conf = Model_Config::config_array($configs);
         $return_cont = Model_Content::content_array($contents);
 
@@ -2044,21 +2063,21 @@ class Controller_Panel_Update extends Auth_Controller {
 
     public function action_index()
     {
-        
+
         //force update check reload
         if (Core::get('reload')==1 )
         {
             Core::get_updates(TRUE);
             Alert::set(Alert::INFO,__('Checked for new versions.'));
         }
-        
+
         $versions = core::config('versions');
 
         if (Core::get('json')==1)
         {
             $this->auto_render = FALSE;
             $this->template = View::factory('js');
-            $this->template->content = json_encode($versions);  
+            $this->template->content = json_encode($versions);
         }
         else
         {
@@ -2074,10 +2093,10 @@ class Controller_Panel_Update extends Auth_Controller {
             $latest_version_update = next($version_nums);
 
 
-            //pass to view from local versions.php         
+            //pass to view from local versions.php
             $this->template->content = View::factory('oc-panel/pages/update/index',array('versions'       =>$versions,
                                                                                            'latest_version' =>$latest_version));
-        }        
+        }
 
     }
 
@@ -2089,7 +2108,7 @@ class Controller_Panel_Update extends Auth_Controller {
     {
         //force update check reload so we are sure he has latest version
         Core::get_updates(TRUE);
-        
+
         $versions = core::config('versions');
 
 
@@ -2119,7 +2138,7 @@ class Controller_Panel_Update extends Auth_Controller {
         if ($current_version == $latest_version_update)
             $can_update = TRUE;
 
-        //pass to view from local versions.php         
+        //pass to view from local versions.php
         $this->template->content = View::factory('oc-panel/pages/update/confirm',array('latest_version'=>$latest_version,
                                                                                        'version' =>$version,
                                                                                        'can_update'=>$can_update));
@@ -2131,25 +2150,25 @@ class Controller_Panel_Update extends Auth_Controller {
      * Downloads and extracts latest version
      */
     public function action_latest()
-    {    
+    {
         //save in a session the current version so we can selective update the DB later
         Session::instance()->set('update_from_version', Core::VERSION);
 
-        $versions       = core::config('versions'); //loads OC software version array 
+        $versions       = core::config('versions'); //loads OC software version array
         $last_version   = key($versions); //get latest version
         $download_link  = $versions[$last_version]['download']; //get latest download link
-        $update_src_dir = DOCROOT.'update'; // update dir 
+        $update_src_dir = DOCROOT.'update'; // update dir
         $file_name      = $update_src_dir.'/'.$last_version.'.zip'; //full file name
-        
-        
+
+
         //check if exists already the download, if does delete
-        if (file_exists($file_name))  
-            unlink($file_name); 
+        if (file_exists($file_name))
+            unlink($file_name);
 
         //create update dir if doesnt exists
-        if (!is_dir($update_src_dir))  
-            mkdir($update_src_dir, 0775); 
-          
+        if (!is_dir($update_src_dir))
+            mkdir($update_src_dir, 0775);
+
         //verify we could get the zip file
         $file_content = core::curl_get_contents($download_link);
         if ($file_content == FALSE)
@@ -2164,12 +2183,12 @@ class Controller_Panel_Update extends Auth_Controller {
         //unpack zip
         $zip = new ZipArchive;
         // open zip file, and extract to dir
-        if ($zip_open = $zip->open($file_name)) 
+        if ($zip_open = $zip->open($file_name))
         {
             $zip->extractTo($update_src_dir);
-            $zip->close();  
-        }   
-        else 
+            $zip->close();
+        }
+        else
         {
             Alert::set(Alert::ALERT, $file_name.' '.__('Zip file failed to extract, please try again.'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'update', 'action'=>'index')));
@@ -2179,8 +2198,8 @@ class Controller_Panel_Update extends Auth_Controller {
         unlink($file_name);
 
         //move files in different request so more time
-        $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'files'))); 
-      
+        $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'files')));
+
     }
 
     /**
@@ -2189,10 +2208,10 @@ class Controller_Panel_Update extends Auth_Controller {
      */
     public function action_files()
     {
-        $update_src_dir = DOCROOT.'update'; // update dir 
-        
+        $update_src_dir = DOCROOT.'update'; // update dir
+
         //getting the directory where the zip was uncompressed
-        foreach (new DirectoryIterator($update_src_dir) as $file) 
+        foreach (new DirectoryIterator($update_src_dir) as $file)
         {
             if($file->isDir() AND !$file->isDot())
             {
@@ -2207,7 +2226,7 @@ class Controller_Panel_Update extends Auth_Controller {
         if (is_dir($from))
         {
             //so we just simply delete the ignored files ;)
-            foreach (self::$update_ignore_list as $file) 
+            foreach (self::$update_ignore_list as $file)
                 File::delete($from.'/'.$file);
 
             //activate maintenance mode since we are moving files...
@@ -2221,7 +2240,7 @@ class Controller_Panel_Update extends Auth_Controller {
             Alert::set(Alert::ALERT, $from.' '.sprintf(__('Update folder `%s` not found.'),$from));
             $this->redirect(Route::url('oc-panel',array('controller'=>'update', 'action'=>'index')));
         }
-          
+
         //delete update files when all finished
         File::delete($update_src_dir);
 
@@ -2230,9 +2249,9 @@ class Controller_Panel_Update extends Auth_Controller {
 
         //deactivate maintenance mode
         Model_Config::set_value('general','maintenance',0);
-        
+
         //update the DB in different request
-        $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'database'))); 
+        $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'database')));
     }
 
 
@@ -2242,7 +2261,7 @@ class Controller_Panel_Update extends Auth_Controller {
      *  they are actions, just in case you want to launch the update of a specific release like /oc-panel/update/218 for example
      */
     public function action_database()
-    {   
+    {
         //activate maintenance mode
         Model_Config::set_value('general','maintenance',1);
 
@@ -2255,14 +2274,14 @@ class Controller_Panel_Update extends Auth_Controller {
         //we get all the DB updates available
         $db_updates   = $this->get_db_action_methods();
 
-        foreach ($db_updates as $version) 
+        foreach ($db_updates as $version)
         {
             //we only execute those that are newer or same
             if ($version >= $from_version)
             {
                 call_user_func(array($this, (string)'action_'.$version));
                 Alert::set(Alert::INFO, __('Updated to ').$version);
-            }    
+            }
 
         }
 
@@ -2273,15 +2292,15 @@ class Controller_Panel_Update extends Auth_Controller {
 
         //clean cache
         Core::delete_cache();
-        
+
         //TODO maybe a setting that forces the update of the themes?
-        $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'themes'))); 
+        $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'themes')));
     }
-    
+
     /**
      * STEP 4 and last
      * updates all themes to latest version from API license
-     * @return void 
+     * @return void
      */
     public function action_themes()
     {
@@ -2296,9 +2315,9 @@ class Controller_Panel_Update extends Auth_Controller {
 
             //activate default theme
             Model_Config::set_value('appearance','theme','default');
-            
-            Theme::download(Core::config('license.number')); 
-            
+
+            Theme::download(Core::config('license.number'));
+
             //activate original theme
             Model_Config::set_value('appearance','theme',$current_theme);
 
@@ -2308,9 +2327,9 @@ class Controller_Panel_Update extends Auth_Controller {
             //clean cache
             Core::delete_cache();
         }
-        
+
         //finished the entire update process
-        $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index'))); 
+        $this->redirect(Route::url('oc-panel', array('controller'=>'update', 'action'=>'index')));
     }
 
     /**
@@ -2320,16 +2339,16 @@ class Controller_Panel_Update extends Auth_Controller {
     private function get_db_action_methods()
     {
         $updates = array();
-        
+
         $class      = new ReflectionClass($this);
         $methods    = $class->getMethods();
-        foreach ($methods as $obj => $val) 
+        foreach ($methods as $obj => $val)
         {
             //only if they are actions and numeric ;)
             if ( is_numeric($version = str_replace('action_', '', $val->name)) )
                 $updates[] = $version;
         }
-        
+
         //from less to more, so they are executed in order for sure
         sort($updates);
 

@@ -75,6 +75,12 @@ if (Core::config('general.pusher_notifications')){
     Theme::$scripts['footer'][] = '//js.pusher.com/4.0/pusher.min.js';
 }
 
+if (Core::config('general.algolia_search')){
+    Theme::$styles['css/algolia/algolia-autocomplete.css'] = 'screen';
+    Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js';
+    Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js';
+}
+
 /**
  * custom error alerts
  */

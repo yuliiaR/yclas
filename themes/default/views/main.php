@@ -45,17 +45,25 @@
                       <?=$content?>
                     </div>
                 </div>
-                <?= FORM::open(Route::url('search'), array('class'=>'col-xs-3', 'method'=>'GET', 'action'=>''))?>
+                <?if(Core::config('general.algolia_search') == 1):?>
+                  <div class="col-xs-3">
                     <div class="form-group">
-                        <input type="text" name="search" class="search-query form-control" placeholder="<?=__('Search')?>">
-                    </div>  
-                <?= FORM::close()?>
+                      <?=View::factory('pages/algolia/autocomplete')?>
+                    </div>
+                  </div>
+                <?else:?>
+                  <?= FORM::open(Route::url('search'), array('class'=>'col-xs-3', 'method'=>'GET', 'action'=>''))?>
+                      <div class="form-group">
+                          <input type="text" name="title" class="search-query form-control" placeholder="<?=__('Search')?>">
+                      </div>
+                  <?= FORM::close()?>
+                <?endif?>
                 <?=View::fragment('sidebar_front','sidebar')?>
             <?endif?>
         </div>
         <?=$footer?>
     </div>
-  
+
   <?=Theme::scripts($scripts,'footer')?>
   <?=Theme::scripts($scripts,'async_defer', 'default', ['async' => '', 'defer' => ''])?>
   <?=core::config('general.html_footer')?>

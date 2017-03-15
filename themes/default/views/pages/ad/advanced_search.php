@@ -4,11 +4,17 @@
     <h1><?=_e('Search')?></h1>
     <?= FORM::open(Route::url('search'), array('class'=>'form-inline', 'method'=>'GET', 'action'=>''))?>
         <fieldset>
-         
+
                 <div class="form-group">
                 <?= FORM::label('advertisement', _e('Advertisement Title'), array('class'=>'', 'for'=>'advertisement'))?>
                 <div class="control mr-30">
-                    <input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+                    <div class="control mr-30">
+                        <?if(Core::config('general.algolia_search') == 1):?>
+                            <?=View::factory('pages/algolia/autocomplete_ad')?>
+                        <?else:?>
+                            <input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+                        <?endif?>
+                    </div>
                 </div>
                 </div>
 

@@ -58,22 +58,42 @@
     <div class="panel-body">
         <ul class="list-inline pull-right">
             <li>
-                <a class="btn btn-primary ajax-load" title="<?=__('Sitemap')?>" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'sitemap'))?>?force=1">
-                    <?=__('Generate')?>
+                <a class="btn btn-warning pull-right" href="<?=Route::url('oc-panel',array('controller'=>'algolia','action'=>'index'))?>?reindex=1" title="<?=__('Re-index')?>">
+                    <?=__('Re-index')?>
                 </a>
             </li>
         </ul>
         <h1 class="page-header page-title">
-            <?=__('Sitemap')?>
-            <a target="_blank" href="https://docs.yclas.com/sitemap-classifieds-website/">
-                <i class="fa fa-question-circle"></i>
-            </a>
+            Algolia Search
         </h1>
         <hr>
-        <ul class="list-unstyled">
-            <li><?=__('Last time generated')?> <?=Date::unix2mysql(Sitemap::last_generated_time())?></li>
-            <li><?=__('Your sitemap XML to submit to engines')?></li>
-            <li><input type="text" value="<?=core::config('general.base_url')?><?=(file_exists(DOCROOT.'sitemap-index.xml'))? 'sitemap-index.xml':'sitemap.xml.gz'?>" /></li>
-        </ul>
+        <div class="panel panel-default">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><?=__('Indices')?></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?=__('Ads')?></td>
+                        <td>yclas_ads</td>
+                    </tr>
+                    <tr>
+                        <td><?=__('Categories')?></td>
+                        <td>yclas_categories</td>
+                    </tr>
+                    <tr>
+                        <td><?=__('Locations')?></td>
+                        <td>yclas_locations</td>
+                    </tr>
+                    <tr>
+                        <td><?=__('Users')?></td>
+                        <td>yclas_users</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
