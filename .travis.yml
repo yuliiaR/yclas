@@ -49,6 +49,7 @@ before_script:
   - sudo service apache2 restart
   - sudo cp -r $TRAVIS_BUILD_DIR /var/www
   
+  
   # Enable mod_rewrite
   - sudo a2enmod rewrite
   - sudo service apache2 restart
