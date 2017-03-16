@@ -59,10 +59,10 @@ before_script:
   - sudo chmod -R 755 /var/www/*
 
   # - sudo chmod -R 755 $TRAVIS_BUILD_DIR/oc/tests/ # permissions for codeception output, it doesnt work without this.
-  - sudo chmod -R 777 /var/www/yclas-test/oc/tests # permissions for codeception output, it doesnt work without this.
+  - sudo chmod -R 777 /var/www/$TRAVIS_BUILD_DIR/oc/tests # permissions for codeception output, it doesnt work without this.
 
   # install
-  - sh /var/www/yclas-test/build/install/install-yclas.sh
+  - sh /var/www/$TRAVIS_BUILD_DIR/build/install/install-yclas.sh
 
   # Install postfix
   - sudo debconf-set-selections <<< "postfix postfix/mailname string reoc.lo"
@@ -71,15 +71,15 @@ before_script:
   - sudo service postfix reload
 
   # Install codecept
-  - cd /var/www/yclas-test/oc
+  - cd /var/www/$TRAVIS_BUILD_DIR/oc
   - sudo wget http://codeception.com/codecept.phar
   - sudo chmod -R 755 codecept.phar
 
 script: 
   # - set -e # don't stop on failure
-  - php /var/www/yclas-test/oc/codecept.phar run acceptance tests/acceptance/default/admin/UpdateDBCept.php
-  - php /var/www/yclas-test/oc/codecept.phar run acceptance tests/acceptance/default/admin/SetUsersPasswordsCept.php
-  - php /var/www/yclas-test/oc/codecept.phar run acceptance tests/acceptance/default
+  - php /var/www/$TRAVIS_BUILD_DIR/oc/codecept.phar run acceptance tests/acceptance/default/admin/UpdateDBCept.php
+  - php /var/www/$TRAVIS_BUILD_DIR/oc/codecept.phar run acceptance tests/acceptance/default/admin/SetUsersPasswordsCept.php
+  - php /var/www/$TRAVIS_BUILD_DIR/oc/codecept.phar run acceptance tests/acceptance/default
 
 after_failure:
   # - cat /var/www/yclas-test/oc/tests/_output/*****.fail.html
