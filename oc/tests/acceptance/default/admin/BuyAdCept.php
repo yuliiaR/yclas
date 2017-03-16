@@ -11,7 +11,7 @@ $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/jobs/just-random-title-here.html');
-$I->click('Buy Now');
+$I->click('a[href="http://reoc.lo/ad/buy/3"]');
 
 $I->see('Checkout','h1');
 $I->see('Purchase: just-random-title-here');

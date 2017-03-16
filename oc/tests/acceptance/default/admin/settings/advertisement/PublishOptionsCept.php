@@ -49,7 +49,7 @@ $I->seeElement('input', ['name' => 'captcha']);
 
 
 
-// Captcha
+// Map on new
 $I->amOnPage('/oc-panel/Config/update/map_pub_new');
 $I->fillField('#formorm_config_value','1');
 $I->click('button[type="submit"]');
