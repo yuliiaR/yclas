@@ -17,7 +17,7 @@ $I->see('John Smith');
 $I->amOnPage('/oc-panel/User/update/4');
 $I->fillField('password1','1234');
 $I->fillField('password2','1234');
-$I->click('Update');
+$I->click("//form[contains(@action,'http://reoc.lo/oc-panel/user/changepass/4')]/div/div/button[@type='submit']");
 $I->seeElement('.alert.alert-success');
 $I->see('Password is changed');
 

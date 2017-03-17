@@ -8,7 +8,7 @@ $I->login_admin();
 $I->amOnPage('/oc-panel/fields/new');
 $I->see('New Custom Field');
 
-$I->fillField('name','My Custom Field');
+$I->fillField('name','mycustomfield');
 $I->fillField('label','My Custom Field');
 $I->fillField('tooltip','Test field for testing');
 $I->selectOption('form select[name="type"]','string');
@@ -17,7 +17,7 @@ $I->checkOption('searchable');
 $I->checkOption('show_listing');
 $I->click('button[type="submit"]');
 
-$I->see('Field my_custom_field created');
+$I->see('Field mycustomfield created');
 $I->seeElement('.drag-item');
 
 // delete all cache
@@ -47,8 +47,8 @@ $I->click('a[href="http://reoc.lo/oc-panel/theme/index/default"]');
 */
 $I->amOnPage('/oc-panel/fields');
 $I->see('Custom Fields');
-$I->see('my_custom_field');
-$I->click('a[href="http://reoc.lo/oc-panel/fields/delete/my_custom_field"]');
+$I->see('mycustomfield');
+$I->click('a[href="http://reoc.lo/oc-panel/fields/delete/mycustomfield"]');
 //$I->click('.confirm'); 
 $I->amOnPage('/oc-panel/fields');
 $I->dontSeeElement('.drag-item');

@@ -36,7 +36,7 @@ $I->see('Location Two','h1');
 $I->amOnPage('/oc-panel/Location');
 $I->checkOption('input[value="6"]');
 $I->checkOption('input[value="7"]');
-$I->click('delete');
+$I->click(['name' => 'delete']);
 
 $I->seeElement('.alert.alert-success');
 $I->see('Location Location One deleted');
