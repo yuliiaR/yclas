@@ -1,12 +1,9 @@
 sudo: required
 dist: trusty
-# see http://about.travis-ci.org/docs/user/languages/php/ for more hints
 language: php
 
 # list any PHP version you want to test against
 php:
-  # using major version aliases
-
   # aliased to a recent 5.6.x version
   - 5.6
   # aliased to a recent 7.0 version
@@ -18,11 +15,9 @@ addons:
   hosts:
     - reoc.lo
 
-# optionally specify a list of environments, for example to test different RDBMS
 env:
   - DB=mysql
 
-# disable the default submodule logic
 git:
   submodules: false
 
@@ -30,10 +25,8 @@ before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS openclassifieds;'
 
 install:
-  - git clone https://github.com/kotsios5/build-travis-ci build
+  - git clone https://github.com/kotsios5/build-travis-ci build   # get required files
 
-
-# execute any number of scripts before the test run, custom env's are available as variables
 before_script:
   - sudo apt-get update
 
@@ -41,8 +34,8 @@ before_script:
   - if [ "$TRAVIS_PHP_VERSION" == "7.0" ]; then sh $TRAVIS_BUILD_DIR/build/php7.sh; fi
   - if [ "$TRAVIS_PHP_VERSION" == "7.1" ]; then sh $TRAVIS_BUILD_DIR/build/php7-1.sh; fi
 
-  # configure apache virtual hosts
-  # $TRAVIS_BUILD_DIR contains the path of the cloned repo
+  # configure apache virtual host
+  # $TRAVIS_BUILD_DIR contains the path of the cloned repo (username/repo)
   - sudo cp -f $TRAVIS_BUILD_DIR/build/travis-ci-apache /etc/apache2/sites-available/reoc.lo.conf 
   - sudo a2ensite reoc.lo.conf 
   - sudo sed -i 's/localhost/reoc.lo/g' /etc/hosts
@@ -58,7 +51,6 @@ before_script:
   - sudo chown -R www-data:www-data /var/www/*
   - sudo chmod -R 755 /var/www/*
 
-  # - sudo chmod -R 755 $TRAVIS_BUILD_DIR/oc/tests/ # permissions for codeception output, it doesnt work without this.
   - sudo chmod -R 777 /var/www/openclassifieds2/oc/tests # permissions for codeception output, it doesnt work without this.
 
   # install
