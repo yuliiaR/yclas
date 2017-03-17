@@ -28,6 +28,7 @@ install:
   - git clone https://github.com/kotsios5/build-travis-ci build   # get required files
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - sudo apt-get update
 
   - if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then sh $TRAVIS_BUILD_DIR/build/php5-6.sh; fi
