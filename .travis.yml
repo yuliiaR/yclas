@@ -26,7 +26,7 @@ before_install:
   - phpenv config-rm xdebug.ini
 
 install:
-  - git clone https://github.com/kotsios5/build-travis-ci build   # get required files
+  - git clone https://github.com/yclas/build-travis-ci build   # get required files
 
 before_script:
   - sudo apt-get update
