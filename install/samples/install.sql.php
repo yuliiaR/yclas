@@ -694,6 +694,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'algolia_search_application_id', ''),
 ('general', 'algolia_search_admin_key', ''),
 ('general', 'algolia_search_only_key', ''),
+('general', 'algolia_powered_by_enabled', 1),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
 ('image', 'max_image_size', '5'),
 ('image', 'height', ''),
@@ -859,6 +860,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."crontab` (`nam
 ('Renew subscription', '*/5 * * * *', 'Cron_Subscription::renew', NULL, 'Notify by email user subscription will expire.', 1),
 ('Notify new updates', '0 9 * * 1', 'Cron_Update::notify', NULL, 'Notify by email of new site updates.', 1),
 ('Notify new updates', '0 9 * * 1', 'Cron_Update::notify', NULL, 'Notify by email of new site updates.', 1),
+('Generate Access Token', '10 9 1 * *', 'Social::GetAccessToken', NULL, 'Generate Facebook long-lived Access Token.', 1),
 ('Algolia Search re-index', '0 * * * *', 'Cron_Algolia::reindex', NULL, 'Re-index everything', 1);");
 
 mysqli_close($link);

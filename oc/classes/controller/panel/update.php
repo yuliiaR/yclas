@@ -85,6 +85,9 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'algolia_search_only_key',
                                'group_name'     => 'general',
                                'config_value'   => ''),
+                        array( 'config_key'     => 'algolia_powered_by_enabled',
+                               'group_name'     => 'general',
+                               'config_value'   => '1'),
                         );
 
         Model_Config::config_array($configs);
@@ -100,7 +103,7 @@ class Controller_Panel_Update extends Auth_Controller {
         try
         {
             DB::query(Database::UPDATE,"INSERT INTO `".self::$db_prefix."crontab` (`name`, `period`, `callback`, `params`, `description`, `active`) VALUES
-                                    ('Algolia Search re-index', '0 * * * *', 'Cron_Algolia::ReIndex', NULL, 'Re-index everything', 1);")->execute();
+                                    ('Algolia Search re-index', '0 * * * *', 'Cron_Algolia::reindex', NULL, 'Re-index everything', 1);")->execute();
         }catch (exception $e) {}
     }
 
