@@ -36,7 +36,7 @@ $I->see('Category to delete two','h1');
 $I->amOnPage('/oc-panel/Category');
 $I->checkOption('input[value="27"]');
 $I->checkOption('input[value="28"]');
-$I->click('delete');
+$I->click(['name' => 'delete']);
 
 $I->seeElement('.alert.alert-success');
 $I->see('Category Category to delete one deleted');
