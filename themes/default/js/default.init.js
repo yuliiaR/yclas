@@ -721,8 +721,17 @@ $(function(){
 });
 
 $(function(){
-    var algoliaclient = algoliasearch(algolia.application_id, algolia.search_api_key)
-    $('#aa-search-input').autocomplete({}, [
+    var algoliaclient = algoliasearch(algolia.application_id, algolia.search_api_key);
+    var algolia_branding = '';
+
+    if (algolia.powered_by_enabled == 1)
+        algolia_branding = '<div class="branding">Powered by <img src="https://www.algolia.com/assets/algolia128x40.png" /></div>';
+
+    $('#aa-search-input').autocomplete({
+        templates: {
+            footer: algolia_branding
+        }
+    }, [
         {
           source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.ads.name), { hitsPerPage: 3 }),
           displayKey: 'title',
@@ -772,7 +781,11 @@ $(function(){
       location.href = suggestion.permalink;
     });
 
-    $('#aa-search-input-ad').autocomplete({}, [
+    $('#aa-search-input-ad').autocomplete({
+        templates: {
+            footer: algolia_branding
+        }
+    }, [
         {
           source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.ads.name), { hitsPerPage: 3 }),
           displayKey: 'title',

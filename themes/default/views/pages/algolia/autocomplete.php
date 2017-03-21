@@ -12,7 +12,7 @@
         $config = array(
             'application_id'       => Core::config('general.algolia_search_application_id'),
             'search_api_key'       => Core::config('general.algolia_search_only_key'),
-            'powered_by_enabled'   => TRUE,
+            'powered_by_enabled'   => Core::config('general.algolia_powered_by_enabled'),
             'query'                => core::request('title'),
             'autocomplete'         => array(
                 'indices' => [
