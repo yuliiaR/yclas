@@ -52,10 +52,10 @@ before_script:
   - sudo chown -R www-data:www-data /var/www/*
   - sudo chmod -R 755 /var/www/*
 
-  - sudo chmod -R 777 /var/www/openclassifieds2/oc/tests # permissions for codeception output, it doesnt work without this.
+  - sudo chmod -R 777 /var/www/yclas/oc/tests # permissions for codeception output, it doesnt work without this.
 
   # install
-  - sh /var/www/openclassifieds2/build/install/install-yclas.sh
+  - sh /var/www/yclas/build/install/install-yclas.sh
 
   # Install postfix
   - sudo debconf-set-selections <<< "postfix postfix/mailname string reoc.lo"
@@ -64,18 +64,18 @@ before_script:
   - sudo service postfix reload
 
   # Install codecept
-  - cd /var/www/openclassifieds2/oc
+  - cd /var/www/yclas/oc
   - sudo wget http://codeception.com/codecept.phar
   - sudo chmod -R 755 codecept.phar
 
 script: 
   # - set -e # don't stop on failure
-  - php /var/www/openclassifieds2/oc/codecept.phar run acceptance tests/acceptance/default/admin/UpdateDBCept.php
-  - php /var/www/openclassifieds2/oc/codecept.phar run acceptance tests/acceptance/default/admin/SetUsersPasswordsCept.php
-  - php /var/www/openclassifieds2/oc/codecept.phar run acceptance tests/acceptance/default
+  - php /var/www/yclas/oc/codecept.phar run acceptance tests/acceptance/default/admin/UpdateDBCept.php
+  - php /var/www/yclas/oc/codecept.phar run acceptance tests/acceptance/default/admin/SetUsersPasswordsCept.php
+  - php /var/www/yclas/oc/codecept.phar run acceptance tests/acceptance/default
 
 after_failure:
-  # - cat /var/www/openclassifieds2/oc/tests/_output/*****.fail.html
+  # - cat /var/www/yclas/oc/tests/_output/*****.fail.html
 
 # configure notifications (email, IRC, campfire etc)
 notifications:
