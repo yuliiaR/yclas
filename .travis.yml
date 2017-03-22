@@ -8,7 +8,7 @@ php:
   - 5.6
   # aliased to a recent 7.0 version
   - 7.0
-  # # aliased to a recent 7.1 version
+  # aliased to a recent 7.1 version
   - 7.1
 
 addons:
@@ -29,8 +29,6 @@ install:
   - git clone https://github.com/yclas/build-travis-ci build   # get required files
 
 before_script:
-  - sudo apt-get update
-
   - if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then sh $TRAVIS_BUILD_DIR/build/php5-6.sh; fi
   - if [ "$TRAVIS_PHP_VERSION" == "7.0" ]; then sh $TRAVIS_BUILD_DIR/build/php7.sh; fi
   - if [ "$TRAVIS_PHP_VERSION" == "7.1" ]; then sh $TRAVIS_BUILD_DIR/build/php7-1.sh; fi
@@ -40,12 +38,11 @@ before_script:
   - sudo cp -f $TRAVIS_BUILD_DIR/build/travis-ci-apache /etc/apache2/sites-available/reoc.lo.conf 
   - sudo a2ensite reoc.lo.conf 
   - sudo sed -i 's/localhost/reoc.lo/g' /etc/hosts
-  - sudo service apache2 restart
   - sudo cp -r $TRAVIS_BUILD_DIR /var/www
 
   # Enable mod_rewrite
   - sudo a2enmod rewrite
-  - sudo service apache2 restart
+  - sudo service apache2 reload
 
   # permissions
   - sudo chown -R root:root /var/www
