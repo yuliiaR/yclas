@@ -8,7 +8,7 @@
 class Controller_Panel_Settings extends Auth_Controller {
 
     public function before($template = NULL)
-    {   
+    {
         parent::before();
 
        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Settings'))->set_url(Route::url('oc-panel',array('controller' => 'settings', 'action' => 'general'))));
@@ -22,19 +22,19 @@ class Controller_Panel_Settings extends Auth_Controller {
 
     public function action_index()
     {
-        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'settings','action'=>'general')));  
+        HTTP::redirect(Route::url('oc-panel',array('controller'  => 'settings','action'=>'general')));
     }
 
     /**
      * Contains all data releated to new advertisment optional form inputs,
-     * captcha, uploading text file  
+     * captcha, uploading text file
      * @return [view] Renders view with form inputs
      */
     public function action_form()
     {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Advertisement')));
         $this->template->title = __('Advertisement');
-       
+
         // all form config values
         $advertisement = new Model_Config();
         $config = $advertisement->where('group_name', '=', 'advertisement')->find_all();
@@ -42,7 +42,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen',
             'css/pnotify.custom.min.css' => 'screen');
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
-        
+
         // save only changed values
         if($this->request->post())
         {
@@ -85,12 +85,12 @@ class Controller_Panel_Settings extends Auth_Controller {
             ->rule('reviews_paid', 'range', array(':value', 0, 1))
             ->rule('auto_locate_distance', 'not_empty')
             ->rule('auto_locate_distance', 'digit');
-            
+
             if ($validation->check()) {
-                foreach ($config as $c) 
+                foreach ($config as $c)
                 {
-                    $config_res = $this->request->post($c->config_key); 
-    
+                    $config_res = $this->request->post($c->config_key);
+
                     if(isset($config_res))
                     {
                         if($config_res !== $c->config_value)
@@ -107,16 +107,16 @@ class Controller_Panel_Settings extends Auth_Controller {
             }
             else {
                 $errors = $validation->errors('config');
-                
-                foreach ($errors as $error) 
+
+                foreach ($errors as $error)
                     Alert::set(Alert::ALERT, $error);
-                
+
                 $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'form')));
             }
-                
+
             Alert::set(Alert::SUCCESS, __('Advertisement Configuration updated'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'form')));
-            
+
         }
 
         $this->template->content = View::factory('oc-panel/pages/settings/advertisement', array('config'=>$config));
@@ -124,11 +124,11 @@ class Controller_Panel_Settings extends Auth_Controller {
 
 
     /**
-     * Email configuration 
+     * Email configuration
      * @return [view] Renders view with form inputs
      */
     public function action_email()
-    {        
+    {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Email')));
         $this->template->title = __('Email');
 
@@ -146,12 +146,12 @@ class Controller_Panel_Settings extends Auth_Controller {
             ->rule('smtp_ssl', 'range', array(':value', 0, 1))
             ->rule('smtp_port', 'digit')
             ->rule('smtp_auth', 'range', array(':value', 0, 1));
-            
+
             if ($validation->check()) {
-                foreach ($config as $c) 
+                foreach ($config as $c)
                 {
-                    $config_res = $this->request->post($c->config_key); 
-    
+                    $config_res = $this->request->post($c->config_key);
+
                     if($config_res != $c->config_value)
                     {
                         $c->config_value = $config_res;
@@ -165,13 +165,13 @@ class Controller_Panel_Settings extends Auth_Controller {
             }
             else {
                 $errors = $validation->errors('config');
-                
-                foreach ($errors as $error) 
+
+                foreach ($errors as $error)
                     Alert::set(Alert::ALERT, $error);
-                
+
                 $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'email')));
             }
-                
+
             // Cache::instance()->delete_all();
             Alert::set(Alert::SUCCESS, __('Email Configuration updated'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'email')));
@@ -190,7 +190,7 @@ class Controller_Panel_Settings extends Auth_Controller {
             '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.css' => 'screen',
             'css/pnotify.custom.min.css' => 'screen');
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/bootstrap.tagsinput/0.3.9/bootstrap-tagsinput.min.js';
-        
+
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('General')));
         $this->template->title = __('General');
 
@@ -199,20 +199,20 @@ class Controller_Panel_Settings extends Auth_Controller {
         $config = $generalconfig->where('group_name', '=', 'general')->or_where('group_name', '=', 'i18n')->find_all();
 
         // config general array
-        foreach ($config as $c) 
+        foreach ($config as $c)
         {
             $forms[$c->config_key] = $forms[$c->config_key] = array('key'=>$c->group_name.'['.$c->config_key.'][]', 'id'=>$c->config_key, 'value'=>$c->config_value);
         }
-        
+
         //not updatable fields
-        $do_nothing = array('base_url','menu','locale','allow_query_language','charset','translate','ocacu','minify','subscribe', 'blog', 'faq', 'forums', 'messaging', 'black_list', 'auto_locate', 'social_auth', 'adblock','subscriptions', 'cron', 'hide_homepage_categories');
+        $do_nothing = array('base_url','menu','locale','allow_query_language','charset','translate','ocacu','minify','subscribe', 'blog', 'faq', 'forums', 'messaging', 'black_list', 'auto_locate', 'social_auth', 'adblock','subscriptions', 'cron', 'hide_homepage_categories', 'algolia_powered_by_enabled');
 
         // save only changed values
         if($this->request->post())
         {
             foreach ($this->request->post('general') as $k => $v)
                 $this->request->post('general_'.$k, $v[0]);
-            
+
             $validation =   Validation::factory($this->request->post())
                             ->rule('general_maintenance', 'range', array(':value', 0, 1))
                             ->rule('general_private_site', 'range', array(':value', 0, 1))
@@ -227,11 +227,11 @@ class Controller_Panel_Settings extends Auth_Controller {
                             ->rule('general_black_list', 'range', array(':value', 0, 1))
                             ->rule('general_search_by_description', 'range', array(':value', 0, 1))
                             ->rule('general_recaptcha_active', 'range', array(':value', 0, 1));
-            
+
             if ($validation->check()) {
                 //save general
-                foreach ($config as $c) 
-                {   
+                foreach ($config as $c)
+                {
                     $config_res = $this->request->post();
 
                     if ( ! in_array($c->config_key, $do_nothing)
@@ -246,21 +246,21 @@ class Controller_Panel_Settings extends Auth_Controller {
 
                         if ($c->config_key == 'maintenance' AND $c->config_value == 0)
                             Alert::del('maintenance');
-        
+
                         if ($c->config_key == 'private_site' AND $c->config_value == 0)
                             Alert::del('private_site');
-    
-                        Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);    
+
+                        Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);
                     }
-                      
+
                 }
             }
             else {
                 $errors = $validation->errors('config');
-            
-                foreach ($errors as $error) 
+
+                foreach ($errors as $error)
                     Alert::set(Alert::ALERT, $error);
-            
+
                 $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'general')));
             }
 
@@ -284,14 +284,14 @@ class Controller_Panel_Settings extends Auth_Controller {
             Model_Order::delete_featured_plan(Core::get('delete_plan'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
         }
-        
+
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Payments')));
         $this->template->title = __('Payments');
 
         // all form config values
         $paymentconf = new Model_Config();
         $config = $paymentconf->where('group_name', '=', 'payment')->find_all();
-        
+
         // save only changed values
         if($this->request->post())
         {
@@ -315,22 +315,22 @@ class Controller_Panel_Settings extends Auth_Controller {
             ->rule('stock', 'range', array(':value', 0, 1))
             ->rule('authorize_sandbox', 'range', array(':value', 0, 1))
             ->rule('stripe_address', 'range', array(':value', 0, 1));
-            
+
             //not updatable fields
             $do_nothing = array('featured_days','pay_to_go_on_feature','featured_plans');
 
             if(Core::request('vat_country') AND Core::request('vat_number')){
                 if (!euvat::verify_vies(Core::request('vat_number'),Core::request('vat_country'))){
                     Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
-                    $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));                    
+                    $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
                 }
             }
 
             if ($validation->check()) {
-                foreach ($config as $c) 
+                foreach ($config as $c)
                 {
-                    $config_res = $this->request->post($c->config_key); 
-                    
+                    $config_res = $this->request->post($c->config_key);
+
                     if(!in_array($c->config_key, $do_nothing) AND $config_res != $c->config_value)
                     {
                         if ($c->config_key == 'pay_to_go_on_top')
@@ -348,18 +348,18 @@ class Controller_Panel_Settings extends Auth_Controller {
             else {
                 $errors = $validation->errors('config');
 
-                foreach ($errors as $error) 
+                foreach ($errors as $error)
                     Alert::set(Alert::ALERT, $error);
 
                 $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
             }
-            
+
             Alert::set(Alert::SUCCESS, __('Payments Configuration updated'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'payment')));
         }
 
         $pages = array(''=>__('Deactivated'));
-        foreach (Model_Content::get_pages() as $key => $value) 
+        foreach (Model_Content::get_pages() as $key => $value)
             $pages[$value->seotitle] = $value->title;
 
         $this->template->content = View::factory('oc-panel/pages/settings/payment', array('config'          => $config,
@@ -368,11 +368,11 @@ class Controller_Panel_Settings extends Auth_Controller {
     }
 
     /**
-     * Image configuration 
+     * Image configuration
      * @return [view] Renders view with form inputs
      */
     public function action_image()
-    {   
+    {
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Image')));
         $this->template->title = __('Image');
 
@@ -387,7 +387,7 @@ class Controller_Panel_Settings extends Auth_Controller {
         {
             foreach ($this->request->post('image') as $k => $v)
                 $this->request->post('image_'.$k, $v[0]);
-            
+
             $validation =   Validation::factory($this->request->post())
                             ->rule('image_max_image_size', 'not_empty')
                             ->rule('image_max_image_size', 'digit')
@@ -406,30 +406,30 @@ class Controller_Panel_Settings extends Auth_Controller {
                             ->rule('image_watermark_position', 'digit')
                             ->rule('image_watermark_position', 'range', array(':value', 0, 2))
                             ->rule('image_disallow_nudes', 'range', array(':value', 0, 1));
-            
+
             if ($validation->check()) {
-                foreach ($config as $c) 
+                foreach ($config as $c)
                 {
-                    $config_res = $this->request->post(); 
-                    
+                    $config_res = $this->request->post();
+
                     if (!array_key_exists('allowed_formats', $config_res[$c->group_name]))
                     {
                         Alert::set(Alert::ERROR, __('At least one image format should be allowed.'));
                         $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'image')));
                     }
-    
+
                     if($config_res[$c->group_name][$c->config_key][0] != $c->config_value)
                     {
                         if($c->config_key == 'allowed_formats')
                         {
                           $allowed_formats = '';
-                          foreach ($config_res[$c->group_name][$c->config_key] as $key => $value) 
+                          foreach ($config_res[$c->group_name][$c->config_key] as $key => $value)
                           {
                               $allowed_formats .= $value.",";
                           }
                           $config_res[$c->group_name][$c->config_key][0] = $allowed_formats;
                         }
-                        
+
                         if($c->config_key == 'aws_s3_domain')
                         {
                             switch ($config_res[$c->group_name]['aws_s3_domain'][0])
@@ -437,18 +437,18 @@ class Controller_Panel_Settings extends Auth_Controller {
                                 case 'bn-s3':
                                     $s3_domain = $config_res[$c->group_name]['aws_s3_bucket'][0].'.s3.amazonaws.com';
                                     break;
-                                    
+
                                 case 'bn':
                                     $s3_domain = $config_res[$c->group_name]['aws_s3_bucket'][0];
                                     break;
-                                    
+
                                 default:
                                     $s3_domain = 's3.amazonaws.com/'.$config_res[$c->group_name]['aws_s3_bucket'][0];
                                     break;
                             }
                             $config_res[$c->group_name][$c->config_key][0] = $s3_domain.'/';
                         }
-    
+
                         $c->config_value = $config_res[$c->group_name][$c->config_key][0];
                         Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);
                     }
@@ -456,13 +456,13 @@ class Controller_Panel_Settings extends Auth_Controller {
             }
             else {
                 $errors = $validation->errors('config');
-                
-                foreach ($errors as $error) 
+
+                foreach ($errors as $error)
                     Alert::set(Alert::ALERT, $error);
-                
+
                 $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'image')));
             }
-            
+
             Alert::set(Alert::SUCCESS, __('Image Configuration updated'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'image')));
         }
@@ -471,7 +471,7 @@ class Controller_Panel_Settings extends Auth_Controller {
     }
 
     /**
-     * Plugins configuration 
+     * Plugins configuration
      * @return [view] Renders view with form inputs
      */
     public function action_plugins()
@@ -484,39 +484,39 @@ class Controller_Panel_Settings extends Auth_Controller {
         $config = $generalconfig->where('group_name', '=', 'general')->or_where('group_name', '=', 'i18n')->find_all();
 
         // config general array
-        foreach ($config as $c) 
+        foreach ($config as $c)
         {
             $forms[$c->config_key] = $forms[$c->config_key] = array('key'=>$c->group_name.'['.$c->config_key.'][]', 'id'=>$c->config_key, 'value'=>$c->config_value);
         }
-        
+
         // save only changed values
         if($this->request->post())
         {
             //d($this->request->post());
             foreach ($this->request->post('general') as $k => $v)
                 $this->request->post('general_'.$k, $v[0]);
-            
+
             $validation = Validation::factory($this->request->post());
-            
+
             if ($validation->check()) {
                 //save general
-                foreach ($config as $c) 
-                {   
+                foreach ($config as $c)
+                {
                     $config_res = $this->request->post();
 
                     if (isset($config_res[$c->group_name][$c->config_key][0]) AND $config_res[$c->group_name][$c->config_key][0] != $c->config_value)
                     {
                         $c->config_value = $config_res[$c->group_name][$c->config_key][0];
-                        Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);    
+                        Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);
                     }
                 }
             }
             else {
                 $errors = $validation->errors('config');
-            
-                foreach ($errors as $error) 
+
+                foreach ($errors as $error)
                     Alert::set(Alert::ALERT, $error);
-            
+
                 $this->redirect(Route::url('oc-panel',array('controller'=>'settings','action'=>'plugins')));
             }
 
