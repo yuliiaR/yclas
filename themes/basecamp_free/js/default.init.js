@@ -725,84 +725,93 @@ $(function(){
 });
 
 $(function(){
-    var algoliaclient = algoliasearch(algolia.application_id, algolia.search_api_key);
-    var algolia_branding = '';
+    if (typeof algolia != 'undefined')
+    {
+        var algoliaclient = algoliasearch(algolia.application_id, algolia.search_api_key);
+        var algolia_branding = '';
 
-    if (algolia.powered_by_enabled == 1)
-        algolia_branding = '<div class="branding">Powered by <img src="https://www.algolia.com/assets/algolia128x40.png" /></div>';
+        if (algolia.powered_by_enabled == 1)
+            algolia_branding = '<div class="branding">Powered by <img src="https://www.algolia.com/assets/algolia128x40.png" /></div>';
 
-    $('#aa-search-input').autocomplete({
-        templates: {
-            footer: algolia_branding
-        }
-    }, [
-        {
-          source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.ads.name), { hitsPerPage: 3 }),
-          displayKey: 'title',
-          templates: {
-            header: '<div class="aa-suggestions-ad">Ads</div>',
-            suggestion: function(suggestion) {
-              return '<span>' +
-                suggestion._highlightResult.title.value + '</span><span>'
-                  + suggestion._highlightResult.category.value + '</span>';
+        $('#aa-search-input').autocomplete({
+            templates: {
+                footer: algolia_branding
             }
-          }
-        },
-        {
-          source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.categories.name), { hitsPerPage: 3 }),
-          displayKey: 'name',
-          templates: {
-            header: '<div class="aa-suggestions-category">Categories</div>',
-            suggestion: function(suggestion) {
-              return '<span>' +
-                suggestion._highlightResult.name.value + '</span><span></span>';
+        }, [
+            {
+              source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.ads.name), { hitsPerPage: 3 }),
+              displayKey: 'title',
+              templates: {
+                header: '<div class="aa-suggestions-ad">Ads</div>',
+                suggestion: function(suggestion) {
+                  return '<span>' +
+                    suggestion._highlightResult.title.value + '</span><span>'
+                      + suggestion._highlightResult.category.value + '</span>';
+                }
+              }
+            },
+            {
+              source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.categories.name), { hitsPerPage: 3 }),
+              displayKey: 'name',
+              templates: {
+                header: '<div class="aa-suggestions-category">Categories</div>',
+                suggestion: function(suggestion) {
+                  return '<span>' +
+                    suggestion._highlightResult.name.value + '</span><span></span>';
+                }
+              }
+            },
+            {
+              source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.locations.name), { hitsPerPage: 3 }),
+              displayKey: 'name',
+              templates: {
+                header: '<div class="aa-suggestions-location">Locations</div>',
+                suggestion: function(suggestion) {
+                  return '<span>' +
+                    suggestion._highlightResult.name.value + '</span><span></span>';
+                }
+              }
+            },
+            {
+              source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.users.name), { hitsPerPage: 3 }),
+              displayKey: 'name',
+              templates: {
+                header: '<div class="aa-suggestions-user">Users</div>',
+                suggestion: function(suggestion) {
+                  return '<span>' +
+                    suggestion._highlightResult.name.value + '</span><span></span>';
+                }
+              }
             }
-          }
-        },
-        {
-          source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.locations.name), { hitsPerPage: 3 }),
-          displayKey: 'name',
-          templates: {
-            header: '<div class="aa-suggestions-location">Locations</div>',
-            suggestion: function(suggestion) {
-              return '<span>' +
-                suggestion._highlightResult.name.value + '</span><span></span>';
-            }
-          }
-        },
-        {
-          source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.users.name), { hitsPerPage: 3 }),
-          displayKey: 'name',
-          templates: {
-            header: '<div class="aa-suggestions-user">Users</div>',
-            suggestion: function(suggestion) {
-              return '<span>' +
-                suggestion._highlightResult.name.value + '</span><span></span>';
-            }
-          }
-        }
-    ]).on('autocomplete:selected', function(dataset, suggestion) {
-      location.href = suggestion.permalink;
-    });
+        ]).on('autocomplete:selected', function(dataset, suggestion) {
+          location.href = suggestion.permalink;
+        });
 
-    $('#aa-search-input-ad').autocomplete({
-        templates: {
-            footer: algolia_branding
-        }
-    }, [
-        {
-          source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.ads.name), { hitsPerPage: 3 }),
-          displayKey: 'title',
-          templates: {
-            header: '<div class="aa-suggestions-ad">Ads</div>',
-            suggestion: function(suggestion) {
-              return '<span>' +
-                suggestion._highlightResult.title.value + '</span><span>'
-                  + suggestion._highlightResult.category.value + '</span>';
+        $('#aa-search-input-ad').autocomplete({
+            templates: {
+                footer: algolia_branding
             }
-          }
-        }
-    ]).on('autocomplete:selected', function(dataset, suggestion) {
-      location.href = suggestion.permalink;
-    });
+        }, [
+            {
+              source: $.fn.autocomplete.sources.hits(algoliaclient.initIndex(algolia.autocomplete.indices.ads.name), { hitsPerPage: 3 }),
+              displayKey: 'title',
+              templates: {
+                header: '<div class="aa-suggestions-ad">Ads</div>',
+                suggestion: function(suggestion) {
+                  return '<span>' +
+                    suggestion._highlightResult.title.value + '</span><span>'
+                      + suggestion._highlightResult.category.value + '</span>';
+                }
+              }
+            }
+        ]).on('autocomplete:selected', function(dataset, suggestion) {
+          location.href = suggestion.permalink;
+        });
+
+        $("input.aa-input-search").keydown(function(event){
+            if(event.keyCode == 13) {
+                $(this).parents('form:first').submit();
+            }
+        });
+    }
 });
