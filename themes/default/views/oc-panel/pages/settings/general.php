@@ -584,14 +584,14 @@
                         </div>
                         <div id="tabSettingsAlgolia" class="tab-pane fade">
                             <h4>Algolia Search
-                                <a target="_blank" href="#>
+                                <a target="_blank" href="//docs.yclas.com/algolia-search">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                             </h4>
                             <hr>
 
                             <div class="form-group">
-                                <?= FORM::label($forms['algolia_search']['id'], __("Enable Notifications"), array('class'=>'control-label', 'for'=>$forms['algolia_search']['id']))?>
+                                <?= FORM::label($forms['algolia_search']['id'], __("Enable Algolia Search"), array('class'=>'control-label', 'for'=>$forms['algolia_search']['id']))?>
 
                                 <div class="radio radio-primary">
                                     <?=Form::radio($forms['algolia_search']['key'], 1, (bool) $forms['algolia_search']['value'], array('id' => $forms['algolia_search']['id'].'1'))?>
@@ -609,7 +609,7 @@
                                 ))?>
                             </div>
                             <div class="form-group">
-                                <?=FORM::label($forms['algolia_search_admin_key']['id'], __('API Key'), array('class'=>'control-label', 'for'=>$forms['algolia_search_admin_key']['id']))?>
+                                <?=FORM::label($forms['algolia_search_admin_key']['id'], __('Admin API Key'), array('class'=>'control-label', 'for'=>$forms['algolia_search_admin_key']['id']))?>
                                 <?=FORM::input($forms['algolia_search_admin_key']['key'], $forms['algolia_search_admin_key']['value'], array(
                                     'placeholder' => "",
                                     'class' => 'form-control',
