@@ -569,6 +569,7 @@ class I18n extends Kohana_I18n {
         'XPF' => array('F',0,'.',',',1),          //  Polynesian franc
         'LKR' => array('₨',2,'.',',',0),          //  Sri Lankan Rupee
         'MAD' => array('.د.م',2,'.',',',1),          //  Moroccan Dirham
+        'NGN' => array('₦',2,'.',',',0),          //  Nigerian Naira
     );
     
     /**
@@ -860,6 +861,7 @@ class I18n extends Kohana_I18n {
         'MXN' => 'Mexican Peso',
         'MZM' => 'Mozambique Metical',
         'NPR' => 'Nepalese Rupee',
+        'NGN' => 'Nigerian Naira',
         'ANG' => 'Netherlands Antillian Guilder',
         'ILS' => 'New Israeli Shekel ₪',
         'TRY' => 'New Turkish Lira',
