@@ -48,7 +48,7 @@ class Controller_Stripe extends Controller{
                 {
                     // Create a Customer
                     $customer = \Stripe\Customer::create(array(
-                      'card'  => $token,
+                      'source'  => $token,
                       'email' => $order->user->email)
                     );
                 }
@@ -197,7 +197,7 @@ class Controller_Stripe extends Controller{
                         $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($order->amount), // amount in cents, again
                                                         "currency"  => $order->currency,
-                                                        "card"      => $token,
+                                                        "source"      => $token,
                                                         "description" => $order->description,
                                                         "application_fee" => StripeKO::money_format($application_fee)), 
                                                      array('stripe_account' => $order->ad->user->stripe_user_id)
@@ -208,7 +208,7 @@ class Controller_Stripe extends Controller{
                         $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($order->amount), // amount in cents, again
                                                         "currency"  => $order->currency,
-                                                        "card"      => $token,
+                                                        "source"      => $token,
                                                         "description" => $order->description)
                                                     );
                     }
@@ -307,7 +307,7 @@ class Controller_Stripe extends Controller{
                         $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($ad->price), // amount in cents, again
                                                         "currency"  => core::config('payment.paypal_currency'),
-                                                        "card"      => $token,
+                                                        "source"      => $token,
                                                         "description" => $ad->title,
                                                         "application_fee" => StripeKO::money_format($application_fee)), 
                                                      array('stripe_account' => $ad->user->stripe_user_id)
@@ -318,7 +318,7 @@ class Controller_Stripe extends Controller{
                         $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($ad->price), // amount in cents, again
                                                         "currency"  => core::config('payment.paypal_currency'),
-                                                        "card"      => $token,
+                                                        "source"      => $token,
                                                         "description" => $ad->title)
                                                     );
                     }
