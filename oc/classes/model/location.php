@@ -32,7 +32,7 @@ class Model_Location extends ORM {
                             'foreign_key' => 'id_location_parent'),
     );
 
-    
+
     /**
      * global Model Location instance get from controller so we can access from anywhere like Model_Location::current()
      * @var Model_Location
@@ -49,7 +49,7 @@ class Model_Location extends ORM {
         if (self::$_current === NULL)
         {
             self::$_current = new self();
-            
+
             if (Model_Ad::current()!=NULL AND Model_Ad::current()->loaded() AND Model_Ad::current()->location->loaded())
             {
                 self::$_current = Model_Ad::current()->location;
@@ -63,13 +63,13 @@ class Model_Location extends ORM {
 
         return self::$_current;
     }
-    
+
     /**
      * creates a location by name
-     * @param  string  $name               
-     * @param  integer $id_location_parent 
-     * @param  string  $description        
-     * @return Model_Location                      
+     * @param  string  $name
+     * @param  integer $id_location_parent
+     * @param  string  $description
+     * @return Model_Location
      */
     public static function create_name($name,$order=0, $id_location_parent = 1, $parent_deep=0, $latitude=NULL, $longitude=NULL, $description = NULL)
     {
@@ -163,16 +163,17 @@ class Model_Location extends ORM {
 
 
     /**
-     * we get the locations in an array 
-     * @return array 
+     * we get the locations in an array
+     * @return array
      */
     public static function get_as_array($limit = NULL)
     {
         $cache_name = is_int($limit) ? 'locs_arr'.'_'.$limit : 'locs_arr';
-        
+
         if ( ($locs_arr = Core::cache($cache_name))===NULL)
         {
             $locs = new self;
+            $locs->order_by('id_location_parent','asc');
             $locs->order_by('order','asc');
 
             if (is_int($limit))
@@ -182,7 +183,7 @@ class Model_Location extends ORM {
 
             //transform the locs to an array
             $locs_arr = array();
-            foreach ($locs as $loc) 
+            foreach ($locs as $loc)
             {
                 $locs_arr[$loc->id_location] =  array('name'               => $loc->name,
                                                       'order'              => $loc->order,
@@ -200,22 +201,22 @@ class Model_Location extends ORM {
 
     /**
      * we get the locations in an array using as key the deep they are, perfect fro chained selects
-     * @return array 
+     * @return array
      * @deprecated function DO NOT use, just here so we do not break the API to old themes
      */
     public static function get_by_deep()
     {
-        // array by parent deep, 
+        // array by parent deep,
         // each parent deep is one array with locations of the same index
         if ( ($locs_parent_deep = Core::cache('locs_parent_deep'))===NULL)
         {
             $locs = new self;
             $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
 
-            // array by parent deep, 
+            // array by parent deep,
             // each parent deep is one array with locations of the same index
             $locs_parent_deep = array();
-            foreach ($locs as $loc) 
+            foreach ($locs as $loc)
             {
                 $locs_parent_deep[$loc->parent_deep][$loc->id_location] =  array('name'               => $loc->name,
                                                                                   'id_location_parent' => $loc->id_location_parent,
@@ -235,7 +236,7 @@ class Model_Location extends ORM {
 
     /**
      * we get the locations in an array miltidimensional by deep.
-     * @return array 
+     * @return array
      */
     public static function get_multidimensional($limit = NULL)
     {
@@ -244,6 +245,7 @@ class Model_Location extends ORM {
         if ( ($locs_m = Core::cache($cache_name))===NULL)
         {
             $locs = new self;
+            $locs->order_by('id_location_parent','asc');
             $locs->order_by('order','asc');
 
             if (is_int($limit))
@@ -253,9 +255,9 @@ class Model_Location extends ORM {
 
             //for each location we get his siblings
             $locs_s = array();
-            foreach ($locs as $loc) 
+            foreach ($locs as $loc)
                  $locs_s[$loc->id_location_parent][] = $loc->id_location;
-                
+
 
             //last build multidimensional array
             if (count($locs_s)>1)
@@ -270,18 +272,18 @@ class Model_Location extends ORM {
     /**
      * gets a multidimensional array wit the locations
      * @param  array  $locs_s      id_location->array(id_siblings)
-     * @param  integer $id_location 
-     * @param  integer $deep        
-     * @return array               
+     * @param  integer $id_location
+     * @param  integer $deep
+     * @return array
      */
     public static function multi_locs($locs_s,$id_location = 1, $deep = 0)
-    {    
+    {
         $ret = NULL;
         //we take all the siblings and try to set the grandsons...
         //we check that the id_location sibling has other siblings
         if (isset($locs_s[$id_location]))
         {
-            foreach ($locs_s[$id_location] as $id_sibling) 
+            foreach ($locs_s[$id_location] as $id_sibling)
             {
                 //we check that the id_location sibling has other siblings
                 if (isset($locs_s[$id_sibling]))
@@ -292,12 +294,12 @@ class Model_Location extends ORM {
                     }
                 }
                 //no siblings we only set the key
-                else 
+                else
                     $ret[$id_sibling] = NULL;
-                
+
             }
         }
-        
+
         return $ret;
     }
 
@@ -305,7 +307,7 @@ class Model_Location extends ORM {
     /**
      * we get the locations in an array and a multidimensional array to know the deep @todo refactor this, is a mess
      * @deprecated function DO NOT use, just here so we do not break the API to old themes
-     * @return array 
+     * @return array
      */
     public static function get_all()
     {
@@ -317,7 +319,7 @@ class Model_Location extends ORM {
 
         //array by deep
         $locs_parent_deep = self::get_by_deep();
-        
+
         return array($locs_arr,$locs_m, $locs_parent_deep);
     }
 
@@ -353,9 +355,9 @@ class Model_Location extends ORM {
 
             //getting the count of ads into the parents
             $parents_count = array();
-            foreach ($count_ads as $count_ad) 
+            foreach ($count_ads as $count_ad)
             {
-                $id_location = $count_ad['id_location'];    
+                $id_location = $count_ad['id_location'];
                 $count = $count_ad['count'];
 
                 //adding himself if doesnt exists
@@ -372,7 +374,7 @@ class Model_Location extends ORM {
 
                 if (count($parents_ids)>0)
                 {
-                    foreach ($parents_ids as $id ) 
+                    foreach ($parents_ids as $id )
                     {
                         if (isset($parents_count[$id]))
                             $parents_count[$id]['count']+= $count_ads[$location->id_location]['count'];
@@ -382,7 +384,7 @@ class Model_Location extends ORM {
                         $parents_count[$id]['has_siblings'] = TRUE;
                     }
                 }
-                
+
             }
 
             //get all the locations with level 0 and 1
@@ -391,10 +393,10 @@ class Model_Location extends ORM {
 
             //generating the array
             $locs_count = array();
-            foreach ($locations as $location) 
+            foreach ($locations as $location)
             {
                 $has_siblings = isset($parents_count[$location->id_location])?$parents_count[$location->id_location]['has_siblings']:FALSE;
-                
+
                 //they may not have counted the siblings since the count was 0 but he actually has siblings...
                 if ($has_siblings===FALSE AND $location->has_siblings())
                     $has_siblings = TRUE;
@@ -438,14 +440,14 @@ class Model_Location extends ORM {
             }
             else
             {
-                foreach ($locations as $key=>$location) 
+                foreach ($locations as $key=>$location)
                 {
                     //d($location);
                     if ($location['id_location_parent'] == $this->id_location AND $key != $this->id_location)
                         return TRUE;
                 }
             }
-            
+
         }
 
         return FALSE;
@@ -456,7 +458,7 @@ class Model_Location extends ORM {
         $form->fields['description']['display_as'] = 'textarea';
 
         $form->fields['id_location_parent']['display_as']   = 'select';
-        $form->fields['id_location_parent']['caption']      = 'name';   
+        $form->fields['id_location_parent']['caption']      = 'name';
 
         $form->fields['order']['display_as']   = 'select';
         $form->fields['order']['options']      = range(1, 100);
@@ -495,13 +497,13 @@ class Model_Location extends ORM {
                                         ->where('parent_deep','<',5)//we are limiting the recurrency....5 levels deep should be more than enough.
                                         ->cached()->find_all();
 
-                foreach ($locations as $location) 
+                foreach ($locations as $location)
                 {
                     $ids_siblings[] = $location->id_location;
 
                     //adding his children recursevely if they have any
-                    if ( count($siblings_locs = $location->get_siblings_ids())>1 ) 
-                        $ids_siblings = array_merge($ids_siblings,$siblings_locs);       
+                    if ( count($siblings_locs = $location->get_siblings_ids())>1 )
+                        $ids_siblings = array_merge($ids_siblings,$siblings_locs);
                 }
 
                 //removing repeated values
@@ -540,10 +542,10 @@ class Model_Location extends ORM {
                     if ($this->parent->loaded())
                     {
                         $ids_parents[] = $this->parent->id_location;
-                        $ids_parents = array_merge($ids_parents,$this->parent->get_parents_ids()); //recursive 
+                        $ids_parents = array_merge($ids_parents,$this->parent->get_parents_ids()); //recursive
                     }
                     //removing repeated values
-                    $ids_parents = array_unique($ids_parents);  
+                    $ids_parents = array_unique($ids_parents);
                 }
 
                 //cache the result is expensive!
@@ -562,7 +564,7 @@ class Model_Location extends ORM {
      * return the title formatted for the URL
      *
      * @param  string $title
-     * 
+     *
      */
     public function gen_seoname($seoname)
     {
@@ -581,7 +583,7 @@ class Model_Location extends ORM {
         $banned_names = array('location',__('location'));
         //same name as a route..shit!
         if (in_array($seoname, $banned_names))
-            $seoname = URL::title(__('location')).'-'.$seoname; 
+            $seoname = URL::title(__('location')).'-'.$seoname;
 
         if ($seoname != $this->seoname)
         {
@@ -634,20 +636,20 @@ class Model_Location extends ORM {
             $id_location_parent = $locs_arr[$this->id_location]['id_location_parent'];
 
             //counting till we find the begining
-            while ($id_location_parent != 1 AND $id_location_parent != 0 AND $deep<100) 
+            while ($id_location_parent != 1 AND $id_location_parent != 0 AND $deep<100)
             {
                 $id_location_parent = $locs_arr[$id_location_parent]['id_location_parent'];
                 $deep++;
             }
         }
-        
+
         return $deep;
     }
 
     /**
      * rule to verify that we selected a parent if not put the root location
-     * @param  integer $id_parent 
-     * @return integer                     
+     * @param  integer $id_parent
+     * @return integer
      */
     public function check_parent($id_parent)
     {
@@ -665,20 +667,20 @@ class Model_Location extends ORM {
             {
                 $protocol = Core::is_HTTPS() ? 'https://' : 'http://';
                 $version = $this->last_modified ? '?v='.Date::mysql2unix($this->last_modified) : NULL;
-                
+
                 return $protocol.core::config('image.aws_s3_domain').'images/locations/'.$this->seoname.'.png'.$version;
             }
             else
                 return URL::base().'images/locations/'.$this->seoname.'.png'
                         .(($this->last_modified) ? '?v='.Date::mysql2unix($this->last_modified) : NULL);
         }
-        
+
         return FALSE;
     }
 
     /**
      * deletes the icon of the location
-     * @return boolean 
+     * @return boolean
      */
     public function delete_icon()
     {
@@ -693,25 +695,25 @@ class Model_Location extends ORM {
         }
 
         $root = DOCROOT.'images/locations/'; //root folder
-            
-        if (!is_dir($root)) 
+
+        if (!is_dir($root))
         {
             return FALSE;
         }
         else
-        {   
+        {
             //delete icon
             @unlink($root.$this->seoname.'.png');
-            
+
             // delete icon from Amazon S3
             if(core::config('image.aws_s3_active'))
                 $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$this->seoname.'.png');
-            
+
             // update location info
             $this->has_image = 0;
             $this->last_modified = Date::unix2mysql();
             $this->save();
-            
+
         }
 
         return TRUE;
@@ -720,7 +722,7 @@ class Model_Location extends ORM {
     /**
      * rename location icon
      * @param string $new_name
-     * @return boolean 
+     * @return boolean
     */
     public function rename_icon($new_name)
     {
@@ -753,16 +755,16 @@ class Model_Location extends ORM {
 
         //remove image
         $this->delete_icon();
-        
+
         //delete subscribtions
         DB::delete('subscribers')->where('id_location', '=',$this->id_location)->execute();
 
         parent::delete();
     }
 
-protected $_table_columns =  
+protected $_table_columns =
 array (
-  'id_location' => 
+  'id_location' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -778,7 +780,7 @@ array (
     'key' => 'PRI',
     'privileges' => 'select,insert,update,references',
   ),
-  'name' => 
+  'name' =>
   array (
     'type' => 'string',
     'column_name' => 'name',
@@ -793,7 +795,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'order' => 
+  'order' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -809,7 +811,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_location_parent' => 
+  'id_location_parent' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -825,7 +827,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'parent_deep' => 
+  'parent_deep' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -841,7 +843,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'seoname' => 
+  'seoname' =>
   array (
     'type' => 'string',
     'column_name' => 'seoname',
@@ -856,7 +858,7 @@ array (
     'key' => 'UNI',
     'privileges' => 'select,insert,update,references',
   ),
-  'description' => 
+  'description' =>
   array (
     'type' => 'string',
     'character_maximum_length' => '65535',
@@ -871,7 +873,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'last_modified' => 
+  'last_modified' =>
   array (
     'type' => 'string',
     'column_name' => 'last_modified',
@@ -884,7 +886,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'has_image' => 
+  'has_image' =>
   array (
     'type' => 'int',
     'min' => '-128',
@@ -900,7 +902,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'latitude' => 
+  'latitude' =>
   array (
     'type' => 'float',
     'column_name' => 'latitude',
@@ -915,7 +917,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'longitude' => 
+  'longitude' =>
   array (
     'type' => 'float',
     'column_name' => 'longitude',
@@ -930,7 +932,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_geoname' => 
+  'id_geoname' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -946,7 +948,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,references',
   ),
-  'fcodename_geoname' => 
+  'fcodename_geoname' =>
   array (
     'type' => 'string',
     'column_name' => 'fcodename_geoname',
