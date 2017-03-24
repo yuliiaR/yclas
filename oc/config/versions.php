@@ -1,5 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+  '3.2.0' => 
+  array (
+    'codename' => 'Vilnius',
+    'released' => '2017-03-28',
+    'blog' => '',
+    'changelog' => 'https://github.com/yclas/yclas/compare/3.1.0...3.2.0',
+    'issues' => 'https://github.com/yclas/yclas/milestone/37?closed=1',
+    'download' => 'https://j.mp/yc_320',
+  ),
   '3.1.0' => 
   array (
     'codename' => 'Riga',
