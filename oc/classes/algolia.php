@@ -13,6 +13,9 @@ class Algolia
 {
     public static function reindex()
     {
+        if (! (bool) Core::config('general.algolia_search'))
+            return;
+
         $ads = self::get_ads();
         $categories = self::get_categories();
         $locations = self::get_locations();
