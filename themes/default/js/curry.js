@@ -256,12 +256,6 @@
           $price = $($target[i]);
           money = $price.text();
 
-          // Check if field has comma instead of decimal and replace with decimal
-          if ( money.indexOf(',') !== -1 ){
-            has_comma = true;
-            money = money.replace( ',' , '.' );
-          }
-
           // Remove anything but the numbers and decimals and convert string to Number
           money = Number(money.replace(/[^0-9\.]+/g, ''));
 
