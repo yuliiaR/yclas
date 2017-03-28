@@ -63,7 +63,12 @@ class Kohana_Session_Native extends Session {
 		}
 
 		// Start the session
-		session_start();
+		try {
+            session_start();
+        } catch(Exception $e) {
+            $this->_destroy();
+            session_start();
+        }
 
 		// Use the $_SESSION global for storing data
 		$this->_data =& $_SESSION;
