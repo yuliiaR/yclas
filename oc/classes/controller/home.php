@@ -4,9 +4,6 @@ class Controller_Home extends Controller {
 
 	public function action_index()
 	{
-        d(File::clean('/var/www/test/clean'));
-
-
         if (core::config('general.auto_locate'))
         {
             if ($user_location = Core::post('user_location'))
