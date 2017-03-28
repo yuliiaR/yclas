@@ -331,7 +331,7 @@ class install{
     public static function get_folder()
     {
         // Getting the folder, erasing the install-openclassifieds
-        $folder = str_replace('/install-openclassifieds.php','', $_SERVER['SCRIPT_NAME']).'/';
+        $folder = str_replace('/install-yclas.php','', $_SERVER['SCRIPT_NAME']).'/';
         
         return $folder;
     }

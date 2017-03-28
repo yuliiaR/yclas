@@ -1,4 +1,4 @@
-#  Yclas 3.2.0
+#  Yclas 3.2.0.
 
 [![Build Status](https://travis-ci.org/yclas/yclas.svg?branch=master)](https://travis-ci.org/yclas/yclas)
 

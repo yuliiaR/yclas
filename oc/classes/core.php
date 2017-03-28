@@ -18,7 +18,6 @@ class Core {
      */
     const VERSION = '3.2.0';
 
-
     /**
      * @var string used to populate data from valid domain
      */
