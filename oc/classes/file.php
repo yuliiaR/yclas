@@ -93,6 +93,33 @@ class File extends Kohana_File{
 
 
     /**
+     * deletes file or directory recursevely
+     * @param  string $file 
+     * @return void       
+     */
+    public static function clean($file)
+    {
+        if (is_dir($file)) 
+        {
+            $objects = scandir($file);
+            foreach ($objects as $object) 
+            {
+                if ($object != '.' && $object != '..') 
+                {
+                    if (is_dir($file.'/'.$object)) 
+                        File::clean($file.'/'.$object); 
+                    else 
+                        File::write($file.'/'.$object,'');
+                }
+            }
+            reset($objects);
+        }
+        elseif(is_file($file))
+            File::write($file.'/'.$object,'');
+    }
+
+
+    /**
      * write to file
      * @param $filename fullpath file name
      * @param $content
