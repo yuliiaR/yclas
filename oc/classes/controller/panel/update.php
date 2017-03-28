@@ -12,6 +12,9 @@ class Controller_Panel_Update extends Auth_Controller {
 
     public function action_320()
     {
+        File::delete(DOCROOT.'oc/classes/database/mysqli');
+        File::delete(DOCROOT.'oc/classes/database/query.php');
+        File::delete(DOCROOT.'oc/classes/image');
         File::delete(DOCROOT.'oc/common');
 
 
