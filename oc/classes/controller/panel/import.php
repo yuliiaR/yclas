@@ -193,50 +193,67 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             $ad->id_user = $adi->id_user;
         }
 
+        try {
+            $cat = DB::select(DB::expr('id_category'))
+            ->from('categories')
+            ->where('name', '=', $adi->category)
+            ->execute()
+            ->as_array();
+
+        } catch (Exception $e) {}
+
         //create category?
-        if ($adi->id_category==NULL OR !is_numeric($adi->id_category))
+        if(empty($cat))
         {
             //create the category
             $cat = Model_Category::create_name($adi->category);
 
-            //check if in the table other cats with same name set the id_category, then gets faster ;)
+            //check if in the table other cats with same name set the category name, then gets faster ;)
             try {
                 DB::update('adsimport')->set(array('id_category' => $cat->id_category))
                 ->where('category', '=', $adi->category)->execute();
             } catch (Exception $e) {}
 
-            //set id user to the new ad
+            //set id_category to the new ad
             $ad->id_category = $cat->id_category;
             
         }
-        //user was already in the import DB
+        //category already exists
         else
-        {
-            $ad->id_category = $adi->id_category;
+        {            
+            $ad->id_category = $cat['0']['id_category'];
         }
 
+        try {
+            $loc = DB::select(DB::expr('id_location'))
+            ->from('locations')
+            ->where('name', '=', $adi->location)
+            ->execute()
+            ->as_array();
+
+        } catch (Exception $e) {}
+
         //create location?
-        if (isset($adi->location) AND !empty($adi->location) AND ($adi->id_location==NULL OR !is_numeric($adi->id_location)))
+        if(empty($loc))
         {
             //create the location
             $loc = Model_Location::create_name($adi->location);
 
-            //check if in the table other cats with same name set the id_location, then gets faster ;)
+            //check if in the table other locs with same name set the id_location, then gets faster ;)
             try {
                 DB::update('adsimport')->set(array('id_location' => $loc->id_location))
                 ->where('location', '=', $adi->location)->execute();
             } catch (Exception $e) {}
 
-            //set id user to the new ad
+            //set id_location to the new ad
             $ad->id_location = $loc->id_location;
             
         }
-        //user was already in the import DB
-        elseif(is_numeric($adi->id_location))
+        //id_location already exists
+        else
         {
-            $ad->id_location = $adi->id_location;
+            $ad->id_location = $loc['0']['id_location'];
         }
-        
 
         $ad->title      = $adi->title;
         $ad->seotitle   = $ad->gen_seo_title($adi->title);
