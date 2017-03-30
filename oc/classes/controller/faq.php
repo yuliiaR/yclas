@@ -6,7 +6,7 @@ class Controller_FAQ extends Controller {
     {
         if (core::config('general.faq') != 1)
             $this->redirect(Route::url('default'));
-        
+
         parent::__construct($request, $response);
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('FAQ'))->set_url(Route::url('faq')));
@@ -31,53 +31,53 @@ class Controller_FAQ extends Controller {
 
         $this->template->styles = array('css/faq.css' => 'screen');
         $this->template->scripts['footer'] = array('js/faq.js');
-        
-        //FAQ CMS 
+
+        //FAQ CMS
         $faqs =  new Model_Content();
         $faqs = $faqs->where('type','=','help')->where('status','=','1')->order_by('order','asc')->find_all();
 
-        
+
         $this->template->bind('content', $content);
 
         if (strlen(core::config('general.faq_disqus'))>0 )
             $disqus = View::factory('pages/disqus',array('disqus'=>core::config('general.faq_disqus')));
-         else 
+         else
             $disqus = '';
-        
+
         $this->template->content = View::factory('pages/faq/listing',array('faqs'=>$faqs,'disqus'=>$disqus));
-        
+
     }
-    
+
     public function action_search($search = NULL)
     {
         //template header
         $this->template->title            = __(' Frequently Asked Questions - FAQ');
         $this->template->meta_description = core::config('general.site_name').' '.__('frequently asked questions.');
-    
+
         $this->template->styles = array('css/faq.css' => 'screen');
         $this->template->scripts['footer'] = array('js/faq.js');
-        
-        //FAQ CMS 
+
+        //FAQ CMS
         $faqs =  new Model_Content();
         $faqs->where('type','=','help')
              ->where('status','=','1');
-        
+
         if ($search!==NULL)
             $faqs->where_open()
                  ->where('title','like','%'.$search.'%')->or_where('description','like','%'.$search.'%')
                  ->where_close();
-        
+
         $faqs = $faqs->order_by('order','asc')->find_all();
-    
+
         $this->template->bind('content', $content);
-    
+
         if (strlen(core::config('general.faq_disqus'))>0 )
             $disqus = View::factory('pages/disqus',array('disqus'=>core::config('general.faq_disqus')));
-         else 
+         else
             $disqus = '';
-        
+
         $this->template->content = View::factory('pages/faq/listing',array('faqs'=>$faqs,'disqus'=>$disqus));
-        
+
     }
 
    /**
@@ -87,12 +87,15 @@ class Controller_FAQ extends Controller {
      */
     public function action_view($seotitle)
     {
-       
+
         $faq = Model_Content::get_by_title($seotitle,'help');
 
         if ($faq->loaded())
         {
             Breadcrumbs::add(Breadcrumb::factory()->set_title($faq->title));
+
+            if ($page->status == 0)
+                    Alert::set(Alert::ALERT, __('FAQ unpublished.'));
 
             $this->template->title            = $faq->title.' - '.__(' Frequently Asked Questions - FAQ');
             $this->template->meta_description = $faq->description.' - '.__(' Frequently Asked Questions - FAQ');
@@ -101,7 +104,7 @@ class Controller_FAQ extends Controller {
 
             if ($faq->status == 1 AND strlen(core::config('general.faq_disqus'))>0 )
                 $disqus = View::factory('pages/disqus',array('disqus'=>core::config('general.faq_disqus')));
-            else 
+            else
                 $disqus = '';
 
             $this->template->content = View::factory('pages/faq/single',array('faq'=>$faq,'disqus'=>$disqus));

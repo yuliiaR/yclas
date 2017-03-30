@@ -24,7 +24,7 @@ class Controller_Blog extends Controller {
 	    //template header
 	    $this->template->title            = __('Blog');
 	    $this->template->meta_description = core::config('general.site_name').' '.__('blog section.');
-	    
+
 	    $posts = new Model_Post();
         $posts->where('status','=', Model_Post::STATUS_ACTIVE)->where('id_forum','IS',NULL);
 
@@ -38,7 +38,7 @@ class Controller_Blog extends Controller {
         // check if there are some post
         if ($res_count > 0)
         {
-   
+
             // pagination module
             $pagination = Pagination::factory(array(
                     'view'              => 'pagination',
@@ -47,7 +47,7 @@ class Controller_Blog extends Controller {
                     'controller'        => $this->request->controller(),
                     'action'            => $this->request->action(),
             ));
-           
+
             Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->current_page));
 
             //we sort all ads with few parameters
@@ -59,16 +59,16 @@ class Controller_Blog extends Controller {
         else
         {
            $posts       = NULL;
-           $pagination  = NULL; 
+           $pagination  = NULL;
         }
-            
+
         $this->template->bind('content', $content);
-        
-        $this->template->content = View::factory('pages/blog/listing',array('posts'=>$posts, 
+
+        $this->template->content = View::factory('pages/blog/listing',array('posts'=>$posts,
         															'pagination'=>$pagination,
                                                                     'user'=>Auth::instance()->get_user(),
         															));
-		
+
 	}
 
 
@@ -79,14 +79,14 @@ class Controller_Blog extends Controller {
      */
     public function action_view($seotitle)
     {
-        
+
         $post = new Model_Post();
-        
+
         // if visitor or user with ROLE_USER display post with STATUS_ACTIVE
-        if (! Auth::instance()->logged_in() OR 
+        if (! Auth::instance()->logged_in() OR
             (Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_USER))
             $post->where('status','=',Model_Post::STATUS_ACTIVE);
-        
+
         $post->where('seotitle','=',$seotitle)
             ->where('id_forum','IS',NULL)
             ->cached()->limit(1)->find();
@@ -94,6 +94,9 @@ class Controller_Blog extends Controller {
         if ($post->loaded())
         {
             Breadcrumbs::add(Breadcrumb::factory()->set_title($post->title));
+
+            if ($post->status == 0)
+                    Alert::set(Alert::ALERT, __('Blog post unpublished.'));
 
             $this->template->title            = $post->title;
             $this->template->meta_description = $post->description;
@@ -103,7 +106,7 @@ class Controller_Blog extends Controller {
                         ->where('id_forum','IS',NULL)
                         ->order_by('created','desc')
                         ->where('id_post', '<', $post->id_post)
-                        ->limit(1)->find();  
+                        ->limit(1)->find();
             $next = new Model_Post();
             $next = $next->where('status','=',Model_Post::STATUS_ACTIVE)
                         ->where('id_forum','IS',NULL)
