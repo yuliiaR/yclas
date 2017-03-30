@@ -30,7 +30,7 @@ class Hybrid_Providers_LinkedIn extends Hybrid_Provider_Model {
 		}
 
 		if (empty($this->config['fields'])) {
-			$this->config['fields'] = [
+			$this->config['fields'] = array(
 				'id',
 				'first-name',
 				'last-name',
@@ -40,7 +40,8 @@ class Hybrid_Providers_LinkedIn extends Hybrid_Provider_Model {
 				'date-of-birth',
 				'phone-numbers',
 				'summary',
-			];
+				'positions'
+			);
 		}
 
 		if (!class_exists('OAuthConsumer', false)) {
@@ -111,7 +112,7 @@ class Hybrid_Providers_LinkedIn extends Hybrid_Provider_Model {
 	 */
 	function getUserProfile() {
 		try {
-			// http://developer.linkedin.com/docs/DOC-1061
+			// https://developer.linkedin.com/docs/fields
 			$response = $this->api->profile('~:('. implode(',', $this->config['fields']) .')');
 		} catch (LinkedInException $e) {
 			throw new Exception("User profile request failed! {$this->providerId} returned an error: {$e->getMessage()}", 6, $e);
@@ -131,6 +132,11 @@ class Hybrid_Providers_LinkedIn extends Hybrid_Provider_Model {
 
 			$this->user->profile->email = (string) $data->{'email-address'};
 			$this->user->profile->emailVerified = (string) $data->{'email-address'};
+
+			if ($data->{'positions'}) {
+        $this->user->profile->job_title = (string) $data->{'positions'}->{'position'}->{'title'};
+        $this->user->profile->organization_name = (string) $data->{'positions'}->{'position'}->{'company'}->{'name'};
+      }
 
 			if (isset($data->{'picture-url'})) {
 				$this->user->profile->photoURL = (string) $data->{'picture-url'};
@@ -157,6 +163,13 @@ class Hybrid_Providers_LinkedIn extends Hybrid_Provider_Model {
 				$this->user->profile->birthMonth = (string) $data->{'date-of-birth'}->month;
 				$this->user->profile->birthYear = (string) $data->{'date-of-birth'}->year;
 			}
+
+            if ($data->{'location'}) {
+                $this->user->profile->city = (string) $data->{'location'}->name;
+                if ($data->{'location'}->{'country'}) {
+                    $this->user->profile->country = (string) $data->{'location'}->{'country'}->code;
+                }
+            }
 
 			return $this->user->profile;
 		} else {
