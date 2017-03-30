@@ -1,4 +1,4 @@
-//settins scripts 
+//settins scripts
 
 // $('#allowed_formats option').each(function(){
 //  $(this).attr('selected', 'selected');
@@ -54,7 +54,7 @@ function initPNotify() {
             url         : $form.attr('action'),
             data        : $form.serialize(),
         })
-        
+
             // using the done promise callback
             .done(function(data) {
 
@@ -95,7 +95,7 @@ $(function(){
 
     if (service == 'smtp' || service == 'gmail' || service == 'outlook' || service == 'yahoo' || service == 'zoho')
     {
-        showSmtpConfig();     
+        showSmtpConfig();
     }
     else if(service == 'elastic') {
         showElasticConfig();
@@ -152,8 +152,6 @@ function gmailConfig() {
     $('input[name="smtp_host"]').val('smtp.gmail.com');
     $('input[name="smtp_port"]').val('465');
     $('select[name="smtp_auth"]').val('1').trigger("change");
-    $('input[name="smtp_user"]').val('');
-    $('input[name="smtp_pass"]').val('');
 }
 
 function outlookConfig() {
@@ -164,8 +162,6 @@ function outlookConfig() {
     $('input[name="smtp_host"]').val('smtp.office365.com');
     $('input[name="smtp_port"]').val('587');
     $('select[name="smtp_auth"]').val('1').trigger("change");
-    $('input[name="smtp_user"]').val('');
-    $('input[name="smtp_pass"]').val('');
 }
 
 function yahooConfig() {
@@ -176,8 +172,6 @@ function yahooConfig() {
     $('input[name="smtp_host"]').val('smtp.mail.yahoo.com');
     $('input[name="smtp_port"]').val('465');
     $('select[name="smtp_auth"]').val('1').trigger("change");
-    $('input[name="smtp_user"]').val('');
-    $('input[name="smtp_pass"]').val('');
 }
 
 function zohoConfig() {
@@ -188,51 +182,36 @@ function zohoConfig() {
     $('input[name="smtp_host"]').val('smtp.zoho.com');
     $('input[name="smtp_port"]').val('587');
     $('select[name="smtp_auth"]').val('1').trigger("change");
-    $('input[name="smtp_user"]').val('');
-    $('input[name="smtp_pass"]').val('');
 }
 
 $('#tab-settings a[class="email-service"][data-toggle="tab"]').on('shown.bs.tab', function (e) {
     service = $(this).attr('id');
     switch(service) {
         case 'smtp':
-            clearElasticConfig();
-            clearSmtpConfig();    
             smtpConfig();
-            showSmtpConfig();    
+            showSmtpConfig();
             break;
         case 'gmail':
-            clearElasticConfig();
-            clearSmtpConfig();    
             gmailConfig();
-            showSmtpConfig();    
+            showSmtpConfig();
             break;
         case 'outlook':
-            clearElasticConfig();
-            clearSmtpConfig();    
             outlookConfig();
             showSmtpConfig();
             break;
         case 'yahoo':
-            clearElasticConfig();
-            clearSmtpConfig();    
             yahooConfig();
             showSmtpConfig();
             break;
         case 'zoho':
-            clearElasticConfig();
-            clearSmtpConfig();    
             zohoConfig();
             showSmtpConfig();
             break;
         case 'elastic':
-            clearSmtpConfig();
             showElasticConfig();
             break;
         default:
             $('#elastic-heading, #smtp-heading, #gmail-heading, #outlook-heading, #yahoo-heading, #zoho-heading').hide();
-            clearSmtpConfig();
-            clearElasticConfig();
             hideEmailConfig();
     }
 })
