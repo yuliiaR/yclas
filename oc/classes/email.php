@@ -58,6 +58,7 @@ class Email {
 
         switch (core::config('email.service')) {
             case 'elasticemail':
+            case 'elastic':
                 $result =  ElasticEmail::send($to,$to_name, $subject, $body, $reply, $replyName);
                 break;
             case 'mailgun':

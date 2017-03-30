@@ -93,13 +93,12 @@ class Model_Content extends ORM {
         //we remove the '.' replace them by _ since its not allowed as seo title. Just in case we forgot somewhere in the code a '.'
         $seotitle = str_replace('.', '-', $seotitle);
 
+        //allow to preview the content? not for email
+        $preview_content = (Auth::instance()->logged_in() AND (Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator() OR Auth::instance()->get_user()->is_translator()) AND $type != 'email');
+
         $content = new self();
         
-        // if visitor or user with ROLE_USER display content with STATUS_ACTIVE
-        if (! Auth::instance()->logged_in() OR 
-            (Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_USER))
-            $content->where('status','=', 1);
-
+        //search content for current locale    
         $content = $content->where('seotitle','=', $seotitle)
                  ->where('locale','=', i18n::$locale)
                  ->where('type','=', $type)
@@ -108,31 +107,14 @@ class Model_Content extends ORM {
         //was not found try first translation in english
         if (!$content->loaded())
         {
-
-            // if visitor or user with ROLE_USER display content with STATUS_ACTIVE
-            if (! Auth::instance()->logged_in() OR 
-                (Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_USER))
-                $content->where('status','=', 1);
-                
             $content = $content->where('seotitle','=', $seotitle)
                  ->where('locale','=', i18n::$locale_default)
                  ->where('type','=', $type)
                  ->limit(1)->cached()->find();
         }
         
-        //was not found try first translation with that seotitle
-        if (!$content->loaded())
-        {
-
-            // if visitor or user with ROLE_USER display content with STATUS_ACTIVE
-            if (! Auth::instance()->logged_in() OR 
-                (Auth::instance()->logged_in() AND Auth::instance()->get_user()->id_role == Model_Role::ROLE_USER))
-                $content->where('status','=', 1);
-                
-            $content = $content->where('seotitle','=', $seotitle)
-                 ->where('type','=', $type)
-                 ->limit(1)->cached()->find();
-        }
+        if ( $content->status == 0 AND !$preview_content)
+            $content->clear();
 
         return $content;
     }
