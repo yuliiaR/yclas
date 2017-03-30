@@ -94,7 +94,7 @@ class Controller_FAQ extends Controller {
         {
             Breadcrumbs::add(Breadcrumb::factory()->set_title($faq->title));
 
-            if ($page->status == 0)
+            if ($faq->status == 0)
                     Alert::set(Alert::ALERT, __('FAQ unpublished.'));
 
             $this->template->title            = $faq->title.' - '.__(' Frequently Asked Questions - FAQ');
