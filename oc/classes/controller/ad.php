@@ -434,6 +434,10 @@ class Controller_Ad extends Controller {
 
                 if (Core::get('amp') == '1')
                 {
+                    //disable newrelic
+                    if (function_exists('newrelic_disable_autorum'))
+                        newrelic_disable_autorum();
+
                     $this->template = 'amp/main';
                     $this->before();
                     $this->template->canonical = Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
