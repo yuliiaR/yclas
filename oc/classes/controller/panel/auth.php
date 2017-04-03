@@ -367,7 +367,7 @@ class Controller_Panel_Auth extends Controller {
                         
                             Alert::set(Alert::SUCCESS, __('Welcome!'));
                             //login the user
-                            $this->redirect(Route::url('oc-panel'));
+                            $this->redirect(Core::post('auth_redirect',Route::url('oc-panel')));
                         
                         }
                     }
