@@ -29,6 +29,16 @@ abstract class Kohana_HTTP_Exception_Redirect extends HTTP_Exception_Expected {
 			$uri = URL::site($uri, TRUE, ! empty(Kohana::$index_file));
 		}
 
+    	// check if it's a subdirectory, if not equal it's a subdirectory
+    	if(strcmp(parse_url(URL::site(),PHP_URL_PATH),'/') !== 0)
+    	{
+    		$uri = Request::initial()->referrer();
+    	}
+    	
+		$this->headers('Location', $uri);
+		return $this;
+	}
+
 		$this->headers('Location', $uri);
 
 		return $this;
