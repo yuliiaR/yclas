@@ -511,7 +511,7 @@ class I18n extends Kohana_I18n {
         'GTQ' => array(NULL,2,'.',',',0),          //  Guatemala, Quetzal
         'HNL' => array(NULL,2,'.',',',0),          //  Honduras, Lempira
         'HKD' => array('HK$',2,'.',',',0),          //  Hong Kong Dollar
-        'HUF' => array('HK$',0,'','.',0),           //  Hungary, Forint
+        'HUF' => array('Ft',0,'','.',1),            //  Hungary, Forint
         'ISK' => array('kr',0,'','.',1),           //  Iceland Krona
         'INR' => array('&#2352;',2,'.',',',0),          //  Indian Rupee ₹
         'IDR' => array(NULL,2,',','.',0),          //  Indonesia, Rupiah
