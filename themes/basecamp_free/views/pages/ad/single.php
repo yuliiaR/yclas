@@ -138,9 +138,9 @@
 								<div class="seller_f_block">	
 									<?if(core::config('payment.paypal_seller')==1 AND $ad->price != NULL AND $ad->price > 0):?>
 										<?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
-											<a class="sf_btn i_price" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Buy Now')?> - <?=i18n::money_format( $ad->price)?></a>
+											<a class="sf_btn i_price" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=__('Buy Now')?> - <span class="price-curry"><?=i18n::money_format( $ad->price)?></a></span>
 										<?else:?>
-											<span class="sf_btn i_price"><?=i18n::money_format( $ad->price)?></span>
+											<span class="sf_btn i_price"><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></span>
 										<?endif?>
 									<?elseif ($ad->price>0):?>
 										<span class="sf_btn i_price"><span class="price-curry"><?=i18n::money_format( $ad->price)?></span></span>
