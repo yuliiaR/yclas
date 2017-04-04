@@ -10,7 +10,7 @@ class Controller_Page extends Controller {
     public function action_view()
     {
         $seotitle = $this->request->param('seotitle',NULL);
-        
+
         if ($seotitle!==NULL)
         {
             $page = Model_Content::get_by_title($seotitle);
@@ -19,6 +19,9 @@ class Controller_Page extends Controller {
             {
                 Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
                 Breadcrumbs::add(Breadcrumb::factory()->set_title($page->title));
+
+                if ($page->status == 0)
+                    Alert::set(Alert::ALERT, __('Page unpublished.'));
 
                 $this->template->title            = $page->title;
                 $this->template->meta_description = $page->description;
