@@ -1,12 +1,12 @@
-<?php defined('SYSPATH') OR die('No direct script access.');
+<?php
 /**
  * Support for image manipulation using [GD](http://php.net/GD).
  *
  * @package    Kohana/Image
  * @category   Drivers
  * @author     Kohana Team
- * @copyright  (c) 2008-2009 Kohana Team
- * @license    http://kohanaphp.com/license.html
+ * @copyright  (c) Kohana Team
+ * @license    https://koseven.ga/LICENSE.md
  */
 class Kohana_Image_GD extends Image {
 
@@ -101,6 +101,9 @@ class Kohana_Image_GD extends Image {
 			break;
 			case IMAGETYPE_PNG:
 				$create = 'imagecreatefrompng';
+			break;
+			case self::IMAGETYPE_WEBP:
+				$create = 'imagecreatefromwebp';
 			break;
 		}
 
@@ -554,7 +557,7 @@ class Kohana_Image_GD extends Image {
 		{
 			// Reset the image type and mime type
 			$this->type = $type;
-			$this->mime = image_type_to_mime_type($type);
+			$this->mime = $this->image_type_to_mime_type($type);
 		}
 
 		return TRUE;
@@ -585,7 +588,7 @@ class Kohana_Image_GD extends Image {
 		{
 			// Reset the image type and mime type
 			$this->type = $type;
-			$this->mime = image_type_to_mime_type($type);
+			$this->mime = $this->image_type_to_mime_type($type);
 		}
 
 		return ob_get_clean();
@@ -632,6 +635,13 @@ class Kohana_Image_GD extends Image {
 
 				// Use a compression level of 9 (does not affect quality!)
 				$quality = 9;
+			break;
+			case 'webp':
+				// Save a WEBP file
+				$save = 'imagewebp';
+				$type = self::IMAGETYPE_WEBP;
+
+				$quality = 80;
 			break;
 			default:
 				throw new Kohana_Exception('Installed GD does not support :type images',

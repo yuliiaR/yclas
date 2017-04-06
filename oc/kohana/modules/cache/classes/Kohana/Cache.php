@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php
 /**
  * Kohana Cache provides a common interface to a variety of caching engines. Tags are
  * supported where available natively to the cache system. Kohana Cache supports multiple
@@ -75,8 +75,8 @@
  * @category   Base
  * @version    2.0
  * @author     Kohana Team
- * @copyright  (c) 2009-2012 Kohana Team
- * @license    http://kohanaphp.com/license
+ * @copyright  (c) Kohana Team
+ * @license    https://koseven.ga/LICENSE.md
  */
 abstract class Kohana_Cache {
 
@@ -111,11 +111,12 @@ abstract class Kohana_Cache {
 	 */
 	public static function instance($group = NULL)
 	{
+        // If there is no group supplied, try to get it from the config
         if ($group === NULL)
         {
             $group = Kohana::$config->load('cache.default');
         }
-        
+
 		// If there is no group supplied
 		if ($group === NULL)
 		{
@@ -291,7 +292,16 @@ abstract class Kohana_Cache {
 	 */
 	abstract public function delete_all();
 
-	protected function _sanitize_id($id)
+    /**
+     * Replaces troublesome characters with underscores and adds prefix to avoid duplicates
+     *
+     *     // Sanitize a cache id
+     *     $id = $this->_sanitize_id($id);
+     *
+     * @param   string  $id  id of cache to sanitize
+     * @return  string
+     */
+    protected function _sanitize_id($id)
     {
 
         // adding cache prefix to avoid duplicates
