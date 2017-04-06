@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') OR die('No direct script access.');
+<?php
 /**
  * [Object Relational Mapping][ref-orm] (ORM) is a method of abstracting database
  * access to standard PHP calls. All table rows are represented as model objects,
@@ -10,8 +10,8 @@
  *
  * @package    Kohana/ORM
  * @author     Kohana Team
- * @copyright  (c) 2007-2012 Kohana Team
- * @license    http://kohanaframework.org/license
+ * @copyright  (c) Kohana Team
+ * @license    https://koseven.ga/LICENSE.md
  */
 class Kohana_ORM extends Model implements serializable {
 
@@ -245,6 +245,18 @@ class Kohana_ORM extends Model implements serializable {
 	protected $_errors_filename = NULL;
 
 	/**
+	 * List of behaviors
+	 * @var array
+	 */
+	protected $_behaviors = array();
+
+	/**
+	 * List of private columns that will not appear in array or object
+	 * @var array
+	 */
+	protected $_private_columns = FALSE;
+
+	/**
 	 * Constructs a new model and loads a record if given
 	 *
 	 * @param   mixed $id Parameter for find or object to load
@@ -252,6 +264,13 @@ class Kohana_ORM extends Model implements serializable {
 	public function __construct($id = NULL)
 	{
 		$this->_initialize();
+
+		// Invoke all behaviors
+		foreach ($this->_behaviors as $behavior)
+		{
+			if (( ! $behavior->on_construct($this, $id)) OR $this->_loaded)
+				return;
+		}
 
 		if ($id !== NULL)
 		{
@@ -390,6 +409,12 @@ class Kohana_ORM extends Model implements serializable {
 
 		// Clear initial model state
 		$this->clear();
+    
+		// Create the behaviors classes
+		foreach ($this->behaviors() as $behavior => $behavior_config)
+		{
+			$this->_behaviors[] = ORM_Behavior::factory($behavior, $behavior_config);
+		}
 	}
 
 	/**
@@ -755,6 +780,41 @@ class Kohana_ORM extends Model implements serializable {
 
 			$this->_changed[$column] = $this->_belongs_to[$column]['foreign_key'];
 		}
+		elseif (isset($this->_has_many[$column]))
+		{
+			if (Arr::get($this->_has_many[$column], 'update', FALSE))
+			{
+				$model = $this->_has_many[$column]['model'];
+				$pk = ORM::factory($model)->primary_key();
+			 
+				$current_ids = $this->get($column)->find_all()->as_array(NULL, 'id');
+
+				$new_ids = array_diff($value, $current_ids);
+				if (count($new_ids) > 0)
+				{
+					$objects = ORM::factory($model)->where($pk, 'IN', $new_ids)->find_all();
+					foreach ($objects as $object)
+					{
+						$this->add($column, $object);
+					}
+				}
+
+				$delete_ids = array_diff($current_ids, $value);
+				if (count($delete_ids) > 0)
+				{
+					$objects = ORM::factory($model)->where($pk, 'IN', $delete_ids)->find_all();
+					foreach ($objects as $object)
+					{
+						$this->remove($column, $object);
+					}
+				}
+			}
+			else
+			{
+				throw new Kohana_Exception('The :property: property is a to many relation in the :class: class',
+					array(':property:' => $column, ':class:' => get_class($this)));
+			}
+		}
 		else
 		{
 			throw new Kohana_Exception('The :property: property does not exist in the :class: class',
@@ -809,19 +869,68 @@ class Kohana_ORM extends Model implements serializable {
 	}
 
 	/**
+	 * Returns the type of the column
+	 *
+	 * @return string
+	 */
+	protected function table_column_type($column)
+	{
+		if ( ! array_key_exists($column, $this->_table_columns))
+			return FALSE;
+		
+		return $this->_table_columns[$column]['type'];
+	}
+
+	/**
+	 * Returns a value as the native type, will return FALSE if the
+	 * value could not be casted.
+	 *
+	 * @return float, int, string or FALSE
+	 */
+	protected function get_typed($column)
+	{
+		$value = $this->get($column);
+		
+		if ($value === NULL)
+			return NULL;
+
+		// Call __get for any user processing
+		switch($this->table_column_type($column))
+		{
+			case 'float':  return floatval($this->__get($column));
+			case 'int':    return intval($this->__get($column));
+			case 'string': return strval($this->__get($column));
+		}
+		
+		return $value;
+	}
+
+	/**
 	 * Returns the values of this object as an array, including any related one-one
 	 * models that have already been loaded using with()
 	 *
 	 * @return array
 	 */
-	public function as_array()
+	public function as_array($show_all=FALSE)
 	{
 		$object = array();
 
-		foreach ($this->_object as $column => $value)
+		if ($show_all OR !is_array($this->_private_columns))
 		{
-			// Call __get for any user processing
-			$object[$column] = $this->__get($column);
+			foreach ($this->_object as $column => $value)
+			{
+				// Call __get for any user processing
+				$object[$column] = $this->__get($column);
+			}
+		}
+		else
+		{
+			foreach ($this->_object as $column => $value)
+			{
+				// Call __get for any user processing
+				if (!in_array($column, $this->_private_columns))
+					$object[$column] = $this->__get($column);
+			}
 		}
 
 		foreach ($this->_related as $column => $model)
@@ -830,6 +939,44 @@ class Kohana_ORM extends Model implements serializable {
 			$object[$column] = $model->as_array();
 		}
 
+		return $object;
+	}
+
+	/**
+	 * Returns the values of this object as an new object, including any related 
+	 * one-one models that have already been loaded using with(). Removes private
+	 * columns.
+	 *
+	 * @return array
+	 */
+	public function as_object($show_all=FALSE)
+	{
+		$object = new stdClass;
+
+		if ($show_all OR !is_array($this->_private_columns))
+		{
+			foreach ($this->_object as $column => $value)
+			{
+				$object->{$column} = $this->get_typed($column);
+			}
+		}
+		else
+		{
+			foreach ($this->_object as $column => $value)
+			{
+				if (!in_array($column, $this->_private_columns))
+				{
+					$object->{$column} = $this->get_typed($column);
+				}
+			}
+		}
+
+		foreach ($this->_related as $column => $model)
+		{
+			// Include any related objects that are already loaded
+			$object->{$column} = $model->as_object();
+		}
+    
 		return $object;
 	}
 
@@ -1152,6 +1299,16 @@ class Kohana_ORM extends Model implements serializable {
 	}
 
 	/**
+	 * Behavior definitions
+	 *
+	 * @return array
+	 */
+	public function behaviors()
+	{
+		return array();
+	}
+
+	/**
 	 * Rule definitions for validation
 	 *
 	 * @return array
@@ -1296,6 +1453,12 @@ class Kohana_ORM extends Model implements serializable {
 		if ($this->_loaded)
 			throw new Kohana_Exception('Cannot create :model model because it is already loaded.', array(':model' => $this->_object_name));
 
+		// Invoke all behaviors
+		foreach ($this->_behaviors as $behavior)
+		{
+			$behavior->on_create($this);
+		}
+
 		// Require model validation before saving
 		if ( ! $this->_valid OR $validation)
 		{
@@ -1323,7 +1486,7 @@ class Kohana_ORM extends Model implements serializable {
 			->values(array_values($data))
 			->execute($this->_db);
 
-		if ( ! array_key_exists($this->_primary_key, $data))
+		if ( ! array_key_exists($this->_primary_key, $data) OR ($this->_object[$this->_primary_key] === NULL))
 		{
 			// Load the insert id as the primary key if it was left out
 			$this->_object[$this->_primary_key] = $this->_primary_key_value = $result[0];
@@ -1355,6 +1518,12 @@ class Kohana_ORM extends Model implements serializable {
 	{
 		if ( ! $this->_loaded)
 			throw new Kohana_Exception('Cannot update :model model because it is not loaded.', array(':model' => $this->_object_name));
+
+    	// Invoke all behaviors
+		foreach ($this->_behaviors as $behavior)
+		{
+			$behavior->on_update($this);
+		}
 
 		// Run validation if the model isn't valid or we have additional validation rules.
 		if ( ! $this->_valid OR $validation)
@@ -2353,5 +2522,17 @@ class Kohana_ORM extends Model implements serializable {
 		}
 
 		return ( ! $model->loaded());
+	}
+
+
+	/**
+	 * Get the quoted table name from the model name
+	 *
+	 * @param   string   $orm_model  Model name
+	 * @return  string   Quoted table name
+	 */
+	public static function quote_table($orm_model)
+	{
+		return Database::instance()->quote_table(strtolower($orm_model));
 	}
 } // End ORM

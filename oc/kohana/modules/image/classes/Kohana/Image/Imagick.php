@@ -1,12 +1,12 @@
-<?php defined('SYSPATH') OR die('No direct script access.');
+<?php
 /**
  * Support for image manipulation using [Imagick](http://php.net/Imagick).
  *
  * @package    Kohana/Image
  * @category   Drivers
  * @author     Tamas Mihalik tamas.mihalik@gmail.com
- * @copyright  (c) 2009-2012 Kohana Team
- * @license    http://kohanaphp.com/license.html
+ * @copyright  (c) Kohana Team
+ * @license    https://koseven.ga/LICENSE.md
  */
 class Kohana_Image_Imagick extends Image {
 
@@ -273,7 +273,7 @@ class Kohana_Image_Imagick extends Image {
 		{
 			// Reset the image type and mime type
 			$this->type = $type;
-			$this->mime = image_type_to_mime_type($type);
+			$this->mime = $this->image_type_to_mime_type($type);
 
 			return TRUE;
 		}
@@ -294,7 +294,7 @@ class Kohana_Image_Imagick extends Image {
 
 		// Reset the image type and mime type
 		$this->type = $type;
-		$this->mime = image_type_to_mime_type($type);
+		$this->mime = $this->image_type_to_mime_type($type);
 
 		return (string) $this->im;
 	}
@@ -323,6 +323,9 @@ class Kohana_Image_Imagick extends Image {
 			break;
 			case 'png':
 				$type = IMAGETYPE_PNG;
+			break;
+			case 'webp':
+				$type = SELF::IMAGETYPE_WEBP;
 			break;
 			default:
 				throw new Kohana_Exception('Installed ImageMagick does not support :type images',

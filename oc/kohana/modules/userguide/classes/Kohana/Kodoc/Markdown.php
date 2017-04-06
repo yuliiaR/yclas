@@ -1,12 +1,12 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php
 /**
  * Custom Markdown parser for Kohana documentation.
  *
  * @package    Kohana/Userguide
  * @category   Base
  * @author     Kohana Team
- * @copyright  (c) 2008-2013 Kohana Team
- * @license    http://kohanaframework.org/license
+ * @copyright  (c) Kohana Team
+ * @license    https://koseven.ga/LICENSE.md
  */
 class Kohana_Kodoc_Markdown extends MarkdownExtra_Parser {
 
@@ -29,9 +29,9 @@ class Kohana_Kodoc_Markdown extends MarkdownExtra_Parser {
 	protected $_heading_ids = array();
 	
 	/**
-	 * @var  string   the generated table of contents
+	 * @var  array   the generated table of contents
 	 */
-	protected static $_toc = "";
+	protected static $_toc = [];
 	
 	/**
 	 * Slightly less terrible way to make it so the TOC only shows up when we

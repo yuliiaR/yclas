@@ -1,12 +1,12 @@
-<?php defined('SYSPATH') OR die('No direct script access.');
+<?php
 /**
  * Image manipulation support. Allows images to be resized, cropped, etc.
  *
  * @package    Kohana/Image
  * @category   Base
  * @author     Kohana Team
- * @copyright  (c) 2008-2009 Kohana Team
- * @license    http://kohanaphp.com/license.html
+ * @copyright  (c) Kohana Team
+ * @license    https://koseven.ga/LICENSE.md
  */
 abstract class Kohana_Image {
 
@@ -21,6 +21,9 @@ abstract class Kohana_Image {
 	// Flipping directions
 	const HORIZONTAL = 0x11;
 	const VERTICAL   = 0x12;
+
+	// PHP image_type_to_mime_type doesn't know WEBP yet
+	const IMAGETYPE_WEBP = -1;
 
 	/**
 	 * @deprecated - provide an image.default_driver value in your configuration instead
@@ -664,6 +667,21 @@ abstract class Kohana_Image {
 		}
 
 		return $this->_do_render($type, $quality);
+	}
+
+	/**
+	 * Returns the image mime type
+	 * Adds support for webp image type, which is not known by php
+	 *
+	 * @param   string    $type     image type: png, jpg, gif, etc
+	 * @return  string
+	 */
+	protected function image_type_to_mime_type($type)
+	{
+		if ($type === self::IMAGETYPE_WEBP)
+			return 'image/webp';
+
+		return image_type_to_mime_type($type);
 	}
 
 	/**

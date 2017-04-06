@@ -102,6 +102,7 @@ $modules = array(
 	'database'	    => KOMODPATH.'database',   // Database access
 	'image'		    => KOMODPATH.'image',      // Image manipulation
 	'orm'		    => KOMODPATH.'orm',        // Object Relationship Mapping
+    'encrypt'       => KOMODPATH.'encrypt',
     //modules not included on the KO package but in the common module
 	'pagination'	=> MODPATH.'pagination', // ORM Pagination
 	'breadcrumbs'	=> MODPATH.'breadcrumbs',// breadcrumb view
