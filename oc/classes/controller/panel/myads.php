@@ -139,7 +139,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                         < Date::formatted_time()))
                 {
                     $activate = FALSE;
-                    Alert::set(Alert::ALERT, __("Advertisement can not be marked as “active”. It's expired."));
+                    Alert::set(Alert::ALERT, __("Advertisement can not be marked as “active”. It’s expired."));
                 }
 
                 //pending payment
