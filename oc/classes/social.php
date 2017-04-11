@@ -309,6 +309,8 @@ class Social {
         $paramsfb = null;
         parse_str($contents, $paramsfb);  
 
+        $paramsfb = json_decode($contents, true);
+
         if($err == '200')
             model_config::set_value('advertisement','facebook_access_token',$paramsfb['access_token']);
         else
