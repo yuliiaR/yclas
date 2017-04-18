@@ -1,17 +1,17 @@
 // selectize for category and location selects
 $(function(){
-    
+
     // create 1st category select
     category_select = createCategorySelect();
     // remove hidden class
     $('#category-chained .select-category[data-level="0"]').parent('div').removeClass('hidden');
-    
+
     // load options for 1st category select
     category_select.load(function(callback) {
         $.ajax({
             url: $('#category-chained').data('apiurl'),
             type: 'GET',
-            data: { 
+            data: {
                 "id_category_parent": 1,
                 "sort": 'order',
             },
@@ -23,18 +23,18 @@ $(function(){
             }
         });
     });
-    
+
     // create 1st location select
     location_select = createLocationSelect();
     // remove hidden class
     $('#location-chained .select-location[data-level="0"]').parent('div').removeClass('hidden');
-    
+
     // load options for 1st location select
     location_select.load(function(callback) {
         $.ajax({
             url: $('#location-chained').data('apiurl'),
             type: 'GET',
-            data: { 
+            data: {
                 "id_location_parent": 1,
                 "sort": 'order',
             },
@@ -48,7 +48,7 @@ $(function(){
             }
         });
     });
-    
+
     // show custom fields
     if ($('#category-selected').val().length > 0) {
         $.ajax({
@@ -69,31 +69,31 @@ $(function(){
 });
 
 function createCategorySelect () {
-    
+
     // count how many category selects we have rendered
     num_category_select = $('#category-chained .select-category[data-level]').length;
-    
+
     // clone category select from template
     $('#select-category-template').clone().attr('id', '').insertBefore($('#select-category-template')).find('select').attr('data-level', num_category_select);
-    
+
     // initialize selectize on created category select
     category_select = $('.select-category[data-level="'+ num_category_select +'"]').selectize({
         valueField:  'id_category',
         labelField:  'name',
         searchField: 'name',
         onChange: function (value) {
-            
+
             if (!value.length) return;
-            
+
             // get current category level
             current_level = $('#category-chained .option[data-value="'+ value +'"]').closest('.selectize-control').prev().data('level');
-            
+
             // is allowed to post on selected category?
             if ( current_level > 0 || (current_level == 0 && $('#category-chained').is('[data-isparent]')))
             {
                 // update #category-selected input value
                 $('#category-selected').attr('value', value);
-                
+
                 //get category price
                 $.ajax({
                     url: $('#category-chained').data('apiurl') + '/' + value,
@@ -123,20 +123,20 @@ function createCategorySelect () {
                     }
                 });
             }
-            
+
             // get current category level
             current_level = $('#category-chained .option[data-value="'+ value +'"]').closest('.selectize-control').prev().data('level');
-            
+
             destroyCategoryChildSelect(current_level);
-            
+
             // create category select
             category_select = createCategorySelect();
-            
+
             // load options for category select
             category_select.load(function (callback) {
                 $.ajax({
                     url: $('#category-chained').data('apiurl'),
-                    data: { 
+                    data: {
                         "id_category_parent": value,
                         "sort": 'order',
                     },
@@ -159,44 +159,44 @@ function createCategorySelect () {
             });
         }
     });
-    
+
     // return selectize control
     return category_select[0].selectize;
 }
 
 function createLocationSelect () {
-    
+
     // count how many location selects we have rendered
     num_location_select = $('#location-chained .select-location[data-level]').length;
-    
+
     // clone location select from template
     $('#select-location-template').clone().attr('id', '').insertBefore($('#select-location-template')).find('select').attr('data-level', num_location_select);
-    
+
     // initialize selectize on created location select
     location_select = $('.select-location[data-level="'+ num_location_select +'"]').selectize({
         valueField:  'id_location',
         labelField:  'name',
         searchField: 'name',
         onChange: function (value) {
-            
+
             if (!value.length) return;
-            
+
             // update #location-selected input value
             $('#location-selected').attr('value', value);
-            
+
             // get current location level
             current_level = $('#location-chained .option[data-value="'+ value +'"]').closest('.selectize-control').prev().data('level');
-            
+
             destroyLocationChildSelect(current_level);
-            
+
             // create location select
             location_select = createLocationSelect();
-            
+
             // load options for location select
             location_select.load(function (callback) {
                 $.ajax({
                     url: $('#location-chained').data('apiurl'),
-                    data: { 
+                    data: {
                         "id_location_parent": value,
                         "sort": 'order',
                     },
@@ -219,7 +219,7 @@ function createLocationSelect () {
             });
         }
     });
-    
+
     // return selectize control
     return location_select[0].selectize;
 }
@@ -246,7 +246,7 @@ $('#category-edit button').click(function(){
     $('#category-chained').removeClass('hidden');
     $('#category-edit').addClass('hidden');
 });
-    
+
 $('#location-edit button').click(function(){
     $('#location-chained').removeClass('hidden');
     $('#location-edit').addClass('hidden');
@@ -259,6 +259,7 @@ $('textarea[name=description]:not(.disable-bbcode)').sceditorBBCodePlugin({
     resizeEnabled: "true",
     emoticonsEnabled: false,
     width: '90%',
+    rtl: $('meta[name="application-name"]').data('rtl'),
     style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
 });
 
@@ -269,7 +270,7 @@ $(".sceditor-container iframe").contents().find("body").bind('paste', function(e
     $(".sceditor-container iframe")[0].contentWindow.document.execCommand('insertText', false, text);
 });
 
-//sceditorBBCodePlugin for validation, updates iframe on submit 
+//sceditorBBCodePlugin for validation, updates iframe on submit
 $("button[name=submit]").click(function(){
     $("textarea[name=description]").data("sceditor").updateOriginal();
 });
@@ -318,7 +319,7 @@ function locationsGMap() {
                             div: '#map',
                             lat: latlng.lat(),
                             lng: latlng.lng(),
-                        }); 
+                        });
                         map.setCenter(latlng.lat(), latlng.lng());
                         map.addMarker({
                             lat: latlng.lat(),
@@ -344,7 +345,7 @@ function locationsGMap() {
                     div: '#map',
                     lat: lat,
                     lng: lng,
-                }); 
+                });
                 map.setCenter(lat, lng);
                 map.addMarker({
                     lat: lat,
@@ -498,7 +499,7 @@ function createCustomFieldsByCategory (customfields) {
         // clone custom field from template
         var $template = $('#custom-field-template').clone().attr('id', '').removeClass('hidden').appendTo('#custom-fields');
         $template.find('div[data-label]').replaceWith($('<label/>').attr({'for' : idx}).html(customfield.label));
-        
+
         switch (customfield.type) {
             case 'string':
                 $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'text',
@@ -692,7 +693,7 @@ function createCustomFieldsByCategory (customfields) {
                     var id = this.id;
                     var viewId = new google.picker.DocsUploadView();
                     var setOAuthToken = true;
-                          
+
                     if (authApiLoaded && ! oauthToken) {
                         viewIdForhandleAuthResult = viewId;
                         window.gapi.auth.authorize(
@@ -792,7 +793,7 @@ $(function(){
         var title = $(this).data('title');
         var text = $(this).data('text');
         var img_id = $(this).attr('value');
-        
+
         $('#processing-modal').modal('show');
         $.ajax({
             type: "POST",
@@ -806,7 +807,7 @@ $(function(){
             $('#processing-modal').modal('hide');
             window.location.href = href;
         });
-    }); 
+    });
 });
 
 function clearFileInput($input) {
@@ -824,7 +825,7 @@ function clearFileInput($input) {
             $input.unwrap().appendTo($tmpEl).unwrap();
         } else {
             $input.wrap('<form>').closest('form').trigger('reset').unwrap();
-        }   
+        }
     } else if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
         $input.replaceWith($input.clone());
     } else {
@@ -870,7 +871,7 @@ function handleAuthResult(authResult) {
 function createPicker(viewId, setOAuthToken) {
     if (authApiLoaded && pickerApiLoaded) {
         var picker;
-          
+
         if (authApiLoaded && oauthToken && setOAuthToken) {
             picker = new google.picker.PickerBuilder().
                 addView(viewId).
@@ -885,7 +886,7 @@ function createPicker(viewId, setOAuthToken) {
                 setCallback(pickerCallback).
                 build();
         }
-          
+
         picker.setVisible(true);
     }
 }

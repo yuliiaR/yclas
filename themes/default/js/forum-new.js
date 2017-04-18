@@ -6,10 +6,11 @@ $(function(){
             width: '88%',
             emoticonsEnabled: false,
             emoticonsCompat: "false",
+            rtl: $('meta[name="application-name"]').data('rtl'),
             style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
             enablePasteFiltering: "true"});
 
-    //sceditorBBCodePlugin for validation, updates iframe on submit 
+    //sceditorBBCodePlugin for validation, updates iframe on submit
     $("button[name=submit]").click(function(){
         $("textarea[name=description]").data("sceditor").updateOriginal();
     });
@@ -18,5 +19,5 @@ $(function(){
 		e.preventDefault();
 		var text = (e.originalEvent || e).clipboardData.getData('text/plain');
 		$(".sceditor-container iframe")[0].contentWindow.document.execCommand('insertText', false, text);
-	});	
+	});
 });
