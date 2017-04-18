@@ -260,10 +260,10 @@ class Social {
         if($ad->price>0)
             $description .= ' - '.__('Price').': '.i18n::money_format($ad->price);
 
-        $message = $ad->title.', ';
+        $message = $ad->title;
 
         if($ad->category->id_category_parent != 1 AND $ad->category->parent->loaded())
-            $message .= $ad->category->parent->name;
+            $message .= ', '.$ad->category->parent->name;
 
         $message .= ' - '.$ad->category->name;
 
@@ -308,6 +308,8 @@ class Social {
 
         $paramsfb = null;
         parse_str($contents, $paramsfb);  
+
+        $paramsfb = json_decode($contents, true);
 
         if($err == '200')
             model_config::set_value('advertisement','facebook_access_token',$paramsfb['access_token']);
