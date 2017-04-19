@@ -2,10 +2,11 @@ $('textarea[name=message]:not(.disable-bbcode)').sceditorBBCodePlugin({
     toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
     "bulletlist,orderedlist|link,unlink,youtube|source",
     resizeEnabled: "true",
+    rtl: $('meta[name="application-name"]').data('rtl'),
     style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
 	emoticonsEnabled: false
 });
-	
+
 // paste plain text in sceditor
 $(".sceditor-container iframe").contents().find("body").bind('paste', function(e) {
 	e.preventDefault();
@@ -21,7 +22,7 @@ $(".message").hover(function() {
 });
 
 $(".message").click(function() {
-    window.location = $(this).data("url"); 
+    window.location = $(this).data("url");
     return false;
 });
 

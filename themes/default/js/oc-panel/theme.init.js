@@ -66,12 +66,13 @@ function init_panel()
         });
 	}
     else
-    {   
+    {
         $('#formorm_description, textarea[name=description]:not(.disable-bbcode), textarea[name=email_purchase_notes], .cf_textarea_fields').sceditorBBCodePlugin({
             toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
             "bulletlist,orderedlist|link,unlink,image,youtube|source",
             resizeEnabled: "true",
             emoticonsEnabled: false,
+            rtl: $('meta[name="application-name"]').data('rtl'),
             style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
             enablePasteFiltering: "true"});
     }
@@ -96,21 +97,21 @@ function init_panel()
 		e.preventDefault();
 		var text = (e.originalEvent || e).clipboardData.getData('text/plain');
 		$(".sceditor-container iframe")[0].contentWindow.document.execCommand('insertText', false, text);
-	});	
-    
+	});
+
     // $('#formorm_description, textarea[name=description]').sceditorBBCodePlugin({
     //     toolbar: "bold,italic,underline,strike|left,center,right,justify|" +
     //     "bulletlist,orderedlist|link,unlink,image,youtube|source",
     //     resizeEnabled: "true"});
-    
+
     $('.tips').popover();
 
     initSelect2();
-    
+
     $('.radio > input:checked').parentsUntil('div .accordion').addClass('in');
-    
+
     //custom fields select. To determain if some fields are shown or not
-    $('select#cf_type_fileds').change(function(){ // on change add hidden   
+    $('select#cf_type_fileds').change(function(){ // on change add hidden
         if($(this).val() == 'select' || $(this).val() == 'radio' || $(this).val() == 'file' || $(this).val() == 'file_dropbox' || $(this).val() == 'file_gpicker'){
             $('#cf_values_input').attr('type','text');
             $('#cf_values_input').parent().css('display','block'); // parent of a parent. display whole block
@@ -118,23 +119,23 @@ function init_panel()
         else{
             $('#cf_values_input').attr('type','hidden');
             $('#cf_values_input').parent().css('display','none'); // parent of a parent. dont show whole block
-        }    
+        }
     }).change();
-    
+
     // custom field edit, show/hide values field
     $('#cf_values_input').parent().css('display','none');
-    if( $('#cf_type_field_input').attr('value') == 'select' 
+    if( $('#cf_type_field_input').attr('value') == 'select'
         || $('#cf_type_field_input').attr('value') == 'radio'
         || $('#cf_type_field_input').attr('value') == 'file_dropbox'
-        || $('#cf_type_field_input').attr('value') == 'file_gpicker') 
-            $('#cf_values_input').parent().css('display','block'); 
+        || $('#cf_type_field_input').attr('value') == 'file_gpicker')
+            $('#cf_values_input').parent().css('display','block');
 
     // check all checkboxes in a table
     $('#select-all').click(function(e){
         var table= $(e.target).closest('table');
         $('td input:checkbox',table).prop('checked',this.checked);
     });
-    
+
     $('select[name="locale_select"]').change(function()
     {
          $('#locale_form').submit();
@@ -142,7 +143,7 @@ function init_panel()
     $('select[name="type"]').change(function()
     {
         // alert($(this).val());
-        if($(this).val() == 'email') 
+        if($(this).val() == 'email')
             $('#from_email').parent().parent().css('display','block');
         else
             $('#from_email').parent().parent().css('display','none');
@@ -150,19 +151,19 @@ function init_panel()
 
     $('input').each(function(){
         if( $(this).attr('type') != 'checkbox' && !$(this).hasClass('form-control')) {$(this).addClass('form-control');} // other than checkbox
-        
+
         if($(this).attr('type') == 'checkbox' && $(this).hasClass('form-control')) {$(this).removeClass('form-control');}
-        
+
         if($(this).attr('type') == 'radio')
             $(this).removeClass('form-control');
     });
-	
+
 	// Menu icon picker
 	$(".icon-picker").iconPicker();
-	
+
 	// Call open_eshop.init function only if exist
 	if (typeof open_eshop !== 'undefined' && $.isFunction(open_eshop.init)) {open_eshop.init(open_eshop);}
-	
+
 	// Modal confirmation
 	$('a[data-toggle="confirmation"]').click(function(event) {
 	    var href = $(this).attr('href');
@@ -185,7 +186,7 @@ function init_panel()
 	        window.open(href,"_self");
 	    });
 	});
-	
+
     $('button[data-toggle="confirmation"]').on('click', function(event) {
         event.preventDefault();
         var form = $(this).closest('form');
@@ -212,18 +213,18 @@ function init_panel()
             }
         });
     });
-	
+
 	//notification system
 	var favicon = new Favico({
 	    animation : 'popFade'
 	});
-	
+
 	$('#contact-notification').click(function(event) {
 	    $.get($(this).data('url'));
 	    $(document).mouseup(function (e)
 	    {
 	        var contact = $("#contact-notification");
-	    
+
 	        if (!contact.is(e.target) // if the target of the click isn't the container...
 	            && contact.has(e.target).length === 0) // ... nor a descendant of the container
 	        {
@@ -235,10 +236,10 @@ function init_panel()
 	        }
 	    });
 	});
-	
+
 	//intial value
 	favicon.badge($('#contact-notification span').text());
-	
+
     //load modal documentation
     $('a[href*="docs.yclas.com"]').click(function( event ) {
         event.preventDefault();
@@ -266,7 +267,7 @@ $(function (){
 //I have recoded it a bit since uses a loop each, which is not convenient for me at all
 $(function(){
     $("body").on( "click", "a.ajax-load",function(e){
-        e.preventDefault(); 
+        e.preventDefault();
         $("html,body").scrollTop(0);
         button = $(this);
         //get the link location that was clicked
@@ -295,8 +296,8 @@ $(function(){
                                         init_panel();
                                     });
 
-        return false;  
-    });  
+        return false;
+    });
 });
 
 /* the below code is to override back button to get the ajax content without reload*/
@@ -421,7 +422,7 @@ $(function(){
 
     // Shortcut binding to elements with 'data-keybinding' attribute: trigger click-event when hotkey pressed
     clickable_selectors = [
-        'a[data-keybinding]', 
+        'a[data-keybinding]',
         'input[data-keybinding][type="submit"]',
         'input[data-keybinding][type="button"]',
         'button[data-keybinding][type="button"]'
@@ -462,7 +463,7 @@ function initSelect2() {
             $(this).siblings('.select2-container').css({'width':width});
         });
     }).trigger('resize');
-    
+
     //select2 on bootstrap tabs
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (event) {
         $('select:not(".disable-select2")').each(function(){
