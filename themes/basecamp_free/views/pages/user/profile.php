@@ -13,7 +13,7 @@
 						</div>
 						<div class="col-sm-9">
 							<h3><?=$user->name?></h3>
-								<p><?=$user->description?></p>
+								<p><?=Text::bb2html($user->description,TRUE)?></p>
 								<p>
 									<ul class="list-unstyled">
 									<li><strong><?=_e('Created')?>:</strong> <?= Date::format($user->created, core::config('general.date_format')) ?></li>
@@ -21,7 +21,7 @@
 										<li><strong><?=_e('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
 									<?endif?>
 									</ul>
-								</p>	
+								</p>
 						</div>
 
 						<!-- Popup contact form -->
@@ -68,7 +68,7 @@
 												<?if (core::config('advertisement.captcha') != FALSE):?>
 													<dl class="capt form-group clearfix">
 													  <?= FORM::label('captcha', _e('Captcha'), array('class'=>'hidden', 'for'=>'captcha'))?>
-														
+
 															<?if (Core::config('general.recaptcha_active')):?>
 															  <?=Captcha::recaptcha_display()?>
 																<div id="recaptcha1"></div>
@@ -80,18 +80,18 @@
 												<?endif?>
 											</fieldset>
 									</div>
-									<div class="modal-footer text-center">	
+									<div class="modal-footer text-center">
 										<?= FORM::button('submit', _e('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
 									</div>
 									<?= FORM::close()?>
-								</div> 
+								</div>
 							</div>
 						</div>
 						</p>
 					</article>
 				</div>
 
-		
+
 				<?if($profile_ads!==NULL):?>
 					<div class="pad_10">
 						<div class="page-header">
@@ -105,17 +105,17 @@
 								</div>
 							</div>
 						<?endif?>
-			
+
 						<div class="ad_listings">
 							<ul class="ad_list list clearfix">
-							<?$ci=0; foreach($profile_ads as $ads):?>			 
+							<?$ci=0; foreach($profile_ads as $ads):?>
 								<?if($ads->featured >= Date::unix2mysql(time())):?>
 									<li class="ad_item clearfix featured_ad">
 										<span class="feat_marker"><i class="glyphicon glyphicon-bookmark"></i></span>
 								<?else:?>
 									<li class="ad_item clearfix">
 								<?endif?>
-						
+
 								<div class="ad_inner">
 									<div class="ad_photo">
 										<div class="ad_photo_inner">
@@ -123,24 +123,24 @@
 												<?if($ads->get_first_image() !== NULL):?>
 													<img src="<?=$ads->get_first_image()?>" class="img-responsive" alt="<?=HTML::chars($ads->title)?>" />
 												<?else:?>
-													<img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ads->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ads->title)?>"> 
+													<img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ads->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ads->title)?>">
 												<?endif?>
 												<span class="gallery_only fm"><i class="glyphicon glyphicon-bookmark"></i></span>
 												<?if ($ads->price!=0):?>
 													<span class="gallery_only ad_gprice"><?=i18n::money_format( $ads->price)?></span>
 												<?elseif (($ads->price==0 OR $ads->price == NULL) AND core::config('advertisement.free')==1):?>
 													<span class="gallery_only ad_gprice"><?=_e('Free');?></span>
-												<?else:?>	
+												<?else:?>
 													<span class="gallery_only ad_gprice">Check Listing</span>
 												<?endif?>
 											</a>
 										</div>
 									</div>
-							
+
 									<div class="ad_details">
 										<div class="ad_details_inner">
 											<h2>
-												<a title="<?=HTML::chars($ads->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>"><?=$ads->title?></a>							
+												<a title="<?=HTML::chars($ads->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>"><?=$ads->title?></a>
 											</h2>
 											<p class="ad_meta clearfix">
 											<?if ($ads->published!=0){?>
@@ -176,23 +176,23 @@
 													<?elseif($visitor != FALSE && $visitor->id_user == $ads->id_user):?>
 														<br>
 														<span class="ad_options">
-															<a class="btn btn-success" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ads->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=_e("Edit");?></a> 
+															<a class="btn btn-success" href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ads->id_ad))?>"><i class="glyphicon glyphicon-edit"></i> <?=_e("Edit");?></a>
 														</span>
 													<?endif?>
 
 													<?if ($ads->price!=0):?>
-														<span class="ad_price"> 
+														<span class="ad_price">
 															<a class="add-transition" title="<?=HTML::chars($ads->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>">
 																<?=_e('Price');?>: <b><?=i18n::money_format( $ads->price)?></b>
-															</a>							 
+															</a>
 														</span>
 													<?elseif (($ads->price==0 OR $ads->price == NULL) AND core::config('advertisement.free')==1):?>
-														<span class="ad_price"> 
+														<span class="ad_price">
 														<a class="add-transition" title="<?=HTML::chars($ads->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>">
 															<b><?=_e('Free');?></b>
-														</a>	
-														</span>	
-													<?else:?>  
+														</a>
+														</span>
+													<?else:?>
 														<span class="ad_price na">
 															<a class="add-transition" title="<?=HTML::chars($ads->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ads->category->seoname,'seotitle'=>$ads->seotitle))?>">Check Listing</a>
 														</span>
@@ -200,11 +200,11 @@
 											</div>
 										</div>
 									</div>
-								</div>	
+								</div>
 							</li>
 								<? $ci++; if ($ci%4 == 0) echo '<div class="clear"></div>';?>
 							<?endforeach?>
-							</ul>		
+							</ul>
 							<br>
 							<div class="text-center">
 								<?=$pagination?>
@@ -213,8 +213,8 @@
 					</div>
 				<?endif?>
 			</div>
-			
+
 			<?=View::fragment('sidebar_front','sidebar')?>
         </div>
 	</div>
-</div>	
+</div>

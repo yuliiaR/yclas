@@ -14,7 +14,7 @@
     </div>
     <div class="col-xs-9">
         <div class="text-description">
-            <?=$user->description?>
+            <?=Text::bb2html($user->description,TRUE)?>
         </div>
     </div>
 </div>
@@ -73,10 +73,10 @@
                          <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
                         <h3><?=_e('Contact')?></h3>
                     </div>
-                    
+
                     <div class="modal-body">
                         <?=Form::errors()?>
-                        
+
                         <?= FORM::open(Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact', 'id'=>$user->id_user)), array('class'=>'form-horizontal well', 'enctype'=>'multipart/form-data'))?>
                             <fieldset>
                                 <?if (!Auth::instance()->get_user()):?>
@@ -121,7 +121,7 @@
                                         </div>
                                     </div>
                                 <?endif?>
-                                <div class="modal-footer">	
+                                <div class="modal-footer">
                                     <?= FORM::button('submit', _e('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
                                 </div>
                             </fieldset>
@@ -154,7 +154,7 @@
             <?else:?>
                 <article class="well">
             <?endif?>
-                
+
                 <h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h4>
 
                 <div class="picture">
@@ -167,7 +167,7 @@
                               <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
                                   <img src="<?=Core::imagefly($icon_src,150,150)?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
                               <?else:?>
-                                  <img data-src="holder.js/150x150?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>"> 
+                                  <img data-src="holder.js/150x150?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>">
                               <?endif?>
                         </figure>
                     </a>
@@ -175,24 +175,24 @@
 
                 <p><strong><?=_e('Description')?>: </strong><?=Text::removebbcode($ad->description)?><p>
                 <p><b><?=_e('Publish Date');?>:</b> <?= Date::format($ad->published, core::config('general.date_format'))?><p>
-                
+
                 <?$visitor = Auth::instance()->get_user()?>
-                
+
                 <?if ($visitor != FALSE && $visitor->id_role == 10):?>
                     <br>
                     <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> |
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>" 
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'deactivate','id'=>$ad->id_ad))?>"
                         onclick="return confirm('<?=__('Deactivate?')?>');"><?=_e("Deactivate");?>
                     </a> |
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>" 
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad))?>"
                         onclick="return confirm('<?=__('Spam?')?>');"><?=_e("Spam");?>
                     </a> |
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>" 
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad))?>"
                         onclick="return confirm('<?=__('Delete?')?>');"><?=_e("Delete");?>
                     </a>
                 <?elseif($visitor != FALSE && $visitor->id_user == $ad->id_user):?>
                     <br>
-                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a> 
+                    <a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e("Edit");?></a>
                 <?endif?>
                 <div class="clearfix"></div>
             </article>
@@ -201,4 +201,4 @@
     <?endif?>
 
 </div>
-	
+
