@@ -73,6 +73,9 @@ class euvat {
         //first check if country is part of EU 
         if ((array_key_exists($country_code, self::get_vat_rates())))
         {
+            if($country_code=='GR')
+                $country_code = 'EL';
+            
             $client = new SoapClient("http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl");
             $res = $client->checkVat(array('countryCode' => $country_code,'vatNumber' => $vat_number));
 
