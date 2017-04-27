@@ -2,11 +2,11 @@
     <h1><?=$topic->title?></h1>
     <span class="label label-info"><?=$topic->user->name?> <?=Date::fuzzy_span(Date::mysql2unix($topic->created))?></span>
     <?if($previous->loaded()):?>
-        <a class="label" href="<?=Route::url('forum-topic',  array('seotitle'=>$previous->seotitle,'forum'=>$forum->seoname))?>" title="<?=HTML::chars($previous->title)?>">
+        <a class="label label-info" href="<?=Route::url('forum-topic',  array('seotitle'=>$previous->seotitle,'forum'=>$forum->seoname))?>" title="<?=HTML::chars($previous->title)?>">
         <i class="icon-white icon-backward glyphicon-backward glyphicon"></i> <?=$previous->title?></i></a>
     <?endif?>
     <?if($next->loaded()):?>
-        <a class="label" href="<?=Route::url('forum-topic',  array('seotitle'=>$next->seotitle,'forum'=>$forum->seoname))?>" title="<?=HTML::chars($next->title)?>">
+        <a class="label label-info" href="<?=Route::url('forum-topic',  array('seotitle'=>$next->seotitle,'forum'=>$forum->seoname))?>" title="<?=HTML::chars($next->title)?>">
         <?=$next->title?> <i class="icon-white icon-forward glyphicon-forward glyphicon"></i></a>
     <?endif?>
 </div>
