@@ -90,6 +90,9 @@
 <?if(Theme::get('apple-touch-icon')!=NULL):?>
 <link rel="apple-touch-icon" href="<?=(Theme::get('apple-touch-icon')) ?>">
 <?endif?>
+<?if(Theme::get('theme_color')!=NULL):?>
+<meta name="theme-color" content="<?=Theme::get('theme_color')?>">
+<?endif?>
 <?if (isset($amphtml) AND $amphtml):?>
 <link rel="amphtml" href="<?=$amphtml?>" />
 <?endif?>
