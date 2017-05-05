@@ -345,6 +345,28 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 		}
 	}
 
+    /**
+     * removes the stripe agreement
+     * @return [type] [description]
+     */
+    public function action_cancelsubscription()
+    {
+
+        if ( $this->user->stripe_agreement != NULL )
+        {
+            $this->user->stripe_agreement = NULL;
+            try {
+                $this->user->save();
+                Alert::set(Alert::SUCCESS, __('You have successfully canceled your subscription.'));              
+            } catch (Exception $e) {
+                //throw 500
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }   
+        }
+
+        $this->redirect(Route::url('oc-panel',array('controller'=>'profile', 'action'=>'edit')));
+    }
+
     public function action_favorites()
     {
         $user = Auth::instance()->get_user();
