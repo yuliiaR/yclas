@@ -10,6 +10,20 @@
  */
 class Controller_Panel_Update extends Auth_Controller {
 
+    public function action_330()
+    {
+        //new configs
+        $configs = array(
+                        
+                        array( 'config_key'     => 'subscriptions_expire',
+                               'group_name'     => 'general',
+                               'config_value'   => '0'),
+                        );
+
+        Model_Config::config_array($configs);
+
+    }
+
     public function action_320()
     {
         File::delete(DOCROOT.'oc/classes/database/mysqli');

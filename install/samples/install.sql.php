@@ -642,6 +642,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'mercadopago_client_id', ''),
 ('payment', 'mercadopago_client_secret', ''),
 ('general', 'subscriptions', '0'),
+('general', 'subscriptions_expire', '1'),
 ('general', 'api_key', '".core::generate_password(32)."'),
 ('general', 'number_format', '%n'),
 ('general', 'date_format', 'd-m-y'),
