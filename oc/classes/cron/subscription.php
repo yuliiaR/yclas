@@ -88,10 +88,18 @@ class Cron_Subscription {
                         }
                         else
                         {
+                            //if config enabled
+                            if ( Core::config('general.subscriptions_expire') == TRUE )
+                            {
+                                //deactivate ads
+                                DB::update('ads')->set(array('status' =>Model_Ad::STATUS_UNAVAILABLE ))->where('id_user', '=',$s->user->id_user)->where('status', '=',Model_Ad::STATUS_PUBLISHED)->execute();
+                            }
+
                             $checkout_url = $s->user->ql('default',array('controller'=>'plan','action'=>'checkout','id'=>$order->id_order));
 
                             $s->user->email('plan-expired', array(  '[PLAN.NAME]'      => $plan->name,
                                                                     '[URL.CHECKOUT]'   => $checkout_url));
+
                         }
                     }
 

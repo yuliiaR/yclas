@@ -2,27 +2,27 @@
 /**
  * plan for memberships
  *
- * @author		Chema <chema@open-classifieds.com>
- * @package		OC
- * @copyright	(c) 2009-2013 Open Classifieds Team
- * @license		GPL v3
+ * @author      Chema <chema@open-classifieds.com>
+ * @package     OC
+ * @copyright   (c) 2009-2013 Open Classifieds Team
+ * @license     GPL v3
  * *
  */
 class Model_Subscription extends ORM {
-	
+    
     /**
      * Table name to use
      *
-     * @access	protected
-     * @var		string	$_table_name default [singular model name]
+     * @access  protected
+     * @var     string  $_table_name default [singular model name]
      */
     protected $_table_name = 'subscriptions';
 
     /**
      * Column to use as primary key
      *
-     * @access	protected
-     * @var		string	$_primary_key default [id]
+     * @access  protected
+     * @var     string  $_primary_key default [id]
      */
     protected $_primary_key = 'id_subscription';
 
@@ -33,10 +33,10 @@ class Model_Subscription extends ORM {
      */
     public function rules()
     {
-    	return array(
+        return array(
                     'amount_ads_left'   => array(array('numeric')),
                     'amount_ads'        => array(array('numeric')),
-			    );
+                );
     }
 
     public function exclude_fields()
@@ -74,6 +74,12 @@ class Model_Subscription extends ORM {
 
         //disable all the previous membership
         DB::update('subscriptions')->set(array('status' => 0))->where('id_user', '=',$order->id_user)->execute();
+
+        //reenable the ads
+        if ( Core::config('general.subscriptions_expire') == TRUE)
+        {
+            DB::update('ads')->set(array('status' =>Model_Ad::STATUS_PUBLISHED ))->where('id_user', '=',$order->user->id_user)->where('status', '=',Model_Ad::STATUS_UNAVAILABLE)->execute();
+        }
         
         //create a new subscription for this product
         $subscription = new Model_Subscription();

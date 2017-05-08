@@ -69,6 +69,18 @@ class Controller extends Kohana_Controller
             $url = Route::url('oc-panel',array('controller'=>'auth','action'=>'2step')).'?auth_redirect='.URL::current();
             $this->redirect($url);
         }
+
+        //expired subscription
+        if (strtolower($this->request->controller())!='plan' AND
+            Auth::instance()->logged_in() AND
+            Core::config('general.subscriptions') == TRUE AND 
+            Core::config('general.subscriptions_expire') == TRUE AND 
+            Theme::get('premium') == TRUE 
+            AND !$this->user->subscription()->loaded() )
+        {
+                Alert::set(Alert::INFO, __('Please, choose a plan first'));
+                HTTP::redirect(Route::url('pricing'));
+        }
     }
 
     /**

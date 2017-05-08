@@ -149,6 +149,23 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     Alert::set(Alert::ALERT, __("Advertisement can not be marked as “active”. There is a pending payment."));
                 }
 
+                //expired subscription
+                if ($activate === TRUE AND Core::config('general.subscriptions') == TRUE AND Core::config('general.subscriptions_expire') == TRUE AND Theme::get('premium') == TRUE  )
+                {
+                    $subscription = $this->user->subscription();    
+                    //if theres no subscription or expired or without free ads 
+                    if (!$subscription->loaded() 
+                        OR ( $subscription->loaded() 
+                            AND (Date::mysql2unix($subscription->expire_date) < time() 
+                                    OR $subscription->amount_ads_left == 0 )
+                                )
+                        )
+                    {
+                        Alert::set(Alert::INFO, __('Please, choose a plan first'));
+                        HTTP::redirect(Route::url('pricing'));
+                    }
+                }
+
                 //activate the ad
                 if ($activate === TRUE)
                 {

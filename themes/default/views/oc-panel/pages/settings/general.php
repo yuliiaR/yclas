@@ -439,6 +439,20 @@
                                     <?=__("Once set to TRUE, enables multi select category and location search")?>
                                 </span>
                             </div>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['subscriptions_expire']['id'], __("Subscription Expire"), array('class'=>'control-label', 'for'=>$forms['subscriptions_expire']['id']))?>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['subscriptions_expire']['key'], 1, (bool) $forms['subscriptions_expire']['value'], array('id' => $forms['subscriptions_expire']['id'].'1'))?>
+                                    <?=Form::label($forms['subscriptions_expire']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['subscriptions_expire']['key'], 0, ! (bool) $forms['subscriptions_expire']['value'], array('id' => $forms['subscriptions_expire']['id'].'0'))?>
+                                    <?=Form::label($forms['subscriptions_expire']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("Once set to TRUE, if user subscription expires, the user and the ads get disabled, until renewal.")?>
+                                </span>
+                            </div>
+                            
                             <hr>
                             <p>
                                 <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
