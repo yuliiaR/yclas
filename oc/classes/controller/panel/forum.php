@@ -157,11 +157,10 @@ class Controller_Panel_Forum extends Auth_Crud {
                 $forum->update();
                 Core::delete_cache();
                 Alert::set(Alert::SUCCESS, __('Forum is updated.'));
-                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'forum','action'=>'index')));  
             } catch (Exception $e) {
                 Alert::set(Alert::ERROR, $e->getMessage());
-                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'forum','action'=>'index'))); 
             }
+            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'forum','action'=>'index'))); 
         }
         else
             $this->template->content = View::factory('oc-panel/pages/forum/update', array('forum_parents'=>$forum_parents,
