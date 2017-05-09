@@ -902,6 +902,9 @@ class Model_Ad extends ORM {
                             $display = TRUE;
                     }
 
+                    if($cf_column_name == 'cf_buyer_instructions')
+                        $display = FALSE;
+
                     if(isset($cf_value) AND $display )
                     {   
                         //formating the value depending on the type
