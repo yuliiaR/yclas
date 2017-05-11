@@ -877,6 +877,7 @@ class Controller_Ad extends Controller {
     public function action_checkoutfree()
     {
         $order = new Model_Order($this->request->param('id'));
+        $ad = new Model_Ad($order->id_ad);
 
         if ($order->loaded())
         {
@@ -901,7 +902,11 @@ class Controller_Ad extends Controller {
             else//mark as paid
             {
                 $order->confirm_payment('cash');
-                $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')));
+
+                if(Auth::instance()->logged_in())
+                    $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')));
+                else
+                    $this->redirect(Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
             }
 
         }
