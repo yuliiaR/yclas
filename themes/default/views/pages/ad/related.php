@@ -6,11 +6,16 @@
         <div class="media">
             <?if($ad->get_first_image() !== NULL):?>
                 <div class="media-left">
-                    
                     <a title="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
                         <img class="media-object" src="<?=Core::imagefly($ad->get_first_image(),64,64)?>" alt="<?= HTML::chars($ad->title)?>">
                     </a>
                 </div>
+            <?else:?>
+                <?if(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
+                    <img src="<?=Core::imagefly($icon_src,64,64)?>" alt="<?=HTML::chars($ad->title);?>">
+                <?else:?>
+                    <img data-src="holder.js/64x64?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 8, 'auto' => 'yes')))?>" alt="<?=HTML::chars($ad->title)?>"> 
+                <?endif?>
             <?endif?>
             <div class="media-body">
                 <h4 class="media-heading">
