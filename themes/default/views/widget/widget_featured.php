@@ -31,11 +31,19 @@
 				<?endif?>
 				<div class="featured-sidebar-box-header">
 					<a href="<?=Route::url('ad',array('seotitle'=>$ad->seotitle,'category'=>$ad->category->seoname))?>" title="<?=HTML::chars($ad->title)?>">
-						<span class='f-box-header'><?=Text::limit_chars(Text::removebbcode($ad->title), 15, NULL, TRUE)?></span>
+						<?if($widget->placeholder=='sidebar' OR $widget->placeholder=='publish_new'):?>
+							<span class='f-box-header'><?=Text::limit_chars(Text::removebbcode($ad->title), 30, NULL, TRUE)?></span>
+						<?else:?>
+							<span class='f-box-header'><?=Text::limit_chars(Text::removebbcode($ad->title), 45, NULL, TRUE)?></span>
+						<?endif?>
 			        </a>
 			    </div>
 				<div class="f-description">
-					<p><?=Text::limit_chars(Text::removebbcode($ad->description), 30, NULL, TRUE)?></p>		
+					<?if($widget->placeholder=='sidebar' OR $widget->placeholder=='publish_new'):?>
+						<p><?=Text::limit_chars(Text::removebbcode($ad->description), 30, NULL, TRUE)?></p>
+					<?else:?>
+						<p><?=Text::limit_chars(Text::removebbcode($ad->description), 150, NULL, TRUE)?></p>
+					<?endif?>
 				</div>
 				<div class="clearfix"></div>
 			</div>
