@@ -4,7 +4,7 @@
     <?if (core::config('general.messaging') AND $messages = Model_Message::get_unread_threads(Auth::instance()->get_user())) :?>
         <div class="btn-group" role="group">
             <?if (($messages_count = $messages->count_all()) > 0) :?>
-                <a class="btn btn-success"
+                <a class="btn btn-success widget_notification"
                     href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>"
                     data-toggle="dropdown"
                     data-target="#"
@@ -24,7 +24,7 @@
                     <?endforeach?>
                 </ul>
             <?else:?>
-                <a class="btn btn-success"
+                <a class="btn btn-success widget_notification"
                     href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>"
                     title="<?=__('You have no unread messages')?>"
                     data-toggle="popover"
@@ -37,7 +37,7 @@
         </div>
     <?elseif ($ads = Auth::instance()->get_user()->contacts() AND count($ads) > 0) :?>
         <div class="btn-group" role="group">
-            <a class="btn dropdown-toggle btn-success" data-toggle="dropdown" href="#" id="contact-notification" data-url="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'notifications'))?>">
+            <a class="btn dropdown-toggle btn-success widget_notification" data-toggle="dropdown" href="#" id="contact-notification" data-url="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'notifications'))?>">
                 <i class="fa fa-bell"></i> <span class="badge"><?=count($ads)?></span>
             </a>
             <ul id="contact-notification-dd" class="dropdown-menu">
