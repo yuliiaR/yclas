@@ -570,6 +570,7 @@ class I18n extends Kohana_I18n {
         'LKR' => array('₨',2,'.',',',0),          //  Sri Lankan Rupee
         'MAD' => array('.د.م',2,'.',',',1),          //  Moroccan Dirham
         'NGN' => array('₦',2,'.',',',0),          //  Nigerian Naira
+        'DZD' => array('دج',2,'.',',',0),          //  Algerian Dinar
     );
     
     /**
@@ -805,6 +806,7 @@ class I18n extends Kohana_I18n {
         'AUD' => 'Australian Dollar',
         'ESP' => 'Euro in spanish format',
         'NOK' => 'Norwegian Krone',
+        'DZD' => 'Algerian Dinar',
         'ARS' => 'Argentine Peso',
         'AMD' => 'Armenian Dram',
         'AWG' => 'Aruban Guilder',
