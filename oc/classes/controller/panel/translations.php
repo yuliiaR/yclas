@@ -317,7 +317,10 @@ class Controller_Panel_Translations extends Auth_Controller {
         foreach($data_translated as $key => $value)
         {
             if (isset($translation_array[$key]['translated']))
+            {
+                $value = str_replace(array("\r", "\n"), '', $value);
                 $translation_array[$key]['translated'] = $value;
+            }
         }
 
         //let's generate a proper .po file for the mo converter
