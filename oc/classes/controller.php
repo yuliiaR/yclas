@@ -78,8 +78,23 @@ class Controller extends Kohana_Controller
             Theme::get('premium') == TRUE 
             AND !$this->user->subscription()->loaded() )
         {
-                Alert::set(Alert::INFO, __('Please, choose a plan first'));
-                HTTP::redirect(Route::url('pricing'));
+            //control loop
+            if ($this->user->is_admin() OR $this->user->is_moderator())
+            {
+                $plan = new Model_Plan();
+                $plan->where('status','=',1)->find();
+
+                if (!$plan->loaded())
+                {
+                    Alert::set(Alert::INFO, __('Please, create a plan'));
+                    $url = Route::url('oc-panel',array('controller'=>'plan','action'=>'index'));
+                    $this->redirect($url);
+                }
+            }
+            
+            Alert::set(Alert::INFO, __('Please, choose a plan first'));
+            HTTP::redirect(Route::url('pricing'));
+            
         }
     }
 
