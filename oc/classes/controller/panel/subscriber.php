@@ -12,7 +12,7 @@ class Controller_Panel_Subscriber extends Auth_CrudAjax {
      * list of possible actions for the crud, you can modify it to allow access or deny, by default all
      * @var array
      */
-    //public $crud_actions = array('update');
+    //public $crud_actions = array('delete');
 
     protected $_fields_caption = array( 'id_user'       => array('model'=>'user','caption'=>'email'),
                                         'id_category'       => array('model'=>'category','caption'=>'name'),
