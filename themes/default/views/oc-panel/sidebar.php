@@ -158,6 +158,9 @@
                                         <a class="ajax-load" data-keybinding='g b l' href="<?=Route::url('oc-panel',array('controller'=>'pool'))?>"><?=__('User black list')?></a>
                                     </li>
                                 <?endif?>
+                                <li>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'subscriber'))?>"><?=__('Subscribers')?></a>
+                                </li>
                             <?endif?>
                             <?if ($user->has_access_to_any('tools')):?>
                                 <li>
@@ -317,6 +320,7 @@
                         <?if(core::config('general.black_list')):?>
                             <?=Theme::admin_link(__('User black list'),'pool','index','oc-panel')?>
                         <?endif?>
+                        <?=Theme::admin_link(__('Subscribers'),'subscriber','index','oc-panel')?>
                     </ul>
                 </li>
                 <?endif?>

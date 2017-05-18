@@ -20,6 +20,23 @@ class Model_Subscribe extends ORM {
      */
     protected $_primary_key = 'id_subscribe';
 
+    /**
+     * @var  array  ORM Dependency/hirerachy
+     */
+    protected $_belongs_to = array(
+        'user' => array(
+                'model'       => 'user',
+                'foreign_key' => 'id_user',
+            ),
+        'category' => array(
+                'model'       => 'category',
+                'foreign_key' => 'id_category',
+            ),
+        'location' => array(
+                'model'       => 'location',
+                'foreign_key' => 'id_location',
+            ),
+    );
 
     public function form_setup($form){}
 
