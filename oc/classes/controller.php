@@ -72,6 +72,7 @@ class Controller extends Kohana_Controller
 
         //expired subscription
         if (strtolower($this->request->controller())!='plan' AND
+            strtolower($this->request->action())!='pay' AND
             Auth::instance()->logged_in() AND
             Core::config('general.subscriptions') == TRUE AND 
             Core::config('general.subscriptions_expire') == TRUE AND 
