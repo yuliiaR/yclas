@@ -15,6 +15,9 @@
                                     {       
                                         lat: <?=$ad->latitude?>,
                                         lon: <?=$ad->longitude?>,
+                                        <?if(Core::config('advertisement.map_zoom')) :?>
+                                          zoom: <?=Core::config('advertisement.map_zoom')?>,
+                                        <?endif?>
                                         title: '<?=htmlentities(str_replace('"','',json_encode($ad->title)),ENT_QUOTES)?>',
                                         <?if(( $icon_src = $ad->category->get_icon() )!==FALSE AND !is_numeric(core::get('id_ad'))):?>
                                         icon: '<?=Core::imagefly($icon_src,50,50)?>',

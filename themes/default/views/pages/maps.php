@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <title><?=$title?></title>
@@ -17,8 +16,8 @@
       {       
             lat: <?=$ad->latitude?>,
             lon: <?=$ad->longitude?>,
-            <?if(core::get('zoom')) :?>
-              zoom: <?=core::get('zoom')?>,
+            <?if(Core::config('advertisement.map_zoom')) :?>
+              zoom: <?=Core::config('advertisement.map_zoom')?>,
             <?endif?>
             title: '<?=htmlentities(str_replace('"','',json_encode($ad->title)),ENT_QUOTES)?>',
             <?if(( $icon_src = $ad->category->get_icon() )!==FALSE AND !is_numeric(core::get('id_ad'))):?>
@@ -39,7 +38,7 @@
           new Maplace({
               locations: locations,
               controls_on_map: false,
-              <?if(! core::get('zoom')) :?>
+              <?if(! Core::config('advertisement.map_zoom')) :?>
                 pan_on_click: false,
               <?endif?>
               <? if(core::config('advertisement.map_style') != '') :?>

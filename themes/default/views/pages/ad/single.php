@@ -71,7 +71,7 @@
         <?if ($ad->price==0 AND core::config('advertisement.free')==1):?>
             <span class="label label-danger"><?=_e('Price');?> : <?=_e('Free');?></span>
         <?endif?>
-        <?if ($ad->id_location != 1):?>
+        <?if (core::config('advertisement.location') AND $ad->id_location != 1 AND $ad->location->loaded()):?>
             <span class="label label-default"><?=$ad->location->name?></span>
         <?endif?>
         <a class="label label-default" href="<?=Route::url('profile',  array('seoname'=>$ad->user->seoname))?>"><?=$ad->user->name?></a>
