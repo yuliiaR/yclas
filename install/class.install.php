@@ -448,7 +448,7 @@ class install{
         //AUTH config
         if ($install === TRUE)
         {
-            $search  = array('[HASH_KEY]', '[COOKIE_SALT]','[QL_KEY]');
+            $search  = array('[HASH_KEY]', '[COOKIE_SALT]');
             $replace = array(self::$hash_key,self::$hash_key,self::$hash_key);
             $install = install::replace_file(INSTALLROOT.'samples/auth.php',$search,$replace,APPPATH.'config/auth.php');
             if (!$install === TRUE)

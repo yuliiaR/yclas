@@ -46,8 +46,7 @@ class Email {
                 $email_encoded = $to;
 
             //encodig the email for extra security
-            $encrypt = new Encrypt(Core::config('auth.hash_key'), MCRYPT_MODE_NOFB, MCRYPT_RIJNDAEL_128);
-            $email_encoded = Base64::fix_to_url($encrypt->encode($email_encoded));
+            $email_encoded = Base64::fix_to_url(Encrypt::instance()->encode($email_encoded));
         }
 
         $unsubscribe_link = Route::url('oc-panel',array('controller'=>'auth','action'=>'unsubscribe','id'=>$email_encoded));

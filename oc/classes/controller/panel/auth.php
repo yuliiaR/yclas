@@ -419,10 +419,8 @@ class Controller_Panel_Auth extends Controller {
         //mail encoded
         if ($email_encoded!==NULL)
         {
-            //decode emails
-            $email_encoded = Base64::fix_from_url($email_encoded);
-            $encrypt = new Encrypt(Core::config('auth.hash_key'), MCRYPT_MODE_NOFB, MCRYPT_RIJNDAEL_128);
-            $email   = $encrypt->decode($email_encoded);
+            //decode email
+            $email  =  Encrypt::instance()->decode(Base64::fix_from_url($email_encoded));
 
             if (Valid::email($email))
             {

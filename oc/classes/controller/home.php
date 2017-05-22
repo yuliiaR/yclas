@@ -4,6 +4,7 @@ class Controller_Home extends Controller {
 
 	public function action_index()
 	{
+
         if (core::config('general.auto_locate'))
         {
             if ($user_location = Core::post('user_location'))
