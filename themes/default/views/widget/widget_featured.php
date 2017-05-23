@@ -12,37 +12,36 @@
 		<div class="well <?=(get_class($widget)=='Widget_Featured')?'featured-custom-box':''?>" >
 			<div class="featured-sidebar-box">
 				<?if($ad->get_first_image() !== NULL):?>
-					
-					<div class="picture pull-right">
+					<div class="picture pull-right col-xs-12 col-sm-3 <?=($widget->placeholder!='header')?'col-md-12':''?>">
 						<a class="pull-right" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
 							<figure>
-								<img src="<?=$ad->get_first_image()?>" width="100%">
+								<img src="<?=$ad->get_first_image()?>" class="img-responsive" width="100%">
 							</figure>
 						</a>
 					</div>
 				<?else:?>
-					<div class="picture pull-right">
+					<div class="picture pull-right col-xs-12 col-sm-3 <?=($widget->placeholder!='header')?'col-md-12':''?>">
 						<a class="pull-right" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
 							<figure>
-								<img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>"  width="100%">
+								<img data-src="holder.js/200x200?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" width="100%">
 							</figure>
 						</a>
 					</div>
 				<?endif?>
 				<div class="featured-sidebar-box-header">
 					<a href="<?=Route::url('ad',array('seotitle'=>$ad->seotitle,'category'=>$ad->category->seoname))?>" title="<?=HTML::chars($ad->title)?>">
-						<?if($widget->placeholder=='sidebar' OR $widget->placeholder=='publish_new'):?>
-							<span class='f-box-header'><?=Text::limit_chars(Text::removebbcode($ad->title), 30, NULL, TRUE)?></span>
+						<?if($widget->placeholder!='header'):?>
+							<span class="f-box-header col-xs-12 col-sm-9 col-md-12"><?=Text::limit_chars(Text::removebbcode($ad->title), 30, NULL, TRUE)?></span>
 						<?else:?>
-							<span class='f-box-header'><?=Text::limit_chars(Text::removebbcode($ad->title), 45, NULL, TRUE)?></span>
+							<span class="f-box-header col-xs-12 col-sm-9"><?=Text::limit_chars(Text::removebbcode($ad->title), 45, NULL, TRUE)?></span>
 						<?endif?>
 			        </a>
 			    </div>
 				<div class="f-description">
-					<?if($widget->placeholder=='sidebar' OR $widget->placeholder=='publish_new'):?>
-						<p><?=Text::limit_chars(Text::removebbcode($ad->description), 30, NULL, TRUE)?></p>
+					<?if($widget->placeholder!='header'):?>
+						<p class="col-xs-12 col-sm-9 col-md-12"><?=Text::limit_chars(Text::removebbcode($ad->description), 30, NULL, TRUE)?></p>
 					<?else:?>
-						<p><?=Text::limit_chars(Text::removebbcode($ad->description), 150, NULL, TRUE)?></p>
+						<p class="col-xs-12 col-sm-9"><?=Text::limit_chars(Text::removebbcode($ad->description), 150, NULL, TRUE)?></p>
 					<?endif?>
 				</div>
 				<div class="clearfix"></div>
