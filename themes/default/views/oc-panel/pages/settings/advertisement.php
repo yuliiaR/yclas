@@ -894,7 +894,7 @@
                     <div>
                         <div class="form-group">
                             <?=FORM::label($forms['dropbox_app_key']['key'], __('Dropbox App Key'), array('class'=>'control-label', 'for'=>$forms['dropbox_app_key']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/upload-files-to-ads/">
+                            <a target="_blank" href="https://docs.yclas.com/sell-digital-goods/">
                                 <i class="fa fa-external-link-square"></i>
                             </a>
                             <?=FORM::input($forms['dropbox_app_key']['key'], $forms['dropbox_app_key']['value'], array(
@@ -920,7 +920,7 @@
                     <div>
                         <div class="form-group">
                             <?=FORM::label($forms['picker_api_key']['key'], __('Google Picker API Key'), array('class'=>'control-label', 'for'=>$forms['picker_api_key']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/upload-files-to-ads/">
+                            <a target="_blank" href="https://docs.yclas.com/sell-digital-goods/">
                                 <i class="fa fa-external-link-square"></i>
                             </a>
                             <?=FORM::input($forms['picker_api_key']['key'], $forms['picker_api_key']['value'], array(
@@ -936,7 +936,7 @@
                     <div>
                         <div class="form-group">
                             <?=FORM::label($forms['picker_client_id']['key'], __('Google Picker Client ID'), array('class'=>'control-label', 'for'=>$forms['picker_client_id']['key']))?>
-                            <a target="_blank" href="https://docs.yclas.com/upload-files-to-ads/">
+                            <a target="_blank" href="https://docs.yclas.com/sell-digital-goods/">
                                 <i class="fa fa-external-link-square"></i>
                             </a>
                             <?=FORM::input($forms['picker_client_id']['key'], $forms['picker_client_id']['value'], array(
