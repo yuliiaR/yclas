@@ -13,7 +13,9 @@ class Algolia
 {
     public static function reindex()
     {
-        if (! (bool) Core::config('general.algolia_search'))
+        if (! (bool) Core::config('general.algolia_search')
+            OR (Core::config('general.algolia_search_application_id') == null OR mb_strlen(Core::config('general.algolia_search_application_id')) == 0)
+            OR (Core::config('general.algolia_search_admin_key') == null OR mb_strlen(Core::config('general.algolia_search_admin_key')) == 0))
             return;
 
         $ads = self::get_ads();
