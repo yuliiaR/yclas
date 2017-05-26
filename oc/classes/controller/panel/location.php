@@ -112,7 +112,7 @@ class Controller_Panel_Location extends Auth_Crud {
             }
 
             $this->action_deep();
-            Core::delete_cache();
+            Model_Location::cache_delete();
 
             Alert::set(Alert::SUCCESS, __('Location created'));
             
@@ -184,7 +184,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 if($location->has_image AND ($location->seoname != $form->object->seoname))
                     $location->rename_icon($form->object->seoname);
 
-                Core::delete_cache();
+                Model_Location::cache_delete();
                 
                 Alert::set(Alert::SUCCESS, __('Item updated'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
@@ -253,7 +253,7 @@ class Controller_Panel_Location extends Auth_Crud {
 
             //update deep for all the locations
             $this->action_deep();
-            Core::delete_cache();
+            Model_Location::cache_delete();
             $this->template->content = __('Saved');
         }
         else
@@ -310,7 +310,7 @@ class Controller_Panel_Location extends Auth_Crud {
 
                         //recalculating the deep of all the categories
                         $this->action_deep();
-                        Core::delete_cache();
+                        Model_Location::cache_delete();
                         Alert::set(Alert::SUCCESS, sprintf(__('Location %s deleted'), $location_name));                        
                     }
                     catch (Exception $e)
@@ -363,7 +363,7 @@ class Controller_Panel_Location extends Auth_Crud {
                     if ($execute==TRUE)
                     {
                         $insert->execute();
-                        Core::delete_cache();
+                        Model_Location::cache_delete();
                     }
                 }
             }
@@ -440,7 +440,7 @@ class Controller_Panel_Location extends Auth_Crud {
                 if ($execute==TRUE)
                 {
                     $insert->execute();
-                    Core::delete_cache();
+                    Model_Location::cache_delete();
                 }
 
                 HTTP::redirect(Route::url('oc-panel',array('controller'  => 'location','action'=>'index')).'?id_location='.Core::get('id_location', 1));
@@ -461,7 +461,7 @@ class Controller_Panel_Location extends Auth_Crud {
     public function action_deep()
     {
         //clean the cache so we get updated results
-        Cache::instance()->delete_all();    
+        Model_Category::cache_delete();    
 
         //getting all the cats as array
         $locs_arr  = Model_Location::get_as_array();
@@ -625,7 +625,7 @@ class Controller_Panel_Location extends Auth_Crud {
             $query_update->execute();
             $query_delete->execute();
             
-            Core::delete_cache();
+            Model_Location::cache_delete();
             
             Alert::set(Alert::SUCCESS, __('All locations were deleted.'));
             

@@ -169,7 +169,7 @@ class Model_Location extends ORM {
     public static function get_as_array($limit = NULL)
     {
         $cache_name = is_int($limit) ? 'locs_arr'.'_'.$limit : 'locs_arr';
-
+        self::cache_list($cache_name);
         if ( ($locs_arr = Core::cache($cache_name))===NULL)
         {
             $locs = new self;
@@ -208,6 +208,7 @@ class Model_Location extends ORM {
     {
         // array by parent deep,
         // each parent deep is one array with locations of the same index
+        self::cache_list('locs_parent_deep');
         if ( ($locs_parent_deep = Core::cache('locs_parent_deep'))===NULL)
         {
             $locs = new self;
@@ -241,7 +242,7 @@ class Model_Location extends ORM {
     public static function get_multidimensional($limit = NULL)
     {
         $cache_name = is_int($limit) ? 'locs_m'.'_'.$limit : 'locs_m';
-
+        self::cache_list($cache_name);
         if ( ($locs_m = Core::cache($cache_name))===NULL)
         {
             $locs = new self;
@@ -332,7 +333,7 @@ class Model_Location extends ORM {
     {
         //name used in the cache for storage
         $cache_name = 'get_location_count';
-
+        self::cache_list($cache_name);
         if ( ($locs_count = Core::cache($cache_name))===NULL)
         {
 
@@ -483,7 +484,7 @@ class Model_Location extends ORM {
         {
             //name used in the cache for storage
             $cache_name = 'get_siblings_ids_lcoations_'.$this->id_location;
-
+            self::cache_list($cache_name);
             if ( ($ids_siblings = Core::cache($cache_name))===NULL)
             {
                 //array that contains all the siblings as keys (1,2,3,4,..)
@@ -530,7 +531,7 @@ class Model_Location extends ORM {
         {
             //name used in the cache for storage
             $cache_name = 'get_parents_ids_location_'.$this->id_location;
-
+            self::cache_list($cache_name);
             if ( ($ids_parents = Core::cache($cache_name))===NULL)
             {
                 //array that contains all the parents as keys (1,2,3,4,..)

@@ -297,7 +297,6 @@ class Controller_Panel_Content extends Auth_Controller {
                 $c->save();
             }
                 
-            Core::delete_cache();
             $this->template->content = __('Saved');
         }
         else

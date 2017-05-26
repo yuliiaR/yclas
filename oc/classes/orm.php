@@ -45,8 +45,35 @@ class ORM extends Kohana_ORM {
             //add the value, forcing it so wont use the DB default ;)
             $this->set('created',Date::unix2mysql());
         }
-
+        self::cache_delete();
         return parent::create($validation);
+    }
+
+    /**
+     * Updates a single record or multiple records
+     *
+     * @chainable
+     * @param  Validation $validation Validation object
+     * @throws Kohana_Exception
+     * @return ORM
+     */
+    public function update(Validation $validation = NULL)
+    {
+        self::cache_delete();
+        return parent::update($validation);
+    }
+
+    /**
+     * Deletes a single record while ignoring relationships.
+     *
+     * @chainable
+     * @throws Kohana_Exception
+     * @return ORM
+     */
+    public function delete()
+    {
+        self::cache_delete();
+        return parent::delete();
     }
 
     /**
@@ -168,7 +195,111 @@ class ORM extends Kohana_ORM {
     {
         //invalidates the cache for the last query
         $cache_key = 'Database::query("'.Database::instance().'", "'.$this->last_query().'")';
-        Core::cache($cache_key, NULL, 0);
+        Cache::instance()->delete($cache_key);
+        self::cache_delete();
+    }
+
+    /**
+     * we store each name of key that this model is using so later can be retrieved
+     * @param  string $name of the key to be stored
+     * @return array       list of keys
+     */
+    public static function cache_list($name = NULL)
+    {
+        $cache_list = Core::cache('cache_list_'.get_called_class());
+        //d($cache_list);
+        if ($cache_list === NULL)
+            $cache_list = array();
+
+        //add to list if does not exists
+        if ( $name!== NULL AND !array_search($name, $cache_list))
+        {
+            $cache_list[] = $name;
+            Core::cache('cache_list_'.get_called_class(),$cache_list);
+        }
+
+        return $cache_list;
+    }
+
+    /**
+     * deletes all the cache related to this model
+     * @return void 
+     */
+    public static function cache_delete()
+    {
+        //d(self::cache_list());
+        foreach (self::cache_list() as $key => $name) 
+            Cache::instance()->delete($name);
+
+        Cache::instance()->delete('cache_list_'.get_called_class());
+    }
+
+    /**
+     * Modified, we send the model name to the query! so we know whats been cached.
+     * 
+     * Loads a database result, either as a new record for this model, or as
+     * an iterator for multiple rows.
+     *
+     * @chainable
+     * @param  bool $multiple Return an iterator or load a single row
+     * @return ORM|Database_Result
+     */
+    protected function _load_result($multiple = FALSE)
+    {
+        $this->_db_builder->from(array($this->_table_name, $this->_object_name));
+
+        if ($multiple === FALSE)
+        {
+            // Only fetch 1 record
+            $this->_db_builder->limit(1);
+        }
+
+        // Select all columns by default
+        $this->_db_builder->select_array($this->_build_select());
+
+        if ( ! isset($this->_db_applied['order_by']) AND ! empty($this->_sorting))
+        {
+            foreach ($this->_sorting as $column => $direction)
+            {
+                if (strpos($column, '.') === FALSE)
+                {
+                    // Sorting column for use in JOINs
+                    $column = $this->_object_name.'.'.$column;
+                }
+
+                $this->_db_builder->order_by($column, $direction);
+            }
+        }
+
+        if ($multiple === TRUE)
+        {
+            // Return database iterator casting to this object type
+            $result = $this->_db_builder->as_object(get_class($this))->execute($this->_db,NULL,NULL,get_class($this));
+
+            $this->reset();
+
+            return $result;
+        }
+        else
+        {
+            // Load the result as an associative array
+            $result = $this->_db_builder->as_assoc()->execute($this->_db,NULL,NULL,get_class($this));
+
+            $this->reset();
+
+            if ($result->count() === 1)
+            {
+                // Load object values
+                $this->_load_values($result->current());
+            }
+            else
+            {
+                // Clear the object, nothing was found
+                $this->clear();
+            }
+
+            return $this;
+        }
     }
 
 }

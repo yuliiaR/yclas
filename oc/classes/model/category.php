@@ -177,7 +177,7 @@ class Model_Category extends ORM {
     public static function get_as_array($limit = NULL)
     {
         $cache_name = is_int($limit) ? 'cats_arr'.'_'.$limit : 'cats_arr';
-
+        self::cache_list($cache_name);
         //transform the cats to an array
         if ( ($cats_arr = Core::cache($cache_name))===NULL)
         {
@@ -215,6 +215,7 @@ class Model_Category extends ORM {
      */
     public static function get_by_deep()
     {
+        self::cache_list('cats_parent_deep');
         // array by parent deep,
         // each parent deep is one array with categories of the same index
         if ( ($cats_parent_deep = Core::cache('cats_parent_deep'))===NULL)
@@ -249,7 +250,7 @@ class Model_Category extends ORM {
     public static function get_multidimensional($limit = NULL)
     {
         $cache_name = is_int($limit) ? 'cats_m'.'_'.$limit : 'cats_m';
-
+        self::cache_list($cache_name);
         //multidimensional array
         if ( ($cats_m = Core::cache($cache_name))===NULL)
         {
@@ -349,7 +350,7 @@ class Model_Category extends ORM {
 
         //name used in the cache for storage
         $cache_name = 'get_category_count_'.$id_location;
-
+        self::cache_list($cache_name);
         if ( ($cats_count = Core::cache($cache_name))===NULL)
         {
 
@@ -494,7 +495,7 @@ class Model_Category extends ORM {
         {
             //name used in the cache for storage
             $cache_name = 'get_siblings_ids_category_'.$this->id_category;
-
+            self::cache_list($cache_name);
             if ( ($ids_siblings = Core::cache($cache_name))===NULL)
             {
                 //array that contains all the siblings as keys (1,2,3,4,..)
@@ -542,7 +543,7 @@ class Model_Category extends ORM {
         {
             //name used in the cache for storage
             $cache_name = 'get_parents_ids_category_'.$this->id_category;
-
+            self::cache_list($cache_name);
             if ( ($ids_parents = Core::cache($cache_name))===NULL)
             {
                 //array that contains all the parents as keys (1,2,3,4,..)

@@ -98,7 +98,7 @@ class Model_Forum extends ORM {
     {
         $forums = new self;
         $forums = $forums->order_by('order','asc')->find_all()->cached()->as_array('id_forum');
-
+        self::cache_list('forums_arr');
         if ( ($forums_arr = Core::cache('forums_arr'))===NULL)
         {
             //transform the forums to an array
@@ -117,6 +117,7 @@ class Model_Forum extends ORM {
             Core::cache('forums_arr',$forums_arr);
         }
 
+        self::cache_list('forums_m');
         if ( ($forums_m = Core::cache('forums_m'))===NULL)
         {
             //for each forum we get his siblings
@@ -177,7 +178,10 @@ class Model_Forum extends ORM {
 	 */
 	public static function get_forum_count()
 	{
-        $forums = DB::select('f.*')
+        self::cache_list('get_forum_count');
+        if ( ($forums = Core::cache('get_forum_count'))===NULL)
+        {
+            $forums = DB::select('f.*')
                 ->select(array(DB::select(DB::expr('COUNT("id_post")'))
                         ->from(array('posts','p'))
                         ->where('p.id_post_parent','IS', NULL)
@@ -193,8 +197,11 @@ class Model_Forum extends ORM {
                 ->from(array('forums', 'f'))
                 ->order_by('order','asc')
                 ->as_object()
-                ->cached()
                 ->execute();
+
+            Core::cache('get_forum_count',$forums);
+        }
+
 
         $forum_count = array();
         $parent_count = array();
