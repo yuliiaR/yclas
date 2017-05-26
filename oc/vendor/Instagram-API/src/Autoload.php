@@ -1,5 +1,5 @@
 <?
-	// Include all the required files for Instagram API
+    // Include all the required files for Instagram API
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/Instagram');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/SignatureUtils');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/Utils/SettingsAdapter');
@@ -16,6 +16,7 @@
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/ChallengeResponse');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/LoginResponse');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/Objects/User');
+    require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/Objects/Thread');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/TimelineFeedResponse');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/autoCompleteUserListResponse');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/Objects/FriendshipStatus');
@@ -39,10 +40,4 @@
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/UserAgent');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/InstagramException');
     require_once Kohana::find_file('vendor/', 'Instagram-API/jsonmapper/src/JsonMapper');
-
-
-
-
-
-
 ?>
