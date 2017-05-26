@@ -18,9 +18,13 @@ class Controller_Panel_Algolia extends Controller_Panel_Tools {
         //force clean cache
         if (Core::get('reindex')==1)
         {
-            Algolia::reindex();
-            Alert::set(Alert::SUCCESS,__('All indeces re-indexed'));
-
+            try {
+                Algolia::reindex();
+                Alert::set(Alert::SUCCESS,__('All indeces re-indexed'));
+            }
+            catch (Exception $e){
+                Alert::set(Alert::ERROR, $e->getMessage());
+            }
         }
 
 

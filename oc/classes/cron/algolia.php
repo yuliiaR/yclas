@@ -16,7 +16,11 @@ class Cron_Algolia {
      */
     public static function reindex()
     {
-        Algolia::reindex();
+        try {
+            Algolia::reindex();
+        } catch (Exception $e) {
+            return FALSE;
+        }
 
         return;
     }
