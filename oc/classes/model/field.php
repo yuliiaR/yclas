@@ -377,6 +377,18 @@ class Model_Field {
         return (array_key_exists($this->_name_prefix.$name, $columns));
     }
 
+    /**
+     * list with fields we dont show to users
+     * @return array
+     */
+    public function fields_to_hide()
+    {
+        return array (
+            'cf_buyer_instructions',
+            'cf_paypalaccount',
+        );
+    }
+
 
 
 }
