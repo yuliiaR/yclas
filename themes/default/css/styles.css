@@ -227,6 +227,10 @@ ol, ul {
     white-space: normal;
 }
 
+.slider-horizontal{
+  width: auto!important;
+}
+
 img#captcha_img_publish_new {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
