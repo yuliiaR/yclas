@@ -595,17 +595,7 @@ class Controller_Panel_Location extends Auth_Crud {
             $locations = $locations->find_all();
             
             foreach ($locations as $location)
-            {
-                $root = DOCROOT.'images/locations/'; //root folder
-                if (is_dir($root))
-                {
-                    @unlink($root.$location->seoname.'.png');
-                    
-                    // delete icon from Amazon S3
-                    if(core::config('image.aws_s3_active'))
-                        $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$location->seoname.'.png');
-                }
-            }
+                $location->delete_icon();
             
             $query_update = DB::update('ads');
             $query_delete = DB::delete('locations');
@@ -624,6 +614,9 @@ class Controller_Panel_Location extends Auth_Crud {
 
             $query_update->execute();
             $query_delete->execute();
+
+            //delete subscribtions
+            DB::delete('subscribers')->where('id_location','!=','1')->execute();
             
             Model_Location::cache_delete();
             
