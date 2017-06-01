@@ -487,17 +487,7 @@ class Controller_Panel_Category extends Auth_Crud {
             $categories = $categories->where('id_category','!=','1')->find_all();
             
             foreach ($categories as $category)
-            {
-                $root = DOCROOT.'images/categories/'; //root folder
-                if (is_dir($root))
-                {
-                    @unlink($root.$category->seoname.'.png');
-                    
-                    // delete icon from Amazon S3
-                    if(core::config('image.aws_s3_active'))
-                        $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$category->seoname.'.png');
-                }
-            }
+                $category->delete_icon();
             
             //set home category to all the ads
             $query = DB::update('ads')
@@ -509,6 +499,9 @@ class Controller_Panel_Category extends Auth_Crud {
                         ->where('id_category','!=','1')
                         ->execute();
             
+            //delete subscribtions
+            DB::delete('subscribers')->where('id_category', '!=','1')->execute();
+
             Model_Category::cache_delete();
             
             Alert::set(Alert::SUCCESS, __('All categories were deleted.'));
