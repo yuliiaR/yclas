@@ -880,6 +880,18 @@ class Model_User extends ORM {
     }
 
     /**
+     * Check if the user is verified.
+     * @return  verified badge else false
+     */
+    public function is_verified_user()
+    {
+        if ($this->loaded() AND isset($this->cf_verifiedbadge) AND $this->cf_verifiedbadge==1)
+            return '<i title="'.__('Verified!').'" class="fa fa-check-circle" aria-hidden="true"></i>';
+
+        return '';
+    }
+
+    /**
      * saves the user review rates recalculating it
      * @return [type] [description]
      */
