@@ -21,7 +21,7 @@
 
 <div class="page-header">
     <article class="well">
-        <h3><?=$user->name?></h3>
+        <h3><?=$user->name?> <?=$user->is_verified_user();?></h3>
         <ul class="list-unstyled">
             <?if (Core::config('advertisement.reviews')==1):?>
                 <li>

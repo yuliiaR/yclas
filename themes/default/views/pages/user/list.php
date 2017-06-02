@@ -26,7 +26,7 @@
                                 }
                             } else $select = $field['values']?>
                             <?= FORM::label('cfuser_'.$name, $field['label'], array('for'=>'cfuser_'.$name))?>
-                            <div>
+                            <div <?=($field['type']=='checkbox')?'class="text-center"':''?>>
                                 <?=Form::cf_form_field('cf_'.$name, array(
                                 'display'   => $field['type'],
                                 'label'     => $field['label'],
@@ -80,7 +80,7 @@
                 <div class="caption">
                     <h3>
                         <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>">
-                            <?=$user->name?> <span class="badge"><?=$user->ads_count?> <?=_e('Ads')?></span>
+                            <?=$user->name?> <?=$user->is_verified_user();?> <span class="badge"><?=$user->ads_count?> <?=_e('Ads')?></span>
                         </a>
                     </h3>
                     <?if (Core::config('advertisement.reviews')==1):?>
