@@ -364,9 +364,11 @@ class Model_Location extends ORM {
                 //adding himself if doesnt exists
                 if (!isset($parents_count[$id_location]))
                 {
-                    $parents_count[$id_location] = $count_ad;
+                    $parents_count[$id_location]['count'] = $count;
                     $parents_count[$id_location]['has_siblings'] = FALSE;
                 }
+                else
+                    $parents_count[$id_location]['count']+=$count;
 
                 $location = new Model_Location($id_location);
 
@@ -420,6 +422,7 @@ class Model_Location extends ORM {
 
         return $locs_count;
     }
+
 
     /**
      * has this location siblings?

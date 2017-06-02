@@ -380,7 +380,6 @@ class Model_Category extends ORM {
 
             $count_ads = $count_ads->as_array('id_category');
 
-
             //getting the count of ads into the parents
             $parents_count = array();
             foreach ($count_ads as $count_ad)
@@ -391,20 +390,22 @@ class Model_Category extends ORM {
                 //adding himself if doesnt exists
                 if (!isset($parents_count[$id_category]))
                 {
-                    $parents_count[$id_category] = $count_ad;
+                    $parents_count[$id_category]['count'] = $count;
                     $parents_count[$id_category]['has_siblings'] = FALSE;
                 }
+                else
+                    $parents_count[$id_category]['count']+= $count;
 
                 $category = new Model_Category($id_category);
 
                 //for each parent of this category add the count
                 $parents_ids = $category->get_parents_ids();
-
                 if (count($parents_ids)>0)
                 {
                     foreach ($parents_ids as $id )
                     {
-                        if (isset($parents_count[$id]))
+
+                        if (isset($parents_count[$id]) AND isset($parents_count[$id]['count']) )
                             $parents_count[$id]['count']+= $count_ads[$category->id_category]['count'];
                         else
                             $parents_count[$id]['count'] = $count_ads[$category->id_category]['count'];
@@ -434,6 +435,7 @@ class Model_Category extends ORM {
                 $cats_count[$category->id_category] = array(   'id_category'   => $category->id_category,
                                                                 'seoname'       => $category->seoname,
                                                                 'name'          => $category->name,
+                                                                'description'          => $category->description,
                                                                 'id_category_parent'        => $category->id_category_parent,
                                                                 'parent_deep'   => $category->parent_deep,
                                                                 'order'         => $category->order,
