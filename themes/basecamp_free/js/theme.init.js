@@ -1,18 +1,33 @@
 $(function(){
-    
-    //sceditorBBCodePlugin for validation, updates iframe on submit 
+
+    //sceditorBBCodePlugin for validation, updates iframe on submit
 $("button[name=submit]").click(function(){
     $("textarea[name=description]").data("sceditor").updateOriginal();
 });
-    
+
     //select2 enable/disable
     $('select').select2({
         "language": "es"
     });
     $('select').each(function(){
         if($(this).hasClass('disable-select2')){
-            $(this).select2('destroy');      
-        } 
+            $(this).select2('destroy');
+        }
+    });
+    // Fixes select2 on bootstrap modals
+    $('#register-modal select').each(function(){
+        $(this).select2('destroy');
+        $(this).select2({
+            "dropdownParent": $('#register-modal'),
+            "language": "es",
+            "templateResult": function(result, container) {
+                if ( ! result.id) {
+                    return result.text;
+                }
+                container.className += ' needsclick';
+                return result.text;
+            }
+        });
     });
     //select2 responsive width
     $(window).on('resize', function() {
@@ -21,7 +36,7 @@ $("button[name=submit]").click(function(){
             $(this).siblings('.select2-container').css({'width':width});
         });
     }).trigger('resize');
-    
+
     $('input, select, textarea, .btn').tooltip();
 
     //datepicker in case date field exists
@@ -67,9 +82,9 @@ $("button[name=submit]").click(function(){
         if($('#listgrid').data('default') == 1)
             $("#list").trigger("click");
         else if($('#listgrid').data('default') == 0)
-            $("#grid").trigger("click"); 
+            $("#grid").trigger("click");
         else if($('#listgrid').data('default') == 2)
-            $("#minimal").trigger("click"); 
+            $("#minimal").trigger("click");
     }
 
 });
