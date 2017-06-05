@@ -75,7 +75,7 @@
         <div class="col-sm-6 col-md-4" style="min-height:350px">
             <div class="thumbnail">
                 <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>">
-                    <img class="img-responsive" src="<?=Core::imagefly($user->get_profile_image(),203,203)?>" alt="<?=__('Profile Picture')?>">
+                    <img class="img-responsive" src="<?=Core::imagefly($user->get_profile_image(),250,250)?>" alt="<?=__('Profile Picture')?>">
                 </a>
                 <div class="caption">
                     <h3>
