@@ -125,6 +125,23 @@ class Model_Review extends ORM {
         return (isset($rates[0]))?round($rates[0]['rates'],2):FALSE;
     }
 
+    /**
+     * returns the user reviews that have received
+     * @param  Model_User $user [description]
+     * @return [type]                 [description]
+     */
+    public static function get_user_reviews(Model_User $user)
+    {
+        $reviews = new Model_Review();
+        $reviews = $reviews->join('ads','RIGHT')
+                        ->using('id_ad')
+                        ->where('ads.id_user','=',$user->id_user)
+                        ->where('review.status','=',Model_Review::STATUS_ACTIVE)
+                    ->cached()->find_all();
+
+        return $reviews;
+    }
+
     protected $_table_columns =  
 array (
   'id_review' => 
