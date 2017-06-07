@@ -77,7 +77,7 @@ class Controller_Panel_Category extends Auth_Crud {
                 }
 
                 $this->action_deep();
-                Core::delete_cache();
+                Model_Category::cache_delete();
 
                 Alert::set(Alert::SUCCESS, __('Category created'));
             
@@ -159,7 +159,7 @@ class Controller_Panel_Category extends Auth_Crud {
                 if($category->has_image AND ($category->seoname != $form->object->seoname))
                     $category->rename_icon($form->object->seoname);
 
-                Core::delete_cache();
+                Model_Category::cache_delete();
 
                 Alert::set(Alert::SUCCESS, __('Item updated'));
                 $this->redirect(Route::get($this->_route_name)->uri(array('controller'=> Request::current()->controller())));
@@ -229,12 +229,11 @@ class Controller_Panel_Category extends Auth_Crud {
 
             //recalculating the deep of all the categories
             $this->action_deep();
-            Core::delete_cache();
+            Model_Category::cache_delete();
             $this->template->content = __('Saved');
         }
         else
             $this->template->content = __('Error');
-
 
     }
 
@@ -289,7 +288,7 @@ class Controller_Panel_Category extends Auth_Crud {
 
                         //recalculating the deep of all the categories
                         $this->action_deep();
-                        Core::delete_cache();
+                        Model_Category::cache_delete();
                         Alert::set(Alert::SUCCESS, sprintf(__('Category %s deleted'), $category_name));
                         
                     }
@@ -344,7 +343,7 @@ class Controller_Panel_Category extends Auth_Crud {
                     if ($execute==TRUE)
                     {
                         $insert->execute();
-                        Core::delete_cache();
+                        Model_Category::cache_delete();
                     }
                 }
             }
@@ -361,7 +360,7 @@ class Controller_Panel_Category extends Auth_Crud {
      */
     public function action_deep()
     {
-        Core::delete_cache();
+        Model_Category::cache_delete();
 
         //getting all the cats as array
         $cats_arr = Model_Category::get_as_array();  
@@ -488,17 +487,7 @@ class Controller_Panel_Category extends Auth_Crud {
             $categories = $categories->where('id_category','!=','1')->find_all();
             
             foreach ($categories as $category)
-            {
-                $root = DOCROOT.'images/categories/'; //root folder
-                if (is_dir($root))
-                {
-                    @unlink($root.$category->seoname.'.png');
-                    
-                    // delete icon from Amazon S3
-                    if(core::config('image.aws_s3_active'))
-                        $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$category->seoname.'.png');
-                }
-            }
+                $category->delete_icon();
             
             //set home category to all the ads
             $query = DB::update('ads')
@@ -510,7 +499,10 @@ class Controller_Panel_Category extends Auth_Crud {
                         ->where('id_category','!=','1')
                         ->execute();
             
-            Core::delete_cache();
+            //delete subscribtions
+            DB::delete('subscribers')->where('id_category', '!=','1')->execute();
+
+            Model_Category::cache_delete();
             
             Alert::set(Alert::SUCCESS, __('All categories were deleted.'));
             

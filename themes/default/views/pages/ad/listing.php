@@ -188,7 +188,10 @@
   
   <?endforeach?>
 
-  <?=$pagination?>
+  <div class="clearfix"></div>
+  <div class="text-center">
+      <?=$pagination?>
+  </div>
  <?elseif (count($ads) == 0):?>
     <?if(core::config('general.auto_locate') AND core::request('userpos') == 1):?>
         <div class="btn-group pull-right">

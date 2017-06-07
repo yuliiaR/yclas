@@ -902,7 +902,7 @@ class Model_Ad extends ORM {
                             $display = TRUE;
                     }
 
-                    if($cf_column_name == 'cf_buyer_instructions')
+                    if (in_array($cf_column_name, Model_Field::fields_to_hide()))
                         $display = FALSE;
 
                     if(isset($cf_value) AND $display )

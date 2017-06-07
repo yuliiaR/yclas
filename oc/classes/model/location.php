@@ -169,7 +169,7 @@ class Model_Location extends ORM {
     public static function get_as_array($limit = NULL)
     {
         $cache_name = is_int($limit) ? 'locs_arr'.'_'.$limit : 'locs_arr';
-
+        self::cache_list($cache_name);
         if ( ($locs_arr = Core::cache($cache_name))===NULL)
         {
             $locs = new self;
@@ -208,6 +208,7 @@ class Model_Location extends ORM {
     {
         // array by parent deep,
         // each parent deep is one array with locations of the same index
+        self::cache_list('locs_parent_deep');
         if ( ($locs_parent_deep = Core::cache('locs_parent_deep'))===NULL)
         {
             $locs = new self;
@@ -241,7 +242,7 @@ class Model_Location extends ORM {
     public static function get_multidimensional($limit = NULL)
     {
         $cache_name = is_int($limit) ? 'locs_m'.'_'.$limit : 'locs_m';
-
+        self::cache_list($cache_name);
         if ( ($locs_m = Core::cache($cache_name))===NULL)
         {
             $locs = new self;
@@ -332,7 +333,7 @@ class Model_Location extends ORM {
     {
         //name used in the cache for storage
         $cache_name = 'get_location_count';
-
+        self::cache_list($cache_name);
         if ( ($locs_count = Core::cache($cache_name))===NULL)
         {
 
@@ -363,9 +364,11 @@ class Model_Location extends ORM {
                 //adding himself if doesnt exists
                 if (!isset($parents_count[$id_location]))
                 {
-                    $parents_count[$id_location] = $count_ad;
+                    $parents_count[$id_location]['count'] = $count;
                     $parents_count[$id_location]['has_siblings'] = FALSE;
                 }
+                else
+                    $parents_count[$id_location]['count']+=$count;
 
                 $location = new Model_Location($id_location);
 
@@ -419,6 +422,7 @@ class Model_Location extends ORM {
 
         return $locs_count;
     }
+
 
     /**
      * has this location siblings?
@@ -483,7 +487,7 @@ class Model_Location extends ORM {
         {
             //name used in the cache for storage
             $cache_name = 'get_siblings_ids_lcoations_'.$this->id_location;
-
+            self::cache_list($cache_name);
             if ( ($ids_siblings = Core::cache($cache_name))===NULL)
             {
                 //array that contains all the siblings as keys (1,2,3,4,..)
@@ -530,7 +534,7 @@ class Model_Location extends ORM {
         {
             //name used in the cache for storage
             $cache_name = 'get_parents_ids_location_'.$this->id_location;
-
+            self::cache_list($cache_name);
             if ( ($ids_parents = Core::cache($cache_name))===NULL)
             {
                 //array that contains all the parents as keys (1,2,3,4,..)
@@ -688,32 +692,35 @@ class Model_Location extends ORM {
             throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
 
 
-        if (core::config('image.aws_s3_active'))
+        if ($this->has_image) 
         {
-            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
-            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
-        }
+            if (core::config('image.aws_s3_active'))
+            {
+                require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+                $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+            }
 
-        $root = DOCROOT.'images/locations/'; //root folder
+            $root = DOCROOT.'images/locations/'; //root folder
 
-        if (!is_dir($root))
-        {
-            return FALSE;
-        }
-        else
-        {
-            //delete icon
-            @unlink($root.$this->seoname.'.png');
+            if (!is_dir($root))
+            {
+                return FALSE;
+            }
+            else
+            {
+                //delete icon
+                @unlink($root.$this->seoname.'.png');
 
-            // delete icon from Amazon S3
-            if(core::config('image.aws_s3_active'))
-                $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$this->seoname.'.png');
+                // delete icon from Amazon S3
+                if(core::config('image.aws_s3_active'))
+                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/locations/'.$this->seoname.'.png');
 
-            // update location info
-            $this->has_image = 0;
-            $this->last_modified = Date::unix2mysql();
-            $this->save();
+                // update location info
+                $this->has_image = 0;
+                $this->last_modified = Date::unix2mysql();
+                $this->save();
 
+            }
         }
 
         return TRUE;

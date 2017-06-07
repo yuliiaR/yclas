@@ -264,8 +264,6 @@ class Model_Content extends ORM {
             }
         }
 
-        Core::delete_cache();
-
         if ($i > 0)
             return TRUE;
 

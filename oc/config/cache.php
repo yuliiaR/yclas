@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 return array
 (
-    'default' => 'file',
+    'default' => 'apcu',
     //'prefix'  => 'cache1_',
     
     'file'  => array

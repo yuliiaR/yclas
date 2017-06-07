@@ -57,3 +57,9 @@ $(function(){
         }
     }).height(maxHeight);
 });
+
+$(function(){
+    var bodyPaddingTop = $("header").height();
+    bodyPaddingTop=(+bodyPaddingTop)+10;
+    document.body.style.paddingTop = bodyPaddingTop+'px';
+});

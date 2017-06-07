@@ -177,7 +177,7 @@ class Model_Category extends ORM {
     public static function get_as_array($limit = NULL)
     {
         $cache_name = is_int($limit) ? 'cats_arr'.'_'.$limit : 'cats_arr';
-
+        self::cache_list($cache_name);
         //transform the cats to an array
         if ( ($cats_arr = Core::cache($cache_name))===NULL)
         {
@@ -215,6 +215,7 @@ class Model_Category extends ORM {
      */
     public static function get_by_deep()
     {
+        self::cache_list('cats_parent_deep');
         // array by parent deep,
         // each parent deep is one array with categories of the same index
         if ( ($cats_parent_deep = Core::cache('cats_parent_deep'))===NULL)
@@ -249,7 +250,7 @@ class Model_Category extends ORM {
     public static function get_multidimensional($limit = NULL)
     {
         $cache_name = is_int($limit) ? 'cats_m'.'_'.$limit : 'cats_m';
-
+        self::cache_list($cache_name);
         //multidimensional array
         if ( ($cats_m = Core::cache($cache_name))===NULL)
         {
@@ -349,7 +350,7 @@ class Model_Category extends ORM {
 
         //name used in the cache for storage
         $cache_name = 'get_category_count_'.$id_location;
-
+        self::cache_list($cache_name);
         if ( ($cats_count = Core::cache($cache_name))===NULL)
         {
 
@@ -379,7 +380,6 @@ class Model_Category extends ORM {
 
             $count_ads = $count_ads->as_array('id_category');
 
-
             //getting the count of ads into the parents
             $parents_count = array();
             foreach ($count_ads as $count_ad)
@@ -390,20 +390,22 @@ class Model_Category extends ORM {
                 //adding himself if doesnt exists
                 if (!isset($parents_count[$id_category]))
                 {
-                    $parents_count[$id_category] = $count_ad;
+                    $parents_count[$id_category]['count'] = $count;
                     $parents_count[$id_category]['has_siblings'] = FALSE;
                 }
+                else
+                    $parents_count[$id_category]['count']+= $count;
 
                 $category = new Model_Category($id_category);
 
                 //for each parent of this category add the count
                 $parents_ids = $category->get_parents_ids();
-
                 if (count($parents_ids)>0)
                 {
                     foreach ($parents_ids as $id )
                     {
-                        if (isset($parents_count[$id]))
+
+                        if (isset($parents_count[$id]) AND isset($parents_count[$id]['count']) )
                             $parents_count[$id]['count']+= $count_ads[$category->id_category]['count'];
                         else
                             $parents_count[$id]['count'] = $count_ads[$category->id_category]['count'];
@@ -433,6 +435,7 @@ class Model_Category extends ORM {
                 $cats_count[$category->id_category] = array(   'id_category'   => $category->id_category,
                                                                 'seoname'       => $category->seoname,
                                                                 'name'          => $category->name,
+                                                                'description'          => $category->description,
                                                                 'id_category_parent'        => $category->id_category_parent,
                                                                 'parent_deep'   => $category->parent_deep,
                                                                 'order'         => $category->order,
@@ -494,7 +497,7 @@ class Model_Category extends ORM {
         {
             //name used in the cache for storage
             $cache_name = 'get_siblings_ids_category_'.$this->id_category;
-
+            self::cache_list($cache_name);
             if ( ($ids_siblings = Core::cache($cache_name))===NULL)
             {
                 //array that contains all the siblings as keys (1,2,3,4,..)
@@ -542,7 +545,7 @@ class Model_Category extends ORM {
         {
             //name used in the cache for storage
             $cache_name = 'get_parents_ids_category_'.$this->id_category;
-
+            self::cache_list($cache_name);
             if ( ($ids_parents = Core::cache($cache_name))===NULL)
             {
                 //array that contains all the parents as keys (1,2,3,4,..)
@@ -722,35 +725,37 @@ class Model_Category extends ORM {
         if ( ! $this->_loaded)
             throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
 
-
-        if (core::config('image.aws_s3_active'))
+        if ($this->has_image) 
         {
-            require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
-            $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+            if (core::config('image.aws_s3_active'))
+            {
+                require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
+                $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
+            }
+
+            $root = DOCROOT.'images/categories/'; //root folder
+
+            if (!is_dir($root))
+            {
+                return FALSE;
+            }
+            else
+            {
+                //delete icon
+                @unlink($root.$this->seoname.'.png');
+
+                // delete icon from Amazon S3
+                if(core::config('image.aws_s3_active'))
+                    $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$this->seoname.'.png');
+
+                // update category info
+                $this->has_image = 0;
+                $this->last_modified = Date::unix2mysql();
+                $this->save();
+
+            }
         }
-
-        $root = DOCROOT.'images/categories/'; //root folder
-
-        if (!is_dir($root))
-        {
-            return FALSE;
-        }
-        else
-        {
-            //delete icon
-            @unlink($root.$this->seoname.'.png');
-
-            // delete icon from Amazon S3
-            if(core::config('image.aws_s3_active'))
-                $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/categories/'.$this->seoname.'.png');
-
-            // update category info
-            $this->has_image = 0;
-            $this->last_modified = Date::unix2mysql();
-            $this->save();
-
-        }
-
+        
         return TRUE;
     }
 

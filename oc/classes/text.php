@@ -161,6 +161,7 @@ class Text extends Kohana_Text {
      */
     public static function removebbcode($text)
     {
+        $text = preg_replace("/\[youtube(.+?)\[\/youtube\]/i", '', $text);
         return strip_tags(str_replace(array('[',']'), array('<','>'), $text));
     }
 

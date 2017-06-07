@@ -23,3 +23,14 @@ a:hover {color: #535F12;}
 .btn-primary:active,
 .btn-primary.active,
 .open > dropdown-toggle.btn-primary {background-color: #717F1F; border-color: #535F0C;}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    background-color: #909F3B;
+    border-color: #909F3B;
+}
+.pagination > li > a, .pagination > li > span {
+	color: #909F3B;
+}
+.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+	color: #535F12;
+}
