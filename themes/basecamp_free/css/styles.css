@@ -1612,6 +1612,7 @@ table#forum-table  td, table#forum-table .sibling-forum th {
 	word-wrap: break-word;
 	word-break: break-all;
 }
+.profile-view .ad_item{padding:10px 0;}
 
 @media only screen and (max-width : 649px) {
 	#users .user-block {
