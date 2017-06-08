@@ -43,7 +43,7 @@
 						<div class="ad_block_inner">
 							<a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>" title="<?=$ad->title?>" class="min-h">
 							<?if($ad->get_first_image()!== NULL):?>
-								<?=HTML::picture($ad->get_first_image(), ['w' => 200, 'h' => 200], ['992px' => ['w' => '200', 'h' => '200'], '320px' => ['w' => '200', 'h' => '200']], ['alt' => HTML::chars($ad->title)])?>
+								<img src="<?=Core::imagefly($ad->get_first_image('image'),300,300)?>" alt="<?=HTML::chars($ad->title)?>">
 							<?else:?>
 								<img data-src="holder.js/200x200?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" alt="<?=HTML::chars($ad->title)?>"> 
 							<?endif?>
