@@ -38,6 +38,10 @@ class Model_User extends ORM {
             'model'       => 'ad',
             'foreign_key' => 'id_user',
         ),
+        'reviews' => array(
+            'model'       => 'review',
+            'foreign_key' => 'id_user',
+        ),
     );
 
     /**
