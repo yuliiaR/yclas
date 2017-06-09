@@ -71,8 +71,8 @@
 <div class="clearfix"></div><br>
 
 <div class="row" id="users">
-    <?foreach($users as $user ):?>
-        <div class="col-sm-6 col-md-4" style="min-height:350px">
+    <?$i = 1; foreach($users as $user ):?>
+        <div class="col-sm-4" style="min-height:350px">
             <div class="thumbnail">
                 <a title="<?=HTML::chars($user->name)?>" href="<?=Route::url('profile',  array('seoname'=>$user->seoname))?>">
                     <img class="img-responsive" src="<?=Core::imagefly($user->get_profile_image(),250,250)?>" alt="<?=__('Profile Picture')?>">
@@ -97,7 +97,10 @@
                 </div>
             </div>
         </div>
-    <?endforeach?>
+    <?if ($i%3 == 0) :?>
+            <div class="clearfix"></div>
+        <?endif?>
+    <?$i++; endforeach?>
 </div>
 <?=$pagination?>
 
