@@ -19,7 +19,7 @@
                     <div class="thumbnail latest_ads">
                         <a href="<?=Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"  class="min-h">
                             <?if($ad->get_first_image()!== NULL):?>
-                                <?=HTML::picture($ad->get_first_image(), ['w' => 132, 'h' => 132], ['992px' => ['w' => '132', 'h' => '132'], '320px' => ['w' => '648', 'h' => '648']], ['alt' => HTML::chars($ad->title)])?>
+                                <?=HTML::picture($ad->get_first_image('image'), ['w' => 132, 'h' => 132], ['992px' => ['w' => '132', 'h' => '132'], '320px' => ['w' => '648', 'h' => '648']], ['alt' => HTML::chars($ad->title)])?>
                             <?elseif( ($icon_src = $ad->category->get_icon()) !== FALSE):?>
                                 <?=HTML::picture($icon_src, ['w' => 132, 'h' => 132], ['992px' => ['w' => '132', 'h' => '132'], '320px' => ['w' => '648', 'h' => '648']], ['alt' => HTML::chars($ad->title)])?>
                             <?else:?>
@@ -49,7 +49,7 @@
                 <div class="col-md-4">
                     <div class="panel panel-home-categories">
                         <div class="panel-heading">
-                            <a title="<?=HTML::chars($c['name'])?>" href="<?=Route::url('list', array('category'=>$c['seoname'], 'location'=>$user_location ? $user_location->seoname : NULL))?>"><?=mb_strtoupper($c['name']);?></a>
+                            <a title="<?=HTML::chars((strip_tags($c['description'])!=='')?strip_tags($c['description']):$c['name'])?>" href="<?=Route::url('list', array('category'=>$c['seoname'], 'location'=>$user_location ? $user_location->seoname : NULL))?>"><?=mb_strtoupper($c['name']);?></a>
                         </div>
                         <div class="panel-body">
                             <ul class="list-group">
