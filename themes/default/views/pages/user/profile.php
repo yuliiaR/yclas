@@ -57,13 +57,13 @@
         </ul>
         <?if (Theme::get('premium')==1):?>
             <?if(isset($user->cf_whatsapp) AND $user->cf_whatsapp!=''):?>
-                <a href="intent://send/<?=$user->cf_whatsapp?>#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end" title="Whatsapp" alt="Whatsapp"><i class="fa fa-2x fa-whatsapp" style="color:#43d854"></i></a>
+                <a href="intent://send/<?=$user->cf_whatsapp?>#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end" title="Chat with <?=$user->name?>" alt="Whatsapp"><i class="fa fa-2x fa-whatsapp" style="color:#43d854"></i></a>
             <?endif?>
             <?if(isset($user->cf_skype) AND $user->cf_skype!=''):?>
-                <a href="skype:<?=$user->cf_skype?>?chat" title="Skype" alt="Skype"><i class="fa fa-2x fa-skype" style="color:#00aff0"></i></a>
+                <a href="skype:<?=$user->cf_skype?>?chat" title="Chat with <?=$user->name?>" alt="Skype"><i class="fa fa-2x fa-skype" style="color:#00aff0"></i></a>
             <?endif?>
             <?if(isset($user->cf_telegram) AND $user->cf_telegram!=''):?>
-                <a href="tg://resolve?domain=<?=$user->cf_telegram?>" id="telegram" title="Telegram" alt="Telegram"><i class="fa fa-2x fa-telegram" style="color:#0088cc"></i></a>
+                <a href="tg://resolve?domain=<?=$user->cf_telegram?>" id="telegram" title="Chat with <?=$user->name?>" alt="Telegram"><i class="fa fa-2x fa-telegram" style="color:#0088cc"></i></a>
             <?endif?>
         <?endif?>
 		<div class="clearfix">&nbsp;</div>
