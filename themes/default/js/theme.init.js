@@ -1,9 +1,9 @@
 $(function(){
 
-    //sceditorBBCodePlugin for validation, updates iframe on submit
-$("button[name=submit]").click(function(){
-    $("textarea[name=description]").data("sceditor").updateOriginal();
-});
+    //sceditor for validation, updates iframe on submit
+    $("button[name=submit]").click(function(){
+        $("textarea[name=description]").data("sceditor").updateOriginal();
+    });
 
     //select2 enable/disable
     $('select').select2({

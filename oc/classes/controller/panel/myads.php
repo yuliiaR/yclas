@@ -2,12 +2,12 @@
 
 class Controller_Panel_Myads extends Auth_Frontcontroller {
 
-    
+
 	public function action_index()
 	{
 		$cat = new Model_Category();
 		$list_cat = $cat->find_all(); // get all to print at sidebar view
-		
+
 		$loc = new Model_Location();
 		$list_loc = $loc->find_all(); // get all to print at sidebar view
 
@@ -19,7 +19,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		$my_adverts = $ads->where('id_user', '=', $user->id_user);
 
 		$res_count = $my_adverts->count_all();
-		
+
 		if ($res_count > 0)
 		{
 
@@ -30,7 +30,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
-                 
+
     	    ));
 
     	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My ads'))->set_url(Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))));
@@ -63,7 +63,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 	 */
 	public function action_deactivate()
 	{
-		
+
 		$deact_ad = new Model_Ad($this->request->param('id'));
 
 		if ($deact_ad->loaded())
@@ -80,28 +80,28 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
 			}
 			else
-			{				
+			{
 				Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
 				HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
-			} 
+			}
 		}
 		else
 		{
 			//throw 404
 			throw HTTP_Exception::factory(404,__('Page not found'));
 		}
-				
+
 	}
 
 	/**
 	 * Mark advertisement as active : STATUS = 1
 	 */
-	
+
 	public function action_activate()
 	{
         $user = Auth::instance()->get_user();
 		$id = $this->request->param('id');
-		
+
 		if (isset($id))
 		{
 			$active_ad = new Model_Ad($id);
@@ -152,11 +152,11 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 //expired subscription
                 if ($activate === TRUE AND Core::config('general.subscriptions') == TRUE AND Core::config('general.subscriptions_expire') == TRUE AND Theme::get('premium') == TRUE  )
                 {
-                    $subscription = $this->user->subscription();    
-                    //if theres no subscription or expired or without free ads 
-                    if (!$subscription->loaded() 
-                        OR ( $subscription->loaded() 
-                            AND (Date::mysql2unix($subscription->expire_date) < time() 
+                    $subscription = $this->user->subscription();
+                    //if theres no subscription or expired or without free ads
+                    if (!$subscription->loaded()
+                        OR ( $subscription->loaded()
+                            AND (Date::mysql2unix($subscription->expire_date) < time()
                                     OR $subscription->amount_ads_left == 0 )
                                 )
                         )
@@ -171,7 +171,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 {
                     $active_ad->published  = Date::unix2mysql(time());
                     $active_ad->status     = Model_Ad::STATUS_PUBLISHED;
-                    
+
                     try
                     {
                         $active_ad->save();
@@ -194,7 +194,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 				throw HTTP_Exception::factory(404,__('Page not found'));
 			}
 		}
-		
+
 
 		// send confirmation email
 		$cat = new Model_Category($active_ad->id_category);
@@ -202,13 +202,13 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		if($usr->loaded())
 		{
 			//we get the QL, and force the regen of token for security
-			$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
+			$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname,
 		 	                                'seotitle'=> $active_ad->seotitle),TRUE);
 
 			$ret = $usr->email('ads-activated',array('[USER.OWNER]'=>$usr->name,
 													 '[URL.QL]'=>$url_ql,
-													 '[AD.NAME]'=>$active_ad->title));	
-		}	
+													 '[AD.NAME]'=>$active_ad->title));
+		}
 
 		Alert::set(Alert::SUCCESS, __('Advertisement is active and published'));
 		HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
@@ -219,7 +219,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
      */
     public function action_sold()
     {
-        
+
         $deact_ad = new Model_Ad($this->request->param('id'));
 
         if ($deact_ad->loaded())
@@ -236,17 +236,17 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
             }
             else
-            {               
+            {
                 Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
                 HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
-            } 
+            }
         }
         else
         {
             //throw 404
             throw HTTP_Exception::factory(404,__('Page not found'));
         }
-                
+
     }
 
 	/**
@@ -259,9 +259,9 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		//template header
 		$this->template->title           	= __('Edit advertisement');
 		$this->template->meta_description	= __('Edit advertisement');
-		
+
 		Controller::$full_width = TRUE;
-		
+
 		//local files
         if (Theme::get('cdn_files') == FALSE)
         {
@@ -269,8 +269,9 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                                             'css/jasny-bootstrap.min.css' => 'screen',
                                             '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
                                             '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
-            
+
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
+                                                        'js/jquery.sceditor.plaintext.min.js',
                                                         'js/jasny-bootstrap.min.js',
                                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
@@ -286,8 +287,9 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
                                             '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
                                             '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
-            
+
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
+                                                        'js/jquery.sceditor.plaintext.min.js',
                                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
                                                         'js/canvasResize.js',
@@ -302,16 +304,16 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My ads'))->set_url(Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))));
 
 		$form = new Model_Ad($this->request->param('id'));
-		
+
         if($form->loaded() AND (Auth::instance()->get_user()->id_user == $form->id_user
             OR Auth::instance()->get_user()->is_admin()
             OR Auth::instance()->get_user()->is_moderator()))
 		{
-            // deleting single image by path 
+            // deleting single image by path
             if(is_numeric($deleted_image = core::request('img_delete')))
             {
                 $form->delete_image($deleted_image);
-                
+
                 $this->redirect(Route::url('oc-panel', array('controller'	=>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
             }// end of img delete
 
@@ -322,7 +324,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
                 $this->redirect(Route::url('oc-panel', array('controller'   =>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
             }
-            
+
             $original_category = $form->category;
 
 			$extra_payment = core::config('payment');
@@ -349,13 +351,13 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                         Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
                         $this->redirect(Route::url('post_new'));                     }
                 }
-        
+
                 $return = $form->save_ad($data);
-        
+
                 //there was an error on the validation
                 if (isset($return['validation_errors']) AND is_array($return['validation_errors']))
                 {
-                    foreach ($return['validation_errors'] as $f => $err) 
+                    foreach ($return['validation_errors'] as $f => $err)
                         Alert::set(Alert::ALERT, $err);
                 }
                 //another error
@@ -366,11 +368,11 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 //success!!!
                 elseif (isset($return['message']))
                 {
-                    // IMAGE UPLOAD 
-                    // in case something wrong happens user is redirected to edit advert. 
+                    // IMAGE UPLOAD
+                    // in case something wrong happens user is redirected to edit advert.
                     $filename = NULL;
-                    for ($i=0; $i < core::config("advertisement.num_images"); $i++) 
-                    { 
+                    for ($i=0; $i < core::config("advertisement.num_images"); $i++)
+                    {
                         if (Core::post('base64_image'.$i))
                                 $filename = $form->save_base64_image(Core::post('base64_image'.$i));
                         elseif (isset($_FILES['image'.$i]))
@@ -379,11 +381,11 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     if ($filename!==NULL)
                     {
                         $form->last_modified = Date::unix2mysql();
-                        try 
+                        try
                         {
                             $form->save();
-                        } 
-                        catch (Exception $e) 
+                        }
+                        catch (Exception $e)
                         {
                             throw HTTP_Exception::factory(500,$e->getMessage());
                         }
@@ -398,7 +400,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
 
         		$this->redirect(Route::url('oc-panel', array('controller'	=>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
-	        	
+
 			}
 
             //get all orders
@@ -422,7 +424,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
     /**
      * confirms the post of and advertisement
-     * @return void 
+     * @return void
      */
     public function action_confirm()
     {
@@ -440,7 +442,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             if(core::config('general.moderation') == Model_Ad::EMAIL_CONFIRMATION)
             {
 
-                if (Core::config('general.subscriptions') == TRUE AND 
+                if (Core::config('general.subscriptions') == TRUE AND
                         $advert->user->subscription()->loaded() AND
                         $advert->user->subscription()->amount_ads_left <= 0 AND
                         $advert->user->subscription()->amount_ads_left != -1  )
@@ -453,14 +455,14 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     $advert->status = Model_Ad::STATUS_PUBLISHED; // status active
                     $advert->published = Date::unix2mysql();
 
-                    try 
+                    try
                     {
                         $advert->save();
                         Model_Subscription::new_ad($advert->user);
                         Model_Subscribe::notify($advert);
                         Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
-                    } 
-                    catch (Exception $e) 
+                    }
+                    catch (Exception $e)
                     {
                         throw HTTP_Exception::factory(500,$e->getMessage());
                     }
@@ -470,12 +472,12 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             {
                 $advert->status = Model_Ad::STATUS_NOPUBLISHED;
 
-                try 
+                try
                 {
                     $advert->save();
                     Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
-                } 
-                catch (Exception $e) 
+                }
+                catch (Exception $e)
                 {
                     throw HTTP_Exception::factory(500,$e->getMessage());
                 }
@@ -490,15 +492,15 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
    	{
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My ads'))->set_url(Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))));
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Stats')));
-        
+
         Controller::$full_width = TRUE;
 
         $this->template->scripts['footer'] = array('js/chart.min.js', 'js/chart.js-php.js', 'js/oc-panel/stats/dashboard.js');
-        
+
         $this->template->title = __('Stats');
-        $this->template->bind('content', $content);        
+        $this->template->bind('content', $content);
         $content = View::factory('oc-panel/profile/stats');
-        
+
         $list_ad = array();
         $advert  = new Model_Ad();
 
@@ -546,16 +548,16 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             $list_ad = array(NULL);
 
         $content->advert = $advert;
-        
+
 
         //Getting the dates and range
         $from_date = Core::post('from_date',strtotime('-1 month'));
         $to_date   = Core::post('to_date',time());
 
         //we assure is a proper time stamp if not we transform it
-        if (is_string($from_date) === TRUE) 
+        if (is_string($from_date) === TRUE)
             $from_date = strtotime($from_date);
-        if (is_string($to_date) === TRUE) 
+        if (is_string($to_date) === TRUE)
             $to_date   = strtotime($to_date);
 
         //mysql formated dates
@@ -564,12 +566,12 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
         //dates range we are filtering
         $dates     = Date::range($from_date, $to_date,'+1 day','Y-m-d',array('date'=>0,'count'=> 0),'date');
-        
+
         //dates displayed in the form
         $content->from_date = date('Y-m-d',$from_date);
         $content->to_date   = date('Y-m-d',$to_date) ;
 
-        
+
         /////////////////////CONTACT STATS////////////////////////////////
 
         //visits created last XX days
@@ -584,7 +586,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
         $contacts_dates = $query->as_array('date');
 
-        //Today 
+        //Today
         $query = DB::select(DB::expr('SUM(contacts) count'))
                         ->from('visits')
                         ->where('id_ad', 'in', $list_ad)
@@ -604,7 +606,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                         ->group_by('created')
                         ->order_by('created','asc')
                         ->execute();
-        
+
         $contacts = $query->as_array();
         $content->contacts_yesterday = (isset($contacts[0]['count']))?$contacts[0]['count']:0; //
 
@@ -640,19 +642,19 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                         ->execute();
 
         $visits = $query->as_array('date');
- 
+
         $stats_daily = array();
-        foreach ($dates as $date) 
+        foreach ($dates as $date)
         {
             $count_contants = (isset($contacts_dates[$date['date']]['count']))?$contacts_dates[$date['date']]['count']:0;
             $count_visits = (isset($visits[$date['date']]['count']))?$visits[$date['date']]['count']:0;
-            
+
             $stats_daily[] = array('date'=>$date['date'],'views'=> $count_visits, 'contacts'=>$count_contants);
-        } 
+        }
 
         $content->stats_daily = $stats_daily;
 
-        //Today 
+        //Today
         $query = DB::select(DB::expr('SUM(hits) count'))
                         ->from('visits')
                         ->where('id_ad', 'in', $list_ad)
@@ -672,7 +674,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                         ->group_by('created')
                         ->order_by('created','asc')
                         ->execute();
-        
+
         $visits = $query->as_array();
         $content->visits_yesterday = (isset($visits[0]['count']))?$visits[0]['count']:0;
 
@@ -695,7 +697,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
         $visits = $query->as_array();
         $content->visits_total = (isset($visits[0]['count']))?$visits[0]['count']:0;
-        
+
     }
 
 }

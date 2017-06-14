@@ -1,28 +1,28 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
- * CONTROLLER NEW 
+ * CONTROLLER NEW
  */
 class Controller_New extends Controller
 {
-	
+
     /**
-     * 
-     * NEW ADVERTISEMENT 
-     * 
+     *
+     * NEW ADVERTISEMENT
+     *
      */
     public function action_index()
     {
         //advertisement.only_admin_post
         if( Core::config('advertisement.only_admin_post') == TRUE AND (
-            !Auth::instance()->logged_in() OR  
+            !Auth::instance()->logged_in() OR
             (Auth::instance()->logged_in() AND ! $this->user->is_admin())))
         {
             $this->redirect(Route::url('default'));
         }
-        // redirect to login, if conditions are met 
-        elseif((Core::config('advertisement.login_to_post')  == TRUE 
-             OR Core::config('payment.stripe_connect')       == TRUE 
-             OR Core::config('general.subscriptions')        == TRUE ) 
+        // redirect to login, if conditions are met
+        elseif((Core::config('advertisement.login_to_post')  == TRUE
+             OR Core::config('payment.stripe_connect')       == TRUE
+             OR Core::config('general.subscriptions')        == TRUE )
              AND !Auth::instance()->logged_in())
         {
             Alert::set(Alert::INFO, __('Please, login before posting advertisement!'));
@@ -34,7 +34,7 @@ class Controller_New extends Controller
             Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
             $this->redirect(Route::url('default'));
         }
-        // redirect to connect stripe 
+        // redirect to connect stripe
         elseif( Core::config('payment.stripe_connect') == TRUE  AND empty($this->user->stripe_user_id))
         {
             Alert::set(Alert::INFO, __('Please, connect with Stripe'));
@@ -45,10 +45,10 @@ class Controller_New extends Controller
         {
             $subscription = $this->user->subscription();
 
-            //if theres no subscription or expired or without free ads 
-            if (!$subscription->loaded() 
-                OR ( $subscription->loaded() 
-                    AND (Date::mysql2unix($subscription->expire_date) < time() 
+            //if theres no subscription or expired or without free ads
+            if (!$subscription->loaded()
+                OR ( $subscription->loaded()
+                    AND (Date::mysql2unix($subscription->expire_date) < time()
                             OR $subscription->amount_ads_left == 0 )
                         )
                 )
@@ -67,23 +67,24 @@ class Controller_New extends Controller
                 $this->template->content = 'true';
             else
                 $this->template->content = 'false';
-            
+
             return;
         }
 
         Controller::$full_width = TRUE;
-        
+
         //template header
         $this->template->title              = __('Publish new advertisement');
         $this->template->meta_description   = __('Publish new advertisement');
-        
-        
+
+
         $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
                                         'css/jasny-bootstrap.min.css' => 'screen',
                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
-                                        
+
         $this->template->scripts['footer'][] = 'js/jquery.sceditor.bbcode.min.js';
+        $this->template->scripts['footer'][] = 'js/jquery.sceditor.plaintext.min.js';
         $this->template->scripts['footer'][] = 'js/jasny-bootstrap.min.js';
         $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js';
         $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js';
@@ -120,7 +121,7 @@ class Controller_New extends Controller
         //get locations
         $locations = new Model_Location;
         $locations = $locations->where('id_location', '!=', '1');
-        
+
         // bool values from DB, to show or hide this fields in view
         $form_show = array('captcha'     =>core::config('advertisement.captcha'),
                            'website'     =>core::config('advertisement.website'),
@@ -129,8 +130,8 @@ class Controller_New extends Controller
                            'description' =>core::config('advertisement.description'),
                            'address'     =>core::config('advertisement.address'),
                            'price'       =>core::config('advertisement.price'));
-        
-        
+
+
         $id_category = NULL;
         $selected_category = new Model_Category();
         //if theres a category by post or by get
@@ -166,9 +167,9 @@ class Controller_New extends Controller
                                                                        'id_location'        => $id_location,
                                                                        'selected_location'  => $selected_location,
                                                                        'fields'             => Model_Field::get_all()));
-        if($this->request->post()) 
+        if($this->request->post())
         {
-            if(captcha::check('publish_new')) 
+            if(captcha::check('publish_new'))
             {
                 $data = $this->request->post();
 
@@ -203,20 +204,20 @@ class Controller_New extends Controller
                 if(isset($data['cf_vatcountry']) AND $data['cf_vatcountry'] AND isset($data['cf_vatnumber']) AND $data['cf_vatnumber']){
                     if (!euvat::verify_vies($data['cf_vatnumber'],$data['cf_vatcountry'])){
                         Alert::set(Alert::ERROR, __('Invalid EU Vat Number, please verify number and country match'));
-                        $this->redirect(Route::url('post_new'));                     
+                        $this->redirect(Route::url('post_new'));
                     }
                 }
 
                 if($validation->check())
-                {       
+                {
                     // User detection, if doesnt exists create
-                    if (!Auth::instance()->logged_in()) 
+                    if (!Auth::instance()->logged_in())
                     {
                     $user = Model_User::create_email(core::post('email'), core::post('name'));
 
                     //add custom fields
                     $save_cf = FALSE;
-                    foreach ($this->request->post() as $custom_field => $value) 
+                    foreach ($this->request->post() as $custom_field => $value)
                     {
                         if (strpos($custom_field,'ucf_')!==FALSE)
                         {
@@ -245,15 +246,15 @@ class Controller_New extends Controller
                         $data['id_location'] = $data['location'];
                         unset($data['location']);
                     }
-                    
+
                     //lets create!!
                     $return = Model_Ad::new_ad($data,$user);
 
-            
+
                     //there was an error on the validation
                     if (isset($return['validation_errors']) AND is_array($return['validation_errors']))
                     {
-                        foreach ($return['validation_errors'] as $f => $err) 
+                        foreach ($return['validation_errors'] as $f => $err)
                             Alert::set(Alert::ALERT, $err);
                     }
                     //another error
@@ -266,11 +267,11 @@ class Controller_New extends Controller
                     {
                         $new_ad = $return['ad'];
 
-                        // IMAGE UPLOAD 
+                        // IMAGE UPLOAD
                         $filename = NULL;
 
-                        for ($i=0; $i < core::config('advertisement.num_images'); $i++) 
-                        { 
+                        for ($i=0; $i < core::config('advertisement.num_images'); $i++)
+                        {
                             if (Core::post('base64_image'.$i))
                                 $filename = $new_ad->save_base64_image(Core::post('base64_image'.$i));
                             elseif (isset($_FILES['image'.$i]))
@@ -293,7 +294,7 @@ class Controller_New extends Controller
                 else
                 {
                     $errors = $validation->errors('ad');
-                    foreach ($errors as $f => $err) 
+                    foreach ($errors as $f => $err)
                     {
                         Alert::set(Alert::ALERT, $err);
                     }
@@ -304,9 +305,9 @@ class Controller_New extends Controller
                 Alert::set(Alert::ALERT, __('Captcha is not correct'));
             }
 
-            
+
         }
-        
+
     }
 
 

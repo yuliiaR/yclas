@@ -9,7 +9,7 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Messaging'))->set_url(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index'))));
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Inbox')));
-        
+
         Controller::$full_width = TRUE;
 
         if ($res_count > 0)
@@ -30,12 +30,13 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                                     ->limit($pagination->items_per_page)
                                     ->offset($pagination->offset)
                                     ->find_all();
-            
+
             $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen');
-                                    
+
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
+                                                        'js/jquery.sceditor.plaintext.min.js',
                                                         'js/messages.js');
-                                                                                
+
             $this->template->content = View::factory('oc-panel/pages/messages/index', array('messages'      => $messages,
                                                                                             'pagination'    => $pagination,
                                                                                             'user'          => $this->user));
@@ -48,11 +49,11 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                                                                                             'user'          => $this->user));
         }
     }
-    
+
     public function action_message()
     {
         Controller::$full_width = TRUE;
-        
+
         if ($this->request->param('id') !== NULL AND is_numeric($id_msg_thread = $this->request->param('id')))
         {
             $messages = Model_Message::get_thread($id_msg_thread, $this->user);
@@ -62,7 +63,7 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                 $msg_thread = new Model_Message();
                 $msg_thread = $msg_thread->where('id_message','=',$id_msg_thread)
                                             ->where('id_message_parent','=',$id_msg_thread)->find();
-                
+
                 // send reply message
                 if ($this->request->post() AND Form::token('reply_message', TRUE))
                 {
@@ -71,7 +72,7 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                     if ($validation->check())
                     {
                         $ret = Model_Message::reply(core::post('message'), $this->user, $id_msg_thread, NULL);
-                        
+
                         if ($ret !== FALSE)
                         {
                             Alert::set(Alert::SUCCESS, __('Reply created.'));
@@ -85,20 +86,21 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
                         $errors = $validation->errors('message');
                     }
                 }
-                
+
                 Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Messaging'))->set_url(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index'))));
                 if ($msg_thread->id_ad !== NULL AND $msg_thread->ad->loaded())
                     Breadcrumbs::add(Breadcrumb::factory()->set_title($msg_thread->ad->title));
                 else
                     Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Direct Message')));
-                
+
                 $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
                                                 '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
 
                 $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
+                                                            'js/jquery.sceditor.plaintext.min.js',
                                                             '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                             'js/messages.js');
-                
+
                 $this->template->content = View::factory('oc-panel/pages/messages/message', array(  'msg_thread'    => $msg_thread,
                                                                                                     'messages'      => $messages,
                                                                                                     'user'          => $this->user));
@@ -128,7 +130,7 @@ class Controller_Panel_Messages extends Auth_Frontcontroller {
         }
         else
             Alert::set(Alert::ERROR, __('Message not found'));
-        
+
         $this->redirect(Route::url('oc-panel', array('controller' => 'messages', 'action' => 'index')));
     }
 }

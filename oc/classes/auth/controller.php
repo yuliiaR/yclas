@@ -28,30 +28,30 @@ class Auth_Controller extends Controller
 		//login control, don't do it for auth controller so we dont loop
 		if ($this->request->controller()!='auth')
 		{
-			
+
 			$url_bread = Route::url('oc-panel',array('controller'  => 'home'));
 			Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Panel'))->set_url($url_bread));
-				
+
 			//check if user is login
 			if (!Auth::instance()->logged_in( $request->controller(), $request->action(), $request->directory()))
 			{
 				Alert::set(Alert::ERROR, sprintf(__('You do not have permissions to access %s'), $request->controller().' '.$request->action()));
 				$url = Route::get('oc-panel')->uri(array(
-													 'controller' => 'auth', 
+													 'controller' => 'auth',
 													 'action'     => 'login'));
 				$this->redirect($url);
 			}
 
             //in case we are loading another theme since we use the allow query we force the configs of the selected theme
-            if (Theme::$theme != Core::config('appearance.theme') AND Core::config('appearance.allow_query_theme')=='1') 
+            if (Theme::$theme != Core::config('appearance.theme') AND Core::config('appearance.allow_query_theme')=='1')
                 Theme::initialize(Core::config('appearance.theme'));
 
 		}
 
 		//the user was loged in and with the right permissions
         parent::__construct($request,$response);
-		
-		
+
+
 	}
 
 
@@ -59,15 +59,15 @@ class Auth_Controller extends Controller
 	 * Initialize properties before running the controller methods (actions),
 	 * so they are available to our action.
 	 * @param  string $template view to use as template
-	 * @return void           
+	 * @return void
 	 */
 	public function before($template = NULL)
 	{
         Theme::checker();
-        
+
         $this->maintenance();
         $this->private_site();
-	
+
 		if($this->auto_render===TRUE)
 		{
             // Load the template
@@ -76,7 +76,7 @@ class Auth_Controller extends Controller
             if(Core::get('rel')=='ajax')
                 $this->template = 'oc-panel/content';
             $this->template = View::factory($this->template);
-                
+
             // Initialize empty values
             $this->template->title            = __('Panel').' - '.core::config('general.site_name');
             $this->template->meta_keywords    = '';
@@ -121,11 +121,12 @@ class Auth_Controller extends Controller
                 	Theme::$styles = array_merge($common_css, $theme_css);
 
     	            Theme::$scripts['footer'] = array('js/jquery.min.js',
-    	            								  'js/jquery.cookie.min.js',	
+    	            								  'js/jquery.cookie.min.js',
     	            								  'js/iconPicker.min.js',
     												  'js/jquery.sceditor.bbcode.min.js',
+                                                      'js/jquery.sceditor.plaintext.min.js',
     												  'js/summernote.min.js',
-    												  'js/bootstrap.min.js', 
+    												  'js/bootstrap.min.js',
     											      'js/select2.min.js',
                                                       'js/mousetrap.min.js',
     											      'js/bootstrap-tour.min.js',
@@ -141,7 +142,7 @@ class Auth_Controller extends Controller
                                                       'js/oc-panel/metismenu.min.js',
                                                       'js/oc-panel/fastclick.min.js',
                                                       'js/oc-panel/theme.init.js?v='.Core::VERSION,
-                                                      'js/oc-panel/sidebar.js?v='.Core::VERSION,    
+                                                      'js/oc-panel/sidebar.js?v='.Core::VERSION,
                     );
     			}
     			else
@@ -157,16 +158,17 @@ class Auth_Controller extends Controller
     	                $theme_css = array('css/style.css?v='.Core::VERSION=>'screen');
     	            }
 
-                	$common_css = array('css/other.css?v='.Core::VERSION=>'screen'); 
+                	$common_css = array('css/other.css?v='.Core::VERSION=>'screen');
 
                 	Theme::$styles = array_merge($theme_css,$common_css);
 
                     Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js',
-                                                        '//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js',    
+                                                        '//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js',
                                                         'js/iconPicker.min.js',
                                                         'js/jquery.sceditor.bbcode.min.js',
+                                                        'js/jquery.sceditor.plaintext.min.js',
                                                         '//cdn.jsdelivr.net/summernote/0.8.1/summernote.min.js',
-                                                        '//cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js', 
+                                                        '//cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js',
                                                         '//cdn.jsdelivr.net/select2/4.0.3/js/select2.min.js',
                                                         '//cdn.jsdelivr.net/mousetrap/1.6.0/mousetrap.min.js',
                                                         'js/bootstrap-tour.min.js',
@@ -182,14 +184,14 @@ class Auth_Controller extends Controller
                                                         'js/oc-panel/metismenu.min.js',
                                                         'js/oc-panel/fastclick.min.js',
                                                         'js/oc-panel/theme.init.js?v='.Core::VERSION,
-                                                        'js/oc-panel/sidebar.js?v='.Core::VERSION, 
+                                                        'js/oc-panel/sidebar.js?v='.Core::VERSION,
                                                       );
     	        }
             }
 
 		}
-		
-		
+
+
 	}
 
 
