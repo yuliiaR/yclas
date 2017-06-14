@@ -889,7 +889,7 @@ class Model_User extends ORM {
      */
     public function is_verified_user()
     {
-        if ($this->loaded() AND isset($this->cf_verifiedbadge) AND $this->cf_verifiedbadge==1)
+        if ($this->loaded() AND isset($this->cf_verifiedbadge) AND $this->cf_verifiedbadge==1 AND Theme::get('premium')==1)
             return '<i title="'.__('Verified!').'" class="fa fa-check-circle" aria-hidden="true"></i>';
 
         return '';

@@ -4,15 +4,16 @@
     <h3><?=_e('User Profile')?></h3>
 </div>
 
-<div class="row">
+<div id="user_profile_info" class="row">
     <div class="col-xs-3">
         <a class="thumbnail">
             <picture>
-                <?=HTML::picture($user->get_profile_image(), array('w' => 142, 'h' => 142), array('1200px' => array('w' => '179', 'h' => '179'), '992px' => array('w' => '142', 'h' => '142'), '768px' => array('w' => '205', 'h' => '205'), '480px' => array('w' => '152', 'h' => '152'), '320px' => array('w' => '80', 'h' => '80')), array('class' => 'img-rounded img-responsive', 'alt' => __('Profile Picture')))?>
+                <img class="img-rounded img-responsive" src="<?=Core::imagefly($user->get_profile_image(),200,200)?>" alt="<?=$user->name?>">
             </picture>
         </a>
     </div>
-    <div class="col-xs-9">
+    <div class="col-xs-12 col-sm-9">
+        <h3><?=$user->name?> <?=$user->is_verified_user();?></h3>
         <div class="text-description">
             <?=Text::bb2html($user->description,TRUE)?>
         </div>
@@ -21,7 +22,6 @@
 
 <div class="page-header">
     <article class="well">
-        <h3><?=$user->name?> <?=$user->is_verified_user();?></h3>
         <ul class="list-unstyled">
             <?if (Core::config('advertisement.reviews')==1):?>
                 <li>
@@ -37,25 +37,35 @@
             <li><strong><?=_e('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
             <?endif?>
             <?if (Theme::get('premium')==1):?>
-            <?foreach ($user->custom_columns(TRUE) as $name => $value):?>
-            	<?if($value!=''):?>
-	            	<li>
-	                    <strong><?=$name?>:</strong>
-	                    <?if($value=='checkbox_1'):?>
-	                        <i class="fa fa-check"></i>
-	                    <?elseif($value=='checkbox_0'):?>
-	                        <i class="fa fa-times"></i>
-	                    <?else:?>
-	                        <?=$value?>
-	                    <?endif?>
-	            	</li>
-	            <?endif?>
-            <?endforeach?>
-            <?if(isset($user->cf_whatsapp) AND $user->cf_whatsapp!=''):?>
-                <li><?=$user->cf_whatsapp?> <i class="fa fa-2x fa-whatsapp" alt="Whatsapp" title="Whatsapp" style="color:#43d854"></i></li>
-            <?endif?>
+                <?foreach ($user->custom_columns(TRUE) as $name => $value):?>
+                	<?if($value!=''):?>
+                        <?if($name!='whatsapp' AND $name!='skype' AND $name!='telegram'):?>
+        	            	<li>
+        	                    <strong><?=$name?>:</strong>
+        	                    <?if($value=='checkbox_1'):?>
+        	                        <i class="fa fa-check"></i>
+        	                    <?elseif($value=='checkbox_0'):?>
+        	                        <i class="fa fa-times"></i>
+        	                    <?else:?>
+        	                        <?=$value?>
+        	                    <?endif?>
+        	            	</li>
+                        <?endif?>
+    	            <?endif?>
+                <?endforeach?>
             <?endif?>
         </ul>
+        <?if (Theme::get('premium')==1):?>
+            <?if(isset($user->cf_whatsapp) AND $user->cf_whatsapp!=''):?>
+                <a href="intent://send/<?=$user->cf_whatsapp?>#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end" title="Chat with <?=$user->name?>" alt="Whatsapp"><i class="fa fa-2x fa-whatsapp" style="color:#43d854"></i></a>
+            <?endif?>
+            <?if(isset($user->cf_skype) AND $user->cf_skype!=''):?>
+                <a href="skype:<?=$user->cf_skype?>?chat" title="Chat with <?=$user->name?>" alt="Skype"><i class="fa fa-2x fa-skype" style="color:#00aff0"></i></a>
+            <?endif?>
+            <?if(isset($user->cf_telegram) AND $user->cf_telegram!=''):?>
+                <a href="tg://resolve?domain=<?=$user->cf_telegram?>" id="telegram" title="Chat with <?=$user->name?>" alt="Telegram"><i class="fa fa-2x fa-telegram" style="color:#0088cc"></i></a>
+            <?endif?>
+        <?endif?>
 		<div class="clearfix">&nbsp;</div>
         <!-- Popup contact form -->
         <?if (core::config('general.messaging') == TRUE AND !Auth::instance()->logged_in()) :?>
@@ -131,16 +141,6 @@
             </div>
         </div>
         <div class="clearfix">&nbsp;</div>
-        <?if (Theme::get('premium')==1):?>
-            <p>
-              	<?if(isset($user->cf_skype) AND $user->cf_skype!=''):?>
-                    <a href="skype:<?=$user->cf_skype?>?chat" title="Skype" alt="Skype"><i class="fa fa-2x fa-skype" style="color:#00aff0"></i></a>
-                <?endif?>
-                <?if(isset($user->cf_telegram) AND $user->cf_telegram!=''):?>
-                    <a href="tg://resolve?domain=<?=$user->cf_telegram?>" id="telegram" title="Telegram" alt="Telegram"><i class="glyphicon fa-2x glyphicon-send" style="color:#0088cc"></i></a>
-                <?endif?>
-            </p>
-        <?endif?>
 	</article>
 </div>
 <div class="page-header">
@@ -149,26 +149,26 @@
     <?if($profile_ads!==NULL):?>
         <?foreach($profile_ads as $ad):?>
             <?if($ad->featured >= Date::unix2mysql(time())):?>
-                <article class="well featured">
+                <article id="user_profile_ads" class="well featured">
                     <span class="label label-danger pull-right"><?=_e('Featured')?></span>
             <?else:?>
-                <article class="well">
+                <article id="user_profile_ads" class="well">
             <?endif?>
 
                 <h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h4>
 
-                <div class="picture">
-                    <a class="pull-left" title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
+                <div class="col-xs-12 col-sm-3 picture">
+                    <a title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
                         <figure>
                             <?if($ad->get_first_image() !== NULL):?>
-                                  <img src="<?=Core::imagefly($ad->get_first_image(),150,150)?>" alt="<?=HTML::chars($ad->title)?>" />
-                              <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
-                                  <img src="<?=Core::imagefly($icon_src,150,150)?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
-                              <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
-                                  <img src="<?=Core::imagefly($icon_src,150,150)?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>" />
-                              <?else:?>
-                                  <img data-src="holder.js/150x150?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" alt="<?=HTML::chars($ad->title)?>">
-                              <?endif?>
+                                <img src="<?=Core::imagefly($ad->get_first_image(),160,160)?>" class="img-responsive center-block" alt="<?=HTML::chars($ad->title)?>" />
+                            <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
+                                <img src="<?=Core::imagefly($icon_src,160,160)?>" class="img-responsive center-block" alt="<?=HTML::chars($ad->title)?>" />
+                            <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
+                                <img src="<?=Core::imagefly($icon_src,160,160)?>" class="img-responsive center-block" alt="<?=HTML::chars($ad->title)?>" />
+                            <?else:?>
+                                <img data-src="holder.js/160x160?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive center-block" alt="<?=HTML::chars($ad->title)?>">
+                            <?endif?>
                         </figure>
                     </a>
                 </div>

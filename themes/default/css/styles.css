@@ -288,6 +288,11 @@ img#captcha_img_publish_new {
 
 #report_ad{margin:10px 0;}
 
+/* Users */
+#user_profile_info h3{margin-top: 0}
+#user_profile_ads img{max-width: 100%}
+.fa-check-circle{color:#1da1f2;}
+
 /*Media screens*/
 @media only screen and (max-width : 480px) {
   .modal-body{
