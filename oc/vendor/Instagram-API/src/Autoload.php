@@ -17,6 +17,7 @@
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/LoginResponse');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/Objects/User');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/Objects/Thread');
+    require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/Objects/ThreadItem');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/TimelineFeedResponse');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/autoCompleteUserListResponse');
     require_once Kohana::find_file('vendor/', 'Instagram-API/src/http/Response/Objects/FriendshipStatus');
