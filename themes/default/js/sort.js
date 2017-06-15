@@ -3,14 +3,14 @@ $(function (){
 		var id = '#'+$('.user-toolbar-options',this).attr('id');
 		$(this).toolbar({
 	        content: id,
-	        hideOnClick: true, 
+	        hideOnClick: true,
 	    });
 	});
 	$('#toolbar-all').toolbar({
         content: '#user-toolbar-options-all',
-        hideOnClick: true, 
+        hideOnClick: true,
     });
-	 
+
 });
 var glyphicon_list = "<span class='glyphicon glyphicon-list-alt'></span> ";
 var caret = " <span class='caret'></span>";
@@ -50,7 +50,7 @@ $( "#sort-distance" ).click(function(e) {
 });
 
 function initLocationsGMap() {
-    if (document.getElementById('myLocationBtn')) {
+    if (document.getElementById('myLocationBtn') || document.getElementById('listingMap')) {
         jQuery.ajax({
             url: ("https:" == document.location.protocol ? "https:" : "http:") + "//cdn.jsdelivr.net/g/gmaps@0.4.15,maplace.js@0.1.3,jquery.geocomplete@1.6.5",
             dataType: "script",
@@ -109,16 +109,16 @@ function locationsGMap() {
             map: map,
             draggable: true
         });
-          
+
         // Update current position info
         updateMarkerPosition(latLng);
         geocodePosition(latLng);
-              
+
         // Add events listeners
         google.maps.event.addListener(marker, 'drag', function() {
             updateMarkerPosition(marker.getPosition());
         });
-          
+
         google.maps.event.addListener(marker, 'dragend', function() {
             geocodePosition(marker.getPosition());
         });
