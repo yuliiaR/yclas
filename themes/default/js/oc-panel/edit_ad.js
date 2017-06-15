@@ -253,7 +253,8 @@ $('#location-edit button').click(function(){
 });
 
 // sceditor
-$('textarea[name=description]:not(.disable-bbcode)').sceditorBBCodePlugin({
+$('textarea[name=description]:not(.disable-bbcode)').sceditor({
+    plugins: "bbcode,plaintext",
     toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
     "bulletlist,orderedlist|link,unlink,youtube|source",
     resizeEnabled: "true",
@@ -263,14 +264,7 @@ $('textarea[name=description]:not(.disable-bbcode)').sceditorBBCodePlugin({
     style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
 });
 
-// paste plain text in sceditor
-$(".sceditor-container iframe").contents().find("body").bind('paste', function(e) {
-    e.preventDefault();
-    var text = (e.originalEvent || e).clipboardData.getData('text/plain');
-    $(".sceditor-container iframe")[0].contentWindow.document.execCommand('insertText', false, text);
-});
-
-//sceditorBBCodePlugin for validation, updates iframe on submit
+//sceditor for validation, updates iframe on submit
 $("button[name=submit]").click(function(){
     $("textarea[name=description]").data("sceditor").updateOriginal();
 });

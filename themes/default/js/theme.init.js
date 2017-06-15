@@ -1,9 +1,9 @@
 $(function(){
 
-    //sceditorBBCodePlugin for validation, updates iframe on submit
-$("button[name=submit]").click(function(){
-    $("textarea[name=description]").data("sceditor").updateOriginal();
-});
+    //sceditor for validation, updates iframe on submit
+    $("button[name=submit]").click(function(){
+        $("textarea[name=description]").data("sceditor").updateOriginal();
+    });
 
     //select2 enable/disable
     $('select').select2({
@@ -14,20 +14,12 @@ $("button[name=submit]").click(function(){
             $(this).select2('destroy');
         }
     });
-    // Fixes select2 on bootstrap modals
+    // Fixes select2 on bootstrap modals and iOS devices
     $('#register-modal select').each(function(){
-        $(this).select2('destroy');
-        $(this).select2({
-            "dropdownParent": $('#register-modal'),
-            "language": "es",
-            "templateResult": function(result, container) {
-                if ( ! result.id) {
-                    return result.text;
-                }
-                container.className += ' needsclick';
-                return result.text;
-            }
-        });
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream)
+        {
+            $(this).select2('destroy');
+        }
     });
     //select2 responsive width
     $(window).on('resize', function() {

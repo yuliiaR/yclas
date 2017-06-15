@@ -8,7 +8,7 @@ class Controller_Forum extends Controller {
     {
         if (core::config('general.forums') != 1)
             $this->redirect(Route::url('default'));
-        
+
         parent::__construct($request, $response);
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Forums'))->set_url(Route::url('forum-home')));
@@ -31,7 +31,7 @@ class Controller_Forum extends Controller {
         $this->template->styles              = array('css/forums.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/forums.js';
         $forums = Model_Forum::get_forum_count();
-            
+
         $this->template->bind('content', $content);
         $this->template->content = View::factory('pages/forum/home',array('forums'=>$forums));
     }
@@ -58,7 +58,7 @@ class Controller_Forum extends Controller {
             $this->template->title            = $forum->name.' - '.__('Forum');
             $this->template->meta_description = $forum->description;
             Breadcrumbs::add(Breadcrumb::factory()->set_title($forum->name));
-                        
+
             //count all topics
             $count = DB::select(array(DB::expr('COUNT("id_post")'),'count'))
                         ->from(array('posts', 'p'))
@@ -66,9 +66,9 @@ class Controller_Forum extends Controller {
                         ->where('id_forum','=',$forum->id_forum)
                         ->cached()
                         ->execute();
-                        
+
             $count = array_keys($count->as_array('count'));
-       
+
 
             $pagination = Pagination::factory(array(
                         'view'           => 'pagination',
@@ -108,7 +108,7 @@ class Controller_Forum extends Controller {
                         //->cached()
                         ->execute();
 
-            $pagination = $pagination->render(); 
+            $pagination = $pagination->render();
 
             $this->template->bind('content', $content);
             $this->template->content = View::factory('pages/forum/list',array('topics'=>$topics,'forum'=>$forum,'pagination'=>$pagination));
@@ -119,7 +119,7 @@ class Controller_Forum extends Controller {
             //throw 404
             throw HTTP_Exception::factory(404,__('Page not found'));
         }
-        
+
     }
 
     /**
@@ -151,7 +151,7 @@ class Controller_Forum extends Controller {
         }
 
         $errors = NULL;
-        if($this->request->post()) //message submition  
+        if($this->request->post()) //message submition
         {
             //captcha check
             if(captcha::check('new-forum'))
@@ -171,7 +171,7 @@ class Controller_Forum extends Controller {
                     // Optional banned words validation
                     if (core::config('advertisement.validate_banned_words'))
                         $validation = $validation->rule('title', 'no_banned_words');
-                
+
                     if ($validation->check())
                     {
                         $topic = new Model_Post();
@@ -205,7 +205,7 @@ class Controller_Forum extends Controller {
             }
             else
                 Alert::set(Alert::ERROR, __('Check the form for errors'));
-                    
+
         }
 
         //template header
@@ -214,8 +214,8 @@ class Controller_Forum extends Controller {
         Breadcrumbs::add(Breadcrumb::factory()->set_title($this->template->title));
 
         $this->template->styles              = array('css/jquery.sceditor.default.theme.min.css' => 'screen');
-        $this->template->scripts['footer']   = array('js/jquery.sceditor.bbcode.min.js','js/forum-new.js');
-        
+        $this->template->scripts['footer']   = array('js/jquery.sceditor.bbcode.min.js','js/jquery.sceditor.plaintext.min.js','js/forum-new.js');
+
         $this->template->bind('content', $content);
         $this->template->content = View::factory('pages/forum/new',array('forums'=>$forums));
         $content->errors = $errors;
@@ -274,7 +274,7 @@ class Controller_Forum extends Controller {
                             ->offset($pagination->offset)
                             ->find_all();
 
-            $pagination = $pagination->render(); 
+            $pagination = $pagination->render();
 
 
             $previous = new Model_Post();
@@ -283,7 +283,7 @@ class Controller_Forum extends Controller {
                         ->where('id_post', '<', $topic->id_post)
                         ->where('id_post_parent','IS',NULL)
                         ->order_by('created','desc')
-                        ->limit(1)->find();  
+                        ->limit(1)->find();
 
             $next = new Model_Post();
             $next = $next->where('status','=',Model_Post::STATUS_ACTIVE)
@@ -312,8 +312,8 @@ class Controller_Forum extends Controller {
 
     /**
      * add a repply to a topic
-     * @param Model_Post  $topic 
-     * @param Model_Forum $forum 
+     * @param Model_Post  $topic
+     * @param Model_Forum $forum
      */
     public function add_topic_reply(Model_Post $topic, Model_Forum $forum)
     {
@@ -321,10 +321,10 @@ class Controller_Forum extends Controller {
         if (Auth::instance()->logged_in())
         {
             $this->template->styles              = array('css/jquery.sceditor.default.theme.min.css' => 'screen');
-            $this->template->scripts['footer']   = array('js/jquery.sceditor.bbcode.min.js','js/forum-new.js');
+            $this->template->scripts['footer']   = array('js/jquery.sceditor.bbcode.min.js','js/jquery.sceditor.plaintext.min.js','js/forum-new.js');
 
             $errors = NULL;
-            if($this->request->post()) //message submition  
+            if($this->request->post()) //message submition
             {
                 //captcha check
                 if(captcha::check('new-reply-topic'))
@@ -353,7 +353,7 @@ class Controller_Forum extends Controller {
                             //set empty since they already replied
                             Request::current()->post('description','');
                             Alert::set(Alert::SUCCESS, __('Reply added, thanks!'));
-                            
+
                             //notification to the participants
                             $topic->notify_repliers();
                         }
@@ -369,32 +369,32 @@ class Controller_Forum extends Controller {
                 }
                 else
                     Alert::set(Alert::ERROR, __('Check the form for errors'));
-                    
+
             }
 
             return $errors;
 
         }
     }
-    
+
     public function action_search($search = NULL)
     {
         //template header
         $this->template->title            = __('Forum Search');
-    
+
         $this->template->styles = array('css/forum.css' => 'screen');
-    
-    
+
+
         $this->template->bind('content', $content);
-    
+
         $topics =  new Model_Topic();
         $topics->where('status','=',Model_Post::STATUS_ACTIVE)
                 ->where('id_forum','IS NOT',NULL)
                 ->where_open()
                 ->where('title','like','%'.$search.'%')->or_where('description','like','%'.$search.'%')
                 ->where_close();
-    
-    
+
+
         $pagination = Pagination::factory(array(
                     'view'           => 'pagination',
                     'total_items'    => $topics->count_all(),
@@ -403,20 +403,20 @@ class Controller_Forum extends Controller {
                     'controller' => $this->request->controller(),
                     'action'     => $this->request->action(),
         ));
-    
+
         $pagination->title($this->template->title);
-    
+
         $topics = $topics->order_by('created','desc')
                         ->limit($pagination->items_per_page)
                         ->offset($pagination->offset)
                         ->find_all();
-    
-        $pagination = $pagination->render(); 
-    
-    
-        
+
+        $pagination = $pagination->render();
+
+
+
         $this->template->content = View::factory('pages/forum/search',array('topics'=>$topics,'pagination'=>$pagination));
-        
+
     }
 
 } // End Forum
