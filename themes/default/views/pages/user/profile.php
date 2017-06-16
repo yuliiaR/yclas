@@ -161,7 +161,7 @@
                     <a title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
                         <figure>
                             <?if($ad->get_first_image() !== NULL):?>
-                                <img src="<?=Core::imagefly($ad->get_first_image(),160,160)?>" class="img-responsive center-block" alt="<?=HTML::chars($ad->title)?>" />
+                                <img src="<?=Core::imagefly($ad->get_first_image('image'),160,160)?>" class="img-responsive center-block" alt="<?=HTML::chars($ad->title)?>" />
                             <?elseif(( $icon_src = $ad->category->get_icon() )!==FALSE ):?>
                                 <img src="<?=Core::imagefly($icon_src,160,160)?>" class="img-responsive center-block" alt="<?=HTML::chars($ad->title)?>" />
                             <?elseif(( $icon_src = $ad->location->get_icon() )!==FALSE ):?>
