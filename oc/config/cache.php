@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 return array
 (
-    'default' => 'apcu',
+    'default' => 'file',
     //'prefix'  => 'cache1_',
-    
+
     'file'  => array
     (
         'driver'             => 'file',
@@ -11,7 +11,7 @@ return array
         'default_expire'     => 3600,
         'ignore_on_delete'   => array(),
     ),
-    
+
     'apc'      => array(
         'driver'             => 'apc',
         'default_expire'     => 3600,
@@ -26,7 +26,7 @@ return array
     (
         'driver'             => 'memcache',
         'default_expire'     => 3600,
-        'compression'        => FALSE,              // Use Zlib compression 
+        'compression'        => FALSE,              // Use Zlib compression
                                                     // (can cause issues with integers)
         'servers'            => array
         (
@@ -37,7 +37,7 @@ return array
                 'persistent'       => FALSE,        // Persistent connection
             ),
         ),
-        'instant_death'      => TRUE, 
+        'instant_death'      => TRUE,
     ),
 
 );
