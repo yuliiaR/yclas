@@ -45,7 +45,7 @@ class Model_Forum extends ORM {
 
 
 
-	
+
     /**
      * Filters to run when data is set in this model. The password filter
      * automatically hashes the password when it's set in the model.
@@ -92,7 +92,7 @@ class Model_Forum extends ORM {
 
     /**
      * we get the forums in an array and a multidimensional array to know the deep
-     * @return array 
+     * @return array
      */
     public static function get_all()
     {
@@ -104,7 +104,7 @@ class Model_Forum extends ORM {
             //transform the forums to an array
             $forums_arr = array();
 
-            foreach ($forums as $forum) 
+            foreach ($forums as $forum)
             {
                 $forums_arr[$forum->id_forum] =  array('name'              => $forum->name,
                                                       'order'              => $forum->order,
@@ -122,9 +122,9 @@ class Model_Forum extends ORM {
         {
             //for each forum we get his siblings
             $forums_s = array();
-            foreach ($forums as $forum) 
+            foreach ($forums as $forum)
                  $forums_s[$forum->id_forum_parent][] = $forum->id_forum;
-            
+
             //last build multidimensional array
             if (count($forums_s)>0)
                 $forums_m = self::multi_forums($forums_s);
@@ -132,7 +132,7 @@ class Model_Forum extends ORM {
                 $forums_m = array();
             Core::cache('forums_m',$forums_m);
         }
-        
+
         //array of forum info and array order
         return array($forums_arr,$forums_m);
     }
@@ -140,18 +140,18 @@ class Model_Forum extends ORM {
     /**
      * gets a multidimensional array wit the forums
      * @param  array  $forums_s      id_forum->array(id_siblings)
-     * @param  integer $id_forum 
-     * @param  integer $deep        
-     * @return array               
+     * @param  integer $id_forum
+     * @param  integer $deep
+     * @return array
      */
     public static function multi_forums($forums_s,$id_forum = 0, $deep = 0)
-    {    
+    {
         $ret = NULL;
         //we take all the siblings and try to set the grandsons...
         //we check that the id_forum sibling has other siblings
         if (isset($forums_s[$id_forum]))
         {
-            foreach ($forums_s[$id_forum] as $id_sibling) 
+            foreach ($forums_s[$id_forum] as $id_sibling)
             {
                 //we check that the id_forum sibling has other siblings
                 if (isset($forums_s[$id_sibling]))
@@ -162,9 +162,9 @@ class Model_Forum extends ORM {
                     }
                 }
                 //no siblings we only set the key
-                else 
+                else
                     $ret[$id_sibling] = NULL;
-                
+
             }
         }
         return $ret;
@@ -197,7 +197,8 @@ class Model_Forum extends ORM {
                 ->from(array('forums', 'f'))
                 ->order_by('order','asc')
                 ->as_object()
-                ->execute();
+                ->execute()
+                ->cached();
 
             Core::cache('get_forum_count',$forums);
         }
@@ -206,7 +207,7 @@ class Model_Forum extends ORM {
         $forum_count = array();
         $parent_count = array();
 
-        foreach ($forums as $f) 
+        foreach ($forums as $f)
         {
             $forum_count[$f->id_forum] = array('id_forum'           => $f->id_forum,
                                                 'seoname'           => $f->seoname,
@@ -226,32 +227,32 @@ class Model_Forum extends ORM {
 
                 $parent_count[$f->id_forum_parent]+=$f->count;
             }
-            
+
         }
 
-        foreach ($parent_count as $id_forum => $count) 
+        foreach ($parent_count as $id_forum => $count)
         {
             //attaching the count to the parents so we know each parent how many ads have
             $forum_count[$id_forum]['count'] += $count;
             $forum_count[$id_forum]['has_siblings'] = TRUE;
         }
-		
+
 		return $forum_count;
 	}
 
 
-    
+
 	/**
-	 * 
+	 *
 	 * formmanager definitions
-	 * 
+	 *
 	 */
 	public function form_setup($form)
-	{	
+	{
 		$form->fields['description']['display_as'] = 'textarea';
 
         $form->fields['id_forum_parent']['display_as']   = 'select';
-        $form->fields['id_forum_parent']['caption']      = 'name';   
+        $form->fields['id_forum_parent']['caption']      = 'name';
 
         $form->fields['parent_deep']['display_as']   = 'select';
         $form->fields['parent_deep']['options']      = range(0, 10);
@@ -269,7 +270,7 @@ class Model_Forum extends ORM {
      * return the title formatted for the URL
      *
      * @param  string $title
-     * 
+     *
      */
     public function gen_seoname($seoname)
     {
@@ -308,15 +309,15 @@ class Model_Forum extends ORM {
                 }
             }
         }
-        
+
 
         return $seoname;
     }
 
     /**
      * rule to verify that we selected a parent if not put the root location
-     * @param  integer $id_parent 
-     * @return integer                     
+     * @param  integer $id_parent
+     * @return integer
      */
     public function check_parent($id_parent)
     {
@@ -334,24 +335,24 @@ class Model_Forum extends ORM {
     {
         if ( ! $this->_loaded)
             throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
-       
+
 
         //update all the siblings this forum has and set the forum parent
         DB::update('forums')
                         ->set(array('id_forum_parent' => $this->id_forum_parent))
                         ->where('id_forum_parent','=',$this->id_forum)
                         ->execute();
-        
+
         //delete posts for that forum
         DB::delete('posts')->where('id_forum', '=',$this->id_forum)->execute();
-        
-        
+
+
         parent::delete();
     }
 
-    protected $_table_columns =  
+    protected $_table_columns =
 array (
-  'id_forum' => 
+  'id_forum' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -367,7 +368,7 @@ array (
     'key' => 'PRI',
     'privileges' => 'select,insert,update,references',
   ),
-  'name' => 
+  'name' =>
   array (
     'type' => 'string',
     'column_name' => 'name',
@@ -382,7 +383,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'order' => 
+  'order' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -398,7 +399,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'created' => 
+  'created' =>
   array (
     'type' => 'string',
     'column_name' => 'created',
@@ -411,7 +412,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_forum_parent' => 
+  'id_forum_parent' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -427,7 +428,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'parent_deep' => 
+  'parent_deep' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -443,7 +444,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'seoname' => 
+  'seoname' =>
   array (
     'type' => 'string',
     'column_name' => 'seoname',
@@ -458,7 +459,7 @@ array (
     'key' => 'UNI',
     'privileges' => 'select,insert,update,references',
   ),
-  'description' => 
+  'description' =>
   array (
     'type' => 'string',
     'column_name' => 'description',
