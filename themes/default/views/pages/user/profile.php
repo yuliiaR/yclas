@@ -14,6 +14,13 @@
     </div>
     <div class="col-xs-12 col-sm-9">
         <h3><?=$user->name?> <?=$user->is_verified_user();?></h3>
+        <?if (Core::config('advertisement.reviews')==1):?>
+                <?if ($user->rate!==NULL):?>
+                    <?for ($i=0; $i < round($user->rate,1); $i++):?>
+                        <span class="glyphicon glyphicon-star"></span>
+                    <?endfor?>
+                <?endif?>
+        <?endif?>
         <div class="text-description">
             <?=Text::bb2html($user->description,TRUE)?>
         </div>
@@ -23,15 +30,6 @@
 <div class="page-header">
     <article class="well">
         <ul class="list-unstyled">
-            <?if (Core::config('advertisement.reviews')==1):?>
-                <li>
-                    <?if ($user->rate!==NULL):?>
-                        <?for ($i=0; $i < round($user->rate,1); $i++):?>
-                            <span class="glyphicon glyphicon-star"></span>
-                        <?endfor?>
-                    <?endif?>
-                </li>
-            <?endif?>
             <li><strong><?=_e('Created')?>:</strong> <?= Date::format($user->created, core::config('general.date_format')) ?></li>
             <?if ($user->last_login!=NULL):?>
             <li><strong><?=_e('Last Login')?>:</strong> <?= Date::format($user->last_login, core::config('general.date_format'))?></li>
@@ -154,9 +152,14 @@
             <?else:?>
                 <article id="user_profile_ads" class="well">
             <?endif?>
-
-                <h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h4>
-
+                <div class="col-xs-12">
+                    <h4><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?=$ad->title?></a></h4>
+                    <?if ($ad->rate!==NULL):?>
+                        <?for ($i=0; $i < round($user->rate,1); $i++):?>
+                            <span class="glyphicon glyphicon-star"></span>
+                        <?endfor?>
+                    <?endif?>
+                </div>
                 <div class="col-xs-12 col-sm-3 picture">
                     <a title="<?=HTML::chars($ad->title)?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
                         <figure>
