@@ -453,6 +453,8 @@
                                         <?=__("Once set to TRUE, if user subscription expires, the user and the ads get disabled, until renewal.")?>
                                     </span>
                                 </div>
+                            <?else:?>
+                                <?= FORM::hidden($forms['subscriptions_expire']['key'], $forms['subscriptions_expire']['value']);?>
                             <?endif?>
                             
                             <hr>
