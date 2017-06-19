@@ -560,6 +560,7 @@ class I18n extends Kohana_I18n {
         'TOP' => array(NULL,2,'.',',',0),          //  Tonga, Paanga
         'AED' => array(NULL,2,'.',',',0),          //  UAE Dirham
         'UAH' => array(NULL,2,',',' ',0),          //  Ukraine, Hryvnia
+        'UGX' => array(NULL,2,'.',',',0),          //  Ugandan Shilling
         'USD' => array('$',2,'.',',',0),          //  US Dollar
         'VUV' => array(NULL,0,'',',',0),           //  Vanuatu, Vatu
         'VEF' => array(NULL,2,',','.',0),          //  Venezuela Bolivares Fuertes
@@ -890,6 +891,7 @@ class I18n extends Kohana_I18n {
         'TOP' => 'Tonga, Paanga',
         'AED' => 'UAE Dirham',
         'UAH' => 'Ukraine, Hryvnia',
+        'UGX' => 'Ugandan Shilling',
         'VUV' => 'Vanuatu, Vatu',
         'VEF' => 'Venezuela Bolivares Fuertes',
         'VEB' => 'Venezuela, Bolivar',
