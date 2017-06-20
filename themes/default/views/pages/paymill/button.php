@@ -12,7 +12,7 @@
         data-elv="false"
         data-lang="en-GB"
 		data-height="36"
-		data-width="146"
+		data-width="200"
         data-public-key="<?=Core::config('payment.paymill_public')?>"
         >
     </script>
