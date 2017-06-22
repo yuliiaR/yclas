@@ -176,11 +176,13 @@
         <?=StripeKO::button_connect($order)?>
         
         <?if (Core::config('payment.paypal_account')!=''):?>
-            <p class="text-right">
-                <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
-                    <?=_e('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            </p>
+            <ul class="list-inline text-right">
+                <li>
+                    <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'pay' , 'id' => $order->id_order))?>">
+                        <?=_e('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </li>
+            </ul>
         <?endif?>
 
         <?if ($order->id_product!=Model_Order::PRODUCT_AD_SELL):?>

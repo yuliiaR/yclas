@@ -91,7 +91,7 @@ class Model_Order extends ORM {
         if ($product >= 100)
         {
             $plan = new Model_Plan($product);
-            return ($plan->loaded())?$plan->name.' - '.$plan->description:NULL;
+            return Text::removebbcode(($plan->loaded())?$plan->name.' - '.$plan->description:NULL);
         }
         else
         {

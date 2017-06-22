@@ -6,7 +6,7 @@
     </div>
 <?endif?>
 
-<div class="panel-body">
+<div id="widget_categories" class="panel-body">
     <?if($widget->cat_breadcrumb !== NULL):?>
         <h5>
             <p>

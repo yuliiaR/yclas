@@ -6,7 +6,7 @@
     </div>
 <?endif?>
 
-<div class="panel-body">
+<div id="widget_ads" class="panel-body">
     <ul>
         <?foreach($widget->ads as $ad):?>
             <li>
