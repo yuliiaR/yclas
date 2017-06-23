@@ -6,7 +6,7 @@
     </div>
 <?endif?>
 
-<div class="panel-body">
+<div id="widget_locations" class="panel-body">
     <?if($widget->loc_breadcrumb !== NULL):?>
         <h5>
             <p>
