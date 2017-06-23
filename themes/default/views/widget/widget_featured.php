@@ -15,7 +15,7 @@
 					<div class="picture pull-right col-xs-12 col-sm-3 <?=($widget->placeholder!='header')?'col-md-12':''?>">
 						<a class="pull-right" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
 							<figure>
-								<img src="<?=$ad->get_first_image()?>" class="img-responsive" width="100%">
+								<img src="<?=Core::imagefly($ad->get_first_image('image'),250,250)?>" alt="<?=HTML::chars($ad->title)?>" class="img-responsive" width="100%"/>
 							</figure>
 						</a>
 					</div>
@@ -23,7 +23,7 @@
 					<div class="picture pull-right col-xs-12 col-sm-3 <?=($widget->placeholder!='header')?'col-md-12':''?>">
 						<a class="pull-right" title="<?=HTML::chars($ad->title);?>" alt="<?=HTML::chars($ad->title);?>" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>">
 							<figure>
-								<img data-src="holder.js/200x200?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" width="100%">
+								<img data-src="holder.js/250x250?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" class="img-responsive" width="100%">
 							</figure>
 						</a>
 					</div>

@@ -1,6 +1,6 @@
 <?if(Theme::get('premium')==1 AND Model_Coupon::available()):?>
 <div class="panel-heading">
-    <h3><?=$widget->text_title?></h3>
+    <h3 class="panel-title"><?=$widget->text_title?></h3>
 </div>
 
 <div class="panel-body">
