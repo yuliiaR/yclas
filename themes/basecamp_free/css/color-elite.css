@@ -593,6 +593,12 @@ hr {
     color: #FFFFFF;
 }
 
+.slider-handle{
+    background-color: #B09C65;
+    background-image: linear-gradient(to bottom, #B09C65, #b7a574);
+}
+
+
 .panel {
     background-color: #313131;
 }

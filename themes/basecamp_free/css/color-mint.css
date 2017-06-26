@@ -282,6 +282,11 @@ color: #6C6C6C;
     color: #fff;
 }
 
+.slider-handle{
+    background-color: #4AC391;
+    background-image: linear-gradient(to bottom, #4AC391, #5cc99c);
+}
+
 .badge {
 	font-weight: normal;
 }
