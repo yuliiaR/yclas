@@ -17,12 +17,26 @@ a:hover {color: #9F571D;}
 
 .featured{background: #FAD4C0;}
 
+.btn-info {
+    background-color: #fcb376;
+    border-color: #FCA055;
+}
+.btn-info:hover, .btn-info:active, .btn-info:focus {
+    background-color: #FCA055!important;
+    border-color: #DF7A29!important;
+}
+.btn-info.active, .btn-info:active, .open > .dropdown-toggle.btn-info {
+    color: #fff;
+    background-color: #DF7A29;
+    border-color: #c98044;
+}
+
 .btn-primary{background-color: #DF7A29; border-color: #BF6923;}
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
-.open > dropdown-toggle.btn-primary {background-color: #BF5B0B; border-color: #9F4C09;}
+.open > dropdown-toggle.btn-primary {background-color: #BF5B0B!important; border-color: #9F4C09!important;}
 
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
     background-color: #DF7A29;
@@ -33,4 +47,16 @@ a:hover {color: #9F571D;}
 }
 .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
 	color: #BF6923;
+}
+
+.panel-home-categories > .panel-heading {
+    background-color: #FCA055;
+}
+.panel-sidebar > .panel-heading {
+    border-top: 8px #FCA055 solid;
+}
+
+.slider-handle{
+	background-color: #FCA055;
+	background-image: linear-gradient(to bottom, #FCA055, #DF7A29);
 }

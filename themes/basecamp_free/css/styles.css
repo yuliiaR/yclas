@@ -448,6 +448,11 @@ fieldset[disabled] .btn-base-dark.focus {
 	margin-bottom: 0;
 }
 
+.slider-handle{
+	background-color: #181C21;
+	background-image: linear-gradient(to bottom, #181C21, #2f3237);
+}
+
 /* Pager */
 .pagination>li>a, .pagination>li>span {
 	position: relative;

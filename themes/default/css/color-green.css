@@ -17,6 +17,20 @@ a:hover {color: #535F12;}
 
 .featured{background: #BCCDC7;}
 
+.btn-info {
+    background-color: #bfca7e;
+    border-color: #AFBD5E;
+}
+.btn-info:hover, .btn-info:active, .btn-info:focus {
+    background-color: #AFBD5E!important;
+    border-color: #909F3B!important;
+}
+.btn-info.active, .btn-info:active, .open > .dropdown-toggle.btn-info {
+    color: #fff;
+    background-color: #909F3B;
+    border-color: #9daa54;
+}
+
 .btn-primary{background-color: #909F3B; border-color: #717F1F;}
 .btn-primary:hover,
 .btn-primary:focus,
@@ -33,4 +47,16 @@ a:hover {color: #535F12;}
 }
 .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
 	color: #535F12;
+}
+
+.panel-home-categories > .panel-heading {
+    background-color: #AFBD5E;
+}
+.panel-sidebar > .panel-heading {
+    border-top: 8px #AFBD5E solid;
+}
+
+.slider-handle{
+	background-color: #AFBD5E;
+	background-image: linear-gradient(to bottom, #AFBD5E, #909F3B);
 }

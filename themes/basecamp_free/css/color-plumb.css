@@ -324,6 +324,11 @@ background: #92BB62;
     color: #fff;
 }
 
+.slider-handle{
+    background-color: #92bb62;
+    background-image: linear-gradient(to bottom, #92bb62, #9cc171);
+}
+
 .badge {
 	font-weight: normal;
 }

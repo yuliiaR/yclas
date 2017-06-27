@@ -150,7 +150,7 @@ class Social {
                     "image_url"     => core::imagefly($file,400,600),
                     "board"         => core::config('advertisement.pinterest_board')
                 ));
-            } catch (InstagramException $e) {
+            } catch (Exception $e) {
                 echo $e->getMessage();
             }
         }
@@ -158,6 +158,8 @@ class Social {
 
     public static function instagram(Model_Ad $ad)
     {
+        if(core::config('advertisement.instagram_username')!='' AND core::config('advertisement.instagram_password')){
+
             $file = $ad->get_first_image('image');
 
             if($file !== NULL)
@@ -188,16 +190,18 @@ class Social {
                 $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
                 $caption .= ' - '.$url_ad;
 
+                $i = new \InstagramAPI\Instagram();
+                
                 try
                 {
-                    $i = new \InstagramAPI\Instagram();
                     $i->setUser(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
-                    $i->login();
+                    $i->login(true);
                     $i->uploadPhoto(Core::imagefly($file,500,500), $caption);
-                } catch (InstagramException $e) {
+                } catch (Exception $e) {
                     echo $e->getMessage();
                 }
             }
+        }
 
     }
 
