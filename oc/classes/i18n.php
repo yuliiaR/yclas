@@ -572,6 +572,7 @@ class I18n extends Kohana_I18n {
         'MAD' => array('.د.م',2,'.',',',1),          //  Moroccan Dirham
         'NGN' => array('₦',2,'.',',',0),          //  Nigerian Naira
         'DZD' => array('دج',2,'.',',',0),          //  Algerian Dinar
+        'XOF' => array('CFA',2,'.',',',1),          //  West African CFA Franc
     );
     
     /**
@@ -896,6 +897,7 @@ class I18n extends Kohana_I18n {
         'VEF' => 'Venezuela Bolivares Fuertes',
         'VEB' => 'Venezuela, Bolivar',
         'VND' => 'Viet Nam, Dong ₫',
+        'XOF' => 'West African CFA Franc',
         'ZWD' => 'Zimbabwe Dollar',
         );
     }
