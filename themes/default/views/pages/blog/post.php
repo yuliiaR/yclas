@@ -5,7 +5,7 @@
 </div>
 
 <div class="well">
-    <span class="label label-default"><?=$post->user->name?></span>
+    <span class="label label-default"><?=$post->user->name?> <?=$post->user->is_verified_user();?></span>
     <div class="pull-right">
         <span class="label label-info"><?=Date::format($post->created, core::config('general.date_format'))?></span>
     </div>    
