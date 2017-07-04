@@ -17,7 +17,7 @@ a:hover {color: #535F12;}
 
 .featured{background: #BCCDC7;}
 
-.btn-info {
+.btn-info, .label-info {
     background-color: #bfca7e;
     border-color: #AFBD5E;
 }
@@ -31,12 +31,16 @@ a:hover {color: #535F12;}
     border-color: #9daa54;
 }
 
+.btn-success,
 .btn-primary{background-color: #909F3B; border-color: #717F1F;}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
-.open > dropdown-toggle.btn-primary {background-color: #717F1F; border-color: #535F0C;}
+.open > dropdown-toggle.btn-primary {background-color: #717F1F!important; border-color: #535F0C!important;}
 
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
     background-color: #909F3B;
@@ -60,3 +64,5 @@ a:hover {color: #535F12;}
 	background-color: #AFBD5E;
 	background-image: linear-gradient(to bottom, #AFBD5E, #909F3B);
 }
+
+.text-info{color:#565f23;}

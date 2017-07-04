@@ -17,7 +17,7 @@ a:hover {color: #9F571D;}
 
 .featured{background: #FAD4C0;}
 
-.btn-info {
+.btn-info, .label-info {
     background-color: #fcb376;
     border-color: #FCA055;
 }
@@ -31,7 +31,11 @@ a:hover {color: #9F571D;}
     border-color: #c98044;
 }
 
+.btn-success,
 .btn-primary{background-color: #DF7A29; border-color: #BF6923;}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
@@ -60,3 +64,5 @@ a:hover {color: #9F571D;}
 	background-color: #FCA055;
 	background-image: linear-gradient(to bottom, #FCA055, #DF7A29);
 }
+
+.text-info{color:#854918;}
