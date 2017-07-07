@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<form class="pull-right" action="<?=Route::URL('blog')?>" method="get">
+<form class="form-group col-xs-12 pull-right" action="<?=Route::URL('blog')?>" method="get">
     <button class="btn btn-default pull-right" type="submit" value="<?=__('Search')?>"><?=_e('Search')?></button>
     <div class="pull-right">&nbsp;</div>
     <div class="pull-right">
