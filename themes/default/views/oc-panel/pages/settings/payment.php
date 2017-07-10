@@ -211,10 +211,14 @@
                     <div class="form-group">
                         <?=FORM::label($forms['vat_number']['key'], __('VAT Number'), array('class'=>'control-label', 'for'=>$forms['vat_number']['key']))?>
                         <?=FORM::input($forms['vat_number']['key'], $forms['vat_number']['value'], array(
-                            'placeholder' => "", 
+                            'placeholder' => "VAT number", 
+                            'title' => "Enter the VAT number without the two-letter country code", 
                             'class' => 'tips form-control', 
                             'id' => $forms['vat_number']['key'],
                         ))?>
+                        <span class="help-block">
+                            <?=__("Enter the VAT number without the two-letter country code.")?>
+                        </span>
                     </div>
 
                     <hr>
