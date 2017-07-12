@@ -66,3 +66,11 @@ a:hover {color: #9F571D;}
 }
 
 .text-info{color:#854918;}
+
+/* Forums */
+.table > tbody > tr.success > td{
+    background-color: #fef5ee;
+}
+.table > tbody > tr.success:hover > td {
+    background-color: #feecdd;
+}
