@@ -85,8 +85,8 @@ ol, ul {
 }
 .navbar-btn .btn-success:hover, .navbar-btn .btn-success:active, .navbar-btn .btn-success:focus{
     color: #fff;
-    background-color: #449d44;
-    border-color: #398439;
+    background-color: #449d44!important;
+    border-color: #398439!important;
 }
 
 .btn-success{
