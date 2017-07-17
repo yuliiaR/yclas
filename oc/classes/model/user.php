@@ -1109,7 +1109,7 @@ class Model_User extends ORM {
         require_once Kohana::find_file('vendor', 'pusher/autoload');
 
         $options = array(
-            'cluster' => 'eu',
+            'cluster' => Core::config('general.pusher_notifications_cluster'),
             'encrypted' => true
         );
         $pusher = new Pusher(

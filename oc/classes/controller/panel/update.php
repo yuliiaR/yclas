@@ -18,6 +18,9 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'subscriptions_expire',
                                'group_name'     => 'general',
                                'config_value'   => '0'),
+                        array( 'config_key'     => 'pusher_notifications_cluster',
+                               'group_name'     => 'general',
+                               'config_value'   => 'eu'),
                         );
 
         Model_Config::config_array($configs);

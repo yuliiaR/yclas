@@ -595,6 +595,14 @@
                                     'id' => $forms['pusher_notifications_secret']['id'],
                                 ))?>
                             </div>
+                            <div class="form-group">
+                                <?=FORM::label($forms['pusher_notifications_cluster']['id'], __('Cluster'), array('class'=>'control-label', 'for'=>$forms['pusher_notifications_cluster']['id']))?>
+                                    <?= FORM::select($forms['pusher_notifications_cluster']['key'],
+                                        array('mt1'=>'us-east-1','eu'=>'eu-west-1','ap1'=>'ap-southeast-1','ap2'=>'ap-south-1','us2'=>'us-east-2'), $forms['pusher_notifications_cluster']['value'], array(
+                                    'class' => 'form-control',
+                                    'id' => $forms['pusher_notifications_cluster']['id'],
+                                ))?>
+                            </div>
                             <hr>
                             <p>
                                 <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
