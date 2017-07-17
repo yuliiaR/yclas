@@ -687,12 +687,13 @@ function getResizeValue(value) {
 $(function(){
     var user = $('#pusher-subscribe').data('user');
     var key = $('#pusher-subscribe').data('key');
+    var cluster = $('#pusher-subscribe').data('cluster');
 
     // subscribe user if is logged in
     if(user != undefined && user != ''){
 
         var pusher = new Pusher(key, {
-          cluster: 'eu',
+          cluster: cluster,
           encrypted: true
         });
 
