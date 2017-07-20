@@ -691,7 +691,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'pusher_notifications_app_id', ''),
 ('general', 'pusher_notifications_key', ''),
 ('general', 'pusher_notifications_secret', ''),
-('general', 'pusher_notifications_secret', 'eu'),
+('general', 'pusher_notifications_cluster', 'eu'),
 ('general', 'algolia_search', '0'),
 ('general', 'algolia_search_application_id', ''),
 ('general', 'algolia_search_admin_key', ''),
