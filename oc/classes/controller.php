@@ -70,6 +70,18 @@ class Controller extends Kohana_Controller
             $this->redirect($url);
         }
 
+        //check 2 step SMS
+        if ( strtolower($this->request->controller())!='auth' AND
+            Auth::instance()->logged_in() AND
+            c AND 
+            Cookie::get('sms_auth')!=Auth::instance()->get_user()->id_user AND
+            Valid::phone($this->user->phone) )
+        {
+            //redirect to 2step sms page
+            $url = Route::url('oc-panel',array('controller'=>'auth','action'=>'sms')).'?auth_redirect='.URL::current();
+            $this->redirect($url);
+        }
+
         //expired subscription
         if (strtolower($this->request->controller())!='plan' AND
             strtolower($this->request->action())!='pay' AND

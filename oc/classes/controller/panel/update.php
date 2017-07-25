@@ -21,9 +21,21 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'pusher_notifications_cluster',
                                'group_name'     => 'general',
                                'config_value'   => 'eu'),
+                        array( 'config_key'     => 'sms_auth',
+                               'group_name'     => 'general',
+                               'config_value'   => '0'),
+                        array( 'config_key'     => 'sms_clickatell_api',
+                               'group_name'     => 'general',
+                               'config_value'   => ''),
                         );
 
         Model_Config::config_array($configs);
+
+        //user phone number 
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `phone` varchar(30) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
 
     }
 

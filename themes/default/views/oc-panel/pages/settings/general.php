@@ -149,6 +149,38 @@
                             </div>
 
                             <div class="form-group">
+                                <?= FORM::label($forms['sms_auth']['id'], __("2 Step SMS Authentication"), array('class'=>'control-label', 'for'=>$forms['sms_auth']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/2-step-sms-authentication/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['sms_auth']['key'], 1, (bool) $forms['sms_auth']['value'], array('id' => $forms['sms_auth']['id'].'1'))?>
+                                    <?=Form::label($forms['sms_auth']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['sms_auth']['key'], 0, ! (bool) $forms['sms_auth']['value'], array('id' => $forms['sms_auth']['id'].'0'))?>
+                                    <?=Form::label($forms['sms_auth']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("2 step SMS Authentication")?>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['sms_clickatell_api']['id'], __('Clickatell'), array('class'=>'control-label', 'for'=>$forms['sms_clickatell_api']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/clickatell/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?= FORM::input($forms['sms_clickatell_api']['key'], $forms['sms_clickatell_api']['value'], array(
+                                    'placeholder' => '',
+                                    'class' => 'form-control',
+                                    'id' => $forms['sms_clickatell_api']['id'],
+                                    'data-rule-required'=>'true',
+                                ))?>
+                                <span class="help-block">
+                                    <?=__("Clickatell SMS API Key, needed for SMS Authentication to work.")?>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
                                 <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label', 'for'=>$forms['cookie_consent']['id']))?>
                                 <div class="radio radio-primary">
                                     <?=Form::radio($forms['cookie_consent']['key'], 1, (bool) $forms['cookie_consent']['value'], array('id' => $forms['cookie_consent']['id'].'1'))?>

@@ -511,4 +511,62 @@ class Controller_Panel_Auth extends Controller {
     }
 
 
+    /**
+     * 2step verification form
+     * 
+     */
+    public function action_sms()
+    {
+        // 2step disabled or trying to access directly
+        if (!Auth::instance()->logged_in() OR Core::config('general.sms_auth') == FALSE )
+            $this->redirect(Route::get('oc-panel')->uri());
+
+        //template header
+        $this->template->title   = __('2 Step Authentication');
+        $this->template->content = View::factory('pages/auth/sms',['user'=>$this->user]);
+
+        //if user loged in redirect home
+        if  ( Auth::instance()->logged_in() AND ( Cookie::get('sms_auth') == $this->user->id_user  ) )
+        {
+            $this->redirect(Route::get('oc-panel')->uri());
+        }
+
+        //avoid duplicated sms
+        if (Session::instance()->get('sms_auth_code')==NULL)
+        {
+            $code     = Text::random('numeric',6);
+            $response = SMS::send($this->user->phone,__('Your code:').' '.$code);
+
+            if ($response === TRUE) 
+            {
+               Session::instance()->set('sms_auth_code',$code);
+            } 
+            else 
+            {
+                Session::instance()->set('sms_auth_code',NULL);
+                Form::set_errors(array($response));
+            }
+        }
+            
+        //posting data so try to remember password
+        if (core::post('code') AND CSRF::valid('sms'))
+        {            
+            
+            if (core::post('code') ===  Session::instance()->get('sms_auth_code') )
+            {
+                //set cookie
+                Cookie::set('sms_auth' , $this->user->id_user, Core::config('auth.lifetime') );
+
+                // redirect to the url we wanted to see
+                Auth::instance()->login_redirect();
+            } 
+            else 
+            {
+                Form::set_errors(array(__('Invalid Code')));
+            }
+            
+        }
+    }
+
+
 }

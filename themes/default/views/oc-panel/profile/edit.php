@@ -47,6 +47,16 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <?if (core::config('general.sms_auth')==TRUE):?>
+                                <label class="col-xs-4 control-label"><?=_e('Mobile phone number, Used for SMS authentication')?></label>
+                                <?else:?>
+                                <?= FORM::label('phone', _e('Phone'), array('class'=>'col-xs-4 control-label', 'for'=>'phone'))?>
+                                <?endif?>
+                                <div class="col-sm-8">
+                                    <?= FORM::input('phone', $user->phone, array('class'=>'form-control', 'id'=>'phone', 'type'=>'phone' ,'required','placeholder'=>__('Phone')))?>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <?= FORM::label('description', _e('Description'), array('class'=>'col-xs-4 control-label', 'for'=>'description'))?>
                                 <div class="col-sm-8">
                                     <?=FORM::textarea('description', $user->description, array(
