@@ -22,7 +22,7 @@
 	                            <a class="btn btn-primary" href="<?=Route::url('default', array('controller'=>'stripe','action'=>'connect','id'=>'now'))?>">
 	                                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Connect with Stripe
 	                            </a>
-	                            
+
 	                        </div>
 	                    </div>
 	                </div>
@@ -48,15 +48,30 @@
 									<?= FORM::input('email', $user->email, array('class'=>'form-control', 'id'=>'email', 'type'=>'email' ,'required','placeholder'=>__('Email')))?>
 								</div>
 							</div>
+                            <div class="form-group">
+                                <?if (core::config('general.sms_auth')==TRUE):?>
+                                	<label class="col-xs-4 control-label"><?=_e('Mobile phone number')?></label>
+                                <?else:?>
+                                	<?= FORM::label('phone', _e('Phone'), array('class'=>'col-xs-4 control-label', 'for'=>'phone'))?>
+                                <?endif?>
+                                <div class="col-sm-8">
+                                    <?= FORM::input('phone', $user->phone, array('class'=>'form-control', 'id'=>'phone', 'type'=>'phone' ,'required','placeholder'=>__('Phone')))?>
+                                    <?if (core::config('general.sms_auth')==TRUE):?>
+                                    	<span class="help-block"><?=_e('Used for SMS authentication.')?></span>
+                                    <?else:?>
+                                    	<br><br>
+                                    <?endif?>
+                                </div>
+                            </div>
 							<div class="form-group clearfix">
 								<?= FORM::label('description', _e('Description'), array('class'=>'col-xs-4 control-label', 'for'=>'description'))?>
 								<div class="col-sm-8">
                                     <?=FORM::textarea('description', $user->description, array(
                                     'placeholder' => '',
-                                    'rows' => 3, 'cols' => 50, 
-                                    'class' => 'form-control', 
+                                    'rows' => 3, 'cols' => 50,
+                                    'class' => 'form-control',
                                     'id' => 'description',
-                                ))?> 
+                                ))?>
                                 </div>
 							</div>
 							<?foreach($custom_fields as $name=>$field):?>
@@ -83,7 +98,7 @@
 									</div>
 								<?endif?>
 							<?endforeach?>
-							
+
 							<div class="form-group clearfix">
 								<div class="col-md-offset-4 col-md-8">
 									<div class="checkbox">
@@ -107,8 +122,8 @@
 				</div>
 				<div class="panel-body">
 					<div class="pad_10">
-						<form method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'changepass'))?>">         
-										
+						<form method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'changepass'))?>">
+
 						<div class="form-group clearfix">
 							<label class="col-xs-4 control-label"><?=_e('New password')?></label>
 							<div class="col-sm-8">
@@ -129,7 +144,7 @@
 								<button type="submit" class="btn btn-success"><?=_e('Update')?></button>
 							</div>
 						</div>
-						
+
 						</form>
 					</div>
 				</div>
@@ -161,7 +176,7 @@
 	                        <hr>
 	                        <p><?=_e('2 step authentication provided by Google Authenticator.')?></p>
 	                        <div class="btn-group">
-	                            <a class="btn btn-default" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"><i class="fa fa-android"></i> Android</a> 
+	                            <a class="btn btn-default" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"><i class="fa fa-android"></i> Android</a>
 	                            <a class="btn btn-default" href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8"><i class="fa fa-apple"></i> iOS</a>
 	                        </div>
 	                    </div>
@@ -169,19 +184,19 @@
 	            </div>
 	        </div>
 	        <?endif?>
-	
-			<form enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>"> 
+
+			<form enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">
 			<div class="panel panel-default">
 					<div class="panel-heading" id="page-edit-profile">
 					<h3 class="panel-title"><?=_e('Profile picture')?>
-					
+
 					<?if ($user->has_image):?>
 						<button type="submit"
 						class="btn btn-sm btn-danger index-delete index-delete-inline pull-right"
-						onclick="return confirm('<?=__('Delete photo?')?>');" 
-						type="submit" 
+						onclick="return confirm('<?=__('Delete photo?')?>');"
+						type="submit"
 						name="photo_delete"
-						value="1" 
+						value="1"
 						title="<?=__('Delete photo')?>">
 						<span class="glyphicon glyphicon-remove"></span>
 						</button>
@@ -195,14 +210,14 @@
 								<a class="thumbnail">
 									<img src="<?=$user->get_profile_image()?>" class="img-rounded" alt="<?=__('Profile Picture')?>" height='200px'>
 								</a>
-							</div>		
+							</div>
 						</div>
-				
+
 						<div class="col-sm-8 col-md-9 clearfix">
 							<?= FORM::label('profile_img', _e('Profile picture'), array('class'=>'col-xs-12 control-label', 'for'=>'profile_img'))?>
 								<div class="col-sm-8">
 									<input type="file" name="profile_image" id="profile_img" />
-								</div>  
+								</div>
 						</div>
 					</div>
 					<div class="text-right pad_10">
@@ -213,4 +228,4 @@
 			</form>
 		</div>
 	</div>
-</div>	
+</div>

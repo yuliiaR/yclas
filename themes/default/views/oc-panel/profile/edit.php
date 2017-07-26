@@ -48,13 +48,15 @@
                             </div>
                             <div class="form-group">
                                 <?if (core::config('general.sms_auth')==TRUE):?>
-                                <label class="col-xs-4 control-label"><?=_e('Mobile phone number')?></label>
+                                    <label class="col-xs-4 control-label"><?=_e('Mobile phone number')?></label>
                                 <?else:?>
-                                <?= FORM::label('phone', _e('Phone'), array('class'=>'col-xs-4 control-label', 'for'=>'phone'))?>
+                                    <?=FORM::label('phone', _e('Phone'), array('class'=>'col-xs-4 control-label', 'for'=>'phone'))?>
                                 <?endif?>
                                 <div class="col-sm-8">
                                     <?= FORM::input('phone', $user->phone, array('class'=>'form-control', 'id'=>'phone', 'type'=>'phone' ,'required','placeholder'=>__('Phone')))?>
-                                    <span class="help-block"><?=_e('Used for SMS authentication.')?></span>
+                                    <?if (core::config('general.sms_auth')==TRUE):?>
+                                        <span class="help-block"><?=_e('Used for SMS authentication.')?></span>
+                                    <?endif?>
                                 </div>
                             </div>
                             <div class="form-group">
