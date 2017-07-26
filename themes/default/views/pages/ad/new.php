@@ -13,14 +13,14 @@
 							<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
 						</div>
 					</div>
-					
+
 					<!-- category select -->
 					<div class="form-group">
 						<div class="col-md-12">
 							<?= FORM::label('category', _e('Category'), array('for'=>'category'))?>
 							<div id="category-chained" class="row <?=($id_category === NULL) ? NULL : 'hidden'?>"
-								data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" 
-								data-price0="<?=i18n::money_format(0)?>" 
+								data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>"
+								data-price0="<?=i18n::money_format(0)?>"
 								<?=(core::config('advertisement.parent_category')) ? 'data-isparent' : NULL?>
 							>
 								<div id="select-category-template" class="col-md-6 hidden">
@@ -45,7 +45,7 @@
 							<input id="category-selected" name="category" value="<?=$id_category?>" class="form-control invisible" style="height: 0; padding:0; width:1px; border:0;" required></input>
 						</div>
 					</div>
-			
+
 					<!-- location select -->
 					<?if($form_show['location'] != FALSE):?>
 						<div class="form-group">
@@ -72,15 +72,15 @@
 							</div>
 						</div>
 					<?endif?>
-			
+
 					<?if($form_show['description'] != FALSE):?>
 						<div class="form-group">
 							<div class="col-md-9">
 								<?= FORM::label('description', _e('Description'), array('for'=>'description', 'spellcheck'=>TRUE))?>
-								<?=FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'), 
-									'name'=>'description', 
-									'id'=>'description', 
-									'rows'=>10, 
+								<?=FORM::textarea('description', Request::current()->post('description'), array('class'=>'form-control'.((Core::config("advertisement.description_bbcode"))? NULL:' disable-bbcode'),
+									'name'=>'description',
+									'id'=>'description',
+									'rows'=>10,
 									'required',
 									'data-bannedwords' => (core::config('advertisement.validate_banned_words') AND core::config('advertisement.banned_words') != '') ? json_encode(explode(',', core::config('advertisement.banned_words'))) : '',
 									'data-error' => __('This field must not contain banned words ({0})')))?>
@@ -89,11 +89,11 @@
 					<?endif?>
 
 		     <?if(core::config("advertisement.num_images") > 0 ):?>
-					<div class="form-group images" 
-						data-max-image-size="<?=core::config('image.max_image_size')?>" 
-						data-image-width="<?=core::config('image.width')?>" 
-						data-image-height="<?=core::config('image.height') ? core::config('image.height') : 0?>" 
-						data-image-quality="<?=core::config('image.quality')?>" 
+					<div class="form-group images"
+						data-max-image-size="<?=core::config('image.max_image_size')?>"
+						data-image-width="<?=core::config('image.width')?>"
+						data-image-height="<?=core::config('image.height') ? core::config('image.height') : 0?>"
+						data-image-quality="<?=core::config('image.quality')?>"
 						data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>"
 					>
 						<div class="col-md-12">
@@ -125,7 +125,13 @@
 						<div class="form-group">
 							<div class="col-md-4">
 								<?= FORM::label('phone', _e('Phone'), array('for'=>'phone'))?>
-								<?= FORM::input('phone', Request::current()->post('phone'), array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
+                                <div>
+                                    <?if (Auth::instance()->get_user()):?>
+                                        <?=FORM::input('phone', Auth::instance()->get_user()->phone, array('class'=>'form-control', 'id'=>'phone'))?>
+                                    <?else:?>
+                                        <?=FORM::input('phone', Request::current()->post('phone'), array('class'=>'form-control', 'id'=>'phone'))?>
+                                    <?endif?>
+                                </div>
 							</div>
 						</div>
 					<?endif?>
@@ -151,10 +157,10 @@
 						</div>
 						<?if(core::config('advertisement.map_pub_new')):?>
 							<div class="popin-map-container">
-								<div class="map-inner" id="map" 
-									data-lat="<?=core::config('advertisement.center_lat')?>" 
+								<div class="map-inner" id="map"
+									data-lat="<?=core::config('advertisement.center_lat')?>"
 									data-lon="<?=core::config('advertisement.center_lon')?>"
-									data-zoom="<?=core::config('advertisement.map_zoom')?>" 
+									data-zoom="<?=core::config('advertisement.map_zoom')?>"
 									style="height:200px;max-width:400px;">
 								</div>
 							</div>
@@ -164,7 +170,7 @@
 					<?endif?>
 					<?if($form_show['price'] != FALSE):?>
 						<div class="form-group">
-				
+
 							<div class="col-md-4">
 								<?= FORM::label('price', _e('Price'), array('for'=>'price'))?>
 								<div class="input-prepend">
@@ -175,7 +181,7 @@
 					<?endif?>
 					<?if(core::config('payment.stock')):?>
 						<div class="form-group">
-				
+
 							<div class="col-md-4">
 								<?= FORM::label('stock', _e('In Stock'), array('for'=>'stock'))?>
 								<div class="input-prepend">
@@ -218,7 +224,7 @@
 							<div class="col-md-4">
 								<div class="checkbox">
 									<label>
-									  	<input type="checkbox" required name="tos" id="tos"/> 
+									  	<input type="checkbox" required name="tos" id="tos"/>
 										<a target="_blank" href="<?=Route::url('page', array('seotitle'=>core::config('advertisement.tos')))?>"> <?=_e('Terms of service')?></a>
 									</label>
 								</div>

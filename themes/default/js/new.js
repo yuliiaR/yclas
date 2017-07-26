@@ -540,3 +540,9 @@ $("#price").keyup(function() {
     else
         $(this).val($(this).val().replace(/[^\d.]/g, ''));
 });
+
+
+$("#phone").intlTelInput({
+    formatOnDisplay: false,
+});
+
