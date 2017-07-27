@@ -30,21 +30,21 @@
 						</div>
 						<br><hr><br>
 					<?endif?>
-			
+
 					<div class="form-group">
 						<div class="col-xs-12">
 							<?= FORM::label('title', _e('Title'), array('for'=>'title'))?>
 							<?= FORM::input('title', Request::current()->post('title'), array('placeholder' => __('Title'), 'class' => 'form-control', 'id' => 'title', 'required'))?>
 						</div>
 					</div>
-					
+
 					<!-- category select -->
 					<div class="form-group">
 						<div class="col-xs-12">
 							<?= FORM::label('category', _e('Category'), array('for'=>'category'))?>
 							<div id="category-chained" class="row <?=($id_category === NULL) ? NULL : 'hidden'?>"
-								data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>" 
-								data-price0="<?=i18n::money_format(0)?>" 
+								data-apiurl="<?=Route::url('api', array('version'=>'v1', 'format'=>'json', 'controller'=>'categories'))?>"
+								data-price0="<?=i18n::money_format(0)?>"
 								<?=(core::config('advertisement.parent_category')) ? 'data-isparent' : NULL?>
 							>
 							<div id="select-category-template" class="col-xs-3 hidden">
@@ -69,7 +69,7 @@
 								<input id="category-selected" name="category" value="<?=$id_category?>" class="form-control invisible" style="height: 0; padding:0; width:1px; border:0;" required></input>
 						</div>
 					</div>
-				
+
 					<!-- location select -->
 					<?if($form_show['location'] != FALSE):?>
 						<div class="form-group">
@@ -101,7 +101,13 @@
 						<?if($form_show['phone'] != FALSE):?>
 							<div class="col-xs-6">
 								<?= FORM::label('phone', _e('Phone'), array('for'=>'phone'))?>
-								<?= FORM::input('phone', Request::current()->post('phone'), array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
+								<div>
+                                    <?if (Auth::instance()->get_user()):?>
+                                        <?=FORM::input('phone', Auth::instance()->get_user()->phone, array('class'=>'form-control', 'id'=>'phone'))?>
+                                    <?else:?>
+                                        <?=FORM::input('phone', Request::current()->post('phone'), array('class'=>'form-control', 'id'=>'phone'))?>
+                                    <?endif?>
+                                </div>
 							</div>
 						<?endif?>
 						<?if($form_show['website'] != FALSE):?>
@@ -111,7 +117,7 @@
 							</div>
 						<?endif?>
 					</div>
-					
+
 					<!-- Set Price -->
 					<?if(($form_show['price'] != FALSE) OR (core::config('payment.stock'))):?>
 						<div class="form-group">
@@ -132,9 +138,9 @@
 									</div>
 								</div>
 							<?endif?>
-						</div>	
+						</div>
 					<?endif?>
-			
+
 					<!-- ad description -->
 					<?if($form_show['description'] != FALSE):?>
 						<div class="form-group">
@@ -144,9 +150,9 @@
 							</div>
 						</div>
 					<?endif?>
-				
+
 					<br><hr><br>
-			
+
 					<?if($form_show['address'] != FALSE):?>
 						<div class="form-group">
 							<div class="col-xs-8">
@@ -165,10 +171,10 @@
 						</div>
 						<?if(core::config('advertisement.map_pub_new')):?>
 							<div class="popin-map-container">
-								<div class="map-inner" id="map" 
-									data-lat="<?=core::config('advertisement.center_lat')?>" 
+								<div class="map-inner" id="map"
+									data-lat="<?=core::config('advertisement.center_lat')?>"
 									data-lon="<?=core::config('advertisement.center_lon')?>"
-									data-zoom="<?=core::config('advertisement.map_zoom')?>" 
+									data-zoom="<?=core::config('advertisement.map_zoom')?>"
 									style="height:200px;max-width:400px;">
 								</div>
 							</div>
@@ -177,14 +183,14 @@
 							<br />
 						<?endif?>
 					<?endif?>
-				
+
 					<!-- ad photos -->
 					<?if(core::config("advertisement.num_images") > 0 ):?>
-						<div class="form-group images" 
-							data-max-image-size="<?=core::config('image.max_image_size')?>" 
-							data-image-width="<?=core::config('image.width')?>" 
-							data-image-height="<?=core::config('image.height') ? core::config('image.height') : 0?>" 
-							data-image-quality="<?=core::config('image.quality')?>" 
+						<div class="form-group images"
+							data-max-image-size="<?=core::config('image.max_image_size')?>"
+							data-image-width="<?=core::config('image.width')?>"
+							data-image-height="<?=core::config('image.height') ? core::config('image.height') : 0?>"
+							data-image-quality="<?=core::config('image.quality')?>"
 							data-swaltext="<?=sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'))?>"
 						>
 							<div class="col-xs-12">
@@ -209,7 +215,7 @@
 								</div>
 							</div>
 						</div>
-					<?endif?>			
+					<?endif?>
 					<div class="form-actions text-center" style="border-top: 1px solid #eee;">
 					<?if ($form_show['captcha'] != FALSE):?>
 						<br>
@@ -230,13 +236,13 @@
 					<?endif?>
 					<?if (!Auth::instance()->get_user()):?>
 						<p class="help-block"><?=_e('User account will be created')?></p>
-					<?endif?>			
+					<?endif?>
 					<?if(core::config('advertisement.tos') != ''):?>
 						<br>
 						<div class="form-group pad_10">
 							<div class="text-center">
 								<label class="checkbox">
-									<input type="checkbox" required name="tos" id="tos"/> 
+									<input type="checkbox" required name="tos" id="tos"/>
 									<a target="_blank" href="<?=Route::url('page', array('seotitle'=>core::config('advertisement.tos')))?>"> <?=_e('Terms of service')?></a>
 								</label>
 							</div>
@@ -273,4 +279,4 @@
         </div>
 
 	</div>
-</div>	
+</div>

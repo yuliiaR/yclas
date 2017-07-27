@@ -95,10 +95,18 @@ class Controller_New extends Controller
         {
             $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
         }
-        $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
 
         if (core::config('advertisement.picker_api_key') AND core::config('advertisement.picker_client_id'))
             $this->template->scripts['async_defer'][] = '//apis.google.com/js/api.js?onload=onApiLoad';
+
+        if (core::config('advertisement.phone') != FALSE)
+        {
+            $this->template->styles = $this->template->styles + ['css/intlTelInput.css' => 'screen'];
+            $this->template->scripts['footer'][] = 'js/intlTelInput.min.js';
+            $this->template->scripts['footer'][] = 'js/utils.js';
+        }
+
+        $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
 
         $categories = new Model_Category;
         $categories = $categories->where('id_category_parent', '=', '1');

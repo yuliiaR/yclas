@@ -19,7 +19,7 @@
                             <a class="btn btn-primary" href="<?=Route::url('default', array('controller'=>'stripe','action'=>'connect','id'=>'now'))?>">
                                 <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Connect with Stripe
                             </a>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -48,12 +48,15 @@
                             </div>
                             <div class="form-group">
                                 <?if (core::config('general.sms_auth')==TRUE):?>
-                                <label class="col-xs-4 control-label"><?=_e('Mobile phone number, Used for SMS authentication')?></label>
+                                    <label class="col-xs-4 control-label"><?=_e('Mobile phone number')?></label>
                                 <?else:?>
-                                <?= FORM::label('phone', _e('Phone'), array('class'=>'col-xs-4 control-label', 'for'=>'phone'))?>
+                                    <?=FORM::label('phone', _e('Phone'), array('class'=>'col-xs-4 control-label', 'for'=>'phone'))?>
                                 <?endif?>
                                 <div class="col-sm-8">
                                     <?= FORM::input('phone', $user->phone, array('class'=>'form-control', 'id'=>'phone', 'type'=>'phone' ,'required','placeholder'=>__('Phone')))?>
+                                    <?if (core::config('general.sms_auth')==TRUE):?>
+                                        <span class="help-block"><?=_e('Used for SMS authentication.')?></span>
+                                    <?endif?>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -61,13 +64,13 @@
                                 <div class="col-sm-8">
                                     <?=FORM::textarea('description', $user->description, array(
                                     'placeholder' => '',
-                                    'rows' => 3, 'cols' => 50, 
-                                    'class' => 'form-control', 
+                                    'rows' => 3, 'cols' => 50,
+                                    'class' => 'form-control',
                                     'id' => 'description',
-                                ))?> 
+                                ))?>
                                 </div>
                             </div>
-        
+
                             <?foreach($custom_fields as $name=>$field):?>
                                 <?if($name!='verifiedbadge' OR Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator()):?>
                                     <div class="form-group" id="cf_new">
@@ -92,7 +95,7 @@
                                     </div>
                                 <?endif?>
                             <?endforeach?>
-        
+
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-8">
                                     <div class="checkbox">
@@ -119,16 +122,16 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-8">
-                        <form class="form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'changepass'))?>">         
-                            <?=Form::errors()?>  
-                                  
+                        <form class="form-horizontal"  method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'changepass'))?>">
+                            <?=Form::errors()?>
+
                             <div class="form-group">
                                 <label class="col-xs-4 control-label"><?=_e('New password')?></label>
                                 <div class="col-sm-8">
                                 <input class="form-control" type="password" name="password1" placeholder="<?=__('Password')?>">
                                 </div>
                             </div>
-                              
+
                             <div class="form-group">
                                 <label class="col-xs-4 control-label"><?=_e('Repeat password')?></label>
                                 <div class="col-sm-8">
@@ -138,13 +141,13 @@
                                     </p>
                                 </div>
                             </div>
-                                  
+
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-8">
                                     <button type="submit" class="btn btn-primary"><?=_e('Update')?></button>
                                 </div>
                             </div>
-                                  
+
                         </form>
                     </div>
                 </div>
@@ -177,7 +180,7 @@
                         <hr>
                         <p><?=_e('2 step authentication provided by Google Authenticator.')?></p>
                         <div class="btn-group">
-                            <a class="btn btn-default" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"><i class="fa fa-android"></i> Android</a> 
+                            <a class="btn btn-default" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"><i class="fa fa-android"></i> Android</a>
                             <a class="btn btn-default" href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8"><i class="fa fa-apple"></i> iOS</a>
                         </div>
                     </div>
@@ -200,27 +203,27 @@
                                 </a>
                             </div>
                         </div>
-                        <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">         
-                                <?=Form::errors()?>  
-                              
+                        <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'image'))?>">
+                                <?=Form::errors()?>
+
                               <div class="form-group">
                                 <?= FORM::label('profile_img', _e('Profile picture'), array('class'=>'col-xs-4 control-label', 'for'=>'profile_img'))?>
                                 <div class="col-sm-8">
                                     <input type="file" name="profile_image" id="profile_img" />
-                                </div>  
+                                </div>
                               </div>
-                              
+
                               <div class="form-group">
                                   <div class="col-md-offset-4 col-md-8">
                                       <button type="submit" class="btn btn-primary"><?=_e('Update')?></button>
-                                      
+
                                       <?if ($user->has_image):?>
                                           <button type="submit"
                                                   class="btn btn-danger index-delete index-delete-inline"
-                                                  onclick="return confirm('<?=__('Delete photo?')?>');" 
-                                                  type="submit" 
+                                                  onclick="return confirm('<?=__('Delete photo?')?>');"
+                                                  type="submit"
                                                   name="photo_delete"
-                                                  value="1" 
+                                                  value="1"
                                                   title="<?=__('Delete photo')?>">
                                                   <?=_e('Delete photo')?>
                                           </button>
@@ -259,7 +262,7 @@
                 </div>
             </div>
         <?endif?>
-        
+
     </div>
 </div>
 <!--/row-->
