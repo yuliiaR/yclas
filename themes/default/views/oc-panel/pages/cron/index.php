@@ -11,7 +11,7 @@
     </a>
     <p><?=__('Or')?></p>
     <p><?=__('Set up your cron at your hosting / cPanel, every 5 minutes')?> (*/5 * * * *)</p>
-    <input type="text" value="/usr/bin/php -f <?=DOCROOT?>oc/common/modules/cron/cron.php" />
+    <input type="text" value="/usr/bin/php -f <?=DOCROOT?>oc/modules/cron/cron.php" />
     <p><?=__('Or')?></p>
     <input type="text" value="wget -O <?=Route::url('default', array('controller'=>'cron','action'=>'run','id'=>'now'))?>" />
 <?else:?>
