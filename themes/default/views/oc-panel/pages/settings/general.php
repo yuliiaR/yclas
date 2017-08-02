@@ -166,7 +166,7 @@
 
                             <div class="form-group">
                                 <?= FORM::label($forms['sms_clickatell_api']['id'], __('Clickatell'), array('class'=>'control-label', 'for'=>$forms['sms_clickatell_api']['id']))?>
-                                <a target="_blank" href="https://docs.yclas.com/clickatell/">
+                                <a target="_blank" href="https://docs.yclas.com/2-step-sms-authentication/">
                                     <i class="fa fa-question-circle"></i>
                                 </a>
                                 <?= FORM::input($forms['sms_clickatell_api']['key'], $forms['sms_clickatell_api']['value'], array(
