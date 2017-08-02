@@ -173,7 +173,6 @@
                                     'placeholder' => '',
                                     'class' => 'form-control',
                                     'id' => $forms['sms_clickatell_api']['id'],
-                                    'data-rule-required'=>'true',
                                 ))?>
                                 <span class="help-block">
                                     <?=__("Clickatell SMS API Key, needed for SMS Authentication to work.")?>
@@ -488,7 +487,7 @@
                             <?else:?>
                                 <?= FORM::hidden($forms['subscriptions_expire']['key'], $forms['subscriptions_expire']['value']);?>
                             <?endif?>
-                            
+
                             <hr>
                             <p>
                                 <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'general'))))?>
