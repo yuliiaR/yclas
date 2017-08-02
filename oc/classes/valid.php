@@ -10,7 +10,7 @@
  */
 
 class Valid extends Kohana_Valid{
-    
+
     /**
      * Check an email address for correct format.
      *
@@ -23,9 +23,9 @@ class Valid extends Kohana_Valid{
         //get the email to check up, clean it
         $email = filter_var($email,FILTER_SANITIZE_STRING);
         // 1 - check valid email format using RFC 822
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)===FALSE) 
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)===FALSE)
             return FALSE;
-            
+
         //strict validation, MX domain and valid domain not disposable
         if ($strict===TRUE)
             return Valid::email_domain($email);
@@ -63,7 +63,7 @@ class Valid extends Kohana_Valid{
 
     /**
      * gets the array of not allowed domains for emails, reads from json stores file for 1 week
-     * @return array 
+     * @return array
      * @see banned domains https://github.com/ivolo/disposable-email-domains/blob/master/index.json
      * @return array
      */
@@ -107,14 +107,14 @@ class Valid extends Kohana_Valid{
         //failsafe using as decimal de '.'
         if ($result===FALSE)
             $result = (bool) preg_match('/^-?+(?=.*[0-9])[0-9]*+.?+[0-9]*+$/D', (string) $str);
-        
+
 
         return $result;
     }
 
     /**
      * Checks whether a string has banned words.
-     * 
+     *
      * @param  string  $str    input string
      * @return boolean
      */
@@ -124,7 +124,7 @@ class Valid extends Kohana_Valid{
         {
             $banned_words = explode(',', core::config('advertisement.banned_words'));
             $banned_words = array_map('trim', $banned_words);
-            
+
             // with provided array of baned words find words in string
             foreach ($banned_words as $word)
             {
@@ -132,7 +132,28 @@ class Valid extends Kohana_Valid{
                     return FALSE;
             }
         }
-        
+
         return TRUE;
+    }
+
+    /**
+     * Checks if a phone number is valid.
+     *
+     * @param   string  $number     phone number to check
+     * @param   array   $lengths
+     * @return  boolean
+     */
+    public static function phone($number, $lengths = NULL)
+    {
+        if ( ! is_array($lengths))
+        {
+            $lengths = array(7, 9, 10, 11, 12, 13);
+        }
+
+        // Remove all non-digit characters from the number
+        $number = preg_replace('/\D+/', '', $number);
+
+        // Check if the number is within range
+        return in_array(strlen($number), $lengths);
     }
 }
