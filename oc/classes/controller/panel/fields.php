@@ -528,7 +528,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                         'admin_privilege' => FALSE,
                         'show_listing' => TRUE,
                         'values' => implode(',', [
-                            'yes',
+                            'Yes',
                             'No'])
                     ],
                     [
