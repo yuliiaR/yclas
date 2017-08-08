@@ -33,7 +33,7 @@ msgstr "αγγελίες"
 
 #: String 5
 msgid " ago"
-msgstr ""
+msgstr " πριν"
 
 #: String 6
 msgid "# items to display"
@@ -69,11 +69,11 @@ msgstr "Υπάρχει ήδη καταχωρημένος χρήστης με τ�
 
 #: String 14
 msgid "API Password"
-msgstr ""
+msgstr "Κωδικός API"
 
 #: String 15
 msgid "API Username"
-msgstr ""
+msgstr "Συνθηματικό API"
 
 #: String 16
 msgid "AWS Access Key"
@@ -129,7 +129,7 @@ msgstr "Ενεργό"
 
 #: String 29
 msgid "Active Region Action"
-msgstr ""
+msgstr "Ενέργεια ενεργούς τοποθεσίας"
 
 #: String 30
 msgid "Ad"
@@ -533,19 +533,19 @@ msgstr "Δημοσίευση blog"
 
 #: String 130
 msgid "Blog post created"
-msgstr ""
+msgstr "Δημιουργία Blog post"
 
 #: String 131
 msgid "Blog post updated"
-msgstr ""
+msgstr "Αναβάθμιση Blog post"
 
 #: String 132
 msgid "Bring to top Ad"
-msgstr "Αγγελία "Bring to top""
+msgstr "Πάρτε την αγγελία στην κορυφή"
 
 #: String 133
 msgid "Browse"
-msgstr ""
+msgstr "Περιήγηση"
 
 #: String 134
 msgid "Browse Themes"
@@ -573,11 +573,11 @@ msgstr "CSS"
 
 #: String 140
 msgid "CSS file not saved"
-msgstr ""
+msgstr "Το αρχείο CSS δεν αποθηκεύτηκε"
 
 #: String 141
 msgid "CSS file saved"
-msgstr ""
+msgstr "Το αρχείο CSS αποθηκεύτηκε"
 
 #: String 142
 msgid "Cache"
@@ -585,7 +585,7 @@ msgstr "Προσωρινή μνήμη"
 
 #: String 143
 msgid "Cache configuration information"
-msgstr "Cache configuration information"
+msgstr "Πληροφορίες ρύθμισης της προσωρινής μνήμης"
 
 #: String 144
 msgid "Can be seen and edited only by admin."
@@ -593,11 +593,11 @@ msgstr "Η επεξεργασία είναι δυνατή μόνο από δια
 
 #: String 145
 msgid "Can be seen in the list of ads while browsing."
-msgstr ""
+msgstr "Εμφανίζεται στη λίστα των αγγελιών κατά την περιήγηση."
 
 #: String 146
 msgid "Can be seen in the user profile."
-msgstr ""
+msgstr "Εμφανίζεται στο προφίλ του χρήστη."
 
 #: String 147
 msgid "Cancel"
@@ -777,7 +777,7 @@ msgstr "Σχόλια"
 
 #: String 191
 msgid "Comments Configuration"
-msgstr ""
+msgstr "Ρυθμίσεις σχολίων"
 
 #: String 192
 msgid "Config file"
@@ -829,7 +829,7 @@ msgstr "Μετατροπή Διεύθυνσης σε Γεωγραφικό Μήκ
 
 #: String 204
 msgid "Cookie consent"
-msgstr ""
+msgstr "Συγκατάθεση για Cookie"
 
 #: String 205
 msgid "Copy all?, Be aware this will replace all your texts."
@@ -837,15 +837,15 @@ msgstr "Αντιγραφή όλων; Προσοχή, θα αντικαταστα
 
 #: String 206
 msgid "Could not create bitpay invoice"
-msgstr ""
+msgstr "Δεν μπόρεσε να δημιουργηθεί τιμολόγιο bitpay"
 
 #: String 207
 msgid "Count visits"
-msgstr ""
+msgstr "Μέτρηση επισκεπτών"
 
 #: String 208
 msgid "Count visits ads"
-msgstr ""
+msgstr "Μέτρηση επισκεπτών των αγγελιών"
 
 #: String 209
 msgid "Country"
@@ -861,7 +861,7 @@ msgstr "Δημιουργία"
 
 #: String 212
 msgid "Create Blog Post"
-msgstr ""
+msgstr "Δημιουργία Blog Post"
 
 #: String 213
 msgid "Create Menu Item"
@@ -873,11 +873,11 @@ msgstr "Δημιουργία νέου προφίλ στο"
 
 #: String 215
 msgid "Create all new %s from original"
-msgstr ""
+msgstr "Δημιουργία όλων των %s από τα αυθεντικά"
 
 #: String 216
 msgid "Create custom fields among predefined templates."
-msgstr ""
+msgstr "Δημιουργήστε προσαρμοσμένα πεδία μεταξύ προκαθορισμένων προτύπων."
 
 #: String 217
 msgid "Create new forum"
@@ -921,7 +921,7 @@ msgstr "Προσαρμοσμένα πεδία"
 
 #: String 227
 msgid "Custom Fields Templates"
-msgstr ""
+msgstr "Πρότυπα προσαρμοσμένων πεδίων"
 
 #: String 228
 msgid "Custom Fields for Advertisements"
@@ -1033,7 +1033,7 @@ msgstr "Προκαθορισμένοι σύνδεσμοι"
 
 #: String 255
 msgid "Default value:"
-msgstr ""
+msgstr "Προκαθορισμένη τιμή:"
 
 #: String 256
 msgid "Delete"
@@ -1117,15 +1117,15 @@ msgstr "Απόρριψη γυμνών φωτογραφιών"
 
 #: String 276
 msgid "Disallows (blocks) Bots and Crawlers"
-msgstr ""
+msgstr "Αποτροπή Bots και Crawlers"
 
 #: String 277
 msgid "Disallows (blocks) Bots and Crawlers on this website"
-msgstr ""
+msgstr "Αποτροπή Bots και Crawlers σε αυτή την ιστοσελίδα"
 
 #: String 278
 msgid "Disallows Bots and Crawlers on the website"
-msgstr ""
+msgstr "Αποτροπή Bots και Crawlers στην ιστοσελίδα"
 
 #: String 279
 msgid "Display CMS pages"
@@ -1145,7 +1145,7 @@ msgstr "Εμφάνιση τοποθεσιών"
 
 #: String 283
 msgid "Display Mode"
-msgstr ""
+msgstr "Λειτουργία προβολής"
 
 #: String 284
 msgid "Display categories"
@@ -1321,15 +1321,15 @@ msgstr "Ρυθμίσεις e-mail"
 
 #: String 327
 msgid "Email Setup and emails configuration values. Replace input fields with new desired values"
-msgstr ""
+msgstr "Ρυθμίσεις ηλεκτρονικού ταχυδρομείου και παραμέτρων. Αντικαταστήστε τα πεδία εισαγωγής με τις νέες επιθυμητές τιμές"
 
 #: String 328
 msgid "Email confirmation on"
-msgstr ""
+msgstr "Ενεργοποίηση επιβεβαίωσης ηλεκτρονικού ταχυδρομείου"
 
 #: String 329
 msgid "Email confirmation with Moderation"
-msgstr ""
+msgstr "Επιβεβαίωση ηλεκτρονικού ταχυδρομείου με συντονισμός"
 
 #: String 330
 msgid "Email from where we send the emails, also used for software communications."
@@ -1433,7 +1433,7 @@ msgstr "Αγαπημένο"
 
 #: String 355
 msgid "Feature ad"
-msgstr ""
+msgstr "Προβεβλημένη αγγελία"
 
 #: String 356
 msgid "Featured"
@@ -1781,7 +1781,7 @@ msgstr "Όνομα εξυπηρετητή"
 
 #: String 442
 msgid "Hosting limit"
-msgstr ""
+msgstr "Όριο διακομιστή"
 
 #: String 443
 msgid "How many ads are going to appear in the RSS of your site."
@@ -1841,7 +1841,7 @@ msgstr "Αν η αγγελία μαρκαρίστηκε ως ανεπιθύμη�
 
 #: String 457
 msgid "If you have doubts check the release notes for this version"
-msgstr ""
+msgstr "Αν έχετε αμφιβολίες ελέγξτε τις σημειώσης αυτής της έκδοσης"
 
 #: String 458
 msgid "If you wanted to go to the main page instead, click here."
@@ -1977,7 +1977,7 @@ msgstr "Απενεργοποίηση Χρώματος Περιοχών"
 
 #: String 491
 msgid "Include auto locate visitors"
-msgstr ""
+msgstr "Συμπερίληψη αυτόματου εντοπισμού επισκεπτών"
 
 #: String 492
 msgid "Include search by description"
@@ -2057,11 +2057,11 @@ msgstr "Φαίνεται ότι προσπαθείτε δημοσιοποιήσ�
 
 #: String 511
 msgid "It will be the first line of the tooltip."
-msgstr ""
+msgstr "Θα είναι η πρώτη γραμμή της επεξήγησης."
 
 #: String 512
 msgid "It will be the second line of the tooltip."
-msgstr ""
+msgstr "Θα είναι η δεύτερη γραμμή της επεξήγησης."
 
 #: String 513
 msgid "Item created"
@@ -2097,7 +2097,7 @@ msgstr "Γλώσσα"
 
 #: String 521
 msgid "Language folder cannot be created with mkdir. Please correct to be able to create new translation."
-msgstr ""
+msgstr "Ο φάκελος της γλώσσας δεν μπορεί να δημιουργηθεί με την εντολή mkdir. Παρακαλώ διορθώστε ώστε να μπορεί να δημιουργηθεί η νέα μετάφραση."
 
 #: String 522
 msgid "Language saved"
@@ -2189,7 +2189,7 @@ msgstr "Κατάλογος"
 
 #: String 544
 msgid "List of all postings in"
-msgstr ""
+msgstr "Λίστα όλων των καταχωρήσεων"
 
 #: String 545
 msgid "List of payment configuration values. Replace input fields with new desired values."
@@ -2365,11 +2365,11 @@ msgstr "Εμφάνιση τίτλου χάρτη"
 
 #: String 588
 msgid "Markers (Coordinates)"
-msgstr ""
+msgstr "Δείκτες (Συντεταγμένες)"
 
 #: String 589
 msgid "Markers (Text Location)"
-msgstr ""
+msgstr "Δείκτες (Τοποθεσία κειμένου)"
 
 #: String 590
 msgid "Market"
@@ -2457,7 +2457,7 @@ msgstr "Αλλαγή"
 
 #: String 611
 msgid "Moderation on"
-msgstr ""
+msgstr "Ενεργοποίηση Συντονισμού"
 
 #: String 612
 msgid "Money format"
@@ -2465,7 +2465,7 @@ msgstr "Μορφή νομίσματος"
 
 #: String 613
 msgid "Multi select category and location search"
-msgstr ""
+msgstr "Αναζήτηση πολλαπλής επιλογής κατηγορίας και τοποθεσίας"
 
 #: String 614
 msgid "My Advertisement page "
@@ -2613,7 +2613,7 @@ msgstr "Καμία (0) αγγελία δε διαγράφηκε"
 
 #: String 650
 msgid "Not any ad to be processed"
-msgstr ""
+msgstr "Καμιά αγγελία για επεξεργασία"
 
 #: String 651
 msgid "Not paid"
@@ -2705,7 +2705,7 @@ msgstr "TRUE = ενεργοποίηση Συχνών Ερωτήσεων"
 
 #: String 673
 msgid "Once set to TRUE, enables auto locate visitors"
-msgstr ""
+msgstr "TRUE = ενεργοποίηση αυτόματου εντοπισμού επισκεπτών"
 
 #: String 674
 msgid "Once set to TRUE, enables blog posts"
@@ -2717,7 +2717,7 @@ msgstr "TRUE = ενεργοποίηση δημοσιεύσεων στο forum"
 
 #: String 676
 msgid "Once set to TRUE, enables multi select category and location search"
-msgstr ""
+msgstr "TRUE = ενεργοποίηση αναζήτησης πολλαπλής επιλογής κατηγορίας και τοποθεσίας"
 
 #: String 677
 msgid "Once set to TRUE, enables search to look for key words in description"
@@ -2725,7 +2725,7 @@ msgstr "TRUE = ενεργοποίηση αναζήτησης λέξεων-κλε
 
 #: String 678
 msgid "Only Admin"
-msgstr ""
+msgstr "Μόνο ο Διαχειριστής"
 
 #: String 679
 msgid "Only administrators can publish"
@@ -2909,11 +2909,11 @@ msgstr "Πληρωμές"
 
 #: String 724
 msgid "Payment on"
-msgstr ""
+msgstr "Ενεργοποίηση πληρωμής"
 
 #: String 725
 msgid "Payment with Moderation"
-msgstr ""
+msgstr "Πληρωμή με Συντονισμό"
 
 #: String 726
 msgid "Payments"
@@ -2925,7 +2925,7 @@ msgstr "Ρυθμίσεις πληρωμής"
 
 #: String 728
 msgid "Payments Configuration updated"
-msgstr ""
+msgstr "Οι ρυθμίσεις πληρωμών αναβαθμίστηκαν"
 
 #: String 729
 msgid "Paymill private key"
@@ -3021,7 +3021,7 @@ msgstr "Παρακαλώ εισάγετε μια τιμή μικρότερη ή 
 
 #: String 752
 msgid "Please enter a value with a valid extension."
-msgstr ""
+msgstr "Καταχωρίστε μια τιμή με έγκυρη επέκταση."
 
 #: String 753
 msgid "Please enter at least {0} characters."
@@ -3097,15 +3097,15 @@ msgstr "Δημοφιλέστερες αγγελίες του τελευταίο�
 
 #: String 771
 msgid "Post Review"
-msgstr ""
+msgstr "Αναθεώρηση δημοσίευσης"
 
 #: String 772
 msgid "Post directly"
-msgstr ""
+msgstr "Απευθείας δημοσίευση"
 
 #: String 773
 msgid "Post in paid category"
-msgstr ""
+msgstr "Δημοσίευση σε κατηγορία επί πληρωμή"
 
 #: String 774
 msgid "Posting advertisements is not yet available."
@@ -3197,7 +3197,7 @@ msgstr "Η προμήθεια του κλειδιού Akismet θα ενεργο�
 
 #: String 796
 msgid "Province"
-msgstr ""
+msgstr "Επαρχία"
 
 #: String 797
 msgid "Public profile"
@@ -3245,7 +3245,7 @@ msgstr "Θέστε την ιστοσελίδα σας σε λειτουργία 
 
 #: String 808
 msgid "Queue cleaned"
-msgstr ""
+msgstr "Η ουρά καθαρίστηκε"
 
 #: String 809
 msgid "Quick category creator."
@@ -3277,7 +3277,7 @@ msgstr "Radio"
 
 #: String 816
 msgid "Rate"
-msgstr ""
+msgstr "Βαθμός"
 
 #: String 817
 msgid "Read carefully"
@@ -3309,7 +3309,7 @@ msgstr "Κωδικός Περιοχής"
 
 #: String 824
 msgid "Region to Display"
-msgstr ""
+msgstr "Περιοχή προς εμφάνιση"
 
 #: String 825
 msgid "Regional Settings"
@@ -3661,7 +3661,7 @@ msgstr "Εμφάνιση Εγγραφής"
 
 #: String 912
 msgid "Show Tooltip"
-msgstr ""
+msgstr "Εμφάνιση Tooltip"
 
 #: String 913
 msgid "Show listing"
@@ -3905,7 +3905,7 @@ msgstr "Σίγουρα θέλετε να διαγράψετε αυτό το widg
 
 #: String 973
 msgid "Switch off custom CSS"
-msgstr ""
+msgstr "Απενεργοποίηση custom CSS"
 
 #: String 974
 msgid "System Logs"
@@ -4201,7 +4201,7 @@ msgstr ""
 
 #: String 1047
 msgid "Top up ad"
-msgstr ""
+msgstr "Ανανέωση διαφήμισης"
 
 #: String 1048
 msgid "Topic"
@@ -4241,7 +4241,7 @@ msgstr "Οι διαθέσιμες μεταφράσεις του συστήματ
 
 #: String 1057
 msgid "Translations regenarated"
-msgstr ""
+msgstr "Οι μεταφράσεις αναδημιουργήθηκαν"
 
 #: String 1058
 msgid "Type"
@@ -4301,7 +4301,7 @@ msgstr "Διαγραφή συνδρομής;"
 
 #: String 1072
 msgid "Up to"
-msgstr ""
+msgstr "Μέχρι"
 
 #: String 1073
 msgid "Update"
@@ -4361,7 +4361,7 @@ msgstr "Χρήση υπερκατηγοριών"
 
 #: String 1087
 msgid "Use the form below to help you get the coordinates values"
-msgstr ""
+msgstr "Χρησιμοποιείστε την παρακάτω φόρμα για να βρείτε τις συντεταγμένες"
 
 #: String 1088
 msgid "User"
@@ -5041,7 +5041,7 @@ msgstr "νέο θέμα"
 
 #: String 1257
 msgid "official homepage, get your post listed now."
-msgstr ""
+msgstr "επίσημη αρχική σελίδα, αναρτήστε την αγγελία σας τώρα."
 
 #: String 1258
 msgid "on"
