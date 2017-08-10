@@ -761,6 +761,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'sort_by', 'published-desc'),
 ('advertisement', 'count_visits', 1),
 ('advertisement', 'login_to_contact', 0),
+('advertisement', 'login_to_view_ad', 0),
 ('advertisement', 'only_admin_post', 0),
 ('advertisement', 'sharing', '0'),
 ('advertisement', 'report', '1'),

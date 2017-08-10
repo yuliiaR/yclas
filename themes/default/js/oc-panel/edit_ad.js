@@ -436,6 +436,9 @@ $('.fileinput').on('change.bs.fileinput', function() {
             }
         );
     }
+
+    //unhide next box image after selecting first
+    $(this).next('.fileinput').removeClass('hidden');
 });
 
 $('.fileinput').on('clear.bs.fileinput', function() {

@@ -53,13 +53,13 @@
                         <div class="form-group">
                             <?=FORM::label($forms['advertisements_per_page']['key'], __('Advertisements per page'), array('class'=>'control-label', 'for'=>$forms['advertisements_per_page']['key']))?>
                             <?=FORM::input($forms['advertisements_per_page']['key'], $forms['advertisements_per_page']['value'], array(
-                                'placeholder' => "20", 
-                                'class' => 'form-control', 
-                                'id' => $forms['advertisements_per_page']['key'], 
+                                'placeholder' => "20",
+                                'class' => 'form-control',
+                                'id' => $forms['advertisements_per_page']['key'],
                                 'type' => 'number',
                                 'data-rule-required'=>'true',
                                 'data-rule-digits' => 'true',
-                                ))?> 
+                                ))?>
                             <span class="help-block">
                                 <?=__("This is to control how many advertisements are being displayed per page. Insert an integer value, as a number limit.")?>
                             </span>
@@ -67,35 +67,35 @@
                         <div class="form-group">
                             <?=FORM::label($forms['feed_elements']['key'], __('Advertisements in RSS'), array('class'=>'control-label', 'for'=>$forms['feed_elements']['key']))?>
                             <?=FORM::input($forms['feed_elements']['key'], $forms['feed_elements']['value'], array(
-                                'placeholder' => "20", 
-                                'class' => 'form-control', 
-                                'id' => $forms['feed_elements']['key'], 
+                                'placeholder' => "20",
+                                'class' => 'form-control',
+                                'id' => $forms['feed_elements']['key'],
                                 'type' => 'number',
                                 'data-rule-required'=>'true',
                                 'data-rule-digits' => 'true',
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("How many ads are going to appear in the RSS of your site.")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['map_elements']['key'], __('Advertisements in Map'), array('class'=>'control-label', 'for'=>$forms['map_elements']['key']))?>
                             <?=FORM::input($forms['map_elements']['key'], $forms['map_elements']['value'], array(
-                                'placeholder' => "20", 
-                                'class' => 'form-control', 
-                                'id' => $forms['map_elements']['key'], 
+                                'placeholder' => "20",
+                                'class' => 'form-control',
+                                'id' => $forms['map_elements']['key'],
                                 'type' => 'number',
                                 'data-rule-required'=>'true',
                                 'data-rule-digits' => 'true',
-                            ))?> 
+                            ))?>
                            <span class="help-block">
                                 <?=__("How many ads are going to appear in the map of your site.")?>
                             </span>
                         </div>
 
                         <hr>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['sort_by']['key'], __('Sort by in listing'), array('class'=>'control-label', 'for'=>$forms['sort_by']['key']))?>
                             <?= FORM::select($forms['sort_by']['key'], array('title-asc'=>"Name (A-Z)",
@@ -107,28 +107,28 @@
                                                                                  'favorited'=>"Favorited",
                                                                                  'published-desc'=>"Newest",
                                                                                  'published-asc'=>"Oldest",
-                                                                                 'distance'=>"Distance"), 
+                                                                                 'distance'=>"Distance"),
                                 $forms['sort_by']['value'], array(
-                                'placeholder' => $forms['sort_by']['value'], 
-                                'class' => 'tips form-control input-sm ', 
+                                'placeholder' => $forms['sort_by']['value'],
+                                'class' => 'tips form-control input-sm ',
                                 'id' => $forms['sort_by']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Sort by in listing")?>
                             </span>
                         </div>
-                        
+
                         <?
                             $ads_in_home = array(0=>__('Latest Ads'),
                                                 1=>__('Featured Ads'),
                                                 4=>__('Featured Ads Random'),
                                                 2=>__('Popular Ads last month'),
                                                 3=>__('None'));
-                        
+
                             if(core::config('advertisement.count_visits')==0)
                                 unset($ads_in_home[2]);
                         ?>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['ads_in_home']['key'], __('Advertisements in home'), array('class'=>'control-label', 'for'=>$forms['ads_in_home']['key']))?>
                             <a target="_blank" href="https://docs.yclas.com/manage-ads-slider/">
@@ -136,10 +136,10 @@
                             </a>
                             <?=FORM::select($forms['ads_in_home']['key'], $ads_in_home
                                 , $forms['ads_in_home']['value'], array(
-                                'placeholder' => $forms['ads_in_home']['value'], 
-                                'class' => 'form-control ', 
+                                'placeholder' => $forms['ads_in_home']['value'],
+                                'class' => 'form-control ',
                                 'id' => $forms['ads_in_home']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("You can choose what ads you want to display in home.")?>
                             </span>
@@ -173,7 +173,7 @@
                                 <?=__("Require only the logged in users to post.")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['only_admin_post']['key'], __('Only administrators can publish'), array('class'=>'control-label', 'for'=>$forms['only_admin_post']['key']))?>
                             <div class="radio radio-primary">
@@ -185,17 +185,17 @@
                             <span class="help-block">
                                 <?=__("Only administrators can publish")?>
                             </span>
-                        </div>  
-                        
+                        </div>
+
                         <hr>
 
                         <div class="form-group">
                             <?=FORM::label($forms['expire_date']['key'], __('Ad expiration date'), array('class'=>'control-label', 'for'=>$forms['expire_date']['key']))?>
                             <div class="input-group">
                                 <?=FORM::input($forms['expire_date']['key'], $forms['expire_date']['value'], array(
-                                    'placeholder' => $forms['expire_date']['value'], 
-                                    'class' => 'form-control', 
-                                    'id' => $forms['expire_date']['key'], 
+                                    'placeholder' => $forms['expire_date']['value'],
+                                    'class' => 'form-control',
+                                    'id' => $forms['expire_date']['key'],
                                     'type' => 'number',
                                     'data-rule-required'=>'true',
                                     'data-rule-digits' => 'true',
@@ -219,7 +219,7 @@
                                 <?=__("Allows reactivate ad after is expired.")?>
                             </span>
                         </div>
-                        
+
                         <hr>
 
                         <div class="form-group">
@@ -234,7 +234,7 @@
                                 <?=__("Use parent categories")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['map_pub_new']['key'], __('Google Maps in Publish New'), array('class'=>'control-label', 'for'=>$forms['map_pub_new']['key']))?>
                             <div class="radio radio-primary">
@@ -247,7 +247,7 @@
                                 <?=__("Displays the google maps in the Publish new form.")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?= FORM::label($forms['description_bbcode']['key'], __('BBCODE editor on description field'), array('class'=>'control-label', 'for'=>$forms['description_bbcode']['key']))?>
                             <div class="radio radio-primary">
@@ -260,7 +260,7 @@
                                 <?=__("BBCODE editor appears in description field.")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['captcha']['key'], __('Captcha'), array('class'=>'control-label', 'for'=>$forms['captcha']['key']))?>
                             <div class="radio radio-primary">
@@ -286,23 +286,23 @@
                                 <?=__("Leave alert before submitting publish new form")?>
                             </span>
                         </div>
-                        
+
                         <hr>
 
                         <div class="form-group">
                             <?$pages = array(''=>__('Deactivated'))?>
                             <?foreach (Model_Content::get_pages() as $key => $value) {
                                 $pages[$value->seotitle] = $value->title;
-                            }?>                    
+                            }?>
                             <?=FORM::label($forms['tos']['key'], __('Terms of Service'), array('class'=>'control-label', 'for'=>$forms['tos']['key']))?>
                             <a target="_blank" href="https://docs.yclas.com/how_to_add_pages/">
                                 <i class="fa fa-question-circle"></i>
                             </a>
                             <?=FORM::select($forms['tos']['key'], $pages, $forms['tos']['value'], array(
-                                'placeholder' => "http://foo.com/", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['tos']['key'], 
-                            ))?> 
+                                'placeholder' => "http://foo.com/",
+                                'class' => 'tips form-control',
+                                'id' => $forms['tos']['key'],
+                            ))?>
                             <span class="help-block">
                                 <?=__("If you choose to use terms of service, you can select activate. And to edit content, select link 'Content' on your admin panel sidebar. Find page named 'Terms of service' click 'Edit'. In section 'Description' add content that suits you.")?>
                             </span>
@@ -314,24 +314,24 @@
                                 <i class="fa fa-question-circle"></i>
                             </a>
                             <?=FORM::select($forms['thanks_page']['key'], $pages, $forms['thanks_page']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'form-control', 
-                                'id' => $forms['tos']['key'], 
+                                'placeholder' => "",
+                                'class' => 'form-control',
+                                'id' => $forms['tos']['key'],
                             ))?>
                             <span class="help-block">
                                 <?=__("Content that will be displayed to the user after he publishes an ad")?>
                             </span>
                         </div>
-                        
+
                         <hr>
 
                         <div class="form-group">
                             <?=FORM::label($forms['banned_words']['key'], __('Banned words'), array('class'=>'control-label', 'for'=>$forms['banned_words']['key']))?>
                             <div>
                                 <?=FORM::input($forms['banned_words']['key'], $forms['banned_words']['value'], array(
-                                    'placeholder' => __('For banned word push enter.'), 
-                                    'class' => 'form-control', 
-                                    'id' => $forms['banned_words']['key'], 
+                                    'placeholder' => __('For banned word push enter.'),
+                                    'class' => 'form-control',
+                                    'id' => $forms['banned_words']['key'],
                                     'data-role'=>'tagsinput',
                                 ))?>
                             </div>
@@ -352,14 +352,14 @@
                                 <?=__("Enables banned words validation")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['banned_words_replacement']['key'], __('Banned words replacement'), array('class'=>'control-label', 'for'=>$forms['banned_words_replacement']['key']))?>
                             <?=FORM::input($forms['banned_words_replacement']['key'], $forms['banned_words_replacement']['value'], array(
-                                'placeholder' => "xxx", 
-                                'class' => 'form-control', 
-                                'id' => $forms['banned_words_replacement']['key'], 
-                            ))?> 
+                                'placeholder' => "xxx",
+                                'class' => 'form-control',
+                                'id' => $forms['banned_words_replacement']['key'],
+                            ))?>
                             <span class="help-block">
                                 <?=__("Banned word replacement replaces selected array with the string you provided.")?>
                             </span>
@@ -472,9 +472,9 @@
                             <div class="form-group">
                                 <?=FORM::label($forms['num_images']['key'], __('Number of images'), array('class'=>'control-label', 'for'=>$forms['num_images']['key']))?>
                                 <?=FORM::input($forms['num_images']['key'], $forms['num_images']['value'], array(
-                                    'placeholder' => "4", 
-                                    'class' => 'form-control', 
-                                    'id' => $forms['num_images']['key'], 
+                                    'placeholder' => "4",
+                                    'class' => 'form-control',
+                                    'id' => $forms['num_images']['key'],
                                     'data-rule-required'=>'true',
                                     'data-rule-digits' => 'true',
                                 ))?>
@@ -523,7 +523,20 @@
                                 <?=__("Contact form appears in the ad.")?>
                             </span>
                         </div>
-                        
+
+                        <div class="form-group">
+                            <?=FORM::label($forms['login_to_view_ad']['key'], __('Require login to view ad'), array('class'=>'control-label', 'for'=>$forms['login_to_view_ad']['key']))?>
+                            <div class="radio radio-primary">
+                                <?=Form::radio($forms['login_to_view_ad']['key'], 1, (bool) $forms['login_to_view_ad']['value'], array('id' => $forms['login_to_view_ad']['key'].'1'))?>
+                                <?=Form::label($forms['login_to_view_ad']['key'].'1', __('Enabled'))?>
+                                <?=Form::radio($forms['login_to_view_ad']['key'], 0, ! (bool) $forms['login_to_view_ad']['value'], array('id' => $forms['login_to_view_ad']['key'].'0'))?>
+                                <?=Form::label($forms['login_to_view_ad']['key'].'0', __('Disabled'))?>
+                            </div>
+                            <span class="help-block">
+                                <?=__("Require only the logged in users to view ads.")?>
+                            </span>
+                        </div>
+
                         <div class="form-group">
                             <?=FORM::label($forms['login_to_contact']['key'], __('Require login to contact'), array('class'=>'control-label', 'for'=>$forms['login_to_contact']['key']))?>
                             <div class="radio radio-primary">
@@ -566,7 +579,7 @@
                                 <?=__("Show QR code")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['map']['key'], __('Google Maps in Ad'), array('class'=>'control-label', 'for'=>$forms['map']['key']))?>
                             <div class="radio radio-primary">
@@ -579,7 +592,7 @@
                                 <?=__("Displays the google maps in the Ad.")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['count_visits']['key'], __('Count visits ads'), array('class'=>'control-label', 'for'=>$forms['count_visits']['key']))?>
                             <div class="radio radio-primary">
@@ -592,7 +605,7 @@
                                 <?=__("You can choose if you wish to display amount of visits at each advertisement.")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['sharing']['key'], __('Show sharing buttons'), array('class'=>'control-label', 'for'=>$forms['sharing']['key']))?>
                             <div class="radio radio-primary">
@@ -624,20 +637,20 @@
                         <div class="form-group">
                             <?=FORM::label($forms['related']['key'], __('Related ads'), array('class'=>'control-label', 'for'=>$forms['related']['key']))?>
                             <?=FORM::input($forms['related']['key'], $forms['related']['value'], array(
-                                'placeholder' => $forms['related']['value'], 
-                                'class' => 'tips form-control ', 
+                                'placeholder' => $forms['related']['value'],
+                                'class' => 'tips form-control ',
                                 'id' => $forms['related']['key'],
                                 'type' => 'number',
                                 'data-rule-required'=>'true',
                                 'data-rule-digits' => 'true',
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("You can choose if you wish to display random related ads at each advertisement")?>
                             </span>
                         </div>
 
                         <hr>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['free']['key'], __('Show Free tag'), array('class'=>'control-label', 'for'=>$forms['free']['key']))?>
                             <div class="radio radio-primary">
@@ -659,25 +672,25 @@
                                 <i class="fa fa-question-circle"></i>
                             </a>
                             <?=FORM::input($forms['fbcomments']['key'], $forms['fbcomments']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['fbcomments']['key'], 
-                            ))?> 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['fbcomments']['key'],
+                            ))?>
                             <span class="help-block">
                                 <?=__("You need to write your Facebook APP ID to enable the service.")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['disqus']['key'], __('Disqus'), array('class'=>'control-label', 'for'=>$forms['disqus']['key']))?>
                             <a target="_blank" href="https://docs.yclas.com/how-to-activate-comments-with-disqus/">
                                 <i class="fa fa-question-circle"></i>
                             </a>
                             <?=FORM::input($forms['disqus']['key'], $forms['disqus']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['disqus']['key'], 
-                            ))?> 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['disqus']['key'],
+                            ))?>
                             <span class="help-block">
                                 <?=__("You need to write your disqus ID to enable the service.")?>
                             </span>
@@ -735,10 +748,10 @@
                                 <i class="fa fa-external-link-square"></i>
                             </a>
                             <?=FORM::input($forms['gm_api_key']['key'], $forms['gm_api_key']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['gm_api_key']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Google maps API Key")?>
                             </span>
@@ -775,10 +788,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['map_style']['key'], __("Google map style"), array('class'=>'control-label', 'for'=>$forms['map_style']['key']))?>
                             <?=FORM::select($forms['map_style']['key'], array_flip($map_styles), $forms['map_style']['value'], array(
-                                'placeholder' => "http://foo.com/", 
-                                'class' => 'form-control', 
-                                'id' => $forms['map_style']['key'], 
-                            ))?> 
+                                'placeholder' => "http://foo.com/",
+                                'class' => 'form-control',
+                                'id' => $forms['map_style']['key'],
+                            ))?>
                             <span class="help-block">
                                 <?=__("Custom Google Maps styling")?>
                             </span>
@@ -787,38 +800,38 @@
                         <div class="form-group">
                             <?=FORM::label($forms['map_zoom']['key'], __('Google map zoom level'), array('class'=>'control-label', 'for'=>$forms['map_zoom']['key']))?>
                             <?=FORM::input($forms['map_zoom']['key'], $forms['map_zoom']['value'], array(
-                                'placeholder' => "16", 
-                                'class' => 'form-control', 
-                                'id' => $forms['map_zoom']['key'], 
+                                'placeholder' => "16",
+                                'class' => 'form-control',
+                                'id' => $forms['map_zoom']['key'],
                                 'type' => 'number',
                                 'data-rule-digits' => 'true',
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Google map default zoom level")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['center_lat']['key'], __('Map latitude coordinates'), array('class'=>'control-label', 'for'=>$forms['center_lat']['key']))?>
                             <?=FORM::input($forms['center_lat']['key'], $forms['center_lat']['value'], array(
-                                'placeholder' => "40", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['center_lat']['key'], 
+                                'placeholder' => "40",
+                                'class' => 'tips form-control',
+                                'id' => $forms['center_lat']['key'],
                                 'data-rule-number' => 'true',
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Google map default latitude coordinates")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['center_lon']['key'], __('Map longitude coordinates'), array('class'=>'control-label', 'for'=>$forms['center_lon']['key']))?>
                             <?=FORM::input($forms['center_lon']['key'], $forms['center_lon']['value'], array(
-                                'placeholder' => "3", 
-                                'class' => 'tips form-control', 
-                                'id' => $forms['center_lon']['key'], 
+                                'placeholder' => "3",
+                                'class' => 'tips form-control',
+                                'id' => $forms['center_lon']['key'],
                                 'data-rule-number' => 'true',
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Google map default longitude coordinates")?>
                             </span>
@@ -829,9 +842,9 @@
                                 <?=FORM::label($forms['auto_locate_distance']['key'], __('Auto locate distance'), array('class'=>'control-label', 'for'=>$forms['auto_locate_distance']['key']))?>
                                 <div class="input-group">
                                     <?=FORM::input($forms['auto_locate_distance']['key'], $forms['auto_locate_distance']['value'], array(
-                                        'placeholder' => "100", 
-                                        'class' => 'tips form-control', 
-                                        'id' => $forms['auto_locate_distance']['key'], 
+                                        'placeholder' => "100",
+                                        'class' => 'tips form-control',
+                                        'id' => $forms['auto_locate_distance']['key'],
                                         'data-rule-number' => 'true',
                                     ))?>
                                     <div class="input-group-addon"><?=Core::config('general.measurement') == 'metric' ? 'Kilometers' : 'Miles'?></div>
@@ -869,7 +882,7 @@
                                 <?=__("Enables reviews for ads and the users.")?>
                             </span>
                         </div>
-                        
+
                         <div class="form-group">
                             <?=FORM::label($forms['reviews_paid']['key'], __("Only for paid transactions"), array('class'=>'control-label', 'for'=>$forms['reviews_paid']['key']))?>
                             <div class="radio radio-primary">
@@ -898,10 +911,10 @@
                                 <i class="fa fa-external-link-square"></i>
                             </a>
                             <?=FORM::input($forms['dropbox_app_key']['key'], $forms['dropbox_app_key']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['dropbox_app_key']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Dropbox App Key")?>
                             </span>
@@ -924,10 +937,10 @@
                                 <i class="fa fa-external-link-square"></i>
                             </a>
                             <?=FORM::input($forms['picker_api_key']['key'], $forms['picker_api_key']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['picker_api_key']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Google Picker API Key")?>
                             </span>
@@ -940,10 +953,10 @@
                                 <i class="fa fa-external-link-square"></i>
                             </a>
                             <?=FORM::input($forms['picker_client_id']['key'], $forms['picker_client_id']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['picker_client_id']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Google Picker Client ID")?>
                             </span>
@@ -954,7 +967,7 @@
                         <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
                     </p>
                 </div>
-                
+
                 <div id="tabSettingsSocial" class="tab-pane fade">
                     <h4><?=__('Social Configuration')?>
                         <a target="_blank" href="https://docs.yclas.com/auto-post-social-media/">
@@ -976,7 +989,7 @@
                             <?=__("Enable to post only featured ads.")?>
                         </span>
                     </div>
-                    
+
                     <hr>
 
                     <div>
@@ -997,10 +1010,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['facebook_app_id']['key'], __('Facebook App Id'), array('class'=>'control-label', 'for'=>$forms['facebook_app_id']['key']))?>
                             <?=FORM::input($forms['facebook_app_id']['key'], $forms['facebook_app_id']['value'], array(
-                                'placeholder' => "Facebook App Id", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "Facebook App Id",
+                                'class' => 'tips form-control',
                                 'id' => $forms['facebook_app_id']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Facebook App Id")?>
                             </span>
@@ -1008,10 +1021,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['facebook_app_secret']['key'], __('Facebook App Secret'), array('class'=>'control-label', 'for'=>$forms['facebook_app_secret']['key']))?>
                             <?=FORM::input($forms['facebook_app_secret']['key'], $forms['facebook_app_secret']['value'], array(
-                                'placeholder' => "Facebook App Secret", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "Facebook App Secret",
+                                'class' => 'tips form-control',
                                 'id' => $forms['facebook_app_secret']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Facebook App Secret")?>
                             </span>
@@ -1019,10 +1032,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['facebook_access_token']['key'], __('Facebook Access Token'), array('class'=>'control-label', 'for'=>$forms['facebook_access_token']['key']))?>
                             <?=FORM::input($forms['facebook_access_token']['key'], $forms['facebook_access_token']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['facebook_access_token']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Facebook Access Token")?>
                             </span>
@@ -1030,10 +1043,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['facebook_id']['key'], __('Facebook Id'), array('class'=>'control-label', 'for'=>$forms['facebook_id']['key']))?>
                             <?=FORM::input($forms['facebook_id']['key'], $forms['facebook_id']['value'], array(
-                                'placeholder' => "Facebook Id", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "Facebook Id",
+                                'class' => 'tips form-control',
                                 'id' => $forms['facebook_id']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Facebook Id")?>
                             </span>
@@ -1060,10 +1073,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['twitter_consumer_key']['key'], __('Consumer Key'), array('class'=>'control-label', 'for'=>$forms['twitter_consumer_key']['key']))?>
                             <?=FORM::input($forms['twitter_consumer_key']['key'], $forms['twitter_consumer_key']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['twitter_consumer_key']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Twitter Consumer Key")?>
                             </span>
@@ -1071,10 +1084,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['twitter_consumer_secret']['key'], __('Consumer Secret'), array('class'=>'control-label', 'for'=>$forms['twitter_consumer_secret']['key']))?>
                             <?=FORM::input($forms['twitter_consumer_secret']['key'], $forms['twitter_consumer_secret']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['twitter_consumer_secret']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Twitter Consumer Secret")?>
                             </span>
@@ -1082,10 +1095,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['access_token']['key'], __('Access Token'), array('class'=>'control-label', 'for'=>$forms['access_token']['key']))?>
                             <?=FORM::input($forms['access_token']['key'], $forms['access_token']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['access_token']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Access Token")?>
                             </span>
@@ -1093,10 +1106,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['access_token_secret']['key'], __('Access Token Secret'), array('class'=>'control-label', 'for'=>$forms['access_token_secret']['key']))?>
                             <?=FORM::input($forms['access_token_secret']['key'], $forms['access_token_secret']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['access_token_secret']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Access Token Secret")?>
                             </span>
@@ -1123,10 +1136,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['instagram_username']['key'], __('Instagram Username'), array('class'=>'control-label', 'for'=>$forms['instagram_username']['key']))?>
                             <?=FORM::input($forms['instagram_username']['key'], $forms['instagram_username']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['instagram_username']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Instagram Username")?>
                             </span>
@@ -1134,17 +1147,17 @@
                         <div class="form-group">
                             <?=FORM::label($forms['instagram_password']['key'], __('Instagram Password'), array('class'=>'control-label', 'for'=>$forms['instagram_password']['key']))?>
                             <?=FORM::input($forms['instagram_password']['key'], $forms['instagram_password']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
-                                'type' => 'password', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'type' => 'password',
                                 'id' => $forms['instagram_password']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Instagram Password")?>
                             </span>
                         </div>
                     </div>
-                    
+
                     <hr>
 
                     <div>
@@ -1165,10 +1178,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['pinterest_app_id']['key'], __('App ID'), array('class'=>'control-label', 'for'=>$forms['pinterest_app_id']['key']))?>
                             <?=FORM::input($forms['pinterest_app_id']['key'], $forms['pinterest_app_id']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['pinterest_app_id']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Pinterest App ID")?>
                             </span>
@@ -1176,10 +1189,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['pinterest_app_secret']['key'], __('App secret'), array('class'=>'control-label', 'for'=>$forms['pinterest_app_secret']['key']))?>
                             <?=FORM::input($forms['pinterest_app_secret']['key'], $forms['pinterest_app_secret']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['pinterest_app_secret']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Pinterest App secret")?>
                             </span>
@@ -1187,10 +1200,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['pinterest_access_token']['key'], __('Pinterest Access token'), array('class'=>'control-label', 'for'=>$forms['pinterest_access_token']['key']))?>
                             <?=FORM::input($forms['pinterest_access_token']['key'], $forms['pinterest_access_token']['value'], array(
-                                'placeholder' => "", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
                                 'id' => $forms['pinterest_access_token']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Pinterest Access token")?>
                             </span>
@@ -1198,10 +1211,10 @@
                         <div class="form-group">
                             <?=FORM::label($forms['pinterest_board']['key'], __('Board'), array('class'=>'control-label', 'for'=>$forms['pinterest_board']['key']))?>
                             <?=FORM::input($forms['pinterest_board']['key'], $forms['pinterest_board']['value'], array(
-                                'placeholder' => "username/board", 
-                                'class' => 'tips form-control', 
+                                'placeholder' => "username/board",
+                                'class' => 'tips form-control',
                                 'id' => $forms['pinterest_board']['key'],
-                            ))?> 
+                            ))?>
                             <span class="help-block">
                                 <?=__("Board")?>
                             </span>
@@ -1214,7 +1227,7 @@
                     </p>
                 </div>
             </div>
-        
+
         <?= FORM::close()?>
     </div>
 </div>

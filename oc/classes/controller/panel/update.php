@@ -14,7 +14,7 @@ class Controller_Panel_Update extends Auth_Controller {
     {
         //new configs
         $configs = array(
-                        
+
                         array( 'config_key'     => 'subscriptions_expire',
                                'group_name'     => 'general',
                                'config_value'   => '0'),
@@ -27,11 +27,14 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'sms_clickatell_api',
                                'group_name'     => 'general',
                                'config_value'   => ''),
+                        array( 'config_key'     => 'login_to_view_ad',
+                               'group_name'     => 'advertisement',
+                               'config_value'   => 0),
                         );
 
         Model_Config::config_array($configs);
 
-        //user phone number 
+        //user phone number
         try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD  `phone` varchar(30) DEFAULT NULL")->execute();
