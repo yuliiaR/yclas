@@ -109,6 +109,9 @@
 												<span class="fileinput-exists"><?=_e('Edit')?></span>
 												<input type="file" name="<?='image'.$i?>" id="<?='fileInput'.$i?>" accept="image/*">
 											</span>
+                                            <?if (core::config('image.upload_from_url')):?>
+    											<button type="button" class="btn btn-default fileinput-url" data-toggle="modal" data-target="#<?='urlInputimage'.$i?>"><?=_e('Image URL')?></button>
+                                            <?endif?>
 											<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?=_e('Delete')?></a>
 										  </div>
 										</div>
@@ -284,3 +287,29 @@
 		</div>
 	<?endif?>
 </div>
+
+<?if (core::config("advertisement.num_images") > 0 ):?>
+    <?for ($i=0; $i < core::config("advertisement.num_images") ; $i++):?>
+        <div class="modal fade" id="<?='urlInputimage'.$i?>" tabindex="-1" role="dialog" aria-labelledby="<?='urlInputimage'.$i?>Label">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form class="imageURL">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="<?='urlInput'.$i?>Label"><?=__('Insert Image')?></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label><?=__('Image URL')?></label>
+                                <input name="<?='image'.$i?>" class="note-image-url form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"><?=__('Insert Image')?></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?endfor?>
+<?endif?>
