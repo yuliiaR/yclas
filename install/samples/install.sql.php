@@ -716,6 +716,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('image', 'aws_s3_bucket', ''),
 ('image', 'aws_s3_domain', 0),
 ('image', 'disallow_nudes', 0),
+('image', 'upload_from_url', 0),
 ('advertisement', 'num_images', '4'),
 ('advertisement', 'expire_date', '0'),
 ('advertisement', 'expire_reactivation', '1'),

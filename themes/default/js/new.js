@@ -406,11 +406,56 @@ $('.fileinput').on('change.bs.fileinput', function() {
 
     //unhide next box image after selecting first
     $(this).next('.fileinput').removeClass('hidden');
+
+    //hide image url button
+    $(this).find('.fileinput-url').addClass('hidden');
 });
 
 $('.fileinput').on('clear.bs.fileinput', function() {
     var $input = $(this).find('input[name^="image"]');
     $('input[name="base64_' + $input.attr('name') + '"]').remove();
+
+    //unhide image url button
+    $(this).find('.fileinput-url').removeClass('hidden');
+});
+
+function convertFunction(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            callback(reader.result);
+        }
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.onerror = function() {
+        alert("The image could not be loaded")
+    }
+    xhr.send();
+}
+
+$('.imageURL').submit(function(event) {
+    var $input = $(this).find('[name^="image"]');
+    var $fileInput = $('.fileinput [name="' + $input.attr('name') + '"]').closest('.fileinput');
+    var $fileInputPreview = $fileInput.find('.fileinput-preview');
+
+    convertFunction($input.val(), function(base64Img) {
+        $('<input>').attr({
+            type: 'hidden',
+            name: 'base64_' + $input.attr('name'),
+            value: base64Img
+            }).appendTo('#publish-new');
+        $('<img>').attr({
+            src: base64Img
+            }).appendTo($fileInputPreview);
+        $fileInput.removeClass('fileinput-new').addClass('fileinput-exists');
+        $fileInput.find('.fileinput-url').addClass('hidden');
+        $('#urlInput' + $input.attr('name')).modal('hide');
+    });
+
+    event.preventDefault();
 });
 
 // VALIDATION with chosen fix
