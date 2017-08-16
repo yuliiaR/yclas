@@ -453,6 +453,9 @@ $('.imageURL').submit(function(event) {
         $fileInput.removeClass('fileinput-new').addClass('fileinput-exists');
         $fileInput.find('.fileinput-url').addClass('hidden');
         $('#urlInput' + $input.attr('name')).modal('hide');
+
+        //unhide next box image after selecting first
+        $fileInput.next('.fileinput').removeClass('hidden');
     });
 
     event.preventDefault();
