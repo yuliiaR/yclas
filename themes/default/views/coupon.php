@@ -4,7 +4,7 @@
 <form class="form-inline"  method="post" action="<?=URL::current()?>">         
     <?if (Model_Coupon::current()->loaded()):?>
         <?=Form::hidden('coupon_delete',Model_Coupon::current()->name)?>
-        <button type="submit" class="btn btn-warning"><?=_e('Delete')?> <?=Model_Coupon::current()->name?></button>
+        <button type="submit" class="btn btn-warning delete_coupon"><?=_e('Delete')?> <?=Model_Coupon::current()->name?></button>
         <p>
             <?=sprintf(__('Discount off %s'), (Model_Coupon::current()->discount_amount==0)?round(Model_Coupon::current()->discount_percentage,0).'%':i18n::money_format((Model_Coupon::current()->discount_amount)))?><br>
             <?=sprintf(__('%s coupons left'), Model_Coupon::current()->number_coupons)?>, <?=sprintf(__('valid until %s'), Date::format(Model_Coupon::current()->valid_date, core::config('general.date_format')))?>.
