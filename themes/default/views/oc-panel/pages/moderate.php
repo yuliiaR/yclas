@@ -40,10 +40,10 @@
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
-                                            <button class="btn btn-block btn-link activate" 
+                                            <button class="btn btn-block btn-link activate"
                                                 data-toggle="confirmation"
-                                                formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>" 
-                                                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>"
+                                                data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                                 data-btnCancelLabel="<?=__('No way!')?>"
                                                 title="<?=__('Activate?')?>">
                                                 <i class="fa fa-check"></i> <?=__('Activate')?></span>
@@ -51,10 +51,10 @@
                                         </li>
                                         <?if(Core::get('status') != Model_Ad::STATUS_SPAM):?>
                                             <li>
-                                                <button class="btn btn-block btn-link spam" 
+                                                <button class="btn btn-block btn-link spam"
                                                     data-toggle="confirmation"
-                                                    formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>" 
-                                                    data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                    formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>"
+                                                    data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                                     data-btnCancelLabel="<?=__('No way!')?>"
                                                     title="<?=__('Spam?')?>">
                                                     <i class="fa fa-fw fa-fire"></i> <?=__('Spam')?></span>
@@ -62,10 +62,10 @@
                                             </li>
                                         <?endif?>
                                         <li>
-                                            <button class="btn btn-block btn-link delete" 
+                                            <button class="btn btn-block btn-link delete"
                                                 data-toggle="confirmation"
-                                                formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>" 
-                                                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
+                                                data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                                 data-btnCancelLabel="<?=__('No way!')?>"
                                                 title="<?=__('Delete?')?>" data-text="<?=__('Are you sure you want to delete?')?>">
                                                 <i class="fa fa-fw fa-times"></i> <?=__('Delete')?></span>
@@ -79,7 +79,7 @@
                 </thead>
                 <?if(isset($ads)):?>
                     <tbody>
-                        <?foreach($ads as $ad):?>  
+                        <?foreach($ads as $ad):?>
                             <tr id="tr<?=$ad->id_ad?>">
                                 <td>
                                     <div class="checkbox check-success">
@@ -89,21 +89,21 @@
                                 </td>
                                 <td>
                                     <a
-                                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                                        class="btn btn-success index-moderation" 
-                                        title="<?=__('Activate?')?>" 
-                                        data-id="tr<?=$ad->id_ad?>" 
-                                        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>"
+                                        class="btn btn-success index-moderation"
+                                        title="<?=__('Activate?')?>"
+                                        data-id="tr<?=$ad->id_ad?>"
+                                        data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                         data-btnCancelLabel="<?=__('No way!')?>">
                                         <i class="glyphicon glyphicon-ok-sign"></i> <?=$ad->id_ad?>
                                     </a>
                                 </td>
-                                
+
                                 <td><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?= wordwrap($ad->title, 45, "<br />\n"); ?></a>
                                 </td>
-                    
+
                                 <td><?= wordwrap($ad->category->name, 15, "<br />\n"); ?>
-                                     
+
                                 <td>
                                     <?if($ad->location->loaded()):?>
                                         <?=wordwrap($ad->location->name, 15, "<br />\n");?>
@@ -114,7 +114,7 @@
                                 <?if(core::config('advertisement.count_visits')==1):?>
                                 <td><?=$ad->count_ad_hit();?></td>
                                 <?endif?>
-                    
+
                                 <td>
                                 <?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
                                     <?=__('Not published')?>
@@ -124,10 +124,12 @@
                                     <?=__('Spam')?>
                                 <? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
                                     <?=__('Unavailable')?>
+                                <? elseif($ad->status == Model_Ad::STATUS_SOLD):?>
+                                    <?=__('Sold')?>
                                 <?endif?>
-                    
+
                                 <?if( ($order = $ad->get_order())!==FALSE ):?>
-                                    <a class="label <?=($order->status==Model_Order::STATUS_PAID)?'label-success':'label-warning'?> " 
+                                    <a class="label <?=($order->status==Model_Order::STATUS_PAID)?'label-success':'label-warning'?> "
                                         href="<?=Route::url('oc-panel', array('controller'=> 'order','action'=>'index'))?>?email=<?=$order->user->email?>">
                                     <?if ($order->status==Model_Order::STATUS_CREATED):?>
                                         <?=__('Not paid')?>
@@ -138,12 +140,12 @@
                                     </a>
                                 <?endif?>
                                 </td>
-                    
+
                                 <td><?= Date::format($ad->created, core::config('general.date_format'))?></td>
                                 <td class="nowrap">
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" 
-                                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>" 
+                                        <a class="btn btn-primary"
+                                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"
                                             rel="tooltip" title="<?=__('Edit')?>">
                                             <i class="fa fa-pencil"></i>
                                         </a>
@@ -154,22 +156,22 @@
                                             <ul class="dropdown-menu dropdown-menu-right">
                                                 <li>
                                                     <a
-                                                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                                                        class="index-moderation" 
-                                                        title="<?=__('Spam')?>" 
-                                                        data-id="tr<?=$ad->id_ad?>" 
-                                                        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>"
+                                                        class="index-moderation"
+                                                        title="<?=__('Spam')?>"
+                                                        data-id="tr<?=$ad->id_ad?>"
+                                                        data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                                         data-btnCancelLabel="<?=__('No way!')?>">
                                                         <i class="fa fa-fw fa-fire"></i> <?=__('Spam')?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a
-                                                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>" 
-                                                        class="index-moderation" 
-                                                        title="<?=__('Delete')?>" 
-                                                        data-id="tr<?=$ad->id_ad?>" 
-                                                        data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                                        href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>"
+                                                        class="index-moderation"
+                                                        title="<?=__('Delete')?>"
+                                                        data-id="tr<?=$ad->id_ad?>"
+                                                        data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                                         data-btnCancelLabel="<?=__('No way!')?>">
                                                         <i class="fa fa-fw fa-trash"></i> <?=__('Delete')?>
                                                     </a>

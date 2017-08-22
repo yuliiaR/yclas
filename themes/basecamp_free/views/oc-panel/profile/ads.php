@@ -18,21 +18,21 @@
 							<?if($ad->get_first_image() !== NULL):?>
 								<img src="<?=$ad->get_first_image()?>" alt="<?=HTML::chars($ad->title)?>" />
 							<?else:?>
-								<img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" alt="<?=HTML::chars($ad->title)?>"> 
+								<img data-src="holder.js/<?=core::config('image.width_thumb')?>x<?=core::config('image.height_thumb')?>?<?=str_replace('+', ' ', http_build_query(array('text' => $ad->category->name, 'size' => 14, 'auto' => 'yes')))?>" alt="<?=HTML::chars($ad->title)?>">
 							<?endif?>
 							</div>
 						</div>
-						
+
 						<div class="ad_dcoll">
 							<div class="pad_10">
 								<div class="my_ad_title clearfix">
 									<div class="dropdown pull-right display-inline-block">
 										<button class="btn btn-base-dark btn-sm dropdown-toggle " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
 											<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-												<? if( $ad->status == Model_Ad::STATUS_UNAVAILABLE AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)):?>
+												<? if (in_array($ad->status, [Model_Ad::STATUS_UNAVAILABLE, Model_Ad::STATUS_SOLD]) AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)):?>
 													<?if ( ($order = $ad->get_order()) === FALSE OR ($order !== FALSE AND $order->status == Model_Order::STATUS_PAID) ):?>
 														<li>
-															<a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>"><?=_e('Activate?')?></a> 
+															<a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>"><?=_e('Activate?')?></a>
 														</li>
 													<?endif?>
 												<?elseif($ad->status != Model_Ad::STATUS_UNAVAILABLE):?>
@@ -50,7 +50,7 @@
 													<li>
 													<?if($ad->featured == NULL):?>
 														<a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_featured','id'=>$ad->id_ad))?>"
-														onclick="return confirm('<?=__('Make featured?')?>');" rel="tooltip" title="<?=__('Featured')?>" 
+														onclick="return confirm('<?=__('Make featured?')?>');" rel="tooltip" title="<?=__('Featured')?>"
 														data-id="tr1" data-text="<?=__('Are you sure you want to make it featured?')?>"><?=_e('Make featured?')?>
 														</a>
 													<?else:?>
@@ -63,7 +63,7 @@
 									<? foreach($category as $cat){ if ($cat->id_category == $ad->id_category) $cat_name = $cat->seoname; }?>
 										<a class="at" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?= $ad->title; ?></a>
 								</div>
-							
+
 								<p><b><?=_e('Date')?> : </b><?= Date::format($ad->published, core::config('general.date_format'))?></p>
 								<? foreach($category as $cat):?>
 									<? if ($cat->id_category == $ad->id_category): ?>
@@ -88,6 +88,8 @@
 									<span class="badge badge-warning"> <?=_e('Spam')?></span>
 								<? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
 									<span class="badge badge-danger"><?=_e('Unavailable')?></span>
+								<? elseif($ad->status == Model_Ad::STATUS_SOLD):?>
+									<span class="badge badge-danger"><?=_e('Sold')?></span>
 								<?endif?>
 								</p>
 								<p class="text-right">
@@ -106,7 +108,7 @@
 							</div>
 						</div>
 					</div>
-				</div>	
+				</div>
 			<?endforeach?>
 
 			<div class="text-center">

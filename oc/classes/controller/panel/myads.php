@@ -220,32 +220,52 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
     public function action_sold()
     {
 
-        $deact_ad = new Model_Ad($this->request->param('id'));
+        $ad = new Model_Ad($this->request->param('id'));
 
-        if ($deact_ad->loaded())
+        if ($ad->loaded())
         {
-            if(Auth::instance()->get_user()->id_user != $deact_ad->id_user)
+            if (Auth::instance()->get_user()->id_user != $ad->id_user)
             {
                 Alert::set(Alert::ALERT, __("This is not your advertisement."));
                 HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
             }
 
-            if ($deact_ad->sold())
+            if ($this->request->post())
             {
-                Alert::set(Alert::SUCCESS, __('Advertisement is marked as Sold'));
+                $validation = Validation::factory($this->request->post())
+                    ->rule('amount', 'price');
+
+                if ($validation->check())
+                {
+                    $id_product = Model_Order::PRODUCT_AD_SELL;
+                    $amount     = Core::request('amount');
+                    $currency   = Core::config('payment.paypal_currency');
+                    $user       = Auth::instance()->get_user();
+
+                    // New order and mark as paid
+                    $order = Model_Order::new_order($ad, $user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
+                    $order->confirm_payment('cash', sprintf('Done by user %d - %s', $user->id_user, $user->email));
+
+                    if ($ad->sold())
+                        Alert::set(Alert::SUCCESS, __('Advertisement is marked as Sold'));
+                }
+                else
+                {
+                    $errors = $validation->errors('config');
+
+                    foreach ($errors as $error)
+                        Alert::set(Alert::ALERT, $error);
+                }
+
                 HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
             }
-            else
-            {
-                Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'deactivated'"));
-                HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
-            }
+
+            Alert::set(Alert::ALERT, __("Warning, Advertisement is already marked as 'sold'"));
+            HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
         }
-        else
-        {
-            //throw 404
-            throw HTTP_Exception::factory(404,__('Page not found'));
-        }
+
+        //throw 404
+        throw HTTP_Exception::factory(404,__('Page not found'));
 
     }
 
