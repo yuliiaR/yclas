@@ -23,12 +23,15 @@
         case Model_Ad::STATUS_UNAVAILABLE:
             $str = __('UNAVAILABLE');
             break;
+        case Model_Ad::STATUS_SOLD:
+            $str = __('SOLD');
+            break;
         default:
             break;
     }?>
     <p><span class="label label-warning label-as-badge"><?=$str?></span></p>
 
-    <? if( $ad->status == Model_Ad::STATUS_UNAVAILABLE AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)
+    <? if (in_array($ad->status, [Model_Ad::STATUS_UNAVAILABLE, Model_Ad::STATUS_SOLD]) AND !in_array(core::config('general.moderation'), Model_Ad::$moderation_status)
             ):?>
             <a
                 href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>"
@@ -109,6 +112,9 @@
                                         break;
                                     case Model_Ad::STATUS_UNAVAILABLE:
                                         $str = __('UNAVAILABLE');
+                                        break;
+                                    case Model_Ad::STATUS_SOLD:
+                                        $str = __('SOLD');
                                         break;
                                     default:
                                         break;
