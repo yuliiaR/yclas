@@ -590,7 +590,8 @@ $("#price").keyup(function() {
 });
 
 
-$("#phone").intlTelInput({
-    formatOnDisplay: false,
-});
-
+if ($('#phone').length) {
+    $("#phone").intlTelInput({
+        formatOnDisplay: false,
+    });
+}
