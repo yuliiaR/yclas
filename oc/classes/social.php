@@ -189,6 +189,7 @@ class Social {
 
                 $caption .= ' - '.Text::limit_chars(Text::removebbcode($ad->description), 100, NULL, TRUE);
                 $caption .= ' - '.$url_ad;
+		        $caption = self::GenerateHashtags($ad, $caption);
 
                 $i = new \InstagramAPI\Instagram();
                 
@@ -218,16 +219,16 @@ class Social {
         $message = Text::limit_chars($ad->title, 20, NULL, TRUE).', ';
 
         if($ad->category->id_category_parent != 1 AND $ad->category->parent->loaded())
-            $message .= Text::limit_chars($ad->category->parent->name, 20, NULL, TRUE);
+            $message .= Text::limit_chars($ad->category->parent->name, 17, NULL, TRUE);
 
-        $message .= ' - '.Text::limit_chars($ad->category->name, 20, NULL, TRUE);
+        $message .= ' - '.Text::limit_chars($ad->category->name, 17, NULL, TRUE);
 
         if($ad->id_location != 1 AND $ad->location->loaded())
         {
             if($ad->location->id_location_parent != 1 AND $ad->location->parent->loaded())
-                $message .= ', '.Text::limit_chars($ad->location->parent->name, 20, NULL, TRUE);
+                $message .= ', '.Text::limit_chars($ad->location->parent->name, 17, NULL, TRUE);
             
-            $message .= ' - '.Text::limit_chars($ad->location->name, 20, NULL, TRUE);
+            $message .= ' - '.Text::limit_chars($ad->location->name, 17, NULL, TRUE);
         }
 
         if($ad->price>0)
@@ -235,6 +236,7 @@ class Social {
 
         $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
         $message .= ' - '.$url_ad;
+        $message = self::GenerateHashtags($ad, $message);
 
         $params = array(
             'status' => $message
@@ -281,6 +283,8 @@ class Social {
         $data['link'] = $url_ad;
         $data['message'] = $message;
         $data['caption'] = core::config('general.base_url').' | '.core::config('general.site_name');
+
+        $description = self::GenerateHashtags($ad, $description);
         $data['description'] = $description;
 
         $data['access_token'] = $page_access_token;
@@ -318,6 +322,15 @@ class Social {
             model_config::set_value('advertisement','facebook_access_token',$paramsfb['access_token']);
         else
             model_config::set_value('advertisement','facebook_access_token','');
+    }
+
+    public static function GenerateHashtags(Model_Ad $ad, $description)
+    {
+    	$hashtag1 = '#'.preg_replace('/\s+/', '_', core::config('general.site_name'));
+    	$hashtag2 = '#'.preg_replace('/\s+/', '_', $ad->category->name);
+    	$hashtag3 = '#'.preg_replace('/\s+/', '_', $ad->location->name);
+
+    	return $description.' '.$hashtag1.' '.$hashtag2.' '.$hashtag3;
     }
 
 }

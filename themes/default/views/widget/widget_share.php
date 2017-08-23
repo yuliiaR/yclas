@@ -6,7 +6,6 @@
 
 <?if($widget->social_media==''):?>
 	<span class='st_whatsapp_large' displayText='WhatsApp'></span> <!-- only on mobile -->
-	<span class='st_sms_large' displayText='SMS'></span> <!-- only on mobile -->
 	<span class='st_facebook_large' displayText='Facebook'></span>
 	<span class='st_twitter_large' displayText='Tweet'></span>
 	<span class='st_linkedin_large' displayText='LinkedIn'></span>
@@ -25,7 +24,6 @@
 	<? $social_media = explode(',', $widget->social_media); ?>
 	<?foreach($social_media as $key=>$value):?>
 		<?if(!strcmp(trim($value),'whatsapp')):?><span class='st_whatsapp_large' displayText='WhatsApp'></span><?endif?>
-		<?if(!strcmp(trim($value),'sms')):?><span class='st_sms_large' displayText='SMS'></span><?endif?>
 		<?if(!strcmp(trim($value),'facebook')):?><span class='st_facebook_large' displayText='Facebook'></span><?endif?>
 		<?if(!strcmp(trim($value),'tweet')):?><span class='st_twitter_large' displayText='Tweet'></span><?endif?>
 		<?if(!strcmp(trim($value),'linkedin')):?><span class='st_linkedin_large' displayText='LinkedIn'></span><?endif?>
