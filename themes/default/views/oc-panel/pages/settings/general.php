@@ -390,6 +390,11 @@
                             <hr>
 
                             <div class="form-group">
+                                <?=FORM::label($forms['country']['id'], __('Country'), array('class'=>'control-label','for'=>$forms['number_format']['id']))?>
+                                <?=Form::select($forms['country']['key'], array_merge(['' => __('None')], EUVAT::countries()), $forms['country']['value'])?>
+                            </div>
+
+                            <div class="form-group">
                                 <?=FORM::label($forms['number_format']['id'], __('Money format'), array('class'=>'control-label','for'=>$forms['number_format']['id']))?>
                                 <a target="_blank" href="https://docs.yclas.com/how-to-currency-format/">
                                     <i class="fa fa-question-circle"></i>

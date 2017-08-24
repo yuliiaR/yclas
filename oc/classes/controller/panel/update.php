@@ -33,6 +33,9 @@ class Controller_Panel_Update extends Auth_Controller {
                         array( 'config_key'     => 'upload_from_url',
                                'group_name'     => 'image',
                                'config_value'   => 0),
+                        array( 'config_key'     => 'country',
+                               'group_name'     => 'general',
+                               'config_value'   => ''),
                         );
 
         Model_Config::config_array($configs);

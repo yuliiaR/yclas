@@ -593,5 +593,6 @@ $("#price").keyup(function() {
 if ($('#phone').length) {
     $("#phone").intlTelInput({
         formatOnDisplay: false,
+        initialCountry: $('#phone').data('country')
     });
 }
