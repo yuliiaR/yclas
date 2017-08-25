@@ -212,7 +212,7 @@
 						<div class="form-group">
 							<div class="col-xs-12">
 								<?= FORM::label('phone', _e('Phone'), array('class'=>'', 'for'=>'phone'))?>
-								<?= FORM::input('phone', $ad->phone, array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone')))?>
+								<?= FORM::input('phone', $ad->phone, array('class'=>'form-control', 'id'=>'phone', 'placeholder'=>__('Phone'), 'data-country' => core::config('general.country')))?>
 							</div>
 						</div>
 					<?endif?>

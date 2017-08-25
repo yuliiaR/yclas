@@ -5,6 +5,7 @@ if($('.cf_date_fields').length != 0){
 
 $('#phone').intlTelInput({
     formatOnDisplay: false,
+    initialCountry: $('#phone').data('country')
 });
 
 $('form').submit(function() {
