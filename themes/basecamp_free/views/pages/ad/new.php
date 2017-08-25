@@ -103,9 +103,9 @@
                                 <?= FORM::label('phone', _e('Phone'), array('for'=>'phone'))?>
                                 <div>
                                     <?if (Auth::instance()->get_user()):?>
-                                        <?=FORM::input('phone', Auth::instance()->get_user()->phone, array('class'=>'form-control', 'id'=>'phone'))?>
+                                        <?=FORM::input('phone', Auth::instance()->get_user()->phone, array('class'=>'form-control', 'id'=>'phone', 'data-country' => core::config('general.country')))?>
                                     <?else:?>
-                                        <?=FORM::input('phone', Request::current()->post('phone'), array('class'=>'form-control', 'id'=>'phone'))?>
+                                        <?=FORM::input('phone', Request::current()->post('phone'), array('class'=>'form-control', 'id'=>'phone', 'data-country' => core::config('general.country')))?>
                                     <?endif?>
                                 </div>
                             </div>
