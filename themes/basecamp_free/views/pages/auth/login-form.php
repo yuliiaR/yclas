@@ -40,3 +40,5 @@
 	<?=Form::redirect()?>
 	<?=Form::CSRF('login')?>
 </form>
+
+<?=View::factory('pages/auth/phonelogin')?>
