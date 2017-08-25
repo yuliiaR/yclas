@@ -240,6 +240,42 @@ class Auth_OC extends Kohana_Auth {
         return FALSE;
     }
 
+    /**
+     * Logs a user in using phone
+     * @param string $token
+     * @return  mixed
+     */
+    public function phone_login($phone, $code)
+    {
+        // Load the user
+        $user = new Model_User;
+        $user ->where('phone', '=', $phone)
+        ->where('status','in',array(Model_User::STATUS_ACTIVE,Model_User::STATUS_SPAM))
+        ->limit(1)
+        ->find();
+
+        if ($user->loaded() AND $code ===  Session::instance()->get('sms_auth_code'))
+        {
+            // Complete the login with the found data, and new token
+            $user->complete_login($this->_config['lifetime']);
+
+            // Set the new token
+            Cookie::set('authautologin', $user->token, $this->_config['lifetime']);
+
+            //set cookie
+            Cookie::set('sms_auth' , $user->id_user, $this->_config['lifetime']);
+
+            //writes the session
+            $this->complete_login($user);
+
+            // social login was successful
+            return $user;
+        }
+
+
+        return FALSE;
+    }
+
 
 	/**
 	 * Log a user out and remove any autologin cookies.

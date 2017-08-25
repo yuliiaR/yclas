@@ -8,6 +8,12 @@ class Controller_Panel_Auth extends Controller {
      */
     public function action_login()
     {       
+        if (Core::config('general.sms_auth') == TRUE)
+        {
+            $this->template->styles = ['css/intlTelInput.css' => 'screen'];
+            $this->template->scripts['footer'] = ['js/intlTelInput.min.js', 'js/utils.js', 'js/oc-panel/edit_profile.js'];
+        }
+        
         $this->template->meta_description = __('Login to').' '.core::config('general.site_name');
         
         //if user loged in redirect home
@@ -510,10 +516,9 @@ class Controller_Panel_Auth extends Controller {
         }
     }
 
-
     /**
      * 2step verification form
-     * 
+     *
      */
     public function action_sms()
     {
@@ -523,7 +528,7 @@ class Controller_Panel_Auth extends Controller {
 
         //template header
         $this->template->title   = __('2 Step Authentication');
-        $this->template->content = View::factory('pages/auth/sms',['user'=>$this->user]);
+        $this->template->content = View::factory('pages/auth/sms',['user'=>$this->user,'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'sms'))]);
 
         //if user loged in redirect home
         if  ( Auth::instance()->logged_in() AND ( Cookie::get('sms_auth') == $this->user->id_user  ) )
@@ -537,21 +542,21 @@ class Controller_Panel_Auth extends Controller {
             $code     = Text::random('numeric',6);
             $response = SMS::send($this->user->phone,__('Your code:').' '.$code);
 
-            if ($response === TRUE) 
+            if ($response === TRUE)
             {
                Session::instance()->set('sms_auth_code',$code);
-            } 
-            else 
+            }
+            else
             {
                 Session::instance()->set('sms_auth_code',NULL);
                 Form::set_errors(array($response));
             }
         }
-            
+
         //posting data so try to remember password
         if (core::post('code') AND CSRF::valid('sms'))
-        {            
-            
+        {
+
             if (core::post('code') ===  Session::instance()->get('sms_auth_code') )
             {
                 //set cookie
@@ -559,13 +564,96 @@ class Controller_Panel_Auth extends Controller {
 
                 // redirect to the url we wanted to see
                 Auth::instance()->login_redirect();
-            } 
-            else 
+            }
+            else
             {
                 Form::set_errors(array(__('Invalid Code')));
             }
-            
+
         }
+    }
+
+
+        /**
+     *
+     * Check if we need to login the user or display the form, same form for normal user and admin
+     */
+    public function action_phonelogin()
+    {
+        // 2step disabled or trying to access directly
+        if (Core::config('general.sms_auth') == FALSE )
+            $this->redirect(Route::get('oc-panel')->uri());
+
+        //Login page
+        $this->template->title            = __('Login');
+        $this->template->meta_description = __('Login to').' '.core::config('general.site_name');
+
+
+        //if user loged in redirect home
+        if (Auth::instance()->logged_in())
+        {
+            Auth::instance()->login_redirect();
+        }
+        //private site only allows post to login
+        elseif(!$_POST AND core::config('general.private_site')==1)
+        {
+            $this->redirect(Route::url('default'));
+        }
+        //posting data so try to login
+        elseif ($this->request->post() AND CSRF::valid('sms') AND Core::post('code'))
+        {
+            Auth::instance()->phone_login(Session::instance()->get('phone_number'),core::post('code'));
+
+            //redirect index
+            if (Auth::instance()->logged_in())
+                Auth::instance()->login_redirect();
+            else
+                Form::set_errors(array( __('Wrong phone number or code')));
+        }
+        elseif ($this->request->post() AND CSRF::valid('phonelogin') AND Valid::phone(core::post('phone')))
+        {
+            //check the phone exists
+            $user = new Model_User;
+            $user ->where('phone', '=', core::post('phone'))
+                    ->where('status','in',array(Model_User::STATUS_ACTIVE,Model_User::STATUS_SPAM))
+                    ->limit(1)
+                    ->find();
+
+            //avoid duplicated sms
+            if ($user->loaded() AND Session::instance()->get('sms_auth_code')==NULL)
+            {
+                $code     = Text::random('numeric',6);
+                $response = SMS::send(core::post('phone'),__('Your code:').' '.$code);
+
+                if ($response === TRUE)
+                {
+                   Session::instance()->set('sms_auth_code',$code);
+                   Session::instance()->set('phone_number',core::post('phone'));
+                   //show form to put the code 
+                   $this->template->content = View::factory('pages/auth/sms',['user'=>$user,'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'phonelogin'))]);
+                   return TRUE;
+                }
+                else
+                {
+                    Session::instance()->set('sms_auth_code',NULL);
+                    Session::instance()->set('phone_number',NULL);
+                    Form::set_errors(array($response));
+                }
+            }
+            else
+                Form::set_errors(array('Phone not loaded'));
+        }
+        
+        Session::instance()->set('sms_auth_code',NULL);
+        Session::instance()->set('phone_number',NULL);
+        
+        $this->template->styles = ['css/intlTelInput.css' => 'screen'];
+        $this->template->scripts['footer'] = ['js/intlTelInput.min.js', 'js/utils.js', 'js/oc-panel/edit_profile.js'];
+
+        $this->template->content = View::factory('pages/auth/phonelogin');
+
+        
+        
     }
 
 
