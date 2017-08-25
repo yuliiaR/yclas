@@ -127,6 +127,6 @@
         <?endif?>
         <div class="clearfix"></div>
     
-        <?= FORM::button('submit', __('Search'), array('type'=>'submit', 'class'=>'btn btn-primary'))?> 
+        <?= FORM::button('submit', _e('Search'), array('type'=>'submit', 'class'=>'btn btn-primary'))?> 
     <?= FORM::close()?>
 </div>

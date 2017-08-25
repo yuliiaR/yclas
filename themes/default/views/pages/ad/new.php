@@ -249,7 +249,7 @@
 						</div>
 					<?endif?>
 					<div class="form-actions">
-						<?= FORM::button('submit_btn', __('Publish new'), array('type'=>'submit', 'id' => 'publish-new-btn', 'data-swaltitle' => __('Are you sure?'), 'data-swaltext' => __('It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost.'), 'class'=>'btn btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
+						<?= FORM::button('submit_btn', _e('Publish new'), array('type'=>'submit', 'id' => 'publish-new-btn', 'data-swaltitle' => __('Are you sure?'), 'data-swaltext' => __('It looks like you have been about to publish a new advertisement, if you leave before submitting your changes will be lost.'), 'class'=>'btn btn-primary', 'action'=>Route::url('post_new',array('controller'=>'new','action'=>'index'))))?>
 						<?if (!Auth::instance()->get_user()):?>
 							<p class="help-block"><?=_e('User account will be created')?></p>
 						<?endif?>
@@ -296,16 +296,16 @@
                     <form class="imageURL">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="<?='urlInput'.$i?>Label"><?=__('Insert Image')?></h4>
+                            <h4 class="modal-title" id="<?='urlInput'.$i?>Label"><?=_e('Insert Image')?></h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label><?=__('Image URL')?></label>
+                                <label><?=_e('Image URL')?></label>
                                 <input name="<?='image'.$i?>" class="note-image-url form-control" type="text">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary"><?=__('Insert Image')?></button>
+                            <button type="submit" class="btn btn-primary"><?=_e('Insert Image')?></button>
                         </div>
                     </form>
                 </div>

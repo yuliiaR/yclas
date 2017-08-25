@@ -10,7 +10,7 @@
 <?elseif (Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin()) :?>
     <div class="alert alert-danger" role="alert">
         <a href="<?=Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))?>" class="alert-link">
-        	<?=__('Please set your Google API key on advertisement configuration.')?>
+            <?=__('Please set your Google API key on advertisement configuration.')?>
         </a>
     </div>
 <?endif?>

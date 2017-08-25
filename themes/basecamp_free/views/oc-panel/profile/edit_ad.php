@@ -10,22 +10,22 @@
 
 			<?$str=NULL;switch ($ad->status) {
 				case Model_Ad::STATUS_NOPUBLISHED:
-					$str = __('NOPUBLISHED');
+					$str = _e('NOPUBLISHED');
 					break;
 				case Model_Ad::STATUS_PUBLISHED:
-					$str = __('PUBLISHED');
+					$str = _e('PUBLISHED');
 					break;
 				case Model_Ad::STATUS_UNCONFIRMED:
-					$str = __('UNCONFIRMED');
+					$str = _e('UNCONFIRMED');
 					break;
 				case Model_Ad::STATUS_SPAM:
-					$str = __('SPAM');
+					$str = _e('SPAM');
 					break;
 				case Model_Ad::STATUS_UNAVAILABLE:
-					$str = __('UNAVAILABLE');
+					$str = _e('UNAVAILABLE');
 					break;
 				case Model_Ad::STATUS_SOLD:
-					$str = __('SOLD');
+					$str = _e('SOLD');
 					break;
 				default:
 					break;
@@ -381,16 +381,16 @@
                     <form class="imageURL">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="<?='urlInput'.$i?>Label"><?=__('Insert Image')?></h4>
+                            <h4 class="modal-title" id="<?='urlInput'.$i?>Label"><?=_e('Insert Image')?></h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label><?=__('Image URL')?></label>
+                                <label><?=_e('Image URL')?></label>
                                 <input name="<?='image'.$i?>" class="note-image-url form-control" type="text">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary"><?=__('Insert Image')?></button>
+                            <button type="submit" class="btn btn-primary"><?=_e('Insert Image')?></button>
                         </div>
                     </form>
                 </div>
