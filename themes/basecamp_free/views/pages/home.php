@@ -122,7 +122,7 @@
 														<a role="button" 
                                                             class="show-all-categories"
                                                             data-cat-id="<?=$c['id_category']?>">
-                                                            <?=__("See all categories")?> <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+                                                            <?=_e("See all categories")?> <span class="glyphicon glyphicon-chevron-right pull-right"></span>
                                                         </a>
 													</li>
 												<?endif?>

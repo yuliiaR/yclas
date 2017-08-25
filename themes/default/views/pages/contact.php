@@ -61,7 +61,7 @@
 		<?endif?>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-md-5">
-				<?= FORM::button('submit', __('Contact Us'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?>
+				<?= FORM::button('submit', _e('Contact Us'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?>
 			</div>
 		</div>
 	</fieldset>

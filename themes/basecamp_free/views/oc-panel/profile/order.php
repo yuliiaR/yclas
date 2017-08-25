@@ -4,14 +4,14 @@
 		<div class="row"> 
 			<div class="col-xs-12">
 				<div class="checkout_bill">
-					<h1><?=__('Checkout')?></h1>
-					<p class="text-right"><em><?=__('Date')?>: <?= Date::format($order->created, core::config('general.date_format'))?></em></p>	
+					<h1><?=_e('Checkout')?></h1>
+					<p class="text-right"><em><?=_e('Date')?>: <?= Date::format($order->created, core::config('general.date_format'))?></em></p>	
 					<div class="">
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th><?=__('Product')?></th>
-									<th class="text-center"><?=__('Price')?></th>
+									<th><?=_e('Product')?></th>
+									<th class="text-center"><?=_e('Price')?></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -21,7 +21,7 @@
 										<td class="col-md-3 text-center"><?=i18n::format_currency($order->amount, $order->currency)?></td>
 									</tr>
 									<tr>
-										<td class="col-md-9"><?=__('Shipping')?></td>
+										<td class="col-md-9"><?=_e('Shipping')?></td>
 	                        			<td class="col-md-3 text-center"><?=i18n::money_format($order->ad->shipping_price(), $order->currency)?></td>
 									</tr>
 								<?else:?>
@@ -29,7 +29,7 @@
 										<td class="col-md-9">
 											<b><?=Model_Order::product_desc($order->id_product)?> 
 											<?if ($order->id_product == Model_Order::PRODUCT_TO_FEATURED):?>
-												<?=$order->featured_days?> <?=__('Days')?>
+												<?=$order->featured_days?> <?=_e('Days')?>
 											<?endif?>
 											</b>
 										</td>
@@ -73,7 +73,7 @@
 				                <?endif?>
 
 								<tr>
-									<td class="text-right"><h4><strong><?=__('Total')?>: </strong></h4></td>
+									<td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
 				                    <?if($order->id_product == Model_Order::PRODUCT_AD_SELL AND $order->ad->shipping_price()):?>
 				                        <td class="text-center text-danger"><h4><strong><?=i18n::money_format($order->amount + $order->ad->shipping_price(), $order->currency)?></strong></h4></td>
 				                    <?else:?>
@@ -85,7 +85,7 @@
 			                    	<td class="text-right">
 			                    		<?if( ! core::get('print')):?>
 				                        	<div class="pull-right">
-				                            	<a target="_blank" class="btn btn-xs btn-success" title="<?=__('Print this')?>" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'order','id'=>$order->id_order)).URL::query(array('print'=>1))?>"><i class="glyphicon glyphicon-print"></i><?=__('Print this')?></a>
+				                            	<a target="_blank" class="btn btn-xs btn-success" title="<?=__('Print this')?>" href="<?=Route::url('oc-panel', array('controller'=>'profile', 'action'=>'order','id'=>$order->id_order)).URL::query(array('print'=>1))?>"><i class="glyphicon glyphicon-print"></i><?=_e('Print this')?></a>
 				                        	</div>
 				                    <?endif;?>
 			                        <td>
