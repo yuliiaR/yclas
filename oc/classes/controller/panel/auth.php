@@ -528,7 +528,7 @@ class Controller_Panel_Auth extends Controller {
 
         //template header
         $this->template->title   = __('2 Step Authentication');
-        $this->template->content = View::factory('pages/auth/sms',['user'=>$this->user,'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'sms'))]);
+        $this->template->content = View::factory('pages/auth/sms',['phone'=>$this->user->phone,'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'sms'))]);
 
         //if user loged in redirect home
         if  ( Auth::instance()->logged_in() AND ( Cookie::get('sms_auth') == $this->user->id_user  ) )
@@ -574,7 +574,7 @@ class Controller_Panel_Auth extends Controller {
     }
 
 
-        /**
+    /**
      *
      * Check if we need to login the user or display the form, same form for normal user and admin
      */
@@ -630,7 +630,7 @@ class Controller_Panel_Auth extends Controller {
                    Session::instance()->set('sms_auth_code',$code);
                    Session::instance()->set('phone_number',core::post('phone'));
                    //show form to put the code 
-                   $this->template->content = View::factory('pages/auth/sms',['user'=>$user,'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'phonelogin'))]);
+                   $this->template->content = View::factory('pages/auth/sms',['phone'=>$user->phone,'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'phonelogin'))]);
                    return TRUE;
                 }
                 else
@@ -651,6 +651,111 @@ class Controller_Panel_Auth extends Controller {
         $this->template->scripts['footer'] = ['js/intlTelInput.min.js', 'js/utils.js', 'js/oc-panel/edit_profile.js'];
 
         $this->template->content = View::factory('pages/auth/phonelogin');
+
+        
+        
+    }
+
+    /**
+     *
+     * registers the user first validating the phone number
+     */
+    public function action_phoneregister()
+    {
+        //if user loged in redirect home
+        if (Auth::instance()->logged_in())
+            Auth::instance()->login_redirect();
+
+        // 2step disabled or trying to access directly
+        if (Core::config('general.sms_auth') == FALSE )
+            $this->redirect(Route::get('oc-panel')->uri());
+        
+        //ask for number        
+        if ($this->request->post() AND CSRF::valid('phoneregister') AND Valid::phone(core::post('phone')))
+        {
+            //check the phone exists
+            $user = new Model_User;
+            $user ->where('phone', '=', core::post('phone'))->limit(1)->find();
+
+            //avoid duplicated sms
+            if (!$user->loaded() AND Session::instance()->get('sms_auth_code')==NULL)
+            {
+                $code     = Text::random('numeric',6);
+                $response = SMS::send(core::post('phone'),__('Your code:').' '.$code);
+
+                if ($response === TRUE)
+                {
+                   Session::instance()->set('sms_auth_code',$code);
+                   Session::instance()->set('phone_number',core::post('phone'));
+                   //show form to put the code 
+                   $this->template->content = View::factory('pages/auth/sms',['phone'=>core::post('phone'),'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'phoneregister'))]);
+                   return TRUE;
+                }
+                else
+                {
+                    Session::instance()->set('sms_auth_code',NULL);
+                    Session::instance()->set('phone_number',NULL);
+                    Form::set_errors(array($response));
+                }
+            }
+            else
+                Form::set_errors(array(__('Phone number in use')));
+        }
+        //get the SMS code
+        elseif ($this->request->post() AND CSRF::valid('sms') AND Core::post('code'))
+        {
+            if (Core::post('code') ===  Session::instance()->get('sms_auth_code'))
+            {
+                //ask for email if code is correct
+                $this->template->content = View::factory('pages/auth/register-social',['form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'phoneregister'))]);
+                return TRUE;
+            }
+            else
+                Form::set_errors(array( __('Wrong phone number or code')));
+        }
+        //register user
+        elseif ($this->request->post() AND CSRF::valid('register_social') AND Core::post('email') ) 
+        {
+            $email = Core::post('email');
+
+            //check the email exists
+            $user = new Model_User;
+            $user ->where('email', '=', $email)->limit(1)->find();
+
+            //register the user
+            if (!$user->loaded() AND Valid::email($email,TRUE))
+            {
+                //register the user in DB
+                $user = Model_User::create_email($email,Core::post('name'),$password  = Text::random('alnum', 8));
+                $user->phone = Session::instance()->get('phone_number');
+                $user->save();
+
+                Cookie::set('sms_auth' , $user->id_user, Core::config('auth.lifetime') );
+
+                //log him in
+                Auth::instance()->login($email,$password,TRUE);
+
+                Alert::set(Alert::SUCCESS, __('Welcome!'));
+
+                $this->redirect(Route::url('default'));
+            }
+            else
+            {
+                Form::set_errors(array(__('Invalid Email')));
+            }            
+        }
+
+        
+        $this->template->title            = __('Register');
+        $this->template->meta_description = __('Register to').' '.core::config('general.site_name');
+
+        Session::instance()->set('sms_auth_code',NULL);
+        Session::instance()->set('phone_number',NULL);
+        
+        $this->template->styles = ['css/intlTelInput.css' => 'screen'];
+        $this->template->scripts['footer'] = ['js/intlTelInput.min.js', 'js/utils.js', 'js/oc-panel/edit_profile.js'];
+
+        $this->template->content = View::factory('pages/auth/phoneregister');
 
         
         

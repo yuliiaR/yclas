@@ -1,7 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<form class="well form-horizontal"  method="post" action="<?=Route::url('default',array('controller'=>'social',
-                                                                                'action'=>'register',
-                                                                                'id'    =>$provider)).'?uid='.$uid?>">         
+<form class="well form-horizontal"  method="post" action="<?=$form_action?>">         
           <?=Form::errors()?>
           <div class="form-group">
             <label class="control-label"><?=_e('Name')?></label>

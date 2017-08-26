@@ -8,7 +8,7 @@
 
       <div class="form-group">
         <label class="col-sm-8 control-label"><?=_e('We have sent an SMS code to your phone number')?>
-        <?=substr($user->phone,0,3)?>*****<?=substr($user->phone,-4)?></label>
+        <?=substr($phone,0,3)?>*****<?=substr($phone,-4)?></label>
       </div>
 
       <div class="form-group">
