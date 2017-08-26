@@ -107,6 +107,13 @@
                     </a>
                 </div>
             <?endif?>
+        <?elseif (isset($ad->cf_file_download) AND !empty($ad->cf_file_download) AND  ( core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))):?>
+                <div class="btn-group" role="group">
+                    <a class="btn btn-primary" type="button" href="<?=$ad->cf_file_download?>">
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                        &nbsp;&nbsp;<?=_e('Download')?>
+                    </a>
+                </div>
         <?endif?>
         <?if ($ad->can_contact()):?>
             <div class="btn-group" role="group">
