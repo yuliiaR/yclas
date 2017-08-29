@@ -8,9 +8,15 @@
 				</div>
 				<div class="auth-page reg">
 					<?=View::factory('pages/auth/register-form')?>
-				</div>	
+					<?if (Core::config('general.sms_auth') == TRUE ):?>
+					    <div class="page-header">
+					        <h2 class="h3"><?=_e('Phone Register')?></h2>
+					    </div>
+					    <?=View::factory('pages/auth/phoneregister-form')?>
+					<?endif?>
+				</div>
 			</div>
-			
+
 			<?=View::fragment('sidebar_front','sidebar')?>
 	    </div>
 	</div>
