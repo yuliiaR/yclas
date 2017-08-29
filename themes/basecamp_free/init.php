@@ -89,6 +89,13 @@ if (Core::config('general.algolia_search')){
     Theme::$scripts['footer'][] = '//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js';
 }
 
+if (Core::config('general.sms_auth')){
+    Theme::$styles['css/intlTelInput.css'] = 'screen';
+    Theme::$scripts['footer'][] = 'js/intlTelInput.min.js';
+    Theme::$scripts['footer'][] = 'js/utils.js';
+    Theme::$scripts['footer'][] = 'js/phone-auth.js';
+}
+
 /**
  * custom error alerts
  */

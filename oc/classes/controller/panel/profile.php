@@ -92,9 +92,6 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
 	public function action_edit()
 	{
-        $this->template->styles = ['css/intlTelInput.css' => 'screen'];
-        $this->template->scripts['footer'] = ['js/intlTelInput.min.js', 'js/utils.js', 'js/oc-panel/edit_profile.js'];
-
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit profile')));
 		// $this->template->title = $user->name;
 		//$this->template->meta_description = $user->name;//@todo phpseo

@@ -1,21 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Panel_Auth extends Controller {
-    
+
     /**
-     * 
+     *
      * Check if we need to login the user or display the form, same form for normal user and admin
      */
     public function action_login()
-    {       
-        if (Core::config('general.sms_auth') == TRUE)
-        {
-            $this->template->styles = ['css/intlTelInput.css' => 'screen'];
-            $this->template->scripts['footer'] = ['js/intlTelInput.min.js', 'js/utils.js', 'js/oc-panel/edit_profile.js'];
-        }
-        
+    {
         $this->template->meta_description = __('Login to').' '.core::config('general.site_name');
-        
+
         //if user loged in redirect home
         if (Auth::instance()->logged_in())
         {
@@ -30,14 +24,14 @@ class Controller_Panel_Auth extends Controller {
         elseif ($this->request->post() AND CSRF::valid('login') AND Valid::email(core::post('email')))
         {
             $blocked_login = FALSE;
-            
+
             // Load the user
             $user = new Model_User;
             $user   ->where('email', '=', core::post('email'))
                     ->where('status', 'in', array(Model_User::STATUS_ACTIVE,Model_User::STATUS_SPAM))
                     ->limit(1)
                     ->find();
-            
+
             // Check if we must block this login attempt.
             if ($user->loaded() AND $user->failed_attempts > 2) {
                 // failed 2 or 3 attempts, wait 1 minute until next attempt
@@ -50,25 +44,25 @@ class Controller_Panel_Auth extends Controller {
                 elseif ($user->failed_attempts > 4 AND $user->last_failed > Date::unix2mysql(strtotime('-24 hours')))
                 {
                     $blocked_login = TRUE;
-                    Alert::set(Alert::ERROR, __('Login has been temporarily disabled due to too many unsuccessful login attempts. Please try again in 24 hours.'));                    
+                    Alert::set(Alert::ERROR, __('Login has been temporarily disabled due to too many unsuccessful login attempts. Please try again in 24 hours.'));
                 }
             }
-            
+
             //not blocked so try to login
             if (! $blocked_login)
             {
-                Auth::instance()->login(core::post('email'), 
+                Auth::instance()->login(core::post('email'),
                                         core::post('password'),
                                         (bool) core::post('remember'));
-                
+
                 //redirect index
                 if (Auth::instance()->logged_in())
                 {
                     if ($user->loaded())
                     {
                         $user->failed_attempts = 0;
-                        
-                        try 
+
+                        try
                         {
                             // Save the user
                             $user->update();
@@ -81,12 +75,12 @@ class Controller_Panel_Auth extends Controller {
                         {
                             throw HTTP_Exception::factory(500,$e->getMessage());
                         }
-                    }                    
-                    
+                    }
+
                     //is an admin so redirect to the admin home
                     Auth::instance()->login_redirect();
                 }
-                else 
+                else
                 {
                     Form::set_errors(array( __('Wrong email or password').'. '
                                             .'<a class="alert-link" href="'.Route::url('oc-panel',array(   'directory'=>'user',
@@ -97,16 +91,16 @@ class Controller_Panel_Auth extends Controller {
                     {
                         // fifth failed attempt, invalidate token?
                         if ($user->failed_attempts == 4) {
-                            $user->token            = NULL;                            
-                            $user->user_agent       = NULL;                            
-                            $user->token_created    = NULL;                            
-                            $user->token_expires    = NULL;                            
+                            $user->token            = NULL;
+                            $user->user_agent       = NULL;
+                            $user->token_created    = NULL;
+                            $user->token_expires    = NULL;
                         }
-                        
+
                         $user->failed_attempts = new Database_Expression('failed_attempts + 1');
                         $user->last_failed = Date::unix2mysql(time());
-                        
-                        try 
+
+                        try
                         {
                             // Save the user
                             $user->update();
@@ -123,7 +117,7 @@ class Controller_Panel_Auth extends Controller {
                 }
             }
         }
-        
+
         //private site
         if (!Auth::instance()->logged_in() AND core::config('general.private_site')==1)
         {
@@ -131,30 +125,30 @@ class Controller_Panel_Auth extends Controller {
         }
 
         //Login page
-        $this->template->title            = __('Login');        
+        $this->template->title            = __('Login');
         $this->template->content = View::factory('pages/auth/login');
     }
-    
+
     /**
-     * 
+     *
      * Logout user session
      */
     public function action_logout()
     {
-        Auth::instance()->logout(TRUE);    
+        Auth::instance()->logout(TRUE);
 
         if(Valid::URL($this->request->referrer()) AND strpos($this->request->referrer(), 'oc-panel')===FALSE)
             $redir  = $this->request->referrer();
         else
             $redir = Route::url('oc-panel',array('controller'=>'auth','action'=>'login'));
-            
+
         $this->redirect($redir);
-    
+
     }
-    
+
     /**
      * Sends an email with a link to change your password
-     * 
+     *
      */
     public function action_forgot()
     {
@@ -162,7 +156,7 @@ class Controller_Panel_Auth extends Controller {
         $this->template->title            = __('Remember password');
         $this->template->content = View::factory('pages/auth/forgot');
         $this->template->meta_description = __('Here you can reset your password if you forgot it.');
-        
+
         //if user loged in redirect home
         if (Auth::instance()->logged_in())
         {
@@ -172,7 +166,7 @@ class Controller_Panel_Auth extends Controller {
         elseif (core::post('email') AND CSRF::valid('forgot'))
         {
             $email = core::post('email');
-            
+
             if (Valid::email($email))
             {
                 //check we have this email in the DB
@@ -180,17 +174,17 @@ class Controller_Panel_Auth extends Controller {
                 $user = $user->where('email', '=', $email)
                             ->limit(1)
                             ->find();
-                
+
                 if ($user->loaded())
                 {
-                    
+
                     //we get the QL, and force the regen of token for security
-                    $url_ql = $user->ql('oc-panel',array( 'controller' => 'profile', 
+                    $url_ql = $user->ql('oc-panel',array( 'controller' => 'profile',
                                                           'action'     => 'changepass'),TRUE);
 
                     //we don't use this since checks if the user is subscribed which is stupid since you want to remember your password.
                     //$ret = $user->email('auth-remember',array('[URL.QL]'=>$url_ql));
-                    $ret = Email::content($user->email,$user->name,NULL,NULL,'auth-remember',array('[URL.QL]'=>$url_ql)); 
+                    $ret = Email::content($user->email,$user->name,NULL,NULL,'auth-remember',array('[URL.QL]'=>$url_ql));
 
                     //email sent notify and redirect him
                     if ($ret)
@@ -204,21 +198,21 @@ class Controller_Panel_Auth extends Controller {
                 {
                     Form::set_errors(array(__('User not in database')));
                 }
-                
+
             }
             else
             {
                 Form::set_errors(array(__('Invalid Email')));
             }
-            
+
         }
-                
-            
+
+
     }
-        
+
     /**
      * Sends request to admin (private site)
-     * 
+     *
      */
     public function action_request()
     {
@@ -226,18 +220,18 @@ class Controller_Panel_Auth extends Controller {
         $this->template->title            = __('Request Access');
         $this->template->content = View::factory('pages/auth/request');
         $this->template->meta_description = __('Send your Name and Email to the administrator of the website');
-        
+
         //if user loged in redirect home
         if (Auth::instance()->logged_in())
         {
             $this->redirect(Route::get('oc-panel')->uri());
         }
-        
+
         elseif (core::post('email') AND core::post('name'))
         {
             $name = core::post('name');
             $email = core::post('email');
-            
+
             if (Valid::email($email))
             {
                 //check we have this email in the DB
@@ -245,7 +239,7 @@ class Controller_Panel_Auth extends Controller {
                 $user = $user->where('email', '=', $email)
                             ->limit(1)
                             ->find();
-                
+
                 if (!$user->loaded())
                 {
 
@@ -269,18 +263,18 @@ class Controller_Panel_Auth extends Controller {
                 {
                     Alert::set(Alert::ERROR,__('User already exists'));
                 }
-                
+
             }
             else
             {
                 Alert::set(Alert::ERROR,__('Invalid Email'));
             }
-            
+
         }
-                
-        $this->redirect(Route::get('default')->uri());    
+
+        $this->redirect(Route::get('default')->uri());
     }
-    
+
     /**
      * Simple register for user
      *
@@ -297,13 +291,13 @@ class Controller_Panel_Auth extends Controller {
                 $this->template->content = 'true';
             else
                 $this->template->content = 'false';
-            
+
             return;
         }
         $this->template->meta_description = __('Create a new profile at').' '.core::config('general.site_name');
         $this->template->content = View::factory('pages/auth/register');
         $this->template->content->msg = '';
-        
+
         //if user loged in redirect home
         if (Auth::instance()->logged_in())
         {
@@ -338,13 +332,13 @@ class Controller_Panel_Auth extends Controller {
                     if (CSRF::valid('register'))
                     {
                         $email = core::post('email');
-                    
+
                         //check we have this email in the DB
                         $user = new Model_User();
                         $user = $user->where('email', '=', $email)
                                 ->limit(1)
                                 ->find();
-                        
+
                         if ($user->loaded())
                         {
                             Form::set_errors(array(__('User already exists')));
@@ -356,7 +350,7 @@ class Controller_Panel_Auth extends Controller {
 
                             //add custom fields
                             $save_cf = FALSE;
-                            foreach ($this->request->post() as $custom_field => $value) 
+                            foreach ($this->request->post() as $custom_field => $value)
                             {
                                 if (strpos($custom_field,'cf_')!==FALSE)
                                 {
@@ -367,36 +361,36 @@ class Controller_Panel_Auth extends Controller {
                             //saves the user only if there was CF
                             if($save_cf === TRUE)
                                 $user->save();
-                        
+
                             //login the user
                             Auth::instance()->login(core::post('email'), core::post('password1'));
-                        
+
                             Alert::set(Alert::SUCCESS, __('Welcome!'));
                             //login the user
                             $this->redirect(Core::post('auth_redirect',Route::url('oc-panel')));
-                        
+
                         }
                     }
                 }
                 else
                 {
                     $errors = $validation->errors('auth');
-                    
-                    foreach ($errors as $error) 
-                        Alert::set(Alert::ALERT, $error);                
+
+                    foreach ($errors as $error)
+                        Alert::set(Alert::ALERT, $error);
                 }
             }
             else
-            { 
+            {
                 Alert::set(Alert::ALERT, __('Captcha is not correct'));
             }
         }
-    
+
         //template header
         $this->template->title            = __('Register new user');
-            
+
     }
-    
+
     /**
      *
      * Quick login for users.
@@ -406,18 +400,18 @@ class Controller_Panel_Auth extends Controller {
     {
         $ql = $this->request->param('id');
         $url = Auth::instance()->ql_login($ql);
-        
+
         //not a url go to login!
         if ($url==FALSE)
         {
-            $url = Route::url('oc-panel',array('controller' => 'auth', 
-                                                'action'     => 'login'));  
+            $url = Route::url('oc-panel',array('controller' => 'auth',
+                                                'action'     => 'login'));
         }
         $this->redirect($url);
     }
 
     public function action_unsubscribe()
-    {    
+    {
         $email_encoded = $this->request->param('id');
 
         $user = new Model_User();
@@ -434,7 +428,7 @@ class Controller_Panel_Auth extends Controller {
                 $user = new Model_User();
                 $user = $user->where('email', '=', $email)
                             ->limit(1)
-                            ->find();            
+                            ->find();
             }
             else
                 Alert::set(Alert::INFO, __('Not valid email.'));
@@ -453,11 +447,11 @@ class Controller_Panel_Auth extends Controller {
 
             try {
                 $user->save();
-                Alert::set(Alert::SUCCESS, __('You have successfully unsubscribed'));                
+                Alert::set(Alert::SUCCESS, __('You have successfully unsubscribed'));
             } catch (Exception $e) {
                 //throw 500
                 throw HTTP_Exception::factory(500,$e->getMessage());
-            }   
+            }
 
             //unsusbcribe from elasticemail
             if ( Core::config('email.elastic_listname')!='' )
@@ -476,7 +470,7 @@ class Controller_Panel_Auth extends Controller {
 
     /**
      * 2step verification form
-     * 
+     *
      */
     public function action_2step()
     {
@@ -495,24 +489,24 @@ class Controller_Panel_Auth extends Controller {
         }
         //posting data so try to remember password
         elseif (core::post('code') AND CSRF::valid('2step'))
-        {            
+        {
             //load library
             require Kohana::find_file('vendor', 'GoogleAuthenticator');
 
             $ga = new PHPGangsta_GoogleAuthenticator();
-            if ($ga->verifyCode($this->user->google_authenticator, core::post('code'), 2)) 
+            if ($ga->verifyCode($this->user->google_authenticator, core::post('code'), 2))
             {
                 //set cookie
                 Cookie::set('google_authenticator' , $this->user->id_user, Core::config('auth.lifetime') );
 
                 // redirect to the url we wanted to see
                 Auth::instance()->login_redirect();
-            } 
-            else 
+            }
+            else
             {
                 Form::set_errors(array(__('Invalid Code')));
             }
-            
+
         }
     }
 
@@ -629,7 +623,7 @@ class Controller_Panel_Auth extends Controller {
                 {
                    Session::instance()->set('sms_auth_code',$code);
                    Session::instance()->set('phone_number',core::post('phone'));
-                   //show form to put the code 
+                   //show form to put the code
                    $this->template->content = View::factory('pages/auth/sms',['phone'=>$user->phone,'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'phonelogin'))]);
                    return TRUE;
                 }
@@ -643,17 +637,14 @@ class Controller_Panel_Auth extends Controller {
             else
                 Form::set_errors(array('Phone not loaded'));
         }
-        
+
         Session::instance()->set('sms_auth_code',NULL);
         Session::instance()->set('phone_number',NULL);
-        
-        $this->template->styles = ['css/intlTelInput.css' => 'screen'];
-        $this->template->scripts['footer'] = ['js/intlTelInput.min.js', 'js/utils.js', 'js/oc-panel/edit_profile.js'];
 
         $this->template->content = View::factory('pages/auth/phonelogin');
 
-        
-        
+
+
     }
 
     /**
@@ -669,8 +660,8 @@ class Controller_Panel_Auth extends Controller {
         // 2step disabled or trying to access directly
         if (Core::config('general.sms_auth') == FALSE )
             $this->redirect(Route::get('oc-panel')->uri());
-        
-        //ask for number        
+
+        //ask for number
         if ($this->request->post() AND CSRF::valid('phoneregister') AND Valid::phone(core::post('phone')))
         {
             //check the phone exists
@@ -687,7 +678,7 @@ class Controller_Panel_Auth extends Controller {
                 {
                    Session::instance()->set('sms_auth_code',$code);
                    Session::instance()->set('phone_number',core::post('phone'));
-                   //show form to put the code 
+                   //show form to put the code
                    $this->template->content = View::factory('pages/auth/sms',['phone'=>core::post('phone'),'form_action'=>Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'phoneregister'))]);
                    return TRUE;
                 }
@@ -714,7 +705,7 @@ class Controller_Panel_Auth extends Controller {
                 Form::set_errors(array( __('Wrong phone number or code')));
         }
         //register user
-        elseif ($this->request->post() AND CSRF::valid('register_social') AND Core::post('email') ) 
+        elseif ($this->request->post() AND CSRF::valid('register_social') AND Core::post('email') )
         {
             $email = Core::post('email');
 
@@ -742,23 +733,20 @@ class Controller_Panel_Auth extends Controller {
             else
             {
                 Form::set_errors(array(__('Invalid Email')));
-            }            
+            }
         }
 
-        
+
         $this->template->title            = __('Register');
         $this->template->meta_description = __('Register to').' '.core::config('general.site_name');
 
         Session::instance()->set('sms_auth_code',NULL);
         Session::instance()->set('phone_number',NULL);
-        
-        $this->template->styles = ['css/intlTelInput.css' => 'screen'];
-        $this->template->scripts['footer'] = ['js/intlTelInput.min.js', 'js/utils.js', 'js/oc-panel/edit_profile.js'];
 
         $this->template->content = View::factory('pages/auth/phoneregister');
 
-        
-        
+
+
     }
 
 

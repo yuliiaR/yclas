@@ -99,13 +99,6 @@ class Controller_New extends Controller
         if (core::config('advertisement.picker_api_key') AND core::config('advertisement.picker_client_id'))
             $this->template->scripts['async_defer'][] = '//apis.google.com/js/api.js?onload=onApiLoad';
 
-        if (core::config('advertisement.phone') != FALSE)
-        {
-            $this->template->styles = $this->template->styles + ['css/intlTelInput.css' => 'screen'];
-            $this->template->scripts['footer'][] = 'js/intlTelInput.min.js';
-            $this->template->scripts['footer'][] = 'js/utils.js';
-        }
-
         $this->template->scripts['footer'][] = 'js/new.js?v='.Core::VERSION;
 
         $categories = new Model_Category;
