@@ -43,6 +43,7 @@ $theme_css =  array(      '//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.
                           '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
                           '//cdn.jsdelivr.net/select2/4.0.3/css/select2.min.css' => 'screen',
                           'css/slider.css' => 'screen',
+                          'css/intlTelInput.css' => 'screen',
                           'css/styles.css?v='.Core::VERSION => 'screen',
                   );
 
@@ -63,6 +64,8 @@ Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.4,bootstra
                                     'js/favico.min.js',
                                     'js/curry.js',
                                     'js/bootstrap-datepicker.js',
+                                    'js/intlTelInput.min.js',
+                                    'js/utils.js',
                                     'js/default.init.js?v='.Core::VERSION,
                                     'js/theme.init.js?v='.Core::VERSION,
                             );

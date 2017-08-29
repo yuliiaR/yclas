@@ -6,7 +6,7 @@
   * Version: 3.2.0
   * Author: Chema <chema@open-classifieds.com> , <slobodan@open-classifieds.com>
   * License: GPL v3
-  * Skins: default,green,orange 
+  * Skins: default,green,orange
   */
 
 
@@ -36,9 +36,10 @@ Theme::$skin = Theme::get('theme');
 Theme::$styles = array( '//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css' => 'screen',
                         '//cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css' => 'screen',
                         '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.min.css' => 'screen',
-                        '//cdn.jsdelivr.net/blueimp-gallery/2.15.0/css/blueimp-gallery.min.css' => 'screen', 
+                        '//cdn.jsdelivr.net/blueimp-gallery/2.15.0/css/blueimp-gallery.min.css' => 'screen',
                         '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
                         '//cdn.jsdelivr.net/select2/4.0.2/css/select2.min.css' => 'screen',
+                        'css/intlTelInput.css' => 'screen',
                         'css/styles.css?v='.Core::VERSION => 'screen',
                         'css/slider.css' => 'screen',
                     );
@@ -55,12 +56,14 @@ Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.4,bootstra
                                     'js/favico.min.js',
                                     'js/curry.js',
                                     'js/bootstrap-datepicker.js',
+                                    'js/intlTelInput.min.js',
+                                    'js/utils.js',
                                     'js/default.init.js?v='.Core::VERSION,
                                     'js/theme.init.js?v='.Core::VERSION,
                                     );
 
-if (Auth::instance()->logged_in() AND 
-    (Auth::instance()->get_user()->is_admin() OR 
+if (Auth::instance()->logged_in() AND
+    (Auth::instance()->get_user()->is_admin() OR
         Auth::instance()->get_user()->is_moderator() OR
         Auth::instance()->get_user()->is_translator()))
 {
