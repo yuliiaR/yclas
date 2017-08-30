@@ -134,6 +134,7 @@
                                 href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'activate','id'=>$ad->id_ad))?>"
                                 class="btn btn-success"
                                 title="<?=__('Activate?')?>"
+                                data-text="<?=__('Activate?')?>"
                                 data-toggle="confirmation"
                                 data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                 data-btnCancelLabel="<?=__('No way!')?>">
@@ -145,6 +146,7 @@
                             href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'deactivate','id'=>$ad->id_ad))?>"
                             class="btn btn-warning"
                             title="<?=__('Deactivate?')?>"
+                            data-text="<?=__('Deactivate?')?>"
                             data-toggle="confirmation"
                             data-btnOkLabel="<?=__('Yes, definitely!')?>"
                             data-btnCancelLabel="<?=__('No way!')?>">
@@ -156,6 +158,7 @@
                             href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>"
                             class="btn btn-info"
                             title="<?=__('Refresh listing, go to top?')?>"
+                            data-text="<?=__('Refresh listing, go to top?')?>"
                             data-toggle="confirmation"
                             data-btnOkLabel="<?=__('Yes, definitely!')?>"
                             data-btnCancelLabel="<?=__('No way!')?>">
@@ -167,6 +170,7 @@
                             href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'delete','id'=>$ad->id_ad))?>"
                             class="btn btn-danger"
                             title="<?=__('Delete?')?>"
+                            data-text="<?=__('Delete?')?>"
                             data-toggle="confirmation"
                             data-btnOkLabel="<?=__('Yes, definitely!')?>"
                             data-btnCancelLabel="<?=__('No way!')?>">

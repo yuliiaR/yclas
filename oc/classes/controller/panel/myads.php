@@ -33,6 +33,10 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
     	    ));
 
+            $this->template->styles = array('//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
+
+            $this->template->scripts['footer'] = array('//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js');
+
     	    Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My ads'))->set_url(Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))));
     	    Breadcrumbs::add(Breadcrumb::factory()->set_title(sprintf(__("Page %d"), $pagination->current_page)));
     	    $ads = $my_adverts->order_by('published','desc')
