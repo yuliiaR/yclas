@@ -92,6 +92,8 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
 	public function action_edit()
 	{
+        $this->template->scripts['footer'] = ['js/oc-panel/edit_profile.js'];
+
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit profile')));
 		// $this->template->title = $user->name;
 		//$this->template->meta_description = $user->name;//@todo phpseo
