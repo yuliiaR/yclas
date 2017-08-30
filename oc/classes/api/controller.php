@@ -292,6 +292,8 @@ class Api_Controller extends Kohana_Controller {
     {
         $contents = '';
 
+        $data = reset($data);
+
         if (!empty($data))
         {
             // Create a title row. Support 1-dimension arrays.
@@ -304,12 +306,13 @@ class Api_Controller extends Kohana_Controller {
             {
                 $titles = array_keys($data);
             }
+
             array_unshift($data, $titles);
 
             $handle = fopen('php://temp', 'r+');
             foreach ($data as $line)
             {
-                fputcsv($handle, (array) $line);
+                fputcsv($handle, (array) Arr::flatten($line));
             }
             rewind($handle);
             while (!feof($handle))
