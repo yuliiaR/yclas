@@ -791,6 +791,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('advertisement', 'pinterest_app_secret', ''),
 ('advertisement', 'pinterest_access_token', ''),
 ('advertisement', 'pinterest_board', ''),
+('advertisement', 'delete_ad', 0),
 ('email', 'notify_email', '".core::request('ADMIN_EMAIL')."'),
 ('email', 'notify_name', '"."no-reply ".core::request('SITE_NAME')."'),
 ('email', 'new_ad_notify', 0),

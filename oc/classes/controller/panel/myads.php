@@ -93,6 +93,39 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
 	}
 
+    /**
+     * delete advertisement
+     */
+    public function action_delete()
+    {
+
+        $delete_ad = new Model_Ad($this->request->param('id'));
+        if (core::config('advertisement.delete_ad')==TRUE AND $delete_ad->loaded())
+        {
+            if(Auth::instance()->get_user()->id_user != $delete_ad->id_user)
+            {
+                Alert::set(Alert::ALERT, __("This is not your advertisement."));
+                HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
+            }
+
+            try {
+                $delete_ad->delete();
+                Alert::set(Alert::SUCCESS, __('Advertisement deleted'));
+            } catch (Exception $e) {
+                Alert::set(Alert::ERROR, __('Advertisement not deleted'));
+            }
+                
+            HTTP::redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
+
+        }
+        else
+        {
+            //throw 404
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+    }
+
 	/**
 	 * Mark advertisement as active : STATUS = 1
 	 */

@@ -162,6 +162,17 @@
                             <i class="glyphicon glyphicon-circle-arrow-up"></i>
                         </a>
                     <?endif?>
+                    <?if(core::config('advertisement.delete_ad')==TRUE):?>
+                        <a
+                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'delete','id'=>$ad->id_ad))?>"
+                            class="btn btn-danger"
+                            title="<?=__('Delete?')?>"
+                            data-toggle="confirmation"
+                            data-btnOkLabel="<?=__('Yes, definitely!')?>"
+                            data-btnCancelLabel="<?=__('No way!')?>">
+                            <i class="glyphicon glyphicon-minus"></i>
+                        </a>
+                    <?endif?>
                 </td>
             </tr>
         <?endforeach?>

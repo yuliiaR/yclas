@@ -42,6 +42,14 @@
 												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>"><?=_e('Stats')?></a></li>
 												<?endif?>
 												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e('Update')?></a></li>
+												<?if(core::config('advertisement.delete_ad')==TRUE):?>
+							                        <li>
+							                        <a
+							                            href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'delete','id'=>$ad->id_ad))?>" onclick="return confirm('<?=__('Delete?')?>');">
+							                            <?=__('Delete')?>
+							                        </a>
+							                        </li>
+							                    <?endif?>
 												<li role="separator" class="divider"></li>
 												<?if( core::config('payment.to_top') ):?>
 													<li><a href="<?=Route::url('default', array('controller'=>'ad','action'=>'to_top','id'=>$ad->id_ad))?>"><?=_e('Go to top')?>?</a>

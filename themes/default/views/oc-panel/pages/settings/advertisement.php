@@ -144,6 +144,20 @@
                                 <?=__("You can choose what ads you want to display in home.")?>
                             </span>
                         </div>
+
+                        <div class="form-group">
+                            <?=FORM::label($forms['delete_ad']['key'], __('Delete ads'), array('class'=>'control-label', 'for'=>$forms['delete_ad']['key']))?>
+                            <div class="radio radio-primary">
+                                <?=Form::radio($forms['delete_ad']['key'], 1, (bool) $forms['delete_ad']['value'], array('id' => $forms['delete_ad']['key'].'1'))?>
+                                <?=Form::label($forms['delete_ad']['key'].'1', __('Enabled'))?>
+                                <?=Form::radio($forms['delete_ad']['key'], 0, ! (bool) $forms['delete_ad']['value'], array('id' => $forms['delete_ad']['key'].'0'))?>
+                                <?=Form::label($forms['delete_ad']['key'].'0', __('Disabled'))?>
+                            </div>
+                            <span class="help-block">
+                                <?=__("With this option enabled your customers will be able to delete permanently his ads.")?>
+                            </span>
+                        </div>
+
                     </div>
                     <hr>
                     <p>
