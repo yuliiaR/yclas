@@ -812,3 +812,28 @@ $(function(){
         });
     }
 });
+
+$(function(){
+    // Modal confirmation
+    $('a[data-toggle="confirmation"]').click(function(event) {
+        var href = $(this).attr('href');
+        var title = $(this).attr('title');
+        var text = $(this).data('text');
+        var confirmButtonText = $(this).data('btnoklabel');
+        var cancelButtonText = $(this).data('btncancellabel');
+        event.preventDefault();
+        swal({
+            title: title,
+            text: text,
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: confirmButtonText,
+            cancelButtonText: cancelButtonText,
+            allowOutsideClick: true,
+        },
+        function(){
+            window.open(href,"_self");
+        });
+    });
+});
