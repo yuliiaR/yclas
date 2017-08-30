@@ -84,7 +84,7 @@ class ElasticEmail {
      */
     public static function subscribe($listname, $email, $name)
     {
-        if ( Core::config('email.elastic_active')==TRUE )
+        if ( core::config('email.service')=='elasticemail' OR core::config('email.service')=='elastic')
         {
             $url = 'https://api.elasticemail.com/v2/list/addcontacts?apikey='.Core::config('email.elastic_username').'&listname='.$listname.'&emails='.$email;
             return Core::curl_get_contents($url,2);
@@ -101,7 +101,7 @@ class ElasticEmail {
      */
     public static function unsubscribe($listname, $email)
     {
-        if ( Core::config('email.elastic_active')==TRUE )
+        if ( core::config('email.service')=='elasticemail' OR core::config('email.service')=='elastic')
         {
             $url = 'https://api.elasticemail.com/v2/list/removecontacts?apikey='.Core::config('email.elastic_username').'&listname='.$listname.'&emails='.$email;
             return Core::curl_get_contents($url,2);
