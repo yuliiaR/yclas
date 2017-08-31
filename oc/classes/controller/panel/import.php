@@ -283,6 +283,9 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             }
         }
 
+        // Post on social media 
+        Social::post_ad($ad, $ad->get_first_image('image'));
+
         //mark it as done
         try {
             DB::update('adsimport')->set(array('processed' => 1))
