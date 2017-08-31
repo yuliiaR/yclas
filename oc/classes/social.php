@@ -216,18 +216,12 @@ class Social {
 
         // 'status' char limit is 140
 
-        $message = Text::limit_chars($ad->title, 20, NULL, TRUE).', ';
+        $message = Text::limit_chars($ad->title, 17, NULL, TRUE).', ';
 
-        if($ad->category->id_category_parent != 1 AND $ad->category->parent->loaded())
-            $message .= Text::limit_chars($ad->category->parent->name, 17, NULL, TRUE);
-
-        $message .= ' - '.Text::limit_chars($ad->category->name, 17, NULL, TRUE);
+        $message .= Text::limit_chars($ad->category->name, 17, NULL, TRUE);
 
         if($ad->id_location != 1 AND $ad->location->loaded())
-        {
-            if($ad->location->id_location_parent != 1 AND $ad->location->parent->loaded())
-                $message .= ', '.Text::limit_chars($ad->location->parent->name, 17, NULL, TRUE);
-            
+        {   
             $message .= ' - '.Text::limit_chars($ad->location->name, 17, NULL, TRUE);
         }
 
