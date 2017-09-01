@@ -390,8 +390,14 @@
                             <hr>
 
                             <div class="form-group">
-                                <?=FORM::label($forms['country']['id'], __('Country'), array('class'=>'control-label','for'=>$forms['number_format']['id']))?>
+                                <?=FORM::label($forms['country']['id'], __('Country'), array('class'=>'control-label','for'=>$forms['country']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/2-step-sms-authentication/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
                                 <?=Form::select($forms['country']['key'], array_merge(['' => __('None')], EUVAT::countries()), $forms['country']['value'])?>
+                                <span class="help-block">
+                                    <?=__("Set an inital country for the phone field.")?>
+                                </span>
                             </div>
 
                             <div class="form-group">

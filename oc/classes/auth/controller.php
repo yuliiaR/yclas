@@ -81,7 +81,7 @@ class Auth_Controller extends Controller
             $this->template->title            = __('Panel').' - '.core::config('general.site_name');
             $this->template->meta_keywords    = '';
             $this->template->meta_description = '';
-            $this->template->meta_copyright   = 'Open Classifieds '.Core::VERSION;
+            $this->template->meta_copyright   = 'Yclas '.Core::VERSION;
             $this->template->header           = '';
             $this->template->content          = '';
             $this->template->footer           = '';
