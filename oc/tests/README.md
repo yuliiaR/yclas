@@ -20,7 +20,7 @@
 
 		cd oc/
 		wget http://codeception.com/codecept.phar
-        php codecept.phar run acceptance admin/SetUsersPasswordsCept
+        php codecept.phar run acceptance default/admin/SetUsersPasswordsCept
 
 
     This test changes the passwords of users.
@@ -28,11 +28,11 @@
 
 5. Run all the tests:
 
-        php codecept.phar run acceptance
+        php codecept.phar run acceptance default/
 
     To see all the steps for each test run this command (Optional, not recommended for this case)
 
-        php codecept.phar run acceptance --steps
+        php codecept.phar run acceptance default/ --steps
 
 
 
@@ -41,7 +41,7 @@
 
 Generates user-friendly text scenarios from scenario-driven tests.
 
-    php codecept.phar g.scenarios acceptance --path tests/docs
+    php codecept.phar g.scenarios acceptance default/ --path tests/docs
     
 
     
