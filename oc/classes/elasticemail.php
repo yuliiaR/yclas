@@ -86,7 +86,7 @@ class ElasticEmail {
     {
         if ( core::config('email.service')=='elasticemail' OR core::config('email.service')=='elastic')
         {
-            $url = 'https://api.elasticemail.com/v2/list/addcontacts?apikey='.Core::config('email.elastic_username').'&listname='.$listname.'&emails='.$email;
+            $url = 'https://api.elasticemail.com/v2/contact/quickadd?apikey='.Core::config('email.elastic_username').'&listname='.$listname.'&emails='.$email;
             return Core::curl_get_contents($url,2);
         }
         return FALSE;
