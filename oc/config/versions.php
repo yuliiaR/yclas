@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
-  '3.2.0' => 
+  '3.3.0' => 
   array (
     'codename' => 'Barcelona',
     'released' => '2017-09-04',

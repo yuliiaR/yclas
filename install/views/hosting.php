@@ -35,7 +35,7 @@
     <ul>
         <li>100% Compatible High Speed Hosting</li>
         <li>Get $185 discount on our Pro pack with all themes.</li>
-        <li>Professional Installation and Support for 3 months</li>
+        <li>Professional Installation and Support.</li>
     </ul>
     <br>
     <p>
