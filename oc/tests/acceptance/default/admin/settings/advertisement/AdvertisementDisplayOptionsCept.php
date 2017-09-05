@@ -263,7 +263,6 @@ $I->see('Item updated. Please to see the changes delete the cache');
 //Read
 $I->amOnPage('/jobs/some-nice-title-here.html');
 $I->see('title for the ad');
-$I->see('just random title here');
 $I->see('Related ads','h3');
 
 

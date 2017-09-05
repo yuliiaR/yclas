@@ -43,13 +43,6 @@ $I->selectOption('form select[name=location]', 'London');
 $I->click("submit");
 $I->see('another great title');
 $I->dontSee('nice'); // included in the title of another ad which must not be displayed
-$I->dontSee('just'); // included in the title of another ad which must not be displayed
-
-
-
-
-
-
 
 
 ?>
