@@ -143,13 +143,16 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
                 }
             }
 
-			try {
-				$user->save();
-				Alert::set(Alert::SUCCESS, __('You have successfully changed your data'));
-			} catch (Exception $e) {
-				//throw 500
-				throw HTTP_Exception::factory(500,$e->getMessage());
-			}
+            try {
+                $user->save();
+                Alert::set(Alert::SUCCESS, __('You have successfully changed your data'));
+            } catch (ORM_Validation_Exception $e) {
+                $errors = $e->errors('models');
+                foreach ($errors as $f => $err)
+                    {
+                    Alert::set(Alert::ALERT, $err);
+                }
+            }
 
             $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
 		}
