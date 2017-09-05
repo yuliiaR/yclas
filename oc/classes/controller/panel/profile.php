@@ -116,12 +116,6 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 			$user->subscriber = core::post('subscriber',0);
             $user->phone = core::post('phone');
 
-            if (core::post('phone')!=NULL AND !Valid::phone(core::post('phone')))
-            {
-                Alert::set(Alert::ERROR, __('Invalid phone number, please put your country extension +XX'));
-                $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
-            }
-
 			//$user->seoname = $user->gen_seo_title(core::post('name'));
             $user->last_modified = Date::unix2mysql();
 
