@@ -57,8 +57,8 @@ class Model_User extends ORM {
                 'foreign_key' => 'id_location',
             ),
     );
-    
-    
+
+
     /**
      * Rule definitions for validation
      *
@@ -92,10 +92,15 @@ class Model_User extends ORM {
                         'has_images'    => array(array('numeric')),
                         'last_failed'   => array(),
                         'failed_attempts'   => array(),
+                        'phone'         => array(
+                                                    array('phone'),
+                                                    array(array($this, 'unique'), array('phone', ':value')),
+                                                    array('max_length', array(':value', 30))
+                                        ),
                     );
     }
-    
-    
+
+
 
     /**
      * Label definitions for validation
@@ -151,9 +156,9 @@ class Model_User extends ORM {
     public static function current()
     {
         //we don't have so let's retrieve
-        if (self::$_current === NULL AND 
-            Request::current()->param('seoname') != NULL AND  
-            strtolower(Request::current()->action())=='profile' AND  
+        if (self::$_current === NULL AND
+            Request::current()->param('seoname') != NULL AND
+            strtolower(Request::current()->action())=='profile' AND
             strtolower(Request::current()->controller())=='user' )
         {
             self::$_current = new self;
@@ -165,31 +170,31 @@ class Model_User extends ORM {
         return self::$_current;
     }
 
-    
+
     /**
      * complete the login for a user
      * incrementing the logins and saving login timestamp
      * @param integer $lifetime Regenerates the token used for the autologin cookie
-     * 
+     *
      */
     public function complete_login($lifetime=NULL)
     {
         if ($this->_loaded)
-        {   
+        {
             //want to remember the login using cookie
             if (is_numeric($lifetime))
                 $this->create_token($lifetime);
-            
+
             // Update the number of logins
             $this->logins = new Database_Expression('logins + 1');
 
             // Set the last login date
             $this->last_login = Date::unix2mysql(time());
-            
+
             // Set the last ip address
             $this->last_ip = ip2long(Request::$client_ip);
 
-            try 
+            try
             {
                 // Save the user
                 $this->update();
@@ -202,10 +207,10 @@ class Model_User extends ORM {
             {
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
-            
+
         }
     }
-    
+
     /**
      * Creates a unique token for the autologin
      * @param integer $lifetime token alive
@@ -221,19 +226,19 @@ class Model_User extends ORM {
                 $config = Kohana::$config->load('auth');
                 $lifetime = $config['lifetime'];
             }
-            
+
             //we assure the token is unique
             do
             {
                 $this->token = sha1(uniqid(Text::random('alnum', 32), TRUE));
             }
             while(ORM::factory('user', array('token' => $this->token))->limit(1)->loaded());
-            
+
             // user Token data
             $this->user_agent    = sha1(Request::$user_agent);
             $this->token_created = Date::unix2mysql(time());
             $this->token_expires = Date::unix2mysql(time() + $lifetime);
-            
+
             try
             {
                 $this->update();
@@ -243,8 +248,8 @@ class Model_User extends ORM {
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
         }
-        
-        
+
+
     }
 
 
@@ -265,7 +270,7 @@ class Model_User extends ORM {
 
         $granted = $this->get_access_actions();
 
-        if((in_array('*.*', $granted)) OR (in_array($controller.'.*', $granted)) 
+        if((in_array('*.*', $granted)) OR (in_array($controller.'.*', $granted))
             OR (in_array($controller.'.'.$action, $granted)))
         {
             return TRUE;
@@ -360,7 +365,7 @@ class Model_User extends ORM {
     {
         if ($this->loaded() AND $this->subscriber == 1)
         {
-            return Email::content(($to == NULL)?$this->email:$to,$this->name,$from,$from_name,$seotitle,$replace, $file);  
+            return Email::content(($to == NULL)?$this->email:$to,$this->name,$from,$from_name,$seotitle,$replace, $file);
         }
         return FALSE;
     }
@@ -375,12 +380,12 @@ class Model_User extends ORM {
     {
 
         //if he is login we can check if its an spammer
-        if ( Auth::instance()->logged_in() === TRUE ) 
+        if ( Auth::instance()->logged_in() === TRUE )
         {
             if (Auth::instance()->get_user()->status == Model_User::STATUS_SPAM)
                 return TRUE;
-        } 
-        //not loged in so only way to see it is after he posted with his email   
+        }
+        //not loged in so only way to see it is after he posted with his email
         elseif(Valid::email($email))
         {
             $spammer = new Model_User();
@@ -402,7 +407,7 @@ class Model_User extends ORM {
     public function user_spam($email = NULL)
     {
 
-        if($email != NULL)//if $this is not loaded 
+        if($email != NULL)//if $this is not loaded
         {
             $user = new self();
             $user = $user->where('email', '=', $email)
@@ -429,10 +434,10 @@ class Model_User extends ORM {
 
     /**
      * get url with auto QL login and redirect
-     * @param  string  $route            
-     * @param  array  $params           
-     * @param  boolean $regenerate_token 
-     * @return string                    
+     * @param  string  $route
+     * @param  array  $params
+     * @param  boolean $regenerate_token
+     * @return string
      */
     public function ql($route = 'default', array $params = NULL, $regenerate_token = FALSE)
     {
@@ -444,7 +449,7 @@ class Model_User extends ORM {
             $ql = Auth::instance()->ql_encode($this->token,Route::url($route,$params,'http'));
             return Route::url('oc-panel',array('controller' => 'auth', 'action' => 'ql', 'id' =>$ql));
         }
-        return NULL;               
+        return NULL;
     }
 
 
@@ -462,10 +467,10 @@ class Model_User extends ORM {
     public function exclude_fields()
     {
         $exclude_fields = array('logins','last_login','hybridauth_provider_uid','last_modified','created','salt', 'ip_created', 'last_ip','token','token_created','token_expires','user_agent','id_location','seoname','has_image','failed_attempts','last_failed');
-        
+
         if (Request::current()->action() == 'update')
             array_push($exclude_fields, 'password');
-        
+
         return $exclude_fields;
     }
 
@@ -473,13 +478,13 @@ class Model_User extends ORM {
      * return the title formatted for the URL
      *
      * @param  string $seoname
-     * 
+     *
      */
     public function gen_seo_title($seoname)
     {
         //in case seoname is really small or null
         if (strlen($seoname)<3)
-        {   
+        {
             if (Valid::email($this->email))
                 $seoname = substr($this->email, 0, strpos($this->email, '@'));
             elseif (strlen($this->name)>=3)
@@ -519,16 +524,16 @@ class Model_User extends ORM {
                 }
             }
         }
-        
+
         return $seoname;
     }
 
     /**
      * creates a user from email if exists doesn't, sends welcome email
-     * @param  string $email 
-     * @param  string $name  
+     * @param  string $email
+     * @param  string $name
      * @param  string $password
-     * @return Model_User        
+     * @return Model_User
      */
     public static function create_email($email,$name=NULL,$password=NULL)
     {
@@ -543,7 +548,7 @@ class Model_User extends ORM {
 
             $user = self::create_user($email,$name,$password);
 
-            $url = $user->ql('oc-panel',array('controller' => 'profile', 
+            $url = $user->ql('oc-panel',array('controller' => 'profile',
                                                       'action'     => 'edit'),TRUE);
 
             $user->email('auth-register',array('[USER.PWD]'=>$password,
@@ -556,10 +561,10 @@ class Model_User extends ORM {
 
     /**
      * creates a user from email if exists doesn't...
-     * @param  string $email 
-     * @param  string $name  
+     * @param  string $email
+     * @param  string $name
      * @param  string $password
-     * @return Model_User        
+     * @return Model_User
      */
     public static function create_user($email,$name=NULL,$password=NULL)
     {
@@ -600,20 +605,20 @@ class Model_User extends ORM {
 
         return $user;
     }
-   
+
     /**
      * creates a User from social data
-     * @param  string $email      
-     * @param  string $name       
-     * @param  string $provider   
-     * @param  mixed $identifier 
-     * @return Model_User             
+     * @param  string $email
+     * @param  string $name
+     * @param  string $provider
+     * @param  mixed $identifier
+     * @return Model_User
      */
     public static function create_social($email,$name=NULL,$provider, $identifier)
     {
         //get the user or create it
         $user = self::create_email($email,$name);
-        
+
         //always we set this values even if user existed
         $user->hybridauth_provider_name = $provider;
         $user->hybridauth_provider_uid  = $identifier;
@@ -644,7 +649,7 @@ class Model_User extends ORM {
             {
                 $protocol = Core::is_HTTPS() ? 'https://' : 'http://';
                 $version = $this->last_modified ? '?v='.Date::mysql2unix($this->last_modified) : NULL;
-                
+
                 return $protocol.core::config('image.aws_s3_domain').'images/users/'.$this->id_user.'.png'.$version;
             }
             else
@@ -662,7 +667,7 @@ class Model_User extends ORM {
 
     /**
      * deletes the image of the user
-     * @return boolean 
+     * @return boolean
      */
     public function delete_image()
     {
@@ -676,18 +681,18 @@ class Model_User extends ORM {
         }
 
         $root = DOCROOT.'images/users/'; //root folder
-        
-        if (!is_dir($root)) 
+
+        if (!is_dir($root))
             return FALSE;
         else
-        {   
+        {
             //delete photo
             @unlink($root.$this->id_user.'.png');
-    
+
             // delete photo from Amazon S3
             if(core::config('image.aws_s3_active'))
                 $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/users/'.$this->id_user.'.png');
-    
+
             // update user info
             $this->has_image = 0;
             $this->last_modified = Date::unix2mysql();
@@ -700,8 +705,8 @@ class Model_User extends ORM {
 
     /**
      * upload an image to the user
-     * @param  file $image 
-     * @return bool/message        
+     * @param  file $image
+     * @return bool/message
      */
     public function upload_image($image)
     {
@@ -713,8 +718,8 @@ class Model_User extends ORM {
             require_once Kohana::find_file('vendor', 'amazon-s3-php-class/S3','php');
             $s3 = new S3(core::config('image.aws_access_key'), core::config('image.aws_secret_key'));
         }
-                
-        if ( 
+
+        if (
             ! Upload::valid($image) OR
             ! Upload::not_empty($image) OR
             ! Upload::type($image, explode(',',core::config('image.allowed_formats'))) OR
@@ -723,7 +728,7 @@ class Model_User extends ORM {
             if ( Upload::not_empty($image) && ! Upload::type($image, explode(',',core::config('image.allowed_formats'))))
             {
                 return $image['name'].' '.sprintf(__('Is not valid format, please use one of this formats "%s"'),core::config('image.allowed_formats'));
-            } 
+            }
             if( ! Upload::size($image, core::config('image.max_image_size').'M'))
             {
                 return $image['name'].' '.sprintf(__('Is not of valid size. Size is limited to %s MB per image'),core::config('image.max_image_size'));
@@ -732,7 +737,7 @@ class Model_User extends ORM {
         }
         else
         {
-            if($image != NULL) // sanity check 
+            if($image != NULL) // sanity check
             {
                 // saving/uploading zip file to dir.
                 $path = 'images/users/'; //root folder
@@ -741,7 +746,7 @@ class Model_User extends ORM {
                 $width = core::config('image.width'); // @TODO dynamic !?
                 $height = core::config('image.height');// @TODO dynamic !?
                 $image_quality = core::config('image.quality');
-                
+
                 // if folder does not exist, try to make it
                 if ( ! file_exists($root) AND ! @mkdir($root, 0775, true)) { // mkdir not successful ?
                     return __('Image folder is missing and cannot be created with mkdir. Please correct to be able to upload images.');
@@ -750,16 +755,16 @@ class Model_User extends ORM {
                 // save file to root folder, file, name, dir
                 if($file = Upload::save($image, $image_name, $root))
                 {
-                    // resize uploaded image 
+                    // resize uploaded image
                     Image::factory($file)
                         ->orientate()
                         ->resize($width, $height, Image::AUTO)
                         ->save($root.$image_name,$image_quality);
-                    
+
                     // put image to Amazon S3
                     if(core::config('image.aws_s3_active'))
                         $s3->putObject($s3->inputFile($file), core::config('image.aws_s3_bucket'), $path.$image_name, S3::ACL_PUBLIC_READ);
-                    
+
                     // update user info
                     $this->has_image = 1;
                     $this->last_modified = Date::unix2mysql();
@@ -768,24 +773,24 @@ class Model_User extends ORM {
                         return TRUE;
                     } catch (Exception $e) {
                         return $e->getMessage();
-                    }                       
+                    }
                 }
                 else
                     return $image['name'].' '.__('Icon file could not been saved.');
             }
-            
+
         }
     }
 
     /**
      * gets the api_token and regenerates if needed
      * @param  boolean $regenerate forces regenerate
-     * @return string              
+     * @return string
      */
     public function api_token($regenerate = FALSE)
     {
         if($this->loaded())
-        {   
+        {
             //first time force the token generation
             if ($this->api_token==NULL)
                 $regenerate = TRUE;
@@ -817,9 +822,9 @@ class Model_User extends ORM {
 
     /**
      * sends a push notification to this user if has a device
-     * @param  string $message 
-     * @param  array $data extra info to send   
-     * @return bool          
+     * @param  string $message
+     * @param  array $data extra info to send
+     * @return bool
      */
     public function push_notification($message,$data = NULL)
     {
@@ -828,7 +833,7 @@ class Model_User extends ORM {
             return Core::push_notification($this->device_id,$message,$data);
         }
 
-        return FALSE;        
+        return FALSE;
     }
 
     /**
@@ -930,16 +935,16 @@ class Model_User extends ORM {
         //remove ads, will remove reviews, images etc...
         $ads = new Model_Ad();
         $ads = $ads->where('id_user','=',$this->id_user)->find_all();
-       
-        foreach ($ads as $ad) 
+
+        foreach ($ads as $ad)
             $ad->delete();
-        
+
         //bye profile pic
         $this->delete_image();
-        
+
         //delete favorites
         DB::delete('favorites')->where('id_user', '=',$this->id_user)->execute();
-        
+
         //delete reviews
         DB::delete('reviews')->where('id_user', '=',$this->id_user)->execute();
 
@@ -958,10 +963,10 @@ class Model_User extends ORM {
         //unsusbcribe from elasticemail
         if ( Core::config('email.elastic_listname')!='' )
             ElasticEmail::unsubscribe(Core::config('email.elastic_listname'),$this->email);
-        
+
         parent::delete();
     }
-    
+
     /**
      * get user ad contacts
      * @return array [description]
@@ -982,16 +987,16 @@ class Model_User extends ORM {
                         ->where('v.contacts','>','0')
                         ->where('v.created','>', (is_null($this->notification_date))? 0:$this->notification_date)
                         ->order_by('v.created', 'DESC');
-            
+
             if (is_null($this->notification_date))
                 $query->limit(5);
-            
+
             return $query->execute();
         }
-        
+
         return FALSE;
     }
-    
+
     /**
      * checks if we have stored user's lat/lng
      * @return array/boolean
@@ -1015,7 +1020,7 @@ class Model_User extends ORM {
     * returns a list with custom field values of this user
     * @param  boolean $show_profile only those fields that needs to be displayed on the user profile show_profile===TRUE
     * @param  boolean $hide_admin hide those fields that are reserved for the admin hide_admin===TRUE
-    * @return array else false 
+    * @return array else false
     */
     public function custom_columns($show_profile = FALSE, $hide_admin = TRUE)
     {
@@ -1026,23 +1031,23 @@ class Model_User extends ORM {
 
             if(!isset($cf_config))
                 return array();
-            
-            //getting the custom fields this uaser has and his value          
+
+            //getting the custom fields this uaser has and his value
             $active_custom_fields = array();
             foreach($this->_table_columns as $value)
-            {   
+            {
                 //we want only those that are custom fields
-                if(strpos($value['column_name'],'cf_') !== FALSE) 
+                if(strpos($value['column_name'],'cf_') !== FALSE)
                 {
                     $cf_name  = str_replace('cf_', '', $value['column_name']);
                     $cf_column_name = $value['column_name'];
                     $cf_value = $this->$cf_column_name;
 
                     if(isset($cf_value) AND isset($cf_config->$cf_name))
-                    {   
+                    {
                         //formating the value depending on the type
-                        switch ($cf_config->$cf_name->type) 
-                        {   
+                        switch ($cf_config->$cf_name->type)
+                        {
                             case 'checkbox':
                                 $cf_value = ($cf_value)?'checkbox_'.$cf_value:NULL;
                                 break;
@@ -1052,27 +1057,27 @@ class Model_User extends ORM {
                             case 'date':
                                 $cf_value = Date::format($cf_value, core::config('general.date_format'));
                                 break;
-                        }      
-                        
+                        }
+
                         //should it be added to the profile?
-                        if ($show_profile == TRUE AND isset($cf_config->$cf_name->show_profile)) 
+                        if ($show_profile == TRUE AND isset($cf_config->$cf_name->show_profile))
                         {
                             //only to the profile
                             if ($cf_config->$cf_name->show_profile==TRUE)
                             {
                                 $active_custom_fields[$cf_name] = $cf_value;
-                            }                            
+                            }
                         }
                         else
                             $active_custom_fields[$cf_name] = $cf_value;
                     }
-       
+
                 }
             }
 
             // sorting using json order
             $user_custom_vals = array();
-            foreach ($cf_config as $name => $value) 
+            foreach ($cf_config as $name => $value)
             {
                 if(isset($active_custom_fields[$name]))
                     $user_custom_vals[$value->label] = $active_custom_fields[$name];
@@ -1080,14 +1085,14 @@ class Model_User extends ORM {
 
 
             return $user_custom_vals;
-            
+
         }
         return array();
     }
 
     /**
      * get the current subscription of the user
-     * @return Model_Subscription 
+     * @return Model_Subscription
      */
     public function subscription()
     {
@@ -1119,14 +1124,14 @@ class Model_User extends ORM {
             Core::config('general.pusher_notifications_app_id'),
             $options
         );
-        
+
         if (core::config('general.messaging') AND strpos($content, 'messaging') !== FALSE) {
             $data['message'] = __('You got a new message.').'<br><br><a href="'.Route::url('oc-panel', array('controller'=>'messages')).'">'.__('Read more').'</a>';
         } else {
             $data['message'] = $message."<br><br>".__('Please check your email');
         }
-        
-        $pusher->trigger('user_'.$channel, 'my-event', $data);    
+
+        $pusher->trigger('user_'.$channel, 'my-event', $data);
     }
 
 } // END Model_User
