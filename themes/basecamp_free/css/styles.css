@@ -1502,6 +1502,41 @@ table#forum-table  td, table#forum-table .sibling-forum th {
 	font-size: 14px;
 }
 
+/* Follow us widget */
+.widget_follow a:hover{
+  text-decoration: none;
+}
+.widget_follow i{
+  margin: 2px;
+}
+.widget_follow a:hover .fa{
+    color: #ccc;
+}
+.widget_follow .fa-facebook-square{
+    color: #3a5795;
+}
+.widget_follow .fa-twitter-square{
+    color: #55acee;
+}
+.widget_follow .fa-instagram{
+    color: #b09375;
+}
+.widget_follow .fa-pinterest-square{
+    color: #cb2027;
+}
+.widget_follow .fa-google-plus-square{
+    color: #d73d32;
+}
+.widget_follow .fa-linkedin-square{
+    color: #0077b5;
+}
+.widget_follow .fa-youtube-square{
+    color: #e12b28;
+}
+.widget_follow .fa-flickr{
+    color: #ff0084;
+}
+
 @media only screen and (max-width : 768px) {
 	.topic-row.header {
 		display: none;
@@ -1863,7 +1898,7 @@ div.sceditor-group {padding: 1px 15px 5px 5px !important;}
 .dropdown-languages {
 	position: relative;
 	width: 100%;
-	height: 250px;
+	height: auto;
 	overflow: auto;
 }
 

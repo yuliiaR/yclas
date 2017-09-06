@@ -18,10 +18,10 @@ a {
 .navbar-inverse {
     background-color: #353535;
 }
-.navbar-inverse .navbar-brand {
+.navbar-inverse .navbar-brand h1{
     color: #C5B68D;
 }
-.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+.navbar-inverse .navbar-brand:focus h1, .navbar-inverse .navbar-brand:hover h1 {
     color: #B09C65;
 }
 .navbar-inverse .navbar-nav>li>a {
@@ -646,6 +646,7 @@ hr {
     padding-bottom: 10px;
     background: #2D2D2D;
 }
+
 @media only screen and (max-width: 768px) {
 .topic-row .topic-title {
     background: #B09C65;
