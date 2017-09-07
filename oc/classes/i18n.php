@@ -538,6 +538,7 @@ class I18n extends Kohana_I18n {
         'NZD' => array('NZ$',2,'.',',',0),          //  New Zealand Dollar
         'NOK' => array('kr',2,',','.',1),          //  Norwegian Krone
         'PKR' => array(NULL,2,'.',',',0),          //  Pakistan Rupee
+        'PYG' => array('₲',2,'.',',',0),          //  Paraguay Guarani
         'PEN' => array(NULL,2,'.',',',0),          //  Peru, Nuevo Sol
         'UYU' => array(NULL,2,',','.',0),          //  Peso Uruguayo
         'PHP' => array(NULL,2,'.',',',0),          //  Philippine Peso
@@ -873,6 +874,7 @@ class I18n extends Kohana_I18n {
         'TRY' => 'New Turkish Lira',
         'NZD' => 'New Zealand Dollar',
         'PKR' => 'Pakistan Rupee',
+        'PYG' => 'Paraguay Guarani',
         'PEN' => 'Peru, Nuevo Sol',
         'UYU' => 'Peso Uruguayo',
         'PHP' => 'Philippine Peso',
