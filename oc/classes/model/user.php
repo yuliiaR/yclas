@@ -68,10 +68,11 @@ class Model_User extends ORM {
     {
         return array(
                         'id_user'       => array(array('numeric')),
-                        'name'          => array(array('not_empty'), array('max_length', array(':value', 145)), ),
+                        'name'          => array(array('not_empty'), array('min_length', array(':value', 2)), array('max_length', array(':value', 145)), ),
                         'email'         => array(
                                                     array('not_empty'),
                                                     array('email'),
+                                                    array('email_domain'),
                                                     array(array($this, 'unique'), array('email', ':value')),
                                                     array('max_length', array(':value', 145))
                                         ),
@@ -409,10 +410,7 @@ class Model_User extends ORM {
 
         if($email != NULL)//if $this is not loaded
         {
-            $user = new self();
-            $user = $user->where('email', '=', $email)
-                     ->limit(1)
-                     ->find();
+            $user = Model_User::find_by_email($email);
         }
         else $user = $this;
 
@@ -537,8 +535,7 @@ class Model_User extends ORM {
      */
     public static function create_email($email,$name=NULL,$password=NULL)
     {
-        $user = new self();
-        $user->where('email','=',$email)->limit(1)->find();
+        $user = Model_User::find_by_email($email);
 
         //only if didnt exists
         if (!$user->loaded())
@@ -568,8 +565,7 @@ class Model_User extends ORM {
      */
     public static function create_user($email,$name=NULL,$password=NULL)
     {
-        $user = new self();
-        $user->where('email','=',$email)->limit(1)->find();
+        $user = Model_User::find_by_email($email);
 
         if (!$user->loaded())
         {
@@ -584,14 +580,13 @@ class Model_User extends ORM {
             $user->seoname      = $user->gen_seo_title($user->name);
             $user->password     = $password;
             $user->subscriber   = 1;
-
             try
             {
                 $user->save();
             }
             catch (ORM_Validation_Exception $e)
             {
-                throw HTTP_Exception::factory(500,$e->errors(''));
+                throw $e;
             }
             catch (Exception $e)
             {
@@ -617,7 +612,14 @@ class Model_User extends ORM {
     public static function create_social($email,$name=NULL,$provider, $identifier)
     {
         //get the user or create it
-        $user = self::create_email($email,$name);
+        try
+        {
+            $user = self::create_email(core::post('email'),core::post('name'),core::post('password1'));
+        }
+        catch (ORM_Validation_Exception $e)
+        {
+            throw HTTP_Exception::factory(500,$e->errors('models'));
+        }
 
         //always we set this values even if user existed
         $user->hybridauth_provider_name = $provider;
@@ -1132,6 +1134,11 @@ class Model_User extends ORM {
         }
 
         $pusher->trigger('user_'.$channel, 'my-event', $data);
+    }
+
+    public static function find_by_email($email)
+    {
+        return (new self())->where('email', '=', $email)->limit(1)->find();
     }
 
 } // END Model_User

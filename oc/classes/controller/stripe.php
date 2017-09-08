@@ -11,12 +11,12 @@
 */
 
 class Controller_Stripe extends Controller{
-    
+
     /**
      * gets the payment token from stripe and marks order as paid
      */
     public function action_pay()
-    { 
+    {
         $this->auto_render = FALSE;
 
         $id_order = $this->request->param('id');
@@ -30,7 +30,7 @@ class Controller_Stripe extends Controller{
         if ($order->loaded())
         {
 
-            if ( isset( $_POST[ 'stripeToken' ] ) ) 
+            if ( isset( $_POST[ 'stripeToken' ] ) )
             {
                 //its a fraud...lets let him know
                 if ( $order->is_fraud() === TRUE )
@@ -52,7 +52,7 @@ class Controller_Stripe extends Controller{
                       'email' => $order->user->email)
                     );
                 }
-                catch(Exception $e) 
+                catch(Exception $e)
                 {
                     // The card has been declined
                     Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
@@ -63,7 +63,7 @@ class Controller_Stripe extends Controller{
                 //3d secure active?
                 if (Core::config('payment.stripe_3d_secure') == TRUE)
                 {
-                    try 
+                    try
                     {
                         $three_d_secure =  \Stripe\ThreeDSecure::create(array(
                                                     'customer'  => $customer->id,
@@ -72,7 +72,7 @@ class Controller_Stripe extends Controller{
                                                     'return_url'=> Route::url('default',array('controller'=>'stripe','action'=>'3d','id'=>$order->id_order))
                                             ));
                     }
-                    catch(Exception $e) 
+                    catch(Exception $e)
                     {
                         // The card has been declined
                         Kohana::$log->add(Log::ERROR, 'Stripe 3D The card has been declined');
@@ -86,7 +86,7 @@ class Controller_Stripe extends Controller{
                         //so we can use later the customer to store it
                         Session::instance()->set('customer_id',$customer->id);
                         die(View::factory('post_redirect', ['redirect_url' => $three_d_secure->redirect_url])->render());
-                    }    
+                    }
                     else
                     {
                         Alert::set(Alert::WARNING, 'This Card does not support 3D secure. Please try another card or use another payment method. Thanks.');
@@ -95,7 +95,7 @@ class Controller_Stripe extends Controller{
                 }
 
                 // Create the charge on Stripe's servers - this will charge the user's card
-                try 
+                try
                 {
                     $charge = \Stripe\Charge::create(array(
                                                         "amount"    => StripeKO::money_format($order->amount), // amount in cents, again
@@ -113,17 +113,17 @@ class Controller_Stripe extends Controller{
                         $order->user->save();
                     }
                 }
-                catch(Exception $e) 
+                catch(Exception $e)
                 {
                     // The card has been declined
                     Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
                     Alert::set(Alert::ERROR, 'Stripe The card has been declined');
                     $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
                 }
-                
+
                 //mark as paid
                 $order->confirm_payment('stripe',Core::post('stripeToken'));
-                
+
                 //redirect him to his ads
                 Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
                 $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')));
@@ -133,7 +133,7 @@ class Controller_Stripe extends Controller{
                 Alert::set(Alert::INFO, __('Please fill your card details.'));
                 $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
             }
-            
+
         }
         else
         {
@@ -147,9 +147,9 @@ class Controller_Stripe extends Controller{
      * gets the payment token from stripe and marks order as paid. Methos for application fee
      */
     public function action_payconnect()
-    { 
+    {
         //TODO only if stripe connect enabled
-        
+
         $this->auto_render = FALSE;
 
         $id_order = $this->request->param('id');
@@ -164,7 +164,7 @@ class Controller_Stripe extends Controller{
         if ($order->loaded())
         {
 
-            if ( isset( $_POST[ 'stripeToken' ] ) ) 
+            if ( isset( $_POST[ 'stripeToken' ] ) )
             {
                 //its a fraud...lets let him know
                 if ( $order->is_fraud() === TRUE )
@@ -182,8 +182,8 @@ class Controller_Stripe extends Controller{
                 $email = Core::post('stripeEmail');
 
                 // Create the charge on Stripe's servers - this will charge the user's card
-                try 
-                {   
+                try
+                {
                     //in case memberships the fee may be set on the plan ;)
                     $fee = NULL;
                     if ( $order->ad->user->subscription()->loaded() )
@@ -199,7 +199,7 @@ class Controller_Stripe extends Controller{
                                                         "currency"  => $order->currency,
                                                         "source"      => $token,
                                                         "description" => $order->description,
-                                                        "application_fee" => StripeKO::money_format($application_fee)), 
+                                                        "application_fee" => StripeKO::money_format($application_fee)),
                                                      array('stripe_account' => $order->ad->user->stripe_user_id)
                                                     );
                     }
@@ -212,19 +212,19 @@ class Controller_Stripe extends Controller{
                                                         "description" => $order->description)
                                                     );
                     }
-                    
+
                 }
-                catch(Exception $e) 
+                catch(Exception $e)
                 {
                     // The card has been declined
                     Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
                     Alert::set(Alert::ERROR, 'Stripe The card has been declined');
                     $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
                 }
-                
+
                 //mark as paid
                 $order->confirm_payment('stripe',Core::post('stripeToken'));
-                
+
                 //only if is not admin
                 if (! $order->ad->user->is_admin())
                 {
@@ -234,7 +234,7 @@ class Controller_Stripe extends Controller{
                                                         'id_order->'.$order->id_order.' id_ad->'.$order->ad->id_ad);
                     $order_app->confirm_payment('stripe',Core::post('stripeToken'));
                 }
-                
+
                 //redirect him to his ads
                 Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
                 $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')));
@@ -244,7 +244,7 @@ class Controller_Stripe extends Controller{
                 Alert::set(Alert::INFO, __('Please fill your card details.'));
                 $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
             }
-            
+
         }
         else
         {
@@ -258,8 +258,8 @@ class Controller_Stripe extends Controller{
      * connect for guests, only for sell ad products
      */
     public function action_payguest()
-    { 
-        
+    {
+
         $this->auto_render = FALSE;
 
         $id_ad = $this->request->param('id');
@@ -270,11 +270,11 @@ class Controller_Stripe extends Controller{
         //loaded published and with stock if we control the stock.
         if($ad->loaded() AND $ad->status==Model_Ad::STATUS_PUBLISHED
             AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
-            AND (core::config('payment.stripe_connect')==1) 
+            AND (core::config('payment.stripe_connect')==1)
             )
         {
 
-            if ( isset( $_POST[ 'stripeToken' ] ) ) 
+            if ( isset( $_POST[ 'stripeToken' ] ) )
             {
 
                 StripeKO::init();
@@ -287,8 +287,8 @@ class Controller_Stripe extends Controller{
 
 
                 // Create the charge on Stripe's servers - this will charge the user's card
-                try 
-                {   
+                try
+                {
                     //in case memberships the fee may be set on the plan ;)
                     $fee = NULL;
                     if ( $ad->user->subscription()->loaded() )
@@ -309,7 +309,7 @@ class Controller_Stripe extends Controller{
                                                         "currency"  => core::config('payment.paypal_currency'),
                                                         "source"      => $token,
                                                         "description" => $ad->title,
-                                                        "application_fee" => StripeKO::money_format($application_fee)), 
+                                                        "application_fee" => StripeKO::money_format($application_fee)),
                                                      array('stripe_account' => $ad->user->stripe_user_id)
                                                     );
                     }
@@ -322,25 +322,34 @@ class Controller_Stripe extends Controller{
                                                         "description" => $ad->title)
                                                     );
                     }
-                    
+
                 }
-                catch(Exception $e) 
+                catch(Exception $e)
                 {
                     // The card has been declined
                     Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
                     Alert::set(Alert::ERROR, 'Stripe The card has been declined');
                     $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'guestcheckout','id'=>$ad->id_ad)));
                 }
-                
+
                 //create user if does not exists, if not will return the user
-                $user = Model_User::create_email($email);
+                try
+                {
+                    $user = Model_User::create_email($email);
+                }
+                catch (ORM_Validation_Exception $e)
+                {
+                    Kohana::$log->add(Log::ERROR, 'A user could not be created.');
+                    $this->response->body('KO');
+                    return;
+                }
                 //new order
-                $order = Model_Order::new_order($ad, $user, Model_Order::PRODUCT_AD_SELL, 
+                $order = Model_Order::new_order($ad, $user, Model_Order::PRODUCT_AD_SELL,
                                                 $ad->price, core::config('payment.paypal_currency'), __('Purchase').': '.$ad->seotitle);
 
                 //mark as paid
                 $order->confirm_payment('stripe',Core::post('stripeToken'));
-                
+
                 //only if is not admin we charge the fee
                 if (! $order->ad->user->is_admin())
                 {
@@ -350,7 +359,7 @@ class Controller_Stripe extends Controller{
                                                         'id_order->'.$order->id_order.' id_ad->'.$order->ad->id_ad);
                     $order_app->confirm_payment('stripe',Core::post('stripeToken'));
                 }
-                
+
                 //redirect him to his ads
                 Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
                 $this->redirect(Route::url('default'));
@@ -360,7 +369,7 @@ class Controller_Stripe extends Controller{
                 Alert::set(Alert::INFO, __('Please fill your card details.'));
                 $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'guestcheckout','id'=>$ad->id_ad)));
             }
-            
+
         }
         else
         {
@@ -388,7 +397,7 @@ class Controller_Stripe extends Controller{
         //stored in configs
         $client_id = Core::config('payment.stripe_clientid');
 
-        if (isset($_GET['code'])) 
+        if (isset($_GET['code']))
         { // Redirect w/ code
             $code = $_GET['code'];
 
@@ -409,7 +418,7 @@ class Controller_Stripe extends Controller{
             {
                 curl_close($req);
                 $response = json_decode($response, TRUE);
-                
+
                 if(isset($response['error_description']))
                     Alert::set(Alert::ERROR,$response['error_description']);
                 elseif(isset($response['stripe_user_id']))
@@ -420,12 +429,12 @@ class Controller_Stripe extends Controller{
                     Alert::set(Alert::INFO, __('Stripe Connected'));
                 }
             }
-            else 
-                Alert::set(Alert::ERROR, 'We could not connect with Stripe.');     
-        } 
-        elseif (isset($_GET['error'])) 
+            else
+                Alert::set(Alert::ERROR, 'We could not connect with Stripe.');
+        }
+        elseif (isset($_GET['error']))
             Alert::set(Alert::ERROR, $_GET['error']);
-        else 
+        else
         { // redirect user to stripe connect
             $authorize_request_body = array(
                                             'response_type' => 'code',
@@ -438,14 +447,14 @@ class Controller_Stripe extends Controller{
             $this->redirect($url);
         }
 
-        $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit'))); 
+        $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
     }
 
     /**
      * [action_form] generates the form to pay at paypal
      */
     public function action_3d()
-    { 
+    {
         $this->auto_render = FALSE;
 
         $id_order = $this->request->param('id');
@@ -459,7 +468,7 @@ class Controller_Stripe extends Controller{
         if ($order->loaded())
         {
             //dr($_GET);
-            if ( Core::get('status') == 'succeeded' AND Core::get('id')!=NULL AND ($customer_id = Session::instance()->get('customer_id')) != NULL)  
+            if ( Core::get('status') == 'succeeded' AND Core::get('id')!=NULL AND ($customer_id = Session::instance()->get('customer_id')) != NULL)
             {
                 try
                 {
@@ -474,7 +483,7 @@ class Controller_Stripe extends Controller{
                                                         "metadata"    => array("id_order" => $order->id_order))
                                                     );
                 }
-                catch(Exception $e) 
+                catch(Exception $e)
                 {
                     // The card has been declined
                     Kohana::$log->add(Log::ERROR, 'Stripe The card has been declined');
@@ -492,7 +501,7 @@ class Controller_Stripe extends Controller{
 
                 //mark as paid
                 $order->confirm_payment('stripe', $charge->id);
-                
+
                 //redirect him to his ads
                 Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
                 $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')));
@@ -503,7 +512,7 @@ class Controller_Stripe extends Controller{
                 Alert::set(Alert::INFO, __('Please fill your card details.'));
                 $this->redirect(Route::url('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order)));
             }
-            
+
         }
         else
         {

@@ -11,13 +11,13 @@
 */
 
 class Controller_Paypal extends Controller{
-	
+
 
 	public function after()
 	{
 
 	}
-	
+
 	public function action_ipn()
 	{
         //todo delete
@@ -36,7 +36,7 @@ class Controller_Paypal extends Controller{
 		$order = $order->where('id_order', '=', $id_order)
 					   ->where('status', '=', Model_Order::STATUS_CREATED)
 					   ->limit(1)->find();
-		
+
 		if($order->loaded())
 		{
 
@@ -49,26 +49,26 @@ class Controller_Paypal extends Controller{
             }
             //any other payment goes to classifieds site payment
             else
-            { 
+            {
                 $receiver_correct = (Core::request('receiver_email') == core::config('payment.paypal_account')  OR Core::request('business')  == core::config('payment.paypal_account'));
             }
 
             //same amount and same currency
-			if ( Core::request('payment_status')   == 'Completed' 
+			if ( Core::request('payment_status')   == 'Completed'
                 AND  Core::request('mc_gross')     == number_format($order->amount, 2, '.', '')
 				AND  Core::request('mc_currency')  == core::config('payment.paypal_currency') AND  $receiver_correct)
 			{
                 //same price , currency and email no cheating ;)
-				if (paypal::validate_ipn()) 
+				if (paypal::validate_ipn())
 				{
-					$order->confirm_payment('paypal',Core::request('txn_id'));	
+					$order->confirm_payment('paypal',Core::request('txn_id'));
 				}
 				else
 				{
 					Kohana::$log->add(Log::ERROR, 'A payment has been made but is flagged as INVALID');
 					$this->response->body('KO');
-				}	
-			} 
+				}
+			}
 			else //trying to cheat....
 			{
 				Kohana::$log->add(Log::ERROR, 'Attempt illegal actions with transaction');
@@ -82,13 +82,13 @@ class Controller_Paypal extends Controller{
 		}
 
 		$this->response->body('OK');
-	} 
+	}
 
 	/**
 	 * [action_form] generates the form to pay at paypal
 	 */
 	public function action_pay()
-	{ 
+	{
 		$this->auto_render = FALSE;
 
 		$order_id = $this->request->param('id');
@@ -123,10 +123,10 @@ class Controller_Paypal extends Controller{
 	                             'paypal_account'    	=> $paypal_account,
 	                             'paypal_currency'    	=> $currency,
 	                             'item_name'			=> $order->description);
-			
+
 			$this->template = View::factory('paypal', $paypal_data);
             $this->response->body($this->template->render());
-			
+
 		}
 		else
 		{
@@ -159,7 +159,7 @@ class Controller_Paypal extends Controller{
         //loaded published and with stock if we control the stock.
         if($ad->loaded() AND $ad->status==Model_Ad::STATUS_PUBLISHED
             AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
-            AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1) 
+            AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1)
             )
         {
             //order is from a payment done to the owner of the ad
@@ -168,27 +168,36 @@ class Controller_Paypal extends Controller{
             $receiver_correct = (Core::request('receiver_email') == $paypal_account  OR Core::request('business')  == $paypal_account);
 
             //same amount and same currency
-            if ( Core::request('payment_status')   == 'Completed' 
+            if ( Core::request('payment_status')   == 'Completed'
                 AND  Core::request('mc_gross')     == number_format($ad->price, 2, '.', '')
                 AND  Core::request('mc_currency')  == core::config('payment.paypal_currency') AND  $receiver_correct)
             {
                 //same price , currency and email no cheating ;)
-                if (paypal::validate_ipn()) 
+                if (paypal::validate_ipn())
                 {
                     //create user if does not exists, if not will return the user
-                    $user = Model_User::create_email($payer_email,$payer_name);
+                    try
+                    {
+                        $user = Model_User::create_email($payer_email,$payer_name);
+                    }
+                    catch (ORM_Validation_Exception $e)
+                    {
+                        Kohana::$log->add(Log::ERROR, 'A user could not be created.');
+                        $this->response->body('KO');
+                        return;
+                    }
                     //new order
-                    $order = Model_Order::new_order($ad, $user, Model_Order::PRODUCT_AD_SELL, 
+                    $order = Model_Order::new_order($ad, $user, Model_Order::PRODUCT_AD_SELL,
                                                     $ad->price, core::config('payment.paypal_currency'), __('Purchase').': '.$ad->seotitle);
 
-                    $order->confirm_payment('paypal',Core::request('txn_id')); 
+                    $order->confirm_payment('paypal',Core::request('txn_id'));
                 }
                 else
                 {
                     Kohana::$log->add(Log::ERROR, 'A payment has been made but is flagged as INVALID');
                     $this->response->body('KO');
-                }   
-            } 
+                }
+            }
             else //trying to cheat....
             {
                 Kohana::$log->add(Log::ERROR, 'Attempt illegal actions with transaction');
@@ -202,13 +211,13 @@ class Controller_Paypal extends Controller{
         }
 
         $this->response->body('OK');
-    } 
+    }
 
     /**
      * [action_form] generates the form to pay at paypal
      */
     public function action_guestpay()
-    { 
+    {
         $this->auto_render = FALSE;
 
         //check ad exists
@@ -218,7 +227,7 @@ class Controller_Paypal extends Controller{
         //loaded published and with stock if we control the stock.
         if($ad->loaded() AND $ad->status==Model_Ad::STATUS_PUBLISHED
             AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
-            AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1) 
+            AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1)
             )
         {
 
@@ -229,7 +238,7 @@ class Controller_Paypal extends Controller{
                 $ad->price = $ad->price;
             elseif($ad->shipping_price())
                 $ad->price = $ad->price + $ad->shipping_price();
-       
+
             $paypal_url = (Core::config('payment.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
             $notify_url = Route::url('default',array('controller'=>'paypal','action'=>'guestipn','id'=>$id_ad));
 
@@ -245,7 +254,7 @@ class Controller_Paypal extends Controller{
                                  'paypal_account'       => $paypal_account,
                                  'paypal_currency'      => $currency,
                                  'item_name'            => $ad->title);
-            
+
             $this->template = View::factory('paypal', $paypal_data);
             $this->response->body($this->template->render());
 
